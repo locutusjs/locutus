@@ -18,11 +18,11 @@ function uksort(inputArr, sorter) {
   //   returns 1: {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
 
   var tmp_arr = {},
-      keys = [],
-      i = 0,
-      k = '',
-      strictForIn = false,
-      populateArr = {};
+    keys = [],
+    i = 0,
+    k = '',
+    strictForIn = false,
+    populateArr = {};
 
   if (typeof sorter === 'string') {
     sorter = this.window[sorter];
@@ -50,9 +50,9 @@ function uksort(inputArr, sorter) {
   this.php_js = this.php_js || {};
   this.php_js.ini = this.php_js.ini || {};
   // END REDUNDANT
-  strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
+  strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
+    .ini['phpjs.strictForIn'].local_value !== 'off';
   populateArr = strictForIn ? inputArr : populateArr;
-
 
   // Rebuild array with sorted key names
   for (i = 0; i < keys.length; i++) {

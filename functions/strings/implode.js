@@ -10,8 +10,8 @@ function implode(glue, pieces) {
   //   returns 2: 'Kevin van Zonneveld'
 
   var i = '',
-      retVal = '',
-      tGlue = '';
+    retVal = '',
+    tGlue = '';
   if (arguments.length === 1) {
     pieces = glue;
     glue = '';

@@ -14,14 +14,17 @@ function ip2long(IP) {
   var i = 0;
   // PHP allows decimal, octal, and hexadecimal IP components.
   // PHP allows between 1 (e.g. 127) to 4 (e.g 127.0.0.1) components.
-  IP = IP.match(/^([1-9]\d*|0[0-7]*|0x[\da-f]+)(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?$/i); // Verify IP format.
+  IP = IP.match(
+    /^([1-9]\d*|0[0-7]*|0x[\da-f]+)(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?$/i
+  ); // Verify IP format.
   if (!IP) {
     return false; // Invalid format.
   }
   // Reuse IP variable for component counter.
   IP[0] = 0;
   for (i = 1; i < 5; i += 1) {
-    IP[0] += !! ((IP[i] || '').length);
+    IP[0] += !! ((IP[i] || '')
+      .length);
     IP[i] = parseInt(IP[i]) || 0;
   }
   // Continue to use IP for overflow values.

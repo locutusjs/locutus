@@ -13,9 +13,9 @@ function setlocale(category, locale) {
   //   returns 1: 'en_US'
 
   var categ = '',
-      cats = [],
-      i = 0,
-      d = this.window.document;
+    cats = [],
+    i = 0,
+    d = this.window.document;
 
   // BEGIN STATIC
   var _copy = function _copy(orig) {
@@ -68,7 +68,8 @@ function setlocale(category, locale) {
     return n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >= 2 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2;
   };
   var _nplurals3e = function(n) { // e.g., Croatian
-    return n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2;
+    return n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 :
+      2;
   };
   var _nplurals3f = function(n) { // e.g., Slovak
     return n === 1 ? 0 : n >= 2 && n <= 4 ? 1 : 2;
@@ -89,7 +90,8 @@ function setlocale(category, locale) {
     return n === 1 ? 0 : n === 2 ? 1 : n >= 3 && n <= 6 ? 2 : n >= 7 && n <= 10 ? 3 : 4;
   };
   var _nplurals6 = function(n) { // e.g., Arabic (MDC) - Per MDC puts 0 as last group
-    return n === 0 ? 5 : n === 1 ? 0 : n === 2 ? 1 : n % 100 >= 3 && n % 100 <= 10 ? 2 : n % 100 >= 11 && n % 100 <= 99 ? 3 : 4;
+    return n === 0 ? 5 : n === 1 ? 0 : n === 2 ? 1 : n % 100 >= 3 && n % 100 <= 10 ? 2 : n % 100 >= 11 && n % 100 <=
+      99 ? 3 : 4;
   };
   // END STATIC
   // BEGIN REDUNDANT
@@ -107,10 +109,9 @@ function setlocale(category, locale) {
     phpjs.locales.en = {
       'LC_COLLATE': // For strcoll
 
-
-          function(str1, str2) { // Fix: This one taken from strcmp, but need for other locales; we don't use localeCompare since its locale is not settable
-            return (str1 == str2) ? 0 : ((str1 > str2) ? 1 : -1);
-          },
+      function(str1, str2) { // Fix: This one taken from strcmp, but need for other locales; we don't use localeCompare since its locale is not settable
+        return (str1 == str2) ? 0 : ((str1 > str2) ? 1 : -1);
+      },
       'LC_CTYPE': { // Need to change any of these for English as opposed to C?
         an: /^[A-Za-z\d]+$/g,
         al: /^[A-Za-z]+$/g,
@@ -135,7 +136,9 @@ function setlocale(category, locale) {
         // DAY_
         b: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         // ABMON_
-        B: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        B: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
+          'November', 'December'
+        ],
         // MON_
         c: '%a %d %b %Y %r %Z',
         // D_T_FMT // changed %T to %r per results
@@ -247,8 +250,12 @@ function setlocale(category, locale) {
     phpjs.locales.fr.nplurals = _nplurals2b;
     phpjs.locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'];
     phpjs.locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
-    phpjs.locales.fr.LC_TIME.b = ['jan', 'f\u00E9v', 'mar', 'avr', 'mai', 'jun', 'jui', 'ao\u00FB', 'sep', 'oct', 'nov', 'd\u00E9c'];
-    phpjs.locales.fr.LC_TIME.B = ['janvier', 'f\u00E9vrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'ao\u00FBt', 'septembre', 'octobre', 'novembre', 'd\u00E9cembre'];
+    phpjs.locales.fr.LC_TIME.b = ['jan', 'f\u00E9v', 'mar', 'avr', 'mai', 'jun', 'jui', 'ao\u00FB', 'sep', 'oct',
+      'nov', 'd\u00E9c'
+    ];
+    phpjs.locales.fr.LC_TIME.B = ['janvier', 'f\u00E9vrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'ao\u00FBt',
+      'septembre', 'octobre', 'novembre', 'd\u00E9cembre'
+    ];
     phpjs.locales.fr.LC_TIME.c = '%a %d %b %Y %T %Z';
     phpjs.locales.fr.LC_TIME.p = ['', ''];
     phpjs.locales.fr.LC_TIME.P = ['', ''];
@@ -263,7 +270,8 @@ function setlocale(category, locale) {
     var NS_XHTML = 'http://www.w3.org/1999/xhtml';
     var NS_XML = 'http://www.w3.org/XML/1998/namespace';
     if (d.getElementsByTagNameNS && d.getElementsByTagNameNS(NS_XHTML, 'html')[0]) {
-      if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS && d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')) {
+      if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS && d.getElementsByTagNameNS(NS_XHTML,
+        'html')[0].getAttributeNS(NS_XML, 'lang')) {
         phpjs.locale = d.getElementsByTagName(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang');
       } else if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang) { // XHTML 1.0 only
         phpjs.locale = d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang;

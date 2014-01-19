@@ -6,11 +6,12 @@ function array_reverse(array, preserve_keys) {
   //   returns 1: { 2: ['green', 'red'], 1: 4, 0: 'php'}
 
   var isArray = Object.prototype.toString.call(array) === '[object Array]',
-      tmp_arr = preserve_keys ? {} : [],
-      key;
+    tmp_arr = preserve_keys ? {} : [],
+    key;
 
   if (isArray && !preserve_keys) {
-    return array.slice(0).reverse();
+    return array.slice(0)
+      .reverse();
   }
 
   if (preserve_keys) {

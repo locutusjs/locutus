@@ -29,7 +29,8 @@ function count(mixed_var, mode) {
   for (key in mixed_var) {
     if (mixed_var.hasOwnProperty(key)) {
       cnt++;
-      if (mode == 1 && mixed_var[key] && (mixed_var[key].constructor === Array || mixed_var[key].constructor === Object)) {
+      if (mode == 1 && mixed_var[key] && (mixed_var[key].constructor === Array || mixed_var[key].constructor ===
+        Object)) {
         cnt += this.count(mixed_var[key], 1);
       }
     }

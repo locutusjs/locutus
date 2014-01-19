@@ -9,11 +9,11 @@ function array_diff_key(arr1) {
   //   returns 2: {"green":2, "blue":3, "white":4}
 
   var argl = arguments.length,
-      retArr = {},
-      k1 = '',
-      i = 1,
-      k = '',
-      arr = {};
+    retArr = {},
+    k1 = '',
+    i = 1,
+    k = '',
+    arr = {};
 
   arr1keys: for (k1 in arr1) {
     for (i = 1; i < argl; i++) {

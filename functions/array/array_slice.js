@@ -19,9 +19,9 @@ function array_slice(arr, offst, lgth, preserve_keys) {
   var key = '';
 
   if (Object.prototype.toString.call(arr) !== '[object Array]' ||
-      (preserve_keys && offst !== 0)) { // Assoc. array as input or if required as output
+    (preserve_keys && offst !== 0)) { // Assoc. array as input or if required as output
     var lgt = 0,
-        newAssoc = {};
+      newAssoc = {};
     for (key in arr) {
       //if (key !== 'length') {
       lgt += 1;
@@ -35,9 +35,9 @@ function array_slice(arr, offst, lgth, preserve_keys) {
 
     var assoc = {};
     var start = false,
-        it = -1,
-        arrlgth = 0,
-        no_pk_idx = 0;
+      it = -1,
+      arrlgth = 0,
+      no_pk_idx = 0;
     for (key in arr) {
       ++it;
       if (arrlgth >= lgth) {
@@ -48,7 +48,7 @@ function array_slice(arr, offst, lgth, preserve_keys) {
       }
       if (!start) {
         continue;
-      } ++arrlgth;
+      }++arrlgth;
       if (this.is_int(key) && !preserve_keys) {
         assoc[no_pk_idx++] = arr[key];
       } else {

@@ -12,9 +12,12 @@ function get_meta_tags(file) {
 
   if (false) {
     // Use this for testing instead of the line above:
-    fulltxt = '<meta name="author" content="name">' + '<meta name="keywords" content="php documentation">' + '<meta name="DESCRIPTION" content="a php manual">' + '<meta name="geo.position" content="49.33;-86.59">' + '</head>';
+    fulltxt = '<meta name="author" content="name">' + '<meta name="keywords" content="php documentation">' +
+      '<meta name="DESCRIPTION" content="a php manual">' + '<meta name="geo.position" content="49.33;-86.59">' +
+      '</head>';
   } else {
-    fulltxt = this.file_get_contents(file).match(/^[\s\S]*<\/head>/i); // We have to disallow some character, so we choose a Unicode non-character
+    fulltxt = this.file_get_contents(file)
+      .match(/^[\s\S]*<\/head>/i); // We have to disallow some character, so we choose a Unicode non-character
   }
 
   var patt = /<meta[^>]*?>/gim;
@@ -24,11 +27,13 @@ function get_meta_tags(file) {
 
   while ((txt = patt.exec(fulltxt)) !== null) {
     while ((match = patt1.exec(txt)) !== null) {
-      name = match[2].replace(/\W/g, '_').toLowerCase();
+      name = match[2].replace(/\W/g, '_')
+        .toLowerCase();
       arr[name] = match[4];
     }
     while ((match = patt2.exec(txt)) !== null) {
-      name = match[4].replace(/\W/g, '_').toLowerCase();
+      name = match[4].replace(/\W/g, '_')
+        .toLowerCase();
       arr[name] = match[2];
     }
   }

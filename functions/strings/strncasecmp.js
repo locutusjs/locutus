@@ -16,8 +16,12 @@ function strncasecmp(argStr1, argStr2, len) {
   //   returns 5: -8
 
   var diff, i = 0;
-  var str1 = (argStr1 + '').toLowerCase().substr(0, len);
-  var str2 = (argStr2 + '').toLowerCase().substr(0, len);
+  var str1 = (argStr1 + '')
+    .toLowerCase()
+    .substr(0, len);
+  var str2 = (argStr2 + '')
+    .toLowerCase()
+    .substr(0, len);
 
   if (str1.length !== str2.length) {
     if (str1.length < str2.length) {

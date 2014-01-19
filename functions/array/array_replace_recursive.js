@@ -5,9 +5,9 @@ function array_replace_recursive(arr) {
   //   returns 1: {citrus : ['pineapple'], berries : ['blueberry', 'raspberry']}
 
   var retObj = {},
-      i = 0,
-      p = '',
-      argl = arguments.length;
+    i = 0,
+    p = '',
+    argl = arguments.length;
 
   if (argl < 2) {
     throw new Error('There should be at least 2 arguments passed to array_replace_recursive()');

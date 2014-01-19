@@ -10,8 +10,8 @@ function date_parse(date) {
   // END REDUNDANT
 
   var ts,
-      warningsOffset = this.php_js.warnings ? this.php_js.warnings.length : null,
-      errorsOffset = this.php_js.errors ? this.php_js.errors.length : null;
+    warningsOffset = this.php_js.warnings ? this.php_js.warnings.length : null,
+    errorsOffset = this.php_js.errors ? this.php_js.errors.length : null;
 
   try {
     this.php_js.date_parse_state = true; // Allow strtotime to return a decimal (which it normally does not)
@@ -26,9 +26,11 @@ function date_parse(date) {
   var dt = new Date(ts * 1000);
 
   var retObj = { // Grab any new warnings or errors added (not implemented yet in strtotime()); throwing warnings, notices, or errors could also be easily monitored by using 'watch' on this.php_js.latestWarning, etc. and/or calling any defined error handlers
-    warning_count: warningsOffset !== null ? this.php_js.warnings.slice(warningsOffset).length : 0,
+    warning_count: warningsOffset !== null ? this.php_js.warnings.slice(warningsOffset)
+      .length : 0,
     warnings: warningsOffset !== null ? this.php_js.warnings.slice(warningsOffset) : [],
-    error_count: errorsOffset !== null ? this.php_js.errors.slice(errorsOffset).length : 0,
+    error_count: errorsOffset !== null ? this.php_js.errors.slice(errorsOffset)
+      .length : 0,
     errors: errorsOffset !== null ? this.php_js.errors.slice(errorsOffset) : []
   };
   retObj.year = dt.getFullYear();

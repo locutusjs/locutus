@@ -6,7 +6,8 @@ function metaphone(word, phones) {
   //   example 1: metaphone('Gnu');
   //   returns 1: 'N'
 
-  word = (word == null ? '' : word + '').toUpperCase();
+  word = (word == null ? '' : word + '')
+    .toUpperCase();
 
   function isVowel(a) {
     return 'AEIOU'.indexOf(a) !== -1;
@@ -14,9 +15,9 @@ function metaphone(word, phones) {
 
   function removeDuplicates(word) {
     var wordlength = word.length,
-        char1 = word.charAt(0),
-        char2,
-        rebuilt = char1;
+      char1 = word.charAt(0),
+      char2,
+      rebuilt = char1;
 
     for (var i = 1; i < wordlength; i++) {
       char2 = word.charAt(i);
@@ -33,8 +34,8 @@ function metaphone(word, phones) {
   word = removeDuplicates(word);
 
   var wordlength = word.length,
-      x = 0,
-      metaword = '';
+    x = 0,
+    metaword = '';
 
   //Special wh- case
   if (word.substr(0, 2) === 'WH') {
@@ -57,11 +58,16 @@ function metaphone(word, phones) {
         }
         x += 1;
         break;
-      case 'E': case 'I': case 'O': case 'U':
+      case 'E':
+      case 'I':
+      case 'O':
+      case 'U':
         metaword += cc;
         x += 1;
         break;
-      case 'G': case 'K': case 'P':
+      case 'G':
+      case 'K':
+      case 'P':
         if (nc === 'N') {
           x += 1;
         }
@@ -125,7 +131,8 @@ function metaphone(word, phones) {
           break;
         case 'G':
           if (x < wordlength) {
-            if ((nc === 'N' && x + 1 === wordlength - 1) || (nc === 'N' && nnc === 'S' && x + 2 === wordlength - 1)) {
+            if ((nc === 'N' && x + 1 === wordlength - 1) || (nc === 'N' && nnc === 'S' && x + 2 ===
+              wordlength - 1)) {
               break;
             }
             if (word.substr(x + 1, 3) === 'NED' && x + 3 === wordlength - 1) {
@@ -166,7 +173,11 @@ function metaphone(word, phones) {
             metaword += 'K';
           }
           break;
-        case 'M': case 'J': case 'N': case 'R': case 'L':
+        case 'M':
+        case 'J':
+        case 'N':
+        case 'R':
+        case 'L':
           metaword += cc;
           break;
         case 'Q':

@@ -9,5 +9,5 @@ function is_float(mixed_var) {
   //   example 1: is_float(186.31);
   //   returns 1: true
 
-  return +mixed_var === mixed_var && (!isFinite(mixed_var) || !!(mixed_var % 1));
+  return +mixed_var === mixed_var && (!isFinite(mixed_var) || !! (mixed_var % 1));
 }

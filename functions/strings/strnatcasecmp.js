@@ -12,8 +12,10 @@ function strnatcasecmp(str1, str2) {
   //        returns 1: 1
   //        returns 1: -1
 
-  var a = (str1 + '').toLowerCase();
-  var b = (str2 + '').toLowerCase();
+  var a = (str1 + '')
+    .toLowerCase();
+  var b = (str2 + '')
+    .toLowerCase();
 
   var isWhitespaceChar = function(a) {
     return a.charCodeAt(0) <= 32;
@@ -61,9 +63,9 @@ function strnatcasecmp(str1, str2) {
   };
 
   var ia = 0,
-      ib = 0;
+    ib = 0;
   var nza = 0,
-      nzb = 0;
+    nzb = 0;
   var ca, cb;
   var result;
 

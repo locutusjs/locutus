@@ -36,7 +36,8 @@ function assert_options(what, value) {
       throw 'Improper type for assert_options()';
   }
   // I presume this is to be the most recent value, instead of the default value
-  var originalValue = this.php_js.assert_values[ini] || (this.php_js.ini[ini] && this.php_js.ini[ini].local_value) || dflt;
+  var originalValue = this.php_js.assert_values[ini] || (this.php_js.ini[ini] && this.php_js.ini[ini].local_value) ||
+    dflt;
 
   if (value) {
     this.php_js.assert_values[ini] = value; // We use 'ini' instead of 'what' as key to be more convenient for assert() to test for current value

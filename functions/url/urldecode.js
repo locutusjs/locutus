@@ -29,8 +29,10 @@ function urldecode(str) {
   //        example 4: urldecode('%E5%A5%BD%3_4');
   //        returns 4: '\u597d%3_4'
 
-  return decodeURIComponent((str + '').replace(/%(?![\da-f]{2})/gi, function() {
-    // PHP tolerates poorly formed escape sequences
-    return '%25';
-  }).replace(/\+/g, '%20'));
+  return decodeURIComponent((str + '')
+    .replace(/%(?![\da-f]{2})/gi, function() {
+      // PHP tolerates poorly formed escape sequences
+      return '%25';
+    })
+    .replace(/\+/g, '%20'));
 }

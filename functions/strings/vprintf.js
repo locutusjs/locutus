@@ -9,11 +9,12 @@ function vprintf(format, args) {
 
   var body, elmt;
   var ret = '',
-      d = this.window.document;
+    d = this.window.document;
 
   // .shift() does not work to get first item in bodies
   var HTMLNS = 'http://www.w3.org/1999/xhtml';
-  body = d.getElementsByTagNameNS ? (d.getElementsByTagNameNS(HTMLNS, 'body')[0] ? d.getElementsByTagNameNS(HTMLNS, 'body')[0] : d.documentElement.lastChild) : d.getElementsByTagName('body')[0];
+  body = d.getElementsByTagNameNS ? (d.getElementsByTagNameNS(HTMLNS, 'body')[0] ? d.getElementsByTagNameNS(HTMLNS,
+    'body')[0] : d.documentElement.lastChild) : d.getElementsByTagName('body')[0];
 
   if (!body) {
     return false;

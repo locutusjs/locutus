@@ -6,12 +6,12 @@ function array_combine(keys, values) {
   //   returns 1: {0: 'kevin', 1: 'van', 2: 'zonneveld'}
 
   var new_array = {},
-      keycount = keys && keys.length,
-      i = 0;
+    keycount = keys && keys.length,
+    i = 0;
 
   // input sanitation
   if (typeof keys !== 'object' || typeof values !== 'object' || // Only accept arrays or array-like objects
-      typeof keycount !== 'number' || typeof values.length !== 'number' || !keycount) { // Require arrays to have a count
+    typeof keycount !== 'number' || typeof values.length !== 'number' || !keycount) { // Require arrays to have a count
     return false;
   }
 

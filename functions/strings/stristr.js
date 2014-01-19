@@ -10,7 +10,9 @@ function stristr(haystack, needle, bool) {
   var pos = 0;
 
   haystack += '';
-  pos = haystack.toLowerCase().indexOf((needle + '').toLowerCase());
+  pos = haystack.toLowerCase()
+    .indexOf((needle + '')
+      .toLowerCase());
   if (pos == -1) {
     return false;
   } else {

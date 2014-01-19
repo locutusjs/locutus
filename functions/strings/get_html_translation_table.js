@@ -20,12 +20,12 @@ function get_html_translation_table(table, quote_style) {
   //   returns 1: {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
 
   var entities = {},
-      hash_map = {},
-      decimal;
+    hash_map = {},
+    decimal;
   var constMappingTable = {},
-      constMappingQuoteStyle = {};
+    constMappingQuoteStyle = {};
   var useTable = {},
-      useQuoteStyle = {};
+    useQuoteStyle = {};
 
   // Translate arguments
   constMappingTable[0] = 'HTML_SPECIALCHARS';
@@ -35,7 +35,8 @@ function get_html_translation_table(table, quote_style) {
   constMappingQuoteStyle[3] = 'ENT_QUOTES';
 
   useTable = !isNaN(table) ? constMappingTable[table] : table ? table.toUpperCase() : 'HTML_SPECIALCHARS';
-  useQuoteStyle = !isNaN(quote_style) ? constMappingQuoteStyle[quote_style] : quote_style ? quote_style.toUpperCase() : 'ENT_COMPAT';
+  useQuoteStyle = !isNaN(quote_style) ? constMappingQuoteStyle[quote_style] : quote_style ? quote_style.toUpperCase() :
+    'ENT_COMPAT';
 
   if (useTable !== 'HTML_SPECIALCHARS' && useTable !== 'HTML_ENTITIES') {
     throw new Error('Table: ' + useTable + ' not supported');
@@ -150,7 +151,6 @@ function get_html_translation_table(table, quote_style) {
   }
   entities['60'] = '&lt;';
   entities['62'] = '&gt;';
-
 
   // ascii decimals to real symbols
   for (decimal in entities) {

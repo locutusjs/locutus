@@ -17,17 +17,18 @@ function strlen(string) {
 
   var str = string + '';
   var i = 0,
-      chr = '',
-      lgth = 0;
+    chr = '',
+    lgth = 0;
 
-  if (!this.php_js || !this.php_js.ini || !this.php_js.ini['unicode.semantics'] || this.php_js.ini['unicode.semantics'].local_value.toLowerCase() !== 'on') {
+  if (!this.php_js || !this.php_js.ini || !this.php_js.ini['unicode.semantics'] || this.php_js.ini[
+    'unicode.semantics'].local_value.toLowerCase() !== 'on') {
     return string.length;
   }
 
   var getWholeChar = function(str, i) {
     var code = str.charCodeAt(i);
     var next = '',
-        prev = '';
+      prev = '';
     if (0xD800 <= code && code <= 0xDBFF) { // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
       if (str.length <= (i + 1)) {
         throw 'High surrogate without following low surrogate';

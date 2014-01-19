@@ -39,9 +39,9 @@ function mktime() {
   //   returns 8: -1
 
   var d = new Date(),
-      r = arguments,
-      i = 0,
-      e = ['Hours', 'Minutes', 'Seconds', 'Month', 'Date', 'FullYear'];
+    r = arguments,
+    i = 0,
+    e = ['Hours', 'Minutes', 'Seconds', 'Month', 'Date', 'FullYear'];
 
   for (i = 0; i < e.length; i++) {
     if (typeof r[i] === 'undefined') {

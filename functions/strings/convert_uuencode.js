@@ -19,13 +19,13 @@ function convert_uuencode(str) {
   }
 
   var c = 0,
-      u = 0,
-      i = 0,
-      a = 0;
+    u = 0,
+    i = 0,
+    a = 0;
   var encoded = '',
-      tmp1 = '',
-      tmp2 = '',
-      bytes = {};
+    tmp1 = '',
+    tmp2 = '',
+    bytes = {};
 
   // divide string into chunks of 45 characters
   var chunk = function() {
@@ -49,7 +49,8 @@ function convert_uuencode(str) {
 
     // Convert each char in bytes[] to a byte
     for (i in bytes) {
-      tmp1 = bytes[i].charCodeAt(0).toString(2);
+      tmp1 = bytes[i].charCodeAt(0)
+        .toString(2);
       while (tmp1.length < 8) {
         tmp1 = '0' + tmp1;
       }

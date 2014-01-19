@@ -108,14 +108,16 @@ function strftime(fmt, timestamp) {
     },
     V: function(d) {
       var woy = parseInt(_formats.W(d), 10);
-      var dow1_1 = (new Date('' + d.getFullYear() + '/1/1')).getDay();
+      var dow1_1 = (new Date('' + d.getFullYear() + '/1/1'))
+        .getDay();
       // First week is 01 and not 00 as in the case of %U and %W,
       // so we add 1 to the final result except if day 1 of the year
       // is a Monday (then %W returns 01).
       // We also need to subtract 1 if the day 1 of the year is
       // Friday-Sunday, so the resulting equation becomes:
       var idow = woy + (dow1_1 > 4 || dow1_1 <= 1 ? 0 : 1);
-      if (idow === 53 && (new Date('' + d.getFullYear() + '/12/31')).getDay() < 4) {
+      if (idow === 53 && (new Date('' + d.getFullYear() + '/12/31'))
+        .getDay() < 4) {
         idow = 1;
       } else if (idow === 0) {
         idow = _formats.V(new Date('' + (d.getFullYear() - 1) + '/12/31'));
@@ -140,7 +142,8 @@ function strftime(fmt, timestamp) {
       return (o > 0 ? '-' : '+') + H + M;
     },
     Z: function(d) {
-      return d.toString().replace(/^.*\(([^)]+)\)$/, '$1');
+      return d.toString()
+        .replace(/^.*\(([^)]+)\)$/, '$1');
       /*
       // Yahoo's: Better?
       var tz = d.toString().replace(/^.*:\d\d( GMT[+-]\d+)? \(?([A-Za-z ]+)\)?\d*$/, '$2').replace(/[a-z ]/g, '');
@@ -175,9 +178,9 @@ Oy
   */
 
   var _date = ((typeof timestamp === 'undefined') ? new Date() : // Not provided
-      (typeof timestamp === 'object') ? new Date(timestamp) : // Javascript Date()
-      new Date(timestamp * 1000) // PHP API expects UNIX timestamp (auto-convert to int)
-      );
+    (typeof timestamp === 'object') ? new Date(timestamp) : // Javascript Date()
+    new Date(timestamp * 1000) // PHP API expects UNIX timestamp (auto-convert to int)
+  );
 
   var _aggregates = {
     c: 'locale',
@@ -192,7 +195,6 @@ Oy
     x: 'locale',
     X: 'locale'
   };
-
 
   // First replace aggregates (run in a loop because an agg may be made up of other aggs)
   while (fmt.match(/%[cDFhnrRtTxX]/)) {

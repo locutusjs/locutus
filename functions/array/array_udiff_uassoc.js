@@ -7,17 +7,19 @@ function array_udiff_uassoc(arr1) {
   //   returns 1: {0: 'red', c: 'blue'}
 
   var retArr = {},
-      arglm1 = arguments.length - 1,
-      arglm2 = arglm1 - 1,
-      cb = arguments[arglm1],
-      cb0 = arguments[arglm2],
-      k1 = '',
-      i = 1,
-      k = '',
-      arr = {};
+    arglm1 = arguments.length - 1,
+    arglm2 = arglm1 - 1,
+    cb = arguments[arglm1],
+    cb0 = arguments[arglm2],
+    k1 = '',
+    i = 1,
+    k = '',
+    arr = {};
 
-  cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[cb[0]][cb[1]] : cb;
-  cb0 = (typeof cb0 === 'string') ? this.window[cb0] : (Object.prototype.toString.call(cb0) === '[object Array]') ? this.window[cb0[0]][cb0[1]] : cb0;
+  cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[
+    cb[0]][cb[1]] : cb;
+  cb0 = (typeof cb0 === 'string') ? this.window[cb0] : (Object.prototype.toString.call(cb0) === '[object Array]') ?
+    this.window[cb0[0]][cb0[1]] : cb0;
 
   arr1keys: for (k1 in arr1) {
     for (i = 1; i < arglm2; i++) {

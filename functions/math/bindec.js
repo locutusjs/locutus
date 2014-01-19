@@ -8,6 +8,7 @@ function bindec(binary_string) {
   //   example 3: bindec('111');
   //   returns 3: 7
 
-  binary_string = (binary_string + '').replace(/[^01]/gi, '');
+  binary_string = (binary_string + '')
+    .replace(/[^01]/gi, '');
   return parseInt(binary_string, 2);
 }

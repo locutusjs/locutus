@@ -33,13 +33,13 @@ function echo() {
   }
 
   var arg = '',
-      argc = arguments.length,
-      argv = arguments,
-      i = 0,
-      holder, win = this.window,
-      d = win.document,
-      ns_xhtml = 'http://www.w3.org/1999/xhtml',
-      ns_xul = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'; // If we're in a XUL context
+    argc = arguments.length,
+    argv = arguments,
+    i = 0,
+    holder, win = this.window,
+    d = win.document,
+    ns_xhtml = 'http://www.w3.org/1999/xhtml',
+    ns_xul = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'; // If we're in a XUL context
   var stringToDOM = function(str, parent, ns, container) {
     var extraNSs = '';
     if (ns === ns_xul) {
@@ -47,8 +47,8 @@ function echo() {
     }
     var stringContainer = '<' + container + ' xmlns="' + ns + '"' + extraNSs + '>' + str + '</' + container + '>';
     var dils = win.DOMImplementationLS,
-        dp = win.DOMParser,
-        ax = win.ActiveXObject;
+      dp = win.DOMParser,
+      ax = win.ActiveXObject;
     if (dils && dils.createLSInput && dils.createLSParser) {
       // Follows the DOM 3 Load and Save standard, but not
       // implemented in browsers at present; HTML5 is to standardize on innerHTML, but not for XML (though
@@ -58,12 +58,15 @@ function echo() {
       // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
       lsInput.stringData = stringContainer;
       var lsParser = dils.createLSParser(1, null); // synchronous, no schema type
-      return lsParser.parse(lsInput).firstChild;
+      return lsParser.parse(lsInput)
+        .firstChild;
     } else if (dp) {
       // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
       try {
-        var fc = new dp().parseFromString(stringContainer, 'text/xml');
-        if (fc && fc.documentElement && fc.documentElement.localName !== 'parsererror' && fc.documentElement.namespaceURI !== 'http://www.mozilla.org/newlayout/xml/parsererror.xml') {
+        var fc = new dp()
+          .parseFromString(stringContainer, 'text/xml');
+        if (fc && fc.documentElement && fc.documentElement.localName !== 'parsererror' && fc.documentElement.namespaceURI !==
+          'http://www.mozilla.org/newlayout/xml/parsererror.xml') {
           return fc.documentElement.firstChild;
         }
         // If there's a parsing error, we just continue on
@@ -88,10 +91,10 @@ function echo() {
     // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
     //if (d.createElementNS && (d.contentType && d.contentType !== 'text/html')) { // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways)
     if (d.createElementNS && // Browser supports the method
-        (d.documentElement.namespaceURI || // We can use if the document is using a namespace
+      (d.documentElement.namespaceURI || // We can use if the document is using a namespace
         d.documentElement.nodeName.toLowerCase() !== 'html' || // We know it's not HTML4 or less, if the tag is not HTML (even if the root namespace is null)
         (d.contentType && d.contentType !== 'text/html') // We know it's not regular HTML4 or less if this is Mozilla (only browser supporting the attribute) and the content type is something other than text/html; other HTML5 roots (like svg) still have a namespace
-        )) { // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways); last test is for the sake of being in a pure XML document
+      )) { // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways); last test is for the sake of being in a pure XML document
       holder = d.createElementNS(ns, container);
     } else {
       holder = d.createElement(container); // Document fragment did not work with innerHTML
@@ -103,7 +106,6 @@ function echo() {
     return false;
     // throw 'Your browser does not support DOM parsing as required by echo()';
   };
-
 
   var ieFix = function(node) {
     if (node.nodeType === 1) {
@@ -137,8 +139,8 @@ function echo() {
 
   this.php_js = this.php_js || {};
   var phpjs = this.php_js,
-      ini = phpjs.ini,
-      obs = phpjs.obs;
+    ini = phpjs.ini,
+    obs = phpjs.obs;
   for (i = 0; i < argc; i++) {
     arg = argv[i];
     if (ini && ini['phpjs.echo_embedded_vars']) {
@@ -155,7 +157,8 @@ function echo() {
         if (win.navigator.appName === 'Microsoft Internet Explorer') { // We unfortunately cannot use feature detection, since this is an IE bug with cloneNode nodes being appended
           d.body.appendChild(stringToDOM(ieFix(arg)));
         } else {
-          var unappendedLeft = stringToDOM(arg, d.body, ns_xhtml, 'div').cloneNode(true); // We will not actually append the div tag (just using for providing XHTML namespace by default)
+          var unappendedLeft = stringToDOM(arg, d.body, ns_xhtml, 'div')
+            .cloneNode(true); // We will not actually append the div tag (just using for providing XHTML namespace by default)
           if (unappendedLeft) {
             d.body.appendChild(unappendedLeft);
           }

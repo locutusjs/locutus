@@ -7,13 +7,14 @@ function array_udiff(arr1) {
   //   returns 1: {c: 'blue'}
 
   var retArr = {},
-      arglm1 = arguments.length - 1,
-      cb = arguments[arglm1],
-      arr = '',
-      i = 1,
-      k1 = '',
-      k = '';
-  cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[cb[0]][cb[1]] : cb;
+    arglm1 = arguments.length - 1,
+    cb = arguments[arglm1],
+    arr = '',
+    i = 1,
+    k1 = '',
+    k = '';
+  cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[
+    cb[0]][cb[1]] : cb;
 
   arr1keys: for (k1 in arr1) {
     for (i = 1; i < arglm1; i++) {

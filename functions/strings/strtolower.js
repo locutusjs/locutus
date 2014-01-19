@@ -5,5 +5,6 @@ function strtolower(str) {
   //   example 1: strtolower('Kevin van Zonneveld');
   //   returns 1: 'kevin van zonneveld'
 
-  return (str + '').toLowerCase();
+  return (str + '')
+    .toLowerCase();
 }

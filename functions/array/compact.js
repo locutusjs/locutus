@@ -9,12 +9,12 @@ function compact() {
   //   returns 1: {'var1': 'Kevin', 'var2': 'van', 'var3': 'Zonneveld'}
 
   var matrix = {},
-      that = this;
+    that = this;
 
   var process = function(value) {
     var i = 0,
-        l = value.length,
-        key_value = '';
+      l = value.length,
+      key_value = '';
     for (i = 0; i < l; i++) {
       key_value = value[i];
       if (Object.prototype.toString.call(key_value) === '[object Array]') {

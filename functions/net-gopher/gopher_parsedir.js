@@ -6,21 +6,21 @@ function gopher_parsedir(dirent) {
   //   returns 1: 'All about my gopher site.'
 
   /* Types
-  * 0 = plain text file
-  * 1 = directory menu listing
-  * 2 = CSO search query
-  * 3 = error message
-  * 4 = BinHex encoded text file
-  * 5 = binary archive file
-  * 6 = UUEncoded text file
-  * 7 = search engine query
-  * 8 = telnet session pointer
-  * 9 = binary file
-  * g = Graphics file format, primarily a GIF file
-  * h = HTML file
-  * i = informational message
-  * s = Audio file format, primarily a WAV file
-  */
+   * 0 = plain text file
+   * 1 = directory menu listing
+   * 2 = CSO search query
+   * 3 = error message
+   * 4 = BinHex encoded text file
+   * 5 = binary archive file
+   * 6 = UUEncoded text file
+   * 7 = search engine query
+   * 8 = telnet session pointer
+   * 9 = binary file
+   * g = Graphics file format, primarily a GIF file
+   * h = HTML file
+   * i = informational message
+   * s = Audio file format, primarily a WAV file
+   */
 
   var entryPattern = /^(.)(.*?)\t(.*?)\t(.*?)\t(.*?)\u000d\u000a$/;
   var entry = dirent.match(entryPattern);

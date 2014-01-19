@@ -5,8 +5,10 @@ function strcasecmp(f_string1, f_string2) {
   //   example 1: strcasecmp('Hello', 'hello');
   //   returns 1: 0
 
-  var string1 = (f_string1 + '').toLowerCase();
-  var string2 = (f_string2 + '').toLowerCase();
+  var string1 = (f_string1 + '')
+    .toLowerCase();
+  var string2 = (f_string2 + '')
+    .toLowerCase();
 
   if (string1 > string2) {
     return 1;

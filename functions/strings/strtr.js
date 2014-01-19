@@ -26,14 +26,14 @@ function strtr(str, from, to) {
   //   returns 6: '2'
 
   var fr = '',
-      i = 0,
-      j = 0,
-      lenStr = 0,
-      lenFrom = 0,
-      tmpStrictForIn = false,
-      fromTypeStr = '',
-      toTypeStr = '',
-      istr = '';
+    i = 0,
+    j = 0,
+    lenStr = 0,
+    lenFrom = 0,
+    tmpStrictForIn = false,
+    fromTypeStr = '',
+    toTypeStr = '',
+    istr = '';
   var tmpFrom = [];
   var tmpTo = [];
   var ret = '';

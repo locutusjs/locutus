@@ -13,15 +13,16 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
   // MIT License
   // <http://xregexp.com>
   var getNativeFlags = function(regex) {
-    return (regex.global ? 'g' : '') + (regex.ignoreCase ? 'i' : '') + (regex.multiline ? 'm' : '') + (regex.extended ? 'x' : '') + // Proposed for ES4; included in AS3
-        (regex.sticky ? 'y' : '');
+    return (regex.global ? 'g' : '') + (regex.ignoreCase ? 'i' : '') + (regex.multiline ? 'm' : '') + (regex.extended ?
+      'x' : '') + // Proposed for ES4; included in AS3
+    (regex.sticky ? 'y' : '');
   },
-  cbSplit = function(string, sep /* separator */ ) {
-    // If separator `s` is not a regex, use the native `split`
-    if (!(sep instanceof RegExp)) { // Had problems to get it to work here using prototype test
-      return String.prototype.split.apply(string, arguments);
-    }
-    var str = String(string),
+    cbSplit = function(string, sep /* separator */ ) {
+      // If separator `s` is not a regex, use the native `split`
+      if (!(sep instanceof RegExp)) { // Had problems to get it to work here using prototype test
+        return String.prototype.split.apply(string, arguments);
+      }
+      var str = String(string),
         output = [],
         lastLastIndex = 0,
         match, lastLength, limit = Infinity,
@@ -30,63 +31,63 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
         // and restore it to its original value when we're done using the regex
         x = sep._xregexp,
         s = new RegExp(sep.source, getNativeFlags(sep) + 'g'); // Brett paring down
-    if (x) {
-      s._xregexp = {
-        source: x.source,
-        captureNames: x.captureNames ? x.captureNames.slice(0) : null
-      };
-    }
+      if (x) {
+        s._xregexp = {
+          source: x.source,
+          captureNames: x.captureNames ? x.captureNames.slice(0) : null
+        };
+      }
 
-    while ((match = s.exec(str))) { // Run the altered `exec` (required for `lastIndex` fix, etc.)
-      if (s.lastIndex > lastLastIndex) {
-        output.push(str.slice(lastLastIndex, match.index));
+      while ((match = s.exec(str))) { // Run the altered `exec` (required for `lastIndex` fix, etc.)
+        if (s.lastIndex > lastLastIndex) {
+          output.push(str.slice(lastLastIndex, match.index));
 
-        if (match.length > 1 && match.index < str.length) {
-          Array.prototype.push.apply(output, match.slice(1));
+          if (match.length > 1 && match.index < str.length) {
+            Array.prototype.push.apply(output, match.slice(1));
+          }
+
+          lastLength = match[0].length;
+          lastLastIndex = s.lastIndex;
+
+          if (output.length >= limit) {
+            break;
+          }
         }
 
-        lastLength = match[0].length;
-        lastLastIndex = s.lastIndex;
-
-        if (output.length >= limit) {
-          break;
+        if (s.lastIndex === match.index) {
+          s.lastIndex++;
         }
       }
 
-      if (s.lastIndex === match.index) {
-        s.lastIndex++;
+      if (lastLastIndex === str.length) {
+        if (!s.test('') || lastLength) {
+          output.push('');
+        }
+      } else {
+        output.push(str.slice(lastLastIndex));
       }
-    }
 
-    if (lastLastIndex === str.length) {
-      if (!s.test('') || lastLength) {
-        output.push('');
-      }
-    } else {
-      output.push(str.slice(lastLastIndex));
-    }
-
-    return output.length > limit ? output.slice(0, limit) : output;
-  },
-  i = 0,
-  ll = 0,
-  ranges = [],
-  lastLinePos = 0,
-  firstChar = '',
-  rangeExp = /^@@\s+-(\d+),(\d+)\s+\+(\d+),(\d+)\s+@@$/,
-  lineBreaks = /\r?\n/,
-  lines = cbSplit(patch.replace(/(\r?\n)+$/, ''), lineBreaks),
-  origLines = cbSplit(originalStr, lineBreaks),
-  newStrArr = [],
-  linePos = 0,
-  errors = '',
-  // Both string & integer (constant) input is allowed
-  optTemp = 0,
-  OPTS = { // Unsure of actual PHP values, so better to rely on string
-    'XDIFF_PATCH_NORMAL': 1,
-    'XDIFF_PATCH_REVERSE': 2,
-    'XDIFF_PATCH_IGNORESPACE': 4
-  };
+      return output.length > limit ? output.slice(0, limit) : output;
+    },
+    i = 0,
+    ll = 0,
+    ranges = [],
+    lastLinePos = 0,
+    firstChar = '',
+    rangeExp = /^@@\s+-(\d+),(\d+)\s+\+(\d+),(\d+)\s+@@$/,
+    lineBreaks = /\r?\n/,
+    lines = cbSplit(patch.replace(/(\r?\n)+$/, ''), lineBreaks),
+    origLines = cbSplit(originalStr, lineBreaks),
+    newStrArr = [],
+    linePos = 0,
+    errors = '',
+    // Both string & integer (constant) input is allowed
+    optTemp = 0,
+    OPTS = { // Unsure of actual PHP values, so better to rely on string
+      'XDIFF_PATCH_NORMAL': 1,
+      'XDIFF_PATCH_REVERSE': 2,
+      'XDIFF_PATCH_IGNORESPACE': 4
+    };
 
   // Input defaulting & sanitation
   if (typeof originalStr !== 'string' || !patch) {

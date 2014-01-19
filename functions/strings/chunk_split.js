@@ -16,5 +16,6 @@ function chunk_split(body, chunklen, end) {
     return false;
   }
 
-  return body.match(new RegExp('.{0,' + chunklen + '}', 'g')).join(end);
+  return body.match(new RegExp('.{0,' + chunklen + '}', 'g'))
+    .join(end);
 }

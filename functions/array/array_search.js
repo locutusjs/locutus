@@ -12,8 +12,8 @@ function array_search(needle, haystack, argStrict) {
   //   example 2: var key = array_search(/val/g, ordered_arr); // or var key = ordered_arr.search(/val/g);
   //   returns 2: '3'
 
-  var strict = !!argStrict,
-      key = '';
+  var strict = !! argStrict,
+    key = '';
 
   if (haystack && typeof haystack === 'object' && haystack.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
     return haystack.search(needle, argStrict);
@@ -21,8 +21,8 @@ function array_search(needle, haystack, argStrict) {
   if (typeof needle === 'object' && needle.exec) { // Duck-type for RegExp
     if (!strict) { // Let's consider case sensitive searches as strict
       var flags = 'i' + (needle.global ? 'g' : '') +
-          (needle.multiline ? 'm' : '') +
-          (needle.sticky ? 'y' : ''); // sticky is FF only
+        (needle.multiline ? 'm' : '') +
+        (needle.sticky ? 'y' : ''); // sticky is FF only
       needle = new RegExp(needle.source, flags);
     }
     for (key in haystack) {

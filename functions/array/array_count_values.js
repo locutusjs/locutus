@@ -14,8 +14,8 @@ function array_count_values(array) {
   //   returns 3: {42:1, "fubar":1}
 
   var tmp_arr = {},
-      key = '',
-      t = '';
+    key = '',
+    t = '';
 
   var __getType = function(obj) {
     // Objects are php associative arrays.
@@ -33,7 +33,7 @@ function array_count_values(array) {
         if (Math.floor(value) !== value) {
           return;
         }
-      // Fall-through
+        // Fall-through
       case 'string':
         if (value in this && this.hasOwnProperty(value)) {
           ++this[value];

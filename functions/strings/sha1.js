@@ -70,7 +70,8 @@ function sha1(str) {
       i = str.charCodeAt(str_len - 2) << 24 | str.charCodeAt(str_len - 1) << 16 | 0x08000;
       break;
     case 3:
-      i = str.charCodeAt(str_len - 3) << 24 | str.charCodeAt(str_len - 2) << 16 | str.charCodeAt(str_len - 1) << 8 | 0x80;
+      i = str.charCodeAt(str_len - 3) << 24 | str.charCodeAt(str_len - 2) << 16 | str.charCodeAt(str_len - 1) <<
+        8 | 0x80;
       break;
   }
 
@@ -90,7 +91,6 @@ function sha1(str) {
     for (i = 16; i <= 79; i++) {
       W[i] = rotate_left(W[i - 3] ^ W[i - 8] ^ W[i - 14] ^ W[i - 16], 1);
     }
-
 
     A = H0;
     B = H1;

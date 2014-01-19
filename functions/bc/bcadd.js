@@ -23,7 +23,6 @@ function bcadd(left_operand, right_operand, scale) {
   first = libbcmath.php_str2num(left_operand.toString());
   second = libbcmath.php_str2num(right_operand.toString());
 
-
   result = libbcmath.bc_add(first, second, scale);
 
   if (result.n_scale > scale) {

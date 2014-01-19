@@ -7,9 +7,10 @@ function realpath(path) {
   //   returns 1: 'file:/home/kevin/workspace/_supporters/pj_test_supportfile_1.htm'
 
   var p = 0,
-      arr = []; /* Save the root, if not given */
+    arr = []; /* Save the root, if not given */
   var r = this.window.location.href; /* Avoid input failures */
-  path = (path + '').replace('\\', '/'); /* Check if there's a port in path (like 'http://') */
+  path = (path + '')
+    .replace('\\', '/'); /* Check if there's a port in path (like 'http://') */
   if (path.indexOf('://') !== -1) {
     p = 1;
   } /* Ok, there's not a port in path, so let's take the root */

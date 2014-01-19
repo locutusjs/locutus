@@ -7,11 +7,11 @@ function array_diff(arr1) {
   //   returns 1: {0:'Kevin'}
 
   var retArr = {},
-      argl = arguments.length,
-      k1 = '',
-      i = 1,
-      k = '',
-      arr = {};
+    argl = arguments.length,
+    k1 = '',
+    i = 1,
+    k = '',
+    arr = {};
 
   arr1keys: for (k1 in arr1) {
     for (i = 1; i < argl; i++) {

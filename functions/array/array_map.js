@@ -9,16 +9,16 @@ function array_map(callback) {
   //   returns 1: [ 1, 8, 27, 64, 125 ]
 
   var argc = arguments.length,
-      argv = arguments,
-      glbl = this.window,
-      obj = null,
-      cb = callback,
-      j = argv[1].length,
-      i = 0,
-      k = 1,
-      m = 0,
-      tmp = [],
-      tmp_ar = [];
+    argv = arguments,
+    glbl = this.window,
+    obj = null,
+    cb = callback,
+    j = argv[1].length,
+    i = 0,
+    k = 1,
+    m = 0,
+    tmp = [],
+    tmp_ar = [];
 
   while (i < j) {
     while (k < argc) {
@@ -31,8 +31,7 @@ function array_map(callback) {
     if (callback) {
       if (typeof callback === 'string') {
         cb = glbl[callback];
-      }
-      else if (typeof callback === 'object' && callback.length) {
+      } else if (typeof callback === 'object' && callback.length) {
         obj = typeof callback[0] === 'string' ? glbl[callback[0]] : callback[0];
         if (typeof obj === 'undefined') {
           throw 'Object not found: ' + callback[0];

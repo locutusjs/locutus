@@ -21,15 +21,16 @@ function sprintf() {
 
   var regex = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuideEfFgG])/g;
   var a = arguments,
-      i = 0,
-      format = a[i++];
+    i = 0,
+    format = a[i++];
 
   // pad()
   var pad = function(str, len, chr, leftJustify) {
     if (!chr) {
       chr = ' ';
     }
-    var padding = (str.length >= len) ? '' : Array(1 + len - str.length >>> 0).join(chr);
+    var padding = (str.length >= len) ? '' : Array(1 + len - str.length >>> 0)
+      .join(chr);
     return leftJustify ? str + padding : padding + str;
   };
 
@@ -81,10 +82,10 @@ function sprintf() {
 
     // parse flags
     var leftJustify = false,
-        positivePrefix = '',
-        zeroPad = false,
-        prefixBaseX = false,
-        customPadChar = ' ';
+      positivePrefix = '',
+      zeroPad = false,
+      prefixBaseX = false,
+      customPadChar = ' ';
     var flagsl = flags.length;
     for (var j = 0; flags && j < flagsl; j++) {
       switch (flags.charAt(j)) {
@@ -156,7 +157,8 @@ function sprintf() {
       case 'x':
         return formatBaseX(value, 16, prefixBaseX, leftJustify, minWidth, precision, zeroPad);
       case 'X':
-        return formatBaseX(value, 16, prefixBaseX, leftJustify, minWidth, precision, zeroPad).toUpperCase();
+        return formatBaseX(value, 16, prefixBaseX, leftJustify, minWidth, precision, zeroPad)
+          .toUpperCase();
       case 'u':
         return formatBaseX(value, 10, prefixBaseX, leftJustify, minWidth, precision, zeroPad);
       case 'i':

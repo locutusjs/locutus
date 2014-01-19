@@ -12,7 +12,11 @@ function array_chunk(input, size, preserve_keys) {
   //   example 4: array_chunk({1:'Kevin', 2:'van', 3:'Zonneveld'}, 2, true);
   //   returns 4: [{1: 'Kevin', 2: 'van'}, {3: 'Zonneveld'}]
 
-  var x, p = '', i = 0, c = -1, l = input.length || 0, n = [];
+  var x, p = '',
+    i = 0,
+    c = -1,
+    l = input.length || 0,
+    n = [];
 
   if (size < 1) {
     return null;
@@ -24,15 +28,13 @@ function array_chunk(input, size, preserve_keys) {
         (x = i % size) ? n[c][i] = input[i] : n[++c] = {}, n[c][i] = input[i];
         i++;
       }
-    }
-    else {
+    } else {
       while (i < l) {
         (x = i % size) ? n[c][x] = input[i] : n[++c] = [input[i]];
         i++;
       }
     }
-  }
-  else {
+  } else {
     if (preserve_keys) {
       for (p in input) {
         if (input.hasOwnProperty(p)) {
@@ -40,8 +42,7 @@ function array_chunk(input, size, preserve_keys) {
           i++;
         }
       }
-    }
-    else {
+    } else {
       for (p in input) {
         if (input.hasOwnProperty(p)) {
           (x = i % size) ? n[c][x] = input[p] : n[++c] = [input[p]];

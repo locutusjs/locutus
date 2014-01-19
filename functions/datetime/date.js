@@ -56,19 +56,21 @@ function date(format, timestamp) {
   //   returns 9: '52 2011-01-02'
 
   var that = this,
-      jsdate,
-      f,
-      // Keep this here (works, but for code commented-out
-      // below for file size reasons)
-      //, tal= [],
-      txt_words = ['Sun', 'Mon', 'Tues', 'Wednes', 'Thurs', 'Fri', 'Satur', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-      // trailing backslash -> (dropped)
-      // a backslash followed by any character (including backslash) -> the character
-      // empty string -> empty string
-      formatChr = /\\?(.?)/gi,
-      formatChrCb = function(t, s) {
-        return f[t] ? f[t]() : s;
-      };
+    jsdate,
+    f,
+    // Keep this here (works, but for code commented-out
+    // below for file size reasons)
+    //, tal= [],
+    txt_words = ['Sun', 'Mon', 'Tues', 'Wednes', 'Thurs', 'Fri', 'Satur', 'January', 'February', 'March', 'April',
+      'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+    ],
+    // trailing backslash -> (dropped)
+    // a backslash followed by any character (including backslash) -> the character
+    // empty string -> empty string
+    formatChr = /\\?(.?)/gi,
+    formatChrCb = function(t, s) {
+      return f[t] ? f[t]() : s;
+    };
   _pad = function(n, c) {
     n = String(n);
     while (n.length < c) {
@@ -82,7 +84,8 @@ function date(format, timestamp) {
       return _pad(f.j(), 2);
     },
     D: function() { // Shorthand day name; Mon...Sun
-      return f.l().slice(0, 3);
+      return f.l()
+        .slice(0, 3);
     },
     j: function() { // Day of month; 1..31
       return jsdate.getDate();
@@ -95,7 +98,7 @@ function date(format, timestamp) {
     },
     S: function() { // Ordinal suffix for day of month; st, nd, rd, th
       var j = f.j(),
-          i = j % 10;
+        i = j % 10;
       if (i <= 3 && parseInt((j % 100) / 10, 10) == 1) {
         i = 0;
       }
@@ -106,14 +109,14 @@ function date(format, timestamp) {
     },
     z: function() { // Day of year; 0..365
       var a = new Date(f.Y(), f.n() - 1, f.j()),
-          b = new Date(f.Y(), 0, 1);
+        b = new Date(f.Y(), 0, 1);
       return Math.round((a - b) / 864e5);
     },
 
     // Week
     W: function() { // ISO-8601 week number
       var a = new Date(f.Y(), f.n() - 1, f.j() - f.N() + 3),
-          b = new Date(a.getFullYear(), 0, 4);
+        b = new Date(a.getFullYear(), 0, 4);
       return _pad(1 + Math.round((a - b) / 864e5 / 7), 2);
     },
 
@@ -125,13 +128,15 @@ function date(format, timestamp) {
       return _pad(f.n(), 2);
     },
     M: function() { // Shorthand month name; Jan...Dec
-      return f.F().slice(0, 3);
+      return f.F()
+        .slice(0, 3);
     },
     n: function() { // Month; 1...12
       return jsdate.getMonth() + 1;
     },
     t: function() { // Days in month; 28...31
-      return (new Date(f.Y(), f.n(), 0)).getDate();
+      return (new Date(f.Y(), f.n(), 0))
+        .getDate();
     },
 
     // Year
@@ -141,15 +146,17 @@ function date(format, timestamp) {
     },
     o: function() { // ISO-8601 year
       var n = f.n(),
-          W = f.W(),
-          Y = f.Y();
+        W = f.W(),
+        Y = f.Y();
       return Y + (n === 12 && W < 9 ? 1 : n === 1 && W > 9 ? -1 : 0);
     },
     Y: function() { // Full year; e.g. 1980...2010
       return jsdate.getFullYear();
     },
     y: function() { // Last two digits of year; 00...99
-      return f.Y().toString().slice(-2);
+      return f.Y()
+        .toString()
+        .slice(-2);
     },
 
     // Time
@@ -157,14 +164,15 @@ function date(format, timestamp) {
       return jsdate.getHours() > 11 ? 'pm' : 'am';
     },
     A: function() { // AM or PM
-      return f.a().toUpperCase();
+      return f.a()
+        .toUpperCase();
     },
     B: function() { // Swatch Internet time; 000..999
       var H = jsdate.getUTCHours() * 36e2,
-          // Hours
-          i = jsdate.getUTCMinutes() * 60,
-          // Minutes
-          s = jsdate.getUTCSeconds(); // Seconds
+        // Hours
+        i = jsdate.getUTCMinutes() * 60,
+        // Minutes
+        s = jsdate.getUTCSeconds(); // Seconds
       return _pad(Math.floor((H + i + s + 36e2) / 86.4) % 1e3, 3);
     },
     g: function() { // 12-Hours; 1..12
@@ -194,24 +202,24 @@ function date(format, timestamp) {
       // The following works, but requires inclusion of the very large
       // timezone_abbreviations_list() function.
       /*              return that.date_default_timezone_get();
-      */
+       */
       throw 'Not supported (see source code of date() for timezone on how to add support)';
     },
     I: function() { // DST observed?; 0 or 1
       // Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.
       // If they are not equal, then DST is observed.
       var a = new Date(f.Y(), 0),
-          // Jan 1
-          c = Date.UTC(f.Y(), 0),
-          // Jan 1 UTC
-          b = new Date(f.Y(), 6),
-          // Jul 1
-          d = Date.UTC(f.Y(), 6); // Jul 1 UTC
+        // Jan 1
+        c = Date.UTC(f.Y(), 0),
+        // Jan 1 UTC
+        b = new Date(f.Y(), 6),
+        // Jul 1
+        d = Date.UTC(f.Y(), 6); // Jul 1 UTC
       return ((a - c) !== (b - d)) ? 1 : 0;
     },
     O: function() { // Difference to GMT in hour format; e.g. +0200
       var tzo = jsdate.getTimezoneOffset(),
-          a = Math.abs(tzo);
+        a = Math.abs(tzo);
       return (tzo > 0 ? '-' : '+') + _pad(Math.floor(a / 60) * 100 + a % 60, 4);
     },
     P: function() { // Difference to GMT w/colon; e.g. +02:00
@@ -264,9 +272,9 @@ function date(format, timestamp) {
   this.date = function(format, timestamp) {
     that = this;
     jsdate = (timestamp === undefined ? new Date() : // Not provided
-        (timestamp instanceof Date) ? new Date(timestamp) : // JS Date()
-        new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
-        );
+      (timestamp instanceof Date) ? new Date(timestamp) : // JS Date()
+      new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
+    );
     return format.replace(formatChr, formatChrCb);
   };
   return this.date(format, timestamp);

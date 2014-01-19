@@ -11,10 +11,10 @@ function array_keys(input, search_value, argStrict) {
   //   returns 1: {0: 'firstname', 1: 'surname'}
 
   var search = typeof search_value !== 'undefined',
-      tmp_arr = [],
-      strict = !!argStrict,
-      include = true,
-      key = '';
+    tmp_arr = [],
+    strict = !! argStrict,
+    include = true,
+    key = '';
 
   if (input && typeof input === 'object' && input.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
     return input.keys(search_value, argStrict);
@@ -26,8 +26,7 @@ function array_keys(input, search_value, argStrict) {
       if (search) {
         if (strict && input[key] !== search_value) {
           include = false;
-        }
-        else if (input[key] != search_value) {
+        } else if (input[key] != search_value) {
           include = false;
         }
       }

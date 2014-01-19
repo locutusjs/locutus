@@ -11,13 +11,13 @@ function array_push(inputArr) {
   //   returns 1: 3
 
   var i = 0,
-      pr = '',
-      argv = arguments,
-      argc = argv.length,
-      allDigits = /^\d$/,
-      size = 0,
-      highestIdx = 0,
-      len = 0;
+    pr = '',
+    argv = arguments,
+    argc = argv.length,
+    allDigits = /^\d$/,
+    size = 0,
+    highestIdx = 0,
+    len = 0;
   if (inputArr.hasOwnProperty('length')) {
     for (i = 1; i < argc; i++) {
       inputArr[inputArr.length] = argv[i];

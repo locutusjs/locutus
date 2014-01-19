@@ -14,8 +14,7 @@ function str_repeat(input, multiplier) {
     multiplier >>= 1;
     if (multiplier) {
       input += input;
-    }
-    else {
+    } else {
       break;
     }
   }

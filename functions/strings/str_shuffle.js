@@ -15,7 +15,8 @@ function str_shuffle(str) {
 
   str += '';
 
-  var newStr = '', rand, i = str.length;
+  var newStr = '',
+    rand, i = str.length;
 
   while (i) {
     rand = Math.floor(Math.random() * i);

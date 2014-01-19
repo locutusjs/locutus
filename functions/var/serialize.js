@@ -20,26 +20,26 @@ function serialize(mixed_value) {
   //   returns 2: 'a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}'
 
   var val, key, okey,
-      ktype = '', vals = '', count = 0,
-      _utf8Size = function(str) {
-        var size = 0,
-            i = 0,
-            l = str.length,
-            code = '';
-        for (i = 0; i < l; i++) {
-          code = str.charCodeAt(i);
-          if (code < 0x0080) {
-            size += 1;
-          }
-          else if (code < 0x0800) {
-            size += 2;
-          }
-          else {
-            size += 3;
-          }
+    ktype = '',
+    vals = '',
+    count = 0,
+    _utf8Size = function(str) {
+      var size = 0,
+        i = 0,
+        l = str.length,
+        code = '';
+      for (i = 0; i < l; i++) {
+        code = str.charCodeAt(i);
+        if (code < 0x0080) {
+          size += 1;
+        } else if (code < 0x0800) {
+          size += 2;
+        } else {
+          size += 3;
         }
-        return size;
-      };
+      }
+      return size;
+    };
   _getType = function(inp) {
     var match, key, cons, types, type = typeof inp;
 
@@ -67,7 +67,6 @@ function serialize(mixed_value) {
   };
   type = _getType(mixed_value);
 
-
   switch (type) {
     case 'function':
       val = '';
@@ -81,7 +80,8 @@ function serialize(mixed_value) {
     case 'string':
       val = 's:' + _utf8Size(mixed_value) + ':"' + mixed_value + '"';
       break;
-    case 'array': case 'object':
+    case 'array':
+    case 'object':
       val = 'a';
       /*
         if (type === 'object') {

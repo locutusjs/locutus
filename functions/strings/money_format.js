@@ -50,11 +50,12 @@ function money_format(format, number) {
 
   var doReplace = function(n0, flags, n2, width, n4, left, n6, right, conversion) {
     var value = '',
-        repl = '';
+      repl = '';
     if (conversion === '%') { // Percent does not seem to be allowed with intervening content
       return '%';
     }
-    var fill = flags && (/=./).test(flags) ? flags.match(/=(.)/)[1] : ' '; // flag: =f (numeric fill)
+    var fill = flags && (/=./)
+      .test(flags) ? flags.match(/=(.)/)[1] : ' '; // flag: =f (numeric fill)
     var showCurrSymbol = !flags || flags.indexOf('!') === -1; // flag: ! (suppress currency symbol)
     width = parseInt(width, 10) || 0; // field width: w (minimum field width)
 
@@ -77,7 +78,8 @@ function money_format(format, number) {
     var filler = init_lgth < left;
     if (filler) {
       var fillnum = left - init_lgth;
-      integer = new Array(fillnum + 1).join(fill) + integer;
+      integer = new Array(fillnum + 1)
+        .join(fill) + integer;
     }
     if (flags.indexOf('^') === -1) { // flag: ^ (disable grouping characters (of locale))
       // use grouping characters
@@ -123,10 +125,12 @@ function money_format(format, number) {
       } else if (right < fraction.length) {
         fraction = Math.round(parseFloat(fraction.slice(0, right) + '.' + fraction.substr(right, 1))) + '';
         if (right > fraction.length) {
-          fraction = new Array(right - fraction.length + 1).join('0') + fraction; // prepend with 0's
+          fraction = new Array(right - fraction.length + 1)
+            .join('0') + fraction; // prepend with 0's
         }
       } else if (right > fraction.length) {
-        fraction += new Array(right - fraction.length + 1).join('0'); // pad with 0's
+        fraction += new Array(right - fraction.length + 1)
+          .join('0'); // pad with 0's
       }
       value = integer + dec_pt + fraction;
     }
@@ -150,7 +154,8 @@ function money_format(format, number) {
       // Fix: unclear on whether and how sep_by_space, sign_posn, or cs_precedes have
       // an impact here (as they do below), but assuming for now behaves as sign_posn 0 as
       // far as localized sep_by_space and sign_posn behavior
-      repl = (cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') : '') + value + (!cs_precedes ? (sep_by_space === 1 ? ' ' : '') + symbol : '');
+      repl = (cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') : '') + value + (!cs_precedes ? (
+        sep_by_space === 1 ? ' ' : '') + symbol : '');
       if (neg) {
         repl = '(' + repl + ')';
       } else {
@@ -163,7 +168,8 @@ function money_format(format, number) {
       var otherSign = neg ? (pos_sign) : (neg_sign);
       var signPadding = '';
       if (sign_posn) { // has a sign
-        signPadding = new Array(otherSign.length - sign.length + 1).join(' ');
+        signPadding = new Array(otherSign.length - sign.length + 1)
+          .join(' ');
       }
 
       var valueAndCS = '';
@@ -174,29 +180,37 @@ function money_format(format, number) {
         // 3: sign immed. precedes curr. symbol; (but may be space between)
         // 4: sign immed. succeeds curr. symbol; (but may be space between)
         case 0:
-          valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol;
+          valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space ===
+            1 ? ' ' : '') + symbol;
           repl = '(' + valueAndCS + ')';
           break;
         case 1:
-          valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol;
+          valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space ===
+            1 ? ' ' : '') + symbol;
           repl = signPadding + sign + (sep_by_space === 2 ? ' ' : '') + valueAndCS;
           break;
         case 2:
-          valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol;
+          valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space ===
+            1 ? ' ' : '') + symbol;
           repl = valueAndCS + (sep_by_space === 2 ? ' ' : '') + sign + signPadding;
           break;
         case 3:
-          repl = cs_precedes ? signPadding + sign + (sep_by_space === 2 ? ' ' : '') + symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + sign + signPadding + (sep_by_space === 2 ? ' ' : '') + symbol;
+          repl = cs_precedes ? signPadding + sign + (sep_by_space === 2 ? ' ' : '') + symbol + (sep_by_space ===
+            1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + sign + signPadding + (
+            sep_by_space === 2 ? ' ' : '') + symbol;
           break;
         case 4:
-          repl = cs_precedes ? symbol + (sep_by_space === 2 ? ' ' : '') + signPadding + sign + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol + (sep_by_space === 2 ? ' ' : '') + sign + signPadding;
+          repl = cs_precedes ? symbol + (sep_by_space === 2 ? ' ' : '') + signPadding + sign + (sep_by_space ===
+            1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol + (sep_by_space === 2 ?
+            ' ' : '') + sign + signPadding;
           break;
       }
     }
 
     var padding = width - repl.length;
     if (padding > 0) {
-      padding = new Array(padding + 1).join(' ');
+      padding = new Array(padding + 1)
+        .join(' ');
       // Fix: How does p_sep_by_space affect the count if there is a space? Included in count presumably?
       if (flags.indexOf('-') !== -1) { // left-justified (pad to right)
         repl += padding;

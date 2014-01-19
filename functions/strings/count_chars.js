@@ -12,10 +12,14 @@ function count_chars(str, mode) {
   //   returns 2: {32:1,33:1,72:1,87:1,100:1,101:1,108:3,111:2,114:1}
 
   var result = {},
-      resultArr = [],
-      i;
+    resultArr = [],
+    i;
 
-  str = ('' + str).split('').sort().join('').match(/(.)\1*/g);
+  str = ('' + str)
+    .split('')
+    .sort()
+    .join('')
+    .match(/(.)\1*/g);
 
   if ((mode & 1) == 0) {
     for (i = 0; i != 256; i++) {

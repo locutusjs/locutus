@@ -50,15 +50,15 @@ function array_splice(arr, offst, lgth, replacement) {
     delete arr.length;
     }*/
     var lgt = 0,
-        ct = -1,
-        rmvd = [],
-        rmvdObj = {},
-        repl_ct = -1,
-        int_ct = -1;
+      ct = -1,
+      rmvd = [],
+      rmvdObj = {},
+      repl_ct = -1,
+      int_ct = -1;
     var returnArr = true,
-        rmvd_ct = 0,
-        rmvd_lgth = 0,
-        key = '';
+      rmvd_ct = 0,
+      rmvd_lgth = 0,
+      key = '';
     // rmvdObj.length = 0;
     for (key in arr) { // Can do arr.__count__ in some browsers
       lgt += 1;

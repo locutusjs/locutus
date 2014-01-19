@@ -26,10 +26,10 @@ function shuffle(inputArr) {
   //   returns 2: {5:'a', 'q':5, 3:'c', 2:'3', 4:5}
 
   var valArr = [],
-      k = '',
-      i = 0,
-      strictForIn = false,
-      populateArr = [];
+    k = '',
+    i = 0,
+    strictForIn = false,
+    populateArr = [];
 
   for (k in inputArr) { // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
@@ -47,7 +47,8 @@ function shuffle(inputArr) {
   this.php_js = this.php_js || {};
   this.php_js.ini = this.php_js.ini || {};
   // END REDUNDANT
-  strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
+  strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
+    .ini['phpjs.strictForIn'].local_value !== 'off';
   populateArr = strictForIn ? inputArr : populateArr;
 
   for (i = 0; i < valArr.length; i++) { // Repopulate the old array

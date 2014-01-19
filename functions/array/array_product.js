@@ -5,8 +5,8 @@ function array_product(input) {
   //   returns 1: 384
 
   var idx = 0,
-      product = 1,
-      il = 0;
+    product = 1,
+    il = 0;
 
   if (Object.prototype.toString.call(input) !== '[object Array]') {
     return null;

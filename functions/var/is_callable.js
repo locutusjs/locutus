@@ -20,10 +20,11 @@ function is_callable(v, syntax_only, callable_name) {
   //   returns 4: true
 
   var name = '',
-      obj = {},
-      method = '';
+    obj = {},
+    method = '';
   var getFuncName = function(fn) {
-    var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+    var name = (/\W*function\s+([\w\$]+)\s*\(/)
+      .exec(fn);
     if (!name) {
       return '(Anonymous)';
     }
@@ -33,17 +34,14 @@ function is_callable(v, syntax_only, callable_name) {
     obj = this.window;
     method = v;
     name = v;
-  }
-  else if (typeof v === 'function') {
+  } else if (typeof v === 'function') {
     return true;
-  }
-  else if (Object.prototype.toString.call(v) === '[object Array]' &&
-      v.length === 2 && typeof v[0] === 'object' && typeof v[1] === 'string') {
+  } else if (Object.prototype.toString.call(v) === '[object Array]' &&
+    v.length === 2 && typeof v[0] === 'object' && typeof v[1] === 'string') {
     obj = v[0];
     method = v[1];
     name = (obj.constructor && getFuncName(obj.constructor)) + '::' + method;
-  }
-  else {
+  } else {
     return false;
   }
   if (syntax_only || typeof obj[method] === 'function') {

@@ -9,12 +9,12 @@ function array_intersect_key(arr1) {
   //   returns 1: {0: 'red', a: 'green'}
 
   var retArr = {},
-      argl = arguments.length,
-      arglm1 = argl - 1,
-      k1 = '',
-      arr = {},
-      i = 0,
-      k = '';
+    argl = arguments.length,
+    arglm1 = argl - 1,
+    k1 = '',
+    arr = {},
+    i = 0,
+    k = '';
 
   arr1keys: for (k1 in arr1) {
     arrs: for (i = 1; i < argl; i++) {

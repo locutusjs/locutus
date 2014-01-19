@@ -17,8 +17,8 @@ function str_split(string, split_length) {
   }
   string += '';
   var chunks = [],
-      pos = 0,
-      len = string.length;
+    pos = 0,
+    len = string.length;
   while (pos < len) {
     chunks.push(string.slice(pos, pos += split_length));
   }

@@ -10,14 +10,15 @@ function var_dump() {
   //   returns 1: 'int(1)'
 
   var output = '',
-      pad_char = ' ',
-      pad_val = 4,
-      lgth = 0,
-      i = 0,
-      d = this.window.document;
+    pad_char = ' ',
+    pad_val = 4,
+    lgth = 0,
+    i = 0,
+    d = this.window.document;
 
   var _getFuncName = function(fn) {
-    var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+    var name = (/\W*function\s+([\w\$]+)\s*\(/)
+      .exec(fn);
     if (!name) {
       return '(Anonymous)';
     }
@@ -50,7 +51,8 @@ function var_dump() {
     else if (typeof val === 'undefined') {
       ret = 'undefined';
     } else if (typeof val === 'function') {
-      var funcLines = val.toString().split('\n');
+      var funcLines = val.toString()
+        .split('\n');
       ret = '';
       for (var i = 0, fll = funcLines.length; i < fll; i++) {
         ret += (i !== 0 ? '\n' + thick_pad : '') + funcLines[i];
@@ -128,8 +130,10 @@ function var_dump() {
       str += 'array(' + lgth + ') {\n';
       for (var key in obj) {
         var objVal = obj[key];
-        if (typeof objVal === 'object' && objVal !== null && !(objVal instanceof Date) && !(objVal instanceof RegExp) && !objVal.nodeName) {
-          str += thick_pad + '[' + key + '] =>\n' + thick_pad + _formatArray(objVal, cur_depth + 1, pad_val, pad_char);
+        if (typeof objVal === 'object' && objVal !== null && !(objVal instanceof Date) && !(objVal instanceof RegExp) && !
+          objVal.nodeName) {
+          str += thick_pad + '[' + key + '] =>\n' + thick_pad + _formatArray(objVal, cur_depth + 1, pad_val,
+            pad_char);
         } else {
           val = _getInnerVal(objVal, thick_pad);
           str += thick_pad + '[' + key + '] =>\n' + thick_pad + val + '\n';

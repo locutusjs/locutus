@@ -15,7 +15,8 @@ function settype(vr, type) {
   //   returns 2: '1'
 
   var is_array = function(arr) {
-    return typeof arr === 'object' && typeof arr.length === 'number' && !(arr.propertyIsEnumerable('length')) && typeof arr.splice === 'function';
+    return typeof arr === 'object' && typeof arr.length === 'number' && !(arr.propertyIsEnumerable('length')) &&
+      typeof arr.splice === 'function';
   };
   var v, mtch, i, obj;
   v = this[vr] ? this[vr] : vr;

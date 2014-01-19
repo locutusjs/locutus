@@ -13,21 +13,23 @@ function pack(format) {
   //   returns 1: '4xVAB'
 
   var formatPointer = 0,
-      argumentPointer = 1,
-      result = '',
-      argument = '',
-      i = 0,
-      r = [],
-      instruction, quantifier, word, precisionBits, exponentBits, extraNullCount;
+    argumentPointer = 1,
+    result = '',
+    argument = '',
+    i = 0,
+    r = [],
+    instruction, quantifier, word, precisionBits, exponentBits, extraNullCount;
 
   // vars used by float encoding
-  var bias, minExp, maxExp, minUnnormExp, status, exp, len, bin, signal, n, intPart, floatPart, lastBit, rounded, j, k, tmpResult;
+  var bias, minExp, maxExp, minUnnormExp, status, exp, len, bin, signal, n, intPart, floatPart, lastBit, rounded, j,
+    k, tmpResult;
 
   while (formatPointer < format.length) {
     instruction = format.charAt(formatPointer);
     quantifier = '';
     formatPointer++;
-    while ((formatPointer < format.length) && (format.charAt(formatPointer).match(/[\d\*]/) !== null)) {
+    while ((formatPointer < format.length) && (format.charAt(formatPointer)
+      .match(/[\d\*]/) !== null)) {
       quantifier += format.charAt(formatPointer);
       formatPointer++;
     }
@@ -38,7 +40,7 @@ function pack(format) {
     // Now pack variables: 'quantifier' times 'instruction'
     switch (instruction) {
       case 'a':
-      // NUL-padded string
+        // NUL-padded string
       case 'A':
         // SPACE-padded string
         if (typeof arguments[argumentPointer] === 'undefined') {
@@ -63,7 +65,7 @@ function pack(format) {
         argumentPointer++;
         break;
       case 'h':
-      // Hex string, low nibble first
+        // Hex string, low nibble first
       case 'H':
         // Hex string, high nibble first
         if (typeof arguments[argumentPointer] === 'undefined') {
@@ -95,7 +97,7 @@ function pack(format) {
         break;
 
       case 'c':
-      // signed char
+        // signed char
       case 'C':
         // unsigned char
         // c and C is the same in pack
@@ -113,9 +115,9 @@ function pack(format) {
         break;
 
       case 's':
-      // signed short (always 16 bit, machine byte order)
+        // signed short (always 16 bit, machine byte order)
       case 'S':
-      // unsigned short (always 16 bit, machine byte order)
+        // unsigned short (always 16 bit, machine byte order)
       case 'v':
         // s and S is the same in pack
         if (quantifier === '*') {
@@ -149,13 +151,13 @@ function pack(format) {
         break;
 
       case 'i':
-      // signed integer (machine dependent size and byte order)
+        // signed integer (machine dependent size and byte order)
       case 'I':
-      // unsigned integer (machine dependent size and byte order)
+        // unsigned integer (machine dependent size and byte order)
       case 'l':
-      // signed long (always 32 bit, machine byte order)
+        // signed long (always 32 bit, machine byte order)
       case 'L':
-      // unsigned long (always 32 bit, machine byte order)
+        // unsigned long (always 32 bit, machine byte order)
       case 'V':
         // unsigned long (always 32 bit, little endian byte order)
         if (quantifier === '*') {
@@ -193,7 +195,7 @@ function pack(format) {
         break;
 
       case 'f':
-      // float (machine dependent size and representation)
+        // float (machine dependent size and representation)
       case 'd':
         // double (machine dependent size and representation)
         // version original by IEEE754
@@ -237,12 +239,13 @@ function pack(format) {
           }
           for (k = -1; ++k < len && !bin[k];) {}
 
-          if (bin[(lastBit = precisionBits - 1 + (k = (exp = bias + 1 - k) >= minExp && exp <= maxExp ? k + 1 : bias + 1 - (exp = minExp - 1))) + 1]) {
+          if (bin[(lastBit = precisionBits - 1 + (k = (exp = bias + 1 - k) >= minExp && exp <= maxExp ? k + 1 :
+            bias + 1 - (exp = minExp - 1))) + 1]) {
             if (!(rounded = bin[lastBit])) {
               for (j = lastBit + 2; !rounded && j < len; rounded = bin[j++]) {}
             }
             for (j = lastBit + 1; rounded && --j >= 0;
-                (bin[j] = !bin[j] - 0) && (rounded = 0)) {}
+              (bin[j] = !bin[j] - 0) && (rounded = 0)) {}
           }
 
           for (k = k - 2 < 0 ? -1 : k - 3; ++k < len && !bin[k];) {}
@@ -251,8 +254,7 @@ function pack(format) {
             ++k;
           } else {
             if (exp < minExp) {
-              if (exp !== bias + 1 - len && exp < minUnnormExp) { /*"encodeFloat::float underflow" */
-              }
+              if (exp !== bias + 1 - len && exp < minUnnormExp) { /*"encodeFloat::float underflow" */ }
               k = bias + 1 - (exp = minExp - 1);
             }
           }
@@ -277,7 +279,9 @@ function pack(format) {
 
           n = 0;
           j = 0;
-          k = (tmpResult = (signal ? '1' : '0') + tmpResult + bin.slice(k, k + precisionBits).join('')).length;
+          k = (tmpResult = (signal ? '1' : '0') + tmpResult + bin.slice(k, k + precisionBits)
+            .join(''))
+            .length;
           r = [];
 
           for (; k;) {

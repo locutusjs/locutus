@@ -12,7 +12,7 @@ function array_merge_recursive(arr1, arr2) {
   var idx = '';
 
   if (arr1 && Object.prototype.toString.call(arr1) === '[object Array]' &&
-      arr2 && Object.prototype.toString.call(arr2) === '[object Array]') {
+    arr2 && Object.prototype.toString.call(arr2) === '[object Array]') {
     for (idx in arr2) {
       arr1.push(arr2[idx]);
     }

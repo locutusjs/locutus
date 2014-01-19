@@ -20,12 +20,14 @@ function htmlspecialchars_decode(string, quote_style) {
   //        returns 2: '&quot;'
 
   var optTemp = 0,
-      i = 0,
-      noquotes = false;
+    i = 0,
+    noquotes = false;
   if (typeof quote_style === 'undefined') {
     quote_style = 2;
   }
-  string = string.toString().replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+  string = string.toString()
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>');
   var OPTS = {
     'ENT_NOQUOTES': 0,
     'ENT_HTML_QUOTE_SINGLE': 1,

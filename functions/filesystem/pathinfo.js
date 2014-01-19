@@ -30,14 +30,14 @@ function pathinfo(path, options) {
   //   returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
 
   var opt = '',
-      optName = '',
-      optTemp = 0,
-      tmp_arr = {},
-      cnt = 0,
-      i = 0;
+    optName = '',
+    optTemp = 0,
+    tmp_arr = {},
+    cnt = 0,
+    i = 0;
   var have_basename = false,
-      have_extension = false,
-      have_filename = false;
+    have_extension = false,
+    have_filename = false;
 
   // Input defaulting & sanitation
   if (!path) {
@@ -78,10 +78,10 @@ function pathinfo(path, options) {
     return !dotP ? false : dotP !== str.length ? str.substr(dotP) : '';
   };
 
-
   // Gather path infos
   if (options & OPTS.PATHINFO_DIRNAME) {
-    var dirName = path.replace(/\\/g, '/').replace(/\/[^\/]*\/?$/, ''); // dirname
+    var dirName = path.replace(/\\/g, '/')
+      .replace(/\/[^\/]*\/?$/, ''); // dirname
     tmp_arr.dirname = dirName === path ? '.' : dirName;
   }
 
@@ -112,12 +112,12 @@ function pathinfo(path, options) {
       have_extension = __getExt(have_basename);
     }
     if (false === have_filename) {
-      have_filename = have_basename.slice(0, have_basename.length - (have_extension ? have_extension.length + 1 : have_extension === false ? 0 : 1));
+      have_filename = have_basename.slice(0, have_basename.length - (have_extension ? have_extension.length + 1 :
+        have_extension === false ? 0 : 1));
     }
 
     tmp_arr.filename = have_filename;
   }
-
 
   // If array contains only 1 element: return string
   cnt = 0;

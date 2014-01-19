@@ -10,8 +10,8 @@ function get_defined_functions() {
   //   returns 1: true
 
   var i = '',
-      arr = [],
-      already = {};
+    arr = [],
+    already = {};
 
   for (i in this.window) {
     try {

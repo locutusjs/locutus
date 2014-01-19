@@ -24,22 +24,24 @@ function unserialize(data) {
   //   returns 2: {firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'}
 
   var that = this,
-      utf8Overhead = function(chr) {
-        // http://phpjs.org/functions/unserialize:571#comment_95906
-        var code = chr.charCodeAt(0);
-        if (code < 0x0080) {
-          return 0;
-        }
-        if (code < 0x0800) {
-          return 1;
-        }
-        return 2;
-      };
+    utf8Overhead = function(chr) {
+      // http://phpjs.org/functions/unserialize:571#comment_95906
+      var code = chr.charCodeAt(0);
+      if (code < 0x0080) {
+        return 0;
+      }
+      if (code < 0x0800) {
+        return 1;
+      }
+      return 2;
+    };
   error = function(type, msg, filename, line) {
     throw new that.window[type](msg, filename, line);
   };
   read_until = function(data, offset, stopchr) {
-    var i = 2, buf = [], chr = data.slice(offset, offset + 1);
+    var i = 2,
+      buf = [],
+      chr = data.slice(offset, offset + 1);
 
     while (chr != stopchr) {
       if ((i + offset) > data.length) {
@@ -64,17 +66,18 @@ function unserialize(data) {
   };
   _unserialize = function(data, offset) {
     var dtype, dataoffset, keyandchrs, keys, contig,
-        length, array, readdata, readData, ccount,
-            stringlength, i, key, kprops, kchrs, vprops,
-            vchrs, value, chrs = 0,
-            typeconvert = function(x) {
-              return x;
-            };
+      length, array, readdata, readData, ccount,
+      stringlength, i, key, kprops, kchrs, vprops,
+      vchrs, value, chrs = 0,
+      typeconvert = function(x) {
+        return x;
+      };
 
     if (!offset) {
       offset = 0;
     }
-    dtype = (data.slice(offset, offset + 1)).toLowerCase();
+    dtype = (data.slice(offset, offset + 1))
+      .toLowerCase();
 
     dataoffset = offset + 2;
 
@@ -166,7 +169,6 @@ function unserialize(data) {
     }
     return [dtype, dataoffset - offset, typeconvert(readdata)];
   };
-
 
   return _unserialize((data + ''), 0)[2];
 }

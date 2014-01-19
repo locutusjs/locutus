@@ -7,7 +7,8 @@ function create_function(args, code) {
   //        returns 1: 3
 
   try {
-    return Function.apply(null, args.split(',').concat(code));
+    return Function.apply(null, args.split(',')
+      .concat(code));
   } catch (e) {
     return false;
   }

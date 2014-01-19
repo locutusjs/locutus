@@ -20,8 +20,8 @@ function htmlspecialchars(string, quote_style, charset, double_encode) {
   //        returns 3: 'my &quot;&entity;&quot; is still here'
 
   var optTemp = 0,
-      i = 0,
-      noquotes = false;
+    i = 0,
+    noquotes = false;
   if (typeof quote_style === 'undefined' || quote_style === null) {
     quote_style = 2;
   }
@@ -29,7 +29,8 @@ function htmlspecialchars(string, quote_style, charset, double_encode) {
   if (double_encode !== false) { // Put this first to avoid double-encoding
     string = string.replace(/&/g, '&amp;');
   }
-  string = string.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  string = string.replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 
   var OPTS = {
     'ENT_NOQUOTES': 0,
@@ -48,8 +49,7 @@ function htmlspecialchars(string, quote_style, charset, double_encode) {
       // Resolve string input to bitwise e.g. 'ENT_IGNORE' becomes 4
       if (OPTS[quote_style[i]] === 0) {
         noquotes = true;
-      }
-      else if (OPTS[quote_style[i]]) {
+      } else if (OPTS[quote_style[i]]) {
         optTemp = optTemp | OPTS[quote_style[i]];
       }
     }

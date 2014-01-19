@@ -11,10 +11,10 @@ function array_pad(input, pad_size, pad_value) {
   //   returns 4: [ 'a', 'a', 7, 8, 9 ]
 
   var pad = [],
-      newArray = [],
-      newLength,
-      diff = 0,
-      i = 0;
+    newArray = [],
+    newLength,
+    diff = 0,
+    i = 0;
 
   if (Object.prototype.toString.call(input) === '[object Array]' && !isNaN(pad_size)) {
     newLength = ((pad_size < 0) ? (pad_size * -1) : pad_size);

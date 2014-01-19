@@ -10,7 +10,7 @@ function gettimeofday(return_float) {
   //   returns 2: 1238748978.49
 
   var t = new Date(),
-      y = 0;
+    y = 0;
 
   if (return_float) {
     return t.getTime() / 1000;

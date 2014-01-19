@@ -30,10 +30,10 @@ function ksort(inputArr, sort_flags) {
   //   returns 2: {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
 
   var tmp_arr = {},
-      keys = [],
-      sorter, i, k, that = this,
-      strictForIn = false,
-      populateArr = {};
+    keys = [],
+    sorter, i, k, that = this,
+    strictForIn = false,
+    populateArr = {};
 
   switch (sort_flags) {
     case 'SORT_STRING':
@@ -53,13 +53,13 @@ function ksort(inputArr, sort_flags) {
         return ((a + 0) - (b + 0));
       };
       break;
-    // case 'SORT_REGULAR': // compare items normally (don't change types)
+      // case 'SORT_REGULAR': // compare items normally (don't change types)
     default:
       sorter = function(a, b) {
         var aFloat = parseFloat(a),
-            bFloat = parseFloat(b),
-            aNumeric = aFloat + '' === a,
-            bNumeric = bFloat + '' === b;
+          bFloat = parseFloat(b),
+          aNumeric = aFloat + '' === a,
+          bNumeric = bFloat + '' === b;
         if (aNumeric && bNumeric) {
           return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0;
         } else if (aNumeric && !bNumeric) {
@@ -84,7 +84,8 @@ function ksort(inputArr, sort_flags) {
   this.php_js = this.php_js || {};
   this.php_js.ini = this.php_js.ini || {};
   // END REDUNDANT
-  strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
+  strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
+    .ini['phpjs.strictForIn'].local_value !== 'off';
   populateArr = strictForIn ? inputArr : populateArr;
 
   // Rebuild array with sorted key names

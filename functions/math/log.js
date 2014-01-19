@@ -6,6 +6,6 @@ function log(arg, base) {
   //   returns 1: 8.212871815082147
 
   return (typeof base === 'undefined') ?
-      Math.log(arg) :
-      Math.log(arg) / Math.log(base);
+    Math.log(arg) :
+    Math.log(arg) / Math.log(base);
 }

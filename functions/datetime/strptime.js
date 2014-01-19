@@ -15,16 +15,16 @@ function strptime(dateStr, format) {
   // Needs more thorough testing and examples
 
   var retObj = {
-      tm_sec: 0,
-      tm_min: 0,
-      tm_hour: 0,
-      tm_mday: 0,
-      tm_mon: 0,
-      tm_year: 0,
-      tm_wday: 0,
-      tm_yday: 0,
-      unparsed: ''
-    },
+    tm_sec: 0,
+    tm_min: 0,
+    tm_hour: 0,
+    tm_mday: 0,
+    tm_mon: 0,
+    tm_year: 0,
+    tm_wday: 0,
+    tm_yday: 0,
+    unparsed: ''
+  },
     i = 0,
     that = this,
     amPmOffset = 0,
@@ -48,12 +48,13 @@ function strptime(dateStr, format) {
     _date = function() {
       var o = retObj;
       // We set date to at least 1 to ensure year or month doesn't go backwards
-      return _reset(new Date(Date.UTC(o.tm_year + 1900, o.tm_mon, o.tm_mday || 1, o.tm_hour, o.tm_min, o.tm_sec)), o.tm_mday);
+      return _reset(new Date(Date.UTC(o.tm_year + 1900, o.tm_mon, o.tm_mday || 1, o.tm_hour, o.tm_min, o.tm_sec)),
+        o.tm_mday);
     };
 
   // BEGIN STATIC
   var _NWS = /\S/,
-      _WS = /\s/;
+    _WS = /\s/;
 
   var _aggregates = {
     c: 'locale',
@@ -85,7 +86,8 @@ OW
 Oy
   */
   var _preg_quote = function(str) {
-    return (str + '').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!<>\|\:])/g, '\\$1');
+    return (str + '')
+      .replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!<>\|\:])/g, '\\$1');
   };
   // END STATIC
 
@@ -123,14 +125,15 @@ Oy
 
   var _addLocalized = function(j, formatChar, category) {
     return _addNext(j, that.array_map(
-        _preg_quote, lc_time[formatChar]).join('|'), // Could make each parenthesized instead and pass index to callback
+        _preg_quote, lc_time[formatChar])
+      .join('|'), // Could make each parenthesized instead and pass index to callback
 
-        function(m) {
-          var match = lc_time[formatChar].search(new RegExp('^' + _preg_quote(m) + '$', 'i'));
-          if (match) {
-            retObj[category] = match[0];
-          }
-        });
+      function(m) {
+        var match = lc_time[formatChar].search(new RegExp('^' + _preg_quote(m) + '$', 'i'));
+        if (match) {
+          retObj[category] = match[0];
+        }
+      });
   };
 
   // BEGIN PROCESSING CHARACTERS
@@ -150,13 +153,13 @@ Oy
       try {
         switch (formatChar) {
           case 'a':
-          // Fall-through // Sun-Sat
+            // Fall-through // Sun-Sat
           case 'A':
             // Sunday-Saturday
             j = _addLocalized(j, formatChar, 'tm_wday'); // Changes nothing else
             break;
           case 'h':
-          // Fall-through (alias of 'b');
+            // Fall-through (alias of 'b');
           case 'b':
             // Jan-Dec
             j = _addLocalized(j, 'b', 'tm_mon');
@@ -171,25 +174,26 @@ Oy
             // 0+; century (19 for 20th)
             j = _addNext(j, /^\d?\d/, // PHP docs say two-digit, but accepts one-digit (two-digit max)
 
-                function(d) {
-                  var year = (parseInt(d, 10) - 19) * 100;
-                  retObj.tm_year = year;
-                  _date();
-                  if (!retObj.tm_yday) {
-                    retObj.tm_yday = -1;
-                  }
-                  // Also changes wday; and sets yday to -1 (always?)
-                });
+              function(d) {
+                var year = (parseInt(d, 10) - 19) * 100;
+                retObj.tm_year = year;
+                _date();
+                if (!retObj.tm_yday) {
+                  retObj.tm_yday = -1;
+                }
+                // Also changes wday; and sets yday to -1 (always?)
+              });
             break;
           case 'd':
-          // Fall-through  01-31 day
+            // Fall-through  01-31 day
           case 'e':
             // 1-31 day
-            j = _addNext(j, formatChar === 'd' ? /^(0[1-9]|[1-2]\d|3[0-1])/ : /^([1-2]\d|3[0-1]|[1-9])/, function(d) {
-              var dayMonth = parseInt(d, 10);
-              retObj.tm_mday = dayMonth;
-              _date(); // Also changes w_day, y_day
-            });
+            j = _addNext(j, formatChar === 'd' ? /^(0[1-9]|[1-2]\d|3[0-1])/ : /^([1-2]\d|3[0-1]|[1-9])/,
+              function(d) {
+                var dayMonth = parseInt(d, 10);
+                retObj.tm_mday = dayMonth;
+                _date(); // Also changes w_day, y_day
+              });
             break;
           case 'g':
             // No apparent effect; 2-digit year (see 'V')
@@ -206,7 +210,7 @@ Oy
             });
             break;
           case 'l':
-          // Fall-through of lower-case 'L'; 1-12 hours
+            // Fall-through of lower-case 'L'; 1-12 hours
           case 'I':
             // 01-12 hours
             j = _addNext(j, formatChar === 'l' ? /^([1-9]|1[0-2])/ : /^(0[1-9]|1[0-2])/, function(d) {
@@ -248,7 +252,8 @@ Oy
             j = _addNext(j, /^(am|pm)/i, function(d) {
               // No effect on 'H' since already 24 hours but
               //   works before or after setting of l/I hour
-              amPmOffset = (/a/).test(d) ? 0 : 12;
+              amPmOffset = (/a/)
+                .test(d) ? 0 : 12;
               if (prevHour) {
                 retObj.tm_hour += amPmOffset;
               }
@@ -267,14 +272,14 @@ Oy
             // 00-59 seconds
             j = _addNext(j, /^[0-5]\d/, // strptime also accepts 60-61 for some reason
 
-                function(d) {
-                  var second = parseInt(d, 10);
-                  retObj.tm_sec = second;
-                  // Changes nothing else
-                });
+              function(d) {
+                var second = parseInt(d, 10);
+                retObj.tm_sec = second;
+                // Changes nothing else
+              });
             break;
           case 'u':
-          // Fall-through; 1 (Monday)-7(Sunday)
+            // Fall-through; 1 (Monday)-7(Sunday)
           case 'w':
             // 0 (Sunday)-6(Saturday)
             j = _addNext(j, /^\d/, function(d) {
@@ -283,9 +288,9 @@ Oy
             });
             break;
           case 'U':
-          // Fall-through (week of year, from 1st Sunday)
+            // Fall-through (week of year, from 1st Sunday)
           case 'V':
-          // Fall-through (ISO-8601:1988 week number; from first 4-weekday week, starting with Monday)
+            // Fall-through (ISO-8601:1988 week number; from first 4-weekday week, starting with Monday)
           case 'W':
             // Apparently ignored (week of year, from 1st Monday)
             break;
@@ -293,30 +298,30 @@ Oy
             // 69 (or higher) for 1969+, 68 (or lower) for 2068-
             j = _addNext(j, /^\d?\d/, // PHP docs say two-digit, but accepts one-digit (two-digit max)
 
-                function(d) {
-                  d = parseInt(d, 10);
-                  var year = d >= 69 ? d : d + 100;
-                  retObj.tm_year = year;
-                  _date();
-                  if (!retObj.tm_yday) {
-                    retObj.tm_yday = -1;
-                  }
-                  // Also changes wday; and sets yday to -1 (always?)
-                });
+              function(d) {
+                d = parseInt(d, 10);
+                var year = d >= 69 ? d : d + 100;
+                retObj.tm_year = year;
+                _date();
+                if (!retObj.tm_yday) {
+                  retObj.tm_yday = -1;
+                }
+                // Also changes wday; and sets yday to -1 (always?)
+              });
             break;
           case 'Y':
             // 2010 (4-digit year)
             j = _addNext(j, /^\d{1,4}/, // PHP docs say four-digit, but accepts one-digit (four-digit max)
 
-                function(d) {
-                  var year = (parseInt(d, 10)) - 1900;
-                  retObj.tm_year = year;
-                  _date();
-                  if (!retObj.tm_yday) {
-                    retObj.tm_yday = -1;
-                  }
-                  // Also changes wday; and sets yday to -1 (always?)
-                });
+              function(d) {
+                var year = (parseInt(d, 10)) - 1900;
+                retObj.tm_year = year;
+                _date();
+                if (!retObj.tm_yday) {
+                  retObj.tm_yday = -1;
+                }
+                // Also changes wday; and sets yday to -1 (always?)
+              });
             break;
           case 'z':
             // Timezone; on my system, strftime gives -0800, but strptime seems not to alter hour setting
@@ -331,16 +336,18 @@ Oy
         if (e === 'No match in string') { // Allow us to exit
           return false; // There was supposed to be a matching format but there wasn't
         }
-      } ++i; // Calculate skipping beyond initial percent too
+      }++i; // Calculate skipping beyond initial percent too
     } else if (format.charAt(i) !== dateStr.charAt(j)) {
       // If extra whitespace at beginning or end of either, or between formats, no problem
       // (just a problem when between % and format specifier)
 
       // If the string has white-space, it is ok to ignore
-      if (dateStr.charAt(j).search(_WS) !== -1) {
+      if (dateStr.charAt(j)
+        .search(_WS) !== -1) {
         j++;
         i--; // Let the next iteration try again with the same format character
-      } else if (format.charAt(i).search(_NWS) !== -1) { // Any extra formatting characters besides white-space causes
+      } else if (format.charAt(i)
+        .search(_NWS) !== -1) { // Any extra formatting characters besides white-space causes
         // problems (do check after WS though, as may just be WS in string before next character)
         return false;
       }

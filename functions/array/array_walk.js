@@ -28,8 +28,7 @@ function array_walk(array, funcname, userdata) {
   if (typeof array === 'object' && array.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
     if (arguments.length > 2) {
       return array.walk(funcname, userdata);
-    }
-    else {
+    } else {
       return array.walk(funcname);
     }
   }
@@ -39,61 +38,54 @@ function array_walk(array, funcname, userdata) {
       for (key in array) {
         if (arguments.length > 2) {
           funcname(array[key], key, userdata);
-        }
-        else {
+        } else {
           funcname(array[key], key);
         }
       }
-    }
-    else if (typeof funcname === 'string') {
+    } else if (typeof funcname === 'string') {
       this.php_js = this.php_js || {};
       this.php_js.ini = this.php_js.ini || {};
       ini = this.php_js.ini['phpjs.no-eval'];
       if (ini && (
-          parseInt(ini.local_value, 10) !== 0 && (!ini.local_value.toLowerCase || ini.local_value.toLowerCase() !== 'off')
-          )) {
+        parseInt(ini.local_value, 10) !== 0 && (!ini.local_value.toLowerCase || ini.local_value.toLowerCase() !==
+          'off')
+      )) {
         if (arguments.length > 2) {
           for (key in array) {
             this.window[funcname](array[key], key, userdata);
           }
-        }
-        else {
+        } else {
           for (key in array) {
             this.window[funcname](array[key], key);
           }
         }
-      }
-      else {
+      } else {
         if (arguments.length > 2) {
           for (key in array) {
             eval(funcname + '(array[key], key, userdata)');
           }
-        }
-        else {
+        } else {
           for (key in array) {
             eval(funcname + '(array[key], key)');
           }
         }
       }
-    }
-    else if (funcname && typeof funcname === 'object' && funcname.length === 2) {
-      var obj = funcname[0], func = funcname[1];
+    } else if (funcname && typeof funcname === 'object' && funcname.length === 2) {
+      var obj = funcname[0],
+        func = funcname[1];
       if (arguments.length > 2) {
         for (key in array) {
           obj[func](array[key], key, userdata);
         }
-      }
-      else {
+      } else {
         for (key in array) {
           obj[func](array[key], key);
         }
       }
-    }
-    else {
+    } else {
       return false;
     }
-  }
-  catch (e) {
+  } catch (e) {
     return false;
   }
 

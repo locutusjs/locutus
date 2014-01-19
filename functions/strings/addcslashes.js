@@ -17,25 +17,27 @@ function addcslashes(str, charlist) {
   //   returns 6: "\r\u0007\n"
 
   var target = '',
-      chrs = [],
-      i = 0,
-      j = 0,
-      c = '',
-      next = '',
-      rangeBegin = '',
-      rangeEnd = '',
-      chr = '',
-      begin = 0,
-      end = 0,
-      octalLength = 0,
-      postOctalPos = 0,
-      cca = 0,
-      escHexGrp = [],
-      encoded = '',
-      percentHex = /%([\dA-Fa-f]+)/g;
+    chrs = [],
+    i = 0,
+    j = 0,
+    c = '',
+    next = '',
+    rangeBegin = '',
+    rangeEnd = '',
+    chr = '',
+    begin = 0,
+    end = 0,
+    octalLength = 0,
+    postOctalPos = 0,
+    cca = 0,
+    escHexGrp = [],
+    encoded = '',
+    percentHex = /%([\dA-Fa-f]+)/g;
   var _pad = function(n, c) {
-    if ((n = n + '').length < c) {
-      return new Array(++c - n.length).join('0') + n;
+    if ((n = n + '')
+      .length < c) {
+      return new Array(++c - n.length)
+        .join('0') + n;
     }
     return n;
   };
@@ -43,14 +45,18 @@ function addcslashes(str, charlist) {
   for (i = 0; i < charlist.length; i++) {
     c = charlist.charAt(i);
     next = charlist.charAt(i + 1);
-    if (c === '\\' && next && (/\d/).test(next)) { // Octal
-      rangeBegin = charlist.slice(i + 1).match(/^\d+/)[0];
+    if (c === '\\' && next && (/\d/)
+      .test(next)) { // Octal
+      rangeBegin = charlist.slice(i + 1)
+        .match(/^\d+/)[0];
       octalLength = rangeBegin.length;
       postOctalPos = i + octalLength + 1;
       if (charlist.charAt(postOctalPos) + charlist.charAt(postOctalPos + 1) === '..') { // Octal begins range
         begin = rangeBegin.charCodeAt(0);
-        if ((/\\\d/).test(charlist.charAt(postOctalPos + 2) + charlist.charAt(postOctalPos + 3))) { // Range ends with octal
-          rangeEnd = charlist.slice(postOctalPos + 3).match(/^\d+/)[0];
+        if ((/\\\d/)
+          .test(charlist.charAt(postOctalPos + 2) + charlist.charAt(postOctalPos + 3))) { // Range ends with octal
+          rangeEnd = charlist.slice(postOctalPos + 3)
+            .match(/^\d+/)[0];
           i += 1; // Skip range end backslash
         } else if (charlist.charAt(postOctalPos + 2)) { // Range ends with character
           rangeEnd = charlist.charAt(postOctalPos + 2);
@@ -74,8 +80,10 @@ function addcslashes(str, charlist) {
     } else if (next + charlist.charAt(i + 2) === '..') { // Character begins range
       rangeBegin = c;
       begin = rangeBegin.charCodeAt(0);
-      if ((/\\\d/).test(charlist.charAt(i + 3) + charlist.charAt(i + 4))) { // Range ends with octal
-        rangeEnd = charlist.slice(i + 4).match(/^\d+/)[0];
+      if ((/\\\d/)
+        .test(charlist.charAt(i + 3) + charlist.charAt(i + 4))) { // Range ends with octal
+        rangeEnd = charlist.slice(i + 4)
+          .match(/^\d+/)[0];
         i += 1; // Skip range end backslash
       } else if (charlist.charAt(i + 3)) { // Range ends with character
         rangeEnd = charlist.charAt(i + 3);
@@ -130,10 +138,12 @@ function addcslashes(str, charlist) {
 
             // 3-length-padded UTF-8 octets
             if ((escHexGrp = percentHex.exec(encoded)) !== null) {
-              target += _pad(parseInt(escHexGrp[1], 16).toString(8), 3); // already added a slash above
+              target += _pad(parseInt(escHexGrp[1], 16)
+                .toString(8), 3); // already added a slash above
             }
             while ((escHexGrp = percentHex.exec(encoded)) !== null) {
-              target += '\\' + _pad(parseInt(escHexGrp[1], 16).toString(8), 3);
+              target += '\\' + _pad(parseInt(escHexGrp[1], 16)
+                .toString(8), 3);
             }
             break;
         }

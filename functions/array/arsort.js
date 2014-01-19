@@ -31,10 +31,11 @@ function arsort(inputArr, sort_flags) {
   //   example 2: $result = data;
   //   returns 2: {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
 
-  var valArr = [], valArrLen = 0,
-      k, i, ret, sorter, that = this,
-      strictForIn = false,
-      populateArr = {};
+  var valArr = [],
+    valArrLen = 0,
+    k, i, ret, sorter, that = this,
+    strictForIn = false,
+    populateArr = {};
 
   switch (sort_flags) {
     case 'SORT_STRING':
@@ -55,13 +56,13 @@ function arsort(inputArr, sort_flags) {
       };
       break;
     case 'SORT_REGULAR':
-    // compare items normally (don't change types)
+      // compare items normally (don't change types)
     default:
       sorter = function(b, a) {
         var aFloat = parseFloat(a),
-            bFloat = parseFloat(b),
-            aNumeric = aFloat + '' === a,
-            bNumeric = bFloat + '' === b;
+          bFloat = parseFloat(b),
+          aNumeric = aFloat + '' === a,
+          bNumeric = bFloat + '' === b;
         if (aNumeric && bNumeric) {
           return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0;
         } else if (aNumeric && !bNumeric) {
@@ -78,9 +79,9 @@ function arsort(inputArr, sort_flags) {
   this.php_js = this.php_js || {};
   this.php_js.ini = this.php_js.ini || {};
   // END REDUNDANT
-  strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
+  strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
+    .ini['phpjs.strictForIn'].local_value !== 'off';
   populateArr = strictForIn ? inputArr : populateArr;
-
 
   // Get key and value arrays
   for (k in inputArr) {

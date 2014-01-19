@@ -16,8 +16,8 @@ function array_unique(inputArr) {
   //   returns 2: {a: 'green', 0: 'red', 1: 'blue'}
 
   var key = '',
-      tmp_arr2 = {},
-      val = '';
+    tmp_arr2 = {},
+    val = '';
 
   var __array_search = function(needle, haystack) {
     var fkey = '';

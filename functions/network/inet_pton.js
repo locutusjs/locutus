@@ -38,7 +38,8 @@ function inet_pton(a) {
     if (x === 16) {
       return m[1] + m[3];
     } else if (x < 16 && m[2].length > 0) {
-      return m[1] + (new Array(16 - x + 1)).join('\x00') + m[3];
+      return m[1] + (new Array(16 - x + 1))
+        .join('\x00') + m[3];
     }
   }
   return false; // Invalid IP.

@@ -10,9 +10,9 @@ function isset() {
   //   returns 2: true
 
   var a = arguments,
-      l = a.length,
-      i = 0,
-      undef;
+    l = a.length,
+    i = 0,
+    undef;
 
   if (l === 0) {
     throw new Error('Empty isset');

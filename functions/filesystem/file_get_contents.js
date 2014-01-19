@@ -22,14 +22,14 @@ function file_get_contents(url, flags, context, offset, maxLen) {
   //   returns 1: true
 
   var tmp, headers = [],
-      newTmp = [],
-      k = 0,
-      i = 0,
-      href = '',
-      pathPos = -1,
-      flagNames = 0,
-      content = null,
-      http_stream = false;
+    newTmp = [],
+    k = 0,
+    i = 0,
+    href = '',
+    pathPos = -1,
+    flagNames = 0,
+    content = null,
+    http_stream = false;
   var func = function(value) {
     return value.substring(1) !== '';
   };
@@ -89,7 +89,8 @@ function file_get_contents(url, flags, context, offset, maxLen) {
     var async = !! (context && context.stream_params && context.stream_params['phpjs.async']);
 
     if (ini['phpjs.ajaxBypassCache'] && ini['phpjs.ajaxBypassCache'].local_value) {
-      url += (url.match(/\?/) == null ? '?' : '&') + (new Date()).getTime(); // Give optional means of forcing bypass of cache
+      url += (url.match(/\?/) == null ? '?' : '&') + (new Date())
+        .getTime(); // Give optional means of forcing bypass of cache
     }
 
     req.open(method, url, async);
@@ -98,7 +99,7 @@ function file_get_contents(url, flags, context, offset, maxLen) {
       if (typeof notification === 'function') {
         // Fix: make work with req.addEventListener if available: https://developer.mozilla.org/En/Using_XMLHttpRequest
         if (0 && req.addEventListener) { // Unimplemented so don't allow to get here
-        /*
+          /*
           req.addEventListener('progress', updateProgress, false);
           req.addEventListener('load', transferComplete, false);
           req.addEventListener('error', transferFailed, false);
@@ -207,11 +208,14 @@ function file_get_contents(url, flags, context, offset, maxLen) {
         content_type = http_options['phpjs.override']; // We use this, e.g., in gettext-related functions if character set
         //   overridden earlier by bind_textdomain_codeset()
       } else {
-        var encoding = (ini['unicode.stream_encoding'] && ini['unicode.stream_encoding'].local_value) || 'UTF-8';
-        if (http_options && http_options.header && (/^content-type:/im).test(http_options.header)) { // We'll assume a content-type expects its own specified encoding if present
+        var encoding = (ini['unicode.stream_encoding'] && ini['unicode.stream_encoding'].local_value) ||
+          'UTF-8';
+        if (http_options && http_options.header && (/^content-type:/im)
+          .test(http_options.header)) { // We'll assume a content-type expects its own specified encoding if present
           content_type = http_options.header.match(/^content-type:\s*(.*)$/im)[1]; // We let any header encoding stand
         }
-        if (!(/;\s*charset=/).test(content_type)) { // If no encoding
+        if (!(/;\s*charset=/)
+          .test(content_type)) { // If no encoding
           content_type += '; charset=' + encoding;
         }
       }

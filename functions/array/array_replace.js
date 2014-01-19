@@ -5,9 +5,9 @@ function array_replace(arr) {
   //   returns 1: {0: 'grape', 1: 'banana', 2: 'apple', 3: 'raspberry', 4: 'cherry'}
 
   var retObj = {},
-      i = 0,
-      p = '',
-      argl = arguments.length;
+    i = 0,
+    p = '',
+    argl = arguments.length;
 
   if (argl < 2) {
     throw new Error('There should be at least 2 arguments passed to array_replace()');

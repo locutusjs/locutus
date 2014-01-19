@@ -10,7 +10,7 @@ function ord(string) {
   //   returns 2: 65536
 
   var str = string + '',
-      code = str.charCodeAt(0);
+    code = str.charCodeAt(0);
   if (0xD800 <= code && code <= 0xDBFF) { // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
     var hi = code;
     if (str.length === 1) {

@@ -6,6 +6,7 @@ var _         = require('underscore');
 var phpjsutil = new require('../lib/phpjsutil');
 var equal     = require('deep-equal');
 var __root    = __dirname + '/..';
+var beautify  = require('js-beautify').js_beautify;
 
 
 // --debug works out of the box. See -h
@@ -119,6 +120,24 @@ cli.cleanup = function(args, options) {
     buf += '}\n';
 
     buf.replace(/\r/g, '');
+
+    buf = beautify(buf, {
+      "indent_size": 2,
+      "indent_char": " ",
+      "indent_level": 0,
+      "indent_with_tabs": false,
+      "preserve_newlines": true,
+      "max_preserve_newlines": 2,
+      "jslint_happy": false,
+      "brace_style": "collapse",
+      "keep_array_indentation": false,
+      "keep_function_indentation": false,
+      "space_before_conditional": true,
+      "break_chained_methods": true,
+      "eval_code": false,
+      "unescape_strings": false,
+      "wrap_line_length": 120
+    });
 
     // console.log(buf);
     fs.writeFileSync(file, buf);

@@ -10,11 +10,11 @@ function str_pad(input, pad_length, pad_string, pad_type) {
   //   returns 2: '------Kevin van Zonneveld-----'
 
   var half = '',
-      pad_to_go;
+    pad_to_go;
 
   var str_pad_repeater = function(s, len) {
     var collect = '',
-        i;
+      i;
 
     while (collect.length < len) {
       collect += s;

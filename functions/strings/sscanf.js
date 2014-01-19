@@ -15,18 +15,19 @@ function sscanf(str, format) {
 
   // SETUP
   var retArr = [],
-      num = 0,
-      _NWS = /\S/,
-      args = arguments,
-      that = this,
-      digit;
+    num = 0,
+    _NWS = /\S/,
+    args = arguments,
+    that = this,
+    digit;
 
   var _setExtraConversionSpecs = function(offset) {
     // Since a mismatched character sets us off track from future legitimate finds, we just scan
     // to the end for any other conversion specifications (besides a percent literal), setting them to null
     // sscanf seems to disallow all conversion specification components (of sprintf) except for type specifiers
     //var matches = format.match(/%[+-]?([ 0]|'.)?-?\d*(\.\d+)?[bcdeufFosxX]/g); // Do not allow % in last char. class
-    var matches = format.slice(offset).match(/%[cdeEufgosxX]/g); // Do not allow % in last char. class;
+    var matches = format.slice(offset)
+      .match(/%[cdeEufgosxX]/g); // Do not allow % in last char. class;
     // b, F,G give errors in PHP, but 'g', though also disallowed, doesn't
     if (matches) {
       var lgth = matches.length;
@@ -52,7 +53,8 @@ function sscanf(str, format) {
       var remaining = str.slice(j);
       var check = width ? remaining.substr(0, width) : remaining;
       var match = regex.exec(check);
-      var testNull = retArr[digit !== undefined ? digit : retArr.length] = match ? (cb ? cb.apply(null, match) : match[0]) : null;
+      var testNull = retArr[digit !== undefined ? digit : retArr.length] = match ? (cb ? cb.apply(null, match) :
+        match[0]) : null;
       if (testNull === null) {
         throw 'No match in string';
       }
@@ -69,7 +71,7 @@ function sscanf(str, format) {
   for (var i = 0, j = 0; i < format.length; i++) {
 
     var width = 0,
-        assign = true;
+      assign = true;
 
     if (format.charAt(i) === '%') {
       if (format.charAt(i + 1) === '%') {
@@ -102,10 +104,10 @@ function sscanf(str, format) {
       if (sizeCode) { // This would need to be processed later
         switch (sizeCode) {
           case 'h':
-          // Treats subsequent as short int (for d,i,n) or unsigned short int (for o,u,x)
+            // Treats subsequent as short int (for d,i,n) or unsigned short int (for o,u,x)
           case 'l':
-          // Treats subsequent as long int (for d,i,n), or unsigned long int (for o,u,x);
-          //    or as double (for e,f,g) instead of float or wchar_t instead of char
+            // Treats subsequent as long int (for d,i,n), or unsigned long int (for o,u,x);
+            //    or as double (for e,f,g) instead of float or wchar_t instead of char
           case 'L':
             // Treats subsequent as long double (for e,f,g)
             break;
@@ -140,7 +142,8 @@ function sscanf(str, format) {
             break;
           case 'i':
             // Integer with base detection (Equivalent of 'd', but base 0 instead of 10)
-            j = _addNext(j, /([+-])?(?:(?:0x([\da-fA-F]+))|(?:0([0-7]+))|(\d+))/, function(num, sign, hex, oct, dec) {
+            j = _addNext(j, /([+-])?(?:(?:0x([\da-fA-F]+))|(?:0([0-7]+))|(\d+))/, function(num, sign, hex,
+              oct, dec) {
               return hex ? parseInt(num, 16) : oct ? parseInt(num, 8) : parseInt(num, 10);
             });
             break;
@@ -148,14 +151,14 @@ function sscanf(str, format) {
             // Number of characters processed so far
             retArr[digit !== undefined ? digit : retArr.length - 1] = j;
             break;
-          // DOCUMENTED UNDER SPRINTF
+            // DOCUMENTED UNDER SPRINTF
           case 'c':
             // Get character; suppresses skipping over whitespace! (but shouldn't be whitespace in format anyways, so no difference here)
             // Non-greedy match
             j = _addNext(j, new RegExp('.{1,' + (width || 1) + '}'));
             break;
           case 'D':
-          // sscanf documented decimal number; equivalent of 'd';
+            // sscanf documented decimal number; equivalent of 'd';
           case 'd':
             // Optionally signed decimal integer
             j = _addNext(j, /([+-])?(?:0*)(\d+)/, function(num, sign, dec) {
@@ -169,9 +172,9 @@ function sscanf(str, format) {
             });
             break;
           case 'f':
-          // Although sscanf doesn't support locales, this is used instead of '%F'; seems to be same as %e
+            // Although sscanf doesn't support locales, this is used instead of '%F'; seems to be same as %e
           case 'E':
-          // These don't discriminate here as both allow exponential float of either case
+            // These don't discriminate here as both allow exponential float of either case
           case 'e':
             j = _addNext(j, /([+-])?(?:0*)(\d*\.?\d*(?:[eE]?\d+)?)/, function(num, sign, dec) {
               if (dec === '.') {
@@ -204,7 +207,7 @@ function sscanf(str, format) {
             j = _addNext(j, /\S+/);
             break;
           case 'X':
-          // Same as 'x'?
+            // Same as 'x'?
           case 'x':
             // Fix: add overflows as above?
             // Initial 0x not necessary here
@@ -222,11 +225,12 @@ function sscanf(str, format) {
         if (e === 'No match in string') { // Allow us to exit
           return _setExtraConversionSpecs(i + 2);
         }
-      } ++i; // Calculate skipping beyond initial percent too
+      }++i; // Calculate skipping beyond initial percent too
     } else if (format.charAt(i) !== str.charAt(j)) {
       // Fix: Double-check i whitespace ignored in string and/or formats
       _NWS.lastIndex = 0;
-      if ((_NWS).test(str.charAt(j)) || str.charAt(j) === '') { // Whitespace doesn't need to be an exact match)
+      if ((_NWS)
+        .test(str.charAt(j)) || str.charAt(j) === '') { // Whitespace doesn't need to be an exact match)
         return _setExtraConversionSpecs(i + 1);
       } else {
         // Adjust strings when encounter non-matching whitespace, so they align in future checks above

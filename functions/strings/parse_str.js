@@ -29,13 +29,16 @@ function parse_str(str, array) {
   //        example 3: parse_str('abc[a][b]["c"]=def&abc[q]=t+5');
   //        returns 3: {"3":"a","a":{"b":{"c":"def"}},"q":"t 5"}
 
-  var strArr = String(str).replace(/^&/, '').replace(/&$/, '').split('&'),
-      sal = strArr.length,
-      i, j, ct, p, lastObj, obj, lastIter, undef, chr, tmp, key, value,
-      postLeftBracketPos, keys, keysLen,
-      fixStr = function(str) {
-        return decodeURIComponent(str.replace(/\+/g, '%20'));
-      };
+  var strArr = String(str)
+    .replace(/^&/, '')
+    .replace(/&$/, '')
+    .split('&'),
+    sal = strArr.length,
+    i, j, ct, p, lastObj, obj, lastIter, undef, chr, tmp, key, value,
+    postLeftBracketPos, keys, keysLen,
+    fixStr = function(str) {
+      return decodeURIComponent(str.replace(/\+/g, '%20'));
+    };
 
   if (!array) {
     array = this.window;
@@ -58,8 +61,7 @@ function parse_str(str, array) {
       for (j = 0; j < key.length; j++) {
         if (key.charAt(j) === '[' && !postLeftBracketPos) {
           postLeftBracketPos = j + 1;
-        }
-        else if (key.charAt(j) === ']') {
+        } else if (key.charAt(j) === ']') {
           if (postLeftBracketPos) {
             if (!keys.length) {
               keys.push(key.slice(0, postLeftBracketPos - 1));
@@ -87,7 +89,8 @@ function parse_str(str, array) {
 
       obj = array;
       for (j = 0, keysLen = keys.length; j < keysLen; j++) {
-        key = keys[j].replace(/^['"]/, '').replace(/['"]$/, '');
+        key = keys[j].replace(/^['"]/, '')
+          .replace(/['"]$/, '');
         lastIter = j !== keys.length - 1;
         lastObj = obj;
         if ((key !== '' && key !== ' ') || j === 0) {
@@ -95,8 +98,7 @@ function parse_str(str, array) {
             obj[key] = {};
           }
           obj = obj[key];
-        }
-        else { // To insert new dimension
+        } else { // To insert new dimension
           ct = -1;
           for (p in obj) {
             if (obj.hasOwnProperty(p)) {

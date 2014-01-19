@@ -24,9 +24,10 @@ function gettype(mixed_var) {
   //   returns 6: 'array'
 
   var s = typeof mixed_var,
-      name;
+    name;
   var getFuncName = function(fn) {
-    var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
+    var name = (/\W*function\s+([\w\$]+)\s*\(/)
+      .exec(fn);
     if (!name) {
       return '(Anonymous)';
     }
@@ -34,7 +35,8 @@ function gettype(mixed_var) {
   };
   if (s === 'object') {
     if (mixed_var !== null) { // From: http://javascript.crockford.com/remedial.html
-      if (typeof mixed_var.length === 'number' && !(mixed_var.propertyIsEnumerable('length')) && typeof mixed_var.splice === 'function') {
+      if (typeof mixed_var.length === 'number' && !(mixed_var.propertyIsEnumerable('length')) && typeof mixed_var
+        .splice === 'function') {
         s = 'array';
       } else if (mixed_var.constructor && getFuncName(mixed_var.constructor)) {
         name = getFuncName(mixed_var.constructor);

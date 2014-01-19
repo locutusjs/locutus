@@ -18,14 +18,15 @@ function idate(format, timestamp) {
 
   // Fix: Need to allow date_default_timezone_set() (check for this.php_js.default_timezone and use)
   var date = ((typeof timestamp === 'undefined') ? new Date() : // Not provided
-      (timestamp instanceof Date) ? new Date(timestamp) : // Javascript Date()
-      new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
-      ),
-      a;
+    (timestamp instanceof Date) ? new Date(timestamp) : // Javascript Date()
+    new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
+  ),
+    a;
 
   switch (format) {
     case 'B':
-      return Math.floor(((date.getUTCHours() * 36e2) + (date.getUTCMinutes() * 60) + date.getUTCSeconds() + 36e2) / 86.4) % 1e3;
+      return Math.floor(((date.getUTCHours() * 36e2) + (date.getUTCMinutes() * 60) + date.getUTCSeconds() + 36e2) /
+        86.4) % 1e3;
     case 'd':
       return date.getDate();
     case 'h':
@@ -49,7 +50,8 @@ function idate(format, timestamp) {
     case 's':
       return date.getSeconds();
     case 't':
-      return (new Date(date.getFullYear(), date.getMonth() + 1, 0)).getDate();
+      return (new Date(date.getFullYear(), date.getMonth() + 1, 0))
+        .getDate();
     case 'U':
       return Math.round(date.getTime() / 1000);
     case 'w':
@@ -58,7 +60,8 @@ function idate(format, timestamp) {
       a = new Date(date.getFullYear(), date.getMonth(), date.getDate() - (date.getDay() || 7) + 3);
       return 1 + Math.round((a - (new Date(a.getFullYear(), 0, 4))) / 864e5 / 7);
     case 'y':
-      return parseInt((date.getFullYear() + '').slice(2), 10); // This function returns an integer, unlike date()
+      return parseInt((date.getFullYear() + '')
+        .slice(2), 10); // This function returns an integer, unlike date()
     case 'Y':
       return date.getFullYear();
     case 'z':

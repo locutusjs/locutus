@@ -18,15 +18,16 @@ function natsort(inputArr) {
   //   returns 1: {d: 'img1.png', c: 'img2.png', b: 'img10.png', a: 'img12.png'}
 
   var valArr = [],
-      k, i, ret, that = this,
-      strictForIn = false,
-      populateArr = {};
+    k, i, ret, that = this,
+    strictForIn = false,
+    populateArr = {};
 
   // BEGIN REDUNDANT
   this.php_js = this.php_js || {};
   this.php_js.ini = this.php_js.ini || {};
   // END REDUNDANT
-  strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
+  strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
+    .ini['phpjs.strictForIn'].local_value !== 'off';
   populateArr = strictForIn ? inputArr : populateArr;
 
   // Get key and value arrays

@@ -7,9 +7,8 @@ function array_reduce(a_input, callback) {
 
   var lon = a_input.length;
   var res = 0,
-      i = 0;
+    i = 0;
   var tmp = [];
-
 
   for (i = 0; i < lon; i += 2) {
     tmp[0] = a_input[i];

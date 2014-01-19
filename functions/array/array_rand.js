@@ -8,8 +8,8 @@ function array_rand(input, num_req) {
   var ticks = num_req || 1;
   var checkDuplicate = function(input, value) {
     var exist = false,
-        index = 0,
-        il = input.length;
+      index = 0,
+      il = input.length;
     while (index < il) {
       if (input[index] === value) {
         exist = true;

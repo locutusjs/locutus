@@ -17,12 +17,13 @@ function trim(str, charlist) {
   //   returns 3: 6
 
   var whitespace, l = 0,
-      i = 0;
+    i = 0;
   str += '';
 
   if (!charlist) {
     // default list
-    whitespace = ' \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000';
+    whitespace =
+      ' \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000';
   } else {
     // preg_quote custom list
     charlist += '';

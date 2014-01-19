@@ -14,11 +14,9 @@ function call_user_func_array(cb, parameters) {
 
   if (typeof cb === 'string') {
     func = (typeof this[cb] === 'function') ? this[cb] : func = (new Function(null, 'return ' + cb))();
-  }
-  else if (Object.prototype.toString.call(cb) === '[object Array]') {
+  } else if (Object.prototype.toString.call(cb) === '[object Array]') {
     func = (typeof cb[0] === 'string') ? eval(cb[0] + "['" + cb[1] + "']") : func = cb[0][cb[1]];
-  }
-  else if (typeof cb === 'function') {
+  } else if (typeof cb === 'function') {
     func = cb;
   }
 
@@ -26,5 +24,6 @@ function call_user_func_array(cb, parameters) {
     throw new Error(func + ' is not a valid function');
   }
 
-  return (typeof cb[0] === 'string') ? func.apply(eval(cb[0]), parameters) : (typeof cb[0] !== 'object') ? func.apply(null, parameters) : func.apply(cb[0], parameters);
+  return (typeof cb[0] === 'string') ? func.apply(eval(cb[0]), parameters) : (typeof cb[0] !== 'object') ? func.apply(
+    null, parameters) : func.apply(cb[0], parameters);
 }

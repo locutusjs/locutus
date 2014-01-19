@@ -20,7 +20,7 @@ function array_pop(inputArr) {
   //   returns 2: {firstName: 'Kevin'}
 
   var key = '',
-      lastKey = '';
+    lastKey = '';
 
   if (inputArr.hasOwnProperty('length')) {
     // Indexed

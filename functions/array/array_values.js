@@ -6,7 +6,7 @@ function array_values(input) {
   //   returns 1: {0: 'Kevin', 1: 'van Zonneveld'}
 
   var tmp_arr = [],
-      key = '';
+    key = '';
 
   if (input && typeof input === 'object' && input.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
     return input.values();

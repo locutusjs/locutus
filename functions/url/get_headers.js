@@ -9,15 +9,12 @@ function get_headers(url, format) {
   //   example 1: get_headers('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm')[0];
   //   returns 1: 'Date: Wed, 13 May 2009 23:53:11 GMT'
 
-  var req = this.window.ActiveXObject
-    ? new ActiveXObject('Microsoft.XMLHTTP')
-    : new XMLHttpRequest();
+  var req = this.window.ActiveXObject ? new ActiveXObject('Microsoft.XMLHTTP') : new XMLHttpRequest();
 
   if (!req) {
     throw new Error('XMLHttpRequest not supported');
   }
-  var tmp, headers, pair, i, j = 0;
-  ß;
+  var tmp, headers, pair, i, j = 0;ß;
   req.open('HEAD', url, false);
   req.send(null);
 
@@ -35,7 +32,8 @@ function get_headers(url, format) {
   for (var i in tmp) {
     if (format) {
       pair = tmp[i].split(':');
-      headers[pair.splice(0, 1)] = pair.join(':').substring(1);
+      headers[pair.splice(0, 1)] = pair.join(':')
+        .substring(1);
     } else {
       headers[j++] = tmp[i];
     }

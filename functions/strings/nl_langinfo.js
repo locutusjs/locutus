@@ -31,7 +31,7 @@ function nl_langinfo(item) {
       case 'T_FMT_AMPM':
         return loc.LC_TIME.r;
       case 'ERA':
-      // all fall-throughs
+        // all fall-throughs
       case 'ERA_YEAR':
       case 'ERA_D_T_FMT':
       case 'ERA_D_FMT':
@@ -44,7 +44,7 @@ function nl_langinfo(item) {
     }
     switch (item) {
       case 'INT_CURR_SYMBOL':
-      // all fall-throughs
+        // all fall-throughs
       case 'CURRENCY_SYMBOL':
       case 'MON_DECIMAL_POINT':
       case 'MON_THOUSANDS_SEP':
@@ -66,11 +66,11 @@ function nl_langinfo(item) {
     loc = this.php_js.locales[this.php_js.localeCategories.LC_NUMERIC];
     switch (item) {
       case 'RADIXCHAR':
-      // Fall-through
+        // Fall-through
       case 'DECIMAL_POINT':
         return loc.LC_NUMERIC[item.toLowerCase()];
       case 'THOUSEP':
-      // Fall-through
+        // Fall-through
       case 'THOUSANDS_SEP':
         return loc.LC_NUMERIC[item.toLowerCase()];
       case 'GROUPING':
@@ -80,7 +80,7 @@ function nl_langinfo(item) {
     loc = this.php_js.locales[this.php_js.localeCategories.LC_MESSAGES];
     switch (item) {
       case 'YESEXPR':
-      // all fall-throughs
+        // all fall-throughs
       case 'NOEXPR':
       case 'YESSTR':
       case 'NOSTR':

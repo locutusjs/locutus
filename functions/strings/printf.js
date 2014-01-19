@@ -11,11 +11,8 @@ function printf() {
   var ret = '';
 
   var HTMLNS = 'http://www.w3.org/1999/xhtml';
-  body = d.getElementsByTagNameNS
-    ? (d.getElementsByTagNameNS(HTMLNS, 'body')[0]
-      ? d.getElementsByTagNameNS(HTMLNS, 'body')[0]
-      : d.documentElement.lastChild)
-    : d.getElementsByTagName('body')[0];
+  body = d.getElementsByTagNameNS ? (d.getElementsByTagNameNS(HTMLNS, 'body')[0] ? d.getElementsByTagNameNS(HTMLNS,
+    'body')[0] : d.documentElement.lastChild) : d.getElementsByTagName('body')[0];
 
   if (!body) {
     return false;

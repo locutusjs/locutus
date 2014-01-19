@@ -4,5 +4,6 @@ function quotemeta(str) {
   //   example 1: quotemeta(". + * ? ^ ( $ )");
   //   returns 1: '\\. \\+ \\* \\? \\^ \\( \\$ \\)'
 
-  return (str + '').replace(/([\.\\\+\*\?\[\^\]\$\(\)])/g, '\\$1');
+  return (str + '')
+    .replace(/([\.\\\+\*\?\[\^\]\$\(\)])/g, '\\$1');
 }

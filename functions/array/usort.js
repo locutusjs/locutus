@@ -17,10 +17,10 @@ function usort(inputArr, sorter) {
   //   returns 1: {0: '1', 1: '3', 2: '4', 3: '11'};
 
   var valArr = [],
-      k = '',
-      i = 0,
-      strictForIn = false,
-      populateArr = {};
+    k = '',
+    i = 0,
+    strictForIn = false,
+    populateArr = {};
 
   if (typeof sorter === 'string') {
     sorter = this[sorter];
@@ -32,9 +32,9 @@ function usort(inputArr, sorter) {
   this.php_js = this.php_js || {};
   this.php_js.ini = this.php_js.ini || {};
   // END REDUNDANT
-  strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
+  strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
+    .ini['phpjs.strictForIn'].local_value !== 'off';
   populateArr = strictForIn ? inputArr : populateArr;
-
 
   for (k in inputArr) { // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {

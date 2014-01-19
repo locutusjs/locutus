@@ -13,12 +13,12 @@ function utf8_decode(str_data) {
   //   returns 1: 'Kevin van Zonneveld'
 
   var tmp_arr = [],
-      i = 0,
-      ac = 0,
-      c1 = 0,
-      c2 = 0,
-      c3 = 0,
-      c4 = 0;
+    i = 0,
+    ac = 0,
+    c1 = 0,
+    c2 = 0,
+    c3 = 0,
+    c4 = 0;
 
   str_data += '';
 

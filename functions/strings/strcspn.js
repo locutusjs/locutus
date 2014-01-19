@@ -10,10 +10,11 @@ function strcspn(str, mask, start, length) {
   var count = (length && ((start + length) < str.length)) ? start + length : str.length;
   strct: for (var i = start, lgth = 0; i < count; i++) {
     for (var j = 0; j < mask.length; j++) {
-      if (str.charAt(i).indexOf(mask[j]) !== -1) {
+      if (str.charAt(i)
+        .indexOf(mask[j]) !== -1) {
         continue strct;
       }
-    } ++lgth;
+    }++lgth;
   }
 
   return lgth;

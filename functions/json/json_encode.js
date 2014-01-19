@@ -29,7 +29,8 @@ function json_encode(mixed_val) {
     var value = mixed_val;
 
     var quote = function(string) {
-      var escapable = /[\\\"\u0000-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
+      var escapable =
+        /[\\\"\u0000-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
       var meta = { // table of character substitutions
         '\b': '\\b',
         '\t': '\\t',
@@ -43,7 +44,9 @@ function json_encode(mixed_val) {
       escapable.lastIndex = 0;
       return escapable.test(string) ? '"' + string.replace(escapable, function(a) {
         var c = meta[a];
-        return typeof c === 'string' ? c : '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+        return typeof c === 'string' ? c : '\\u' + ('0000' + a.charCodeAt(0)
+          .toString(16))
+          .slice(-4);
       }) + '"' : '"' + string + '"';
     };
 
@@ -87,7 +90,8 @@ function json_encode(mixed_val) {
           if (!value) {
             return 'null';
           }
-          if ((this.PHPJS_Resource && value instanceof this.PHPJS_Resource) || (window.PHPJS_Resource && value instanceof window.PHPJS_Resource)) {
+          if ((this.PHPJS_Resource && value instanceof this.PHPJS_Resource) || (window.PHPJS_Resource &&
+            value instanceof window.PHPJS_Resource)) {
             throw new SyntaxError('json_encode');
           }
 
@@ -106,7 +110,8 @@ function json_encode(mixed_val) {
 
             // Join all of the elements together, separated with commas, and wrap them in
             // brackets.
-            v = partial.length === 0 ? '[]' : gap ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']' : '[' + partial.join(',') + ']';
+            v = partial.length === 0 ? '[]' : gap ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind +
+              ']' : '[' + partial.join(',') + ']';
             gap = mind;
             return v;
           }
@@ -123,13 +128,14 @@ function json_encode(mixed_val) {
 
           // Join all of the member texts together, separated with commas,
           // and wrap them in braces.
-          v = partial.length === 0 ? '{}' : gap ? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}' : '{' + partial.join(',') + '}';
+          v = partial.length === 0 ? '{}' : gap ? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}' :
+            '{' + partial.join(',') + '}';
           gap = mind;
           return v;
         case 'undefined':
-        // Fall-through
+          // Fall-through
         case 'function':
-        // Fall-through
+          // Fall-through
         default:
           throw new SyntaxError('json_encode');
       }

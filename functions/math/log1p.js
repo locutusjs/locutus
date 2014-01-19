@@ -6,7 +6,7 @@ function log1p(x) {
   //   returns 1: 9.999999999999995e-16
 
   var ret = 0,
-      n = 50; // degree of precision
+    n = 50; // degree of precision
   if (x <= -1) {
     return '-INF'; // JavaScript style would be to return Number.NEGATIVE_INFINITY
   }
