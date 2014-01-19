@@ -1,12 +1,12 @@
 function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   based on: Imgen Tata (http://www.myipdf.com/)
-  // +   bugfixed by: Imgen Tata (http://www.myipdf.com/)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: The minimal argument is not currently supported
-  // *     example 1: xdiff_string_diff('', 'Hello world!');
-  // *     returns 1: '@@ -0,0 +1,1 @@\n+Hello world!'
+  //  discuss at: http://phpjs.org/functions/xdiff_string_diff
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //    based on: Imgen Tata (http://www.myipdf.com/)
+  // bugfixed by: Imgen Tata (http://www.myipdf.com/)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //        note: The minimal argument is not currently supported
+  //   example 1: xdiff_string_diff('', 'Hello world!');
+  //   returns 1: '@@ -0,0 +1,1 @@\n+Hello world!'
 
   // (This code was done by Imgen Tata; I have only reformatted for use in php.js)
 
