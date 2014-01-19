@@ -13,7 +13,8 @@
     "send": "0.1.0",
     "deep-equal": "0.1.2",
     "js-beautify": "1.4.2",
-    "underscore": "1.5.2"
+    "underscore": "1.5.2",
+    "mocha": "1.17.0"
   },
   "keywords": [
     "php",

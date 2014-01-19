@@ -1,4 +1,4 @@
-var php = require('../index');
+var php = require('../../index');
 
 php.echo(php.sprintf('Hey, %s : )', 'you'));
 php.echo(php.parse_url('mysql://kevin:abcd1234@example.com/databasename')['pass']);

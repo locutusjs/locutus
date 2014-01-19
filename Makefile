@@ -6,9 +6,10 @@ setup:
 	bundle exec rake setup_github_pages\[git@github.com:kvz/phpjs.git\] && \
 	cd .. ; \
 
-test: build
-	#node tests/cli.js --debug --abort # To abort at first failure
-	cd tests && npm install
+test:
+	make build
+	npm install
+	./node_modules/.bin/mocha --reporter list
 	node bin/phpjs.js --action test --debug
 
 # Apply code standards & reformat headers
@@ -19,6 +20,7 @@ npm:
 	node bin/phpjs.js --action buildnpm --output build/npm.js
 	ls -al build/npm.js
 	node build/npm.js
+	node test/npm/npm.js
 	echo "Build success. "
 
 publish: npm
@@ -62,7 +64,4 @@ site-preview:
 	bundle exec rake preview ; \
 	cd ..
 
-nodejs:
-	./_tools/compile_node.sh
-
-.PHONY: site%
+.PHONY: setup test cleanup npm publish build hook site%

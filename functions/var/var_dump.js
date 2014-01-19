@@ -13,8 +13,7 @@ function var_dump() {
     pad_char = ' ',
     pad_val = 4,
     lgth = 0,
-    i = 0,
-    d = this.window.document;
+    i = 0;
 
   var _getFuncName = function(fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/)
@@ -150,6 +149,13 @@ function var_dump() {
   for (i = 1; i < arguments.length; i++) {
     output += '\n' + _formatArray(arguments[i], 0, pad_val, pad_char);
   }
+
+  var isNode = typeof module !== 'undefined' && module.exports;
+  if (isNode) {
+    return console.log(output);
+  }
+
+  var d = this.window.document;
 
   if (d.body) {
     this.echo(output);

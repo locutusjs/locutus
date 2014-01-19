@@ -482,30 +482,6 @@ exports.array_diff = function (arr1) {
     return retArr;
 };
 
-exports.array_diff_assoc = function (arr1) {
-  var retArr = {},
-      argl = arguments.length,
-      k1 = '',
-      i = 1,
-      k = '',
-      arr = {};
-  
-    arr1keys: for (k1 in arr1) {
-      for (i = 1; i < argl; i++) {
-        arr = arguments[i];
-        for (k in arr) {
-          if (arr[k] === arr1[k1] && k === k1) {
-            // If it reaches here, it was found in at least one array, so try next value
-            continue arr1keys;
-          }
-        }
-        retArr[k1] = arr1[k1];
-      }
-    }
-  
-    return retArr;
-};
-
 exports.array_diff_key = function (arr1) {
   var argl = arguments.length,
       retArr = {},
@@ -519,6 +495,30 @@ exports.array_diff_key = function (arr1) {
         arr = arguments[i];
         for (k in arr) {
           if (k === k1) {
+            // If it reaches here, it was found in at least one array, so try next value
+            continue arr1keys;
+          }
+        }
+        retArr[k1] = arr1[k1];
+      }
+    }
+  
+    return retArr;
+};
+
+exports.array_diff_assoc = function (arr1) {
+  var retArr = {},
+      argl = arguments.length,
+      k1 = '',
+      i = 1,
+      k = '',
+      arr = {};
+  
+    arr1keys: for (k1 in arr1) {
+      for (i = 1; i < argl; i++) {
+        arr = arguments[i];
+        for (k in arr) {
+          if (arr[k] === arr1[k1] && k === k1) {
             // If it reaches here, it was found in at least one array, so try next value
             continue arr1keys;
           }
@@ -1822,40 +1822,6 @@ exports.count = function (mixed_var, mode) {
     return cnt;
 };
 
-exports.current = function (arr) {
-  this.php_js = this.php_js || {};
-    this.php_js.pointers = this.php_js.pointers || [];
-    var indexOf = function(value) {
-      for (var i = 0, length = this.length; i < length; i++) {
-        if (this[i] === value) {
-          return i;
-        }
-      }
-      return -1;
-    };
-    // END REDUNDANT
-    var pointers = this.php_js.pointers;
-    if (!pointers.indexOf) {
-      pointers.indexOf = indexOf;
-    }
-    if (pointers.indexOf(arr) === -1) {
-      pointers.push(arr, 0);
-    }
-    var arrpos = pointers.indexOf(arr);
-    var cursor = pointers[arrpos + 1];
-    if (Object.prototype.toString.call(arr) === '[object Array]') {
-      return arr[cursor] || false;
-    }
-    var ct = 0;
-    for (var k in arr) {
-      if (ct === cursor) {
-        return arr[k];
-      }
-      ct++;
-    }
-    return false; // Empty
-};
-
 exports.each = function (arr) {
   this.php_js = this.php_js || {};
     this.php_js.pointers = this.php_js.pointers || [];
@@ -1914,6 +1880,40 @@ exports.each = function (arr) {
         key: pos
       };
     }
+};
+
+exports.current = function (arr) {
+  this.php_js = this.php_js || {};
+    this.php_js.pointers = this.php_js.pointers || [];
+    var indexOf = function(value) {
+      for (var i = 0, length = this.length; i < length; i++) {
+        if (this[i] === value) {
+          return i;
+        }
+      }
+      return -1;
+    };
+    // END REDUNDANT
+    var pointers = this.php_js.pointers;
+    if (!pointers.indexOf) {
+      pointers.indexOf = indexOf;
+    }
+    if (pointers.indexOf(arr) === -1) {
+      pointers.push(arr, 0);
+    }
+    var arrpos = pointers.indexOf(arr);
+    var cursor = pointers[arrpos + 1];
+    if (Object.prototype.toString.call(arr) === '[object Array]') {
+      return arr[cursor] || false;
+    }
+    var ct = 0;
+    for (var k in arr) {
+      if (ct === cursor) {
+        return arr[k];
+      }
+      ct++;
+    }
+    return false; // Empty
 };
 
 exports.end = function (arr) {
@@ -7956,15 +7956,6 @@ exports.rawurlencode = function (str) {
       .replace(/\*/g, '%2A');
 };
 
-exports.urldecode = function (str) {
-  return decodeURIComponent((str + '')
-      .replace(/%(?![\da-f]{2})/gi, function() {
-        // PHP tolerates poorly formed escape sequences
-        return '%25';
-      })
-      .replace(/\+/g, '%20'));
-};
-
 exports.urlencode = function (str) {
   str = (str + '')
       .toString();
@@ -7979,6 +7970,15 @@ exports.urlencode = function (str) {
     replace(/\)/g, '%29')
       .replace(/\*/g, '%2A')
       .replace(/%20/g, '+');
+};
+
+exports.urldecode = function (str) {
+  return decodeURIComponent((str + '')
+      .replace(/%(?![\da-f]{2})/gi, function() {
+        // PHP tolerates poorly formed escape sequences
+        return '%25';
+      })
+      .replace(/\+/g, '%20'));
 };
 
 exports.empty = function (mixed_var) {
@@ -9630,6 +9630,23 @@ exports.bcadd = function (left_operand, right_operand, scale) {
     return result.toString();
 };
 
+exports.bccomp = function (left_operand, right_operand, scale) {
+  var libbcmath = this._phpjs_shared_bc();
+  
+    var first, second; //bc_num
+    if (typeof scale === 'undefined') {
+      scale = libbcmath.scale;
+    }
+    scale = ((scale < 0) ? 0 : scale);
+  
+    first = libbcmath.bc_init_num();
+    second = libbcmath.bc_init_num();
+  
+    first = libbcmath.bc_str2num(left_operand.toString(), scale); // note bc_ not php_str2num
+    second = libbcmath.bc_str2num(right_operand.toString(), scale); // note bc_ not php_str2num
+    return libbcmath.bc_compare(first, second, scale);
+};
+
 exports.bcdiv = function (left_operand, right_operand, scale) {
   var libbcmath = this._phpjs_shared_bc();
   
@@ -9731,23 +9748,6 @@ exports.bcround = function (val, precision) {
     return result.toString();
 };
 
-exports.bccomp = function (left_operand, right_operand, scale) {
-  var libbcmath = this._phpjs_shared_bc();
-  
-    var first, second; //bc_num
-    if (typeof scale === 'undefined') {
-      scale = libbcmath.scale;
-    }
-    scale = ((scale < 0) ? 0 : scale);
-  
-    first = libbcmath.bc_init_num();
-    second = libbcmath.bc_init_num();
-  
-    first = libbcmath.bc_str2num(left_operand.toString(), scale); // note bc_ not php_str2num
-    second = libbcmath.bc_str2num(right_operand.toString(), scale); // note bc_ not php_str2num
-    return libbcmath.bc_compare(first, second, scale);
-};
-
 exports.bcscale = function (scale) {
   var libbcmath = this._phpjs_shared_bc();
   
@@ -9837,17 +9837,6 @@ exports.gmdate = function (format, timestamp) {
     timestamp = Date.parse(dt.toUTCString()
       .slice(0, -4)) / 1000;
     return this.date(format, timestamp);
-};
-
-exports.i18n_loc_get_default = function () {
-  try {
-      this.php_js = this.php_js || {};
-    } catch (e) {
-      this.php_js = {};
-    }
-  
-    // Ensure defaults are set up
-    return this.php_js.i18nLocale || (i18n_loc_set_default('en_US_POSIX'), 'en_US_POSIX');
 };
 
 exports.pathinfo = function (path, options) {
@@ -9952,6 +9941,17 @@ exports.pathinfo = function (path, options) {
   
     // Return full-blown array
     return tmp_arr;
+};
+
+exports.i18n_loc_get_default = function () {
+  try {
+      this.php_js = this.php_js || {};
+    } catch (e) {
+      this.php_js = {};
+    }
+  
+    // Ensure defaults are set up
+    return this.php_js.i18nLocale || (i18n_loc_set_default('en_US_POSIX'), 'en_US_POSIX');
 };
 
 exports.setcookie = function (name, value, expires, path, domain, secure) {
@@ -11216,8 +11216,7 @@ exports.var_dump = function () {
       pad_char = ' ',
       pad_val = 4,
       lgth = 0,
-      i = 0,
-      d = this.window.document;
+      i = 0;
   
     var _getFuncName = function(fn) {
       var name = (/\W*function\s+([\w\$]+)\s*\(/)
@@ -11353,6 +11352,13 @@ exports.var_dump = function () {
     for (i = 1; i < arguments.length; i++) {
       output += '\n' + _formatArray(arguments[i], 0, pad_val, pad_char);
     }
+  
+    var isNode = typeof module !== 'undefined' && module.exports;
+    if (isNode) {
+      return console.log(output);
+    }
+  
+    var d = this.window.document;
   
     if (d.body) {
       this.echo(output);
@@ -11859,7 +11865,12 @@ exports.rsort = function (inputArr, sort_flags) {
     }
   
     // BEGIN REDUNDANT
-    this.php_js = this.php_js || {};
+    try {
+      this.php_js = this.php_js || {};
+    } catch (e) {
+      this.php_js = {};
+    }
+  
     this.php_js.ini = this.php_js.ini || {};
     // END REDUNDANT
     strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
@@ -12001,6 +12012,16 @@ exports.ctype_digit = function (text) {
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.dg) !== -1;
 };
 
+exports.ctype_graph = function (text) {
+  if (typeof text !== 'string') {
+      return false;
+    }
+    // BEGIN REDUNDANT
+    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+    // END REDUNDANT
+    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.gr) !== -1;
+};
+
 exports.ctype_lower = function (text) {
   if (typeof text !== 'string') {
       return false;
@@ -12021,14 +12042,14 @@ exports.ctype_print = function (text) {
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.pr) !== -1;
 };
 
-exports.ctype_graph = function (text) {
+exports.ctype_punct = function (text) {
   if (typeof text !== 'string') {
       return false;
     }
     // BEGIN REDUNDANT
     this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
     // END REDUNDANT
-    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.gr) !== -1;
+    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.pu) !== -1;
 };
 
 exports.ctype_space = function (text) {
@@ -12041,237 +12062,6 @@ exports.ctype_space = function (text) {
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.sp) !== -1;
 };
 
-exports.ctype_xdigit = function (text) {
-  if (typeof text !== 'string') {
-      return false;
-    }
-    // BEGIN REDUNDANT
-    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
-    // END REDUNDANT
-    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.xd) !== -1;
-};
-
-exports.ctype_punct = function (text) {
-  if (typeof text !== 'string') {
-      return false;
-    }
-    // BEGIN REDUNDANT
-    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
-    // END REDUNDANT
-    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.pu) !== -1;
-};
-
-exports.strftime = function (fmt, timestamp) {
-  this.php_js = this.php_js || {};
-    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
-    // END REDUNDANT
-    var phpjs = this.php_js;
-  
-    // BEGIN STATIC
-    var _xPad = function(x, pad, r) {
-      if (typeof r === 'undefined') {
-        r = 10;
-      }
-      for (; parseInt(x, 10) < r && r > 1; r /= 10) {
-        x = pad.toString() + x;
-      }
-      return x.toString();
-    };
-  
-    var locale = phpjs.localeCategories.LC_TIME;
-    var locales = phpjs.locales;
-    var lc_time = locales[locale].LC_TIME;
-  
-    var _formats = {
-      a: function(d) {
-        return lc_time.a[d.getDay()];
-      },
-      A: function(d) {
-        return lc_time.A[d.getDay()];
-      },
-      b: function(d) {
-        return lc_time.b[d.getMonth()];
-      },
-      B: function(d) {
-        return lc_time.B[d.getMonth()];
-      },
-      C: function(d) {
-        return _xPad(parseInt(d.getFullYear() / 100, 10), 0);
-      },
-      d: ['getDate', '0'],
-      e: ['getDate', ' '],
-      g: function(d) {
-        return _xPad(parseInt(this.G(d) / 100, 10), 0);
-      },
-      G: function(d) {
-        var y = d.getFullYear();
-        var V = parseInt(_formats.V(d), 10);
-        var W = parseInt(_formats.W(d), 10);
-  
-        if (W > V) {
-          y++;
-        } else if (W === 0 && V >= 52) {
-          y--;
-        }
-  
-        return y;
-      },
-      H: ['getHours', '0'],
-      I: function(d) {
-        var I = d.getHours() % 12;
-        return _xPad(I === 0 ? 12 : I, 0);
-      },
-      j: function(d) {
-        var ms = d - new Date('' + d.getFullYear() + '/1/1 GMT');
-        ms += d.getTimezoneOffset() * 60000; // Line differs from Yahoo implementation which would be equivalent to replacing it here with:
-        // ms = new Date('' + d.getFullYear() + '/' + (d.getMonth()+1) + '/' + d.getDate() + ' GMT') - ms;
-        var doy = parseInt(ms / 60000 / 60 / 24, 10) + 1;
-        return _xPad(doy, 0, 100);
-      },
-      k: ['getHours', '0'],
-      // not in PHP, but implemented here (as in Yahoo)
-      l: function(d) {
-        var l = d.getHours() % 12;
-        return _xPad(l === 0 ? 12 : l, ' ');
-      },
-      m: function(d) {
-        return _xPad(d.getMonth() + 1, 0);
-      },
-      M: ['getMinutes', '0'],
-      p: function(d) {
-        return lc_time.p[d.getHours() >= 12 ? 1 : 0];
-      },
-      P: function(d) {
-        return lc_time.P[d.getHours() >= 12 ? 1 : 0];
-      },
-      s: function(d) { // Yahoo uses return parseInt(d.getTime()/1000, 10);
-        return Date.parse(d) / 1000;
-      },
-      S: ['getSeconds', '0'],
-      u: function(d) {
-        var dow = d.getDay();
-        return ((dow === 0) ? 7 : dow);
-      },
-      U: function(d) {
-        var doy = parseInt(_formats.j(d), 10);
-        var rdow = 6 - d.getDay();
-        var woy = parseInt((doy + rdow) / 7, 10);
-        return _xPad(woy, 0);
-      },
-      V: function(d) {
-        var woy = parseInt(_formats.W(d), 10);
-        var dow1_1 = (new Date('' + d.getFullYear() + '/1/1'))
-          .getDay();
-        // First week is 01 and not 00 as in the case of %U and %W,
-        // so we add 1 to the final result except if day 1 of the year
-        // is a Monday (then %W returns 01).
-        // We also need to subtract 1 if the day 1 of the year is
-        // Friday-Sunday, so the resulting equation becomes:
-        var idow = woy + (dow1_1 > 4 || dow1_1 <= 1 ? 0 : 1);
-        if (idow === 53 && (new Date('' + d.getFullYear() + '/12/31'))
-          .getDay() < 4) {
-          idow = 1;
-        } else if (idow === 0) {
-          idow = _formats.V(new Date('' + (d.getFullYear() - 1) + '/12/31'));
-        }
-        return _xPad(idow, 0);
-      },
-      w: 'getDay',
-      W: function(d) {
-        var doy = parseInt(_formats.j(d), 10);
-        var rdow = 7 - _formats.u(d);
-        var woy = parseInt((doy + rdow) / 7, 10);
-        return _xPad(woy, 0, 10);
-      },
-      y: function(d) {
-        return _xPad(d.getFullYear() % 100, 0);
-      },
-      Y: 'getFullYear',
-      z: function(d) {
-        var o = d.getTimezoneOffset();
-        var H = _xPad(parseInt(Math.abs(o / 60), 10), 0);
-        var M = _xPad(o % 60, 0);
-        return (o > 0 ? '-' : '+') + H + M;
-      },
-      Z: function(d) {
-        return d.toString()
-          .replace(/^.*\(([^)]+)\)$/, '$1');
-        /*
-        // Yahoo's: Better?
-        var tz = d.toString().replace(/^.*:\d\d( GMT[+-]\d+)? \(?([A-Za-z ]+)\)?\d*$/, '$2').replace(/[a-z ]/g, '');
-        if(tz.length > 4) {
-          tz = Dt.formats.z(d);
-        }
-        return tz;
-        */
-      },
-      '%': function(d) {
-        return '%';
-      }
-    };
-    // END STATIC
-    /* Fix: Locale alternatives are supported though not documented in PHP; see http://linux.die.net/man/3/strptime
-  Ec
-  EC
-  Ex
-  EX
-  Ey
-  EY
-  Od or Oe
-  OH
-  OI
-  Om
-  OM
-  OS
-  OU
-  Ow
-  OW
-  Oy
-    */
-  
-    var _date = ((typeof timestamp === 'undefined') ? new Date() : // Not provided
-      (typeof timestamp === 'object') ? new Date(timestamp) : // Javascript Date()
-      new Date(timestamp * 1000) // PHP API expects UNIX timestamp (auto-convert to int)
-    );
-  
-    var _aggregates = {
-      c: 'locale',
-      D: '%m/%d/%y',
-      F: '%y-%m-%d',
-      h: '%b',
-      n: '\n',
-      r: 'locale',
-      R: '%H:%M',
-      t: '\t',
-      T: '%H:%M:%S',
-      x: 'locale',
-      X: 'locale'
-    };
-  
-    // First replace aggregates (run in a loop because an agg may be made up of other aggs)
-    while (fmt.match(/%[cDFhnrRtTxX]/)) {
-      fmt = fmt.replace(/%([cDFhnrRtTxX])/g, function(m0, m1) {
-        var f = _aggregates[m1];
-        return (f === 'locale' ? lc_time[m1] : f);
-      });
-    }
-  
-    // Now replace formats - we need a closure so that the date object gets passed through
-    var str = fmt.replace(/%([aAbBCdegGHIjklmMpPsSuUVwWyYzZ%])/g, function(m0, m1) {
-      var f = _formats[m1];
-      if (typeof f === 'string') {
-        return _date[f]();
-      } else if (typeof f === 'function') {
-        return f(_date);
-      } else if (typeof f === 'object' && typeof f[0] === 'string') {
-        return _xPad(_date[f[0]](), f[1]);
-      } else { // Shouldn't reach here
-        return m1;
-      }
-    });
-    return str;
-};
-
 exports.ctype_upper = function (text) {
   if (typeof text !== 'string') {
       return false;
@@ -12280,6 +12070,16 @@ exports.ctype_upper = function (text) {
     this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
     // END REDUNDANT
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.up) !== -1;
+};
+
+exports.ctype_xdigit = function (text) {
+  if (typeof text !== 'string') {
+      return false;
+    }
+    // BEGIN REDUNDANT
+    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+    // END REDUNDANT
+    return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.xd) !== -1;
 };
 
 exports.strptime = function (dateStr, format) {
@@ -12635,6 +12435,217 @@ exports.strptime = function (dateStr, format) {
     // POST-PROCESSING
     retObj.unparsed = dateStr.slice(j); // Will also get extra whitespace; empty string if none
     return retObj;
+};
+
+exports.strftime = function (fmt, timestamp) {
+  this.php_js = this.php_js || {};
+    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+    // END REDUNDANT
+    var phpjs = this.php_js;
+  
+    // BEGIN STATIC
+    var _xPad = function(x, pad, r) {
+      if (typeof r === 'undefined') {
+        r = 10;
+      }
+      for (; parseInt(x, 10) < r && r > 1; r /= 10) {
+        x = pad.toString() + x;
+      }
+      return x.toString();
+    };
+  
+    var locale = phpjs.localeCategories.LC_TIME;
+    var locales = phpjs.locales;
+    var lc_time = locales[locale].LC_TIME;
+  
+    var _formats = {
+      a: function(d) {
+        return lc_time.a[d.getDay()];
+      },
+      A: function(d) {
+        return lc_time.A[d.getDay()];
+      },
+      b: function(d) {
+        return lc_time.b[d.getMonth()];
+      },
+      B: function(d) {
+        return lc_time.B[d.getMonth()];
+      },
+      C: function(d) {
+        return _xPad(parseInt(d.getFullYear() / 100, 10), 0);
+      },
+      d: ['getDate', '0'],
+      e: ['getDate', ' '],
+      g: function(d) {
+        return _xPad(parseInt(this.G(d) / 100, 10), 0);
+      },
+      G: function(d) {
+        var y = d.getFullYear();
+        var V = parseInt(_formats.V(d), 10);
+        var W = parseInt(_formats.W(d), 10);
+  
+        if (W > V) {
+          y++;
+        } else if (W === 0 && V >= 52) {
+          y--;
+        }
+  
+        return y;
+      },
+      H: ['getHours', '0'],
+      I: function(d) {
+        var I = d.getHours() % 12;
+        return _xPad(I === 0 ? 12 : I, 0);
+      },
+      j: function(d) {
+        var ms = d - new Date('' + d.getFullYear() + '/1/1 GMT');
+        ms += d.getTimezoneOffset() * 60000; // Line differs from Yahoo implementation which would be equivalent to replacing it here with:
+        // ms = new Date('' + d.getFullYear() + '/' + (d.getMonth()+1) + '/' + d.getDate() + ' GMT') - ms;
+        var doy = parseInt(ms / 60000 / 60 / 24, 10) + 1;
+        return _xPad(doy, 0, 100);
+      },
+      k: ['getHours', '0'],
+      // not in PHP, but implemented here (as in Yahoo)
+      l: function(d) {
+        var l = d.getHours() % 12;
+        return _xPad(l === 0 ? 12 : l, ' ');
+      },
+      m: function(d) {
+        return _xPad(d.getMonth() + 1, 0);
+      },
+      M: ['getMinutes', '0'],
+      p: function(d) {
+        return lc_time.p[d.getHours() >= 12 ? 1 : 0];
+      },
+      P: function(d) {
+        return lc_time.P[d.getHours() >= 12 ? 1 : 0];
+      },
+      s: function(d) { // Yahoo uses return parseInt(d.getTime()/1000, 10);
+        return Date.parse(d) / 1000;
+      },
+      S: ['getSeconds', '0'],
+      u: function(d) {
+        var dow = d.getDay();
+        return ((dow === 0) ? 7 : dow);
+      },
+      U: function(d) {
+        var doy = parseInt(_formats.j(d), 10);
+        var rdow = 6 - d.getDay();
+        var woy = parseInt((doy + rdow) / 7, 10);
+        return _xPad(woy, 0);
+      },
+      V: function(d) {
+        var woy = parseInt(_formats.W(d), 10);
+        var dow1_1 = (new Date('' + d.getFullYear() + '/1/1'))
+          .getDay();
+        // First week is 01 and not 00 as in the case of %U and %W,
+        // so we add 1 to the final result except if day 1 of the year
+        // is a Monday (then %W returns 01).
+        // We also need to subtract 1 if the day 1 of the year is
+        // Friday-Sunday, so the resulting equation becomes:
+        var idow = woy + (dow1_1 > 4 || dow1_1 <= 1 ? 0 : 1);
+        if (idow === 53 && (new Date('' + d.getFullYear() + '/12/31'))
+          .getDay() < 4) {
+          idow = 1;
+        } else if (idow === 0) {
+          idow = _formats.V(new Date('' + (d.getFullYear() - 1) + '/12/31'));
+        }
+        return _xPad(idow, 0);
+      },
+      w: 'getDay',
+      W: function(d) {
+        var doy = parseInt(_formats.j(d), 10);
+        var rdow = 7 - _formats.u(d);
+        var woy = parseInt((doy + rdow) / 7, 10);
+        return _xPad(woy, 0, 10);
+      },
+      y: function(d) {
+        return _xPad(d.getFullYear() % 100, 0);
+      },
+      Y: 'getFullYear',
+      z: function(d) {
+        var o = d.getTimezoneOffset();
+        var H = _xPad(parseInt(Math.abs(o / 60), 10), 0);
+        var M = _xPad(o % 60, 0);
+        return (o > 0 ? '-' : '+') + H + M;
+      },
+      Z: function(d) {
+        return d.toString()
+          .replace(/^.*\(([^)]+)\)$/, '$1');
+        /*
+        // Yahoo's: Better?
+        var tz = d.toString().replace(/^.*:\d\d( GMT[+-]\d+)? \(?([A-Za-z ]+)\)?\d*$/, '$2').replace(/[a-z ]/g, '');
+        if(tz.length > 4) {
+          tz = Dt.formats.z(d);
+        }
+        return tz;
+        */
+      },
+      '%': function(d) {
+        return '%';
+      }
+    };
+    // END STATIC
+    /* Fix: Locale alternatives are supported though not documented in PHP; see http://linux.die.net/man/3/strptime
+  Ec
+  EC
+  Ex
+  EX
+  Ey
+  EY
+  Od or Oe
+  OH
+  OI
+  Om
+  OM
+  OS
+  OU
+  Ow
+  OW
+  Oy
+    */
+  
+    var _date = ((typeof timestamp === 'undefined') ? new Date() : // Not provided
+      (typeof timestamp === 'object') ? new Date(timestamp) : // Javascript Date()
+      new Date(timestamp * 1000) // PHP API expects UNIX timestamp (auto-convert to int)
+    );
+  
+    var _aggregates = {
+      c: 'locale',
+      D: '%m/%d/%y',
+      F: '%y-%m-%d',
+      h: '%b',
+      n: '\n',
+      r: 'locale',
+      R: '%H:%M',
+      t: '\t',
+      T: '%H:%M:%S',
+      x: 'locale',
+      X: 'locale'
+    };
+  
+    // First replace aggregates (run in a loop because an agg may be made up of other aggs)
+    while (fmt.match(/%[cDFhnrRtTxX]/)) {
+      fmt = fmt.replace(/%([cDFhnrRtTxX])/g, function(m0, m1) {
+        var f = _aggregates[m1];
+        return (f === 'locale' ? lc_time[m1] : f);
+      });
+    }
+  
+    // Now replace formats - we need a closure so that the date object gets passed through
+    var str = fmt.replace(/%([aAbBCdegGHIjklmMpPsSuUVwWyYzZ%])/g, function(m0, m1) {
+      var f = _formats[m1];
+      if (typeof f === 'string') {
+        return _date[f]();
+      } else if (typeof f === 'function') {
+        return f(_date);
+      } else if (typeof f === 'object' && typeof f[0] === 'string') {
+        return _xPad(_date[f[0]](), f[1]);
+      } else { // Shouldn't reach here
+        return m1;
+      }
+    });
+    return str;
 };
 
 exports.sql_regcase = function (str) {
