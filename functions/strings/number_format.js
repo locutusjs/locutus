@@ -1,4 +1,5 @@
 function number_format(number, decimals, dec_point, thousands_sep) {
+  //  source at: https://github.com/kvz/phpjs/blob/master/functions/strings/number_format.js
   //  discuss at: http://phpjs.org/functions/number_format/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
