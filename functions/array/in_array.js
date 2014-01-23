@@ -2,6 +2,7 @@ function in_array(needle, haystack, argStrict) {
   //  discuss at: http://phpjs.org/functions/in_array/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: vlado houba
+  // improved by: Jonas Sciangula Street (Joni2Back)
   //    input by: Billy
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //   example 1: in_array('van', ['Kevin', 'van', 'Zonneveld']);
@@ -17,7 +18,10 @@ function in_array(needle, haystack, argStrict) {
 
   var key = '',
     strict = !! argStrict;
-
+  
+  //we prevent the double check (strict && arr[key] === ndl) || (!strict && arr[key] == ndl)
+  //in just one for, in order to improve the performance 
+  //deciding wich type of comparation will do before walk array
   if (strict) {
     for (key in haystack) {
       if (haystack[key] === needle) {
