@@ -1,12 +1,13 @@
-function is_infinite (val) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // *     example 1: is_infinite(Infinity);
-  // *     returns 1: true
-  // *     example 2: is_infinite(-Infinity);
-  // *     returns 2: true
-  // *     example 3: is_infinite(0);
-  // *     returns 3: false
+function is_infinite(val) {
+  //  discuss at: http://phpjs.org/functions/is_infinite/
+  // original by: Onno Marsman
+  //   example 1: is_infinite(Infinity);
+  //   returns 1: true
+  //   example 2: is_infinite(-Infinity);
+  //   returns 2: true
+  //   example 3: is_infinite(0);
+  //   returns 3: false
+
   var warningType = '';
 
   if (val === Infinity || val === -Infinity) {

@@ -15,18 +15,19 @@ alias:
 A JavaScript equivalent of PHP's array_sum
 
 {% codeblock array/array_sum.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_sum.js raw on github %}
-function array_sum (array) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Nate
-  // +   bugfixed by: Gilbert
-  // +   improved by: David Pilia (http://www.beteck.it/)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: array_sum([4, 9, 182.6]);
-  // *     returns 1: 195.6
-  // *     example 2: total = []; index = 0.1; for (y=0; y < 12; y++){total[y] = y + index;}
-  // *     example 2: array_sum(total);
-  // *     returns 2: 67.2
+function array_sum(array) {
+  //  discuss at: http://phpjs.org/functions/array_sum/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Nate
+  // bugfixed by: Gilbert
+  // improved by: David Pilia (http://www.beteck.it/)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: array_sum([4, 9, 182.6]);
+  //   returns 1: 195.6
+  //   example 2: total = []; index = 0.1; for (y=0; y < 12; y++){total[y] = y + index;}
+  //   example 2: array_sum(total);
+  //   returns 2: 67.2
+
   var key, sum = 0;
 
   if (array && typeof array === 'object' && array.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
@@ -59,29 +60,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_sum.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_sum([4, 9, 182.6]);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-195.6
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-total = []; index = 0.1; for (y=0; y < 12; y++){total[y] = y + index;}
-array_sum(total);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-67.2
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

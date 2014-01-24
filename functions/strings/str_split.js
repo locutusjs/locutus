@@ -1,13 +1,14 @@
-function str_split (string, split_length) {
-  // From: http://phpjs.org/functions
-  // +     original by: Martijn Wieringa
-  // +     improved by: Brett Zamir (http://brett-zamir.me)
-  // +     bugfixed by: Onno Marsman
-  // +      revised by: Theriault
-  // +        input by: Bjorn Roesbeke (http://www.bjornroesbeke.be/)
-  // +      revised by: Rafał Kukawski (http://blog.kukawski.pl/)
-  // *       example 1: str_split('Hello Friend', 3);
-  // *       returns 1: ['Hel', 'lo ', 'Fri', 'end']
+function str_split(string, split_length) {
+  //  discuss at: http://phpjs.org/functions/str_split/
+  // original by: Martijn Wieringa
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Onno Marsman
+  //  revised by: Theriault
+  //  revised by: Rafał Kukawski (http://blog.kukawski.pl/)
+  //    input by: Bjorn Roesbeke (http://www.bjornroesbeke.be/)
+  //   example 1: str_split('Hello Friend', 3);
+  //   returns 1: ['Hel', 'lo ', 'Fri', 'end']
+
   if (split_length === null) {
     split_length = 1;
   }

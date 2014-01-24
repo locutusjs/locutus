@@ -15,14 +15,15 @@ alias:
 A JavaScript equivalent of PHP's array_uintersect
 
 {% codeblock array/array_uintersect.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_uintersect.js raw on github %}
-function array_uintersect (arr1) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Demosthenes Koptsis
-  // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
-  // *     example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
-  // *     example 1: array_uintersect($array1, $array2, function( f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 == string2) return 0; return -1;});
-  // *     returns 1: {a: 'green', b: 'brown', 0: 'red'}
+function array_uintersect(arr1) {
+  //  discuss at: http://phpjs.org/functions/array_uintersect/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Demosthenes Koptsis
+  //   example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
+  //   example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
+  //   example 1: array_uintersect($array1, $array2, function( f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 == string2) return 0; return -1;});
+  //   returns 1: {a: 'green', b: 'brown', 0: 'red'}
+
   var retArr = {},
     arglm1 = arguments.length - 1,
     arglm2 = arglm1 - 1,
@@ -32,7 +33,8 @@ function array_uintersect (arr1) {
     arr = {},
     k = '';
 
-  cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[cb[0]][cb[1]] : cb;
+  cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[
+    cb[0]][cb[1]] : cb;
 
   arr1keys: for (k1 in arr1) {
     arrs: for (i = 1; i < arglm1; i++) {
@@ -66,19 +68,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_uintersect.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-$array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
-$array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
-array_uintersect($array1, $array2, function( f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 == string2) return 0; return -1;});
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{a: 'green', b: 'brown', 0: 'red'}
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

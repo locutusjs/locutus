@@ -15,16 +15,17 @@ alias:
 A JavaScript equivalent of PHP's ord
 
 {% codeblock strings/ord.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/ord.js raw on github %}
-function ord (string) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Onno Marsman
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: incidence
-  // *     example 1: ord('K');
-  // *     returns 1: 75
-  // *     example 2: ord('\uD800\uDC00'); // surrogate pair to create a single Unicode character
-  // *     returns 2: 65536
+function ord(string) {
+  //  discuss at: http://phpjs.org/functions/ord/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Onno Marsman
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //    input by: incidence
+  //   example 1: ord('K');
+  //   returns 1: 75
+  //   example 2: ord('\uD800\uDC00'); // surrogate pair to create a single Unicode character
+  //   returns 2: 65536
+
   var str = string + '',
     code = str.charCodeAt(0);
   if (0xD800 <= code && code <= 0xDBFF) { // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
@@ -55,28 +56,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/ord.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-ord('K');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-75
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-ord('\uD800\uDC00'); // surrogate pair to create a single Unicode character
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-65536
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

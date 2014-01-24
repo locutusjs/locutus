@@ -15,12 +15,13 @@ alias:
 A JavaScript equivalent of PHP's json_last_error
 
 {% codeblock json/json_last_error.js lang:js https://raw.github.com/kvz/phpjs/master/functions/json/json_last_error.js raw on github %}
-function json_last_error () {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: json_last_error();
-  // *     returns 1: 0
-/*
+function json_last_error() {
+  //  discuss at: http://phpjs.org/functions/json_last_error/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: json_last_error();
+  //   returns 1: 0
+
+  /*
   JSON_ERROR_NONE = 0
   JSON_ERROR_DEPTH = 1 // max depth limit to be removed per PHP comments in json.c (not possible in JS?)
   JSON_ERROR_STATE_MISMATCH = 2 // internal use? also not documented
@@ -43,17 +44,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/json/json_last_error.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-json_last_error();
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-0
-{% endcodeblock %}
 
 
 ### Other PHP functions in the json extension

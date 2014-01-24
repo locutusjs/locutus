@@ -15,24 +15,26 @@ alias:
 A JavaScript equivalent of PHP's parse_url
 
 {% codeblock url/parse_url.js lang:js https://raw.github.com/kvz/phpjs/master/functions/url/parse_url.js raw on github %}
-function parse_url (str, component) {
-  // From: http://phpjs.org/functions
-  // +      original by: Steven Levithan (http://blog.stevenlevithan.com)
-  // + reimplemented by: Brett Zamir (http://brett-zamir.me)
-  // + input by: Lorenzo Pisani
-  // + input by: Tony
-  // + improved by: Brett Zamir (http://brett-zamir.me)
-  // %          note: Based on http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
-  // %          note: blog post at http://blog.stevenlevithan.com/archives/parseuri
-  // %          note: demo at http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
-  // %          note: Does not replace invalid characters with '_' as in PHP, nor does it return false with
-  // %          note: a seriously malformed URL.
-  // %          note: Besides function name, is essentially the same as parseUri as well as our allowing
-  // %          note: an extra slash after the scheme/protocol (to allow file:/// as in PHP)
-  // *     example 1: parse_url('http://username:password@hostname/path?arg=value#anchor');
-  // *     returns 1: {scheme: 'http', host: 'hostname', user: 'username', pass: 'password', path: '/path', query: 'arg=value', fragment: 'anchor'}
+function parse_url(str, component) {
+  //       discuss at: http://phpjs.org/functions/parse_url/
+  //      original by: Steven Levithan (http://blog.stevenlevithan.com)
+  // reimplemented by: Brett Zamir (http://brett-zamir.me)
+  //         input by: Lorenzo Pisani
+  //         input by: Tony
+  //      improved by: Brett Zamir (http://brett-zamir.me)
+  //             note: original by http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
+  //             note: blog post at http://blog.stevenlevithan.com/archives/parseuri
+  //             note: demo at http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
+  //             note: Does not replace invalid characters with '_' as in PHP, nor does it return false with
+  //             note: a seriously malformed URL.
+  //             note: Besides function name, is essentially the same as parseUri as well as our allowing
+  //             note: an extra slash after the scheme/protocol (to allow file:/// as in PHP)
+  //        example 1: parse_url('http://username:password@hostname/path?arg=value#anchor');
+  //        returns 1: {scheme: 'http', host: 'hostname', user: 'username', pass: 'password', path: '/path', query: 'arg=value', fragment: 'anchor'}
+
   var query, key = ['source', 'scheme', 'authority', 'userInfo', 'user', 'pass', 'host', 'port',
-            'relative', 'path', 'directory', 'file', 'query', 'fragment'],
+      'relative', 'path', 'directory', 'file', 'query', 'fragment'
+    ],
     ini = (this.php_js && this.php_js.ini) || {},
     mode = (ini['phpjs.parse_url.mode'] &&
       ini['phpjs.parse_url.mode'].local_value) || 'php',
@@ -52,16 +54,19 @@ function parse_url (str, component) {
   }
 
   if (component) {
-    return uri[component.replace('PHP_URL_', '').toLowerCase()];
+    return uri[component.replace('PHP_URL_', '')
+      .toLowerCase()];
   }
   if (mode !== 'php') {
     var name = (ini['phpjs.parse_url.queryKey'] &&
-        ini['phpjs.parse_url.queryKey'].local_value) || 'queryKey';
+      ini['phpjs.parse_url.queryKey'].local_value) || 'queryKey';
     parser = /(?:^|&)([^&=]*)=?([^&]*)/g;
     uri[name] = {};
     query = uri[key[12]] || '';
-    query.replace(parser, function ($0, $1, $2) {
-      if ($1) {uri[name][$1] = $2;}
+    query.replace(parser, function($0, $1, $2) {
+      if ($1) {
+        uri[name][$1] = $2;
+      }
     });
   }
   delete uri.source;
@@ -80,17 +85,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/url/parse_url.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-parse_url('http://username:password@hostname/path?arg=value#anchor');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{scheme: 'http', host: 'hostname', user: 'username', pass: 'password', path: '/path', query: 'arg=value', fragment: 'anchor'}
-{% endcodeblock %}
 
 
 ### Other PHP functions in the url extension

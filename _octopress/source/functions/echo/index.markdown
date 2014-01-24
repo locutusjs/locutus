@@ -15,32 +15,40 @@ alias:
 A JavaScript equivalent of PHP's echo
 
 {% codeblock strings/echo.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/echo.js raw on github %}
-function echo () {
-  // http://kevin.vanzonneveld.net
-  // +   original by: Philip Peterson
-  // +   improved by: echo is bad
-  // +   improved by: Nate
-  // +    revised by: Der Simon (http://innerdom.sourceforge.net/)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Eugene Bulkin (http://doubleaw.com/)
-  // +   input by: JB
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: EdorFaus
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: If browsers start to support DOM Level 3 Load and Save (parsing/serializing),
-  // %        note 1: we wouldn't need any such long code (even most of the code below). See
-  // %        note 1: link below for a cross-browser implementation in JavaScript. HTML5 might
-  // %        note 1: possibly support DOMParser, but that is not presently a standard.
-  // %        note 2: Although innerHTML is widely used and may become standard as of HTML5, it is also not ideal for
-  // %        note 2: use with a temporary holder before appending to the DOM (as is our last resort below),
-  // %        note 2: since it may not work in an XML context
-  // %        note 3: Using innerHTML to directly add to the BODY is very dangerous because it will
-  // %        note 3: break all pre-existing references to HTMLElements.
-  // *     example 1: echo('<div><p>abc</p><p>abc</p></div>');
-  // *     returns 1: undefined
-  // Fix: This function really needs to allow non-XHTML input (unless in true XHTML mode) as in jQuery
+function echo() {
+  //  discuss at: http://phpjs.org/functions/echo/
+  //        http: //kevin.vanzonneveld.net
+  // original by: Philip Peterson
+  // improved by: echo is bad
+  // improved by: Nate
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  revised by: Der Simon (http://innerdom.sourceforge.net/)
+  // bugfixed by: Eugene Bulkin (http://doubleaw.com/)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: EdorFaus
+  //    input by: JB
+  //        note: If browsers start to support DOM Level 3 Load and Save (parsing/serializing),
+  //        note: we wouldn't need any such long code (even most of the code below). See
+  //        note: link below for a cross-browser implementation in JavaScript. HTML5 might
+  //        note: possibly support DOMParser, but that is not presently a standard.
+  //        note: Although innerHTML is widely used and may become standard as of HTML5, it is also not ideal for
+  //        note: use with a temporary holder before appending to the DOM (as is our last resort below),
+  //        note: since it may not work in an XML context
+  //        note: Using innerHTML to directly add to the BODY is very dangerous because it will
+  //        note: break all pre-existing references to HTMLElements.
+  //   example 1: echo('<div><p>abc</p><p>abc</p></div>');
+  //   returns 1: undefined
+
+  var isNode = typeof module !== 'undefined' && module.exports;
+
+  if (isNode) {
+    var args = Array.prototype.slice.call(arguments);
+    return console.log(args.join(' '));
+  }
+
   var arg = '',
     argc = arguments.length,
     argv = arguments,
@@ -49,7 +57,7 @@ function echo () {
     d = win.document,
     ns_xhtml = 'http://www.w3.org/1999/xhtml',
     ns_xul = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'; // If we're in a XUL context
-  var stringToDOM = function (str, parent, ns, container) {
+  var stringToDOM = function(str, parent, ns, container) {
     var extraNSs = '';
     if (ns === ns_xul) {
       extraNSs = ' xmlns:html="' + ns_xhtml + '"';
@@ -67,12 +75,15 @@ function echo () {
       // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
       lsInput.stringData = stringContainer;
       var lsParser = dils.createLSParser(1, null); // synchronous, no schema type
-      return lsParser.parse(lsInput).firstChild;
+      return lsParser.parse(lsInput)
+        .firstChild;
     } else if (dp) {
       // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
       try {
-        var fc = new dp().parseFromString(stringContainer, 'text/xml');
-        if (fc && fc.documentElement && fc.documentElement.localName !== 'parsererror' && fc.documentElement.namespaceURI !== 'http://www.mozilla.org/newlayout/xml/parsererror.xml') {
+        var fc = new dp()
+          .parseFromString(stringContainer, 'text/xml');
+        if (fc && fc.documentElement && fc.documentElement.localName !== 'parsererror' && fc.documentElement.namespaceURI !==
+          'http://www.mozilla.org/newlayout/xml/parsererror.xml') {
           return fc.documentElement.firstChild;
         }
         // If there's a parsing error, we just continue on
@@ -84,7 +95,7 @@ function echo () {
       axo.loadXML(str);
       return axo.documentElement;
     }
-/*else if (win.XMLHttpRequest) { // Supposed to work in older Safari
+    /*else if (win.XMLHttpRequest) { // Supposed to work in older Safari
       var req = new win.XMLHttpRequest;
       req.open('GET', 'data:application/xml;charset=utf-8,'+encodeURIComponent(str), false);
       if (req.overrideMimeType) {
@@ -97,10 +108,10 @@ function echo () {
     // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
     //if (d.createElementNS && (d.contentType && d.contentType !== 'text/html')) { // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways)
     if (d.createElementNS && // Browser supports the method
-    (d.documentElement.namespaceURI || // We can use if the document is using a namespace
-    d.documentElement.nodeName.toLowerCase() !== 'html' || // We know it's not HTML4 or less, if the tag is not HTML (even if the root namespace is null)
-    (d.contentType && d.contentType !== 'text/html') // We know it's not regular HTML4 or less if this is Mozilla (only browser supporting the attribute) and the content type is something other than text/html; other HTML5 roots (like svg) still have a namespace
-    )) { // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways); last test is for the sake of being in a pure XML document
+      (d.documentElement.namespaceURI || // We can use if the document is using a namespace
+        d.documentElement.nodeName.toLowerCase() !== 'html' || // We know it's not HTML4 or less, if the tag is not HTML (even if the root namespace is null)
+        (d.contentType && d.contentType !== 'text/html') // We know it's not regular HTML4 or less if this is Mozilla (only browser supporting the attribute) and the content type is something other than text/html; other HTML5 roots (like svg) still have a namespace
+      )) { // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways); last test is for the sake of being in a pure XML document
       holder = d.createElementNS(ns, container);
     } else {
       holder = d.createElement(container); // Document fragment did not work with innerHTML
@@ -113,8 +124,7 @@ function echo () {
     // throw 'Your browser does not support DOM parsing as required by echo()';
   };
 
-
-  var ieFix = function (node) {
+  var ieFix = function(node) {
     if (node.nodeType === 1) {
       var newNode = d.createElement(node.nodeName);
       var i, len;
@@ -134,7 +144,7 @@ function echo () {
     }
   };
 
-  var replacer = function (s, m1, m2) {
+  var replacer = function(s, m1, m2) {
     // We assume for now that embedded variables do not have dollar sign; to add a dollar sign, you currently must use {$$var} (We might change this, however.)
     // Doesn't cover all cases yet: see http://php.net/manual/en/language.types.string.php#language.types.string.syntax.double
     if (m1 !== '\\') {
@@ -164,7 +174,8 @@ function echo () {
         if (win.navigator.appName === 'Microsoft Internet Explorer') { // We unfortunately cannot use feature detection, since this is an IE bug with cloneNode nodes being appended
           d.body.appendChild(stringToDOM(ieFix(arg)));
         } else {
-          var unappendedLeft = stringToDOM(arg, d.body, ns_xhtml, 'div').cloneNode(true); // We will not actually append the div tag (just using for providing XHTML namespace by default)
+          var unappendedLeft = stringToDOM(arg, d.body, ns_xhtml, 'div')
+            .cloneNode(true); // We will not actually append the div tag (just using for providing XHTML namespace by default)
           if (unappendedLeft) {
             d.body.appendChild(unappendedLeft);
           }
@@ -175,26 +186,24 @@ function echo () {
     } else if (d.write) {
       d.write(arg);
     }
-/* else { // This could recurse if we ever add print!
+    /* else { // This could recurse if we ever add print!
       print(arg);
     }*/
   }
 }
 {% endcodeblock %}
 
- - [view on github](https://github.com/kvz/phpjs/blob/master/functions/strings/echo.js)
- - [edit on github](https://github.com/kvz/phpjs/edit/master/functions/strings/echo.js)
+ - [Raw function on GitHub](https://github.com/kvz/phpjs/blob/master/functions/strings/echo.js)
 
-### Example 1
-This code
-{% codeblock lang:js example %}
-echo('<div><p>abc</p><p>abc</p></div>');
-{% endcodeblock %}
+Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are 
+the closest match to this hashtable-like data structure. 
 
-Should return
-{% codeblock lang:js returns %}
-undefined
-{% endcodeblock %}
+Please also note that php.js offers community built functions and goes by the 
+[McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). We'll put online 
+functions that are far from perfect, in the hopes to spark better contributions. 
+Do you have one? Then please just: 
+
+ - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/echo.js)
 
 
 ### Other PHP functions in the strings extension

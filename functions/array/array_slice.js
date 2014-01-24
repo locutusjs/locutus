@@ -1,15 +1,16 @@
-function array_slice (arr, offst, lgth, preserve_keys) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: is_int
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // %          note: Relies on is_int because !isNaN accepts floats
-  // *     example 1: array_slice(["a", "b", "c", "d", "e"], 2, -1);
-  // *     returns 1: {0: 'c', 1: 'd'}
-  // *     example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true);
-  // *     returns 2: {2: 'c', 3: 'd'}
-/*
+function array_slice(arr, offst, lgth, preserve_keys) {
+  //  discuss at: http://phpjs.org/functions/array_slice/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: is_int
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //        note: Relies on is_int because !isNaN accepts floats
+  //   example 1: array_slice(["a", "b", "c", "d", "e"], 2, -1);
+  //   returns 1: {0: 'c', 1: 'd'}
+  //   example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true);
+  //   returns 2: {2: 'c', 3: 'd'}
+
+  /*
   if ('callee' in arr && 'length' in arr) {
     arr = Array.prototype.slice.call(arr);
   }

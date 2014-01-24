@@ -15,23 +15,23 @@ alias:
 A JavaScript equivalent of PHP's version_compare
 
 {% codeblock info/version_compare.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/version_compare.js raw on github %}
-function version_compare (v1, v2, operator) {
-  // From: http://phpjs.org/functions
-  // +      original by: Philippe Jausions (http://pear.php.net/user/jausions)
-  // +      original by: Aidan Lister (http://aidanlister.com/)
-  // + reimplemented by: Kankrelune (http://www.webfaktory.info/)
-  // +      improved by: Brett Zamir (http://brett-zamir.me)
-  // +      improved by: Scott Baker
-  // +      improved by: Theriault
-  // *        example 1: version_compare('8.2.5rc', '8.2.5a');
-  // *        returns 1: 1
-  // *        example 2: version_compare('8.2.50', '8.2.52', '<');
-  // *        returns 2: true
-  // *        example 3: version_compare('5.3.0-dev', '5.3.0');
-  // *        returns 3: -1
-  // *        example 4: version_compare('4.1.0.52','4.01.0.51');
-  // *        returns 4: 1
-  // BEGIN REDUNDANT
+function version_compare(v1, v2, operator) {
+  //       discuss at: http://phpjs.org/functions/version_compare/
+  //      original by: Philippe Jausions (http://pear.php.net/user/jausions)
+  //      original by: Aidan Lister (http://aidanlister.com/)
+  // reimplemented by: Kankrelune (http://www.webfaktory.info/)
+  //      improved by: Brett Zamir (http://brett-zamir.me)
+  //      improved by: Scott Baker
+  //      improved by: Theriault
+  //        example 1: version_compare('8.2.5rc', '8.2.5a');
+  //        returns 1: 1
+  //        example 2: version_compare('8.2.50', '8.2.52', '<');
+  //        returns 2: true
+  //        example 3: version_compare('5.3.0-dev', '5.3.0');
+  //        returns 3: -1
+  //        example 4: version_compare('4.1.0.52','4.01.0.51');
+  //        returns 4: 1
+
   this.php_js = this.php_js || {};
   this.php_js.ENV = this.php_js.ENV || {};
   // END REDUNDANT
@@ -67,18 +67,20 @@ function version_compare (v1, v2, operator) {
     // even less than an unexisting value in vm (-7), hence [-8].
     // It's also important to not strip spaces because of this.
     //   version_compare('', ' ') == 1
-    prepVersion = function (v) {
-      v = ('' + v).replace(/[_\-+]/g, '.');
-      v = v.replace(/([^.\d]+)/g, '.$1.').replace(/\.{2,}/g, '.');
+    prepVersion = function(v) {
+      v = ('' + v)
+        .replace(/[_\-+]/g, '.');
+      v = v.replace(/([^.\d]+)/g, '.$1.')
+        .replace(/\.{2,}/g, '.');
       return (!v.length ? [-8] : v.split('.'));
-    },
-    // This converts a version component to a number.
-    // Empty component becomes 0.
-    // Non-numerical component becomes a negative number.
-    // Numerical component becomes itself as an integer.
-    numVersion = function (v) {
-      return !v ? 0 : (isNaN(v) ? vm[v] || -7 : parseInt(v, 10));
     };
+  // This converts a version component to a number.
+  // Empty component becomes 0.
+  // Non-numerical component becomes a negative number.
+  // Numerical component becomes itself as an integer.
+  numVersion = function(v) {
+    return !v ? 0 : (isNaN(v) ? vm[v] || -7 : parseInt(v, 10));
+  };
   v1 = prepVersion(v1);
   v2 = prepVersion(v2);
   x = Math.max(v1.length, v2.length);
@@ -104,29 +106,29 @@ function version_compare (v1, v2, operator) {
   // "No operator" seems to be treated as "<."
   // Any other values seem to make the function return null.
   switch (operator) {
-  case '>':
-  case 'gt':
-    return (compare > 0);
-  case '>=':
-  case 'ge':
-    return (compare >= 0);
-  case '<=':
-  case 'le':
-    return (compare <= 0);
-  case '==':
-  case '=':
-  case 'eq':
-    return (compare === 0);
-  case '<>':
-  case '!=':
-  case 'ne':
-    return (compare !== 0);
-  case '':
-  case '<':
-  case 'lt':
-    return (compare < 0);
-  default:
-    return null;
+    case '>':
+    case 'gt':
+      return (compare > 0);
+    case '>=':
+    case 'ge':
+      return (compare >= 0);
+    case '<=':
+    case 'le':
+      return (compare <= 0);
+    case '==':
+    case '=':
+    case 'eq':
+      return (compare === 0);
+    case '<>':
+    case '!=':
+    case 'ne':
+      return (compare !== 0);
+    case '':
+    case '<':
+    case 'lt':
+      return (compare < 0);
+    default:
+      return null;
   }
 }
 {% endcodeblock %}
@@ -142,39 +144,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/info/version_compare.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-version_compare('8.2.5rc', '8.2.5a');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-1
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-version_compare('8.2.50', '8.2.52', '<');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-version_compare('5.3.0-dev', '5.3.0');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
--1
-{% endcodeblock %}
 
 
 ### Other PHP functions in the info extension

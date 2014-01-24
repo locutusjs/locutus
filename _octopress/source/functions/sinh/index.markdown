@@ -15,11 +15,12 @@ alias:
 A JavaScript equivalent of PHP's sinh
 
 {% codeblock math/sinh.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/sinh.js raw on github %}
-function sinh (arg) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // *     example 1: sinh(-0.9834330348825909);
-  // *     returns 1: -1.1497971402636502
+function sinh(arg) {
+  //  discuss at: http://phpjs.org/functions/sinh/
+  // original by: Onno Marsman
+  //   example 1: sinh(-0.9834330348825909);
+  //   returns 1: -1.1497971402636502
+
   return (Math.exp(arg) - Math.exp(-arg)) / 2;
 }
 {% endcodeblock %}
@@ -35,17 +36,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/sinh.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-sinh(-0.9834330348825909);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
--1.1497971402636502
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

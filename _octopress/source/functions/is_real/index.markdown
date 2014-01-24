@@ -15,14 +15,15 @@ alias:
 A JavaScript equivalent of PHP's is_real
 
 {% codeblock var/is_real.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_real.js raw on github %}
-function is_real (mixed_var) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  //  -   depends on: is_float
-  // %        note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
-  // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.
-  // *     example 1: is_double(186.31);
-  // *     returns 1: true
+function is_real(mixed_var) {
+  //  discuss at: http://phpjs.org/functions/is_real/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: is_float
+  //        note: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //        note: it different from the PHP implementation. We can't fix this unfortunately.
+  //   example 1: is_real(186.31);
+  //   returns 1: true
+
   return this.is_float(mixed_var);
 }
 {% endcodeblock %}
@@ -38,17 +39,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/var/is_real.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-is_double(186.31);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
 
 
 ### Other PHP functions in the var extension

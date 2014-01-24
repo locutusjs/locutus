@@ -10,17 +10,17 @@ function aggregate_properties_by_list (obj, class_name, properties_list, exclude
   // *     returns 1: undefined
 
   var p = '',
-    i = 0,
-    record = {},
-    pos = -1,
-    indexOf = function (value) {
-      for (var i = 0, length = this.length; i < length; i++) {
-        if (this[i] === value) {
-          return i;
+      i = 0,
+      record = {},
+      pos = -1,
+      indexOf = function (value) {
+        for (var i = 0, length = this.length; i < length; i++) {
+          if (this[i] === value) {
+            return i;
+          }
         }
-      }
-      return -1;
-    };
+        return -1;
+      };
 
   if (!properties_list.indexOf) {
     properties_list.indexOf = indexOf;

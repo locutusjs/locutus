@@ -15,18 +15,18 @@ alias:
 A JavaScript equivalent of PHP's substr_count
 
 {% codeblock strings/substr_count.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/substr_count.js raw on github %}
-function substr_count (haystack, needle, offset, length) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Onno Marsman
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Thomas
-  // *     example 1: substr_count('Kevin van Zonneveld', 'e');
-  // *     returns 1: 3
-  // *     example 2: substr_count('Kevin van Zonneveld', 'K', 1);
-  // *     returns 2: 0
-  // *     example 3: substr_count('Kevin van Zonneveld', 'Z', 0, 10);
-  // *     returns 3: false
+function substr_count(haystack, needle, offset, length) {
+  //  discuss at: http://phpjs.org/functions/substr_count/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Onno Marsman
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Thomas
+  //   example 1: substr_count('Kevin van Zonneveld', 'e');
+  //   returns 1: 3
+  //   example 2: substr_count('Kevin van Zonneveld', 'K', 1);
+  //   returns 2: 0
+  //   example 3: substr_count('Kevin van Zonneveld', 'Z', 0, 10);
+  //   returns 3: false
 
   var cnt = 0;
 
@@ -65,39 +65,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/substr_count.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-substr_count('Kevin van Zonneveld', 'e');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-3
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-substr_count('Kevin van Zonneveld', 'K', 1);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-0
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-substr_count('Kevin van Zonneveld', 'Z', 0, 10);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-false
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

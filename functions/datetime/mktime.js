@@ -1,41 +1,43 @@
-function mktime () {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: baris ozdil
-  // +      input by: gabriel paderni
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: FGFEmperor
-  // +      input by: Yannoo
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +      input by: jakes
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Marc Palau
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +      input by: 3D-GRAF
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +      input by: Chris
-  // +    revised by: Theriault
-  // %        note 1: The return values of the following examples are
-  // %        note 1: received only if your system's timezone is UTC.
-  // *     example 1: mktime(14, 10, 2, 2, 1, 2008);
-  // *     returns 1: 1201875002
-  // *     example 2: mktime(0, 0, 0, 0, 1, 2008);
-  // *     returns 2: 1196467200
-  // *     example 3: make = mktime();
-  // *     example 3: td = new Date();
-  // *     example 3: real = Math.floor(td.getTime() / 1000);
-  // *     example 3: diff = (real - make);
-  // *     results 3: diff < 5
-  // *     example 4: mktime(0, 0, 0, 13, 1, 1997)
-  // *     returns 4: 883612800
-  // *     example 5: mktime(0, 0, 0, 1, 1, 1998)
-  // *     returns 5: 883612800
-  // *     example 6: mktime(0, 0, 0, 1, 1, 98)
-  // *     returns 6: 883612800
-  // *     example 7: mktime(23, 59, 59, 13, 0, 2010)
-  // *     returns 7: 1293839999
-  // *     example 8: mktime(0, 0, -1, 1, 1, 1970)
-  // *     returns 8: -1
+function mktime() {
+  //  discuss at: http://phpjs.org/functions/mktime/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: baris ozdil
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: FGFEmperor
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //    input by: gabriel paderni
+  //    input by: Yannoo
+  //    input by: jakes
+  //    input by: 3D-GRAF
+  //    input by: Chris
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Marc Palau
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //  revised by: Theriault
+  //        note: The return values of the following examples are
+  //        note: received only if your system's timezone is UTC.
+  //   example 1: mktime(14, 10, 2, 2, 1, 2008);
+  //   returns 1: 1201875002
+  //   example 2: mktime(0, 0, 0, 0, 1, 2008);
+  //   returns 2: 1196467200
+  //   example 3: make = mktime();
+  //   example 3: td = new Date();
+  //   example 3: real = Math.floor(td.getTime() / 1000);
+  //   example 3: diff = (real - make);
+  //   example 3: diff < 5
+  //   returns 3: true
+  //   example 4: mktime(0, 0, 0, 13, 1, 1997)
+  //   returns 4: 883612800
+  //   example 5: mktime(0, 0, 0, 1, 1, 1998)
+  //   returns 5: 883612800
+  //   example 6: mktime(0, 0, 0, 1, 1, 98)
+  //   returns 6: 883612800
+  //   example 7: mktime(23, 59, 59, 13, 0, 2010)
+  //   returns 7: 1293839999
+  //   example 8: mktime(0, 0, -1, 1, 1, 1970)
+  //   returns 8: -1
+
   var d = new Date(),
     r = arguments,
     i = 0,

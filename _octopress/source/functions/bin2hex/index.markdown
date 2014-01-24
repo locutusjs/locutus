@@ -15,24 +15,26 @@ alias:
 A JavaScript equivalent of PHP's bin2hex
 
 {% codeblock strings/bin2hex.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/bin2hex.js raw on github %}
-function bin2hex (s) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Onno Marsman
-  // +   bugfixed by: Linuxworld
-  // +   improved by: ntoniazzi (http://phpjs.org/functions/bin2hex:361#comment_177616)
-  // *     example 1: bin2hex('Kev');
-  // *     returns 1: '4b6576'
-  // *     example 2: bin2hex(String.fromCharCode(0x00));
-  // *     returns 2: '00'
+function bin2hex(s) {
+  //  discuss at: http://phpjs.org/functions/bin2hex/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Onno Marsman
+  // bugfixed by: Linuxworld
+  // improved by: ntoniazzi (http://phpjs.org/functions/bin2hex:361#comment_177616)
+  //   example 1: bin2hex('Kev');
+  //   returns 1: '4b6576'
+  //   example 2: bin2hex(String.fromCharCode(0x00));
+  //   returns 2: '00'
 
-  var i, l, o = "", n;
+  var i, l, o = '',
+    n;
 
-  s += "";
+  s += '';
 
   for (i = 0, l = s.length; i < l; i++) {
-    n = s.charCodeAt(i).toString(16)
-    o += n.length < 2 ? "0" + n : n;
+    n = s.charCodeAt(i)
+      .toString(16);
+    o += n.length < 2 ? '0' + n : n;
   }
 
   return o;
@@ -50,28 +52,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/bin2hex.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-bin2hex('Kev');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'4b6576'
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-bin2hex(String.fromCharCode(0x00));
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'00'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

@@ -15,13 +15,14 @@ alias:
 A JavaScript equivalent of PHP's rand
 
 {% codeblock math/rand.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/rand.js raw on github %}
-function rand (min, max) {
-  // From: http://phpjs.org/functions
-  // +   original by: Leslie Hoare
-  // +   bugfixed by: Onno Marsman
-  // %          note 1: See the commented out code below for a version which will work with our experimental (though probably unnecessary) srand() function)
-  // *     example 1: rand(1, 1);
-  // *     returns 1: 1
+function rand(min, max) {
+  //  discuss at: http://phpjs.org/functions/rand/
+  // original by: Leslie Hoare
+  // bugfixed by: Onno Marsman
+  //        note: See the commented out code below for a version which will work with our experimental (though probably unnecessary) srand() function)
+  //   example 1: rand(1, 1);
+  //   returns 1: 1
+
   var argc = arguments.length;
   if (argc === 0) {
     min = 0;
@@ -31,7 +32,7 @@ function rand (min, max) {
   }
   return Math.floor(Math.random() * (max - min + 1)) + min;
 
-/*
+  /*
   // See note above for an explanation of the following alternative code
 
   // +   reimplemented by: Brett Zamir (http://brett-zamir.me)
@@ -79,17 +80,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/rand.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-rand(1, 1);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-1
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

@@ -15,13 +15,14 @@ alias:
 A JavaScript equivalent of PHP's strrchr
 
 {% codeblock strings/strrchr.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strrchr.js raw on github %}
-function strrchr (haystack, needle) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: Jason Wong (http://carrot.org/)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: strrchr("Line 1\nLine 2\nLine 3", 10).substr(1)
-  // *     returns 1: 'Line 3'
+function strrchr(haystack, needle) {
+  //  discuss at: http://phpjs.org/functions/strrchr/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //    input by: Jason Wong (http://carrot.org/)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: strrchr("Line 1\nLine 2\nLine 3", 10).substr(1)
+  //   returns 1: 'Line 3'
+
   var pos = 0;
 
   if (typeof needle !== 'string') {
@@ -48,17 +49,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/strrchr.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-strrchr("Line 1\nLine 2\nLine 3", 10).substr(1)
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'Line 3'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

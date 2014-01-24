@@ -1,4 +1,4 @@
-function ftell (handle) {
+function ftell(handle) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var h = fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');
@@ -6,7 +6,7 @@ function ftell (handle) {
   // *     example 1: ftell(h);
   // *     returns 1: 99
 
-  var getFuncName = function (fn) {
+  var getFuncName = function(fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
     if (!name) {
       return '(Anonymous)';

@@ -1,4 +1,4 @@
-function runkit_import (file, flags) {
+function runkit_import(file, flags) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: file_get_contents

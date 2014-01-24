@@ -15,17 +15,18 @@ alias:
 A JavaScript equivalent of PHP's set_time_limit
 
 {% codeblock info/set_time_limit.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/set_time_limit.js raw on github %}
-function set_time_limit (seconds) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: set_time_limit(4);
-  // *     returns 1: undefined
+function set_time_limit(seconds) {
+  //  discuss at: http://phpjs.org/functions/set_time_limit/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //        test: skip
+  //   example 1: set_time_limit(4);
+  //   returns 1: undefined
 
   // BEGIN REDUNDANT
   this.php_js = this.php_js || {};
   // END REDUNDANT
 
-  this.window.setTimeout(function () {
+  this.window.setTimeout(function() {
     if (!this.php_js.timeoutStatus) {
       this.php_js.timeoutStatus = true;
     }
@@ -45,17 +46,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/info/set_time_limit.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-set_time_limit(4);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-undefined
-{% endcodeblock %}
 
 
 ### Other PHP functions in the info extension

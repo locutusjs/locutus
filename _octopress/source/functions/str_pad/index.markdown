@@ -15,20 +15,21 @@ alias:
 A JavaScript equivalent of PHP's str_pad
 
 {% codeblock strings/str_pad.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/str_pad.js raw on github %}
-function str_pad (input, pad_length, pad_string, pad_type) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // + namespaced by: Michael White (http://getsprink.com)
-  // +      input by: Marco van Oort
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: str_pad('Kevin van Zonneveld', 30, '-=', 'STR_PAD_LEFT');
-  // *     returns 1: '-=-=-=-=-=-Kevin van Zonneveld'
-  // *     example 2: str_pad('Kevin van Zonneveld', 30, '-', 'STR_PAD_BOTH');
-  // *     returns 2: '------Kevin van Zonneveld-----'
+function str_pad(input, pad_length, pad_string, pad_type) {
+  //  discuss at: http://phpjs.org/functions/str_pad/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Michael White (http://getsprink.com)
+  //    input by: Marco van Oort
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: str_pad('Kevin van Zonneveld', 30, '-=', 'STR_PAD_LEFT');
+  //   returns 1: '-=-=-=-=-=-Kevin van Zonneveld'
+  //   example 2: str_pad('Kevin van Zonneveld', 30, '-', 'STR_PAD_BOTH');
+  //   returns 2: '------Kevin van Zonneveld-----'
+
   var half = '',
     pad_to_go;
 
-  var str_pad_repeater = function (s, len) {
+  var str_pad_repeater = function(s, len) {
     var collect = '',
       i;
 
@@ -73,28 +74,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/str_pad.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-str_pad('Kevin van Zonneveld', 30, '-=', 'STR_PAD_LEFT');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'-=-=-=-=-=-Kevin van Zonneveld'
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-str_pad('Kevin van Zonneveld', 30, '-', 'STR_PAD_BOTH');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'------Kevin van Zonneveld-----'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

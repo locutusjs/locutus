@@ -15,10 +15,11 @@ alias:
 A JavaScript equivalent of PHP's array_replace_recursive
 
 {% codeblock array/array_replace_recursive.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_replace_recursive.js raw on github %}
-function array_replace_recursive (arr) {
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: array_replace_recursive({'citrus' : ["orange"], 'berries' : ["blackberry", "raspberry"]}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']});
-  // *     returns 1: {citrus : ['pineapple'], berries : ['blueberry', 'raspberry']}
+function array_replace_recursive(arr) {
+  //  discuss at: http://phpjs.org/functions/array_replace_recursive/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: array_replace_recursive({'citrus' : ["orange"], 'berries' : ["blackberry", "raspberry"]}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']});
+  //   returns 1: {citrus : ['pineapple'], berries : ['blueberry', 'raspberry']}
 
   var retObj = {},
     i = 0,
@@ -58,17 +59,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_replace_recursive.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_replace_recursive({'citrus' : ["orange"], 'berries' : ["blackberry", "raspberry"]}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']});
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{citrus : ['pineapple'], berries : ['blueberry', 'raspberry']}
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

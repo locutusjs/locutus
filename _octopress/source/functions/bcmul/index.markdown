@@ -15,20 +15,14 @@ alias:
 A JavaScript equivalent of PHP's bcmul
 
 {% codeblock bc/bcmul.js lang:js https://raw.github.com/kvz/phpjs/master/functions/bc/bcmul.js raw on github %}
-function bcmul (left_operand, right_operand, scale) {
-  // From: http://phpjs.org/functions
-  // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
-  // -    depends on: _phpjs_shared_bc
-  // *     example 1: bcmul(1, 2);
-  // *     returns 1: 3
-  //  @todo: implement these testcases
-  //        bcscale(0);
-  //
-  //        bcmath.test.result('bcmul', 1, '2', bcmul("1", "2"));
-  //        bcmath.test.result('bcmul', 2, '-15', bcmul("-3", "5"));
-  //        bcmath.test.result('bcmul', 3, '12193263111263526900', bcmul("1234567890", "9876543210"));
-  //        bcmath.test.result('bcmul', 4, '3.75', bcmul("2.5", "1.5", 2));
-  //        bcmath.test.result('bcmul', 5, '13008.1522', bcmul("5573.33", "2.334", 4));
+function bcmul(left_operand, right_operand, scale) {
+  //  discuss at: http://phpjs.org/functions/bcmul/
+  // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
+  //  depends on: _phpjs_shared_bc
+  //   example 1: bcmul(1, 2);
+  //   returns 1: 3
+  //        todo: implement these testcases
+
   var libbcmath = this._phpjs_shared_bc();
 
   var first, second, result;
@@ -66,17 +60,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/bc/bcmul.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-bcmul(1, 2);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-3
-{% endcodeblock %}
 
 
 ### Other PHP functions in the bc extension

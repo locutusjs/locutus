@@ -15,16 +15,17 @@ alias:
 A JavaScript equivalent of PHP's isset
 
 {% codeblock var/isset.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/isset.js raw on github %}
-function isset () {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: FremyCompany
-  // +   improved by: Onno Marsman
-  // +   improved by: Rafał Kukawski
-  // *     example 1: isset( undefined, true);
-  // *     returns 1: false
-  // *     example 2: isset( 'Kevin van Zonneveld' );
-  // *     returns 2: true
+function isset() {
+  //  discuss at: http://phpjs.org/functions/isset/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: FremyCompany
+  // improved by: Onno Marsman
+  // improved by: Rafał Kukawski
+  //   example 1: isset( undefined, true);
+  //   returns 1: false
+  //   example 2: isset( 'Kevin van Zonneveld' );
+  //   returns 2: true
+
   var a = arguments,
     l = a.length,
     i = 0,
@@ -55,28 +56,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/var/isset.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-isset( undefined, true);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-false
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-isset( 'Kevin van Zonneveld' );
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
 
 
 ### Other PHP functions in the var extension

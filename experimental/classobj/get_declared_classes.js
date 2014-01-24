@@ -1,4 +1,4 @@
-function get_declared_classes () {
+function get_declared_classes() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +    depends on: class_exists
@@ -11,9 +11,9 @@ function get_declared_classes () {
   // *     returns 1: [C, B, A]
 
   var i = '',
-    j = '',
-    arr = [],
-    already = {};
+      j = '',
+      arr = [],
+      already = {};
 
   for (i in this.window) {
     try {

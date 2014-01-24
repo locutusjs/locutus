@@ -1,9 +1,10 @@
-function ctype_xdigit (text) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: setlocale
-  // *     example 1: ctype_xdigit('01dF');
-  // *     returns 1: true
+function ctype_xdigit(text) {
+  //  discuss at: http://phpjs.org/functions/ctype_xdigit/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: setlocale
+  //   example 1: ctype_xdigit('01dF');
+  //   returns 1: true
+
   if (typeof text !== 'string') {
     return false;
   }

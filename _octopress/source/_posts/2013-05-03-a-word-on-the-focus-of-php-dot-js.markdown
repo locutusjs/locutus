@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A word on the focus of php.js"
+title: "A Word on the Focus of php.js"
 date: 2013-05-03 13:18
 comments: true
 categories: [ focus ]

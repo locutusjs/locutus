@@ -15,13 +15,16 @@ alias:
 A JavaScript equivalent of PHP's getlastmod
 
 {% codeblock info/getlastmod.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/getlastmod.js raw on github %}
-function getlastmod () {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Will not work on browsers which don't support document.lastModified
-  // *     example 1: getlastmod();
-  // *     returns 1: 1237610043
-  return new Date(this.window.document.lastModified).getTime() / 1000;
+function getlastmod() {
+  //  discuss at: http://phpjs.org/functions/getlastmod/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //        note: Will not work on browsers which don't support document.lastModified
+  //        test: skip
+  //   example 1: getlastmod();
+  //   returns 1: 1237610043
+
+  return new Date(this.window.document.lastModified)
+    .getTime() / 1000;
 }
 {% endcodeblock %}
 
@@ -36,17 +39,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/info/getlastmod.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-getlastmod();
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-1237610043
-{% endcodeblock %}
 
 
 ### Other PHP functions in the info extension

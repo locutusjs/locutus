@@ -1,9 +1,10 @@
-function ctype_lower (text) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: setlocale
-  // *     example 1: ctype_lower('abc');
-  // *     returns 1: true
+function ctype_lower(text) {
+  //  discuss at: http://phpjs.org/functions/ctype_lower/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: setlocale
+  //   example 1: ctype_lower('abc');
+  //   returns 1: true
+
   if (typeof text !== 'string') {
     return false;
   }

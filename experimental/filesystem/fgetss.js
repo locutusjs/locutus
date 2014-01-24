@@ -1,4 +1,4 @@
-function fgetss (handle, length, allowable_tags) {
+function fgetss(handle, length, allowable_tags) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: strip_tags
@@ -7,7 +7,7 @@ function fgetss (handle, length, allowable_tags) {
   // *     returns 1: ''
 
   var start = 0,
-    fullline = '';
+      fullline = '';
 
   if (!this.php_js || !this.php_js.resourceData || !this.php_js.resourceDataPointer || length !== undefined && !length) {
     return false;

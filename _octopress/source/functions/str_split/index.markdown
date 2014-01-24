@@ -15,16 +15,17 @@ alias:
 A JavaScript equivalent of PHP's str_split
 
 {% codeblock strings/str_split.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/str_split.js raw on github %}
-function str_split (string, split_length) {
-  // From: http://phpjs.org/functions
-  // +     original by: Martijn Wieringa
-  // +     improved by: Brett Zamir (http://brett-zamir.me)
-  // +     bugfixed by: Onno Marsman
-  // +      revised by: Theriault
-  // +        input by: Bjorn Roesbeke (http://www.bjornroesbeke.be/)
-  // +      revised by: Rafał Kukawski (http://blog.kukawski.pl/)
-  // *       example 1: str_split('Hello Friend', 3);
-  // *       returns 1: ['Hel', 'lo ', 'Fri', 'end']
+function str_split(string, split_length) {
+  //  discuss at: http://phpjs.org/functions/str_split/
+  // original by: Martijn Wieringa
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Onno Marsman
+  //  revised by: Theriault
+  //  revised by: Rafał Kukawski (http://blog.kukawski.pl/)
+  //    input by: Bjorn Roesbeke (http://www.bjornroesbeke.be/)
+  //   example 1: str_split('Hello Friend', 3);
+  //   returns 1: ['Hel', 'lo ', 'Fri', 'end']
+
   if (split_length === null) {
     split_length = 1;
   }
@@ -54,17 +55,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/str_split.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-str_split('Hello Friend', 3);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-['Hel', 'lo ', 'Fri', 'end']
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

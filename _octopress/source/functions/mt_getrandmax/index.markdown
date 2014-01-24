@@ -15,11 +15,12 @@ alias:
 A JavaScript equivalent of PHP's mt_getrandmax
 
 {% codeblock math/mt_getrandmax.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/mt_getrandmax.js raw on github %}
-function mt_getrandmax () {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // *     example 1: mt_getrandmax();
-  // *     returns 1: 2147483647
+function mt_getrandmax() {
+  //  discuss at: http://phpjs.org/functions/mt_getrandmax/
+  // original by: Onno Marsman
+  //   example 1: mt_getrandmax();
+  //   returns 1: 2147483647
+
   return 2147483647;
 }
 {% endcodeblock %}
@@ -35,17 +36,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/mt_getrandmax.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-mt_getrandmax();
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-2147483647
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

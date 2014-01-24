@@ -1,11 +1,12 @@
-function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   based on: Imgen Tata (http://www.myipdf.com/)
-  // +   bugfixed by: Imgen Tata (http://www.myipdf.com/)
-  // %        note 1: The minimal argument is not currently supported
-  // *     example 1: xdiff_string_diff('', 'Hello world!');
-  // *     returns 1: '@@ -0,0 +1,1 @@\n+Hello world!'
+function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
+  //  discuss at: http://phpjs.org/functions/xdiff_string_diff
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //    based on: Imgen Tata (http://www.myipdf.com/)
+  // bugfixed by: Imgen Tata (http://www.myipdf.com/)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //        note: The minimal argument is not currently supported
+  //   example 1: xdiff_string_diff('', 'Hello world!');
+  //   returns 1: '@@ -0,0 +1,1 @@\n+Hello world!'
 
   // (This code was done by Imgen Tata; I have only reformatted for use in php.js)
 
@@ -13,7 +14,8 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
   var i = 0,
     j = 0,
     k = 0,
-    ori_hunk_start, new_hunk_start, ori_hunk_end, new_hunk_end, ori_hunk_line_no, new_hunk_line_no, ori_hunk_size, new_hunk_size,
+    ori_hunk_start, new_hunk_start, ori_hunk_end, new_hunk_end, ori_hunk_line_no, new_hunk_line_no, ori_hunk_size,
+    new_hunk_size,
     // Potential configuration
     MAX_CONTEXT_LINES = Number.POSITIVE_INFINITY,
     MIN_CONTEXT_LINES = 0,
@@ -28,20 +30,20 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
     DELETION_INDICATOR = '-',
     ADDITION_INDICATOR = '+',
     ori_lines, new_lines, NEW_LINE = '\n',
-/*
-    *Trims string
-    */
-    trim = function (text) {
+    /**
+     * Trims string
+     */
+    trim = function(text) {
       if (typeof text !== 'string') {
-        throw Error('String parameter required');
+        throw new Error('String parameter required');
       }
 
       return text.replace(/(^\s*)|(\s*$)/g, '');
     },
-/*
-    *Verifies type of arguments
-    */
-    verify_type = function (type) {
+    /**
+     * Verifies type of arguments
+     */
+    verify_type = function(type) {
       var args = arguments,
         args_len = arguments.length,
         basic_types = ['number', 'boolean', 'string', 'function', 'object', 'undefined'],
@@ -66,7 +68,7 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
 
           if (basic_type == type) {
             for (i = 1; i < args_len; i++) {
-              if (typeof args[i] != type) {
+              if (typeof args[i] !== type) {
                 throw new Error('Bad type');
               }
             }
@@ -85,10 +87,10 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
         }
       }
     },
-/*
-    *Checks if the specified array contains an element with specified value
-    */
-    has_value = function (array, value) {
+    /**
+     * Checks if the specified array contains an element with specified value
+     */
+    has_value = function(array, value) {
       var i;
       verify_type(Array, array);
 
@@ -100,12 +102,12 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
 
       return false;
     },
-/*
-    *Checks the type of arguments
-    *@param {String | Function} type Specifies the desired type
-    *@return {Boolean} Return true if all arguments after the type argument are of specified type. Else false
-    */
-    are_type_of = function (type) {
+    /**
+     * Checks the type of arguments
+     * @param {String | Function} type Specifies the desired type
+     * @return {Boolean} Return true if all arguments after the type argument are of specified type. Else false
+     */
+    are_type_of = function(type) {
       var args = arguments,
         args_len = arguments.length,
         basic_types = ['number', 'boolean', 'string', 'function', 'object', 'undefined'],
@@ -151,10 +153,10 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
 
       return true;
     },
-/*
-    *Initialize and return an array with specified size and initial value
-    */
-    get_initialized_array = function (array_size, init_value) {
+    /*
+     * Initialize and return an array with specified size and initial value
+     */
+    get_initialized_array = function(array_size, init_value) {
       var array = [],
         i;
       verify_type('number', array_size);
@@ -165,10 +167,10 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
 
       return array;
     },
-/*
-    *Splits text into lines and return as a string array
-    */
-    split_into_lines = function (text) {
+    /**
+     * Splits text into lines and return as a string array
+     */
+    split_into_lines = function(text) {
       verify_type('string', text);
 
       if (text === '') {
@@ -176,14 +178,14 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
       }
       return text.split('\n');
     },
-    is_empty_array = function (obj) {
+    is_empty_array = function(obj) {
       return are_type_of(Array, obj) && obj.length === 0;
     },
-/*
-    * Finds longest common sequence between two sequences
-    *See http://wordaligned.org/articles/longest-common-subsequence
-    */
-    find_longest_common_sequence = function (seq1, seq2, seq1_is_in_lcs, seq2_is_in_lcs) {
+    /**
+     * Finds longest common sequence between two sequences
+     * @see {@link http://wordaligned.org/articles/longest-common-subsequence}
+     */
+    find_longest_common_sequence = function(seq1, seq2, seq1_is_in_lcs, seq2_is_in_lcs) {
       if (!are_type_of(Array, seq1, seq2)) {
         throw new Error('Array parameters are required');
       }
@@ -194,10 +196,9 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
       }
 
       // Function to calculate lcs lengths
-      var lcs_lens = function (xs, ys) {
-        var curr = get_initialized_array(ys.length + 1, 0);
-        var prev;
-        var i, j;
+      var lcs_lens = function(xs, ys) {
+        var i, j, prev,
+          curr = get_initialized_array(ys.length + 1, 0);
 
         for (i = 0; i < xs.length; i++) {
           prev = curr.slice(0);
@@ -213,44 +214,41 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
         return curr;
       },
         // Function to find lcs and fill in the array to indicate the optimal longest common sequence
-        find_lcs = function (xs, xidx, xs_is_in, ys) {
-          var nx = xs.length;
-          var ny = ys.length;
-          var i;
-          var xb, xe;
-          var ll_b, ll_e;
-          var pivot;
-          var max;
-          var yb, ye;
+        find_lcs = function(xs, xidx, xs_is_in, ys) {
+          var i, xb, xe, ll_b, ll_e, pivot, max, yb, ye,
+            nx = xs.length,
+            ny = ys.length;
 
           if (nx === 0) {
             return [];
-          } else if (nx === 1) {
+          }
+          if (nx === 1) {
             if (has_value(ys, xs[0])) {
               xs_is_in[xidx] = true;
               return [xs[0]];
-            } else {
-              return [];
             }
-          } else {
-            i = Math.floor(nx / 2);
-            xb = xs.slice(0, i);
-            xe = xs.slice(i);
-            ll_b = lcs_lens(xb, ys);
-            ll_e = lcs_lens(xe.slice(0).reverse(), ys.slice(0).reverse());
-
-            pivot = 0;
-            max = 0;
-            for (j = 0; j <= ny; j++) {
-              if (ll_b[j] + ll_e[ny - j] > max) {
-                pivot = j;
-                max = ll_b[j] + ll_e[ny - j];
-              }
-            }
-            yb = ys.slice(0, pivot);
-            ye = ys.slice(pivot);
-            return find_lcs(xb, xidx, xs_is_in, yb).concat(find_lcs(xe, xidx + i, xs_is_in, ye));
+            return [];
           }
+          i = Math.floor(nx / 2);
+          xb = xs.slice(0, i);
+          xe = xs.slice(i);
+          ll_b = lcs_lens(xb, ys);
+          ll_e = lcs_lens(xe.slice(0)
+            .reverse(), ys.slice(0)
+            .reverse());
+
+          pivot = 0;
+          max = 0;
+          for (j = 0; j <= ny; j++) {
+            if (ll_b[j] + ll_e[ny - j] > max) {
+              pivot = j;
+              max = ll_b[j] + ll_e[ny - j];
+            }
+          }
+          yb = ys.slice(0, pivot);
+          ye = ys.slice(pivot);
+          return find_lcs(xb, xidx, xs_is_in, yb)
+            .concat(find_lcs(xe, xidx + i, xs_is_in, ye));
         };
 
       // Fill in seq1_is_in_lcs to find the optimal longest common subsequence of first sequence
@@ -278,11 +276,13 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
     new_len = new_lines.length,
     ori_is_in_lcs = get_initialized_array(ori_len, false),
     new_is_in_lcs = get_initialized_array(new_len, false),
-    lcs_len = find_longest_common_sequence(ori_lines, new_lines, ori_is_in_lcs, new_is_in_lcs).length,
+    lcs_len = find_longest_common_sequence(ori_lines, new_lines, ori_is_in_lcs, new_is_in_lcs)
+      .length,
     unidiff = '';
 
   if (lcs_len === 0) { // No common sequence
-    unidiff = HEADER_PREFIX + ORIGINAL_INDICATOR + (ori_len > 0 ? '1' : '0') + RANGE_SEPARATOR + ori_len + ' ' + NEW_INDICATOR + (new_len > 0 ? '1' : '0') + RANGE_SEPARATOR + new_len + HEADER_SUFFIX;
+    unidiff = HEADER_PREFIX + ORIGINAL_INDICATOR + (ori_len > 0 ? '1' : '0') + RANGE_SEPARATOR + ori_len + ' ' +
+      NEW_INDICATOR + (new_len > 0 ? '1' : '0') + RANGE_SEPARATOR + new_len + HEADER_SUFFIX;
 
     for (i = 0; i < ori_len; i++) {
       unidiff += NEW_LINE + DELETION_INDICATOR + ori_lines[i];
@@ -301,7 +301,7 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
     actual_trailing_context = [],
 
     // Regularize leading context by the context_lines parameter
-    regularize_leading_context = function (context) {
+    regularize_leading_context = function(context) {
       if (context.length === 0 || context_lines === 0) {
         return [];
       }
@@ -312,7 +312,7 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
     },
 
     // Regularize trailing context by the context_lines parameter
-    regularize_trailing_context = function (context) {
+    regularize_trailing_context = function(context) {
       if (context.length === 0 || context_lines === 0) {
         return [];
       }
@@ -354,7 +354,7 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
     }
 
     if (k >= lcs_len || // No more in longest common lines
-    trailing_context.length >= 2 * context_lines) { // Context break found
+      trailing_context.length >= 2 * context_lines) { // Context break found
       if (trailing_context.length < 2 * context_lines) { // It must be last block of common lines but not a context break
         trailing_context = [];
 
@@ -384,11 +384,13 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
       new_hunk_size = new_hunk_end - new_hunk_start;
 
       // Build header
-      unidiff += HEADER_PREFIX + ORIGINAL_INDICATOR + ori_hunk_line_no + RANGE_SEPARATOR + ori_hunk_size + ' ' + NEW_INDICATOR + new_hunk_line_no + RANGE_SEPARATOR + new_hunk_size + HEADER_SUFFIX + NEW_LINE;
+      unidiff += HEADER_PREFIX + ORIGINAL_INDICATOR + ori_hunk_line_no + RANGE_SEPARATOR + ori_hunk_size + ' ' +
+        NEW_INDICATOR + new_hunk_line_no + RANGE_SEPARATOR + new_hunk_size + HEADER_SUFFIX + NEW_LINE;
 
       // Build the diff hunk content
       while (ori_hunk_start < ori_hunk_end || new_hunk_start < new_hunk_end) {
-        if (ori_hunk_start < ori_hunk_end && ori_is_in_lcs[ori_hunk_start] === true && new_is_in_lcs[new_hunk_start] === true) { // The context line
+        if (ori_hunk_start < ori_hunk_end && ori_is_in_lcs[ori_hunk_start] === true && new_is_in_lcs[
+          new_hunk_start] === true) { // The context line
           unidiff += CONTEXT_INDICATOR + ori_lines[ori_hunk_start] + NEW_LINE;
           ori_hunk_start++;
           new_hunk_start++;

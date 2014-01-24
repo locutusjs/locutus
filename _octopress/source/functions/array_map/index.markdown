@@ -15,15 +15,16 @@ alias:
 A JavaScript equivalent of PHP's array_map
 
 {% codeblock array/array_map.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_map.js raw on github %}
-function array_map (callback) {
-  // From: http://phpjs.org/functions
-  // +   original by: Andrea Giammarchi (http://webreflection.blogspot.com)
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   input by: thekid
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: If the callback is a string (or object, if an array is supplied), it can only work if the function name is in the global context
-  // *     example 1: array_map( function (a){return (a * a * a)}, [1, 2, 3, 4, 5] );
-  // *     returns 1: [ 1, 8, 27, 64, 125 ]
+function array_map(callback) {
+  //  discuss at: http://phpjs.org/functions/array_map/
+  // original by: Andrea Giammarchi (http://webreflection.blogspot.com)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //    input by: thekid
+  //        note: If the callback is a string (or object, if an array is supplied), it can only work if the function name is in the global context
+  //   example 1: array_map( function (a){return (a * a * a)}, [1, 2, 3, 4, 5] );
+  //   returns 1: [ 1, 8, 27, 64, 125 ]
+
   var argc = arguments.length,
     argv = arguments,
     glbl = this.window,
@@ -47,8 +48,7 @@ function array_map (callback) {
     if (callback) {
       if (typeof callback === 'string') {
         cb = glbl[callback];
-      }
-      else if (typeof callback === 'object' && callback.length) {
+      } else if (typeof callback === 'object' && callback.length) {
         obj = typeof callback[0] === 'string' ? glbl[callback[0]] : callback[0];
         if (typeof obj === 'undefined') {
           throw 'Object not found: ' + callback[0];
@@ -78,17 +78,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_map.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_map( function (a){return (a * a * a)}, [1, 2, 3, 4, 5] );
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-[ 1, 8, 27, 64, 125 ]
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

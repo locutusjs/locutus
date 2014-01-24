@@ -1,9 +1,12 @@
-function ctype_cntrl (text) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: setlocale
-  // *     example 1: ctype_cntrl('\u0020');
-  // *     returns 1: true
+function ctype_cntrl(text) {
+  //  discuss at: http://phpjs.org/functions/ctype_cntrl/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: setlocale
+  //   example 1: ctype_cntrl('\u0020');
+  //   returns 1: false
+  //   example 2: ctype_cntrl('\u001F');
+  //   returns 2: true
+
   if (typeof text !== 'string') {
     return false;
   }

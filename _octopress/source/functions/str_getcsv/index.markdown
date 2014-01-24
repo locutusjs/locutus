@@ -15,31 +15,40 @@ alias:
 A JavaScript equivalent of PHP's str_getcsv
 
 {% codeblock strings/str_getcsv.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/str_getcsv.js raw on github %}
-function str_getcsv (input, delimiter, enclosure, escape) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: str_getcsv('"abc", "def", "ghi"');
-  // *     returns 1: ['abc', 'def', 'ghi']
+function str_getcsv(input, delimiter, enclosure, escape) {
+  //  discuss at: http://phpjs.org/functions/str_getcsv/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: str_getcsv('"abc", "def", "ghi"');
+  //   returns 1: ['abc', 'def', 'ghi']
+
   var output = [];
-  var backwards = function (str) { // We need to go backwards to simulate negative look-behind (don't split on
+  var backwards = function(str) { // We need to go backwards to simulate negative look-behind (don't split on
     //an escaped enclosure even if followed by the delimiter and another enclosure mark)
-    return str.split('').reverse().join('');
+    return str.split('')
+      .reverse()
+      .join('');
   };
-  var pq = function (str) { // preg_quote()
-    return (str + '').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1");
+  var pq = function(str) { // preg_quote()
+    return (str + '')
+      .replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, '\\$1');
   };
 
   delimiter = delimiter || ',';
   enclosure = enclosure || '"';
   escape = escape || '\\';
 
-  input = input.replace(new RegExp('^\\s*' + pq(enclosure)), '').replace(new RegExp(pq(enclosure) + '\\s*$'), '');
+  input = input.replace(new RegExp('^\\s*' + pq(enclosure)), '')
+    .replace(new RegExp(pq(enclosure) + '\\s*$'), '');
 
   // PHP behavior may differ by including whitespace even outside of the enclosure
-  input = backwards(input).split(new RegExp(pq(enclosure) + '\\s*' + pq(delimiter) + '\\s*' + pq(enclosure) + '(?!' + pq(escape) + ')', 'g')).reverse();
+  input = backwards(input)
+    .split(new RegExp(pq(enclosure) + '\\s*' + pq(delimiter) + '\\s*' + pq(enclosure) + '(?!' + pq(escape) + ')',
+      'g'))
+    .reverse();
 
   for (var i = 0; i < input.length; i++) {
-    output.push(backwards(input[i]).replace(new RegExp(pq(escape) + pq(enclosure), 'g'), enclosure));
+    output.push(backwards(input[i])
+      .replace(new RegExp(pq(escape) + pq(enclosure), 'g'), enclosure));
   }
 
   return output;
@@ -57,17 +66,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/str_getcsv.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-str_getcsv('"abc", "def", "ghi"');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-['abc', 'def', 'ghi']
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

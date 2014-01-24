@@ -15,16 +15,17 @@ alias:
 A JavaScript equivalent of PHP's array_intersect
 
 {% codeblock array/array_intersect.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_intersect.js raw on github %}
-function array_intersect (arr1) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: These only output associative arrays (would need to be
-  // %        note 1: all numeric and counting from zero to be numeric)
-  // *     example 1: $array1 = {'a' : 'green', 0:'red', 1: 'blue'};
-  // *     example 1: $array2 = {'b' : 'green', 0:'yellow', 1:'red'};
-  // *     example 1: $array3 = ['green', 'red'];
-  // *     example 1: $result = array_intersect($array1, $array2, $array3);
-  // *     returns 1: {0: 'red', a: 'green'}
+function array_intersect(arr1) {
+  //  discuss at: http://phpjs.org/functions/array_intersect/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //        note: These only output associative arrays (would need to be
+  //        note: all numeric and counting from zero to be numeric)
+  //   example 1: $array1 = {'a' : 'green', 0:'red', 1: 'blue'};
+  //   example 1: $array2 = {'b' : 'green', 0:'yellow', 1:'red'};
+  //   example 1: $array3 = ['green', 'red'];
+  //   example 1: $result = array_intersect($array1, $array2, $array3);
+  //   returns 1: {0: 'red', a: 'green'}
+
   var retArr = {},
     argl = arguments.length,
     arglm1 = argl - 1,
@@ -65,20 +66,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_intersect.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-$array1 = {'a' : 'green', 0:'red', 1: 'blue'};
-$array2 = {'b' : 'green', 0:'yellow', 1:'red'};
-$array3 = ['green', 'red'];
-$result = array_intersect($array1, $array2, $array3);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{0: 'red', a: 'green'}
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

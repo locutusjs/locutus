@@ -1,14 +1,14 @@
-function ob_list_handlers () {
+function ob_list_handlers() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: ob_list_handlers();
   // *     returns 1: ['default output handler', 'myOwnHandler']
 
   var i = 0,
-    arr = [],
-    name = '',
-    cbname = '';
-  var getFuncName = function (fn) {
+      arr = [],
+      name = '',
+      cbname = '';
+  var getFuncName = function(fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
     if (!name) {
       return '(Anonymous)';
@@ -18,7 +18,7 @@ function ob_list_handlers () {
 
   this.php_js = this.php_js || {};
   var phpjs = this.php_js,
-    ini = phpjs.ini;
+      ini = phpjs.ini;
 
   if (!phpjs.obs || !phpjs.obs.length) {
     if (ini && ini['output_buffering'] && (typeof ini['output_buffering'].local_value !== 'string' || ini['output_buffering'].local_value.toLowerCase() !== 'off')) {

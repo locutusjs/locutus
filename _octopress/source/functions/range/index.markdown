@@ -15,17 +15,18 @@ alias:
 A JavaScript equivalent of PHP's range
 
 {% codeblock array/range.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/range.js raw on github %}
-function range (low, high, step) {
-  // From: http://phpjs.org/functions
-  // +   original by: Waldo Malqui Silva
-  // *     example 1: range ( 0, 12 );
-  // *     returns 1: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-  // *     example 2: range( 0, 100, 10 );
-  // *     returns 2: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-  // *     example 3: range( 'a', 'i' );
-  // *     returns 3: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
-  // *     example 4: range( 'c', 'a' );
-  // *     returns 4: ['c', 'b', 'a']
+function range(low, high, step) {
+  //  discuss at: http://phpjs.org/functions/range/
+  // original by: Waldo Malqui Silva
+  //   example 1: range ( 0, 12 );
+  //   returns 1: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  //   example 2: range( 0, 100, 10 );
+  //   returns 2: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+  //   example 3: range( 'a', 'i' );
+  //   returns 3: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
+  //   example 4: range( 'c', 'a' );
+  //   returns 4: ['c', 'b', 'a']
+
   var matrix = [];
   var inival, endval, plus;
   var walker = step || 1;
@@ -71,39 +72,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/range.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-range ( 0, 12 );
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-range( 0, 100, 10 );
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-range( 'a', 'i' );
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

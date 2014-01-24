@@ -15,14 +15,15 @@ alias:
 A JavaScript equivalent of PHP's is_double
 
 {% codeblock var/is_double.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_double.js raw on github %}
-function is_double (mixed_var) {
-  // From: http://phpjs.org/functions
-  // +   original by: Paulo Freitas
-  //  -   depends on: is_float
-  // %        note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
-  // %        note 1: it different from the PHP implementation. We can't fix this unfortunately.
-  // *     example 1: is_double(186.31);
-  // *     returns 1: true
+function is_double(mixed_var) {
+  //  discuss at: http://phpjs.org/functions/is_double/
+  // original by: Paulo Freitas
+  //  depends on: is_float
+  //        note: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //        note: it different from the PHP implementation. We can't fix this unfortunately.
+  //   example 1: is_double(186.31);
+  //   returns 1: true
+
   return this.is_float(mixed_var);
 }
 {% endcodeblock %}
@@ -38,17 +39,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/var/is_double.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-is_double(186.31);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
 
 
 ### Other PHP functions in the var extension

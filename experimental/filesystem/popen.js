@@ -1,4 +1,4 @@
-function popen (filename, mode, use_include_path, context) {
+function popen(filename, mode, use_include_path, context) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   input by: Paul Smith
@@ -8,9 +8,9 @@ function popen (filename, mode, use_include_path, context) {
   // *     returns 1: 'Resource id #1'
 
   var resource = {},
-    i = 0,
-    that = this;
-  var getFuncName = function (fn) {
+      i = 0,
+      that = this;
+  var getFuncName = function(fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn);
     if (!name) {
       return '(Anonymous)';
@@ -19,15 +19,15 @@ function popen (filename, mode, use_include_path, context) {
   };
 
   // BEGIN file inclusion: file_get_contents
-  var file_get_contents = function (url) {
-    var req = that.window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
+  var file_get_contents = function(url) {
+    var req = that.window.ActiveXObject ? new ActiveXObject('Microsoft.XMLHTTP') : new XMLHttpRequest();
     if (!req) {
       throw new Error('XMLHttpRequest not supported');
     }
     if (!(/^http/).test(url)) { // Allow references within or below the same directory (should fix to allow other relative references or root reference; could make dependent on parse_url())
       url = that.window.location.href + '/' + url;
     }
-    req.open("GET", url, false);
+    req.open('GET', url, false);
     req.send(null);
     return req.responseText;
   };
@@ -42,22 +42,22 @@ function popen (filename, mode, use_include_path, context) {
 
   for (i = 0; i < mode.length; i++) { // Have to deal with other flags if ever allow
     switch (mode.charAt(i)) {
-    case 'r':
-      if (!mode.charAt(i + 1) || mode.charAt(i + 1) !== '+') {
-        break;
-      }
-    case 'w':
+      case 'r':
+        if (!mode.charAt(i + 1) || mode.charAt(i + 1) !== '+') {
+          break;
+        }
+      case 'w':
       // or 'w+'
-    case 'a':
+      case 'a':
       // or 'a+'
-    case 'x':
-      // or 'x+'
-      throw 'Writing is not implemented';
-    case 'b':
-    case 't':
-      throw 'Windows-only modes are not supported';
-    default:
-      throw 'Unrecognized file mode passed to ' + getFuncName(arguments.caller) + '()';
+      case 'x':
+        // or 'x+'
+        throw 'Writing is not implemented';
+      case 'b':
+      case 't':
+        throw 'Windows-only modes are not supported';
+      default:
+        throw 'Unrecognized file mode passed to ' + getFuncName(arguments.caller) + '()';
     }
   }
 
@@ -76,13 +76,13 @@ function popen (filename, mode, use_include_path, context) {
     this.id = id;
     this.opener = opener;
   }
-  PHPJS_Resource.prototype.toString = function () {
+  PHPJS_Resource.prototype.toString = function() {
     return 'Resource id #' + this.id;
   };
-  PHPJS_Resource.prototype.get_resource_type = function () {
+  PHPJS_Resource.prototype.get_resource_type = function() {
     return this.type;
   };
-  PHPJS_Resource.prototype.var_dump = function () {
+  PHPJS_Resource.prototype.var_dump = function() {
     return 'resource(' + this.id + ') of type (' + this.type + ')';
   };
   // END STATIC

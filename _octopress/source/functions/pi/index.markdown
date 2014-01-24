@@ -15,12 +15,13 @@ alias:
 A JavaScript equivalent of PHP's pi
 
 {% codeblock math/pi.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/pi.js raw on github %}
-function pi () {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // +   improved by: dude
-  // *     example 1: pi(8723321.4);
-  // *     returns 1: 3.141592653589793
+function pi() {
+  //  discuss at: http://phpjs.org/functions/pi/
+  // original by: Onno Marsman
+  // improved by: dude
+  //   example 1: pi(8723321.4);
+  //   returns 1: 3.141592653589793
+
   return 3.141592653589793; // Math.PI
 }
 {% endcodeblock %}
@@ -36,17 +37,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/pi.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-pi(8723321.4);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-3.141592653589793
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

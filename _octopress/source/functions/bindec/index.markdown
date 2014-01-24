@@ -15,16 +15,18 @@ alias:
 A JavaScript equivalent of PHP's bindec
 
 {% codeblock math/bindec.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/bindec.js raw on github %}
-function bindec (binary_string) {
-  // From: http://phpjs.org/functions
-  // +   original by: Philippe Baumann
-  // *     example 1: bindec('110011');
-  // *     returns 1: 51
-  // *     example 2: bindec('000110011');
-  // *     returns 2: 51
-  // *     example 3: bindec('111');
-  // *     returns 3: 7
-  binary_string = (binary_string + '').replace(/[^01]/gi, '');
+function bindec(binary_string) {
+  //  discuss at: http://phpjs.org/functions/bindec/
+  // original by: Philippe Baumann
+  //   example 1: bindec('110011');
+  //   returns 1: 51
+  //   example 2: bindec('000110011');
+  //   returns 2: 51
+  //   example 3: bindec('111');
+  //   returns 3: 7
+
+  binary_string = (binary_string + '')
+    .replace(/[^01]/gi, '');
   return parseInt(binary_string, 2);
 }
 {% endcodeblock %}
@@ -40,39 +42,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/bindec.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-bindec('110011');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-51
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-bindec('000110011');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-51
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-bindec('111');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-7
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

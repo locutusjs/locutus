@@ -1,11 +1,11 @@
 function preg_replace_callback(pattern, callback, subject, limit) {
-    // http://kevin.vanzonneveld.net
-    // +   original by: James Brumond (http://kbjrweb.com/)
-    // *     example 1:
-    // *     returns 1:
+  // http://kevin.vanzonneveld.net
+  // +   original by: James Brumond (http://kbjrweb.com/)
+  // *     example 1:
+  // *     returns 1:
 
-    // Note: We should take a very serious look at Steve Levithan's XRegExp which implements Unicode classes and two extra flags: http://blog.stevenlevithan.com/archives/xregexp-javascript-regex-constructor
-    // We also need to get rid of eval usage!
+  // Note: We should take a very serious look at Steve Levithan's XRegExp which implements Unicode classes and two extra flags: http://blog.stevenlevithan.com/archives/xregexp-javascript-regex-constructor
+  // We also need to get rid of eval usage!
 
 	// Run variable tests
 	if (typeof pattern !== 'string') {return false;}

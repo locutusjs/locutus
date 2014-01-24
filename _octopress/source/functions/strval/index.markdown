@@ -15,15 +15,15 @@ alias:
 A JavaScript equivalent of PHP's strval
 
 {% codeblock var/strval.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/strval.js raw on github %}
-function strval (str) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Comment out the entire switch if you want JS-like behavior instead of PHP behavior
-  // -    depends on: gettype
-  // *     example 1: strval({red: 1, green: 2, blue: 3, white: 4});
-  // *     returns 1: 'Array'
+function strval(str) {
+  //  discuss at: http://phpjs.org/functions/strval/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: gettype
+  //   example 1: strval({red: 1, green: 2, blue: 3, white: 4});
+  //   returns 1: 'Object'
+
   var type = '';
 
   if (str === null) {
@@ -31,16 +31,19 @@ function strval (str) {
   }
 
   type = this.gettype(str);
+
+  // Comment out the entire switch if you want JS-like
+  // behavior instead of PHP behavior
   switch (type) {
-  case 'boolean':
-    if (str === true) {
-      return '1';
-    }
-    return '';
-  case 'array':
-    return 'Array';
-  case 'object':
-    return 'Object';
+    case 'boolean':
+      if (str === true) {
+        return '1';
+      }
+      return '';
+    case 'array':
+      return 'Array';
+    case 'object':
+      return 'Object';
   }
 
   return str;
@@ -58,17 +61,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/var/strval.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-strval({red: 1, green: 2, blue: 3, white: 4});
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'Array'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the var extension

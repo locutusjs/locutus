@@ -1,4 +1,4 @@
-function ini_alter (varname, newvalue) {
+function ini_alter(varname, newvalue) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: ini_set

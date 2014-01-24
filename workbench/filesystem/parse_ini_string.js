@@ -1,47 +1,47 @@
 // Original: http://nl3.php.net/manual/en/function.parse-ini-file.php#78815
 
 
-function parse_ini_string ( $filepath ) {
-    $ini = file( $filepath );
-    if ( count( $ini ) == 0 ) { return array(); }
-    $sections = array();
-    $values = array();
-    $globals = array();
-    $i = 0;
-    for( $ini in $line ){
-        $line = trim( $line );
-        // Comments
-        if ( $line === '' || $line.substr(0,1) == ';' ) { continue; }
-        // Sections
-        if ( $line.substr(0,1) == '[' ) {
-            $sections.push($line.substr(1, -1));
-            $i++;
-            continue;
-        }
-        // Key-value pair
-        list( $key, $value ) = explode( '=', $line, 2 );
-        $key = trim( $key );
-        $value = trim( $value );
-        if ( $i == 0 ) {
-            // Array values
-            if ( substr( $line, -1, 2 ) == '[]' ) {
-                $globals[ $key ].push($value);
-            } else {
-                $globals[ $key ].push($value);
-            }
-        } else {
-            // Array values
-            if ( substr( $line, -1, 2 ) == '[]' ) {
-                $values[ $i - 1 ][ $key ].push($value);
-            } else {
-                $values[ $i - 1 ][ $key ] = $value;
-            }
-        }
+function parse_ini_string($filepath ) {
+  $ini = file($filepath);
+  if (count($ini) == 0) { return array(); }
+  $sections = array();
+  $values = array();
+  $globals = array();
+  $i = 0;
+  for ($ini in $line) {
+    $line = trim($line);
+    // Comments
+    if ($line === '' || $line.substr(0, 1) == ';') { continue; }
+    // Sections
+    if ($line.substr(0, 1) == '[') {
+      $sections.push($line.substr(1, -1));
+      $i++;
+      continue;
     }
-    for( $j=0; $j<$i; $j++ ) {
-        $result[ $sections[ $j ] ] = $values[ $j ];
+    // Key-value pair
+    list($key, $value) = explode('=', $line, 2);
+    $key = trim($key);
+    $value = trim($value);
+    if ($i == 0) {
+      // Array values
+      if (substr($line, -1, 2) == '[]') {
+        $globals[$key].push($value);
+      } else {
+        $globals[$key].push($value);
+      }
+    } else {
+      // Array values
+      if (substr($line, -1, 2) == '[]') {
+        $values[$i - 1][$key].push($value);
+      } else {
+        $values[$i - 1][$key] = $value;
+      }
     }
-    return $result + $globals;
+  }
+  for ($j = 0; $j < $i; $j++) {
+    $result[$sections[$j]] = $values[$j];
+  }
+  return $result + $globals;
 }
 
 // Better? http://nl3.php.net/manual/en/function.parse-ini-file.php#82900

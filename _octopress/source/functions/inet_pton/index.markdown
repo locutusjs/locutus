@@ -15,13 +15,14 @@ alias:
 A JavaScript equivalent of PHP's inet_pton
 
 {% codeblock network/inet_pton.js lang:js https://raw.github.com/kvz/phpjs/master/functions/network/inet_pton.js raw on github %}
-function inet_pton (a) {
-  // From: http://phpjs.org/functions
-  // +   original by: Theriault
-  // *     example 1: inet_pton('::');
-  // *     returns 1: '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0' (binary)
-  // *     example 2: inet_pton('127.0.0.1');
-  // *     returns 2: '\x7F\x00\x00\x01' (binary)
+function inet_pton(a) {
+  //  discuss at: http://phpjs.org/functions/inet_pton/
+  // original by: Theriault
+  //   example 1: inet_pton('::');
+  //   returns 1: '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0'
+  //   example 2: inet_pton('127.0.0.1');
+  //   returns 2: '\x7F\x00\x00\x01'
+
   var r, m, x, i, j, f = String.fromCharCode;
   m = a.match(/^(?:\d{1,3}(?:\.|$)){4}/); // IPv4
   if (m) {
@@ -54,7 +55,8 @@ function inet_pton (a) {
     if (x === 16) {
       return m[1] + m[3];
     } else if (x < 16 && m[2].length > 0) {
-      return m[1] + (new Array(16 - x + 1)).join('\x00') + m[3];
+      return m[1] + (new Array(16 - x + 1))
+        .join('\x00') + m[3];
     }
   }
   return false; // Invalid IP.
@@ -72,28 +74,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/network/inet_pton.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-inet_pton('::');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0' (binary)
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-inet_pton('127.0.0.1');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'\x7F\x00\x00\x01' (binary)
-{% endcodeblock %}
 
 
 ### Other PHP functions in the network extension

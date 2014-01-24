@@ -15,11 +15,12 @@ alias:
 A JavaScript equivalent of PHP's pow
 
 {% codeblock math/pow.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/pow.js raw on github %}
-function pow (base, exp) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // *     example 1: pow(8723321.4, 7);
-  // *     returns 1: 3.843909168077899e+48
+function pow(base, exp) {
+  //  discuss at: http://phpjs.org/functions/pow/
+  // original by: Onno Marsman
+  //   example 1: pow(8723321.4, 7);
+  //   returns 1: 3.8439091680778995e+48
+
   return Math.pow(base, exp);
 }
 {% endcodeblock %}
@@ -35,17 +36,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/pow.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-pow(8723321.4, 7);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-3.843909168077899e+48
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

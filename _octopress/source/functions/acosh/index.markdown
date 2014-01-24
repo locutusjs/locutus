@@ -15,11 +15,12 @@ alias:
 A JavaScript equivalent of PHP's acosh
 
 {% codeblock math/acosh.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/acosh.js raw on github %}
-function acosh (arg) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // *     example 1: acosh(8723321.4);
-  // *     returns 1: 16.674657798418625
+function acosh(arg) {
+  //  discuss at: http://phpjs.org/functions/acosh/
+  // original by: Onno Marsman
+  //   example 1: acosh(8723321.4);
+  //   returns 1: 16.674657798418625
+
   return Math.log(arg + Math.sqrt(arg * arg - 1));
 }
 {% endcodeblock %}
@@ -35,17 +36,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/acosh.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-acosh(8723321.4);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-16.674657798418625
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

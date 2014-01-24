@@ -15,16 +15,17 @@ alias:
 A JavaScript equivalent of PHP's chunk_split
 
 {% codeblock strings/chunk_split.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/chunk_split.js raw on github %}
-function chunk_split (body, chunklen, end) {
-  // From: http://phpjs.org/functions
-  // +   original by: Paulo Freitas
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Theriault
-  // *     example 1: chunk_split('Hello world!', 1, '*');
-  // *     returns 1: 'H*e*l*l*o* *w*o*r*l*d*!*'
-  // *     example 2: chunk_split('Hello world!', 10, '*');
-  // *     returns 2: 'Hello worl*d!*'
+function chunk_split(body, chunklen, end) {
+  //  discuss at: http://phpjs.org/functions/chunk_split/
+  // original by: Paulo Freitas
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Theriault
+  //   example 1: chunk_split('Hello world!', 1, '*');
+  //   returns 1: 'H*e*l*l*o* *w*o*r*l*d*!*'
+  //   example 2: chunk_split('Hello world!', 10, '*');
+  //   returns 2: 'Hello worl*d!*'
+
   chunklen = parseInt(chunklen, 10) || 76;
   end = end || '\r\n';
 
@@ -32,8 +33,8 @@ function chunk_split (body, chunklen, end) {
     return false;
   }
 
-  return body.match(new RegExp(".{0," + chunklen + "}", "g")).join(end);
-
+  return body.match(new RegExp('.{0,' + chunklen + '}', 'g'))
+    .join(end);
 }
 {% endcodeblock %}
 
@@ -48,28 +49,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/chunk_split.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-chunk_split('Hello world!', 1, '*');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'H*e*l*l*o* *w*o*r*l*d*!*'
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-chunk_split('Hello world!', 10, '*');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'Hello worl*d!*'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

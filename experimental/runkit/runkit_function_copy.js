@@ -1,4 +1,4 @@
-function runkit_function_copy (funcname, targetname) {
+function runkit_function_copy(funcname, targetname) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Function can only be copied to and from the global context

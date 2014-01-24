@@ -1,16 +1,16 @@
-function date_sunset (timestamp, format, latitude, longitude, zenith, gmt_offset) {
-    // depends on: ini_get
+function date_sunset(timestamp, format, latitude, longitude, zenith, gmt_offset) {
+  // depends on: ini_get
 
-    var calc_sunset = 1; // One part that differs from date_sunrise
+  var calc_sunset = 1; // One part that differs from date_sunrise
 
-    var SUNFUNCS_RET_STRING = 1, SUNFUNCS_RET_TIMESTAMP = 0, SUNFUNCS_RET_DOUBLE = 2;
+  var SUNFUNCS_RET_STRING = 1, SUNFUNCS_RET_TIMESTAMP = 0, SUNFUNCS_RET_DOUBLE = 2;
 
-    format = format || SUNFUNCS_RET_STRING,
-        latitude = latitude || this.ini_get("date.default_latitude"),
-        longitude = longitude || this.ini_get("date.default_longitude"),
-        zenith = zenith || (calc_sunset) ? this.ini_get("date.sunset_zenith") : this.ini_get("date.sunrise_zenith");
+  format = format || SUNFUNCS_RET_STRING,
+  latitude = latitude || this.ini_get('date.default_latitude'),
+  longitude = longitude || this.ini_get('date.default_longitude'),
+  zenith = zenith || (calc_sunset) ? this.ini_get('date.sunset_zenith') : this.ini_get('date.sunrise_zenith');
 
-    var altitude;
+  var altitude;
 	var h_rise, h_set, n;
 	var rise, set, transit;
 	var time;
@@ -20,8 +20,8 @@ function date_sunset (timestamp, format, latitude, longitude, zenith, gmt_offset
 	var retstr;
 
 	if (!arguments.length || arguments.length > 6) {
-        // throw "invalid format"; // warning
-        return false;
+    // throw "invalid format"; // warning
+    return false;
 	}
 
 	if (format !== SUNFUNCS_RET_TIMESTAMP &&
@@ -38,11 +38,11 @@ function date_sunset (timestamp, format, latitude, longitude, zenith, gmt_offset
 	// t->tz_info = tzi;
 	// t->zone_type = TIMELIB_ZONETYPE_ID;
 
-    gmt_offset = gmt_offset || Math.floor(timelib_get_current_offset(t) / 3600);
+  gmt_offset = gmt_offset || Math.floor(timelib_get_current_offset(t) / 3600);
 
 	timelib_unixtime2local(t, time);
 	rs = timelib_astro_rise_set_altitude(t, longitude, latitude, altitude, altitude > -1 ? 1 : 0,
-                                                                            h_rise, h_set, rise, set, transit);
+      h_rise, h_set, rise, set, transit);
 	timelib_time_dtor(t);
 
 	if (rs != 0) {
@@ -60,10 +60,10 @@ function date_sunset (timestamp, format, latitude, longitude, zenith, gmt_offset
 
 	switch (format) {
 		case SUNFUNCS_RET_STRING:
-			retstr = spprintf("%02d:%02d", Math.floor(n), Math.floor(60 * (n - Math.floor(n))));
+			retstr = spprintf('%02d:%02d', Math.floor(n), Math.floor(60 * (n - Math.floor(n))));
 			return retstr;
 		case SUNFUNCS_RET_DOUBLE:
 			return n;
 	}
-    return false; // Shouldn't get here
+  return false; // Shouldn't get here
 }

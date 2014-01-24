@@ -15,14 +15,15 @@ alias:
 A JavaScript equivalent of PHP's chr
 
 {% codeblock strings/chr.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/chr.js raw on github %}
-function chr (codePt) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: chr(75);
-  // *     returns 1: 'K'
-  // *     example 1: chr(65536) === '\uD800\uDC00';
-  // *     returns 1: true
+function chr(codePt) {
+  //  discuss at: http://phpjs.org/functions/chr/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: chr(75) === 'K';
+  //   example 1: chr(65536) === '\uD800\uDC00';
+  //   returns 1: true
+  //   returns 1: true
+
   if (codePt > 0xFFFF) { // Create a four-byte string (length 2) since this code point is high
     //   enough for the UTF-16 encoding (JavaScript internal use), to
     //   require representation with two surrogates (reserved non-characters
@@ -45,19 +46,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/chr.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-chr(75);
-chr(65536) === '\uD800\uDC00';
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'K'
-true
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

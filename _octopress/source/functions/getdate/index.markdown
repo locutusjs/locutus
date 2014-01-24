@@ -15,18 +15,21 @@ alias:
 A JavaScript equivalent of PHP's getdate
 
 {% codeblock datetime/getdate.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/getdate.js raw on github %}
-function getdate (timestamp) {
-  // From: http://phpjs.org/functions
-  // +   original by: Paulo Freitas
-  // +   input by: Alex
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: getdate(1055901520);
-  // *     returns 1: {'seconds': 40, 'minutes': 58, 'hours': 21, 'mday': 17, 'wday': 2, 'mon': 6, 'year': 2003, 'yday': 167, 'weekday': 'Tuesday', 'month': 'June', '0': 1055901520}
+function getdate(timestamp) {
+  //  discuss at: http://phpjs.org/functions/getdate/
+  // original by: Paulo Freitas
+  //    input by: Alex
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: getdate(1055901520);
+  //   returns 1: {'seconds': 40, 'minutes': 58, 'hours': 21, 'mday': 17, 'wday': 2, 'mon': 6, 'year': 2003, 'yday': 167, 'weekday': 'Tuesday', 'month': 'June', '0': 1055901520}
+
   var _w = ['Sun', 'Mon', 'Tues', 'Wednes', 'Thurs', 'Fri', 'Satur'];
-  var _m = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  var _m = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
+    'November', 'December'
+  ];
   var d = ((typeof timestamp === 'undefined') ? new Date() : // Not provided
-  (typeof timestamp === 'object') ? new Date(timestamp) : // Javascript Date()
-  new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
+    (typeof timestamp === 'object') ? new Date(timestamp) : // Javascript Date()
+    new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
   );
   var w = d.getDay();
   var m = d.getMonth();
@@ -60,17 +63,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/datetime/getdate.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-getdate(1055901520);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{'seconds': 40, 'minutes': 58, 'hours': 21, 'mday': 17, 'wday': 2, 'mon': 6, 'year': 2003, 'yday': 167, 'weekday': 'Tuesday', 'month': 'June', '0': 1055901520}
-{% endcodeblock %}
 
 
 ### Other PHP functions in the datetime extension

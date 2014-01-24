@@ -15,32 +15,33 @@ alias:
 A JavaScript equivalent of PHP's strtr
 
 {% codeblock strings/strtr.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strtr.js raw on github %}
-function strtr (str, from, to) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +      input by: uestla
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +      input by: Alan C
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +      input by: Taras Bogach
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +      input by: jpfle
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // -   depends on: krsort
-  // -   depends on: ini_set
-  // *     example 1: $trans = {'hello' : 'hi', 'hi' : 'hello'};
-  // *     example 1: strtr('hi all, I said hello', $trans)
-  // *     returns 1: 'hello all, I said hi'
-  // *     example 2: strtr('äaabaåccasdeöoo', 'äåö','aao');
-  // *     returns 2: 'aaabaaccasdeooo'
-  // *     example 3: strtr('ääääääää', 'ä', 'a');
-  // *     returns 3: 'aaaaaaaa'
-  // *     example 4: strtr('http', 'pthxyz','xyzpth');
-  // *     returns 4: 'zyyx'
-  // *     example 5: strtr('zyyx', 'pthxyz','xyzpth');
-  // *     returns 5: 'http'
-  // *     example 6: strtr('aa', {'a':1,'aa':2});
-  // *     returns 6: '2'
+function strtr(str, from, to) {
+  //  discuss at: http://phpjs.org/functions/strtr/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //    input by: uestla
+  //    input by: Alan C
+  //    input by: Taras Bogach
+  //    input by: jpfle
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: krsort
+  //  depends on: ini_set
+  //   example 1: $trans = {'hello' : 'hi', 'hi' : 'hello'};
+  //   example 1: strtr('hi all, I said hello', $trans)
+  //   returns 1: 'hello all, I said hi'
+  //   example 2: strtr('äaabaåccasdeöoo', 'äåö','aao');
+  //   returns 2: 'aaabaaccasdeooo'
+  //   example 3: strtr('ääääääää', 'ä', 'a');
+  //   returns 3: 'aaaaaaaa'
+  //   example 4: strtr('http', 'pthxyz','xyzpth');
+  //   returns 4: 'zyyx'
+  //   example 5: strtr('zyyx', 'pthxyz','xyzpth');
+  //   returns 5: 'http'
+  //   example 6: strtr('aa', {'a':1,'aa':2});
+  //   returns 6: '2'
+
   var fr = '',
     i = 0,
     j = 0,
@@ -121,40 +122,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/strtr.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-$trans = {'hello' : 'hi', 'hi' : 'hello'};
-strtr('hi all, I said hello', $trans)
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'hello all, I said hi'
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-strtr('äaabaåccasdeöoo', 'äåö','aao');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'aaabaaccasdeooo'
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-strtr('ääääääää', 'ä', 'a');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'aaaaaaaa'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

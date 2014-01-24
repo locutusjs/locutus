@@ -1,12 +1,13 @@
-function levenshtein (s1, s2) {
-  // From: http://phpjs.org/functions
-  // +            original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
-  // +            bugfixed by: Onno Marsman
-  // +             revised by: Andrea Giammarchi (http://webreflection.blogspot.com)
-  // + reimplemented by: Brett Zamir (http://brett-zamir.me)
-  // + reimplemented by: Alexander M Beedie
-  // *                example 1: levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld');
-  // *                returns 1: 3
+function levenshtein(s1, s2) {
+  //       discuss at: http://phpjs.org/functions/levenshtein/
+  //      original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
+  //      bugfixed by: Onno Marsman
+  //       revised by: Andrea Giammarchi (http://webreflection.blogspot.com)
+  // reimplemented by: Brett Zamir (http://brett-zamir.me)
+  // reimplemented by: Alexander M Beedie
+  //        example 1: levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld');
+  //        returns 1: 3
+
   if (s1 == s2) {
     return 0;
   }

@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 setup:
 	git pull && \
 	cd _octopress && \
@@ -5,8 +7,34 @@ setup:
 	cd .. ; \
 
 test:
-	cd _tests && npm install
-	find functions -type f |grep -v '/_' |xargs node _tests/cli.js -f
+	make build
+	npm install
+	./node_modules/.bin/mocha --reporter list
+	node bin/phpjs.js --action test --debug
+
+# Apply code standards & reformat headers
+cleanup:
+	node bin/phpjs.js --action cleanup
+
+npm:
+	node bin/phpjs.js --action buildnpm --output build/npm.js
+	ls -al build/npm.js
+	node build/npm.js
+	node test/npm/npm.js
+	echo "Build success. "
+
+publish: npm
+	npm publish
+
+build: npm
+
+hook:
+	mkdir -p ~/.gittemplate/hooks
+	curl https://raw.github.com/kvz/ochtra/master/pre-commit -o ~/.gittemplate/hooks/pre-commit
+	chmod u+x ~/.gittemplate/hooks/pre-commit
+	git config --global init.templatedir '~/.gittemplate'
+	rm .git/hooks/pre-commit || true
+	git init
 
 site:
 	git pull && \
@@ -36,4 +64,4 @@ site-preview:
 	bundle exec rake preview ; \
 	cd ..
 
-.PHONY: site%
+.PHONY: setup test cleanup npm publish build hook site%

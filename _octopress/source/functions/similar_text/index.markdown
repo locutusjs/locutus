@@ -15,18 +15,17 @@ alias:
 A JavaScript equivalent of PHP's similar_text
 
 {% codeblock strings/similar_text.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/similar_text.js raw on github %}
-function similar_text (first, second, percent) {
-  // From: http://phpjs.org/functions
-  // +   original by: Rafał Kukawski (http://blog.kukawski.pl)
-  // +   bugfixed by: Chris McMacken
-  // +   added percent parameter by: Markus Padourek (taken from http://www.kevinhq.com/2012/06/php-similartext-function-in-javascript_16.html)
-  // *     example 1: similar_text('Hello World!', 'Hello phpjs!');
-  // *     returns 1: 7
-  // *     example 2: similar_text('Hello World!', null);
-  // *     returns 2: 0
-  // *     example 3: similar_text('Hello World!', null, 1);
-  // *     returns 3: 58.33
-  // *   bugfixed by: Jarkko Rantavuori based on findings in stackoverflow (http://stackoverflow.com/questions/14136349/how-does-similar-text-work)
+function similar_text(first, second, percent) {
+  //  discuss at: http://phpjs.org/functions/similar_text/
+  // original by: Rafał Kukawski (http://blog.kukawski.pl)
+  // bugfixed by: Chris McMacken
+  // bugfixed by: Jarkko Rantavuori original by findings in stackoverflow (http://stackoverflow.com/questions/14136349/how-does-similar-text-work)
+  // improved by: Markus Padourek (taken from http://www.kevinhq.com/2012/06/php-similartext-function-in-javascript_16.html)
+  //   example 1: similar_text('Hello World!', 'Hello phpjs!');
+  //   returns 1: 7
+  //   example 2: similar_text('Hello World!', null);
+  //   returns 2: 0
+
   if (first === null || second === null || typeof first === 'undefined' || typeof second === 'undefined') {
     return 0;
   }
@@ -46,7 +45,8 @@ function similar_text (first, second, percent) {
   for (p = 0; p < firstLength; p++) {
     for (q = 0; q < secondLength; q++) {
       for (l = 0;
-      (p + l < firstLength) && (q + l < secondLength) && (first.charAt(p + l) === second.charAt(q + l)); l++);
+        (p + l < firstLength) && (q + l < secondLength) && (first.charAt(p + l) === second.charAt(q + l)); l++)
+      ;
       if (l > max) {
         max = l;
         pos1 = p;
@@ -63,7 +63,8 @@ function similar_text (first, second, percent) {
     }
 
     if ((pos1 + max < firstLength) && (pos2 + max < secondLength)) {
-      sum += this.similar_text(first.substr(pos1 + max, firstLength - pos1 - max), second.substr(pos2 + max, secondLength - pos2 - max));
+      sum += this.similar_text(first.substr(pos1 + max, firstLength - pos1 - max), second.substr(pos2 + max,
+        secondLength - pos2 - max));
     }
   }
 
@@ -86,39 +87,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/similar_text.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-similar_text('Hello World!', 'Hello phpjs!');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-7
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-similar_text('Hello World!', null);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-0
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-similar_text('Hello World!', null, 1);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-58.33
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

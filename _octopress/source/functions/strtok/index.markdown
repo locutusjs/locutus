@@ -15,17 +15,17 @@ alias:
 A JavaScript equivalent of PHP's strtok
 
 {% codeblock strings/strtok.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strtok.js raw on github %}
-function strtok (str, tokens) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Use tab and newline as tokenizing characters as well
-  // *     example 1: $string = "\t\t\t\nThis is\tan example\nstring\n";
-  // *     example 1: $tok = strtok($string, " \n\t");
-  // *     example 1: $b = '';
-  // *     example 1: while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
-  // *     example 1: $b
-  // *     returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
-  // BEGIN REDUNDANT
+function strtok(str, tokens) {
+  //  discuss at: http://phpjs.org/functions/strtok/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //        note: Use tab and newline as tokenizing characters as well
+  //   example 1: $string = "\t\t\t\nThis is\tan example\nstring\n";
+  //   example 1: $tok = strtok($string, " \n\t");
+  //   example 1: $b = '';
+  //   example 1: while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
+  //   example 1: $b
+  //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
+
   this.php_js = this.php_js || {};
   // END REDUNDANT
   if (tokens === undefined) {
@@ -59,21 +59,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/strtok.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-$string = "\t\t\t\nThis is\tan example\nstring\n";
-$tok = strtok($string, " \n\t");
-$b = '';
-while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
-$b
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-"Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

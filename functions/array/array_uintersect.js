@@ -1,11 +1,12 @@
-function array_uintersect (arr1) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Demosthenes Koptsis
-  // *     example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
-  // *     example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
-  // *     example 1: array_uintersect($array1, $array2, function( f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 == string2) return 0; return -1;});
-  // *     returns 1: {a: 'green', b: 'brown', 0: 'red'}
+function array_uintersect(arr1) {
+  //  discuss at: http://phpjs.org/functions/array_uintersect/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Demosthenes Koptsis
+  //   example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
+  //   example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
+  //   example 1: array_uintersect($array1, $array2, function( f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 == string2) return 0; return -1;});
+  //   returns 1: {a: 'green', b: 'brown', 0: 'red'}
+
   var retArr = {},
     arglm1 = arguments.length - 1,
     arglm2 = arglm1 - 1,
@@ -15,7 +16,8 @@ function array_uintersect (arr1) {
     arr = {},
     k = '';
 
-  cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[cb[0]][cb[1]] : cb;
+  cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[
+    cb[0]][cb[1]] : cb;
 
   arr1keys: for (k1 in arr1) {
     arrs: for (i = 1; i < arglm1; i++) {

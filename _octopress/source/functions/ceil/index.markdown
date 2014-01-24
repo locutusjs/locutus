@@ -15,11 +15,12 @@ alias:
 A JavaScript equivalent of PHP's ceil
 
 {% codeblock math/ceil.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/ceil.js raw on github %}
-function ceil (value) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // *     example 1: ceil(8723321.4);
-  // *     returns 1: 8723322
+function ceil(value) {
+  //  discuss at: http://phpjs.org/functions/ceil/
+  // original by: Onno Marsman
+  //   example 1: ceil(8723321.4);
+  //   returns 1: 8723322
+
   return Math.ceil(value);
 }
 {% endcodeblock %}
@@ -35,17 +36,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/ceil.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-ceil(8723321.4);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-8723322
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

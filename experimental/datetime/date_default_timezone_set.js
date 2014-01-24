@@ -1,4 +1,4 @@
-function date_default_timezone_set (tz) {
+function date_default_timezone_set(tz) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: timezone_abbreviations_list
@@ -6,8 +6,8 @@ function date_default_timezone_set (tz) {
   // *     example 1: date_default_timezone_set('unknown');
   // *     returns 1: 'unknown'
   var tal = {},
-    abbr = '',
-    i = 0;
+      abbr = '',
+      i = 0;
 
   // BEGIN REDUNDANT
   this.php_js = this.php_js || {};

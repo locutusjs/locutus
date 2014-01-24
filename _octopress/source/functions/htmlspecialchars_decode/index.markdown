@@ -15,33 +15,36 @@ alias:
 A JavaScript equivalent of PHP's htmlspecialchars_decode
 
 {% codeblock strings/htmlspecialchars_decode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/htmlspecialchars_decode.js raw on github %}
-function htmlspecialchars_decode (string, quote_style) {
-  // From: http://phpjs.org/functions
-  // +   original by: Mirek Slugen
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Mateusz "loonquawl" Zalega
-  // +      input by: ReverseSyntax
-  // +      input by: Slawomir Kaniecki
-  // +      input by: Scott Cariss
-  // +      input by: Francois
-  // +   bugfixed by: Onno Marsman
-  // +    revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +      input by: Ratheous
-  // +      input by: Mailfaker (http://www.weedem.fr/)
-  // +      reimplemented by: Brett Zamir (http://brett-zamir.me)
-  // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
-  // *     returns 1: '<p>this -> &quot;</p>'
-  // *     example 2: htmlspecialchars_decode("&amp;quot;");
-  // *     returns 2: '&quot;'
+function htmlspecialchars_decode(string, quote_style) {
+  //       discuss at: http://phpjs.org/functions/htmlspecialchars_decode/
+  //      original by: Mirek Slugen
+  //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //      bugfixed by: Mateusz "loonquawl" Zalega
+  //      bugfixed by: Onno Marsman
+  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //         input by: ReverseSyntax
+  //         input by: Slawomir Kaniecki
+  //         input by: Scott Cariss
+  //         input by: Francois
+  //         input by: Ratheous
+  //         input by: Mailfaker (http://www.weedem.fr/)
+  //       revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // reimplemented by: Brett Zamir (http://brett-zamir.me)
+  //        example 1: htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
+  //        returns 1: '<p>this -> &quot;</p>'
+  //        example 2: htmlspecialchars_decode("&amp;quot;");
+  //        returns 2: '&quot;'
+
   var optTemp = 0,
     i = 0,
     noquotes = false;
   if (typeof quote_style === 'undefined') {
     quote_style = 2;
   }
-  string = string.toString().replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+  string = string.toString()
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>');
   var OPTS = {
     'ENT_NOQUOTES': 0,
     'ENT_HTML_QUOTE_SINGLE': 1,
@@ -90,28 +93,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/htmlspecialchars_decode.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'<p>this -> &quot;</p>'
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-htmlspecialchars_decode("&amp;quot;");
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'&quot;'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

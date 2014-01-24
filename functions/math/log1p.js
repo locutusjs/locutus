@@ -1,9 +1,9 @@
-function log1p (x) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // %          note 1: Precision 'n' can be adjusted as desired
-  // *     example 1: log1p(1e-15);
-  // *     returns 1: 9.999999999999995e-16
+function log1p(x) {
+  //  discuss at: http://phpjs.org/functions/log1p/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //        note: Precision 'n' can be adjusted as desired
+  //   example 1: log1p(1e-15);
+  //   returns 1: 9.999999999999995e-16
 
   var ret = 0,
     n = 50; // degree of precision

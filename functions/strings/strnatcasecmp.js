@@ -1,29 +1,32 @@
-function strnatcasecmp (str1, str2) {
-  // From: http://phpjs.org/functions
-  // +      original by: Martin Pool
-  // + reimplemented by: Pierre-Luc Paour
-  // + reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))
-  // + reimplemented by: Brett Zamir (http://brett-zamir.me)
-  // +      bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +         input by: Devan Penner-Woelk
-  // +      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // *        example 1: strnatcasecmp(10, 1);
-  // *        returns 1: 1
-  // *        example 1: strnatcasecmp('1', '10');
-  // *        returns 1: -1
-  var a = (str1 + '').toLowerCase();
-  var b = (str2 + '').toLowerCase();
+function strnatcasecmp(str1, str2) {
+  //       discuss at: http://phpjs.org/functions/strnatcasecmp/
+  //      original by: Martin Pool
+  // reimplemented by: Pierre-Luc Paour
+  // reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))
+  // reimplemented by: Brett Zamir (http://brett-zamir.me)
+  //      bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //         input by: Devan Penner-Woelk
+  //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //        example 1: strnatcasecmp(10, 1);
+  //        example 1: strnatcasecmp('1', '10');
+  //        returns 1: 1
+  //        returns 1: -1
 
-  var isWhitespaceChar = function (a) {
+  var a = (str1 + '')
+    .toLowerCase();
+  var b = (str2 + '')
+    .toLowerCase();
+
+  var isWhitespaceChar = function(a) {
     return a.charCodeAt(0) <= 32;
   };
 
-  var isDigitChar = function (a) {
+  var isDigitChar = function(a) {
     var charCode = a.charCodeAt(0);
     return (charCode >= 48 && charCode <= 57);
   };
 
-  var compareRight = function (a, b) {
+  var compareRight = function(a, b) {
     var bias = 0;
     var ia = 0;
     var ib = 0;

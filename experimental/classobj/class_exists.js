@@ -1,4 +1,4 @@
-function class_exists (cls) {
+function class_exists(cls) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: function class_a() {this.meth1 = function () {return true;}};

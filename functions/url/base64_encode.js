@@ -1,23 +1,19 @@
-function base64_encode (data) {
-  // From: http://phpjs.org/functions
-  // +   original by: Tyler Akins (http://rumkin.com)
-  // +   improved by: Bayron Guevara
-  // +   improved by: Thunder.m
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Pellentesque Malesuada
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Rafał Kukawski (http://kukawski.pl)
-  // *     example 1: base64_encode('Kevin van Zonneveld');
-  // *     returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
-  // mozilla has this native
-  // - but breaks in 2.0.0.12!
-  //if (typeof this.window['btoa'] === 'function') {
-  //    return btoa(data);
-  //}
-  var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+function base64_encode(data) {
+  //  discuss at: http://phpjs.org/functions/base64_encode/
+  // original by: Tyler Akins (http://rumkin.com)
+  // improved by: Bayron Guevara
+  // improved by: Thunder.m
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Rafał Kukawski (http://kukawski.pl)
+  // bugfixed by: Pellentesque Malesuada
+  //   example 1: base64_encode('Kevin van Zonneveld');
+  //   returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
+
+  var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
   var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
     ac = 0,
-    enc = "",
+    enc = '',
     tmp_arr = [];
 
   if (!data) {
@@ -45,5 +41,4 @@ function base64_encode (data) {
   var r = data.length % 3;
 
   return (r ? enc.slice(0, r - 3) : enc) + '==='.slice(r || 3);
-
 }

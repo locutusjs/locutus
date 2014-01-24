@@ -15,17 +15,18 @@ alias:
 A JavaScript equivalent of PHP's array_push
 
 {% codeblock array/array_push.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_push.js raw on github %}
-function array_push (inputArr) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Note also that IE retains information about property position even
-  // %        note 1: after being supposedly deleted, so if you delete properties and then
-  // %        note 1: add back properties with the same keys (including numeric) that had
-  // %        note 1: been deleted, the order will be as before; thus, this function is not
-  // %        note 1: really recommended with associative arrays (objects) in IE environments
-  // *     example 1: array_push(['kevin','van'], 'zonneveld');
-  // *     returns 1: 3
+function array_push(inputArr) {
+  //  discuss at: http://phpjs.org/functions/array_push/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //        note: Note also that IE retains information about property position even
+  //        note: after being supposedly deleted, so if you delete properties and then
+  //        note: add back properties with the same keys (including numeric) that had
+  //        note: been deleted, the order will be as before; thus, this function is not
+  //        note: really recommended with associative arrays (objects) in IE environments
+  //   example 1: array_push(['kevin','van'], 'zonneveld');
+  //   returns 1: 3
+
   var i = 0,
     pr = '',
     argv = arguments,
@@ -69,17 +70,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_push.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_push(['kevin','van'], 'zonneveld');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-3
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

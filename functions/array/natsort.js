@@ -1,21 +1,22 @@
-function natsort (inputArr) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Theriault
-  // %        note 1: This function deviates from PHP in returning a copy of the array instead
-  // %        note 1: of acting by reference and returning true; this was necessary because
-  // %        note 1: IE does not allow deleting and re-adding of properties without caching
-  // %        note 1: of property position; you can set the ini of "phpjs.strictForIn" to true to
-  // %        note 1: get the PHP behavior, but use this only if you are in an environment
-  // %        note 1: such as Firefox extensions where for-in iteration order is fixed and true
-  // %        note 1: property deletion is supported. Note that we intend to implement the PHP
-  // %        note 1: behavior by default if IE ever does allow it; only gives shallow copy since
-  // %        note 1: is by reference in PHP anyways
-  // -    depends on: strnatcmp
-  // *     example 1: $array1 = {a:"img12.png", b:"img10.png", c:"img2.png", d:"img1.png"};
-  // *     example 1: $array1 = natsort($array1);
-  // *     returns 1: {d: 'img1.png', c: 'img2.png', b: 'img10.png', a: 'img12.png'}
+function natsort(inputArr) {
+  //  discuss at: http://phpjs.org/functions/natsort/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Theriault
+  //        note: This function deviates from PHP in returning a copy of the array instead
+  //        note: of acting by reference and returning true; this was necessary because
+  //        note: IE does not allow deleting and re-adding of properties without caching
+  //        note: of property position; you can set the ini of "phpjs.strictForIn" to true to
+  //        note: get the PHP behavior, but use this only if you are in an environment
+  //        note: such as Firefox extensions where for-in iteration order is fixed and true
+  //        note: property deletion is supported. Note that we intend to implement the PHP
+  //        note: behavior by default if IE ever does allow it; only gives shallow copy since
+  //        note: is by reference in PHP anyways
+  //  depends on: strnatcmp
+  //   example 1: $array1 = {a:"img12.png", b:"img10.png", c:"img2.png", d:"img1.png"};
+  //   example 1: $array1 = natsort($array1);
+  //   returns 1: {d: 'img1.png', c: 'img2.png', b: 'img10.png', a: 'img12.png'}
+
   var valArr = [],
     k, i, ret, that = this,
     strictForIn = false,
@@ -25,7 +26,8 @@ function natsort (inputArr) {
   this.php_js = this.php_js || {};
   this.php_js.ini = this.php_js.ini || {};
   // END REDUNDANT
-  strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js.ini['phpjs.strictForIn'].local_value !== 'off';
+  strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
+    .ini['phpjs.strictForIn'].local_value !== 'off';
   populateArr = strictForIn ? inputArr : populateArr;
 
   // Get key and value arrays
@@ -37,7 +39,7 @@ function natsort (inputArr) {
       }
     }
   }
-  valArr.sort(function (a, b) {
+  valArr.sort(function(a, b) {
     return that.strnatcmp(a[1], b[1]);
   });
 

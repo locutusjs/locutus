@@ -15,13 +15,14 @@ alias:
 A JavaScript equivalent of PHP's array_diff_ukey
 
 {% codeblock array/array_diff_ukey.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_diff_ukey.js raw on github %}
-function array_diff_ukey (arr1) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: $array1 = {blue: 1, red: 2, green: 3, purple: 4}
-  // *     example 1: $array2 = {green: 5, blue: 6, yellow: 7, cyan: 8}
-  // *     example 1: array_diff_ukey($array1, $array2, function (key1, key2){ return (key1 == key2 ? 0 : (key1 > key2 ? 1 : -1)); });
-  // *     returns 1: {red: 2, purple: 4}
+function array_diff_ukey(arr1) {
+  //  discuss at: http://phpjs.org/functions/array_diff_ukey/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: $array1 = {blue: 1, red: 2, green: 3, purple: 4}
+  //   example 1: $array2 = {green: 5, blue: 6, yellow: 7, cyan: 8}
+  //   example 1: array_diff_ukey($array1, $array2, function (key1, key2){ return (key1 == key2 ? 0 : (key1 > key2 ? 1 : -1)); });
+  //   returns 1: {red: 2, purple: 4}
+
   var retArr = {},
     arglm1 = arguments.length - 1,
     cb = arguments[arglm1],
@@ -30,7 +31,8 @@ function array_diff_ukey (arr1) {
     k1 = '',
     k = '';
 
-  cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[cb[0]][cb[1]] : cb;
+  cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[
+    cb[0]][cb[1]] : cb;
 
   arr1keys: for (k1 in arr1) {
     for (i = 1; i < arglm1; i++) {
@@ -60,19 +62,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_diff_ukey.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-$array1 = {blue: 1, red: 2, green: 3, purple: 4}
-$array2 = {green: 5, blue: 6, yellow: 7, cyan: 8}
-array_diff_ukey($array1, $array2, function (key1, key2){ return (key1 == key2 ? 0 : (key1 > key2 ? 1 : -1)); });
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{red: 2, purple: 4}
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

@@ -33,8 +33,7 @@ they do get many programming jobs done without the need for additional libraries
 or abstractions. 
 
 We recognize JS has beautiful language features, and we encourage you to learn them.
-Never let php.js be an excuse not to. For the this reason we don't offer 
-gigantic php.js packages or compilers.
+Never let php.js be an excuse not to. 
 
 That said, we do think it's a challenge to port everything and decided to also port 
 low-level PHP functions like
@@ -46,7 +45,7 @@ Besides the geeky-challenge of seeing how far we could come, porting ALL THE THI
 opens up php.js to other fun experiments such as realtime in-browser debugging/running of
 PHP code, or running `.php` files with JavaScript engines such as V8.
 
-php.js also is a reference for PHP developers new to JavaScript, wanting to see how 
+php.js also is a reference for PHP developers wanting to see how 
 something can be done in JavaScript.
 
 And so we see ourselves as this big resource and leave it up to the developer 
@@ -56,7 +55,7 @@ And what not.
 
 Going by [The McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d) 
 we have plently of functions online that aren't perfect just yet.
-If you know how better ways, just send us a pull request on GitHub!
+If you know better ways, just send us a pull request : )
 
 ## Contributing
 

@@ -15,13 +15,14 @@ alias:
 A JavaScript equivalent of PHP's is_string
 
 {% codeblock var/is_string.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_string.js raw on github %}
-function is_string (mixed_var) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // *     example 1: is_string('23');
-  // *     returns 1: true
-  // *     example 2: is_string(23.5);
-  // *     returns 2: false
+function is_string(mixed_var) {
+  //  discuss at: http://phpjs.org/functions/is_string/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //   example 1: is_string('23');
+  //   returns 1: true
+  //   example 2: is_string(23.5);
+  //   returns 2: false
+
   return (typeof mixed_var === 'string');
 }
 {% endcodeblock %}
@@ -37,28 +38,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/var/is_string.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-is_string('23');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-is_string(23.5);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-false
-{% endcodeblock %}
 
 
 ### Other PHP functions in the var extension

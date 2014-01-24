@@ -1,14 +1,14 @@
-function prev (arr) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Uses global: php_js to store the array pointer
-  // *     example 1: transport = ['foot', 'bike', 'car', 'plane'];
-  // *     example 1: prev(transport);
-  // *     returns 1: false
-  // BEGIN REDUNDANT
+function prev(arr) {
+  //  discuss at: http://phpjs.org/functions/prev/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //        note: Uses global: php_js to store the array pointer
+  //   example 1: transport = ['foot', 'bike', 'car', 'plane'];
+  //   example 1: prev(transport);
+  //   returns 1: false
+
   this.php_js = this.php_js || {};
   this.php_js.pointers = this.php_js.pointers || [];
-  var indexOf = function (value) {
+  var indexOf = function(value) {
     for (var i = 0, length = this.length; i < length; i++) {
       if (this[i] === value) {
         return i;

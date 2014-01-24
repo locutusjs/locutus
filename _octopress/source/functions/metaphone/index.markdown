@@ -15,20 +15,22 @@ alias:
 A JavaScript equivalent of PHP's metaphone
 
 {% codeblock strings/metaphone.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/metaphone.js raw on github %}
-function metaphone (word, phones) {
-  // +   original by: Greg Frazier
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Rafał Kukawski (http://kukawski.pl)
-  // *     example 1: metaphone('Gnu');
-  // *     returns 1: 'N'
+function metaphone(word, phones) {
+  //  discuss at: http://phpjs.org/functions/metaphone/
+  // original by: Greg Frazier
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Rafał Kukawski (http://kukawski.pl)
+  //   example 1: metaphone('Gnu');
+  //   returns 1: 'N'
 
-  word = (word == null ? '' : word + '').toUpperCase();
+  word = (word == null ? '' : word + '')
+    .toUpperCase();
 
-  function isVowel (a) {
+  function isVowel(a) {
     return 'AEIOU'.indexOf(a) !== -1;
   }
 
-  function removeDuplicates (word) {
+  function removeDuplicates(word) {
     var wordlength = word.length,
       char1 = word.charAt(0),
       char2,
@@ -65,28 +67,33 @@ function metaphone (word, phones) {
 
   if (1 <= wordlength) {
     switch (cc) {
-    case 'A':
-      if (nc === 'E') {
-        metaword += 'E';
-      } else {
-        metaword += 'A';
-      }
-      x += 1;
-      break;
-    case 'E': case 'I': case 'O': case 'U':
-      metaword += cc;
-      x += 1;
-      break;
-    case 'G': case 'K': case 'P':
-      if (nc === 'N') {
+      case 'A':
+        if (nc === 'E') {
+          metaword += 'E';
+        } else {
+          metaword += 'A';
+        }
         x += 1;
-      }
-      break;
-    case 'W':
-      if (nc === 'R') {
+        break;
+      case 'E':
+      case 'I':
+      case 'O':
+      case 'U':
+        metaword += cc;
         x += 1;
-      }
-      break;
+        break;
+      case 'G':
+      case 'K':
+      case 'P':
+        if (nc === 'N') {
+          x += 1;
+        }
+        break;
+      case 'W':
+        if (nc === 'R') {
+          x += 1;
+        }
+        break;
     }
   }
 
@@ -98,160 +105,165 @@ function metaphone (word, phones) {
 
     if (!isVowel(cc)) {
       switch (cc) {
-      case 'B':
-        if (pc !== 'M') {
-          metaword += 'B';
-        }
-        break;
-      case 'C':
-        if (x + 1 <= wordlength) {
-          if (word.substr(x - 1, 3) !== 'SCH') {
-            if (x === 0 && (x + 2 <= wordlength) && isVowel(nnc)) {
-              metaword += 'K';
-            } else {
+        case 'B':
+          if (pc !== 'M') {
+            metaword += 'B';
+          }
+          break;
+        case 'C':
+          if (x + 1 <= wordlength) {
+            if (word.substr(x - 1, 3) !== 'SCH') {
+              if (x === 0 && (x + 2 <= wordlength) && isVowel(nnc)) {
+                metaword += 'K';
+              } else {
+                metaword += 'X';
+              }
+            } else if (word.substr(x + 1, 2) === 'IA') {
               metaword += 'X';
-            }
-          } else if (word.substr(x + 1, 2) === 'IA') {
-            metaword += 'X';
-          } else if ('IEY'.indexOf(nc) !== -1) {
-            if (x > 0) {
-              if (pc !== 'S') {
+            } else if ('IEY'.indexOf(nc) !== -1) {
+              if (x > 0) {
+                if (pc !== 'S') {
+                  metaword += 'S';
+                }
+              } else {
                 metaword += 'S';
               }
+            } else {
+              metaword += 'K';
+            }
+          } else {
+            metaword += 'K';
+          }
+          break;
+        case 'D':
+          if (x + 2 <= wordlength && nc === 'G' && 'EIY'.indexOf(nnc) !== -1) {
+            metaword += 'J';
+            x += 2;
+          } else {
+            metaword += 'T';
+          }
+          break;
+        case 'F':
+          metaword += 'F';
+          break;
+        case 'G':
+          if (x < wordlength) {
+            if ((nc === 'N' && x + 1 === wordlength - 1) || (nc === 'N' && nnc === 'S' && x + 2 ===
+              wordlength - 1)) {
+              break;
+            }
+            if (word.substr(x + 1, 3) === 'NED' && x + 3 === wordlength - 1) {
+              break;
+            }
+            if (word.substr(x - 2, 3) === 'ING' && x === wordlength - 1) {
+              break;
+            }
+
+            if (x + 1 <= wordlength - 1 && word.substr(x - 2, 4) === 'OUGH') {
+              metaword += 'F';
+              break;
+            }
+            if (nc === 'H' && x + 2 <= wordlength) {
+              if (isVowel(nnc)) {
+                metaword += 'K';
+              }
+            } else if (x + 1 === wordlength) {
+              if (nc !== 'N') {
+                metaword += 'K';
+              }
+            } else if (x + 3 === wordlength) {
+              if (word.substr(x + 1, 3) !== 'NED') {
+                metaword += 'K';
+              }
+            } else if (x + 1 <= wordlength) {
+              if ('EIY'.indexOf(nc) !== -1) {
+                if (pc !== 'G') {
+                  metaword += 'J';
+                }
+              } else if (x === 0 || pc !== 'D' || 'EIY'.indexOf(nc) === -1) {
+                metaword += 'K';
+              }
+            } else {
+              metaword += 'K';
+            }
+          } else {
+            metaword += 'K';
+          }
+          break;
+        case 'M':
+        case 'J':
+        case 'N':
+        case 'R':
+        case 'L':
+          metaword += cc;
+          break;
+        case 'Q':
+          metaword += 'K';
+          break;
+        case 'V':
+          metaword += 'F';
+          break;
+        case 'Z':
+          metaword += 'S';
+          break;
+        case 'X':
+          metaword += (x === 0) ? 'S' : 'KS';
+          break;
+        case 'K':
+          if (x === 0 || pc !== 'C') {
+            metaword += 'K';
+          }
+          break;
+        case 'P':
+          if (x + 1 <= wordlength && nc === 'H') {
+            metaword += 'F';
+          } else {
+            metaword += 'P';
+          }
+          break;
+        case 'Y':
+          if (x + 1 > wordlength || isVowel(nc)) {
+            metaword += 'Y';
+          }
+          break;
+        case 'H':
+          if (x === 0 || 'CSPTG'.indexOf(pc) === -1) {
+            if (isVowel(nc) === true) {
+              metaword += 'H';
+            }
+          }
+          break;
+        case 'S':
+          if (x + 1 <= wordlength) {
+            if (nc === 'H') {
+              metaword += 'X';
+            } else if (x + 2 <= wordlength && nc === 'I' && 'AO'.indexOf(nnc) !== -1) {
+              metaword += 'X';
             } else {
               metaword += 'S';
             }
           } else {
-            metaword += 'K';
-          }
-        } else {
-          metaword += 'K';
-        }
-        break;
-      case 'D':
-        if (x + 2 <= wordlength && nc === 'G' && 'EIY'.indexOf(nnc) !== -1) {
-          metaword += 'J';
-          x += 2;
-        } else {
-          metaword += 'T';
-        }
-        break;
-      case 'F':
-        metaword += 'F';
-        break;
-      case 'G':
-        if (x < wordlength) {
-          if ((nc === 'N' && x + 1 === wordlength - 1) || (nc === 'N' && nnc === 'S' && x + 2 === wordlength - 1)) {
-            break;
-          }
-          if (word.substr(x + 1, 3) === 'NED' && x + 3 === wordlength - 1) {
-            break;
-          }
-          if (word.substr(x - 2, 3) === 'ING' && x === wordlength - 1) {
-            break;
-          }
-
-          if (x + 1 <= wordlength - 1 && word.substr(x - 2, 4) === 'OUGH') {
-            metaword += 'F';
-            break;
-          }
-          if (nc === 'H' && x + 2 <= wordlength) {
-            if (isVowel(nnc)) {
-              metaword += 'K';
-            }
-          } else if (x + 1 === wordlength) {
-            if (nc !== 'N') {
-              metaword += 'K';
-            }
-          } else if (x + 3 === wordlength) {
-            if (word.substr(x + 1, 3) !== 'NED') {
-              metaword += 'K';
-            }
-          } else if (x + 1 <= wordlength) {
-            if ('EIY'.indexOf(nc) !== -1) {
-              if (pc !== 'G') {
-                metaword += 'J';
-              }
-            } else if (x === 0 || pc !== 'D' || 'EIY'.indexOf(nc) === -1) {
-              metaword += 'K';
-            }
-          } else {
-            metaword += 'K';
-          }
-        } else {
-          metaword += 'K';
-        }
-        break;
-      case 'M': case 'J': case 'N': case 'R': case 'L':
-        metaword += cc;
-        break;
-      case 'Q':
-        metaword += 'K';
-        break;
-      case 'V':
-        metaword += 'F';
-        break;
-      case 'Z':
-        metaword += 'S';
-        break;
-      case 'X':
-        metaword += (x === 0) ? 'S' : 'KS';
-        break;
-      case 'K':
-        if (x === 0 || pc !== 'C') {
-          metaword += 'K';
-        }
-        break;
-      case 'P':
-        if (x + 1 <= wordlength && nc === 'H') {
-          metaword += 'F';
-        } else {
-          metaword += 'P';
-        }
-        break;
-      case 'Y':
-        if (x + 1 > wordlength || isVowel(nc)) {
-          metaword += 'Y';
-        }
-        break;
-      case 'H':
-        if (x === 0 || 'CSPTG'.indexOf(pc) === -1) {
-          if (isVowel(nc) === true) {
-            metaword += 'H';
-          }
-        }
-        break;
-      case 'S':
-        if (x + 1 <= wordlength) {
-          if (nc === 'H') {
-            metaword += 'X';
-          } else if (x + 2 <= wordlength && nc === 'I' && 'AO'.indexOf(nnc) !== -1) {
-            metaword += 'X';
-          } else {
             metaword += 'S';
           }
-        } else {
-          metaword += 'S';
-        }
-        break;
-      case 'T':
-        if (x + 1 <= wordlength) {
-          if (nc === 'H') {
-            metaword += '0';
-          } else if (x + 2 <= wordlength && nc === 'I' && 'AO'.indexOf(nnc) !== -1) {
-            metaword += 'X';
+          break;
+        case 'T':
+          if (x + 1 <= wordlength) {
+            if (nc === 'H') {
+              metaword += '0';
+            } else if (x + 2 <= wordlength && nc === 'I' && 'AO'.indexOf(nnc) !== -1) {
+              metaword += 'X';
+            } else {
+              metaword += 'T';
+            }
           } else {
             metaword += 'T';
           }
-        } else {
-          metaword += 'T';
-        }
-        break;
-      case 'W':
-        if (x + 1 <= wordlength && isVowel(nc)) {
-          metaword += 'W';
-        }
-        break;
+          break;
+        case 'W':
+          if (x + 1 <= wordlength && isVowel(nc)) {
+            metaword += 'W';
+          }
+          break;
       }
     }
   }
@@ -275,17 +287,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/metaphone.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-metaphone('Gnu');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'N'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

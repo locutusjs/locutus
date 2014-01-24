@@ -15,23 +15,25 @@ alias:
 A JavaScript equivalent of PHP's soundex
 
 {% codeblock strings/soundex.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/soundex.js raw on github %}
-function soundex (str) {
-  // From: http://phpjs.org/functions
-  // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-  // +    tweaked by: Jack
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Onno Marsman
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   original by: Arnout Kazemier (http://www.3rd-Eden.com)
-  // +    revised by: Rafał Kukawski (http://blog.kukawski.pl)
-  // *     example 1: soundex('Kevin');
-  // *     returns 1: 'K150'
-  // *     example 2: soundex('Ellery');
-  // *     returns 2: 'E460'
-  // *     example 3: soundex('Euler');
-  // *     returns 3: 'E460'
-  str = (str + '').toUpperCase();
+function soundex(str) {
+  //  discuss at: http://phpjs.org/functions/soundex/
+  // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // original by: Arnout Kazemier (http://www.3rd-Eden.com)
+  // improved by: Jack
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Onno Marsman
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  //  revised by: Rafał Kukawski (http://blog.kukawski.pl)
+  //   example 1: soundex('Kevin');
+  //   returns 1: 'K150'
+  //   example 2: soundex('Ellery');
+  //   returns 2: 'E460'
+  //   example 3: soundex('Euler');
+  //   returns 3: 'E460'
+
+  str = (str + '')
+    .toUpperCase();
   if (!str) {
     return '';
   }
@@ -87,39 +89,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/soundex.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-soundex('Kevin');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'K150'
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-soundex('Ellery');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'E460'
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-soundex('Euler');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'E460'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

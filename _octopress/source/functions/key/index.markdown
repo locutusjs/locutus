@@ -15,19 +15,19 @@ alias:
 A JavaScript equivalent of PHP's key
 
 {% codeblock array/key.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/key.js raw on github %}
-function key (arr) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: Riddler (http://www.frontierwebdev.com/)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Uses global: php_js to store the array pointer
-  // *     example 1: array = {fruit1: 'apple', 'fruit2': 'orange'}
-  // *     example 1: key(array);
-  // *     returns 1: 'fruit1'
-  // BEGIN REDUNDANT
+function key(arr) {
+  //  discuss at: http://phpjs.org/functions/key/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //    input by: Riddler (http://www.frontierwebdev.com/)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //        note: Uses global: php_js to store the array pointer
+  //   example 1: array = {fruit1: 'apple', 'fruit2': 'orange'}
+  //   example 1: key(array);
+  //   returns 1: 'fruit1'
+
   this.php_js = this.php_js || {};
   this.php_js.pointers = this.php_js.pointers || [];
-  var indexOf = function (value) {
+  var indexOf = function(value) {
     for (var i = 0, length = this.length; i < length; i++) {
       if (this[i] === value) {
         return i;
@@ -73,18 +73,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/key.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array = {fruit1: 'apple', 'fruit2': 'orange'}
-key(array);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'fruit1'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

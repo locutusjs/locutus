@@ -15,19 +15,21 @@ alias:
 A JavaScript equivalent of PHP's array_search
 
 {% codeblock array/array_search.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_search.js raw on github %}
-function array_search (needle, haystack, argStrict) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // *     example 1: array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'});
-  // *     returns 1: 'surname'
-  // *     example 2: ini_set('phpjs.return_phpjs_arrays', 'on');
-  // *     example 2: var ordered_arr = array({3:'value'}, {2:'value'}, {'a':'value'}, {'b':'value'});
-  // *     example 2: var key = array_search(/val/g, ordered_arr); // or var key = ordered_arr.search(/val/g);
-  // *     returns 2: '3'
+function array_search(needle, haystack, argStrict) {
+  //  discuss at: http://phpjs.org/functions/array_search/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //  depends on: array
+  //        test: skip
+  //   example 1: array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'});
+  //   returns 1: 'surname'
+  //   example 2: ini_set('phpjs.return_phpjs_arrays', 'on');
+  //   example 2: var ordered_arr = array({3:'value'}, {2:'value'}, {'a':'value'}, {'b':'value'});
+  //   example 2: var key = array_search(/val/g, ordered_arr); // or var key = ordered_arr.search(/val/g);
+  //   returns 2: '3'
 
-  var strict = !!argStrict,
+  var strict = !! argStrict,
     key = '';
 
   if (haystack && typeof haystack === 'object' && haystack.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
@@ -36,8 +38,8 @@ function array_search (needle, haystack, argStrict) {
   if (typeof needle === 'object' && needle.exec) { // Duck-type for RegExp
     if (!strict) { // Let's consider case sensitive searches as strict
       var flags = 'i' + (needle.global ? 'g' : '') +
-            (needle.multiline ? 'm' : '') +
-            (needle.sticky ? 'y' : ''); // sticky is FF only
+        (needle.multiline ? 'm' : '') +
+        (needle.sticky ? 'y' : ''); // sticky is FF only
       needle = new RegExp(needle.source, flags);
     }
     for (key in haystack) {
@@ -69,30 +71,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_search.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'});
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'surname'
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-ini_set('phpjs.return_phpjs_arrays', 'on');
-var ordered_arr = array({3:'value'}, {2:'value'}, {'a':'value'}, {'b':'value'});
-var key = array_search(/val/g, ordered_arr); // or var key = ordered_arr.search(/val/g);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'3'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

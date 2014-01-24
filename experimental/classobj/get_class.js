@@ -1,4 +1,4 @@
-function get_class (obj) {
+function get_class(obj) {
   // http://kevin.vanzonneveld.net
   // +   original by: Ates Goral (http://magnetiq.com)
   // +   improved by: David James

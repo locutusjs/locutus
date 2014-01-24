@@ -15,26 +15,27 @@ alias:
 A JavaScript equivalent of PHP's array_pop
 
 {% codeblock array/array_pop.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_pop.js raw on github %}
-function array_pop (inputArr) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: Theriault
-  // %        note 1: While IE (and other browsers) support iterating an object's
-  // %        note 1: own properties in order, if one attempts to add back properties
-  // %        note 1: in IE, they may end up in their former position due to their position
-  // %        note 1: being retained. So use of this function with "associative arrays"
-  // %        note 1: (objects) may lead to unexpected behavior in an IE environment if
-  // %        note 1: you add back properties with the same keys that you removed
-  // *     example 1: array_pop([0,1,2]);
-  // *     returns 1: 2
-  // *     example 2: data = {firstName: 'Kevin', surName: 'van Zonneveld'};
-  // *     example 2: lastElem = array_pop(data);
-  // *     returns 2: 'van Zonneveld'
-  // *     results 2: data == {firstName: 'Kevin'}
+function array_pop(inputArr) {
+  //  discuss at: http://phpjs.org/functions/array_pop/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  //    input by: Theriault
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //        note: While IE (and other browsers) support iterating an object's
+  //        note: own properties in order, if one attempts to add back properties
+  //        note: in IE, they may end up in their former position due to their position
+  //        note: being retained. So use of this function with "associative arrays"
+  //        note: (objects) may lead to unexpected behavior in an IE environment if
+  //        note: you add back properties with the same keys that you removed
+  //   example 1: array_pop([0,1,2]);
+  //   returns 1: 2
+  //   example 2: data = {firstName: 'Kevin', surName: 'van Zonneveld'};
+  //   example 2: lastElem = array_pop(data);
+  //   example 2: $result = data
+  //   returns 2: {firstName: 'Kevin'}
+
   var key = '',
     lastKey = '';
 
@@ -74,29 +75,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_pop.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_pop([0,1,2]);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-2
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-data = {firstName: 'Kevin', surName: 'van Zonneveld'};
-lastElem = array_pop(data);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'van Zonneveld'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

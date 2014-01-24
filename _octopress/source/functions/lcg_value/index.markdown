@@ -15,9 +15,13 @@ alias:
 A JavaScript equivalent of PHP's lcg_value
 
 {% codeblock math/lcg_value.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/lcg_value.js raw on github %}
-function lcg_value () {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
+function lcg_value() {
+  //  discuss at: http://phpjs.org/functions/lcg_value/
+  // original by: Onno Marsman
+  //        test: skip
+  //   example 1: lcg_value()
+  //   returns 1: 1
+
   return Math.random();
 }
 {% endcodeblock %}

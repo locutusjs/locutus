@@ -15,26 +15,22 @@ alias:
 A JavaScript equivalent of PHP's base64_encode
 
 {% codeblock url/base64_encode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/url/base64_encode.js raw on github %}
-function base64_encode (data) {
-  // From: http://phpjs.org/functions
-  // +   original by: Tyler Akins (http://rumkin.com)
-  // +   improved by: Bayron Guevara
-  // +   improved by: Thunder.m
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Pellentesque Malesuada
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Rafał Kukawski (http://kukawski.pl)
-  // *     example 1: base64_encode('Kevin van Zonneveld');
-  // *     returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
-  // mozilla has this native
-  // - but breaks in 2.0.0.12!
-  //if (typeof this.window['btoa'] === 'function') {
-  //    return btoa(data);
-  //}
-  var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+function base64_encode(data) {
+  //  discuss at: http://phpjs.org/functions/base64_encode/
+  // original by: Tyler Akins (http://rumkin.com)
+  // improved by: Bayron Guevara
+  // improved by: Thunder.m
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Rafał Kukawski (http://kukawski.pl)
+  // bugfixed by: Pellentesque Malesuada
+  //   example 1: base64_encode('Kevin van Zonneveld');
+  //   returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
+
+  var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
   var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
     ac = 0,
-    enc = "",
+    enc = '',
     tmp_arr = [];
 
   if (!data) {
@@ -62,7 +58,6 @@ function base64_encode (data) {
   var r = data.length % 3;
 
   return (r ? enc.slice(0, r - 3) : enc) + '==='.slice(r || 3);
-
 }
 {% endcodeblock %}
 
@@ -77,17 +72,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/url/base64_encode.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-base64_encode('Kevin van Zonneveld');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
-{% endcodeblock %}
 
 
 ### Other PHP functions in the url extension

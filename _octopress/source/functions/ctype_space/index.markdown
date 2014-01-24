@@ -15,12 +15,13 @@ alias:
 A JavaScript equivalent of PHP's ctype_space
 
 {% codeblock ctype/ctype_space.js lang:js https://raw.github.com/kvz/phpjs/master/functions/ctype/ctype_space.js raw on github %}
-function ctype_space (text) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: setlocale
-  // *     example 1: ctype_space('\t\n');
-  // *     returns 1: true
+function ctype_space(text) {
+  //  discuss at: http://phpjs.org/functions/ctype_space/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: setlocale
+  //   example 1: ctype_space('\t\n');
+  //   returns 1: true
+
   if (typeof text !== 'string') {
     return false;
   }
@@ -42,17 +43,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/ctype/ctype_space.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-ctype_space('\t\n');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
 
 
 ### Other PHP functions in the ctype extension

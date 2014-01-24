@@ -1,4 +1,4 @@
-function classkit_method_add (classname, methodname, args, code, flags) {
+function classkit_method_add(classname, methodname, args, code, flags) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: function a(){}
@@ -8,13 +8,13 @@ function classkit_method_add (classname, methodname, args, code, flags) {
   var func, argmnts = [];
 
   switch (flags) {
-  case 'CLASSKIT_ACC_PROTECTED':
-    throw 'Protected not supported';
-  case 'CLASSKIT_ACC_PRIVATE':
-    throw 'Private not supported';
-  case 'CLASSKIT_ACC_PUBLIC':
-  default:
-    break;
+    case 'CLASSKIT_ACC_PROTECTED':
+      throw 'Protected not supported';
+    case 'CLASSKIT_ACC_PRIVATE':
+      throw 'Private not supported';
+    case 'CLASSKIT_ACC_PUBLIC':
+    default:
+      break;
   }
 
   argmnts = args.split(/,\s*/);

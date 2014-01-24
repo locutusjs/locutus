@@ -1,4 +1,4 @@
-function stream_context_get_params (stream_or_context) {
+function stream_context_get_params(stream_or_context) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var params = {notification:function (notification_code, severity, message, message_code, bytes_transferred, bytes_max) {}};

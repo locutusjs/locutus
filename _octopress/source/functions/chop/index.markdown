@@ -15,12 +15,13 @@ alias:
 A JavaScript equivalent of PHP's chop
 
 {% codeblock strings/chop.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/chop.js raw on github %}
-function chop (str, charlist) {
-  // From: http://phpjs.org/functions
-  // +   original by: Paulo Freitas
-  // -    depends on: rtrim
-  // *     example 1: rtrim('    Kevin van Zonneveld    ');
-  // *     returns 1: '    Kevin van Zonneveld'
+function chop(str, charlist) {
+  //  discuss at: http://phpjs.org/functions/chop/
+  // original by: Paulo Freitas
+  //  depends on: rtrim
+  //   example 1: rtrim('    Kevin van Zonneveld    ');
+  //   returns 1: '    Kevin van Zonneveld'
+
   return this.rtrim(str, charlist);
 }
 {% endcodeblock %}
@@ -36,17 +37,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/chop.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-rtrim('    Kevin van Zonneveld    ');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'    Kevin van Zonneveld'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

@@ -15,15 +15,16 @@ alias:
 A JavaScript equivalent of PHP's levenshtein
 
 {% codeblock strings/levenshtein.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/levenshtein.js raw on github %}
-function levenshtein (s1, s2) {
-  // From: http://phpjs.org/functions
-  // +            original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
-  // +            bugfixed by: Onno Marsman
-  // +             revised by: Andrea Giammarchi (http://webreflection.blogspot.com)
-  // + reimplemented by: Brett Zamir (http://brett-zamir.me)
-  // + reimplemented by: Alexander M Beedie
-  // *                example 1: levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld');
-  // *                returns 1: 3
+function levenshtein(s1, s2) {
+  //       discuss at: http://phpjs.org/functions/levenshtein/
+  //      original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
+  //      bugfixed by: Onno Marsman
+  //       revised by: Andrea Giammarchi (http://webreflection.blogspot.com)
+  // reimplemented by: Brett Zamir (http://brett-zamir.me)
+  // reimplemented by: Alexander M Beedie
+  //        example 1: levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld');
+  //        returns 1: 3
+
   if (s1 == s2) {
     return 0;
   }
@@ -98,17 +99,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/levenshtein.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-3
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

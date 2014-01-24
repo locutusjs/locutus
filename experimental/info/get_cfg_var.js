@@ -1,4 +1,4 @@
-function get_cfg_var (varname) {
+function get_cfg_var(varname) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: The ini values must be set within an ini file

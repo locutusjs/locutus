@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>php.js demo</title>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>php.js demo</h1>
+      <div id="content"></div>
+    </div>
+  </body>
+
+
+  <script type="text/javascript">
+    var code = 'function strtotime (text, now) {\n' + 
+      ' // Convert string representation of date and time to a timestamp\n' + 
+      ' //\n' + 
+      ' // version: 1109.2015\n' + 
+      ' // discuss at: http://phpjs.org/functions/strtotime\n' + 
+      ' // +   based on: Caio Ariede (http://caioariede.com)\n' + 
+      ' // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)\n' + 
+      ' // +      input by: David\n' + 
+      ' // +   improved by: Caio Ariede (http://caioariede.com)\n' + 
+      ' // +   improved by: Brett Zamir (http://brett-zamir.me)\n' + 
+      ' // +   bugfixed by: Wagner B. Soares\n' + 
+      ' // +   bugfixed by: Artur Tchernychev\n' + 
+      ' // +   improved by: A. Matías Quezada (http://amatiasq.com)\n' + 
+      ' // %        note 1: Examples all have a fixed timestamp to prevent tests to fail because of variable time(zones)\n' + 
+      ' // *     example 1: strtotime(\'+1 day\', 1129633200);\n' + 
+      ' // *     returns 1: 1129719600\n' + 
+      ' // *     example 2: strtotime(\'+1 week 2 days 4 hours 2 seconds\', 1129633200);\n' + 
+      ' // *     returns 2: 1130425202\n' + 
+      ' // *     example 3: strtotime(\'last month\', 1129633200);\n' + 
+      ' // *     returns 3: 1127041200\n' + 
+      ' // *     example 4: strtotime(\'2009-05-04 08:30:00\');\n' + 
+      ' // *     returns 4: 1241418600\n' + 
+      ' if (!text)\n' + 
+      '   return null;\n' + 
+      '\n' + 
+      ' // Unecessary spaces\n' + 
+      ' text = text.trim()\n' + 
+      '   .replace(/\s{2,}/g, \' \')\n' + 
+      '   .replace(/[\t\r\n]/g, \'\')\n' + 
+      '   .toLowerCase();\n' + 
+      '\n' + 
+      ' var parsed;\n' + 
+      '\n' + 
+      ' if (text === \'now\')\n' + 
+      '   return now === null || isNaN(now) ? new Date().getTime() / 1000 | 0 : now | 0;\n' + 
+      ' else if (!isNaN(parse = Date.parse(text)))\n' + 
+      '   return parse / 1000 | 0;\n' + 
+      ' if (text === \'now\')\n' + 
+      '   return new Date().getTime() / 1000; // Return seconds, not milli-seconds\n' + 
+      ' else if (!isNaN(parsed = Date.parse(text)))\n' + 
+      '   return parsed / 1000;\n' + 
+      '\n' + 
+      ' var match = text.match(/^(\d{2,4})-(\d{2})-(\d{2})(?:\s(\d{1,2}):(\d{2})(?::\d{2})?)?(?:\.(\d+)?)?$/);\n' + 
+      ' if (match) {\n' + 
+      '   var year = match[1] >= 0 && match[1] <= 69 ? +match[1] + 2000 : match[1];\n' + 
+      '   return new Date(year, parseInt(match[2], 10) - 1, match[3],\n' + 
+      '     match[4] || 0, match[5] || 0, match[6] || 0, match[7] || 0) / 1000;\n' + 
+      ' }\n' + 
+      '\n' + 
+      ' var date = now ? new Date(now * 1000) : new Date();\n' + 
+      ' var days = {\n' + 
+      '   \'sun\': 0,\n' + 
+      '   \'mon\': 1,\n' + 
+      '   \'tue\': 2,\n' + 
+      '   \'wed\': 3,\n' + 
+      '   \'thu\': 4,\n' + 
+      '   \'fri\': 5,\n' + 
+      '   \'sat\': 6\n' + 
+      ' };\n' + 
+      ' var ranges = {\n' + 
+      '   \'yea\': \'FullYear\',\n' + 
+      '   \'mon\': \'Month\',\n' + 
+      '   \'day\': \'Date\',\n' + 
+      '   \'hou\': \'Hours\',\n' + 
+      '   \'min\': \'Minutes\',\n' + 
+      '   \'sec\': \'Seconds\'\n' + 
+      ' };\n' + 
+      '\n' + 
+      ' function lastNext(type, range, modifier) {\n' + 
+      '   var day = days[range];\n' + 
+      '\n' + 
+      '   if (typeof(day) !== \'undefined\') {\n' + 
+      '     var diff = day - date.getDay();\n' + 
+      '\n' + 
+      '     if (diff === 0)\n' + 
+      '       diff = 7 * modifier;\n' + 
+      '     else if (diff > 0 && type === \'last\')\n' + 
+      '       diff -= 7;\n' + 
+      '     else if (diff < 0 && type === \'next\')\n' + 
+      '       diff += 7;\n' + 
+      '\n' + 
+      '     date.setDate(date.getDate() + diff);\n' + 
+      '   }\n' + 
+      ' }\n' + 
+      ' function process(val) {\n' + 
+      '   var split = val.split(\' \');\n' + 
+      '   var type = split[0];\n' + 
+      '   var range = split[1].substring(0, 3);\n' + 
+      '   var typeIsNumber = /\d+/.test(type);\n' + 
+      '\n' + 
+      '   var ago = split[2] === \'ago\';\n' + 
+      '   var num = (type === \'last\' ? -1 : 1) * (ago ? -1 : 1);\n' + 
+      '\n' + 
+      '   if (typeIsNumber)\n' + 
+      '     num *= parseInt(type, 10);\n' + 
+      '\n' + 
+      '   if (ranges.hasOwnProperty(range))\n' + 
+      '     return date[\'set\' + ranges[range]](date[\'get\' + ranges[range]]() + num);\n' + 
+      '   else if (range === \'wee\')\n' + 
+      '     return date.setDate(date.getDate() + (num * 7));\n' + 
+      '\n' + 
+      '   if (type === \'next\' || type === \'last\')\n' + 
+      '     lastNext(type, range, num);\n' + 
+      '   else if (!typeIsNumber)\n' + 
+      '     return false;\n' + 
+      '\n' + 
+      '   return true;\n' + 
+      ' }\n' + 
+      '\n' + 
+      ' var regex = \'([+-]?\\d+\\s\' +\n' + 
+      '   \'(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?\' +\n' + 
+      '   \'|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday\' +\n' + 
+      '   \'|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday)|(last|next)\\s\' +\n' + 
+      '   \'(years?|months?|weeks?|days?|hours?|min|minutes?|sec|seconds?\' +\n' + 
+      '   \'|sun\\.?|sunday|mon\\.?|monday|tue\\.?|tuesday|wed\\.?|wednesday\' +\n' + 
+      '   \'|thu\\.?|thursday|fri\\.?|friday|sat\\.?|saturday))(\\sago)?\';\n' + 
+      '\n' + 
+      ' match = text.match(new RegExp(regex, \'gi\'));\n' + 
+      ' if (!match)\n' + 
+      '   return false;\n' + 
+      '\n' + 
+      ' for (var i = 0, len = match.length; i < len; i++)\n' + 
+      '   if (!process(match[i]))\n' + 
+      '     return false;\n' + 
+      '\n' + 
+      ' // ECMAScript 5 only\n' + 
+      ' //if (!match.every(process))\n' + 
+      ' //  return false;\n' + 
+      '\n' + 
+      ' return (date.getTime() / 1000);\n' + 
+      '}\n' + 
+      '\n'; 
+  </script>
+
+  <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="../lib/phpjsutil.js"></script>
+  <script type="text/javascript">
+    phpjsutil = new PhpjsUtil()
+    phpjsutil.parse('strtotime', code, function (err, result) {
+      if (err) {
+        $('#content').append('<pre class="alert-warning alert">' + JSON.stringify(err, undefined, 2) + '</pre>');
+      }
+      $('#content').append('<pre>' + JSON.stringify(result, undefined, 2) + '</pre>');
+
+      console.log(result);
+    });
+  </script>
+
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    $('button[rel]').tooltip();
+  </script>
+</html>

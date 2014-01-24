@@ -15,13 +15,14 @@ alias:
 A JavaScript equivalent of PHP's array_diff_assoc
 
 {% codeblock array/array_diff_assoc.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_diff_assoc.js raw on github %}
-function array_diff_assoc (arr1) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: 0m3r
-  // +    revised by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: array_diff_assoc({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'});
-  // *     returns 1: {1: 'van', 2: 'Zonneveld'}
+function array_diff_assoc(arr1) {
+  //  discuss at: http://phpjs.org/functions/array_diff_assoc/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: 0m3r
+  //  revised by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: array_diff_assoc({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'});
+  //   returns 1: {1: 'van', 2: 'Zonneveld'}
+
   var retArr = {},
     argl = arguments.length,
     k1 = '',
@@ -57,17 +58,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_diff_assoc.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_diff_assoc({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'});
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-{1: 'van', 2: 'Zonneveld'}
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

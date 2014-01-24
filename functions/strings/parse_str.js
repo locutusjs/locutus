@@ -1,37 +1,42 @@
-function parse_str (str, array) {
-  // From: http://phpjs.org/functions
-  // +   original by: Cagri Ekin
-  // +   improved by: Michael White (http://getsprink.com)
-  // +    tweaked by: Jack
-  // +   bugfixed by: Onno Marsman
-  // +   reimplemented by: stag019
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: stag019
-  // +   input by: Dreamer
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: MIO_KODUKI (http://mio-koduki.blogspot.com/)
-  // +   input by: Zaide (http://zaidesthings.com/)
-  // +   input by: David Pesta (http://davidpesta.com/)
-  // +   input by: jeicquest
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: When no argument is specified, will put variables in global scope.
-  // %        note 1: When a particular argument has been passed, and the returned value is different parse_str of PHP. For example, a=b=c&d====c
-  // *     example 1: var arr = {};
-  // *     example 1: parse_str('first=foo&second=bar', arr);
-  // *     results 1: arr == { first: 'foo', second: 'bar' }
-  // *     example 2: var arr = {};
-  // *     example 2: parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.', arr);
-  // *     results 2: arr == { str_a: "Jack and Jill didn't see the well." }
-  // *     example 3: var abc = {3:'a'};
-  // *     example 3: parse_str('abc[a][b]["c"]=def&abc[q]=t+5');
-  // *     results 3: JSON.stringify(abc) === '{"3":"a","a":{"b":{"c":"def"}},"q":"t 5"}';
+function parse_str(str, array) {
+  //       discuss at: http://phpjs.org/functions/parse_str/
+  //      original by: Cagri Ekin
+  //      improved by: Michael White (http://getsprink.com)
+  //      improved by: Jack
+  //      improved by: Brett Zamir (http://brett-zamir.me)
+  //      bugfixed by: Onno Marsman
+  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //      bugfixed by: stag019
+  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //      bugfixed by: MIO_KODUKI (http://mio-koduki.blogspot.com/)
+  // reimplemented by: stag019
+  //         input by: Dreamer
+  //         input by: Zaide (http://zaidesthings.com/)
+  //         input by: David Pesta (http://davidpesta.com/)
+  //         input by: jeicquest
+  //             note: When no argument is specified, will put variables in global scope.
+  //             note: When a particular argument has been passed, and the returned value is different parse_str of PHP. For example, a=b=c&d====c
+  //             test: skip
+  //        example 1: var arr = {};
+  //        example 1: parse_str('first=foo&second=bar', arr);
+  //        example 1: $result = arr
+  //        returns 1: { first: 'foo', second: 'bar' }
+  //        example 2: var arr = {};
+  //        example 2: parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.', arr);
+  //        example 2: $result = arr
+  //        returns 2: { str_a: "Jack and Jill didn't see the well." }
+  //        example 3: var abc = {3:'a'};
+  //        example 3: parse_str('abc[a][b]["c"]=def&abc[q]=t+5');
+  //        returns 3: {"3":"a","a":{"b":{"c":"def"}},"q":"t 5"}
 
-
-  var strArr = String(str).replace(/^&/, '').replace(/&$/, '').split('&'),
+  var strArr = String(str)
+    .replace(/^&/, '')
+    .replace(/&$/, '')
+    .split('&'),
     sal = strArr.length,
     i, j, ct, p, lastObj, obj, lastIter, undef, chr, tmp, key, value,
     postLeftBracketPos, keys, keysLen,
-    fixStr = function (str) {
+    fixStr = function(str) {
       return decodeURIComponent(str.replace(/\+/g, '%20'));
     };
 
@@ -56,8 +61,7 @@ function parse_str (str, array) {
       for (j = 0; j < key.length; j++) {
         if (key.charAt(j) === '[' && !postLeftBracketPos) {
           postLeftBracketPos = j + 1;
-        }
-        else if (key.charAt(j) === ']') {
+        } else if (key.charAt(j) === ']') {
           if (postLeftBracketPos) {
             if (!keys.length) {
               keys.push(key.slice(0, postLeftBracketPos - 1));
@@ -85,7 +89,8 @@ function parse_str (str, array) {
 
       obj = array;
       for (j = 0, keysLen = keys.length; j < keysLen; j++) {
-        key = keys[j].replace(/^['"]/, '').replace(/['"]$/, '');
+        key = keys[j].replace(/^['"]/, '')
+          .replace(/['"]$/, '');
         lastIter = j !== keys.length - 1;
         lastObj = obj;
         if ((key !== '' && key !== ' ') || j === 0) {
@@ -93,8 +98,7 @@ function parse_str (str, array) {
             obj[key] = {};
           }
           obj = obj[key];
-        }
-        else { // To insert new dimension
+        } else { // To insert new dimension
           ct = -1;
           for (p in obj) {
             if (obj.hasOwnProperty(p)) {

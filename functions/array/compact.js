@@ -1,16 +1,17 @@
-function compact () {
-  // From: http://phpjs.org/functions
-  // +   original by: Waldo Malqui Silva
-  // +    tweaked by: Jack
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // *     example 1: var1 = 'Kevin'; var2 = 'van'; var3 = 'Zonneveld';
-  // *     example 1: compact('var1', 'var2', 'var3');
-  // *     returns 1: {'var1': 'Kevin', 'var2': 'van', 'var3': 'Zonneveld'}
+function compact() {
+  //  discuss at: http://phpjs.org/functions/compact/
+  // original by: Waldo Malqui Silva
+  // improved by: Jack
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //   example 1: var1 = 'Kevin'; var2 = 'van'; var3 = 'Zonneveld';
+  //   example 1: compact('var1', 'var2', 'var3');
+  //   returns 1: {'var1': 'Kevin', 'var2': 'van', 'var3': 'Zonneveld'}
+
   var matrix = {},
     that = this;
 
-  var process = function (value) {
+  var process = function(value) {
     var i = 0,
       l = value.length,
       key_value = '';

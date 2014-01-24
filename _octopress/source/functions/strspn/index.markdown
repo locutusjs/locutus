@@ -15,14 +15,15 @@ alias:
 A JavaScript equivalent of PHP's strspn
 
 {% codeblock strings/strspn.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strspn.js raw on github %}
-function strspn (str1, str2, start, lgth) {
-  // From: http://phpjs.org/functions
-  // +   original by: Valentina De Rosa
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: strspn('42 is the answer, what is the question ...', '1234567890');
-  // *     returns 1: 2
-  // *     example 2: strspn('foo', 'o', 1, 2);
-  // *     returns 2: 2
+function strspn(str1, str2, start, lgth) {
+  //  discuss at: http://phpjs.org/functions/strspn/
+  // original by: Valentina De Rosa
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: strspn('42 is the answer, what is the question ...', '1234567890');
+  //   returns 1: 2
+  //   example 2: strspn('foo', 'o', 1, 2);
+  //   returns 2: 2
+
   var found;
   var stri;
   var strj;
@@ -63,28 +64,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/strspn.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-strspn('42 is the answer, what is the question ...', '1234567890');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-2
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-strspn('foo', 'o', 1, 2);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-2
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

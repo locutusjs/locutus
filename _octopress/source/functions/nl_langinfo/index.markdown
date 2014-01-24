@@ -15,12 +15,13 @@ alias:
 A JavaScript equivalent of PHP's nl_langinfo
 
 {% codeblock strings/nl_langinfo.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/nl_langinfo.js raw on github %}
-function nl_langinfo (item) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: setlocale
-  // *     example 1: nl_langinfo('DAY_1');
-  // *     returns 1: 'Sunday'
+function nl_langinfo(item) {
+  //  discuss at: http://phpjs.org/functions/nl_langinfo/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: setlocale
+  //   example 1: nl_langinfo('DAY_1');
+  //   returns 1: 'Sunday'
+
   this.setlocale('LC_ALL', 0); // Ensure locale data is available
   var loc = this.php_js.locales[this.php_js.localeCategories.LC_TIME];
   if (item.indexOf('ABDAY_') === 0) {
@@ -34,73 +35,73 @@ function nl_langinfo (item) {
   } else {
     switch (item) {
       // More LC_TIME
-    case 'AM_STR':
-      return loc.LC_TIME.p[0];
-    case 'PM_STR':
-      return loc.LC_TIME.p[1];
-    case 'D_T_FMT':
-      return loc.LC_TIME.c;
-    case 'D_FMT':
-      return loc.LC_TIME.x;
-    case 'T_FMT':
-      return loc.LC_TIME.X;
-    case 'T_FMT_AMPM':
-      return loc.LC_TIME.r;
-    case 'ERA':
-      // all fall-throughs
-    case 'ERA_YEAR':
-    case 'ERA_D_T_FMT':
-    case 'ERA_D_FMT':
-    case 'ERA_T_FMT':
-      return loc.LC_TIME[item];
+      case 'AM_STR':
+        return loc.LC_TIME.p[0];
+      case 'PM_STR':
+        return loc.LC_TIME.p[1];
+      case 'D_T_FMT':
+        return loc.LC_TIME.c;
+      case 'D_FMT':
+        return loc.LC_TIME.x;
+      case 'T_FMT':
+        return loc.LC_TIME.X;
+      case 'T_FMT_AMPM':
+        return loc.LC_TIME.r;
+      case 'ERA':
+        // all fall-throughs
+      case 'ERA_YEAR':
+      case 'ERA_D_T_FMT':
+      case 'ERA_D_FMT':
+      case 'ERA_T_FMT':
+        return loc.LC_TIME[item];
     }
     loc = this.php_js.locales[this.php_js.localeCategories.LC_MONETARY];
     if (item === 'CRNCYSTR') {
       item = 'CURRENCY_SYMBOL'; // alias
     }
     switch (item) {
-    case 'INT_CURR_SYMBOL':
-      // all fall-throughs
-    case 'CURRENCY_SYMBOL':
-    case 'MON_DECIMAL_POINT':
-    case 'MON_THOUSANDS_SEP':
-    case 'POSITIVE_SIGN':
-    case 'NEGATIVE_SIGN':
-    case 'INT_FRAC_DIGITS':
-    case 'FRAC_DIGITS':
-    case 'P_CS_PRECEDES':
-    case 'P_SEP_BY_SPACE':
-    case 'N_CS_PRECEDES':
-    case 'N_SEP_BY_SPACE':
-    case 'P_SIGN_POSN':
-    case 'N_SIGN_POSN':
-      return loc.LC_MONETARY[item.toLowerCase()];
-    case 'MON_GROUPING':
-      // Same as above, or return something different since this returns an array?
-      return loc.LC_MONETARY[item.toLowerCase()];
+      case 'INT_CURR_SYMBOL':
+        // all fall-throughs
+      case 'CURRENCY_SYMBOL':
+      case 'MON_DECIMAL_POINT':
+      case 'MON_THOUSANDS_SEP':
+      case 'POSITIVE_SIGN':
+      case 'NEGATIVE_SIGN':
+      case 'INT_FRAC_DIGITS':
+      case 'FRAC_DIGITS':
+      case 'P_CS_PRECEDES':
+      case 'P_SEP_BY_SPACE':
+      case 'N_CS_PRECEDES':
+      case 'N_SEP_BY_SPACE':
+      case 'P_SIGN_POSN':
+      case 'N_SIGN_POSN':
+        return loc.LC_MONETARY[item.toLowerCase()];
+      case 'MON_GROUPING':
+        // Same as above, or return something different since this returns an array?
+        return loc.LC_MONETARY[item.toLowerCase()];
     }
     loc = this.php_js.locales[this.php_js.localeCategories.LC_NUMERIC];
     switch (item) {
-    case 'RADIXCHAR':
-      // Fall-through
-    case 'DECIMAL_POINT':
-      return loc.LC_NUMERIC[item.toLowerCase()];
-    case 'THOUSEP':
-      // Fall-through
-    case 'THOUSANDS_SEP':
-      return loc.LC_NUMERIC[item.toLowerCase()];
-    case 'GROUPING':
-      // Same as above, or return something different since this returns an array?
-      return loc.LC_NUMERIC[item.toLowerCase()];
+      case 'RADIXCHAR':
+        // Fall-through
+      case 'DECIMAL_POINT':
+        return loc.LC_NUMERIC[item.toLowerCase()];
+      case 'THOUSEP':
+        // Fall-through
+      case 'THOUSANDS_SEP':
+        return loc.LC_NUMERIC[item.toLowerCase()];
+      case 'GROUPING':
+        // Same as above, or return something different since this returns an array?
+        return loc.LC_NUMERIC[item.toLowerCase()];
     }
     loc = this.php_js.locales[this.php_js.localeCategories.LC_MESSAGES];
     switch (item) {
-    case 'YESEXPR':
-      // all fall-throughs
-    case 'NOEXPR':
-    case 'YESSTR':
-    case 'NOSTR':
-      return loc.LC_MESSAGES[item];
+      case 'YESEXPR':
+        // all fall-throughs
+      case 'NOEXPR':
+      case 'YESSTR':
+      case 'NOSTR':
+        return loc.LC_MESSAGES[item];
     }
     loc = this.php_js.locales[this.php_js.localeCategories.LC_CTYPE];
     if (item === 'CODESET') {
@@ -122,17 +123,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/nl_langinfo.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-nl_langinfo('DAY_1');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'Sunday'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

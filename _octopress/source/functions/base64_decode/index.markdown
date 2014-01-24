@@ -15,28 +15,24 @@ alias:
 A JavaScript equivalent of PHP's base64_decode
 
 {% codeblock url/base64_decode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/url/base64_decode.js raw on github %}
-function base64_decode (data) {
-  // From: http://phpjs.org/functions
-  // +   original by: Tyler Akins (http://rumkin.com)
-  // +   improved by: Thunder.m
-  // +      input by: Aman Gupta
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Onno Marsman
-  // +   bugfixed by: Pellentesque Malesuada
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +      input by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // *     example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
-  // *     returns 1: 'Kevin van Zonneveld'
-  // mozilla has this native
-  // - but breaks in 2.0.0.12!
-  //if (typeof this.window['atob'] === 'function') {
-  //    return atob(data);
-  //}
-  var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+function base64_decode(data) {
+  //  discuss at: http://phpjs.org/functions/base64_decode/
+  // original by: Tyler Akins (http://rumkin.com)
+  // improved by: Thunder.m
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //    input by: Aman Gupta
+  //    input by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Onno Marsman
+  // bugfixed by: Pellentesque Malesuada
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //   example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
+  //   returns 1: 'Kevin van Zonneveld'
+
+  var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
   var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
     ac = 0,
-    dec = "",
+    dec = '',
     tmp_arr = [];
 
   if (!data) {
@@ -83,17 +79,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/url/base64_decode.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'Kevin van Zonneveld'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the url extension

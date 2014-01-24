@@ -15,19 +15,14 @@ alias:
 A JavaScript equivalent of PHP's bccomp
 
 {% codeblock bc/bccomp.js lang:js https://raw.github.com/kvz/phpjs/master/functions/bc/bccomp.js raw on github %}
-function bccomp (left_operand, right_operand, scale) {
-  // From: http://phpjs.org/functions
-  // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
-  // -    depends on: _phpjs_shared_bc
-  // *     example 1: bccomp(1, 2);
-  // *     returns 1: 3
-  //  @todo: implement these testcases
-  //        bcscale(0);
-  //
-  //        bcmath.test.result('bccomp', 1, -1, bccomp('-1','5', 4));
-  //        bcmath.test.result('bccomp', 2, -1, bccomp('1928372132132819737213', '8728932001983192837219398127471'));
-  //        bcmath.test.result('bccomp', 3,  0, bccomp('1.00000000000000000001', '1', 2));
-  //        bcmath.test.result('bccomp', 4,  1, bccomp('97321', '2321'));
+function bccomp(left_operand, right_operand, scale) {
+  //  discuss at: http://phpjs.org/functions/bccomp/
+  // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
+  //  depends on: _phpjs_shared_bc
+  //   example 1: bccomp(1, 2);
+  //   returns 1: 3
+  //        todo: implement these testcases
+
   var libbcmath = this._phpjs_shared_bc();
 
   var first, second; //bc_num
@@ -56,17 +51,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/bc/bccomp.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-bccomp(1, 2);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-3
-{% endcodeblock %}
 
 
 ### Other PHP functions in the bc extension

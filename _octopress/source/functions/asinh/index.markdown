@@ -15,11 +15,12 @@ alias:
 A JavaScript equivalent of PHP's asinh
 
 {% codeblock math/asinh.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/asinh.js raw on github %}
-function asinh (arg) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // *     example 1: asinh(8723321.4);
-  // *     returns 1: 16.67465779841863
+function asinh(arg) {
+  //  discuss at: http://phpjs.org/functions/asinh/
+  // original by: Onno Marsman
+  //   example 1: asinh(8723321.4);
+  //   returns 1: 16.67465779841863
+
   return Math.log(arg + Math.sqrt(arg * arg + 1));
 }
 {% endcodeblock %}
@@ -35,17 +36,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/asinh.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-asinh(8723321.4);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-16.67465779841863
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

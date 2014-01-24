@@ -1,4 +1,4 @@
-function method_exists (obj, method) {
+function method_exists(obj, method) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: function class_a() {this.meth1 = function () {return true;}};

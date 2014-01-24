@@ -15,33 +15,36 @@ alias:
 A JavaScript equivalent of PHP's stripslashes
 
 {% codeblock strings/stripslashes.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/stripslashes.js raw on github %}
-function stripslashes (str) {
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Ates Goral (http://magnetiq.com)
-  // +      fixed by: Mick@el
-  // +   improved by: marrtins
-  // +   bugfixed by: Onno Marsman
-  // +   improved by: rezna
-  // +   input by: Rick Waldron
-  // +   reimplemented by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: Brant Messenger (http://www.brantmessenger.com/)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: stripslashes('Kevin\'s code');
-  // *     returns 1: "Kevin's code"
-  // *     example 2: stripslashes('Kevin\\\'s code');
-  // *     returns 2: "Kevin\'s code"
-  return (str + '').replace(/\\(.?)/g, function (s, n1) {
-    switch (n1) {
-    case '\\':
-      return '\\';
-    case '0':
-      return '\u0000';
-    case '':
-      return '';
-    default:
-      return n1;
-    }
-  });
+function stripslashes(str) {
+  //       discuss at: http://phpjs.org/functions/stripslashes/
+  //      original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //      improved by: Ates Goral (http://magnetiq.com)
+  //      improved by: marrtins
+  //      improved by: rezna
+  //         fixed by: Mick@el
+  //      bugfixed by: Onno Marsman
+  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //         input by: Rick Waldron
+  //         input by: Brant Messenger (http://www.brantmessenger.com/)
+  // reimplemented by: Brett Zamir (http://brett-zamir.me)
+  //        example 1: stripslashes('Kevin\'s code');
+  //        returns 1: "Kevin's code"
+  //        example 2: stripslashes('Kevin\\\'s code');
+  //        returns 2: "Kevin\'s code"
+
+  return (str + '')
+    .replace(/\\(.?)/g, function(s, n1) {
+      switch (n1) {
+        case '\\':
+          return '\\';
+        case '0':
+          return '\u0000';
+        case '':
+          return '';
+        default:
+          return n1;
+      }
+    });
 }
 {% endcodeblock %}
 
@@ -56,28 +59,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/stripslashes.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-stripslashes('Kevin\'s code');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-"Kevin's code"
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-stripslashes('Kevin\\\'s code');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-"Kevin\'s code"
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

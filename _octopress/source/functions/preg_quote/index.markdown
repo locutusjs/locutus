@@ -15,20 +15,22 @@ alias:
 A JavaScript equivalent of PHP's preg_quote
 
 {% codeblock pcre/preg_quote.js lang:js https://raw.github.com/kvz/phpjs/master/functions/pcre/preg_quote.js raw on github %}
-function preg_quote (str, delimiter) {
-  // From: http://phpjs.org/functions
-  // +   original by: booeyOH
-  // +   improved by: Ates Goral (http://magnetiq.com)
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Onno Marsman
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: preg_quote("$40");
-  // *     returns 1: '\$40'
-  // *     example 2: preg_quote("*RRRING* Hello?");
-  // *     returns 2: '\*RRRING\* Hello\?'
-  // *     example 3: preg_quote("\\.+*?[^]$(){}=!<>|:");
-  // *     returns 3: '\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:'
-  return (str + '').replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\' + (delimiter || '') + '-]', 'g'), '\\$&');
+function preg_quote(str, delimiter) {
+  //  discuss at: http://phpjs.org/functions/preg_quote/
+  // original by: booeyOH
+  // improved by: Ates Goral (http://magnetiq.com)
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Onno Marsman
+  //   example 1: preg_quote("$40");
+  //   returns 1: '\\$40'
+  //   example 2: preg_quote("*RRRING* Hello?");
+  //   returns 2: '\\*RRRING\\* Hello\\?'
+  //   example 3: preg_quote("\\.+*?[^]$(){}=!<>|:");
+  //   returns 3: '\\\\\\.\\+\\*\\?\\[\\^\\]\\$\\(\\)\\{\\}\\=\\!\\<\\>\\|\\:'
+
+  return (str + '')
+    .replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\' + (delimiter || '') + '-]', 'g'), '\\$&');
 }
 {% endcodeblock %}
 
@@ -43,39 +45,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/pcre/preg_quote.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-preg_quote("$40");
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'\$40'
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-preg_quote("*RRRING* Hello?");
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'\*RRRING\* Hello\?'
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-preg_quote("\\.+*?[^]$(){}=!<>|:");
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the pcre extension

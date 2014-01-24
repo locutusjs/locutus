@@ -15,14 +15,15 @@ alias:
 A JavaScript equivalent of PHP's array_rand
 
 {% codeblock array/array_rand.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_rand.js raw on github %}
-function array_rand (input, num_req) {
-  // From: http://phpjs.org/functions
-  // +   original by: Waldo Malqui Silva
-  // *     example 1: array_rand( ['Kevin'], 1 );
-  // *     returns 1: 0
+function array_rand(input, num_req) {
+  //  discuss at: http://phpjs.org/functions/array_rand/
+  // original by: Waldo Malqui Silva
+  //   example 1: array_rand( ['Kevin'], 1 );
+  //   returns 1: 0
+
   var indexes = [];
   var ticks = num_req || 1;
-  var checkDuplicate = function (input, value) {
+  var checkDuplicate = function(input, value) {
     var exist = false,
       index = 0,
       il = input.length;
@@ -65,17 +66,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_rand.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_rand( ['Kevin'], 1 );
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-0
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

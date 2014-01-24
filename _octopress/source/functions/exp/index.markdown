@@ -15,11 +15,12 @@ alias:
 A JavaScript equivalent of PHP's exp
 
 {% codeblock math/exp.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/exp.js raw on github %}
-function exp (arg) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // *     example 1: exp(0.3);
-  // *     returns 1: 1.3498588075760032
+function exp(arg) {
+  //  discuss at: http://phpjs.org/functions/exp/
+  // original by: Onno Marsman
+  //   example 1: exp(0.3);
+  //   returns 1: 1.3498588075760032
+
   return Math.exp(arg);
 }
 {% endcodeblock %}
@@ -35,17 +36,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/exp.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-exp(0.3);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-1.3498588075760032
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

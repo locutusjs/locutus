@@ -15,11 +15,13 @@ alias:
 A JavaScript equivalent of PHP's is_unicode
 
 {% codeblock var/is_unicode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_unicode.js raw on github %}
-function is_unicode (vr) {
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Almost all strings in JavaScript should be Unicode
-  // *     example 1: is_unicode('We the peoples of the United Nations...!');
-  // *     returns 1: true
+function is_unicode(vr) {
+  //  discuss at: http://phpjs.org/functions/is_unicode/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //        note: Almost all strings in JavaScript should be Unicode
+  //   example 1: is_unicode('We the peoples of the United Nations...!');
+  //   returns 1: true
+
   if (typeof vr !== 'string') {
     return false;
   }
@@ -59,17 +61,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/var/is_unicode.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-is_unicode('We the peoples of the United Nations...!');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
 
 
 ### Other PHP functions in the var extension

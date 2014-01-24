@@ -15,16 +15,17 @@ alias:
 A JavaScript equivalent of PHP's strcmp
 
 {% codeblock strings/strcmp.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strcmp.js raw on github %}
-function strcmp (str1, str2) {
-  // From: http://phpjs.org/functions
-  // +   original by: Waldo Malqui Silva
-  // +      input by: Steve Hilder
-  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +    revised by: gorthaur
-  // *     example 1: strcmp( 'waldo', 'owald' );
-  // *     returns 1: 1
-  // *     example 2: strcmp( 'owald', 'waldo' );
-  // *     returns 2: -1
+function strcmp(str1, str2) {
+  //  discuss at: http://phpjs.org/functions/strcmp/
+  // original by: Waldo Malqui Silva
+  //    input by: Steve Hilder
+  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //  revised by: gorthaur
+  //   example 1: strcmp( 'waldo', 'owald' );
+  //   returns 1: 1
+  //   example 2: strcmp( 'owald', 'waldo' );
+  //   returns 2: -1
+
   return ((str1 == str2) ? 0 : ((str1 > str2) ? 1 : -1));
 }
 {% endcodeblock %}
@@ -40,28 +41,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/strcmp.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-strcmp( 'waldo', 'owald' );
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-1
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-strcmp( 'owald', 'waldo' );
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
--1
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

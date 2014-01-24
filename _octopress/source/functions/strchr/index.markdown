@@ -15,14 +15,15 @@ alias:
 A JavaScript equivalent of PHP's strchr
 
 {% codeblock strings/strchr.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strchr.js raw on github %}
-function strchr (haystack, needle, bool) {
-  // From: http://phpjs.org/functions
-  // +   original by: Philip Peterson
-  // -    depends on: strstr
-  // *     example 1: strchr('Kevin van Zonneveld', 'van');
-  // *     returns 1: 'van Zonneveld'
-  // *     example 2: strchr('Kevin van Zonneveld', 'van', true);
-  // *     returns 2: 'Kevin '
+function strchr(haystack, needle, bool) {
+  //  discuss at: http://phpjs.org/functions/strchr/
+  // original by: Philip Peterson
+  //  depends on: strstr
+  //   example 1: strchr('Kevin van Zonneveld', 'van');
+  //   returns 1: 'van Zonneveld'
+  //   example 2: strchr('Kevin van Zonneveld', 'van', true);
+  //   returns 2: 'Kevin '
+
   return this.strstr(haystack, needle, bool);
 }
 {% endcodeblock %}
@@ -38,28 +39,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/strchr.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-strchr('Kevin van Zonneveld', 'van');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'van Zonneveld'
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-strchr('Kevin van Zonneveld', 'van', true);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'Kevin '
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

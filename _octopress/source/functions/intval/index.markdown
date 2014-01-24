@@ -15,24 +15,25 @@ alias:
 A JavaScript equivalent of PHP's intval
 
 {% codeblock var/intval.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/intval.js raw on github %}
-function intval (mixed_var, base) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: stensi
-  // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   input by: Matteo
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // +   bugfixed by: Rafał Kukawski (http://kukawski.pl)
-  // *     example 1: intval('Kevin van Zonneveld');
-  // *     returns 1: 0
-  // *     example 2: intval(4.2);
-  // *     returns 2: 4
-  // *     example 3: intval(42, 8);
-  // *     returns 3: 42
-  // *     example 4: intval('09');
-  // *     returns 4: 9
-  // *     example 5: intval('1e', 16);
-  // *     returns 5: 30
+function intval(mixed_var, base) {
+  //  discuss at: http://phpjs.org/functions/intval/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: stensi
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Rafał Kukawski (http://kukawski.pl)
+  //    input by: Matteo
+  //   example 1: intval('Kevin van Zonneveld');
+  //   returns 1: 0
+  //   example 2: intval(4.2);
+  //   returns 2: 4
+  //   example 3: intval(42, 8);
+  //   returns 3: 42
+  //   example 4: intval('09');
+  //   returns 4: 9
+  //   example 5: intval('1e', 16);
+  //   returns 5: 30
+
   var tmp;
 
   var type = typeof mixed_var;
@@ -61,39 +62,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/var/intval.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-intval('Kevin van Zonneveld');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-0
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-intval(4.2);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-4
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-intval(42, 8);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-42
-{% endcodeblock %}
 
 
 ### Other PHP functions in the var extension

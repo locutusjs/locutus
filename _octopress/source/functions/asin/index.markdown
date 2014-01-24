@@ -15,11 +15,12 @@ alias:
 A JavaScript equivalent of PHP's asin
 
 {% codeblock math/asin.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/asin.js raw on github %}
-function asin (arg) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // *     example 1: asin(0.3);
-  // *     returns 1: 0.3046926540153975
+function asin(arg) {
+  //  discuss at: http://phpjs.org/functions/asin/
+  // original by: Onno Marsman
+  //   example 1: asin(0.3);
+  //   returns 1: 0.3046926540153975
+
   return Math.asin(arg);
 }
 {% endcodeblock %}
@@ -35,17 +36,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/asin.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-asin(0.3);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-0.3046926540153975
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

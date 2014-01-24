@@ -15,41 +15,42 @@ alias:
 A JavaScript equivalent of PHP's money_format
 
 {% codeblock strings/money_format.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/money_format.js raw on github %}
-function money_format (format, number) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   input by: daniel airton wermann (http://wermann.com.br)
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // -    depends on: setlocale
-  // %          note 1: This depends on setlocale having the appropriate locale (these examples use 'en_US')
-  // *     example 1: money_format('%i', 1234.56);
-  // *     returns 1: 'USD 1,234.56'
-  // *     example 2: money_format('%14#8.2n', 1234.5678);
-  // *     returns 2: ' $     1,234.57'
-  // *     example 3: money_format('%14#8.2n', -1234.5678);
-  // *     returns 3: '-$     1,234.57'
-  // *     example 4: money_format('%(14#8.2n', 1234.5678);
-  // *     returns 4: ' $     1,234.57 '
-  // *     example 5: money_format('%(14#8.2n', -1234.5678);
-  // *     returns 5: '($     1,234.57)'
-  // *     example 6: money_format('%=014#8.2n', 1234.5678);
-  // *     returns 6: ' $000001,234.57'
-  // *     example 7: money_format('%=014#8.2n', -1234.5678);
-  // *     returns 7: '-$000001,234.57'
-  // *     example 8: money_format('%=*14#8.2n', 1234.5678);
-  // *     returns 8: ' $*****1,234.57'
-  // *     example 9: money_format('%=*14#8.2n', -1234.5678);
-  // *     returns 9: '-$*****1,234.57'
-  // *     example 10: money_format('%=*^14#8.2n', 1234.5678);
-  // *     returns 10: '  $****1234.57'
-  // *     example 11: money_format('%=*^14#8.2n', -1234.5678);
-  // *     returns 11: ' -$****1234.57'
-  // *     example 12: money_format('%=*!14#8.2n', 1234.5678);
-  // *     returns 12: ' *****1,234.57'
-  // *     example 13: money_format('%=*!14#8.2n', -1234.5678);
-  // *     returns 13: '-*****1,234.57'
-  // *     example 14: money_format('%i', 3590);
-  // *     returns 14: ' USD 3,590.00'
+function money_format(format, number) {
+  //  discuss at: http://phpjs.org/functions/money_format/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //    input by: daniel airton wermann (http://wermann.com.br)
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //  depends on: setlocale
+  //        note: This depends on setlocale having the appropriate
+  //        note: locale (these examples use 'en_US')
+  //   example 1: money_format('%i', 1234.56);
+  //   returns 1: ' USD 1,234.56'
+  //   example 2: money_format('%14#8.2n', 1234.5678);
+  //   returns 2: ' $     1,234.57'
+  //   example 3: money_format('%14#8.2n', -1234.5678);
+  //   returns 3: '-$     1,234.57'
+  //   example 4: money_format('%(14#8.2n', 1234.5678);
+  //   returns 4: ' $     1,234.57 '
+  //   example 5: money_format('%(14#8.2n', -1234.5678);
+  //   returns 5: '($     1,234.57)'
+  //   example 6: money_format('%=014#8.2n', 1234.5678);
+  //   returns 6: ' $000001,234.57'
+  //   example 7: money_format('%=014#8.2n', -1234.5678);
+  //   returns 7: '-$000001,234.57'
+  //   example 8: money_format('%=*14#8.2n', 1234.5678);
+  //   returns 8: ' $*****1,234.57'
+  //   example 9: money_format('%=*14#8.2n', -1234.5678);
+  //   returns 9: '-$*****1,234.57'
+  //  example 10: money_format('%=*^14#8.2n', 1234.5678);
+  //  returns 10: '  $****1234.57'
+  //  example 11: money_format('%=*^14#8.2n', -1234.5678);
+  //  returns 11: ' -$****1234.57'
+  //  example 12: money_format('%=*!14#8.2n', 1234.5678);
+  //  returns 12: ' *****1,234.57'
+  //  example 13: money_format('%=*!14#8.2n', -1234.5678);
+  //  returns 13: '-*****1,234.57'
+  //  example 14: money_format('%i', 3590);
+  //  returns 14: ' USD 3,590.00'
 
   // Per PHP behavior, there seems to be no extra padding for sign when there is a positive number, though my
   // understanding of the description is that there should be padding; need to revisit examples
@@ -64,13 +65,14 @@ function money_format (format, number) {
   this.setlocale('LC_ALL', 0); // Ensure the locale data we need is set up
   var monetary = this.php_js.locales[this.php_js.localeCategories['LC_MONETARY']]['LC_MONETARY'];
 
-  var doReplace = function (n0, flags, n2, width, n4, left, n6, right, conversion) {
+  var doReplace = function(n0, flags, n2, width, n4, left, n6, right, conversion) {
     var value = '',
       repl = '';
     if (conversion === '%') { // Percent does not seem to be allowed with intervening content
       return '%';
     }
-    var fill = flags && (/=./).test(flags) ? flags.match(/=(.)/)[1] : ' '; // flag: =f (numeric fill)
+    var fill = flags && (/=./)
+      .test(flags) ? flags.match(/=(.)/)[1] : ' '; // flag: =f (numeric fill)
     var showCurrSymbol = !flags || flags.indexOf('!') === -1; // flag: ! (suppress currency symbol)
     width = parseInt(width, 10) || 0; // field width: w (minimum field width)
 
@@ -82,7 +84,7 @@ function money_format (format, number) {
     var integer = decpos !== -1 ? number.slice(0, decpos) : number; // Get integer portion
     var fraction = decpos !== -1 ? number.slice(decpos + 1) : ''; // Get decimal portion
 
-    var _str_splice = function (integerStr, idx, thous_sep) {
+    var _str_splice = function(integerStr, idx, thous_sep) {
       var integerArr = integerStr.split('');
       integerArr.splice(idx, 0, thous_sep);
       return integerArr.join('');
@@ -93,7 +95,8 @@ function money_format (format, number) {
     var filler = init_lgth < left;
     if (filler) {
       var fillnum = left - init_lgth;
-      integer = new Array(fillnum + 1).join(fill) + integer;
+      integer = new Array(fillnum + 1)
+        .join(fill) + integer;
     }
     if (flags.indexOf('^') === -1) { // flag: ^ (disable grouping characters (of locale))
       // use grouping characters
@@ -139,10 +142,12 @@ function money_format (format, number) {
       } else if (right < fraction.length) {
         fraction = Math.round(parseFloat(fraction.slice(0, right) + '.' + fraction.substr(right, 1))) + '';
         if (right > fraction.length) {
-          fraction = new Array(right - fraction.length + 1).join('0') + fraction; // prepend with 0's
+          fraction = new Array(right - fraction.length + 1)
+            .join('0') + fraction; // prepend with 0's
         }
       } else if (right > fraction.length) {
-        fraction += new Array(right - fraction.length + 1).join('0'); // pad with 0's
+        fraction += new Array(right - fraction.length + 1)
+          .join('0'); // pad with 0's
       }
       value = integer + dec_pt + fraction;
     }
@@ -166,7 +171,8 @@ function money_format (format, number) {
       // Fix: unclear on whether and how sep_by_space, sign_posn, or cs_precedes have
       // an impact here (as they do below), but assuming for now behaves as sign_posn 0 as
       // far as localized sep_by_space and sign_posn behavior
-      repl = (cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') : '') + value + (!cs_precedes ? (sep_by_space === 1 ? ' ' : '') + symbol : '');
+      repl = (cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') : '') + value + (!cs_precedes ? (
+        sep_by_space === 1 ? ' ' : '') + symbol : '');
       if (neg) {
         repl = '(' + repl + ')';
       } else {
@@ -179,7 +185,8 @@ function money_format (format, number) {
       var otherSign = neg ? (pos_sign) : (neg_sign);
       var signPadding = '';
       if (sign_posn) { // has a sign
-        signPadding = new Array(otherSign.length - sign.length + 1).join(' ');
+        signPadding = new Array(otherSign.length - sign.length + 1)
+          .join(' ');
       }
 
       var valueAndCS = '';
@@ -189,30 +196,38 @@ function money_format (format, number) {
         // 2: sign follows them;
         // 3: sign immed. precedes curr. symbol; (but may be space between)
         // 4: sign immed. succeeds curr. symbol; (but may be space between)
-      case 0:
-        valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol;
-        repl = '(' + valueAndCS + ')';
-        break;
-      case 1:
-        valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol;
-        repl = signPadding + sign + (sep_by_space === 2 ? ' ' : '') + valueAndCS;
-        break;
-      case 2:
-        valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol;
-        repl = valueAndCS + (sep_by_space === 2 ? ' ' : '') + sign + signPadding;
-        break;
-      case 3:
-        repl = cs_precedes ? signPadding + sign + (sep_by_space === 2 ? ' ' : '') + symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + sign + signPadding + (sep_by_space === 2 ? ' ' : '') + symbol;
-        break;
-      case 4:
-        repl = cs_precedes ? symbol + (sep_by_space === 2 ? ' ' : '') + signPadding + sign + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol + (sep_by_space === 2 ? ' ' : '') + sign + signPadding;
-        break;
+        case 0:
+          valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space ===
+            1 ? ' ' : '') + symbol;
+          repl = '(' + valueAndCS + ')';
+          break;
+        case 1:
+          valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space ===
+            1 ? ' ' : '') + symbol;
+          repl = signPadding + sign + (sep_by_space === 2 ? ' ' : '') + valueAndCS;
+          break;
+        case 2:
+          valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space ===
+            1 ? ' ' : '') + symbol;
+          repl = valueAndCS + (sep_by_space === 2 ? ' ' : '') + sign + signPadding;
+          break;
+        case 3:
+          repl = cs_precedes ? signPadding + sign + (sep_by_space === 2 ? ' ' : '') + symbol + (sep_by_space ===
+            1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + sign + signPadding + (
+            sep_by_space === 2 ? ' ' : '') + symbol;
+          break;
+        case 4:
+          repl = cs_precedes ? symbol + (sep_by_space === 2 ? ' ' : '') + signPadding + sign + (sep_by_space ===
+            1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol + (sep_by_space === 2 ?
+            ' ' : '') + sign + signPadding;
+          break;
       }
     }
 
     var padding = width - repl.length;
     if (padding > 0) {
-      padding = new Array(padding + 1).join(' ');
+      padding = new Array(padding + 1)
+        .join(' ');
       // Fix: How does p_sep_by_space affect the count if there is a space? Included in count presumably?
       if (flags.indexOf('-') !== -1) { // left-justified (pad to right)
         repl += padding;
@@ -238,39 +253,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/money_format.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-money_format('%i', 1234.56);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'USD 1,234.56'
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-money_format('%14#8.2n', 1234.5678);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-' $     1,234.57'
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-money_format('%14#8.2n', -1234.5678);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'-$     1,234.57'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

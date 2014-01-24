@@ -15,11 +15,12 @@ alias:
 A JavaScript equivalent of PHP's cosh
 
 {% codeblock math/cosh.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/cosh.js raw on github %}
-function cosh (arg) {
-  // From: http://phpjs.org/functions
-  // +   original by: Onno Marsman
-  // *     example 1: cosh(-0.18127180117607017);
-  // *     returns 1: 1.0164747716114113
+function cosh(arg) {
+  //  discuss at: http://phpjs.org/functions/cosh/
+  // original by: Onno Marsman
+  //   example 1: cosh(-0.18127180117607017);
+  //   returns 1: 1.0164747716114113
+
   return (Math.exp(arg) + Math.exp(-arg)) / 2;
 }
 {% endcodeblock %}
@@ -35,17 +36,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/math/cosh.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-cosh(-0.18127180117607017);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-1.0164747716114113
-{% endcodeblock %}
 
 
 ### Other PHP functions in the math extension

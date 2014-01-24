@@ -1,10 +1,11 @@
-function rand (min, max) {
-  // From: http://phpjs.org/functions
-  // +   original by: Leslie Hoare
-  // +   bugfixed by: Onno Marsman
-  // %          note 1: See the commented out code below for a version which will work with our experimental (though probably unnecessary) srand() function)
-  // *     example 1: rand(1, 1);
-  // *     returns 1: 1
+function rand(min, max) {
+  //  discuss at: http://phpjs.org/functions/rand/
+  // original by: Leslie Hoare
+  // bugfixed by: Onno Marsman
+  //        note: See the commented out code below for a version which will work with our experimental (though probably unnecessary) srand() function)
+  //   example 1: rand(1, 1);
+  //   returns 1: 1
+
   var argc = arguments.length;
   if (argc === 0) {
     min = 0;
@@ -14,7 +15,7 @@ function rand (min, max) {
   }
   return Math.floor(Math.random() * (max - min + 1)) + min;
 
-/*
+  /*
   // See note above for an explanation of the following alternative code
 
   // +   reimplemented by: Brett Zamir (http://brett-zamir.me)

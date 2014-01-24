@@ -15,22 +15,21 @@ alias:
 A JavaScript equivalent of PHP's call_user_func
 
 {% codeblock funchand/call_user_func.js lang:js https://raw.github.com/kvz/phpjs/master/functions/funchand/call_user_func.js raw on github %}
-function call_user_func (cb) {
-  // From: http://phpjs.org/functions
-  // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Diplom@t (http://difane.com/)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: call_user_func('isNaN', 'a');
-  // *     returns 1: true
+function call_user_func(cb) {
+  //  discuss at: http://phpjs.org/functions/call_user_func/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Diplom@t (http://difane.com/)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: call_user_func('isNaN', 'a');
+  //   returns 1: true
+
   var func;
 
   if (typeof cb === 'string') {
     func = (typeof this[cb] === 'function') ? this[cb] : func = (new Function(null, 'return ' + cb))();
-  }
-  else if (Object.prototype.toString.call(cb) === '[object Array]') {
+  } else if (Object.prototype.toString.call(cb) === '[object Array]') {
     func = (typeof cb[0] === 'string') ? eval(cb[0] + "['" + cb[1] + "']") : func = cb[0][cb[1]];
-  }
-  else if (typeof cb === 'function') {
+  } else if (typeof cb === 'function') {
     func = cb;
   }
 
@@ -39,7 +38,8 @@ function call_user_func (cb) {
   }
 
   var parameters = Array.prototype.slice.call(arguments, 1);
-  return (typeof cb[0] === 'string') ? func.apply(eval(cb[0]), parameters) : (typeof cb[0] !== 'object') ? func.apply(null, parameters) : func.apply(cb[0], parameters);
+  return (typeof cb[0] === 'string') ? func.apply(eval(cb[0]), parameters) : (typeof cb[0] !== 'object') ? func.apply(
+    null, parameters) : func.apply(cb[0], parameters);
 }
 {% endcodeblock %}
 
@@ -54,17 +54,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/funchand/call_user_func.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-call_user_func('isNaN', 'a');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-true
-{% endcodeblock %}
 
 
 ### Other PHP functions in the funchand extension

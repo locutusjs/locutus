@@ -15,29 +15,33 @@ alias:
 A JavaScript equivalent of PHP's strrpos
 
 {% codeblock strings/strrpos.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strrpos.js raw on github %}
-function strrpos (haystack, needle, offset) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Onno Marsman
-  // +   input by: saulius
-  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: strrpos('Kevin van Zonneveld', 'e');
-  // *     returns 1: 16
-  // *     example 2: strrpos('somepage.com', '.', false);
-  // *     returns 2: 8
-  // *     example 3: strrpos('baa', 'a', 3);
-  // *     returns 3: false
-  // *     example 4: strrpos('baa', 'a', 2);
-  // *     returns 4: 2
+function strrpos(haystack, needle, offset) {
+  //  discuss at: http://phpjs.org/functions/strrpos/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Onno Marsman
+  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //    input by: saulius
+  //   example 1: strrpos('Kevin van Zonneveld', 'e');
+  //   returns 1: 16
+  //   example 2: strrpos('somepage.com', '.', false);
+  //   returns 2: 8
+  //   example 3: strrpos('baa', 'a', 3);
+  //   returns 3: false
+  //   example 4: strrpos('baa', 'a', 2);
+  //   returns 4: 2
+
   var i = -1;
   if (offset) {
-    i = (haystack + '').slice(offset).lastIndexOf(needle); // strrpos' offset indicates starting point of range till end,
+    i = (haystack + '')
+      .slice(offset)
+      .lastIndexOf(needle); // strrpos' offset indicates starting point of range till end,
     // while lastIndexOf's optional 2nd argument indicates ending point of range from the beginning
     if (i !== -1) {
       i += offset;
     }
   } else {
-    i = (haystack + '').lastIndexOf(needle);
+    i = (haystack + '')
+      .lastIndexOf(needle);
   }
   return i >= 0 ? i : false;
 }
@@ -54,39 +58,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/strings/strrpos.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-strrpos('Kevin van Zonneveld', 'e');
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-16
-{% endcodeblock %}
-
-### Example 2
-This code
-{% codeblock lang:js example %}
-strrpos('somepage.com', '.', false);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-8
-{% endcodeblock %}
-
-### Example 3
-This code
-{% codeblock lang:js example %}
-strrpos('baa', 'a', 3);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-false
-{% endcodeblock %}
 
 
 ### Other PHP functions in the strings extension

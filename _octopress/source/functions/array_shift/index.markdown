@@ -15,19 +15,20 @@ alias:
 A JavaScript equivalent of PHP's array_shift
 
 {% codeblock array/array_shift.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_shift.js raw on github %}
-function array_shift (inputArr) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   improved by: Martijn Wieringa
-  // %        note 1: Currently does not handle objects
-  // *     example 1: array_shift(['Kevin', 'van', 'Zonneveld']);
-  // *     returns 1: 'Kevin'
+function array_shift(inputArr) {
+  //  discuss at: http://phpjs.org/functions/array_shift/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Martijn Wieringa
+  //        note: Currently does not handle objects
+  //   example 1: array_shift(['Kevin', 'van', 'Zonneveld']);
+  //   returns 1: 'Kevin'
+
   var props = false,
     shift = undefined,
     pr = '',
     allDigits = /^\d$/,
     int_ct = -1,
-    _checkToUpIndices = function (arr, ct, key) {
+    _checkToUpIndices = function(arr, ct, key) {
       // Deal with situation, e.g., if encounter index 4 and try to set it to 0, but 0 exists later in loop (need to
       // increment all subsequent (skipping current key, since we need its value below) until find unused)
       if (arr[ct] !== undefined) {
@@ -43,7 +44,6 @@ function array_shift (inputArr) {
       return ct;
     };
 
-
   if (inputArr.length === 0) {
     return null;
   }
@@ -51,7 +51,7 @@ function array_shift (inputArr) {
     return inputArr.shift();
   }
 
-/*
+  /*
   UNFINISHED FOR HANDLING OBJECTS
   for (pr in inputArr) {
     if (inputArr.hasOwnProperty(pr)) {
@@ -93,17 +93,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/array_shift.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-array_shift(['Kevin', 'van', 'Zonneveld']);
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'Kevin'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension

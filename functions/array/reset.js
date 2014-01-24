@@ -1,15 +1,15 @@
-function reset (arr) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Legaev Andrey
-  // +    revised by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Uses global: php_js to store the array pointer
-  // *     example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
-  // *     returns 1: 'Kevin'
-  // BEGIN REDUNDANT
+function reset(arr) {
+  //  discuss at: http://phpjs.org/functions/reset/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Legaev Andrey
+  //  revised by: Brett Zamir (http://brett-zamir.me)
+  //        note: Uses global: php_js to store the array pointer
+  //   example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
+  //   returns 1: 'Kevin'
+
   this.php_js = this.php_js || {};
   this.php_js.pointers = this.php_js.pointers || [];
-  var indexOf = function (value) {
+  var indexOf = function(value) {
     for (var i = 0, length = this.length; i < length; i++) {
       if (this[i] === value) {
         return i;

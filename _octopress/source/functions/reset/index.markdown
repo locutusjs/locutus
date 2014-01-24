@@ -15,18 +15,18 @@ alias:
 A JavaScript equivalent of PHP's reset
 
 {% codeblock array/reset.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/reset.js raw on github %}
-function reset (arr) {
-  // From: http://phpjs.org/functions
-  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // +   bugfixed by: Legaev Andrey
-  // +    revised by: Brett Zamir (http://brett-zamir.me)
-  // %        note 1: Uses global: php_js to store the array pointer
-  // *     example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
-  // *     returns 1: 'Kevin'
-  // BEGIN REDUNDANT
+function reset(arr) {
+  //  discuss at: http://phpjs.org/functions/reset/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Legaev Andrey
+  //  revised by: Brett Zamir (http://brett-zamir.me)
+  //        note: Uses global: php_js to store the array pointer
+  //   example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
+  //   returns 1: 'Kevin'
+
   this.php_js = this.php_js || {};
   this.php_js.pointers = this.php_js.pointers || [];
-  var indexOf = function (value) {
+  var indexOf = function(value) {
     for (var i = 0, length = this.length; i < length; i++) {
       if (this[i] === value) {
         return i;
@@ -73,17 +73,6 @@ functions that are far from perfect, in the hopes to spark better contributions.
 Do you have one? Then please just: 
 
  - [Edit on GitHub](https://github.com/kvz/phpjs/edit/master/functions/array/reset.js)
-
-### Example 1
-This code
-{% codeblock lang:js example %}
-reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
-{% endcodeblock %}
-
-Should return
-{% codeblock lang:js returns %}
-'Kevin'
-{% endcodeblock %}
 
 
 ### Other PHP functions in the array extension
