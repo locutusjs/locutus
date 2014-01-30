@@ -7,7 +7,7 @@ function metaphone(word, phones) {
   //   returns 1: 'N'
   //   example 2: metaphone('bigger');
   //   returns 2: 'BKR'
-  //   example 3: metaphone('accuracy);
+  //   example 3: metaphone('accuracy');
   //   returns 3: 'AKKRS'
 
   word = (word == null ? '' : word + '')
