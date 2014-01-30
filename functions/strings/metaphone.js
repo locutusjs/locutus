@@ -9,6 +9,8 @@ function metaphone(word, phones) {
   //   returns 2: 'BKR'
   //   example 3: metaphone('accuracy');
   //   returns 3: 'AKKRS'
+  //   example 4: metaphone('batch batcher');
+  //   returns 4: 'BXBXR'
 
   word = (word == null ? '' : word + '')
     .toUpperCase();
