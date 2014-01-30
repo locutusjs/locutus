@@ -5,6 +5,8 @@ function metaphone(word, phones) {
   // improved by: Rafał Kukawski (http://kukawski.pl)
   //   example 1: metaphone('Gnu');
   //   returns 1: 'N'
+  //   example 2: metaphone('bigger');
+  //   returns 2: 'BKR'
 
   word = (word == null ? '' : word + '')
     .toUpperCase();
@@ -22,7 +24,7 @@ function metaphone(word, phones) {
     for (var i = 1; i < wordlength; i++) {
       char2 = word.charAt(i);
 
-      if (char2 !== char1 || char2 === 'C' || char2 === 'G') { // 'c' and 'g' are exceptions
+      if (char2 !== char1 || char2 === 'C') { // 'c' is an exception
         rebuilt += char2;
       }
       char1 = char2;
