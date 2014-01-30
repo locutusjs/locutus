@@ -7,12 +7,14 @@ function metaphone(word, phones) {
   //   returns 1: 'N'
   //   example 2: metaphone('bigger');
   //   returns 2: 'BKR'
+  //   example 3: metaphone('accuracy);
+  //   returns 3: 'AKKRS'
 
   word = (word == null ? '' : word + '')
     .toUpperCase();
 
   function isVowel(a) {
-    return 'AEIOU'.indexOf(a) !== -1;
+    return a !== '' && 'AEIOU'.indexOf(a) !== -1;
   }
 
   var wordlength = word.length,
@@ -79,26 +81,15 @@ function metaphone(word, phones) {
         }
         break;
       case 'C':
-        if (x + 1 <= wordlength) {
-          if (word.substr(x - 1, 3) !== 'SCH') {
-            if (x === 0 && (x + 2 <= wordlength) && isVowel(nnc)) {
-              metaword += 'K';
-            } else {
-              metaword += 'X';
-            }
-          } else if (word.substr(x + 1, 2) === 'IA') {
-            metaword += 'X';
-          } else if ('IEY'.indexOf(nc) !== -1) {
-            if (x > 0) {
-              if (pc !== 'S') {
-                metaword += 'S';
-              }
-            } else {
-              metaword += 'S';
-            }
-          } else {
-            metaword += 'K';
+        if (nc === 'I' && nnc === 'A') {
+          metaword += 'X';
+        } else if (nc === 'I' || nc === 'E' || nc === 'Y') {
+          if (pc !== 'S') {
+            metaword += 'S';
           }
+        } else if (nc === 'H') {
+          metaword += 'X';
+          x++;
         } else {
           metaword += 'K';
         }
@@ -190,13 +181,13 @@ function metaphone(word, phones) {
         }
         break;
       case 'Y':
-        if (x + 1 > wordlength || isVowel(nc)) {
+        if (isVowel(nc)) {
           metaword += 'Y';
         }
         break;
       case 'H':
         if (x === 0 || 'CSPTG'.indexOf(pc) === -1) {
-          if (isVowel(nc) === true) {
+          if (isVowel(nc)) {
             metaword += 'H';
           }
         }
