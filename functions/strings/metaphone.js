@@ -174,11 +174,7 @@ function metaphone(word, phones) {
         }
         break;
       case 'P':
-        if (x + 1 <= wordlength && nc === 'H') {
-          metaword += 'F';
-        } else {
-          metaword += 'P';
-        }
+        metaword += (nc === 'H') ? 'F' : 'P';
         break;
       case 'Y':
         if (isVowel(nc)) {
