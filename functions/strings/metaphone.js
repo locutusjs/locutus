@@ -89,7 +89,7 @@ function metaphone(word, phones) {
           }
         } else if (nc === 'H') {
           metaword += 'X';
-          x++;
+          x += 1;
         } else {
           metaword += 'K';
         }
@@ -202,16 +202,13 @@ function metaphone(word, phones) {
         }
         break;
       case 'T':
-        if (x + 1 <= wordlength) {
-          if (nc === 'H') {
-            metaword += '0';
-          } else if (x + 2 <= wordlength && nc === 'I' && 'AO'.indexOf(nnc) !== -1) {
-            metaword += 'X';
-          } else {
-            metaword += 'T';
-          }
-        } else {
+        if (nc === 'I' && (nnc == 'O' || nnc === 'A')) {
+          metaword += 'X';
+        } else if (nc === 'H') {
+          metaword += '0';
+        } else if (word.substr(x + 1, 2) !== 'CH') {
           metaword += 'T';
+          x += 1;
         }
         break;
       case 'W':
