@@ -218,4 +218,123 @@ function metaphone(word, max_phonemes) {
   }
 
   return meta;
+  
+  /*
+  "    abc", "ABK", // skip leading whitespace
+  "1234.678!@abc", "ABK", // skip leading non-alpha chars
+  "aero", "ER", // leading 'a' followed by 'e' turns into 'e'
+  "air", "AR", // leading 'a' turns into 'e', other vowels ignored
+  // leading vowels added to result
+  "egg", "EK",
+  "if", "IF",
+  "of", "OF",
+  "use", "US",
+  // other vowels ignored
+  "xAEIOU", "S",
+  // GN, KN, PN become 'N'
+  "gnome", "NM",
+  "knight", "NFT",
+  "pneumatic", "NMTK",
+  // leading 'WR' becomes 'R'
+  "wrong", "RNK",
+  // leading 'WH+vowel" becomes 'W'
+  "wheel", "WL",
+  // leading 'X' becomes 'S', 'KS' otherwise
+  "xerox", "SRKS",
+  "exchange", "EKSXNJ",
+  // duplicate chars, except 'C' are ignored
+  "accuracy", "AKKRS",
+  "blogger", "BLKR",
+  "fffound", "FNT",
+  // ignore 'B' if after 'M'
+  "billboard", "BLBRT",
+  "symbol", "SML",
+  // 'CIA' -> 'X'
+  "special", "SPXL",
+  // 'SC[IEY]' -> 'C' ignored
+  "science", "SNS",
+  // '[^S]C' -> 'C' becomes 'S'
+  "dance", "TNS",
+  // 'CH' -> 'X'
+  "change", "XNJ",
+  "school", "SXL",
+  // 'C' -> 'K'
+  "micro", "MKR",
+  // 'DGE', 'DGI', DGY' -> 'J'
+  // 'T' otherwise
+  "bridge", "BRJ",
+  "pidgin", "PJN",
+  "edgy", "EJ",
+  "handgun", "HNTKN",
+  "draw", "TR",
+  //'GN\b' 'GNED' -> ignore 'G'
+  "sign", "SN",
+  "signed", "SNT",
+  "signs", "SKNS",
+  // [^G]G[EIY] -> 'J'...
+  "agency", "AJNS",
+  // 'GH' -> 'F' if not b--gh, d--gh, h--gh
+  "night", "NFT",
+  "bright", "BRT",
+  "height", "HT",
+  "midnight", "MTNT",
+  // 'K' otherwise
+  "jogger", "JKR",
+  // '[^CGPST]H[AEIOU]' -> 'H', ignore otherwise
+  "horse", "HRS",
+  "adhere", "ATHR",
+  "mahjong", "MJNK",
+  "fight", "FFT", // interesting
+  "ghost", "FST",
+  // 'K' -> 'K' if not after 'C'
+  "ski", "SK",
+  "brick", "BRK",
+  // 'PH' -> 'F'
+  "phrase", "FRS",
+  // 'P.' -> 'P'
+  "hypnotic", "PNTK",
+  "topnotch", "TPNX",
+  // 'Q' -> 'K'
+  "quit", "KT",
+  "squid", "SKT",
+  // 'SIO', 'SIA', 'SH' -> 'X'
+  "version", "FRXN",
+  "silesia", "SLX",
+  "enthusiasm", "EN0XSM",
+  "shell", "XL",
+  // 'S' -> 'S' in other cases
+  "spy", "SP",
+  "system", "SSTM",
+  // 'TIO', 'TIA' -> 'X'
+  "ratio", "RX",
+  "nation", "NXN",
+  "spatial", "SPXL",
+  // 'TH' -> '0'
+  "the", "0",
+  "nth", "N0",
+  "truth", "TR0",
+  // 'TCH' -> ignore 'T'
+  "watch", "WX",
+  // 'T' otherwise
+  "vote", "FT",
+  "tweet", "TWT",
+  // 'V' -> 'F'
+  "evolve", "EFLF",
+  // 'W' -> 'W' if followed by vowel
+  "rewrite", "RRT",
+  "outwrite", "OTRT",
+  "artwork", "ARTWRK",
+  // 'X' -> 'KS' if not first char
+  "excel", "EKSSL",
+  // 'Y' -> 'Y' if followed by vowel
+  "cyan", "SYN",
+  "way", "W",
+  "hybrid", "BRT",
+  // 'Z' -> 'S'
+  "zip", "SP",
+  "zoom", "SM",
+  "jazz", "JS",
+  "zigzag", "SKSK",
+  "abc abc", "ABKBK" // eventhough there are two words, second 'a' is ignored
+  */
 }
