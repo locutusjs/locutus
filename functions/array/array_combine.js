@@ -5,24 +5,17 @@ function array_combine(keys, values) {
   //   example 1: array_combine([0,1,2], ['kevin','van','zonneveld']);
   //   returns 1: {0: 'kevin', 1: 'van', 2: 'zonneveld'}
 
-  var new_array = {},
-    keycount = keys && keys.length,
-    i = 0;
+  /*  changed by: Mark Giblin (CodeKraft) - 
+      Notes: a number of assumptions are made, 
+        1 both keys && values are arrays 
+        2 arrays will be of equal length
+      returns:  see example 1 above for details, 
+                if arrays are not equal, an empty object is returned      
+  */
 
-  // input sanitation
-  if (typeof keys !== 'object' || typeof values !== 'object' || // Only accept arrays or array-like objects
-    typeof keycount !== 'number' || typeof values.length !== 'number' || !keycount) { // Require arrays to have a count
-    return false;
-  }
-
-  // number of elements does not match
-  if (keycount != values.length) {
-    return false;
-  }
-
-  for (i = 0; i < keycount; i++) {
-    new_array[keys[i]] = values[i];
-  }
-
-  return new_array;
+  var obj = {};
+  if(keys.length == values.length)
+    while(values.length)
+      obj[keys.shift()] = values.shift();
+  return obj;
 }
