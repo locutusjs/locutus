@@ -14,7 +14,7 @@ function array_combine(keys, values) {
   */
 
   var obj = {};
-  if(keys.length == this.length)
+  if(keys.length == values.length)
     while(values.length)
       obj[keys.shift()] = values.shift();
   return obj;
