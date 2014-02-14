@@ -3,6 +3,8 @@ function str_getcsv(input, delimiter, enclosure, escape) {
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: str_getcsv('"abc", "def", "ghi"');
   //   returns 1: ['abc', 'def', 'ghi']
+  //   example 2: str_getcsv('"row2""cell1","row2cell2","row2cell3"', null, null, '"');
+  //   returns 2: ['row2"cell1', 'row2cell2', 'row2cell3']
 
   var output = [];
   var backwards = function(str) { // We need to go backwards to simulate negative look-behind (don't split on
