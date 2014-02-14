@@ -5,8 +5,9 @@ function str_getcsv(input, delimiter, enclosure, escape) {
   //   returns 1: ['abc', 'def', 'ghi']
   //   example 2: str_getcsv('"row2""cell1","row2cell2","row2cell3"', null, null, '"');
   //   returns 2: ['row2"cell1', 'row2cell2', 'row2cell3']
+  //   example 3: str_getcsv('"row2""cell1",row2cell2,row2cell3', null, null, '"');
 
-  var output = [];
+  var i, inpLen, output = [];
   var backwards = function(str) { // We need to go backwards to simulate negative look-behind (don't split on
     //an escaped enclosure even if followed by the delimiter and another enclosure mark)
     return str.split('')
@@ -14,26 +15,28 @@ function str_getcsv(input, delimiter, enclosure, escape) {
       .join('');
   };
   var pq = function(str) { // preg_quote()
-    return (str + '')
-      .replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, '\\$1');
+    return String(str)
+      .replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!<\>\|\:])/g, '\\$1');
   };
 
   delimiter = delimiter || ',';
   enclosure = enclosure || '"';
   escape = escape || '\\';
+  var pqEnc = pq(enclosure) + '?';
+  var pqEsc = pq(escape);
 
-  input = input.replace(new RegExp('^\\s*' + pq(enclosure)), '')
-    .replace(new RegExp(pq(enclosure) + '\\s*$'), '');
+  input = input.replace(new RegExp('^\\s*' + pqEnc), '')
+    .replace(new RegExp(pqEnc + '\\s*$'), '');
 
   // PHP behavior may differ by including whitespace even outside of the enclosure
   input = backwards(input)
-    .split(new RegExp(pq(enclosure) + '\\s*' + pq(delimiter) + '\\s*' + pq(enclosure) + '(?!' + pq(escape) + ')',
+    .split(new RegExp(pqEnc + '\\s*' + pq(delimiter) + '\\s*' + pqEnc + '(?!' + pqEsc + ')',
       'g'))
     .reverse();
 
-  for (var i = 0; i < input.length; i++) {
+  for (i = 0, inpLen = input.length; i < inpLen; i++) {
     output.push(backwards(input[i])
-      .replace(new RegExp(pq(escape) + pq(enclosure), 'g'), enclosure));
+      .replace(new RegExp(pqEsc + pqEnc, 'g'), enclosure));
   }
 
   return output;
