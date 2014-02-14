@@ -15,6 +15,7 @@ example 5: str_getcsv('"row2""cell1",row2cell2,"row2""""cell3"'
 returns 5: ['row2"cell1', 'row2cell2', 'row2""cell3']
 example 6: str_getcsv('row1cell1,"row1,cell2","row1"",""cell3"', null, null, '"');
 returns 6: ['row1cell1', 'row1,cell2', 'row1","cell3'];
+Should also test newlines within
 */
   var i, inpLen, output = [];
   var backwards = function(str) { // We need to go backwards to simulate negative look-behind (don't split on
