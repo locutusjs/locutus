@@ -5,8 +5,15 @@ function str_getcsv(input, delimiter, enclosure, escape) {
   //   returns 1: ['abc', 'def', 'ghi']
   //   example 2: str_getcsv('"row2""cell1","row2cell2","row2cell3"', null, null, '"');
   //   returns 2: ['row2"cell1', 'row2cell2', 'row2cell3']
-  //   example 3: str_getcsv('"row2""cell1",row2cell2,row2cell3', null, null, '"');
-
+/*
+// These test cases allowing for missing delimters are not currently supported
+example 3: str_getcsv('"row2""cell1",row2cell2,row2cell3', null, null, '"');
+returns 3: ['row2"cell1', 'row2cell2', 'row2cell3']
+example 4: str_getcsv('row1cell1,"row1,cell2",row1cell3', null, null, '"');
+returns 4: ['row1cell1', 'row1,cell2', 'row1cell3']
+example 5: str_getcsv('"row2""cell1",row2cell2,"row2""""cell3"'
+returns 5: ['row2"cell1', 'row2cell2', 'row2""cell3']
+*/
   var i, inpLen, output = [];
   var backwards = function(str) { // We need to go backwards to simulate negative look-behind (don't split on
     //an escaped enclosure even if followed by the delimiter and another enclosure mark)
@@ -22,7 +29,7 @@ function str_getcsv(input, delimiter, enclosure, escape) {
   delimiter = delimiter || ',';
   enclosure = enclosure || '"';
   escape = escape || '\\';
-  var pqEnc = pq(enclosure) + '?';
+  var pqEnc = pq(enclosure);
   var pqEsc = pq(escape);
 
   input = input.replace(new RegExp('^\\s*' + pqEnc), '')
