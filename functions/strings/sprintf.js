@@ -99,6 +99,7 @@ function sprintf() {
           break;
         case '0':
           zeroPad = true;
+          customPadChar = '0';
           break;
         case '#':
           prefixBaseX = true;
