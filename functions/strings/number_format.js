@@ -58,7 +58,8 @@ function number_format(number, decimals, dec_point, thousands_sep) {
     s = '',
     toFixedFix = function(n, prec) {
       var k = Math.pow(10, prec);
-      return '' + (Math.round(n * k) / k).toFixed(prec);
+      return '' + (Math.round(n * k) / k)
+        .toFixed(prec);
     };
   // Fix for IE parseFloat(0.55).toFixed(0) = 0;
   s = (prec ? toFixedFix(n, prec) : '' + Math.round(n))
