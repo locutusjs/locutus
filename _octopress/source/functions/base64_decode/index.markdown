@@ -28,6 +28,8 @@ function base64_decode(data) {
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //   example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
   //   returns 1: 'Kevin van Zonneveld'
+  //   example 2: base64_decode('YQ===');
+  //   returns 2: 'a'
 
   var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
   var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
@@ -64,7 +66,7 @@ function base64_decode(data) {
 
   dec = tmp_arr.join('');
 
-  return dec;
+  return dec.replace(/\0+$/, '');
 }
 {% endcodeblock %}
 

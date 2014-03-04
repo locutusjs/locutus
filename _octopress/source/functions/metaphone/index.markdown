@@ -59,13 +59,14 @@ function metaphone(word, max_phonemes) {
     leadingNonAlpha = new RegExp('^[^' + alpha + ']+');
 
   word = typeof word === 'string' ? word : '';
-  word = word.toUpperCase().replace(leadingNonAlpha, '');
+  word = word.toUpperCase()
+    .replace(leadingNonAlpha, '');
 
   if (!word) {
     return '';
   }
 
-  var is = function (p, c) {
+  var is = function(p, c) {
     return c !== '' && p.indexOf(c) !== -1;
   };
 
@@ -235,7 +236,7 @@ function metaphone(word, max_phonemes) {
   }
 
   return meta;
-  
+
   /*
   "    abc", "ABK", // skip leading whitespace
   "1234.678!@abc", "ABK", // skip leading non-alpha chars

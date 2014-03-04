@@ -55,6 +55,7 @@ function array_multisort(arr) {
 
   var sortFunctions = [
     [
+
       function(a, b) {
         lastSort.push(a > b ? 1 : (a < b ? -1 : 0));
         return a > b ? 1 : (a < b ? -1 : 0);
@@ -65,6 +66,7 @@ function array_multisort(arr) {
       }
     ],
     [
+
       function(a, b) {
         lastSort.push(a - b);
         return a - b;
@@ -75,6 +77,7 @@ function array_multisort(arr) {
       }
     ],
     [
+
       function(a, b) {
         lastSort.push((a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0));
         return (a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0);
