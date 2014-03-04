@@ -15,6 +15,9 @@ function pack(format) {
   //   returns 2: '#E'
   //   example 3: pack('H*', 'D5')
   //   returns 3: 'Õ'
+  //   example 4: pack('d', -100.876)
+  //   returns 4: "\u0000\u0000\u0000\u0000\u00008YÀ"
+
 
   var formatPointer = 0,
     argumentPointer = 1,
