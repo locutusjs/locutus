@@ -525,6 +525,7 @@ multitask :push do
   cp_r "#{public_dir}/.", deploy_dir
   cd "#{deploy_dir}" do
     system "git init"
+    system "git checkout -B gh-pages"
     system "git remote add origin git@github.com:kvz/phpjs"
     system "git add --all ."
     puts "\n## Commiting: Site updated at #{Time.now.utc}"
