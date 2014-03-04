@@ -1,4 +1,3 @@
-acos#1
 array_change_key_case#7
 array_count_values#1
 array_count_values#2
@@ -7,7 +6,6 @@ array_merge_recursive#1
 array_splice#1
 array_uintersect_assoc#1
 arsort#1
-asin#1
 asort#1
 bcadd#1
 bccomp#1
