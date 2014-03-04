@@ -273,8 +273,8 @@ function date(format, timestamp) {
     that = this;
     jsdate = (timestamp === undefined ? new Date() : // Not provided
       (timestamp instanceof Date) ? new Date(timestamp) : // JS Date()
-        new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
-      );
+      new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
+    );
     return format.replace(formatChr, formatChrCb);
   };
   return this.date(format, timestamp);

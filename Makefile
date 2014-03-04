@@ -7,8 +7,8 @@ setup:
 	cd .. ; \
 
 test:
-	make build
 	npm install
+	make build
 	./node_modules/.bin/mocha --reporter list
 	node bin/phpjs.js --action test --debug
 

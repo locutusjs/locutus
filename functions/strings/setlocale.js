@@ -95,7 +95,11 @@ function setlocale(category, locale) {
   };
   // END STATIC
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {};
+  try {
+    this.php_js = this.php_js || {};
+  } catch (e) {
+    this.php_js = {};
+  }
 
   var phpjs = this.php_js;
 

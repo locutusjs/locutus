@@ -30,6 +30,8 @@ function str_word_count(str, format, charlist) {
   //   returns 2: {0: 'Hello', 6: 'fri', 10: 'nd', 14: "you're", 29: 'looking', 46: 'good', 51: 'today'}
   //   example 3: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 1, '\u00e0\u00e1\u00e3\u00e73');
   //   returns 3: ['Hello', 'fri3nd', "you're", 'looking', 'good', 'today']
+  //   example 4: str_word_count('hey', 2);
+  //   returns 4: {0: 'hey'}
 
   var len = str.length,
     cl = charlist && charlist.length,

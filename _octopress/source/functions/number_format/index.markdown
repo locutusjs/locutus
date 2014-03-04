@@ -63,6 +63,8 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   //  returns 12: '1.200'
   //  example 13: number_format('1 000,50', 2, '.', ' ');
   //  returns 13: '100 050.00'
+  //  example 14: number_format(1e-8, 8, '.', '');
+  //  returns 14: '0.00000001'
 
   number = (number + '')
     .replace(/[^0-9+\-Ee.]/g, '');
@@ -73,7 +75,8 @@ function number_format(number, decimals, dec_point, thousands_sep) {
     s = '',
     toFixedFix = function(n, prec) {
       var k = Math.pow(10, prec);
-      return '' + Math.round(n * k) / k;
+      return '' + (Math.round(n * k) / k)
+        .toFixed(prec);
     };
   // Fix for IE parseFloat(0.55).toFixed(0) = 0;
   s = (prec ? toFixedFix(n, prec) : '' + Math.round(n))

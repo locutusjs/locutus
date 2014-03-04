@@ -72,23 +72,23 @@ function date(format, timestamp) {
   //   example 9: date('W Y-m-d', 1293974054); // 2011-01-02
   //   returns 9: '52 2011-01-02'
 
-  var that = this,
-    jsdate,
-    f,
-    // Keep this here (works, but for code commented-out
-    // below for file size reasons)
-    //, tal= [],
-    txt_words = ['Sun', 'Mon', 'Tues', 'Wednes', 'Thurs', 'Fri', 'Satur', 'January', 'February', 'March', 'April',
-      'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
-    ],
-    // trailing backslash -> (dropped)
-    // a backslash followed by any character (including backslash) -> the character
-    // empty string -> empty string
-    formatChr = /\\?(.?)/gi,
-    formatChrCb = function(t, s) {
-      return f[t] ? f[t]() : s;
-    };
-  _pad = function(n, c) {
+  var that = this;
+  var jsdate, f;
+  // Keep this here (works, but for code commented-out below for file size reasons)
+  // var tal= [];
+  var txt_words = [
+    'Sun', 'Mon', 'Tues', 'Wednes', 'Thurs', 'Fri', 'Satur',
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  // trailing backslash -> (dropped)
+  // a backslash followed by any character (including backslash) -> the character
+  // empty string -> empty string
+  var formatChr = /\\?(.?)/gi;
+  var formatChrCb = function(t, s) {
+    return f[t] ? f[t]() : s;
+  };
+  var _pad = function(n, c) {
     n = String(n);
     while (n.length < c) {
       n = '0' + n;
@@ -114,8 +114,8 @@ function date(format, timestamp) {
       return f.w() || 7;
     },
     S: function() { // Ordinal suffix for day of month; st, nd, rd, th
-      var j = f.j(),
-        i = j % 10;
+      var j = f.j();
+      var i = j % 10;
       if (i <= 3 && parseInt((j % 100) / 10, 10) == 1) {
         i = 0;
       }
@@ -125,15 +125,15 @@ function date(format, timestamp) {
       return jsdate.getDay();
     },
     z: function() { // Day of year; 0..365
-      var a = new Date(f.Y(), f.n() - 1, f.j()),
-        b = new Date(f.Y(), 0, 1);
+      var a = new Date(f.Y(), f.n() - 1, f.j());
+      var b = new Date(f.Y(), 0, 1);
       return Math.round((a - b) / 864e5);
     },
 
     // Week
     W: function() { // ISO-8601 week number
-      var a = new Date(f.Y(), f.n() - 1, f.j() - f.N() + 3),
-        b = new Date(a.getFullYear(), 0, 4);
+      var a = new Date(f.Y(), f.n() - 1, f.j() - f.N() + 3);
+      var b = new Date(a.getFullYear(), 0, 4);
       return _pad(1 + Math.round((a - b) / 864e5 / 7), 2);
     },
 
@@ -162,9 +162,9 @@ function date(format, timestamp) {
       return j % 4 === 0 & j % 100 !== 0 | j % 400 === 0;
     },
     o: function() { // ISO-8601 year
-      var n = f.n(),
-        W = f.W(),
-        Y = f.Y();
+      var n = f.n();
+      var W = f.W();
+      var Y = f.Y();
       return Y + (n === 12 && W < 9 ? 1 : n === 1 && W > 9 ? -1 : 0);
     },
     Y: function() { // Full year; e.g. 1980...2010
@@ -185,11 +185,11 @@ function date(format, timestamp) {
         .toUpperCase();
     },
     B: function() { // Swatch Internet time; 000..999
-      var H = jsdate.getUTCHours() * 36e2,
-        // Hours
-        i = jsdate.getUTCMinutes() * 60,
-        // Minutes
-        s = jsdate.getUTCSeconds(); // Seconds
+      var H = jsdate.getUTCHours() * 36e2;
+      // Hours
+      var i = jsdate.getUTCMinutes() * 60;
+      // Minutes
+      var s = jsdate.getUTCSeconds(); // Seconds
       return _pad(Math.floor((H + i + s + 36e2) / 86.4) % 1e3, 3);
     },
     g: function() { // 12-Hours; 1..12
@@ -225,18 +225,18 @@ function date(format, timestamp) {
     I: function() { // DST observed?; 0 or 1
       // Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.
       // If they are not equal, then DST is observed.
-      var a = new Date(f.Y(), 0),
-        // Jan 1
-        c = Date.UTC(f.Y(), 0),
-        // Jan 1 UTC
-        b = new Date(f.Y(), 6),
-        // Jul 1
-        d = Date.UTC(f.Y(), 6); // Jul 1 UTC
+      var a = new Date(f.Y(), 0);
+      // Jan 1
+      var c = Date.UTC(f.Y(), 0);
+      // Jan 1 UTC
+      var b = new Date(f.Y(), 6);
+      // Jul 1
+      var d = Date.UTC(f.Y(), 6); // Jul 1 UTC
       return ((a - c) !== (b - d)) ? 1 : 0;
     },
     O: function() { // Difference to GMT in hour format; e.g. +0200
-      var tzo = jsdate.getTimezoneOffset(),
-        a = Math.abs(tzo);
+      var tzo = jsdate.getTimezoneOffset();
+      var a = Math.abs(tzo);
       return (tzo > 0 ? '-' : '+') + _pad(Math.floor(a / 60) * 100 + a % 60, 4);
     },
     P: function() { // Difference to GMT w/colon; e.g. +02:00
@@ -246,15 +246,15 @@ function date(format, timestamp) {
     T: function() { // Timezone abbreviation; e.g. EST, MDT, ...
       // The following works, but requires inclusion of the very
       // large timezone_abbreviations_list() function.
-      /*              var abbr = '', i = 0, os = 0, default = 0;
+      /*              var abbr, i, os, _default;
       if (!tal.length) {
         tal = that.timezone_abbreviations_list();
       }
       if (that.php_js && that.php_js.default_timezone) {
-        default = that.php_js.default_timezone;
+        _default = that.php_js.default_timezone;
         for (abbr in tal) {
-          for (i=0; i < tal[abbr].length; i++) {
-            if (tal[abbr][i].timezone_id === default) {
+          for (i = 0; i < tal[abbr].length; i++) {
+            if (tal[abbr][i].timezone_id === _default) {
               return abbr.toUpperCase();
             }
           }

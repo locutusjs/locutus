@@ -26,6 +26,8 @@ function base64_encode(data) {
   // bugfixed by: Pellentesque Malesuada
   //   example 1: base64_encode('Kevin van Zonneveld');
   //   returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
+  //   example 2: base64_encode('a');
+  //   returns 2: 'YQ=='
 
   var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
   var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,

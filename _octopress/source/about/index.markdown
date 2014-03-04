@@ -16,7 +16,7 @@ php.js is a resource that offers community-built JavaScript alternatives to PHP 
  - to see if we can
  - to learn JavaScript
  - to help others learn JavaScript
- - to see how a php scripts perform with V8 strapped on their backs
+ - to see how php scripts perform with V8 strapped on their backs
  - to profit from helpful functions like:
 [strip_tags](http://phpjs.org/functions/strip_tags/),
 [strtotime](http://phpjs.org/functions/strtotime/),
@@ -30,23 +30,27 @@ php.js is a resource that offers community-built JavaScript alternatives to PHP 
 PHP is a language with many high-level functions and while they're not always 
 implemented as consistently as we'd like (mimicking their underlying C parts), 
 they do get many programming jobs done without the need for additional libraries
-or abstractions. 
+or abstraction. 
 
-We recognize JS has beautiful language features, and we encourage you to learn them.
-Never let php.js be an excuse not to. 
+We recognize JS has beautiful language features, and we encourage you to learn them
+(never let php.js be an excuse not to!).
 
 That said, we do think it's a challenge to port everything and decided to also port 
 low-level PHP functions like
 [strpos](http://phpjs.org/functions/strpos/)
-that have perfectly fine (and more performant!) JavaScript 
-counterparts ([String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf) in this case).
+that have perfectly good (and more performant!) JavaScript 
+counterparts like [String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf).
 
-Besides the geeky-challenge of seeing how far we could come, porting ALL THE THINGS also 
+Besides the geeky-challenge of seeing how far we can come, porting ALL THE THINGS also 
 opens up php.js to other fun experiments such as realtime in-browser debugging/running of
 PHP code, or running `.php` files with JavaScript engines such as V8.
 
-php.js also is a reference for PHP developers wanting to see how 
+This also means it's not our job to fix php's mistakes, but to mimic it as good as we can.
+
+In doing that, php.js also becamse a reference for PHP developers wanting to see how 
 something can be done in JavaScript.
+
+php.js won't be able to fully mimic all of php on all platforms because some platforms do not preserve ordering in objects. Rightfully because it's not part of ECMA. This is a case where we accept defeat.
 
 And so we see ourselves as this big resource and leave it up to the developer 
 to decide what makes sense to take from it.
