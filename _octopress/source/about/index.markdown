@@ -50,6 +50,8 @@ This also means it's not our job to fix php's mistakes, but to mimic it as good 
 In doing that, php.js also becamse a reference for PHP developers wanting to see how 
 something can be done in JavaScript.
 
+php.js won't be able to fully mimic all of php on all platforms because some platforms do not preserve ordering in objects. Rightfully because it's not part of ECMA. This is a case where we accept defeat.
+
 And so we see ourselves as this big resource and leave it up to the developer 
 to decide what makes sense to take from it.
 
