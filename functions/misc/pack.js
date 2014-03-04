@@ -11,6 +11,8 @@ function pack(format) {
   //        note: little endian machine
   //   example 1: pack('nvc*', 0x1234, 0x5678, 65, 66);
   //   returns 1: '4xVAB'
+  //   example 2: pack('H4', '2345')
+  //   returns 2: '#E'
 
   var formatPointer = 0,
     argumentPointer = 1,
@@ -79,6 +81,7 @@ function pack(format) {
         if (quantifier > argument.length) {
           throw new Error('Warning: pack() Type ' + instruction + ': not enough characters in string');
         }
+
         for (i = 0; i < quantifier; i += 2) {
           // Always get per 2 bytes...
           word = argument[i];
