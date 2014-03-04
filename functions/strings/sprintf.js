@@ -18,6 +18,8 @@ function sprintf() {
   //   returns 3: '[####monkey]'
   //   example 4: sprintf("%d", 123456789012345);
   //   returns 4: '123456789012345'
+  //   example 4: sprintf( '%-03s', 'E' );
+  //   returns 5: 'E00'
 
   var regex = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuideEfFgG])/g;
   var a = arguments;
