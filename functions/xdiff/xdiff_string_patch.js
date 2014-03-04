@@ -138,7 +138,7 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
         }
       }
     }
-    while (linePos < origLines.length) {
+    while (linePos > 0 && linePos < origLines.length) {
       newStrArr[newStrArr.length] = origLines[linePos++];
     }
   } else if (flags & OPTS.XDIFF_PATCH_REVERSE) { // Only differs from above by a few lines
@@ -171,7 +171,7 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
         }
       }
     }
-    while (linePos < origLines.length) {
+    while (linePos > 0 && linePos < origLines.length) {
       newStrArr[newStrArr.length] = origLines[linePos++];
     }
   }
