@@ -47,7 +47,7 @@ site:
 	bundle exec rake deploy ; \
 	cd .. ; \
 	git add . ; \
-	git commit -am "Update site" ; \
+	git commit -anm "Update site" ; \
 	git push origin master
 
 site-clean:
