@@ -46,4 +46,3 @@ serialize#2
 strnatcasecmp#1
 strnatcmp#2
 vprintf#1
-xdiff_string_patch#1
