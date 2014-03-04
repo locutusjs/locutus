@@ -18,6 +18,8 @@ bcscale#1
 bcsub#1
 compact#1
 convert_uuencode#1
+date#1
+date#2
 date#5
 date_parse#1
 function_exists#1
