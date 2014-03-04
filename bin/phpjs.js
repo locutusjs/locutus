@@ -189,11 +189,15 @@ cli.glob = function(pattern, cb) {
 };
 
 cli.test = function(args, options) {
-  var self    = this;
-  var pattern = __root + '/functions/' + options.category + '/' + options.name + '.js';
+  var self      = this;
+  var pattern   = __root + '/functions/' + options.category + '/' + options.name + '.js';
+  self.pass_cnt = 0;
+  self.know_cnt = 0;
+  self.fail_cnt = 0;
+  self.skip_cnt = 0;
 
   process.on('exit', function() {
-    var msg = self.pass_cnt + ' passed / ' + self.fail_cnt + ' failed / ' + self.skip_cnt + ' skipped';
+    var msg = self.pass_cnt + ' passed / ' + self.fail_cnt + ' failed  / ' + self.know_cnt + ' known / ' + self.skip_cnt + ' skipped';
     if (self.fail_cnt) {
       cli.fatal(msg);
     } else {
@@ -201,9 +205,8 @@ cli.test = function(args, options) {
     }
   });
 
-  self.pass_cnt = 0;
-  self.fail_cnt = 0;
-  self.skip_cnt = 0;
+  var knownFailures = fs.readFileSync(__root + '/known_failures.txt', 'utf-8').split('\n');
+
   self.glob(pattern, function(err, params, file) {
     if (err) {
       return self.error('Could not glob for ' + pattern + '. ' + err);
@@ -215,15 +218,22 @@ cli.test = function(args, options) {
     }
 
     PhpjsUtil.test(params, function(err, test, params) {
+      var testName = params.name + '#' + ( + (test.number * 1) + 1);
       if (!err) {
         self.pass_cnt++;
-        cli.debug('--> ' + params.name + '#' + ( + (test.number * 1) + 1) + ' passed. ');
+        cli.debug('--> ' + testName + ' passed. ');
       } else {
-        self.fail_cnt++;
-        cli.error('--> ' + params.name + '#' + ( + (test.number * 1) + 1) + ' failed. ');
-        cli.error(err);
-        if (options.abort) {
-          cli.fatal('Aborting on first failure as instructed. ');
+        if (knownFailures.indexOf(testName) > -1) {
+          cli.error('--> ' + testName + ' known error. ');
+          cli.error(err);
+          self.know_cnt++;
+        } else {
+          cli.error('--> ' + testName + ' failed. ');
+          cli.error(err);
+          self.fail_cnt++;
+          if (options.abort) {
+            cli.fatal('Aborting on first failure as instructed. ');
+          }
         }
       }
     });
