@@ -46,6 +46,8 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   //  returns 12: '1.200'
   //  example 13: number_format('1 000,50', 2, '.', ' ');
   //  returns 13: '100 050.00'
+  //  example 14: number_format(1e-8, 8, '.', '');
+  //  returns 14: '0.00000001'
 
   number = (number + '')
     .replace(/[^0-9+\-Ee.]/g, '');
