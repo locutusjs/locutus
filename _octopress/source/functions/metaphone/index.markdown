@@ -15,264 +15,345 @@ alias:
 A JavaScript equivalent of PHP's metaphone
 
 {% codeblock strings/metaphone.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/metaphone.js raw on github %}
-function metaphone(word, phones) {
+function metaphone(word, max_phonemes) {
   //  discuss at: http://phpjs.org/functions/metaphone/
   // original by: Greg Frazier
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Rafał Kukawski (http://kukawski.pl)
   //   example 1: metaphone('Gnu');
   //   returns 1: 'N'
+  //   example 2: metaphone('bigger');
+  //   returns 2: 'BKR'
+  //   example 3: metaphone('accuracy');
+  //   returns 3: 'AKKRS'
+  //   example 4: metaphone('batch batcher');
+  //   returns 4: 'BXBXR'
 
-  word = (word == null ? '' : word + '')
-    .toUpperCase();
+  var type = typeof word;
 
-  function isVowel(a) {
-    return 'AEIOU'.indexOf(a) !== -1;
+  if (type === 'undefined' || type === 'object' && word !== null) {
+    return null; // weird!
   }
 
-  function removeDuplicates(word) {
-    var wordlength = word.length,
-      char1 = word.charAt(0),
-      char2,
-      rebuilt = char1;
+  // infinity and NaN values are treated as strings
+  if (type === 'number') {
+    if (isNaN(word)) {
+      word = 'NAN';
+    } else if (!isFinite(word)) {
+      word = 'INF';
+    }
+  }
 
-    for (var i = 1; i < wordlength; i++) {
-      char2 = word.charAt(i);
+  if (max_phonemes < 0) {
+    return false;
+  }
 
-      if (char2 !== char1 || char2 === 'C' || char2 === 'G') { // 'c' and 'g' are exceptions
-        rebuilt += char2;
+  max_phonemes = Math.floor(+max_phonemes) || 0;
+
+  // alpha depends on locale, so this var might need an update
+  // or should be turned into a regex
+  // for now assuming pure a-z
+  var alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    vowel = 'AEIOU',
+    soft = 'EIY',
+    leadingNonAlpha = new RegExp('^[^' + alpha + ']+');
+
+  word = typeof word === 'string' ? word : '';
+  word = word.toUpperCase().replace(leadingNonAlpha, '');
+
+  if (!word) {
+    return '';
+  }
+
+  var is = function (p, c) {
+    return c !== '' && p.indexOf(c) !== -1;
+  };
+
+  var i = 0,
+    cc = word.charAt(0), // current char. Short name, because it's used all over the function
+    nc = word.charAt(1), // next char
+    nnc, // after next char
+    pc, // previous char
+    l = word.length,
+    meta = '',
+    // traditional is an internal param that could be exposed
+    // for now let it be a local var
+    traditional = true;
+
+  switch (cc) {
+    case 'A':
+      meta += nc === 'E' ? nc : cc;
+      i += 1;
+      break;
+    case 'G':
+    case 'K':
+    case 'P':
+      if (nc === 'N') {
+        meta += nc;
+        i += 2;
       }
-      char1 = char2;
+      break;
+    case 'W':
+      if (nc === 'R') {
+        meta += nc;
+        i += 2;
+      } else if (nc === 'H' || is(vowel, nc)) {
+        meta += 'W';
+        i += 2;
+      }
+      break;
+    case 'X':
+      meta += 'S';
+      i += 1;
+      break;
+    case 'E':
+    case 'I':
+    case 'O':
+    case 'U':
+      meta += cc;
+      i++;
+      break;
+  }
+
+  for (; i < l && (max_phonemes === 0 || meta.length < max_phonemes); i += 1) {
+    cc = word.charAt(i);
+    nc = word.charAt(i + 1);
+    pc = word.charAt(i - 1);
+    nnc = word.charAt(i + 2);
+
+    if (cc === pc && cc !== 'C') {
+      continue;
     }
 
-    return rebuilt;
-  }
-
-  word = removeDuplicates(word);
-
-  var wordlength = word.length,
-    x = 0,
-    metaword = '';
-
-  //Special wh- case
-  if (word.substr(0, 2) === 'WH') {
-    // Remove "h" and rebuild the string
-    word = 'W' + word.substr(2);
-  }
-
-  var cc = word.charAt(0); // current char. Short name cause it's used all over the function
-  var pc = ''; // previous char. There is none when x === 0
-  var nc = word.charAt(1); // next char
-  var nnc = ''; // 2 characters ahead. Needed later
-
-  if (1 <= wordlength) {
     switch (cc) {
-      case 'A':
-        if (nc === 'E') {
-          metaword += 'E';
-        } else {
-          metaword += 'A';
+      case 'B':
+        if (pc !== 'M') {
+          meta += cc;
         }
-        x += 1;
         break;
-      case 'E':
-      case 'I':
-      case 'O':
-      case 'U':
-        metaword += cc;
-        x += 1;
+      case 'C':
+        if (is(soft, nc)) {
+          if (nc === 'I' && nnc === 'A') {
+            meta += 'X';
+          } else if (pc !== 'S') {
+            meta += 'S';
+          }
+        } else if (nc === 'H') {
+          meta += !traditional && (nnc === 'R' || pc === 'S') ? 'K' : 'X';
+          i += 1;
+        } else {
+          meta += 'K';
+        }
+        break;
+      case 'D':
+        if (nc === 'G' && is(soft, nnc)) {
+          meta += 'J';
+          i += 1;
+        } else {
+          meta += 'T';
+        }
         break;
       case 'G':
-      case 'K':
-      case 'P':
-        if (nc === 'N') {
-          x += 1;
+        if (nc === 'H') {
+          if (!(is('BDH', word.charAt(i - 3)) || word.charAt(i - 4) === 'H')) {
+            meta += 'F';
+            i += 1;
+          }
+        } else if (nc === 'N') {
+          if (is(alpha, nnc) && word.substr(i + 1, 3) !== 'NED') {
+            meta += 'K';
+          }
+        } else if (is(soft, nc) && pc !== 'G') {
+          meta += 'J';
+        } else {
+          meta += 'K';
         }
+        break;
+      case 'H':
+        if (is(vowel, nc) && !is('CGPST', pc)) {
+          meta += cc;
+        }
+        break;
+      case 'K':
+        if (pc !== 'C') {
+          meta += 'K';
+        }
+        break;
+      case 'P':
+        meta += nc === 'H' ? 'F' : cc;
+        break;
+      case 'Q':
+        meta += 'K';
+        break;
+      case 'S':
+        if (nc === 'I' && is('AO', nnc)) {
+          meta += 'X';
+        } else if (nc === 'H') {
+          meta += 'X';
+          i += 1;
+        } else if (!traditional && word.substr(i + 1, 3) === 'CHW') {
+          meta += 'X';
+          i += 2;
+        } else {
+          meta += 'S';
+        }
+        break;
+      case 'T':
+        if (nc === 'I' && is('AO', nnc)) {
+          meta += 'X';
+        } else if (nc === 'H') {
+          meta += '0';
+          i += 1;
+        } else if (word.substr(i + 1, 2) !== 'CH') {
+          meta += 'T';
+        }
+        break;
+      case 'V':
+        meta += 'F';
         break;
       case 'W':
-        if (nc === 'R') {
-          x += 1;
+      case 'Y':
+        if (is(vowel, nc)) {
+          meta += cc;
         }
+        break;
+      case 'X':
+        meta += 'KS';
+        break;
+      case 'Z':
+        meta += 'S';
+        break;
+      case 'F':
+      case 'J':
+      case 'L':
+      case 'M':
+      case 'N':
+      case 'R':
+        meta += cc;
         break;
     }
   }
 
-  for (; x < wordlength; x++) {
-    cc = word.charAt(x);
-    pc = word.charAt(x - 1);
-    nc = word.charAt(x + 1);
-    nnc = word.charAt(x + 2);
-
-    if (!isVowel(cc)) {
-      switch (cc) {
-        case 'B':
-          if (pc !== 'M') {
-            metaword += 'B';
-          }
-          break;
-        case 'C':
-          if (x + 1 <= wordlength) {
-            if (word.substr(x - 1, 3) !== 'SCH') {
-              if (x === 0 && (x + 2 <= wordlength) && isVowel(nnc)) {
-                metaword += 'K';
-              } else {
-                metaword += 'X';
-              }
-            } else if (word.substr(x + 1, 2) === 'IA') {
-              metaword += 'X';
-            } else if ('IEY'.indexOf(nc) !== -1) {
-              if (x > 0) {
-                if (pc !== 'S') {
-                  metaword += 'S';
-                }
-              } else {
-                metaword += 'S';
-              }
-            } else {
-              metaword += 'K';
-            }
-          } else {
-            metaword += 'K';
-          }
-          break;
-        case 'D':
-          if (x + 2 <= wordlength && nc === 'G' && 'EIY'.indexOf(nnc) !== -1) {
-            metaword += 'J';
-            x += 2;
-          } else {
-            metaword += 'T';
-          }
-          break;
-        case 'F':
-          metaword += 'F';
-          break;
-        case 'G':
-          if (x < wordlength) {
-            if ((nc === 'N' && x + 1 === wordlength - 1) || (nc === 'N' && nnc === 'S' && x + 2 ===
-              wordlength - 1)) {
-              break;
-            }
-            if (word.substr(x + 1, 3) === 'NED' && x + 3 === wordlength - 1) {
-              break;
-            }
-            if (word.substr(x - 2, 3) === 'ING' && x === wordlength - 1) {
-              break;
-            }
-
-            if (x + 1 <= wordlength - 1 && word.substr(x - 2, 4) === 'OUGH') {
-              metaword += 'F';
-              break;
-            }
-            if (nc === 'H' && x + 2 <= wordlength) {
-              if (isVowel(nnc)) {
-                metaword += 'K';
-              }
-            } else if (x + 1 === wordlength) {
-              if (nc !== 'N') {
-                metaword += 'K';
-              }
-            } else if (x + 3 === wordlength) {
-              if (word.substr(x + 1, 3) !== 'NED') {
-                metaword += 'K';
-              }
-            } else if (x + 1 <= wordlength) {
-              if ('EIY'.indexOf(nc) !== -1) {
-                if (pc !== 'G') {
-                  metaword += 'J';
-                }
-              } else if (x === 0 || pc !== 'D' || 'EIY'.indexOf(nc) === -1) {
-                metaword += 'K';
-              }
-            } else {
-              metaword += 'K';
-            }
-          } else {
-            metaword += 'K';
-          }
-          break;
-        case 'M':
-        case 'J':
-        case 'N':
-        case 'R':
-        case 'L':
-          metaword += cc;
-          break;
-        case 'Q':
-          metaword += 'K';
-          break;
-        case 'V':
-          metaword += 'F';
-          break;
-        case 'Z':
-          metaword += 'S';
-          break;
-        case 'X':
-          metaword += (x === 0) ? 'S' : 'KS';
-          break;
-        case 'K':
-          if (x === 0 || pc !== 'C') {
-            metaword += 'K';
-          }
-          break;
-        case 'P':
-          if (x + 1 <= wordlength && nc === 'H') {
-            metaword += 'F';
-          } else {
-            metaword += 'P';
-          }
-          break;
-        case 'Y':
-          if (x + 1 > wordlength || isVowel(nc)) {
-            metaword += 'Y';
-          }
-          break;
-        case 'H':
-          if (x === 0 || 'CSPTG'.indexOf(pc) === -1) {
-            if (isVowel(nc) === true) {
-              metaword += 'H';
-            }
-          }
-          break;
-        case 'S':
-          if (x + 1 <= wordlength) {
-            if (nc === 'H') {
-              metaword += 'X';
-            } else if (x + 2 <= wordlength && nc === 'I' && 'AO'.indexOf(nnc) !== -1) {
-              metaword += 'X';
-            } else {
-              metaword += 'S';
-            }
-          } else {
-            metaword += 'S';
-          }
-          break;
-        case 'T':
-          if (x + 1 <= wordlength) {
-            if (nc === 'H') {
-              metaword += '0';
-            } else if (x + 2 <= wordlength && nc === 'I' && 'AO'.indexOf(nnc) !== -1) {
-              metaword += 'X';
-            } else {
-              metaword += 'T';
-            }
-          } else {
-            metaword += 'T';
-          }
-          break;
-        case 'W':
-          if (x + 1 <= wordlength && isVowel(nc)) {
-            metaword += 'W';
-          }
-          break;
-      }
-    }
-  }
-
-  phones = parseInt(phones, 10);
-  if (metaword.length > phones) {
-    return metaword.substr(0, phones);
-  }
-  return metaword;
+  return meta;
+  
+  /*
+  "    abc", "ABK", // skip leading whitespace
+  "1234.678!@abc", "ABK", // skip leading non-alpha chars
+  "aero", "ER", // leading 'a' followed by 'e' turns into 'e'
+  "air", "AR", // leading 'a' turns into 'e', other vowels ignored
+  // leading vowels added to result
+  "egg", "EK",
+  "if", "IF",
+  "of", "OF",
+  "use", "US",
+  // other vowels ignored
+  "xAEIOU", "S",
+  // GN, KN, PN become 'N'
+  "gnome", "NM",
+  "knight", "NFT",
+  "pneumatic", "NMTK",
+  // leading 'WR' becomes 'R'
+  "wrong", "RNK",
+  // leading 'WH+vowel" becomes 'W'
+  "wheel", "WL",
+  // leading 'X' becomes 'S', 'KS' otherwise
+  "xerox", "SRKS",
+  "exchange", "EKSXNJ",
+  // duplicate chars, except 'C' are ignored
+  "accuracy", "AKKRS",
+  "blogger", "BLKR",
+  "fffound", "FNT",
+  // ignore 'B' if after 'M'
+  "billboard", "BLBRT",
+  "symbol", "SML",
+  // 'CIA' -> 'X'
+  "special", "SPXL",
+  // 'SC[IEY]' -> 'C' ignored
+  "science", "SNS",
+  // '[^S]C' -> 'C' becomes 'S'
+  "dance", "TNS",
+  // 'CH' -> 'X'
+  "change", "XNJ",
+  "school", "SXL",
+  // 'C' -> 'K'
+  "micro", "MKR",
+  // 'DGE', 'DGI', DGY' -> 'J'
+  // 'T' otherwise
+  "bridge", "BRJ",
+  "pidgin", "PJN",
+  "edgy", "EJ",
+  "handgun", "HNTKN",
+  "draw", "TR",
+  //'GN\b' 'GNED' -> ignore 'G'
+  "sign", "SN",
+  "signed", "SNT",
+  "signs", "SKNS",
+  // [^G]G[EIY] -> 'J'...
+  "agency", "AJNS",
+  // 'GH' -> 'F' if not b--gh, d--gh, h--gh
+  "night", "NFT",
+  "bright", "BRT",
+  "height", "HT",
+  "midnight", "MTNT",
+  // 'K' otherwise
+  "jogger", "JKR",
+  // '[^CGPST]H[AEIOU]' -> 'H', ignore otherwise
+  "horse", "HRS",
+  "adhere", "ATHR",
+  "mahjong", "MJNK",
+  "fight", "FFT", // interesting
+  "ghost", "FST",
+  // 'K' -> 'K' if not after 'C'
+  "ski", "SK",
+  "brick", "BRK",
+  // 'PH' -> 'F'
+  "phrase", "FRS",
+  // 'P.' -> 'P'
+  "hypnotic", "PNTK",
+  "topnotch", "TPNX",
+  // 'Q' -> 'K'
+  "quit", "KT",
+  "squid", "SKT",
+  // 'SIO', 'SIA', 'SH' -> 'X'
+  "version", "FRXN",
+  "silesia", "SLX",
+  "enthusiasm", "EN0XSM",
+  "shell", "XL",
+  // 'S' -> 'S' in other cases
+  "spy", "SP",
+  "system", "SSTM",
+  // 'TIO', 'TIA' -> 'X'
+  "ratio", "RX",
+  "nation", "NXN",
+  "spatial", "SPXL",
+  // 'TH' -> '0'
+  "the", "0",
+  "nth", "N0",
+  "truth", "TR0",
+  // 'TCH' -> ignore 'T'
+  "watch", "WX",
+  // 'T' otherwise
+  "vote", "FT",
+  "tweet", "TWT",
+  // 'V' -> 'F'
+  "evolve", "EFLF",
+  // 'W' -> 'W' if followed by vowel
+  "rewrite", "RRT",
+  "outwrite", "OTRT",
+  "artwork", "ARTWRK",
+  // 'X' -> 'KS' if not first char
+  "excel", "EKSSL",
+  // 'Y' -> 'Y' if followed by vowel
+  "cyan", "SYN",
+  "way", "W",
+  "hybrid", "BRT",
+  // 'Z' -> 'S'
+  "zip", "SP",
+  "zoom", "SM",
+  "jazz", "JS",
+  "zigzag", "SKSK",
+  "abc abc", "ABKBK" // eventhough there are two words, second 'a' is ignored
+  */
 }
 {% endcodeblock %}
 

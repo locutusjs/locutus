@@ -29,7 +29,7 @@ function preg_quote(str, delimiter) {
   //   example 3: preg_quote("\\.+*?[^]$(){}=!<>|:");
   //   returns 3: '\\\\\\.\\+\\*\\?\\[\\^\\]\\$\\(\\)\\{\\}\\=\\!\\<\\>\\|\\:'
 
-  return (str + '')
+  return String(str)
     .replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\' + (delimiter || '') + '-]', 'g'), '\\$&');
 }
 {% endcodeblock %}

@@ -35,18 +35,20 @@ function sprintf() {
   //   returns 3: '[####monkey]'
   //   example 4: sprintf("%d", 123456789012345);
   //   returns 4: '123456789012345'
+  //   example 5: sprintf('%-03s', 'E');
+  //   returns 5: 'E00'
 
   var regex = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuideEfFgG])/g;
-  var a = arguments,
-    i = 0,
-    format = a[i++];
+  var a = arguments;
+  var i = 0;
+  var format = a[i++];
 
   // pad()
   var pad = function(str, len, chr, leftJustify) {
     if (!chr) {
       chr = ' ';
     }
-    var padding = (str.length >= len) ? '' : Array(1 + len - str.length >>> 0)
+    var padding = (str.length >= len) ? '' : new Array(1 + len - str.length >>> 0)
       .join(chr);
     return leftJustify ? str + padding : padding + str;
   };
@@ -87,22 +89,18 @@ function sprintf() {
 
   // doFormat()
   var doFormat = function(substring, valueIndex, flags, minWidth, _, precision, type) {
-    var number;
-    var prefix;
-    var method;
-    var textTransform;
-    var value;
+    var number, prefix, method, textTransform, value;
 
     if (substring === '%%') {
       return '%';
     }
 
     // parse flags
-    var leftJustify = false,
-      positivePrefix = '',
-      zeroPad = false,
-      prefixBaseX = false,
-      customPadChar = ' ';
+    var leftJustify = false;
+    var positivePrefix = '';
+    var zeroPad = false;
+    var prefixBaseX = false;
+    var customPadChar = ' ';
     var flagsl = flags.length;
     for (var j = 0; flags && j < flagsl; j++) {
       switch (flags.charAt(j)) {
@@ -120,6 +118,7 @@ function sprintf() {
           break;
         case '0':
           zeroPad = true;
+          customPadChar = '0';
           break;
         case '#':
           prefixBaseX = true;
