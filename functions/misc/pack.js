@@ -13,6 +13,8 @@ function pack(format) {
   //   returns 1: '4xVAB'
   //   example 2: pack('H4', '2345')
   //   returns 2: '#E'
+  //   example 3: pack('H*', 'D5')
+  //   returns 3: 'Õ'
 
   var formatPointer = 0,
     argumentPointer = 1,
