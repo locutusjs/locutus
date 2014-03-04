@@ -7,8 +7,8 @@ setup:
 	cd .. ; \
 
 test:
-	make build
 	npm install
+	make build
 	./node_modules/.bin/mocha --reporter list
 	node bin/phpjs.js --action test --debug
 
@@ -46,8 +46,8 @@ site:
 	bundle exec rake generate && \
 	bundle exec rake deploy ; \
 	cd .. ; \
-	git add . ; \
-	git commit -am "Update site" ; \
+	git add --all . ; \
+	git commit -anm "Update site" ; \
 	git push origin master
 
 site-clean:

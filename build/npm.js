@@ -3,6 +3,8 @@
 // 
 // Make function changes in ./functions and 
 // generator changes in ./lib/phpjsutil.js 
+exports.XMLHttpRequest = {};
+exports.window = {document: {lastModified: 1388954399,getElementsByTagName: function(){return [];}},location: {href: ""}};
 
 exports.array = function () {
   try {
@@ -482,30 +484,6 @@ exports.array_diff = function (arr1) {
     return retArr;
 };
 
-exports.array_diff_key = function (arr1) {
-  var argl = arguments.length,
-      retArr = {},
-      k1 = '',
-      i = 1,
-      k = '',
-      arr = {};
-  
-    arr1keys: for (k1 in arr1) {
-      for (i = 1; i < argl; i++) {
-        arr = arguments[i];
-        for (k in arr) {
-          if (k === k1) {
-            // If it reaches here, it was found in at least one array, so try next value
-            continue arr1keys;
-          }
-        }
-        retArr[k1] = arr1[k1];
-      }
-    }
-  
-    return retArr;
-};
-
 exports.array_diff_assoc = function (arr1) {
   var retArr = {},
       argl = arguments.length,
@@ -519,6 +497,30 @@ exports.array_diff_assoc = function (arr1) {
         arr = arguments[i];
         for (k in arr) {
           if (arr[k] === arr1[k1] && k === k1) {
+            // If it reaches here, it was found in at least one array, so try next value
+            continue arr1keys;
+          }
+        }
+        retArr[k1] = arr1[k1];
+      }
+    }
+  
+    return retArr;
+};
+
+exports.array_diff_key = function (arr1) {
+  var argl = arguments.length,
+      retArr = {},
+      k1 = '',
+      i = 1,
+      k = '',
+      arr = {};
+  
+    arr1keys: for (k1 in arr1) {
+      for (i = 1; i < argl; i++) {
+        arr = arguments[i];
+        for (k in arr) {
+          if (k === k1) {
             // If it reaches here, it was found in at least one array, so try next value
             continue arr1keys;
           }
@@ -914,43 +916,28 @@ exports.array_merge = function () {
 };
 
 exports.array_multisort = function (arr) {
-  var argl = arguments.length,
-      sal = 0,
-      flags = {
-        'SORT_REGULAR': 16,
-        'SORT_NUMERIC': 17,
-        'SORT_STRING': 18,
-        'SORT_ASC': 32,
-        'SORT_DESC': 40
-      },
-      sortArrs = [
-        []
-      ],
-      sortFlag = [0],
-      sortKeys = [
-        []
-      ],
-      g = 0,
-      i = 0,
-      j = 0,
-      k = '',
-      l = 0,
-      thingsToSort = [],
-      vkey = 0,
-      zlast = null,
-      args = arguments,
-      nLastSort = [],
-      lastSort = [],
-      lastSorts = [],
-      tmpArray = [],
-      elIndex = 0,
-      sortDuplicator = function(a, b) {
-        return nLastSort.shift();
-      };
+  var g, i, j, k, l, sal, vkey, elIndex, lastSorts, tmpArray, zlast;
   
-    sortFunctions = [
+    var sortFlag = [0];
+    var thingsToSort = [];
+    var nLastSort = [];
+    var lastSort = [];
+    var args = arguments; // possibly redundant
+  
+    var flags = {
+      'SORT_REGULAR': 16,
+      'SORT_NUMERIC': 17,
+      'SORT_STRING': 18,
+      'SORT_ASC': 32,
+      'SORT_DESC': 40
+    };
+  
+    var sortDuplicator = function(a, b) {
+      return nLastSort.shift();
+    };
+  
+    var sortFunctions = [
       [
-  
         function(a, b) {
           lastSort.push(a > b ? 1 : (a < b ? -1 : 0));
           return a > b ? 1 : (a < b ? -1 : 0);
@@ -961,7 +948,6 @@ exports.array_multisort = function (arr) {
         }
       ],
       [
-  
         function(a, b) {
           lastSort.push(a - b);
           return a - b;
@@ -972,7 +958,6 @@ exports.array_multisort = function (arr) {
         }
       ],
       [
-  
         function(a, b) {
           lastSort.push((a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0));
           return (a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0);
@@ -982,6 +967,14 @@ exports.array_multisort = function (arr) {
           return (b + '') > (a + '') ? 1 : ((b + '') < (a + '') ? -1 : 0);
         }
       ]
+    ];
+  
+    var sortArrs = [
+      []
+    ];
+  
+    var sortKeys = [
+      []
     ];
   
     // Store first argument into sortArrs and sortKeys if an Object.
@@ -1002,10 +995,11 @@ exports.array_multisort = function (arr) {
     // arrMainLength: Holds the length of the first array. All other arrays must be of equal length, otherwise function would return FALSE like in PHP
     //
     // sortComponents: Holds 2 indexes per every section of the array that can be sorted. As this is the start, the whole array can be sorted.
-    var arrMainLength = sortArrs[0].length,
-      sortComponents = [0, arrMainLength];
+    var arrMainLength = sortArrs[0].length;
+    var sortComponents = [0, arrMainLength];
   
     // Loop through all other arguments, checking lengths and sort flags of arrays and adding them to the above variables.
+    var argl = arguments.length;
     for (j = 1; j < argl; j++) {
       if (Object.prototype.toString.call(arguments[j]) === '[object Array]') {
         sortArrs[j] = arguments[j];
@@ -1028,7 +1022,8 @@ exports.array_multisort = function (arr) {
         }
       } else if (typeof arguments[j] === 'string') {
         var lFlag = sortFlag.pop();
-        if (typeof flags[arguments[j]] === 'undefined' || ((((flags[arguments[j]]) >>> 4) & (lFlag >>> 4)) > 0)) { // Keep extra parentheses around latter flags check to avoid minimization leading to CDATA closer
+        // Keep extra parentheses around latter flags check to avoid minimization leading to CDATA closer
+        if (typeof flags[arguments[j]] === 'undefined' || ((((flags[arguments[j]]) >>> 4) & (lFlag >>> 4)) > 0)) {
           return false;
         }
         sortFlag.push(lFlag + flags[arguments[j]]);
@@ -1050,7 +1045,7 @@ exports.array_multisort = function (arr) {
         nLastSort = [];
         lastSort = [];
   
-        // If ther are no sortComponents, then no more sorting is neeeded. Copy the array back to the argument.
+        // If there are no sortComponents, then no more sorting is neeeded. Copy the array back to the argument.
         if (sortComponents.length === 0) {
           if (Object.prototype.toString.call(arguments[i]) === '[object Array]') {
             args[i] = sortArrs[i];
@@ -1822,6 +1817,40 @@ exports.count = function (mixed_var, mode) {
     return cnt;
 };
 
+exports.current = function (arr) {
+  this.php_js = this.php_js || {};
+    this.php_js.pointers = this.php_js.pointers || [];
+    var indexOf = function(value) {
+      for (var i = 0, length = this.length; i < length; i++) {
+        if (this[i] === value) {
+          return i;
+        }
+      }
+      return -1;
+    };
+    // END REDUNDANT
+    var pointers = this.php_js.pointers;
+    if (!pointers.indexOf) {
+      pointers.indexOf = indexOf;
+    }
+    if (pointers.indexOf(arr) === -1) {
+      pointers.push(arr, 0);
+    }
+    var arrpos = pointers.indexOf(arr);
+    var cursor = pointers[arrpos + 1];
+    if (Object.prototype.toString.call(arr) === '[object Array]') {
+      return arr[cursor] || false;
+    }
+    var ct = 0;
+    for (var k in arr) {
+      if (ct === cursor) {
+        return arr[k];
+      }
+      ct++;
+    }
+    return false; // Empty
+};
+
 exports.each = function (arr) {
   this.php_js = this.php_js || {};
     this.php_js.pointers = this.php_js.pointers || [];
@@ -1882,40 +1911,6 @@ exports.each = function (arr) {
     }
 };
 
-exports.current = function (arr) {
-  this.php_js = this.php_js || {};
-    this.php_js.pointers = this.php_js.pointers || [];
-    var indexOf = function(value) {
-      for (var i = 0, length = this.length; i < length; i++) {
-        if (this[i] === value) {
-          return i;
-        }
-      }
-      return -1;
-    };
-    // END REDUNDANT
-    var pointers = this.php_js.pointers;
-    if (!pointers.indexOf) {
-      pointers.indexOf = indexOf;
-    }
-    if (pointers.indexOf(arr) === -1) {
-      pointers.push(arr, 0);
-    }
-    var arrpos = pointers.indexOf(arr);
-    var cursor = pointers[arrpos + 1];
-    if (Object.prototype.toString.call(arr) === '[object Array]') {
-      return arr[cursor] || false;
-    }
-    var ct = 0;
-    for (var k in arr) {
-      if (ct === cursor) {
-        return arr[k];
-      }
-      ct++;
-    }
-    return false; // Empty
-};
-
 exports.end = function (arr) {
   this.php_js = this.php_js || {};
     this.php_js.pointers = this.php_js.pointers || [];
@@ -1959,7 +1954,10 @@ exports.end = function (arr) {
 exports.in_array = function (needle, haystack, argStrict) {
   var key = '',
       strict = !! argStrict;
-  
+    
+    //we prevent the double check (strict && arr[key] === ndl) || (!strict && arr[key] == ndl)
+    //in just one for, in order to improve the performance 
+    //deciding wich type of comparation will do before walk array
     if (strict) {
       for (key in haystack) {
         if (haystack[key] === needle) {
@@ -2339,23 +2337,23 @@ exports.checkdate = function (m, d, y) {
 };
 
 exports.date = function (format, timestamp) {
-  var that = this,
-      jsdate,
-      f,
-      // Keep this here (works, but for code commented-out
-      // below for file size reasons)
-      //, tal= [],
-      txt_words = ['Sun', 'Mon', 'Tues', 'Wednes', 'Thurs', 'Fri', 'Satur', 'January', 'February', 'March', 'April',
-        'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
-      ],
-      // trailing backslash -> (dropped)
-      // a backslash followed by any character (including backslash) -> the character
-      // empty string -> empty string
-      formatChr = /\\?(.?)/gi,
-      formatChrCb = function(t, s) {
-        return f[t] ? f[t]() : s;
-      };
-    _pad = function(n, c) {
+  var that = this;
+    var jsdate, f;
+    // Keep this here (works, but for code commented-out below for file size reasons)
+    // var tal= [];
+    var txt_words = [
+      'Sun', 'Mon', 'Tues', 'Wednes', 'Thurs', 'Fri', 'Satur',
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    // trailing backslash -> (dropped)
+    // a backslash followed by any character (including backslash) -> the character
+    // empty string -> empty string
+    var formatChr = /\\?(.?)/gi;
+    var formatChrCb = function(t, s) {
+      return f[t] ? f[t]() : s;
+    };
+    var _pad = function(n, c) {
       n = String(n);
       while (n.length < c) {
         n = '0' + n;
@@ -2381,8 +2379,8 @@ exports.date = function (format, timestamp) {
         return f.w() || 7;
       },
       S: function() { // Ordinal suffix for day of month; st, nd, rd, th
-        var j = f.j(),
-          i = j % 10;
+        var j = f.j();
+        var i = j % 10;
         if (i <= 3 && parseInt((j % 100) / 10, 10) == 1) {
           i = 0;
         }
@@ -2392,15 +2390,15 @@ exports.date = function (format, timestamp) {
         return jsdate.getDay();
       },
       z: function() { // Day of year; 0..365
-        var a = new Date(f.Y(), f.n() - 1, f.j()),
-          b = new Date(f.Y(), 0, 1);
+        var a = new Date(f.Y(), f.n() - 1, f.j());
+        var b = new Date(f.Y(), 0, 1);
         return Math.round((a - b) / 864e5);
       },
   
       // Week
       W: function() { // ISO-8601 week number
-        var a = new Date(f.Y(), f.n() - 1, f.j() - f.N() + 3),
-          b = new Date(a.getFullYear(), 0, 4);
+        var a = new Date(f.Y(), f.n() - 1, f.j() - f.N() + 3);
+        var b = new Date(a.getFullYear(), 0, 4);
         return _pad(1 + Math.round((a - b) / 864e5 / 7), 2);
       },
   
@@ -2429,9 +2427,9 @@ exports.date = function (format, timestamp) {
         return j % 4 === 0 & j % 100 !== 0 | j % 400 === 0;
       },
       o: function() { // ISO-8601 year
-        var n = f.n(),
-          W = f.W(),
-          Y = f.Y();
+        var n = f.n();
+        var W = f.W();
+        var Y = f.Y();
         return Y + (n === 12 && W < 9 ? 1 : n === 1 && W > 9 ? -1 : 0);
       },
       Y: function() { // Full year; e.g. 1980...2010
@@ -2452,11 +2450,11 @@ exports.date = function (format, timestamp) {
           .toUpperCase();
       },
       B: function() { // Swatch Internet time; 000..999
-        var H = jsdate.getUTCHours() * 36e2,
-          // Hours
-          i = jsdate.getUTCMinutes() * 60,
-          // Minutes
-          s = jsdate.getUTCSeconds(); // Seconds
+        var H = jsdate.getUTCHours() * 36e2;
+        // Hours
+        var i = jsdate.getUTCMinutes() * 60;
+        // Minutes
+        var s = jsdate.getUTCSeconds(); // Seconds
         return _pad(Math.floor((H + i + s + 36e2) / 86.4) % 1e3, 3);
       },
       g: function() { // 12-Hours; 1..12
@@ -2492,18 +2490,18 @@ exports.date = function (format, timestamp) {
       I: function() { // DST observed?; 0 or 1
         // Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.
         // If they are not equal, then DST is observed.
-        var a = new Date(f.Y(), 0),
-          // Jan 1
-          c = Date.UTC(f.Y(), 0),
-          // Jan 1 UTC
-          b = new Date(f.Y(), 6),
-          // Jul 1
-          d = Date.UTC(f.Y(), 6); // Jul 1 UTC
+        var a = new Date(f.Y(), 0);
+        // Jan 1
+        var c = Date.UTC(f.Y(), 0);
+        // Jan 1 UTC
+        var b = new Date(f.Y(), 6);
+        // Jul 1
+        var d = Date.UTC(f.Y(), 6); // Jul 1 UTC
         return ((a - c) !== (b - d)) ? 1 : 0;
       },
       O: function() { // Difference to GMT in hour format; e.g. +0200
-        var tzo = jsdate.getTimezoneOffset(),
-          a = Math.abs(tzo);
+        var tzo = jsdate.getTimezoneOffset();
+        var a = Math.abs(tzo);
         return (tzo > 0 ? '-' : '+') + _pad(Math.floor(a / 60) * 100 + a % 60, 4);
       },
       P: function() { // Difference to GMT w/colon; e.g. +02:00
@@ -2513,15 +2511,15 @@ exports.date = function (format, timestamp) {
       T: function() { // Timezone abbreviation; e.g. EST, MDT, ...
         // The following works, but requires inclusion of the very
         // large timezone_abbreviations_list() function.
-        /*              var abbr = '', i = 0, os = 0, default = 0;
+        /*              var abbr, i, os, _default;
         if (!tal.length) {
           tal = that.timezone_abbreviations_list();
         }
         if (that.php_js && that.php_js.default_timezone) {
-          default = that.php_js.default_timezone;
+          _default = that.php_js.default_timezone;
           for (abbr in tal) {
-            for (i=0; i < tal[abbr].length; i++) {
-              if (tal[abbr][i].timezone_id === default) {
+            for (i = 0; i < tal[abbr].length; i++) {
+              if (tal[abbr][i].timezone_id === _default) {
                 return abbr.toUpperCase();
               }
             }
@@ -2557,8 +2555,8 @@ exports.date = function (format, timestamp) {
       that = this;
       jsdate = (timestamp === undefined ? new Date() : // Not provided
         (timestamp instanceof Date) ? new Date(timestamp) : // JS Date()
-        new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
-      );
+          new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
+        );
       return format.replace(formatChr, formatChrCb);
     };
     return this.date(format, timestamp);
@@ -5034,7 +5032,7 @@ exports.preg_grep = function (pattern, input, flags) {
 };
 
 exports.preg_quote = function (str, delimiter) {
-  return (str + '')
+  return String(str)
       .replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\' + (delimiter || '') + '-]', 'g'), '\\$&');
 };
 
@@ -5952,257 +5950,332 @@ exports.ltrim = function (str, charlist) {
       .replace(re, '');
 };
 
-exports.metaphone = function (word, phones) {
-  word = (word == null ? '' : word + '')
-      .toUpperCase();
+exports.metaphone = function (word, max_phonemes) {
+  var type = typeof word;
   
-    function isVowel(a) {
-      return 'AEIOU'.indexOf(a) !== -1;
+    if (type === 'undefined' || type === 'object' && word !== null) {
+      return null; // weird!
     }
   
-    function removeDuplicates(word) {
-      var wordlength = word.length,
-        char1 = word.charAt(0),
-        char2,
-        rebuilt = char1;
+    // infinity and NaN values are treated as strings
+    if (type === 'number') {
+      if (isNaN(word)) {
+        word = 'NAN';
+      } else if (!isFinite(word)) {
+        word = 'INF';
+      }
+    }
   
-      for (var i = 1; i < wordlength; i++) {
-        char2 = word.charAt(i);
+    if (max_phonemes < 0) {
+      return false;
+    }
   
-        if (char2 !== char1 || char2 === 'C' || char2 === 'G') { // 'c' and 'g' are exceptions
-          rebuilt += char2;
+    max_phonemes = Math.floor(+max_phonemes) || 0;
+  
+    // alpha depends on locale, so this var might need an update
+    // or should be turned into a regex
+    // for now assuming pure a-z
+    var alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      vowel = 'AEIOU',
+      soft = 'EIY',
+      leadingNonAlpha = new RegExp('^[^' + alpha + ']+');
+  
+    word = typeof word === 'string' ? word : '';
+    word = word.toUpperCase().replace(leadingNonAlpha, '');
+  
+    if (!word) {
+      return '';
+    }
+  
+    var is = function (p, c) {
+      return c !== '' && p.indexOf(c) !== -1;
+    };
+  
+    var i = 0,
+      cc = word.charAt(0), // current char. Short name, because it's used all over the function
+      nc = word.charAt(1), // next char
+      nnc, // after next char
+      pc, // previous char
+      l = word.length,
+      meta = '',
+      // traditional is an internal param that could be exposed
+      // for now let it be a local var
+      traditional = true;
+  
+    switch (cc) {
+      case 'A':
+        meta += nc === 'E' ? nc : cc;
+        i += 1;
+        break;
+      case 'G':
+      case 'K':
+      case 'P':
+        if (nc === 'N') {
+          meta += nc;
+          i += 2;
         }
-        char1 = char2;
+        break;
+      case 'W':
+        if (nc === 'R') {
+          meta += nc;
+          i += 2;
+        } else if (nc === 'H' || is(vowel, nc)) {
+          meta += 'W';
+          i += 2;
+        }
+        break;
+      case 'X':
+        meta += 'S';
+        i += 1;
+        break;
+      case 'E':
+      case 'I':
+      case 'O':
+      case 'U':
+        meta += cc;
+        i++;
+        break;
+    }
+  
+    for (; i < l && (max_phonemes === 0 || meta.length < max_phonemes); i += 1) {
+      cc = word.charAt(i);
+      nc = word.charAt(i + 1);
+      pc = word.charAt(i - 1);
+      nnc = word.charAt(i + 2);
+  
+      if (cc === pc && cc !== 'C') {
+        continue;
       }
   
-      return rebuilt;
-    }
-  
-    word = removeDuplicates(word);
-  
-    var wordlength = word.length,
-      x = 0,
-      metaword = '';
-  
-    //Special wh- case
-    if (word.substr(0, 2) === 'WH') {
-      // Remove "h" and rebuild the string
-      word = 'W' + word.substr(2);
-    }
-  
-    var cc = word.charAt(0); // current char. Short name cause it's used all over the function
-    var pc = ''; // previous char. There is none when x === 0
-    var nc = word.charAt(1); // next char
-    var nnc = ''; // 2 characters ahead. Needed later
-  
-    if (1 <= wordlength) {
       switch (cc) {
-        case 'A':
-          if (nc === 'E') {
-            metaword += 'E';
-          } else {
-            metaword += 'A';
+        case 'B':
+          if (pc !== 'M') {
+            meta += cc;
           }
-          x += 1;
           break;
-        case 'E':
-        case 'I':
-        case 'O':
-        case 'U':
-          metaword += cc;
-          x += 1;
+        case 'C':
+          if (is(soft, nc)) {
+            if (nc === 'I' && nnc === 'A') {
+              meta += 'X';
+            } else if (pc !== 'S') {
+              meta += 'S';
+            }
+          } else if (nc === 'H') {
+            meta += !traditional && (nnc === 'R' || pc === 'S') ? 'K' : 'X';
+            i += 1;
+          } else {
+            meta += 'K';
+          }
+          break;
+        case 'D':
+          if (nc === 'G' && is(soft, nnc)) {
+            meta += 'J';
+            i += 1;
+          } else {
+            meta += 'T';
+          }
           break;
         case 'G':
-        case 'K':
-        case 'P':
-          if (nc === 'N') {
-            x += 1;
+          if (nc === 'H') {
+            if (!(is('BDH', word.charAt(i - 3)) || word.charAt(i - 4) === 'H')) {
+              meta += 'F';
+              i += 1;
+            }
+          } else if (nc === 'N') {
+            if (is(alpha, nnc) && word.substr(i + 1, 3) !== 'NED') {
+              meta += 'K';
+            }
+          } else if (is(soft, nc) && pc !== 'G') {
+            meta += 'J';
+          } else {
+            meta += 'K';
           }
+          break;
+        case 'H':
+          if (is(vowel, nc) && !is('CGPST', pc)) {
+            meta += cc;
+          }
+          break;
+        case 'K':
+          if (pc !== 'C') {
+            meta += 'K';
+          }
+          break;
+        case 'P':
+          meta += nc === 'H' ? 'F' : cc;
+          break;
+        case 'Q':
+          meta += 'K';
+          break;
+        case 'S':
+          if (nc === 'I' && is('AO', nnc)) {
+            meta += 'X';
+          } else if (nc === 'H') {
+            meta += 'X';
+            i += 1;
+          } else if (!traditional && word.substr(i + 1, 3) === 'CHW') {
+            meta += 'X';
+            i += 2;
+          } else {
+            meta += 'S';
+          }
+          break;
+        case 'T':
+          if (nc === 'I' && is('AO', nnc)) {
+            meta += 'X';
+          } else if (nc === 'H') {
+            meta += '0';
+            i += 1;
+          } else if (word.substr(i + 1, 2) !== 'CH') {
+            meta += 'T';
+          }
+          break;
+        case 'V':
+          meta += 'F';
           break;
         case 'W':
-          if (nc === 'R') {
-            x += 1;
+        case 'Y':
+          if (is(vowel, nc)) {
+            meta += cc;
           }
+          break;
+        case 'X':
+          meta += 'KS';
+          break;
+        case 'Z':
+          meta += 'S';
+          break;
+        case 'F':
+        case 'J':
+        case 'L':
+        case 'M':
+        case 'N':
+        case 'R':
+          meta += cc;
           break;
       }
     }
   
-    for (; x < wordlength; x++) {
-      cc = word.charAt(x);
-      pc = word.charAt(x - 1);
-      nc = word.charAt(x + 1);
-      nnc = word.charAt(x + 2);
-  
-      if (!isVowel(cc)) {
-        switch (cc) {
-          case 'B':
-            if (pc !== 'M') {
-              metaword += 'B';
-            }
-            break;
-          case 'C':
-            if (x + 1 <= wordlength) {
-              if (word.substr(x - 1, 3) !== 'SCH') {
-                if (x === 0 && (x + 2 <= wordlength) && isVowel(nnc)) {
-                  metaword += 'K';
-                } else {
-                  metaword += 'X';
-                }
-              } else if (word.substr(x + 1, 2) === 'IA') {
-                metaword += 'X';
-              } else if ('IEY'.indexOf(nc) !== -1) {
-                if (x > 0) {
-                  if (pc !== 'S') {
-                    metaword += 'S';
-                  }
-                } else {
-                  metaword += 'S';
-                }
-              } else {
-                metaword += 'K';
-              }
-            } else {
-              metaword += 'K';
-            }
-            break;
-          case 'D':
-            if (x + 2 <= wordlength && nc === 'G' && 'EIY'.indexOf(nnc) !== -1) {
-              metaword += 'J';
-              x += 2;
-            } else {
-              metaword += 'T';
-            }
-            break;
-          case 'F':
-            metaword += 'F';
-            break;
-          case 'G':
-            if (x < wordlength) {
-              if ((nc === 'N' && x + 1 === wordlength - 1) || (nc === 'N' && nnc === 'S' && x + 2 ===
-                wordlength - 1)) {
-                break;
-              }
-              if (word.substr(x + 1, 3) === 'NED' && x + 3 === wordlength - 1) {
-                break;
-              }
-              if (word.substr(x - 2, 3) === 'ING' && x === wordlength - 1) {
-                break;
-              }
-  
-              if (x + 1 <= wordlength - 1 && word.substr(x - 2, 4) === 'OUGH') {
-                metaword += 'F';
-                break;
-              }
-              if (nc === 'H' && x + 2 <= wordlength) {
-                if (isVowel(nnc)) {
-                  metaword += 'K';
-                }
-              } else if (x + 1 === wordlength) {
-                if (nc !== 'N') {
-                  metaword += 'K';
-                }
-              } else if (x + 3 === wordlength) {
-                if (word.substr(x + 1, 3) !== 'NED') {
-                  metaword += 'K';
-                }
-              } else if (x + 1 <= wordlength) {
-                if ('EIY'.indexOf(nc) !== -1) {
-                  if (pc !== 'G') {
-                    metaword += 'J';
-                  }
-                } else if (x === 0 || pc !== 'D' || 'EIY'.indexOf(nc) === -1) {
-                  metaword += 'K';
-                }
-              } else {
-                metaword += 'K';
-              }
-            } else {
-              metaword += 'K';
-            }
-            break;
-          case 'M':
-          case 'J':
-          case 'N':
-          case 'R':
-          case 'L':
-            metaword += cc;
-            break;
-          case 'Q':
-            metaword += 'K';
-            break;
-          case 'V':
-            metaword += 'F';
-            break;
-          case 'Z':
-            metaword += 'S';
-            break;
-          case 'X':
-            metaword += (x === 0) ? 'S' : 'KS';
-            break;
-          case 'K':
-            if (x === 0 || pc !== 'C') {
-              metaword += 'K';
-            }
-            break;
-          case 'P':
-            if (x + 1 <= wordlength && nc === 'H') {
-              metaword += 'F';
-            } else {
-              metaword += 'P';
-            }
-            break;
-          case 'Y':
-            if (x + 1 > wordlength || isVowel(nc)) {
-              metaword += 'Y';
-            }
-            break;
-          case 'H':
-            if (x === 0 || 'CSPTG'.indexOf(pc) === -1) {
-              if (isVowel(nc) === true) {
-                metaword += 'H';
-              }
-            }
-            break;
-          case 'S':
-            if (x + 1 <= wordlength) {
-              if (nc === 'H') {
-                metaword += 'X';
-              } else if (x + 2 <= wordlength && nc === 'I' && 'AO'.indexOf(nnc) !== -1) {
-                metaword += 'X';
-              } else {
-                metaword += 'S';
-              }
-            } else {
-              metaword += 'S';
-            }
-            break;
-          case 'T':
-            if (x + 1 <= wordlength) {
-              if (nc === 'H') {
-                metaword += '0';
-              } else if (x + 2 <= wordlength && nc === 'I' && 'AO'.indexOf(nnc) !== -1) {
-                metaword += 'X';
-              } else {
-                metaword += 'T';
-              }
-            } else {
-              metaword += 'T';
-            }
-            break;
-          case 'W':
-            if (x + 1 <= wordlength && isVowel(nc)) {
-              metaword += 'W';
-            }
-            break;
-        }
-      }
-    }
-  
-    phones = parseInt(phones, 10);
-    if (metaword.length > phones) {
-      return metaword.substr(0, phones);
-    }
-    return metaword;
+    return meta;
+    
+    /*
+    "    abc", "ABK", // skip leading whitespace
+    "1234.678!@abc", "ABK", // skip leading non-alpha chars
+    "aero", "ER", // leading 'a' followed by 'e' turns into 'e'
+    "air", "AR", // leading 'a' turns into 'e', other vowels ignored
+    // leading vowels added to result
+    "egg", "EK",
+    "if", "IF",
+    "of", "OF",
+    "use", "US",
+    // other vowels ignored
+    "xAEIOU", "S",
+    // GN, KN, PN become 'N'
+    "gnome", "NM",
+    "knight", "NFT",
+    "pneumatic", "NMTK",
+    // leading 'WR' becomes 'R'
+    "wrong", "RNK",
+    // leading 'WH+vowel" becomes 'W'
+    "wheel", "WL",
+    // leading 'X' becomes 'S', 'KS' otherwise
+    "xerox", "SRKS",
+    "exchange", "EKSXNJ",
+    // duplicate chars, except 'C' are ignored
+    "accuracy", "AKKRS",
+    "blogger", "BLKR",
+    "fffound", "FNT",
+    // ignore 'B' if after 'M'
+    "billboard", "BLBRT",
+    "symbol", "SML",
+    // 'CIA' -> 'X'
+    "special", "SPXL",
+    // 'SC[IEY]' -> 'C' ignored
+    "science", "SNS",
+    // '[^S]C' -> 'C' becomes 'S'
+    "dance", "TNS",
+    // 'CH' -> 'X'
+    "change", "XNJ",
+    "school", "SXL",
+    // 'C' -> 'K'
+    "micro", "MKR",
+    // 'DGE', 'DGI', DGY' -> 'J'
+    // 'T' otherwise
+    "bridge", "BRJ",
+    "pidgin", "PJN",
+    "edgy", "EJ",
+    "handgun", "HNTKN",
+    "draw", "TR",
+    //'GN\b' 'GNED' -> ignore 'G'
+    "sign", "SN",
+    "signed", "SNT",
+    "signs", "SKNS",
+    // [^G]G[EIY] -> 'J'...
+    "agency", "AJNS",
+    // 'GH' -> 'F' if not b--gh, d--gh, h--gh
+    "night", "NFT",
+    "bright", "BRT",
+    "height", "HT",
+    "midnight", "MTNT",
+    // 'K' otherwise
+    "jogger", "JKR",
+    // '[^CGPST]H[AEIOU]' -> 'H', ignore otherwise
+    "horse", "HRS",
+    "adhere", "ATHR",
+    "mahjong", "MJNK",
+    "fight", "FFT", // interesting
+    "ghost", "FST",
+    // 'K' -> 'K' if not after 'C'
+    "ski", "SK",
+    "brick", "BRK",
+    // 'PH' -> 'F'
+    "phrase", "FRS",
+    // 'P.' -> 'P'
+    "hypnotic", "PNTK",
+    "topnotch", "TPNX",
+    // 'Q' -> 'K'
+    "quit", "KT",
+    "squid", "SKT",
+    // 'SIO', 'SIA', 'SH' -> 'X'
+    "version", "FRXN",
+    "silesia", "SLX",
+    "enthusiasm", "EN0XSM",
+    "shell", "XL",
+    // 'S' -> 'S' in other cases
+    "spy", "SP",
+    "system", "SSTM",
+    // 'TIO', 'TIA' -> 'X'
+    "ratio", "RX",
+    "nation", "NXN",
+    "spatial", "SPXL",
+    // 'TH' -> '0'
+    "the", "0",
+    "nth", "N0",
+    "truth", "TR0",
+    // 'TCH' -> ignore 'T'
+    "watch", "WX",
+    // 'T' otherwise
+    "vote", "FT",
+    "tweet", "TWT",
+    // 'V' -> 'F'
+    "evolve", "EFLF",
+    // 'W' -> 'W' if followed by vowel
+    "rewrite", "RRT",
+    "outwrite", "OTRT",
+    "artwork", "ARTWRK",
+    // 'X' -> 'KS' if not first char
+    "excel", "EKSSL",
+    // 'Y' -> 'Y' if followed by vowel
+    "cyan", "SYN",
+    "way", "W",
+    "hybrid", "BRT",
+    // 'Z' -> 'S'
+    "zip", "SP",
+    "zoom", "SM",
+    "jazz", "JS",
+    "zigzag", "SKSK",
+    "abc abc", "ABKBK" // eventhough there are two words, second 'a' is ignored
+    */
 };
 
 exports.nl2br = function (str, is_xhtml) {
@@ -6497,16 +6570,16 @@ exports.soundex = function (str) {
 
 exports.sprintf = function () {
   var regex = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuideEfFgG])/g;
-    var a = arguments,
-      i = 0,
-      format = a[i++];
+    var a = arguments;
+    var i = 0;
+    var format = a[i++];
   
     // pad()
     var pad = function(str, len, chr, leftJustify) {
       if (!chr) {
         chr = ' ';
       }
-      var padding = (str.length >= len) ? '' : Array(1 + len - str.length >>> 0)
+      var padding = (str.length >= len) ? '' : new Array(1 + len - str.length >>> 0)
         .join(chr);
       return leftJustify ? str + padding : padding + str;
     };
@@ -6547,22 +6620,18 @@ exports.sprintf = function () {
   
     // doFormat()
     var doFormat = function(substring, valueIndex, flags, minWidth, _, precision, type) {
-      var number;
-      var prefix;
-      var method;
-      var textTransform;
-      var value;
+      var number, prefix, method, textTransform, value;
   
       if (substring === '%%') {
         return '%';
       }
   
       // parse flags
-      var leftJustify = false,
-        positivePrefix = '',
-        zeroPad = false,
-        prefixBaseX = false,
-        customPadChar = ' ';
+      var leftJustify = false;
+      var positivePrefix = '';
+      var zeroPad = false;
+      var prefixBaseX = false;
+      var customPadChar = ' ';
       var flagsl = flags.length;
       for (var j = 0; flags && j < flagsl; j++) {
         switch (flags.charAt(j)) {
@@ -6580,6 +6649,7 @@ exports.sprintf = function () {
             break;
           case '0':
             zeroPad = true;
+            customPadChar = '0';
             break;
           case '#':
             prefixBaseX = true;
@@ -6900,7 +6970,23 @@ exports.sscanf = function (str, format) {
 };
 
 exports.str_getcsv = function (input, delimiter, enclosure, escape) {
-  var output = [];
+  // These test cases allowing for missing delimiters are not currently supported
+  /*
+      str_getcsv('"row2""cell1",row2cell2,row2cell3', null, null, '"');
+      ['row2"cell1', 'row2cell2', 'row2cell3']
+  
+      str_getcsv('row1cell1,"row1,cell2",row1cell3', null, null, '"');
+      ['row1cell1', 'row1,cell2', 'row1cell3']
+  
+      str_getcsv('"row2""cell1",row2cell2,"row2""""cell3"');
+      ['row2"cell1', 'row2cell2', 'row2""cell3']
+  
+      str_getcsv('row1cell1,"row1,cell2","row1"",""cell3"', null, null, '"');
+      ['row1cell1', 'row1,cell2', 'row1","cell3'];
+  
+      Should also test newlines within
+  */
+    var i, inpLen, output = [];
     var backwards = function(str) { // We need to go backwards to simulate negative look-behind (don't split on
       //an escaped enclosure even if followed by the delimiter and another enclosure mark)
       return str.split('')
@@ -6908,26 +6994,28 @@ exports.str_getcsv = function (input, delimiter, enclosure, escape) {
         .join('');
     };
     var pq = function(str) { // preg_quote()
-      return (str + '')
-        .replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, '\\$1');
+      return String(str)
+        .replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!<\>\|\:])/g, '\\$1');
     };
   
     delimiter = delimiter || ',';
     enclosure = enclosure || '"';
     escape = escape || '\\';
+    var pqEnc = pq(enclosure);
+    var pqEsc = pq(escape);
   
-    input = input.replace(new RegExp('^\\s*' + pq(enclosure)), '')
-      .replace(new RegExp(pq(enclosure) + '\\s*$'), '');
+    input = input.replace(new RegExp('^\\s*' + pqEnc), '')
+      .replace(new RegExp(pqEnc + '\\s*$'), '');
   
     // PHP behavior may differ by including whitespace even outside of the enclosure
     input = backwards(input)
-      .split(new RegExp(pq(enclosure) + '\\s*' + pq(delimiter) + '\\s*' + pq(enclosure) + '(?!' + pq(escape) + ')',
+      .split(new RegExp(pqEnc + '\\s*' + pq(delimiter) + '\\s*' + pqEnc + '(?!' + pqEsc + ')',
         'g'))
       .reverse();
   
-    for (var i = 0; i < input.length; i++) {
+    for (i = 0, inpLen = input.length; i < inpLen; i++) {
       output.push(backwards(input[i])
-        .replace(new RegExp(pq(escape) + pq(enclosure), 'g'), enclosure));
+        .replace(new RegExp(pqEsc + pqEnc, 'g'), enclosure));
     }
   
     return output;
@@ -7956,6 +8044,15 @@ exports.rawurlencode = function (str) {
       .replace(/\*/g, '%2A');
 };
 
+exports.urldecode = function (str) {
+  return decodeURIComponent((str + '')
+      .replace(/%(?![\da-f]{2})/gi, function() {
+        // PHP tolerates poorly formed escape sequences
+        return '%25';
+      })
+      .replace(/\+/g, '%20'));
+};
+
 exports.urlencode = function (str) {
   str = (str + '')
       .toString();
@@ -7970,15 +8067,6 @@ exports.urlencode = function (str) {
     replace(/\)/g, '%29')
       .replace(/\*/g, '%2A')
       .replace(/%20/g, '+');
-};
-
-exports.urldecode = function (str) {
-  return decodeURIComponent((str + '')
-      .replace(/%(?![\da-f]{2})/gi, function() {
-        // PHP tolerates poorly formed escape sequences
-        return '%25';
-      })
-      .replace(/\+/g, '%20'));
 };
 
 exports.empty = function (mixed_var) {
@@ -10440,7 +10528,11 @@ exports.setlocale = function (category, locale) {
     };
     // END STATIC
     // BEGIN REDUNDANT
-    this.php_js = this.php_js || {};
+    try {
+      this.php_js = this.php_js || {};
+    } catch (e) {
+      this.php_js = {};
+    }
   
     var phpjs = this.php_js;
   
@@ -12082,6 +12174,217 @@ exports.ctype_xdigit = function (text) {
     return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.xd) !== -1;
 };
 
+exports.strftime = function (fmt, timestamp) {
+  this.php_js = this.php_js || {};
+    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+    // END REDUNDANT
+    var phpjs = this.php_js;
+  
+    // BEGIN STATIC
+    var _xPad = function(x, pad, r) {
+      if (typeof r === 'undefined') {
+        r = 10;
+      }
+      for (; parseInt(x, 10) < r && r > 1; r /= 10) {
+        x = pad.toString() + x;
+      }
+      return x.toString();
+    };
+  
+    var locale = phpjs.localeCategories.LC_TIME;
+    var locales = phpjs.locales;
+    var lc_time = locales[locale].LC_TIME;
+  
+    var _formats = {
+      a: function(d) {
+        return lc_time.a[d.getDay()];
+      },
+      A: function(d) {
+        return lc_time.A[d.getDay()];
+      },
+      b: function(d) {
+        return lc_time.b[d.getMonth()];
+      },
+      B: function(d) {
+        return lc_time.B[d.getMonth()];
+      },
+      C: function(d) {
+        return _xPad(parseInt(d.getFullYear() / 100, 10), 0);
+      },
+      d: ['getDate', '0'],
+      e: ['getDate', ' '],
+      g: function(d) {
+        return _xPad(parseInt(this.G(d) / 100, 10), 0);
+      },
+      G: function(d) {
+        var y = d.getFullYear();
+        var V = parseInt(_formats.V(d), 10);
+        var W = parseInt(_formats.W(d), 10);
+  
+        if (W > V) {
+          y++;
+        } else if (W === 0 && V >= 52) {
+          y--;
+        }
+  
+        return y;
+      },
+      H: ['getHours', '0'],
+      I: function(d) {
+        var I = d.getHours() % 12;
+        return _xPad(I === 0 ? 12 : I, 0);
+      },
+      j: function(d) {
+        var ms = d - new Date('' + d.getFullYear() + '/1/1 GMT');
+        ms += d.getTimezoneOffset() * 60000; // Line differs from Yahoo implementation which would be equivalent to replacing it here with:
+        // ms = new Date('' + d.getFullYear() + '/' + (d.getMonth()+1) + '/' + d.getDate() + ' GMT') - ms;
+        var doy = parseInt(ms / 60000 / 60 / 24, 10) + 1;
+        return _xPad(doy, 0, 100);
+      },
+      k: ['getHours', '0'],
+      // not in PHP, but implemented here (as in Yahoo)
+      l: function(d) {
+        var l = d.getHours() % 12;
+        return _xPad(l === 0 ? 12 : l, ' ');
+      },
+      m: function(d) {
+        return _xPad(d.getMonth() + 1, 0);
+      },
+      M: ['getMinutes', '0'],
+      p: function(d) {
+        return lc_time.p[d.getHours() >= 12 ? 1 : 0];
+      },
+      P: function(d) {
+        return lc_time.P[d.getHours() >= 12 ? 1 : 0];
+      },
+      s: function(d) { // Yahoo uses return parseInt(d.getTime()/1000, 10);
+        return Date.parse(d) / 1000;
+      },
+      S: ['getSeconds', '0'],
+      u: function(d) {
+        var dow = d.getDay();
+        return ((dow === 0) ? 7 : dow);
+      },
+      U: function(d) {
+        var doy = parseInt(_formats.j(d), 10);
+        var rdow = 6 - d.getDay();
+        var woy = parseInt((doy + rdow) / 7, 10);
+        return _xPad(woy, 0);
+      },
+      V: function(d) {
+        var woy = parseInt(_formats.W(d), 10);
+        var dow1_1 = (new Date('' + d.getFullYear() + '/1/1'))
+          .getDay();
+        // First week is 01 and not 00 as in the case of %U and %W,
+        // so we add 1 to the final result except if day 1 of the year
+        // is a Monday (then %W returns 01).
+        // We also need to subtract 1 if the day 1 of the year is
+        // Friday-Sunday, so the resulting equation becomes:
+        var idow = woy + (dow1_1 > 4 || dow1_1 <= 1 ? 0 : 1);
+        if (idow === 53 && (new Date('' + d.getFullYear() + '/12/31'))
+          .getDay() < 4) {
+          idow = 1;
+        } else if (idow === 0) {
+          idow = _formats.V(new Date('' + (d.getFullYear() - 1) + '/12/31'));
+        }
+        return _xPad(idow, 0);
+      },
+      w: 'getDay',
+      W: function(d) {
+        var doy = parseInt(_formats.j(d), 10);
+        var rdow = 7 - _formats.u(d);
+        var woy = parseInt((doy + rdow) / 7, 10);
+        return _xPad(woy, 0, 10);
+      },
+      y: function(d) {
+        return _xPad(d.getFullYear() % 100, 0);
+      },
+      Y: 'getFullYear',
+      z: function(d) {
+        var o = d.getTimezoneOffset();
+        var H = _xPad(parseInt(Math.abs(o / 60), 10), 0);
+        var M = _xPad(o % 60, 0);
+        return (o > 0 ? '-' : '+') + H + M;
+      },
+      Z: function(d) {
+        return d.toString()
+          .replace(/^.*\(([^)]+)\)$/, '$1');
+        /*
+        // Yahoo's: Better?
+        var tz = d.toString().replace(/^.*:\d\d( GMT[+-]\d+)? \(?([A-Za-z ]+)\)?\d*$/, '$2').replace(/[a-z ]/g, '');
+        if(tz.length > 4) {
+          tz = Dt.formats.z(d);
+        }
+        return tz;
+        */
+      },
+      '%': function(d) {
+        return '%';
+      }
+    };
+    // END STATIC
+    /* Fix: Locale alternatives are supported though not documented in PHP; see http://linux.die.net/man/3/strptime
+  Ec
+  EC
+  Ex
+  EX
+  Ey
+  EY
+  Od or Oe
+  OH
+  OI
+  Om
+  OM
+  OS
+  OU
+  Ow
+  OW
+  Oy
+    */
+  
+    var _date = ((typeof timestamp === 'undefined') ? new Date() : // Not provided
+      (typeof timestamp === 'object') ? new Date(timestamp) : // Javascript Date()
+      new Date(timestamp * 1000) // PHP API expects UNIX timestamp (auto-convert to int)
+    );
+  
+    var _aggregates = {
+      c: 'locale',
+      D: '%m/%d/%y',
+      F: '%y-%m-%d',
+      h: '%b',
+      n: '\n',
+      r: 'locale',
+      R: '%H:%M',
+      t: '\t',
+      T: '%H:%M:%S',
+      x: 'locale',
+      X: 'locale'
+    };
+  
+    // First replace aggregates (run in a loop because an agg may be made up of other aggs)
+    while (fmt.match(/%[cDFhnrRtTxX]/)) {
+      fmt = fmt.replace(/%([cDFhnrRtTxX])/g, function(m0, m1) {
+        var f = _aggregates[m1];
+        return (f === 'locale' ? lc_time[m1] : f);
+      });
+    }
+  
+    // Now replace formats - we need a closure so that the date object gets passed through
+    var str = fmt.replace(/%([aAbBCdegGHIjklmMpPsSuUVwWyYzZ%])/g, function(m0, m1) {
+      var f = _formats[m1];
+      if (typeof f === 'string') {
+        return _date[f]();
+      } else if (typeof f === 'function') {
+        return f(_date);
+      } else if (typeof f === 'object' && typeof f[0] === 'string') {
+        return _xPad(_date[f[0]](), f[1]);
+      } else { // Shouldn't reach here
+        return m1;
+      }
+    });
+    return str;
+};
+
 exports.strptime = function (dateStr, format) {
   // tm_isdst is in other docs; why not PHP?
   
@@ -12435,217 +12738,6 @@ exports.strptime = function (dateStr, format) {
     // POST-PROCESSING
     retObj.unparsed = dateStr.slice(j); // Will also get extra whitespace; empty string if none
     return retObj;
-};
-
-exports.strftime = function (fmt, timestamp) {
-  this.php_js = this.php_js || {};
-    this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
-    // END REDUNDANT
-    var phpjs = this.php_js;
-  
-    // BEGIN STATIC
-    var _xPad = function(x, pad, r) {
-      if (typeof r === 'undefined') {
-        r = 10;
-      }
-      for (; parseInt(x, 10) < r && r > 1; r /= 10) {
-        x = pad.toString() + x;
-      }
-      return x.toString();
-    };
-  
-    var locale = phpjs.localeCategories.LC_TIME;
-    var locales = phpjs.locales;
-    var lc_time = locales[locale].LC_TIME;
-  
-    var _formats = {
-      a: function(d) {
-        return lc_time.a[d.getDay()];
-      },
-      A: function(d) {
-        return lc_time.A[d.getDay()];
-      },
-      b: function(d) {
-        return lc_time.b[d.getMonth()];
-      },
-      B: function(d) {
-        return lc_time.B[d.getMonth()];
-      },
-      C: function(d) {
-        return _xPad(parseInt(d.getFullYear() / 100, 10), 0);
-      },
-      d: ['getDate', '0'],
-      e: ['getDate', ' '],
-      g: function(d) {
-        return _xPad(parseInt(this.G(d) / 100, 10), 0);
-      },
-      G: function(d) {
-        var y = d.getFullYear();
-        var V = parseInt(_formats.V(d), 10);
-        var W = parseInt(_formats.W(d), 10);
-  
-        if (W > V) {
-          y++;
-        } else if (W === 0 && V >= 52) {
-          y--;
-        }
-  
-        return y;
-      },
-      H: ['getHours', '0'],
-      I: function(d) {
-        var I = d.getHours() % 12;
-        return _xPad(I === 0 ? 12 : I, 0);
-      },
-      j: function(d) {
-        var ms = d - new Date('' + d.getFullYear() + '/1/1 GMT');
-        ms += d.getTimezoneOffset() * 60000; // Line differs from Yahoo implementation which would be equivalent to replacing it here with:
-        // ms = new Date('' + d.getFullYear() + '/' + (d.getMonth()+1) + '/' + d.getDate() + ' GMT') - ms;
-        var doy = parseInt(ms / 60000 / 60 / 24, 10) + 1;
-        return _xPad(doy, 0, 100);
-      },
-      k: ['getHours', '0'],
-      // not in PHP, but implemented here (as in Yahoo)
-      l: function(d) {
-        var l = d.getHours() % 12;
-        return _xPad(l === 0 ? 12 : l, ' ');
-      },
-      m: function(d) {
-        return _xPad(d.getMonth() + 1, 0);
-      },
-      M: ['getMinutes', '0'],
-      p: function(d) {
-        return lc_time.p[d.getHours() >= 12 ? 1 : 0];
-      },
-      P: function(d) {
-        return lc_time.P[d.getHours() >= 12 ? 1 : 0];
-      },
-      s: function(d) { // Yahoo uses return parseInt(d.getTime()/1000, 10);
-        return Date.parse(d) / 1000;
-      },
-      S: ['getSeconds', '0'],
-      u: function(d) {
-        var dow = d.getDay();
-        return ((dow === 0) ? 7 : dow);
-      },
-      U: function(d) {
-        var doy = parseInt(_formats.j(d), 10);
-        var rdow = 6 - d.getDay();
-        var woy = parseInt((doy + rdow) / 7, 10);
-        return _xPad(woy, 0);
-      },
-      V: function(d) {
-        var woy = parseInt(_formats.W(d), 10);
-        var dow1_1 = (new Date('' + d.getFullYear() + '/1/1'))
-          .getDay();
-        // First week is 01 and not 00 as in the case of %U and %W,
-        // so we add 1 to the final result except if day 1 of the year
-        // is a Monday (then %W returns 01).
-        // We also need to subtract 1 if the day 1 of the year is
-        // Friday-Sunday, so the resulting equation becomes:
-        var idow = woy + (dow1_1 > 4 || dow1_1 <= 1 ? 0 : 1);
-        if (idow === 53 && (new Date('' + d.getFullYear() + '/12/31'))
-          .getDay() < 4) {
-          idow = 1;
-        } else if (idow === 0) {
-          idow = _formats.V(new Date('' + (d.getFullYear() - 1) + '/12/31'));
-        }
-        return _xPad(idow, 0);
-      },
-      w: 'getDay',
-      W: function(d) {
-        var doy = parseInt(_formats.j(d), 10);
-        var rdow = 7 - _formats.u(d);
-        var woy = parseInt((doy + rdow) / 7, 10);
-        return _xPad(woy, 0, 10);
-      },
-      y: function(d) {
-        return _xPad(d.getFullYear() % 100, 0);
-      },
-      Y: 'getFullYear',
-      z: function(d) {
-        var o = d.getTimezoneOffset();
-        var H = _xPad(parseInt(Math.abs(o / 60), 10), 0);
-        var M = _xPad(o % 60, 0);
-        return (o > 0 ? '-' : '+') + H + M;
-      },
-      Z: function(d) {
-        return d.toString()
-          .replace(/^.*\(([^)]+)\)$/, '$1');
-        /*
-        // Yahoo's: Better?
-        var tz = d.toString().replace(/^.*:\d\d( GMT[+-]\d+)? \(?([A-Za-z ]+)\)?\d*$/, '$2').replace(/[a-z ]/g, '');
-        if(tz.length > 4) {
-          tz = Dt.formats.z(d);
-        }
-        return tz;
-        */
-      },
-      '%': function(d) {
-        return '%';
-      }
-    };
-    // END STATIC
-    /* Fix: Locale alternatives are supported though not documented in PHP; see http://linux.die.net/man/3/strptime
-  Ec
-  EC
-  Ex
-  EX
-  Ey
-  EY
-  Od or Oe
-  OH
-  OI
-  Om
-  OM
-  OS
-  OU
-  Ow
-  OW
-  Oy
-    */
-  
-    var _date = ((typeof timestamp === 'undefined') ? new Date() : // Not provided
-      (typeof timestamp === 'object') ? new Date(timestamp) : // Javascript Date()
-      new Date(timestamp * 1000) // PHP API expects UNIX timestamp (auto-convert to int)
-    );
-  
-    var _aggregates = {
-      c: 'locale',
-      D: '%m/%d/%y',
-      F: '%y-%m-%d',
-      h: '%b',
-      n: '\n',
-      r: 'locale',
-      R: '%H:%M',
-      t: '\t',
-      T: '%H:%M:%S',
-      x: 'locale',
-      X: 'locale'
-    };
-  
-    // First replace aggregates (run in a loop because an agg may be made up of other aggs)
-    while (fmt.match(/%[cDFhnrRtTxX]/)) {
-      fmt = fmt.replace(/%([cDFhnrRtTxX])/g, function(m0, m1) {
-        var f = _aggregates[m1];
-        return (f === 'locale' ? lc_time[m1] : f);
-      });
-    }
-  
-    // Now replace formats - we need a closure so that the date object gets passed through
-    var str = fmt.replace(/%([aAbBCdegGHIjklmMpPsSuUVwWyYzZ%])/g, function(m0, m1) {
-      var f = _formats[m1];
-      if (typeof f === 'string') {
-        return _date[f]();
-      } else if (typeof f === 'function') {
-        return f(_date);
-      } else if (typeof f === 'object' && typeof f[0] === 'string') {
-        return _xPad(_date[f[0]](), f[1]);
-      } else { // Shouldn't reach here
-        return m1;
-      }
-    });
-    return str;
 };
 
 exports.sql_regcase = function (str) {
