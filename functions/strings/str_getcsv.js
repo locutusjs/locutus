@@ -6,15 +6,19 @@ function str_getcsv(input, delimiter, enclosure, escape) {
   //   example 2: str_getcsv('"row2""cell1","row2cell2","row2cell3"', null, null, '"');
   //   returns 2: ['row2"cell1', 'row2cell2', 'row2cell3']
 /*
-// These test cases allowing for missing delimters are not currently supported
-example 3: str_getcsv('"row2""cell1",row2cell2,row2cell3', null, null, '"');
-returns 3: ['row2"cell1', 'row2cell2', 'row2cell3']
-example 4: str_getcsv('row1cell1,"row1,cell2",row1cell3', null, null, '"');
-returns 4: ['row1cell1', 'row1,cell2', 'row1cell3']
-example 5: str_getcsv('"row2""cell1",row2cell2,"row2""""cell3"'
-returns 5: ['row2"cell1', 'row2cell2', 'row2""cell3']
-example 6: str_getcsv('row1cell1,"row1,cell2","row1"",""cell3"', null, null, '"');
-returns 6: ['row1cell1', 'row1,cell2', 'row1","cell3'];
+// These test cases allowing for missing delimiters are not currently supported
+str_getcsv('"row2""cell1",row2cell2,row2cell3', null, null, '"');
+['row2"cell1', 'row2cell2', 'row2cell3']
+
+str_getcsv('row1cell1,"row1,cell2",row1cell3', null, null, '"');
+['row1cell1', 'row1,cell2', 'row1cell3']
+
+str_getcsv('"row2""cell1",row2cell2,"row2""""cell3"'
+['row2"cell1', 'row2cell2', 'row2""cell3']
+
+str_getcsv('row1cell1,"row1,cell2","row1"",""cell3"', null, null, '"');
+['row1cell1', 'row1,cell2', 'row1","cell3'];
+
 Should also test newlines within
 */
   var i, inpLen, output = [];
