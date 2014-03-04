@@ -46,7 +46,7 @@ site:
 	bundle exec rake generate && \
 	bundle exec rake deploy ; \
 	cd .. ; \
-	git add . ; \
+	git add --all . ; \
 	git commit -anm "Update site" ; \
 	git push origin master
 
