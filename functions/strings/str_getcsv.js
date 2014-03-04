@@ -14,10 +14,10 @@ function str_getcsv(input, delimiter, enclosure, escape) {
     str_getcsv('row1cell1,"row1,cell2",row1cell3', null, null, '"');
     ['row1cell1', 'row1,cell2', 'row1cell3']
 
-    str_getcsv('"row2""cell1",row2cell2,"row2""""cell3"'
+    str_getcsv('"row2""cell1",row2cell2,"row2""""cell3"');
     ['row2"cell1', 'row2cell2', 'row2""cell3']
 
-    // str_getcsv('row1cell1,"row1,cell2","row1"",""cell3"', null, null, '"');
+    str_getcsv('row1cell1,"row1,cell2","row1"",""cell3"', null, null, '"');
     ['row1cell1', 'row1,cell2', 'row1","cell3'];
 
     Should also test newlines within
