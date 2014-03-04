@@ -140,11 +140,10 @@ function pack(format) {
           quantifier = arguments.length - argumentPointer;
         }
         if (quantifier > (arguments.length - argumentPointer)) {
-          throw new Error('Warning:  pack() Type ' + instruction + ': too few arguments');
+          throw new Error('Warning: pack() Type ' + instruction + ': too few arguments');
         }
 
         for (i = 0; i < quantifier; i++) {
-          result += String.fromCharCode(arguments[argumentPointer] >> 8 & 0xFF);
           result += String.fromCharCode(arguments[argumentPointer] & 0xFF);
           argumentPointer++;
         }
