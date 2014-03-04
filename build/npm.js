@@ -3,6 +3,8 @@
 // 
 // Make function changes in ./functions and 
 // generator changes in ./lib/phpjsutil.js 
+exports.XMLHttpRequest = {};
+exports.window = {document: {lastModified: 1388954399,getElementsByTagName: function(){return [];}},location: {href: ""}};
 
 exports.array = function () {
   try {
@@ -1229,23 +1231,6 @@ exports.array_pop = function (inputArr) {
     }
 };
 
-exports.array_product = function (input) {
-  var idx = 0,
-      product = 1,
-      il = 0;
-  
-    if (Object.prototype.toString.call(input) !== '[object Array]') {
-      return null;
-    }
-  
-    il = input.length;
-    while (idx < il) {
-      product *= (!isNaN(input[idx]) ? input[idx] : 0);
-      idx++;
-    }
-    return product;
-};
-
 exports.array_push = function (inputArr) {
   var i = 0,
       pr = '',
@@ -1276,6 +1261,23 @@ exports.array_push = function (inputArr) {
       inputArr[++highestIdx] = argv[i];
     }
     return len + i - 1;
+};
+
+exports.array_product = function (input) {
+  var idx = 0,
+      product = 1,
+      il = 0;
+  
+    if (Object.prototype.toString.call(input) !== '[object Array]') {
+      return null;
+    }
+  
+    il = input.length;
+    while (idx < il) {
+      product *= (!isNaN(input[idx]) ? input[idx] : 0);
+      idx++;
+    }
+    return product;
 };
 
 exports.array_rand = function (input, num_req) {
@@ -8242,11 +8244,6 @@ exports.is_object = function (mixed_var) {
     return mixed_var !== null && typeof mixed_var === 'object';
 };
 
-exports.is_scalar = function (mixed_var) {
-  return (/boolean|number|string/)
-      .test(typeof mixed_var);
-};
-
 exports.is_resource = function (handle) {
   var getFuncName = function(fn) {
       var name = (/\W*function\s+([\w\$]+)\s*\(/)
@@ -8258,6 +8255,11 @@ exports.is_resource = function (handle) {
     };
     return !(!handle || typeof handle !== 'object' || !handle.constructor || getFuncName(handle.constructor) !==
       'PHPJS_Resource');
+};
+
+exports.is_scalar = function (mixed_var) {
+  return (/boolean|number|string/)
+      .test(typeof mixed_var);
 };
 
 exports.is_string = function (mixed_var) {
@@ -10526,7 +10528,11 @@ exports.setlocale = function (category, locale) {
     };
     // END STATIC
     // BEGIN REDUNDANT
-    this.php_js = this.php_js || {};
+    try {
+      this.php_js = this.php_js || {};
+    } catch (e) {
+      this.php_js = {};
+    }
   
     var phpjs = this.php_js;
   

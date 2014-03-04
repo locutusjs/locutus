@@ -1,6 +1,6 @@
 {
   "name": "phpjs",
-  "version": "1.0.2",
+  "version": "1.1.2",
   "description": "php.js offers community built php functions in javascript",
   "homepage": "http://phpjs.org",
   "author": "Kevin van Zonneveld <kevin@vanzonneveld.net>",

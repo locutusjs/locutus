@@ -21,7 +21,19 @@ cli.parse({
 var PhpjsUtil = phpjsutil({
   injectDependencies: ['ini_set', 'ini_get'],
   equal             : equal,
-  debug             : cli.debug
+  debug             : cli.debug,
+  globals           : {
+    'XMLHttpRequest': '{}',
+    'window': '{' +
+      'document: {' +
+        'lastModified: 1388954399,' +
+        'getElementsByTagName: function(){return [];}' +
+      '},' +
+      'location: {' +
+        'href: ""' +
+      '}' +
+    '}',
+  }
 });
 
 // Environment-specific file opener. function name needs to
@@ -152,6 +164,11 @@ cli.buildnpm = function(args, options) {
   fs.appendFileSync(options.output, '// \n');
   fs.appendFileSync(options.output, '// Make function changes in ./functions and \n');
   fs.appendFileSync(options.output, '// generator changes in ./lib/phpjsutil.js \n');
+
+  for (var global in PhpjsUtil.globals) {
+    fs.appendFileSync(options.output, 'exports.' + global + ' = ' + PhpjsUtil.globals[global] + ';\n');
+  }
+
   self.glob(pattern, function (err, params, file) {
     if (err) {
       return self.error('Could not glob for ' + pattern + '. ' + err);
