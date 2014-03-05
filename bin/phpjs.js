@@ -8,6 +8,8 @@ var equal     = require('deep-equal');
 var __root    = __dirname + '/..';
 var beautify  = require('js-beautify').js_beautify;
 
+// Not ideal: http://stackoverflow.com/questions/8083410/how-to-set-default-timezone-in-node-js
+process.env.TZ = 'UTC';
 
 // --debug works out of the box. See -h
 cli.parse({
