@@ -11,6 +11,13 @@ function pack(format) {
   //        note: little endian machine
   //   example 1: pack('nvc*', 0x1234, 0x5678, 65, 66);
   //   returns 1: '4xVAB'
+  //   example 2: pack('H4', '2345')
+  //   returns 2: '#E'
+  //   example 3: pack('H*', 'D5')
+  //   returns 3: 'Õ'
+  //   example 4: pack('d', -100.876)
+  //   returns 4: "\u0000\u0000\u0000\u0000\u00008YÀ"
+
 
   var formatPointer = 0,
     argumentPointer = 1,
@@ -79,6 +86,7 @@ function pack(format) {
         if (quantifier > argument.length) {
           throw new Error('Warning: pack() Type ' + instruction + ': not enough characters in string');
         }
+
         for (i = 0; i < quantifier; i += 2) {
           // Always get per 2 bytes...
           word = argument[i];
@@ -140,11 +148,10 @@ function pack(format) {
           quantifier = arguments.length - argumentPointer;
         }
         if (quantifier > (arguments.length - argumentPointer)) {
-          throw new Error('Warning:  pack() Type ' + instruction + ': too few arguments');
+          throw new Error('Warning: pack() Type ' + instruction + ': too few arguments');
         }
 
         for (i = 0; i < quantifier; i++) {
-          result += String.fromCharCode(arguments[argumentPointer] >> 8 & 0xFF);
           result += String.fromCharCode(arguments[argumentPointer] & 0xFF);
           argumentPointer++;
         }
