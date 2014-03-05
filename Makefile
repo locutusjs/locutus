@@ -17,6 +17,14 @@ test:
 cleanup:
 	node bin/phpjs.js --action cleanup
 
+test-cleanup:
+	node bin/phpjs.js --action cleanup --name array_change_key_case
+	node bin/phpjs.js --action cleanup --name echo
+	git diff functions/array/array_change_key_case.js
+	git diff functions/strings/echo.js
+	git checkout -- functions/array/array_change_key_case.js
+	git checkout -- functions/strings/echo.js
+
 npm:
 	node bin/phpjs.js --action buildnpm --output build/npm.js
 	ls -al build/npm.js
