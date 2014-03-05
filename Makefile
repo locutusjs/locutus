@@ -17,6 +17,9 @@ test:
 cleanup:
 	node bin/phpjs.js --action cleanup
 
+serve:
+	python -m SimpleHTTPServer
+
 test-cleanup:
 	node bin/phpjs.js --action cleanup --name array_change_key_case
 	node bin/phpjs.js --action cleanup --name echo
