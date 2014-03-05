@@ -7,6 +7,7 @@ setup:
 	cd .. ; \
 
 test:
+	ulimit -n 1024 ||true
 	npm install
 	make build
 	./node_modules/.bin/mocha --reporter list

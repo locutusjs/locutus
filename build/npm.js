@@ -4,7 +4,8 @@
 // Make function changes in ./functions and 
 // generator changes in ./lib/phpjsutil.js 
 exports.XMLHttpRequest = {};
-exports.window = {document: {lastModified: 1388954399,getElementsByTagName: function(){return [];}},location: {href: ""}};
+exports.window = {window: {},document: {lastModified: 1388954399,getElementsByTagName: function(){return [];}},location: {href: ""}};
+exports.window.window = exports.window;
 
 exports.array = function () {
   try {
@@ -938,6 +939,7 @@ exports.array_multisort = function (arr) {
   
     var sortFunctions = [
       [
+  
         function(a, b) {
           lastSort.push(a > b ? 1 : (a < b ? -1 : 0));
           return a > b ? 1 : (a < b ? -1 : 0);
@@ -948,6 +950,7 @@ exports.array_multisort = function (arr) {
         }
       ],
       [
+  
         function(a, b) {
           lastSort.push(a - b);
           return a - b;
@@ -958,6 +961,7 @@ exports.array_multisort = function (arr) {
         }
       ],
       [
+  
         function(a, b) {
           lastSort.push((a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0));
           return (a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0);
@@ -1248,38 +1252,6 @@ exports.array_product = function (input) {
     return product;
 };
 
-exports.array_push = function (inputArr) {
-  var i = 0,
-      pr = '',
-      argv = arguments,
-      argc = argv.length,
-      allDigits = /^\d$/,
-      size = 0,
-      highestIdx = 0,
-      len = 0;
-    if (inputArr.hasOwnProperty('length')) {
-      for (i = 1; i < argc; i++) {
-        inputArr[inputArr.length] = argv[i];
-      }
-      return inputArr.length;
-    }
-  
-    // Associative (object)
-    for (pr in inputArr) {
-      if (inputArr.hasOwnProperty(pr)) {
-        ++len;
-        if (pr.search(allDigits) !== -1) {
-          size = parseInt(pr, 10);
-          highestIdx = size > highestIdx ? size : highestIdx;
-        }
-      }
-    }
-    for (i = 1; i < argc; i++) {
-      inputArr[++highestIdx] = argv[i];
-    }
-    return len + i - 1;
-};
-
 exports.array_rand = function (input, num_req) {
   var indexes = [];
     var ticks = num_req || 1;
@@ -1312,6 +1284,65 @@ exports.array_rand = function (input, num_req) {
     }
   
     return ((ticks == 1) ? indexes.join() : indexes);
+};
+
+exports.array_push = function (inputArr) {
+  var i = 0,
+      pr = '',
+      argv = arguments,
+      argc = argv.length,
+      allDigits = /^\d$/,
+      size = 0,
+      highestIdx = 0,
+      len = 0;
+    if (inputArr.hasOwnProperty('length')) {
+      for (i = 1; i < argc; i++) {
+        inputArr[inputArr.length] = argv[i];
+      }
+      return inputArr.length;
+    }
+  
+    // Associative (object)
+    for (pr in inputArr) {
+      if (inputArr.hasOwnProperty(pr)) {
+        ++len;
+        if (pr.search(allDigits) !== -1) {
+          size = parseInt(pr, 10);
+          highestIdx = size > highestIdx ? size : highestIdx;
+        }
+      }
+    }
+    for (i = 1; i < argc; i++) {
+      inputArr[++highestIdx] = argv[i];
+    }
+    return len + i - 1;
+};
+
+exports.array_replace_recursive = function (arr) {
+  var retObj = {},
+      i = 0,
+      p = '',
+      argl = arguments.length;
+  
+    if (argl < 2) {
+      throw new Error('There should be at least 2 arguments passed to array_replace_recursive()');
+    }
+  
+    // Although docs state that the arguments are passed in by reference, it seems they are not altered, but rather the copy that is returned (just guessing), so we make a copy here, instead of acting on arr itself
+    for (p in arr) {
+      retObj[p] = arr[p];
+    }
+  
+    for (i = 1; i < argl; i++) {
+      for (p in arguments[i]) {
+        if (retObj[p] && typeof retObj[p] === 'object') {
+          retObj[p] = this.array_replace_recursive(retObj[p], arguments[i][p]);
+        } else {
+          retObj[p] = arguments[i][p];
+        }
+      }
+    }
+    return retObj;
 };
 
 exports.array_reduce = function (a_input, callback) {
@@ -1352,33 +1383,6 @@ exports.array_replace = function (arr) {
     for (i = 1; i < argl; i++) {
       for (p in arguments[i]) {
         retObj[p] = arguments[i][p];
-      }
-    }
-    return retObj;
-};
-
-exports.array_replace_recursive = function (arr) {
-  var retObj = {},
-      i = 0,
-      p = '',
-      argl = arguments.length;
-  
-    if (argl < 2) {
-      throw new Error('There should be at least 2 arguments passed to array_replace_recursive()');
-    }
-  
-    // Although docs state that the arguments are passed in by reference, it seems they are not altered, but rather the copy that is returned (just guessing), so we make a copy here, instead of acting on arr itself
-    for (p in arr) {
-      retObj[p] = arr[p];
-    }
-  
-    for (i = 1; i < argl; i++) {
-      for (p in arguments[i]) {
-        if (retObj[p] && typeof retObj[p] === 'object') {
-          retObj[p] = this.array_replace_recursive(retObj[p], arguments[i][p]);
-        } else {
-          retObj[p] = arguments[i][p];
-        }
       }
     }
     return retObj;
@@ -1954,7 +1958,7 @@ exports.end = function (arr) {
 exports.in_array = function (needle, haystack, argStrict) {
   var key = '',
       strict = !! argStrict;
-    
+  
     //we prevent the double check (strict && arr[key] === ndl) || (!strict && arr[key] == ndl)
     //in just one for, in order to improve the performance 
     //deciding wich type of comparation will do before walk array
@@ -2555,8 +2559,8 @@ exports.date = function (format, timestamp) {
       that = this;
       jsdate = (timestamp === undefined ? new Date() : // Not provided
         (timestamp instanceof Date) ? new Date(timestamp) : // JS Date()
-          new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
-        );
+        new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
+      );
       return format.replace(formatChr, formatChrCb);
     };
     return this.date(format, timestamp);
@@ -3341,6 +3345,13 @@ exports.call_user_func_array = function (cb, parameters) {
       null, parameters) : func.apply(cb[0], parameters);
 };
 
+exports.function_exists = function (func_name) {
+  if (typeof func_name === 'string') {
+      func_name = this.window[func_name];
+    }
+    return typeof func_name === 'function';
+};
+
 exports.create_function = function (args, code) {
   try {
       return Function.apply(null, args.split(',')
@@ -3348,13 +3359,6 @@ exports.create_function = function (args, code) {
     } catch (e) {
       return false;
     }
-};
-
-exports.function_exists = function (func_name) {
-  if (typeof func_name === 'string') {
-      func_name = this.window[func_name];
-    }
-    return typeof func_name === 'function';
 };
 
 exports.get_defined_functions = function () {
@@ -3402,6 +3406,14 @@ exports.i18n_loc_set_default = function (name) {
     return true;
 };
 
+exports.getenv = function (varname) {
+  if (!this.php_js || !this.php_js.ENV || !this.php_js.ENV[varname]) {
+      return false;
+    }
+  
+    return this.php_js.ENV[varname];
+};
+
 exports.assert_options = function (what, value) {
   // BEGIN REDUNDANT
     this.php_js = this.php_js || {};
@@ -3442,14 +3454,6 @@ exports.assert_options = function (what, value) {
       this.php_js.assert_values[ini] = value; // We use 'ini' instead of 'what' as key to be more convenient for assert() to test for current value
     }
     return originalValue;
-};
-
-exports.getenv = function (varname) {
-  if (!this.php_js || !this.php_js.ENV || !this.php_js.ENV[varname]) {
-      return false;
-    }
-  
-    return this.php_js.ENV[varname];
 };
 
 exports.getlastmod = function () {
@@ -4420,6 +4424,11 @@ exports.tanh = function (arg) {
   return (Math.exp(arg) - Math.exp(-arg)) / (Math.exp(arg) + Math.exp(-arg));
 };
 
+exports.time_sleep_until = function (timestamp) {
+  while (new Date() < timestamp * 1000) {}
+    return true;
+};
+
 exports.pack = function (format) {
   var formatPointer = 0,
       argumentPointer = 1,
@@ -4488,6 +4497,7 @@ exports.pack = function (format) {
           if (quantifier > argument.length) {
             throw new Error('Warning: pack() Type ' + instruction + ': not enough characters in string');
           }
+  
           for (i = 0; i < quantifier; i += 2) {
             // Always get per 2 bytes...
             word = argument[i];
@@ -4549,11 +4559,10 @@ exports.pack = function (format) {
             quantifier = arguments.length - argumentPointer;
           }
           if (quantifier > (arguments.length - argumentPointer)) {
-            throw new Error('Warning:  pack() Type ' + instruction + ': too few arguments');
+            throw new Error('Warning: pack() Type ' + instruction + ': too few arguments');
           }
   
           for (i = 0; i < quantifier; i++) {
-            result += String.fromCharCode(arguments[argumentPointer] >> 8 & 0xFF);
             result += String.fromCharCode(arguments[argumentPointer] & 0xFF);
             argumentPointer++;
           }
@@ -4757,11 +4766,6 @@ exports.pack = function (format) {
     }
   
     return result;
-};
-
-exports.time_sleep_until = function (timestamp) {
-  while (new Date() < timestamp * 1000) {}
-    return true;
 };
 
 exports.uniqid = function (prefix, more_entropy) {
@@ -5981,13 +5985,14 @@ exports.metaphone = function (word, max_phonemes) {
       leadingNonAlpha = new RegExp('^[^' + alpha + ']+');
   
     word = typeof word === 'string' ? word : '';
-    word = word.toUpperCase().replace(leadingNonAlpha, '');
+    word = word.toUpperCase()
+      .replace(leadingNonAlpha, '');
   
     if (!word) {
       return '';
     }
   
-    var is = function (p, c) {
+    var is = function(p, c) {
       return c !== '' && p.indexOf(c) !== -1;
     };
   
@@ -6157,7 +6162,7 @@ exports.metaphone = function (word, max_phonemes) {
     }
   
     return meta;
-    
+  
     /*
     "    abc", "ABK", // skip leading whitespace
     "1234.678!@abc", "ABK", // skip leading non-alpha chars
@@ -6295,7 +6300,8 @@ exports.number_format = function (number, decimals, dec_point, thousands_sep) {
       s = '',
       toFixedFix = function(n, prec) {
         var k = Math.pow(10, prec);
-        return '' + Math.round(n * k) / k;
+        return '' + (Math.round(n * k) / k)
+          .toFixed(prec);
       };
     // Fix for IE parseFloat(0.55).toFixed(0) = 0;
     s = (prec ? toFixedFix(n, prec) : '' + Math.round(n))
@@ -6971,7 +6977,7 @@ exports.sscanf = function (str, format) {
 
 exports.str_getcsv = function (input, delimiter, enclosure, escape) {
   // These test cases allowing for missing delimiters are not currently supported
-  /*
+    /*
       str_getcsv('"row2""cell1",row2cell2,row2cell3', null, null, '"');
       ['row2"cell1', 'row2cell2', 'row2cell3']
   
@@ -7942,7 +7948,7 @@ exports.base64_decode = function (data) {
   
     dec = tmp_arr.join('');
   
-    return dec;
+    return dec.replace(/\0+$/, '');
 };
 
 exports.base64_encode = function (data) {
@@ -9086,6 +9092,47 @@ exports.xdiff_string_diff = function (old_data, new_data, context_lines, minimal
     return unidiff;
 };
 
+exports.utf8_decode = function (str_data) {
+  var tmp_arr = [],
+      i = 0,
+      ac = 0,
+      c1 = 0,
+      c2 = 0,
+      c3 = 0,
+      c4 = 0;
+  
+    str_data += '';
+  
+    while (i < str_data.length) {
+      c1 = str_data.charCodeAt(i);
+      if (c1 <= 191) {
+        tmp_arr[ac++] = String.fromCharCode(c1);
+        i++;
+      } else if (c1 <= 223) {
+        c2 = str_data.charCodeAt(i + 1);
+        tmp_arr[ac++] = String.fromCharCode(((c1 & 31) << 6) | (c2 & 63));
+        i += 2;
+      } else if (c1 <= 239) {
+        // http://en.wikipedia.org/wiki/UTF-8#Codepage_layout
+        c2 = str_data.charCodeAt(i + 1);
+        c3 = str_data.charCodeAt(i + 2);
+        tmp_arr[ac++] = String.fromCharCode(((c1 & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+        i += 3;
+      } else {
+        c2 = str_data.charCodeAt(i + 1);
+        c3 = str_data.charCodeAt(i + 2);
+        c4 = str_data.charCodeAt(i + 3);
+        c1 = ((c1 & 7) << 18) | ((c2 & 63) << 12) | ((c3 & 63) << 6) | (c4 & 63);
+        c1 -= 0x10000;
+        tmp_arr[ac++] = String.fromCharCode(0xD800 | ((c1 >> 10) & 0x3FF));
+        tmp_arr[ac++] = String.fromCharCode(0xDC00 | (c1 & 0x3FF));
+        i += 4;
+      }
+    }
+  
+    return tmp_arr.join('');
+};
+
 exports.xdiff_string_patch = function (originalStr, patch, flags, error) {
   // First two functions were adapted from Steven Levithan, also under an MIT license
     // Adapted from XRegExp 1.5.0
@@ -9218,7 +9265,7 @@ exports.xdiff_string_patch = function (originalStr, patch, flags, error) {
           }
         }
       }
-      while (linePos < origLines.length) {
+      while (linePos > 0 && linePos < origLines.length) {
         newStrArr[newStrArr.length] = origLines[linePos++];
       }
     } else if (flags & OPTS.XDIFF_PATCH_REVERSE) { // Only differs from above by a few lines
@@ -9251,7 +9298,7 @@ exports.xdiff_string_patch = function (originalStr, patch, flags, error) {
           }
         }
       }
-      while (linePos < origLines.length) {
+      while (linePos > 0 && linePos < origLines.length) {
         newStrArr[newStrArr.length] = origLines[linePos++];
       }
     }
@@ -9259,47 +9306,6 @@ exports.xdiff_string_patch = function (originalStr, patch, flags, error) {
       this.window[error] = errors;
     }
     return newStrArr.join('\n');
-};
-
-exports.utf8_decode = function (str_data) {
-  var tmp_arr = [],
-      i = 0,
-      ac = 0,
-      c1 = 0,
-      c2 = 0,
-      c3 = 0,
-      c4 = 0;
-  
-    str_data += '';
-  
-    while (i < str_data.length) {
-      c1 = str_data.charCodeAt(i);
-      if (c1 <= 191) {
-        tmp_arr[ac++] = String.fromCharCode(c1);
-        i++;
-      } else if (c1 <= 223) {
-        c2 = str_data.charCodeAt(i + 1);
-        tmp_arr[ac++] = String.fromCharCode(((c1 & 31) << 6) | (c2 & 63));
-        i += 2;
-      } else if (c1 <= 239) {
-        // http://en.wikipedia.org/wiki/UTF-8#Codepage_layout
-        c2 = str_data.charCodeAt(i + 1);
-        c3 = str_data.charCodeAt(i + 2);
-        tmp_arr[ac++] = String.fromCharCode(((c1 & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
-        i += 3;
-      } else {
-        c2 = str_data.charCodeAt(i + 1);
-        c3 = str_data.charCodeAt(i + 2);
-        c4 = str_data.charCodeAt(i + 3);
-        c1 = ((c1 & 7) << 18) | ((c2 & 63) << 12) | ((c3 & 63) << 6) | (c4 & 63);
-        c1 -= 0x10000;
-        tmp_arr[ac++] = String.fromCharCode(0xD800 | ((c1 >> 10) & 0x3FF));
-        tmp_arr[ac++] = String.fromCharCode(0xDC00 | (c1 & 0x3FF));
-        i += 4;
-      }
-    }
-  
-    return tmp_arr.join('');
 };
 
 exports.utf8_encode = function (argString) {
@@ -9323,16 +9329,16 @@ exports.utf8_encode = function (argString) {
         enc = String.fromCharCode(
           (c1 >> 6) | 192, (c1 & 63) | 128
         );
-      } else if (c1 & 0xF800 != 0xD800) {
+      } else if ((c1 & 0xF800) != 0xD800) {
         enc = String.fromCharCode(
           (c1 >> 12) | 224, ((c1 >> 6) & 63) | 128, (c1 & 63) | 128
         );
       } else { // surrogate pairs
-        if (c1 & 0xFC00 != 0xD800) {
+        if ((c1 & 0xFC00) != 0xD800) {
           throw new RangeError('Unmatched trail surrogate at ' + n);
         }
         var c2 = string.charCodeAt(++n);
-        if (c2 & 0xFC00 != 0xDC00) {
+        if ((c2 & 0xFC00) != 0xDC00) {
           throw new RangeError('Unmatched lead surrogate at ' + (n - 1));
         }
         c1 = ((c1 & 0x3FF) << 10) + (c2 & 0x3FF) + 0x10000;
@@ -9836,20 +9842,6 @@ exports.bcround = function (val, precision) {
     return result.toString();
 };
 
-exports.bcscale = function (scale) {
-  var libbcmath = this._phpjs_shared_bc();
-  
-    scale = parseInt(scale, 10);
-    if (isNaN(scale)) {
-      return false;
-    }
-    if (scale < 0) {
-      return false;
-    }
-    libbcmath.scale = scale;
-    return true;
-};
-
 exports.bcsub = function (left_operand, right_operand, scale) {
   var libbcmath = this._phpjs_shared_bc();
   
@@ -9875,6 +9867,20 @@ exports.bcsub = function (left_operand, right_operand, scale) {
     }
   
     return result.toString();
+};
+
+exports.bcscale = function (scale) {
+  var libbcmath = this._phpjs_shared_bc();
+  
+    scale = parseInt(scale, 10);
+    if (isNaN(scale)) {
+      return false;
+    }
+    if (scale < 0) {
+      return false;
+    }
+    libbcmath.scale = scale;
+    return true;
 };
 
 exports.date_parse = function (date) {

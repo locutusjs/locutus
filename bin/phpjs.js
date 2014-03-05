@@ -169,6 +169,7 @@ cli.buildnpm = function(args, options) {
   for (var global in PhpjsUtil.globals) {
     fs.appendFileSync(options.output, 'exports.' + global + ' = ' + PhpjsUtil.globals[global] + ';\n');
   }
+  fs.appendFileSync(options.output, 'exports.window.window = exports.window;\n');
 
   self.glob(pattern, function (err, params, file) {
     if (err) {
