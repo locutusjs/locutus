@@ -1,6 +1,5 @@
 function i18n_loc_get_default() {
   //  discuss at: http://phpjs.org/functions/i18n_loc_get_default/
-  //        http: //kevin.vanzonneveld.net
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Renamed in PHP6 from locale_get_default(). Not listed yet at php.net
   //        note: List of locales at http://demo.icu-project.org/icu-bin/locexp

@@ -1,6 +1,5 @@
 function print_r(array, return_val) {
   //  discuss at: http://phpjs.org/functions/print_r/
-  //        http: //kevin.vanzonneveld.net
   // original by: Michael White (http://getsprink.com)
   // improved by: Ben Bryan
   // improved by: Brett Zamir (http://brett-zamir.me)

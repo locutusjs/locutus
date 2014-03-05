@@ -1,6 +1,5 @@
 function dirname(path) {
   //  discuss at: http://phpjs.org/functions/dirname/
-  //        http: //kevin.vanzonneveld.net
   // original by: Ozh
   // improved by: XoraX (http://www.xorax.info)
   //   example 1: dirname('/etc/passwd');

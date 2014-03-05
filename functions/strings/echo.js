@@ -1,6 +1,5 @@
 function echo() {
   //  discuss at: http://phpjs.org/functions/echo/
-  //        http: //kevin.vanzonneveld.net
   // original by: Philip Peterson
   // improved by: echo is bad
   // improved by: Nate
