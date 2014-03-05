@@ -30,23 +30,24 @@ function echo() {
     return console.log(args.join(' '));
   }
 
-  var arg = '',
-    argc = arguments.length,
-    argv = arguments,
-    i = 0,
-    holder, win = this.window,
-    d = win.document,
-    ns_xhtml = 'http://www.w3.org/1999/xhtml',
-    ns_xul = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'; // If we're in a XUL context
+  var arg         = '';
+  var argc        = arguments.length;
+  var argv        = arguments;
+  var i           = 0;
+  var holder, win = this.window;
+  var d           = win.document;
+  var ns_xhtml    = 'http://www.w3.org/1999/xhtml';
+  var ns_xul      = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'; // If we're in a XUL context
+
   var stringToDOM = function(str, parent, ns, container) {
     var extraNSs = '';
     if (ns === ns_xul) {
       extraNSs = ' xmlns:html="' + ns_xhtml + '"';
     }
     var stringContainer = '<' + container + ' xmlns="' + ns + '"' + extraNSs + '>' + str + '</' + container + '>';
-    var dils = win.DOMImplementationLS,
-      dp = win.DOMParser,
-      ax = win.ActiveXObject;
+    var dils            = win.DOMImplementationLS;
+    var dp              = win.DOMParser;
+    var ax              = win.ActiveXObject;
     if (dils && dils.createLSInput && dils.createLSParser) {
       // Follows the DOM 3 Load and Save standard, but not
       // implemented in browsers at present; HTML5 is to standardize on innerHTML, but not for XML (though
@@ -136,9 +137,9 @@ function echo() {
   };
 
   this.php_js = this.php_js || {};
-  var phpjs = this.php_js,
-    ini = phpjs.ini,
-    obs = phpjs.obs;
+  var phpjs = this.php_js;
+  var ini   = phpjs.ini;
+  var obs   = phpjs.obs;
   for (i = 0; i < argc; i++) {
     arg = argv[i];
     if (ini && ini['phpjs.echo_embedded_vars']) {
@@ -166,9 +167,8 @@ function echo() {
       }
     } else if (d.write) {
       d.write(arg);
+    } else {
+      console.log(arg);
     }
-    /* else { // This could recurse if we ever add print!
-      print(arg);
-    }*/
   }
 }
