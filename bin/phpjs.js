@@ -25,6 +25,7 @@ var PhpjsUtil = phpjsutil({
   globals           : {
     'XMLHttpRequest': '{}',
     'window': '{' +
+      'window: {},' +
       'document: {' +
         'lastModified: 1388954399,' +
         'getElementsByTagName: function(){return [];}' +
