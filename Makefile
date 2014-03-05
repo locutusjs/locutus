@@ -25,11 +25,7 @@ npm:
 	echo "Build success. "
 
 publish: npm
-	git add -f build/npm.js
-	git commit -am "Add build to update npm"
-	# npm publish
-	git rm build/npm.js
-	git commit -am "Cleanup after updating npm"
+	npm publish
 
 build: npm
 

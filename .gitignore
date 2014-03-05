@@ -3,7 +3,6 @@ tools/_temp/*
 _octopress/_deploy
 build/
 nbproject
-gitup.dat
 .project
 .gitup.dat
 node_modules/
