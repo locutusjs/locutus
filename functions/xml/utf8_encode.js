@@ -18,7 +18,8 @@ function utf8_encode(argString) {
     return '';
   }
 
-  var string = (argString + ''); // .replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+  // .replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+  var string = (argString + '');
   var utftext = '',
     start, end, stringl = 0;
 

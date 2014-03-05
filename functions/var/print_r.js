@@ -64,10 +64,12 @@ function print_r(array, return_val) {
       this.echo(output);
     } else {
       try {
-        d = XULDocument; // We're in XUL, so appending as plain text won't work; trigger an error out of XUL
+        // We're in XUL, so appending as plain text won't work; trigger an error out of XUL
+        d = XULDocument;
         this.echo('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">' + output + '</pre>');
       } catch (e) {
-        this.echo(output); // Outputting as plain text may work in some plain XML
+        // Outputting as plain text may work in some plain XML
+        this.echo(output);
       }
     }
     return true;

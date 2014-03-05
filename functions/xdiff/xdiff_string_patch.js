@@ -19,7 +19,8 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
   },
     cbSplit = function(string, sep /* separator */ ) {
       // If separator `s` is not a regex, use the native `split`
-      if (!(sep instanceof RegExp)) { // Had problems to get it to work here using prototype test
+      if (!(sep instanceof RegExp)) {
+        // Had problems to get it to work here using prototype test
         return String.prototype.split.apply(string, arguments);
       }
       var str = String(string),
@@ -30,7 +31,8 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
         // This is required if not `s.global`, and it avoids needing to set `s.lastIndex` to zero
         // and restore it to its original value when we're done using the regex
         x = sep._xregexp,
-        s = new RegExp(sep.source, getNativeFlags(sep) + 'g'); // Brett paring down
+        // Brett paring down
+        s = new RegExp(sep.source, getNativeFlags(sep) + 'g');
       if (x) {
         s._xregexp = {
           source: x.source,
@@ -97,7 +99,8 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
     flags = 'XDIFF_PATCH_NORMAL';
   }
 
-  if (typeof flags !== 'number') { // Allow for a single string or an array of string flags
+  if (typeof flags !== 'number') {
+    // Allow for a single string or an array of string flags
     flags = [].concat(flags);
     for (i = 0; i < flags.length; i++) {
       // Resolve string input to bitwise e.g. 'XDIFF_PATCH_NORMAL' becomes 1
@@ -121,7 +124,8 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
           firstChar = lines[i].charAt(0);
           switch (firstChar) {
             case '-':
-              ++linePos; // Skip including that line
+              // Skip including that line
+              ++linePos;
               break;
             case '+':
               newStrArr[newStrArr.length] = lines[i].slice(1);
@@ -130,7 +134,8 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
               newStrArr[newStrArr.length] = origLines[linePos++];
               break;
             default:
-              throw 'Unrecognized initial character in unidiff line'; // Reconcile with returning errrors arg?
+              // Reconcile with returning errrors arg?
+              throw 'Unrecognized initial character in unidiff line';
           }
         }
         if (lines[i]) {
@@ -157,13 +162,15 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
               newStrArr[newStrArr.length] = lines[i].slice(1);
               break;
             case '+':
-              ++linePos; // Skip including that line
+              // Skip including that line
+              ++linePos;
               break;
             case ' ':
               newStrArr[newStrArr.length] = origLines[linePos++];
               break;
             default:
-              throw 'Unrecognized initial character in unidiff line'; // Reconcile with returning errrors arg?
+              // Reconcile with returning errrors arg?
+              throw 'Unrecognized initial character in unidiff line';
           }
         }
         if (lines[i]) {

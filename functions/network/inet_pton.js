@@ -7,7 +7,8 @@ function inet_pton(a) {
   //   returns 2: '\x7F\x00\x00\x01'
 
   var r, m, x, i, j, f = String.fromCharCode;
-  m = a.match(/^(?:\d{1,3}(?:\.|$)){4}/); // IPv4
+  // IPv4
+  m = a.match(/^(?:\d{1,3}(?:\.|$)){4}/);
   if (m) {
     m = m[0].split('.');
     m = f(m[0]) + f(m[1]) + f(m[2]) + f(m[3]);
@@ -15,7 +16,8 @@ function inet_pton(a) {
     return m.length === 4 ? m : false;
   }
   r = /^((?:[\da-f]{1,4}(?::|)){0,8})(::)?((?:[\da-f]{1,4}(?::|)){0,8})$/;
-  m = a.match(r); // IPv6
+  // IPv6
+  m = a.match(r);
   if (m) {
     // Translate each hexadecimal value.
     for (j = 1; j < 4; j++) {
@@ -28,7 +30,8 @@ function inet_pton(a) {
         m[j][i] = parseInt(m[j][i], 16);
         // Would be NaN if it was blank, return false.
         if (isNaN(m[j][i])) {
-          return false; // Invalid IP.
+          // Invalid IP.
+          return false;
         }
         m[j][i] = f(m[j][i] >> 8) + f(m[j][i] & 0xFF);
       }
@@ -42,5 +45,6 @@ function inet_pton(a) {
         .join('\x00') + m[3];
     }
   }
-  return false; // Invalid IP.
+  // Invalid IP.
+  return false;
 }

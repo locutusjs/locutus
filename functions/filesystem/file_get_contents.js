@@ -49,7 +49,8 @@ function file_get_contents(url, flags, context, offset, maxLen) {
     FILE_TEXT: 32,
     FILE_BINARY: 64
   };
-  if (typeof flags === 'number') { // Allow for a single string or an array of string flags
+  if (typeof flags === 'number') {
+    // Allow for a single string or an array of string flags
     flagNames = flags;
   } else {
     flags = [].concat(flags);
@@ -60,7 +61,8 @@ function file_get_contents(url, flags, context, offset, maxLen) {
     }
   }
 
-  if (flagNames & OPTS.FILE_BINARY && (flagNames & OPTS.FILE_TEXT)) { // These flags shouldn't be together
+  if (flagNames & OPTS.FILE_BINARY && (flagNames & OPTS.FILE_TEXT)) {
+    // These flags shouldn't be together
     throw 'You cannot pass both FILE_BINARY and FILE_TEXT to file_get_contents()';
   }
 
@@ -98,7 +100,8 @@ function file_get_contents(url, flags, context, offset, maxLen) {
       var notification = context.stream_params.notification;
       if (typeof notification === 'function') {
         // Fix: make work with req.addEventListener if available: https://developer.mozilla.org/En/Using_XMLHttpRequest
-        if (0 && req.addEventListener) { // Unimplemented so don't allow to get here
+        if (0 && req.addEventListener) {
+          // Unimplemented so don't allow to get here
           /*
           req.addEventListener('progress', updateProgress, false);
           req.addEventListener('load', transferComplete, false);
@@ -151,13 +154,15 @@ function file_get_contents(url, flags, context, offset, maxLen) {
                 break;
               case 3:
                 //     INTERACTIVE     Downloading; responseText holds partial data.
-                bytes_transferred = req.responseText.length * 2; // One character is two bytes
+                // One character is two bytes
+                bytes_transferred = req.responseText.length * 2;
                 notification.call(objContext, 7, 0, '', 0, bytes_transferred, 0);
                 break;
               case 4:
                 //     COMPLETED     The operation is complete.
                 if (req.status >= 200 && req.status < 400) {
-                  bytes_transferred = req.responseText.length * 2; // One character is two bytes
+                  // One character is two bytes
+                  bytes_transferred = req.responseText.length * 2;
                   notification.call(objContext, 8, 0, '', req.status, bytes_transferred, 0);
                 } else if (req.status === 403) { // Fix: These two are finished except for message
                   notification.call(objContext, 10, 2, '', req.status, 0, 0);
@@ -194,25 +199,34 @@ function file_get_contents(url, flags, context, offset, maxLen) {
       content = http_options.content || null;
       /*
       // Presently unimplemented HTTP context options
-      var request_fulluri = http_options.request_fulluri || false; // When set to TRUE, the entire URI will be used when constructing the request. (i.e. GET http://www.example.com/path/to/file.html HTTP/1.0). While this is a non-standard request format, some proxy servers require it.
-      var max_redirects = http_options.max_redirects || 20; // The max number of redirects to follow. Value 1 or less means that no redirects are followed.
-      var protocol_version = http_options.protocol_version || 1.0; // HTTP protocol version
-      var timeout = http_options.timeout || (ini.default_socket_timeout && ini.default_socket_timeout.local_value); // Read timeout in seconds, specified by a float
-      var ignore_errors = http_options.ignore_errors || false; // Fetch the content even on failure status codes.
+      // When set to TRUE, the entire URI will be used when constructing the request. (i.e. GET http://www.example.com/path/to/file.html HTTP/1.0). While this is a non-standard request format, some proxy servers require it.
+      var request_fulluri = http_options.request_fulluri || false;
+      // The max number of redirects to follow. Value 1 or less means that no redirects are followed.
+      var max_redirects = http_options.max_redirects || 20;
+      // HTTP protocol version
+      var protocol_version = http_options.protocol_version || 1.0;
+      // Read timeout in seconds, specified by a float
+      var timeout = http_options.timeout || (ini.default_socket_timeout && ini.default_socket_timeout.local_value);
+      // Fetch the content even on failure status codes.
+      var ignore_errors = http_options.ignore_errors || false;
       */
     }
 
-    if (flagNames & OPTS.FILE_TEXT) { // Overrides how encoding is treated (regardless of what is returned from the server)
+    if (flagNames & OPTS.FILE_TEXT) {
+      // Overrides how encoding is treated (regardless of what is returned from the server)
       var content_type = 'text/html';
-      if (http_options && http_options['phpjs.override']) { // Fix: Could allow for non-HTTP as well
-        content_type = http_options['phpjs.override']; // We use this, e.g., in gettext-related functions if character set
+      if (http_options && http_options['phpjs.override']) {
+        // Fix: Could allow for non-HTTP as well
+        // We use this, e.g., in gettext-related functions if character set
+        content_type = http_options['phpjs.override'];
         //   overridden earlier by bind_textdomain_codeset()
       } else {
         var encoding = (ini['unicode.stream_encoding'] && ini['unicode.stream_encoding'].local_value) ||
           'UTF-8';
         if (http_options && http_options.header && (/^content-type:/im)
           .test(http_options.header)) { // We'll assume a content-type expects its own specified encoding if present
-          content_type = http_options.header.match(/^content-type:\s*(.*)$/im)[1]; // We let any header encoding stand
+          // We let any header encoding stand
+          content_type = http_options.header.match(/^content-type:\s*(.*)$/im)[1];
         }
         if (!(/;\s*charset=/)
           .test(content_type)) { // If no encoding
@@ -226,12 +240,15 @@ function file_get_contents(url, flags, context, offset, maxLen) {
     else if (flagNames & OPTS.FILE_BINARY) { // Trick at https://developer.mozilla.org/En/Using_XMLHttpRequest to get binary
       req.overrideMimeType('text/plain; charset=x-user-defined');
       // Getting an individual byte then requires:
-      // responseText.charCodeAt(x) & 0xFF; // throw away high-order byte (f7) where x is 0 to responseText.length-1 (see notes in our substr())
+      // throw away high-order byte (f7) where x is 0 to responseText.length-1 (see notes in our substr())
+      // responseText.charCodeAt(x) & 0xFF;
     }
 
     try {
-      if (http_options && http_options['phpjs.sendAsBinary']) { // For content sent in a POST or PUT request (use with file_put_contents()?)
-        req.sendAsBinary(content); // In Firefox, only available FF3+
+      if (http_options && http_options['phpjs.sendAsBinary']) {
+        // For content sent in a POST or PUT request (use with file_put_contents()?)
+        // In Firefox, only available FF3+
+        req.sendAsBinary(content);
       } else {
         req.send(content);
       }
@@ -252,7 +269,8 @@ function file_get_contents(url, flags, context, offset, maxLen) {
       for (i = 0; i < tmp.length; i++) {
         headers[i] = tmp[i];
       }
-      this.$http_response_header = headers; // see http://php.net/manual/en/reserved.variables.httpresponseheader.php
+      // see http://php.net/manual/en/reserved.variables.httpresponseheader.php
+      this.$http_response_header = headers;
     }
 
     if (offset || maxLen) {

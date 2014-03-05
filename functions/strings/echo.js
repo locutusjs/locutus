@@ -38,7 +38,8 @@ function echo() {
   var holder, win = this.window;
   var d = win.document;
   var ns_xhtml = 'http://www.w3.org/1999/xhtml';
-  var ns_xul = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'; // If we're in a XUL context
+  // If we're in a XUL context
+  var ns_xul = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul';
 
   var stringToDOM = function(str, parent, ns, container) {
     var extraNSs = '';
@@ -57,7 +58,8 @@ function echo() {
       var lsInput = dils.createLSInput();
       // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
       lsInput.stringData = stringContainer;
-      var lsParser = dils.createLSParser(1, null); // synchronous, no schema type
+      // synchronous, no schema type
+      var lsParser = dils.createLSParser(1, null);
       return lsParser.parse(lsInput)
         .firstChild;
     } else if (dp) {
@@ -97,7 +99,8 @@ function echo() {
       )) { // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways); last test is for the sake of being in a pure XML document
       holder = d.createElementNS(ns, container);
     } else {
-      holder = d.createElement(container); // Document fragment did not work with innerHTML
+      // Document fragment did not work with innerHTML
+      holder = d.createElement(container);
     }
     holder.innerHTML = str;
     while (holder.firstChild) {
@@ -147,14 +150,16 @@ function echo() {
       arg = arg.replace(/(.?)\{?\$(\w*?\}|\w*)/g, replacer);
     }
 
-    if (!phpjs.flushing && obs && obs.length) { // If flushing we output, but otherwise presence of a buffer means caching output
+    if (!phpjs.flushing && obs && obs.length) {
+      // If flushing we output, but otherwise presence of a buffer means caching output
       obs[obs.length - 1].buffer += arg;
       continue;
     }
 
     if (d.appendChild) {
       if (d.body) {
-        if (win.navigator.appName === 'Microsoft Internet Explorer') { // We unfortunately cannot use feature detection, since this is an IE bug with cloneNode nodes being appended
+        if (win.navigator.appName === 'Microsoft Internet Explorer') {
+          // We unfortunately cannot use feature detection, since this is an IE bug with cloneNode nodes being appended
           d.body.appendChild(stringToDOM(ieFix(arg)));
         } else {
           var unappendedLeft = stringToDOM(arg, d.body, ns_xhtml, 'div')
@@ -164,7 +169,8 @@ function echo() {
           }
         }
       } else {
-        d.documentElement.appendChild(stringToDOM(arg, d.documentElement, ns_xul, 'description')); // We will not actually append the description tag (just using for providing XUL namespace by default)
+        // We will not actually append the description tag (just using for providing XUL namespace by default)
+        d.documentElement.appendChild(stringToDOM(arg, d.documentElement, ns_xul, 'description'));
       }
     } else if (d.write) {
       d.write(arg);

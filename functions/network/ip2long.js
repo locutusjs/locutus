@@ -18,7 +18,8 @@ function ip2long(IP) {
     /^([1-9]\d*|0[0-7]*|0x[\da-f]+)(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?$/i
   ); // Verify IP format.
   if (!IP) {
-    return false; // Invalid format.
+    // Invalid format.
+    return false;
   }
   // Reuse IP variable for component counter.
   IP[0] = 0;

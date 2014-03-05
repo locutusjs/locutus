@@ -112,7 +112,8 @@ function strtotime(text, now) {
           }
         case '.':
           { // D.M.YY or H.MM.SS
-            if (match[5] >= 70) { // D.M.YY
+            if (match[5] >= 70) {
+              // D.M.YY
               if (match[3] > 12 || match[1] > 31) {
                 return fail;
               }
@@ -120,7 +121,8 @@ function strtotime(text, now) {
               return new Date(match[5], parseInt(match[3], 10) - 1, match[1],
                 match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
             }
-            if (match[5] < 60 && !match[6]) { // H.MM.SS
+            if (match[5] < 60 && !match[6]) {
+              // H.MM.SS
               if (match[1] > 23 || match[3] > 59) {
                 return fail;
               }
@@ -130,7 +132,8 @@ function strtotime(text, now) {
                 match[1] || 0, match[3] || 0, match[5] || 0, match[9] || 0) / 1000;
             }
 
-            return fail; // invalid format, cannot be parsed
+            // invalid format, cannot be parsed
+            return fail;
           }
         case '/':
           { // M/D/YY

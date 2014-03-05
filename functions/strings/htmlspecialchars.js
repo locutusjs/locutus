@@ -26,7 +26,8 @@ function htmlspecialchars(string, quote_style, charset, double_encode) {
     quote_style = 2;
   }
   string = string.toString();
-  if (double_encode !== false) { // Put this first to avoid double-encoding
+  if (double_encode !== false) {
+    // Put this first to avoid double-encoding
     string = string.replace(/&/g, '&amp;');
   }
   string = string.replace(/</g, '&lt;')
@@ -43,7 +44,8 @@ function htmlspecialchars(string, quote_style, charset, double_encode) {
   if (quote_style === 0) {
     noquotes = true;
   }
-  if (typeof quote_style !== 'number') { // Allow for a single string or an array of string flags
+  if (typeof quote_style !== 'number') {
+    // Allow for a single string or an array of string flags
     quote_style = [].concat(quote_style);
     for (i = 0; i < quote_style.length; i++) {
       // Resolve string input to bitwise e.g. 'ENT_IGNORE' becomes 4

@@ -29,7 +29,8 @@ function strlen(string) {
     var code = str.charCodeAt(i);
     var next = '',
       prev = '';
-    if (0xD800 <= code && code <= 0xDBFF) { // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
+    if (0xD800 <= code && code <= 0xDBFF) {
+      // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
       if (str.length <= (i + 1)) {
         throw 'High surrogate without following low surrogate';
       }
@@ -43,10 +44,12 @@ function strlen(string) {
         throw 'Low surrogate without preceding high surrogate';
       }
       prev = str.charCodeAt(i - 1);
-      if (0xD800 > prev || prev > 0xDBFF) { //(could change last hex to 0xDB7F to treat high private surrogates as single characters)
+      if (0xD800 > prev || prev > 0xDBFF) {
+        //(could change last hex to 0xDB7F to treat high private surrogates as single characters)
         throw 'Low surrogate without preceding high surrogate';
       }
-      return false; // We can pass over low surrogates now as the second component in a pair which we have already processed
+      // We can pass over low surrogates now as the second component in a pair which we have already processed
+      return false;
     }
     return str.charAt(i);
   };

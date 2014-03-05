@@ -36,7 +36,8 @@ function key(arr) {
       }
       ct++;
     }
-    return false; // Empty
+    // Empty
+    return false;
   }
   if (arr.length === 0) {
     return false;

@@ -92,7 +92,8 @@ function array() {
           i = 0,
           argl, p;
         args = (args.length === 1 && args[0] && typeof args[0] === 'object' &&
-          args[0].length && !args[0].propertyIsEnumerable('length')) ? args[0] : args; // If first and only arg is an array, use that (Don't depend on this)
+          // If first and only arg is an array, use that (Don't depend on this)
+          args[0].length && !args[0].propertyIsEnumerable('length')) ? args[0] : args;
         if (!_.objectChain) {
           _.objectChain = args;
           _.object = {};
@@ -120,11 +121,13 @@ function array() {
           oldkey = _.keys[i];
           newkey = _.keys[i] = _.keys[i][case_fn]();
           if (oldkey !== newkey) {
-            this[oldkey] = _.object[oldkey] = _.objectChain[i][oldkey] = null; // Break reference before deleting
+            // Break reference before deleting
+            this[oldkey] = _.object[oldkey] = _.objectChain[i][oldkey] = null;
             delete this[oldkey];
             delete _.object[oldkey];
             delete _.objectChain[i][oldkey];
-            this[newkey] = _.object[newkey] = _.objectChain[i][newkey] = _.values[i]; // Fix: should we make a deep copy?
+            // Fix: should we make a deep copy?
+            this[newkey] = _.object[newkey] = _.objectChain[i][newkey] = _.values[i];
           }
           i++;
         }
@@ -138,7 +141,8 @@ function array() {
           oldkey = _.keys[i];
           newkey = _.values[i];
           if (oldkey !== newkey) {
-            this[oldkey] = _.object[oldkey] = _.objectChain[i][oldkey] = null; // Break reference before deleting
+            // Break reference before deleting
+            this[oldkey] = _.object[oldkey] = _.objectChain[i][oldkey] = null;
             delete this[oldkey];
             delete _.object[oldkey];
             delete _.objectChain[i][oldkey];
@@ -237,11 +241,14 @@ function array() {
           strict = !! argStrict,
           haystack = _.values,
           i, vl, val, flags;
-        if (typeof needle === 'object' && needle.exec) { // Duck-type for RegExp
-          if (!strict) { // Let's consider case sensitive searches as strict
+        if (typeof needle === 'object' && needle.exec) {
+          // Duck-type for RegExp
+          if (!strict) {
+            // Let's consider case sensitive searches as strict
             flags = 'i' + (needle.global ? 'g' : '') +
               (needle.multiline ? 'm' : '') +
-              (needle.sticky ? 'y' : ''); // sticky is FF only
+            // sticky is FF only
+            (needle.sticky ? 'y' : '');
             needle = new RegExp(needle.source, flags);
           }
           for (i = 0, vl = haystack.length; i < vl; i++) {
@@ -280,7 +287,8 @@ function array() {
           kl = _.keys.length;
         while (i < kl) {
           if (handler.length === 1) {
-            handler(_.values[i]); // only pass the value
+            // only pass the value
+            handler(_.values[i]);
           } else {
             handler(_.keys[i], _.values[i]);
           }

@@ -172,7 +172,8 @@ function date(format, timestamp) {
       // Hours
       var i = jsdate.getUTCMinutes() * 60;
       // Minutes
-      var s = jsdate.getUTCSeconds(); // Seconds
+      // Seconds
+      var s = jsdate.getUTCSeconds();
       return _pad(Math.floor((H + i + s + 36e2) / 86.4) % 1e3, 3);
     },
     g: function() { // 12-Hours; 1..12
@@ -214,7 +215,8 @@ function date(format, timestamp) {
       // Jan 1 UTC
       var b = new Date(f.Y(), 6);
       // Jul 1
-      var d = Date.UTC(f.Y(), 6); // Jul 1 UTC
+      // Jul 1 UTC
+      var d = Date.UTC(f.Y(), 6);
       return ((a - c) !== (b - d)) ? 1 : 0;
     },
     O: function() { // Difference to GMT in hour format; e.g. +0200

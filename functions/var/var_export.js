@@ -51,7 +51,8 @@ function var_export(mixed_expression, bool_return) {
       return 'function';
     }
     if (type === 'object' && !inp) {
-      return 'null'; // Should this be just null?
+      // Should this be just null?
+      return 'null';
     }
     if (type === 'object') {
       if (!inp.constructor) {
@@ -105,7 +106,8 @@ function var_export(mixed_expression, bool_return) {
     retstr = "create_function ('" + funcParts[1] + "', '" +
       funcParts[2].replace(new RegExp("'", 'g'), "\\'") + "')";
   } else if (type === 'resource') {
-    retstr = 'NULL'; // Resources treated as null for var_export
+    // Resources treated as null for var_export
+    retstr = 'NULL';
   } else {
     retstr = typeof mixed_expression !== 'string' ? mixed_expression :
       "'" + mixed_expression.replace(/(["'])/g, '\\$1')

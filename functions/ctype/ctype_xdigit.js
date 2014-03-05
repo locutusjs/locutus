@@ -9,7 +9,8 @@ function ctype_xdigit(text) {
     return false;
   }
   // BEGIN REDUNDANT
-  this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+  // ensure setup of localization variables takes place
+  this.setlocale('LC_ALL', 0);
   // END REDUNDANT
   return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.xd) !== -1;
 }

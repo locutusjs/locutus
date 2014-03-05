@@ -90,7 +90,8 @@ function substr(str, start, len) {
           for (i = start; i < se; i++) {
             ret += str.charAt(i);
             if (/[\uD800-\uDBFF]/.test(str.charAt(i)) && /[\uDC00-\uDFFF]/.test(str.charAt(i + 1))) {
-              se++; // Go one further, since one of the "characters" is part of a surrogate pair
+              // Go one further, since one of the "characters" is part of a surrogate pair
+              se++;
             }
           }
           return ret;
@@ -112,5 +113,6 @@ function substr(str, start, len) {
       // Otherwise, PHP returns the portion of the string from start to end.
       return start >= str.length || start < 0 || start > end ? !1 : str.slice(start, end);
   }
-  return undefined; // Please Netbeans
+  // Please Netbeans
+  return undefined;
 }

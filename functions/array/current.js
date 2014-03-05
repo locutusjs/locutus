@@ -36,5 +36,6 @@ function current(arr) {
     }
     ct++;
   }
-  return false; // Empty
+  // Empty
+  return false;
 }

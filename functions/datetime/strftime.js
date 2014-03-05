@@ -11,7 +11,8 @@ function strftime(fmt, timestamp) {
   //        returns 1: 'Tuesday'
 
   this.php_js = this.php_js || {};
-  this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+  // ensure setup of localization variables takes place
+  this.setlocale('LC_ALL', 0);
   // END REDUNDANT
   var phpjs = this.php_js;
 
@@ -71,7 +72,8 @@ function strftime(fmt, timestamp) {
     },
     j: function(d) {
       var ms = d - new Date('' + d.getFullYear() + '/1/1 GMT');
-      ms += d.getTimezoneOffset() * 60000; // Line differs from Yahoo implementation which would be equivalent to replacing it here with:
+      // Line differs from Yahoo implementation which would be equivalent to replacing it here with:
+      ms += d.getTimezoneOffset() * 60000;
       // ms = new Date('' + d.getFullYear() + '/' + (d.getMonth()+1) + '/' + d.getDate() + ' GMT') - ms;
       var doy = parseInt(ms / 60000 / 60 / 24, 10) + 1;
       return _xPad(doy, 0, 100);

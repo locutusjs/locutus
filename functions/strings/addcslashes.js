@@ -51,32 +51,37 @@ function addcslashes(str, charlist) {
         .match(/^\d+/)[0];
       octalLength = rangeBegin.length;
       postOctalPos = i + octalLength + 1;
-      if (charlist.charAt(postOctalPos) + charlist.charAt(postOctalPos + 1) === '..') { // Octal begins range
+      if (charlist.charAt(postOctalPos) + charlist.charAt(postOctalPos + 1) === '..') {
+        // Octal begins range
         begin = rangeBegin.charCodeAt(0);
         if ((/\\\d/)
           .test(charlist.charAt(postOctalPos + 2) + charlist.charAt(postOctalPos + 3))) { // Range ends with octal
           rangeEnd = charlist.slice(postOctalPos + 3)
             .match(/^\d+/)[0];
-          i += 1; // Skip range end backslash
+          // Skip range end backslash
+          i += 1;
         } else if (charlist.charAt(postOctalPos + 2)) { // Range ends with character
           rangeEnd = charlist.charAt(postOctalPos + 2);
         } else {
           throw 'Range with no end point';
         }
         end = rangeEnd.charCodeAt(0);
-        if (end > begin) { // Treat as a range
+        if (end > begin) {
+          // Treat as a range
           for (j = begin; j <= end; j++) {
             chrs.push(String.fromCharCode(j));
           }
         } else { // Supposed to treat period, begin and end as individual characters only, not a range
           chrs.push('.', rangeBegin, rangeEnd);
         }
-        i += rangeEnd.length + 2; // Skip dots and range end (already skipped range end backslash if present)
+        // Skip dots and range end (already skipped range end backslash if present)
+        i += rangeEnd.length + 2;
       } else { // Octal is by itself
         chr = String.fromCharCode(parseInt(rangeBegin, 8));
         chrs.push(chr);
       }
-      i += octalLength; // Skip range begin
+      // Skip range begin
+      i += octalLength;
     } else if (next + charlist.charAt(i + 2) === '..') { // Character begins range
       rangeBegin = c;
       begin = rangeBegin.charCodeAt(0);
@@ -84,21 +89,24 @@ function addcslashes(str, charlist) {
         .test(charlist.charAt(i + 3) + charlist.charAt(i + 4))) { // Range ends with octal
         rangeEnd = charlist.slice(i + 4)
           .match(/^\d+/)[0];
-        i += 1; // Skip range end backslash
+        // Skip range end backslash
+        i += 1;
       } else if (charlist.charAt(i + 3)) { // Range ends with character
         rangeEnd = charlist.charAt(i + 3);
       } else {
         throw 'Range with no end point';
       }
       end = rangeEnd.charCodeAt(0);
-      if (end > begin) { // Treat as a range
+      if (end > begin) {
+        // Treat as a range
         for (j = begin; j <= end; j++) {
           chrs.push(String.fromCharCode(j));
         }
       } else { // Supposed to treat period, begin and end as individual characters only, not a range
         chrs.push('.', rangeBegin, rangeEnd);
       }
-      i += rangeEnd.length + 2; // Skip dots and range end (already skipped range end backslash if present)
+      // Skip dots and range end (already skipped range end backslash if present)
+      i += rangeEnd.length + 2;
     } else { // Character is by itself
       chrs.push(c);
     }
@@ -109,7 +117,8 @@ function addcslashes(str, charlist) {
     if (chrs.indexOf(c) !== -1) {
       target += '\\';
       cca = c.charCodeAt(0);
-      if (cca < 32 || cca > 126) { // Needs special escaping
+      if (cca < 32 || cca > 126) {
+        // Needs special escaping
         switch (c) {
           case '\n':
             target += 'n';

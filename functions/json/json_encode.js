@@ -18,7 +18,8 @@ function json_encode(mixed_val) {
   var retVal, json = this.window.JSON;
   try {
     if (typeof json === 'object' && typeof json.stringify === 'function') {
-      retVal = json.stringify(mixed_val); // Errors will not be caught here if our own equivalent to resource
+      // Errors will not be caught here if our own equivalent to resource
+      retVal = json.stringify(mixed_val);
       //  (an instance of PHPJS_Resource) is used
       if (retVal === undefined) {
         throw new SyntaxError('json_encode');
@@ -53,9 +54,12 @@ function json_encode(mixed_val) {
     var str = function(key, holder) {
       var gap = '';
       var indent = '    ';
-      var i = 0; // The loop counter.
-      var k = ''; // The member key.
-      var v = ''; // The member value.
+      // The loop counter.
+      var i = 0;
+      // The member key.
+      var k = '';
+      // The member value.
+      var v = '';
       var length = 0;
       var mind = gap;
       var partial = [];
@@ -153,7 +157,8 @@ function json_encode(mixed_val) {
       throw new Error('Unexpected error type in json_encode()');
     }
     this.php_js = this.php_js || {};
-    this.php_js.last_error_json = 4; // usable by json_last_error()
+    // usable by json_last_error()
+    this.php_js.last_error_json = 4;
     return null;
   }
 }

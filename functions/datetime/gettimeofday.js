@@ -16,7 +16,8 @@ function gettimeofday(return_float) {
     return t.getTime() / 1000;
   }
 
-  y = t.getFullYear(); // Store current year.
+  // Store current year.
+  y = t.getFullYear();
   return {
     sec: t.getUTCSeconds(),
     usec: t.getUTCMilliseconds() * 1000,

@@ -35,7 +35,8 @@ function reset(arr) {
       }
       return arr[k];
     }
-    return false; // Empty
+    // Empty
+    return false;
   }
   if (arr.length === 0) {
     return false;

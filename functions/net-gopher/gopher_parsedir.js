@@ -33,28 +33,36 @@ function gopher_parsedir(dirent) {
   var type = entry[1];
   switch (type) {
     case 'i':
-      type = 255; // GOPHER_INFO
+      // GOPHER_INFO
+      type = 255;
       break;
     case '1':
-      type = 1; // GOPHER_DIRECTORY
+      // GOPHER_DIRECTORY
+      type = 1;
       break;
     case '0':
-      type = 0; // GOPHER_DOCUMENT
+      // GOPHER_DOCUMENT
+      type = 0;
       break;
     case '4':
-      type = 4; // GOPHER_BINHEX
+      // GOPHER_BINHEX
+      type = 4;
       break;
     case '5':
-      type = 5; // GOPHER_DOSBINARY
+      // GOPHER_DOSBINARY
+      type = 5;
       break;
     case '6':
-      type = 6; // GOPHER_UUENCODED
+      // GOPHER_UUENCODED
+      type = 6;
       break;
     case '9':
-      type = 9; // GOPHER_BINARY
+      // GOPHER_BINARY
+      type = 9;
       break;
     case 'h':
-      type = 254; // GOPHER_HTTP
+      // GOPHER_HTTP
+      type = 254;
       break;
     default:
       return {

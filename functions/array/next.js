@@ -36,7 +36,8 @@ function next(arr) {
       }
       ct++;
     }
-    return false; // End
+    // End
+    return false;
   }
   if (arr.length === 0 || cursor === (arr.length - 1)) {
     return false;

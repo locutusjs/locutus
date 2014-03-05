@@ -15,7 +15,8 @@ function metaphone(word, max_phonemes) {
   var type = typeof word;
 
   if (type === 'undefined' || type === 'object' && word !== null) {
-    return null; // weird!
+    // weird!
+    return null;
   }
 
   // infinity and NaN values are treated as strings

@@ -10,7 +10,8 @@ function localeconv() {
     prop = '';
 
   // BEGIN REDUNDANT
-  this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place, if not already
+  // ensure setup of localization variables takes place, if not already
+  this.setlocale('LC_ALL', 0);
   // END REDUNDANT
   // Make copies
   for (prop in this.php_js.locales[this.php_js.localeCategories.LC_NUMERIC].LC_NUMERIC) {

@@ -39,7 +39,8 @@ function end(arr) {
       val = arr[k];
     }
     if (ct === 0) {
-      return false; // Empty
+      // Empty
+      return false;
     }
     pointers[arrpos + 1] = ct - 1;
     return val;

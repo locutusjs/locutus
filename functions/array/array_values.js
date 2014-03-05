@@ -8,7 +8,8 @@ function array_values(input) {
   var tmp_arr = [],
     key = '';
 
-  if (input && typeof input === 'object' && input.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
+  if (input && typeof input === 'object' && input.change_key_case) {
+    // Duck-type check for our own array()-created PHPJS_Array
     return input.values();
   }
 

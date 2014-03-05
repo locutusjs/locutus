@@ -220,7 +220,8 @@ function setlocale(category, locale) {
     phpjs.locales.en_GB.LC_TIME.r = '%l:%M:%S %P %Z';
 
     phpjs.locales.en_AU = _copy(phpjs.locales.en_GB);
-    phpjs.locales.C = _copy(phpjs.locales.en); // Assume C locale is like English (?) (We need C locale for LC_CTYPE)
+    // Assume C locale is like English (?) (We need C locale for LC_CTYPE)
+    phpjs.locales.C = _copy(phpjs.locales.en);
     phpjs.locales.C.LC_CTYPE.CODESET = 'ANSI_X3.4-1968';
     phpjs.locales.C.LC_MONETARY = {
       int_curr_symbol: '',
@@ -244,9 +245,12 @@ function setlocale(category, locale) {
       thousands_sep: '',
       grouping: []
     };
-    phpjs.locales.C.LC_TIME.c = '%a %b %e %H:%M:%S %Y'; // D_T_FMT
-    phpjs.locales.C.LC_TIME.x = '%m/%d/%y'; // D_FMT
-    phpjs.locales.C.LC_TIME.X = '%H:%M:%S'; // T_FMT
+    // D_T_FMT
+    phpjs.locales.C.LC_TIME.c = '%a %b %e %H:%M:%S %Y';
+    // D_FMT
+    phpjs.locales.C.LC_TIME.x = '%m/%d/%y';
+    // T_FMT
+    phpjs.locales.C.LC_TIME.X = '%H:%M:%S';
     phpjs.locales.C.LC_MESSAGES.YESEXPR = '^[yY]';
     phpjs.locales.C.LC_MESSAGES.NOEXPR = '^[nN]';
 
@@ -284,7 +288,8 @@ function setlocale(category, locale) {
       phpjs.locale = d.getElementsByTagName('html')[0].lang;
     }
   }
-  phpjs.locale = phpjs.locale.replace('-', '_'); // PHP-style
+  // PHP-style
+  phpjs.locale = phpjs.locale.replace('-', '_');
   // Fix locale if declared locale hasn't been defined
   if (!(phpjs.locale in phpjs.locales)) {
     if (phpjs.locale.replace(/_[a-zA-Z]+$/, '') in phpjs.locales) {
@@ -314,7 +319,8 @@ function setlocale(category, locale) {
     for (i = 0; i < locale.length; i++) {
       if (!(locale[i] in this.php_js.locales)) {
         if (i === locale.length - 1) {
-          return false; // none found
+          // none found
+          return false;
         }
         continue;
       }
@@ -327,7 +333,8 @@ function setlocale(category, locale) {
   if (locale === '0' || locale === 0) {
     if (category === 'LC_ALL') {
       for (categ in this.php_js.localeCategories) {
-        cats.push(categ + '=' + this.php_js.localeCategories[categ]); // Add ".UTF-8" or allow ".@latint", etc. to the end?
+        // Add ".UTF-8" or allow ".@latint", etc. to the end?
+        cats.push(categ + '=' + this.php_js.localeCategories[categ]);
       }
       return cats.join(';');
     }
@@ -335,7 +342,8 @@ function setlocale(category, locale) {
   }
 
   if (!(locale in this.php_js.locales)) {
-    return false; // Locale not found
+    // Locale not found
+    return false;
   }
 
   // Set and get locale

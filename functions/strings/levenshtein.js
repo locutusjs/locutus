@@ -26,7 +26,8 @@ function levenshtein(s1, s2) {
   try {
     split = !('0')[0];
   } catch (e) {
-    split = true; // Earlier IE may not support access by string index
+    // Earlier IE may not support access by string index
+    split = true;
   }
   // END STATIC
   if (split) {

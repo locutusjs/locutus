@@ -21,7 +21,8 @@ function rand(min, max) {
   // +   reimplemented by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: srand
   // %          note 1: This is a very possibly imperfect adaptation from the PHP source code
-  var rand_seed, ctx, PHP_RAND_MAX=2147483647; // 0x7fffffff
+  // 0x7fffffff
+  var rand_seed, ctx, PHP_RAND_MAX=2147483647;
 
   if (!this.php_js || this.php_js.rand_seed === undefined) {
     this.srand();

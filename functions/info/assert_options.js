@@ -40,7 +40,8 @@ function assert_options(what, value) {
     dflt;
 
   if (value) {
-    this.php_js.assert_values[ini] = value; // We use 'ini' instead of 'what' as key to be more convenient for assert() to test for current value
+    // We use 'ini' instead of 'what' as key to be more convenient for assert() to test for current value
+    this.php_js.assert_values[ini] = value;
   }
   return originalValue;
 }

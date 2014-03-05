@@ -48,7 +48,8 @@ function array_shift(inputArr) {
     if (inputArr.hasOwnProperty(pr)) {
       if (pr.search(allDigits) !== -1) {
         int_ct += 1;
-        if (parseInt(pr, 10) === int_ct) { // Key is already numbered ok, so don't need to change key for value
+        if (parseInt(pr, 10) === int_ct) {
+         // Key is already numbered ok, so don't need to change key for value
           continue;
         }
         _checkToUpIndices(inputArr, int_ct, pr);

@@ -11,17 +11,21 @@ function ord(string) {
 
   var str = string + '',
     code = str.charCodeAt(0);
-  if (0xD800 <= code && code <= 0xDBFF) { // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
+  if (0xD800 <= code && code <= 0xDBFF) {
+    // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
     var hi = code;
     if (str.length === 1) {
-      return code; // This is just a high surrogate with no following low surrogate, so we return its value;
+      // This is just a high surrogate with no following low surrogate, so we return its value;
+      return code;
       // we could also throw an error as it is not a complete character, but someone may want to know
     }
     var low = str.charCodeAt(1);
     return ((hi - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000;
   }
-  if (0xDC00 <= code && code <= 0xDFFF) { // Low surrogate
-    return code; // This is just a low surrogate with no preceding high surrogate, so we return its value;
+  if (0xDC00 <= code && code <= 0xDFFF) {
+    // Low surrogate
+    // This is just a low surrogate with no preceding high surrogate, so we return its value;
+    return code;
     // we could also throw an error as it is not a complete character, but someone may want to know
   }
   return code;

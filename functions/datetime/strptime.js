@@ -93,7 +93,8 @@ Oy
 
   // BEGIN REDUNDANT
   this.php_js = this.php_js || {};
-  this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+  // ensure setup of localization variables takes place
+  this.setlocale('LC_ALL', 0);
   // END REDUNDANT
 
   var phpjs = this.php_js;
@@ -141,9 +142,11 @@ Oy
     if (format.charAt(i) === '%') {
       var literalPos = ['%', 'n', 't'].indexOf(format.charAt(i + 1));
       if (literalPos !== -1) {
-        if (['%', '\n', '\t'].indexOf(dateStr.charAt(j)) === literalPos) { // a matched literal
+        if (['%', '\n', '\t'].indexOf(dateStr.charAt(j)) === literalPos) {
+          // a matched literal
           ++i;
-          ++j; // skip beyond
+          // skip beyond
+          ++j;
           continue;
         }
         // Format indicated a percent literal, but not actually present
@@ -156,19 +159,22 @@ Oy
             // Fall-through // Sun-Sat
           case 'A':
             // Sunday-Saturday
-            j = _addLocalized(j, formatChar, 'tm_wday'); // Changes nothing else
+            // Changes nothing else
+            j = _addLocalized(j, formatChar, 'tm_wday');
             break;
           case 'h':
             // Fall-through (alias of 'b');
           case 'b':
             // Jan-Dec
             j = _addLocalized(j, 'b', 'tm_mon');
-            _date(); // Also changes wday, yday
+            // Also changes wday, yday
+            _date();
             break;
           case 'B':
             // January-December
             j = _addLocalized(j, formatChar, 'tm_mon');
-            _date(); // Also changes wday, yday
+            // Also changes wday, yday
+            _date();
             break;
           case 'C':
             // 0+; century (19 for 20th)
@@ -192,7 +198,8 @@ Oy
               function(d) {
                 var dayMonth = parseInt(d, 10);
                 retObj.tm_mday = dayMonth;
-                _date(); // Also changes w_day, y_day
+                // Also changes w_day, y_day
+                _date();
               });
             break;
           case 'g':
@@ -216,7 +223,8 @@ Oy
             j = _addNext(j, formatChar === 'l' ? /^([1-9]|1[0-2])/ : /^(0[1-9]|1[0-2])/, function(d) {
               var hour = parseInt(d, 10) - 1 + amPmOffset;
               retObj.tm_hour = hour;
-              prevHour = true; // Used for coordinating with am-pm
+              // Used for coordinating with am-pm
+              prevHour = true;
               // Changes nothing else, but affected by prior 'p/P'
             });
             break;
@@ -233,7 +241,8 @@ Oy
             j = _addNext(j, /^(0[1-9]|1[0-2])/, function(d) {
               var month = parseInt(d, 10) - 1;
               retObj.tm_mon = month;
-              _date(); // Also sets wday and yday
+              // Also sets wday and yday
+              _date();
             });
             break;
           case 'M':
@@ -246,7 +255,8 @@ Oy
             break;
           case 'P':
             // Seems not to work; AM-PM
-            return false; // Could make fall-through instead since supposed to be a synonym despite PHP docs
+            // Could make fall-through instead since supposed to be a synonym despite PHP docs
+            return false;
           case 'p':
             // am-pm
             j = _addNext(j, /^(am|pm)/i, function(d) {
@@ -333,10 +343,13 @@ Oy
             throw 'Unrecognized formatting character in strptime()';
         }
       } catch (e) {
-        if (e === 'No match in string') { // Allow us to exit
-          return false; // There was supposed to be a matching format but there wasn't
+        if (e === 'No match in string') {
+          // Allow us to exit
+          // There was supposed to be a matching format but there wasn't
+          return false;
         }
-      }++i; // Calculate skipping beyond initial percent too
+        // Calculate skipping beyond initial percent too
+      }++i;
     } else if (format.charAt(i) !== dateStr.charAt(j)) {
       // If extra whitespace at beginning or end of either, or between formats, no problem
       // (just a problem when between % and format specifier)
@@ -345,7 +358,8 @@ Oy
       if (dateStr.charAt(j)
         .search(_WS) !== -1) {
         j++;
-        i--; // Let the next iteration try again with the same format character
+        // Let the next iteration try again with the same format character
+        i--;
       } else if (format.charAt(i)
         .search(_NWS) !== -1) { // Any extra formatting characters besides white-space causes
         // problems (do check after WS though, as may just be WS in string before next character)
@@ -360,6 +374,7 @@ Oy
   }
 
   // POST-PROCESSING
-  retObj.unparsed = dateStr.slice(j); // Will also get extra whitespace; empty string if none
+  // Will also get extra whitespace; empty string if none
+  retObj.unparsed = dateStr.slice(j);
   return retObj;
 }

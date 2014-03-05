@@ -34,16 +34,19 @@ function gettype(mixed_var) {
     return name[1];
   };
   if (s === 'object') {
-    if (mixed_var !== null) { // From: http://javascript.crockford.com/remedial.html
+    if (mixed_var !== null) {
+      // From: http://javascript.crockford.com/remedial.html
       if (typeof mixed_var.length === 'number' && !(mixed_var.propertyIsEnumerable('length')) && typeof mixed_var
         .splice === 'function') {
         s = 'array';
       } else if (mixed_var.constructor && getFuncName(mixed_var.constructor)) {
         name = getFuncName(mixed_var.constructor);
         if (name === 'Date') {
-          s = 'date'; // not in PHP
+          // not in PHP
+          s = 'date';
         } else if (name === 'RegExp') {
-          s = 'regexp'; // not in PHP
+          // not in PHP
+          s = 'regexp';
         } else if (name === 'PHPJS_Resource') { // Check against our own resource constructor
           s = 'resource';
         }

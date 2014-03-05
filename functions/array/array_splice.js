@@ -69,10 +69,12 @@ function array_splice(arr, offst, lgth, replacement) {
       if (ct < offst) {
         if (this.is_int(key)) {
           int_ct += 1;
-          if (parseInt(key, 10) === int_ct) { // Key is already numbered ok, so don't need to change key for value
+          if (parseInt(key, 10) === int_ct) {
+            // Key is already numbered ok, so don't need to change key for value
             continue;
           }
-          _checkToUpIndices(arr, int_ct, key); // Deal with situation, e.g.,
+          // Deal with situation, e.g.,
+          _checkToUpIndices(arr, int_ct, key);
           // if encounter index 4 and try to set it to 0, but 0 exists later in loop
           arr[int_ct] = arr[key];
           delete arr[key];
@@ -81,7 +83,8 @@ function array_splice(arr, offst, lgth, replacement) {
       }
       if (returnArr && this.is_int(key)) {
         rmvd.push(arr[key]);
-        rmvdObj[rmvd_ct++] = arr[key]; // PHP starts over here too
+        // PHP starts over here too
+        rmvdObj[rmvd_ct++] = arr[key];
       } else {
         rmvdObj[key] = arr[key];
         returnArr = false;
@@ -94,7 +97,8 @@ function array_splice(arr, offst, lgth, replacement) {
         delete arr[key];
       }
     }
-    // arr.length = lgt - rmvd_lgth + (replacement ? replacement.length : 0); // Make (back) into an array-like object
+    // Make (back) into an array-like object
+    // arr.length = lgt - rmvd_lgth + (replacement ? replacement.length : 0);
     return returnArr ? rmvd : rmvdObj;
   }
 

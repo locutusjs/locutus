@@ -25,7 +25,8 @@ function sscanf(str, format) {
     // Since a mismatched character sets us off track from future legitimate finds, we just scan
     // to the end for any other conversion specifications (besides a percent literal), setting them to null
     // sscanf seems to disallow all conversion specification components (of sprintf) except for type specifiers
-    //var matches = format.match(/%[+-]?([ 0]|'.)?-?\d*(\.\d+)?[bcdeufFosxX]/g); // Do not allow % in last char. class
+    // Do not allow % in last char. class
+    //var matches = format.match(/%[+-]?([ 0]|'.)?-?\d*(\.\d+)?[bcdeufFosxX]/g);
     var matches = format.slice(offset)
       .match(/%[cdeEufgosxX]/g); // Do not allow % in last char. class;
     // b, F,G give errors in PHP, but 'g', though also disallowed, doesn't
@@ -75,8 +76,10 @@ function sscanf(str, format) {
 
     if (format.charAt(i) === '%') {
       if (format.charAt(i + 1) === '%') {
-        if (str.charAt(j) === '%') { // a matched percent literal
-          ++i, ++j; // skip beyond duplicated percent
+        if (str.charAt(j) === '%') {
+          // a matched percent literal
+          // skip beyond duplicated percent
+          ++i, ++j;
           continue;
         }
         // Format indicated a percent literal, but not actually present
@@ -85,7 +88,8 @@ function sscanf(str, format) {
 
       // CHARACTER FOLLOWING PERCENT IS NOT A PERCENT
 
-      var prePattern = new RegExp('^(?:(\\d+)\\$)?(\\*)?(\\d*)([hlL]?)', 'g'); // We need 'g' set to get lastIndex
+      // We need 'g' set to get lastIndex
+      var prePattern = new RegExp('^(?:(\\d+)\\$)?(\\*)?(\\d*)([hlL]?)', 'g');
 
       var preConvs = prePattern.exec(format.slice(i + 1));
 
@@ -101,7 +105,8 @@ function sscanf(str, format) {
       i += prePattern.lastIndex;
 
       // Fix: Does PHP do anything with these? Seems not to matter
-      if (sizeCode) { // This would need to be processed later
+      if (sizeCode) {
+        // This would need to be processed later
         switch (sizeCode) {
           case 'h':
             // Treats subsequent as short int (for d,i,n) or unsigned short int (for o,u,x)
@@ -164,8 +169,10 @@ function sscanf(str, format) {
             j = _addNext(j, /([+-])?(?:0*)(\d+)/, function(num, sign, dec) {
               // Ignores initial zeroes, unlike %i and parseInt()
               var decInt = parseInt((sign || '') + dec, 10);
-              if (decInt < 0) { // PHP also won't allow less than -2147483648
-                return decInt < -2147483648 ? -2147483648 : decInt; // integer overflow with negative
+              if (decInt < 0) {
+                // PHP also won't allow less than -2147483648
+                // integer overflow with negative
+                return decInt < -2147483648 ? -2147483648 : decInt;
               } else { // PHP also won't allow greater than -2147483647
                 return decInt < 2147483647 ? decInt : 2147483647;
               }
@@ -180,7 +187,8 @@ function sscanf(str, format) {
               if (dec === '.') {
                 return null;
               }
-              return parseFloat((sign || '') + dec); // Ignores initial zeroes, unlike %i and parseFloat()
+              // Ignores initial zeroes, unlike %i and parseFloat()
+              return parseFloat((sign || '') + dec);
             });
             break;
           case 'u':
@@ -189,8 +197,10 @@ function sscanf(str, format) {
             j = _addNext(j, /([+-])?(?:0*)(\d+)/, function(num, sign, dec) {
               // Ignores initial zeroes, unlike %i and parseInt()
               var decInt = parseInt(dec, 10);
-              if (sign === '-') { // PHP also won't allow greater than 4294967295
-                return 4294967296 - decInt; // integer overflow with negative
+              if (sign === '-') {
+                // PHP also won't allow greater than 4294967295
+                // integer overflow with negative
+                return 4294967296 - decInt;
               } else {
                 return decInt < 4294967295 ? decInt : 4294967295;
               }
@@ -222,10 +232,12 @@ function sscanf(str, format) {
             throw 'Unrecognized character after percent mark in sscanf() format argument';
         }
       } catch (e) {
-        if (e === 'No match in string') { // Allow us to exit
+        if (e === 'No match in string') {
+          // Allow us to exit
           return _setExtraConversionSpecs(i + 2);
         }
-      }++i; // Calculate skipping beyond initial percent too
+        // Calculate skipping beyond initial percent too
+      }++i;
     } else if (format.charAt(i) !== str.charAt(j)) {
       // Fix: Double-check i whitespace ignored in string and/or formats
       _NWS.lastIndex = 0;
@@ -234,7 +246,8 @@ function sscanf(str, format) {
         return _setExtraConversionSpecs(i + 1);
       } else {
         // Adjust strings when encounter non-matching whitespace, so they align in future checks above
-        str = str.slice(0, j) + str.slice(j + 1); // Ok to replace with j++;?
+        // Ok to replace with j++;?
+        str = str.slice(0, j) + str.slice(j + 1);
         i--;
       }
     } else {

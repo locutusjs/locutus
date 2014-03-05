@@ -44,7 +44,8 @@ function is_array(mixed_var) {
     // with a custom "length" getter which changed behavior on each call (or a setter to mess up the following below) or a custom
     // setter for numeric properties, but even that would need to listen for specific indexes; but there should be no false negatives
     // and such a false positive would need to rely on later JavaScript innovations like __defineSetter__
-    if (len !== mixed_var.length) { // We know it's an array since length auto-changed with the addition of a
+    if (len !== mixed_var.length) {
+      // We know it's an array since length auto-changed with the addition of a
       // numeric property at its length end, so safely get rid of our bogus element
       mixed_var.length -= 1;
       return true;

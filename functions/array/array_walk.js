@@ -25,7 +25,8 @@ function array_walk(array, funcname, userdata) {
   if (!array || typeof array !== 'object') {
     return false;
   }
-  if (typeof array === 'object' && array.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
+  if (typeof array === 'object' && array.change_key_case) {
+    // Duck-type check for our own array()-created PHPJS_Array
     if (arguments.length > 2) {
       return array.walk(funcname, userdata);
     } else {

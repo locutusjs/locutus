@@ -40,7 +40,8 @@ function nl_langinfo(item) {
     }
     loc = this.php_js.locales[this.php_js.localeCategories.LC_MONETARY];
     if (item === 'CRNCYSTR') {
-      item = 'CURRENCY_SYMBOL'; // alias
+      // alias
+      item = 'CURRENCY_SYMBOL';
     }
     switch (item) {
       case 'INT_CURR_SYMBOL':

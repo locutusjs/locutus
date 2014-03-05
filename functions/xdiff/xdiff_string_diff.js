@@ -280,7 +280,8 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
       .length,
     unidiff = '';
 
-  if (lcs_len === 0) { // No common sequence
+  if (lcs_len === 0) {
+    // No common sequence
     unidiff = HEADER_PREFIX + ORIGINAL_INDICATOR + (ori_len > 0 ? '1' : '0') + RANGE_SEPARATOR + ori_len + ' ' +
       NEW_INDICATOR + (new_len > 0 ? '1' : '0') + RANGE_SEPARATOR + new_len + HEADER_SUFFIX;
 
@@ -327,7 +328,8 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
   }
 
   j = i;
-  k = i; // The index in the longest common sequence
+  // The index in the longest common sequence
+  k = i;
   ori_hunk_start = i;
   new_hunk_start = j;
   ori_hunk_end = i;
@@ -355,7 +357,8 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
 
     if (k >= lcs_len || // No more in longest common lines
       trailing_context.length >= 2 * context_lines) { // Context break found
-      if (trailing_context.length < 2 * context_lines) { // It must be last block of common lines but not a context break
+      if (trailing_context.length < 2 * context_lines) {
+        // It must be last block of common lines but not a context break
         trailing_context = [];
 
         // Force break out

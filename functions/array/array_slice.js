@@ -55,7 +55,8 @@ function array_slice(arr, offst, lgth, preserve_keys) {
         assoc[key] = arr[key];
       }
     }
-    //assoc.length = arrlgth; // Make as array-like object (though length will not be dynamic)
+    // Make as array-like object (though length will not be dynamic)
+    //assoc.length = arrlgth;
     return assoc;
   }
 

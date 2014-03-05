@@ -46,7 +46,8 @@ function each(arr) {
       }
       ct++;
     }
-    return false; // Empty
+    // Empty
+    return false;
   }
   if (arr.length === 0 || cursor === arr.length) {
     return false;

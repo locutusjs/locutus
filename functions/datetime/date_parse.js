@@ -14,7 +14,8 @@ function date_parse(date) {
     errorsOffset = this.php_js.errors ? this.php_js.errors.length : null;
 
   try {
-    this.php_js.date_parse_state = true; // Allow strtotime to return a decimal (which it normally does not)
+    // Allow strtotime to return a decimal (which it normally does not)
+    this.php_js.date_parse_state = true;
     ts = this.strtotime(date);
     this.php_js.date_parse_state = false;
   } finally {

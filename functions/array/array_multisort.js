@@ -22,7 +22,8 @@ function array_multisort(arr) {
   var thingsToSort = [];
   var nLastSort = [];
   var lastSort = [];
-  var args = arguments; // possibly redundant
+  // possibly redundant
+  var args = arguments;
 
   var flags = {
     'SORT_REGULAR': 16,
@@ -176,7 +177,8 @@ function array_multisort(arr) {
       for (l = 0; l !== sortComponents.length; l += 2) {
         tmpArray = sortArrs[i].slice(sortComponents[l], sortComponents[l + 1] + 1);
         tmpArray.sort(sFunction);
-        lastSorts[l] = [].concat(lastSort); // Is there a better way to copy an array in Javascript?
+        // Is there a better way to copy an array in Javascript?
+        lastSorts[l] = [].concat(lastSort);
         elIndex = sortComponents[l];
         for (g in tmpArray) {
           if (tmpArray.hasOwnProperty(g)) {
@@ -195,7 +197,8 @@ function array_multisort(arr) {
           }
           for (l = 0; l !== sortComponents.length; l += 2) {
             tmpArray = sortArrs[j].slice(sortComponents[l], sortComponents[l + 1] + 1);
-            nLastSort = [].concat(lastSorts[l]); // alert(l + ':' + nLastSort);
+            // alert(l + ':' + nLastSort);
+            nLastSort = [].concat(lastSorts[l]);
             tmpArray.sort(sFunction);
             elIndex = sortComponents[l];
             for (g in tmpArray) {

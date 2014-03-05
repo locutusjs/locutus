@@ -131,7 +131,8 @@ function convert_cyr_string(str, from, to) {
     case 'K':
       break;
     default:
-      throw 'Unknown source charset: ' + from; // warning
+      // warning
+      throw 'Unknown source charset: ' + from;
   }
 
   switch (to.toUpperCase()) {
@@ -151,7 +152,8 @@ function convert_cyr_string(str, from, to) {
     case 'K':
       break;
     default:
-      throw 'Unknown destination charset: ' + to; // fix: make a warning
+      // fix: make a warning
+      throw 'Unknown destination charset: ' + to;
   }
 
   if (!str) {

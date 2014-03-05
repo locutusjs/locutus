@@ -11,7 +11,8 @@ function preg_grep(pattern, input, flags) {
 
   var p = '';
   var retObj = {};
-  var invert = (flags === 1 || flags === 'PREG_GREP_INVERT'); // Todo: put flags as number and do bitwise checks (at least if other flags allowable); see pathinfo()
+  // Todo: put flags as number and do bitwise checks (at least if other flags allowable); see pathinfo()
+  var invert = (flags === 1 || flags === 'PREG_GREP_INVERT');
 
   if (typeof pattern === 'string') {
     pattern = eval(pattern);
