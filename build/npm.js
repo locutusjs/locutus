@@ -2752,21 +2752,6 @@ exports.mktime = function () {
     return (d.getTime() / 1e3 >> 0) - (d.getTime() < 0);
 };
 
-exports.time = function () {
-  return Math.floor(new Date()
-      .getTime() / 1000);
-};
-
-exports.escapeshellarg = function (arg) {
-  var ret = '';
-  
-    ret = arg.replace(/[^\\]'/g, function(m, i, s) {
-      return m.slice(0, 1) + '\\\'';
-    });
-  
-    return "'" + ret + "'";
-};
-
 exports.strtotime = function (text, now) {
   var parsed, match, today, year, date, days, ranges, len, times, regex, i, fail = false;
   
@@ -2999,6 +2984,21 @@ exports.strtotime = function (text, now) {
     //    return false;
   
     return (date.getTime() / 1000);
+};
+
+exports.time = function () {
+  return Math.floor(new Date()
+      .getTime() / 1000);
+};
+
+exports.escapeshellarg = function (arg) {
+  var ret = '';
+  
+    ret = arg.replace(/[^\\]'/g, function(m, i, s) {
+      return m.slice(0, 1) + '\\\'';
+    });
+  
+    return "'" + ret + "'";
 };
 
 exports.basename = function (path, suffix) {
@@ -9797,6 +9797,20 @@ exports.bcmul = function (left_operand, right_operand, scale) {
     return result.toString();
 };
 
+exports.bcscale = function (scale) {
+  var libbcmath = this._phpjs_shared_bc();
+  
+    scale = parseInt(scale, 10);
+    if (isNaN(scale)) {
+      return false;
+    }
+    if (scale < 0) {
+      return false;
+    }
+    libbcmath.scale = scale;
+    return true;
+};
+
 exports.bcround = function (val, precision) {
   var libbcmath = this._phpjs_shared_bc();
   
@@ -9841,20 +9855,6 @@ exports.bcround = function (val, precision) {
       result.n_scale = precision;
     }
     return result.toString();
-};
-
-exports.bcscale = function (scale) {
-  var libbcmath = this._phpjs_shared_bc();
-  
-    scale = parseInt(scale, 10);
-    if (isNaN(scale)) {
-      return false;
-    }
-    if (scale < 0) {
-      return false;
-    }
-    libbcmath.scale = scale;
-    return true;
 };
 
 exports.bcsub = function (left_operand, right_operand, scale) {
@@ -11231,12 +11231,12 @@ exports.is_double = function (mixed_var) {
   return this.is_float(mixed_var);
 };
 
-exports.is_integer = function (mixed_var) {
-  return this.is_int(mixed_var);
-};
-
 exports.is_long = function (mixed_var) {
   return this.is_float(mixed_var);
+};
+
+exports.is_integer = function (mixed_var) {
+  return this.is_int(mixed_var);
 };
 
 exports.is_real = function (mixed_var) {
