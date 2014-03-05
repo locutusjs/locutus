@@ -150,21 +150,5 @@ function var_dump() {
     output += '\n' + _formatArray(arguments[i], 0, pad_val, pad_char);
   }
 
-  var isNode = typeof module !== 'undefined' && module.exports;
-  if (isNode) {
-    return console.log(output);
-  }
-
-  var d = this.window.document;
-
-  if (d.body) {
-    this.echo(output);
-  } else {
-    try {
-      d = XULDocument; // We're in XUL, so appending as plain text won't work
-      this.echo('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">' + output + '</pre>');
-    } catch (e) {
-      this.echo(output); // Outputting as plain text may work in some plain XML
-    }
-  }
+  this.echo(output);
 }
