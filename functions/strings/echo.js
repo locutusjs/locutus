@@ -24,20 +24,21 @@ function echo() {
   //   example 1: echo('<div><p>abc</p><p>abc</p></div>');
   //   returns 1: undefined
 
-  var isNode = typeof module !== 'undefined' && module.exports && typeof global !== "undefined" && {}.toString.call(global) == '[object global]';
+  var isNode = typeof module !== 'undefined' && module.exports && typeof global !== "undefined" && {}.toString.call(
+    global) == '[object global]';
   if (isNode) {
     var args = Array.prototype.slice.call(arguments);
     return console.log(args.join(' '));
   }
 
-  var arg         = '';
-  var argc        = arguments.length;
-  var argv        = arguments;
-  var i           = 0;
+  var arg = '';
+  var argc = arguments.length;
+  var argv = arguments;
+  var i = 0;
   var holder, win = this.window;
-  var d           = win.document;
-  var ns_xhtml    = 'http://www.w3.org/1999/xhtml';
-  var ns_xul      = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'; // If we're in a XUL context
+  var d = win.document;
+  var ns_xhtml = 'http://www.w3.org/1999/xhtml';
+  var ns_xul = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'; // If we're in a XUL context
 
   var stringToDOM = function(str, parent, ns, container) {
     var extraNSs = '';
@@ -45,9 +46,9 @@ function echo() {
       extraNSs = ' xmlns:html="' + ns_xhtml + '"';
     }
     var stringContainer = '<' + container + ' xmlns="' + ns + '"' + extraNSs + '>' + str + '</' + container + '>';
-    var dils            = win.DOMImplementationLS;
-    var dp              = win.DOMParser;
-    var ax              = win.ActiveXObject;
+    var dils = win.DOMImplementationLS;
+    var dp = win.DOMParser;
+    var ax = win.ActiveXObject;
     if (dils && dils.createLSInput && dils.createLSParser) {
       // Follows the DOM 3 Load and Save standard, but not
       // implemented in browsers at present; HTML5 is to standardize on innerHTML, but not for XML (though
@@ -138,8 +139,8 @@ function echo() {
 
   this.php_js = this.php_js || {};
   var phpjs = this.php_js;
-  var ini   = phpjs.ini;
-  var obs   = phpjs.obs;
+  var ini = phpjs.ini;
+  var obs = phpjs.obs;
   for (i = 0; i < argc; i++) {
     arg = argv[i];
     if (ini && ini['phpjs.echo_embedded_vars']) {
