@@ -129,29 +129,37 @@ cli.cleanup = function(args, options) {
       }
     }
 
+    var indentation = 2;
+
+    var newBody = params.body;
+    // Place "if (x) { //" comments on next line
+    newBody = newBody.replace(/^( +)(if[^\{\n]+\{)( *)(\/\/.*)$/gm, '$1$2\n$1' + Array(indentation).join(' ') + '$4');
+    // Place "xyz(); //" comments on previous line
+    newBody = newBody.replace(/^( +)([^\. ][^\;\n]+\;)( *)(\/\/.*)$/gm, '$1$4\n$1$2');
+
     buf += '\n';
-    buf += '  ' + params.body;
+    buf += Array(indentation).join(' ') + newBody;
     buf += '\n';
     buf += '}\n';
 
     buf.replace(/\r/g, '');
 
     buf = beautify(buf, {
-      "indent_size": 2,
-      "indent_char": " ",
-      "indent_level": 0,
-      "indent_with_tabs": false,
-      "preserve_newlines": true,
-      "max_preserve_newlines": 2,
-      "jslint_happy": false,
-      "brace_style": "collapse",
-      "keep_array_indentation": false,
+      "indent_size"              : indentation,
+      "indent_char"              : " ",
+      "indent_level"             : 0,
+      "indent_with_tabs"         : false,
+      "preserve_newlines"        : true,
+      "max_preserve_newlines"    : 2,
+      "jslint_happy"             : false,
+      "brace_style"              : "collapse",
+      "keep_array_indentation"   : false,
       "keep_function_indentation": false,
-      "space_before_conditional": true,
-      "break_chained_methods": true,
-      "eval_code": false,
-      "unescape_strings": false,
-      "wrap_line_length": 120
+      "space_before_conditional" : true,
+      "break_chained_methods"    : true,
+      "eval_code"                : false,
+      "unescape_strings"         : false,
+      "wrap_line_length"         : 120
     });
 
     // console.log(buf);
