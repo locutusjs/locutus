@@ -25,7 +25,10 @@ npm:
 	echo "Build success. "
 
 publish: npm
-	npm publish
+	git add -f build/npm.js
+	git commit -am "Update npm"
+	git rm build/npm.js
+	# npm publish
 
 build: npm
 
