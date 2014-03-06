@@ -40,7 +40,8 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
         };
       }
 
-      while ((match = s.exec(str))) { // Run the altered `exec` (required for `lastIndex` fix, etc.)
+      while ((match = s.exec(str))) {
+        // Run the altered `exec` (required for `lastIndex` fix, etc.)
         if (s.lastIndex > lastLastIndex) {
           output.push(str.slice(lastLastIndex, match.index));
 
@@ -85,7 +86,8 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
     errors = '',
     // Both string & integer (constant) input is allowed
     optTemp = 0,
-    OPTS = { // Unsure of actual PHP values, so better to rely on string
+    OPTS = {
+      // Unsure of actual PHP values, so better to rely on string
       'XDIFF_PATCH_NORMAL': 1,
       'XDIFF_PATCH_REVERSE': 2,
       'XDIFF_PATCH_IGNORESPACE': 4
@@ -146,7 +148,8 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
     while (linePos > 0 && linePos < origLines.length) {
       newStrArr[newStrArr.length] = origLines[linePos++];
     }
-  } else if (flags & OPTS.XDIFF_PATCH_REVERSE) { // Only differs from above by a few lines
+  } else if (flags & OPTS.XDIFF_PATCH_REVERSE) {
+    // Only differs from above by a few lines
     for (i = 0, ll = lines.length; i < ll; i++) {
       ranges = lines[i].match(rangeExp);
       if (ranges) {

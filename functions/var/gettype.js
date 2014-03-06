@@ -47,7 +47,8 @@ function gettype(mixed_var) {
         } else if (name === 'RegExp') {
           // not in PHP
           s = 'regexp';
-        } else if (name === 'PHPJS_Resource') { // Check against our own resource constructor
+        } else if (name === 'PHPJS_Resource') {
+          // Check against our own resource constructor
           s = 'resource';
         }
       }

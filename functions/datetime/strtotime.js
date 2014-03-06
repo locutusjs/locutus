@@ -46,7 +46,8 @@ function strtotime(text, now) {
     if (match[1] > 1901) {
       switch (match[2]) {
       case '-':
-        { // YYYY-M-D
+        {
+          // YYYY-M-D
           if (match[3] > 12 || match[5] > 31) {
             return fail;
           }
@@ -55,11 +56,13 @@ function strtotime(text, now) {
             match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
         }
       case '.':
-        { // YYYY.M.D is not parsed by strtotime()
+        {
+          // YYYY.M.D is not parsed by strtotime()
           return fail;
         }
       case '/':
-        { // YYYY/M/D
+        {
+          // YYYY/M/D
           if (match[3] > 12 || match[5] > 31) {
             return fail;
           }
@@ -71,7 +74,8 @@ function strtotime(text, now) {
     } else if (match[5] > 1901) {
       switch (match[2]) {
       case '-':
-        { // D-M-YYYY
+        {
+          // D-M-YYYY
           if (match[3] > 12 || match[1] > 31) {
             return fail;
           }
@@ -80,7 +84,8 @@ function strtotime(text, now) {
             match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
         }
       case '.':
-        { // D.M.YYYY
+        {
+          // D.M.YYYY
           if (match[3] > 12 || match[1] > 31) {
             return fail;
           }
@@ -89,7 +94,8 @@ function strtotime(text, now) {
             match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
         }
       case '/':
-        { // M/D/YYYY
+        {
+          // M/D/YYYY
           if (match[1] > 12 || match[3] > 31) {
             return fail;
           }
@@ -101,7 +107,8 @@ function strtotime(text, now) {
     } else {
       switch (match[2]) {
       case '-':
-        { // YY-M-D
+        {
+          // YY-M-D
           if (match[3] > 12 || match[5] > 31 || (match[1] < 70 && match[1] > 38)) {
             return fail;
           }
@@ -111,7 +118,8 @@ function strtotime(text, now) {
             match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
         }
       case '.':
-        { // D.M.YY or H.MM.SS
+        {
+          // D.M.YY or H.MM.SS
           if (match[5] >= 70) {
             // D.M.YY
             if (match[3] > 12 || match[1] > 31) {
@@ -136,7 +144,8 @@ function strtotime(text, now) {
           return fail;
         }
       case '/':
-        { // M/D/YY
+        {
+          // M/D/YY
           if (match[1] > 12 || match[3] > 31 || (match[5] < 70 && match[5] > 38)) {
             return fail;
           }
@@ -146,7 +155,8 @@ function strtotime(text, now) {
             match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
         }
       case ':':
-        { // HH:MM:SS
+        {
+          // HH:MM:SS
           if (match[1] > 23 || match[3] > 59 || match[5] > 59) {
             return fail;
           }

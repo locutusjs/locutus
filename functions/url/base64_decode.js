@@ -28,7 +28,8 @@ function base64_decode(data) {
 
   data += '';
 
-  do { // unpack four hexets into three octets using index points in b64
+  do {
+    // unpack four hexets into three octets using index points in b64
     h1 = b64.indexOf(data.charAt(i++));
     h2 = b64.indexOf(data.charAt(i++));
     h3 = b64.indexOf(data.charAt(i++));

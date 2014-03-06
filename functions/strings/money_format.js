@@ -180,7 +180,8 @@ function money_format(format, number) {
       } else {
         repl = ' ' + repl + ' ';
       }
-    } else { // '+' is default
+    } else {
+      // '+' is default
       // ''
       var pos_sign = monetary.positive_sign;
       // '-'
@@ -237,7 +238,8 @@ function money_format(format, number) {
       if (flags.indexOf('-') !== -1) {
         // left-justified (pad to right)
         repl += padding;
-      } else { // right-justified (pad to left)
+      } else {
+        // right-justified (pad to left)
         repl = padding + repl;
       }
     }

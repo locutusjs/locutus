@@ -26,7 +26,8 @@ function base64_encode(data) {
 
   data = unescape(encodeURIComponent(data))
 
-  do { // pack three octets into four hexets
+  do {
+    // pack three octets into four hexets
     o1 = data.charCodeAt(i++);
     o2 = data.charCodeAt(i++);
     o3 = data.charCodeAt(i++);

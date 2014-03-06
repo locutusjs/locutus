@@ -39,7 +39,8 @@ function strlen(string) {
         throw 'High surrogate without following low surrogate';
       }
       return str.charAt(i) + str.charAt(i + 1);
-    } else if (0xDC00 <= code && code <= 0xDFFF) { // Low surrogate
+    } else if (0xDC00 <= code && code <= 0xDFFF) {
+      // Low surrogate
       if (i === 0) {
         throw 'Low surrogate without preceding high surrogate';
       }

@@ -60,7 +60,8 @@ function var_dump() {
       ret = 'Date(' + val + ')';
     } else if (val instanceof RegExp) {
       ret = 'RegExp(' + val + ')';
-    } else if (val.nodeName) { // Different than PHP's DOMElement
+    } else if (val.nodeName) {
+      // Different than PHP's DOMElement
       switch (val.nodeType) {
       case 1:
         if (typeof val.namespaceURI === 'undefined' || val.namespaceURI === 'http://www.w3.org/1999/xhtml') {

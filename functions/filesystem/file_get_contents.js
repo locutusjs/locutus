@@ -69,7 +69,8 @@ function file_get_contents(url, flags, context, offset, maxLen) {
   if ((flagNames & OPTS.FILE_USE_INCLUDE_PATH) && ini.include_path && ini.include_path.local_value) {
     var slash = ini.include_path.local_value.indexOf('/') !== -1 ? '/' : '\\';
     url = ini.include_path.local_value + slash + url;
-  } else if (!/^(https?|file):/.test(url)) { // Allow references within or below the same directory (should fix to allow other relative references or root reference; could make dependent on parse_url())
+  } else if (!/^(https?|file):/.test(url)) {
+    // Allow references within or below the same directory (should fix to allow other relative references or root reference; could make dependent on parse_url())
     href = this.window.location.href;
     pathPos = url.indexOf('/') === 0 ? href.indexOf('/', 8) - 1 : href.lastIndexOf('/');
     url = href.slice(0, pathPos + 1) + url;
@@ -109,7 +110,8 @@ function file_get_contents(url, flags, context, offset, maxLen) {
           req.addEventListener('abort', transferCanceled, false);
           */
         } else {
-          req.onreadystatechange = function (aEvt) { // aEvt has stopPropagation(), preventDefault(); see https://developer.mozilla.org/en/NsIDOMEvent
+          req.onreadystatechange = function (aEvt) {
+            // aEvt has stopPropagation(), preventDefault(); see https://developer.mozilla.org/en/NsIDOMEvent
             // Other XMLHttpRequest properties: multipart, responseXML, status, statusText, upload, withCredentials
             /*
   PHP Constants:
@@ -164,9 +166,11 @@ function file_get_contents(url, flags, context, offset, maxLen) {
                 // One character is two bytes
                 bytes_transferred = req.responseText.length * 2;
                 notification.call(objContext, 8, 0, '', req.status, bytes_transferred, 0);
-              } else if (req.status === 403) { // Fix: These two are finished except for message
+              } else if (req.status === 403) {
+                // Fix: These two are finished except for message
                 notification.call(objContext, 10, 2, '', req.status, 0, 0);
-              } else { // Errors
+              } else {
+                // Errors
                 notification.call(objContext, 9, 2, '', req.status, 0, 0);
               }
               break;
@@ -224,12 +228,14 @@ function file_get_contents(url, flags, context, offset, maxLen) {
         var encoding = (ini['unicode.stream_encoding'] && ini['unicode.stream_encoding'].local_value) ||
           'UTF-8';
         if (http_options && http_options.header && (/^content-type:/im)
-          .test(http_options.header)) { // We'll assume a content-type expects its own specified encoding if present
+          .test(http_options.header)) {
+          // We'll assume a content-type expects its own specified encoding if present
           // We let any header encoding stand
           content_type = http_options.header.match(/^content-type:\s*(.*)$/im)[1];
         }
         if (!(/;\s*charset=/)
-          .test(content_type)) { // If no encoding
+          .test(content_type)) {
+          // If no encoding
           content_type += '; charset=' + encoding;
         }
       }
@@ -237,7 +243,8 @@ function file_get_contents(url, flags, context, offset, maxLen) {
     }
     // Default is FILE_BINARY, but for binary, we apparently deviate from PHP in requiring the flag, since many if not
     //     most people will also want a way to have it be auto-converted into native JavaScript text instead
-    else if (flagNames & OPTS.FILE_BINARY) { // Trick at https://developer.mozilla.org/En/Using_XMLHttpRequest to get binary
+    else if (flagNames & OPTS.FILE_BINARY) {
+      // Trick at https://developer.mozilla.org/En/Using_XMLHttpRequest to get binary
       req.overrideMimeType('text/plain; charset=x-user-defined');
       // Getting an individual byte then requires:
       // throw away high-order byte (f7) where x is 0 to responseText.length-1 (see notes in our substr())

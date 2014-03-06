@@ -13,7 +13,8 @@ function sha1(str) {
     return t4;
   };
 
-  /*var lsb_hex = function (val) { // Not in use; needed?
+  /*var lsb_hex = function (val) {
+   // Not in use; needed?
     var str="";
     var i;
     var vh;

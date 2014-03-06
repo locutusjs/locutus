@@ -50,7 +50,8 @@ function print_r(array, return_val) {
       str += base_pad + ')\n';
     } else if (obj === null || obj === undefined) {
       str = '';
-    } else { // for our "resource" class
+    } else {
+      // for our "resource" class
       str = obj.toString();
     }
 

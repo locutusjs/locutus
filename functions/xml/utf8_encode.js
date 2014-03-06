@@ -39,7 +39,8 @@ function utf8_encode(argString) {
       enc = String.fromCharCode(
         (c1 >> 12) | 224, ((c1 >> 6) & 63) | 128, (c1 & 63) | 128
       );
-    } else { // surrogate pairs
+    } else {
+      // surrogate pairs
       if ((c1 & 0xFC00) != 0xD800) {
         throw new RangeError('Unmatched trail surrogate at ' + n);
       }

@@ -32,7 +32,8 @@ function json_encode(mixed_val) {
     var quote = function (string) {
       var escapable =
         /[\\\"\u0000-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
-      var meta = { // table of character substitutions
+      var meta = {
+        // table of character substitutions
         '\b': '\\b',
         '\t': '\\t',
         '\n': '\\n',
@@ -151,7 +152,8 @@ function json_encode(mixed_val) {
       '': value
     });
 
-  } catch (err) { // Todo: ensure error handling above throws a SyntaxError in all cases where it could
+  } catch (err) {
+    // Todo: ensure error handling above throws a SyntaxError in all cases where it could
     // (i.e., when the JSON global is not available and there is an error)
     if (!(err instanceof SyntaxError)) {
       throw new Error('Unexpected error type in json_encode()');

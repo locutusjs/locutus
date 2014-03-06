@@ -32,7 +32,8 @@ function array() {
   };
   // BEGIN REDUNDANT
   if (!p.Relator) {
-    p.Relator = (function () { // Used this functional class for giving privacy to the class we are creating
+    p.Relator = (function () {
+      // Used this functional class for giving privacy to the class we are creating
       // Code adapted from http://www.devpro.it/code/192.html
       // Relator explained at http://webreflection.blogspot.com/2008/07/javascript-relator-object-aka.html
       // Its use as privacy technique described at http://webreflection.blogspot.com/2008/10/new-relator-object-plus-unshared.html
@@ -305,7 +306,8 @@ function array() {
           if (key && key.length === parseInt(key, 10)
             .toString()
             .length && // Key represents an int
-            parseInt(key, 10) < argl) { // Key does not exceed arguments
+            parseInt(key, 10) < argl) {
+            // Key does not exceed arguments
             that.window[arguments[key]] = _.values[key];
           }
           i++;

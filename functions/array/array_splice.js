@@ -46,7 +46,8 @@ function array_splice(arr, offst, lgth, replacement) {
   }
 
   if (Object.prototype.toString.call(arr) !== '[object Array]') {
-    /*if (arr.length !== undefined) { // Deal with array-like objects as input
+    /*if (arr.length !== undefined) {
+     // Deal with array-like objects as input
     delete arr.length;
     }*/
     var lgt = 0,
@@ -60,7 +61,8 @@ function array_splice(arr, offst, lgth, replacement) {
       rmvd_lgth = 0,
       key = '';
     // rmvdObj.length = 0;
-    for (key in arr) { // Can do arr.__count__ in some browsers
+    for (key in arr) {
+      // Can do arr.__count__ in some browsers
       lgt += 1;
     }
     offst = (offst >= 0) ? offst : lgt + offst;

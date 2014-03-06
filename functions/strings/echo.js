@@ -75,12 +75,14 @@ function echo() {
       } catch (e) {
         // If there's a parsing error, we just continue on
       }
-    } else if (ax) { // We don't bother with a holder in Explorer as it doesn't support namespaces
+    } else if (ax) {
+      // We don't bother with a holder in Explorer as it doesn't support namespaces
       var axo = new ax('MSXML2.DOMDocument');
       axo.loadXML(str);
       return axo.documentElement;
     }
-    /*else if (win.XMLHttpRequest) { // Supposed to work in older Safari
+    /*else if (win.XMLHttpRequest) {
+     // Supposed to work in older Safari
       var req = new win.XMLHttpRequest;
       req.open('GET', 'data:application/xml;charset=utf-8,'+encodeURIComponent(str), false);
       if (req.overrideMimeType) {
@@ -91,12 +93,14 @@ function echo() {
     }*/
     // Document fragment did not work with innerHTML, so we create a temporary element holder
     // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
-    //if (d.createElementNS && (d.contentType && d.contentType !== 'text/html')) { // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways)
+    //if (d.createElementNS && (d.contentType && d.contentType !== 'text/html')) {
+    // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways)
     if (d.createElementNS && // Browser supports the method
       (d.documentElement.namespaceURI || // We can use if the document is using a namespace
         d.documentElement.nodeName.toLowerCase() !== 'html' || // We know it's not HTML4 or less, if the tag is not HTML (even if the root namespace is null)
         (d.contentType && d.contentType !== 'text/html') // We know it's not regular HTML4 or less if this is Mozilla (only browser supporting the attribute) and the content type is something other than text/html; other HTML5 roots (like svg) still have a namespace
-      )) { // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways); last test is for the sake of being in a pure XML document
+      )) {
+      // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways); last test is for the sake of being in a pure XML document
       holder = d.createElementNS(ns, container);
     } else {
       // Document fragment did not work with innerHTML

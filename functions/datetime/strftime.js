@@ -94,7 +94,8 @@ function strftime(fmt, timestamp) {
     P: function (d) {
       return lc_time.P[d.getHours() >= 12 ? 1 : 0];
     },
-    s: function (d) { // Yahoo uses return parseInt(d.getTime()/1000, 10);
+    s: function (d) {
+      // Yahoo uses return parseInt(d.getTime()/1000, 10);
       return Date.parse(d) / 1000;
     },
     S: ['getSeconds', '0'],
@@ -215,7 +216,8 @@ Oy
       return f(_date);
     } else if (typeof f === 'object' && typeof f[0] === 'string') {
       return _xPad(_date[f[0]](), f[1]);
-    } else { // Shouldn't reach here
+    } else {
+      // Shouldn't reach here
       return m1;
     }
   });

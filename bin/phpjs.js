@@ -133,7 +133,7 @@ cli.cleanup = function(args, options) {
 
     var newBody = params.body;
     // Place "if (x) { //" comments on next line
-    newBody = newBody.replace(/^( +)(if[^\{\n]+\{)( *)(\/\/.*)$/gm, '$1$2\n$1' + Array(indentation).join(' ') + '$4');
+    newBody = newBody.replace(/^( +)([^\{\n]+\{)( *)(\/\/.*)$/gm, '$1$2\n$1' + Array(indentation).join(' ') + '$4');
     // Place "xyz(); //" comments on previous line
     newBody = newBody.replace(/^( +)([^\. ][^\;\n]+\;)( *)(\/\/.*)$/gm, '$1$4\n$1$2');
 

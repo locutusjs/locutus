@@ -361,7 +361,8 @@ Oy
         // Let the next iteration try again with the same format character
         i--;
       } else if (format.charAt(i)
-        .search(_NWS) !== -1) { // Any extra formatting characters besides white-space causes
+        .search(_NWS) !== -1) {
+        // Any extra formatting characters besides white-space causes
         // problems (do check after WS though, as may just be WS in string before next character)
         return false;
       }

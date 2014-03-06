@@ -89,7 +89,8 @@ function rsort(inputArr, sort_flags) {
     .ini['phpjs.strictForIn'].local_value !== 'off';
   populateArr = strictForIn ? inputArr : populateArr;
 
-  for (k in inputArr) { // Get key and value arrays
+  for (k in inputArr) {
+    // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
       valArr.push(inputArr[k]);
       if (strictForIn) {
@@ -100,7 +101,8 @@ function rsort(inputArr, sort_flags) {
 
   valArr.sort(sorter);
 
-  for (i = 0; i < valArr.length; i++) { // Repopulate the old array
+  for (i = 0; i < valArr.length; i++) {
+    // Repopulate the old array
     populateArr[i] = valArr[i];
   }
   return strictForIn || populateArr;

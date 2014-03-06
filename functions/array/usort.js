@@ -36,7 +36,8 @@ function usort(inputArr, sorter) {
     .ini['phpjs.strictForIn'].local_value !== 'off';
   populateArr = strictForIn ? inputArr : populateArr;
 
-  for (k in inputArr) { // Get key and value arrays
+  for (k in inputArr) {
+    // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
       valArr.push(inputArr[k]);
       if (strictForIn) {
@@ -49,7 +50,8 @@ function usort(inputArr, sorter) {
   } catch (e) {
     return false;
   }
-  for (i = 0; i < valArr.length; i++) { // Repopulate the old array
+  for (i = 0; i < valArr.length; i++) {
+    // Repopulate the old array
     populateArr[i] = valArr[i];
   }
 

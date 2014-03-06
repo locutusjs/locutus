@@ -38,7 +38,8 @@ function rand(min, max) {
     return ((ctx * 1103515245 + 12345) % (PHP_RAND_MAX + 1));
   };
 
-  var php_rand = function (ctxArg) { // php_rand_r
+  var php_rand = function (ctxArg) {
+   // php_rand_r
     this.php_js.rand_seed = do_rand(ctxArg);
     return parseInt(this.php_js.rand_seed, 10);
   };

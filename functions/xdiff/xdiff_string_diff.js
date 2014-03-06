@@ -356,7 +356,8 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
     }
 
     if (k >= lcs_len || // No more in longest common lines
-      trailing_context.length >= 2 * context_lines) { // Context break found
+      trailing_context.length >= 2 * context_lines) {
+      // Context break found
       if (trailing_context.length < 2 * context_lines) {
         // It must be last block of common lines but not a context break
         trailing_context = [];
@@ -393,14 +394,17 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
       // Build the diff hunk content
       while (ori_hunk_start < ori_hunk_end || new_hunk_start < new_hunk_end) {
         if (ori_hunk_start < ori_hunk_end && ori_is_in_lcs[ori_hunk_start] === true && new_is_in_lcs[
-          new_hunk_start] === true) { // The context line
+          new_hunk_start] === true) {
+          // The context line
           unidiff += CONTEXT_INDICATOR + ori_lines[ori_hunk_start] + NEW_LINE;
           ori_hunk_start++;
           new_hunk_start++;
-        } else if (ori_hunk_start < ori_hunk_end && ori_is_in_lcs[ori_hunk_start] === false) { // The deletion line
+        } else if (ori_hunk_start < ori_hunk_end && ori_is_in_lcs[ori_hunk_start] === false) {
+          // The deletion line
           unidiff += DELETION_INDICATOR + ori_lines[ori_hunk_start] + NEW_LINE;
           ori_hunk_start++;
-        } else if (new_hunk_start < new_hunk_end && new_is_in_lcs[new_hunk_start] === false) { // The additional line
+        } else if (new_hunk_start < new_hunk_end && new_is_in_lcs[new_hunk_start] === false) {
+          // The additional line
           unidiff += ADDITION_INDICATOR + new_lines[new_hunk_start] + NEW_LINE;
           new_hunk_start++;
         }

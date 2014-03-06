@@ -173,7 +173,8 @@ function sscanf(str, format) {
               // PHP also won't allow less than -2147483648
               // integer overflow with negative
               return decInt < -2147483648 ? -2147483648 : decInt;
-            } else { // PHP also won't allow greater than -2147483647
+            } else {
+              // PHP also won't allow greater than -2147483647
               return decInt < 2147483647 ? decInt : 2147483647;
             }
           });
@@ -242,7 +243,8 @@ function sscanf(str, format) {
       // Fix: Double-check i whitespace ignored in string and/or formats
       _NWS.lastIndex = 0;
       if ((_NWS)
-        .test(str.charAt(j)) || str.charAt(j) === '') { // Whitespace doesn't need to be an exact match)
+        .test(str.charAt(j)) || str.charAt(j) === '') {
+        // Whitespace doesn't need to be an exact match)
         return _setExtraConversionSpecs(i + 1);
       } else {
         // Adjust strings when encounter non-matching whitespace, so they align in future checks above
