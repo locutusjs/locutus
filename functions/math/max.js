@@ -21,7 +21,7 @@ function max() {
     n = 0,
     argv = arguments,
     argc = argv.length,
-    _obj2Array = function(obj) {
+    _obj2Array = function (obj) {
       if (Object.prototype.toString.call(obj) === '[object Array]') {
         return obj;
       } else {
@@ -34,7 +34,7 @@ function max() {
         return ar;
       }
     }; //function _obj2Array
-  _compare = function(current, next) {
+  _compare = function (current, next) {
     var i = 0,
       n = 0,
       tmp = 0,

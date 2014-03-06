@@ -115,45 +115,45 @@ function convert_cyr_string(str, from, to) {
     retStr = '';
 
   switch (from.toUpperCase()) {
-    case 'W':
-      from_table = _cyr_win1251;
-      break;
-    case 'A':
-    case 'D':
-      from_table = _cyr_cp866;
-      break;
-    case 'I':
-      from_table = _cyr_iso88595;
-      break;
-    case 'M':
-      from_table = _cyr_mac;
-      break;
-    case 'K':
-      break;
-    default:
-      // warning
-      throw 'Unknown source charset: ' + from;
+  case 'W':
+    from_table = _cyr_win1251;
+    break;
+  case 'A':
+  case 'D':
+    from_table = _cyr_cp866;
+    break;
+  case 'I':
+    from_table = _cyr_iso88595;
+    break;
+  case 'M':
+    from_table = _cyr_mac;
+    break;
+  case 'K':
+    break;
+  default:
+    // warning
+    throw 'Unknown source charset: ' + from;
   }
 
   switch (to.toUpperCase()) {
-    case 'W':
-      to_table = _cyr_win1251;
-      break;
-    case 'A':
-    case 'D':
-      to_table = _cyr_cp866;
-      break;
-    case 'I':
-      to_table = _cyr_iso88595;
-      break;
-    case 'M':
-      to_table = _cyr_mac;
-      break;
-    case 'K':
-      break;
-    default:
-      // fix: make a warning
-      throw 'Unknown destination charset: ' + to;
+  case 'W':
+    to_table = _cyr_win1251;
+    break;
+  case 'A':
+  case 'D':
+    to_table = _cyr_cp866;
+    break;
+  case 'I':
+    to_table = _cyr_iso88595;
+    break;
+  case 'M':
+    to_table = _cyr_mac;
+    break;
+  case 'K':
+    break;
+  default:
+    // fix: make a warning
+    throw 'Unknown destination charset: ' + to;
   }
 
   if (!str) {

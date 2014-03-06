@@ -39,7 +39,7 @@ function natsort(inputArr) {
       }
     }
   }
-  valArr.sort(function(a, b) {
+  valArr.sort(function (a, b) {
     return that.strnatcmp(a[1], b[1]);
   });
 

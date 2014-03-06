@@ -23,7 +23,7 @@ function serialize(mixed_value) {
     ktype = '',
     vals = '',
     count = 0,
-    _utf8Size = function(str) {
+    _utf8Size = function (str) {
       var size = 0,
         i = 0,
         l = str.length,
@@ -40,7 +40,7 @@ function serialize(mixed_value) {
       }
       return size;
     };
-  _getType = function(inp) {
+  _getType = function (inp) {
     var match, key, cons, types, type = typeof inp;
 
     if (type === 'object' && !inp) {
@@ -68,22 +68,22 @@ function serialize(mixed_value) {
   type = _getType(mixed_value);
 
   switch (type) {
-    case 'function':
-      val = '';
-      break;
-    case 'boolean':
-      val = 'b:' + (mixed_value ? '1' : '0');
-      break;
-    case 'number':
-      val = (Math.round(mixed_value) == mixed_value ? 'i' : 'd') + ':' + mixed_value;
-      break;
-    case 'string':
-      val = 's:' + _utf8Size(mixed_value) + ':"' + mixed_value + '"';
-      break;
-    case 'array':
-    case 'object':
-      val = 'a';
-      /*
+  case 'function':
+    val = '';
+    break;
+  case 'boolean':
+    val = 'b:' + (mixed_value ? '1' : '0');
+    break;
+  case 'number':
+    val = (Math.round(mixed_value) == mixed_value ? 'i' : 'd') + ':' + mixed_value;
+    break;
+  case 'string':
+    val = 's:' + _utf8Size(mixed_value) + ':"' + mixed_value + '"';
+    break;
+  case 'array':
+  case 'object':
+    val = 'a';
+    /*
         if (type === 'object') {
           var objname = mixed_value.constructor.toString().match(/(\w+)\(\)/);
           if (objname == undefined) {
@@ -94,26 +94,26 @@ function serialize(mixed_value) {
         }
         */
 
-      for (key in mixed_value) {
-        if (mixed_value.hasOwnProperty(key)) {
-          ktype = _getType(mixed_value[key]);
-          if (ktype === 'function') {
-            continue;
-          }
-
-          okey = (key.match(/^[0-9]+$/) ? parseInt(key, 10) : key);
-          vals += this.serialize(okey) + this.serialize(mixed_value[key]);
-          count++;
+    for (key in mixed_value) {
+      if (mixed_value.hasOwnProperty(key)) {
+        ktype = _getType(mixed_value[key]);
+        if (ktype === 'function') {
+          continue;
         }
+
+        okey = (key.match(/^[0-9]+$/) ? parseInt(key, 10) : key);
+        vals += this.serialize(okey) + this.serialize(mixed_value[key]);
+        count++;
       }
-      val += ':' + count + ':{' + vals + '}';
-      break;
-    case 'undefined':
-      // Fall-through
-    default:
-      // if the JS object has a property which contains a null value, the string cannot be unserialized by PHP
-      val = 'N';
-      break;
+    }
+    val += ':' + count + ':{' + vals + '}';
+    break;
+  case 'undefined':
+    // Fall-through
+  default:
+    // if the JS object has a property which contains a null value, the string cannot be unserialized by PHP
+    val = 'N';
+    break;
   }
   if (type !== 'object' && type !== 'array') {
     val += ';';

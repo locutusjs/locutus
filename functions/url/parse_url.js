@@ -46,7 +46,7 @@ function parse_url(str, component) {
     parser = /(?:^|&)([^&=]*)=?([^&]*)/g;
     uri[name] = {};
     query = uri[key[12]] || '';
-    query.replace(parser, function($0, $1, $2) {
+    query.replace(parser, function ($0, $1, $2) {
       if ($1) {
         uri[name][$1] = $2;
       }

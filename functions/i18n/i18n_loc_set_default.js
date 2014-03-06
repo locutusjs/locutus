@@ -13,7 +13,7 @@ function i18n_loc_set_default(name) {
 
   this.php_js.i18nLocales = {
     en_US_POSIX: {
-      sorting: function(str1, str2) { // Fix: This one taken from strcmp, but need for other locales; we don't use localeCompare since its locale is not settable
+      sorting: function (str1, str2) { // Fix: This one taken from strcmp, but need for other locales; we don't use localeCompare since its locale is not settable
         return (str1 == str2) ? 0 : ((str1 > str2) ? 1 : -1);
       }
     }

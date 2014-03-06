@@ -20,7 +20,7 @@ function inet_ntop(a) {
         .toString(16));
     }
     return c.join(':')
-      .replace(/((^|:)0(?=:|$))+:?/g, function(t) {
+      .replace(/((^|:)0(?=:|$))+:?/g, function (t) {
         m = (t.length > m.length) ? t : m;
         return t;
       })

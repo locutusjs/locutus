@@ -30,7 +30,7 @@ function file_get_contents(url, flags, context, offset, maxLen) {
     flagNames = 0,
     content = null,
     http_stream = false;
-  var func = function(value) {
+  var func = function (value) {
     return value.substring(1) !== '';
   };
 
@@ -109,7 +109,7 @@ function file_get_contents(url, flags, context, offset, maxLen) {
           req.addEventListener('abort', transferCanceled, false);
           */
         } else {
-          req.onreadystatechange = function(aEvt) { // aEvt has stopPropagation(), preventDefault(); see https://developer.mozilla.org/en/NsIDOMEvent
+          req.onreadystatechange = function (aEvt) { // aEvt has stopPropagation(), preventDefault(); see https://developer.mozilla.org/en/NsIDOMEvent
             // Other XMLHttpRequest properties: multipart, responseXML, status, statusText, upload, withCredentials
             /*
   PHP Constants:
@@ -140,38 +140,38 @@ function file_get_contents(url, flags, context, offset, maxLen) {
             // Need to add message, etc.
             var bytes_transferred;
             switch (req.readyState) {
-              case 0:
-                //     UNINITIALIZED     open() has not been called yet.
-                notification.call(objContext, 0, 0, '', 0, 0, 0);
-                break;
-              case 1:
-                //     LOADING     send() has not been called yet.
-                notification.call(objContext, 0, 0, '', 0, 0, 0);
-                break;
-              case 2:
-                //     LOADED     send() has been called, and headers and status are available.
-                notification.call(objContext, 0, 0, '', 0, 0, 0);
-                break;
-              case 3:
-                //     INTERACTIVE     Downloading; responseText holds partial data.
+            case 0:
+              //     UNINITIALIZED     open() has not been called yet.
+              notification.call(objContext, 0, 0, '', 0, 0, 0);
+              break;
+            case 1:
+              //     LOADING     send() has not been called yet.
+              notification.call(objContext, 0, 0, '', 0, 0, 0);
+              break;
+            case 2:
+              //     LOADED     send() has been called, and headers and status are available.
+              notification.call(objContext, 0, 0, '', 0, 0, 0);
+              break;
+            case 3:
+              //     INTERACTIVE     Downloading; responseText holds partial data.
+              // One character is two bytes
+              bytes_transferred = req.responseText.length * 2;
+              notification.call(objContext, 7, 0, '', 0, bytes_transferred, 0);
+              break;
+            case 4:
+              //     COMPLETED     The operation is complete.
+              if (req.status >= 200 && req.status < 400) {
                 // One character is two bytes
                 bytes_transferred = req.responseText.length * 2;
-                notification.call(objContext, 7, 0, '', 0, bytes_transferred, 0);
-                break;
-              case 4:
-                //     COMPLETED     The operation is complete.
-                if (req.status >= 200 && req.status < 400) {
-                  // One character is two bytes
-                  bytes_transferred = req.responseText.length * 2;
-                  notification.call(objContext, 8, 0, '', req.status, bytes_transferred, 0);
-                } else if (req.status === 403) { // Fix: These two are finished except for message
-                  notification.call(objContext, 10, 2, '', req.status, 0, 0);
-                } else { // Errors
-                  notification.call(objContext, 9, 2, '', req.status, 0, 0);
-                }
-                break;
-              default:
-                throw 'Unrecognized ready state for file_get_contents()';
+                notification.call(objContext, 8, 0, '', req.status, bytes_transferred, 0);
+              } else if (req.status === 403) { // Fix: These two are finished except for message
+                notification.call(objContext, 10, 2, '', req.status, 0, 0);
+              } else { // Errors
+                notification.call(objContext, 9, 2, '', req.status, 0, 0);
+              }
+              break;
+            default:
+              throw 'Unrecognized ready state for file_get_contents()';
             }
           };
         }

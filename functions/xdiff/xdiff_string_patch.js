@@ -12,12 +12,12 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
   // (c) 2007-2010 Steven Levithan
   // MIT License
   // <http://xregexp.com>
-  var getNativeFlags = function(regex) {
+  var getNativeFlags = function (regex) {
     return (regex.global ? 'g' : '') + (regex.ignoreCase ? 'i' : '') + (regex.multiline ? 'm' : '') + (regex.extended ?
       'x' : '') + // Proposed for ES4; included in AS3
     (regex.sticky ? 'y' : '');
   },
-    cbSplit = function(string, sep /* separator */ ) {
+    cbSplit = function (string, sep /* separator */ ) {
       // If separator `s` is not a regex, use the native `split`
       if (!(sep instanceof RegExp)) {
         // Had problems to get it to work here using prototype test
@@ -123,19 +123,19 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
         while (lines[++i] && (rangeExp.exec(lines[i])) === null) {
           firstChar = lines[i].charAt(0);
           switch (firstChar) {
-            case '-':
-              // Skip including that line
-              ++linePos;
-              break;
-            case '+':
-              newStrArr[newStrArr.length] = lines[i].slice(1);
-              break;
-            case ' ':
-              newStrArr[newStrArr.length] = origLines[linePos++];
-              break;
-            default:
-              // Reconcile with returning errrors arg?
-              throw 'Unrecognized initial character in unidiff line';
+          case '-':
+            // Skip including that line
+            ++linePos;
+            break;
+          case '+':
+            newStrArr[newStrArr.length] = lines[i].slice(1);
+            break;
+          case ' ':
+            newStrArr[newStrArr.length] = origLines[linePos++];
+            break;
+          default:
+            // Reconcile with returning errrors arg?
+            throw 'Unrecognized initial character in unidiff line';
           }
         }
         if (lines[i]) {
@@ -158,19 +158,19 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
         while (lines[++i] && (rangeExp.exec(lines[i])) === null) {
           firstChar = lines[i].charAt(0);
           switch (firstChar) {
-            case '-':
-              newStrArr[newStrArr.length] = lines[i].slice(1);
-              break;
-            case '+':
-              // Skip including that line
-              ++linePos;
-              break;
-            case ' ':
-              newStrArr[newStrArr.length] = origLines[linePos++];
-              break;
-            default:
-              // Reconcile with returning errrors arg?
-              throw 'Unrecognized initial character in unidiff line';
+          case '-':
+            newStrArr[newStrArr.length] = lines[i].slice(1);
+            break;
+          case '+':
+            // Skip including that line
+            ++linePos;
+            break;
+          case ' ':
+            newStrArr[newStrArr.length] = origLines[linePos++];
+            break;
+          default:
+            // Reconcile with returning errrors arg?
+            throw 'Unrecognized initial character in unidiff line';
           }
         }
         if (lines[i]) {

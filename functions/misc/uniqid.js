@@ -16,7 +16,7 @@ function uniqid(prefix, more_entropy) {
   }
 
   var retId;
-  var formatSeed = function(seed, reqWidth) {
+  var formatSeed = function (seed, reqWidth) {
     seed = parseInt(seed, 10)
       .toString(16); // to hex str
     if (reqWidth < seed.length) {

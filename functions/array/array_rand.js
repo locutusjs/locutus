@@ -6,7 +6,7 @@ function array_rand(input, num_req) {
 
   var indexes = [];
   var ticks = num_req || 1;
-  var checkDuplicate = function(input, value) {
+  var checkDuplicate = function (input, value) {
     var exist = false,
       index = 0,
       il = input.length;

@@ -19,7 +19,7 @@ function array_unique(inputArr) {
     tmp_arr2 = {},
     val = '';
 
-  var __array_search = function(needle, haystack) {
+  var __array_search = function (needle, haystack) {
     var fkey = '';
     for (fkey in haystack) {
       if (haystack.hasOwnProperty(fkey)) {

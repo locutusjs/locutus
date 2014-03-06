@@ -18,7 +18,7 @@ function str_ireplace(search, replace, subject) {
   var searchl = 0;
   var reg;
 
-  var escapeRegex = function(s) {
+  var escapeRegex = function (s) {
     return s.replace(/([\\\^\$*+\[\]?{}.=!:(|)])/g, '\\$1');
   };
 

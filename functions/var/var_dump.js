@@ -15,7 +15,7 @@ function var_dump() {
     lgth = 0,
     i = 0;
 
-  var _getFuncName = function(fn) {
+  var _getFuncName = function (fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/)
       .exec(fn);
     if (!name) {
@@ -24,14 +24,14 @@ function var_dump() {
     return name[1];
   };
 
-  var _repeat_char = function(len, pad_char) {
+  var _repeat_char = function (len, pad_char) {
     var str = '';
     for (var i = 0; i < len; i++) {
       str += pad_char;
     }
     return str;
   };
-  var _getInnerVal = function(val, thick_pad) {
+  var _getInnerVal = function (val, thick_pad) {
     var ret = '';
     if (val === null) {
       ret = 'NULL';
@@ -62,53 +62,53 @@ function var_dump() {
       ret = 'RegExp(' + val + ')';
     } else if (val.nodeName) { // Different than PHP's DOMElement
       switch (val.nodeType) {
-        case 1:
-          if (typeof val.namespaceURI === 'undefined' || val.namespaceURI === 'http://www.w3.org/1999/xhtml') {
-            // Undefined namespace could be plain XML, but namespaceURI not widely supported
-            ret = 'HTMLElement("' + val.nodeName + '")';
-          } else {
-            ret = 'XML Element("' + val.nodeName + '")';
-          }
-          break;
-        case 2:
-          ret = 'ATTRIBUTE_NODE(' + val.nodeName + ')';
-          break;
-        case 3:
-          ret = 'TEXT_NODE(' + val.nodeValue + ')';
-          break;
-        case 4:
-          ret = 'CDATA_SECTION_NODE(' + val.nodeValue + ')';
-          break;
-        case 5:
-          ret = 'ENTITY_REFERENCE_NODE';
-          break;
-        case 6:
-          ret = 'ENTITY_NODE';
-          break;
-        case 7:
-          ret = 'PROCESSING_INSTRUCTION_NODE(' + val.nodeName + ':' + val.nodeValue + ')';
-          break;
-        case 8:
-          ret = 'COMMENT_NODE(' + val.nodeValue + ')';
-          break;
-        case 9:
-          ret = 'DOCUMENT_NODE';
-          break;
-        case 10:
-          ret = 'DOCUMENT_TYPE_NODE';
-          break;
-        case 11:
-          ret = 'DOCUMENT_FRAGMENT_NODE';
-          break;
-        case 12:
-          ret = 'NOTATION_NODE';
-          break;
+      case 1:
+        if (typeof val.namespaceURI === 'undefined' || val.namespaceURI === 'http://www.w3.org/1999/xhtml') {
+          // Undefined namespace could be plain XML, but namespaceURI not widely supported
+          ret = 'HTMLElement("' + val.nodeName + '")';
+        } else {
+          ret = 'XML Element("' + val.nodeName + '")';
+        }
+        break;
+      case 2:
+        ret = 'ATTRIBUTE_NODE(' + val.nodeName + ')';
+        break;
+      case 3:
+        ret = 'TEXT_NODE(' + val.nodeValue + ')';
+        break;
+      case 4:
+        ret = 'CDATA_SECTION_NODE(' + val.nodeValue + ')';
+        break;
+      case 5:
+        ret = 'ENTITY_REFERENCE_NODE';
+        break;
+      case 6:
+        ret = 'ENTITY_NODE';
+        break;
+      case 7:
+        ret = 'PROCESSING_INSTRUCTION_NODE(' + val.nodeName + ':' + val.nodeValue + ')';
+        break;
+      case 8:
+        ret = 'COMMENT_NODE(' + val.nodeValue + ')';
+        break;
+      case 9:
+        ret = 'DOCUMENT_NODE';
+        break;
+      case 10:
+        ret = 'DOCUMENT_TYPE_NODE';
+        break;
+      case 11:
+        ret = 'DOCUMENT_FRAGMENT_NODE';
+        break;
+      case 12:
+        ret = 'NOTATION_NODE';
+        break;
       }
     }
     return ret;
   };
 
-  var _formatArray = function(obj, cur_depth, pad_val, pad_char) {
+  var _formatArray = function (obj, cur_depth, pad_val, pad_char) {
     var someProp = '';
     if (cur_depth > 0) {
       cur_depth++;

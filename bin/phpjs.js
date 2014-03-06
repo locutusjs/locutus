@@ -151,7 +151,7 @@ cli.cleanup = function(args, options) {
       "indent_with_tabs"         : false,
       "preserve_newlines"        : true,
       "max_preserve_newlines"    : 2,
-      "jslint_happy"             : false,
+      "jslint_happy"             : true,
       "brace_style"              : "collapse",
       "keep_array_indentation"   : false,
       "keep_function_indentation": false,

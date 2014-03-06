@@ -19,7 +19,7 @@ function http_build_query(formdata, numeric_prefix, arg_separator) {
   var value, key, tmp = [],
     that = this;
 
-  var _http_build_query_helper = function(key, val, arg_separator) {
+  var _http_build_query_helper = function (key, val, arg_separator) {
     var k, tmp = [];
     if (val === true) {
       val = '1';

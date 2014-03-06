@@ -9,7 +9,7 @@ function set_time_limit(seconds) {
   this.php_js = this.php_js || {};
   // END REDUNDANT
 
-  this.window.setTimeout(function() {
+  this.window.setTimeout(function () {
     if (!this.php_js.timeoutStatus) {
       this.php_js.timeoutStatus = true;
     }

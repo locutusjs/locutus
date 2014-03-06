@@ -33,7 +33,7 @@ function addcslashes(str, charlist) {
     escHexGrp = [],
     encoded = '',
     percentHex = /%([\dA-Fa-f]+)/g;
-  var _pad = function(n, c) {
+  var _pad = function (n, c) {
     if ((n = n + '')
       .length < c) {
       return new Array(++c - n.length)
@@ -120,41 +120,41 @@ function addcslashes(str, charlist) {
       if (cca < 32 || cca > 126) {
         // Needs special escaping
         switch (c) {
-          case '\n':
-            target += 'n';
-            break;
-          case '\t':
-            target += 't';
-            break;
-          case '\u000D':
-            target += 'r';
-            break;
-          case '\u0007':
-            target += 'a';
-            break;
-          case '\v':
-            target += 'v';
-            break;
-          case '\b':
-            target += 'b';
-            break;
-          case '\f':
-            target += 'f';
-            break;
-          default:
-            //target += _pad(cca.toString(8), 3);break; // Sufficient for UTF-16
-            encoded = encodeURIComponent(c);
+        case '\n':
+          target += 'n';
+          break;
+        case '\t':
+          target += 't';
+          break;
+        case '\u000D':
+          target += 'r';
+          break;
+        case '\u0007':
+          target += 'a';
+          break;
+        case '\v':
+          target += 'v';
+          break;
+        case '\b':
+          target += 'b';
+          break;
+        case '\f':
+          target += 'f';
+          break;
+        default:
+          //target += _pad(cca.toString(8), 3);break; // Sufficient for UTF-16
+          encoded = encodeURIComponent(c);
 
-            // 3-length-padded UTF-8 octets
-            if ((escHexGrp = percentHex.exec(encoded)) !== null) {
-              target += _pad(parseInt(escHexGrp[1], 16)
-                .toString(8), 3); // already added a slash above
-            }
-            while ((escHexGrp = percentHex.exec(encoded)) !== null) {
-              target += '\\' + _pad(parseInt(escHexGrp[1], 16)
-                .toString(8), 3);
-            }
-            break;
+          // 3-length-padded UTF-8 octets
+          if ((escHexGrp = percentHex.exec(encoded)) !== null) {
+            target += _pad(parseInt(escHexGrp[1], 16)
+              .toString(8), 3); // already added a slash above
+          }
+          while ((escHexGrp = percentHex.exec(encoded)) !== null) {
+            target += '\\' + _pad(parseInt(escHexGrp[1], 16)
+              .toString(8), 3);
+          }
+          break;
         }
       } else { // Perform regular backslashed escaping
         target += c;

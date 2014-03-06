@@ -8,7 +8,7 @@ function each(arr) {
 
   this.php_js = this.php_js || {};
   this.php_js.pointers = this.php_js.pointers || [];
-  var indexOf = function(value) {
+  var indexOf = function (value) {
     for (var i = 0, length = this.length; i < length; i++) {
       if (this[i] === value) {
         return i;

@@ -16,7 +16,7 @@ function array_filter(arr, func) {
   var retObj = {},
     k;
 
-  func = func || function(v) {
+  func = func || function (v) {
     return v;
   };
 
