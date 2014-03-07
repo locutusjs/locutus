@@ -82,7 +82,7 @@ function file_get_contents(url, flags, context, offset, maxLen) {
     http_stream = !!http_options;
   }
 
-  if (!context || http_stream) {
+  if (!context || !context.stream_options || http_stream) {
     var req = this.window.ActiveXObject ? new ActiveXObject('Microsoft.XMLHTTP') : new XMLHttpRequest();
     if (!req) {
       throw new Error('XMLHttpRequest not supported');
