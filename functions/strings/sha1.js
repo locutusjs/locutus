@@ -50,7 +50,8 @@ function sha1(str) {
   var A, B, C, D, E;
   var temp;
 
-  str = unescape(encodeURIComponent((str)); // utf8_encode
+  // utf8_encode
+  str = unescape(encodeURIComponent(str));
   var str_len = str.length;
 
   var word_array = [];
