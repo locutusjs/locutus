@@ -14,7 +14,8 @@ function date_parse(date) {
     errorsOffset = this.php_js.errors ? this.php_js.errors.length : null;
 
   try {
-    this.php_js.date_parse_state = true; // Allow strtotime to return a decimal (which it normally does not)
+    // Allow strtotime to return a decimal (which it normally does not)
+    this.php_js.date_parse_state = true;
     ts = this.strtotime(date);
     this.php_js.date_parse_state = false;
   } finally {
@@ -25,7 +26,8 @@ function date_parse(date) {
 
   var dt = new Date(ts * 1000);
 
-  var retObj = { // Grab any new warnings or errors added (not implemented yet in strtotime()); throwing warnings, notices, or errors could also be easily monitored by using 'watch' on this.php_js.latestWarning, etc. and/or calling any defined error handlers
+  var retObj = {
+    // Grab any new warnings or errors added (not implemented yet in strtotime()); throwing warnings, notices, or errors could also be easily monitored by using 'watch' on this.php_js.latestWarning, etc. and/or calling any defined error handlers
     warning_count: warningsOffset !== null ? this.php_js.warnings.slice(warningsOffset)
       .length : 0,
     warnings: warningsOffset !== null ? this.php_js.warnings.slice(warningsOffset) : [],

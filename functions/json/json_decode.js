@@ -24,7 +24,8 @@ function json_decode(str_json) {
         throw new Error('Unexpected error type in json_decode()');
       }
       this.php_js = this.php_js || {};
-      this.php_js.last_error_json = 4; // usable by json_last_error()
+      // usable by json_last_error()
+      this.php_js.last_error_json = 4;
       return null;
     }
   }
@@ -38,7 +39,7 @@ function json_decode(str_json) {
   // incorrectly, either silently deleting them, or treating them as line endings.
   cx.lastIndex = 0;
   if (cx.test(text)) {
-    text = text.replace(cx, function(a) {
+    text = text.replace(cx, function (a) {
       return '\\u' + ('0000' + a.charCodeAt(0)
         .toString(16))
         .slice(-4);
@@ -71,6 +72,7 @@ function json_decode(str_json) {
   }
 
   this.php_js = this.php_js || {};
-  this.php_js.last_error_json = 4; // usable by json_last_error()
+  // usable by json_last_error()
+  this.php_js.last_error_json = 4;
   return null;
 }

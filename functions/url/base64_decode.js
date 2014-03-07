@@ -13,6 +13,8 @@ function base64_decode(data) {
   //   returns 1: 'Kevin van Zonneveld'
   //   example 2: base64_decode('YQ===');
   //   returns 2: 'a'
+  //   example 3: base64_decode('4pyTIMOgIGxhIG1vZGU=');
+  //   returns 3: '✓ à la mode'
 
   var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
   var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
@@ -26,7 +28,8 @@ function base64_decode(data) {
 
   data += '';
 
-  do { // unpack four hexets into three octets using index points in b64
+  do {
+    // unpack four hexets into three octets using index points in b64
     h1 = b64.indexOf(data.charAt(i++));
     h2 = b64.indexOf(data.charAt(i++));
     h3 = b64.indexOf(data.charAt(i++));
@@ -49,5 +52,5 @@ function base64_decode(data) {
 
   dec = tmp_arr.join('');
 
-  return dec.replace(/\0+$/, '');
+  return decodeURIComponent(escape(dec.replace(/\0+$/, '')));
 }

@@ -30,7 +30,7 @@ function urldecode(str) {
   //        returns 4: '\u597d%3_4'
 
   return decodeURIComponent((str + '')
-    .replace(/%(?![\da-f]{2})/gi, function() {
+    .replace(/%(?![\da-f]{2})/gi, function () {
       // PHP tolerates poorly formed escape sequences
       return '%25';
     })

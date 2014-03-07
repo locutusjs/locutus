@@ -1,6 +1,5 @@
 function print_r(array, return_val) {
   //  discuss at: http://phpjs.org/functions/print_r/
-  //        http: //kevin.vanzonneveld.net
   // original by: Michael White (http://getsprink.com)
   // improved by: Ben Bryan
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -14,7 +13,7 @@ function print_r(array, return_val) {
     pad_char = ' ',
     pad_val = 4,
     d = this.window.document,
-    getFuncName = function(fn) {
+    getFuncName = function (fn) {
       var name = (/\W*function\s+([\w\$]+)\s*\(/)
         .exec(fn);
       if (!name) {
@@ -22,14 +21,14 @@ function print_r(array, return_val) {
       }
       return name[1];
     };
-  repeat_char = function(len, pad_char) {
+  repeat_char = function (len, pad_char) {
     var str = '';
     for (var i = 0; i < len; i++) {
       str += pad_char;
     }
     return str;
   };
-  formatArray = function(obj, cur_depth, pad_val, pad_char) {
+  formatArray = function (obj, cur_depth, pad_val, pad_char) {
     if (cur_depth > 0) {
       cur_depth++;
     }
@@ -51,7 +50,8 @@ function print_r(array, return_val) {
       str += base_pad + ')\n';
     } else if (obj === null || obj === undefined) {
       str = '';
-    } else { // for our "resource" class
+    } else {
+      // for our "resource" class
       str = obj.toString();
     }
 
@@ -65,10 +65,12 @@ function print_r(array, return_val) {
       this.echo(output);
     } else {
       try {
-        d = XULDocument; // We're in XUL, so appending as plain text won't work; trigger an error out of XUL
+        // We're in XUL, so appending as plain text won't work; trigger an error out of XUL
+        d = XULDocument;
         this.echo('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">' + output + '</pre>');
       } catch (e) {
-        this.echo(output); // Outputting as plain text may work in some plain XML
+        // Outputting as plain text may work in some plain XML
+        this.echo(output);
       }
     }
     return true;

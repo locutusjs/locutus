@@ -36,7 +36,7 @@ function parse_str(str, array) {
     sal = strArr.length,
     i, j, ct, p, lastObj, obj, lastIter, undef, chr, tmp, key, value,
     postLeftBracketPos, keys, keysLen,
-    fixStr = function(str) {
+    fixStr = function (str) {
       return decodeURIComponent(str.replace(/\+/g, '%20'));
     };
 
@@ -98,7 +98,8 @@ function parse_str(str, array) {
             obj[key] = {};
           }
           obj = obj[key];
-        } else { // To insert new dimension
+        } else {
+          // To insert new dimension
           ct = -1;
           for (p in obj) {
             if (obj.hasOwnProperty(p)) {

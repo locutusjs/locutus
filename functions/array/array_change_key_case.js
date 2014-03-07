@@ -26,7 +26,8 @@ function array_change_key_case(array, cs) {
   if (Object.prototype.toString.call(array) === '[object Array]') {
     return array;
   }
-  if (array && typeof array === 'object' && array.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
+  if (array && typeof array === 'object' && array.change_key_case) {
+    // Duck-type check for our own array()-created PHPJS_Array
     return array.change_key_case(cs);
   }
   if (array && typeof array === 'object') {

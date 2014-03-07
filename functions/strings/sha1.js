@@ -8,12 +8,13 @@ function sha1(str) {
   //   example 1: sha1('Kevin van Zonneveld');
   //   returns 1: '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
 
-  var rotate_left = function(n, s) {
+  var rotate_left = function (n, s) {
     var t4 = (n << s) | (n >>> (32 - s));
     return t4;
   };
 
-  /*var lsb_hex = function (val) { // Not in use; needed?
+  /*var lsb_hex = function (val) {
+   // Not in use; needed?
     var str="";
     var i;
     var vh;
@@ -27,7 +28,7 @@ function sha1(str) {
     return str;
   };*/
 
-  var cvt_hex = function(val) {
+  var cvt_hex = function (val) {
     var str = '';
     var i;
     var v;
@@ -60,19 +61,19 @@ function sha1(str) {
   }
 
   switch (str_len % 4) {
-    case 0:
-      i = 0x080000000;
-      break;
-    case 1:
-      i = str.charCodeAt(str_len - 1) << 24 | 0x0800000;
-      break;
-    case 2:
-      i = str.charCodeAt(str_len - 2) << 24 | str.charCodeAt(str_len - 1) << 16 | 0x08000;
-      break;
-    case 3:
-      i = str.charCodeAt(str_len - 3) << 24 | str.charCodeAt(str_len - 2) << 16 | str.charCodeAt(str_len - 1) <<
-        8 | 0x80;
-      break;
+  case 0:
+    i = 0x080000000;
+    break;
+  case 1:
+    i = str.charCodeAt(str_len - 1) << 24 | 0x0800000;
+    break;
+  case 2:
+    i = str.charCodeAt(str_len - 2) << 24 | str.charCodeAt(str_len - 1) << 16 | 0x08000;
+    break;
+  case 3:
+    i = str.charCodeAt(str_len - 3) << 24 | str.charCodeAt(str_len - 2) << 16 | str.charCodeAt(str_len - 1) <<
+      8 | 0x80;
+    break;
   }
 
   word_array.push(i);

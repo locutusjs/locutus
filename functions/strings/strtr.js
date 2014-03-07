@@ -42,7 +42,8 @@ function strtr(str, from, to) {
   // Received replace_pairs?
   // Convert to normal from->to chars
   if (typeof from === 'object') {
-    tmpStrictForIn = this.ini_set('phpjs.strictForIn', false); // Not thread-safe; temporarily set to true
+    // Not thread-safe; temporarily set to true
+    tmpStrictForIn = this.ini_set('phpjs.strictForIn', false);
     from = this.krsort(from);
     this.ini_set('phpjs.strictForIn', tmpStrictForIn);
 

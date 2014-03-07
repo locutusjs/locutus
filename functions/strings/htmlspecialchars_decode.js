@@ -39,7 +39,8 @@ function htmlspecialchars_decode(string, quote_style) {
   if (quote_style === 0) {
     noquotes = true;
   }
-  if (typeof quote_style !== 'number') { // Allow for a single string or an array of string flags
+  if (typeof quote_style !== 'number') {
+    // Allow for a single string or an array of string flags
     quote_style = [].concat(quote_style);
     for (i = 0; i < quote_style.length; i++) {
       // Resolve string input to bitwise e.g. 'PATHINFO_EXTENSION' becomes 4

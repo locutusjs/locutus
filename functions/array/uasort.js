@@ -37,7 +37,8 @@ function uasort(inputArr, sorter) {
     .ini['phpjs.strictForIn'].local_value !== 'off';
   populateArr = strictForIn ? inputArr : populateArr;
 
-  for (k in inputArr) { // Get key and value arrays
+  for (k in inputArr) {
+    // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
       valArr.push([k, inputArr[k]]);
       if (strictForIn) {
@@ -45,11 +46,12 @@ function uasort(inputArr, sorter) {
       }
     }
   }
-  valArr.sort(function(a, b) {
+  valArr.sort(function (a, b) {
     return sorter(a[1], b[1]);
   });
 
-  for (i = 0; i < valArr.length; i++) { // Repopulate the old array
+  for (i = 0; i < valArr.length; i++) {
+    // Repopulate the old array
     populateArr[valArr[i][0]] = valArr[i][1];
   }
 

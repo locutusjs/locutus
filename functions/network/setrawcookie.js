@@ -29,7 +29,8 @@ function setrawcookie(name, value, expires, path, domain, secure) {
     domain: domain
   };
   for (i in s) {
-    if (s.hasOwnProperty(i)) { // Exclude items on Object.prototype
+    if (s.hasOwnProperty(i)) {
+      // Exclude items on Object.prototype
       s[i] && r.push(i + '=' + s[i]);
     }
   }

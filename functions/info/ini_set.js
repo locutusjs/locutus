@@ -20,7 +20,7 @@ function ini_set(varname, newvalue) {
 
   oldval = this.php_js.ini[varname].local_value;
 
-  var _setArr = function(oldval) {
+  var _setArr = function (oldval) {
     // Although these are set individually, they are all accumulated
     if (typeof oldval === 'undefined') {
       self.php_js.ini[varname].local_value = [];
@@ -29,16 +29,16 @@ function ini_set(varname, newvalue) {
   };
 
   switch (varname) {
-    case 'extension':
-      if (typeof this.dl === 'function') {
-        // This function is only experimental in php.js
-        this.dl(newvalue);
-      }
-      _setArr(oldval, newvalue);
-      break;
-    default:
-      this.php_js.ini[varname].local_value = newvalue;
-      break;
+  case 'extension':
+    if (typeof this.dl === 'function') {
+      // This function is only experimental in php.js
+      this.dl(newvalue);
+    }
+    _setArr(oldval, newvalue);
+    break;
+  default:
+    this.php_js.ini[varname].local_value = newvalue;
+    break;
   }
 
   return oldval;

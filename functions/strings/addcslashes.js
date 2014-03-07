@@ -33,7 +33,7 @@ function addcslashes(str, charlist) {
     escHexGrp = [],
     encoded = '',
     percentHex = /%([\dA-Fa-f]+)/g;
-  var _pad = function(n, c) {
+  var _pad = function (n, c) {
     if ((n = n + '')
       .length < c) {
       return new Array(++c - n.length)
@@ -46,60 +46,78 @@ function addcslashes(str, charlist) {
     c = charlist.charAt(i);
     next = charlist.charAt(i + 1);
     if (c === '\\' && next && (/\d/)
-      .test(next)) { // Octal
+      .test(next)) {
+      // Octal
       rangeBegin = charlist.slice(i + 1)
         .match(/^\d+/)[0];
       octalLength = rangeBegin.length;
       postOctalPos = i + octalLength + 1;
-      if (charlist.charAt(postOctalPos) + charlist.charAt(postOctalPos + 1) === '..') { // Octal begins range
+      if (charlist.charAt(postOctalPos) + charlist.charAt(postOctalPos + 1) === '..') {
+        // Octal begins range
         begin = rangeBegin.charCodeAt(0);
         if ((/\\\d/)
-          .test(charlist.charAt(postOctalPos + 2) + charlist.charAt(postOctalPos + 3))) { // Range ends with octal
+          .test(charlist.charAt(postOctalPos + 2) + charlist.charAt(postOctalPos + 3))) {
+          // Range ends with octal
           rangeEnd = charlist.slice(postOctalPos + 3)
             .match(/^\d+/)[0];
-          i += 1; // Skip range end backslash
-        } else if (charlist.charAt(postOctalPos + 2)) { // Range ends with character
+          // Skip range end backslash
+          i += 1;
+        } else if (charlist.charAt(postOctalPos + 2)) {
+          // Range ends with character
           rangeEnd = charlist.charAt(postOctalPos + 2);
         } else {
           throw 'Range with no end point';
         }
         end = rangeEnd.charCodeAt(0);
-        if (end > begin) { // Treat as a range
+        if (end > begin) {
+          // Treat as a range
           for (j = begin; j <= end; j++) {
             chrs.push(String.fromCharCode(j));
           }
-        } else { // Supposed to treat period, begin and end as individual characters only, not a range
+        } else {
+          // Supposed to treat period, begin and end as individual characters only, not a range
           chrs.push('.', rangeBegin, rangeEnd);
         }
-        i += rangeEnd.length + 2; // Skip dots and range end (already skipped range end backslash if present)
-      } else { // Octal is by itself
+        // Skip dots and range end (already skipped range end backslash if present)
+        i += rangeEnd.length + 2;
+      } else {
+        // Octal is by itself
         chr = String.fromCharCode(parseInt(rangeBegin, 8));
         chrs.push(chr);
       }
-      i += octalLength; // Skip range begin
-    } else if (next + charlist.charAt(i + 2) === '..') { // Character begins range
+      // Skip range begin
+      i += octalLength;
+    } else if (next + charlist.charAt(i + 2) === '..') {
+      // Character begins range
       rangeBegin = c;
       begin = rangeBegin.charCodeAt(0);
       if ((/\\\d/)
-        .test(charlist.charAt(i + 3) + charlist.charAt(i + 4))) { // Range ends with octal
+        .test(charlist.charAt(i + 3) + charlist.charAt(i + 4))) {
+        // Range ends with octal
         rangeEnd = charlist.slice(i + 4)
           .match(/^\d+/)[0];
-        i += 1; // Skip range end backslash
-      } else if (charlist.charAt(i + 3)) { // Range ends with character
+        // Skip range end backslash
+        i += 1;
+      } else if (charlist.charAt(i + 3)) {
+        // Range ends with character
         rangeEnd = charlist.charAt(i + 3);
       } else {
         throw 'Range with no end point';
       }
       end = rangeEnd.charCodeAt(0);
-      if (end > begin) { // Treat as a range
+      if (end > begin) {
+        // Treat as a range
         for (j = begin; j <= end; j++) {
           chrs.push(String.fromCharCode(j));
         }
-      } else { // Supposed to treat period, begin and end as individual characters only, not a range
+      } else {
+        // Supposed to treat period, begin and end as individual characters only, not a range
         chrs.push('.', rangeBegin, rangeEnd);
       }
-      i += rangeEnd.length + 2; // Skip dots and range end (already skipped range end backslash if present)
-    } else { // Character is by itself
+      // Skip dots and range end (already skipped range end backslash if present)
+      i += rangeEnd.length + 2;
+    } else {
+      // Character is by itself
       chrs.push(c);
     }
   }
@@ -109,48 +127,51 @@ function addcslashes(str, charlist) {
     if (chrs.indexOf(c) !== -1) {
       target += '\\';
       cca = c.charCodeAt(0);
-      if (cca < 32 || cca > 126) { // Needs special escaping
+      if (cca < 32 || cca > 126) {
+        // Needs special escaping
         switch (c) {
-          case '\n':
-            target += 'n';
-            break;
-          case '\t':
-            target += 't';
-            break;
-          case '\u000D':
-            target += 'r';
-            break;
-          case '\u0007':
-            target += 'a';
-            break;
-          case '\v':
-            target += 'v';
-            break;
-          case '\b':
-            target += 'b';
-            break;
-          case '\f':
-            target += 'f';
-            break;
-          default:
-            //target += _pad(cca.toString(8), 3);break; // Sufficient for UTF-16
-            encoded = encodeURIComponent(c);
+        case '\n':
+          target += 'n';
+          break;
+        case '\t':
+          target += 't';
+          break;
+        case '\u000D':
+          target += 'r';
+          break;
+        case '\u0007':
+          target += 'a';
+          break;
+        case '\v':
+          target += 'v';
+          break;
+        case '\b':
+          target += 'b';
+          break;
+        case '\f':
+          target += 'f';
+          break;
+        default:
+          //target += _pad(cca.toString(8), 3);break; // Sufficient for UTF-16
+          encoded = encodeURIComponent(c);
 
-            // 3-length-padded UTF-8 octets
-            if ((escHexGrp = percentHex.exec(encoded)) !== null) {
-              target += _pad(parseInt(escHexGrp[1], 16)
-                .toString(8), 3); // already added a slash above
-            }
-            while ((escHexGrp = percentHex.exec(encoded)) !== null) {
-              target += '\\' + _pad(parseInt(escHexGrp[1], 16)
-                .toString(8), 3);
-            }
-            break;
+          // 3-length-padded UTF-8 octets
+          if ((escHexGrp = percentHex.exec(encoded)) !== null) {
+            target += _pad(parseInt(escHexGrp[1], 16)
+              .toString(8), 3); // already added a slash above
+          }
+          while ((escHexGrp = percentHex.exec(encoded)) !== null) {
+            target += '\\' + _pad(parseInt(escHexGrp[1], 16)
+              .toString(8), 3);
+          }
+          break;
         }
-      } else { // Perform regular backslashed escaping
+      } else {
+        // Perform regular backslashed escaping
         target += c;
       }
-    } else { // Just add the character unescaped
+    } else {
+      // Just add the character unescaped
       target += c;
     }
   }

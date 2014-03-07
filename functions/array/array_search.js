@@ -15,14 +15,18 @@ function array_search(needle, haystack, argStrict) {
   var strict = !! argStrict,
     key = '';
 
-  if (haystack && typeof haystack === 'object' && haystack.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
+  if (haystack && typeof haystack === 'object' && haystack.change_key_case) {
+    // Duck-type check for our own array()-created PHPJS_Array
     return haystack.search(needle, argStrict);
   }
-  if (typeof needle === 'object' && needle.exec) { // Duck-type for RegExp
-    if (!strict) { // Let's consider case sensitive searches as strict
+  if (typeof needle === 'object' && needle.exec) {
+    // Duck-type for RegExp
+    if (!strict) {
+      // Let's consider case sensitive searches as strict
       var flags = 'i' + (needle.global ? 'g' : '') +
         (needle.multiline ? 'm' : '') +
-        (needle.sticky ? 'y' : ''); // sticky is FF only
+      // sticky is FF only
+      (needle.sticky ? 'y' : '');
       needle = new RegExp(needle.source, flags);
     }
     for (key in haystack) {

@@ -23,7 +23,7 @@ function is_array(mixed_var) {
   //   returns 4: false
 
   var ini,
-    _getFuncName = function(fn) {
+    _getFuncName = function (fn) {
       var name = (/\W*function\s+([\w\$]+)\s*\(/)
         .exec(fn);
       if (!name) {
@@ -31,7 +31,7 @@ function is_array(mixed_var) {
       }
       return name[1];
     };
-  _isArray = function(mixed_var) {
+  _isArray = function (mixed_var) {
     // return Object.prototype.toString.call(mixed_var) === '[object Array]';
     // The above works, but let's do the even more stringent approach: (since Object.prototype.toString could be overridden)
     // Null, Not an object, no length property so couldn't be an Array (or String)
@@ -44,7 +44,8 @@ function is_array(mixed_var) {
     // with a custom "length" getter which changed behavior on each call (or a setter to mess up the following below) or a custom
     // setter for numeric properties, but even that would need to listen for specific indexes; but there should be no false negatives
     // and such a false positive would need to rely on later JavaScript innovations like __defineSetter__
-    if (len !== mixed_var.length) { // We know it's an array since length auto-changed with the addition of a
+    if (len !== mixed_var.length) {
+      // We know it's an array since length auto-changed with the addition of a
       // numeric property at its length end, so safely get rid of our bogus element
       mixed_var.length -= 1;
       return true;

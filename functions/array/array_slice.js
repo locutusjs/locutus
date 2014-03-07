@@ -19,7 +19,8 @@ function array_slice(arr, offst, lgth, preserve_keys) {
   var key = '';
 
   if (Object.prototype.toString.call(arr) !== '[object Array]' ||
-    (preserve_keys && offst !== 0)) { // Assoc. array as input or if required as output
+    (preserve_keys && offst !== 0)) {
+    // Assoc. array as input or if required as output
     var lgt = 0,
       newAssoc = {};
     for (key in arr) {
@@ -55,7 +56,8 @@ function array_slice(arr, offst, lgth, preserve_keys) {
         assoc[key] = arr[key];
       }
     }
-    //assoc.length = arrlgth; // Make as array-like object (though length will not be dynamic)
+    // Make as array-like object (though length will not be dynamic)
+    //assoc.length = arrlgth;
     return assoc;
   }
 

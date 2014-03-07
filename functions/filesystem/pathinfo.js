@@ -60,7 +60,8 @@ function pathinfo(path, options) {
   for (optName in OPTS) {
     OPTS.PATHINFO_ALL = OPTS.PATHINFO_ALL | OPTS[optName];
   }
-  if (typeof options !== 'number') { // Allow for a single string or an array of string flags
+  if (typeof options !== 'number') {
+    // Allow for a single string or an array of string flags
     options = [].concat(options);
     for (i = 0; i < options.length; i++) {
       // Resolve string input to bitwise e.g. 'PATHINFO_EXTENSION' becomes 4
@@ -72,7 +73,7 @@ function pathinfo(path, options) {
   }
 
   // Internal Functions
-  var __getExt = function(path) {
+  var __getExt = function (path) {
     var str = path + '';
     var dotP = str.lastIndexOf('.') + 1;
     return !dotP ? false : dotP !== str.length ? str.substr(dotP) : '';

@@ -36,7 +36,7 @@ function htmlentities(string, quote_style, charset, double_encode) {
       }
     }
   } else {
-    string = string.replace(/([\s\S]*?)(&(?:#\d+|#x[\da-f]+|[a-zA-Z][\da-z]*);|$)/g, function(ignore, text, entity) {
+    string = string.replace(/([\s\S]*?)(&(?:#\d+|#x[\da-f]+|[a-zA-Z][\da-z]*);|$)/g, function (ignore, text, entity) {
       for (symbol in hash_map) {
         if (hash_map.hasOwnProperty(symbol)) {
           text = text.split(symbol)

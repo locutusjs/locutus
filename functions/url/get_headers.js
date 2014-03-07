@@ -24,7 +24,7 @@ function get_headers(url, format) {
 
   tmp = req.getAllResponseHeaders();
   tmp = tmp.split('\n');
-  tmp = this.array_filter(tmp, function(value) {
+  tmp = this.array_filter(tmp, function (value) {
     return value.substring(1) !== '';
   });
   headers = format ? {} : [];

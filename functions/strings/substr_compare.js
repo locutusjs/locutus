@@ -19,8 +19,10 @@ function substr_compare(main_str, str, offset, length, case_insensitivity) {
   length = length || main_str.length - offset;
 
   main_str = main_str.substr(offset, length);
-  str = str.substr(0, length); // Should only compare up to the desired length
-  if (case_insensitivity) { // Works as strcasecmp
+  // Should only compare up to the desired length
+  str = str.substr(0, length);
+  if (case_insensitivity) {
+    // Works as strcasecmp
     main_str = (main_str + '')
       .toLowerCase();
     str = (str + '')

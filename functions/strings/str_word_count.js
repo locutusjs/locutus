@@ -30,16 +30,18 @@ function str_word_count(str, format, charlist) {
     match = false;
 
   // BEGIN STATIC
-  var _preg_quote = function(str) {
+  var _preg_quote = function (str) {
     return (str + '')
       .replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!<>\|\:])/g, '\\$1');
   };
-  _getWholeChar = function(str, i) { // Use for rare cases of non-BMP characters
+  _getWholeChar = function (str, i) {
+    // Use for rare cases of non-BMP characters
     var code = str.charCodeAt(i);
     if (code < 0xD800 || code > 0xDFFF) {
       return str.charAt(i);
     }
-    if (0xD800 <= code && code <= 0xDBFF) { // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
+    if (0xD800 <= code && code <= 0xDBFF) {
+      // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
       if (str.length <= (i + 1)) {
         throw 'High surrogate without following low surrogate';
       }
@@ -54,10 +56,12 @@ function str_word_count(str, format, charlist) {
       throw 'Low surrogate without preceding high surrogate';
     }
     var prev = str.charCodeAt(i - 1);
-    if (0xD800 > prev || prev > 0xDBFF) { // (could change last hex to 0xDB7F to treat high private surrogates as single characters)
+    if (0xD800 > prev || prev > 0xDBFF) {
+      // (could change last hex to 0xDB7F to treat high private surrogates as single characters)
       throw 'Low surrogate without preceding high surrogate';
     }
-    return false; // We can pass over low surrogates now as the second component in a pair which we have already processed
+    // We can pass over low surrogates now as the second component in a pair which we have already processed
+    return false;
   };
   // END STATIC
   if (cl) {
@@ -77,7 +81,8 @@ function str_word_count(str, format, charlist) {
       continue;
     }
     match = this.ctype_alpha(c) || (reg && c.search(reg) !== -1) || ((i !== 0 && i !== len - 1) && c === '-') || // No hyphen at beginning or end unless allowed in charlist (or locale)
-    (i !== 0 && c === "'"); // No apostrophe at beginning unless allowed in charlist (or locale)
+    // No apostrophe at beginning unless allowed in charlist (or locale)
+    (i !== 0 && c === "'");
     if (match) {
       if (tmpStr === '' && format === 2) {
         aC = i;

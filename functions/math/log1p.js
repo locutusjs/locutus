@@ -6,9 +6,11 @@ function log1p(x) {
   //   returns 1: 9.999999999999995e-16
 
   var ret = 0,
-    n = 50; // degree of precision
+    // degree of precision
+    n = 50;
   if (x <= -1) {
-    return '-INF'; // JavaScript style would be to return Number.NEGATIVE_INFINITY
+    // JavaScript style would be to return Number.NEGATIVE_INFINITY
+    return '-INF';
   }
   if (x < 0 || x > 1) {
     return Math.log(1 + x);

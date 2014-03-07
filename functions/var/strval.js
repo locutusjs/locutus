@@ -18,15 +18,15 @@ function strval(str) {
   // Comment out the entire switch if you want JS-like
   // behavior instead of PHP behavior
   switch (type) {
-    case 'boolean':
-      if (str === true) {
-        return '1';
-      }
-      return '';
-    case 'array':
-      return 'Array';
-    case 'object':
-      return 'Object';
+  case 'boolean':
+    if (str === true) {
+      return '1';
+    }
+    return '';
+  case 'array':
+    return 'Array';
+  case 'object':
+    return 'Object';
   }
 
   return str;

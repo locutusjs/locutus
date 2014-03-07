@@ -29,13 +29,6 @@ gettype#6
 krsort#1
 krsort#2
 ksort#1
-mktime#1
-mktime#2
-mktime#4
-mktime#5
-mktime#6
-mktime#7
-mktime#8
 natsort#1
 pack#1
 printf#1
@@ -46,4 +39,3 @@ serialize#2
 strnatcasecmp#1
 strnatcmp#2
 vprintf#1
-xdiff_string_patch#1

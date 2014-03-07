@@ -21,7 +21,8 @@ function rand(min, max) {
   // +   reimplemented by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: srand
   // %          note 1: This is a very possibly imperfect adaptation from the PHP source code
-  var rand_seed, ctx, PHP_RAND_MAX=2147483647; // 0x7fffffff
+  // 0x7fffffff
+  var rand_seed, ctx, PHP_RAND_MAX=2147483647;
 
   if (!this.php_js || this.php_js.rand_seed === undefined) {
     this.srand();
@@ -37,7 +38,8 @@ function rand(min, max) {
     return ((ctx * 1103515245 + 12345) % (PHP_RAND_MAX + 1));
   };
 
-  var php_rand = function (ctxArg) { // php_rand_r
+  var php_rand = function (ctxArg) {
+   // php_rand_r
     this.php_js.rand_seed = do_rand(ctxArg);
     return parseInt(this.php_js.rand_seed, 10);
   };

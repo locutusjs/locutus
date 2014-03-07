@@ -17,7 +17,7 @@ function array_count_values(array) {
     key = '',
     t = '';
 
-  var __getType = function(obj) {
+  var __getType = function (obj) {
     // Objects are php associative arrays.
     var t = typeof obj;
     t = t.toLowerCase();
@@ -27,19 +27,19 @@ function array_count_values(array) {
     return t;
   };
 
-  var __countValue = function(value) {
+  var __countValue = function (value) {
     switch (typeof value) {
-      case 'number':
-        if (Math.floor(value) !== value) {
-          return;
-        }
-        // Fall-through
-      case 'string':
-        if (value in this && this.hasOwnProperty(value)) {
-          ++this[value];
-        } else {
-          this[value] = 1;
-        }
+    case 'number':
+      if (Math.floor(value) !== value) {
+        return;
+      }
+      // Fall-through
+    case 'string':
+      if (value in this && this.hasOwnProperty(value)) {
+        ++this[value];
+      } else {
+        this[value] = 1;
+      }
     }
   };
 

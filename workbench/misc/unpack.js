@@ -1,8 +1,9 @@
 function unpack(format, data) {
   // http://kevin.vanzonneveld.net
   // +   original by: Tim de Koning (http://www.kingsquare.nl)
-  // +      parts by: Jonas Raoni Soares Silva
-  // +      http://www.jsfromhell.com
+  // +      parts by: Jonas Raoni Soares Silva - http://www.jsfromhell.com
+  // +      parts by: Joshua Bell - http://cautionsingularityahead.blogspot.nl/
+  // +
   // +   bugfixed by: marcuswestin
   // %        note 1: Float decoding by: Jonas Raoni Soares Silva
   // %        note 2: Home: http://www.kingsquare.nl/blog/22-12-2009/13650536
@@ -10,52 +11,47 @@ function unpack(format, data) {
   // %        note 4: 'machine dependant byte order and size' aren't
   // %        note 5: applicable for JavaScript unpack works as on a 32bit,
   // %        note 6: little endian machine
-  // *     example 1: unpack('f2test', 'abcddbca');
-  // *     returns 1: { 'test1': 1.6777999408082E+22.
-  // *     returns 2: 'test2': 2.6100787562286E+20 }
+  // *     example 1: unpack('d', "\u0000\u0000\u0000\u0000\u00008YÀ");
+  // *     returns 1: { "": -100.875 }
 
   var formatPointer = 0, dataPointer = 0, result = {}, instruction = '',
       quantifier = '', label = '', currentData = '', i = 0, j = 0,
-      word = '', precisionBits = 0, exponentBits = 0, dataByteLength = 0;
+      word = '', fbits = 0, ebits = 0, dataByteLength = 0;
 
-  // Used by float decoding
-  var b = [], bias, signal, exponent, significand, divisor, curByte,
-      byteValue, startBit = 0, mask, currentResult;
-
-  var readBits = function(start, length, byteArray) {
-    var offsetLeft, offsetRight, curByte, lastByte, diff, sum;
-
-    function shl(a, b) {
-      for (++b; --b;) {
-        a = ((a %= 0x7fffffff + 1) & 0x40000000) === 0x40000000 ?
-            a * 2 :
-            (a - 0x40000000) * 2 + 0x7fffffff + 1;
+  // Used by float decoding - by Joshua Bell
+	//http://cautionsingularityahead.blogspot.nl/2010/04/javascript-and-ieee754-redux.html
+  var fromIEEE754 = function(bytes, ebits, fbits) {
+    // Bytes to bits
+    var bits = [];
+    for (var i = bytes.length; i; i -= 1) {
+      var byte = bytes[i - 1];
+      for (var j = 8; j; j -= 1) {
+        bits.push(byte % 2 ? 1 : 0); byte = byte >> 1;
       }
-      return a;
     }
-    if (start < 0 || length <= 0) {
-      return 0;
-    }
+    bits.reverse();
+    var str = bits.join('');
 
-    offsetRight = start % 8;
-    curByte = byteArray.length - (start >> 3) - 1;
-    lastByte = byteArray.length + (-(start + length) >> 3);
-    diff = curByte - lastByte;
-    sum = (
-        (byteArray[curByte] >> offsetRight) &
-        ((1 << (diff ? 8 - offsetRight : length)) - 1)
-        ) + (
-        diff && (offsetLeft = (start + length) % 8) ?
-                (byteArray[lastByte++] & ((1 << offsetLeft) - 1)) <<
-                (diff-- << 3) - offsetRight :
-                0
-        );
+    // Unpack sign, exponent, fraction
+    var bias = (1 << (ebits - 1)) - 1;
+    var s = parseInt(str.substring(0, 1), 2) ? -1 : 1;
+    var e = parseInt(str.substring(1, 1 + ebits), 2);
+    var f = parseInt(str.substring(1 + ebits), 2);
 
-    for (; diff;) {
-      sum += shl(byteArray[lastByte++], (diff-- << 3) - offsetRight);
+    // Produce number
+    if (e === (1 << ebits) - 1) {
+      return f !== 0 ? NaN : s * Infinity;
     }
-    return sum;
-  };
+    else if (e > 0) {
+      return s * Math.pow(2, e - bias) * (1 + f / Math.pow(2, fbits));
+    }
+    else if (f !== 0) {
+      return s * Math.pow(2, -(bias-1)) * (f / Math.pow(2, fbits));
+    }
+    else {
+      return s * 0;
+    }
+  }
 
   while (formatPointer < format.length) {
     instruction = format.charAt(formatPointer);
@@ -247,12 +243,13 @@ function unpack(format, data) {
 
         break;
 
-      case 'f':
-      case 'd':
-        exponentBits = 8;
+      case 'f': //float
+      case 'd': //double
+        ebits = 8;
+        fbits = (instruction === 'f') ? 23 : 52;
         dataByteLength = 4;
         if (instruction === 'd') {
-          exponentBits = 11;
+          ebits = 11;
           dataByteLength = 8;
         }
 
@@ -262,67 +259,19 @@ function unpack(format, data) {
           quantifier = parseInt(quantifier, 10);
         }
 
-        currentData = data.substr(dataPointer,
-            quantifier * dataByteLength);
+        currentData = data.substr(dataPointer, quantifier * dataByteLength);
         dataPointer += quantifier * dataByteLength;
 
         for (i = 0; i < currentData.length; i += dataByteLength) {
           data = currentData.substr(i, dataByteLength);
 
-          b = [];
+          bytes = [];
           for (j = data.length - 1; j >= 0; --j) {
-            b.push(data.charCodeAt(j));
-          }
-
-          precisionBits = (instruction === 'f') ? 23 : 52;
-
-          bias = Math.pow(2, exponentBits - 1) - 1;
-          signal = readBits(precisionBits + exponentBits, 1, b);
-          exponent = readBits(precisionBits, exponentBits, b);
-          significand = 0;
-          divisor = 2;
-          curByte = b.length + (-precisionBits >> 3) - 1;
-          startBit = 0;
-
-          do {
-            byteValue = b[++curByte];
-            startBit = precisionBits % 8 || 8;
-            mask = 1 << startBit;
-            for (; (mask >>= 1);) {
-              if (byteValue & mask) {
-                significand += 1 / divisor;
-              }
-              divisor *= 2;
-            }
-          } while ((precisionBits -= startBit));
-
-          if (exponent === (bias << 1) + 1) {
-            if (significand) {
-              currentResult = NaN;
-            } else {
-              if (signal) {
-                currentResult = -Infinity;
-              } else {
-                currentResult = +Infinity;
-              }
-            }
-          } else {
-            if ((1 + signal * -2) * (exponent || significand)) {
-              if (!exponent) {
-                currentResult = Math.pow(2, -bias + 1) *
-                    significand;
-              } else {
-                currentResult = Math.pow(2,
-                    exponent - bias) *
-                    (1 + significand);
-              }
-            } else {
-              currentResult = 0;
-            }
+            bytes.push(data.charCodeAt(j));
           }
           result[label + (quantifier > 1 ?
               ((i / 4) + 1) :
-              '')] = currentResult;
+              '')] = fromIEEE754(bytes, ebits, fbits);
         }
 
         break;

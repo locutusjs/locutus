@@ -46,7 +46,8 @@ function mktime() {
   for (i = 0; i < e.length; i++) {
     if (typeof r[i] === 'undefined') {
       r[i] = d['get' + e[i]]();
-      r[i] += (i === 3); // +1 to fix JS months.
+      // +1 to fix JS months.
+      r[i] += (i === 3);
     } else {
       r[i] = parseInt(r[i], 10);
       if (isNaN(r[i])) {

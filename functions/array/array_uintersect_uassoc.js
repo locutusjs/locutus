@@ -29,10 +29,12 @@ function array_uintersect_uassoc(arr1) {
           if (i === arguments.length - 3) {
             retArr[k1] = arr1[k1];
           }
-          continue arrs; // If the innermost loop always leads at least once to an equal value, continue the loop until done
+          // If the innermost loop always leads at least once to an equal value, continue the loop until done
+          continue arrs;
         }
       }
-      continue arr1keys; // If it reaches here, it wasn't found in at least one array, so try next value
+      // If it reaches here, it wasn't found in at least one array, so try next value
+      continue arr1keys;
     }
   }
 
