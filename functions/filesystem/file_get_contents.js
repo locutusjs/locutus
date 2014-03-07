@@ -76,7 +76,7 @@ function file_get_contents(url, flags, context, offset, maxLen) {
   var http_options;
   if (context) {
     http_options = context.stream_options && context.stream_options.http;
-    http_stream = !! http_options;
+    http_stream = !!http_options;
   }
 
   if (!context || http_stream) {
@@ -174,7 +174,7 @@ function file_get_contents(url, flags, context, offset, maxLen) {
     }
 
     if (http_stream) {
-      var sendHeaders = http_options.header && http_options.header.split(/\r?\n/);
+      var sendHeaders = (http_options.header && http_options.header.split(/\r?\n/)) || [];
       var userAgentSent = false;
       for (i = 0; i < sendHeaders.length; i++) {
         var sendHeader = sendHeaders[i];
