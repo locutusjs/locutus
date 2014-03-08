@@ -30,16 +30,20 @@ function array_search(needle, haystack, argStrict) {
       needle = new RegExp(needle.source, flags);
     }
     for (key in haystack) {
-      if (needle.test(haystack[key])) {
-        return key;
+      if(haystack.hasOwnProperty(key)){
+          if (needle.test(haystack[key])) {
+              return key;
+          }
       }
     }
     return false;
   }
 
   for (key in haystack) {
-    if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
-      return key;
+    if(haystack.hasOwnProperty(key)){
+        if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
+            return key;
+        }
     }
   }
 
