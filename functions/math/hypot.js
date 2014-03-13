@@ -6,5 +6,5 @@ function hypot(x, y) {
   //   example 2: hypot([], 'a');
   //   returns 2: null
 
-  return Math.sqrt(x * x + y * y) || 0;
+  return Math.sqrt(x * x + y * y) || null;
 }
