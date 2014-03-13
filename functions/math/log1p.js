@@ -1,6 +1,7 @@
 function log1p(x) {
   //  discuss at: http://phpjs.org/functions/log1p/
   // original by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Robert Eisele (http://www.xarg.org/)
   //        note: Precision 'n' can be adjusted as desired
   //   example 1: log1p(1e-15);
   //   returns 1: 9.999999999999995e-16
@@ -16,11 +17,7 @@ function log1p(x) {
     return Math.log(1 + x);
   }
   for (var i = 1; i < n; i++) {
-    if ((i % 2) === 0) {
-      ret -= Math.pow(x, i) / i;
-    } else {
-      ret += Math.pow(x, i) / i;
-    }
+    ret += Math.pow(-x, i) / i;
   }
-  return ret;
+  return -ret;
 }
