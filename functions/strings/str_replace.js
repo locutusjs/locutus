@@ -20,6 +20,9 @@ function str_replace(search, replace, subject, count) {
   //   returns 1: 'Kevin.van.Zonneveld'
   //   example 2: str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars');
   //   returns 2: 'hemmo, mars'
+  // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca)
+  //   example 3: str_replace(Array('S','F'),'x','ASDFASDF');
+  //   returns 3: 'AxDxAxDx'
 
   var i = 0,
     j = 0,
@@ -33,6 +36,18 @@ function str_replace(search, replace, subject, count) {
     ra = Object.prototype.toString.call(r) === '[object Array]',
     sa = Object.prototype.toString.call(s) === '[object Array]';
   s = [].concat(s);
+  
+  if(typeof(search) === 'object' && typeof(replace) === 'string' ) {
+    temp = replace; 
+    replace = new Array();
+    for (i=0; i < search.length; i+=1) { 
+      replace[i] = temp; 
+    }
+    temp = ''; 
+    r = [].concat(replace); 
+    ra = Object.prototype.toString.call(r) === '[object Array]';
+  }
+  
   if (count) {
     this.window[count] = 0;
   }
