@@ -37,11 +37,15 @@ function str_replace(search, replace, subject, count) {
     sa = Object.prototype.toString.call(s) === '[object Array]';
   s = [].concat(s);
   
-  if(typeof(search) == 'object' && typeof(replace) == 'string' ) {
-    temp = replace; replace = new Array();
-    for (i=0; i < search.length; i+=1) { replace[i] = temp; }
-    // update vars 
-    temp = ''; r = [].concat(replace); ra = Object.prototype.toString.call(r) === '[object Array]';
+  if(typeof(search) === 'object' && typeof(replace) === 'string' ) {
+    temp = replace; 
+    replace = new Array();
+    for (i=0; i < search.length; i+=1) { 
+      replace[i] = temp; 
+    }
+    temp = ''; 
+    r = [].concat(replace); 
+    ra = Object.prototype.toString.call(r) === '[object Array]';
   }
   
   if (count) {
