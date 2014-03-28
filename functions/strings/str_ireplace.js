@@ -1,6 +1,5 @@
 function str_ireplace(search, replace, subject, count) {
   //  discuss at: http://phpjs.org/functions/str_ireplace/
-  // original by: Martijn Wieringa
   //  rewrite by: Glen Arason (http://CanadianDomainRegistry.ca)
   //            : Case-insensitive version of str_replace().
   //      format: str_ireplace(search, replace, subject[, count])
