@@ -23,6 +23,8 @@ function str_replace(search, replace, subject, count) {
   // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca)
   //   example 3: str_replace(Array('S','F'),'x','ASDFASDF');
   //   returns 3: 'AxDxAxDx'
+  // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca)
+  //            : Corrected count calculation
 
   var i = 0,
     j = 0,
@@ -62,9 +64,9 @@ function str_replace(search, replace, subject, count) {
       s[i] = (temp)
         .split(f[j])
         .join(repl);
-      if (count && s[i] !== temp) {
-        this.window[count] += (temp.length - s[i].length) / f[j].length;
-      }
+      if (count) {
+        this.window[count] += ((temp.split(f[j])).length - 1);
+      } 
     }
   }
   return sa ? s : s[0];
