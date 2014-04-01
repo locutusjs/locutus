@@ -6,15 +6,15 @@ function str_ireplace(search, replace, subject, count) {
   //            : http://ca3.php.net/manual/en/function.str-ireplace.php
   //      format: str_ireplace($search, $replace, $subject[, 'count'])
   //  Parameters: If search and replace are arrays, then str_ireplace() takes a
-  //                value from each array and uses them to search and replace on
-  //                subject.
-  //              If replace has fewer values than search, then an empty string
-  //                is used for the rest of replacement values.
-  //              If search is an array and replace is a string, then this
-  //                replacement string is used for every value of search.
+  //  Parameters: value from each array and uses them to search and replace on
+  //  Parameters: subject.
+  //  Parameters: If replace has fewer values than search, then an empty string
+  //  Parameters: is used for the rest of replacement values.
+  //  Parameters: If search is an array and replace is a string, then this
+  //  Parameters: replacement string is used for every value of search.
   //        note: The count parameter (optional) if used must be passed in as a
-  //                string. eg global var MyCount:
-  //                str_ireplace($search, $replace, $subject, 'myCount');
+  //        note: string. eg global var MyCount:
+  //        note: str_ireplace($search, $replace, $subject, 'myCount');
   //       input: str_ireplace($search, $replace, $subject[, {string}]);
   //     Returns: a string or an array of replacements.
 
