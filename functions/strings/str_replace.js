@@ -25,8 +25,8 @@ function str_replace(search, replace, subject, count) {
   //   returns 3: 'AxDxAxDx'
   // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca) Corrected count
   //   example 4: str_replace(['A','D'], ['x','y'] , 'ASDFASDF' , 'cnt');
-  //   returns 4: 'xSyFxSyF' cnt = 0 (incorrect before fix)
-  //   returns 4: 'xSyFxSyF' cnt = 4 (correct after fix)
+  //   returns 4: 'xSyFxSyF' // cnt = 0 (incorrect before fix)
+  //   returns 4: 'xSyFxSyF' // cnt = 4 (correct after fix)
   
   var i = 0,
     j = 0,
