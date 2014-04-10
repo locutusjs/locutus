@@ -1,9 +1,9 @@
 function str_ireplace(search, replace, subject, count) {
   //  discuss at: http://phpjs.org/functions/str_ireplace/
   // original by: Glen Arason (http://CanadianDomainRegistry.ca)
-  //            : Case-insensitive version of str_replace()
-  //            : Complient with PHP 5.0 str_ireplace() Full details at:
-  //            : http://ca3.php.net/manual/en/function.str-ireplace.php
+  //        note: Case-insensitive version of str_replace()
+  //        note: Compliant with PHP 5.0 str_ireplace() Full details at:
+  //        note: http://ca3.php.net/manual/en/function.str-ireplace.php
   //      format: str_ireplace($search, $replace, $subject[, 'count'])
   //  Parameters: If search and replace are arrays, then str_ireplace() takes a
   //  Parameters: value from each array and uses them to search and replace on
@@ -14,7 +14,7 @@ function str_ireplace(search, replace, subject, count) {
   //  Parameters: replacement string is used for every value of search.
   //        note: The count parameter (optional) if used must be passed in as a
   //        note: string. eg global var MyCount:
-  //        note: str_ireplace($search, $replace, $subject, 'myCount');
+  //        note: str_ireplace($search, $replace, $subject, 'MyCount');
   //       input: str_ireplace($search, $replace, $subject[, {string}]);
   //     Returns: a string or an array of replacements.
 
