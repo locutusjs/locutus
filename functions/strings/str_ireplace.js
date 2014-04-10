@@ -1,65 +1,102 @@
-function str_ireplace(search, replace, subject) {
+function str_ireplace(search, replace, subject, count) {
   //  discuss at: http://phpjs.org/functions/str_ireplace/
-  // original by: Martijn Wieringa
-  //    input by: penutbutterjelly
-  //    input by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // improved by: Jack
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // bugfixed by: Onno Marsman
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // bugfixed by: Philipp Lenssen
-  //   example 1: str_ireplace('l', 'l', 'HeLLo');
-  //   returns 1: 'Hello'
-  //   example 2: str_ireplace('$', 'foo', '$bar');
-  //   returns 2: 'foobar'
+  //  rewrite by: Glen Arason (http://CanadianDomainRegistry.ca)
+  //            : Case-insensitive version of str_replace().
+  //      format: str_ireplace(search, replace, subject[, count])
+  //  Parameters: If search and replace are arrays, then str_ireplace() takes a value
+  //                from each array and uses them to search and replace on subject. 
+  //              If replace has fewer values than search, then an empty string is 
+  //                used for the rest of replacement values. 
+  //              If search is an array and replace is a string, then this replacement 
+  //                string is used for every value of search. 
+  //        note: The count parameter if used must be passed as a string associated with 
+  //                a global variable to pass the result to.
+  //       input: str_ireplace({string}, {string}, {string}[, {string}]);
+  //       input: str_ireplace({array}, {string}, {string}[, {string}]);
+  //       input: str_ireplace({array}, {array}, {string}[, {string}]);
+  //       input: str_ireplace({array}, {string}, {array}[, {string}]);
+  //       input: str_ireplace({array}, {array}, {array}[, {string}]);
 
-  var i, k = '';
-  var searchl = 0;
-  var reg;
+  /* Modified str_replace() */
+  /* New vars prefixed with letter "o" to represent original "subject" var changes. */
+  var i = 0,
+    j = 0,
+    temp = '',
+    repl = '',
+    sl = 0,
+    fl = 0,
+    f = '',
+    r = '',
+    s = '',
+    ra = '',
+    sa = '',
+    otemp = '',
+    oi = '',
+    ofjl = '',
+    os = subject,
+    osa = Object.prototype.toString.call(os) === '[object Array]';
+  
+  /* If user enters search criteria in caps change them to lower case */
+  if(typeof(search) === 'object') {
+    temp = search;
+    search = new Array();
+    for(i=0; i<temp.length;i+=1) {
+      search[i] = temp[i].toLowerCase();
+    }
+  }else { search = search.toLowerCase(); }
+  
+  /* change the subject to lower case */
+  if(typeof(subject) === 'object') {
+    temp = subject;
+    subject = new Array();
+    for(i=0; i<temp.length;i+=1) {
+      subject[i] = temp[i].toLowerCase();
+    }
+  }else { subject = subject.toLowerCase(); }
 
-  var escapeRegex = function (s) {
-    return s.replace(/([\\\^\$*+\[\]?{}.=!:(|)])/g, '\\$1');
-  };
-
-  search += '';
-  searchl = search.length;
-  if (Object.prototype.toString.call(replace) !== '[object Array]') {
-    replace = [replace];
-    if (Object.prototype.toString.call(search) === '[object Array]') {
-      // If search is an array and replace is a string,
-      // then this replacement string is used for every value of search
-      while (searchl > replace.length) {
-        replace[replace.length] = replace[0];
-      }
+  /* removed the re-assignment of vars from this original code segment */
+  if(typeof(search) === 'object' && typeof(replace) === 'string' ) {
+    temp = replace; 
+    replace = new Array();
+    for (i=0; i < search.length; i+=1) { 
+      replace[i] = temp; 
     }
   }
-
-  if (Object.prototype.toString.call(search) !== '[object Array]') {
-    search = [search];
+  
+  /* defaults are now assigned here */
+  temp = '';
+  f = [].concat(search);
+  r = [].concat(replace);
+  ra = Object.prototype.toString.call(r) === '[object Array]';
+  s = subject;
+  sa = Object.prototype.toString.call(s) === '[object Array]';
+  s = [].concat(s);
+  os = [].concat(os);
+  
+  if (count) {
+    this.window[count] = 0;
   }
-  while (search.length > replace.length) {
-    // If replace has fewer values than search,
-    // then an empty string is used for the rest of replacement values
-    replace[replace.length] = '';
-  }
 
-  if (Object.prototype.toString.call(subject) === '[object Array]') {
-    // If subject is an array, then the search and replace is performed
-    // with every entry of subject , and the return value is an array as well.
-    for (k in subject) {
-      if (subject.hasOwnProperty(k)) {
-        subject[k] = str_ireplace(search, replace, subject[k]);
-      }
+  for (i = 0, sl = s.length; i < sl; i++) {
+    if (s[i] === '') {
+      continue;
     }
-    return subject;
-  }
+    for (j = 0, fl = f.length; j < fl; j++) {
+      temp = s[i] + '';
+      repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
+      s[i] = (temp).split(f[j]).join(repl);
+      /* update the original case sensitive subject(s) */
+      otemp = os[i] + '';
+      oi = temp.indexOf(f[j]);
+      ofjl = f[j].length;
+      if(oi >= 0) { 
+        os[i] = (otemp).split(otemp.substr(oi,ofjl)).join(repl);
+      } /* end of this mod segment */
 
-  searchl = search.length;
-  for (i = 0; i < searchl; i++) {
-    reg = new RegExp(escapeRegex(search[i]), 'gi');
-    subject = subject.replace(reg, replace[i]);
+      if (count) {
+        this.window[count] += ((temp.split(f[j])).length - 1);
+      } 
+    }
   }
-
-  return subject;
+  return osa ? os : os[0]; /* returning the modified case sensitive subject(s) */
 }
