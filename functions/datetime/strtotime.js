@@ -23,7 +23,14 @@ function strtotime(text, now) {
 
   var parsed, match, today, year, date, days, ranges, len, times, regex, i, fail = false;
 
-  if (!text) {
+  text = text.toString();
+  if( (!text) || (typeof(text) != 'string') ) { // check type rather than falsey
+    if(typeof(window.php_js) == 'object') {
+      if( (window.php_js['ERROR_REPORTING'] & 8) == 8 ) { // CODESIGN2 SHIM
+        console.log('param "text" is not string...')
+        console.log(text);
+      }
+    }
     return fail;
   }
 
