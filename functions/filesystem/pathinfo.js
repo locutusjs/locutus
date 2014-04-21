@@ -3,6 +3,7 @@ function pathinfo(path, options) {
   // original by: Nate
   //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Dmitry Gorelenkov
   //    input by: Timo
   //        note: Inspired by actual PHP source: php5-5.2.6/ext/standard/string.c line #1559
   //        note: The way the bitwise arguments are handled allows for greater flexibility
@@ -30,6 +31,7 @@ function pathinfo(path, options) {
   //   returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
 
   var opt = '',
+    real_opt = '',
     optName = '',
     optTemp = 0,
     tmp_arr = {},
@@ -58,7 +60,9 @@ function pathinfo(path, options) {
   };
   // PATHINFO_ALL sums up all previously defined PATHINFOs (could just pre-calculate)
   for (optName in OPTS) {
-    OPTS.PATHINFO_ALL = OPTS.PATHINFO_ALL | OPTS[optName];
+    if(OPTS.hasOwnProperty(optName)){
+      OPTS.PATHINFO_ALL = OPTS.PATHINFO_ALL | OPTS[optName];
+    }
   }
   if (typeof options !== 'number') {
     // Allow for a single string or an array of string flags
@@ -123,10 +127,13 @@ function pathinfo(path, options) {
   // If array contains only 1 element: return string
   cnt = 0;
   for (opt in tmp_arr) {
-    cnt++;
+    if(tmp_arr.hasOwnProperty(opt)){
+      cnt++;
+      real_opt = opt;
+    }
   }
-  if (cnt == 1) {
-    return tmp_arr[opt];
+  if (cnt === 1) {
+    return tmp_arr[real_opt];
   }
 
   // Return full-blown array
