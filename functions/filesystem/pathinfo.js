@@ -31,6 +31,7 @@ function pathinfo(path, options) {
   //   returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
 
   var opt = '',
+    real_opt = '',
     optName = '',
     optTemp = 0,
     tmp_arr = {},
@@ -128,10 +129,11 @@ function pathinfo(path, options) {
   for (opt in tmp_arr) {
     if(tmp_arr.hasOwnProperty(opt)){
       cnt++;
+      real_opt = opt;
     }
   }
-  if (cnt == 1) {
-    return tmp_arr[opt];
+  if (cnt === 1) {
+    return tmp_arr[real_opt];
   }
 
   // Return full-blown array
