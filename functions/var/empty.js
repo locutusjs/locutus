@@ -17,8 +17,10 @@ function empty(mixed_var) {
   //   returns 3: true
   //   example 4: empty({});
   //   returns 4: true
-  //   example 5: empty({'aFunc' : function () { alert('humpty'); } });
-  //   returns 5: false
+  //   example 5: empty(NaN);
+  //   returns 5: true
+  //   example 6: empty({'aFunc' : function () { alert('humpty'); } });
+  //   returns 6: false
 
   var undef, key, i, len;
   var emptyValues = [undef, null, false, 0, '', '0'];
@@ -29,6 +31,10 @@ function empty(mixed_var) {
     }
   }
 
+  if ( (typeof mixed_var === 'number') && (isNaN(mixed_var) === true) ) {
+    return false;
+  }
+  
   if (typeof mixed_var === 'object') {
     for (key in mixed_var) {
       // TODO: should we check for own properties only?
