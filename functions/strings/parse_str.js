@@ -47,7 +47,7 @@ function parse_str(str, array) {
   for (i = 0; i < sal; i++) {
     tmp = strArr[i].split('=');
     for (x = 2; x < tmp.length; x++) {
-      tmp[1] += tmp[x];
+      tmp[1] += '=' + tmp[x];
     }
     key = fixStr(tmp[0]);
     value = (tmp.length < 2) ? '' : fixStr(tmp[1]);
