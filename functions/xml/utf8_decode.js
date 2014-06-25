@@ -9,45 +9,49 @@ function utf8_decode(str_data) {
   // bugfixed by: Onno Marsman
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: kirilloid
+  // bugfixed by: w35l3y (http://www.wesley.eti.br)
   //   example 1: utf8_decode('Kevin van Zonneveld');
   //   returns 1: 'Kevin van Zonneveld'
 
   var tmp_arr = [],
     i = 0,
-    ac = 0,
     c1 = 0,
-    c2 = 0,
-    c3 = 0,
-    c4 = 0;
+    seqlen = 0;
 
   str_data += '';
 
   while (i < str_data.length) {
-    c1 = str_data.charCodeAt(i);
-    if (c1 <= 191) {
-      tmp_arr[ac++] = String.fromCharCode(c1);
-      i++;
-    } else if (c1 <= 223) {
-      c2 = str_data.charCodeAt(i + 1);
-      tmp_arr[ac++] = String.fromCharCode(((c1 & 31) << 6) | (c2 & 63));
-      i += 2;
-    } else if (c1 <= 239) {
-      // http://en.wikipedia.org/wiki/UTF-8#Codepage_layout
-      c2 = str_data.charCodeAt(i + 1);
-      c3 = str_data.charCodeAt(i + 2);
-      tmp_arr[ac++] = String.fromCharCode(((c1 & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
-      i += 3;
+    c1 = str_data.charCodeAt(i) & 0xFF;
+    seqlen = 0;
+
+    // http://en.wikipedia.org/wiki/UTF-8#Codepage_layout
+    if (c1 <= 0xBF) {
+      c1 = (c1 & 0x7F);
+      seqlen = 1;
+    } else if (c1 <= 0xDF) {
+      c1 = (c1 & 0x1F);
+      seqlen = 2;
+    } else if (c1 <= 0xEF) {
+      c1 = (c1 & 0x0F);
+      seqlen = 3;
     } else {
-      c2 = str_data.charCodeAt(i + 1);
-      c3 = str_data.charCodeAt(i + 2);
-      c4 = str_data.charCodeAt(i + 3);
-      c1 = ((c1 & 7) << 18) | ((c2 & 63) << 12) | ((c3 & 63) << 6) | (c4 & 63);
-      c1 -= 0x10000;
-      tmp_arr[ac++] = String.fromCharCode(0xD800 | ((c1 >> 10) & 0x3FF));
-      tmp_arr[ac++] = String.fromCharCode(0xDC00 | (c1 & 0x3FF));
-      i += 4;
+      c1 = (c1 & 0x07);
+      seqlen = 4;
     }
+
+    for (var ai = 1; ai < seqlen; ++ai) {
+      c1 = ((c1 << 0x06) | (str_data.charCodeAt(ai + i) & 0x3F));
+    }
+
+    if (seqlen == 4) {
+      c1 -= 0x10000;
+      tmp_arr.push(String.fromCharCode(0xD800 | ((c1 >> 10) & 0x3FF)), String.fromCharCode(0xDC00 | (c1 & 0x3FF)));
+    } else {
+      tmp_arr.push(String.fromCharCode(c1));
+    }
+
+    i += seqlen;
   }
 
-  return tmp_arr.join('');
+  return tmp_arr.join("");
 }
