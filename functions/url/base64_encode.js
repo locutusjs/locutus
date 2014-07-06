@@ -24,7 +24,7 @@ function base64_encode(data) {
     return data;
   }
 
-  data = unescape(encodeURIComponent(data))
+  data = unescape(encodeURIComponent(data));
 
   do {
     // pack three octets into four hexets
