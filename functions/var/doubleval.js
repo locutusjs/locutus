@@ -2,6 +2,7 @@ function doubleval(mixed_var) {
   //  discuss at: http://phpjs.org/functions/doubleval/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: floatval
+  // bugfixed by: Mark Topper (http://webman.io)
   //        note: 1.0 is simplified to 1 before it can be accessed by the function, this makes
   //        note: it different from the PHP implementation. We can't fix this unfortunately.
   //   example 1: doubleval(186);
