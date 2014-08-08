@@ -35,7 +35,7 @@ function array_count_values(array) {
       }
       // Fall-through
     case 'string':
-      if (value in this && this.hasOwnProperty(value)) {
+      if (value in this) {
         ++this[value];
       } else {
         this[value] = 1;
