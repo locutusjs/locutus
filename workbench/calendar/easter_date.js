@@ -3,6 +3,10 @@ function easter_date(year) {
 
   year = isNaN(year) ? new Date().getFullYear() : +year;
 
+  if (year < 1970 || year > 2037) {
+    console.warn('easter_date(): This function is only valid for years between 1970 and 2037 inclusive');
+  }
+
   var a = year % 19,
       b = year / 100 | 0,
       c = year % 100,
