@@ -1,6 +1,4 @@
 array_change_key_case#7
-array_count_values#1
-array_count_values#2
 array_diff_uassoc#1
 array_merge_recursive#1
 array_splice#1
