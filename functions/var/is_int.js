@@ -17,5 +17,5 @@ function is_int(mixed_var) {
   //   example 4: is_int(true)
   //   returns 4: false
 
-  return mixed_var === +mixed_var && isFinite(mixed_var) && !(mixed_var % 1);
+  return mixed_var === +mixed_var && isFinite(mixed_var) && ((mixed_var % 1) === 0);
 }
