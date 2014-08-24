@@ -7,7 +7,7 @@ function array_shift(inputArr) {
   //   returns 1: 'Kevin'
 
   var props = false,
-    shift = undefined,
+    shift,
     pr = '',
     allDigits = /^\d$/,
     int_ct = -1,
