@@ -1,6 +1,6 @@
 function compact() {
   //  discuss at: http://phpjs.org/functions/compact/
-  // original by: Waldo Malqui Silva
+  // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Jack
   //    input by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
