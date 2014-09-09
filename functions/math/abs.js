@@ -1,6 +1,6 @@
 function abs(mixed_number) {
   //  discuss at: http://phpjs.org/functions/abs/
-  // original by: Waldo Malqui Silva
+  // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Karol Kowalski
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)

@@ -1,6 +1,6 @@
 function ip2long(IP) {
   //  discuss at: http://phpjs.org/functions/ip2long/
-  // original by: Waldo Malqui Silva
+  // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Victor
   //  revised by: fearphage (http://http/my.opera.com/fearphage/)
   //  revised by: Theriault

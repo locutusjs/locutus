@@ -1,6 +1,6 @@
 function defined(constant_name) {
   // http://kevin.vanzonneveld.net
-  // +   original by: Waldo Malqui Silva
+  // +   original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +    revised by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Because this function can (albeit only temporarily) overwrite a global variable,
