@@ -1,10 +1,10 @@
 # php.js
 
 <!-- badges/ -->
-[![Build Status](https://secure.travis-ci.org/kvz/phpjs.png?branch=master)](http://travis-ci.org/kvz/phpjs "Check this project's build status on TravisCI")
-[![NPM version](http://badge.fury.io/js/phpjs.png)](https://npmjs.org/package/phpjs "View this project on NPM")
-[![Dependency Status](https://david-dm.org/kvz/phpjs.png?theme=shields.io)](https://david-dm.org/kvz/phpjs)
-[![Development Dependency Status](https://david-dm.org/kvz/phpjs/dev-status.png?theme=shields.io)](https://david-dm.org/kvz/phpjs#info=devDependencies)
+[![Build Status](https://secure.travis-ci.org/kvz/phpjs.svg?branch=master)](http://travis-ci.org/kvz/phpjs "Check this project's build status on TravisCI")
+[![NPM version](http://badge.fury.io/js/phpjs.svg)](https://npmjs.org/package/phpjs "View this project on NPM")
+[![Dependency Status](https://david-dm.org/kvz/phpjs.svg?theme=shields.io)](https://david-dm.org/kvz/phpjs)
+[![Development Dependency Status](https://david-dm.org/kvz/phpjs/dev-status.svg?theme=shields.io)](https://david-dm.org/kvz/phpjs#info=devDependencies)
 <!-- /badges -->
 
 php.js is a resource that offers community-built JavaScript alternatives to PHP functions.
