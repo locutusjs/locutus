@@ -8,13 +8,13 @@
     "node": ">= 0.8.0"
   },
   "dependencies": {
-    "cli": "0.4.4-2",
-    "glob": "3.2.1",
-    "send": "0.1.0",
-    "deep-equal": "0.1.2",
-    "js-beautify": "1.4.2",
-    "underscore": "1.5.2",
-    "mocha": "1.17.0"
+    "cli": "^0.4.4-2",
+    "deep-equal": "^0.1.2",
+    "glob": "^3.2.1",
+    "js-beautify": "^1.4.2",
+    "mocha": "^1.17.0",
+    "send": "^0.1.0",
+    "underscore": "^1.5.2"
   },
   "keywords": [
     "php",
