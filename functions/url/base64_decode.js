@@ -16,7 +16,7 @@ function base64_decode(data) {
   //   example 3: base64_decode('4pyTIMOgIGxhIG1vZGU=');
   //   returns 3: '✓ à la mode'
 
-  var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+  var b64 = base64_decode.dict;
   var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
     ac = 0,
     dec = '',
@@ -28,12 +28,18 @@ function base64_decode(data) {
 
   data += '';
 
+  if(!b64) {
+    var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+    base64_decode.dict = b64 = {};
+    for(var j=0; j<letters.length; j++) b64[letters.charAt(j)] = j;
+  }
+
   do {
     // unpack four hexets into three octets using index points in b64
-    h1 = b64.indexOf(data.charAt(i++));
-    h2 = b64.indexOf(data.charAt(i++));
-    h3 = b64.indexOf(data.charAt(i++));
-    h4 = b64.indexOf(data.charAt(i++));
+    h1 = b64[data.charAt(i++)];
+    h2 = b64[data.charAt(i++)];
+    h3 = b64[data.charAt(i++)];
+    h4 = b64[data.charAt(i++)];
 
     bits = h1 << 18 | h2 << 12 | h3 << 6 | h4;
 
