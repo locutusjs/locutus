@@ -37,4 +37,28 @@ describe('src/php/strings/sprintf.js (tested in test/languages/php/strings/test-
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 6', function (done) {
+    var expected = '+000000009'
+    var result = sprintf('%+010d', 9)
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 7', function (done) {
+    var expected = '@@@@@@@@+9'
+    var result = sprintf('%+0\'@10d', 9)
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 8', function (done) {
+    var expected = '3.140000'
+    var result = sprintf('%.f', 3.14)
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 9', function (done) {
+    var expected = '% 2'
+    var result = sprintf('%% %2$d', 1, 2)
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })

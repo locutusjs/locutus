@@ -4,6 +4,7 @@ module.exports = function base64_decode (encodedData) { // eslint-disable-line c
   // improved by: Thunder.m
   // improved by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Kevin van Zonneveld (http://kvz.io)
+  // improved by: Dumitru Uzun (http://duzun.me)
   //    input by: Aman Gupta
   //    input by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -25,6 +26,8 @@ module.exports = function base64_decode (encodedData) { // eslint-disable-line c
     return decodeURIComponent(str.split('').map(function (c) {
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
     }).join(''))
+
+    // return decodeURIComponent(escape(str)); // this is much faster than the above
   }
 
   if (typeof window !== 'undefined') {
@@ -35,7 +38,8 @@ module.exports = function base64_decode (encodedData) { // eslint-disable-line c
     return new Buffer(encodedData, 'base64').toString('utf-8')
   }
 
-  var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
+  var b64 = base64_decode.dict
+
   var o1
   var o2
   var o3
@@ -55,12 +59,18 @@ module.exports = function base64_decode (encodedData) { // eslint-disable-line c
 
   encodedData += ''
 
+  if (!b64) {
+    var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
+    base64_decode.dict = b64 = {}
+    for (var j = 0; j < letters.length; j++) b64[letters.charAt(j)] = j
+  }
+
   do {
     // unpack four hexets into three octets using index points in b64
-    h1 = b64.indexOf(encodedData.charAt(i++))
-    h2 = b64.indexOf(encodedData.charAt(i++))
-    h3 = b64.indexOf(encodedData.charAt(i++))
-    h4 = b64.indexOf(encodedData.charAt(i++))
+    h1 = b64[encodedData.charAt(i++)]
+    h2 = b64[encodedData.charAt(i++)]
+    h3 = b64[encodedData.charAt(i++)]
+    h4 = b64[encodedData.charAt(i++)]
 
     bits = h1 << 18 | h2 << 12 | h3 << 6 | h4
 
@@ -78,6 +88,5 @@ module.exports = function base64_decode (encodedData) { // eslint-disable-line c
   } while (i < encodedData.length)
 
   dec = tmpArr.join('')
-
   return decodeUTF8string(dec.replace(/\0+$/, ''))
 }
