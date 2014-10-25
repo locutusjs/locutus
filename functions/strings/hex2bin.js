@@ -5,13 +5,18 @@ function hex2bin(s) {
   //   returns 1: 'Dima'
   //   example 2: bin2hex('00');
   //   returns 2: '\x00'
+  //   example 3: bin2hex('2f1q')
+  //   returns 3: false
 
   var ret = [], i = 0, l;
 
   s += '';
 
   for ( l = s.length ; i < l; i+=2 ) {
-    ret.push(parseInt(s.substr(i, 2), 16));
+    var c = parseInt(s.substr(i, 1), 16);
+    var k = parseInt(s.substr(i+1, 1), 16);
+    if(isNaN(c) || isNaN(k)) return false;
+    ret.push( (c << 4) | k );
   }
 
   return String.fromCharCode.apply(String, ret);
