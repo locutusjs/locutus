@@ -10,7 +10,7 @@ function hex2bin(s) {
 
   s += '';
 
-  for ( l  s.length ; i < l; i+=2 ) {
+  for ( l = s.length ; i < l; i+=2 ) {
     ret.push(parseInt(s.substr(i, 2), 16));
   }
 
