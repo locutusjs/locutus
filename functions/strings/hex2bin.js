@@ -18,10 +18,18 @@ function hex2bin(s) {
   //        In PHP 5.4.0 the string was silently accepted,
   //        but the last byte was truncated.
   if ( l & 1 ) {
-    throw new Error('hex2bin(): Hexadecimal input string must have an even length');
+    // PHP 5.4.1
+    if ( typeof console != 'undefined' && console.warn ) {
+        throw new Error('hex2bin(): Hexadecimal input string must have an even length');
+        return false;
+    }
+    // PHP 5.4.0
+    else {
+        l--;
+    }
   }
 
-  for ( ; i < l; i+=2 ) {
+  for ( ; i < l; i += 2 ) {
     var c = parseInt(s.substr(i, 1), 16);
     var k = parseInt(s.substr(i+1, 1), 16);
     if(isNaN(c) || isNaN(k)) return false;
