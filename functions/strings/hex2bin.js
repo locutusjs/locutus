@@ -21,7 +21,7 @@ function hex2bin(s) {
     throw new Error('hex2bin(): Hexadecimal input string must have an even length');
   }
 
-  for ( l = s.length ; i < l; i+=2 ) {
+  for ( ; i < l; i+=2 ) {
     var c = parseInt(s.substr(i, 1), 16);
     var k = parseInt(s.substr(i+1, 1), 16);
     if(isNaN(c) || isNaN(k)) return false;
