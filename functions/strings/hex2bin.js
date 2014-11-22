@@ -11,6 +11,15 @@ function hex2bin(s) {
   var ret = [], i = 0, l;
 
   s += '';
+  
+  l = s.length;
+  
+  // 5.4.1:	A warning is thrown if the input string is of odd length. 
+  //        In PHP 5.4.0 the string was silently accepted,
+  //        but the last byte was truncated.
+  if ( l & 1 ) {
+    throw new Error('hex2bin(): Hexadecimal input string must have an even length');
+  }
 
   for ( l = s.length ; i < l; i+=2 ) {
     var c = parseInt(s.substr(i, 1), 16);
