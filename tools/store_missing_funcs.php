@@ -131,8 +131,8 @@
         }
     }
     
-    $function_homedir = "/home/kevin/workspace/plutonia-phpjs/functions";
-    $unported_homedir = "/home/kevin/workspace/plutonia-phpjs/_unported";
+    $function_homedir = "/home/kevin/code/plutonia-phpjs/functions";
+    $unported_homedir = "/home/kevin/code/plutonia-phpjs/_unported";
     
     $js_subcats  = jsSubCats($function_homedir);
     // js subcats are leading, otherwise we would get an enormous amount of unportable functions (snmp, gd, etc)
