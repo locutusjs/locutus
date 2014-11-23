@@ -7,6 +7,8 @@ function hex2bin(s) {
   //   returns 2: '\x00'
   //   example 3: hex2bin('2f1q')
   //   returns 3: false
+  //   example 4: hex2bin('44696d6');
+  //   returns 4: false
 
   var ret = [], i = 0, l;
 
@@ -21,12 +23,8 @@ function hex2bin(s) {
     // PHP 5.4.1
     if ( typeof console != 'undefined' && console.warn ) {
         throw new Error('hex2bin(): Hexadecimal input string must have an even length');
-        return false;
     }
-    // PHP 5.4.0
-    else {
-        l--;
-    }
+    return false;
   }
 
   for ( ; i < l; i += 2 ) {
