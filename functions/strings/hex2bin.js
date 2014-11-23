@@ -22,7 +22,7 @@ function hex2bin(s) {
   if ( l & 1 ) {
     // PHP 5.4.1
     if ( typeof console != 'undefined' && console.warn ) {
-        throw new Error('hex2bin(): Hexadecimal input string must have an even length');
+        console.warn('hex2bin(): Hexadecimal input string must have an even length');
     }
     return false;
   }
