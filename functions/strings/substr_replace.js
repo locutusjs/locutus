@@ -11,14 +11,18 @@ function substr_replace(str, repl, start, length){
 
 		mixed substr_replace ( mixed $string , mixed $replacement , mixed $start [, mixed $length ] )
 
-		substr_replace() replaces a copy of string delimited by the start and (optionally) length parameters with the string given in replacement.
+		substr_replace() replaces a copy of string delimited by the start and (optionally) length parameters
+		with the string given in replacement.
 
 	Parameters
 
 		string
 			The input string.
 
-			An array of strings can be provided, in which case the replacements will occur on each string in turn. In this case, the replacement, start and length parameters may be provided either as scalar values to be applied to each input string in turn, or as arrays, in which case the corresponding array element will be used for each input string.
+			An array of strings can be provided, in which case the replacements will occur on each
+			string in turn. In this case, the replacement, start and length parameters may be provided
+			either as scalar values to be applied to each input string in turn, or as arrays, in which
+			case the corresponding array element will be used for each input string.
 
 		replacement
 			The replacement string.
@@ -26,10 +30,15 @@ function substr_replace(str, repl, start, length){
 		start
 			If start is positive, the replacing will begin at the start'th offset into string.
 
-			If start is negative, the replacing will begin at the start'th character from the end of string.
+			If start is negative, the replacing will begin at the start'th character from the end of
+			string.
 
 		length
-			If given and is positive, it represents the length of the portion of string which is to be replaced. If it is negative, it represents the number of characters from the end of string at which to stop replacing. If it is not given, then it will default to strlen( string ); i.e. end the replacing at the end of string. Of course, if length is zero then this function will have the effect of inserting replacement into string at the given start offset.
+			If given and is positive, it represents the length of the portion of string which is to be
+			replaced. If it is negative, it represents the number of characters from the end of string
+			at which to stop replacing. If it is not given, then it will default to strlen( string );
+			i.e. end the replacing at the end of string. Of course, if length is zero then this function
+			will have the effect of inserting replacement into string at the given start offset.
 	*/
 	// Parrametres
 	if(typeof(length)=="undefined"){
