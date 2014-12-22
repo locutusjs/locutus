@@ -1,47 +1,35 @@
 function substr_replace(str, repl, start, length){
-	/*
-	discuss at: http://phpjs.org/functions/substr_replace/
-	original by: Tobie Ebede
-	
-	substr_replace
+  //  discuss at: http://phpjs.org/functions/substr_replace/
+  // original by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: substr_replace('ABCDEFGH:/MNRPQR/', 'bob', 0);
+  //   returns 1: 'bob'
+  //   example 2: $var = 'ABCDEFGH:/MNRPQR/';
+  //   example 2: substr_replace($var, 'bob', 0, $var.length);
+  //   returns 2: 'bob'
+  //   example 3: substr_replace('ABCDEFGH:/MNRPQR/', 'bob', 0, 0);
+  //   returns 3: 'bobABCDEFGH:/MNRPQR/'
+  //   example 4: substr_replace('ABCDEFGH:/MNRPQR/', 'bob', 10, -1);
+  //   returns 4: 'ABCDEFGH:bobMNRPQR/'
+  //   example 5: substr_replace('ABCDEFGH:/MNRPQR/', 'bob', -7, -1);
+  //   returns 5: 'ABCDEFGH:bobMNRPQR/'
+  //   example 6: substr_replace('ABCDEFGH:/MNRPQR/', '', 10, -1)
+  //   returns 6: 'ABCDEFGH:MNRPQR/'
+  //   example 7: substr_replace('ABCDEFGH:/MNRPQR/', ['1', '2', '3'], 9, 0)
+  //   returns 7: 'ABCDEFGH:321/MNRPQR/'
+  //   example 8: substr_replace('ABCDEFGH:/MNRPQR/', ['1', '2', '3'], [10, 11, 12], 2)
+  //   returns 8: 'ABCDEFGH:/123/'
+  //   example 9: substr_replace('ABCDEFGH:/MNRPQR/', ['1', '2', '3'], [0, 3, 5], [8, 6, 0])
+  //   returns 9: '1:/2/3'
+  //   example 10: substr_replace(['A: XXX', 'B: XXX', 'C: XXX'], 'YYY', 3, 3)
+  //   returns 10: 'A: YYY,B: YYY,C: YYY'
+  //   example 11: substr_replace(['A: XXX', 'B: XXX', 'C: XXX'], ['AAA', 'BBB', 'CCC'], 3, 3)
+  //   returns 11: 'A: AAA,B: BBB,C: CCC'
+  //   example 12: substr_replace(['A: XXX', 'B: XXX', 'C: XXX'], ['AAA', 'BBB', 'CCC'], 3, [1, 2, 3])
+  //   returns 12: 'A: AAAXX,B: BBBX,C: CCC'
+  //   example 13: substr_replace(['A: XXXXX', 'B: XXXXX', 'C: XXXXX'], ['AAA', 'BBB', 'CCC'], [3, 4, 5], [1, 2, 3])
+  //   returns 13: 'A: AAAXXXX,B: XBBBXX,C: XXCCC'
 
-		substr_replace — Replace text within a portion of a string
-
-	Description
-
-		mixed substr_replace ( mixed $string , mixed $replacement , mixed $start [, mixed $length ] )
-
-		substr_replace() replaces a copy of string delimited by the start and (optionally) length parameters
-		with the string given in replacement.
-
-	Parameters
-
-		string
-			The input string.
-
-			An array of strings can be provided, in which case the replacements will occur on each
-			string in turn. In this case, the replacement, start and length parameters may be provided
-			either as scalar values to be applied to each input string in turn, or as arrays, in which
-			case the corresponding array element will be used for each input string.
-
-		replacement
-			The replacement string.
-
-		start
-			If start is positive, the replacing will begin at the start'th offset into string.
-
-			If start is negative, the replacing will begin at the start'th character from the end of
-			string.
-
-		length
-			If given and is positive, it represents the length of the portion of string which is to be
-			replaced. If it is negative, it represents the number of characters from the end of string
-			at which to stop replacing. If it is not given, then it will default to strlen( string );
-			i.e. end the replacing at the end of string. Of course, if length is zero then this function
-			will have the effect of inserting replacement into string at the given start offset.
-	*/
-	// Parrametres
-	if(typeof(length)=="undefined"){
+	if(typeof(length)=="undefined"){// Parrametres
 		length = str;
 		if(typeof(length)=="object"){
 			for(i=0;i!=length;i++){
