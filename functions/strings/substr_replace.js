@@ -1,4 +1,4 @@
-function substr_replace(str, replace, start, length) {
+function substr_replace(str, replace, start, length){
   //  discuss at: http://phpjs.org/functions/substr_replace/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: substr_replace('ABCDEFGH:/MNRPQR/', 'bob', 0);
@@ -29,7 +29,7 @@ function substr_replace(str, replace, start, length) {
   //   example 13: substr_replace(['A: XXXXX', 'B: XXXXX', 'C: XXXXX'], ['AAA', 'BBB', 'CCC'], [3, 4, 5], [1, 2, 3])
   //   returns 13: ['A: AAAXXXX','B: XBBBXX','C: XXCCC']
 
-  function substr_replaceOperation(str, replace, start, length) {
+  function substrReplace(str, replace, start, length) {
 
     if (start < 0) { // start position in str
       start = start + str.length;
@@ -41,8 +41,8 @@ function substr_replace(str, replace, start, length) {
 
     return str.slice(0, start) + replace.substr(0, length) + replace.slice(length) + str.slice(start + length);
   }
-  var returns = Array(); // Return values
-  var tasks = Array(); // Tasks
+  var returns = Array();
+  var tasks = Array();
   if (typeof(length) === "undefined") { // Get length if not given
     length = str;
     if (typeof(length) === "object") {
@@ -66,7 +66,7 @@ function substr_replace(str, replace, start, length) {
   }else{
     length = parseInt(length);
   }
-  if (typeof(str) === "string") { // Add string into taskss
+  if (typeof(str) === "string") { // Add strings into tasks
       tasks[0] = Array(str);
   }else if (typeof(str) === "object") {
     for (i = 0; i !== str.length; i++) {
@@ -74,52 +74,41 @@ function substr_replace(str, replace, start, length) {
     }
   }
   for (i = 0; i !== tasks.length; i++) {
-    tasks[i][1] = (typeof(replace) === "string" || tasks.length === 1)
-      ? tasks[i][1]=replace
-      : tasks[i][1]=replace[i];
-    tasks[i][2] = (typeof(start) === "number" || tasks.length === 1)
-      ? tasks[i][2]=start
-      : tasks[i][2]=start[i];
-    tasks[i][3] = (typeof(length) === "number" || tasks.length === 1)
-      ? tasks[i][3]=length
-      : tasks[i][3]=length[i];
-  }
-  for (i=0;i!=tasks.length;i++) {
-    var opStr = tasks[i][0];
-    var opRep = tasks[i][1];
-    var opSta = tasks[i][2];
-    var opLen = tasks[i][3];
-    var op = Array();
-    var count = 1;
-    count = (typeof(opRep) === "object"&&opRep.length>count)
-      ? opRep.length
+    tasks[i][1] = (typeof(replace) === "string" || tasks.length === 1) // Add replaces into tasks
+      ? replace
+      : replace[i];
+    tasks[i][2] = (typeof(start) === "number" || tasks.length === 1) // Add starts into tasks
+      ? start
+      : start[i];
+    tasks[i][3] = (typeof(length) === "number" || tasks.length === 1) // Add lengths into tasks
+      ? length
+      : length[i];
+    var string = tasks[i][0];// This string
+    var count = 1; // Number of operations for this string
+    count = (typeof(tasks[i][1]) === "object" && tasks[i][1].length > count)
+      ? tasks[i][1].length
       : count;
-    count = (typeof(opSta) === "object"&&opSta.length>count)
-      ? opSta.length
+    count = (typeof(tasks[i][2]) === "object" && tasks[i][2].length > count)
+      ? tasks[i][2].length
       : count;
-    count = (typeof(opLen) === "object"&&opLen.length>count)
-      ? opLen.length
+    count = (typeof(tasks[i][3]) === "object" && tasks[i][3].length > count)
+      ? tasks[i][3].length
       : count;
-    for (j=0;j!=count;j++) {
-      op[j] = Array();
-      op[j][0] = (typeof(opRep) === "string")
-        ? op[j][0]=opRep
-        : op[j][0]=opRep[j];
-      op[j][1] = (typeof(opSta) === "number")
-        ? op[j][1]=opSta
-        : op[j][1]=opSta[j];
-      op[j][2] = (typeof(opLen) === "number")
-        ? op[j][2]=opLen
-        : op[j][2]=opLen[j];
+    for (j = 0; j !== count; j++) {
+      var replacee = (typeof(tasks[i][1]) === "string")
+        ? tasks[i][1]
+        : tasks[i][1][j];
+      var startt = (typeof(tasks[i][2]) === "number")
+        ? tasks[i][2]
+        : tasks[i][2][j];
+      var lengthh = (typeof(tasks[i][3]) === "number")
+        ? tasks[i][3]
+        : tasks[i][3][j];
+      string = substrReplace(string, replacee, startt, lengthh);
     }
-    var stringBuffering=opStr;
-    for (j=0;j !== op.length;j++) {
-      stringBuffering = substr_replaceOperation(stringBuffering, op[j][0],op[j][1],op[j][2]);
-    }
-    returns[i] = stringBuffering;
+    returns[i] = string;
   }
-  if (returns.length === 1) {
-    return returns[0];
-  }
-  return returns;
+  return (returns.length === 1)
+    ? returns[0]
+    : returns;
 }
