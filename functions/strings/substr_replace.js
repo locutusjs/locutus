@@ -9,11 +9,11 @@ function substr_replace(str, repl, start, length){
   //   example 3: substr_replace('ABCDEFGH:/MNRPQR/', 'bob', 0, 0);
   //   returns 3: 'bobABCDEFGH:/MNRPQR/'
   //   example 4: substr_replace('ABCDEFGH:/MNRPQR/', 'bob', 10, -1);
-  //   returns 4: 'ABCDEFGH:bobMNRPQR/'
+  //   returns 4: 'ABCDEFGH:/bob/'
   //   example 5: substr_replace('ABCDEFGH:/MNRPQR/', 'bob', -7, -1);
-  //   returns 5: 'ABCDEFGH:bobMNRPQR/'
+  //   returns 5: 'ABCDEFGH:/bob/'
   //   example 6: substr_replace('ABCDEFGH:/MNRPQR/', '', 10, -1)
-  //   returns 6: 'ABCDEFGH:MNRPQR/'
+  //   returns 6: 'ABCDEFGH://'
   //   example 7: substr_replace('ABCDEFGH:/MNRPQR/', ['1', '2', '3'], 9, 0)
   //   returns 7: 'ABCDEFGH:321/MNRPQR/'
   //   example 8: substr_replace('ABCDEFGH:/MNRPQR/', ['1', '2', '3'], [10, 11, 12], 2)
@@ -56,18 +56,15 @@ function substr_replace(str, repl, start, length){
 	x = Array();
 	// Operation Principale
 	function sub_rep_op(opstr, oprepl, opstart, oplength){
-		if(opstart<0){opstart = opstr.length+opstart;}
-		if(oplength<0){
-			cut1 = opstr.substring(0, opstart+oplength);
-			cut2 = opstr.substring(opstart+oplength, opstart);
-			cut3 = opstr.substring(opstart, opstr.length);
-		}else{
-			cut1 = opstr.substring(0, opstart);
-			cut2 = opstr.substring(opstart, opstart+oplength);
-			cut3 = opstr.substring(opstart+oplength, opstr.length);
+		if (opstart < 0) { // start position in str
+			opstart = opstart + opstr.length;
 		}
-		cut2 = oprepl;
-		return cut1+cut2+cut3;
+		oplength = oplength !== undefined ? oplength : opstr.length;
+		if (oplength < 0) {
+			oplength = oplength + opstr.length - opstart;
+		}
+		
+		return opstr.slice(0, opstart) + oprepl.substr(0, oplength) + oprepl.slice(oplength) + opstr.slice(opstart + oplength);
 	}
 	// CrÃ©ation du tableau des tÃ¢ches
 	tache = Array();
