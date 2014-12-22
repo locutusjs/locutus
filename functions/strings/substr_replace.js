@@ -29,139 +29,141 @@ function substr_replace(str, repl, start, length){
   //   example 13: substr_replace(['A: XXXXX', 'B: XXXXX', 'C: XXXXX'], ['AAA', 'BBB', 'CCC'], [3, 4, 5], [1, 2, 3])
   //   returns 13: ['A: AAAXXXX','B: XBBBXX','C: XXCCC']
 
-	if(typeof(length)=="undefined"){// Parrametres
-		length = str;
-		if(typeof(length)=="object"){
-			for(i=0;i!=length;i++){
-				length[i]=length[i].length;
-			}
-		}else{
-			length = length.length;
-		}
-	}
-	if(typeof(start)=="object"){
-		for(i=0;i!=start.length;i++){
-			start[i]=parseInt(start[i]);
-		}
-	}else{
-		start = parseInt(start);
-	}
-	if(typeof(length)=="object"){
-		for(i=0;i!=length.length;i++){
-			length[i]=parseInt(length[i]);
-		}
-	}else{
-		length = parseInt(length);
-	}
-	x = Array();
-	// Operation Principale
-	function sub_rep_op(opstr, oprepl, opstart, oplength){
-		if (opstart < 0) { // start position in str
-			opstart = opstart + opstr.length;
-		}
-		oplength = oplength !== undefined ? oplength : opstr.length;
-		if (oplength < 0) {
-			oplength = oplength + opstr.length - opstart;
-		}
-		
-		return opstr.slice(0, opstart) + oprepl.substr(0, oplength) + oprepl.slice(oplength) + opstr.slice(opstart + oplength);
-	}
-	// CrÃ©ation du tableau des tÃ¢ches
-	tache = Array();
-	if(typeof(str)=="string"){
-			tache[0] = Array(str);
-	}else if(typeof(str)=="object"&&typeof(str[0])=="string"){
-		for(i=0;i!=str.length;i++){
-			tache[i] = Array(str[i]);
-		}
-	}
-	for(i=0;i!=tache.length; i++){
-		// Replacement
-		if(typeof(repl)=="string"){
-			// String Replacement
-			tache[i][1]=repl;
-		}else if(tache.length==1){
-			// Array non-Relative Replacement
-			tache[i][1]=repl;
-		}else{
-			// Array Relative Replacement
-			tache[i][1]=repl[i];
-		}
-		// Start
-		if(typeof(start)=="number"){
-			// String Start
-			tache[i][2]=start;
-		}else if(tache.length==1){
-			// Array non-Relative Start
-			tache[i][2]=start;
-		}else{
-			// Array Relative Start
-			tache[i][2]=start[i];
-		}
-		// Length
-		if(typeof(length)=="number"){
-			// String Length
-			tache[i][3]=length;
-		}else if(tache.length==1){
-			// Array non-Relative Length
-			tache[i][3]=length;
-		}else{
-			// Array Relative Length
-			tache[i][3]=length[i];
-		}
-	}
-	for(i=0;i!=tache.length;i++){
-		opStr = tache[i][0];
-		opRep = tache[i][1];
-		opSta = tache[i][2];
-		opLen = tache[i][3];
-		op = Array();
-		count = 1;
-		if(typeof(opRep)=="object"&&opRep.length>count){
-			count = opRep.length;
-		}
-		if(typeof(opSta)=="object"&&opSta.length>count){
-			count = opSta.length;
-		}
-		if(typeof(opLen)=="object"&&opLen.length>count){
-			count = opLen.length;
-		}
-		for(j=0;j!=count;j++){
-			op[j] = Array();
-			// Replacement
-			if(typeof(opRep)=="string"){
-				// String Replacement
-				op[j][0]=opRep;
-			}else{
-				// Array Relative Replacement
-				op[j][0]=opRep[j];
-			}
-			// Start
-			if(typeof(opSta)=="number"){
-				// String Start
-				op[j][1]=opSta;
-			}else{
-				// Array Relative Start
-				op[j][1]=opSta[j];
-			}
-			// Length
-			if(typeof(opLen)=="number"){
-				// String Length
-				op[j][2]=opLen;
-			}else{
-				// Array Relative Length
-				op[j][2]=opLen[j];
-			}
-		}
-		syncString=opStr;
-		for(j=0;j!=op.length;j++){
-			syncString = sub_rep_op(syncString, op[j][0],op[j][1],op[j][2]);
-		}
-		x[i] = syncString;
-	}
-	if(x.length==1){
-		return x[0];
-	}else{
-		return x;
-	}
+  function substr_replace_(str, replace, start, length) {
+
+    if (start < 0) { // start position in str
+      start = start + str.length;
+    }
+    length = length !== undefined ? length : str.length;
+    if (length < 0) {
+      length = length + str.length - start;
+    }
+
+    return str.slice(0, start) + replace.substr(0, length) + replace.slice(length) + str.slice(start + length);
+  }
+  // Get length if not given
+  if (typeof(length)=="undefined") {
+    length = str;
+    if (typeof(length)=="object") {
+      for (i=0;i!=length;i++) {
+        length[i]=length[i].length;
+      }
+    }else{
+      length = length.length;
+    }
+  }
+  // Convert start to integer
+  if (typeof(start)=="object") {
+    for(i=0;i!=start.length;i++){
+      start[i]=parseInt(start[i]);
+    }
+  }else{
+    start = parseInt(start);
+  }
+  // Convert length to integer
+  if (typeof(length)=="object") {
+    for (i=0;i!=length.length;i++) {
+      length[i]=parseInt(length[i]);
+    }
+  }else{
+    length = parseInt(length);
+  }
+  var returns = Array();
+  var task = Array();
+  if (typeof(str)=="string") {
+      task[0] = Array(str);
+  }else if (typeof(str)=="object"&&typeof(str[0])=="string") {
+    for (i=0;i!=str.length;i++) {
+      task[i] = Array(str[i]);
+    }
+  }
+  for (i=0;i!=task.length; i++) {
+    // Replacement
+    if (typeof(repl)=="string") {
+      // String Replacement
+      task[i][1]=repl;
+    }else if (task.length==1) {
+      // Array non-Relative Replacement
+      task[i][1]=repl;
+    }else{
+      // Array Relative Replacement
+      task[i][1]=repl[i];
+    }
+    // Start
+    if (typeof(start)=="number") {
+      // String Start
+      task[i][2]=start;
+    }else if (task.length==1) {
+      // Array non-Relative Start
+      task[i][2]=start;
+    }else{
+      // Array Relative Start
+      task[i][2]=start[i];
+    }
+    // Length
+    if (typeof(length)=="number") {
+      // String Length
+      task[i][3]=length;
+    }else if (task.length==1) {
+      // Array non-Relative Length
+      task[i][3]=length;
+    }else{
+      // Array Relative Length
+      task[i][3]=length[i];
+    }
+  }
+  for (i=0;i!=task.length;i++) {
+    var opStr = task[i][0];
+    var opRep = task[i][1];
+    var opSta = task[i][2];
+    var opLen = task[i][3];
+    var op = Array();
+    var count = 1;
+    if (typeof(opRep)=="object"&&opRep.length>count) {
+      count = opRep.length;
+    }
+    if (typeof(opSta)=="object"&&opSta.length>count) {
+      count = opSta.length;
+    }
+    if (typeof(opLen)=="object"&&opLen.length>count) {
+      count = opLen.length;
+    }
+    for (j=0;j!=count;j++) {
+      op[j] = Array();
+      // Replacement
+      if (typeof(opRep)=="string") {
+        // String Replacement
+        op[j][0]=opRep;
+      }else{
+        // Array Relative Replacement
+        op[j][0]=opRep[j];
+      }
+      // Start
+      if (typeof(opSta)=="number") {
+        // String Start
+        op[j][1]=opSta;
+      }else{
+        // Array Relative Start
+        op[j][1]=opSta[j];
+      }
+      // Length
+      if (typeof(opLen)=="number") {
+        // String Length
+        op[j][2]=opLen;
+      }else{
+        // Array Relative Length
+        op[j][2]=opLen[j];
+      }
+    }
+    var string_buffering=opStr;
+    for (j=0;j!=op.length;j++) {
+      string_buffering = substr_replace_(string_buffering, op[j][0],op[j][1],op[j][2]);
+    }
+    returns[i] = string_buffering;
+  }
+  if (returns.length==1) {
+    return returns[0];
+  }else{
+    return returns;
+  }
 }
