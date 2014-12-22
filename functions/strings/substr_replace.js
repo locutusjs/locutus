@@ -21,13 +21,13 @@ function substr_replace(str, repl, start, length){
   //   example 9: substr_replace('ABCDEFGH:/MNRPQR/', ['1', '2', '3'], [0, 3, 5], [8, 6, 0])
   //   returns 9: '1:/2/3'
   //   example 10: substr_replace(['A: XXX', 'B: XXX', 'C: XXX'], 'YYY', 3, 3)
-  //   returns 10: 'A: YYY,B: YYY,C: YYY'
+  //   returns 10: ['A: YYY','B: YYY','C: YYY']
   //   example 11: substr_replace(['A: XXX', 'B: XXX', 'C: XXX'], ['AAA', 'BBB', 'CCC'], 3, 3)
-  //   returns 11: 'A: AAA,B: BBB,C: CCC'
+  //   returns 11: ['A: AAA','B: BBB','C: CCC']
   //   example 12: substr_replace(['A: XXX', 'B: XXX', 'C: XXX'], ['AAA', 'BBB', 'CCC'], 3, [1, 2, 3])
-  //   returns 12: 'A: AAAXX,B: BBBX,C: CCC'
+  //   returns 12: ['A: AAAXX','B: BBBX','C: CCC']
   //   example 13: substr_replace(['A: XXXXX', 'B: XXXXX', 'C: XXXXX'], ['AAA', 'BBB', 'CCC'], [3, 4, 5], [1, 2, 3])
-  //   returns 13: 'A: AAAXXXX,B: XBBBXX,C: XXCCC'
+  //   returns 13: ['A: AAAXXXX','B: XBBBXX','C: XXCCC']
 
 	if(typeof(length)=="undefined"){// Parrametres
 		length = str;
