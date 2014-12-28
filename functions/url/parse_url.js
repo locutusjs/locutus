@@ -14,6 +14,18 @@ function parse_url(str, component) {
   //             note: an extra slash after the scheme/protocol (to allow file:/// as in PHP)
   //        example 1: parse_url('http://username:password@hostname/path?arg=value#anchor');
   //        returns 1: {scheme: 'http', host: 'hostname', user: 'username', pass: 'password', path: '/path', query: 'arg=value', fragment: 'anchor'}
+  //        example 2: parse_url('http://en.wikipedia.org/wiki/%22@%22_%28album%29');
+  //        returns 2: {scheme: 'http', host: 'en.wikipedia.org', port: 80, path: '/wiki/%22@%22_%28album%29'}
+  //        example 3: parse_url('https://host.domain.tld/a@b.c/folder')
+  //        returns 3: {scheme: 'https', host: 'host.domain.tld', port: 443, path: '/a@b.c/folder'}
+  //        example 4: parse_url('https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar');
+  //        returns 4: { scheme: 'https', host: 'www.example.com', port: 443, path: '/a@b.c/folder', query: '?foo=bar', user: 'gooduser', pass: 'secretpassword' }
+
+  try {
+    this.php_js = this.php_js || {};
+  } catch (e) {
+    this.php_js = {};
+  }
 
   var query;
   var ini  = (this.php_js && this.php_js.ini) || {};
