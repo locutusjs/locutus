@@ -12,5 +12,11 @@ function str_repeat(input, multiplier) {
     input = ("string" === typeof input) ? input : "";
     multiplier = ("number" === typeof multiplier) ? Math.max(0, multiplier) : 0;
 
-    return ("function" === typeof String.prototype.repeat) ? String.prototype.repeat.call(input, multiplier) : ((new Array(multiplier + 1)).join(input)); //ES6 Harmony, or Array Join, Either Way: No Loops.
+    if("function" === typeof String.prototype.repeat){ //use native ES6 Harmony, if exist.
+      input = String.prototype.repeat.call(input, multiplier);
+    }else{
+      input = ((new Array(multiplier + 1)).join(input));
+    }
+    
+    return input;
   }
