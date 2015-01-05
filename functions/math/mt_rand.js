@@ -10,12 +10,12 @@ function mt_rand(min, max) {
   //   returns 2: -37
 
   var
-    MIN_INTEGER = Number && Number.MIN_SAFE_INTEGER || 2147483647, //JavaScript native min lower-limit.
+    MIN_INTEGER = Number && Number.MIN_SAFE_INTEGER || 0, //JavaScript native min lower-limit.
     MAX_INTEGER = Number && Number.MAX_SAFE_INTEGER || 2147483647; //JavaScript native max upper-limit.
 
   //normalize input (if not number or float)
-  min = ("number" === typeof min) ? ~~min : MIN_INTEGER;
-  max = ("number" === typeof max) ? ~~max : MAX_INTEGER;
+  min = ("number" === typeof min) ? Math.floor(min) : MIN_INTEGER;
+  max = ("number" === typeof max) ? Math.floor(max) : MAX_INTEGER;
 
   //buffer-overflow prevention.
   min = min < MIN_INTEGER ? MIN_INTEGER : min;
@@ -24,5 +24,5 @@ function mt_rand(min, max) {
   max = max > MAX_INTEGER ? MAX_INTEGER : max;
 
   max = ((max - min) + 1); //lowering upper-limit.
-  return min + ~~(Math.random() * max);
+  return min + Math.floor(Math.random() * max);
 }
