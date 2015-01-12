@@ -32,7 +32,7 @@ function min() {
         }
       }
       return ar;
-    }; //function _obj2Array
+    }, //function _obj2Array
   _compare = function (current, next) {
     var i = 0,
       n = 0,
@@ -83,6 +83,7 @@ function min() {
     }
     return (next > current ? 1 : -1);
   }; //function _compare
+
   if (argc === 0) {
     throw new Error('At least one value should be passed to min()');
   } else if (argc === 1) {
@@ -91,6 +92,7 @@ function min() {
     } else {
       throw new Error('Wrong parameter count for min()');
     }
+
     if (ar.length === 0) {
       throw new Error('Array must contain at least one element for min()');
     }
@@ -99,6 +101,7 @@ function min() {
   }
 
   retVal = ar[0];
+
   for (i = 1, n = ar.length; i < n; ++i) {
     if (_compare(retVal, ar[i]) == -1) {
       retVal = ar[i];
