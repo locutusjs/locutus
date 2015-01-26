@@ -514,7 +514,7 @@ function _phpjs_shared_bc() {
     },
 
     /* Recursive divide and conquer multiply algorithm.
-       original by
+       based on
        Let u = u0 + u1*(b^n)
        Let v = v0 + v1*(b^n)
        Then uv = (B^2n+B^n)*u1*v1 + B^n*(u1-u0)*(v0-v1) + (B^n+1)*u0*v0

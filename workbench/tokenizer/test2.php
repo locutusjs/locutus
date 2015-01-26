@@ -575,7 +575,7 @@ class Style {
   
   /**
    * Returns an array(r, g, b, "r"=> r, "g"=>g, "b"=>b, "hex"=>"#rrggbb")
-   * original by the provided CSS colour value.
+   * based on the provided CSS colour value.
    *
    * @param string $colour
    * @return array

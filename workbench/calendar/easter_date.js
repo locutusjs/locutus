@@ -1,5 +1,5 @@
 function easter_date(year) {
-  // original by algorithm from polish wikipedia (http://pl.wikipedia.org/wiki/Wielkanoc)
+  // based on algorithm from polish wikipedia (http://pl.wikipedia.org/wiki/Wielkanoc)
 
   year = isNaN(year) ? new Date().getFullYear() : +year;
 

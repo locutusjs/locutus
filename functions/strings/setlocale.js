@@ -187,7 +187,7 @@ function setlocale(category, locale) {
       // Assuming distinction between numeric and monetary is thus:
       // See below for C locale
       'LC_MONETARY': {
-        // original by Windows "english" (English_United States.1252) locale
+        // based on Windows "english" (English_United States.1252) locale
         int_curr_symbol: 'USD',
         currency_symbol: '$',
         mon_decimal_point: '.',
@@ -212,7 +212,7 @@ function setlocale(category, locale) {
         n_sign_posn: 0 // see p_sign_posn
       },
       'LC_NUMERIC': {
-        // original by Windows "english" (English_United States.1252) locale
+        // based on Windows "english" (English_United States.1252) locale
         decimal_point: '.',
         thousands_sep: ',',
         grouping: [3] // see mon_grouping, but for non-monetary values (use thousands_sep)
@@ -229,7 +229,7 @@ function setlocale(category, locale) {
     phpjs.locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z';
     phpjs.locales.en_US.LC_TIME.x = '%D';
     phpjs.locales.en_US.LC_TIME.X = '%r';
-    // The following are original by *nix settings
+    // The following are based on *nix settings
     phpjs.locales.en_US.LC_MONETARY.int_curr_symbol = 'USD ';
     phpjs.locales.en_US.LC_MONETARY.p_sign_posn = 1;
     phpjs.locales.en_US.LC_MONETARY.n_sign_posn = 1;

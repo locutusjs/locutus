@@ -204,7 +204,7 @@ function pack(format) {
       // float (machine dependent size and representation)
     case 'd':
       // double (machine dependent size and representation)
-      // version original by IEEE754
+      // version based on IEEE754
       precisionBits = 23;
       exponentBits = 8;
       if (instruction === 'd') {
