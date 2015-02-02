@@ -3,6 +3,7 @@ function in_array(needle, haystack, argStrict) {
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: vlado houba
   // improved by: Jonas Sciangula Street (Joni2Back)
+  // improved by: Mark Giblin (CodeKraft)
   //    input by: Billy
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //   example 1: in_array('van', ['Kevin', 'van', 'Zonneveld']);
@@ -16,25 +17,15 @@ function in_array(needle, haystack, argStrict) {
   //   example 4: in_array(1, ['1', '2', '3'], true);
   //   returns 4: false
 
-  var key = '',
-    strict = !! argStrict;
+  var strict = !! argStrict;
 
-  //we prevent the double check (strict && arr[key] === ndl) || (!strict && arr[key] == ndl)
-  //in just one for, in order to improve the performance 
-  //deciding wich type of comparation will do before walk array
-  if (strict) {
-    for (key in haystack) {
-      if (haystack[key] === needle) {
-        return true;
-      }
+// having for loop outside if's means fewer lines of code.
+  for (var key in haystack) {
+    // if strict & match, return true
+    if (strict && haystack[key] === needle) return true;
+    // if not strict & match, return true
+    if (!strict && haystack[key] == needle) return true;
     }
-  } else {
-    for (key in haystack) {
-      if (haystack[key] == needle) {
-        return true;
-      }
-    }
-  }
 
   return false;
 }
