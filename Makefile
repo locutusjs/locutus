@@ -23,6 +23,7 @@ serve:
 upgrade-npm-dependencies:
 	@npm install
 	@./node_modules/.bin/npm-check-updates --upgrade
+	@npm install
 	@$(MAKE) test
 	@git add ./package.json
 	@git commit -m'Upgrade NPM dependencies'
