@@ -8,12 +8,13 @@
     "node": ">= 0.8.0"
   },
   "dependencies": {
-    "cli": "^0.4.5",
-    "deep-equal": "^0.1.2",
-    "glob": "^3.2.11",
+    "cli": "^0.6.5",
+    "deep-equal": "^0.2.1",
+    "glob": "^4.3.5",
     "js-beautify": "^1.5.4",
-    "mocha": "^1.21.5",
-    "send": "^0.1.4",
+    "mocha": "^2.1.0",
+    "npm-check-updates": "^1.5.1",
+    "send": "^0.11.1",
     "underscore": "^1.7.0"
   },
   "keywords": [
