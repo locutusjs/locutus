@@ -33,6 +33,17 @@ function strtotime(text, now) {
     .replace(/[\t\r\n]/g, '')
     .toLowerCase();
 
+  // I recommend you to apply yyyyMMdd(+HHmmss) format,
+  // and this is currently available upon the function in PHP.
+  // This simple code below resolves it.
+  // but it might not be appropriate to the prior structure,
+  // so it's gonna have to be revised by someone properly.
+  match = text.match(/^(\d{4})(\d{2})(\d{2})(((\d{2})(\d{2})(\d{2}))?)$/);
+  if (match) {
+    return new Date(match[1], parseInt(match[2], 10) - 1, match[3],
+      match[6] || 0, match[7] || 0, match[8] || 0, 0) / 1000;
+  }
+
   // in contrast to php, js Date.parse function interprets:
   // dates given as yyyy-mm-dd as in timezone: UTC,
   // dates with "." or "-" as MDY instead of DMY
