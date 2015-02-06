@@ -40,7 +40,7 @@ function strtotime(text, now) {
   // etc...etc...
   // ...therefore we manually parse lots of common date formats
   match = text.match(
-    /^(\d{1,4})([\-\.\/\:])(\d{1,2})([\-\.\/\:])(\d{1,4})(?:\s(\d{1,2}):(\d{2})?:?(\d{2})?)?(?:\s([A-Z]+)?)?$/);
+    /^(\d{1,4})([\-\.\/\:]?)(\d{1,2})([\-\.\/\:]?)(\d{1,4})(?:\s(\d{1,2}):(\d{2})?:?(\d{2})?)?(?:\s([A-Z]+)?)?$/);
 
   if (match && match[2] === match[4]) {
     if (match[1] > 1901) {
@@ -64,6 +64,16 @@ function strtotime(text, now) {
         {
           // YYYY/M/D
           if (match[3] > 12 || match[5] > 31) {
+            return fail;
+          }
+
+          return new Date(match[1], parseInt(match[3], 10) - 1, match[5],
+            match[6] || 0, match[7] || 0, match[8] || 0, match[9] || 0) / 1000;
+        }
+      case '':
+        {
+          /// YYYMD
+          if (match[3] > 12 || match[4] > 31) {
             return fail;
           }
 
