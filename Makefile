@@ -20,6 +20,14 @@ cleanup:
 serve:
 	python -m SimpleHTTPServer
 
+upgrade-npm-dependencies:
+	@npm install
+	@./node_modules/.bin/npm-check-updates --upgrade
+	@$(MAKE) test
+	@git add ./package.json
+	@git commit -m'Upgrade NPM dependencies'
+	@git pull && git push
+
 test-cleanup:
 	node bin/phpjs.js --action cleanup --name array_change_key_case
 	node bin/phpjs.js --action cleanup --name echo
@@ -76,4 +84,4 @@ site-preview:
 	bundle exec rake preview ; \
 	cd ..
 
-.PHONY: setup test cleanup npm publish build hook site%
+.PHONY: setup test cleanup npm publish build hook site site-clean site-preview upgrade-npm-dependencies
