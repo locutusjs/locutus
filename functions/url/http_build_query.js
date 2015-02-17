@@ -1,23 +1,23 @@
 function http_build_query(formdata, numeric_prefix, arg_separator, enc_type) {
   //  discuss at: http://phpjs.org/functions/http_build_query/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // improved by: Legaev Andrey
-  // improved by: Michael White (http://getsprink.com)
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // improved by: Brett Zamir (http://brett-zamir.me)
-  //  revised by: stag019
-  //    input by: Dreamer
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: MIO_KODUKI (http://mio-koduki.blogspot.com/)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   improved by: Legaev Andrey
+  // +   improved by: Michael White (http://getsprink.com)
+  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   improved by: Brett Zamir (http://brett-zamir.me)
+  // +   revised by: stag019
+  // +   input by: Dreamer
+  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // +   bugfixed by: MIO_KODUKI (http://mio-koduki.blogspot.com/)
   //        note: If the value is null, key and value are skipped in the http_build_query of PHP while in phpjs they are not.
-  //  depends on: urlencode
-  //  depends on: rawurlencode
-  //   example 1: http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;');
-  //   returns 1: 'foo=bar&amp;php=hypertext+processor&amp;baz=boom&amp;cow=milk'
-  //   example 2: http_build_query({'php': 'hypertext processor', 0: 'foo', 1: 'bar', 2: 'baz', 3: 'boom', 'cow': 'milk'}, 'myvar_');
-  //   returns 2: 'myvar_0=foo&myvar_1=bar&myvar_2=baz&myvar_3=boom&php=hypertext+processor&cow=milk'
-  //   example 3: http_build_query({'php': 'hypertext processor', 0: 'foo', 1: 'bar', 2: 'baz', 3: 'boom', 'cow': 'milk'}, 'myvar_', 2);
-  //   returns 3: 'myvar_0=foo&myvar_1=bar&myvar_2=baz&myvar_3=boom&php=hypertext%20processor&cow=milk'
+  // -    depends on: urlencode
+  // -    depends on: rawurlencode
+  // *     example 1: http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;');
+  // *     returns 1: 'foo=bar&amp;php=hypertext+processor&amp;baz=boom&amp;cow=milk'
+  // *     example 2: http_build_query({'php': 'hypertext processor', 0: 'foo', 1: 'bar', 2: 'baz', 3: 'boom', 'cow': 'milk'}, 'myvar_');
+  // *     returns 2: 'myvar_0=foo&myvar_1=bar&myvar_2=baz&myvar_3=boom&php=hypertext+processor&cow=milk'
+  // *     example 3: http_build_query({'php': 'hypertext processor', 0: 'foo', 1: 'bar', 2: 'baz', 3: 'boom', 'cow': 'milk'}, 'myvar_', 2);
+  // *     returns 3: 'myvar_0=foo&myvar_1=bar&myvar_2=baz&myvar_3=boom&php=hypertext%20processor&cow=milk'
 
   // constants for encoding type
   var PHP_QUERY_RFC1738 = 1;
