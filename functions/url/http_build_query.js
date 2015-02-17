@@ -10,7 +10,8 @@ function http_build_query(formdata, numeric_prefix, arg_separator, enc_type) {
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: MIO_KODUKI (http://mio-koduki.blogspot.com/)
   //        note: If the value is null, key and value are skipped in the http_build_query of PHP while in phpjs they are not.
-  //  depends on: urlencode, rawurlencode
+  //  depends on: urlencode
+  //  depends on: rawurlencode
   //   example 1: http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;');
   //   returns 1: 'foo=bar&amp;php=hypertext+processor&amp;baz=boom&amp;cow=milk'
   //   example 2: http_build_query({'php': 'hypertext processor', 0: 'foo', 1: 'bar', 2: 'baz', 3: 'boom', 'cow': 'milk'}, 'myvar_');
