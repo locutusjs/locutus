@@ -1,25 +1,32 @@
-function http_build_query(formdata, numeric_prefix, arg_separator) {
+function http_build_query(formdata, numeric_prefix, arg_separator, enc_type) {
   //  discuss at: http://phpjs.org/functions/http_build_query/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // improved by: Legaev Andrey
-  // improved by: Michael White (http://getsprink.com)
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // improved by: Brett Zamir (http://brett-zamir.me)
-  //  revised by: stag019
-  //    input by: Dreamer
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: MIO_KODUKI (http://mio-koduki.blogspot.com/)
+  // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   improved by: Legaev Andrey
+  // +   improved by: Michael White (http://getsprink.com)
+  // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // +   improved by: Brett Zamir (http://brett-zamir.me)
+  // +   revised by: stag019
+  // +   input by: Dreamer
+  // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // +   bugfixed by: MIO_KODUKI (http://mio-koduki.blogspot.com/)
   //        note: If the value is null, key and value are skipped in the http_build_query of PHP while in phpjs they are not.
-  //  depends on: urlencode
-  //   example 1: http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;');
-  //   returns 1: 'foo=bar&amp;php=hypertext+processor&amp;baz=boom&amp;cow=milk'
-  //   example 2: http_build_query({'php': 'hypertext processor', 0: 'foo', 1: 'bar', 2: 'baz', 3: 'boom', 'cow': 'milk'}, 'myvar_');
-  //   returns 2: 'myvar_0=foo&myvar_1=bar&myvar_2=baz&myvar_3=boom&php=hypertext+processor&cow=milk'
+  // -    depends on: urlencode
+  // -    depends on: rawurlencode
+  // *     example 1: http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;');
+  // *     returns 1: 'foo=bar&amp;php=hypertext+processor&amp;baz=boom&amp;cow=milk'
+  // *     example 2: http_build_query({'php': 'hypertext processor', 0: 'foo', 1: 'bar', 2: 'baz', 3: 'boom', 'cow': 'milk'}, 'myvar_');
+  // *     returns 2: 'myvar_0=foo&myvar_1=bar&myvar_2=baz&myvar_3=boom&php=hypertext+processor&cow=milk'
+  // *     example 3: http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;', 2);
+  // *     returns 3: 'foo=bar&amp;php=hypertext%20processor&amp;baz=boom&amp;cow=milk'
+
+  // constants for encoding type
+  var PHP_QUERY_RFC1738 = 1;
+  var PHP_QUERY_RFC3986 = 2;
 
   var value, key, tmp = [],
-    that = this;
+      that = this;
 
-  var _http_build_query_helper = function (key, val, arg_separator) {
+  var _http_build_query_helper = function (key, val, arg_separator, enc_type) {
     var k, tmp = [];
     if (val === true) {
       val = '1';
@@ -30,12 +37,18 @@ function http_build_query(formdata, numeric_prefix, arg_separator) {
       if (typeof val === 'object') {
         for (k in val) {
           if (val[k] != null) {
-            tmp.push(_http_build_query_helper(key + '[' + k + ']', val[k], arg_separator));
+            tmp.push(_http_build_query_helper(key + '[' + k + ']', val[k], arg_separator, enc_type));
           }
         }
         return tmp.join(arg_separator);
       } else if (typeof val !== 'function') {
-        return that.urlencode(key) + '=' + that.urlencode(val);
+        switch (enc_type) {
+          case PHP_QUERY_RFC3986:
+            return that.rawurlencode(key) + '=' + that.rawurlencode(val);
+          case PHP_QUERY_RFC1738:
+          default:
+            return that.urlencode(key) + '=' + that.urlencode(val);
+        }
       } else {
         throw new Error('There was an error processing for http_build_query().');
       }
@@ -47,12 +60,15 @@ function http_build_query(formdata, numeric_prefix, arg_separator) {
   if (!arg_separator) {
     arg_separator = '&';
   }
+
+  enc_type = enc_type || PHP_QUERY_RFC1738;
+
   for (key in formdata) {
     value = formdata[key];
     if (numeric_prefix && !isNaN(key)) {
       key = String(numeric_prefix) + key;
     }
-    var query = _http_build_query_helper(key, value, arg_separator);
+    var query = _http_build_query_helper(key, value, arg_separator, enc_type);
     if (query !== '') {
       tmp.push(query);
     }
