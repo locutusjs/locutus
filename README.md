@@ -1,5 +1,7 @@
 # php.js
 
+[![Join the chat at https://gitter.im/kvz/phpjs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kvz/phpjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 <!-- badges/ -->
 [![Build Status](https://secure.travis-ci.org/kvz/phpjs.svg?branch=master)](http://travis-ci.org/kvz/phpjs "Check this project's build status on TravisCI")
 [![NPM version](http://badge.fury.io/js/phpjs.svg)](https://npmjs.org/package/phpjs "View this project on NPM")
