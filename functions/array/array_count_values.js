@@ -27,7 +27,7 @@ function array_count_values(array) {
     return t;
   };
 
-  var __countValue = function (value) {
+  var __countValue = function (tmp_arr, value) {
     switch (typeof value) {
     case 'number':
       if (Math.floor(value) !== value) {
@@ -35,10 +35,10 @@ function array_count_values(array) {
       }
       // Fall-through
     case 'string':
-      if (value in this && this.hasOwnProperty(value)) {
-        ++this[value];
+      if (value in tmp_arr && tmp_arr.hasOwnProperty(value)) {
+        ++tmp_arr[value];
       } else {
-        this[value] = 1;
+        tmp_arr[value] = 1;
       }
     }
   };
@@ -47,7 +47,7 @@ function array_count_values(array) {
   if (t === 'array') {
     for (key in array) {
       if (array.hasOwnProperty(key)) {
-        __countValue.call(tmp_arr, array[key]);
+        __countValue.call(this, tmp_arr, array[key]);
       }
     }
   }
