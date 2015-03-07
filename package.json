@@ -10,6 +10,7 @@
   "dependencies": {
     "cli": "^0.6.5",
     "deep-equal": "^1.0.0",
+    "deep-equal-with-difflet": "^0.1.2",
     "glob": "^4.4.0",
     "js-beautify": "^1.5.4",
     "mocha": "^2.1.0",
