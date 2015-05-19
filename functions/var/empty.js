@@ -36,6 +36,9 @@ function empty(mixed_var) {
       return false;
       //}
     }
+    if(Object.prototype.toString.call(mixed_var) === '[object Date]') {
+        return false;
+    }    
     return true;
   }
 
