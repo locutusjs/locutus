@@ -11,6 +11,7 @@ function strtotime(text, now) {
   //    input by: David
   // bugfixed by: Wagner B. Soares
   // bugfixed by: Artur Tchernychev
+  // bugfixed by: Stephan Bösch-Plepelits (http://github.com/plepe)
   //        note: Examples all have a fixed timestamp to prevent tests to fail because of variable time(zones)
   //   example 1: strtotime('+1 day', 1129633200);
   //   returns 1: 1129719600
@@ -182,6 +183,26 @@ function strtotime(text, now) {
   }
   if (!isNaN(parsed = Date.parse(text))) {
     return parsed / 1000 | 0;
+  }
+  // Browsers != Chrome have problems parsing ISO 8601 date strings, as they do
+  // not accept lower case characters, space, or shortened time zones.
+  // Therefore, fix these problems and try again.
+  // Examples:
+  //   2015-04-15 20:33:59+02
+  //   2015-04-15 20:33:59z
+  //   2015-04-15t20:33:59+02:00
+  if (match = text.match(/^([0-9]{4}-[0-9]{2}-[0-9]{2})[ t]([0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]+)?)([\+-][0-9]{2}(:[0-9]{2})?|z)/)) {
+    // fix time zone information
+    if (match[4] == 'z') {
+      match[4] = 'Z';
+    }
+    else if (match[4].match(/^([\+-][0-9]{2})$/)) {
+      match[4] = match[4] + ':00';
+    }
+
+    if (!isNaN(parsed = Date.parse(match[1] + 'T' + match[2] + match[4]))) {
+      return parsed / 1000 | 0;
+    }
   }
 
   date = now ? new Date(now * 1000) : new Date();
