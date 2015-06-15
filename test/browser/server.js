@@ -10,8 +10,9 @@ http.createServer(function(req, res) {
     return;
   }
 
-  send(req, req.url)
-    .root(__root)
+  send(req, req.url, {
+      root: __root
+    })
     .pipe(res);
 }).listen(port);
 
