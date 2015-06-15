@@ -20,6 +20,12 @@ function strtotime(text, now) {
   //   returns 3: 1127041200
   //   example 4: strtotime('2009-05-04 08:30:00 GMT');
   //   returns 4: 1241425800
+  //   example 5: strtotime('2009-05-04 08:30:00+00');
+  //   returns 5: 1241425800
+  //   example 6: strtotime('2009-05-04 08:30:00+02:00');
+  //   returns 6: 1241418600
+  //   example 7: strtotime('2009-05-04T08:30:00Z');
+  //   returns 7: 1241425800
 
   var parsed, match, today, year, date, days, ranges, len, times, regex, i, fail = false;
 
