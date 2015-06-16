@@ -8,8 +8,7 @@ function sha1(str) {
   //   returns 1: '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
 
   var rotate_left = function (n, s) {
-    var t4 = (n << s) | (n >>> (32 - s));
-    return t4;
+    return (n << s) | (n >>> (32 - s));
   };
 
   /*var lsb_hex = function (val) {
@@ -51,7 +50,7 @@ function sha1(str) {
   var temp;
 
   // utf8_encode
-  str = unescape(encodeURIComponent(str));
+  str = decodeURIComponent(encodeURIComponent(str));
   var str_len = str.length;
 
   var word_array = [];
