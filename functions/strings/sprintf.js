@@ -21,7 +21,7 @@ function sprintf() {
   //   example 5: sprintf('%-03s', 'E');
   //   returns 5: 'E00'
 
-  var regex = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuideEfFgG])/g;
+  var regex = /%%|%(\d+\$)?([\-+\'#0 ]*)(\*\d+\$|\*|\d+)?(?:\.(\*\d+\$|\*|\d+))?([scboxXuideEfFgG])/g;
   var a = arguments;
   var i = 0;
   var format = a[i++];
@@ -53,25 +53,25 @@ function sprintf() {
   var formatBaseX = function (value, base, prefix, leftJustify, minWidth, precision, zeroPad) {
     // Note: casts negative numbers to positive ones
     var number = value >>> 0;
-    prefix = prefix && number && {
+    prefix = (prefix && number && {
       '2': '0b',
       '8': '0',
       '16': '0x'
-    }[base] || '';
+    }[base]) || '';
     value = prefix + pad(number.toString(base), precision || 0, '0', false);
     return justify(value, prefix, leftJustify, minWidth, zeroPad);
   };
 
   // formatString()
   var formatString = function (value, leftJustify, minWidth, precision, zeroPad, customPadChar) {
-    if (precision != null) {
+    if (precision !== null && precision !== undefined) {
       value = value.slice(0, precision);
     }
     return justify(value, '', leftJustify, minWidth, zeroPad, customPadChar);
   };
 
   // doFormat()
-  var doFormat = function (substring, valueIndex, flags, minWidth, _, precision, type) {
+  var doFormat = function (substring, valueIndex, flags, minWidth, precision, type) {
     var number, prefix, method, textTransform, value;
 
     if (substring === '%%') {
@@ -85,7 +85,8 @@ function sprintf() {
     var prefixBaseX = false;
     var customPadChar = ' ';
     var flagsl = flags.length;
-    for (var j = 0; flags && j < flagsl; j++) {
+    var j;
+    for (j = 0; flags && j < flagsl; j++) {
       switch (flags.charAt(j)) {
       case ' ':
         positivePrefix = ' ';
@@ -115,7 +116,7 @@ function sprintf() {
       minWidth = 0;
     } else if (minWidth === '*') {
       minWidth = +a[i++];
-    } else if (minWidth.charAt(0) == '*') {
+    } else if (minWidth.charAt(0) === '*') {
       minWidth = +a[minWidth.slice(1, -1)];
     } else {
       minWidth = +minWidth;
@@ -135,7 +136,7 @@ function sprintf() {
       precision = 'fFeE'.indexOf(type) > -1 ? 6 : (type === 'd') ? 0 : undefined;
     } else if (precision === '*') {
       precision = +a[i++];
-    } else if (precision.charAt(0) == '*') {
+    } else if (precision.charAt(0) === '*') {
       precision = +a[precision.slice(1, -1)];
     } else {
       precision = +precision;
