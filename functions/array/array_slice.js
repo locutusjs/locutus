@@ -11,10 +11,10 @@ function array_slice(arr, offst, lgth, preserve_keys) {
   //   returns 2: {2: 'c', 3: 'd'}
 
   /*
-  if ('callee' in arr && 'length' in arr) {
-    arr = Array.prototype.slice.call(arr);
-  }
-  */
+    if ('callee' in arr && 'length' in arr) {
+      arr = Array.prototype.slice.call(arr);
+    }
+    */
 
   var key = '';
 

@@ -13,10 +13,10 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
   // MIT License
   // <http://xregexp.com>
   var getNativeFlags = function(regex) {
-    return (regex.global ? 'g' : '') + (regex.ignoreCase ? 'i' : '') + (regex.multiline ? 'm' : '') + (regex.extended ?
-      'x' : '') + // Proposed for ES4; included in AS3
-    (regex.sticky ? 'y' : '');
-  },
+      return (regex.global ? 'g' : '') + (regex.ignoreCase ? 'i' : '') + (regex.multiline ? 'm' : '') + (regex.extended ?
+          'x' : '') + // Proposed for ES4; included in AS3
+        (regex.sticky ? 'y' : '');
+    },
     cbSplit = function(string, sep /* separator */) {
       // If separator `s` is not a regex, use the native `split`
       if (!(sep instanceof RegExp)) {

@@ -25,12 +25,12 @@ function quoted_printable_encode(str) {
   // Split lines to 75 characters; the reason it's 75 and not 76 is because softline breaks are preceeded by an equal sign; which would be the 76th character.
   // However, if the last line/string was exactly 76 characters, then a softline would not be needed. PHP currently softbreaks anyway; so this function replicates PHP.
   RFC2045Encode2IN = /.{1,72}(?!\r\n)[^=]{0,3}/g,
-  RFC2045Encode2OUT = function(sMatch) {
-    if (sMatch.substr(sMatch.length - 2) === '\r\n') {
-      return sMatch;
-    }
-    return sMatch + '=\r\n';
-  };
+    RFC2045Encode2OUT = function(sMatch) {
+      if (sMatch.substr(sMatch.length - 2) === '\r\n') {
+        return sMatch;
+      }
+      return sMatch + '=\r\n';
+    };
   str = str.replace(RFC2045Encode1IN, RFC2045Encode1OUT)
     .replace(RFC2045Encode2IN, RFC2045Encode2OUT);
   // Strip last softline break

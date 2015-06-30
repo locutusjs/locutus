@@ -9,12 +9,12 @@ function json_encode(mixed_val) {
   //        returns 1: '"Kevin"'
 
   /*
-    http://www.JSON.org/json2.js
-    2008-11-19
-    Public Domain.
-    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
-    See http://www.JSON.org/js.html
-  */
+      http://www.JSON.org/json2.js
+      2008-11-19
+      Public Domain.
+      NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+      See http://www.JSON.org/js.html
+    */
   var retVal, json = this.window.JSON;
   try {
     if (typeof json === 'object' && typeof json.stringify === 'function') {
@@ -47,7 +47,7 @@ function json_encode(mixed_val) {
       return escapable.test(string) ? '"' + string.replace(escapable, function(a) {
         var c = meta[a];
         return typeof c === 'string' ? c : '\\u' + ('0000' + a.charCodeAt(0)
-          .toString(16))
+            .toString(16))
           .slice(-4);
       }) + '"' : '"' + string + '"';
     };
@@ -96,7 +96,7 @@ function json_encode(mixed_val) {
           return 'null';
         }
         if ((this.PHPJS_Resource && value instanceof this.PHPJS_Resource) || (window.PHPJS_Resource &&
-          value instanceof window.PHPJS_Resource)) {
+            value instanceof window.PHPJS_Resource)) {
           throw new SyntaxError('json_encode');
         }
 

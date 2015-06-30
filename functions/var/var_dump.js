@@ -131,7 +131,8 @@ function var_dump() {
       str += 'array(' + lgth + ') {\n';
       for (var key in obj) {
         var objVal = obj[key];
-        if (typeof objVal === 'object' && objVal !== null && !(objVal instanceof Date) && !(objVal instanceof RegExp) && !
+        if (typeof objVal === 'object' && objVal !== null && !(objVal instanceof Date) && !(objVal instanceof RegExp) &&
+          !
           objVal.nodeName) {
           str += thick_pad + '[' + key + '] =>\n' + thick_pad + _formatArray(objVal, cur_depth + 1, pad_val,
             pad_char);

@@ -33,8 +33,8 @@ function strip_tags(input, allowed) {
   //   returns 7: '1 <br/> 1'
 
   allowed = (((allowed || '') + '')
-    .toLowerCase()
-    .match(/<[a-z][a-z0-9]*>/g) || [])
+      .toLowerCase()
+      .match(/<[a-z][a-z0-9]*>/g) || [])
     .join(''); // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
   var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi,
     commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;

@@ -4,19 +4,11 @@ function str_ireplace(search, replace, subject, count) {
   //        note: Case-insensitive version of str_replace()
   //        note: Compliant with PHP 5.0 str_ireplace() Full details at:
   //        note: http://ca3.php.net/manual/en/function.str-ireplace.php
-  //      format: str_ireplace($search, $replace, $subject[, 'count'])
-  //  Parameters: If search and replace are arrays, then str_ireplace() takes a
-  //  Parameters: value from each array and uses them to search and replace on
-  //  Parameters: subject.
-  //  Parameters: If replace has fewer values than search, then an empty string
-  //  Parameters: is used for the rest of replacement values.
-  //  Parameters: If search is an array and replace is a string, then this
-  //  Parameters: replacement string is used for every value of search.
   //        note: The count parameter (optional) if used must be passed in as a
   //        note: string. eg global var MyCount:
   //        note: str_ireplace($search, $replace, $subject, 'MyCount');
+  //      format: str_ireplace($search, $replace, $subject[, 'count'])
   //       input: str_ireplace($search, $replace, $subject[, {string}]);
-  //     Returns: a string or an array of replacements.
 
   var i = 0,
     j = 0,
@@ -38,18 +30,22 @@ function str_ireplace(search, replace, subject, count) {
   if (typeof (search) === 'object') {
     temp = search;
     search = new Array();
-    for (i = 0; i < temp.length;i += 1) {
+    for (i = 0; i < temp.length; i += 1) {
       search[i] = temp[i].toLowerCase();
     }
-  }else { search = search.toLowerCase(); }
+  } else {
+    search = search.toLowerCase();
+  }
 
   if (typeof (subject) === 'object') {
     temp = subject;
     subject = new Array();
-    for (i = 0; i < temp.length;i += 1) {
+    for (i = 0; i < temp.length; i += 1) {
       subject[i] = temp[i].toLowerCase();
     }
-  }else { subject = subject.toLowerCase(); }
+  } else {
+    subject = subject.toLowerCase();
+  }
 
   if (typeof (search) === 'object' && typeof (replace) === 'string') {
     temp = replace;
@@ -79,16 +75,21 @@ function str_ireplace(search, replace, subject, count) {
     for (j = 0, fl = f.length; j < fl; j++) {
       temp = s[i] + '';
       repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
-      s[i] = (temp).split(f[j]).join(repl);
+      s[i] = (temp)
+        .split(f[j])
+        .join(repl);
       otemp = os[i] + '';
       oi = temp.indexOf(f[j]);
       ofjl = f[j].length;
       if (oi >= 0) {
-        os[i] = (otemp).split(otemp.substr(oi, ofjl)).join(repl);
+        os[i] = (otemp)
+          .split(otemp.substr(oi, ofjl))
+          .join(repl);
       }
 
       if (count) {
-        this.window[count] += ((temp.split(f[j])).length - 1);
+        this.window[count] += ((temp.split(f[j]))
+          .length - 1);
       }
     }
   }

@@ -25,8 +25,8 @@ function array_search(needle, haystack, argStrict) {
       // Let's consider case sensitive searches as strict
       var flags = 'i' + (needle.global ? 'g' : '') +
         (needle.multiline ? 'm' : '') +
-      // sticky is FF only
-      (needle.sticky ? 'y' : '');
+        // sticky is FF only
+        (needle.sticky ? 'y' : '');
       needle = new RegExp(needle.source, flags);
     }
     for (key in haystack) {

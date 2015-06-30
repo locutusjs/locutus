@@ -28,9 +28,9 @@ function parse_url(str, component) {
   }
 
   var query;
-  var ini  = (this.php_js && this.php_js.ini) || {};
+  var ini = (this.php_js && this.php_js.ini) || {};
   var mode = (ini['phpjs.parse_url.mode'] && ini['phpjs.parse_url.mode'].local_value) || 'php';
-  var key  = [
+  var key = [
     'source',
     'scheme',
     'authority',
@@ -52,9 +52,9 @@ function parse_url(str, component) {
     loose: /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/\/?)?((?:(([^:@\/]*):?([^:@\/]*))?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/ // Added one optional slash to post-scheme to catch file:/// (should restrict this)
   };
 
-  var m   = parser[mode].exec(str);
+  var m = parser[mode].exec(str);
   var uri = {};
-  var i   = 14;
+  var i = 14;
 
   while (i--) {
     if (m[i]) {
@@ -63,15 +63,16 @@ function parse_url(str, component) {
   }
 
   if (component) {
-    return uri[component.replace('PHP_URL_', '').toLowerCase()];
+    return uri[component.replace('PHP_URL_', '')
+      .toLowerCase()];
   }
 
   if (mode !== 'php') {
     var name = (ini['phpjs.parse_url.queryKey'] &&
       ini['phpjs.parse_url.queryKey'].local_value) || 'queryKey';
-    parser    = /(?:^|&)([^&=]*)=?([^&]*)/g;
+    parser = /(?:^|&)([^&=]*)=?([^&]*)/g;
     uri[name] = {};
-    query     = uri[key[12]] || '';
+    query = uri[key[12]] || '';
     query.replace(parser, function($0, $1, $2) {
       if ($1) {
         uri[name][$1] = $2;

@@ -40,33 +40,33 @@ function serialize(mixed_value) {
       }
       return size;
     },
-  _getType = function(inp) {
-    var match, key, cons, types, type = typeof inp;
+    _getType = function(inp) {
+      var match, key, cons, types, type = typeof inp;
 
-    if (type === 'object' && !inp) {
-      return 'null';
-    }
-    
-    if (type === 'object') {
-      if (!inp.constructor) {
-        return 'object';
+      if (type === 'object' && !inp) {
+        return 'null';
       }
-      cons = inp.constructor.toString();
-      match = cons.match(/(\w+)\(/);
-      if (match) {
-        cons = match[1].toLowerCase();
-      }
-      types = ['boolean', 'number', 'string', 'array'];
-      for (key in types) {
-        if (cons == types[key]) {
-          type = types[key];
-          break;
+
+      if (type === 'object') {
+        if (!inp.constructor) {
+          return 'object';
+        }
+        cons = inp.constructor.toString();
+        match = cons.match(/(\w+)\(/);
+        if (match) {
+          cons = match[1].toLowerCase();
+        }
+        types = ['boolean', 'number', 'string', 'array'];
+        for (key in types) {
+          if (cons == types[key]) {
+            type = types[key];
+            break;
+          }
         }
       }
-    }
-    return type;
-  },
-  type = _getType(mixed_value);
+      return type;
+    },
+    type = _getType(mixed_value);
 
   switch (type) {
   case 'function':

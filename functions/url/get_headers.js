@@ -14,7 +14,8 @@ function get_headers(url, format) {
   if (!req) {
     throw new Error('XMLHttpRequest not supported');
   }
-  var tmp, headers, pair, i, j = 0;ß;
+  var tmp, headers, pair, i, j = 0;
+  ß;
   req.open('HEAD', url, false);
   req.send(null);
 

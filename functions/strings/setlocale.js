@@ -129,7 +129,7 @@ function setlocale(category, locale) {
     phpjs.locales.en = {
       'LC_COLLATE': // For strcoll
 
-      function(str1, str2) {
+        function(str1, str2) {
         // Fix: This one taken from strcmp, but need for other locales; we don't use localeCompare since its locale is not settable
         return (str1 == str2) ? 0 : ((str1 > str2) ? 1 : -1);
       },
@@ -300,7 +300,7 @@ function setlocale(category, locale) {
     var NS_XML = 'http://www.w3.org/XML/1998/namespace';
     if (d.getElementsByTagNameNS && d.getElementsByTagNameNS(NS_XHTML, 'html')[0]) {
       if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS && d.getElementsByTagNameNS(NS_XHTML,
-        'html')[0].getAttributeNS(NS_XML, 'lang')) {
+          'html')[0].getAttributeNS(NS_XML, 'lang')) {
         phpjs.locale = d.getElementsByTagName(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang');
       } else if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang) {
         // XHTML 1.0 only

@@ -197,22 +197,22 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
 
       // Function to calculate lcs lengths
       var lcs_lens = function(xs, ys) {
-        var i, j, prev,
-          curr = get_initialized_array(ys.length + 1, 0);
+          var i, j, prev,
+            curr = get_initialized_array(ys.length + 1, 0);
 
-        for (i = 0; i < xs.length; i++) {
-          prev = curr.slice(0);
-          for (j = 0; j < ys.length; j++) {
-            if (xs[i] === ys[j]) {
-              curr[j + 1] = prev[j] + 1;
-            } else {
-              curr[j + 1] = Math.max(curr[j], prev[j + 1]);
+          for (i = 0; i < xs.length; i++) {
+            prev = curr.slice(0);
+            for (j = 0; j < ys.length; j++) {
+              if (xs[i] === ys[j]) {
+                curr[j + 1] = prev[j] + 1;
+              } else {
+                curr[j + 1] = Math.max(curr[j], prev[j + 1]);
+              }
             }
           }
-        }
 
-        return curr;
-      },
+          return curr;
+        },
         // Function to find lcs and fill in the array to indicate the optimal longest common sequence
         find_lcs = function(xs, xidx, xs_is_in, ys) {
           var i, xb, xe, ll_b, ll_e, pivot, max, yb, ye,
@@ -277,7 +277,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
     ori_is_in_lcs = get_initialized_array(ori_len, false),
     new_is_in_lcs = get_initialized_array(new_len, false),
     lcs_len = find_longest_common_sequence(ori_lines, new_lines, ori_is_in_lcs, new_is_in_lcs)
-      .length,
+    .length,
     unidiff = '';
 
   if (lcs_len === 0) {
@@ -394,7 +394,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
       // Build the diff hunk content
       while (ori_hunk_start < ori_hunk_end || new_hunk_start < new_hunk_end) {
         if (ori_hunk_start < ori_hunk_end && ori_is_in_lcs[ori_hunk_start] === true && new_is_in_lcs[
-          new_hunk_start] === true) {
+            new_hunk_start] === true) {
           // The context line
           unidiff += CONTEXT_INDICATOR + ori_lines[ori_hunk_start] + NEW_LINE;
           ori_hunk_start++;

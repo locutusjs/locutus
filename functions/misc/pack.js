@@ -35,7 +35,7 @@ function pack(format) {
     quantifier = '';
     formatPointer++;
     while ((formatPointer < format.length) && (format.charAt(formatPointer)
-      .match(/[\d\*]/) !== null)) {
+        .match(/[\d\*]/) !== null)) {
       quantifier += format.charAt(formatPointer);
       formatPointer++;
     }
@@ -246,7 +246,7 @@ function pack(format) {
         for (k = -1; ++k < len && !bin[k];) {}
 
         if (bin[(lastBit = precisionBits - 1 + (k = (exp = bias + 1 - k) >= minExp && exp <= maxExp ? k + 1 :
-          bias + 1 - (exp = minExp - 1))) + 1]) {
+            bias + 1 - (exp = minExp - 1))) + 1]) {
           if (!(rounded = bin[lastBit])) {
             for (j = lastBit + 2; !rounded && j < len; rounded = bin[j++]) {}
           }
@@ -286,7 +286,7 @@ function pack(format) {
         n = 0;
         j = 0;
         k = (tmpResult = (signal ? '1' : '0') + tmpResult + bin.slice(k, k + precisionBits)
-          .join(''))
+            .join(''))
           .length;
         r = [];
 

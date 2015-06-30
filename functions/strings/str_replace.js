@@ -11,6 +11,8 @@ function str_replace(search, replace, subject, count) {
   // bugfixed by: Anton Ongson
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Oleg Eremeev
+  // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca)
+  // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca) Corrected count
   //    input by: Onno Marsman
   //    input by: Brett Zamir (http://brett-zamir.me)
   //    input by: Oleg Eremeev
@@ -20,14 +22,12 @@ function str_replace(search, replace, subject, count) {
   //   returns 1: 'Kevin.van.Zonneveld'
   //   example 2: str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars');
   //   returns 2: 'hemmo, mars'
-  // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca)
   //   example 3: str_replace(Array('S','F'),'x','ASDFASDF');
   //   returns 3: 'AxDxAxDx'
-  // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca) Corrected count
   //   example 4: str_replace(['A','D'], ['x','y'] , 'ASDFASDF' , 'cnt');
   //   returns 4: 'xSyFxSyF' // cnt = 0 (incorrect before fix)
   //   returns 4: 'xSyFxSyF' // cnt = 4 (correct after fix)
-  
+
   var i = 0,
     j = 0,
     temp = '',
@@ -40,18 +40,18 @@ function str_replace(search, replace, subject, count) {
     ra = Object.prototype.toString.call(r) === '[object Array]',
     sa = Object.prototype.toString.call(s) === '[object Array]';
   s = [].concat(s);
-  
+
   if (typeof (search) === 'object' && typeof (replace) === 'string') {
-    temp = replace; 
+    temp = replace;
     replace = new Array();
-    for (i = 0; i < search.length; i += 1) { 
-      replace[i] = temp; 
+    for (i = 0; i < search.length; i += 1) {
+      replace[i] = temp;
     }
-    temp = ''; 
-    r = [].concat(replace); 
+    temp = '';
+    r = [].concat(replace);
     ra = Object.prototype.toString.call(r) === '[object Array]';
   }
-  
+
   if (count) {
     this.window[count] = 0;
   }
@@ -67,8 +67,9 @@ function str_replace(search, replace, subject, count) {
         .split(f[j])
         .join(repl);
       if (count) {
-        this.window[count] += ((temp.split(f[j])).length - 1);
-      } 
+        this.window[count] += ((temp.split(f[j]))
+          .length - 1);
+      }
     }
   }
   return sa ? s : s[0];

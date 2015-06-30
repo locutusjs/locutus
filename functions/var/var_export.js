@@ -84,10 +84,10 @@ function var_export(mixed_expression, bool_return) {
       value = this.var_export(mixed_expression[i], 1, idtLevel + 2);
       value = typeof value === 'string' ? value.replace(/</g, '&lt;')
         .
-      replace(/>/g, '&gt;') : value;
+      replace(/>/g, '&gt;'): value;
       x[cnt++] = innerIndent + i + ' => ' +
         (__getType(mixed_expression[i]) === 'array' ?
-        '\n' : '') + value;
+          '\n' : '') + value;
     }
     iret = x.join(',\n');
     retstr = outerIndent + 'array (\n' + iret + '\n' + outerIndent + ')';

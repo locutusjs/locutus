@@ -13,7 +13,8 @@ function inet_ntop(a) {
   if (a.length === 4) {
     // IPv4
     return [
-      a.charCodeAt(0), a.charCodeAt(1), a.charCodeAt(2), a.charCodeAt(3)].join('.');
+      a.charCodeAt(0), a.charCodeAt(1), a.charCodeAt(2), a.charCodeAt(3)
+    ].join('.');
   } else if (a.length === 16) {
     // IPv6
     for (i = 0; i < 16; i++) {

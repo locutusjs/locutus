@@ -15,16 +15,16 @@ function strptime(dateStr, format) {
   // Needs more thorough testing and examples
 
   var retObj = {
-    tm_sec: 0,
-    tm_min: 0,
-    tm_hour: 0,
-    tm_mday: 0,
-    tm_mon: 0,
-    tm_year: 0,
-    tm_wday: 0,
-    tm_yday: 0,
-    unparsed: ''
-  },
+      tm_sec: 0,
+      tm_min: 0,
+      tm_hour: 0,
+      tm_mday: 0,
+      tm_mon: 0,
+      tm_year: 0,
+      tm_wday: 0,
+      tm_yday: 0,
+      unparsed: ''
+    },
     i = 0,
     that = this,
     amPmOffset = 0,

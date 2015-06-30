@@ -46,8 +46,8 @@ function strnatcmp(f_string1, f_string2, f_version) {
         }
         buffer += chr;
       } else if ((text == false) && (chr === '.') && (i < (f_string.length - 1)) && (f_string.substring(i + 1, i +
-          2)
-        .match(/\d/))) {
+            2)
+          .match(/\d/))) {
         result[result.length] = buffer;
         buffer = '';
       } else {

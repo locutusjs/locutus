@@ -25,12 +25,12 @@ function array_chunk(input, size, preserve_keys) {
   if (Object.prototype.toString.call(input) === '[object Array]') {
     if (preserve_keys) {
       while (i < l) {
-        (x = i % size) ? n[c][i] = input[i] : n[++c] = {}, n[c][i] = input[i];
+        (x = i % size) ? n[c][i] = input[i]: n[++c] = {}, n[c][i] = input[i];
         i++;
       }
     } else {
       while (i < l) {
-        (x = i % size) ? n[c][x] = input[i] : n[++c] = [input[i]];
+        (x = i % size) ? n[c][x] = input[i]: n[++c] = [input[i]];
         i++;
       }
     }
@@ -38,14 +38,14 @@ function array_chunk(input, size, preserve_keys) {
     if (preserve_keys) {
       for (p in input) {
         if (input.hasOwnProperty(p)) {
-          (x = i % size) ? n[c][p] = input[p] : n[++c] = {}, n[c][p] = input[p];
+          (x = i % size) ? n[c][p] = input[p]: n[++c] = {}, n[c][p] = input[p];
           i++;
         }
       }
     } else {
       for (p in input) {
         if (input.hasOwnProperty(p)) {
-          (x = i % size) ? n[c][x] = input[p] : n[++c] = [input[p]];
+          (x = i % size) ? n[c][x] = input[p]: n[++c] = [input[p]];
           i++;
         }
       }

@@ -18,18 +18,18 @@ function array() {
   var arrInst, e, __, that = this,
     PHPJS_Array = function PHPJS_Array() {};
   mainArgs = arguments, p = this.php_js,
-  _indexOf = function(value, from, strict) {
-    var i = from || 0,
-      nonstrict = !strict,
-      length = this.length;
-    while (i < length) {
-      if (this[i] === value || (nonstrict && this[i] == value)) {
-        return i;
+    _indexOf = function(value, from, strict) {
+      var i = from || 0,
+        nonstrict = !strict,
+        length = this.length;
+      while (i < length) {
+        if (this[i] === value || (nonstrict && this[i] == value)) {
+          return i;
+        }
+        i++;
       }
-      i++;
-    }
-    return -1;
-  };
+      return -1;
+    };
   // BEGIN REDUNDANT
   if (!p.Relator) {
     p.Relator = (function() {
@@ -65,7 +65,8 @@ function array() {
             return Relator();
           },
           constructor: function(that) {
-            var i = Stack.indexOf(that);~
+            var i = Stack.indexOf(that);
+            ~
             i ? Array[i] : Array[Stack.push(that) - 1] = {};
             this.method(that)
               .that = that;
@@ -173,9 +174,9 @@ function array() {
             this.php_js.ini = this.php_js.ini || {};
             ini = this.php_js.ini['phpjs.no-eval'];
             if (ini && (
-              parseInt(ini.local_value, 10) !== 0 && (!ini.local_value.toLowerCase || ini.local_value
-                .toLowerCase() !== 'off')
-            )) {
+                parseInt(ini.local_value, 10) !== 0 && (!ini.local_value.toLowerCase || ini.local_value
+                  .toLowerCase() !== 'off')
+              )) {
               if (arguments.length > 1) {
                 for (i = 0, kl = _.keys.length; i < kl; i++) {
                   this.window[funcname](_.values[i], _.keys[i], userdata);
@@ -248,8 +249,8 @@ function array() {
             // Let's consider case sensitive searches as strict
             flags = 'i' + (needle.global ? 'g' : '') +
               (needle.multiline ? 'm' : '') +
-            // sticky is FF only
-            (needle.sticky ? 'y' : '');
+              // sticky is FF only
+              (needle.sticky ? 'y' : '');
             needle = new RegExp(needle.source, flags);
           }
           for (i = 0, vl = haystack.length; i < vl; i++) {
