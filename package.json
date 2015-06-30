@@ -8,16 +8,16 @@
     "node": ">= 0.8.0"
   },
   "dependencies": {
-    "cli": "^0.6.5",
+    "cli": "^0.8.0",
     "deep-equal": "^1.0.0",
     "deep-equal-with-difflet": "^0.1.2",
-    "glob": "^4.4.0",
-    "js-beautify": "^1.5.4",
+    "glob": "^5.0.12",
+    "js-beautify": "^1.5.10",
     "jscs": "^1.13.1",
-    "mocha": "^2.1.0",
+    "mocha": "^2.2.5",
     "npm-check-updates": "^1.5.1",
-    "send": "^0.12.1",
-    "underscore": "^1.8.2"
+    "send": "^0.13.0",
+    "underscore": "^1.8.3"
   },
   "keywords": [
     "php",
