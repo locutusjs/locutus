@@ -18,7 +18,8 @@ test:
 # Apply code standards & reformat headers
 .PHONY: cleanup
 cleanup:
-	./node_modules/.bin/jscs --fix functions/
+	@./node_modules/.bin/jscs --fix functions/ || true
+	@$(MAKE) test
 	# node bin/phpjs.js --action cleanup
 
 .PHONY: serve
