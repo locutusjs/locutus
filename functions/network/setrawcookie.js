@@ -24,9 +24,9 @@ function setrawcookie(name, value, expires, path, domain, secure) {
     s = {},
     i = '';
   s = {
-    expires: expires,
-    path: path,
-    domain: domain
+    expires : expires,
+    path    : path,
+    domain  : domain
   };
   for (i in s) {
     if (s.hasOwnProperty(i)) {

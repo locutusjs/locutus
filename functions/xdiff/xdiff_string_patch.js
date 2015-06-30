@@ -35,8 +35,8 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
         s = new RegExp(sep.source, getNativeFlags(sep) + 'g');
       if (x) {
         s._xregexp = {
-          source: x.source,
-          captureNames: x.captureNames ? x.captureNames.slice(0) : null
+          source       : x.source,
+          captureNames : x.captureNames ? x.captureNames.slice(0) : null
         };
       }
 
@@ -88,9 +88,9 @@ function xdiff_string_patch(originalStr, patch, flags, error) {
     optTemp = 0,
     OPTS = {
       // Unsure of actual PHP values, so better to rely on string
-      'XDIFF_PATCH_NORMAL': 1,
-      'XDIFF_PATCH_REVERSE': 2,
-      'XDIFF_PATCH_IGNORESPACE': 4
+      'XDIFF_PATCH_NORMAL'      : 1,
+      'XDIFF_PATCH_REVERSE'     : 2,
+      'XDIFF_PATCH_IGNORESPACE' : 4
     };
 
   // Input defaulting & sanitation

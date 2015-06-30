@@ -29,12 +29,12 @@ function htmlspecialchars_decode(string, quote_style) {
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>');
   var OPTS = {
-    'ENT_NOQUOTES': 0,
-    'ENT_HTML_QUOTE_SINGLE': 1,
-    'ENT_HTML_QUOTE_DOUBLE': 2,
-    'ENT_COMPAT': 2,
-    'ENT_QUOTES': 3,
-    'ENT_IGNORE': 4
+    'ENT_NOQUOTES'          : 0,
+    'ENT_HTML_QUOTE_SINGLE' : 1,
+    'ENT_HTML_QUOTE_DOUBLE' : 2,
+    'ENT_COMPAT'            : 2,
+    'ENT_QUOTES'            : 3,
+    'ENT_IGNORE'            : 4
   };
   if (quote_style === 0) {
     noquotes = true;

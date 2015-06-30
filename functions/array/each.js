@@ -37,10 +37,10 @@ function each(arr) {
           return [k, arr[k]];
         } else {
           return {
-            1: arr[k],
-            value: arr[k],
-            0: k,
-            key: k
+            1     : arr[k],
+            value : arr[k],
+            0     : k,
+            key   : k
           };
         }
       }
@@ -58,10 +58,10 @@ function each(arr) {
     return [pos, arr[pos]];
   } else {
     return {
-      1: arr[pos],
-      value: arr[pos],
-      0: pos,
-      key: pos
+      1     : arr[pos],
+      value : arr[pos],
+      0     : pos,
+      key   : pos
     };
   }
 }

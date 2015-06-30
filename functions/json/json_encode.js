@@ -9,12 +9,12 @@ function json_encode(mixed_val) {
   //        returns 1: '"Kevin"'
 
   /*
-      http://www.JSON.org/json2.js
-      2008-11-19
-      Public Domain.
-      NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
-      See http://www.JSON.org/js.html
-    */
+       http://www.JSON.org/json2.js
+       2008-11-19
+       Public Domain.
+       NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+       See http://www.JSON.org/js.html
+     */
   var retVal, json = this.window.JSON;
   try {
     if (typeof json === 'object' && typeof json.stringify === 'function') {
@@ -34,13 +34,13 @@ function json_encode(mixed_val) {
         /[\\\"\u0000-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
       var meta = {
         // table of character substitutions
-        '\b': '\\b',
-        '\t': '\\t',
-        '\n': '\\n',
-        '\f': '\\f',
-        '\r': '\\r',
-        '"': '\\"',
-        '\\': '\\\\'
+        '\b' : '\\b',
+        '\t' : '\\t',
+        '\n' : '\\n',
+        '\f' : '\\f',
+        '\r' : '\\r',
+        '"'  : '\\"',
+        '\\' : '\\\\'
       };
 
       escapable.lastIndex = 0;
@@ -149,7 +149,7 @@ function json_encode(mixed_val) {
     // Make a fake root object containing our value under the key of ''.
     // Return the result of stringifying the value.
     return str('', {
-      '': value
+      '' : value
     });
 
   } catch (err) {

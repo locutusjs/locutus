@@ -52,11 +52,11 @@ function pathinfo(path, options) {
   // Initialize binary arguments. Both the string & integer (constant) input is
   // allowed
   var OPTS = {
-    'PATHINFO_DIRNAME': 1,
-    'PATHINFO_BASENAME': 2,
-    'PATHINFO_EXTENSION': 4,
-    'PATHINFO_FILENAME': 8,
-    'PATHINFO_ALL': 0
+    'PATHINFO_DIRNAME'   : 1,
+    'PATHINFO_BASENAME'  : 2,
+    'PATHINFO_EXTENSION' : 4,
+    'PATHINFO_FILENAME'  : 8,
+    'PATHINFO_ALL'       : 0
   };
   // PATHINFO_ALL sums up all previously defined PATHINFOs (could just pre-calculate)
   for (optName in OPTS) {

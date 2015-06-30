@@ -61,10 +61,10 @@ function array() {
         }
         return {
           // create a new relator
-          $: function() {
+          $           : function() {
             return Relator();
           },
-          constructor: function(that) {
+          constructor : function(that) {
             var i = Stack.indexOf(that);
             ~
             i ? Array[i] : Array[Stack.push(that) - 1] = {};
@@ -72,7 +72,7 @@ function array() {
               .that = that;
             return this.method(that);
           },
-          method: function(that) {
+          method      : function(that) {
             return Array[Stack.indexOf(that)];
           }
         };

@@ -28,12 +28,12 @@ function date_parse(date) {
 
   var retObj = {
     // Grab any new warnings or errors added (not implemented yet in strtotime()); throwing warnings, notices, or errors could also be easily monitored by using 'watch' on this.php_js.latestWarning, etc. and/or calling any defined error handlers
-    warning_count: warningsOffset !== null ? this.php_js.warnings.slice(warningsOffset)
+    warning_count : warningsOffset !== null ? this.php_js.warnings.slice(warningsOffset)
       .length : 0,
-    warnings: warningsOffset !== null ? this.php_js.warnings.slice(warningsOffset) : [],
-    error_count: errorsOffset !== null ? this.php_js.errors.slice(errorsOffset)
+    warnings      : warningsOffset !== null ? this.php_js.warnings.slice(warningsOffset) : [],
+    error_count   : errorsOffset !== null ? this.php_js.errors.slice(errorsOffset)
       .length : 0,
-    errors: errorsOffset !== null ? this.php_js.errors.slice(errorsOffset) : []
+    errors        : errorsOffset !== null ? this.php_js.errors.slice(errorsOffset) : []
   };
   retObj.year = dt.getFullYear();
   retObj.month = dt.getMonth() + 1;

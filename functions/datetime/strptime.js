@@ -15,15 +15,15 @@ function strptime(dateStr, format) {
   // Needs more thorough testing and examples
 
   var retObj = {
-      tm_sec: 0,
-      tm_min: 0,
-      tm_hour: 0,
-      tm_mday: 0,
-      tm_mon: 0,
-      tm_year: 0,
-      tm_wday: 0,
-      tm_yday: 0,
-      unparsed: ''
+      tm_sec   : 0,
+      tm_min   : 0,
+      tm_hour  : 0,
+      tm_mday  : 0,
+      tm_mon   : 0,
+      tm_year  : 0,
+      tm_wday  : 0,
+      tm_yday  : 0,
+      unparsed : ''
     },
     i = 0,
     that = this,
@@ -57,14 +57,14 @@ function strptime(dateStr, format) {
     _WS = /\s/;
 
   var _aggregates = {
-    c: 'locale',
-    D: '%m/%d/%y',
-    F: '%y-%m-%d',
-    r: 'locale',
-    R: '%H:%M',
-    T: '%H:%M:%S',
-    x: 'locale',
-    X: 'locale'
+    c : 'locale',
+    D : '%m/%d/%y',
+    F : '%y-%m-%d',
+    r : 'locale',
+    R : '%H:%M',
+    T : '%H:%M:%S',
+    x : 'locale',
+    X : 'locale'
   };
 
   /* Fix: Locale alternatives are supported though not documented in PHP; see http://linux.die.net/man/3/strptime

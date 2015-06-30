@@ -9,7 +9,7 @@ function explode(delimiter, string, limit) {
   if (typeof delimiter === 'function' || typeof delimiter === 'object' || typeof string === 'function' || typeof string ===
     'object') {
     return {
-      0: ''
+      0 : ''
     };
   }
   if (delimiter === true) delimiter = '1';

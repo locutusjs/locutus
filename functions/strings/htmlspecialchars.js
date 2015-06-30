@@ -34,12 +34,12 @@ function htmlspecialchars(string, quote_style, charset, double_encode) {
     .replace(/>/g, '&gt;');
 
   var OPTS = {
-    'ENT_NOQUOTES': 0,
-    'ENT_HTML_QUOTE_SINGLE': 1,
-    'ENT_HTML_QUOTE_DOUBLE': 2,
-    'ENT_COMPAT': 2,
-    'ENT_QUOTES': 3,
-    'ENT_IGNORE': 4
+    'ENT_NOQUOTES'          : 0,
+    'ENT_HTML_QUOTE_SINGLE' : 1,
+    'ENT_HTML_QUOTE_DOUBLE' : 2,
+    'ENT_COMPAT'            : 2,
+    'ENT_QUOTES'            : 3,
+    'ENT_IGNORE'            : 4
   };
   if (quote_style === 0) {
     noquotes = true;

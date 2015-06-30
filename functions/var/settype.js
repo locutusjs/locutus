@@ -107,7 +107,7 @@ function settype(vr, type) {
         this[vr] = obj;
       } else if (typeof v !== 'object') {
         this[vr] = {
-          scalar: v
+          scalar : v
         };
       }
       break;

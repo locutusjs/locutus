@@ -50,16 +50,16 @@ function _phpjs_shared_bc() {
    */
 
   var libbcmath = {
-    PLUS: '+',
-    MINUS: '-',
-    BASE: 10,
+    PLUS                 : '+',
+    MINUS                : '-',
+    BASE                 : 10,
     // must be 10 (for now)
-    scale: 0,
+    scale                : 0,
     // default scale
     /**
      * Basic number structure
      */
-    bc_num: function() {
+    bc_num               : function() {
       this.n_sign = null; // sign
       this.n_len = null; /* (int) The number of digits before the decimal point. */
       this.n_scale = null; /* (int) The number of digits after the decimal point. */
@@ -93,7 +93,7 @@ function _phpjs_shared_bc() {
      * @param {int} scale_min
      * @return bc_num
      */
-    bc_add: function(n1, n2, scale_min) {
+    bc_add               : function(n1, n2, scale_min) {
       var sum, cmp_res, res_scale;
 
       if (n1.n_sign === n2.n_sign) {
@@ -130,11 +130,11 @@ function _phpjs_shared_bc() {
      * @param {bc_num} n2
      * @return int -1, 0, 1  (n1 < n2, ==, n1 > n2)
      */
-    bc_compare: function(n1, n2) {
+    bc_compare           : function(n1, n2) {
       return libbcmath._bc_do_compare(n1, n2, true, false);
     },
 
-    _one_mult: function(num, n_ptr, size, digit, result, r_ptr) {
+    _one_mult            : function(num, n_ptr, size, digit, result, r_ptr) {
       var carry, value; // int
       var nptr, rptr; // int pointers
       if (digit === 0) {
@@ -162,7 +162,7 @@ function _phpjs_shared_bc() {
       }
     },
 
-    bc_divide: function(n1, n2, scale) {
+    bc_divide            : function(n1, n2, scale) {
       var quot; // bc_num return
       var qval; // bc_num
       var num1, num2; // string
@@ -370,8 +370,8 @@ function _phpjs_shared_bc() {
 
 
 
-    MUL_BASE_DIGITS: 80,
-    MUL_SMALL_DIGITS: (this.MUL_BASE_DIGITS / 4),
+    MUL_BASE_DIGITS      : 80,
+    MUL_SMALL_DIGITS     : (this.MUL_BASE_DIGITS / 4),
     //#define MUL_SMALL_DIGITS mul_base_digits/4
 
     /* The multiply routine.  N2 times N1 is put int PROD with the scale of
@@ -382,7 +382,7 @@ function _phpjs_shared_bc() {
      * @param n2 bc_num
      * @param scale [int] optional
      */
-    bc_multiply: function(n1, n2, scale) {
+    bc_multiply          : function(n1, n2, scale) {
       var pval; // bc_num
       var len1, len2; // int
       var full_scale, prod_scale; // int
@@ -409,7 +409,7 @@ function _phpjs_shared_bc() {
       return pval;
     },
 
-    new_sub_num: function(length, scale, value) {
+    new_sub_num          : function(length, scale, value) {
       var temp = new libbcmath.bc_num();
       temp.n_sign = libbcmath.PLUS;
       temp.n_len = length;
@@ -418,7 +418,7 @@ function _phpjs_shared_bc() {
       return temp;
     },
 
-    _bc_simp_mul: function(n1, n1len, n2, n2len, full_scale) {
+    _bc_simp_mul         : function(n1, n1len, n2, n2len, full_scale) {
       var prod; // bc_num
       var n1ptr, n2ptr, pvptr; // char *n1ptr, *n2ptr, *pvptr;
       var n1end, n2end; //char *n1end, *n2end;        /* To the end of n1 and n2. */
@@ -451,7 +451,7 @@ function _phpjs_shared_bc() {
        multiply algorithm.  Note: if sub is called, accum must
        be larger that what is being subtracted.  Also, accum and val
        must have n_scale = 0.  (e.g. they must look like integers. *) */
-    _bc_shift_addsub: function(accum, val, shift, sub) {
+    _bc_shift_addsub     : function(accum, val, shift, sub) {
       var accp, valp; //signed char *accp, *valp;
       var count, carry; //int  count, carry;
       count = val.n_len;
@@ -521,7 +521,7 @@ function _phpjs_shared_bc() {
 
        B is the base of storage, number of digits in u1,u0 close to equal.
     */
-    _bc_rec_mul: function(u, ulen, v, vlen, full_scale) {
+    _bc_rec_mul          : function(u, ulen, v, vlen, full_scale) {
       var prod; // @return
       var u0, u1, v0, v1; //bc_num
       var u0len, v0len; //int
@@ -624,7 +624,7 @@ function _phpjs_shared_bc() {
      * @param {boolean} ignore_last
      * @return -1, 0, 1 (see bc_compare)
      */
-    _bc_do_compare: function(n1, n2, use_sign, ignore_last) {
+    _bc_do_compare       : function(n1, n2, use_sign, ignore_last) {
       var n1ptr, n2ptr; // int
       var count; // int
       /* First, compare signs. */
@@ -719,7 +719,7 @@ function _phpjs_shared_bc() {
     /* Here is the full subtract routine that takes care of negative numbers.
    N2 is subtracted from N1 and the result placed in RESULT.  SCALE_MIN
    is the minimum scale for the result. */
-    bc_sub: function(n1, n2, scale_min) {
+    bc_sub               : function(n1, n2, scale_min) {
       var diff; // bc_num
       var cmp_res, res_scale; //int
       if (n1.n_sign != n2.n_sign) {
@@ -755,7 +755,7 @@ function _phpjs_shared_bc() {
     },
 
 
-    _bc_do_add: function(n1, n2, scale_min) {
+    _bc_do_add           : function(n1, n2, scale_min) {
       var sum; // bc_num
       var sum_scale, sum_digits; // int
       var n1ptr, n2ptr, sumptr; // int
@@ -883,7 +883,7 @@ function _phpjs_shared_bc() {
      * @param {int} scale_min
      * @return bc_num
      */
-    _bc_do_sub: function(n1, n2, scale_min) {
+    _bc_do_sub           : function(n1, n2, scale_min) {
       var diff; //bc_num
       var diff_scale, diff_len; // int
       var min_scale, min_len; // int
@@ -977,7 +977,7 @@ function _phpjs_shared_bc() {
      * @param {int} scale
      * @return bc_num
      */
-    bc_new_num: function(length, scale) {
+    bc_new_num           : function(length, scale) {
       var temp; // bc_num
       temp = new libbcmath.bc_num();
       temp.n_sign = libbcmath.PLUS;
@@ -988,19 +988,19 @@ function _phpjs_shared_bc() {
       return temp;
     },
 
-    safe_emalloc: function(size, len, extra) {
+    safe_emalloc         : function(size, len, extra) {
       return Array((size * len) + extra);
     },
 
     /**
      * Create a new number
      */
-    bc_init_num: function() {
+    bc_init_num          : function() {
       return new libbcmath.bc_new_num(1, 0);
 
     },
 
-    _bc_rm_leading_zeros: function(num) { /* We can move n_value to point to the first non zero digit! */
+    _bc_rm_leading_zeros : function(num) { /* We can move n_value to point to the first non zero digit! */
       while ((num.n_value[0] === 0) && (num.n_len > 1)) {
         num.n_value.shift();
         num.n_len--;
@@ -1010,7 +1010,7 @@ function _phpjs_shared_bc() {
     /**
      * Convert to bc_num detecting scale
      */
-    php_str2num: function(str) {
+    php_str2num          : function(str) {
       var p;
       p = str.indexOf('.');
       if (p == -1) {
@@ -1021,19 +1021,19 @@ function _phpjs_shared_bc() {
 
     },
 
-    CH_VAL: function(c) {
+    CH_VAL               : function(c) {
       return c - '0'; //??
     },
 
-    BCD_CHAR: function(d) {
+    BCD_CHAR             : function(d) {
       return d + '0'; // ??
     },
 
-    isdigit: function(c) {
+    isdigit              : function(c) {
       return (isNaN(parseInt(c, 10)) ? false : true);
     },
 
-    bc_str2num: function(str_in, scale) {
+    bc_str2num           : function(str_in, scale) {
       var str, num, ptr, digits, strscale, zero_int, nptr;
       // remove any non-expected characters
       /* Check for valid number and count digits. */
@@ -1117,7 +1117,7 @@ function _phpjs_shared_bc() {
       return num;
     },
 
-    cint: function(v) {
+    cint                 : function(v) {
       if (typeof v === 'undefined') {
         v = 0;
       }
@@ -1133,7 +1133,7 @@ function _phpjs_shared_bc() {
      * @param {int} a
      * @param {int} b
      */
-    MIN: function(a, b) {
+    MIN                  : function(a, b) {
       return ((a > b) ? b : a);
     },
 
@@ -1142,7 +1142,7 @@ function _phpjs_shared_bc() {
      * @param {int} a
      * @param {int} b
      */
-    MAX: function(a, b) {
+    MAX                  : function(a, b) {
       return ((a > b) ? a : b);
     },
 
@@ -1150,7 +1150,7 @@ function _phpjs_shared_bc() {
      * Basic odd function
      * @param {int} a
      */
-    ODD: function(a) {
+    ODD                  : function(a) {
       return (a & 1);
     },
 
@@ -1161,7 +1161,7 @@ function _phpjs_shared_bc() {
      * @param {string} chr    char to fill
      * @param {int} len       length to fill
      */
-    memset: function(r, ptr, chr, len) {
+    memset               : function(r, ptr, chr, len) {
       var i;
       for (i = 0; i < len; i++) {
         r[ptr + i] = chr;
@@ -1173,7 +1173,7 @@ function _phpjs_shared_bc() {
      * Obviously can't work like c does, so we've added an "offset" param so you could do memcpy(dest+1, src, len) as memcpy(dest, 1, src, len)
      * Also only works on arrays
      */
-    memcpy: function(dest, ptr, src, srcptr, len) {
+    memcpy               : function(dest, ptr, src, srcptr, len) {
       var i;
       for (i = 0; i < len; i++) {
         dest[ptr + i] = src[srcptr + i];
@@ -1187,7 +1187,7 @@ function _phpjs_shared_bc() {
      * @param {bc_num} num    number to check
      * @return boolean      true when zero, false when not zero.
      */
-    bc_is_zero: function(num) {
+    bc_is_zero           : function(num) {
       var count; // int
       var nptr; // int
       /* Quick check. */
@@ -1207,7 +1207,7 @@ function _phpjs_shared_bc() {
       }
     },
 
-    bc_out_of_memory: function() {
+    bc_out_of_memory     : function() {
       throw new Error('(BC) Out of memory');
     }
   };

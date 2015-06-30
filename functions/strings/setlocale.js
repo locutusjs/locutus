@@ -127,103 +127,103 @@ function setlocale(category, locale) {
     phpjs.locales = {};
 
     phpjs.locales.en = {
-      'LC_COLLATE': // For strcoll
+      'LC_COLLATE'  : // For strcoll
 
         function(str1, str2) {
         // Fix: This one taken from strcmp, but need for other locales; we don't use localeCompare since its locale is not settable
         return (str1 == str2) ? 0 : ((str1 > str2) ? 1 : -1);
       },
-      'LC_CTYPE': {
+      'LC_CTYPE'    : {
         // Need to change any of these for English as opposed to C?
-        an: /^[A-Za-z\d]+$/g,
-        al: /^[A-Za-z]+$/g,
-        ct: /^[\u0000-\u001F\u007F]+$/g,
-        dg: /^[\d]+$/g,
-        gr: /^[\u0021-\u007E]+$/g,
-        lw: /^[a-z]+$/g,
-        pr: /^[\u0020-\u007E]+$/g,
-        pu: /^[\u0021-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007E]+$/g,
-        sp: /^[\f\n\r\t\v ]+$/g,
-        up: /^[A-Z]+$/g,
-        xd: /^[A-Fa-f\d]+$/g,
-        CODESET: 'UTF-8',
+        an      : /^[A-Za-z\d]+$/g,
+        al      : /^[A-Za-z]+$/g,
+        ct      : /^[\u0000-\u001F\u007F]+$/g,
+        dg      : /^[\d]+$/g,
+        gr      : /^[\u0021-\u007E]+$/g,
+        lw      : /^[a-z]+$/g,
+        pr      : /^[\u0020-\u007E]+$/g,
+        pu      : /^[\u0021-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007E]+$/g,
+        sp      : /^[\f\n\r\t\v ]+$/g,
+        up      : /^[A-Z]+$/g,
+        xd      : /^[A-Fa-f\d]+$/g,
+        CODESET : 'UTF-8',
         // Used by sql_regcase
-        lower: 'abcdefghijklmnopqrstuvwxyz',
-        upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        lower   : 'abcdefghijklmnopqrstuvwxyz',
+        upper   : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
       },
-      'LC_TIME': {
+      'LC_TIME'     : {
         // Comments include nl_langinfo() constant equivalents and any changes from Blues' implementation
-        a: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        a           : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         // ABDAY_
-        A: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        A           : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         // DAY_
-        b: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        b           : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         // ABMON_
-        B: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
+        B           : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
           'November', 'December'
         ],
         // MON_
-        c: '%a %d %b %Y %r %Z',
+        c           : '%a %d %b %Y %r %Z',
         // D_T_FMT // changed %T to %r per results
-        p: ['AM', 'PM'],
+        p           : ['AM', 'PM'],
         // AM_STR/PM_STR
-        P: ['am', 'pm'],
+        P           : ['am', 'pm'],
         // Not available in nl_langinfo()
-        r: '%I:%M:%S %p',
+        r           : '%I:%M:%S %p',
         // T_FMT_AMPM (Fixed for all locales)
-        x: '%m/%d/%Y',
+        x           : '%m/%d/%Y',
         // D_FMT // switched order of %m and %d; changed %y to %Y (C uses %y)
-        X: '%r',
+        X           : '%r',
         // T_FMT // changed from %T to %r  (%T is default for C, not English US)
         // Following are from nl_langinfo() or http://www.cptec.inpe.br/sx4/sx4man2/g1ab02e/strftime.4.html
-        alt_digits: '',
+        alt_digits  : '',
         // e.g., ordinal
-        ERA: '',
-        ERA_YEAR: '',
-        ERA_D_T_FMT: '',
-        ERA_D_FMT: '',
-        ERA_T_FMT: ''
+        ERA         : '',
+        ERA_YEAR    : '',
+        ERA_D_T_FMT : '',
+        ERA_D_FMT   : '',
+        ERA_T_FMT   : ''
       },
       // Assuming distinction between numeric and monetary is thus:
       // See below for C locale
-      'LC_MONETARY': {
+      'LC_MONETARY' : {
         // based on Windows "english" (English_United States.1252) locale
-        int_curr_symbol: 'USD',
-        currency_symbol: '$',
-        mon_decimal_point: '.',
-        mon_thousands_sep: ',',
-        mon_grouping: [3],
+        int_curr_symbol   : 'USD',
+        currency_symbol   : '$',
+        mon_decimal_point : '.',
+        mon_thousands_sep : ',',
+        mon_grouping      : [3],
         // use mon_thousands_sep; "" for no grouping; additional array members indicate successive group lengths after first group (e.g., if to be 1,23,456, could be [3, 2])
-        positive_sign: '',
-        negative_sign: '-',
-        int_frac_digits: 2,
+        positive_sign     : '',
+        negative_sign     : '-',
+        int_frac_digits   : 2,
         // Fractional digits only for money defaults?
-        frac_digits: 2,
-        p_cs_precedes: 1,
+        frac_digits       : 2,
+        p_cs_precedes     : 1,
         // positive currency symbol follows value = 0; precedes value = 1
-        p_sep_by_space: 0,
+        p_sep_by_space    : 0,
         // 0: no space between curr. symbol and value; 1: space sep. them unless symb. and sign are adjacent then space sep. them from value; 2: space sep. sign and value unless symb. and sign are adjacent then space separates
-        n_cs_precedes: 1,
+        n_cs_precedes     : 1,
         // see p_cs_precedes
-        n_sep_by_space: 0,
+        n_sep_by_space    : 0,
         // see p_sep_by_space
-        p_sign_posn: 3,
+        p_sign_posn       : 3,
         // 0: parentheses surround quantity and curr. symbol; 1: sign precedes them; 2: sign follows them; 3: sign immed. precedes curr. symbol; 4: sign immed. succeeds curr. symbol
-        n_sign_posn: 0 // see p_sign_posn
+        n_sign_posn       : 0 // see p_sign_posn
       },
-      'LC_NUMERIC': {
+      'LC_NUMERIC'  : {
         // based on Windows "english" (English_United States.1252) locale
-        decimal_point: '.',
-        thousands_sep: ',',
-        grouping: [3] // see mon_grouping, but for non-monetary values (use thousands_sep)
+        decimal_point : '.',
+        thousands_sep : ',',
+        grouping      : [3] // see mon_grouping, but for non-monetary values (use thousands_sep)
       },
-      'LC_MESSAGES': {
-        YESEXPR: '^[yY].*',
-        NOEXPR: '^[nN].*',
-        YESSTR: '',
-        NOSTR: ''
+      'LC_MESSAGES' : {
+        YESEXPR : '^[yY].*',
+        NOEXPR  : '^[nN].*',
+        YESSTR  : '',
+        NOSTR   : ''
       },
-      nplurals: _nplurals2a
+      nplurals      : _nplurals2a
     };
     phpjs.locales.en_US = _copy(phpjs.locales.en);
     phpjs.locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z';
@@ -245,26 +245,26 @@ function setlocale(category, locale) {
     phpjs.locales.C = _copy(phpjs.locales.en);
     phpjs.locales.C.LC_CTYPE.CODESET = 'ANSI_X3.4-1968';
     phpjs.locales.C.LC_MONETARY = {
-      int_curr_symbol: '',
-      currency_symbol: '',
-      mon_decimal_point: '',
-      mon_thousands_sep: '',
-      mon_grouping: [],
-      p_cs_precedes: 127,
-      p_sep_by_space: 127,
-      n_cs_precedes: 127,
-      n_sep_by_space: 127,
-      p_sign_posn: 127,
-      n_sign_posn: 127,
-      positive_sign: '',
-      negative_sign: '',
-      int_frac_digits: 127,
-      frac_digits: 127
+      int_curr_symbol   : '',
+      currency_symbol   : '',
+      mon_decimal_point : '',
+      mon_thousands_sep : '',
+      mon_grouping      : [],
+      p_cs_precedes     : 127,
+      p_sep_by_space    : 127,
+      n_cs_precedes     : 127,
+      n_sep_by_space    : 127,
+      p_sign_posn       : 127,
+      n_sign_posn       : 127,
+      positive_sign     : '',
+      negative_sign     : '',
+      int_frac_digits   : 127,
+      frac_digits       : 127
     };
     phpjs.locales.C.LC_NUMERIC = {
-      decimal_point: '.',
-      thousands_sep: '',
-      grouping: []
+      decimal_point : '.',
+      thousands_sep : '',
+      grouping      : []
     };
     // D_T_FMT
     phpjs.locales.C.LC_TIME.c = '%a %b %e %H:%M:%S %Y';
@@ -321,17 +321,17 @@ function setlocale(category, locale) {
 
   if (!phpjs.localeCategories) {
     phpjs.localeCategories = {
-      'LC_COLLATE': phpjs.locale,
+      'LC_COLLATE'  : phpjs.locale,
       // for string comparison, see strcoll()
-      'LC_CTYPE': phpjs.locale,
+      'LC_CTYPE'    : phpjs.locale,
       // for character classification and conversion, for example strtoupper()
-      'LC_MONETARY': phpjs.locale,
+      'LC_MONETARY' : phpjs.locale,
       // for localeconv()
-      'LC_NUMERIC': phpjs.locale,
+      'LC_NUMERIC'  : phpjs.locale,
       // for decimal separator (See also localeconv())
-      'LC_TIME': phpjs.locale,
+      'LC_TIME'     : phpjs.locale,
       // for date and time formatting with strftime()
-      'LC_MESSAGES': phpjs.locale // for system responses (available if PHP was compiled with libintl)
+      'LC_MESSAGES' : phpjs.locale // for system responses (available if PHP was compiled with libintl)
     };
   }
   // END REDUNDANT

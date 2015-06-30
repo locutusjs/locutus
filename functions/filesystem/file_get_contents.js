@@ -45,9 +45,9 @@ function file_get_contents(url, flags, context, offset, maxLen) {
     flags = 0;
   }
   var OPTS = {
-    FILE_USE_INCLUDE_PATH: 1,
-    FILE_TEXT: 32,
-    FILE_BINARY: 64
+    FILE_USE_INCLUDE_PATH : 1,
+    FILE_TEXT             : 32,
+    FILE_BINARY           : 64
   };
   if (typeof flags === 'number') {
     // Allow for a single string or an array of string flags
@@ -131,12 +131,12 @@ function file_get_contents(url, flags, context, offset, maxLen) {
   STREAM_NOTIFY_SEVERITY_ERR  2     A critical error occurred. Processing cannot continue.
   */
             var objContext = {
-              responseText: req.responseText,
-              responseXML: req.responseXML,
-              status: req.status,
-              statusText: req.statusText,
-              readyState: req.readyState,
-              evt: aEvt
+              responseText : req.responseText,
+              responseXML  : req.responseXML,
+              status       : req.status,
+              statusText   : req.statusText,
+              readyState   : req.readyState,
+              evt          : aEvt
             }; // properties are not available in PHP, but offered on notification via 'this' for convenience
             // notification args: notification_code, severity, message, message_code, bytes_transferred, bytes_max (all int's except string 'message')
             // Need to add message, etc.

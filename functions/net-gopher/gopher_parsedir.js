@@ -66,15 +66,15 @@ function gopher_parsedir(dirent) {
     break;
   default:
     return {
-      type: -1,
-      data: dirent
+      type : -1,
+      data : dirent
     }; // GOPHER_UNKNOWN
   }
   return {
-    type: type,
-    title: entry[2],
-    path: entry[3],
-    host: entry[4],
-    port: entry[5]
+    type  : type,
+    title : entry[2],
+    path  : entry[3],
+    host  : entry[4],
+    port  : entry[5]
   };
 }

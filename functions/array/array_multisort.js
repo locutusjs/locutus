@@ -26,11 +26,11 @@ function array_multisort(arr) {
   var args = arguments;
 
   var flags = {
-    'SORT_REGULAR': 16,
-    'SORT_NUMERIC': 17,
-    'SORT_STRING': 18,
-    'SORT_ASC': 32,
-    'SORT_DESC': 40
+    'SORT_REGULAR' : 16,
+    'SORT_NUMERIC' : 17,
+    'SORT_STRING'  : 18,
+    'SORT_ASC'     : 32,
+    'SORT_DESC'    : 40
   };
 
   var sortDuplicator = function(a, b) {

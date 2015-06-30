@@ -272,4 +272,3 @@ cli.test = function(args, options) {
 cli.main(function(args, options) {
   cli[options.action](args, options);
 });
-

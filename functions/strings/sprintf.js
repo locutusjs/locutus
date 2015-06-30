@@ -54,9 +54,9 @@ function sprintf() {
     // Note: casts negative numbers to positive ones
     var number = value >>> 0;
     prefix = (prefix && number && {
-      '2': '0b',
-      '8': '0',
-      '16': '0x'
+      '2'  : '0b',
+      '8'  : '0',
+      '16' : '0x'
     }[base]) || '';
     value = prefix + pad(number.toString(base), precision || 0, '0', false);
     return justify(value, prefix, leftJustify, minWidth, zeroPad);

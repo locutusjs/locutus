@@ -197,21 +197,21 @@ function strtotime(text, now) {
 
   date = now ? new Date(now * 1000) : new Date();
   days = {
-    'sun': 0,
-    'mon': 1,
-    'tue': 2,
-    'wed': 3,
-    'thu': 4,
-    'fri': 5,
-    'sat': 6
+    'sun' : 0,
+    'mon' : 1,
+    'tue' : 2,
+    'wed' : 3,
+    'thu' : 4,
+    'fri' : 5,
+    'sat' : 6
   };
   ranges = {
-    'yea': 'FullYear',
-    'mon': 'Month',
-    'day': 'Date',
-    'hou': 'Hours',
-    'min': 'Minutes',
-    'sec': 'Seconds'
+    'yea' : 'FullYear',
+    'mon' : 'Month',
+    'day' : 'Date',
+    'hou' : 'Hours',
+    'min' : 'Minutes',
+    'sec' : 'Seconds'
   };
 
   function lastNext(type, range, modifier) {
