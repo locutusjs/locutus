@@ -17,7 +17,7 @@ function strftime(fmt, timestamp) {
   var phpjs = this.php_js;
 
   // BEGIN STATIC
-  var _xPad = function (x, pad, r) {
+  var _xPad = function(x, pad, r) {
     if (typeof r === 'undefined') {
       r = 10;
     }
@@ -32,27 +32,27 @@ function strftime(fmt, timestamp) {
   var lc_time = locales[locale].LC_TIME;
 
   var _formats = {
-    a: function (d) {
+    a: function(d) {
       return lc_time.a[d.getDay()];
     },
-    A: function (d) {
+    A: function(d) {
       return lc_time.A[d.getDay()];
     },
-    b: function (d) {
+    b: function(d) {
       return lc_time.b[d.getMonth()];
     },
-    B: function (d) {
+    B: function(d) {
       return lc_time.B[d.getMonth()];
     },
-    C: function (d) {
+    C: function(d) {
       return _xPad(parseInt(d.getFullYear() / 100, 10), 0);
     },
     d: ['getDate', '0'],
     e: ['getDate', ' '],
-    g: function (d) {
+    g: function(d) {
       return _xPad(parseInt(this.G(d) / 100, 10), 0);
     },
-    G: function (d) {
+    G: function(d) {
       var y = d.getFullYear();
       var V = parseInt(_formats.V(d), 10);
       var W = parseInt(_formats.W(d), 10);
@@ -66,11 +66,11 @@ function strftime(fmt, timestamp) {
       return y;
     },
     H: ['getHours', '0'],
-    I: function (d) {
+    I: function(d) {
       var I = d.getHours() % 12;
       return _xPad(I === 0 ? 12 : I, 0);
     },
-    j: function (d) {
+    j: function(d) {
       var ms = d - new Date('' + d.getFullYear() + '/1/1 GMT');
       // Line differs from Yahoo implementation which would be equivalent to replacing it here with:
       ms += d.getTimezoneOffset() * 60000;
@@ -80,36 +80,36 @@ function strftime(fmt, timestamp) {
     },
     k: ['getHours', '0'],
     // not in PHP, but implemented here (as in Yahoo)
-    l: function (d) {
+    l: function(d) {
       var l = d.getHours() % 12;
       return _xPad(l === 0 ? 12 : l, ' ');
     },
-    m: function (d) {
+    m: function(d) {
       return _xPad(d.getMonth() + 1, 0);
     },
     M: ['getMinutes', '0'],
-    p: function (d) {
+    p: function(d) {
       return lc_time.p[d.getHours() >= 12 ? 1 : 0];
     },
-    P: function (d) {
+    P: function(d) {
       return lc_time.P[d.getHours() >= 12 ? 1 : 0];
     },
-    s: function (d) {
+    s: function(d) {
       // Yahoo uses return parseInt(d.getTime()/1000, 10);
       return Date.parse(d) / 1000;
     },
     S: ['getSeconds', '0'],
-    u: function (d) {
+    u: function(d) {
       var dow = d.getDay();
       return ((dow === 0) ? 7 : dow);
     },
-    U: function (d) {
+    U: function(d) {
       var doy = parseInt(_formats.j(d), 10);
       var rdow = 6 - d.getDay();
       var woy = parseInt((doy + rdow) / 7, 10);
       return _xPad(woy, 0);
     },
-    V: function (d) {
+    V: function(d) {
       var woy = parseInt(_formats.W(d), 10);
       var dow1_1 = (new Date('' + d.getFullYear() + '/1/1'))
         .getDay();
@@ -128,23 +128,23 @@ function strftime(fmt, timestamp) {
       return _xPad(idow, 0);
     },
     w: 'getDay',
-    W: function (d) {
+    W: function(d) {
       var doy = parseInt(_formats.j(d), 10);
       var rdow = 7 - _formats.u(d);
       var woy = parseInt((doy + rdow) / 7, 10);
       return _xPad(woy, 0, 10);
     },
-    y: function (d) {
+    y: function(d) {
       return _xPad(d.getFullYear() % 100, 0);
     },
     Y: 'getFullYear',
-    z: function (d) {
+    z: function(d) {
       var o = d.getTimezoneOffset();
       var H = _xPad(parseInt(Math.abs(o / 60), 10), 0);
       var M = _xPad(o % 60, 0);
       return (o > 0 ? '-' : '+') + H + M;
     },
-    Z: function (d) {
+    Z: function(d) {
       return d.toString()
         .replace(/^.*\(([^)]+)\)$/, '$1');
       /*
@@ -156,7 +156,7 @@ function strftime(fmt, timestamp) {
       return tz;
       */
     },
-    '%': function (d) {
+    '%': function(d) {
       return '%';
     }
   };
@@ -201,14 +201,14 @@ Oy
 
   // First replace aggregates (run in a loop because an agg may be made up of other aggs)
   while (fmt.match(/%[cDFhnrRtTxX]/)) {
-    fmt = fmt.replace(/%([cDFhnrRtTxX])/g, function (m0, m1) {
+    fmt = fmt.replace(/%([cDFhnrRtTxX])/g, function(m0, m1) {
       var f = _aggregates[m1];
       return (f === 'locale' ? lc_time[m1] : f);
     });
   }
 
   // Now replace formats - we need a closure so that the date object gets passed through
-  var str = fmt.replace(/%([aAbBCdegGHIjklmMpPsSuUVwWyYzZ%])/g, function (m0, m1) {
+  var str = fmt.replace(/%([aAbBCdegGHIjklmMpPsSuUVwWyYzZ%])/g, function(m0, m1) {
     var f = _formats[m1];
     if (typeof f === 'string') {
       return _date[f]();

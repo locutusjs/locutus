@@ -7,7 +7,7 @@ function sha1(str) {
   //   example 1: sha1('Kevin van Zonneveld');
   //   returns 1: '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
 
-  var rotate_left = function (n, s) {
+  var rotate_left = function(n, s) {
     var t4 = (n << s) | (n >>> (32 - s));
     return t4;
   };
@@ -27,7 +27,7 @@ function sha1(str) {
     return str;
   };*/
 
-  var cvt_hex = function (val) {
+  var cvt_hex = function(val) {
     var str = '';
     var i;
     var v;

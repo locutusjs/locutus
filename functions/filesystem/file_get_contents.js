@@ -30,7 +30,7 @@ function file_get_contents(url, flags, context, offset, maxLen) {
     flagNames = 0,
     content = null,
     http_stream = false;
-  var func = function (value) {
+  var func = function(value) {
     return value.substring(1) !== '';
   };
 
@@ -89,7 +89,7 @@ function file_get_contents(url, flags, context, offset, maxLen) {
     }
 
     var method = http_stream ? http_options.method : 'GET';
-    var async = !! (context && context.stream_params && context.stream_params['phpjs.async']);
+    var async = !!(context && context.stream_params && context.stream_params['phpjs.async']);
 
     if (ini['phpjs.ajaxBypassCache'] && ini['phpjs.ajaxBypassCache'].local_value) {
       url += (url.match(/\?/) == null ? '?' : '&') + (new Date())
@@ -110,7 +110,7 @@ function file_get_contents(url, flags, context, offset, maxLen) {
           req.addEventListener('abort', transferCanceled, false);
           */
         } else {
-          req.onreadystatechange = function (aEvt) {
+          req.onreadystatechange = function(aEvt) {
             // aEvt has stopPropagation(), preventDefault(); see https://developer.mozilla.org/en/NsIDOMEvent
             // Other XMLHttpRequest properties: multipart, responseXML, status, statusText, upload, withCredentials
             /*

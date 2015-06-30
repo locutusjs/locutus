@@ -12,7 +12,7 @@ function array_keys(input, search_value, argStrict) {
 
   var search = typeof search_value !== 'undefined',
     tmp_arr = [],
-    strict = !! argStrict,
+    strict = !!argStrict,
     include = true,
     key = '';
 

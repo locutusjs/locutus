@@ -14,7 +14,7 @@ function settype(vr, type) {
   //   example 2: $result = foo
   //   returns 2: '1'
 
-  var is_array = function (arr) {
+  var is_array = function(arr) {
     return typeof arr === 'object' && typeof arr.length === 'number' && !(arr.propertyIsEnumerable('length')) &&
       typeof arr.splice === 'function';
   };
@@ -35,7 +35,7 @@ function settype(vr, type) {
         }
         this[vr] = lgth;
       } else {
-        this[vr] = !! v;
+        this[vr] = !!v;
       }
       break;
     case 'integer':

@@ -12,11 +12,11 @@ function md5(str) {
 
   var xl;
 
-  var rotateLeft = function (lValue, iShiftBits) {
+  var rotateLeft = function(lValue, iShiftBits) {
     return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits));
   };
 
-  var addUnsigned = function (lX, lY) {
+  var addUnsigned = function(lX, lY) {
     var lX4, lY4, lX8, lY8, lResult;
     lX8 = (lX & 0x80000000);
     lY8 = (lY & 0x80000000);
@@ -37,40 +37,40 @@ function md5(str) {
     }
   };
 
-  var _F = function (x, y, z) {
+  var _F = function(x, y, z) {
     return (x & y) | ((~x) & z);
   };
-  var _G = function (x, y, z) {
+  var _G = function(x, y, z) {
     return (x & z) | (y & (~z));
   };
-  var _H = function (x, y, z) {
+  var _H = function(x, y, z) {
     return (x ^ y ^ z);
   };
-  var _I = function (x, y, z) {
+  var _I = function(x, y, z) {
     return (y ^ (x | (~z)));
   };
 
-  var _FF = function (a, b, c, d, x, s, ac) {
+  var _FF = function(a, b, c, d, x, s, ac) {
     a = addUnsigned(a, addUnsigned(addUnsigned(_F(b, c, d), x), ac));
     return addUnsigned(rotateLeft(a, s), b);
   };
 
-  var _GG = function (a, b, c, d, x, s, ac) {
+  var _GG = function(a, b, c, d, x, s, ac) {
     a = addUnsigned(a, addUnsigned(addUnsigned(_G(b, c, d), x), ac));
     return addUnsigned(rotateLeft(a, s), b);
   };
 
-  var _HH = function (a, b, c, d, x, s, ac) {
+  var _HH = function(a, b, c, d, x, s, ac) {
     a = addUnsigned(a, addUnsigned(addUnsigned(_H(b, c, d), x), ac));
     return addUnsigned(rotateLeft(a, s), b);
   };
 
-  var _II = function (a, b, c, d, x, s, ac) {
+  var _II = function(a, b, c, d, x, s, ac) {
     a = addUnsigned(a, addUnsigned(addUnsigned(_I(b, c, d), x), ac));
     return addUnsigned(rotateLeft(a, s), b);
   };
 
-  var convertToWordArray = function (str) {
+  var convertToWordArray = function(str) {
     var lWordCount;
     var lMessageLength = str.length;
     var lNumberOfWords_temp1 = lMessageLength + 8;
@@ -93,7 +93,7 @@ function md5(str) {
     return lWordArray;
   };
 
-  var wordToHex = function (lValue) {
+  var wordToHex = function(lValue) {
     var wordToHexValue = '',
       wordToHexValue_temp = '',
       lByte, lCount;

@@ -41,10 +41,10 @@ function str_replace(search, replace, subject, count) {
     sa = Object.prototype.toString.call(s) === '[object Array]';
   s = [].concat(s);
   
-  if(typeof(search) === 'object' && typeof(replace) === 'string' ) {
+  if (typeof (search) === 'object' && typeof (replace) === 'string') {
     temp = replace; 
     replace = new Array();
-    for (i=0; i < search.length; i+=1) { 
+    for (i = 0; i < search.length; i += 1) { 
       replace[i] = temp; 
     }
     temp = ''; 

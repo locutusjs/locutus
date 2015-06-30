@@ -40,7 +40,7 @@ function shuffle(inputArr) {
       }
     }
   }
-  valArr.sort(function () {
+  valArr.sort(function() {
     return 0.5 - Math.random();
   });
 

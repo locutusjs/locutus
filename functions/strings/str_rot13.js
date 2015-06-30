@@ -12,7 +12,7 @@ function str_rot13(str) {
   //   returns 3: '33'
 
   return (str + '')
-    .replace(/[a-z]/gi, function (s) {
+    .replace(/[a-z]/gi, function(s) {
       return String.fromCharCode(s.charCodeAt(0) + (s.toLowerCase() < 'n' ? 13 : -13));
     });
 }

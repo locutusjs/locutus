@@ -35,26 +35,26 @@ function str_ireplace(search, replace, subject, count) {
     os = subject,
     osa = Object.prototype.toString.call(os) === '[object Array]';
 
-  if(typeof(search) === 'object') {
+  if (typeof (search) === 'object') {
     temp = search;
     search = new Array();
-    for(i=0; i<temp.length;i+=1) {
+    for (i = 0; i < temp.length;i += 1) {
       search[i] = temp[i].toLowerCase();
     }
   }else { search = search.toLowerCase(); }
 
-  if(typeof(subject) === 'object') {
+  if (typeof (subject) === 'object') {
     temp = subject;
     subject = new Array();
-    for(i=0; i<temp.length;i+=1) {
+    for (i = 0; i < temp.length;i += 1) {
       subject[i] = temp[i].toLowerCase();
     }
   }else { subject = subject.toLowerCase(); }
 
-  if(typeof(search) === 'object' && typeof(replace) === 'string' ) {
+  if (typeof (search) === 'object' && typeof (replace) === 'string') {
     temp = replace;
     replace = new Array();
-    for (i=0; i < search.length; i+=1) {
+    for (i = 0; i < search.length; i += 1) {
       replace[i] = temp;
     }
   }
@@ -83,8 +83,8 @@ function str_ireplace(search, replace, subject, count) {
       otemp = os[i] + '';
       oi = temp.indexOf(f[j]);
       ofjl = f[j].length;
-      if(oi >= 0) {
-        os[i] = (otemp).split(otemp.substr(oi,ofjl)).join(repl);
+      if (oi >= 0) {
+        os[i] = (otemp).split(otemp.substr(oi, ofjl)).join(repl);
       }
 
       if (count) {

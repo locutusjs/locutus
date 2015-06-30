@@ -17,7 +17,7 @@ function array_count_values(array) {
     key = '',
     t = '';
 
-  var __getType = function (obj) {
+  var __getType = function(obj) {
     // Objects are php associative arrays.
     var t = typeof obj;
     t = t.toLowerCase();
@@ -27,7 +27,7 @@ function array_count_values(array) {
     return t;
   };
 
-  var __countValue = function (tmp_arr, value) {
+  var __countValue = function(tmp_arr, value) {
     switch (typeof value) {
     case 'number':
       if (Math.floor(value) !== value) {

@@ -25,7 +25,7 @@ function strlen(string) {
     return string.length;
   }
 
-  var getWholeChar = function (str, i) {
+  var getWholeChar = function(str, i) {
     var code = str.charCodeAt(i);
     var next = '',
       prev = '';

@@ -28,7 +28,7 @@ function var_export(mixed_expression, bool_return) {
     idtLevel = arguments[2] || 2,
     innerIndent = '',
     outerIndent = '',
-    getFuncName = function (fn) {
+    getFuncName = function(fn) {
       var name = (/\W*function\s+([\w\$]+)\s*\(/)
         .exec(fn);
       if (!name) {
@@ -36,11 +36,11 @@ function var_export(mixed_expression, bool_return) {
       }
       return name[1];
     };
-  _makeIndent = function (idtLevel) {
+  _makeIndent = function(idtLevel) {
     return (new Array(idtLevel + 1))
       .join(' ');
   };
-  __getType = function (inp) {
+  __getType = function(inp) {
     var i = 0,
       match, types, cons, type = typeof inp;
     if (type === 'object' && (inp && inp.constructor) &&

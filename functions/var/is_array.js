@@ -23,7 +23,7 @@ function is_array(mixed_var) {
   //   returns 4: false
 
   var ini,
-    _getFuncName = function (fn) {
+    _getFuncName = function(fn) {
       var name = (/\W*function\s+([\w\$]+)\s*\(/)
         .exec(fn);
       if (!name) {
@@ -31,7 +31,7 @@ function is_array(mixed_var) {
       }
       return name[1];
     };
-  _isArray = function (mixed_var) {
+  _isArray = function(mixed_var) {
     // return Object.prototype.toString.call(mixed_var) === '[object Array]';
     // The above works, but let's do the even more stringent approach: (since Object.prototype.toString could be overridden)
     // Null, Not an object, no length property so couldn't be an Array (or String)
@@ -72,7 +72,7 @@ function is_array(mixed_var) {
   return _isArray(mixed_var) ||
   // Allow returning true unless user has called
   // ini_set('phpjs.objectsAsArrays', 0) to disallow objects as arrays
-  ((!ini || ( // if it's not set to 0 and it's not 'off', check for objects as arrays
+  ((!ini || (// if it's not set to 0 and it's not 'off', check for objects as arrays
     (parseInt(ini.local_value, 10) !== 0 && (!ini.local_value.toLowerCase || ini.local_value.toLowerCase() !==
       'off')))) && (
     Object.prototype.toString.call(mixed_var) === '[object Object]' && _getFuncName(mixed_var.constructor) ===

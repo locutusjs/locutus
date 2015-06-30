@@ -23,7 +23,7 @@ function serialize(mixed_value) {
     ktype = '',
     vals = '',
     count = 0,
-    _utf8Size = function (str) {
+    _utf8Size = function(str) {
       var size = 0,
         i = 0,
         l = str.length,
@@ -40,7 +40,7 @@ function serialize(mixed_value) {
       }
       return size;
     },
-  _getType = function (inp) {
+  _getType = function(inp) {
     var match, key, cons, types, type = typeof inp;
 
     if (type === 'object' && !inp) {

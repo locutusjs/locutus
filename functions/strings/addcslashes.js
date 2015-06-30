@@ -33,7 +33,7 @@ function addcslashes(str, charlist) {
     escHexGrp = [],
     encoded = '',
     percentHex = /%([\dA-Fa-f]+)/g;
-  var _pad = function (n, c) {
+  var _pad = function(n, c) {
     if ((n = n + '')
       .length < c) {
       return new Array(++c - n.length)

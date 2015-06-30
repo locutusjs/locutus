@@ -25,7 +25,7 @@ function gettype(mixed_var) {
 
   var s = typeof mixed_var,
     name;
-  var getFuncName = function (fn) {
+  var getFuncName = function(fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/)
       .exec(fn);
     if (!name) {

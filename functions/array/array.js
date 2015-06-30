@@ -18,7 +18,7 @@ function array() {
   var arrInst, e, __, that = this,
     PHPJS_Array = function PHPJS_Array() {};
   mainArgs = arguments, p = this.php_js,
-  _indexOf = function (value, from, strict) {
+  _indexOf = function(value, from, strict) {
     var i = from || 0,
       nonstrict = !strict,
       length = this.length;
@@ -32,7 +32,7 @@ function array() {
   };
   // BEGIN REDUNDANT
   if (!p.Relator) {
-    p.Relator = (function () {
+    p.Relator = (function() {
       // Used this functional class for giving privacy to the class we are creating
       // Code adapted from http://www.devpro.it/code/192.html
       // Relator explained at http://webreflection.blogspot.com/2008/07/javascript-relator-object-aka.html
@@ -61,17 +61,17 @@ function array() {
         }
         return {
           // create a new relator
-          $: function () {
+          $: function() {
             return Relator();
           },
-          constructor: function (that) {
+          constructor: function(that) {
             var i = Stack.indexOf(that);~
             i ? Array[i] : Array[Stack.push(that) - 1] = {};
             this.method(that)
               .that = that;
             return this.method(that);
           },
-          method: function (that) {
+          method: function(that) {
             return Array[Stack.indexOf(that)];
           }
         };
@@ -113,7 +113,7 @@ function array() {
         }
       };
       e = p.PHPJS_Array.prototype;
-      e.change_key_case = function (cs) {
+      e.change_key_case = function(cs) {
         var _ = __.method(this),
           oldkey, newkey, i = 0,
           kl = _.keys.length,
@@ -134,7 +134,7 @@ function array() {
         }
         return this;
       };
-      e.flip = function () {
+      e.flip = function() {
         var _ = __.method(this),
           i = 0,
           kl = _.keys.length;
@@ -154,7 +154,7 @@ function array() {
         }
         return this;
       };
-      e.walk = function (funcname, userdata) {
+      e.walk = function(funcname, userdata) {
         var _ = __.method(this),
           obj, func, ini, i = 0,
           kl = 0;
@@ -218,12 +218,12 @@ function array() {
         return this;
       };
       // Here we'll return actual arrays since most logical and practical for these functions to do this
-      e.keys = function (search_value, argStrict) {
+      e.keys = function(search_value, argStrict) {
         var _ = __.method(this),
           pos,
           search = typeof search_value !== 'undefined',
           tmp_arr = [],
-          strict = !! argStrict;
+          strict = !!argStrict;
         if (!search) {
           return _.keys;
         }
@@ -232,14 +232,14 @@ function array() {
         }
         return tmp_arr;
       };
-      e.values = function () {
+      e.values = function() {
         var _ = __.method(this);
         return _.values;
       };
       // Return non-object, non-array values, since most sensible
-      e.search = function (needle, argStrict) {
+      e.search = function(needle, argStrict) {
         var _ = __.method(this),
-          strict = !! argStrict,
+          strict = !!argStrict,
           haystack = _.values,
           i, vl, val, flags;
         if (typeof needle === 'object' && needle.exec) {
@@ -268,7 +268,7 @@ function array() {
         }
         return false;
       };
-      e.sum = function () {
+      e.sum = function() {
         var _ = __.method(this),
           sum = 0,
           i = 0,
@@ -282,7 +282,7 @@ function array() {
         return sum;
       };
       // Experimental functions
-      e.foreach = function (handler) {
+      e.foreach = function(handler) {
         var _ = __.method(this),
           i = 0,
           kl = _.keys.length;
@@ -297,7 +297,7 @@ function array() {
         }
         return this;
       };
-      e.list = function () {
+      e.list = function() {
         var key, _ = __.method(this),
           i = 0,
           argl = arguments.length;
@@ -315,7 +315,7 @@ function array() {
         return this;
       };
       // Parallel functionality and naming of built-in JavaScript array methods
-      e.forEach = function (handler) {
+      e.forEach = function(handler) {
         var _ = __.method(this),
           i = 0,
           kl = _.keys.length;
@@ -326,11 +326,11 @@ function array() {
         return this;
       };
       // Our own custom convenience functions
-      e.$object = function () {
+      e.$object = function() {
         var _ = __.method(this);
         return _.object;
       };
-      e.$objectChain = function () {
+      e.$objectChain = function() {
         var _ = __.method(this);
         return _.objectChain;
       };

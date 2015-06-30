@@ -18,7 +18,7 @@ function rawurldecode(str) {
   //        returns 3: 'http://www.google.nl/search?q=php.js&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a'
 
   return decodeURIComponent((str + '')
-    .replace(/%(?![\da-f]{2})/gi, function () {
+    .replace(/%(?![\da-f]{2})/gi, function() {
       // PHP tolerates poorly formed escape sequences
       return '%25';
     }));

@@ -41,7 +41,7 @@ function echo() {
   // If we're in a XUL context
   var ns_xul = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul';
 
-  var stringToDOM = function (str, parent, ns, container) {
+  var stringToDOM = function(str, parent, ns, container) {
     var extraNSs = '';
     if (ns === ns_xul) {
       extraNSs = ' xmlns:html="' + ns_xhtml + '"';
@@ -114,7 +114,7 @@ function echo() {
     // throw 'Your browser does not support DOM parsing as required by echo()';
   };
 
-  var ieFix = function (node) {
+  var ieFix = function(node) {
     if (node.nodeType === 1) {
       var newNode = d.createElement(node.nodeName);
       var i, len;
@@ -134,7 +134,7 @@ function echo() {
     }
   };
 
-  var replacer = function (s, m1, m2) {
+  var replacer = function(s, m1, m2) {
     // We assume for now that embedded variables do not have dollar sign; to add a dollar sign, you currently must use {$$var} (We might change this, however.)
     // Doesn't cover all cases yet: see http://php.net/manual/en/language.types.string.php#language.types.string.syntax.double
     if (m1 !== '\\') {

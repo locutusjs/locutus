@@ -12,7 +12,7 @@ function quoted_printable_encode(str) {
 
   var hexChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'],
     RFC2045Encode1IN = / \r\n|\r\n|[^!-<>-~ ]/gm,
-    RFC2045Encode1OUT = function (sMatch) {
+    RFC2045Encode1OUT = function(sMatch) {
       // Encode space before CRLF sequence to prevent spaces from being stripped
       // Keep hard line breaks intact; CRLF sequences
       if (sMatch.length > 1) {
@@ -25,7 +25,7 @@ function quoted_printable_encode(str) {
   // Split lines to 75 characters; the reason it's 75 and not 76 is because softline breaks are preceeded by an equal sign; which would be the 76th character.
   // However, if the last line/string was exactly 76 characters, then a softline would not be needed. PHP currently softbreaks anyway; so this function replicates PHP.
   RFC2045Encode2IN = /.{1,72}(?!\r\n)[^=]{0,3}/g,
-  RFC2045Encode2OUT = function (sMatch) {
+  RFC2045Encode2OUT = function(sMatch) {
     if (sMatch.substr(sMatch.length - 2) === '\r\n') {
       return sMatch;
     }

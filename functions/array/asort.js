@@ -45,7 +45,7 @@ function asort(inputArr, sort_flags) {
   switch (sort_flags) {
   case 'SORT_STRING':
     // compare items as strings
-    sorter = function (a, b) {
+    sorter = function(a, b) {
       return that.strnatcmp(a, b);
     };
     break;
@@ -56,14 +56,14 @@ function asort(inputArr, sort_flags) {
     break;
   case 'SORT_NUMERIC':
     // compare items numerically
-    sorter = function (a, b) {
+    sorter = function(a, b) {
       return (a - b);
     };
     break;
   case 'SORT_REGULAR':
     // compare items normally (don't change types)
   default:
-    sorter = function (a, b) {
+    sorter = function(a, b) {
       var aFloat = parseFloat(a),
         bFloat = parseFloat(b),
         aNumeric = aFloat + '' === a,
@@ -98,7 +98,7 @@ function asort(inputArr, sort_flags) {
     }
   }
 
-  valArr.sort(function (a, b) {
+  valArr.sort(function(a, b) {
     return sorter(a[1], b[1]);
   });
 

@@ -22,7 +22,7 @@ function is_callable(v, syntax_only, callable_name) {
   var name = '',
     obj = {},
     method = '';
-  var getFuncName = function (fn) {
+  var getFuncName = function(fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/)
       .exec(fn);
     if (!name) {

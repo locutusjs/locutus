@@ -39,7 +39,7 @@ function htmlentities(string, quote_style, charset, double_encode) {
                 + "]",
               "g");
 
-  return string.replace(regex, function (ent) {
+  return string.replace(regex, function(ent) {
     if (ent.length > 1) {
       return double_encode ? hash_map["&"] + ent.substr(1) : ent;
     }

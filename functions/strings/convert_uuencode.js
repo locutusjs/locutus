@@ -8,7 +8,7 @@ function convert_uuencode(str) {
   //        example 1: convert_uuencode("test\ntext text\r\n");
   //        returns 1: "0=&5S=`IT97AT('1E>'0-\"@``"
 
-  var chr = function (c) {
+  var chr = function(c) {
     return String.fromCharCode(c);
   };
 
@@ -28,7 +28,7 @@ function convert_uuencode(str) {
     bytes = {};
 
   // divide string into chunks of 45 characters
-  var chunk = function () {
+  var chunk = function() {
     bytes = str.substr(u, 45);
     for (i in bytes) {
       bytes[i] = bytes[i].charCodeAt(0);

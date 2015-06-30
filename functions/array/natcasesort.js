@@ -41,7 +41,7 @@ function natcasesort(inputArr) {
       }
     }
   }
-  valArr.sort(function (a, b) {
+  valArr.sort(function(a, b) {
     return that.strnatcasecmp(a[1], b[1]);
   });
 

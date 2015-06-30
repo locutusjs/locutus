@@ -37,7 +37,7 @@ function krsort(inputArr, sort_flags) {
   switch (sort_flags) {
   case 'SORT_STRING':
     // compare items as strings
-    sorter = function (a, b) {
+    sorter = function(a, b) {
       return that.strnatcmp(b, a);
     };
     break;
@@ -48,14 +48,14 @@ function krsort(inputArr, sort_flags) {
     break;
   case 'SORT_NUMERIC':
     // compare items numerically
-    sorter = function (a, b) {
+    sorter = function(a, b) {
       return (b - a);
     };
     break;
   case 'SORT_REGULAR':
     // compare items normally (don't change types)
   default:
-    sorter = function (b, a) {
+    sorter = function(b, a) {
       var aFloat = parseFloat(a),
         bFloat = parseFloat(b),
         aNumeric = aFloat + '' === a,

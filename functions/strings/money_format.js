@@ -50,7 +50,7 @@ function money_format(format, number) {
   this.setlocale('LC_ALL', 0);
   var monetary = this.php_js.locales[this.php_js.localeCategories['LC_MONETARY']]['LC_MONETARY'];
 
-  var doReplace = function (n0, flags, n2, width, n4, left, n6, right, conversion) {
+  var doReplace = function(n0, flags, n2, width, n4, left, n6, right, conversion) {
     var value = '',
       repl = '';
     if (conversion === '%') {
@@ -76,7 +76,7 @@ function money_format(format, number) {
     // Get decimal portion
     var fraction = decpos !== -1 ? number.slice(decpos + 1) : '';
 
-    var _str_splice = function (integerStr, idx, thous_sep) {
+    var _str_splice = function(integerStr, idx, thous_sep) {
       var integerArr = integerStr.split('');
       integerArr.splice(idx, 0, thous_sep);
       return integerArr.join('');

@@ -39,7 +39,7 @@ function json_decode(str_json) {
   // incorrectly, either silently deleting them, or treating them as line endings.
   cx.lastIndex = 0;
   if (cx.test(text)) {
-    text = text.replace(cx, function (a) {
+    text = text.replace(cx, function(a) {
       return '\\u' + ('0000' + a.charCodeAt(0)
         .toString(16))
         .slice(-4);

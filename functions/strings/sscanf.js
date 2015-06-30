@@ -21,7 +21,7 @@ function sscanf(str, format) {
     that = this,
     digit;
 
-  var _setExtraConversionSpecs = function (offset) {
+  var _setExtraConversionSpecs = function(offset) {
     // Since a mismatched character sets us off track from future legitimate finds, we just scan
     // to the end for any other conversion specifications (besides a percent literal), setting them to null
     // sscanf seems to disallow all conversion specification components (of sprintf) except for type specifiers
@@ -39,7 +39,7 @@ function sscanf(str, format) {
     return _finish();
   };
 
-  var _finish = function () {
+  var _finish = function() {
     if (args.length === 2) {
       return retArr;
     }
@@ -49,7 +49,7 @@ function sscanf(str, format) {
     return i;
   };
 
-  var _addNext = function (j, regex, cb) {
+  var _addNext = function(j, regex, cb) {
     if (assign) {
       var remaining = str.slice(j);
       var check = width ? remaining.substr(0, width) : remaining;
@@ -147,7 +147,7 @@ function sscanf(str, format) {
           break;
         case 'i':
           // Integer with base detection (Equivalent of 'd', but base 0 instead of 10)
-          j = _addNext(j, /([+-])?(?:(?:0x([\da-fA-F]+))|(?:0([0-7]+))|(\d+))/, function (num, sign, hex,
+          j = _addNext(j, /([+-])?(?:(?:0x([\da-fA-F]+))|(?:0([0-7]+))|(\d+))/, function(num, sign, hex,
             oct, dec) {
             return hex ? parseInt(num, 16) : oct ? parseInt(num, 8) : parseInt(num, 10);
           });
@@ -166,7 +166,7 @@ function sscanf(str, format) {
           // sscanf documented decimal number; equivalent of 'd';
         case 'd':
           // Optionally signed decimal integer
-          j = _addNext(j, /([+-])?(?:0*)(\d+)/, function (num, sign, dec) {
+          j = _addNext(j, /([+-])?(?:0*)(\d+)/, function(num, sign, dec) {
             // Ignores initial zeroes, unlike %i and parseInt()
             var decInt = parseInt((sign || '') + dec, 10);
             if (decInt < 0) {
@@ -184,7 +184,7 @@ function sscanf(str, format) {
         case 'E':
           // These don't discriminate here as both allow exponential float of either case
         case 'e':
-          j = _addNext(j, /([+-])?(?:0*)(\d*\.?\d*(?:[eE]?\d+)?)/, function (num, sign, dec) {
+          j = _addNext(j, /([+-])?(?:0*)(\d*\.?\d*(?:[eE]?\d+)?)/, function(num, sign, dec) {
             if (dec === '.') {
               return null;
             }
@@ -195,7 +195,7 @@ function sscanf(str, format) {
         case 'u':
           // unsigned decimal integer
           // We won't deal with integer overflows due to signs
-          j = _addNext(j, /([+-])?(?:0*)(\d+)/, function (num, sign, dec) {
+          j = _addNext(j, /([+-])?(?:0*)(\d+)/, function(num, sign, dec) {
             // Ignores initial zeroes, unlike %i and parseInt()
             var decInt = parseInt(dec, 10);
             if (sign === '-') {
@@ -209,7 +209,7 @@ function sscanf(str, format) {
           break;
         case 'o':
           // Octal integer // Fix: add overflows as above?
-          j = _addNext(j, /([+-])?(?:0([0-7]+))/, function (num, sign, oct) {
+          j = _addNext(j, /([+-])?(?:0([0-7]+))/, function(num, sign, oct) {
             return parseInt(num, 8);
           });
           break;
@@ -222,7 +222,7 @@ function sscanf(str, format) {
         case 'x':
           // Fix: add overflows as above?
           // Initial 0x not necessary here
-          j = _addNext(j, /([+-])?(?:(?:0x)?([\da-fA-F]+))/, function (num, sign, hex) {
+          j = _addNext(j, /([+-])?(?:(?:0x)?([\da-fA-F]+))/, function(num, sign, hex) {
             return parseInt(num, 16);
           });
           break;

@@ -24,7 +24,7 @@ function ip2long(IP) {
   // Reuse IP variable for component counter.
   IP[0] = 0;
   for (i = 1; i < 5; i += 1) {
-    IP[0] += !! ((IP[i] || '')
+    IP[0] += !!((IP[i] || '')
       .length);
     IP[i] = parseInt(IP[i]) || 0;
   }

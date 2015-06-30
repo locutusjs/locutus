@@ -12,7 +12,7 @@ function ucwords(str) {
   //   returns 2: 'HELLO WORLD'
 
   return (str + '')
-    .replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function ($1) {
+    .replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function($1) {
       return $1.toUpperCase();
     });
 }

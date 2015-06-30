@@ -46,7 +46,7 @@ function uasort(inputArr, sorter) {
       }
     }
   }
-  valArr.sort(function (a, b) {
+  valArr.sort(function(a, b) {
     return sorter(a[1], b[1]);
   });
 

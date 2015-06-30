@@ -20,7 +20,7 @@ function ini_set(varname, newvalue) {
 
   oldval = this.php_js.ini[varname].local_value;
 
-  var _setArr = function (oldval) {
+  var _setArr = function(oldval) {
     // Although these are set individually, they are all accumulated
     if (typeof oldval === 'undefined') {
       self.php_js.ini[varname].local_value = [];

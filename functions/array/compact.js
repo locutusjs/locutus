@@ -11,7 +11,7 @@ function compact() {
   var matrix = {},
     that = this;
 
-  var process = function (value) {
+  var process = function(value) {
     var i = 0,
       l = value.length,
       key_value = '';

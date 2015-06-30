@@ -29,7 +29,7 @@ function strptime(dateStr, format) {
     that = this,
     amPmOffset = 0,
     prevHour = false,
-    _reset = function (dateObj, realMday) {
+    _reset = function(dateObj, realMday) {
       // realMday is to allow for a value of 0 in return results (but without
       // messing up the Date() object)
       var jan1,
@@ -45,7 +45,7 @@ function strptime(dateStr, format) {
       jan1 = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
       o.tm_yday = Math.ceil((d - jan1) / (1000 * 60 * 60 * 24));
     },
-    _date = function () {
+    _date = function() {
       var o = retObj;
       // We set date to at least 1 to ensure year or month doesn't go backwards
       return _reset(new Date(Date.UTC(o.tm_year + 1900, o.tm_mon, o.tm_mday || 1, o.tm_hour, o.tm_min, o.tm_sec)),
@@ -85,7 +85,7 @@ Ow
 OW
 Oy
   */
-  var _preg_quote = function (str) {
+  var _preg_quote = function(str) {
     return (str + '')
       .replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!<>\|\:])/g, '\\$1');
   };
@@ -104,13 +104,13 @@ Oy
 
   // First replace aggregates (run in a loop because an agg may be made up of other aggs)
   while (format.match(/%[cDFhnrRtTxX]/)) {
-    format = format.replace(/%([cDFhnrRtTxX])/g, function (m0, m1) {
+    format = format.replace(/%([cDFhnrRtTxX])/g, function(m0, m1) {
       var f = _aggregates[m1];
       return (f === 'locale' ? lc_time[m1] : f);
     });
   }
 
-  var _addNext = function (j, regex, cb) {
+  var _addNext = function(j, regex, cb) {
     if (typeof regex === 'string') {
       regex = new RegExp('^' + regex, 'i');
     }
@@ -124,12 +124,12 @@ Oy
     return j + match[0].length;
   };
 
-  var _addLocalized = function (j, formatChar, category) {
+  var _addLocalized = function(j, formatChar, category) {
     return _addNext(j, that.array_map(
         _preg_quote, lc_time[formatChar])
       .join('|'), // Could make each parenthesized instead and pass index to callback
 
-      function (m) {
+      function(m) {
         var match = lc_time[formatChar].search(new RegExp('^' + _preg_quote(m) + '$', 'i'));
         if (match) {
           retObj[category] = match[0];
@@ -180,7 +180,7 @@ Oy
           // 0+; century (19 for 20th)
           j = _addNext(j, /^\d?\d/, // PHP docs say two-digit, but accepts one-digit (two-digit max)
 
-            function (d) {
+            function(d) {
               var year = (parseInt(d, 10) - 19) * 100;
               retObj.tm_year = year;
               _date();
@@ -195,7 +195,7 @@ Oy
         case 'e':
           // 1-31 day
           j = _addNext(j, formatChar === 'd' ? /^(0[1-9]|[1-2]\d|3[0-1])/ : /^([1-2]\d|3[0-1]|[1-9])/,
-            function (d) {
+            function(d) {
               var dayMonth = parseInt(d, 10);
               retObj.tm_mday = dayMonth;
               // Also changes w_day, y_day
@@ -210,7 +210,7 @@ Oy
           break;
         case 'H':
           // 00-23 hours
-          j = _addNext(j, /^([0-1]\d|2[0-3])/, function (d) {
+          j = _addNext(j, /^([0-1]\d|2[0-3])/, function(d) {
             var hour = parseInt(d, 10);
             retObj.tm_hour = hour;
             // Changes nothing else
@@ -220,7 +220,7 @@ Oy
           // Fall-through of lower-case 'L'; 1-12 hours
         case 'I':
           // 01-12 hours
-          j = _addNext(j, formatChar === 'l' ? /^([1-9]|1[0-2])/ : /^(0[1-9]|1[0-2])/, function (d) {
+          j = _addNext(j, formatChar === 'l' ? /^([1-9]|1[0-2])/ : /^(0[1-9]|1[0-2])/, function(d) {
             var hour = parseInt(d, 10) - 1 + amPmOffset;
             retObj.tm_hour = hour;
             // Used for coordinating with am-pm
@@ -230,7 +230,7 @@ Oy
           break;
         case 'j':
           // 001-366 day of year
-          j = _addNext(j, /^(00[1-9]|0[1-9]\d|[1-2]\d\d|3[0-6][0-6])/, function (d) {
+          j = _addNext(j, /^(00[1-9]|0[1-9]\d|[1-2]\d\d|3[0-6][0-6])/, function(d) {
             var dayYear = parseInt(d, 10) - 1;
             retObj.tm_yday = dayYear;
             // Changes nothing else (oddly, since if original by a given year, could calculate other fields)
@@ -238,7 +238,7 @@ Oy
           break;
         case 'm':
           // 01-12 month
-          j = _addNext(j, /^(0[1-9]|1[0-2])/, function (d) {
+          j = _addNext(j, /^(0[1-9]|1[0-2])/, function(d) {
             var month = parseInt(d, 10) - 1;
             retObj.tm_mon = month;
             // Also sets wday and yday
@@ -247,7 +247,7 @@ Oy
           break;
         case 'M':
           // 00-59 minutes
-          j = _addNext(j, /^[0-5]\d/, function (d) {
+          j = _addNext(j, /^[0-5]\d/, function(d) {
             var minute = parseInt(d, 10);
             retObj.tm_min = minute;
             // Changes nothing else
@@ -259,7 +259,7 @@ Oy
           return false;
         case 'p':
           // am-pm
-          j = _addNext(j, /^(am|pm)/i, function (d) {
+          j = _addNext(j, /^(am|pm)/i, function(d) {
             // No effect on 'H' since already 24 hours but
             //   works before or after setting of l/I hour
             amPmOffset = (/a/)
@@ -271,7 +271,7 @@ Oy
           break;
         case 's':
           // Unix timestamp (in seconds)
-          j = _addNext(j, /^\d+/, function (d) {
+          j = _addNext(j, /^\d+/, function(d) {
             var timestamp = parseInt(d, 10);
             var date = new Date(Date.UTC(timestamp * 1000));
             _reset(date);
@@ -282,7 +282,7 @@ Oy
           // 00-59 seconds
           j = _addNext(j, /^[0-5]\d/, // strptime also accepts 60-61 for some reason
 
-            function (d) {
+            function(d) {
               var second = parseInt(d, 10);
               retObj.tm_sec = second;
               // Changes nothing else
@@ -292,7 +292,7 @@ Oy
           // Fall-through; 1 (Monday)-7(Sunday)
         case 'w':
           // 0 (Sunday)-6(Saturday)
-          j = _addNext(j, /^\d/, function (d) {
+          j = _addNext(j, /^\d/, function(d) {
             retObj.tm_wday = d - (formatChar === 'u');
             // Changes nothing else apparently
           });
@@ -308,7 +308,7 @@ Oy
           // 69 (or higher) for 1969+, 68 (or lower) for 2068-
           j = _addNext(j, /^\d?\d/, // PHP docs say two-digit, but accepts one-digit (two-digit max)
 
-            function (d) {
+            function(d) {
               d = parseInt(d, 10);
               var year = d >= 69 ? d : d + 100;
               retObj.tm_year = year;
@@ -323,7 +323,7 @@ Oy
           // 2010 (4-digit year)
           j = _addNext(j, /^\d{1,4}/, // PHP docs say four-digit, but accepts one-digit (four-digit max)
 
-            function (d) {
+            function(d) {
               var year = (parseInt(d, 10)) - 1900;
               retObj.tm_year = year;
               _date();

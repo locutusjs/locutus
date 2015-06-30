@@ -29,7 +29,7 @@ function json_encode(mixed_val) {
 
     var value = mixed_val;
 
-    var quote = function (string) {
+    var quote = function(string) {
       var escapable =
         /[\\\"\u0000-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
       var meta = {
@@ -44,7 +44,7 @@ function json_encode(mixed_val) {
       };
 
       escapable.lastIndex = 0;
-      return escapable.test(string) ? '"' + string.replace(escapable, function (a) {
+      return escapable.test(string) ? '"' + string.replace(escapable, function(a) {
         var c = meta[a];
         return typeof c === 'string' ? c : '\\u' + ('0000' + a.charCodeAt(0)
           .toString(16))
@@ -52,7 +52,7 @@ function json_encode(mixed_val) {
       }) + '"' : '"' + string + '"';
     };
 
-    var str = function (key, holder) {
+    var str = function(key, holder) {
       var gap = '';
       var indent = '    ';
       // The loop counter.

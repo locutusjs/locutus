@@ -24,7 +24,7 @@ function unserialize(data) {
   //   returns 2: {firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'}
 
   var that = this,
-    utf8Overhead = function (chr) {
+    utf8Overhead = function(chr) {
       // http://phpjs.org/functions/unserialize:571#comment_95906
       var code = chr.charCodeAt(0);
       if (code < 0x0080) {
@@ -35,10 +35,10 @@ function unserialize(data) {
       }
       return 2;
     };
-  error = function (type, msg, filename, line) {
+  error = function(type, msg, filename, line) {
     throw new that.window[type](msg, filename, line);
   };
-  read_until = function (data, offset, stopchr) {
+  read_until = function(data, offset, stopchr) {
     var i = 2,
       buf = [],
       chr = data.slice(offset, offset + 1);
@@ -53,7 +53,7 @@ function unserialize(data) {
     }
     return [buf.length, buf.join('')];
   };
-  read_chrs = function (data, offset, length) {
+  read_chrs = function(data, offset, length) {
     var i, chr, buf;
 
     buf = [];
@@ -64,12 +64,12 @@ function unserialize(data) {
     }
     return [buf.length, buf.join('')];
   };
-  _unserialize = function (data, offset) {
+  _unserialize = function(data, offset) {
     var dtype, dataoffset, keyandchrs, keys, contig,
       length, array, readdata, readData, ccount,
       stringlength, i, key, kprops, kchrs, vprops,
       vchrs, value, chrs = 0,
-      typeconvert = function (x) {
+      typeconvert = function(x) {
         return x;
       };
 
@@ -83,7 +83,7 @@ function unserialize(data) {
 
     switch (dtype) {
     case 'i':
-      typeconvert = function (x) {
+      typeconvert = function(x) {
         return parseInt(x, 10);
       };
       readData = read_until(data, dataoffset, ';');
@@ -92,7 +92,7 @@ function unserialize(data) {
       dataoffset += chrs + 1;
       break;
     case 'b':
-      typeconvert = function (x) {
+      typeconvert = function(x) {
         return parseInt(x, 10) !== 0;
       };
       readData = read_until(data, dataoffset, ';');
@@ -101,7 +101,7 @@ function unserialize(data) {
       dataoffset += chrs + 1;
       break;
     case 'd':
-      typeconvert = function (x) {
+      typeconvert = function(x) {
         return parseFloat(x);
       };
       readData = read_until(data, dataoffset, ';');

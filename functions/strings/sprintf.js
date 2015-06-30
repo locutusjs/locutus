@@ -27,7 +27,7 @@ function sprintf() {
   var format = a[i++];
 
   // pad()
-  var pad = function (str, len, chr, leftJustify) {
+  var pad = function(str, len, chr, leftJustify) {
     if (!chr) {
       chr = ' ';
     }
@@ -37,7 +37,7 @@ function sprintf() {
   };
 
   // justify()
-  var justify = function (value, prefix, leftJustify, minWidth, zeroPad, customPadChar) {
+  var justify = function(value, prefix, leftJustify, minWidth, zeroPad, customPadChar) {
     var diff = minWidth - value.length;
     if (diff > 0) {
       if (leftJustify || !zeroPad) {
@@ -50,7 +50,7 @@ function sprintf() {
   };
 
   // formatBaseX()
-  var formatBaseX = function (value, base, prefix, leftJustify, minWidth, precision, zeroPad) {
+  var formatBaseX = function(value, base, prefix, leftJustify, minWidth, precision, zeroPad) {
     // Note: casts negative numbers to positive ones
     var number = value >>> 0;
     prefix = (prefix && number && {
@@ -63,7 +63,7 @@ function sprintf() {
   };
 
   // formatString()
-  var formatString = function (value, leftJustify, minWidth, precision, zeroPad, customPadChar) {
+  var formatString = function(value, leftJustify, minWidth, precision, zeroPad, customPadChar) {
     if (precision !== null && precision !== undefined) {
       value = value.slice(0, precision);
     }
@@ -71,7 +71,7 @@ function sprintf() {
   };
 
   // doFormat()
-  var doFormat = function (substring, valueIndex, flags, minWidth, precision, type) {
+  var doFormat = function(substring, valueIndex, flags, minWidth, precision, type) {
     var number, prefix, method, textTransform, value;
 
     if (substring === '%%') {

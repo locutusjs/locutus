@@ -15,7 +15,7 @@ function var_dump() {
     lgth = 0,
     i = 0;
 
-  var _getFuncName = function (fn) {
+  var _getFuncName = function(fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/)
       .exec(fn);
     if (!name) {
@@ -24,14 +24,14 @@ function var_dump() {
     return name[1];
   };
 
-  var _repeat_char = function (len, pad_char) {
+  var _repeat_char = function(len, pad_char) {
     var str = '';
     for (var i = 0; i < len; i++) {
       str += pad_char;
     }
     return str;
   };
-  var _getInnerVal = function (val, thick_pad) {
+  var _getInnerVal = function(val, thick_pad) {
     var ret = '';
     if (val === null) {
       ret = 'NULL';
@@ -109,7 +109,7 @@ function var_dump() {
     return ret;
   };
 
-  var _formatArray = function (obj, cur_depth, pad_val, pad_char) {
+  var _formatArray = function(obj, cur_depth, pad_val, pad_char) {
     var someProp = '';
     if (cur_depth > 0) {
       cur_depth++;

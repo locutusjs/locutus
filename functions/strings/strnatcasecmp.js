@@ -17,16 +17,16 @@ function strnatcasecmp(str1, str2) {
   var b = (str2 + '')
     .toLowerCase();
 
-  var isWhitespaceChar = function (a) {
+  var isWhitespaceChar = function(a) {
     return a.charCodeAt(0) <= 32;
   };
 
-  var isDigitChar = function (a) {
+  var isDigitChar = function(a) {
     var charCode = a.charCodeAt(0);
     return (charCode >= 48 && charCode <= 57);
   };
 
-  var compareRight = function (a, b) {
+  var compareRight = function(a, b) {
     var bias = 0;
     var ia = 0;
     var ib = 0;

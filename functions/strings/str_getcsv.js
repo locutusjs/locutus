@@ -23,14 +23,14 @@ function str_getcsv(input, delimiter, enclosure, escape) {
     Should also test newlines within
 */
   var i, inpLen, output = [];
-  var backwards = function (str) {
+  var backwards = function(str) {
     // We need to go backwards to simulate negative look-behind (don't split on
     //an escaped enclosure even if followed by the delimiter and another enclosure mark)
     return str.split('')
       .reverse()
       .join('');
   };
-  var pq = function (str) {
+  var pq = function(str) {
     // preg_quote()
     return String(str)
       .replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!<\>\|\:])/g, '\\$1');

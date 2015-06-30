@@ -16,7 +16,7 @@ function stripslashes(str) {
   //        returns 2: "Kevin\'s code"
 
   return (str + '')
-    .replace(/\\(.?)/g, function (s, n1) {
+    .replace(/\\(.?)/g, function(s, n1) {
       switch (n1) {
       case '\\':
         return '\\';

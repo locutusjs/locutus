@@ -50,7 +50,7 @@ function metaphone(word, max_phonemes) {
     return '';
   }
 
-  var is = function (p, c) {
+  var is = function(p, c) {
     return c !== '' && p.indexOf(c) !== -1;
   };
 

@@ -33,7 +33,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
     /**
      * Trims string
      */
-    trim = function (text) {
+    trim = function(text) {
       if (typeof text !== 'string') {
         throw new Error('String parameter required');
       }
@@ -43,7 +43,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
     /**
      * Verifies type of arguments
      */
-    verify_type = function (type) {
+    verify_type = function(type) {
       var args = arguments,
         args_len = arguments.length,
         basic_types = ['number', 'boolean', 'string', 'function', 'object', 'undefined'],
@@ -90,7 +90,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
     /**
      * Checks if the specified array contains an element with specified value
      */
-    has_value = function (array, value) {
+    has_value = function(array, value) {
       var i;
       verify_type(Array, array);
 
@@ -107,7 +107,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
      * @param {String | Function} type Specifies the desired type
      * @return {Boolean} Return true if all arguments after the type argument are of specified type. Else false
      */
-    are_type_of = function (type) {
+    are_type_of = function(type) {
       var args = arguments,
         args_len = arguments.length,
         basic_types = ['number', 'boolean', 'string', 'function', 'object', 'undefined'],
@@ -156,7 +156,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
     /*
      * Initialize and return an array with specified size and initial value
      */
-    get_initialized_array = function (array_size, init_value) {
+    get_initialized_array = function(array_size, init_value) {
       var array = [],
         i;
       verify_type('number', array_size);
@@ -170,7 +170,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
     /**
      * Splits text into lines and return as a string array
      */
-    split_into_lines = function (text) {
+    split_into_lines = function(text) {
       verify_type('string', text);
 
       if (text === '') {
@@ -178,14 +178,14 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
       }
       return text.split('\n');
     },
-    is_empty_array = function (obj) {
+    is_empty_array = function(obj) {
       return are_type_of(Array, obj) && obj.length === 0;
     },
     /**
      * Finds longest common sequence between two sequences
      * @see {@link http://wordaligned.org/articles/longest-common-subsequence}
      */
-    find_longest_common_sequence = function (seq1, seq2, seq1_is_in_lcs, seq2_is_in_lcs) {
+    find_longest_common_sequence = function(seq1, seq2, seq1_is_in_lcs, seq2_is_in_lcs) {
       if (!are_type_of(Array, seq1, seq2)) {
         throw new Error('Array parameters are required');
       }
@@ -196,7 +196,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
       }
 
       // Function to calculate lcs lengths
-      var lcs_lens = function (xs, ys) {
+      var lcs_lens = function(xs, ys) {
         var i, j, prev,
           curr = get_initialized_array(ys.length + 1, 0);
 
@@ -214,7 +214,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
         return curr;
       },
         // Function to find lcs and fill in the array to indicate the optimal longest common sequence
-        find_lcs = function (xs, xidx, xs_is_in, ys) {
+        find_lcs = function(xs, xidx, xs_is_in, ys) {
           var i, xb, xe, ll_b, ll_e, pivot, max, yb, ye,
             nx = xs.length,
             ny = ys.length;
@@ -302,7 +302,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
     actual_trailing_context = [],
 
     // Regularize leading context by the context_lines parameter
-    regularize_leading_context = function (context) {
+    regularize_leading_context = function(context) {
       if (context.length === 0 || context_lines === 0) {
         return [];
       }
@@ -313,7 +313,7 @@ function xdiff_string_diff(old_data, new_data, context_lines, minimal) {
     },
 
     // Regularize trailing context by the context_lines parameter
-    regularize_trailing_context = function (context) {
+    regularize_trailing_context = function(context) {
       if (context.length === 0 || context_lines === 0) {
         return [];
       }
