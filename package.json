@@ -13,6 +13,7 @@
     "deep-equal-with-difflet": "^0.1.2",
     "glob": "^4.4.0",
     "js-beautify": "^1.5.4",
+    "jscs": "^1.13.1",
     "mocha": "^2.1.0",
     "npm-check-updates": "^1.5.1",
     "send": "^0.12.1",
