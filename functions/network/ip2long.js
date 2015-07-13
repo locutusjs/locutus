@@ -1,26 +1,20 @@
-/**
- * A JavaScript equivalent of PHP's ip2long(). Convert IPv4 address in dotted
- * notation to 32-bit long integer.
- * You can pass IP in all possible representations, i.e.:
- *     192.0.34.166
- *     0xC0.0x00.0x02.0xEB
- *     0xC00002EB
- *     3221226219
- *     0.0xABCDEF
- *     255.255.255.256
- *     0300.0000.0002.0353
- *     030000001353
- *
- * @param string ip IPv4-address in one of possible representations.
- * @return Number The 32-bit number notation of IP-address expressed in decimal.
- */
 function ip2long(ip) {
-    // discuss at: http://phpjs.org/functions/ip2long/
-    // original by: Waldo Malqui Silva
-    // improved by: Victor
-    // improved by: Alexander Zubakov
-    //  revised by: fearphage (http://http/my.opera.com/fearphage/)
-    //  revised by: Theriault
+  //  discuss at: http://phpjs.org/functions/ip2long/
+  // original by: Waldo Malqui Silva (http://waldo.malqui.info)
+  // improved by: Victor
+  // improved by: Alexander Zubakov (http://xinit.co/)
+  //  revised by: fearphage (http://http/my.opera.com/fearphage/)
+  //  revised by: Theriault
+  //   example 1: ip2long('192.0.34.166');
+  //   returns 1: 3221234342
+  //   example 2: ip2long('0.0xABCDEF');
+  //   returns 2: 11259375
+  //   example 3: ip2long('255.255.255.256');
+  //   returns 3: false
+  //   example 4: ip2long('0300.0000.0002.0353');
+  //   returns 4: 3221226219
+  //   example 5: ip2long('030000001353');
+  //   returns 5: 3221226219
 
     // PHP allows decimal, octal, and hexadecimal IP components.
     // PHP allows between 1 (e.g. 127) to 4 (e.g 127.0.0.1) components.
