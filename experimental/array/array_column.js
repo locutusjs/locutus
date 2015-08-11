@@ -16,7 +16,7 @@ function array_column(array, column_key, index_key) {
   for (var i = 0; i < len; i++) {
     if (!typeof array[i] === "object") {
       continue;
-    } else if (index_key === null && arrya[i].hasOwnProperty(column_key)) {
+    } else if (index_key === null && array[i].hasOwnProperty(column_key)) {
       result[i] = array[i][column_key];
     } else if (array[i].hasOwnProperty(index_key)) {
       if (column_key === null) {
