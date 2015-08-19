@@ -151,6 +151,7 @@ function pack(format) {
       }
 
       for (i = 0; i < quantifier; i++) {
+        result += String.fromCharCode(arguments[argumentPointer] >> 8 & 0xFF);
         result += String.fromCharCode(arguments[argumentPointer] & 0xFF);
         argumentPointer++;
       }
