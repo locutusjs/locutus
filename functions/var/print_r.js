@@ -41,7 +41,7 @@ function print_r(array, return_val) {
       'PHPJS_Resource') {
       str += 'Array\n' + base_pad + '(\n';
       for (var key in obj) {
-        if (Object.prototype.toString.call(obj[key]) === '[object Array]') {
+        if (typeof obj[key] === 'object') {
           str += thick_pad + '[' + key + '] => ' + formatArray(obj[key], cur_depth + 1, pad_val, pad_char);
         } else {
           str += thick_pad + '[' + key + '] => ' + obj[key] + '\n';
