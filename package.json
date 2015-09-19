@@ -9,14 +9,14 @@
     "node": ">= 0.8.0"
   },
   "dependencies": {
-    "cli": "^0.9.0",
-    "deep-equal": "^1.0.0",
+    "cli": "^0.10.0",
+    "deep-equal": "^1.0.1",
     "deep-equal-with-difflet": "^0.1.2",
     "glob": "^5.0.14",
     "js-beautify": "^1.5.10",
-    "jscs": "^2.0.0",
-    "mocha": "^2.2.5",
-    "npm-check-updates": "^2.0.4",
+    "jscs": "^2.1.1",
+    "mocha": "^2.3.2",
+    "npm-check-updates": "^2.2.3",
     "send": "^0.13.0",
     "underscore": "^1.8.3"
   },
