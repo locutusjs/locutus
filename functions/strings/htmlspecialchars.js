@@ -25,6 +25,7 @@ function htmlspecialchars(string, quote_style, charset, double_encode) {
   if (typeof quote_style === 'undefined' || quote_style === null) {
     quote_style = 2;
   }
+  string = string || '';
   string = string.toString();
   if (double_encode !== false) {
     // Put this first to avoid double-encoding
