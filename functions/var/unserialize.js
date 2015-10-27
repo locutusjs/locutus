@@ -27,7 +27,10 @@ function unserialize(data) {
     utf8Overhead = function(chr) {
       // http://phpjs.org/functions/unserialize:571#comment_95906
       var code = chr.charCodeAt(0);
-      if (code < 0x0080) {
+      if (  code < 0x0080 
+            || 0x00A0 <= code && code <= 0x00FF 
+            || [338,339,352,353,376,402,8211,8212,8216,8217,8218,8220,8221,8222,8224,8225,8226,8230,8240,8364,8482].indexOf(code)!=-1) 
+      {
         return 0;
       }
       if (code < 0x0800) {
