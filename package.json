@@ -9,7 +9,7 @@
     "node": ">= 0.8.0"
   },
   "dependencies": {
-    "cli": "0.11.0",
+    "cli": "0.11.1",
     "deep-equal": "1.0.1",
     "deep-equal-with-difflet": "0.1.2",
     "glob": "5.0.15",
