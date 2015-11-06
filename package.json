@@ -14,7 +14,7 @@
     "deep-equal-with-difflet": "0.1.2",
     "glob": "5.0.15",
     "js-beautify": "1.5.10",
-    "jscs": "2.1.1",
+    "jscs": "2.5.1",
     "mocha": "2.3.3",
     "npm-check-updates": "2.2.4",
     "send": "0.13.0",
