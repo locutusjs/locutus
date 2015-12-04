@@ -7,24 +7,31 @@ function base64_encode(data) {
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Rafał Kukawski (http://kukawski.pl)
   // bugfixed by: Pellentesque Malesuada
+  // bugfixed by: Nawa (https://www.nwm.co.id)
   //   example 1: base64_encode('Kevin van Zonneveld');
   //   returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
   //   example 2: base64_encode('a');
   //   returns 2: 'YQ=='
   //   example 3: base64_encode('✓ à la mode');
   //   returns 3: '4pyTIMOgIGxhIG1vZGU='
+  //   example 4: base64_encode(true); // boolean true
+  //   returns 4: 'MQ=='
+  //   example 5: base64_encode(0); // numeric (number) 0
+  //   returns 5: 'MA=='
 
   var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
   var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
-    ac = 0,
-    enc = '',
-    tmp_arr = [];
+    enc = '';
+
+  // if data has number 0 , convert it as string '0'
+  data = (data === 0) ? '0' : data;
 
   if (!data) {
     return data;
   }
 
-  data = unescape(encodeURIComponent(data));
+  // if data boolean true as string '1' like php use
+  data = data === true ? '1' : unescape(encodeURIComponent(data));
 
   do {
     // pack three octets into four hexets
@@ -40,10 +47,8 @@ function base64_encode(data) {
     h4 = bits & 0x3f;
 
     // use hexets to index into b64, and append result to encoded string
-    tmp_arr[ac++] = b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4);
+    enc += b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4);
   } while (i < data.length);
-
-  enc = tmp_arr.join('');
 
   var r = data.length % 3;
 
