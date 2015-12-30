@@ -16,6 +16,7 @@ function strip_tags(input, allowed) {
   // bugfixed by: Eric Nagel
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Tomasz Wesolowski
+  // bugfixed by: Adil Aliyev (http://adil.az)
   //  revised by: Rafał Kukawski (http://blog.kukawski.pl/)
   //   example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i><b>');
   //   returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
@@ -37,8 +38,9 @@ function strip_tags(input, allowed) {
       .match(/<[a-z][a-z0-9]*>/g) || [])
     .join(''); // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
   var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi,
-    commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
-  return input.replace(commentsAndPhpTags, '')
+    commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi,
+    attributes = /[a-zA-Z0-9]+=\"([^"]*)\"/g;
+  return input.replace(attributes, '').replace(commentsAndPhpTags, '')
     .replace(tags, function($0, $1) {
       return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : '';
     });
