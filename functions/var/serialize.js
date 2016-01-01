@@ -10,6 +10,7 @@ function serialize(mixed_value) {
   // bugfixed by: Jamie Beck (http://www.terabit.ca/)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net/)
   // bugfixed by: Ben (http://benblume.co.uk/)
+  // bugfixed by: Codestar (http://codestarlive.com/)
   //    input by: DtTvB (http://dt.in.th/2008-09-16.string-length-in-bytes.html)
   //    input by: Martin (http://www.erlenwiese.de/)
   //        note: We feel the main purpose of this function should be to ease the transport of data between php & js
@@ -20,6 +21,7 @@ function serialize(mixed_value) {
   //   returns 2: 'a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}'
 
   var val, key, okey,
+    type = '',
     ktype = '',
     vals = '',
     count = 0,
