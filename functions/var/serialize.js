@@ -21,7 +21,6 @@ function serialize(mixed_value) {
   //   returns 2: 'a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}'
 
   var val, key, okey,
-    type = '',
     ktype = '',
     vals = '',
     count = 0,
@@ -60,7 +59,7 @@ function serialize(mixed_value) {
         }
         types = ['boolean', 'number', 'string', 'array'];
         for (key in types) {
-          if (cons == types[key]) {
+          if (cons === types[key]) {
             type = types[key];
             break;
           }
@@ -78,7 +77,7 @@ function serialize(mixed_value) {
     val = 'b:' + (mixed_value ? '1' : '0');
     break;
   case 'number':
-    val = (Math.round(mixed_value) == mixed_value ? 'i' : 'd') + ':' + mixed_value;
+    val = (Math.round(mixed_value) === mixed_value ? 'i' : 'd') + ':' + mixed_value;
     break;
   case 'string':
     val = 's:' + _utf8Size(mixed_value) + ':"' + mixed_value + '"';
@@ -111,8 +110,6 @@ function serialize(mixed_value) {
     }
     val += ':' + count + ':{' + vals + '}';
     break;
-  case 'undefined':
-    // Fall-through
   default:
     // if the JS object has a property which contains a null value, the string cannot be unserialized by PHP
     val = 'N';
