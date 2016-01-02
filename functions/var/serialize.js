@@ -110,6 +110,8 @@ function serialize(mixed_value) {
     }
     val += ':' + count + ':{' + vals + '}';
     break;
+  case 'undefined':
+    // Fall-through
   default:
     // if the JS object has a property which contains a null value, the string cannot be unserialized by PHP
     val = 'N';
