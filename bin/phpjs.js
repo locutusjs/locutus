@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var cli       = require('cli').enable('status', 'help', 'version', 'glob', 'timeout');
 var fs        = require('fs');
 var glob      = require('glob');
