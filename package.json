@@ -35,5 +35,6 @@
   "readmeFilename": "README.md",
   "scripts": {
     "test": "make test"
-  }
+  },
+  "bin": "bin/phpjs.js"
 }
