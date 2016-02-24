@@ -16,7 +16,7 @@
     "js-beautify": "1.5.10",
     "jscs": "2.6.0",
     "mocha": "2.3.3",
-    "npm-check-updates": "2.2.4",
+    "npm-check-updates": "2.5.1",
     "send": "0.13.0",
     "underscore": "1.8.3"
   },
