@@ -99,41 +99,30 @@ function sha1(str) {
     D = H3;
     E = H4;
 
-    for (i = 0; i <= 19; i++) {
-      temp = (rotate_left(A, 5) + ((B & C) | (~B & D)) + E + W[i] + 0x5A827999) & 0x0ffffffff;
-      E = D;
-      D = C;
-      C = rotate_left(B, 30);
-      B = A;
-      A = temp;
-    }
+    		for(i=0;i<80;i++)
+		{
+			switch(Math.floor(i/20))
+			{
+				case 0: //0-19
+					temp=(rotate_left(A,5)+((B&C)|(~B&D))+E+W[i]+0x5A827999)&0x0ffffffff;
+					break;
+				case 1: //20-39
+					temp=(rotate_left(A,5)+(B^C^D)+E+W[i]+0x6ED9EBA1)&0x0ffffffff;
+					break;
+				case 2: //40-59
+					temp=(rotate_left(A,5)+((B&C)|(B&D)|(C&D))+E+W[i]+0x8F1BBCDC)&0x0ffffffff;
+					break;
+				case 3: //60-79
+					temp=(rotate_left(A,5)+(B^C^D)+E+W[i]+0xCA62C1D6)&0x0ffffffff;
+					break;
+			}
+			E=D;
+			D=C;
+			C=rotate_left(B, 30);
+			B=A;
+			A=temp;
+		}
 
-    for (i = 20; i <= 39; i++) {
-      temp = (rotate_left(A, 5) + (B ^ C ^ D) + E + W[i] + 0x6ED9EBA1) & 0x0ffffffff;
-      E = D;
-      D = C;
-      C = rotate_left(B, 30);
-      B = A;
-      A = temp;
-    }
-
-    for (i = 40; i <= 59; i++) {
-      temp = (rotate_left(A, 5) + ((B & C) | (B & D) | (C & D)) + E + W[i] + 0x8F1BBCDC) & 0x0ffffffff;
-      E = D;
-      D = C;
-      C = rotate_left(B, 30);
-      B = A;
-      A = temp;
-    }
-
-    for (i = 60; i <= 79; i++) {
-      temp = (rotate_left(A, 5) + (B ^ C ^ D) + E + W[i] + 0xCA62C1D6) & 0x0ffffffff;
-      E = D;
-      D = C;
-      C = rotate_left(B, 30);
-      B = A;
-      A = temp;
-    }
 
     H0 = (H0 + A) & 0x0ffffffff;
     H1 = (H1 + B) & 0x0ffffffff;
