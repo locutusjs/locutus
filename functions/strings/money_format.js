@@ -65,10 +65,20 @@ function money_format(format, number) {
     width = parseInt(width, 10) || 0;
 
     var neg = number < 0;
+    if (neg) {
+      number = -number;
+    }
+
+    // left, right
+    if (right === '' || right === undefined) {
+      right = conversion === 'i' ? monetary.int_frac_digits : monetary.frac_digits;
+    } else {
+      right = parseInt(right, 10);
+    }
+
+
     // Convert to string
-    number = number + '';
-    // We don't want negative symbol represented here yet
-    number = neg ? number.slice(1) : number;
+    number = number.toFixed(right)
 
     var decpos = number.indexOf('.');
     // Get integer portion
@@ -124,32 +134,10 @@ function money_format(format, number) {
     }
 
     // left, right
-    if (right === '0') {
-      // No decimal or fractional digits
-      value = integer;
+    if (fraction) {
+      value = integer + monetary.mon_decimal_point + fraction;
     } else {
-      // '.'
-      var dec_pt = monetary.mon_decimal_point;
-      if (right === '' || right === undefined) {
-        right = conversion === 'i' ? monetary.int_frac_digits : monetary.frac_digits;
-      }
-      right = parseInt(right, 10);
-
-      if (right === 0) {
-        // Only remove fractional portion if explicitly set to zero digits
-        fraction = '';
-        dec_pt = '';
-      } else if (right < fraction.length) {
-        fraction = Math.round(parseFloat(fraction.slice(0, right) + '.' + fraction.substr(right, 1))) + '';
-        if (right > fraction.length) {
-          fraction = new Array(right - fraction.length + 1)
-            .join('0') + fraction; // prepend with 0's
-        }
-      } else if (right > fraction.length) {
-        fraction += new Array(right - fraction.length + 1)
-          .join('0'); // pad with 0's
-      }
-      value = integer + dec_pt + fraction;
+      value = integer;
     }
 
     var symbol = '';
