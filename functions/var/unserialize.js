@@ -166,6 +166,71 @@ function unserialize(data) {
 
       dataoffset += 1;
       break;
+    case 'c':
+    case 'o':
+      var classdata = '';
+      readdata = {};
+
+      // class name
+      ccount = read_until(data, dataoffset, ':');
+      chrs = ccount[0];
+      stringlength = ccount[1];
+      dataoffset += chrs + 2;
+
+      readData = read_chrs(data, dataoffset + 1, parseInt(stringlength, 10));
+      chrs = readData[0];
+      readdata.className = readData[1];
+      dataoffset += chrs + 2;
+      if (chrs != parseInt(stringlength, 10) && chrs != readdata.className.length) {
+        error('SyntaxError', 'String length mismatch');
+      }
+
+      // class data
+      if (dtype === 'c') {
+        // custom serialization format
+        ccount = read_until(data, dataoffset, ':');
+        chrs = ccount[0];
+        stringlength = ccount[1];
+        dataoffset += chrs + 2;
+
+        readData = read_chrs(data, dataoffset + 1, parseInt(stringlength, 10));
+        chrs = readData[0];
+        classdata = readData[1];
+
+        readdata.data = _unserialize(data, dataoffset)[2];
+
+        dataoffset += chrs + 1;
+        if (chrs != parseInt(stringlength, 10) && chrs != classdata.length) {
+          error('SyntaxError', 'String length mismatch');
+        }
+      }
+      else {
+        // default serialization format
+        readdata.data = {};
+
+        keyandchrs = read_until(data, dataoffset, ':');
+        chrs = keyandchrs[0];
+        keys = keyandchrs[1];
+        dataoffset += chrs + 2;
+
+        for (i = 0; i < parseInt(keys, 10); i++) {
+          kprops = _unserialize(data, dataoffset);
+          kchrs = kprops[1];
+          key = kprops[2];
+          dataoffset += kchrs;
+
+          vprops = _unserialize(data, dataoffset);
+          vchrs = vprops[1];
+          value = vprops[2];
+          dataoffset += vchrs;
+
+          readdata.data[key] = value;
+        }
+
+        dataoffset += 1;
+      }
+
+      break;
     default:
       error('SyntaxError', 'Unknown / Unhandled data type(s): ' + dtype);
       break;
