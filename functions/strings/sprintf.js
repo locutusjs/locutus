@@ -145,6 +145,19 @@ function sprintf() {
     // grab value using valueIndex if required?
     value = valueIndex ? a[valueIndex.slice(0, -1)] : a[i++];
 
+    function formatDouble(method, noTrail0) {
+      number = +value;
+      prefix = number < 0 ? '-' : positivePrefix;
+		  value = prefix + Math.abs(number)[method](precision);
+		  if (noTrail0 && (value.indexOf('.') > 0)) {
+		    value = value.replace(/\.?0+$/, ''); // remove trailing zeroes
+		  }
+		  var r = justify(value, prefix, leftJustify, minWidth, zeroPad);
+		  if (!noUpper) r = r.toUpperCase();
+		  return r;
+	  }
+    var noUpper = false;
+
     switch (type) {
     case 's':
       return formatString(String(value), leftJustify, minWidth, precision, zeroPad, customPadChar);
@@ -170,17 +183,19 @@ function sprintf() {
       value = prefix + pad(String(Math.abs(number)), precision, '0', false);
       return justify(value, prefix, leftJustify, minWidth, zeroPad);
     case 'e':
+      noUpper = true;
     case 'E':
+      return formatDouble('toExponential');
     case 'f': // Should handle locales (as per setlocale)
+      noUpper = true;
     case 'F':
+      return formatDouble('toFixed');
     case 'g':
+      noUpper = true;
     case 'G':
-      number = +value;
-      prefix = number < 0 ? '-' : positivePrefix;
-      method = ['toExponential', 'toFixed', 'toPrecision']['efg'.indexOf(type.toLowerCase())];
-      textTransform = ['toString', 'toUpperCase']['eEfFgG'.indexOf(type) % 2];
-      value = prefix + Math.abs(number)[method](precision);
-      return justify(value, prefix, leftJustify, minWidth, zeroPad)[textTransform]();
+      // precision: number of _significant_ digits
+      if (!precision && (precision !== 0)) precision = 5;
+      return formatDouble('toPrecision', true);
     default:
       return substring;
     }
