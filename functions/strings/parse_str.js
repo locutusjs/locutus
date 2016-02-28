@@ -34,7 +34,7 @@ function parse_str(str, array) {
     .replace(/&$/, '')
     .split('&'),
     sal = strArr.length,
-    i, j, ct, p, lastObj, obj, lastIter, undef, chr, tmp, key, value,
+    i, x, j, ct, p, lastObj, obj, lastIter, undef, chr, tmp, key, value,
     postLeftBracketPos, keys, keysLen,
     fixStr = function(str) {
       return decodeURIComponent(str.replace(/\+/g, '%20'));
@@ -46,6 +46,9 @@ function parse_str(str, array) {
 
   for (i = 0; i < sal; i++) {
     tmp = strArr[i].split('=');
+    for (x = 2; x < tmp.length; x++) {
+      tmp[1] += '=' + tmp[x];
+    }
     key = fixStr(tmp[0]);
     value = (tmp.length < 2) ? '' : fixStr(tmp[1]);
 
