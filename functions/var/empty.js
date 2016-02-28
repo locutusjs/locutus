@@ -37,6 +37,8 @@ function empty(mixed_var) {
       //}
     }
     return true;
+  } else if (!/[^\s]/.test(mixed_var) || /^\s*$/.test(mixed_var) || mixed_var.replace(/\s/g,"") == ""){
+    return true; // white space strings
   }
 
   return false;
