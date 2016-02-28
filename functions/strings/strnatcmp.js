@@ -4,6 +4,7 @@ function strnatcmp(f_string1, f_string2, f_version) {
   // improved by: Michael White (http://getsprink.com)
   // improved by: Jack
   // bugfixed by: Onno Marsman
+  // bugfixed by: Andres Kalle
   //  depends on: strcmp
   //        note: Added f_version argument against code guidelines, because it's so neat
   //   example 1: strnatcmp('Price 12.9', 'Price 12.15');
@@ -16,6 +17,8 @@ function strnatcmp(f_string1, f_string2, f_version) {
   //   returns 4: -6
   //   example 5: strnatcmp('Version 12.15', 'Version 12.9', true);
   //   returns 5: 6
+  //   example 6: strnatcmp('identical', 'identical');
+  //   returns 6: 0
 
   var i = 0;
 
@@ -79,12 +82,14 @@ function strnatcmp(f_string1, f_string2, f_version) {
   var len = array1.length;
   var text = true;
 
-  var result = -1;
+  var result = 0;
   var r = 0;
 
   if (len > array2.length) {
     len = array2.length;
     result = 1;
+  } else if (len < array2.length) {
+    result = -1;
   }
 
   for (i = 0; i < len; i++) {
