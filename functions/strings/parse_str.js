@@ -31,6 +31,7 @@ function parse_str(str, array) {
 
   var strArr = String(str)
     .replace(/^&/, '')
+    .replace(/^\?/, '')
     .replace(/&$/, '')
     .split('&'),
     sal = strArr.length,
