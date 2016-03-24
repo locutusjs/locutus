@@ -37,7 +37,13 @@ function parse_str(str, array) {
     i, j, ct, p, lastObj, obj, lastIter, undef, chr, tmp, key, value,
     postLeftBracketPos, keys, keysLen,
     fixStr = function(str) {
-      return decodeURIComponent(str.replace(/\+/g, '%20'));
+      var strDecoded;
+      try {
+        strDecoded = decodeURIComponent(str.replace(/\+/g, '%20'));
+      } catch (e) {
+        strDecoded = '';
+      }
+      return strDecoded;
     };
 
   if (!array) {
