@@ -40,6 +40,8 @@ npm run website:deploy
 
 That's it : )
 
+P.S. We have a few custom build steps such as rendering the functions, that make it hard for us to only use the GitHub Pages provided Jekyll, this means for the time being we'll be relying on our own scripts and Jekyll version. That said, it's still possible to orchestrate auto-deploys whenever there's a change to `master`, by using Travis CI and encrypted environment keys. If I have time, I'd like to set this up too. This way people could propose changes, and merging them would be enough to see them go live.
+
 Best wishes,
 
 [Kevin](http://twitter.com/kvz)
