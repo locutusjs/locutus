@@ -14,12 +14,11 @@ If you are missing functions, there is a chance you may find them in our [experi
 and [workbench](https://github.com/kvz/phpjs/tree/master/workbench) folders. Warning: we keep 
 these functions there for a reason.  
 
+{% assign categories = site.functions| group_by site.functions, "category" %}
+{% for category in categories %}
 
-{% for f in site.functions %}
+## {{ category.name }}
 
-
-- {{f.category}}
-- {{f.relative_path}}
-- {{f.url}}
-- {{f.path}}
+{% for function in category.items %}- [{{function.function}}](/functions/{{function.function}})
+{% endfor %}
 {% endfor %}
