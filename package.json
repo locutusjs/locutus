@@ -6,7 +6,7 @@
   "homepage": "http://phpjs.org",
   "author": "Kevin van Zonneveld <kevin@vanzonneveld.net>",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.10.0"
   },
   "devDependencies": {
     "cli": "0.11.2",
@@ -36,10 +36,27 @@
   },
   "readmeFilename": "README.md",
   "scripts": {
-    "test": "make test",
-    "fix": "eslint functions bin lib test tools --fix",
-    "website:start": "cd website && npm run start",
-    "lint": "eslint functions"
+    "build": "npm run build:npm",
+    "build:npm": "node lib/cli.js --action buildnpm --output build/npm.js && ls -al build/npm.js",
+    "fix": "node lib/cli.js --action cleanup && eslint functions bin lib test tools --fix",
+    "lint": "eslint functions",
+    "release:major": "env SEMANTIC=major npm run release",
+    "release:minor": "env SEMANTIC=minor npm run release",
+    "release:patch": "env SEMANTIC=patch npm run release",
+    "release": "git commit CHANGELOG.md -m 'Update CHANGELOG.md' && npm version ${SEMANTIC:-patch} -m \"Release %s\" && npm run version:replace && git commit test/fixture/*.stdio -m 'Update version' && git push --tags && git push && npm publish",
+    "test": "npm run test:utils && npm run test:functions && npm run test:module",
+    "test:utils": "mocha --reporter spec",
+    "test:functions": "node lib/cli.js --action test --debug",
+    "test:module": "node build/npm.js && node test/npm/npm.js",
+    "website:inject": "node lib/cli.js --action injectweb",
+    "website:start": "cd website && npm run start"
   },
-  "bin": "bin/phpjs.js"
+  "bin": {
+    "node lib/cli.js": "lib/cli.js"
+  },
+  "dependencies": {
+    "fakefile": "0.0.8",
+    "js-yaml": "3.5.5",
+    "mkdirp": "0.5.1"
+  }
 }
