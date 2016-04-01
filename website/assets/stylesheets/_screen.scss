@@ -1418,7 +1418,7 @@ article>footer p.meta {
     overflow: hidden
 }
 
-article>footer p.meta a.articlenav {
+article>footer p.meta a.articlenav, .themebutton {
     background: #ffffff;
     border: 1px solid #e8e8e8;
     -moz-border-radius: 0.4em;
@@ -1429,14 +1429,14 @@ article>footer p.meta a.articlenav {
     text-decoration: none
 }
 
-article>footer p.meta a.articlenav:hover {
+article>footer p.meta a.articlenav:hover, .themebutton:hover {
     background: #4e7cb2;
     border: 1px solid #ffffff;
     color: #FFFFFF
 }
 
 @media only screen and (max-width: 550px) {
-    article>footer p.meta a.articlenav {
+    article>footer p.meta a.articlenav, .themebutton {
         float: none !important;
         display: block;
         margin-left: 0 !important;

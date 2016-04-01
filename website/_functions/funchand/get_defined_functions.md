@@ -11,7 +11,8 @@ authors:
     - 'Brett Zamir (http://brett-zamir.me)'
   improved by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - 'Test case 1: If get_defined_functions can find itself in the defined functions, it worked :)'
 layout: function
 function: get_defined_functions
 category: funchand

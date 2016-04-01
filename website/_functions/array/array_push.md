@@ -8,7 +8,12 @@ authors:
     - 'Kevin van Zonneveld (http://kevin.vanzonneveld.net)'
   improved by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - Note also that IE retains information about property position even
+    - 'after being supposedly deleted, so if you delete properties and then'
+    - add back properties with the same keys (including numeric) that had
+    - 'been deleted, the order will be as before; thus, this function is not'
+    - really recommended with associative arrays (objects) in IE environments
 layout: function
 function: array_push
 category: array

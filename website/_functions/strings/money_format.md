@@ -36,7 +36,9 @@ authors:
     - 'Brett Zamir (http://brett-zamir.me)'
   input by:
     - 'daniel airton wermann (http://wermann.com.br)'
-notes: []
+notes:
+  - - This depends on setlocale having the appropriate
+    - "locale (these examples use 'en_US')"
 layout: function
 function: money_format
 category: strings

@@ -19,7 +19,10 @@ authors:
     - 'Brett Zamir (http://brett-zamir.me)'
     - Michael Grier
     - Ratheous
-notes: []
+notes:
+  - - This reflects PHP 5.3/6.0+ behavior
+    - 'Please be aware that this function expects to encode into UTF-8 encoded strings, as found on'
+    - pages served as UTF-8
 layout: function
 function: rawurlencode
 category: url

@@ -27,7 +27,9 @@ authors:
     - 'Martin (http://www.erlenwiese.de/)'
     - kilops
     - Jaroslaw Czarniak
-notes: []
+notes:
+  - - 'We feel the main purpose of this function should be to ease the transport of data between php & js'
+    - 'Aiming for PHP-compatibility, we have to translate objects to arrays'
 layout: function
 function: unserialize
 category: var

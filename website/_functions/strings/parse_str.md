@@ -30,7 +30,9 @@ authors:
     - 'Zaide (http://zaidesthings.com/)'
     - 'David Pesta (http://davidpesta.com/)'
     - jeicquest
-notes: []
+notes:
+  - - 'When no argument is specified, will put variables in global scope.'
+    - 'When a particular argument has been passed, and the returned value is different parse_str of PHP. For example, a=b=c&d====c'
 layout: function
 function: parse_str
 category: strings

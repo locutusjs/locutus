@@ -6,7 +6,8 @@ returns:
 authors:
   original by:
     - Onno Marsman
-notes: []
+notes:
+  - - Sorry about the crippled test. Needed because precision differs accross platforms.
 layout: function
 function: acos
 category: math

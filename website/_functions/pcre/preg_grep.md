@@ -7,7 +7,11 @@ returns:
 authors:
   original by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - 'If pass pattern as string, must escape backslashes, even for single quotes'
+    - The regular expression itself must be expressed JavaScript style
+    - 'It is not recommended to submit the pattern as a string, as we may implement'
+    - 'parsing of PHP-style expressions (flags, etc.) in the future'
 layout: function
 function: preg_grep
 category: pcre

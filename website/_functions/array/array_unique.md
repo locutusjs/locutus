@@ -18,7 +18,9 @@ authors:
   input by:
     - duncan
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - 'The second argument, sort_flags is not implemented;'
+    - also should be sorted (asort?) first according to docs
 layout: function
 function: array_unique
 category: array

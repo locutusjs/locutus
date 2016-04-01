@@ -8,7 +8,8 @@ authors:
     - Leslie Hoare
   bugfixed by:
     - Onno Marsman
-notes: []
+notes:
+  - - See the commented out code below for a version which will work with our experimental (though probably unnecessary) srand() function)
 layout: function
 function: rand
 category: math

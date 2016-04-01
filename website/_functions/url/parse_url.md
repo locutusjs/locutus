@@ -17,7 +17,14 @@ authors:
   input by:
     - Lorenzo Pisani
     - Tony
-notes: []
+notes:
+  - - 'original by http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js'
+    - 'blog post at http://blog.stevenlevithan.com/archives/parseuri'
+    - 'demo at http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js'
+    - "Does not replace invalid characters with '_' as in PHP, nor does it return false with"
+    - a seriously malformed URL.
+    - 'Besides function name, is essentially the same as parseUri as well as our allowing'
+    - 'an extra slash after the scheme/protocol (to allow file:/// as in PHP)'
 layout: function
 function: parse_url
 category: url

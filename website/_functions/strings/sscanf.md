@@ -11,7 +11,11 @@ returns:
 authors:
   original by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - 'Since JS does not support scalar reference variables, any additional arguments to the function will'
+    - only be allowable here as strings referring to a global variable (which will then be set to the value
+    - "found in 'str' corresponding to the appropriate conversion specification in 'format'"
+    - I am unclear on how WS is to be handled here because documentation seems to me to contradict PHP behavior
 layout: function
 function: sscanf
 category: strings

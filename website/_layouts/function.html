@@ -9,16 +9,10 @@ layout: page
 {% highlight javascript %}
 {{page.code}}
 {% endhighlight %}
-<ul>
-  <li><a href="https://github.com/kvz/phpjs/blob/master/functions/{{page.category}}/{{page.function}}.js">Raw function on GitHub</a></li>
-</ul>
 
 <p>Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are the closest match to this hashtable-like data structure.</p>
 <p>Please also note that php.js offers community built functions and goes by the <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">McDonald’s Theory</a>. We’ll put online functions that are far from perfect, in the hopes to spark better contributions.
-  Do you have one? Then please just:</p>
-<ul>
-  <li><a href="https://github.com/kvz/phpjs/edit/master/functions/{{page.category}}/{{page.function}}.js">Edit on GitHub</a></li>
-</ul>
+  Do you have one? You can directly edit this file on GitHub : )</p>
 
 {% if page.notes != empty %}
   <h2>Notes</h2>
@@ -43,4 +37,7 @@ layout: page
   {% endfor %}
 {% endif %}
 
-<p>Check <a href="/functions/#{{page.category}}">Other PHP functions in the {{page.category}} category</a>.</p>
+<p>
+  <a class="basic-alignment left themebutton" href="/functions/#{{page.category}}">More {{page.category}} functions</a>
+  <a class="basic-alignment right themebutton" href="https://github.com/kvz/phpjs/edit/master/functions/{{page.category}}/{{page.function}}.js">Edit on GitHub</a>
+</p>

@@ -16,7 +16,8 @@ authors:
   revised by:
     - J A R
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - 'Uses global: php_js to store the array pointer'
 layout: function
 function: end
 category: array

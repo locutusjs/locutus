@@ -31,7 +31,8 @@ authors:
     - 'Stephan Bösch-Plepelits (http://github.com/plepe)'
   input by:
     - David
-notes: []
+notes:
+  - - Examples all have a fixed timestamp to prevent tests to fail because of variable time(zones)
 layout: function
 function: strtotime
 category: datetime

@@ -22,7 +22,11 @@ authors:
     - Cord
     - Manish
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - 'In php.js, javascript objects are like php associative arrays, thus JavaScript objects will also'
+    - 'return true in this function (except for objects which inherit properties, being thus used as objects),'
+    - "unless you do ini_set('phpjs.objectsAsArrays', 0), in which case only genuine JavaScript arrays"
+    - will return true
 layout: function
 function: is_array
 category: var

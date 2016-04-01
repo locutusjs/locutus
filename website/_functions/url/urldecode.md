@@ -30,7 +30,10 @@ authors:
     - Ratheous
     - e-mike
     - lovio
-notes: []
+notes:
+  - - 'info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/'
+    - 'Please be aware that this function expects to decode from UTF-8 encoded strings, as found on'
+    - pages served as UTF-8
 layout: function
 function: urldecode
 category: url

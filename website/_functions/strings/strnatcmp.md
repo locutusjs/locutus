@@ -19,7 +19,8 @@ authors:
     - Jack
   bugfixed by:
     - Onno Marsman
-notes: []
+notes:
+  - - "Added f_version argument against code guidelines, because it's so neat"
 layout: function
 function: strnatcmp
 category: strings

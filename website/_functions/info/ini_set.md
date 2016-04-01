@@ -7,7 +7,8 @@ returns:
 authors:
   original by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - This will not set a global_value or access level for the ini item
 layout: function
 function: ini_set
 category: info

@@ -10,7 +10,8 @@ returns:
 authors:
   original by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - Use tab and newline as tokenizing characters as well
 layout: function
 function: strtok
 category: strings

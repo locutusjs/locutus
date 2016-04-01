@@ -32,7 +32,9 @@ authors:
     - Onno Marsman
     - 'Brett Zamir (http://brett-zamir.me)'
     - Oleg Eremeev
-notes: []
+notes:
+  - - The count parameter must be passed as a string in order
+    - to find a global variable in which the result will be given
 layout: function
 function: str_replace
 category: strings

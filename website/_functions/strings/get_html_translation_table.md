@@ -21,7 +21,11 @@ authors:
   input by:
     - Frank Forte
     - Ratheous
-notes: []
+notes:
+  - - "It has been decided that we're not going to add global"
+    - 'dependencies to php.js, meaning the constants are not'
+    - 'real constants, but strings instead. Integers are also supported if someone'
+    - chooses to create the constants themselves.
 layout: function
 function: get_html_translation_table
 category: strings

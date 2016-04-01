@@ -20,7 +20,9 @@ authors:
     - 'Brett Zamir (http://brett-zamir.me)'
   bugfixed by:
     - David
-notes: []
+notes:
+  - - "Using ini_set('phpjs.no-eval', true) will only work with"
+    - 'user-defined string functions, not built-in functions like void()'
 layout: function
 function: array_walk
 category: array

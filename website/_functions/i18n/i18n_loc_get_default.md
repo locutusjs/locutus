@@ -7,7 +7,10 @@ returns:
 authors:
   original by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - Renamed in PHP6 from locale_get_default(). Not listed yet at php.net
+    - 'List of locales at http://demo.icu-project.org/icu-bin/locexp'
+    - 'To be usable with sort() if it is passed the SORT_LOCALE_STRING sorting flag: http://php.net/manual/en/function.sort.php'
 layout: function
 function: i18n_loc_get_default
 category: i18n

@@ -16,7 +16,21 @@ authors:
   improved by:
     - 'Kevin van Zonneveld (http://kevin.vanzonneveld.net)'
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - 'The examples are correct, this is a new way'
+    - This function deviates from PHP in returning a copy of the array instead
+    - of acting by reference and returning true; this was necessary because
+    - IE does not allow deleting and re-adding of properties without caching
+    - 'of property position; you can set the ini of "phpjs.strictForIn" to true to'
+    - 'get the PHP behavior, but use this only if you are in an environment'
+    - such as Firefox extensions where for-in iteration order is fixed and true
+    - property deletion is supported. Note that we intend to implement the PHP
+    - behavior by default if IE ever does allow it; only gives shallow copy since
+    - is by reference in PHP anyways
+    - "Since JS objects' keys are always strings, and (the"
+    - 'default) SORT_REGULAR flag distinguishes by key type,'
+    - 'if the content is a numeric string, we treat the'
+    - '"original type" as numeric.'
 layout: function
 function: ksort
 category: array

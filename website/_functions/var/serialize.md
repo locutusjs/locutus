@@ -23,7 +23,9 @@ authors:
   input by:
     - 'DtTvB (http://dt.in.th/2008-09-16.string-length-in-bytes.html)'
     - 'Martin (http://www.erlenwiese.de/)'
-notes: []
+notes:
+  - - 'We feel the main purpose of this function should be to ease the transport of data between php & js'
+    - 'Aiming for PHP-compatibility, we have to translate objects to arrays'
 layout: function
 function: serialize
 category: var

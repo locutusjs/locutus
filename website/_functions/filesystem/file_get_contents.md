@@ -15,7 +15,17 @@ authors:
   input by:
     - Jani Hartikainen
     - Raphael (Ao) RUDLER
-notes: []
+notes:
+  - - This function uses XmlHttpRequest and cannot retrieve resource from different domain without modifications.
+    - Synchronous by default (as in PHP) so may lock up browser. Can
+    - 'get async by setting a custom "phpjs.async" property to true and "notification" for an'
+    - 'optional callback (both as context params, with responseText, and other JS-specific'
+    - "request properties available via 'this'). Note that file_get_contents() will not return the text"
+    - 'in such a case (use this.responseText within the callback). Or, consider using'
+    - "jQuery's: $('#divId').load('http://url') instead."
+    - 'The context argument is only implemented for http, and only partially (see below for'
+    - '"Presently unimplemented HTTP context options"); also the arguments passed to'
+    - notification are incomplete
 layout: function
 function: file_get_contents
 category: filesystem

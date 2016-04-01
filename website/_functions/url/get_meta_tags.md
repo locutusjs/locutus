@@ -6,7 +6,9 @@ returns:
 authors:
   original by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - This function uses XmlHttpRequest and cannot retrieve resource from different domain.
+    - 'Synchronous so may lock up browser, mainly here for study purposes.'
 layout: function
 function: get_meta_tags
 category: url

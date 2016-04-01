@@ -6,7 +6,11 @@ returns:
 authors:
   original by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - 'We are not using $_ENV as in PHP, you could define'
+    - '"$_ENV = this.php_js.ENV;" and get/set accordingly'
+    - "Returns e.g. 'en-US' when set global this.php_js.ENV is set"
+    - 'Uses global: php_js to store environment info'
 layout: function
 function: getenv
 category: info

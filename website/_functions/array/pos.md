@@ -7,7 +7,8 @@ returns:
 authors:
   original by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - 'Uses global: php_js to store the array pointer'
 layout: function
 function: pos
 category: array

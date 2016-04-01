@@ -25,7 +25,12 @@ authors:
     - meo
     - William
     - 'Josep Sanz (http://www.ws3.es/)'
-notes: []
+notes:
+  - - 'Great work. Ideas for improvement:'
+    - '- code more compliant with developer guidelines'
+    - '- for implementing PHP constant arguments look at'
+    - 'the pathinfo() function, it offers the greatest'
+    - 'flexibility & compatibility possible'
 layout: function
 function: round
 category: math

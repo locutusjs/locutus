@@ -54,7 +54,12 @@ authors:
     - Martin
     - Alex Wilson
     - Haravikk
-notes: []
+notes:
+  - - 'Uses global: php_js to store the default timezone'
+    - 'Although the function potentially allows timezone info (see notes), it currently does not set'
+    - per a timezone specified by date_default_timezone_set(). Implementers might use
+    - this.php_js.currentTimezoneOffset and this.php_js.currentTimezoneDST set by that function
+    - 'in order to adjust the dates in this function (or our other date functions!) accordingly'
 layout: function
 function: date
 category: datetime

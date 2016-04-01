@@ -16,7 +16,9 @@ returns:
 authors:
   original by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - We show double backslashes in the return value example code below because a JavaScript string will not
+    - render them as backslashes otherwise
 layout: function
 function: addcslashes
 category: strings

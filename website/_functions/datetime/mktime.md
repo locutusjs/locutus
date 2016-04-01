@@ -42,7 +42,9 @@ authors:
     - jakes
     - 3D-GRAF
     - Chris
-notes: []
+notes:
+  - - The return values of the following examples are
+    - "received only if your system's timezone is UTC."
 layout: function
 function: mktime
 category: datetime

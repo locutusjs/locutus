@@ -12,7 +12,8 @@ authors:
     - 'Kevin van Zonneveld (http://kevin.vanzonneveld.net)'
   input by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - 'Relies on is_int because !isNaN accepts floats'
 layout: function
 function: array_slice
 category: array

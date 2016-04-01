@@ -16,7 +16,8 @@ authors:
     - 'Brett Zamir (http://brett-zamir.me)'
   input by:
     - max4ever
-notes: []
+notes:
+  - - "Takes a function as an argument, not a function's name"
 layout: function
 function: array_filter
 category: array

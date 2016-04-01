@@ -14,7 +14,8 @@ authors:
     - 'Carlos R. L. Rodrigues (http://www.jsfromhell.com)'
   improved by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - 'Important note: Per the ECMAScript specification, objects may not always iterate in a predictable order'
 layout: function
 function: array_chunk
 category: array
@@ -45,6 +46,8 @@ code: >
     //   example 4: array_chunk({1:'Kevin', 2:'van', 3:'Zonneveld'}, 2, true);
 
     //   returns 4: [{1: 'Kevin', 2: 'van'}, {3: 'Zonneveld'}]
+
+
 
 
 

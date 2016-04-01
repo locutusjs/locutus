@@ -6,7 +6,8 @@ returns:
 authors:
   original by:
     - 'Alfonso Jimenez (http://www.alfonsojimenez.com)'
-notes: []
+notes:
+  - - "Takes a function as an argument, not a function's name"
 layout: function
 function: array_reduce
 category: array

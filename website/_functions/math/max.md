@@ -20,7 +20,8 @@ authors:
     - Jack
   revised by:
     - Onno Marsman
-notes: []
+notes:
+  - - "Long code cause we're aiming for maximum PHP compatibility"
 layout: function
 function: max
 category: math

@@ -20,7 +20,8 @@ authors:
     - stag019
   input by:
     - Dreamer
-notes: []
+notes:
+  - - 'If the value is null, key and value are skipped in the http_build_query of PHP while in phpjs they are not.'
 layout: function
 function: http_build_query
 category: url

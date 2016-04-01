@@ -3,8 +3,6 @@ layout: page
 title: "About php.js"
 date: 2012-09-26 17:18
 comments: true
-sharing: false
-footer: true
 permalink: /about/
 redirect_from:
 - /pages/contact

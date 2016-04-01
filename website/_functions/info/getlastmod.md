@@ -6,7 +6,8 @@ returns:
 authors:
   original by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - "Will not work on browsers which don't support document.lastModified"
 layout: function
 function: getlastmod
 category: info

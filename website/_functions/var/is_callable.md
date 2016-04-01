@@ -20,7 +20,9 @@ authors:
     - 'Brett Zamir (http://brett-zamir.me)'
   input by:
     - François
-notes: []
+notes:
+  - - 'The variable callable_name cannot work as a string variable passed by reference as in PHP (since JavaScript does not support passing strings by reference), but instead will take the name of a global variable and set that instead'
+    - 'When used on an object, depends on a constructor property being kept on the object prototype'
 layout: function
 function: is_callable
 category: var

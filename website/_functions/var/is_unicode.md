@@ -6,7 +6,8 @@ returns:
 authors:
   original by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - Almost all strings in JavaScript should be Unicode
 layout: function
 function: is_unicode
 category: var

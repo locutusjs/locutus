@@ -8,7 +8,12 @@ authors:
     - 'Brett Zamir (http://brett-zamir.me)'
     - 'Blues at http://hacks.bluesmoon.info/strftime/strftime.js'
     - 'YUI Library: http://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html'
-notes: []
+notes:
+  - - 'Is extensible, but currently only implements locales en,'
+    - 'en_US, en_GB, en_AU, fr, and fr_CA for LC_TIME only; C for LC_CTYPE;'
+    - C and en for LC_MONETARY/LC_NUMERIC; en for LC_COLLATE
+    - 'Uses global: php_js to store locale info'
+    - 'Consider using http://demo.icu-project.org/icu-bin/locexp as basis for localization (as in i18n_loc_set_default())'
 layout: function
 function: setlocale
 category: strings

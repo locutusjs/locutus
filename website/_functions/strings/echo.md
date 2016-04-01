@@ -21,7 +21,16 @@ authors:
     - 'Der Simon (http://innerdom.sourceforge.net/)'
   input by:
     - JB
-notes: []
+notes:
+  - - 'If browsers start to support DOM Level 3 Load and Save (parsing/serializing),'
+    - "we wouldn't need any such long code (even most of the code below). See"
+    - link below for a cross-browser implementation in JavaScript. HTML5 might
+    - 'possibly support DOMParser, but that is not presently a standard.'
+    - 'Although innerHTML is widely used and may become standard as of HTML5, it is also not ideal for'
+    - 'use with a temporary holder before appending to the DOM (as is our last resort below),'
+    - since it may not work in an XML context
+    - Using innerHTML to directly add to the BODY is very dangerous because it will
+    - break all pre-existing references to HTMLElements.
 layout: function
 function: echo
 category: strings

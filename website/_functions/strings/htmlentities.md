@@ -21,7 +21,8 @@ authors:
     - 'Kevin van Zonneveld (http://kevin.vanzonneveld.net)'
   input by:
     - Ratheous
-notes: []
+notes:
+  - - function is compatible with PHP 5.2 and older
 layout: function
 function: htmlentities
 category: strings

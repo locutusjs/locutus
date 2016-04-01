@@ -7,7 +7,8 @@ returns:
 authors:
   original by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - The ini values must be set by ini_set or manually within an ini file
 layout: function
 function: ini_get
 category: info

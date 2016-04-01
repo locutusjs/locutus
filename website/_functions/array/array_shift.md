@@ -8,7 +8,8 @@ authors:
     - 'Kevin van Zonneveld (http://kevin.vanzonneveld.net)'
   improved by:
     - Martijn Wieringa
-notes: []
+notes:
+  - - Currently does not handle objects
 layout: function
 function: array_shift
 category: array

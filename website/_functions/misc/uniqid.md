@@ -12,7 +12,8 @@ authors:
     - 'Kevin van Zonneveld (http://kevin.vanzonneveld.net)'
   revised by:
     - 'Kankrelune (http://www.webfaktory.info/)'
-notes: []
+notes:
+  - - Uses an internal counter (in php_js global) to avoid collision
 layout: function
 function: uniqid
 category: misc

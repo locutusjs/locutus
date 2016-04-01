@@ -6,7 +6,13 @@ returns:
 authors:
   original by:
     - 'Glen Arason (http://CanadianDomainRegistry.ca)'
-notes: []
+notes:
+  - - Case-insensitive version of str_replace()
+    - 'Compliant with PHP 5.0 str_ireplace() Full details at:'
+    - 'http://ca3.php.net/manual/en/function.str-ireplace.php'
+    - The count parameter (optional) if used must be passed in as a
+    - 'string. eg global var MyCount:'
+    - "str_ireplace($search, $replace, $subject, 'MyCount');"
 layout: function
 function: str_ireplace
 category: strings

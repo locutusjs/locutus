@@ -12,7 +12,8 @@ authors:
     - 'Brett Zamir (http://brett-zamir.me)'
   input by:
     - Alex
-notes: []
+notes:
+  - - 'Uses global: php_js to store locale info'
 layout: function
 function: strftime
 category: datetime

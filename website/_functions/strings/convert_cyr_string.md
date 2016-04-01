@@ -6,7 +6,16 @@ returns:
 authors:
   original by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - Assumes and converts to Unicode strings with character
+    - code equivalents of the same numbers as in the from or
+    - target character set; Note that neither the input or output
+    - 'should be treated as actual Unicode, since the PHP function'
+    - this is original by does not either
+    - One could easily represent (or convert the results) of a
+    - string form as arrays of code points instead but since JavaScript
+    - 'currently has no clear binary data type, we chose to use strings'
+    - as in PHP
 layout: function
 function: convert_cyr_string
 category: strings

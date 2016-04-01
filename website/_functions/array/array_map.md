@@ -11,7 +11,8 @@ authors:
     - 'Brett Zamir (http://brett-zamir.me)'
   input by:
     - thekid
-notes: []
+notes:
+  - - 'If the callback is a string (or object, if an array is supplied), it can only work if the function name is in the global context'
 layout: function
 function: array_map
 category: array

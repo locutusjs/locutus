@@ -8,7 +8,8 @@ authors:
     - 'Ates Goral (http://magnetiq.com)'
   revised by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - 'Uses global: php_js to store the array pointer'
 layout: function
 function: each
 category: array

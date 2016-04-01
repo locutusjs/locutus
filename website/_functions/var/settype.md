@@ -16,7 +16,9 @@ authors:
     - 'Kevin van Zonneveld (http://kevin.vanzonneveld.net)'
   revised by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - Credits to Crockford also
+    - 'only works on global variables, and "vr" must be passed in as a string'
 layout: function
 function: settype
 category: var

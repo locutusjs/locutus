@@ -18,7 +18,8 @@ authors:
     - Onno Marsman
   input by:
     - Nate
-notes: []
+notes:
+  - - 'Returns < 0 if str1 is less than str2 ; > 0 if str1 is greater than str2 , and 0 if they are equal.'
 layout: function
 function: strncasecmp
 category: strings

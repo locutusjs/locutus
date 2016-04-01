@@ -9,7 +9,8 @@ authors:
   improved by:
     - Martijn Wieringa
     - jmweb
-notes: []
+notes:
+  - - Currently does not handle objects
 layout: function
 function: array_unshift
 category: array

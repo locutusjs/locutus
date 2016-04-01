@@ -8,7 +8,8 @@ authors:
     - mk.keck
   improved by:
     - 'Kevin van Zonneveld (http://kevin.vanzonneveld.net)'
-notes: []
+notes:
+  - - "Returned path is an url like e.g. 'http://yourhost.tld/path/'"
 layout: function
 function: realpath
 category: filesystem

@@ -9,7 +9,9 @@ returns:
 authors:
   original by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - These only output associative arrays (would need to be
+    - all numeric and counting from zero to be numeric)
 layout: function
 function: array_intersect
 category: array

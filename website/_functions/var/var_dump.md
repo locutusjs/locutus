@@ -9,7 +9,8 @@ authors:
   improved by:
     - Zahlii
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - 'For returning a string, use var_export() with the second argument set to true'
 layout: function
 function: var_dump
 category: var

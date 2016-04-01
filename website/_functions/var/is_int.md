@@ -20,7 +20,9 @@ authors:
     - 'Kevin van Zonneveld (http://kevin.vanzonneveld.net)'
   revised by:
     - Matt Bradley
-notes: []
+notes:
+  - - '1.0 is simplified to 1 before it can be accessed by the function, this makes'
+    - "it different from the PHP implementation. We can't fix this unfortunately."
 layout: function
 function: is_int
 category: var

@@ -14,7 +14,13 @@ authors:
     - 'Tim de Koning (http://www.kingsquare.nl)'
   bugfixed by:
     - 'Tim de Koning (http://www.kingsquare.nl)'
-notes: []
+notes:
+  - - 'Float encoding by: Jonas Raoni Soares Silva'
+    - 'Home: http://www.kingsquare.nl/blog/12-12-2009/13507444'
+    - 'Feedback: phpjs-pack@kingsquare.nl'
+    - "'machine dependent byte order and size' aren't"
+    - 'applicable for JavaScript; pack works as on a 32bit,'
+    - little endian machine
 layout: function
 function: pack
 category: misc

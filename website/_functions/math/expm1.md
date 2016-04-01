@@ -8,7 +8,8 @@ authors:
     - 'Brett Zamir (http://brett-zamir.me)'
   improved by:
     - 'Robert Eisele (http://www.xarg.org/)'
-notes: []
+notes:
+  - - "Precision 'n' can be adjusted as desired"
 layout: function
 function: expm1
 category: math

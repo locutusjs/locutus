@@ -25,7 +25,16 @@ authors:
     - 'Kevin van Zonneveld (http://kevin.vanzonneveld.net)'
   input by:
     - Timo
-notes: []
+notes:
+  - - 'Inspired by actual PHP source: php5-5.2.6/ext/standard/string.c line #1559'
+    - The way the bitwise arguments are handled allows for greater flexibility
+    - '& compatability. We might even standardize this code and use a similar approach for'
+    - other bitwise PHP functions
+    - 'php.js tries very hard to stay away from a core.js file with global dependencies, because we like'
+    - that you can just take a couple of functions and be on your way.
+    - 'But by way we implemented this function, if you want you can still declare the PATHINFO_*'
+    - "yourself, and then you can use: pathinfo('/www/index.html', PATHINFO_BASENAME | PATHINFO_EXTENSION);"
+    - which makes it fully compliant with PHP syntax.
 layout: function
 function: pathinfo
 category: filesystem

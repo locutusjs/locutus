@@ -18,7 +18,13 @@ authors:
   input by:
     - 'Brett Zamir (http://brett-zamir.me)'
     - Theriault
-notes: []
+notes:
+  - - "While IE (and other browsers) support iterating an object's"
+    - 'own properties in order, if one attempts to add back properties'
+    - 'in IE, they may end up in their former position due to their position'
+    - 'being retained. So use of this function with "associative arrays"'
+    - (objects) may lead to unexpected behavior in an IE environment if
+    - you add back properties with the same keys that you removed
 layout: function
 function: array_pop
 category: array

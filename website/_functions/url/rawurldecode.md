@@ -19,7 +19,9 @@ authors:
     - 'Brett Zamir (http://brett-zamir.me)'
     - Ratheous
     - lovio
-notes: []
+notes:
+  - - 'Please be aware that this function expects to decode from UTF-8 encoded strings, as found on'
+    - pages served as UTF-8
 layout: function
 function: rawurldecode
 category: url

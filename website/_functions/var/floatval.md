@@ -10,7 +10,8 @@ returns:
 authors:
   original by:
     - 'Michael White (http://getsprink.com)'
-notes: []
+notes:
+  - - The native parseFloat() method of JavaScript returns NaN when it encounters a string before an int or float value.
 layout: function
 function: floatval
 category: var

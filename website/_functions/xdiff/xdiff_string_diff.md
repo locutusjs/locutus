@@ -10,7 +10,8 @@ authors:
     - 'Brett Zamir (http://brett-zamir.me)'
   bugfixed by:
     - 'Imgen Tata (http://www.myipdf.com/)'
-notes: []
+notes:
+  - - The minimal argument is not currently supported
 layout: function
 function: xdiff_string_diff
 category: xdiff

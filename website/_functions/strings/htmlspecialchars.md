@@ -23,7 +23,8 @@ authors:
     - Ratheous
     - 'Mailfaker (http://www.weedem.fr/)'
     - felix
-notes: []
+notes:
+  - - charset argument not supported
 layout: function
 function: htmlspecialchars
 category: strings

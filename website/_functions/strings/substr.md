@@ -30,7 +30,8 @@ authors:
     - T.Wild
   revised by:
     - Theriault
-notes: []
+notes:
+  - - "Handles rare Unicode characters if 'unicode.semantics' ini (PHP6) is set to 'on'"
 layout: function
 function: substr
 category: strings

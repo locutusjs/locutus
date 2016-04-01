@@ -11,7 +11,8 @@ authors:
     - 'Brett Zamir (http://brett-zamir.me)'
   input by:
     - 'Riddler (http://www.frontierwebdev.com/)'
-notes: []
+notes:
+  - - 'Uses global: php_js to store the array pointer'
 layout: function
 function: key
 category: array

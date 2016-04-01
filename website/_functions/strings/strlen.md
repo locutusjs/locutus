@@ -18,7 +18,10 @@ authors:
     - 'Brett Zamir (http://brett-zamir.me)'
   input by:
     - Kirk Strobeck
-notes: []
+notes:
+  - - 'May look like overkill, but in order to be truly faithful to handling all Unicode'
+    - characters and to this function in PHP which does not count the number of bytes
+    - 'but counts the number of characters, something like this is really necessary.'
 layout: function
 function: strlen
 category: strings

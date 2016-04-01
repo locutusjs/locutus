@@ -8,7 +8,9 @@ authors:
     - 'Brett Zamir (http://brett-zamir.me)'
   improved by:
     - Steven Levithan (stevenlevithan.com)
-notes: []
+notes:
+  - - The XDIFF_PATCH_IGNORESPACE flag and the error argument are not currently supported
+    - This has not been widely tested
 layout: function
 function: xdiff_string_patch
 category: xdiff

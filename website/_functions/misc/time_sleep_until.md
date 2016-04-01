@@ -6,7 +6,10 @@ returns:
 authors:
   original by:
     - 'Brett Zamir (http://brett-zamir.me)'
-notes: []
+notes:
+  - - "For study purposes. Current implementation could lock up the user's browser."
+    - 'Expects a timestamp in seconds, so DO NOT pass in a JavaScript timestamp which are in milliseconds (e.g., new Date()) or otherwise the function will lock up the browser 1000 times longer than probably intended.'
+    - Consider using setTimeout() instead.
 layout: function
 function: time_sleep_until
 category: misc

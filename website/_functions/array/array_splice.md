@@ -15,7 +15,14 @@ authors:
     - 'Brett Zamir (http://brett-zamir.me)'
   input by:
     - Theriault
-notes: []
+notes:
+  - - 'Order does get shifted in associative array input with numeric indices,'
+    - "since PHP behavior doesn't preserve keys, but I understand order is"
+    - not reliable anyways
+    - Note also that IE retains information about property position even
+    - 'after being supposedly deleted, so use of this function may produce'
+    - unexpected results in IE if you later attempt to add back properties
+    - with the same keys that had been deleted
 layout: function
 function: array_splice
 category: array
