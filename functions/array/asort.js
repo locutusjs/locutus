@@ -65,16 +65,16 @@ function asort (inputArr, sort_flags) {
     default:
       sorter = function (a, b) {
         var aFloat = parseFloat(a),
-        bFloat = parseFloat(b),
-        aNumeric = aFloat + '' === a,
-        bNumeric = bFloat + '' === b
+          bFloat = parseFloat(b),
+          aNumeric = aFloat + '' === a,
+          bNumeric = bFloat + '' === b
         if (aNumeric && bNumeric) {
-        return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0
-      } else if (aNumeric && !bNumeric) {
-        return 1
-      } else if (!aNumeric && bNumeric) {
-        return -1
-      }
+          return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0
+        } else if (aNumeric && !bNumeric) {
+          return 1
+        } else if (!aNumeric && bNumeric) {
+          return -1
+        }
         return a > b ? 1 : a < b ? -1 : 0
       }
       break

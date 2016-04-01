@@ -59,14 +59,14 @@ function pack (format) {
         }
         for (i = 0; i < quantifier; i++) {
           if (typeof argument[i] === 'undefined') {
-          if (instruction === 'a') {
-            result += String.fromCharCode(0)
+            if (instruction === 'a') {
+              result += String.fromCharCode(0)
+            } else {
+              result += ' '
+            }
           } else {
-            result += ' '
+            result += argument[i]
           }
-        } else {
-          result += argument[i]
-        }
         }
         argumentPointer++
         break
@@ -90,14 +90,14 @@ function pack (format) {
         // Always get per 2 bytes...
           word = argument[i]
           if (((i + 1) >= quantifier) || typeof argument[i + 1] === 'undefined') {
-          word += '0'
-        } else {
-          word += argument[i + 1]
-        }
+            word += '0'
+          } else {
+            word += argument[i + 1]
+          }
         // The fastest way to reverse?
           if (instruction === 'h') {
-          word = word[1] + word[0]
-        }
+            word = word[1] + word[0]
+          }
           result += String.fromCharCode(parseInt(word, 16))
         }
         argumentPointer++
@@ -235,54 +235,54 @@ function pack (format) {
           floatPart = n - intPart
 
           for (k = len; k;) {
-          bin[--k] = 0
-        }
+            bin[--k] = 0
+          }
           for (k = bias + 2; intPart && k;) {
-          bin[--k] = intPart % 2
-          intPart = Math.floor(intPart / 2)
-        }
+            bin[--k] = intPart % 2
+            intPart = Math.floor(intPart / 2)
+          }
           for (k = bias + 1; floatPart > 0 && k; --floatPart) {
-          (bin[++k] = ((floatPart *= 2) >= 1) - 0)
-        }
+            (bin[++k] = ((floatPart *= 2) >= 1) - 0)
+          }
           for (k = -1; ++k < len && !bin[k];) {}
 
           if (bin[(lastBit = precisionBits - 1 + (k = (exp = bias + 1 - k) >= minExp && exp <= maxExp ? k + 1 :
             bias + 1 - (exp = minExp - 1))) + 1]) {
-          if (!(rounded = bin[lastBit])) {
-            for (j = lastBit + 2; !rounded && j < len; rounded = bin[j++]) {}
-          }
-          for (j = lastBit + 1; rounded && --j >= 0;
+            if (!(rounded = bin[lastBit])) {
+              for (j = lastBit + 2; !rounded && j < len; rounded = bin[j++]) {}
+            }
+            for (j = lastBit + 1; rounded && --j >= 0;
             (bin[j] = !bin[j] - 0) && (rounded = 0)) {}
-        }
+          }
 
           for (k = k - 2 < 0 ? -1 : k - 3; ++k < len && !bin[k];) {}
 
           if ((exp = bias + 1 - k) >= minExp && exp <= maxExp) {
-          ++k
-        } else {
-          if (exp < minExp) {
-            if (exp !== bias + 1 - len && exp < minUnnormExp) { /* "encodeFloat::float underflow" */ }
-            k = bias + 1 - (exp = minExp - 1)
+            ++k
+          } else {
+            if (exp < minExp) {
+              if (exp !== bias + 1 - len && exp < minUnnormExp) { /* "encodeFloat::float underflow" */ }
+              k = bias + 1 - (exp = minExp - 1)
+            }
           }
-        }
 
           if (intPart || status !== 0) {
-          exp = maxExp + 1
-          k = bias + 2
-          if (status === -Infinity) {
-            signal = 1
-          } else if (isNaN(status)) {
-            bin[k] = 1
+            exp = maxExp + 1
+            k = bias + 2
+            if (status === -Infinity) {
+              signal = 1
+            } else if (isNaN(status)) {
+              bin[k] = 1
+            }
           }
-        }
 
           n = Math.abs(exp + bias)
           tmpResult = ''
 
           for (j = exponentBits + 1; --j;) {
-          tmpResult = (n % 2) + tmpResult
-          n = n >>= 1
-        }
+            tmpResult = (n % 2) + tmpResult
+            n = n >>= 1
+          }
 
           n = 0
           j = 0
@@ -292,13 +292,13 @@ function pack (format) {
           r = []
 
           for (; k;) {
-          n += (1 << j) * tmpResult.charAt(--k)
-          if (j === 7) {
-            r[r.length] = String.fromCharCode(n)
-            n = 0
+            n += (1 << j) * tmpResult.charAt(--k)
+            if (j === 7) {
+              r[r.length] = String.fromCharCode(n)
+              n = 0
+            }
+            j = (j + 1) % 8
           }
-          j = (j + 1) % 8
-        }
 
           r[r.length] = n ? String.fromCharCode(n) : ''
           result += r.join('')
@@ -323,10 +323,10 @@ function pack (format) {
         }
         for (i = 0; i < quantifier; i++) {
           if (result.length === 0) {
-          throw new Error('Warning: pack(): Type X:' + ' outside of string')
-        } else {
-          result = result.substring(0, result.length - 1)
-        }
+            throw new Error('Warning: pack(): Type X:' + ' outside of string')
+          } else {
+            result = result.substring(0, result.length - 1)
+          }
         }
         break
 
@@ -338,8 +338,8 @@ function pack (format) {
         if (quantifier > result.length) {
           extraNullCount = quantifier - result.length
           for (i = 0; i < extraNullCount; i++) {
-          result += String.fromCharCode(0)
-        }
+            result += String.fromCharCode(0)
+          }
         }
         if (quantifier < result.length) {
           result = result.substring(0, quantifier)

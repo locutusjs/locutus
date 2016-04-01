@@ -265,8 +265,8 @@ Oy
               amPmOffset = (/a/)
               .test(d) ? 0 : 12
               if (prevHour) {
-              retObj.tm_hour += amPmOffset
-            }
+                retObj.tm_hour += amPmOffset
+              }
             })
             break
           case 's':

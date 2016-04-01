@@ -1,9 +1,9 @@
-phpjs = require('./build/npm');
+var phpjs = require('./build/npm')
 
-phpjs.registerGlobals = function() {
+phpjs.registerGlobals = function () {
   for (var key in this) {
-    global[key] = this[key];
+    global[key] = this[key]
   }
-};
+}
 
-module.exports = phpjs;
+module.exports = phpjs

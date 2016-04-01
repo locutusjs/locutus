@@ -151,7 +151,7 @@ function unserialize (data) {
           dataoffset += vchrs
 
           if (key !== i)
-          contig = false
+            contig = false
 
           readdata[key] = value
         }
@@ -159,7 +159,7 @@ function unserialize (data) {
         if (contig) {
           array = new Array(length)
           for (i = 0; i < length; i++)
-          array[i] = readdata[i]
+            array[i] = readdata[i]
           readdata = array
         }
 

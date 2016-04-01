@@ -27,32 +27,32 @@ function settype (vr, type) {
         if (is_array(v) && v.length === 0) {
           this[vr] = false
         } else if (v === '0') {
-        this[vr] = false
-      } else if (typeof v === 'object' && !is_array(v)) {
-        var lgth = false
-        for (i in v) {
-          lgth = true
+          this[vr] = false
+        } else if (typeof v === 'object' && !is_array(v)) {
+          var lgth = false
+          for (i in v) {
+            lgth = true
+          }
+          this[vr] = lgth
+        } else {
+          this[vr] = !!v
         }
-        this[vr] = lgth
-      } else {
-        this[vr] = !!v
-      }
         break
       case 'integer':
         if (typeof v === 'number') {
           this[vr] = parseInt(v, 10)
         } else if (typeof v === 'string') {
-        mtch = v.match(/^([+\-]?)(\d+)/)
-        if (!mtch) {
+          mtch = v.match(/^([+\-]?)(\d+)/)
+          if (!mtch) {
+            this[vr] = 0
+          } else {
+            this[vr] = parseInt(v, 10)
+          }
+        } else if (v === true) {
+          this[vr] = 1
+        } else if (v === false || v === null) {
           this[vr] = 0
-        } else {
-          this[vr] = parseInt(v, 10)
-        }
-      } else if (v === true) {
-        this[vr] = 1
-      } else if (v === false || v === null) {
-        this[vr] = 0
-      } else if (is_array(v) && v.length === 0) {
+        } else if (is_array(v) && v.length === 0) {
         this[vr] = 0
       } else if (typeof v === 'object') {
         this[vr] = 1
@@ -63,17 +63,17 @@ function settype (vr, type) {
         if (typeof v === 'string') {
           mtch = v.match(/^([+\-]?)(\d+(\.\d+)?|\.\d+)([eE][+\-]?\d+)?/)
           if (!mtch) {
-          this[vr] = 0
-        } else {
-          this[vr] = parseFloat(v, 10)
-        }
+            this[vr] = 0
+          } else {
+            this[vr] = parseFloat(v, 10)
+          }
         } else if (v === true) {
-        this[vr] = 1
-      } else if (v === false || v === null) {
-        this[vr] = 0
-      } else if (is_array(v) && v.length === 0) {
-        this[vr] = 0
-      } else if (typeof v === 'object') {
+          this[vr] = 1
+        } else if (v === false || v === null) {
+          this[vr] = 0
+        } else if (is_array(v) && v.length === 0) {
+          this[vr] = 0
+        } else if (typeof v === 'object') {
         this[vr] = 1
       }
         break
@@ -81,35 +81,35 @@ function settype (vr, type) {
         if (v === null || v === false) {
           this[vr] = ''
         } else if (is_array(v)) {
-        this[vr] = 'Array'
-      } else if (typeof v === 'object') {
-        this[vr] = 'Object'
-      } else if (v === true) {
-        this[vr] = '1'
-      } else {
-        this[vr] += ''
-      } // numbers (and functions?)
+          this[vr] = 'Array'
+        } else if (typeof v === 'object') {
+          this[vr] = 'Object'
+        } else if (v === true) {
+          this[vr] = '1'
+        } else {
+          this[vr] += ''
+        } // numbers (and functions?)
         break
       case 'array':
         if (v === null) {
           this[vr] = []
         } else if (typeof v !== 'object') {
-        this[vr] = [v]
-      }
+          this[vr] = [v]
+        }
         break
       case 'object':
         if (v === null) {
           this[vr] = {}
         } else if (is_array(v)) {
-        for (i = 0, obj = {}; i < v.length; i++) {
-          obj[i] = v
+          for (i = 0, obj = {}; i < v.length; i++) {
+            obj[i] = v
+          }
+          this[vr] = obj
+        } else if (typeof v !== 'object') {
+          this[vr] = {
+            scalar: v
+          }
         }
-        this[vr] = obj
-      } else if (typeof v !== 'object') {
-        this[vr] = {
-          scalar: v
-        }
-      }
         break
       case 'null':
         delete this[vr]

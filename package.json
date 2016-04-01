@@ -37,7 +37,7 @@
   "readmeFilename": "README.md",
   "scripts": {
     "test": "make test",
-    "fix": "eslint functions --fix",
+    "fix": "eslint functions bin lib test tools --fix",
     "lint": "eslint functions"
   },
   "bin": "bin/phpjs.js"

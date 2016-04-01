@@ -98,15 +98,15 @@ function serialize (mixed_value) {
 
       for (key in mixed_value) {
         if (mixed_value.hasOwnProperty(key)) {
-        ktype = _getType(mixed_value[key])
-        if (ktype === 'function') {
-          continue
-        }
+          ktype = _getType(mixed_value[key])
+          if (ktype === 'function') {
+            continue
+          }
 
-        okey = (key.match(/^[0-9]+$/) ? parseInt(key, 10) : key)
-        vals += this.serialize(okey) + this.serialize(mixed_value[key])
-        count++
-      }
+          okey = (key.match(/^[0-9]+$/) ? parseInt(key, 10) : key)
+          vals += this.serialize(okey) + this.serialize(mixed_value[key])
+          count++
+        }
       }
       val += ':' + count + ':{' + vals + '}'
       break

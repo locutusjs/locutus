@@ -172,11 +172,11 @@ function sscanf (str, format) {
               if (decInt < 0) {
               // PHP also won't allow less than -2147483648
               // integer overflow with negative
-              return decInt < -2147483648 ? -2147483648 : decInt
-            } else {
+                return decInt < -2147483648 ? -2147483648 : decInt
+              } else {
               // PHP also won't allow greater than -2147483647
-              return decInt < 2147483647 ? decInt : 2147483647
-            }
+                return decInt < 2147483647 ? decInt : 2147483647
+              }
             })
             break
           case 'f':
@@ -186,8 +186,8 @@ function sscanf (str, format) {
           case 'e':
             j = _addNext(j, /([+-])?(?:0*)(\d*\.?\d*(?:[eE]?\d+)?)/, function (num, sign, dec) {
               if (dec === '.') {
-              return null
-            }
+                return null
+              }
             // Ignores initial zeroes, unlike %i and parseFloat()
               return parseFloat((sign || '') + dec)
             })
@@ -201,10 +201,10 @@ function sscanf (str, format) {
               if (sign === '-') {
               // PHP also won't allow greater than 4294967295
               // integer overflow with negative
-              return 4294967296 - decInt
-            } else {
-              return decInt < 4294967295 ? decInt : 4294967295
-            }
+                return 4294967296 - decInt
+              } else {
+                return decInt < 4294967295 ? decInt : 4294967295
+              }
             })
             break
           case 'o':

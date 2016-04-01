@@ -110,8 +110,8 @@ function json_encode (mixed_val) {
           // for non-JSON values.
             length = value.length
             for (i = 0; i < length; i += 1) {
-            partial[i] = str(i, value) || 'null'
-          }
+              partial[i] = str(i, value) || 'null'
+            }
 
           // Join all of the elements together, separated with commas, and wrap them in
           // brackets.
@@ -124,11 +124,11 @@ function json_encode (mixed_val) {
         // Iterate through all of the keys in the object.
           for (k in value) {
             if (Object.hasOwnProperty.call(value, k)) {
-            v = str(k, value)
-            if (v) {
-              partial.push(quote(k) + (gap ? ': ' : ':') + v)
+              v = str(k, value)
+              if (v) {
+                partial.push(quote(k) + (gap ? ': ' : ':') + v)
+              }
             }
-          }
           }
 
         // Join all of the member texts together, separated with commas,

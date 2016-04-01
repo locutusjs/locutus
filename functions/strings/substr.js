@@ -46,56 +46,56 @@ function substr (str, start, len) {
     // strlen()
       for (i = 0; i < str.length; i++) {
         if (/[\uD800-\uDBFF]/.test(str.charAt(i)) && /[\uDC00-\uDFFF]/.test(str.charAt(i + 1))) {
-        allBMP = false
-        break
-      }
+          allBMP = false
+          break
+        }
       }
 
       if (!allBMP) {
         if (start < 0) {
-        for (i = end - 1, es = (start += end); i >= es; i--) {
-          if (/[\uDC00-\uDFFF]/.test(str.charAt(i)) && /[\uD800-\uDBFF]/.test(str.charAt(i - 1))) {
-            start--
-            es--
+          for (i = end - 1, es = (start += end); i >= es; i--) {
+            if (/[\uDC00-\uDFFF]/.test(str.charAt(i)) && /[\uD800-\uDBFF]/.test(str.charAt(i - 1))) {
+              start--
+              es--
+            }
+          }
+        } else {
+          var surrogatePairs = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g
+          while ((surrogatePairs.exec(str)) != null) {
+            var li = surrogatePairs.lastIndex
+            if (li - 2 < start) {
+              start++
+            } else {
+              break
+            }
           }
         }
-      } else {
-        var surrogatePairs = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g
-        while ((surrogatePairs.exec(str)) != null) {
-          var li = surrogatePairs.lastIndex
-          if (li - 2 < start) {
-            start++
-          } else {
-            break
-          }
-        }
-      }
 
         if (start >= end || start < 0) {
-        return false
-      }
-        if (len < 0) {
-        for (i = end - 1, el = (end += len); i >= el; i--) {
-          if (/[\uDC00-\uDFFF]/.test(str.charAt(i)) && /[\uD800-\uDBFF]/.test(str.charAt(i - 1))) {
-            end--
-            el--
-          }
-        }
-        if (start > end) {
           return false
         }
-        return str.slice(start, end)
-      } else {
-        se = start + len
-        for (i = start; i < se; i++) {
-          ret += str.charAt(i)
-          if (/[\uD800-\uDBFF]/.test(str.charAt(i)) && /[\uDC00-\uDFFF]/.test(str.charAt(i + 1))) {
-            // Go one further, since one of the "characters" is part of a surrogate pair
-            se++
+        if (len < 0) {
+          for (i = end - 1, el = (end += len); i >= el; i--) {
+            if (/[\uDC00-\uDFFF]/.test(str.charAt(i)) && /[\uD800-\uDBFF]/.test(str.charAt(i - 1))) {
+              end--
+              el--
+            }
           }
+          if (start > end) {
+            return false
+          }
+          return str.slice(start, end)
+        } else {
+          se = start + len
+          for (i = start; i < se; i++) {
+            ret += str.charAt(i)
+            if (/[\uD800-\uDBFF]/.test(str.charAt(i)) && /[\uDC00-\uDFFF]/.test(str.charAt(i + 1))) {
+            // Go one further, since one of the "characters" is part of a surrogate pair
+              se++
+            }
+          }
+          return ret
         }
-        return ret
-      }
         break
       }
     // Fall-through

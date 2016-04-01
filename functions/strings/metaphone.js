@@ -83,9 +83,9 @@ function metaphone (word, max_phonemes) {
         meta += nc
         i += 2
       } else if (nc === 'H' || is(vowel, nc)) {
-      meta += 'W'
-      i += 2
-    }
+        meta += 'W'
+        i += 2
+      }
       break
     case 'X':
       meta += 'S'
@@ -119,16 +119,16 @@ function metaphone (word, max_phonemes) {
       case 'C':
         if (is(soft, nc)) {
           if (nc === 'I' && nnc === 'A') {
-          meta += 'X'
-        } else if (pc !== 'S') {
-          meta += 'S'
-        }
+            meta += 'X'
+          } else if (pc !== 'S') {
+            meta += 'S'
+          }
         } else if (nc === 'H') {
-        meta += !traditional && (nnc === 'R' || pc === 'S') ? 'K' : 'X'
-        i += 1
-      } else {
-        meta += 'K'
-      }
+          meta += !traditional && (nnc === 'R' || pc === 'S') ? 'K' : 'X'
+          i += 1
+        } else {
+          meta += 'K'
+        }
         break
       case 'D':
         if (nc === 'G' && is(soft, nnc)) {
@@ -141,18 +141,18 @@ function metaphone (word, max_phonemes) {
       case 'G':
         if (nc === 'H') {
           if (!(is('BDH', word.charAt(i - 3)) || word.charAt(i - 4) === 'H')) {
-          meta += 'F'
-          i += 1
-        }
+            meta += 'F'
+            i += 1
+          }
         } else if (nc === 'N') {
-        if (is(alpha, nnc) && word.substr(i + 1, 3) !== 'NED') {
+          if (is(alpha, nnc) && word.substr(i + 1, 3) !== 'NED') {
+            meta += 'K'
+          }
+        } else if (is(soft, nc) && pc !== 'G') {
+          meta += 'J'
+        } else {
           meta += 'K'
         }
-      } else if (is(soft, nc) && pc !== 'G') {
-        meta += 'J'
-      } else {
-        meta += 'K'
-      }
         break
       case 'H':
         if (is(vowel, nc) && !is('CGPST', pc)) {
@@ -174,24 +174,24 @@ function metaphone (word, max_phonemes) {
         if (nc === 'I' && is('AO', nnc)) {
           meta += 'X'
         } else if (nc === 'H') {
-        meta += 'X'
-        i += 1
-      } else if (!traditional && word.substr(i + 1, 3) === 'CHW') {
-        meta += 'X'
-        i += 2
-      } else {
-        meta += 'S'
-      }
+          meta += 'X'
+          i += 1
+        } else if (!traditional && word.substr(i + 1, 3) === 'CHW') {
+          meta += 'X'
+          i += 2
+        } else {
+          meta += 'S'
+        }
         break
       case 'T':
         if (nc === 'I' && is('AO', nnc)) {
           meta += 'X'
         } else if (nc === 'H') {
-        meta += '0'
-        i += 1
-      } else if (word.substr(i + 1, 2) !== 'CH') {
-        meta += 'T'
-      }
+          meta += '0'
+          i += 1
+        } else if (word.substr(i + 1, 2) !== 'CH') {
+          meta += 'T'
+        }
         break
       case 'V':
         meta += 'F'

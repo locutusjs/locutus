@@ -168,11 +168,11 @@ function file_get_contents (url, flags, context, offset, maxLen) {
                   notification.call(objContext, 8, 0, '', req.status, bytes_transferred, 0)
                 } else if (req.status === 403) {
                 // Fix: These two are finished except for message
-                notification.call(objContext, 10, 2, '', req.status, 0, 0)
-              } else {
+                  notification.call(objContext, 10, 2, '', req.status, 0, 0)
+                } else {
                 // Errors
-                notification.call(objContext, 9, 2, '', req.status, 0, 0)
-              }
+                  notification.call(objContext, 9, 2, '', req.status, 0, 0)
+                }
                 break
               default:
                 throw 'Unrecognized ready state for file_get_contents()'
