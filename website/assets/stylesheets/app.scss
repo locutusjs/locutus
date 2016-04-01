@@ -25,3 +25,18 @@ body>header h1 span:nth-child(2) {
   clear: both;
   display: block;
 }
+
+.on-the-githubs abbr {
+  display: none;
+}
+
+.on-the-githubs p {
+  width: 200px;
+}
+
+.on-the-githubs li {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  border: 0px none;
+}
