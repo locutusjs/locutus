@@ -21,27 +21,24 @@ Combined, I felt we reached the tipping point where it made more sense to port t
 so we can profit from their speed of development, ecosystem, and the fact that many developers
 are already familiar with it.
 
-Long story short, 
+Long story short, I just completed the migration, and if you want to work on the website, here's
+what you'd do.
 
+Jekyll runs on Ruby, so make sure you have that installed, preferably with a working version of bundler. The rest of the site-building dependencies are node-based, so make sure you have a working `npm` as well.
 
-Three years ago we switched from our own home-brown coding style convention to Felix’ Node.js Style Guide, 
-for reasons outlined in the introductory post: [Coding Style](/blog/2013/05/04/coding-style/).
+To install the dependencies:
 
-The reasoning behind adopting such a widely supported coding style, has not changed. php.js should be
-focused on its added value, and less so arguing about, and inventing custom conventions around coding style.
+```bash
+npm run website:install
+```
 
-What has changed a great deal though, is the JavaScript landscape. A large part of the community is gathering behind [Feross Aboukhadijeh's JavaScript Standard Style](http://standardjs.com/) and [ESLint](http://eslint.org/).
+Now hack on the files in the `website` folder. If you have write access to the `phpjs` repository on GitHub, you can now do:
 
-Standard offers sensible defaults (no semicolons might take some getting used to but it's really [ok](http://mislav.net/2010/05/semicolons/) and after two weeks you won't look back). ESLint offers powerful ways to enforce the standard.
+```bash
+npm run website:deploy
+``
 
-ESLint for instance, offers a `--fix` command-line argument flag, that converts non-conforming codebases to whichever coding style convention was selected.
-
-The auto-fixing does not cover all rules yet, but it's getting better every month. As we upgrade these modules and fix our codebase, more and more legacy will conform.
-
-Additionally, I've added non-fatal linting to our Travis CI builds, so you can see which functions don't comply, and make them.
-
-php.js does few naughty tricks to bend the laws of physics and overcome a few obstacles in porting programming languages. For this reason, php.js a few exceptions listed in `.eslintrc`. As a goal for the future, it would be interesting to see if we could lose these exceptions.
-
+That's it : )
 
 Best wishes,
 

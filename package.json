@@ -50,6 +50,7 @@
     "test:module": "node build/npm.js && node test/npm/npm.js",
     "website:inject": "node lib/cli.js --action injectweb",
     "website:deploy": "npm run website:inject && cd website && npm run build && npm run deploy",
+    "website:install": "cd website && npm install",
     "website:start": "cd website && npm run start"
   },
   "bin": {

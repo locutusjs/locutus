@@ -45,11 +45,8 @@ exclude:
   - README.md
   - vendor
 
-# new: jekyll-feed
-# We'll refer new atom feed though, as adviced by GitHub
-# https://github.com/blog/2053-easier-feeds-for-github-pages
 feed:
-  path: blog.atom
+  path: atom.xml
 
 subscribe_rss: /atom.xml
 
