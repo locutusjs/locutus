@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's strtr
 
 {% codeblock strings/strtr.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strtr.js raw on github %}
-function strtr(str, from, to) {
+function strtr (str, from, to) {
   //  discuss at: http://phpjs.org/functions/strtr/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: uestla
@@ -50,64 +50,65 @@ function strtr(str, from, to) {
     tmpStrictForIn = false,
     fromTypeStr = '',
     toTypeStr = '',
-    istr = '';
-  var tmpFrom = [];
-  var tmpTo = [];
-  var ret = '';
-  var match = false;
+    istr = ''
+  var tmpFrom = []
+  var tmpTo = []
+  var ret = ''
+  var match = false
 
   // Received replace_pairs?
   // Convert to normal from->to chars
   if (typeof from === 'object') {
-    tmpStrictForIn = this.ini_set('phpjs.strictForIn', false); // Not thread-safe; temporarily set to true
-    from = this.krsort(from);
-    this.ini_set('phpjs.strictForIn', tmpStrictForIn);
+    // Not thread-safe; temporarily set to true
+    tmpStrictForIn = this.ini_set('phpjs.strictForIn', false)
+    from = this.krsort(from)
+    this.ini_set('phpjs.strictForIn', tmpStrictForIn)
 
     for (fr in from) {
       if (from.hasOwnProperty(fr)) {
-        tmpFrom.push(fr);
-        tmpTo.push(from[fr]);
+        tmpFrom.push(fr)
+        tmpTo.push(from[fr])
       }
     }
 
-    from = tmpFrom;
-    to = tmpTo;
+    from = tmpFrom
+    to = tmpTo
   }
 
   // Walk through subject and replace chars when needed
-  lenStr = str.length;
-  lenFrom = from.length;
-  fromTypeStr = typeof from === 'string';
-  toTypeStr = typeof to === 'string';
+  lenStr = str.length
+  lenFrom = from.length
+  fromTypeStr = typeof from === 'string'
+  toTypeStr = typeof to === 'string'
 
   for (i = 0; i < lenStr; i++) {
-    match = false;
+    match = false
     if (fromTypeStr) {
-      istr = str.charAt(i);
+      istr = str.charAt(i)
       for (j = 0; j < lenFrom; j++) {
         if (istr == from.charAt(j)) {
-          match = true;
-          break;
+          match = true
+          break
         }
       }
     } else {
       for (j = 0; j < lenFrom; j++) {
         if (str.substr(i, from[j].length) == from[j]) {
-          match = true;
+          match = true
           // Fast forward
-          i = (i + from[j].length) - 1;
-          break;
+          i = (i + from[j].length) - 1
+          break
         }
       }
     }
     if (match) {
-      ret += toTypeStr ? to.charAt(j) : to[j];
+      ret += toTypeStr ? to.charAt(j) : to[j]
     } else {
-      ret += str.charAt(i);
+      ret += str.charAt(i)
     }
   }
 
-  return ret;
+  return ret
 }
 {% endcodeblock %}
 

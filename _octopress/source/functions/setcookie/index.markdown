@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's setcookie
 
 {% codeblock network/setcookie.js lang:js https://raw.github.com/kvz/phpjs/master/functions/network/setcookie.js raw on github %}
-function setcookie(name, value, expires, path, domain, secure) {
+function setcookie (name, value, expires, path, domain, secure) {
   //  discuss at: http://phpjs.org/functions/setcookie/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // bugfixed by: Andreas
@@ -25,7 +25,7 @@ function setcookie(name, value, expires, path, domain, secure) {
   //   example 1: setcookie('author_name', 'Kevin van Zonneveld');
   //   returns 1: true
 
-  return this.setrawcookie(name, encodeURIComponent(value), expires, path, domain, secure);
+  return this.setrawcookie(name, encodeURIComponent(value), expires, path, domain, secure)
 }
 {% endcodeblock %}
 

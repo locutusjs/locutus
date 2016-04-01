@@ -15,9 +15,8 @@ alias:
 A JavaScript equivalent of PHP's dirname
 
 {% codeblock filesystem/dirname.js lang:js https://raw.github.com/kvz/phpjs/master/functions/filesystem/dirname.js raw on github %}
-function dirname(path) {
+function dirname (path) {
   //  discuss at: http://phpjs.org/functions/dirname/
-  //        http: //kevin.vanzonneveld.net
   // original by: Ozh
   // improved by: XoraX (http://www.xorax.info)
   //   example 1: dirname('/etc/passwd');
@@ -28,7 +27,7 @@ function dirname(path) {
   //   returns 3: '/dir'
 
   return path.replace(/\\/g, '/')
-    .replace(/\/[^\/]*\/?$/, '');
+    .replace(/\/[^\/]*\/?$/, '')
 }
 {% endcodeblock %}
 

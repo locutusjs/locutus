@@ -15,13 +15,13 @@ alias:
 A JavaScript equivalent of PHP's asinh
 
 {% codeblock math/asinh.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/asinh.js raw on github %}
-function asinh(arg) {
+function asinh (arg) {
   //  discuss at: http://phpjs.org/functions/asinh/
   // original by: Onno Marsman
   //   example 1: asinh(8723321.4);
   //   returns 1: 16.67465779841863
 
-  return Math.log(arg + Math.sqrt(arg * arg + 1));
+  return Math.log(arg + Math.sqrt(arg * arg + 1))
 }
 {% endcodeblock %}
 

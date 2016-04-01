@@ -15,10 +15,10 @@ alias:
 A JavaScript equivalent of PHP's implode
 
 {% codeblock strings/implode.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/implode.js raw on github %}
-function implode(glue, pieces) {
+function implode (glue, pieces) {
   //  discuss at: http://phpjs.org/functions/implode/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // improved by: Waldo Malqui Silva
+  // improved by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Itsacon (http://www.itsacon.net/)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //   example 1: implode(' ', ['Kevin', 'van', 'Zonneveld']);
@@ -28,22 +28,22 @@ function implode(glue, pieces) {
 
   var i = '',
     retVal = '',
-    tGlue = '';
+    tGlue = ''
   if (arguments.length === 1) {
-    pieces = glue;
-    glue = '';
+    pieces = glue
+    glue = ''
   }
   if (typeof pieces === 'object') {
     if (Object.prototype.toString.call(pieces) === '[object Array]') {
-      return pieces.join(glue);
+      return pieces.join(glue)
     }
     for (i in pieces) {
-      retVal += tGlue + pieces[i];
-      tGlue = glue;
+      retVal += tGlue + pieces[i]
+      tGlue = glue
     }
-    return retVal;
+    return retVal
   }
-  return pieces;
+  return pieces
 }
 {% endcodeblock %}
 

@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's strpbrk
 
 {% codeblock strings/strpbrk.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strpbrk.js raw on github %}
-function strpbrk(haystack, char_list) {
+function strpbrk (haystack, char_list) {
   //  discuss at: http://phpjs.org/functions/strpbrk/
   // original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
   // bugfixed by: Onno Marsman
@@ -26,10 +26,10 @@ function strpbrk(haystack, char_list) {
 
   for (var i = 0, len = haystack.length; i < len; ++i) {
     if (char_list.indexOf(haystack.charAt(i)) >= 0) {
-      return haystack.slice(i);
+      return haystack.slice(i)
     }
   }
-  return false;
+  return false
 }
 {% endcodeblock %}
 

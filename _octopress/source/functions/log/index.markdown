@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's log
 
 {% codeblock math/log.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/log.js raw on github %}
-function log(arg, base) {
+function log (arg, base) {
   //  discuss at: http://phpjs.org/functions/log/
   // original by: Onno Marsman
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -24,7 +24,7 @@ function log(arg, base) {
 
   return (typeof base === 'undefined') ?
     Math.log(arg) :
-    Math.log(arg) / Math.log(base);
+    Math.log(arg) / Math.log(base)
 }
 {% endcodeblock %}
 

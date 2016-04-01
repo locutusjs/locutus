@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's md5_file
 
 {% codeblock strings/md5_file.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/md5_file.js raw on github %}
-function md5_file(str_filename) {
+function md5_file (str_filename) {
   //  discuss at: http://phpjs.org/functions/md5_file/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Brett Zamir (http://brett-zamir.me)
@@ -26,15 +26,15 @@ function md5_file(str_filename) {
   //   example 1: md5_file('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
   //   returns 1: '202cb962ac59075b964b07152d234b70'
 
-  var buf = '';
+  var buf = ''
 
-  buf = this.file_get_contents(str_filename);
+  buf = this.file_get_contents(str_filename)
 
   if (!buf) {
-    return false;
+    return false
   }
 
-  return this.md5(buf);
+  return this.md5(buf)
 }
 {% endcodeblock %}
 

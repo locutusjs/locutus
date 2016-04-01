@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's rsort
 
 {% codeblock array/rsort.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/rsort.js raw on github %}
-function rsort(inputArr, sort_flags) {
+function rsort (inputArr, sort_flags) {
   //  discuss at: http://phpjs.org/functions/rsort/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: Brett Zamir (http://brett-zamir.me)
@@ -53,74 +53,76 @@ function rsort(inputArr, sort_flags) {
     sorter = false,
     that = this,
     strictForIn = false,
-    populateArr = [];
+    populateArr = []
 
   switch (sort_flags) {
     case 'SORT_STRING':
-      // compare items as strings
-      sorter = function(a, b) {
-        return that.strnatcmp(b, a);
-      };
-      break;
+    // compare items as strings
+      sorter = function (a, b) {
+        return that.strnatcmp(b, a)
+      }
+      break
     case 'SORT_LOCALE_STRING':
-      // compare items as strings, original by the current locale (set with  i18n_loc_set_default() as of PHP6)
-      var loc = this.i18n_loc_get_default();
-      sorter = this.php_js.i18nLocales[loc].sorting;
-      break;
+    // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
+      var loc = this.i18n_loc_get_default()
+      sorter = this.php_js.i18nLocales[loc].sorting
+      break
     case 'SORT_NUMERIC':
-      // compare items numerically
-      sorter = function(a, b) {
-        return (b - a);
-      };
-      break;
+    // compare items numerically
+      sorter = function (a, b) {
+        return (b - a)
+      }
+      break
     case 'SORT_REGULAR':
-      // compare items normally (don't change types)
+    // compare items normally (don't change types)
     default:
-      sorter = function(b, a) {
+      sorter = function (b, a) {
         var aFloat = parseFloat(a),
           bFloat = parseFloat(b),
           aNumeric = aFloat + '' === a,
-          bNumeric = bFloat + '' === b;
+          bNumeric = bFloat + '' === b
         if (aNumeric && bNumeric) {
-          return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0;
+          return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0
         } else if (aNumeric && !bNumeric) {
-          return 1;
+          return 1
         } else if (!aNumeric && bNumeric) {
-          return -1;
+          return -1
         }
-        return a > b ? 1 : a < b ? -1 : 0;
-      };
-      break;
+        return a > b ? 1 : a < b ? -1 : 0
+      }
+      break
   }
 
   // BEGIN REDUNDANT
   try {
-    this.php_js = this.php_js || {};
+    this.php_js = this.php_js || {}
   } catch (e) {
-    this.php_js = {};
+    this.php_js = {}
   }
 
-  this.php_js.ini = this.php_js.ini || {};
+  this.php_js.ini = this.php_js.ini || {}
   // END REDUNDANT
   strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
-    .ini['phpjs.strictForIn'].local_value !== 'off';
-  populateArr = strictForIn ? inputArr : populateArr;
+    .ini['phpjs.strictForIn'].local_value !== 'off'
+  populateArr = strictForIn ? inputArr : populateArr
 
-  for (k in inputArr) { // Get key and value arrays
+  for (k in inputArr) {
+    // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push(inputArr[k]);
+      valArr.push(inputArr[k])
       if (strictForIn) {
-        delete inputArr[k];
+        delete inputArr[k]
       }
     }
   }
 
-  valArr.sort(sorter);
+  valArr.sort(sorter)
 
-  for (i = 0; i < valArr.length; i++) { // Repopulate the old array
-    populateArr[i] = valArr[i];
+  for (i = 0; i < valArr.length; i++) {
+    // Repopulate the old array
+    populateArr[i] = valArr[i]
   }
-  return strictForIn || populateArr;
+  return strictForIn || populateArr
 }
 {% endcodeblock %}
 

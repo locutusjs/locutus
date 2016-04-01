@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's getlastmod
 
 {% codeblock info/getlastmod.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/getlastmod.js raw on github %}
-function getlastmod() {
+function getlastmod () {
   //  discuss at: http://phpjs.org/functions/getlastmod/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Will not work on browsers which don't support document.lastModified
@@ -24,7 +24,7 @@ function getlastmod() {
   //   returns 1: 1237610043
 
   return new Date(this.window.document.lastModified)
-    .getTime() / 1000;
+    .getTime() / 1000
 }
 {% endcodeblock %}
 

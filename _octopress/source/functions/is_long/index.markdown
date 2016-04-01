@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's is_long
 
 {% codeblock var/is_long.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_long.js raw on github %}
-function is_long(mixed_var) {
+function is_long (mixed_var) {
   //  discuss at: http://phpjs.org/functions/is_long/
   // original by: Paulo Freitas
   //  depends on: is_float
@@ -24,7 +24,7 @@ function is_long(mixed_var) {
   //   example 1: is_long(186.31);
   //   returns 1: true
 
-  return this.is_float(mixed_var);
+  return this.is_float(mixed_var)
 }
 {% endcodeblock %}
 

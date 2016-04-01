@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's is_numeric
 
 {% codeblock var/is_numeric.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_numeric.js raw on github %}
-function is_numeric(mixed_var) {
+function is_numeric (mixed_var) {
   //  discuss at: http://phpjs.org/functions/is_numeric/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: David
@@ -38,9 +38,9 @@ function is_numeric(mixed_var) {
   //   returns 6: false
 
   var whitespace =
-    " \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000";
-  return (typeof mixed_var === 'number' || (typeof mixed_var === 'string' && whitespace.indexOf(mixed_var.slice(-1)) === -
-    1)) && mixed_var !== '' && !isNaN(mixed_var);
+    ' \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000'
+  return (typeof mixed_var === 'number' || (typeof mixed_var === 'string' && whitespace.indexOf(mixed_var.slice(-1)) ===
+    -1)) && mixed_var !== '' && !isNaN(mixed_var)
 }
 {% endcodeblock %}
 

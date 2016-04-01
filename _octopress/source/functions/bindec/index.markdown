@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's bindec
 
 {% codeblock math/bindec.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/bindec.js raw on github %}
-function bindec(binary_string) {
+function bindec (binary_string) {
   //  discuss at: http://phpjs.org/functions/bindec/
   // original by: Philippe Baumann
   //   example 1: bindec('110011');
@@ -26,8 +26,8 @@ function bindec(binary_string) {
   //   returns 3: 7
 
   binary_string = (binary_string + '')
-    .replace(/[^01]/gi, '');
-  return parseInt(binary_string, 2);
+    .replace(/[^01]/gi, '')
+  return parseInt(binary_string, 2)
 }
 {% endcodeblock %}
 

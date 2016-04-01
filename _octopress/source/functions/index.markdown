@@ -250,6 +250,7 @@ these functions there for a reason.
  - [echo](/functions/echo)
  - [explode](/functions/explode)
  - [get_html_translation_table](/functions/get_html_translation_table)
+ - [hex2bin](/functions/hex2bin)
  - [html_entity_decode](/functions/html_entity_decode)
  - [htmlentities](/functions/htmlentities)
  - [htmlspecialchars](/functions/htmlspecialchars)

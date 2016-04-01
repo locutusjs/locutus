@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's function_exists
 
 {% codeblock funchand/function_exists.js lang:js https://raw.github.com/kvz/phpjs/master/functions/funchand/function_exists.js raw on github %}
-function function_exists(func_name) {
+function function_exists (func_name) {
   //  discuss at: http://phpjs.org/functions/function_exists/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Steve Clay
@@ -25,9 +25,9 @@ function function_exists(func_name) {
   //   returns 1: true
 
   if (typeof func_name === 'string') {
-    func_name = this.window[func_name];
+    func_name = this.window[func_name]
   }
-  return typeof func_name === 'function';
+  return typeof func_name === 'function'
 }
 {% endcodeblock %}
 

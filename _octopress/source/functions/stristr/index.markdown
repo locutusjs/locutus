@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's stristr
 
 {% codeblock strings/stristr.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/stristr.js raw on github %}
-function stristr(haystack, needle, bool) {
+function stristr (haystack, needle, bool) {
   //  discuss at: http://phpjs.org/functions/stristr/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
@@ -24,19 +24,19 @@ function stristr(haystack, needle, bool) {
   //   example 2: stristr('Kevin van Zonneveld', 'VAN', true);
   //   returns 2: 'Kevin '
 
-  var pos = 0;
+  var pos = 0
 
-  haystack += '';
+  haystack += ''
   pos = haystack.toLowerCase()
     .indexOf((needle + '')
-      .toLowerCase());
+      .toLowerCase())
   if (pos == -1) {
-    return false;
+    return false
   } else {
     if (bool) {
-      return haystack.substr(0, pos);
+      return haystack.substr(0, pos)
     } else {
-      return haystack.slice(pos);
+      return haystack.slice(pos)
     }
   }
 }

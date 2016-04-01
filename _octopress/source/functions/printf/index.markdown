@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's printf
 
 {% codeblock strings/printf.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/printf.js raw on github %}
-function printf() {
+function printf () {
   //  discuss at: http://phpjs.org/functions/printf/
   // original by: Ash Searle (http://hexmen.com/blog/)
   // improved by: Michael White (http://getsprink.com)
@@ -24,23 +24,23 @@ function printf() {
   //   example 1: printf("%01.2f", 123.1);
   //   returns 1: 6
 
-  var body, elmt, d = this.window.document;
-  var ret = '';
+  var body, elmt, d = this.window.document
+  var ret = ''
 
-  var HTMLNS = 'http://www.w3.org/1999/xhtml';
+  var HTMLNS = 'http://www.w3.org/1999/xhtml'
   body = d.getElementsByTagNameNS ? (d.getElementsByTagNameNS(HTMLNS, 'body')[0] ? d.getElementsByTagNameNS(HTMLNS,
-    'body')[0] : d.documentElement.lastChild) : d.getElementsByTagName('body')[0];
+    'body')[0] : d.documentElement.lastChild) : d.getElementsByTagName('body')[0]
 
   if (!body) {
-    return false;
+    return false
   }
 
-  ret = this.sprintf.apply(this, arguments);
+  ret = this.sprintf.apply(this, arguments)
 
-  elmt = d.createTextNode(ret);
-  body.appendChild(elmt);
+  elmt = d.createTextNode(ret)
+  body.appendChild(elmt)
 
-  return ret.length;
+  return ret.length
 }
 {% endcodeblock %}
 

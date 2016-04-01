@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's dechex
 
 {% codeblock math/dechex.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/dechex.js raw on github %}
-function dechex(number) {
+function dechex (number) {
   //  discuss at: http://phpjs.org/functions/dechex/
   // original by: Philippe Baumann
   // bugfixed by: Onno Marsman
@@ -29,10 +29,10 @@ function dechex(number) {
   //   returns 3: 'ab9dc427'
 
   if (number < 0) {
-    number = 0xFFFFFFFF + number + 1;
+    number = 0xFFFFFFFF + number + 1
   }
   return parseInt(number, 10)
-    .toString(16);
+    .toString(16)
 }
 {% endcodeblock %}
 

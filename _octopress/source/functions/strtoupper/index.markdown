@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's strtoupper
 
 {% codeblock strings/strtoupper.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strtoupper.js raw on github %}
-function strtoupper(str) {
+function strtoupper (str) {
   //  discuss at: http://phpjs.org/functions/strtoupper/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Onno Marsman
@@ -23,7 +23,7 @@ function strtoupper(str) {
   //   returns 1: 'KEVIN VAN ZONNEVELD'
 
   return (str + '')
-    .toUpperCase();
+    .toUpperCase()
 }
 {% endcodeblock %}
 

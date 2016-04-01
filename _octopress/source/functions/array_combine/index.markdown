@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's array_combine
 
 {% codeblock array/array_combine.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_combine.js raw on github %}
-function array_combine(keys, values) {
+function array_combine (keys, values) {
   //  discuss at: http://phpjs.org/functions/array_combine/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -24,24 +24,25 @@ function array_combine(keys, values) {
 
   var new_array = {},
     keycount = keys && keys.length,
-    i = 0;
+    i = 0
 
   // input sanitation
   if (typeof keys !== 'object' || typeof values !== 'object' || // Only accept arrays or array-like objects
-    typeof keycount !== 'number' || typeof values.length !== 'number' || !keycount) { // Require arrays to have a count
-    return false;
+    typeof keycount !== 'number' || typeof values.length !== 'number' || !keycount) {
+    // Require arrays to have a count
+    return false
   }
 
   // number of elements does not match
   if (keycount != values.length) {
-    return false;
+    return false
   }
 
   for (i = 0; i < keycount; i++) {
-    new_array[keys[i]] = values[i];
+    new_array[keys[i]] = values[i]
   }
 
-  return new_array;
+  return new_array
 }
 {% endcodeblock %}
 

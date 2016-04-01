@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's str_rot13
 
 {% codeblock strings/str_rot13.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/str_rot13.js raw on github %}
-function str_rot13(str) {
+function str_rot13 (str) {
   //  discuss at: http://phpjs.org/functions/str_rot13/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // improved by: Ates Goral (http://magnetiq.com)
@@ -29,9 +29,9 @@ function str_rot13(str) {
   //   returns 3: '33'
 
   return (str + '')
-    .replace(/[a-z]/gi, function(s) {
-      return String.fromCharCode(s.charCodeAt(0) + (s.toLowerCase() < 'n' ? 13 : -13));
-    });
+    .replace(/[a-z]/gi, function (s) {
+      return String.fromCharCode(s.charCodeAt(0) + (s.toLowerCase() < 'n' ? 13 : -13))
+    })
 }
 {% endcodeblock %}
 

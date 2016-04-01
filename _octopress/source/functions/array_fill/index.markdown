@@ -15,22 +15,22 @@ alias:
 A JavaScript equivalent of PHP's array_fill
 
 {% codeblock array/array_fill.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_fill.js raw on github %}
-function array_fill(start_index, num, mixed_val) {
+function array_fill (start_index, num, mixed_val) {
   //  discuss at: http://phpjs.org/functions/array_fill/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // improved by: Waldo Malqui Silva
+  // improved by: Waldo Malqui Silva (http://waldo.malqui.info)
   //   example 1: array_fill(5, 6, 'banana');
   //   returns 1: { 5: 'banana', 6: 'banana', 7: 'banana', 8: 'banana', 9: 'banana', 10: 'banana' }
 
-  var key, tmp_arr = {};
+  var key, tmp_arr = {}
 
   if (!isNaN(start_index) && !isNaN(num)) {
     for (key = 0; key < num; key++) {
-      tmp_arr[(key + start_index)] = mixed_val;
+      tmp_arr[(key + start_index)] = mixed_val
     }
   }
 
-  return tmp_arr;
+  return tmp_arr
 }
 {% endcodeblock %}
 

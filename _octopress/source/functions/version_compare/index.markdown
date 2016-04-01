@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's version_compare
 
 {% codeblock info/version_compare.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/version_compare.js raw on github %}
-function version_compare(v1, v2, operator) {
+function version_compare (v1, v2, operator) {
   //       discuss at: http://phpjs.org/functions/version_compare/
   //      original by: Philippe Jausions (http://pear.php.net/user/jausions)
   //      original by: Aidan Lister (http://aidanlister.com/)
@@ -32,12 +32,12 @@ function version_compare(v1, v2, operator) {
   //        example 4: version_compare('4.1.0.52','4.01.0.51');
   //        returns 4: 1
 
-  this.php_js = this.php_js || {};
-  this.php_js.ENV = this.php_js.ENV || {};
+  this.php_js = this.php_js || {}
+  this.php_js.ENV = this.php_js.ENV || {}
   // END REDUNDANT
   // Important: compare must be initialized at 0.
-  var i = 0,
-    x = 0,
+  var i,
+    x,
     compare = 0,
     // vm maps textual PHP versions to negatives so they're less than 0.
     // PHP currently defines these as CASE-SENSITIVE. It is important to
@@ -67,39 +67,39 @@ function version_compare(v1, v2, operator) {
     // even less than an unexisting value in vm (-7), hence [-8].
     // It's also important to not strip spaces because of this.
     //   version_compare('', ' ') == 1
-    prepVersion = function(v) {
+    prepVersion = function (v) {
       v = ('' + v)
-        .replace(/[_\-+]/g, '.');
+        .replace(/[_\-+]/g, '.')
       v = v.replace(/([^.\d]+)/g, '.$1.')
-        .replace(/\.{2,}/g, '.');
-      return (!v.length ? [-8] : v.split('.'));
-    };
-  // This converts a version component to a number.
-  // Empty component becomes 0.
-  // Non-numerical component becomes a negative number.
-  // Numerical component becomes itself as an integer.
-  numVersion = function(v) {
-    return !v ? 0 : (isNaN(v) ? vm[v] || -7 : parseInt(v, 10));
-  };
-  v1 = prepVersion(v1);
-  v2 = prepVersion(v2);
-  x = Math.max(v1.length, v2.length);
+        .replace(/\.{2,}/g, '.')
+      return (!v.length ? [-8] : v.split('.'))
+    },
+    // This converts a version component to a number.
+    // Empty component becomes 0.
+    // Non-numerical component becomes a negative number.
+    // Numerical component becomes itself as an integer.
+    numVersion = function (v) {
+      return !v ? 0 : (isNaN(v) ? vm[v] || -7 : parseInt(v, 10))
+    }
+  v1 = prepVersion(v1)
+  v2 = prepVersion(v2)
+  x = Math.max(v1.length, v2.length)
   for (i = 0; i < x; i++) {
     if (v1[i] == v2[i]) {
-      continue;
+      continue
     }
-    v1[i] = numVersion(v1[i]);
-    v2[i] = numVersion(v2[i]);
+    v1[i] = numVersion(v1[i])
+    v2[i] = numVersion(v2[i])
     if (v1[i] < v2[i]) {
-      compare = -1;
-      break;
+      compare = -1
+      break
     } else if (v1[i] > v2[i]) {
-      compare = 1;
-      break;
+      compare = 1
+      break
     }
   }
   if (!operator) {
-    return compare;
+    return compare
   }
 
   // Important: operator is CASE-SENSITIVE.
@@ -108,27 +108,27 @@ function version_compare(v1, v2, operator) {
   switch (operator) {
     case '>':
     case 'gt':
-      return (compare > 0);
+      return (compare > 0)
     case '>=':
     case 'ge':
-      return (compare >= 0);
+      return (compare >= 0)
     case '<=':
     case 'le':
-      return (compare <= 0);
+      return (compare <= 0)
     case '==':
     case '=':
     case 'eq':
-      return (compare === 0);
+      return (compare === 0)
     case '<>':
     case '!=':
     case 'ne':
-      return (compare !== 0);
+      return (compare !== 0)
     case '':
     case '<':
     case 'lt':
-      return (compare < 0);
+      return (compare < 0)
     default:
-      return null;
+      return null
   }
 }
 {% endcodeblock %}

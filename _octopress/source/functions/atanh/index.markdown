@@ -15,13 +15,13 @@ alias:
 A JavaScript equivalent of PHP's atanh
 
 {% codeblock math/atanh.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/atanh.js raw on github %}
-function atanh(arg) {
+function atanh (arg) {
   //  discuss at: http://phpjs.org/functions/atanh/
   // original by: Onno Marsman
   //   example 1: atanh(0.3);
   //   returns 1: 0.3095196042031118
 
-  return 0.5 * Math.log((1 + arg) / (1 - arg));
+  return 0.5 * Math.log((1 + arg) / (1 - arg))
 }
 {% endcodeblock %}
 

@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's create_function
 
 {% codeblock funchand/create_function.js lang:js https://raw.github.com/kvz/phpjs/master/functions/funchand/create_function.js raw on github %}
-function create_function(args, code) {
+function create_function (args, code) {
   //       discuss at: http://phpjs.org/functions/create_function/
   //      original by: Johnny Mast (http://www.phpvrouwen.nl)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
@@ -25,9 +25,9 @@ function create_function(args, code) {
 
   try {
     return Function.apply(null, args.split(',')
-      .concat(code));
+      .concat(code))
   } catch (e) {
-    return false;
+    return false
   }
 }
 {% endcodeblock %}

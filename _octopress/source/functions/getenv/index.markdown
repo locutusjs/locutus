@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's getenv
 
 {% codeblock info/getenv.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/getenv.js raw on github %}
-function getenv(varname) {
+function getenv (varname) {
   //  discuss at: http://phpjs.org/functions/getenv/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: We are not using $_ENV as in PHP, you could define
@@ -26,10 +26,10 @@ function getenv(varname) {
   //   returns 1: false
 
   if (!this.php_js || !this.php_js.ENV || !this.php_js.ENV[varname]) {
-    return false;
+    return false
   }
 
-  return this.php_js.ENV[varname];
+  return this.php_js.ENV[varname]
 }
 {% endcodeblock %}
 

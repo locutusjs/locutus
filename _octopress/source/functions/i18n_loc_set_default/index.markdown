@@ -15,9 +15,8 @@ alias:
 A JavaScript equivalent of PHP's i18n_loc_set_default
 
 {% codeblock i18n/i18n_loc_set_default.js lang:js https://raw.github.com/kvz/phpjs/master/functions/i18n/i18n_loc_set_default.js raw on github %}
-function i18n_loc_set_default(name) {
+function i18n_loc_set_default (name) {
   //  discuss at: http://phpjs.org/functions/i18n_loc_set_default/
-  //        http: //kevin.vanzonneveld.net
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Renamed in PHP6 from locale_set_default(). Not listed yet at php.net
   //        note: List of locales at http://demo.icu-project.org/icu-bin/locexp (use for implementing other locales here)
@@ -26,19 +25,20 @@ function i18n_loc_set_default(name) {
   //   returns 1: true
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {};
+  this.php_js = this.php_js || {}
   // END REDUNDANT
 
   this.php_js.i18nLocales = {
     en_US_POSIX: {
-      sorting: function(str1, str2) { // Fix: This one taken from strcmp, but need for other locales; we don't use localeCompare since its locale is not settable
-        return (str1 == str2) ? 0 : ((str1 > str2) ? 1 : -1);
+      sorting: function (str1, str2) {
+        // Fix: This one taken from strcmp, but need for other locales; we don't use localeCompare since its locale is not settable
+        return (str1 == str2) ? 0 : ((str1 > str2) ? 1 : -1)
       }
     }
-  };
+  }
 
-  this.php_js.i18nLocale = name;
-  return true;
+  this.php_js.i18nLocale = name
+  return true
 }
 {% endcodeblock %}
 

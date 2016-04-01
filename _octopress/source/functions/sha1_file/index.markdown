@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's sha1_file
 
 {% codeblock strings/sha1_file.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/sha1_file.js raw on github %}
-function sha1_file(str_filename) {
+function sha1_file (str_filename) {
   //  discuss at: http://phpjs.org/functions/sha1_file/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  depends on: file_get_contents
@@ -24,9 +24,9 @@ function sha1_file(str_filename) {
   //   example 1: sha1_file('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
   //   returns 1: '40bd001563085fc35165329ea1ff5c5ecbdbbeef'
 
-  var buf = this.file_get_contents(str_filename);
+  var buf = this.file_get_contents(str_filename)
 
-  return this.sha1(buf);
+  return this.sha1(buf)
 }
 {% endcodeblock %}
 

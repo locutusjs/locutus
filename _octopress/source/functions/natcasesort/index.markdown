@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's natcasesort
 
 {% codeblock array/natcasesort.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/natcasesort.js raw on github %}
-function natcasesort(inputArr) {
+function natcasesort (inputArr) {
   //  discuss at: http://phpjs.org/functions/natcasesort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -39,35 +39,35 @@ function natcasesort(inputArr) {
   var valArr = [],
     k, i, ret, that = this,
     strictForIn = false,
-    populateArr = {};
+    populateArr = {}
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {};
-  this.php_js.ini = this.php_js.ini || {};
+  this.php_js = this.php_js || {}
+  this.php_js.ini = this.php_js.ini || {}
   // END REDUNDANT
   strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
-    .ini['phpjs.strictForIn'].local_value !== 'off';
-  populateArr = strictForIn ? inputArr : populateArr;
+    .ini['phpjs.strictForIn'].local_value !== 'off'
+  populateArr = strictForIn ? inputArr : populateArr
 
   // Get key and value arrays
   for (k in inputArr) {
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push([k, inputArr[k]]);
+      valArr.push([k, inputArr[k]])
       if (strictForIn) {
-        delete inputArr[k];
+        delete inputArr[k]
       }
     }
   }
-  valArr.sort(function(a, b) {
-    return that.strnatcasecmp(a[1], b[1]);
-  });
+  valArr.sort(function (a, b) {
+    return that.strnatcasecmp(a[1], b[1])
+  })
 
   // Repopulate the old array
   for (i = 0; i < valArr.length; i++) {
-    populateArr[valArr[i][0]] = valArr[i][1];
+    populateArr[valArr[i][0]] = valArr[i][1]
   }
 
-  return strictForIn || populateArr;
+  return strictForIn || populateArr
 }
 {% endcodeblock %}
 

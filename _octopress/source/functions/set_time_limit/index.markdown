@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's set_time_limit
 
 {% codeblock info/set_time_limit.js lang:js https://raw.github.com/kvz/phpjs/master/functions/info/set_time_limit.js raw on github %}
-function set_time_limit(seconds) {
+function set_time_limit (seconds) {
   //  discuss at: http://phpjs.org/functions/set_time_limit/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        test: skip
@@ -23,15 +23,15 @@ function set_time_limit(seconds) {
   //   returns 1: undefined
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {};
+  this.php_js = this.php_js || {}
   // END REDUNDANT
 
-  this.window.setTimeout(function() {
+  this.window.setTimeout(function () {
     if (!this.php_js.timeoutStatus) {
-      this.php_js.timeoutStatus = true;
+      this.php_js.timeoutStatus = true
     }
-    throw 'Maximum execution time exceeded';
-  }, seconds * 1000);
+    throw 'Maximum execution time exceeded'
+  }, seconds * 1000)
 }
 {% endcodeblock %}
 

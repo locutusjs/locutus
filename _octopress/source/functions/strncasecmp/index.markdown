@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's strncasecmp
 
 {% codeblock strings/strncasecmp.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strncasecmp.js raw on github %}
-function strncasecmp(argStr1, argStr2, len) {
+function strncasecmp (argStr1, argStr2, len) {
   //  discuss at: http://phpjs.org/functions/strncasecmp/
   // original by: Saulo Vallory
   //    input by: Nate
@@ -32,40 +32,42 @@ function strncasecmp(argStr1, argStr2, len) {
   //   example 5: strncasecmp('Version 12.15', 'Version 12.9', 20);
   //   returns 5: -8
 
-  var diff, i = 0;
+  var diff, i = 0
   var str1 = (argStr1 + '')
     .toLowerCase()
-    .substr(0, len);
+    .substr(0, len)
   var str2 = (argStr2 + '')
     .toLowerCase()
-    .substr(0, len);
+    .substr(0, len)
 
   if (str1.length !== str2.length) {
     if (str1.length < str2.length) {
-      len = str1.length;
+      len = str1.length
       if (str2.substr(0, str1.length) == str1) {
-        return str1.length - str2.length; // return the difference of chars
+        // return the difference of chars
+        return str1.length - str2.length
       }
     } else {
-      len = str2.length;
+      len = str2.length
       // str1 is longer than str2
       if (str1.substr(0, str2.length) == str2) {
-        return str1.length - str2.length; // return the difference of chars
+        // return the difference of chars
+        return str1.length - str2.length
       }
     }
   } else {
     // Avoids trying to get a char that does not exist
-    len = str1.length;
+    len = str1.length
   }
 
   for (diff = 0, i = 0; i < len; i++) {
-    diff = str1.charCodeAt(i) - str2.charCodeAt(i);
+    diff = str1.charCodeAt(i) - str2.charCodeAt(i)
     if (diff !== 0) {
-      return diff;
+      return diff
     }
   }
 
-  return 0;
+  return 0
 }
 {% endcodeblock %}
 

@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's is_real
 
 {% codeblock var/is_real.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_real.js raw on github %}
-function is_real(mixed_var) {
+function is_real (mixed_var) {
   //  discuss at: http://phpjs.org/functions/is_real/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: is_float
@@ -24,7 +24,7 @@ function is_real(mixed_var) {
   //   example 1: is_real(186.31);
   //   returns 1: true
 
-  return this.is_float(mixed_var);
+  return this.is_float(mixed_var)
 }
 {% endcodeblock %}
 

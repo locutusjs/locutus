@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's time
 
 {% codeblock datetime/time.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/time.js raw on github %}
-function time() {
+function time () {
   //  discuss at: http://phpjs.org/functions/time/
   // original by: GeekFG (http://geekfg.blogspot.com)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -26,7 +26,7 @@ function time() {
   //   returns 1: true
 
   return Math.floor(new Date()
-    .getTime() / 1000);
+    .getTime() / 1000)
 }
 {% endcodeblock %}
 

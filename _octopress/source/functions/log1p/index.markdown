@@ -15,29 +15,28 @@ alias:
 A JavaScript equivalent of PHP's log1p
 
 {% codeblock math/log1p.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/log1p.js raw on github %}
-function log1p(x) {
+function log1p (x) {
   //  discuss at: http://phpjs.org/functions/log1p/
   // original by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Robert Eisele (http://www.xarg.org/)
   //        note: Precision 'n' can be adjusted as desired
   //   example 1: log1p(1e-15);
   //   returns 1: 9.999999999999995e-16
 
   var ret = 0,
-    n = 50; // degree of precision
+    // degree of precision
+    n = 50
   if (x <= -1) {
-    return '-INF'; // JavaScript style would be to return Number.NEGATIVE_INFINITY
+    // JavaScript style would be to return Number.NEGATIVE_INFINITY
+    return '-INF'
   }
   if (x < 0 || x > 1) {
-    return Math.log(1 + x);
+    return Math.log(1 + x)
   }
   for (var i = 1; i < n; i++) {
-    if ((i % 2) === 0) {
-      ret -= Math.pow(x, i) / i;
-    } else {
-      ret += Math.pow(x, i) / i;
-    }
+    ret += Math.pow(-x, i) / i
   }
-  return ret;
+  return -ret
 }
 {% endcodeblock %}
 

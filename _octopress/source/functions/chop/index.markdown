@@ -15,14 +15,14 @@ alias:
 A JavaScript equivalent of PHP's chop
 
 {% codeblock strings/chop.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/chop.js raw on github %}
-function chop(str, charlist) {
+function chop (str, charlist) {
   //  discuss at: http://phpjs.org/functions/chop/
   // original by: Paulo Freitas
   //  depends on: rtrim
   //   example 1: rtrim('    Kevin van Zonneveld    ');
   //   returns 1: '    Kevin van Zonneveld'
 
-  return this.rtrim(str, charlist);
+  return this.rtrim(str, charlist)
 }
 {% endcodeblock %}
 

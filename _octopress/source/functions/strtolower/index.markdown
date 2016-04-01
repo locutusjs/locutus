@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's strtolower
 
 {% codeblock strings/strtolower.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strtolower.js raw on github %}
-function strtolower(str) {
+function strtolower (str) {
   //  discuss at: http://phpjs.org/functions/strtolower/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Onno Marsman
@@ -23,7 +23,7 @@ function strtolower(str) {
   //   returns 1: 'kevin van zonneveld'
 
   return (str + '')
-    .toLowerCase();
+    .toLowerCase()
 }
 {% endcodeblock %}
 

@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's ctype_graph
 
 {% codeblock ctype/ctype_graph.js lang:js https://raw.github.com/kvz/phpjs/master/functions/ctype/ctype_graph.js raw on github %}
-function ctype_graph(text) {
+function ctype_graph (text) {
   //  discuss at: http://phpjs.org/functions/ctype_graph/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale
@@ -23,12 +23,13 @@ function ctype_graph(text) {
   //   returns 1: true
 
   if (typeof text !== 'string') {
-    return false;
+    return false
   }
   // BEGIN REDUNDANT
-  this.setlocale('LC_ALL', 0); // ensure setup of localization variables takes place
+  // ensure setup of localization variables takes place
+  this.setlocale('LC_ALL', 0)
   // END REDUNDANT
-  return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.gr) !== -1;
+  return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.gr) !== -1
 }
 {% endcodeblock %}
 

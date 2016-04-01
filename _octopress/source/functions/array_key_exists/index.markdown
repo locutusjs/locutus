@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's array_key_exists
 
 {% codeblock array/array_key_exists.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_key_exists.js raw on github %}
-function array_key_exists(key, search) {
+function array_key_exists (key, search) {
   //  discuss at: http://phpjs.org/functions/array_key_exists/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Felix Geisendoerfer (http://www.debuggable.com/felix)
@@ -23,10 +23,10 @@ function array_key_exists(key, search) {
   //   returns 1: true
 
   if (!search || (search.constructor !== Array && search.constructor !== Object)) {
-    return false;
+    return false
   }
 
-  return key in search;
+  return key in search
 }
 {% endcodeblock %}
 

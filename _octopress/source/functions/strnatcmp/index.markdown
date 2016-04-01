@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's strnatcmp
 
 {% codeblock strings/strnatcmp.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strnatcmp.js raw on github %}
-function strnatcmp(f_string1, f_string2, f_version) {
+function strnatcmp (f_string1, f_string2, f_version) {
   //  discuss at: http://phpjs.org/functions/strnatcmp/
   // original by: Martijn Wieringa
   // improved by: Michael White (http://getsprink.com)
@@ -34,111 +34,111 @@ function strnatcmp(f_string1, f_string2, f_version) {
   //   example 5: strnatcmp('Version 12.15', 'Version 12.9', true);
   //   returns 5: 6
 
-  var i = 0;
+  var i = 0
 
   if (f_version == undefined) {
-    f_version = false;
+    f_version = false
   }
 
-  var __strnatcmp_split = function(f_string) {
-    var result = [];
-    var buffer = '';
-    var chr = '';
+  var __strnatcmp_split = function (f_string) {
+    var result = []
+    var buffer = ''
+    var chr = ''
     var i = 0,
-      f_stringl = 0;
+      f_stringl = 0
 
-    var text = true;
+    var text = true
 
-    f_stringl = f_string.length;
+    f_stringl = f_string.length
     for (i = 0; i < f_stringl; i++) {
-      chr = f_string.substring(i, i + 1);
+      chr = f_string.substring(i, i + 1)
       if (chr.match(/\d/)) {
         if (text) {
           if (buffer.length > 0) {
-            result[result.length] = buffer;
-            buffer = '';
+            result[result.length] = buffer
+            buffer = ''
           }
 
-          text = false;
+          text = false
         }
-        buffer += chr;
+        buffer += chr
       } else if ((text == false) && (chr === '.') && (i < (f_string.length - 1)) && (f_string.substring(i + 1, i +
-          2)
-        .match(/\d/))) {
-        result[result.length] = buffer;
-        buffer = '';
+            2)
+          .match(/\d/))) {
+        result[result.length] = buffer
+        buffer = ''
       } else {
         if (text == false) {
           if (buffer.length > 0) {
-            result[result.length] = parseInt(buffer, 10);
-            buffer = '';
+            result[result.length] = parseInt(buffer, 10)
+            buffer = ''
           }
-          text = true;
+          text = true
         }
-        buffer += chr;
+        buffer += chr
       }
     }
 
     if (buffer.length > 0) {
       if (text) {
-        result[result.length] = buffer;
+        result[result.length] = buffer
       } else {
-        result[result.length] = parseInt(buffer, 10);
+        result[result.length] = parseInt(buffer, 10)
       }
     }
 
-    return result;
-  };
+    return result
+  }
 
-  var array1 = __strnatcmp_split(f_string1 + '');
-  var array2 = __strnatcmp_split(f_string2 + '');
+  var array1 = __strnatcmp_split(f_string1 + '')
+  var array2 = __strnatcmp_split(f_string2 + '')
 
-  var len = array1.length;
-  var text = true;
+  var len = array1.length
+  var text = true
 
-  var result = -1;
-  var r = 0;
+  var result = -1
+  var r = 0
 
   if (len > array2.length) {
-    len = array2.length;
-    result = 1;
+    len = array2.length
+    result = 1
   }
 
   for (i = 0; i < len; i++) {
     if (isNaN(array1[i])) {
       if (isNaN(array2[i])) {
-        text = true;
+        text = true
 
         if ((r = this.strcmp(array1[i], array2[i])) != 0) {
-          return r;
+          return r
         }
       } else if (text) {
-        return 1;
+        return 1
       } else {
-        return -1;
+        return -1
       }
     } else if (isNaN(array2[i])) {
       if (text) {
-        return -1;
+        return -1
       } else {
-        return 1;
+        return 1
       }
     } else {
       if (text || f_version) {
         if ((r = (array1[i] - array2[i])) != 0) {
-          return r;
+          return r
         }
       } else {
         if ((r = this.strcmp(array1[i].toString(), array2[i].toString())) != 0) {
-          return r;
+          return r
         }
       }
 
-      text = false;
+      text = false
     }
   }
 
-  return result;
+  return result
 }
 {% endcodeblock %}
 

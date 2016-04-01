@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's is_string
 
 {% codeblock var/is_string.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_string.js raw on github %}
-function is_string(mixed_var) {
+function is_string (mixed_var) {
   //  discuss at: http://phpjs.org/functions/is_string/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //   example 1: is_string('23');
@@ -23,7 +23,7 @@ function is_string(mixed_var) {
   //   example 2: is_string(23.5);
   //   returns 2: false
 
-  return (typeof mixed_var === 'string');
+  return (typeof mixed_var === 'string')
 }
 {% endcodeblock %}
 

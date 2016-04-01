@@ -15,9 +15,9 @@ alias:
 A JavaScript equivalent of PHP's array_pad
 
 {% codeblock array/array_pad.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_pad.js raw on github %}
-function array_pad(input, pad_size, pad_value) {
+function array_pad (input, pad_size, pad_value) {
   //  discuss at: http://phpjs.org/functions/array_pad/
-  // original by: Waldo Malqui Silva
+  // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //   example 1: array_pad([ 7, 8, 9 ], 2, 'a');
   //   returns 1: [ 7, 8, 9]
   //   example 2: array_pad([ 7, 8, 9 ], 5, 'a');
@@ -31,23 +31,23 @@ function array_pad(input, pad_size, pad_value) {
     newArray = [],
     newLength,
     diff = 0,
-    i = 0;
+    i = 0
 
   if (Object.prototype.toString.call(input) === '[object Array]' && !isNaN(pad_size)) {
-    newLength = ((pad_size < 0) ? (pad_size * -1) : pad_size);
-    diff = newLength - input.length;
+    newLength = ((pad_size < 0) ? (pad_size * -1) : pad_size)
+    diff = newLength - input.length
 
     if (diff > 0) {
       for (i = 0; i < diff; i++) {
-        newArray[i] = pad_value;
+        newArray[i] = pad_value
       }
-      pad = ((pad_size < 0) ? newArray.concat(input) : input.concat(newArray));
+      pad = ((pad_size < 0) ? newArray.concat(input) : input.concat(newArray))
     } else {
-      pad = input;
+      pad = input
     }
   }
 
-  return pad;
+  return pad
 }
 {% endcodeblock %}
 

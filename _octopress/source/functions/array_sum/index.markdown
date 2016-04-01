@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's array_sum
 
 {% codeblock array/array_sum.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_sum.js raw on github %}
-function array_sum(array) {
+function array_sum (array) {
   //  discuss at: http://phpjs.org/functions/array_sum/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Nate
@@ -28,24 +28,25 @@ function array_sum(array) {
   //   example 2: array_sum(total);
   //   returns 2: 67.2
 
-  var key, sum = 0;
+  var key, sum = 0
 
-  if (array && typeof array === 'object' && array.change_key_case) { // Duck-type check for our own array()-created PHPJS_Array
-    return array.sum.apply(array, Array.prototype.slice.call(arguments, 0));
+  if (array && typeof array === 'object' && array.change_key_case) {
+    // Duck-type check for our own array()-created PHPJS_Array
+    return array.sum.apply(array, Array.prototype.slice.call(arguments, 0))
   }
 
   // input sanitation
   if (typeof array !== 'object') {
-    return null;
+    return null
   }
 
   for (key in array) {
     if (!isNaN(parseFloat(array[key]))) {
-      sum += parseFloat(array[key]);
+      sum += parseFloat(array[key])
     }
   }
 
-  return sum;
+  return sum
 }
 {% endcodeblock %}
 

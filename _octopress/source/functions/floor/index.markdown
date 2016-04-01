@@ -15,13 +15,13 @@ alias:
 A JavaScript equivalent of PHP's floor
 
 {% codeblock math/floor.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/floor.js raw on github %}
-function floor(value) {
+function floor (value) {
   //  discuss at: http://phpjs.org/functions/floor/
   // original by: Onno Marsman
   //   example 1: floor(8723321.4);
   //   returns 1: 8723321
 
-  return Math.floor(value);
+  return Math.floor(value)
 }
 {% endcodeblock %}
 

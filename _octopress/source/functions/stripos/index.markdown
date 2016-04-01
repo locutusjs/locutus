@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's stripos
 
 {% codeblock strings/stripos.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/stripos.js raw on github %}
-function stripos(f_haystack, f_needle, f_offset) {
+function stripos (f_haystack, f_needle, f_offset) {
   //  discuss at: http://phpjs.org/functions/stripos/
   // original by: Martijn Wieringa
   //  revised by: Onno Marsman
@@ -23,15 +23,15 @@ function stripos(f_haystack, f_needle, f_offset) {
   //   returns 1: 0
 
   var haystack = (f_haystack + '')
-    .toLowerCase();
+    .toLowerCase()
   var needle = (f_needle + '')
-    .toLowerCase();
-  var index = 0;
+    .toLowerCase()
+  var index = 0
 
   if ((index = haystack.indexOf(needle, f_offset)) !== -1) {
-    return index;
+    return index
   }
-  return false;
+  return false
 }
 {% endcodeblock %}
 

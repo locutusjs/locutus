@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's log10
 
 {% codeblock math/log10.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/log10.js raw on github %}
-function log10(arg) {
+function log10 (arg) {
   //  discuss at: http://phpjs.org/functions/log10/
   // original by: Philip Peterson
   // improved by: Onno Marsman
@@ -26,7 +26,7 @@ function log10(arg) {
   //   example 2: log10(1);
   //   returns 2: 0
 
-  return Math.log(arg) / 2.302585092994046; // Math.LN10
+  return Math.log(arg) / 2.302585092994046 // Math.LN10
 }
 {% endcodeblock %}
 

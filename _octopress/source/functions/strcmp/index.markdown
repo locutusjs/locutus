@@ -15,9 +15,9 @@ alias:
 A JavaScript equivalent of PHP's strcmp
 
 {% codeblock strings/strcmp.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strcmp.js raw on github %}
-function strcmp(str1, str2) {
+function strcmp (str1, str2) {
   //  discuss at: http://phpjs.org/functions/strcmp/
-  // original by: Waldo Malqui Silva
+  // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //    input by: Steve Hilder
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: gorthaur
@@ -26,7 +26,7 @@ function strcmp(str1, str2) {
   //   example 2: strcmp( 'owald', 'waldo' );
   //   returns 2: -1
 
-  return ((str1 == str2) ? 0 : ((str1 > str2) ? 1 : -1));
+  return ((str1 == str2) ? 0 : ((str1 > str2) ? 1 : -1))
 }
 {% endcodeblock %}
 

@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's strtok
 
 {% codeblock strings/strtok.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strtok.js raw on github %}
-function strtok(str, tokens) {
+function strtok (str, tokens) {
   //  discuss at: http://phpjs.org/functions/strtok/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Use tab and newline as tokenizing characters as well
@@ -26,25 +26,25 @@ function strtok(str, tokens) {
   //   example 1: $b
   //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
 
-  this.php_js = this.php_js || {};
+  this.php_js = this.php_js || {}
   // END REDUNDANT
   if (tokens === undefined) {
-    tokens = str;
-    str = this.php_js.strtokleftOver;
+    tokens = str
+    str = this.php_js.strtokleftOver
   }
   if (str.length === 0) {
-    return false;
+    return false
   }
   if (tokens.indexOf(str.charAt(0)) !== -1) {
-    return this.strtok(str.substr(1), tokens);
+    return this.strtok(str.substr(1), tokens)
   }
   for (var i = 0; i < str.length; i++) {
     if (tokens.indexOf(str.charAt(i)) !== -1) {
-      break;
+      break
     }
   }
-  this.php_js.strtokleftOver = str.substr(i + 1);
-  return str.substring(0, i);
+  this.php_js.strtokleftOver = str.substr(i + 1)
+  return str.substring(0, i)
 }
 {% endcodeblock %}
 

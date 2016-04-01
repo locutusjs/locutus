@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's is_object
 
 {% codeblock var/is_object.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_object.js raw on github %}
-function is_object(mixed_var) {
+function is_object (mixed_var) {
   //  discuss at: http://phpjs.org/functions/is_object/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Legaev Andrey
@@ -28,9 +28,9 @@ function is_object(mixed_var) {
   //   returns 3: false
 
   if (Object.prototype.toString.call(mixed_var) === '[object Array]') {
-    return false;
+    return false
   }
-  return mixed_var !== null && typeof mixed_var === 'object';
+  return mixed_var !== null && typeof mixed_var === 'object'
 }
 {% endcodeblock %}
 

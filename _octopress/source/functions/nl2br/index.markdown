@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's nl2br
 
 {% codeblock strings/nl2br.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/nl2br.js raw on github %}
-function nl2br(str, is_xhtml) {
+function nl2br (str, is_xhtml) {
   //  discuss at: http://phpjs.org/functions/nl2br/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Philip Peterson
@@ -33,10 +33,10 @@ function nl2br(str, is_xhtml) {
   //   example 3: nl2br("\nOne\nTwo\n\nThree\n", true);
   //   returns 3: '<br />\nOne<br />\nTwo<br />\n<br />\nThree<br />\n'
 
-  var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br ' + '/>' : '<br>'; // Adjust comment to avoid issue on phpjs.org display
+  var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br ' + '/>' : '<br>' // Adjust comment to avoid issue on phpjs.org display
 
   return (str + '')
-    .replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+    .replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2')
 }
 {% endcodeblock %}
 

@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's substr_count
 
 {% codeblock strings/substr_count.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/substr_count.js raw on github %}
-function substr_count(haystack, needle, offset, length) {
+function substr_count (haystack, needle, offset, length) {
   //  discuss at: http://phpjs.org/functions/substr_count/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
@@ -28,29 +28,29 @@ function substr_count(haystack, needle, offset, length) {
   //   example 3: substr_count('Kevin van Zonneveld', 'Z', 0, 10);
   //   returns 3: false
 
-  var cnt = 0;
+  var cnt = 0
 
-  haystack += '';
-  needle += '';
+  haystack += ''
+  needle += ''
   if (isNaN(offset)) {
-    offset = 0;
+    offset = 0
   }
   if (isNaN(length)) {
-    length = 0;
+    length = 0
   }
   if (needle.length == 0) {
-    return false;
+    return false
   }
-  offset--;
+  offset--
 
   while ((offset = haystack.indexOf(needle, offset + 1)) != -1) {
     if (length > 0 && (offset + needle.length) > length) {
-      return false;
+      return false
     }
-    cnt++;
+    cnt++
   }
 
-  return cnt;
+  return cnt
 }
 {% endcodeblock %}
 

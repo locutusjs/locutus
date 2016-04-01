@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's setrawcookie
 
 {% codeblock network/setrawcookie.js lang:js https://raw.github.com/kvz/phpjs/master/functions/network/setrawcookie.js raw on github %}
-function setrawcookie(name, value, expires, path, domain, secure) {
+function setrawcookie (name, value, expires, path, domain, secure) {
   //  discuss at: http://phpjs.org/functions/setrawcookie/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: setcookie
@@ -27,31 +27,32 @@ function setrawcookie(name, value, expires, path, domain, secure) {
 
   if (typeof expires === 'string' && (/^\d+$/)
     .test(expires)) {
-    expires = parseInt(expires, 10);
+    expires = parseInt(expires, 10)
   }
 
   if (expires instanceof Date) {
-    expires = expires.toGMTString();
+    expires = expires.toUTCString()
   } else if (typeof expires === 'number') {
     expires = (new Date(expires * 1e3))
-      .toGMTString();
+      .toUTCString()
   }
 
   var r = [name + '=' + value],
     s = {},
-    i = '';
+    i = ''
   s = {
     expires: expires,
     path: path,
     domain: domain
-  };
+  }
   for (i in s) {
-    if (s.hasOwnProperty(i)) { // Exclude items on Object.prototype
-      s[i] && r.push(i + '=' + s[i]);
+    if (s.hasOwnProperty(i)) {
+      // Exclude items on Object.prototype
+      s[i] && r.push(i + '=' + s[i])
     }
   }
 
-  return secure && r.push('secure'), this.window.document.cookie = r.join(';'), true;
+  return secure && r.push('secure'), this.window.document.cookie = r.join(';'), true
 }
 {% endcodeblock %}
 

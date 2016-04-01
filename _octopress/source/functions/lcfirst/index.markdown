@@ -15,16 +15,16 @@ alias:
 A JavaScript equivalent of PHP's lcfirst
 
 {% codeblock strings/lcfirst.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/lcfirst.js raw on github %}
-function lcfirst(str) {
+function lcfirst (str) {
   //  discuss at: http://phpjs.org/functions/lcfirst/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: lcfirst('Kevin Van Zonneveld');
   //   returns 1: 'kevin Van Zonneveld'
 
-  str += '';
+  str += ''
   var f = str.charAt(0)
-    .toLowerCase();
-  return f + str.substr(1);
+    .toLowerCase()
+  return f + str.substr(1)
 }
 {% endcodeblock %}
 

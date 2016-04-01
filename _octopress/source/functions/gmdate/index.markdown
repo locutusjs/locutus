@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's gmdate
 
 {% codeblock datetime/gmdate.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/gmdate.js raw on github %}
-function gmdate(format, timestamp) {
+function gmdate (format, timestamp) {
   //  discuss at: http://phpjs.org/functions/gmdate/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: Alex
@@ -25,11 +25,12 @@ function gmdate(format, timestamp) {
   //   returns 1: '07:09:40 m is month'
 
   var dt = typeof timestamp === 'undefined' ? new Date() : // Not provided
-  typeof timestamp === 'object' ? new Date(timestamp) : // Javascript Date()
-  new Date(timestamp * 1000); // UNIX timestamp (auto-convert to int)
+    typeof timestamp === 'object' ? new Date(timestamp) : // Javascript Date()
+    // UNIX timestamp (auto-convert to int)
+    new Date(timestamp * 1000)
   timestamp = Date.parse(dt.toUTCString()
-    .slice(0, -4)) / 1000;
-  return this.date(format, timestamp);
+    .slice(0, -4)) / 1000
+  return this.date(format, timestamp)
 }
 {% endcodeblock %}
 

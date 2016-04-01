@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's stripslashes
 
 {% codeblock strings/stripslashes.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/stripslashes.js raw on github %}
-function stripslashes(str) {
+function stripslashes (str) {
   //       discuss at: http://phpjs.org/functions/stripslashes/
   //      original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //      improved by: Ates Goral (http://magnetiq.com)
@@ -33,18 +33,18 @@ function stripslashes(str) {
   //        returns 2: "Kevin\'s code"
 
   return (str + '')
-    .replace(/\\(.?)/g, function(s, n1) {
+    .replace(/\\(.?)/g, function (s, n1) {
       switch (n1) {
         case '\\':
-          return '\\';
+          return '\\'
         case '0':
-          return '\u0000';
+          return '\u0000'
         case '':
-          return '';
+          return ''
         default:
-          return n1;
+          return n1
       }
-    });
+    })
 }
 {% endcodeblock %}
 

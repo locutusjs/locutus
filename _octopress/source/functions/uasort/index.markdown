@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's uasort
 
 {% codeblock array/uasort.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/uasort.js raw on github %}
-function uasort(inputArr, sorter) {
+function uasort (inputArr, sorter) {
   //  discuss at: http://phpjs.org/functions/uasort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -38,39 +38,41 @@ function uasort(inputArr, sorter) {
     tempKeyVal, tempValue, ret, k = '',
     i = 0,
     strictForIn = false,
-    populateArr = {};
+    populateArr = {}
 
   if (typeof sorter === 'string') {
-    sorter = this[sorter];
+    sorter = this[sorter]
   } else if (Object.prototype.toString.call(sorter) === '[object Array]') {
-    sorter = this[sorter[0]][sorter[1]];
+    sorter = this[sorter[0]][sorter[1]]
   }
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {};
-  this.php_js.ini = this.php_js.ini || {};
+  this.php_js = this.php_js || {}
+  this.php_js.ini = this.php_js.ini || {}
   // END REDUNDANT
   strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
-    .ini['phpjs.strictForIn'].local_value !== 'off';
-  populateArr = strictForIn ? inputArr : populateArr;
+    .ini['phpjs.strictForIn'].local_value !== 'off'
+  populateArr = strictForIn ? inputArr : populateArr
 
-  for (k in inputArr) { // Get key and value arrays
+  for (k in inputArr) {
+    // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push([k, inputArr[k]]);
+      valArr.push([k, inputArr[k]])
       if (strictForIn) {
-        delete inputArr[k];
+        delete inputArr[k]
       }
     }
   }
-  valArr.sort(function(a, b) {
-    return sorter(a[1], b[1]);
-  });
+  valArr.sort(function (a, b) {
+    return sorter(a[1], b[1])
+  })
 
-  for (i = 0; i < valArr.length; i++) { // Repopulate the old array
-    populateArr[valArr[i][0]] = valArr[i][1];
+  for (i = 0; i < valArr.length; i++) {
+    // Repopulate the old array
+    populateArr[valArr[i][0]] = valArr[i][1]
   }
 
-  return strictForIn || populateArr;
+  return strictForIn || populateArr
 }
 {% endcodeblock %}
 

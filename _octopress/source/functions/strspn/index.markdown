@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's strspn
 
 {% codeblock strings/strspn.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strspn.js raw on github %}
-function strspn(str1, str2, start, lgth) {
+function strspn (str1, str2, start, lgth) {
   //  discuss at: http://phpjs.org/functions/strspn/
   // original by: Valentina De Rosa
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -24,32 +24,32 @@ function strspn(str1, str2, start, lgth) {
   //   example 2: strspn('foo', 'o', 1, 2);
   //   returns 2: 2
 
-  var found;
-  var stri;
-  var strj;
-  var j = 0;
-  var i = 0;
+  var found
+  var stri
+  var strj
+  var j = 0
+  var i = 0
 
-  start = start ? (start < 0 ? (str1.length + start) : start) : 0;
-  lgth = lgth ? ((lgth < 0) ? (str1.length + lgth - start) : lgth) : str1.length - start;
-  str1 = str1.substr(start, lgth);
+  start = start ? (start < 0 ? (str1.length + start) : start) : 0
+  lgth = lgth ? ((lgth < 0) ? (str1.length + lgth - start) : lgth) : str1.length - start
+  str1 = str1.substr(start, lgth)
 
   for (i = 0; i < str1.length; i++) {
-    found = 0;
-    stri = str1.substring(i, i + 1);
+    found = 0
+    stri = str1.substring(i, i + 1)
     for (j = 0; j <= str2.length; j++) {
-      strj = str2.substring(j, j + 1);
+      strj = str2.substring(j, j + 1)
       if (stri == strj) {
-        found = 1;
-        break;
+        found = 1
+        break
       }
     }
     if (found != 1) {
-      return i;
+      return i
     }
   }
 
-  return i;
+  return i
 }
 {% endcodeblock %}
 

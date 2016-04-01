@@ -15,13 +15,13 @@ alias:
 A JavaScript equivalent of PHP's exp
 
 {% codeblock math/exp.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/exp.js raw on github %}
-function exp(arg) {
+function exp (arg) {
   //  discuss at: http://phpjs.org/functions/exp/
   // original by: Onno Marsman
   //   example 1: exp(0.3);
   //   returns 1: 1.3498588075760032
 
-  return Math.exp(arg);
+  return Math.exp(arg)
 }
 {% endcodeblock %}
 

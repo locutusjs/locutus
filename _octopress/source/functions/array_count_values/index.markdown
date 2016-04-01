@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's array_count_values
 
 {% codeblock array/array_count_values.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_count_values.js raw on github %}
-function array_count_values(array) {
+function array_count_values (array) {
   //  discuss at: http://phpjs.org/functions/array_count_values/
   // original by: Ates Goral (http://magnetiq.com)
   // improved by: Michael White (http://getsprink.com)
@@ -32,44 +32,44 @@ function array_count_values(array) {
 
   var tmp_arr = {},
     key = '',
-    t = '';
+    t = ''
 
-  var __getType = function(obj) {
+  var __getType = function (obj) {
     // Objects are php associative arrays.
-    var t = typeof obj;
-    t = t.toLowerCase();
+    var t = typeof obj
+    t = t.toLowerCase()
     if (t === 'object') {
-      t = 'array';
+      t = 'array'
     }
-    return t;
-  };
+    return t
+  }
 
-  var __countValue = function(value) {
+  var __countValue = function (tmp_arr, value) {
     switch (typeof value) {
       case 'number':
         if (Math.floor(value) !== value) {
-          return;
+          return
         }
-        // Fall-through
+      // Fall-through
       case 'string':
-        if (value in this && this.hasOwnProperty(value)) {
-          ++this[value];
+        if (value in tmp_arr && tmp_arr.hasOwnProperty(value)) {
+          ++tmp_arr[value]
         } else {
-          this[value] = 1;
+          tmp_arr[value] = 1
         }
     }
-  };
+  }
 
-  t = __getType(array);
+  t = __getType(array)
   if (t === 'array') {
     for (key in array) {
       if (array.hasOwnProperty(key)) {
-        __countValue.call(tmp_arr, array[key]);
+        __countValue.call(this, tmp_arr, array[key])
       }
     }
   }
 
-  return tmp_arr;
+  return tmp_arr
 }
 {% endcodeblock %}
 

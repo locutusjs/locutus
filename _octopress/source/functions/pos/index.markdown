@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's pos
 
 {% codeblock array/pos.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/pos.js raw on github %}
-function pos(arr) {
+function pos (arr) {
   //  discuss at: http://phpjs.org/functions/pos/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Uses global: php_js to store the array pointer
@@ -24,7 +24,7 @@ function pos(arr) {
   //   example 1: pos(transport);
   //   returns 1: 'foot'
 
-  return this.current(arr);
+  return this.current(arr)
 }
 {% endcodeblock %}
 

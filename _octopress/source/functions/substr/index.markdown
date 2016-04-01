@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's substr
 
 {% codeblock strings/substr.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/substr.js raw on github %}
-function substr(str, start, len) {
+function substr (str, start, len) {
   //  discuss at: http://phpjs.org/functions/substr/
   //     version: 909.322
   // original by: Martijn Wieringa
@@ -49,22 +49,22 @@ function substr(str, start, len) {
     es = 0,
     el = 0,
     se = 0,
-    ret = '';
-  str += '';
-  var end = str.length;
+    ret = ''
+  str += ''
+  var end = str.length
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {};
-  this.php_js.ini = this.php_js.ini || {};
+  this.php_js = this.php_js || {}
+  this.php_js.ini = this.php_js.ini || {}
   // END REDUNDANT
   switch ((this.php_js.ini['unicode.semantics'] && this.php_js.ini['unicode.semantics'].local_value.toLowerCase())) {
     case 'on':
-      // Full-blown Unicode including non-Basic-Multilingual-Plane characters
-      // strlen()
+    // Full-blown Unicode including non-Basic-Multilingual-Plane characters
+    // strlen()
       for (i = 0; i < str.length; i++) {
         if (/[\uD800-\uDBFF]/.test(str.charAt(i)) && /[\uDC00-\uDFFF]/.test(str.charAt(i + 1))) {
-          allBMP = false;
-          break;
+          allBMP = false
+          break
         }
       }
 
@@ -72,64 +72,66 @@ function substr(str, start, len) {
         if (start < 0) {
           for (i = end - 1, es = (start += end); i >= es; i--) {
             if (/[\uDC00-\uDFFF]/.test(str.charAt(i)) && /[\uD800-\uDBFF]/.test(str.charAt(i - 1))) {
-              start--;
-              es--;
+              start--
+              es--
             }
           }
         } else {
-          var surrogatePairs = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
+          var surrogatePairs = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g
           while ((surrogatePairs.exec(str)) != null) {
-            var li = surrogatePairs.lastIndex;
+            var li = surrogatePairs.lastIndex
             if (li - 2 < start) {
-              start++;
+              start++
             } else {
-              break;
+              break
             }
           }
         }
 
         if (start >= end || start < 0) {
-          return false;
+          return false
         }
         if (len < 0) {
           for (i = end - 1, el = (end += len); i >= el; i--) {
             if (/[\uDC00-\uDFFF]/.test(str.charAt(i)) && /[\uD800-\uDBFF]/.test(str.charAt(i - 1))) {
-              end--;
-              el--;
+              end--
+              el--
             }
           }
           if (start > end) {
-            return false;
+            return false
           }
-          return str.slice(start, end);
+          return str.slice(start, end)
         } else {
-          se = start + len;
+          se = start + len
           for (i = start; i < se; i++) {
-            ret += str.charAt(i);
+            ret += str.charAt(i)
             if (/[\uD800-\uDBFF]/.test(str.charAt(i)) && /[\uDC00-\uDFFF]/.test(str.charAt(i + 1))) {
-              se++; // Go one further, since one of the "characters" is part of a surrogate pair
+            // Go one further, since one of the "characters" is part of a surrogate pair
+              se++
             }
           }
-          return ret;
+          return ret
         }
-        break;
+        break
       }
-      // Fall-through
+    // Fall-through
     case 'off':
-      // assumes there are no non-BMP characters;
-      //    if there may be such characters, then it is best to turn it on (critical in true XHTML/XML)
+    // assumes there are no non-BMP characters;
+    //    if there may be such characters, then it is best to turn it on (critical in true XHTML/XML)
     default:
       if (start < 0) {
-        start += end;
+        start += end
       }
-      end = typeof len === 'undefined' ? end : (len < 0 ? len + end : len + start);
-      // PHP returns false if start does not fall within the string.
-      // PHP returns false if the calculated end comes before the calculated start.
-      // PHP returns an empty string if start and end are the same.
-      // Otherwise, PHP returns the portion of the string from start to end.
-      return start >= str.length || start < 0 || start > end ? !1 : str.slice(start, end);
+      end = typeof len === 'undefined' ? end : (len < 0 ? len + end : len + start)
+    // PHP returns false if start does not fall within the string.
+    // PHP returns false if the calculated end comes before the calculated start.
+    // PHP returns an empty string if start and end are the same.
+    // Otherwise, PHP returns the portion of the string from start to end.
+      return start >= str.length || start < 0 || start > end ? !1 : str.slice(start, end)
   }
-  return undefined; // Please Netbeans
+  // Please Netbeans
+  return undefined
 }
 {% endcodeblock %}
 

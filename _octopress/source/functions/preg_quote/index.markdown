@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's preg_quote
 
 {% codeblock pcre/preg_quote.js lang:js https://raw.github.com/kvz/phpjs/master/functions/pcre/preg_quote.js raw on github %}
-function preg_quote(str, delimiter) {
+function preg_quote (str, delimiter) {
   //  discuss at: http://phpjs.org/functions/preg_quote/
   // original by: booeyOH
   // improved by: Ates Goral (http://magnetiq.com)
@@ -30,7 +30,7 @@ function preg_quote(str, delimiter) {
   //   returns 3: '\\\\\\.\\+\\*\\?\\[\\^\\]\\$\\(\\)\\{\\}\\=\\!\\<\\>\\|\\:'
 
   return String(str)
-    .replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\' + (delimiter || '') + '-]', 'g'), '\\$&');
+    .replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\' + (delimiter || '') + '-]', 'g'), '\\$&')
 }
 {% endcodeblock %}
 

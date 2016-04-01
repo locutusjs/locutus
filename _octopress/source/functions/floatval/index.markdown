@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's floatval
 
 {% codeblock var/floatval.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/floatval.js raw on github %}
-function floatval(mixed_var) {
+function floatval (mixed_var) {
   //  discuss at: http://phpjs.org/functions/floatval/
   // original by: Michael White (http://getsprink.com)
   //        note: The native parseFloat() method of JavaScript returns NaN when it encounters a string before an int or float value.
@@ -26,7 +26,7 @@ function floatval(mixed_var) {
   //   returns 2: 0
   //   returns 2: -50
 
-  return (parseFloat(mixed_var) || 0);
+  return (parseFloat(mixed_var) || 0)
 }
 {% endcodeblock %}
 

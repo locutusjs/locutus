@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's strstr
 
 {% codeblock strings/strstr.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/strstr.js raw on github %}
-function strstr(haystack, needle, bool) {
+function strstr (haystack, needle, bool) {
   //  discuss at: http://phpjs.org/functions/strstr/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
@@ -29,17 +29,17 @@ function strstr(haystack, needle, bool) {
   //   example 4: strstr('name@example.com', '@', true);
   //   returns 4: 'name'
 
-  var pos = 0;
+  var pos = 0
 
-  haystack += '';
-  pos = haystack.indexOf(needle);
+  haystack += ''
+  pos = haystack.indexOf(needle)
   if (pos == -1) {
-    return false;
+    return false
   } else {
     if (bool) {
-      return haystack.substr(0, pos);
+      return haystack.substr(0, pos)
     } else {
-      return haystack.slice(pos);
+      return haystack.slice(pos)
     }
   }
 }

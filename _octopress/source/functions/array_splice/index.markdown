@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's array_splice
 
 {% codeblock array/array_splice.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_splice.js raw on github %}
-function array_splice(arr, offst, lgth, replacement) {
+function array_splice (arr, offst, lgth, replacement) {
   //  discuss at: http://phpjs.org/functions/array_splice/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: Theriault
@@ -37,33 +37,34 @@ function array_splice(arr, offst, lgth, replacement) {
   //   example 3: array_splice(input, -1, 1, ["black", "maroon"]);
   //   returns 3: ["yellow"]
 
-  var _checkToUpIndices = function(arr, ct, key) {
+  var _checkToUpIndices = function (arr, ct, key) {
     // Deal with situation, e.g., if encounter index 4 and try to set it to 0, but 0 exists later in loop (need to
     // increment all subsequent (skipping current key, since we need its value below) until find unused)
     if (arr[ct] !== undefined) {
-      var tmp = ct;
-      ct += 1;
+      var tmp = ct
+      ct += 1
       if (ct === key) {
-        ct += 1;
+        ct += 1
       }
-      ct = _checkToUpIndices(arr, ct, key);
-      arr[ct] = arr[tmp];
-      delete arr[tmp];
+      ct = _checkToUpIndices(arr, ct, key)
+      arr[ct] = arr[tmp]
+      delete arr[tmp]
     }
-    return ct;
-  };
+    return ct
+  }
 
   if (replacement && typeof replacement !== 'object') {
-    replacement = [replacement];
+    replacement = [replacement]
   }
   if (lgth === undefined) {
-    lgth = offst >= 0 ? arr.length - offst : -offst;
+    lgth = offst >= 0 ? arr.length - offst : -offst
   } else if (lgth < 0) {
-    lgth = (offst >= 0 ? arr.length - offst : -offst) + lgth;
+    lgth = (offst >= 0 ? arr.length - offst : -offst) + lgth
   }
 
   if (Object.prototype.toString.call(arr) !== '[object Array]') {
-    /*if (arr.length !== undefined) { // Deal with array-like objects as input
+    /* if (arr.length !== undefined) {
+     // Deal with array-like objects as input
     delete arr.length;
     }*/
     var lgt = 0,
@@ -71,55 +72,60 @@ function array_splice(arr, offst, lgth, replacement) {
       rmvd = [],
       rmvdObj = {},
       repl_ct = -1,
-      int_ct = -1;
+      int_ct = -1
     var returnArr = true,
       rmvd_ct = 0,
       rmvd_lgth = 0,
-      key = '';
+      key = ''
     // rmvdObj.length = 0;
-    for (key in arr) { // Can do arr.__count__ in some browsers
-      lgt += 1;
-    }
-    offst = (offst >= 0) ? offst : lgt + offst;
     for (key in arr) {
-      ct += 1;
+      // Can do arr.__count__ in some browsers
+      lgt += 1
+    }
+    offst = (offst >= 0) ? offst : lgt + offst
+    for (key in arr) {
+      ct += 1
       if (ct < offst) {
         if (this.is_int(key)) {
-          int_ct += 1;
-          if (parseInt(key, 10) === int_ct) { // Key is already numbered ok, so don't need to change key for value
-            continue;
+          int_ct += 1
+          if (parseInt(key, 10) === int_ct) {
+            // Key is already numbered ok, so don't need to change key for value
+            continue
           }
-          _checkToUpIndices(arr, int_ct, key); // Deal with situation, e.g.,
+          // Deal with situation, e.g.,
+          _checkToUpIndices(arr, int_ct, key)
           // if encounter index 4 and try to set it to 0, but 0 exists later in loop
-          arr[int_ct] = arr[key];
-          delete arr[key];
+          arr[int_ct] = arr[key]
+          delete arr[key]
         }
-        continue;
+        continue
       }
       if (returnArr && this.is_int(key)) {
-        rmvd.push(arr[key]);
-        rmvdObj[rmvd_ct++] = arr[key]; // PHP starts over here too
+        rmvd.push(arr[key])
+        // PHP starts over here too
+        rmvdObj[rmvd_ct++] = arr[key]
       } else {
-        rmvdObj[key] = arr[key];
-        returnArr = false;
+        rmvdObj[key] = arr[key]
+        returnArr = false
       }
-      rmvd_lgth += 1;
+      rmvd_lgth += 1
       // rmvdObj.length += 1;
       if (replacement && replacement[++repl_ct]) {
-        arr[key] = replacement[repl_ct];
+        arr[key] = replacement[repl_ct]
       } else {
-        delete arr[key];
+        delete arr[key]
       }
     }
-    // arr.length = lgt - rmvd_lgth + (replacement ? replacement.length : 0); // Make (back) into an array-like object
-    return returnArr ? rmvd : rmvdObj;
+    // Make (back) into an array-like object
+    // arr.length = lgt - rmvd_lgth + (replacement ? replacement.length : 0);
+    return returnArr ? rmvd : rmvdObj
   }
 
   if (replacement) {
-    replacement.unshift(offst, lgth);
-    return Array.prototype.splice.apply(arr, replacement);
+    replacement.unshift(offst, lgth)
+    return Array.prototype.splice.apply(arr, replacement)
   }
-  return arr.splice(offst, lgth);
+  return arr.splice(offst, lgth)
 }
 {% endcodeblock %}
 

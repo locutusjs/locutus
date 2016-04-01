@@ -15,13 +15,13 @@ alias:
 A JavaScript equivalent of PHP's sinh
 
 {% codeblock math/sinh.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/sinh.js raw on github %}
-function sinh(arg) {
+function sinh (arg) {
   //  discuss at: http://phpjs.org/functions/sinh/
   // original by: Onno Marsman
   //   example 1: sinh(-0.9834330348825909);
   //   returns 1: -1.1497971402636502
 
-  return (Math.exp(arg) - Math.exp(-arg)) / 2;
+  return (Math.exp(arg) - Math.exp(-arg)) / 2
 }
 {% endcodeblock %}
 

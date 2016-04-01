@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's array_walk_recursive
 
 {% codeblock array/array_walk_recursive.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_walk_recursive.js raw on github %}
-function array_walk_recursive(array, funcname, userdata) {
+function array_walk_recursive (array, funcname, userdata) {
   //  discuss at: http://phpjs.org/functions/array_walk_recursive/
   // original by: Johnny Mast (http://www.phpvrouwen.nl)
   //   example 1: array_walk_recursive ({'a': 'b', 'c': {'d': 'e'}}, 'void', 'userdata');
@@ -23,25 +23,25 @@ function array_walk_recursive(array, funcname, userdata) {
   //   example 2: array_walk_recursive ('a', 'void', 'userdata');
   //   returns 2: false
 
-  var key;
+  var key
 
   if (typeof array !== 'object') {
-    return false;
+    return false
   }
 
   for (key in array) {
     if (typeof array[key] === 'object') {
-      return this.array_walk_recursive(array[key], funcname, userdata);
+      return this.array_walk_recursive(array[key], funcname, userdata)
     }
 
     if (typeof userdata !== 'undefined') {
-      eval(funcname + '( array [key] , key , userdata  )');
+      eval(funcname + '( array [key] , key , userdata  )')
     } else {
-      eval(funcname + '(  userdata ) ');
+      eval(funcname + '(  userdata ) ')
     }
   }
 
-  return true;
+  return true
 }
 {% endcodeblock %}
 

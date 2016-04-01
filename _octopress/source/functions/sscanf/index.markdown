@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's sscanf
 
 {% codeblock strings/sscanf.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/sscanf.js raw on github %}
-function sscanf(str, format) {
+function sscanf (str, format) {
   //  discuss at: http://phpjs.org/functions/sscanf/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Since JS does not support scalar reference variables, any additional arguments to the function will
@@ -36,101 +36,106 @@ function sscanf(str, format) {
     _NWS = /\S/,
     args = arguments,
     that = this,
-    digit;
+    digit
 
-  var _setExtraConversionSpecs = function(offset) {
+  var _setExtraConversionSpecs = function (offset) {
     // Since a mismatched character sets us off track from future legitimate finds, we just scan
     // to the end for any other conversion specifications (besides a percent literal), setting them to null
     // sscanf seems to disallow all conversion specification components (of sprintf) except for type specifiers
-    //var matches = format.match(/%[+-]?([ 0]|'.)?-?\d*(\.\d+)?[bcdeufFosxX]/g); // Do not allow % in last char. class
+    // Do not allow % in last char. class
+    // var matches = format.match(/%[+-]?([ 0]|'.)?-?\d*(\.\d+)?[bcdeufFosxX]/g);
     var matches = format.slice(offset)
-      .match(/%[cdeEufgosxX]/g); // Do not allow % in last char. class;
+      .match(/%[cdeEufgosxX]/g) // Do not allow % in last char. class;
     // b, F,G give errors in PHP, but 'g', though also disallowed, doesn't
     if (matches) {
-      var lgth = matches.length;
+      var lgth = matches.length
       while (lgth--) {
-        retArr.push(null);
+        retArr.push(null)
       }
     }
-    return _finish();
-  };
+    return _finish()
+  }
 
-  var _finish = function() {
+  var _finish = function () {
     if (args.length === 2) {
-      return retArr;
+      return retArr
     }
     for (var i = 0; i < retArr.length; ++i) {
-      that.window[args[i + 2]] = retArr[i];
+      that.window[args[i + 2]] = retArr[i]
     }
-    return i;
-  };
+    return i
+  }
 
-  var _addNext = function(j, regex, cb) {
+  var _addNext = function (j, regex, cb) {
     if (assign) {
-      var remaining = str.slice(j);
-      var check = width ? remaining.substr(0, width) : remaining;
-      var match = regex.exec(check);
+      var remaining = str.slice(j)
+      var check = width ? remaining.substr(0, width) : remaining
+      var match = regex.exec(check)
       var testNull = retArr[digit !== undefined ? digit : retArr.length] = match ? (cb ? cb.apply(null, match) :
-        match[0]) : null;
+        match[0]) : null
       if (testNull === null) {
-        throw 'No match in string';
+        throw 'No match in string'
       }
-      return j + match[0].length;
+      return j + match[0].length
     }
-    return j;
-  };
+    return j
+  }
 
   if (arguments.length < 2) {
-    throw 'Not enough arguments passed to sscanf';
+    throw 'Not enough arguments passed to sscanf'
   }
 
   // PROCESS
   for (var i = 0, j = 0; i < format.length; i++) {
 
     var width = 0,
-      assign = true;
+      assign = true
 
     if (format.charAt(i) === '%') {
       if (format.charAt(i + 1) === '%') {
-        if (str.charAt(j) === '%') { // a matched percent literal
-          ++i, ++j; // skip beyond duplicated percent
-          continue;
+        if (str.charAt(j) === '%') {
+          // a matched percent literal
+          // skip beyond duplicated percent
+          ++i, ++j
+          continue
         }
         // Format indicated a percent literal, but not actually present
-        return _setExtraConversionSpecs(i + 2);
+        return _setExtraConversionSpecs(i + 2)
       }
 
       // CHARACTER FOLLOWING PERCENT IS NOT A PERCENT
 
-      var prePattern = new RegExp('^(?:(\\d+)\\$)?(\\*)?(\\d*)([hlL]?)', 'g'); // We need 'g' set to get lastIndex
+      // We need 'g' set to get lastIndex
+      var prePattern = new RegExp('^(?:(\\d+)\\$)?(\\*)?(\\d*)([hlL]?)', 'g')
 
-      var preConvs = prePattern.exec(format.slice(i + 1));
+      var preConvs = prePattern.exec(format.slice(i + 1))
 
-      var tmpDigit = digit;
+      var tmpDigit = digit
       if (tmpDigit && preConvs[1] === undefined) {
-        throw 'All groups in sscanf() must be expressed as numeric if any have already been used';
+        throw 'All groups in sscanf() must be expressed as numeric if any have already been used'
       }
-      digit = preConvs[1] ? parseInt(preConvs[1], 10) - 1 : undefined;
+      digit = preConvs[1] ? parseInt(preConvs[1], 10) - 1 : undefined
 
-      assign = !preConvs[2];
-      width = parseInt(preConvs[3], 10);
-      var sizeCode = preConvs[4];
-      i += prePattern.lastIndex;
+      assign = !preConvs[2]
+      width = parseInt(preConvs[3], 10)
+      var sizeCode = preConvs[4]
+      i += prePattern.lastIndex
 
       // Fix: Does PHP do anything with these? Seems not to matter
-      if (sizeCode) { // This would need to be processed later
+      if (sizeCode) {
+        // This would need to be processed later
         switch (sizeCode) {
           case 'h':
-            // Treats subsequent as short int (for d,i,n) or unsigned short int (for o,u,x)
+          // Treats subsequent as short int (for d,i,n) or unsigned short int (for o,u,x)
           case 'l':
-            // Treats subsequent as long int (for d,i,n), or unsigned long int (for o,u,x);
-            //    or as double (for e,f,g) instead of float or wchar_t instead of char
+          // Treats subsequent as long int (for d,i,n), or unsigned long int (for o,u,x);
+          //    or as double (for e,f,g) instead of float or wchar_t instead of char
           case 'L':
-            // Treats subsequent as long double (for e,f,g)
-            break;
+          // Treats subsequent as long double (for e,f,g)
+            break
           default:
-            throw 'Unexpected size specifier in sscanf()!';
-            break;
+            throw 'Unexpected size specifier in sscanf()!'
+            break
         }
       }
       // PROCESS CHARACTER
@@ -141,126 +146,136 @@ function sscanf(str, format) {
           // p, S, C arguments in C function not available
           // DOCUMENTED UNDER SSCANF
           case 'F':
-            // Not supported in PHP sscanf; the argument is treated as a float, and
-            //  presented as a floating-point number (non-locale aware)
-            // sscanf doesn't support locales, so no need for two (see %f)
-            break;
+          // Not supported in PHP sscanf; the argument is treated as a float, and
+          //  presented as a floating-point number (non-locale aware)
+          // sscanf doesn't support locales, so no need for two (see %f)
+            break
           case 'g':
-            // Not supported in PHP sscanf; shorter of %e and %f
-            // Irrelevant to input conversion
-            break;
+          // Not supported in PHP sscanf; shorter of %e and %f
+          // Irrelevant to input conversion
+            break
           case 'G':
-            // Not supported in PHP sscanf; shorter of %E and %f
-            // Irrelevant to input conversion
-            break;
+          // Not supported in PHP sscanf; shorter of %E and %f
+          // Irrelevant to input conversion
+            break
           case 'b':
-            // Not supported in PHP sscanf; the argument is treated as an integer, and presented as a binary number
-            // Not supported - couldn't distinguish from other integers
-            break;
+          // Not supported in PHP sscanf; the argument is treated as an integer, and presented as a binary number
+          // Not supported - couldn't distinguish from other integers
+            break
           case 'i':
-            // Integer with base detection (Equivalent of 'd', but base 0 instead of 10)
-            j = _addNext(j, /([+-])?(?:(?:0x([\da-fA-F]+))|(?:0([0-7]+))|(\d+))/, function(num, sign, hex,
-              oct, dec) {
-              return hex ? parseInt(num, 16) : oct ? parseInt(num, 8) : parseInt(num, 10);
-            });
-            break;
+          // Integer with base detection (Equivalent of 'd', but base 0 instead of 10)
+            j = _addNext(j, /([+-])?(?:(?:0x([\da-fA-F]+))|(?:0([0-7]+))|(\d+))/, function (num, sign, hex,
+            oct, dec) {
+              return hex ? parseInt(num, 16) : oct ? parseInt(num, 8) : parseInt(num, 10)
+            })
+            break
           case 'n':
-            // Number of characters processed so far
-            retArr[digit !== undefined ? digit : retArr.length - 1] = j;
-            break;
-            // DOCUMENTED UNDER SPRINTF
+          // Number of characters processed so far
+            retArr[digit !== undefined ? digit : retArr.length - 1] = j
+            break
+          // DOCUMENTED UNDER SPRINTF
           case 'c':
-            // Get character; suppresses skipping over whitespace! (but shouldn't be whitespace in format anyways, so no difference here)
-            // Non-greedy match
-            j = _addNext(j, new RegExp('.{1,' + (width || 1) + '}'));
-            break;
+          // Get character; suppresses skipping over whitespace! (but shouldn't be whitespace in format anyways, so no difference here)
+          // Non-greedy match
+            j = _addNext(j, new RegExp('.{1,' + (width || 1) + '}'))
+            break
           case 'D':
-            // sscanf documented decimal number; equivalent of 'd';
+          // sscanf documented decimal number; equivalent of 'd';
           case 'd':
-            // Optionally signed decimal integer
-            j = _addNext(j, /([+-])?(?:0*)(\d+)/, function(num, sign, dec) {
-              // Ignores initial zeroes, unlike %i and parseInt()
-              var decInt = parseInt((sign || '') + dec, 10);
-              if (decInt < 0) { // PHP also won't allow less than -2147483648
-                return decInt < -2147483648 ? -2147483648 : decInt; // integer overflow with negative
-              } else { // PHP also won't allow greater than -2147483647
-                return decInt < 2147483647 ? decInt : 2147483647;
-              }
-            });
-            break;
-          case 'f':
-            // Although sscanf doesn't support locales, this is used instead of '%F'; seems to be same as %e
-          case 'E':
-            // These don't discriminate here as both allow exponential float of either case
-          case 'e':
-            j = _addNext(j, /([+-])?(?:0*)(\d*\.?\d*(?:[eE]?\d+)?)/, function(num, sign, dec) {
-              if (dec === '.') {
-                return null;
-              }
-              return parseFloat((sign || '') + dec); // Ignores initial zeroes, unlike %i and parseFloat()
-            });
-            break;
-          case 'u':
-            // unsigned decimal integer
-            // We won't deal with integer overflows due to signs
-            j = _addNext(j, /([+-])?(?:0*)(\d+)/, function(num, sign, dec) {
-              // Ignores initial zeroes, unlike %i and parseInt()
-              var decInt = parseInt(dec, 10);
-              if (sign === '-') { // PHP also won't allow greater than 4294967295
-                return 4294967296 - decInt; // integer overflow with negative
+          // Optionally signed decimal integer
+            j = _addNext(j, /([+-])?(?:0*)(\d+)/, function (num, sign, dec) {
+            // Ignores initial zeroes, unlike %i and parseInt()
+              var decInt = parseInt((sign || '') + dec, 10)
+              if (decInt < 0) {
+              // PHP also won't allow less than -2147483648
+              // integer overflow with negative
+                return decInt < -2147483648 ? -2147483648 : decInt
               } else {
-                return decInt < 4294967295 ? decInt : 4294967295;
+              // PHP also won't allow greater than -2147483647
+                return decInt < 2147483647 ? decInt : 2147483647
               }
-            });
-            break;
+            })
+            break
+          case 'f':
+          // Although sscanf doesn't support locales, this is used instead of '%F'; seems to be same as %e
+          case 'E':
+          // These don't discriminate here as both allow exponential float of either case
+          case 'e':
+            j = _addNext(j, /([+-])?(?:0*)(\d*\.?\d*(?:[eE]?\d+)?)/, function (num, sign, dec) {
+              if (dec === '.') {
+                return null
+              }
+            // Ignores initial zeroes, unlike %i and parseFloat()
+              return parseFloat((sign || '') + dec)
+            })
+            break
+          case 'u':
+          // unsigned decimal integer
+          // We won't deal with integer overflows due to signs
+            j = _addNext(j, /([+-])?(?:0*)(\d+)/, function (num, sign, dec) {
+            // Ignores initial zeroes, unlike %i and parseInt()
+              var decInt = parseInt(dec, 10)
+              if (sign === '-') {
+              // PHP also won't allow greater than 4294967295
+              // integer overflow with negative
+                return 4294967296 - decInt
+              } else {
+                return decInt < 4294967295 ? decInt : 4294967295
+              }
+            })
+            break
           case 'o':
-            // Octal integer // Fix: add overflows as above?
-            j = _addNext(j, /([+-])?(?:0([0-7]+))/, function(num, sign, oct) {
-              return parseInt(num, 8);
-            });
-            break;
+          // Octal integer // Fix: add overflows as above?
+            j = _addNext(j, /([+-])?(?:0([0-7]+))/, function (num, sign, oct) {
+              return parseInt(num, 8)
+            })
+            break
           case 's':
-            // Greedy match
-            j = _addNext(j, /\S+/);
-            break;
+          // Greedy match
+            j = _addNext(j, /\S+/)
+            break
           case 'X':
-            // Same as 'x'?
+          // Same as 'x'?
           case 'x':
-            // Fix: add overflows as above?
-            // Initial 0x not necessary here
-            j = _addNext(j, /([+-])?(?:(?:0x)?([\da-fA-F]+))/, function(num, sign, hex) {
-              return parseInt(num, 16);
-            });
-            break;
+          // Fix: add overflows as above?
+          // Initial 0x not necessary here
+            j = _addNext(j, /([+-])?(?:(?:0x)?([\da-fA-F]+))/, function (num, sign, hex) {
+              return parseInt(num, 16)
+            })
+            break
           case '':
-            // If no character left in expression
-            throw 'Missing character after percent mark in sscanf() format argument';
+          // If no character left in expression
+            throw 'Missing character after percent mark in sscanf() format argument'
           default:
-            throw 'Unrecognized character after percent mark in sscanf() format argument';
+            throw 'Unrecognized character after percent mark in sscanf() format argument'
         }
       } catch (e) {
-        if (e === 'No match in string') { // Allow us to exit
-          return _setExtraConversionSpecs(i + 2);
+        if (e === 'No match in string') {
+          // Allow us to exit
+          return _setExtraConversionSpecs(i + 2)
         }
-      }++i; // Calculate skipping beyond initial percent too
+        // Calculate skipping beyond initial percent too
+      }++i
     } else if (format.charAt(i) !== str.charAt(j)) {
       // Fix: Double-check i whitespace ignored in string and/or formats
-      _NWS.lastIndex = 0;
+      _NWS.lastIndex = 0
       if ((_NWS)
-        .test(str.charAt(j)) || str.charAt(j) === '') { // Whitespace doesn't need to be an exact match)
-        return _setExtraConversionSpecs(i + 1);
+        .test(str.charAt(j)) || str.charAt(j) === '') {
+        // Whitespace doesn't need to be an exact match)
+        return _setExtraConversionSpecs(i + 1)
       } else {
         // Adjust strings when encounter non-matching whitespace, so they align in future checks above
-        str = str.slice(0, j) + str.slice(j + 1); // Ok to replace with j++;?
-        i--;
+        // Ok to replace with j++;?
+        str = str.slice(0, j) + str.slice(j + 1)
+        i--
       }
     } else {
-      j++;
+      j++
     }
   }
 
   // POST-PROCESSING
-  return _finish();
+  return _finish()
 }
 {% endcodeblock %}
 

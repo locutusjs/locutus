@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's date_parse
 
 {% codeblock datetime/date_parse.js lang:js https://raw.github.com/kvz/phpjs/master/functions/datetime/date_parse.js raw on github %}
-function date_parse(date) {
+function date_parse (date) {
   //  discuss at: http://phpjs.org/functions/date_parse/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: strtotime
@@ -23,43 +23,45 @@ function date_parse(date) {
   //   returns 1: {year : 2006, month: 12, day: 12, hour: 10, minute: 0, second: 0, fraction: 0.5, warning_count: 0, warnings: [], error_count: 0, errors: [], is_localtime: false}
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {};
+  this.php_js = this.php_js || {}
   // END REDUNDANT
 
   var ts,
     warningsOffset = this.php_js.warnings ? this.php_js.warnings.length : null,
-    errorsOffset = this.php_js.errors ? this.php_js.errors.length : null;
+    errorsOffset = this.php_js.errors ? this.php_js.errors.length : null
 
   try {
-    this.php_js.date_parse_state = true; // Allow strtotime to return a decimal (which it normally does not)
-    ts = this.strtotime(date);
-    this.php_js.date_parse_state = false;
+    // Allow strtotime to return a decimal (which it normally does not)
+    this.php_js.date_parse_state = true
+    ts = this.strtotime(date)
+    this.php_js.date_parse_state = false
   } finally {
     if (!ts) {
-      return false;
+      return false
     }
   }
 
-  var dt = new Date(ts * 1000);
+  var dt = new Date(ts * 1000)
 
-  var retObj = { // Grab any new warnings or errors added (not implemented yet in strtotime()); throwing warnings, notices, or errors could also be easily monitored by using 'watch' on this.php_js.latestWarning, etc. and/or calling any defined error handlers
+  var retObj = {
+    // Grab any new warnings or errors added (not implemented yet in strtotime()); throwing warnings, notices, or errors could also be easily monitored by using 'watch' on this.php_js.latestWarning, etc. and/or calling any defined error handlers
     warning_count: warningsOffset !== null ? this.php_js.warnings.slice(warningsOffset)
       .length : 0,
     warnings: warningsOffset !== null ? this.php_js.warnings.slice(warningsOffset) : [],
     error_count: errorsOffset !== null ? this.php_js.errors.slice(errorsOffset)
       .length : 0,
     errors: errorsOffset !== null ? this.php_js.errors.slice(errorsOffset) : []
-  };
-  retObj.year = dt.getFullYear();
-  retObj.month = dt.getMonth() + 1;
-  retObj.day = dt.getDate();
-  retObj.hour = dt.getHours();
-  retObj.minute = dt.getMinutes();
-  retObj.second = dt.getSeconds();
-  retObj.fraction = parseFloat('0.' + dt.getMilliseconds());
-  retObj.is_localtime = dt.getTimezoneOffset() !== 0;
+  }
+  retObj.year = dt.getFullYear()
+  retObj.month = dt.getMonth() + 1
+  retObj.day = dt.getDate()
+  retObj.hour = dt.getHours()
+  retObj.minute = dt.getMinutes()
+  retObj.second = dt.getSeconds()
+  retObj.fraction = parseFloat('0.' + dt.getMilliseconds())
+  retObj.is_localtime = dt.getTimezoneOffset() !== 0
 
-  return retObj;
+  return retObj
 }
 {% endcodeblock %}
 

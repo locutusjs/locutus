@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's is_null
 
 {% codeblock var/is_null.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_null.js raw on github %}
-function is_null(mixed_var) {
+function is_null (mixed_var) {
   //  discuss at: http://phpjs.org/functions/is_null/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //   example 1: is_null('23');
@@ -23,7 +23,7 @@ function is_null(mixed_var) {
   //   example 2: is_null(null);
   //   returns 2: true
 
-  return (mixed_var === null);
+  return (mixed_var === null)
 }
 {% endcodeblock %}
 

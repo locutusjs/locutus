@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's gettype
 
 {% codeblock var/gettype.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/gettype.js raw on github %}
-function gettype(mixed_var) {
+function gettype (mixed_var) {
   //  discuss at: http://phpjs.org/functions/gettype/
   // original by: Paulo Freitas
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -41,37 +41,41 @@ function gettype(mixed_var) {
   //   returns 6: 'array'
 
   var s = typeof mixed_var,
-    name;
-  var getFuncName = function(fn) {
+    name
+  var getFuncName = function (fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/)
-      .exec(fn);
+      .exec(fn)
     if (!name) {
-      return '(Anonymous)';
+      return '(Anonymous)'
     }
-    return name[1];
-  };
+    return name[1]
+  }
   if (s === 'object') {
-    if (mixed_var !== null) { // From: http://javascript.crockford.com/remedial.html
+    if (mixed_var !== null) {
+      // From: http://javascript.crockford.com/remedial.html
       if (typeof mixed_var.length === 'number' && !(mixed_var.propertyIsEnumerable('length')) && typeof mixed_var
         .splice === 'function') {
-        s = 'array';
+        s = 'array'
       } else if (mixed_var.constructor && getFuncName(mixed_var.constructor)) {
-        name = getFuncName(mixed_var.constructor);
+        name = getFuncName(mixed_var.constructor)
         if (name === 'Date') {
-          s = 'date'; // not in PHP
+          // not in PHP
+          s = 'date'
         } else if (name === 'RegExp') {
-          s = 'regexp'; // not in PHP
-        } else if (name === 'PHPJS_Resource') { // Check against our own resource constructor
-          s = 'resource';
+          // not in PHP
+          s = 'regexp'
+        } else if (name === 'PHPJS_Resource') {
+          // Check against our own resource constructor
+          s = 'resource'
         }
       }
     } else {
-      s = 'null';
+      s = 'null'
     }
   } else if (s === 'number') {
-    s = this.is_float(mixed_var) ? 'double' : 'integer';
+    s = this.is_float(mixed_var) ? 'double' : 'integer'
   }
-  return s;
+  return s
 }
 {% endcodeblock %}
 

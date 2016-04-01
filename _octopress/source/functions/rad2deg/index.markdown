@@ -15,14 +15,14 @@ alias:
 A JavaScript equivalent of PHP's rad2deg
 
 {% codeblock math/rad2deg.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/rad2deg.js raw on github %}
-function rad2deg(angle) {
+function rad2deg (angle) {
   //  discuss at: http://phpjs.org/functions/rad2deg/
   // original by: Enrique Gonzalez
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: rad2deg(3.141592653589793);
   //   returns 1: 180
 
-  return angle * 57.29577951308232; // angle / Math.PI * 180
+  return angle * 57.29577951308232 // angle / Math.PI * 180
 }
 {% endcodeblock %}
 

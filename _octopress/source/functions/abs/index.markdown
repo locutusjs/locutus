@@ -15,9 +15,9 @@ alias:
 A JavaScript equivalent of PHP's abs
 
 {% codeblock math/abs.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/abs.js raw on github %}
-function abs(mixed_number) {
+function abs (mixed_number) {
   //  discuss at: http://phpjs.org/functions/abs/
-  // original by: Waldo Malqui Silva
+  // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Karol Kowalski
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
@@ -30,7 +30,7 @@ function abs(mixed_number) {
   //   example 4: abs('_argos');
   //   returns 4: 0
 
-  return Math.abs(mixed_number) || 0;
+  return Math.abs(mixed_number) || 0
 }
 {% endcodeblock %}
 

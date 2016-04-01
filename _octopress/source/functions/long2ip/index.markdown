@@ -15,16 +15,16 @@ alias:
 A JavaScript equivalent of PHP's long2ip
 
 {% codeblock network/long2ip.js lang:js https://raw.github.com/kvz/phpjs/master/functions/network/long2ip.js raw on github %}
-function long2ip(ip) {
+function long2ip (ip) {
   //  discuss at: http://phpjs.org/functions/long2ip/
-  // original by: Waldo Malqui Silva
+  // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //   example 1: long2ip( 3221234342 );
   //   returns 1: '192.0.34.166'
 
   if (!isFinite(ip))
-    return false;
+    return false
 
-  return [ip >>> 24, ip >>> 16 & 0xFF, ip >>> 8 & 0xFF, ip & 0xFF].join('.');
+  return [ip >>> 24, ip >>> 16 & 0xFF, ip >>> 8 & 0xFF, ip & 0xFF].join('.')
 }
 {% endcodeblock %}
 

@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's gopher_parsedir
 
 {% codeblock net-gopher/gopher_parsedir.js lang:js https://raw.github.com/kvz/phpjs/master/functions/net-gopher/gopher_parsedir.js raw on github %}
-function gopher_parsedir(dirent) {
+function gopher_parsedir (dirent) {
   //  discuss at: http://phpjs.org/functions/gopher_parsedir/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: var entry = gopher_parsedir('0All about my gopher site.\t/allabout.txt\tgopher.example.com\t70\u000d\u000a');
@@ -39,45 +39,53 @@ function gopher_parsedir(dirent) {
    * s = Audio file format, primarily a WAV file
    */
 
-  var entryPattern = /^(.)(.*?)\t(.*?)\t(.*?)\t(.*?)\u000d\u000a$/;
-  var entry = dirent.match(entryPattern);
+  var entryPattern = /^(.)(.*?)\t(.*?)\t(.*?)\t(.*?)\u000d\u000a$/
+  var entry = dirent.match(entryPattern)
 
   if (entry === null) {
-    throw 'Could not parse the directory entry';
+    throw 'Could not parse the directory entry'
     // return false;
   }
 
-  var type = entry[1];
+  var type = entry[1]
   switch (type) {
     case 'i':
-      type = 255; // GOPHER_INFO
-      break;
+    // GOPHER_INFO
+      type = 255
+      break
     case '1':
-      type = 1; // GOPHER_DIRECTORY
-      break;
+    // GOPHER_DIRECTORY
+      type = 1
+      break
     case '0':
-      type = 0; // GOPHER_DOCUMENT
-      break;
+    // GOPHER_DOCUMENT
+      type = 0
+      break
     case '4':
-      type = 4; // GOPHER_BINHEX
-      break;
+    // GOPHER_BINHEX
+      type = 4
+      break
     case '5':
-      type = 5; // GOPHER_DOSBINARY
-      break;
+    // GOPHER_DOSBINARY
+      type = 5
+      break
     case '6':
-      type = 6; // GOPHER_UUENCODED
-      break;
+    // GOPHER_UUENCODED
+      type = 6
+      break
     case '9':
-      type = 9; // GOPHER_BINARY
-      break;
+    // GOPHER_BINARY
+      type = 9
+      break
     case 'h':
-      type = 254; // GOPHER_HTTP
-      break;
+    // GOPHER_HTTP
+      type = 254
+      break
     default:
       return {
         type: -1,
         data: dirent
-      }; // GOPHER_UNKNOWN
+      } // GOPHER_UNKNOWN
   }
   return {
     type: type,
@@ -85,7 +93,7 @@ function gopher_parsedir(dirent) {
     path: entry[3],
     host: entry[4],
     port: entry[5]
-  };
+  }
 }
 {% endcodeblock %}
 

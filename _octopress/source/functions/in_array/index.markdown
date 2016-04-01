@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's in_array
 
 {% codeblock array/in_array.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/in_array.js raw on github %}
-function in_array(needle, haystack, argStrict) {
+function in_array (needle, haystack, argStrict) {
   //  discuss at: http://phpjs.org/functions/in_array/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: vlado houba
@@ -34,26 +34,26 @@ function in_array(needle, haystack, argStrict) {
   //   returns 4: false
 
   var key = '',
-    strict = !! argStrict;
+    strict = !!argStrict
 
-  //we prevent the double check (strict && arr[key] === ndl) || (!strict && arr[key] == ndl)
-  //in just one for, in order to improve the performance 
-  //deciding wich type of comparation will do before walk array
+  // we prevent the double check (strict && arr[key] === ndl) || (!strict && arr[key] == ndl)
+  // in just one for, in order to improve the performance
+  // deciding wich type of comparation will do before walk array
   if (strict) {
     for (key in haystack) {
       if (haystack[key] === needle) {
-        return true;
+        return true
       }
     }
   } else {
     for (key in haystack) {
       if (haystack[key] == needle) {
-        return true;
+        return true
       }
     }
   }
 
-  return false;
+  return false
 }
 {% endcodeblock %}
 

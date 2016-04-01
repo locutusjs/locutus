@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's round
 
 {% codeblock math/round.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/round.js raw on github %}
-function round(value, precision, mode) {
+function round (value, precision, mode) {
   //  discuss at: http://phpjs.org/functions/round/
   // original by: Philip Peterson
   //  revised by: Onno Marsman
@@ -42,31 +42,37 @@ function round(value, precision, mode) {
   //   example 5: round(58551.799999999996, 2);
   //   returns 5: 58551.8
 
-  var m, f, isHalf, sgn; // helper variables
-  precision |= 0; // making sure precision is integer
-  m = Math.pow(10, precision);
-  value *= m;
-  sgn = (value > 0) | -(value < 0); // sign of the number
-  isHalf = value % 1 === 0.5 * sgn;
-  f = Math.floor(value);
+  var m, f, isHalf, sgn // helper variables
+  // making sure precision is integer
+  precision |= 0
+  m = Math.pow(10, precision)
+  value *= m
+  // sign of the number
+  sgn = (value > 0) | -(value < 0)
+  isHalf = value % 1 === 0.5 * sgn
+  f = Math.floor(value)
 
   if (isHalf) {
     switch (mode) {
       case 'PHP_ROUND_HALF_DOWN':
-        value = f + (sgn < 0); // rounds .5 toward zero
-        break;
+      // rounds .5 toward zero
+        value = f + (sgn < 0)
+        break
       case 'PHP_ROUND_HALF_EVEN':
-        value = f + (f % 2 * sgn); // rouds .5 towards the next even integer
-        break;
+      // rouds .5 towards the next even integer
+        value = f + (f % 2 * sgn)
+        break
       case 'PHP_ROUND_HALF_ODD':
-        value = f + !(f % 2); // rounds .5 towards the next odd integer
-        break;
+      // rounds .5 towards the next odd integer
+        value = f + !(f % 2)
+        break
       default:
-        value = f + (sgn > 0); // rounds .5 away from zero
+      // rounds .5 away from zero
+        value = f + (sgn > 0)
     }
   }
 
-  return (isHalf ? value : Math.round(value)) / m;
+  return (isHalf ? value : Math.round(value)) / m
 }
 {% endcodeblock %}
 

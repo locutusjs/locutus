@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's is_bool
 
 {% codeblock var/is_bool.js lang:js https://raw.github.com/kvz/phpjs/master/functions/var/is_bool.js raw on github %}
-function is_bool(mixed_var) {
+function is_bool (mixed_var) {
   //  discuss at: http://phpjs.org/functions/is_bool/
   // original by: Onno Marsman
   // improved by: CoursesWeb (http://www.coursesweb.net/)
@@ -24,7 +24,7 @@ function is_bool(mixed_var) {
   //   example 2: is_bool(0);
   //   returns 2: false
 
-  return (mixed_var === true || mixed_var === false); // Faster (in FF) than type checking
+  return (mixed_var === true || mixed_var === false) // Faster (in FF) than type checking
 }
 {% endcodeblock %}
 

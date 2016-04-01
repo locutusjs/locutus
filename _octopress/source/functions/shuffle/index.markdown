@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's shuffle
 
 {% codeblock array/shuffle.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/shuffle.js raw on github %}
-function shuffle(inputArr) {
+function shuffle (inputArr) {
   //  discuss at: http://phpjs.org/functions/shuffle/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -46,33 +46,35 @@ function shuffle(inputArr) {
     k = '',
     i = 0,
     strictForIn = false,
-    populateArr = [];
+    populateArr = []
 
-  for (k in inputArr) { // Get key and value arrays
+  for (k in inputArr) {
+    // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push(inputArr[k]);
+      valArr.push(inputArr[k])
       if (strictForIn) {
-        delete inputArr[k];
+        delete inputArr[k]
       }
     }
   }
-  valArr.sort(function() {
-    return 0.5 - Math.random();
-  });
+  valArr.sort(function () {
+    return 0.5 - Math.random()
+  })
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {};
-  this.php_js.ini = this.php_js.ini || {};
+  this.php_js = this.php_js || {}
+  this.php_js.ini = this.php_js.ini || {}
   // END REDUNDANT
   strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
-    .ini['phpjs.strictForIn'].local_value !== 'off';
-  populateArr = strictForIn ? inputArr : populateArr;
+    .ini['phpjs.strictForIn'].local_value !== 'off'
+  populateArr = strictForIn ? inputArr : populateArr
 
-  for (i = 0; i < valArr.length; i++) { // Repopulate the old array
-    populateArr[i] = valArr[i];
+  for (i = 0; i < valArr.length; i++) {
+    // Repopulate the old array
+    populateArr[i] = valArr[i]
   }
 
-  return strictForIn || populateArr;
+  return strictForIn || populateArr
 }
 {% endcodeblock %}
 

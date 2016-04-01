@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's array_merge
 
 {% codeblock array/array_merge.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/array_merge.js raw on github %}
-function array_merge() {
+function array_merge () {
   //  discuss at: http://phpjs.org/functions/array_merge/
   // original by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Nate
@@ -40,42 +40,42 @@ function array_merge() {
     i = 0,
     ct = 0,
     toStr = Object.prototype.toString,
-    retArr = true;
+    retArr = true
 
   for (i = 0; i < argl; i++) {
     if (toStr.call(args[i]) !== '[object Array]') {
-      retArr = false;
-      break;
+      retArr = false
+      break
     }
   }
 
   if (retArr) {
-    retArr = [];
+    retArr = []
     for (i = 0; i < argl; i++) {
-      retArr = retArr.concat(args[i]);
+      retArr = retArr.concat(args[i])
     }
-    return retArr;
+    return retArr
   }
 
   for (i = 0, ct = 0; i < argl; i++) {
-    arg = args[i];
+    arg = args[i]
     if (toStr.call(arg) === '[object Array]') {
       for (j = 0, argil = arg.length; j < argil; j++) {
-        retObj[ct++] = arg[j];
+        retObj[ct++] = arg[j]
       }
     } else {
       for (k in arg) {
         if (arg.hasOwnProperty(k)) {
           if (parseInt(k, 10) + '' === k) {
-            retObj[ct++] = arg[k];
+            retObj[ct++] = arg[k]
           } else {
-            retObj[k] = arg[k];
+            retObj[k] = arg[k]
           }
         }
       }
     }
   }
-  return retObj;
+  return retObj
 }
 {% endcodeblock %}
 

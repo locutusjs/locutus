@@ -15,10 +15,10 @@ alias:
 A JavaScript equivalent of PHP's count
 
 {% codeblock array/count.js lang:js https://raw.github.com/kvz/phpjs/master/functions/array/count.js raw on github %}
-function count(mixed_var, mode) {
+function count (mixed_var, mode) {
   //  discuss at: http://phpjs.org/functions/count/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  //    input by: Waldo Malqui Silva
+  //    input by: Waldo Malqui Silva (http://waldo.malqui.info)
   //    input by: merabi
   // bugfixed by: Soren Hansen
   // bugfixed by: Olivier Louvignes (http://mg-crea.com/)
@@ -28,32 +28,32 @@ function count(mixed_var, mode) {
   //   example 2: count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');
   //   returns 2: 6
 
-  var key, cnt = 0;
+  var key, cnt = 0
 
   if (mixed_var === null || typeof mixed_var === 'undefined') {
-    return 0;
+    return 0
   } else if (mixed_var.constructor !== Array && mixed_var.constructor !== Object) {
-    return 1;
+    return 1
   }
 
   if (mode === 'COUNT_RECURSIVE') {
-    mode = 1;
+    mode = 1
   }
   if (mode != 1) {
-    mode = 0;
+    mode = 0
   }
 
   for (key in mixed_var) {
     if (mixed_var.hasOwnProperty(key)) {
-      cnt++;
+      cnt++
       if (mode == 1 && mixed_var[key] && (mixed_var[key].constructor === Array || mixed_var[key].constructor ===
-        Object)) {
-        cnt += this.count(mixed_var[key], 1);
+          Object)) {
+        cnt += this.count(mixed_var[key], 1)
       }
     }
   }
 
-  return cnt;
+  return cnt
 }
 {% endcodeblock %}
 

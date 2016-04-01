@@ -15,7 +15,7 @@ alias:
 A JavaScript equivalent of PHP's addslashes
 
 {% codeblock strings/addslashes.js lang:js https://raw.github.com/kvz/phpjs/master/functions/strings/addslashes.js raw on github %}
-function addslashes(str) {
+function addslashes (str) {
   //  discuss at: http://phpjs.org/functions/addslashes/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Ates Goral (http://magnetiq.com)
@@ -30,7 +30,7 @@ function addslashes(str) {
 
   return (str + '')
     .replace(/[\\"']/g, '\\$&')
-    .replace(/\u0000/g, '\\0');
+    .replace(/\u0000/g, '\\0')
 }
 {% endcodeblock %}
 

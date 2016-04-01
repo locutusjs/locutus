@@ -15,13 +15,13 @@ alias:
 A JavaScript equivalent of PHP's acosh
 
 {% codeblock math/acosh.js lang:js https://raw.github.com/kvz/phpjs/master/functions/math/acosh.js raw on github %}
-function acosh(arg) {
+function acosh (arg) {
   //  discuss at: http://phpjs.org/functions/acosh/
   // original by: Onno Marsman
   //   example 1: acosh(8723321.4);
   //   returns 1: 16.674657798418625
 
-  return Math.log(arg + Math.sqrt(arg * arg - 1));
+  return Math.log(arg + Math.sqrt(arg * arg - 1))
 }
 {% endcodeblock %}
 
