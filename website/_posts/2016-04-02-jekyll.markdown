@@ -32,7 +32,15 @@ To install the dependencies:
 npm run website:install
 ```
 
-Now hack on the files in the `website` folder. If you have write access to the `phpjs` repository on GitHub, you can now do:
+To start a local version of the website and open a browser that will auto-refresh on changes, type:
+
+```bash
+npm run website:start
+```
+
+Now hack on the files in the `./website` folder, until you're happy with the local results. Commit the changes to Git or send in a PR if you don't have write access to the repository. This means the sources are saved, but someone with write access still needs to deploy.
+
+To do that, type:
 
 ```bash
 npm run website:deploy
