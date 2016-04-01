@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Switching to Jekyll"
-date: 2016-04-01 13:50
+date: 2016-04-02
 comments: true
 categories: [ website, octopress, jekyll, future ]
 ---
