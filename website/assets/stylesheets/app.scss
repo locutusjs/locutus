@@ -1,2 +1,14 @@
 // @todo its too bad we don't have the sass sources to this theme's styles:
 @import "screen";
+
+
+@font-face {
+    font-family: "HandelGothicBT";
+    src: url("/assets/fonts/HandelGothicBT.ttf")
+}
+
+body>header h1 {
+    font-family: "HandelGothicBT", Helvetica, Arial, sans-serif;
+    font-style: italic;
+
+}
