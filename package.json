@@ -38,6 +38,7 @@
   "scripts": {
     "test": "make test",
     "fix": "eslint functions bin lib test tools --fix",
+    "website:start": "cd website && npm run start",
     "lint": "eslint functions"
   },
   "bin": "bin/phpjs.js"
