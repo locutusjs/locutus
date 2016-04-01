@@ -37,7 +37,7 @@ var PhpjsUtil = phpjsutil({
       'location: {' +
         'href: ""' +
       '}' +
-    '}',
+    '}'
   }
 })
 

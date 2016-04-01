@@ -27,9 +27,16 @@ gems:
   - jekyll-feed
   - jekyll-redirect-from
 
-# collections:
-# - faq
+collections:
+  functions:
+    output: true
 
+defaults:
+  - scope:
+      path: ""
+      type: functions
+    values:
+      layout: function
 
 exclude:
   - Makefile

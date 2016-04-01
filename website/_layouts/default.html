@@ -8,7 +8,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>About php.js - php.js</title>
+  <title>{{page.title}} - php.js</title>
   <meta name="author" content="Kevin van Zonneveld">
 
 
@@ -59,11 +59,9 @@
   <header role="banner">
     <hgroup>
       <div id="logo">
-        <h1><a href="/">{{site.name}}</a></h1>
+        <h1><a href="/"><span>php</span><span>.js</span></a></h1>
         <div class="clear"></div>
       </div>
-
-
 
       <h2>{{site.meta_description}}</h2>
 
@@ -229,7 +227,7 @@
   </div>
   <footer role="contentinfo">
     <p>
-      Copyright &copy; 2007 - <a href="http://twitter.com/kvz">Kevin van Zonneveld</a> and <a href="/authors/">contributors</a> -
+      Copyright &copy; 2007-{{ site.time | date: '%Y' }} - <a href="http://twitter.com/kvz">Kevin van Zonneveld</a> and <a href="/authors/">contributors</a> -
       <span class="credit">Powered by <a href="http://jekyllrb.com">Jekyll</a></span> -
       <span class="credit">Theme by <a href="http://melandri.net/2012/07/23/darkstripes-octopress-theme-released/">alessandro melandri</a></span>
     </p>
@@ -255,49 +253,7 @@
   </script>
 
 
-
-  <div id="fb-root"></div>
-  <script>
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
   <script src="/assets/build/app.js"></script>
-  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
 
 
