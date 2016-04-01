@@ -16,8 +16,7 @@ php.js is a resource that offers community-built JavaScript alternatives to PHP 
  - to see if we can
  - to learn JavaScript
  - to help others learn JavaScript
- - to see how php scripts perform with V8 strapped on their backs
- - to profit from helpful functions like:
+ - to profit from a few useful functions such as:
 [strip_tags](http://phpjs.org/functions/strip_tags/),
 [strtotime](http://phpjs.org/functions/strtotime/),
 [md5](http://phpjs.org/functions/md5/),
@@ -27,45 +26,37 @@ php.js is a resource that offers community-built JavaScript alternatives to PHP 
 [vsprintf](http://phpjs.org/functions/vsprintf/), and
 [date](http://phpjs.org/functions/date/), that are too high-level for JavaScript.
 
-PHP is a language with many high-level functions and while they're not always 
-implemented as consistently as we'd like (mimicking their underlying C parts), 
-they do get many programming jobs done without the need for additional libraries
-or abstraction. 
+PHP is a language with a huge standard library that a large share of web developers
+are intimately familiar with.
 
-We recognize JS has beautiful language features, and we encourage you to learn them
-(never let php.js be an excuse not to!).
+JavaScript as a language is even more wide-spread, but lacking a similar large 
+standard library, developers coming from other languages are often wondering how
+to achieve common tasks, like [formatting dates](http://phpjs.org/functions/strftime/), 
+or [generating a hashes](http://phpjs.org/functions/sha1/).
 
-That said, we do think it's a challenge to port everything and decided to also port 
-low-level PHP functions like
+php.js aims to show developers coming from the PHP world how to achieve these things
+in JavaScript. We had to write a lot of it in order to port {{ site.functions |size }} functions. We appreciate it. We hope you will too.
+
+One things you'll notice is that we're also porting low-level PHP functions like
 [strpos](http://phpjs.org/functions/strpos/)
-that have perfectly good (and more performant!) JavaScript 
-counterparts like [String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf).
+that have perfectly good (and more performant) JavaScript equivalents right in its standard library by means of e.g.  [String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf).
 
-Besides the geeky-challenge of seeing how far we can come, porting ALL THE THINGS also 
-opens up php.js to other fun experiments such as realtime in-browser debugging/running of
-PHP code, or running `.php` files with JavaScript engines such as V8.
+There are two reasons why we're going all-in:
 
-This also means it's not our job to fix php's mistakes, but to mimic it as good as we can.
+1. To show by example how the behavior differs across language (`false` vs `-1` in the example of `strpos` vs `indexOf`)
+2. The geeky-challenge. Porting ALL-THE-THINGS suddenly opens up php.js to other fun experiments such as running actual `.php` files on V8. We're not sure why you would want that, but we sure think it's fun to see if we can manage. (this does bring the burden of mimicking PHP as good as we can, even its mistakes)
 
-In doing that, php.js also becamse a reference for PHP developers wanting to see how 
-something can be done in JavaScript.
-
-php.js won't be able to fully mimic all of php on all platforms because some platforms do not preserve ordering in objects. Rightfully because it's not part of ECMA. This is a case where we accept defeat.
-
-And so we see ourselves as this big resource and leave it up to the developer 
-to decide what makes sense to take from it.
-
-And what not.
+Something we discovered was that php.js won't be able to fully mimic all of PHP on all platforms because some platforms do not preserve ordering in objects. Rightfully, because it's not part of ECMA. Instead of rolling our own data-structures, this is a case where we accept defeat. We do take comfort in the fact that most platforms preserve ordering, and there is rumors of it becoming a part of ECMA.
 
 Going by [The McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d) 
-we have plently of functions online that aren't perfect just yet.
-If you know better ways, just send us a pull request : )
+we have plenty of functions online that aren't perfect just yet.
+If you know better ways, you're very welcome to send us a pull request : )
 
 ## Contributing
 
-We use [GitHub](http://github.com/kvz/phpjs) for collaboration. Comments are for remarks only.
-Please adhere to our [coding standards](/blog/2016/04/01/standard-coding-style/) before
-sending a pull request.
+We use [GitHub](http://github.com/kvz/phpjs) for collaboration.
+Please do adhere to our [CONTRIBUTING.md](http://github.com/kvz/phpjs/CONTRIBUTING.md) when you're
+sending in a contribution.
 
 ## Licensing
 
@@ -73,7 +64,7 @@ php.js is licensed under the MIT licenses.
 
 The MIT license allows you to use the library as you see fit (even in commercial projects) as long as you redistribute original the license with it. You're not obligated to share your improvements, but obviously that would be greatly appreciated and ensure you won't lose your changes after you upgrade.
 
-	Copyright (c) 2007 Kevin van Zonneveld (http://kvz.io) 
+	Copyright (c) 2007--{{ site.time | date: '%Y' }} Kevin van Zonneveld (http://kvz.io) 
 	and Contributors (http://phpjs.org/authors)
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy of
