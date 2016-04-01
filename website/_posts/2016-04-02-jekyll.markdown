@@ -36,7 +36,7 @@ Now hack on the files in the `website` folder. If you have write access to the `
 
 ```bash
 npm run website:deploy
-``
+```
 
 That's it : )
 
