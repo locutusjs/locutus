@@ -24,15 +24,12 @@ timezone: Europe/Amsterdam
 permalink: /blog/:year/:month/:day/:title/
 
 gems:
-  - jemoji
   - jekyll-feed
   - jekyll-redirect-from
 
 # collections:
 # - faq
 
-emoji:
-  src: "/img"
 
 exclude:
   - Makefile
