@@ -1,8 +1,9 @@
 ---
 layout: post
 title: "Standard Coding Style"
-date: 2016-04-01 13:50
+date: 2016-04-02 13:50
 comments: true
+published: false
 categories: [coding style, convention]
 ---
 
