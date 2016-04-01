@@ -1,4 +1,4 @@
-function end(arr) {
+function end (arr) {
   //  discuss at: http://phpjs.org/functions/end/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Legaev Andrey
@@ -12,42 +12,42 @@ function end(arr) {
   //   example 2: end(['Kevin', 'van', 'Zonneveld']);
   //   returns 2: 'Zonneveld'
 
-  this.php_js = this.php_js || {};
-  this.php_js.pointers = this.php_js.pointers || [];
-  var indexOf = function(value) {
+  this.php_js = this.php_js || {}
+  this.php_js.pointers = this.php_js.pointers || []
+  var indexOf = function (value) {
     for (var i = 0, length = this.length; i < length; i++) {
       if (this[i] === value) {
-        return i;
+        return i
       }
     }
-    return -1;
-  };
+    return -1
+  }
   // END REDUNDANT
-  var pointers = this.php_js.pointers;
+  var pointers = this.php_js.pointers
   if (!pointers.indexOf) {
-    pointers.indexOf = indexOf;
+    pointers.indexOf = indexOf
   }
   if (pointers.indexOf(arr) === -1) {
-    pointers.push(arr, 0);
+    pointers.push(arr, 0)
   }
-  var arrpos = pointers.indexOf(arr);
+  var arrpos = pointers.indexOf(arr)
   if (Object.prototype.toString.call(arr) !== '[object Array]') {
-    var ct = 0;
-    var val;
+    var ct = 0
+    var val
     for (var k in arr) {
-      ct++;
-      val = arr[k];
+      ct++
+      val = arr[k]
     }
     if (ct === 0) {
       // Empty
-      return false;
+      return false
     }
-    pointers[arrpos + 1] = ct - 1;
-    return val;
+    pointers[arrpos + 1] = ct - 1
+    return val
   }
   if (arr.length === 0) {
-    return false;
+    return false
   }
-  pointers[arrpos + 1] = arr.length - 1;
-  return arr[pointers[arrpos + 1]];
+  pointers[arrpos + 1] = arr.length - 1
+  return arr[pointers[arrpos + 1]]
 }

@@ -1,4 +1,4 @@
-function gettimeofday(return_float) {
+function gettimeofday (return_float) {
   //  discuss at: http://phpjs.org/functions/gettimeofday/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: Josh Fraser (http://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)
@@ -10,19 +10,19 @@ function gettimeofday(return_float) {
   //   returns 2: 1238748978.49
 
   var t = new Date(),
-    y = 0;
+    y = 0
 
   if (return_float) {
-    return t.getTime() / 1000;
+    return t.getTime() / 1000
   }
 
   // Store current year.
-  y = t.getFullYear();
+  y = t.getFullYear()
   return {
-    sec         : t.getUTCSeconds(),
-    usec        : t.getUTCMilliseconds() * 1000,
-    minuteswest : t.getTimezoneOffset(),
+    sec: t.getUTCSeconds(),
+    usec: t.getUTCMilliseconds() * 1000,
+    minuteswest: t.getTimezoneOffset(),
     // Compare Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC to see if DST is observed.
-    dsttime     : 0 + (((new Date(y, 0)) - Date.UTC(y, 0)) !== ((new Date(y, 6)) - Date.UTC(y, 6)))
-  };
+    dsttime: 0 + (((new Date(y, 0)) - Date.UTC(y, 0)) !== ((new Date(y, 6)) - Date.UTC(y, 6)))
+  }
 }

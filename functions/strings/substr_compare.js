@@ -1,4 +1,4 @@
-function substr_compare(main_str, str, offset, length, case_insensitivity) {
+function substr_compare (main_str, str, offset, length, case_insensitivity) {
   //  discuss at: http://phpjs.org/functions/substr_compare/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: strcasecmp, strcmp
@@ -6,32 +6,32 @@ function substr_compare(main_str, str, offset, length, case_insensitivity) {
   //   returns 1: 0
 
   if (!offset && offset !== 0) {
-    throw 'Missing offset for substr_compare()';
+    throw 'Missing offset for substr_compare()'
   }
 
   if (offset < 0) {
-    offset = main_str.length + offset;
+    offset = main_str.length + offset
   }
 
   if (length && length > (main_str.length - offset)) {
-    return false;
+    return false
   }
-  length = length || main_str.length - offset;
+  length = length || main_str.length - offset
 
-  main_str = main_str.substr(offset, length);
+  main_str = main_str.substr(offset, length)
   // Should only compare up to the desired length
-  str = str.substr(0, length);
+  str = str.substr(0, length)
   if (case_insensitivity) {
     // Works as strcasecmp
     main_str = (main_str + '')
-      .toLowerCase();
+      .toLowerCase()
     str = (str + '')
-      .toLowerCase();
+      .toLowerCase()
     if (main_str == str) {
-      return 0;
+      return 0
     }
-    return (main_str > str) ? 1 : -1;
+    return (main_str > str) ? 1 : -1
   }
   // Works as strcmp
-  return ((main_str == str) ? 0 : ((main_str > str) ? 1 : -1));
+  return ((main_str == str) ? 0 : ((main_str > str) ? 1 : -1))
 }

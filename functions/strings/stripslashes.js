@@ -1,4 +1,4 @@
-function stripslashes(str) {
+function stripslashes (str) {
   //       discuss at: http://phpjs.org/functions/stripslashes/
   //      original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //      improved by: Ates Goral (http://magnetiq.com)
@@ -16,16 +16,16 @@ function stripslashes(str) {
   //        returns 2: "Kevin\'s code"
 
   return (str + '')
-    .replace(/\\(.?)/g, function(s, n1) {
+    .replace(/\\(.?)/g, function (s, n1) {
       switch (n1) {
-      case '\\':
-        return '\\';
-      case '0':
-        return '\u0000';
-      case '':
-        return '';
-      default:
-        return n1;
+        case '\\':
+          return '\\'
+        case '0':
+          return '\u0000'
+        case '':
+          return ''
+        default:
+          return n1
       }
-    });
+    })
 }

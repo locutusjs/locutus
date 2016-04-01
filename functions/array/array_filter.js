@@ -1,4 +1,4 @@
-function array_filter(arr, func) {
+function array_filter (arr, func) {
   //  discuss at: http://phpjs.org/functions/array_filter/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: max4ever
@@ -14,22 +14,22 @@ function array_filter(arr, func) {
   //   returns 3: {"a":1, "c":-1};
 
   var retObj = {},
-    k;
+    k
 
-  func = func || function(v) {
-    return v;
-  };
+  func = func || function (v) {
+    return v
+  }
 
   // Fix: Issue #73
   if (Object.prototype.toString.call(arr) === '[object Array]') {
-    retObj = [];
+    retObj = []
   }
 
   for (k in arr) {
     if (func(arr[k])) {
-      retObj[k] = arr[k];
+      retObj[k] = arr[k]
     }
   }
 
-  return retObj;
+  return retObj
 }

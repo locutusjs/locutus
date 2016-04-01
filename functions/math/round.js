@@ -1,4 +1,4 @@
-function round(value, precision, mode) {
+function round (value, precision, mode) {
   //  discuss at: http://phpjs.org/functions/round/
   // original by: Philip Peterson
   //  revised by: Onno Marsman
@@ -25,35 +25,35 @@ function round(value, precision, mode) {
   //   example 5: round(58551.799999999996, 2);
   //   returns 5: 58551.8
 
-  var m, f, isHalf, sgn; // helper variables
+  var m, f, isHalf, sgn // helper variables
   // making sure precision is integer
-  precision |= 0;
-  m = Math.pow(10, precision);
-  value *= m;
+  precision |= 0
+  m = Math.pow(10, precision)
+  value *= m
   // sign of the number
-  sgn = (value > 0) | -(value < 0);
-  isHalf = value % 1 === 0.5 * sgn;
-  f = Math.floor(value);
+  sgn = (value > 0) | -(value < 0)
+  isHalf = value % 1 === 0.5 * sgn
+  f = Math.floor(value)
 
   if (isHalf) {
     switch (mode) {
-    case 'PHP_ROUND_HALF_DOWN':
+      case 'PHP_ROUND_HALF_DOWN':
       // rounds .5 toward zero
-      value = f + (sgn < 0);
-      break;
-    case 'PHP_ROUND_HALF_EVEN':
+        value = f + (sgn < 0)
+        break
+      case 'PHP_ROUND_HALF_EVEN':
       // rouds .5 towards the next even integer
-      value = f + (f % 2 * sgn);
-      break;
-    case 'PHP_ROUND_HALF_ODD':
+        value = f + (f % 2 * sgn)
+        break
+      case 'PHP_ROUND_HALF_ODD':
       // rounds .5 towards the next odd integer
-      value = f + !(f % 2);
-      break;
-    default:
+        value = f + !(f % 2)
+        break
+      default:
       // rounds .5 away from zero
-      value = f + (sgn > 0);
+        value = f + (sgn > 0)
     }
   }
 
-  return (isHalf ? value : Math.round(value)) / m;
+  return (isHalf ? value : Math.round(value)) / m
 }

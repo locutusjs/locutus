@@ -1,4 +1,4 @@
-function decoct(number) {
+function decoct (number) {
   //  discuss at: http://phpjs.org/functions/decoct/
   // original by: Enrique Gonzalez
   // bugfixed by: Onno Marsman
@@ -10,8 +10,8 @@ function decoct(number) {
   //   returns 2: '410'
 
   if (number < 0) {
-    number = 0xFFFFFFFF + number + 1;
+    number = 0xFFFFFFFF + number + 1
   }
   return parseInt(number, 10)
-    .toString(8);
+    .toString(8)
 }

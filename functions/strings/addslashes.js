@@ -1,4 +1,4 @@
-function addslashes(str) {
+function addslashes (str) {
   //  discuss at: http://phpjs.org/functions/addslashes/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Ates Goral (http://magnetiq.com)
@@ -13,5 +13,5 @@ function addslashes(str) {
 
   return (str + '')
     .replace(/[\\"']/g, '\\$&')
-    .replace(/\u0000/g, '\\0');
+    .replace(/\u0000/g, '\\0')
 }

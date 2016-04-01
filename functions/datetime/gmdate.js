@@ -1,4 +1,4 @@
-function gmdate(format, timestamp) {
+function gmdate (format, timestamp) {
   //  discuss at: http://phpjs.org/functions/gmdate/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: Alex
@@ -10,8 +10,8 @@ function gmdate(format, timestamp) {
   var dt = typeof timestamp === 'undefined' ? new Date() : // Not provided
     typeof timestamp === 'object' ? new Date(timestamp) : // Javascript Date()
     // UNIX timestamp (auto-convert to int)
-    new Date(timestamp * 1000);
+    new Date(timestamp * 1000)
   timestamp = Date.parse(dt.toUTCString()
-    .slice(0, -4)) / 1000;
-  return this.date(format, timestamp);
+    .slice(0, -4)) / 1000
+  return this.date(format, timestamp)
 }

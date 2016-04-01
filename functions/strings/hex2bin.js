@@ -1,4 +1,4 @@
-function hex2bin(s) {
+function hex2bin (s) {
   //  discuss at: http://phpjs.org/functions/hex2bin/
   // original by: Dumitru Uzun (http://duzun.me)
   //   example 1: hex2bin('44696d61');
@@ -10,16 +10,16 @@ function hex2bin(s) {
 
   var ret = [],
     i = 0,
-    l;
+    l
 
-  s += '';
+  s += ''
 
   for (l = s.length; i < l; i += 2) {
-    var c = parseInt(s.substr(i, 1), 16);
-    var k = parseInt(s.substr(i + 1, 1), 16);
-    if (isNaN(c) || isNaN(k)) return false;
-    ret.push((c << 4) | k);
+    var c = parseInt(s.substr(i, 1), 16)
+    var k = parseInt(s.substr(i + 1, 1), 16)
+    if (isNaN(c) || isNaN(k)) return false
+    ret.push((c << 4) | k)
   }
 
-  return String.fromCharCode.apply(String, ret);
+  return String.fromCharCode.apply(String, ret)
 }

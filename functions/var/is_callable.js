@@ -1,4 +1,4 @@
-function is_callable(v, syntax_only, callable_name) {
+function is_callable (v, syntax_only, callable_name) {
   //  discuss at: http://phpjs.org/functions/is_callable/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: François
@@ -21,34 +21,34 @@ function is_callable(v, syntax_only, callable_name) {
 
   var name = '',
     obj = {},
-    method = '';
-  var getFuncName = function(fn) {
+    method = ''
+  var getFuncName = function (fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/)
-      .exec(fn);
+      .exec(fn)
     if (!name) {
-      return '(Anonymous)';
+      return '(Anonymous)'
     }
-    return name[1];
-  };
+    return name[1]
+  }
   if (typeof v === 'string') {
-    obj = this.window;
-    method = v;
-    name = v;
+    obj = this.window
+    method = v
+    name = v
   } else if (typeof v === 'function') {
-    return true;
+    return true
   } else if (Object.prototype.toString.call(v) === '[object Array]' &&
     v.length === 2 && typeof v[0] === 'object' && typeof v[1] === 'string') {
-    obj = v[0];
-    method = v[1];
-    name = (obj.constructor && getFuncName(obj.constructor)) + '::' + method;
+    obj = v[0]
+    method = v[1]
+    name = (obj.constructor && getFuncName(obj.constructor)) + '::' + method
   } else {
-    return false;
+    return false
   }
   if (syntax_only || typeof obj[method] === 'function') {
     if (callable_name) {
-      this.window[callable_name] = name;
+      this.window[callable_name] = name
     }
-    return true;
+    return true
   }
-  return false;
+  return false
 }

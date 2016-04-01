@@ -1,4 +1,4 @@
-function html_entity_decode(string, quote_style) {
+function html_entity_decode (string, quote_style) {
   //  discuss at: http://phpjs.org/functions/html_entity_decode/
   // original by: john (http://www.jd-tech.net)
   //    input by: ger
@@ -20,25 +20,25 @@ function html_entity_decode(string, quote_style) {
   var hash_map = {},
     symbol = '',
     tmp_str = '',
-    entity = '';
-  tmp_str = string.toString();
+    entity = ''
+  tmp_str = string.toString()
 
   if (false === (hash_map = this.get_html_translation_table('HTML_ENTITIES', quote_style))) {
-    return false;
+    return false
   }
 
   // fix &amp; problem
   // http://phpjs.org/functions/get_html_translation_table:416#comment_97660
-  delete(hash_map['&']);
-  hash_map['&'] = '&amp;';
+  delete (hash_map['&'])
+  hash_map['&'] = '&amp;'
 
   for (symbol in hash_map) {
-    entity = hash_map[symbol];
+    entity = hash_map[symbol]
     tmp_str = tmp_str.split(entity)
-      .join(symbol);
+      .join(symbol)
   }
   tmp_str = tmp_str.split('&#039;')
-    .join("'");
+    .join("'")
 
-  return tmp_str;
+  return tmp_str
 }

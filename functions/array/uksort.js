@@ -1,4 +1,4 @@
-function uksort(inputArr, sorter) {
+function uksort (inputArr, sorter) {
   //  discuss at: http://phpjs.org/functions/uksort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -22,50 +22,50 @@ function uksort(inputArr, sorter) {
     i = 0,
     k = '',
     strictForIn = false,
-    populateArr = {};
+    populateArr = {}
 
   if (typeof sorter === 'string') {
-    sorter = this.window[sorter];
+    sorter = this.window[sorter]
   }
 
   // Make a list of key names
   for (k in inputArr) {
     if (inputArr.hasOwnProperty(k)) {
-      keys.push(k);
+      keys.push(k)
     }
   }
 
   // Sort key names
   try {
     if (sorter) {
-      keys.sort(sorter);
+      keys.sort(sorter)
     } else {
-      keys.sort();
+      keys.sort()
     }
   } catch (e) {
-    return false;
+    return false
   }
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {};
-  this.php_js.ini = this.php_js.ini || {};
+  this.php_js = this.php_js || {}
+  this.php_js.ini = this.php_js.ini || {}
   // END REDUNDANT
   strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
-    .ini['phpjs.strictForIn'].local_value !== 'off';
-  populateArr = strictForIn ? inputArr : populateArr;
+    .ini['phpjs.strictForIn'].local_value !== 'off'
+  populateArr = strictForIn ? inputArr : populateArr
 
   // Rebuild array with sorted key names
   for (i = 0; i < keys.length; i++) {
-    k = keys[i];
-    tmp_arr[k] = inputArr[k];
+    k = keys[i]
+    tmp_arr[k] = inputArr[k]
     if (strictForIn) {
-      delete inputArr[k];
+      delete inputArr[k]
     }
   }
   for (i in tmp_arr) {
     if (tmp_arr.hasOwnProperty(i)) {
-      populateArr[i] = tmp_arr[i];
+      populateArr[i] = tmp_arr[i]
     }
   }
-  return strictForIn || populateArr;
+  return strictForIn || populateArr
 }

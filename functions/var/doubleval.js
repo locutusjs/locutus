@@ -1,4 +1,4 @@
-function doubleval(mixed_var) {
+function doubleval (mixed_var) {
   //  discuss at: http://phpjs.org/functions/doubleval/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: floatval
@@ -7,5 +7,5 @@ function doubleval(mixed_var) {
   //   example 1: doubleval(186);
   //   returns 1: 186.00
 
-  return this.floatval(mixed_var);
+  return this.floatval(mixed_var)
 }

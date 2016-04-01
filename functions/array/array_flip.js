@@ -1,4 +1,4 @@
-function array_flip(trans) {
+function array_flip (trans) {
   //  discuss at: http://phpjs.org/functions/array_flip/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Pier Paolo Ramon (http://www.mastersoup.com/)
@@ -11,19 +11,19 @@ function array_flip(trans) {
   //   example 2: array_flip(array({a: 0}, {b: 1}, {c: 2}))[1];
   //   returns 2: 'b'
 
-  var key, tmp_ar = {};
+  var key, tmp_ar = {}
 
   // Duck-type check for our own array()-created PHPJS_Array
   if (trans && typeof trans === 'object' && trans.change_key_case) {
-    return trans.flip();
+    return trans.flip()
   }
 
   for (key in trans) {
     if (!trans.hasOwnProperty(key)) {
-      continue;
+      continue
     }
-    tmp_ar[trans[key]] = key;
+    tmp_ar[trans[key]] = key
   }
 
-  return tmp_ar;
+  return tmp_ar
 }

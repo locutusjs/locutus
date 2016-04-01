@@ -1,4 +1,4 @@
-function quoted_printable_encode(str) {
+function quoted_printable_encode (str) {
   //  discuss at: http://phpjs.org/functions/quoted_printable_encode/
   // original by: Theriault
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -12,27 +12,27 @@ function quoted_printable_encode(str) {
 
   var hexChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'],
     RFC2045Encode1IN = / \r\n|\r\n|[^!-<>-~ ]/gm,
-    RFC2045Encode1OUT = function(sMatch) {
+    RFC2045Encode1OUT = function (sMatch) {
       // Encode space before CRLF sequence to prevent spaces from being stripped
       // Keep hard line breaks intact; CRLF sequences
       if (sMatch.length > 1) {
-        return sMatch.replace(' ', '=20');
+        return sMatch.replace(' ', '=20')
       }
       // Encode matching character
-      var chr = sMatch.charCodeAt(0);
-      return '=' + hexChars[((chr >>> 4) & 15)] + hexChars[(chr & 15)];
-    };
+      var chr = sMatch.charCodeAt(0)
+      return '=' + hexChars[((chr >>> 4) & 15)] + hexChars[(chr & 15)]
+    }
   // Split lines to 75 characters; the reason it's 75 and not 76 is because softline breaks are preceeded by an equal sign; which would be the 76th character.
   // However, if the last line/string was exactly 76 characters, then a softline would not be needed. PHP currently softbreaks anyway; so this function replicates PHP.
   RFC2045Encode2IN = /.{1,72}(?!\r\n)[^=]{0,3}/g,
-    RFC2045Encode2OUT = function(sMatch) {
+    RFC2045Encode2OUT = function (sMatch) {
       if (sMatch.substr(sMatch.length - 2) === '\r\n') {
-        return sMatch;
+        return sMatch
       }
-      return sMatch + '=\r\n';
-    };
+      return sMatch + '=\r\n'
+    }
   str = str.replace(RFC2045Encode1IN, RFC2045Encode1OUT)
-    .replace(RFC2045Encode2IN, RFC2045Encode2OUT);
+    .replace(RFC2045Encode2IN, RFC2045Encode2OUT)
   // Strip last softline break
-  return str.substr(0, str.length - 3);
+  return str.substr(0, str.length - 3)
 }

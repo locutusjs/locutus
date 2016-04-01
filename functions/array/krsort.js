@@ -1,4 +1,4 @@
-function krsort(inputArr, sort_flags) {
+function krsort (inputArr, sort_flags) {
   //  discuss at: http://phpjs.org/functions/krsort/
   // original by: GeekFG (http://geekfg.blogspot.com)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -32,75 +32,75 @@ function krsort(inputArr, sort_flags) {
     keys = [],
     sorter, i, k, that = this,
     strictForIn = false,
-    populateArr = {};
+    populateArr = {}
 
   switch (sort_flags) {
-  case 'SORT_STRING':
+    case 'SORT_STRING':
     // compare items as strings
-    sorter = function(a, b) {
-      return that.strnatcmp(b, a);
-    };
-    break;
-  case 'SORT_LOCALE_STRING':
+      sorter = function (a, b) {
+        return that.strnatcmp(b, a)
+      }
+      break
+    case 'SORT_LOCALE_STRING':
     // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
-    var loc = this.i18n_loc_get_default();
-    sorter = this.php_js.i18nLocales[loc].sorting;
-    break;
-  case 'SORT_NUMERIC':
+      var loc = this.i18n_loc_get_default()
+      sorter = this.php_js.i18nLocales[loc].sorting
+      break
+    case 'SORT_NUMERIC':
     // compare items numerically
-    sorter = function(a, b) {
-      return (b - a);
-    };
-    break;
-  case 'SORT_REGULAR':
+      sorter = function (a, b) {
+        return (b - a)
+      }
+      break
+    case 'SORT_REGULAR':
     // compare items normally (don't change types)
-  default:
-    sorter = function(b, a) {
-      var aFloat = parseFloat(a),
+    default:
+      sorter = function (b, a) {
+        var aFloat = parseFloat(a),
         bFloat = parseFloat(b),
         aNumeric = aFloat + '' === a,
-        bNumeric = bFloat + '' === b;
-      if (aNumeric && bNumeric) {
-        return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0;
+        bNumeric = bFloat + '' === b
+        if (aNumeric && bNumeric) {
+        return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0
       } else if (aNumeric && !bNumeric) {
-        return 1;
+        return 1
       } else if (!aNumeric && bNumeric) {
-        return -1;
+        return -1
       }
-      return a > b ? 1 : a < b ? -1 : 0;
-    };
-    break;
+        return a > b ? 1 : a < b ? -1 : 0
+      }
+      break
   }
 
   // Make a list of key names
   for (k in inputArr) {
     if (inputArr.hasOwnProperty(k)) {
-      keys.push(k);
+      keys.push(k)
     }
   }
-  keys.sort(sorter);
+  keys.sort(sorter)
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {};
-  this.php_js.ini = this.php_js.ini || {};
+  this.php_js = this.php_js || {}
+  this.php_js.ini = this.php_js.ini || {}
   // END REDUNDANT
   strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
-    .ini['phpjs.strictForIn'].local_value !== 'off';
-  populateArr = strictForIn ? inputArr : populateArr;
+    .ini['phpjs.strictForIn'].local_value !== 'off'
+  populateArr = strictForIn ? inputArr : populateArr
 
   // Rebuild array with sorted key names
   for (i = 0; i < keys.length; i++) {
-    k = keys[i];
-    tmp_arr[k] = inputArr[k];
+    k = keys[i]
+    tmp_arr[k] = inputArr[k]
     if (strictForIn) {
-      delete inputArr[k];
+      delete inputArr[k]
     }
   }
   for (i in tmp_arr) {
     if (tmp_arr.hasOwnProperty(i)) {
-      populateArr[i] = tmp_arr[i];
+      populateArr[i] = tmp_arr[i]
     }
   }
 
-  return strictForIn || populateArr;
+  return strictForIn || populateArr
 }

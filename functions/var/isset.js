@@ -1,4 +1,4 @@
-function isset() {
+function isset () {
   //  discuss at: http://phpjs.org/functions/isset/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: FremyCompany
@@ -12,17 +12,17 @@ function isset() {
   var a = arguments,
     l = a.length,
     i = 0,
-    undef;
+    undef
 
   if (l === 0) {
-    throw new Error('Empty isset');
+    throw new Error('Empty isset')
   }
 
   while (i !== l) {
     if (a[i] === undef || a[i] === null) {
-      return false;
+      return false
     }
-    i++;
+    i++
   }
-  return true;
+  return true
 }

@@ -1,4 +1,4 @@
-function array_diff_key(arr1) {
+function array_diff_key (arr1) {
   //  discuss at: http://phpjs.org/functions/array_diff_key/
   // original by: Ates Goral (http://magnetiq.com)
   //  revised by: Brett Zamir (http://brett-zamir.me)
@@ -13,20 +13,20 @@ function array_diff_key(arr1) {
     k1 = '',
     i = 1,
     k = '',
-    arr = {};
+    arr = {}
 
   arr1keys: for (k1 in arr1) {
     for (i = 1; i < argl; i++) {
-      arr = arguments[i];
+      arr = arguments[i]
       for (k in arr) {
         if (k === k1) {
           // If it reaches here, it was found in at least one array, so try next value
-          continue arr1keys;
+          continue arr1keys
         }
       }
-      retArr[k1] = arr1[k1];
+      retArr[k1] = arr1[k1]
     }
   }
 
-  return retArr;
+  return retArr
 }

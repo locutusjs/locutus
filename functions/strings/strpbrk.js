@@ -1,4 +1,4 @@
-function strpbrk(haystack, char_list) {
+function strpbrk (haystack, char_list) {
   //  discuss at: http://phpjs.org/functions/strpbrk/
   // original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
   // bugfixed by: Onno Marsman
@@ -9,8 +9,8 @@ function strpbrk(haystack, char_list) {
 
   for (var i = 0, len = haystack.length; i < len; ++i) {
     if (char_list.indexOf(haystack.charAt(i)) >= 0) {
-      return haystack.slice(i);
+      return haystack.slice(i)
     }
   }
-  return false;
+  return false
 }

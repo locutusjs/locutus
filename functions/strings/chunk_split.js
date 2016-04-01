@@ -1,4 +1,4 @@
-function chunk_split(body, chunklen, end) {
+function chunk_split (body, chunklen, end) {
   //  discuss at: http://phpjs.org/functions/chunk_split/
   // original by: Paulo Freitas
   //    input by: Brett Zamir (http://brett-zamir.me)
@@ -9,13 +9,13 @@ function chunk_split(body, chunklen, end) {
   //   example 2: chunk_split('Hello world!', 10, '*');
   //   returns 2: 'Hello worl*d!*'
 
-  chunklen = parseInt(chunklen, 10) || 76;
-  end = end || '\r\n';
+  chunklen = parseInt(chunklen, 10) || 76
+  end = end || '\r\n'
 
   if (chunklen < 1) {
-    return false;
+    return false
   }
 
   return body.match(new RegExp('.{0,' + chunklen + '}', 'g'))
-    .join(end);
+    .join(end)
 }

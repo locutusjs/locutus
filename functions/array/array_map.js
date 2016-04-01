@@ -1,4 +1,4 @@
-function array_map(callback) {
+function array_map (callback) {
   //  discuss at: http://phpjs.org/functions/array_map/
   // original by: Andrea Giammarchi (http://webreflection.blogspot.com)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -18,33 +18,33 @@ function array_map(callback) {
     k = 1,
     m = 0,
     tmp = [],
-    tmp_ar = [];
+    tmp_ar = []
 
   while (i < j) {
     while (k < argc) {
-      tmp[m++] = argv[k++][i];
+      tmp[m++] = argv[k++][i]
     }
 
-    m = 0;
-    k = 1;
+    m = 0
+    k = 1
 
     if (callback) {
       if (typeof callback === 'string') {
-        cb = glbl[callback];
+        cb = glbl[callback]
       } else if (typeof callback === 'object' && callback.length) {
-        obj = typeof callback[0] === 'string' ? glbl[callback[0]] : callback[0];
+        obj = typeof callback[0] === 'string' ? glbl[callback[0]] : callback[0]
         if (typeof obj === 'undefined') {
-          throw 'Object not found: ' + callback[0];
+          throw 'Object not found: ' + callback[0]
         }
-        cb = typeof callback[1] === 'string' ? obj[callback[1]] : callback[1];
+        cb = typeof callback[1] === 'string' ? obj[callback[1]] : callback[1]
       }
-      tmp_ar[i++] = cb.apply(obj, tmp);
+      tmp_ar[i++] = cb.apply(obj, tmp)
     } else {
-      tmp_ar[i++] = tmp;
+      tmp_ar[i++] = tmp
     }
 
-    tmp = [];
+    tmp = []
   }
 
-  return tmp_ar;
+  return tmp_ar
 }

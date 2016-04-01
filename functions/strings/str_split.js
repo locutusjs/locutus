@@ -1,4 +1,4 @@
-function str_split(string, split_length) {
+function str_split (string, split_length) {
   //  discuss at: http://phpjs.org/functions/str_split/
   // original by: Martijn Wieringa
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -10,18 +10,18 @@ function str_split(string, split_length) {
   //   returns 1: ['Hel', 'lo ', 'Fri', 'end']
 
   if (split_length === null) {
-    split_length = 1;
+    split_length = 1
   }
   if (string === null || split_length < 1) {
-    return false;
+    return false
   }
-  string += '';
+  string += ''
   var chunks = [],
     pos = 0,
-    len = string.length;
+    len = string.length
   while (pos < len) {
-    chunks.push(string.slice(pos, pos += split_length));
+    chunks.push(string.slice(pos, pos += split_length))
   }
 
-  return chunks;
+  return chunks
 }

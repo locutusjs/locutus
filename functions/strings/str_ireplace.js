@@ -1,4 +1,4 @@
-function str_ireplace(search, replace, subject, count) {
+function str_ireplace (search, replace, subject, count) {
   //  discuss at: http://phpjs.org/functions/str_ireplace/
   // original by: Glen Arason (http://CanadianDomainRegistry.ca)
   //        note: Case-insensitive version of str_replace()
@@ -25,73 +25,73 @@ function str_ireplace(search, replace, subject, count) {
     oi = '',
     ofjl = '',
     os = subject,
-    osa = Object.prototype.toString.call(os) === '[object Array]';
+    osa = Object.prototype.toString.call(os) === '[object Array]'
 
   if (typeof (search) === 'object') {
-    temp = search;
-    search = new Array();
+    temp = search
+    search = new Array()
     for (i = 0; i < temp.length; i += 1) {
-      search[i] = temp[i].toLowerCase();
+      search[i] = temp[i].toLowerCase()
     }
   } else {
-    search = search.toLowerCase();
+    search = search.toLowerCase()
   }
 
   if (typeof (subject) === 'object') {
-    temp = subject;
-    subject = new Array();
+    temp = subject
+    subject = new Array()
     for (i = 0; i < temp.length; i += 1) {
-      subject[i] = temp[i].toLowerCase();
+      subject[i] = temp[i].toLowerCase()
     }
   } else {
-    subject = subject.toLowerCase();
+    subject = subject.toLowerCase()
   }
 
   if (typeof (search) === 'object' && typeof (replace) === 'string') {
-    temp = replace;
-    replace = new Array();
+    temp = replace
+    replace = new Array()
     for (i = 0; i < search.length; i += 1) {
-      replace[i] = temp;
+      replace[i] = temp
     }
   }
 
-  temp = '';
-  f = [].concat(search);
-  r = [].concat(replace);
-  ra = Object.prototype.toString.call(r) === '[object Array]';
-  s = subject;
-  sa = Object.prototype.toString.call(s) === '[object Array]';
-  s = [].concat(s);
-  os = [].concat(os);
+  temp = ''
+  f = [].concat(search)
+  r = [].concat(replace)
+  ra = Object.prototype.toString.call(r) === '[object Array]'
+  s = subject
+  sa = Object.prototype.toString.call(s) === '[object Array]'
+  s = [].concat(s)
+  os = [].concat(os)
 
   if (count) {
-    this.window[count] = 0;
+    this.window[count] = 0
   }
 
   for (i = 0, sl = s.length; i < sl; i++) {
     if (s[i] === '') {
-      continue;
+      continue
     }
     for (j = 0, fl = f.length; j < fl; j++) {
-      temp = s[i] + '';
-      repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
+      temp = s[i] + ''
+      repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0]
       s[i] = (temp)
         .split(f[j])
-        .join(repl);
-      otemp = os[i] + '';
-      oi = temp.indexOf(f[j]);
-      ofjl = f[j].length;
+        .join(repl)
+      otemp = os[i] + ''
+      oi = temp.indexOf(f[j])
+      ofjl = f[j].length
       if (oi >= 0) {
         os[i] = (otemp)
           .split(otemp.substr(oi, ofjl))
-          .join(repl);
+          .join(repl)
       }
 
       if (count) {
         this.window[count] += ((temp.split(f[j]))
-          .length - 1);
+          .length - 1)
       }
     }
   }
-  return osa ? os : os[0];
+  return osa ? os : os[0]
 }

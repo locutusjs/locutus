@@ -1,4 +1,4 @@
-function str_getcsv(input, delimiter, enclosure, escape) {
+function str_getcsv (input, delimiter, enclosure, escape) {
   //  discuss at: http://phpjs.org/functions/str_getcsv/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: str_getcsv('"abc","def","ghi"');
@@ -22,39 +22,39 @@ function str_getcsv(input, delimiter, enclosure, escape) {
 
     Should also test newlines within
 */
-  var i, inpLen, output = [];
-  var backwards = function(str) {
+  var i, inpLen, output = []
+  var backwards = function (str) {
     // We need to go backwards to simulate negative look-behind (don't split on
-    //an escaped enclosure even if followed by the delimiter and another enclosure mark)
+    // an escaped enclosure even if followed by the delimiter and another enclosure mark)
     return str.split('')
       .reverse()
-      .join('');
-  };
-  var pq = function(str) {
+      .join('')
+  }
+  var pq = function (str) {
     // preg_quote()
     return String(str)
-      .replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!<\>\|\:])/g, '\\$1');
-  };
+      .replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!<\>\|\:])/g, '\\$1')
+  }
 
-  delimiter = delimiter || ',';
-  enclosure = enclosure || '"';
-  escape = escape || '\\';
-  var pqEnc = pq(enclosure);
-  var pqEsc = pq(escape);
+  delimiter = delimiter || ','
+  enclosure = enclosure || '"'
+  escape = escape || '\\'
+  var pqEnc = pq(enclosure)
+  var pqEsc = pq(escape)
 
   input = input.replace(new RegExp('^\\s*' + pqEnc), '')
-    .replace(new RegExp(pqEnc + '\\s*$'), '');
+    .replace(new RegExp(pqEnc + '\\s*$'), '')
 
   // PHP behavior may differ by including whitespace even outside of the enclosure
   input = backwards(input)
     .split(new RegExp(pqEnc + '\\s*' + pq(delimiter) + '\\s*' + pqEnc + '(?!' + pqEsc + ')',
       'g'))
-    .reverse();
+    .reverse()
 
   for (i = 0, inpLen = input.length; i < inpLen; i++) {
     output.push(backwards(input[i])
-      .replace(new RegExp(pqEsc + pqEnc, 'g'), enclosure));
+      .replace(new RegExp(pqEsc + pqEnc, 'g'), enclosure))
   }
 
-  return output;
+  return output
 }

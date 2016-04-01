@@ -1,4 +1,4 @@
-function array_search(needle, haystack, argStrict) {
+function array_search (needle, haystack, argStrict) {
   //  discuss at: http://phpjs.org/functions/array_search/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Brett Zamir (http://brett-zamir.me)
@@ -13,11 +13,11 @@ function array_search(needle, haystack, argStrict) {
   //   returns 2: '3'
 
   var strict = !!argStrict,
-    key = '';
+    key = ''
 
   if (haystack && typeof haystack === 'object' && haystack.change_key_case) {
     // Duck-type check for our own array()-created PHPJS_Array
-    return haystack.search(needle, argStrict);
+    return haystack.search(needle, argStrict)
   }
   if (typeof needle === 'object' && needle.exec) {
     // Duck-type for RegExp
@@ -26,26 +26,26 @@ function array_search(needle, haystack, argStrict) {
       var flags = 'i' + (needle.global ? 'g' : '') +
         (needle.multiline ? 'm' : '') +
         // sticky is FF only
-        (needle.sticky ? 'y' : '');
-      needle = new RegExp(needle.source, flags);
+        (needle.sticky ? 'y' : '')
+      needle = new RegExp(needle.source, flags)
     }
     for (key in haystack) {
       if (haystack.hasOwnProperty(key)) {
         if (needle.test(haystack[key])) {
-          return key;
+          return key
         }
       }
     }
-    return false;
+    return false
   }
 
   for (key in haystack) {
     if (haystack.hasOwnProperty(key)) {
       if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
-        return key;
+        return key
       }
     }
   }
 
-  return false;
+  return false
 }

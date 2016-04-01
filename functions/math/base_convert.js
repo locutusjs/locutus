@@ -1,4 +1,4 @@
-function base_convert(number, frombase, tobase) {
+function base_convert (number, frombase, tobase) {
   //  discuss at: http://phpjs.org/functions/base_convert/
   // original by: Philippe Baumann
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)
@@ -6,5 +6,5 @@ function base_convert(number, frombase, tobase) {
   //   returns 1: '101000110111001100110100'
 
   return parseInt(number + '', frombase | 0)
-    .toString(tobase | 0);
+    .toString(tobase | 0)
 }

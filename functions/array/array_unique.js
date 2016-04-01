@@ -1,4 +1,4 @@
-function array_unique(inputArr) {
+function array_unique (inputArr) {
   //  discuss at: http://phpjs.org/functions/array_unique/
   // original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   //    input by: duncan
@@ -17,28 +17,28 @@ function array_unique(inputArr) {
 
   var key = '',
     tmp_arr2 = {},
-    val = '';
+    val = ''
 
-  var __array_search = function(needle, haystack) {
-    var fkey = '';
+  var __array_search = function (needle, haystack) {
+    var fkey = ''
     for (fkey in haystack) {
       if (haystack.hasOwnProperty(fkey)) {
         if ((haystack[fkey] + '') === (needle + '')) {
-          return fkey;
+          return fkey
         }
       }
     }
-    return false;
-  };
+    return false
+  }
 
   for (key in inputArr) {
     if (inputArr.hasOwnProperty(key)) {
-      val = inputArr[key];
+      val = inputArr[key]
       if (false === __array_search(val, tmp_arr2)) {
-        tmp_arr2[key] = val;
+        tmp_arr2[key] = val
       }
     }
   }
 
-  return tmp_arr2;
+  return tmp_arr2
 }

@@ -1,4 +1,4 @@
-function hexdec(hex_string) {
+function hexdec (hex_string) {
   //  discuss at: http://phpjs.org/functions/hexdec/
   // original by: Philippe Baumann
   //   example 1: hexdec('that');
@@ -7,6 +7,6 @@ function hexdec(hex_string) {
   //   returns 2: 160
 
   hex_string = (hex_string + '')
-    .replace(/[^a-f0-9]/gi, '');
-  return parseInt(hex_string, 16);
+    .replace(/[^a-f0-9]/gi, '')
+  return parseInt(hex_string, 16)
 }

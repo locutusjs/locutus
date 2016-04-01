@@ -1,4 +1,4 @@
-function strcasecmp(f_string1, f_string2) {
+function strcasecmp (f_string1, f_string2) {
   //  discuss at: http://phpjs.org/functions/strcasecmp/
   // original by: Martijn Wieringa
   // bugfixed by: Onno Marsman
@@ -6,15 +6,15 @@ function strcasecmp(f_string1, f_string2) {
   //   returns 1: 0
 
   var string1 = (f_string1 + '')
-    .toLowerCase();
+    .toLowerCase()
   var string2 = (f_string2 + '')
-    .toLowerCase();
+    .toLowerCase()
 
   if (string1 > string2) {
-    return 1;
+    return 1
   } else if (string1 == string2) {
-    return 0;
+    return 0
   }
 
-  return -1;
+  return -1
 }
