@@ -1,5 +1,0 @@
-{
-	"preset": "node-style-guide",
-	"requireAlignedObjectValues": "all",
-	"disallowSpaceAfterObjectKeys": "ignoreSingleLine"
-}
