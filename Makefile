@@ -73,7 +73,7 @@ hook:
 site:
 	git pull && \
 	cd _octopress && \
-	bundle install && \
+	bundle install --path vendor/bundle && \
 	npm install && \
 	bundle exec rake integrate && \
 	bundle exec rake build && \
