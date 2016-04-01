@@ -1,0 +1,57 @@
+name: php.js
+baseurl: null
+description: php.js is a resource that offers community-built JavaScript alternatives to PHP functions.
+meta_description: Learn how to do it in JavaScript. Explore boundaries porting languages. Enjoy functions that turn out to be useful.
+url: "http://phpjs.org"
+author: php.js
+
+markdown: kramdown
+
+# Completely disable excerpts to avoid problems with _functions
+excerpt_separator: ""
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  transliterated_header_ids: true
+  toc_levels: 1..2
+  smart_quotes: ["apos", "apos", "quot", "quot"]
+  syntax_highlighter: rouge
+  # syntax_highlighter: nil
+
+encoding: UTF-8
+timezone: Europe/Amsterdam
+permalink: /blog/:year/:month/:day/:title/
+
+gems:
+  - jekyll-feed
+  - jekyll-redirect-from
+
+collections:
+  functions:
+    output: true
+
+exclude:
+  - Makefile
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - npm-debug.*
+  - package.json
+  - bower.json
+  - README.md
+  - vendor
+
+feed:
+  path: atom.xml
+
+subscribe_rss: /atom.xml
+
+# Can be overridden by _config-asset-index-production.yml
+js:
+  app: app.js
+css:
+  app: app.css

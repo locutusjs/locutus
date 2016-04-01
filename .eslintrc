@@ -5,9 +5,9 @@
     "node": true
   },
   "rules": {
-    "no-unused-vars": "off",
-    "no-eval": "off",
-    "key-spacing": "off",
-    "one-var": "off"
+    "no-unused-vars": 0,
+    "no-eval": 0,
+    "key-spacing": 0,
+    "one-var": 0
   }
 }
