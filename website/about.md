@@ -13,10 +13,11 @@ php.js is a resource that offers community-built JavaScript alternatives to PHP 
 
 **Why on earth would you port php to js?**
 
- - to see if we can
+ - initially, there was a need for interoperable server/clientside functions for base64 and url encoding. then...
+ - to see if we could
  - to learn JavaScript
  - to help others learn JavaScript
- - to profit from a few useful functions such as:
+ - to profit from a few more useful functions such as:
 [strip_tags](http://phpjs.org/functions/strip_tags/),
 [strtotime](http://phpjs.org/functions/strtotime/),
 [md5](http://phpjs.org/functions/md5/),
