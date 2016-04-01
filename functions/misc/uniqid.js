@@ -1,4 +1,4 @@
-function uniqid(prefix, more_entropy) {
+function uniqid (prefix, more_entropy) {
   //  discuss at: http://phpjs.org/functions/uniqid/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: Kankrelune (http://www.webfaktory.info/)
@@ -12,48 +12,48 @@ function uniqid(prefix, more_entropy) {
   //   returns 3: 'bara20285b23dfd1.31879087'
 
   if (typeof prefix === 'undefined') {
-    prefix = '';
+    prefix = ''
   }
 
-  var retId;
-  var formatSeed = function(seed, reqWidth) {
+  var retId
+  var formatSeed = function (seed, reqWidth) {
     seed = parseInt(seed, 10)
-      .toString(16); // to hex str
+      .toString(16) // to hex str
     if (reqWidth < seed.length) {
       // so long we split
-      return seed.slice(seed.length - reqWidth);
+      return seed.slice(seed.length - reqWidth)
     }
     if (reqWidth > seed.length) {
       // so short we pad
       return Array(1 + (reqWidth - seed.length))
-        .join('0') + seed;
+        .join('0') + seed
     }
-    return seed;
-  };
+    return seed
+  }
 
   // BEGIN REDUNDANT
   if (!this.php_js) {
-    this.php_js = {};
+    this.php_js = {}
   }
   // END REDUNDANT
   if (!this.php_js.uniqidSeed) {
     // init seed with big random int
-    this.php_js.uniqidSeed = Math.floor(Math.random() * 0x75bcd15);
+    this.php_js.uniqidSeed = Math.floor(Math.random() * 0x75bcd15)
   }
-  this.php_js.uniqidSeed++;
+  this.php_js.uniqidSeed++
 
   // start with prefix, add current milliseconds hex string
-  retId = prefix;
+  retId = prefix
   retId += formatSeed(parseInt(new Date()
-    .getTime() / 1000, 10), 8);
+    .getTime() / 1000, 10), 8)
   // add seed hex string
-  retId += formatSeed(this.php_js.uniqidSeed, 5);
+  retId += formatSeed(this.php_js.uniqidSeed, 5)
   if (more_entropy) {
     // for more entropy we add a float lower to 10
     retId += (Math.random() * 10)
       .toFixed(8)
-      .toString();
+      .toString()
   }
 
-  return retId;
+  return retId
 }

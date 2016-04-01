@@ -1,4 +1,4 @@
-function sizeof(mixed_var, mode) {
+function sizeof (mixed_var, mode) {
   //  discuss at: http://phpjs.org/functions/sizeof/
   // original by: Philip Peterson
   //  depends on: count
@@ -7,5 +7,5 @@ function sizeof(mixed_var, mode) {
   //   example 2: sizeof({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');
   //   returns 2: 6
 
-  return this.count(mixed_var, mode);
+  return this.count(mixed_var, mode)
 }

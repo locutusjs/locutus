@@ -1,4 +1,4 @@
-function array_reverse(array, preserve_keys) {
+function array_reverse (array, preserve_keys) {
   //  discuss at: http://phpjs.org/functions/array_reverse/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Karol Kowalski
@@ -7,36 +7,36 @@ function array_reverse(array, preserve_keys) {
 
   var isArray = Object.prototype.toString.call(array) === '[object Array]',
     tmp_arr = preserve_keys ? {} : [],
-    key;
+    key
 
   if (isArray && !preserve_keys) {
     return array.slice(0)
-      .reverse();
+      .reverse()
   }
 
   if (preserve_keys) {
-    var keys = [];
+    var keys = []
     for (key in array) {
       // if (array.hasOwnProperty(key)) {
-      keys.push(key);
+      keys.push(key)
       // }
     }
 
-    var i = keys.length;
+    var i = keys.length
     while (i--) {
-      key = keys[i];
+      key = keys[i]
       // FIXME: don't rely on browsers keeping keys in insertion order
       // it's implementation specific
       // eg. the result will differ from expected in Google Chrome
-      tmp_arr[key] = array[key];
+      tmp_arr[key] = array[key]
     }
   } else {
     for (key in array) {
       // if (array.hasOwnProperty(key)) {
-      tmp_arr.unshift(array[key]);
+      tmp_arr.unshift(array[key])
       // }
     }
   }
 
-  return tmp_arr;
+  return tmp_arr
 }

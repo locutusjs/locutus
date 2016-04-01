@@ -1,4 +1,4 @@
-function array_product(input) {
+function array_product (input) {
   //  discuss at: http://phpjs.org/functions/array_product/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //   example 1: array_product([ 2, 4, 6, 8 ]);
@@ -6,16 +6,16 @@ function array_product(input) {
 
   var idx = 0,
     product = 1,
-    il = 0;
+    il = 0
 
   if (Object.prototype.toString.call(input) !== '[object Array]') {
-    return null;
+    return null
   }
 
-  il = input.length;
+  il = input.length
   while (idx < il) {
-    product *= (!isNaN(input[idx]) ? input[idx] : 0);
-    idx++;
+    product *= (!isNaN(input[idx]) ? input[idx] : 0)
+    idx++
   }
-  return product;
+  return product
 }

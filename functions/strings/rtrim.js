@@ -1,4 +1,4 @@
-function rtrim(str, charlist) {
+function rtrim (str, charlist) {
   //  discuss at: http://phpjs.org/functions/rtrim/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Erkekjetter
@@ -10,8 +10,8 @@ function rtrim(str, charlist) {
   //   returns 1: '    Kevin van Zonneveld'
 
   charlist = !charlist ? ' \\s\u00A0' : (charlist + '')
-    .replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '\\$1');
-  var re = new RegExp('[' + charlist + ']+$', 'g');
+    .replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '\\$1')
+  var re = new RegExp('[' + charlist + ']+$', 'g')
   return (str + '')
-    .replace(re, '');
+    .replace(re, '')
 }

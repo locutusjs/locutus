@@ -1,4 +1,4 @@
-function strpos(haystack, needle, offset) {
+function strpos (haystack, needle, offset) {
   //  discuss at: http://phpjs.org/functions/strpos/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Onno Marsman
@@ -8,6 +8,6 @@ function strpos(haystack, needle, offset) {
   //   returns 1: 14
 
   var i = (haystack + '')
-    .indexOf(needle, (offset || 0));
-  return i === -1 ? false : i;
+    .indexOf(needle, (offset || 0))
+  return i === -1 ? false : i
 }

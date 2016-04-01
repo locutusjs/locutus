@@ -1,4 +1,4 @@
-function urlencode(str) {
+function urlencode (str) {
   //       discuss at: http://phpjs.org/functions/urlencode/
   //      original by: Philip Peterson
   //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -25,7 +25,7 @@ function urlencode(str) {
   //        returns 3: 'http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3Dphp.js%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a'
 
   str = (str + '')
-    .toString();
+    .toString()
 
   // Tilde should be allowed unescaped in future versions of PHP (as reflected below), but if you want to reflect current
   // PHP behavior, you would need to add ".replace(/~/g, '%7E');" to the following.
@@ -35,5 +35,5 @@ function urlencode(str) {
     .replace(/\(/g, '%28')
     .replace(/\)/g, '%29')
     .replace(/\*/g, '%2A')
-    .replace(/%20/g, '+');
+    .replace(/%20/g, '+')
 }

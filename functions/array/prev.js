@@ -1,4 +1,4 @@
-function prev(arr) {
+function prev (arr) {
   //  discuss at: http://phpjs.org/functions/prev/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Uses global: php_js to store the array pointer
@@ -6,40 +6,40 @@ function prev(arr) {
   //   example 1: prev(transport);
   //   returns 1: false
 
-  this.php_js = this.php_js || {};
-  this.php_js.pointers = this.php_js.pointers || [];
-  var indexOf = function(value) {
+  this.php_js = this.php_js || {}
+  this.php_js.pointers = this.php_js.pointers || []
+  var indexOf = function (value) {
     for (var i = 0, length = this.length; i < length; i++) {
       if (this[i] === value) {
-        return i;
+        return i
       }
     }
-    return -1;
-  };
-  // END REDUNDANT
-  var pointers = this.php_js.pointers;
-  if (!pointers.indexOf) {
-    pointers.indexOf = indexOf;
+    return -1
   }
-  var arrpos = pointers.indexOf(arr);
-  var cursor = pointers[arrpos + 1];
+  // END REDUNDANT
+  var pointers = this.php_js.pointers
+  if (!pointers.indexOf) {
+    pointers.indexOf = indexOf
+  }
+  var arrpos = pointers.indexOf(arr)
+  var cursor = pointers[arrpos + 1]
   if (pointers.indexOf(arr) === -1 || cursor === 0) {
-    return false;
+    return false
   }
   if (Object.prototype.toString.call(arr) !== '[object Array]') {
-    var ct = 0;
+    var ct = 0
     for (var k in arr) {
       if (ct === cursor - 1) {
-        pointers[arrpos + 1] -= 1;
-        return arr[k];
+        pointers[arrpos + 1] -= 1
+        return arr[k]
       }
-      ct++;
+      ct++
     }
     // Shouldn't reach here
   }
   if (arr.length === 0) {
-    return false;
+    return false
   }
-  pointers[arrpos + 1] -= 1;
-  return arr[pointers[arrpos + 1]];
+  pointers[arrpos + 1] -= 1
+  return arr[pointers[arrpos + 1]]
 }

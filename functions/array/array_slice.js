@@ -1,4 +1,4 @@
-function array_slice(arr, offst, lgth, preserve_keys) {
+function array_slice (arr, offst, lgth, preserve_keys) {
   //  discuss at: http://phpjs.org/functions/array_slice/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: is_int
@@ -11,61 +11,61 @@ function array_slice(arr, offst, lgth, preserve_keys) {
   //   returns 2: {2: 'c', 3: 'd'}
 
   /*
-     if ('callee' in arr && 'length' in arr) {
-       arr = Array.prototype.slice.call(arr);
-     }
-     */
+      if ('callee' in arr && 'length' in arr) {
+        arr = Array.prototype.slice.call(arr);
+      }
+      */
 
-  var key = '';
+  var key = ''
 
   if (Object.prototype.toString.call(arr) !== '[object Array]' ||
     (preserve_keys && offst !== 0)) {
     // Assoc. array as input or if required as output
     var lgt = 0,
-      newAssoc = {};
+      newAssoc = {}
     for (key in arr) {
-      //if (key !== 'length') {
-      lgt += 1;
-      newAssoc[key] = arr[key];
-      //}
+      // if (key !== 'length') {
+      lgt += 1
+      newAssoc[key] = arr[key]
+      // }
     }
-    arr = newAssoc;
+    arr = newAssoc
 
-    offst = (offst < 0) ? lgt + offst : offst;
-    lgth = lgth === undefined ? lgt : (lgth < 0) ? lgt + lgth - offst : lgth;
+    offst = (offst < 0) ? lgt + offst : offst
+    lgth = lgth === undefined ? lgt : (lgth < 0) ? lgt + lgth - offst : lgth
 
-    var assoc = {};
+    var assoc = {}
     var start = false,
       it = -1,
       arrlgth = 0,
-      no_pk_idx = 0;
+      no_pk_idx = 0
     for (key in arr) {
-      ++it;
+      ++it
       if (arrlgth >= lgth) {
-        break;
+        break
       }
       if (it == offst) {
-        start = true;
+        start = true
       }
       if (!start) {
-        continue;
-      }++arrlgth;
+        continue
+      }++arrlgth
       if (this.is_int(key) && !preserve_keys) {
-        assoc[no_pk_idx++] = arr[key];
+        assoc[no_pk_idx++] = arr[key]
       } else {
-        assoc[key] = arr[key];
+        assoc[key] = arr[key]
       }
     }
     // Make as array-like object (though length will not be dynamic)
-    //assoc.length = arrlgth;
-    return assoc;
+    // assoc.length = arrlgth;
+    return assoc
   }
 
   if (lgth === undefined) {
-    return arr.slice(offst);
+    return arr.slice(offst)
   } else if (lgth >= 0) {
-    return arr.slice(offst, offst + lgth);
+    return arr.slice(offst, offst + lgth)
   } else {
-    return arr.slice(offst, lgth);
+    return arr.slice(offst, lgth)
   }
 }

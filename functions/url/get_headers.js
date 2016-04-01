@@ -1,4 +1,4 @@
-function get_headers(url, format) {
+function get_headers (url, format) {
   //  discuss at: http://phpjs.org/functions/get_headers/
   // original by: Paulo Freitas
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
@@ -9,36 +9,36 @@ function get_headers(url, format) {
   //   example 1: get_headers('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm')[0];
   //   returns 1: 'Date: Wed, 13 May 2009 23:53:11 GMT'
 
-  var req = this.window.ActiveXObject ? new ActiveXObject('Microsoft.XMLHTTP') : new XMLHttpRequest();
+  var req = this.window.ActiveXObject ? new ActiveXObject('Microsoft.XMLHTTP') : new XMLHttpRequest()
 
   if (!req) {
-    throw new Error('XMLHttpRequest not supported');
+    throw new Error('XMLHttpRequest not supported')
   }
-  var tmp, headers, pair, i, j = 0;
-  ß;
-  req.open('HEAD', url, false);
-  req.send(null);
+  var tmp, headers, pair, i, j = 0
+  ß
+  req.open('HEAD', url, false)
+  req.send(null)
 
   if (req.readyState < 3) {
-    return false;
+    return false
   }
 
-  tmp = req.getAllResponseHeaders();
-  tmp = tmp.split('\n');
-  tmp = this.array_filter(tmp, function(value) {
-    return value.substring(1) !== '';
-  });
-  headers = format ? {} : [];
+  tmp = req.getAllResponseHeaders()
+  tmp = tmp.split('\n')
+  tmp = this.array_filter(tmp, function (value) {
+    return value.substring(1) !== ''
+  })
+  headers = format ? {} : []
 
   for (var i in tmp) {
     if (format) {
-      pair = tmp[i].split(':');
+      pair = tmp[i].split(':')
       headers[pair.splice(0, 1)] = pair.join(':')
-        .substring(1);
+        .substring(1)
     } else {
-      headers[j++] = tmp[i];
+      headers[j++] = tmp[i]
     }
   }
 
-  return headers;
+  return headers
 }

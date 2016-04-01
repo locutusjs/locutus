@@ -1,4 +1,4 @@
-function strip_tags(input, allowed) {
+function strip_tags (input, allowed) {
   //  discuss at: http://phpjs.org/functions/strip_tags/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Luke Godfrey
@@ -35,11 +35,11 @@ function strip_tags(input, allowed) {
   allowed = (((allowed || '') + '')
       .toLowerCase()
       .match(/<[a-z][a-z0-9]*>/g) || [])
-    .join(''); // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
+    .join('') // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
   var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi,
-    commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
+    commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi
   return input.replace(commentsAndPhpTags, '')
-    .replace(tags, function($0, $1) {
-      return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : '';
-    });
+    .replace(tags, function ($0, $1) {
+      return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : ''
+    })
 }

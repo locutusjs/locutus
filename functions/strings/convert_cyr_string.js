@@ -1,4 +1,4 @@
-function convert_cyr_string(str, from, to) {
+function convert_cyr_string (str, from, to) {
   //  discuss at: http://phpjs.org/functions/convert_cyr_string/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Assumes and converts to Unicode strings with character
@@ -107,63 +107,63 @@ function convert_cyr_string(str, from, to) {
       242, 243, 230, 226, 252, 251, 231, 248, 253, 249, 247, 250, 158, 128, 129, 150, 132, 133, 148, 131, 149,
       136, 137, 138, 139, 140, 141, 142, 143, 159, 144, 145, 146, 147, 134, 130, 156, 155, 135, 152, 157, 153,
       151, 154
-    ];
+    ]
 
   var from_table = null,
     to_table = null,
     tmp, i = 0,
-    retStr = '';
+    retStr = ''
 
   switch (from.toUpperCase()) {
-  case 'W':
-    from_table = _cyr_win1251;
-    break;
-  case 'A':
-  case 'D':
-    from_table = _cyr_cp866;
-    break;
-  case 'I':
-    from_table = _cyr_iso88595;
-    break;
-  case 'M':
-    from_table = _cyr_mac;
-    break;
-  case 'K':
-    break;
-  default:
+    case 'W':
+      from_table = _cyr_win1251
+      break
+    case 'A':
+    case 'D':
+      from_table = _cyr_cp866
+      break
+    case 'I':
+      from_table = _cyr_iso88595
+      break
+    case 'M':
+      from_table = _cyr_mac
+      break
+    case 'K':
+      break
+    default:
     // warning
-    throw 'Unknown source charset: ' + from;
+      throw 'Unknown source charset: ' + from
   }
 
   switch (to.toUpperCase()) {
-  case 'W':
-    to_table = _cyr_win1251;
-    break;
-  case 'A':
-  case 'D':
-    to_table = _cyr_cp866;
-    break;
-  case 'I':
-    to_table = _cyr_iso88595;
-    break;
-  case 'M':
-    to_table = _cyr_mac;
-    break;
-  case 'K':
-    break;
-  default:
+    case 'W':
+      to_table = _cyr_win1251
+      break
+    case 'A':
+    case 'D':
+      to_table = _cyr_cp866
+      break
+    case 'I':
+      to_table = _cyr_iso88595
+      break
+    case 'M':
+      to_table = _cyr_mac
+      break
+    case 'K':
+      break
+    default:
     // fix: make a warning
-    throw 'Unknown destination charset: ' + to;
+      throw 'Unknown destination charset: ' + to
   }
 
   if (!str) {
-    return str;
+    return str
   }
 
   for (i = 0; i < str.length; i++) {
     tmp = (from_table === null) ? str.charAt(i) : String.fromCharCode(from_table[str.charAt(i)
-      .charCodeAt(0)]);
-    retStr += (to_table === null) ? tmp : String.fromCharCode(to_table[tmp.charCodeAt(0) + 256]);
+      .charCodeAt(0)])
+    retStr += (to_table === null) ? tmp : String.fromCharCode(to_table[tmp.charCodeAt(0) + 256])
   }
-  return retStr;
+  return retStr
 }

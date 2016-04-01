@@ -1,4 +1,4 @@
-function pathinfo(path, options) {
+function pathinfo (path, options) {
   //  discuss at: http://phpjs.org/functions/pathinfo/
   // original by: Nate
   //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -36,106 +36,106 @@ function pathinfo(path, options) {
     optTemp = 0,
     tmp_arr = {},
     cnt = 0,
-    i = 0;
+    i = 0
   var have_basename = false,
     have_extension = false,
-    have_filename = false;
+    have_filename = false
 
   // Input defaulting & sanitation
   if (!path) {
-    return false;
+    return false
   }
   if (!options) {
-    options = 'PATHINFO_ALL';
+    options = 'PATHINFO_ALL'
   }
 
   // Initialize binary arguments. Both the string & integer (constant) input is
   // allowed
   var OPTS = {
-    'PATHINFO_DIRNAME'   : 1,
-    'PATHINFO_BASENAME'  : 2,
-    'PATHINFO_EXTENSION' : 4,
-    'PATHINFO_FILENAME'  : 8,
-    'PATHINFO_ALL'       : 0
-  };
+    'PATHINFO_DIRNAME': 1,
+    'PATHINFO_BASENAME': 2,
+    'PATHINFO_EXTENSION': 4,
+    'PATHINFO_FILENAME': 8,
+    'PATHINFO_ALL': 0
+  }
   // PATHINFO_ALL sums up all previously defined PATHINFOs (could just pre-calculate)
   for (optName in OPTS) {
     if (OPTS.hasOwnProperty(optName)) {
-      OPTS.PATHINFO_ALL = OPTS.PATHINFO_ALL | OPTS[optName];
+      OPTS.PATHINFO_ALL = OPTS.PATHINFO_ALL | OPTS[optName]
     }
   }
   if (typeof options !== 'number') {
     // Allow for a single string or an array of string flags
-    options = [].concat(options);
+    options = [].concat(options)
     for (i = 0; i < options.length; i++) {
       // Resolve string input to bitwise e.g. 'PATHINFO_EXTENSION' becomes 4
       if (OPTS[options[i]]) {
-        optTemp = optTemp | OPTS[options[i]];
+        optTemp = optTemp | OPTS[options[i]]
       }
     }
-    options = optTemp;
+    options = optTemp
   }
 
   // Internal Functions
-  var __getExt = function(path) {
-    var str = path + '';
-    var dotP = str.lastIndexOf('.') + 1;
-    return !dotP ? false : dotP !== str.length ? str.substr(dotP) : '';
-  };
+  var __getExt = function (path) {
+    var str = path + ''
+    var dotP = str.lastIndexOf('.') + 1
+    return !dotP ? false : dotP !== str.length ? str.substr(dotP) : ''
+  }
 
   // Gather path infos
   if (options & OPTS.PATHINFO_DIRNAME) {
     var dirName = path.replace(/\\/g, '/')
-      .replace(/\/[^\/]*\/?$/, ''); // dirname
-    tmp_arr.dirname = dirName === path ? '.' : dirName;
+      .replace(/\/[^\/]*\/?$/, '') // dirname
+    tmp_arr.dirname = dirName === path ? '.' : dirName
   }
 
   if (options & OPTS.PATHINFO_BASENAME) {
     if (false === have_basename) {
-      have_basename = this.basename(path);
+      have_basename = this.basename(path)
     }
-    tmp_arr.basename = have_basename;
+    tmp_arr.basename = have_basename
   }
 
   if (options & OPTS.PATHINFO_EXTENSION) {
     if (false === have_basename) {
-      have_basename = this.basename(path);
+      have_basename = this.basename(path)
     }
     if (false === have_extension) {
-      have_extension = __getExt(have_basename);
+      have_extension = __getExt(have_basename)
     }
     if (false !== have_extension) {
-      tmp_arr.extension = have_extension;
+      tmp_arr.extension = have_extension
     }
   }
 
   if (options & OPTS.PATHINFO_FILENAME) {
     if (false === have_basename) {
-      have_basename = this.basename(path);
+      have_basename = this.basename(path)
     }
     if (false === have_extension) {
-      have_extension = __getExt(have_basename);
+      have_extension = __getExt(have_basename)
     }
     if (false === have_filename) {
       have_filename = have_basename.slice(0, have_basename.length - (have_extension ? have_extension.length + 1 :
-        have_extension === false ? 0 : 1));
+        have_extension === false ? 0 : 1))
     }
 
-    tmp_arr.filename = have_filename;
+    tmp_arr.filename = have_filename
   }
 
   // If array contains only 1 element: return string
-  cnt = 0;
+  cnt = 0
   for (opt in tmp_arr) {
     if (tmp_arr.hasOwnProperty(opt)) {
-      cnt++;
-      real_opt = opt;
+      cnt++
+      real_opt = opt
     }
   }
   if (cnt === 1) {
-    return tmp_arr[real_opt];
+    return tmp_arr[real_opt]
   }
 
   // Return full-blown array
-  return tmp_arr;
+  return tmp_arr
 }

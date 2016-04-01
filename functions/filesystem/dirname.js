@@ -1,4 +1,4 @@
-function dirname(path) {
+function dirname (path) {
   //  discuss at: http://phpjs.org/functions/dirname/
   // original by: Ozh
   // improved by: XoraX (http://www.xorax.info)
@@ -10,5 +10,5 @@ function dirname(path) {
   //   returns 3: '/dir'
 
   return path.replace(/\\/g, '/')
-    .replace(/\/[^\/]*\/?$/, '');
+    .replace(/\/[^\/]*\/?$/, '')
 }

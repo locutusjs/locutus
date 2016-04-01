@@ -1,4 +1,4 @@
-function json_decode(str_json) {
+function json_decode (str_json) {
   //       discuss at: http://phpjs.org/functions/json_decode/
   //      original by: Public Domain (http://www.json.org/json2.js)
   // reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -8,42 +8,42 @@ function json_decode(str_json) {
   //        returns 1: [1]
 
   /*
-       http://www.JSON.org/json2.js
-       2008-11-19
-       Public Domain.
-       NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
-       See http://www.JSON.org/js.html
-     */
+        http://www.JSON.org/json2.js
+        2008-11-19
+        Public Domain.
+        NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+        See http://www.JSON.org/js.html
+      */
 
-  var json = this.window.JSON;
+  var json = this.window.JSON
   if (typeof json === 'object' && typeof json.parse === 'function') {
     try {
-      return json.parse(str_json);
+      return json.parse(str_json)
     } catch (err) {
       if (!(err instanceof SyntaxError)) {
-        throw new Error('Unexpected error type in json_decode()');
+        throw new Error('Unexpected error type in json_decode()')
       }
-      this.php_js = this.php_js || {};
+      this.php_js = this.php_js || {}
       // usable by json_last_error()
-      this.php_js.last_error_json = 4;
-      return null;
+      this.php_js.last_error_json = 4
+      return null
     }
   }
 
-  var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g;
-  var j;
-  var text = str_json;
+  var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g
+  var j
+  var text = str_json
 
   // Parsing happens in four stages. In the first stage, we replace certain
   // Unicode characters with escape sequences. JavaScript handles many characters
   // incorrectly, either silently deleting them, or treating them as line endings.
-  cx.lastIndex = 0;
+  cx.lastIndex = 0
   if (cx.test(text)) {
-    text = text.replace(cx, function(a) {
+    text = text.replace(cx, function (a) {
       return '\\u' + ('0000' + a.charCodeAt(0)
           .toString(16))
-        .slice(-4);
-    });
+        .slice(-4)
+    })
   }
 
   // In the second stage, we run the text against regular expressions that look
@@ -66,13 +66,13 @@ function json_decode(str_json) {
     // JavaScript structure. The '{' operator is subject to a syntactic ambiguity
     // in JavaScript: it can begin a block or an object literal. We wrap the text
     // in parens to eliminate the ambiguity.
-    j = eval('(' + text + ')');
+    j = eval('(' + text + ')')
 
-    return j;
+    return j
   }
 
-  this.php_js = this.php_js || {};
+  this.php_js = this.php_js || {}
   // usable by json_last_error()
-  this.php_js.last_error_json = 4;
-  return null;
+  this.php_js.last_error_json = 4
+  return null
 }

@@ -1,4 +1,4 @@
-function array_walk(array, funcname, userdata) {
+function array_walk (array, funcname, userdata) {
   //  discuss at: http://phpjs.org/functions/array_walk/
   // original by: Johnny Mast (http://www.phpvrouwen.nl)
   // bugfixed by: David
@@ -20,17 +20,17 @@ function array_walk(array, funcname, userdata) {
   //   example 5: array_walk(arr, [window, 'prompt']);
   //   returns 5: '[object Object]'
 
-  var key, value, ini;
+  var key, value, ini
 
   if (!array || typeof array !== 'object') {
-    return false;
+    return false
   }
   if (typeof array === 'object' && array.change_key_case) {
     // Duck-type check for our own array()-created PHPJS_Array
     if (arguments.length > 2) {
-      return array.walk(funcname, userdata);
+      return array.walk(funcname, userdata)
     } else {
-      return array.walk(funcname);
+      return array.walk(funcname)
     }
   }
 
@@ -38,57 +38,57 @@ function array_walk(array, funcname, userdata) {
     if (typeof funcname === 'function') {
       for (key in array) {
         if (arguments.length > 2) {
-          funcname(array[key], key, userdata);
+          funcname(array[key], key, userdata)
         } else {
-          funcname(array[key], key);
+          funcname(array[key], key)
         }
       }
     } else if (typeof funcname === 'string') {
-      this.php_js = this.php_js || {};
-      this.php_js.ini = this.php_js.ini || {};
-      ini = this.php_js.ini['phpjs.no-eval'];
+      this.php_js = this.php_js || {}
+      this.php_js.ini = this.php_js.ini || {}
+      ini = this.php_js.ini['phpjs.no-eval']
       if (ini && (
           parseInt(ini.local_value, 10) !== 0 && (!ini.local_value.toLowerCase || ini.local_value.toLowerCase() !==
             'off')
         )) {
         if (arguments.length > 2) {
           for (key in array) {
-            this.window[funcname](array[key], key, userdata);
+            this.window[funcname](array[key], key, userdata)
           }
         } else {
           for (key in array) {
-            this.window[funcname](array[key], key);
+            this.window[funcname](array[key], key)
           }
         }
       } else {
         if (arguments.length > 2) {
           for (key in array) {
-            eval(funcname + '(array[key], key, userdata)');
+            eval(funcname + '(array[key], key, userdata)')
           }
         } else {
           for (key in array) {
-            eval(funcname + '(array[key], key)');
+            eval(funcname + '(array[key], key)')
           }
         }
       }
     } else if (funcname && typeof funcname === 'object' && funcname.length === 2) {
       var obj = funcname[0],
-        func = funcname[1];
+        func = funcname[1]
       if (arguments.length > 2) {
         for (key in array) {
-          obj[func](array[key], key, userdata);
+          obj[func](array[key], key, userdata)
         }
       } else {
         for (key in array) {
-          obj[func](array[key], key);
+          obj[func](array[key], key)
         }
       }
     } else {
-      return false;
+      return false
     }
   } catch (e) {
-    return false;
+    return false
   }
 
-  return true;
+  return true
 }

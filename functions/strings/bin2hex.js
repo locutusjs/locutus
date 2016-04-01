@@ -1,4 +1,4 @@
-function bin2hex(s) {
+function bin2hex (s) {
   //  discuss at: http://phpjs.org/functions/bin2hex/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
@@ -10,15 +10,15 @@ function bin2hex(s) {
   //   returns 2: '00'
 
   var i, l, o = '',
-    n;
+    n
 
-  s += '';
+  s += ''
 
   for (i = 0, l = s.length; i < l; i++) {
     n = s.charCodeAt(i)
-      .toString(16);
-    o += n.length < 2 ? '0' + n : n;
+      .toString(16)
+    o += n.length < 2 ? '0' + n : n
   }
 
-  return o;
+  return o
 }

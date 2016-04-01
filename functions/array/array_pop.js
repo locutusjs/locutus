@@ -1,4 +1,4 @@
-function array_pop(inputArr) {
+function array_pop (inputArr) {
   //  discuss at: http://phpjs.org/functions/array_pop/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -20,28 +20,28 @@ function array_pop(inputArr) {
   //   returns 2: {firstName: 'Kevin'}
 
   var key = '',
-    lastKey = '';
+    lastKey = ''
 
   if (inputArr.hasOwnProperty('length')) {
     // Indexed
     if (!inputArr.length) {
       // Done popping, are we?
-      return null;
+      return null
     }
-    return inputArr.pop();
+    return inputArr.pop()
   } else {
     // Associative
     for (key in inputArr) {
       if (inputArr.hasOwnProperty(key)) {
-        lastKey = key;
+        lastKey = key
       }
     }
     if (lastKey) {
-      var tmp = inputArr[lastKey];
-      delete(inputArr[lastKey]);
-      return tmp;
+      var tmp = inputArr[lastKey]
+      delete (inputArr[lastKey])
+      return tmp
     } else {
-      return null;
+      return null
     }
   }
 }

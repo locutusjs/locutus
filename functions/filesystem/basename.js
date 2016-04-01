@@ -1,4 +1,4 @@
-function basename(path, suffix) {
+function basename (path, suffix) {
   //  discuss at: http://phpjs.org/functions/basename/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Ash Searle (http://hexmen.com/blog/)
@@ -14,18 +14,18 @@ function basename(path, suffix) {
   //   example 4: basename('/some/path_ext.ext/','.ext');
   //   returns 4: 'path_ext'
 
-  var b = path;
-  var lastChar = b.charAt(b.length - 1);
+  var b = path
+  var lastChar = b.charAt(b.length - 1)
 
   if (lastChar === '/' || lastChar === '\\') {
-    b = b.slice(0, -1);
+    b = b.slice(0, -1)
   }
 
-  b = b.replace(/^.*[\/\\]/g, '');
+  b = b.replace(/^.*[\/\\]/g, '')
 
   if (typeof suffix === 'string' && b.substr(b.length - suffix.length) == suffix) {
-    b = b.substr(0, b.length - suffix.length);
+    b = b.substr(0, b.length - suffix.length)
   }
 
-  return b;
+  return b
 }

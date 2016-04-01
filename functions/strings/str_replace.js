@@ -1,4 +1,4 @@
-function str_replace(search, replace, subject, count) {
+function str_replace (search, replace, subject, count) {
   //  discuss at: http://phpjs.org/functions/str_replace/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Gabriel Paderni
@@ -38,39 +38,39 @@ function str_replace(search, replace, subject, count) {
     r = [].concat(replace),
     s = subject,
     ra = Object.prototype.toString.call(r) === '[object Array]',
-    sa = Object.prototype.toString.call(s) === '[object Array]';
-  s = [].concat(s);
+    sa = Object.prototype.toString.call(s) === '[object Array]'
+  s = [].concat(s)
 
   if (typeof (search) === 'object' && typeof (replace) === 'string') {
-    temp = replace;
-    replace = new Array();
+    temp = replace
+    replace = new Array()
     for (i = 0; i < search.length; i += 1) {
-      replace[i] = temp;
+      replace[i] = temp
     }
-    temp = '';
-    r = [].concat(replace);
-    ra = Object.prototype.toString.call(r) === '[object Array]';
+    temp = ''
+    r = [].concat(replace)
+    ra = Object.prototype.toString.call(r) === '[object Array]'
   }
 
   if (count) {
-    this.window[count] = 0;
+    this.window[count] = 0
   }
 
   for (i = 0, sl = s.length; i < sl; i++) {
     if (s[i] === '') {
-      continue;
+      continue
     }
     for (j = 0, fl = f.length; j < fl; j++) {
-      temp = s[i] + '';
-      repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
+      temp = s[i] + ''
+      repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0]
       s[i] = (temp)
         .split(f[j])
-        .join(repl);
+        .join(repl)
       if (count) {
         this.window[count] += ((temp.split(f[j]))
-          .length - 1);
+          .length - 1)
       }
     }
   }
-  return sa ? s : s[0];
+  return sa ? s : s[0]
 }

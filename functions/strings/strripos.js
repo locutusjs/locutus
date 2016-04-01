@@ -1,4 +1,4 @@
-function strripos(haystack, needle, offset) {
+function strripos (haystack, needle, offset) {
   //  discuss at: http://phpjs.org/functions/strripos/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
@@ -8,22 +8,22 @@ function strripos(haystack, needle, offset) {
   //   returns 1: 16
 
   haystack = (haystack + '')
-    .toLowerCase();
+    .toLowerCase()
   needle = (needle + '')
-    .toLowerCase();
+    .toLowerCase()
 
-  var i = -1;
+  var i = -1
   if (offset) {
     i = (haystack + '')
       .slice(offset)
-      .lastIndexOf(needle); // strrpos' offset indicates starting point of range till end,
+      .lastIndexOf(needle) // strrpos' offset indicates starting point of range till end,
     // while lastIndexOf's optional 2nd argument indicates ending point of range from the beginning
     if (i !== -1) {
-      i += offset;
+      i += offset
     }
   } else {
     i = (haystack + '')
-      .lastIndexOf(needle);
+      .lastIndexOf(needle)
   }
-  return i >= 0 ? i : false;
+  return i >= 0 ? i : false
 }

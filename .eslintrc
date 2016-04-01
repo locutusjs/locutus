@@ -1,0 +1,13 @@
+{
+  "extends": "standard",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "no-unused-vars": "off",
+    "no-eval": "off",
+    "key-spacing": "off",
+    "one-var": "off"
+  }
+}

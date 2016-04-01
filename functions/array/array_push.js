@@ -1,4 +1,4 @@
-function array_push(inputArr) {
+function array_push (inputArr) {
   //  discuss at: http://phpjs.org/functions/array_push/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -17,26 +17,26 @@ function array_push(inputArr) {
     allDigits = /^\d$/,
     size = 0,
     highestIdx = 0,
-    len = 0;
+    len = 0
   if (inputArr.hasOwnProperty('length')) {
     for (i = 1; i < argc; i++) {
-      inputArr[inputArr.length] = argv[i];
+      inputArr[inputArr.length] = argv[i]
     }
-    return inputArr.length;
+    return inputArr.length
   }
 
   // Associative (object)
   for (pr in inputArr) {
     if (inputArr.hasOwnProperty(pr)) {
-      ++len;
+      ++len
       if (pr.search(allDigits) !== -1) {
-        size = parseInt(pr, 10);
-        highestIdx = size > highestIdx ? size : highestIdx;
+        size = parseInt(pr, 10)
+        highestIdx = size > highestIdx ? size : highestIdx
       }
     }
   }
   for (i = 1; i < argc; i++) {
-    inputArr[++highestIdx] = argv[i];
+    inputArr[++highestIdx] = argv[i]
   }
-  return len + i - 1;
+  return len + i - 1
 }

@@ -1,4 +1,4 @@
-function microtime(get_as_float) {
+function microtime (get_as_float) {
   //  discuss at: http://phpjs.org/functions/microtime/
   // original by: Paulo Freitas
   // improved by: Dumitru Uzun (http://duzun.me)
@@ -9,19 +9,19 @@ function microtime(get_as_float) {
   //   returns 2: true
 
   if (typeof performance !== 'undefined' && performance.now) {
-    var now = (performance.now() + performance.timing.navigationStart) / 1e3;
-    if (get_as_float) return now;
+    var now = (performance.now() + performance.timing.navigationStart) / 1e3
+    if (get_as_float) return now
 
     // Math.round(now)
-    var s = now | 0;
-    return (Math.round((now - s) * 1e6) / 1e6) + ' ' + s;
+    var s = now | 0
+    return (Math.round((now - s) * 1e6) / 1e6) + ' ' + s
   } else {
     var now = (Date.now ? Date.now() : new Date()
-      .getTime()) / 1e3;
-    if (get_as_float) return now;
+      .getTime()) / 1e3
+    if (get_as_float) return now
 
     // Math.round(now)
-    var s = now | 0;
-    return (Math.round((now - s) * 1e3) / 1e3) + ' ' + s;
+    var s = now | 0
+    return (Math.round((now - s) * 1e3) / 1e3) + ' ' + s
   }
 }

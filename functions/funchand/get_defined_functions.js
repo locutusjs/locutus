@@ -1,4 +1,4 @@
-function get_defined_functions() {
+function get_defined_functions () {
   //  discuss at: http://phpjs.org/functions/get_defined_functions/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -11,20 +11,20 @@ function get_defined_functions() {
 
   var i = '',
     arr = [],
-    already = {};
+    already = {}
 
   for (i in this.window) {
     try {
       if (typeof this.window[i] === 'function') {
         if (!already[i]) {
-          already[i] = 1;
-          arr.push(i);
+          already[i] = 1
+          arr.push(i)
         }
       } else if (typeof this.window[i] === 'object') {
         for (var j in this.window[i]) {
           if (typeof this.window[j] === 'function' && this.window[j] && !already[j]) {
-            already[j] = 1;
-            arr.push(j);
+            already[j] = 1
+            arr.push(j)
           }
         }
       }
@@ -33,5 +33,5 @@ function get_defined_functions() {
     }
   }
 
-  return arr;
+  return arr
 }

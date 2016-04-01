@@ -1,4 +1,4 @@
-function decbin(number) {
+function decbin (number) {
   //  discuss at: http://phpjs.org/functions/decbin/
   // original by: Enrique Gonzalez
   // bugfixed by: Onno Marsman
@@ -13,8 +13,8 @@ function decbin(number) {
   //   returns 3: '11010'
 
   if (number < 0) {
-    number = 0xFFFFFFFF + number + 1;
+    number = 0xFFFFFFFF + number + 1
   }
   return parseInt(number, 10)
-    .toString(2);
+    .toString(2)
 }

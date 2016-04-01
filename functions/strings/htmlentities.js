@@ -1,4 +1,4 @@
-function htmlentities(string, quote_style, charset, double_encode) {
+function htmlentities (string, quote_style, charset, double_encode) {
   //  discuss at: http://phpjs.org/functions/htmlentities/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -18,32 +18,32 @@ function htmlentities(string, quote_style, charset, double_encode) {
   //   returns 2: 'foo&#039;bar'
 
   var hash_map = this.get_html_translation_table('HTML_ENTITIES', quote_style),
-    symbol = '';
+    symbol = ''
 
-  string = string == null ? '' : string + '';
+  string = string == null ? '' : string + ''
 
   if (!hash_map) {
-    return false;
+    return false
   }
 
   if (quote_style && quote_style === 'ENT_QUOTES') {
-    hash_map["'"] = '&#039;';
+    hash_map["'"] = '&#039;'
   }
 
-  double_encode = double_encode == null || !!double_encode;
+  double_encode = double_encode == null || !!double_encode
 
-  var regex = new RegExp("&(?:#\\d+|#x[\\da-f]+|[a-zA-Z][\\da-z]*);|[" +
+  var regex = new RegExp('&(?:#\\d+|#x[\\da-f]+|[a-zA-Z][\\da-z]*);|[' +
     Object.keys(hash_map)
-    .join("")
+    .join('')
     // replace regexp special chars
-    .replace(/([()[\]{}\-.*+?^$|\/\\])/g, "\\$1") + "]",
-    "g");
+    .replace(/([()[\]{}\-.*+?^$|\/\\])/g, '\\$1') + ']',
+    'g')
 
-  return string.replace(regex, function(ent) {
+  return string.replace(regex, function (ent) {
     if (ent.length > 1) {
-      return double_encode ? hash_map["&"] + ent.substr(1) : ent;
+      return double_encode ? hash_map['&'] + ent.substr(1) : ent
     }
 
-    return hash_map[ent];
-  });
+    return hash_map[ent]
+  })
 }

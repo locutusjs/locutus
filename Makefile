@@ -19,7 +19,7 @@ test:
 .PHONY: cleanup
 cleanup:
 	node bin/phpjs.js --action cleanup
-	@./node_modules/.bin/jscs --fix functions/ || true
+	npm run fix || true
 	@$(MAKE) test
 
 .PHONY: serve

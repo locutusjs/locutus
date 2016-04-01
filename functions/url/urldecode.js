@@ -1,4 +1,4 @@
-function urldecode(str) {
+function urldecode (str) {
   //       discuss at: http://phpjs.org/functions/urldecode/
   //      original by: Philip Peterson
   //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -30,9 +30,9 @@ function urldecode(str) {
   //        returns 4: '\u597d%3_4'
 
   return decodeURIComponent((str + '')
-    .replace(/%(?![\da-f]{2})/gi, function() {
+    .replace(/%(?![\da-f]{2})/gi, function () {
       // PHP tolerates poorly formed escape sequences
-      return '%25';
+      return '%25'
     })
-    .replace(/\+/g, '%20'));
+    .replace(/\+/g, '%20'))
 }

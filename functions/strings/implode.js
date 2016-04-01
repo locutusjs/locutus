@@ -1,4 +1,4 @@
-function implode(glue, pieces) {
+function implode (glue, pieces) {
   //  discuss at: http://phpjs.org/functions/implode/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Waldo Malqui Silva (http://waldo.malqui.info)
@@ -11,20 +11,20 @@ function implode(glue, pieces) {
 
   var i = '',
     retVal = '',
-    tGlue = '';
+    tGlue = ''
   if (arguments.length === 1) {
-    pieces = glue;
-    glue = '';
+    pieces = glue
+    glue = ''
   }
   if (typeof pieces === 'object') {
     if (Object.prototype.toString.call(pieces) === '[object Array]') {
-      return pieces.join(glue);
+      return pieces.join(glue)
     }
     for (i in pieces) {
-      retVal += tGlue + pieces[i];
-      tGlue = glue;
+      retVal += tGlue + pieces[i]
+      tGlue = glue
     }
-    return retVal;
+    return retVal
   }
-  return pieces;
+  return pieces
 }

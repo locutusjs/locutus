@@ -1,4 +1,4 @@
-function array_intersect(arr1) {
+function array_intersect (arr1) {
   //  discuss at: http://phpjs.org/functions/array_intersect/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: These only output associative arrays (would need to be
@@ -15,24 +15,24 @@ function array_intersect(arr1) {
     k1 = '',
     arr = {},
     i = 0,
-    k = '';
+    k = ''
 
   arr1keys: for (k1 in arr1) {
     arrs: for (i = 1; i < argl; i++) {
-      arr = arguments[i];
+      arr = arguments[i]
       for (k in arr) {
         if (arr[k] === arr1[k1]) {
           if (i === arglm1) {
-            retArr[k1] = arr1[k1];
+            retArr[k1] = arr1[k1]
           }
           // If the innermost loop always leads at least once to an equal value, continue the loop until done
-          continue arrs;
+          continue arrs
         }
       }
       // If it reaches here, it wasn't found in at least one array, so try next value
-      continue arr1keys;
+      continue arr1keys
     }
   }
 
-  return retArr;
+  return retArr
 }

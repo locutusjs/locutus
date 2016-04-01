@@ -1,4 +1,4 @@
-function usort(inputArr, sorter) {
+function usort (inputArr, sorter) {
   //  discuss at: http://phpjs.org/functions/usort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -20,40 +20,40 @@ function usort(inputArr, sorter) {
     k = '',
     i = 0,
     strictForIn = false,
-    populateArr = {};
+    populateArr = {}
 
   if (typeof sorter === 'string') {
-    sorter = this[sorter];
+    sorter = this[sorter]
   } else if (Object.prototype.toString.call(sorter) === '[object Array]') {
-    sorter = this[sorter[0]][sorter[1]];
+    sorter = this[sorter[0]][sorter[1]]
   }
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {};
-  this.php_js.ini = this.php_js.ini || {};
+  this.php_js = this.php_js || {}
+  this.php_js.ini = this.php_js.ini || {}
   // END REDUNDANT
   strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
-    .ini['phpjs.strictForIn'].local_value !== 'off';
-  populateArr = strictForIn ? inputArr : populateArr;
+    .ini['phpjs.strictForIn'].local_value !== 'off'
+  populateArr = strictForIn ? inputArr : populateArr
 
   for (k in inputArr) {
     // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push(inputArr[k]);
+      valArr.push(inputArr[k])
       if (strictForIn) {
-        delete inputArr[k];
+        delete inputArr[k]
       }
     }
   }
   try {
-    valArr.sort(sorter);
+    valArr.sort(sorter)
   } catch (e) {
-    return false;
+    return false
   }
   for (i = 0; i < valArr.length; i++) {
     // Repopulate the old array
-    populateArr[i] = valArr[i];
+    populateArr[i] = valArr[i]
   }
 
-  return strictForIn || populateArr;
+  return strictForIn || populateArr
 }
