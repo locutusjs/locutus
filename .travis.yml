@@ -20,4 +20,5 @@ addons:
    - php5-cli
 script:
   - npm run lint || true
+  - npm run build
   - npm run test
