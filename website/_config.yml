@@ -1,0 +1,83 @@
+name: php.js
+baseurl: null
+description: php.js is a resource that offers community-built JavaScript alternatives to PHP functions.
+meta_description: Learn how to do it in JavaScript. Explore boundaries porting languages. Enjoy functions that turn out to be useful.
+url: "http://phpjs.org"
+author: php.js
+
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  transliterated_header_ids: true
+  toc_levels: 1..2
+  smart_quotes: ["apos", "apos", "quot", "quot"]
+  syntax_highlighter: nil
+  # syntax_highlighter: rouge
+
+encoding: UTF-8
+timezone: Europe/Amsterdam
+permalink: /blog/:year/:month/:day/:title/
+
+gems:
+  - jemoji
+  - jekyll-feed
+  - jekyll-redirect-from
+
+# collections:
+# - faq
+
+emoji:
+  src: "/img"
+
+exclude:
+  - Makefile
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - npm-debug.*
+  - package.json
+  - bower.json
+  - README.md
+  - vendor
+
+# new: jekyll-feed
+# We'll refer new atom feed though, as adviced by GitHub
+# https://github.com/blog/2053-easier-feeds-for-github-pages
+feed:
+  path: blog.atom
+
+subscribe_rss: /atom.xml
+
+# Can be overridden by _config-asset-index-production.yml
+js:
+  app: app.js
+css:
+  app: app.css
+
+stacks:
+  ffmpeg:
+    default_version: v1.0.0
+    recommended_version: v2.2.3
+    versions:
+      - v1.0.0
+      - v2.0.0
+      - v2.1.0
+      - v2.2.3
+    types:
+      - formats
+      - codecs
+      - protocols
+      - filters
+  imagemagick:
+    default_version: v1.0.0
+    recommended_version: v1.0.0
+    versions:
+      - v1.0.0
+    types:
+      - formats
+      - fonts
