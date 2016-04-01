@@ -26,12 +26,9 @@
   {% if page.layout == "function" %}
     <h1>{{page.category}} functions</h1>
     <ul id='category-list'>
-      {% assign categories = site.functions| group_by site.functions, "category" %}
-      {% for category in categories %}
-        {% if category.name == page.category %}
-          {% for function in category.items %}
-            <li><a href="/functions/{{function}}">{{function}}</a></li>
-          {% endfor %}
+      {% for function in site.functions %}
+        {% if function.category == page.category %}
+          <li><a href="/functions/{{function}}">{{function}}</a></li>
         {% endif %}
       {% endfor %}
     </ul>

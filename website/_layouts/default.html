@@ -23,8 +23,8 @@
 
   <link rel="canonical" href="http://phpjs.org/about/">
   <link href="/favicon.ico" rel="shortcut icon">
-  <link href="/assets/build/app.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/assets/build/head.js"></script>
+  <link data-meta="css.app" href="/assets/build/{{site.css.app}}" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script data-meta="js.head" src="/assets/build/{{site.js.head}}"></script>
   <link href="//kvz.github.io/on-the-githubs/css/on-the-githubs.min.css" rel="stylesheet" />
   <link href="{{ site.subscribe_rss }}" rel="alternate" title="php.js" type="application/atom+xml">
   <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -94,7 +94,8 @@
 
   </footer>
 
-  <script src="/assets/build/app.js"></script>
+  <script data-meta="js.app" src="/assets/build/{{site.js.app}}"></script>
+
   <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
 
 

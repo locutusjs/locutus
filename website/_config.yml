@@ -7,6 +7,9 @@ author: php.js
 
 markdown: kramdown
 
+# Completely disable excerpts to avoid problems with _functions
+excerpt_separator: ""
+
 kramdown:
   input: GFM
   hard_wrap: false
@@ -16,8 +19,8 @@ kramdown:
   transliterated_header_ids: true
   toc_levels: 1..2
   smart_quotes: ["apos", "apos", "quot", "quot"]
-  syntax_highlighter: nil
-  # syntax_highlighter: rouge
+  syntax_highlighter: rouge
+  # syntax_highlighter: nil
 
 encoding: UTF-8
 timezone: Europe/Amsterdam
@@ -55,26 +58,3 @@ js:
   app: app.js
 css:
   app: app.css
-
-stacks:
-  ffmpeg:
-    default_version: v1.0.0
-    recommended_version: v2.2.3
-    versions:
-      - v1.0.0
-      - v2.0.0
-      - v2.1.0
-      - v2.2.3
-    types:
-      - formats
-      - codecs
-      - protocols
-      - filters
-  imagemagick:
-    default_version: v1.0.0
-    recommended_version: v1.0.0
-    versions:
-      - v1.0.0
-    types:
-      - formats
-      - fonts
