@@ -1,278 +1,34 @@
 ---
-params:
-  headKeys:
-    discuss at:
-      - - 'http://phpjs.org/functions/echo/'
-    original by:
-      - - Philip Peterson
-    improved by:
-      - - echo is bad
-        - Nate
-        - 'Brett Zamir (http://brett-zamir.me)'
-        - 'Brett Zamir (http://brett-zamir.me)'
-        - 'Brett Zamir (http://brett-zamir.me)'
-    revised by:
-      - - 'Der Simon (http://innerdom.sourceforge.net/)'
-    bugfixed by:
-      - - 'Eugene Bulkin (http://doubleaw.com/)'
-        - 'Brett Zamir (http://brett-zamir.me)'
-        - 'Brett Zamir (http://brett-zamir.me)'
-        - EdorFaus
-    input by:
-      - - JB
-    note:
-      - - 'If browsers start to support DOM Level 3 Load and Save (parsing/serializing),'
-        - "we wouldn't need any such long code (even most of the code below). See"
-        - link below for a cross-browser implementation in JavaScript. HTML5 might
-        - 'possibly support DOMParser, but that is not presently a standard.'
-        - 'Although innerHTML is widely used and may become standard as of HTML5, it is also not ideal for'
-        - 'use with a temporary holder before appending to the DOM (as is our last resort below),'
-        - since it may not work in an XML context
-        - Using innerHTML to directly add to the BODY is very dangerous because it will
-        - break all pre-existing references to HTMLElements.
-    example:
-      - - "echo('<div><p>abc</p><p>abc</p></div>');"
-    returns:
-      - - undefined
+examples:
+  - - "echo('<div><p>abc</p><p>abc</p></div>');"
+returns:
+  - - undefined
+authors:
+  original by:
+    - Philip Peterson
+  improved by:
+    - echo is bad
+    - Nate
+    - 'Brett Zamir (http://brett-zamir.me)'
+    - 'Brett Zamir (http://brett-zamir.me)'
+    - 'Brett Zamir (http://brett-zamir.me)'
+  bugfixed by:
+    - 'Eugene Bulkin (http://doubleaw.com/)'
+    - 'Brett Zamir (http://brett-zamir.me)'
+    - 'Brett Zamir (http://brett-zamir.me)'
+    - EdorFaus
+  revised by:
+    - 'Der Simon (http://innerdom.sourceforge.net/)'
+  input by:
+    - JB
+notes: []
+layout: function
 function: echo
 category: strings
-permalink: /functions/echo
+code: "function echo () {\n  //  discuss at: http://phpjs.org/functions/echo/\n  // original by: Philip Peterson\n  // improved by: echo is bad\n  // improved by: Nate\n  // improved by: Brett Zamir (http://brett-zamir.me)\n  // improved by: Brett Zamir (http://brett-zamir.me)\n  // improved by: Brett Zamir (http://brett-zamir.me)\n  //  revised by: Der Simon (http://innerdom.sourceforge.net/)\n  // bugfixed by: Eugene Bulkin (http://doubleaw.com/)\n  // bugfixed by: Brett Zamir (http://brett-zamir.me)\n  // bugfixed by: Brett Zamir (http://brett-zamir.me)\n  // bugfixed by: EdorFaus\n  //    input by: JB\n  //        note: If browsers start to support DOM Level 3 Load and Save (parsing/serializing),\n  //        note: we wouldn't need any such long code (even most of the code below). See\n  //        note: link below for a cross-browser implementation in JavaScript. HTML5 might\n  //        note: possibly support DOMParser, but that is not presently a standard.\n  //        note: Although innerHTML is widely used and may become standard as of HTML5, it is also not ideal for\n  //        note: use with a temporary holder before appending to the DOM (as is our last resort below),\n  //        note: since it may not work in an XML context\n  //        note: Using innerHTML to directly add to the BODY is very dangerous because it will\n  //        note: break all pre-existing references to HTMLElements.\n  //   example 1: echo('<div><p>abc</p><p>abc</p></div>');\n  //   returns 1: undefined\n\n  var isNode = typeof module !== 'undefined' && module.exports && typeof global !== 'undefined' && {}.toString.call(\n    global) == '[object global]'\n  if (isNode) {\n    var args = Array.prototype.slice.call(arguments)\n    return console.log(args.join(' '))\n  }\n\n  var arg = ''\n  var argc = arguments.length\n  var argv = arguments\n  var i = 0\n  var holder, win = this.window\n  var d = win.document\n  var ns_xhtml = 'http://www.w3.org/1999/xhtml'\n  // If we're in a XUL context\n  var ns_xul = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'\n\n  var stringToDOM = function (str, parent, ns, container) {\n    var extraNSs = ''\n    if (ns === ns_xul) {\n      extraNSs = ' xmlns:html=\"' + ns_xhtml + '\"'\n    }\n    var stringContainer = '<' + container + ' xmlns=\"' + ns + '\"' + extraNSs + '>' + str + '</' + container + '>'\n    var dils = win.DOMImplementationLS\n    var dp = win.DOMParser\n    var ax = win.ActiveXObject\n    if (dils && dils.createLSInput && dils.createLSParser) {\n      // Follows the DOM 3 Load and Save standard, but not\n      // implemented in browsers at present; HTML5 is to standardize on innerHTML, but not for XML (though\n      // possibly will also standardize with DOMParser); in the meantime, to ensure fullest browser support, could\n      // attach http://svn2.assembla.com/svn/brettz9/DOMToString/DOM3.js (see http://svn2.assembla.com/svn/brettz9/DOMToString/DOM3.xhtml for a simple test file)\n      var lsInput = dils.createLSInput()\n      // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default\n      lsInput.stringData = stringContainer\n      // synchronous, no schema type\n      var lsParser = dils.createLSParser(1, null)\n      return lsParser.parse(lsInput)\n        .firstChild\n    } else if (dp) {\n      // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default\n      try {\n        var fc = new dp()\n          .parseFromString(stringContainer, 'text/xml')\n        if (fc && fc.documentElement && fc.documentElement.localName !== 'parsererror' && fc.documentElement.namespaceURI !==\n          'http://www.mozilla.org/newlayout/xml/parsererror.xml') {\n          return fc.documentElement.firstChild\n        }\n        // If there's a parsing error, we just continue on\n      } catch (e) {\n        // If there's a parsing error, we just continue on\n      }\n    } else if (ax) {\n      // We don't bother with a holder in Explorer as it doesn't support namespaces\n      var axo = new ax('MSXML2.DOMDocument')\n      axo.loadXML(str)\n      return axo.documentElement\n    }\n    /* else if (win.XMLHttpRequest) {\n     // Supposed to work in older Safari\n      var req = new win.XMLHttpRequest;\n      req.open('GET', 'data:application/xml;charset=utf-8,'+encodeURIComponent(str), false);\n      if (req.overrideMimeType) {\n        req.overrideMimeType('application/xml');\n      }\n      req.send(null);\n      return req.responseXML;\n    }*/\n    // Document fragment did not work with innerHTML, so we create a temporary element holder\n    // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default\n    // if (d.createElementNS && (d.contentType && d.contentType !== 'text/html')) {\n    // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways)\n    if (d.createElementNS && // Browser supports the method\n      (d.documentElement.namespaceURI || // We can use if the document is using a namespace\n        d.documentElement.nodeName.toLowerCase() !== 'html' || // We know it's not HTML4 or less, if the tag is not HTML (even if the root namespace is null)\n        (d.contentType && d.contentType !== 'text/html') // We know it's not regular HTML4 or less if this is Mozilla (only browser supporting the attribute) and the content type is something other than text/html; other HTML5 roots (like svg) still have a namespace\n      )) {\n      // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways); last test is for the sake of being in a pure XML document\n      holder = d.createElementNS(ns, container)\n    } else {\n      // Document fragment did not work with innerHTML\n      holder = d.createElement(container)\n    }\n    holder.innerHTML = str\n    while (holder.firstChild) {\n      parent.appendChild(holder.firstChild)\n    }\n    return false\n    // throw 'Your browser does not support DOM parsing as required by echo()';\n  }\n\n  var ieFix = function (node) {\n    if (node.nodeType === 1) {\n      var newNode = d.createElement(node.nodeName)\n      var i, len\n      if (node.attributes && node.attributes.length > 0) {\n        for (i = 0, len = node.attributes.length; i < len; i++) {\n          newNode.setAttribute(node.attributes[i].nodeName, node.getAttribute(node.attributes[i].nodeName))\n        }\n      }\n      if (node.childNodes && node.childNodes.length > 0) {\n        for (i = 0, len = node.childNodes.length; i < len; i++) {\n          newNode.appendChild(ieFix(node.childNodes[i]))\n        }\n      }\n      return newNode\n    } else {\n      return d.createTextNode(node.nodeValue)\n    }\n  }\n\n  var replacer = function (s, m1, m2) {\n    // We assume for now that embedded variables do not have dollar sign; to add a dollar sign, you currently must use {$$var} (We might change this, however.)\n    // Doesn't cover all cases yet: see http://php.net/manual/en/language.types.string.php#language.types.string.syntax.double\n    if (m1 !== '\\\\') {\n      return m1 + eval(m2)\n    } else {\n      return s\n    }\n  }\n\n  this.php_js = this.php_js || {}\n  var phpjs = this.php_js\n  var ini = phpjs.ini\n  var obs = phpjs.obs\n  for (i = 0; i < argc; i++) {\n    arg = argv[i]\n    if (ini && ini['phpjs.echo_embedded_vars']) {\n      arg = arg.replace(/(.?)\\{?\\$(\\w*?\\}|\\w*)/g, replacer)\n    }\n\n    if (!phpjs.flushing && obs && obs.length) {\n      // If flushing we output, but otherwise presence of a buffer means caching output\n      obs[obs.length - 1].buffer += arg\n      continue\n    }\n\n    if (d.appendChild) {\n      if (d.body) {\n        if (win.navigator.appName === 'Microsoft Internet Explorer') {\n          // We unfortunately cannot use feature detection, since this is an IE bug with cloneNode nodes being appended\n          d.body.appendChild(stringToDOM(ieFix(arg)))\n        } else {\n          var unappendedLeft = stringToDOM(arg, d.body, ns_xhtml, 'div')\n            .cloneNode(true) // We will not actually append the div tag (just using for providing XHTML namespace by default)\n          if (unappendedLeft) {\n            d.body.appendChild(unappendedLeft)\n          }\n        }\n      } else {\n        // We will not actually append the description tag (just using for providing XUL namespace by default)\n        d.documentElement.appendChild(stringToDOM(arg, d.documentElement, ns_xul, 'description'))\n      }\n    } else if (d.write) {\n      d.write(arg)\n    } else {\n      console.log(arg)\n    }\n  }\n}\n"
+permalink: /functions/echo/
 redirect_from:
   - /functions/strings/echo/
 ---
 
 <!-- WARNING! This file is auto generated by `npm run web:inject`, do not edit by hand -->
-
-Here's what a JavaScript equivalent for PHP’s array_chunk might look like
-
-{% highlight javascript %}
-function echo () {
-  //  discuss at: http://phpjs.org/functions/echo/
-  // original by: Philip Peterson
-  // improved by: echo is bad
-  // improved by: Nate
-  // improved by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Brett Zamir (http://brett-zamir.me)
-  //  revised by: Der Simon (http://innerdom.sourceforge.net/)
-  // bugfixed by: Eugene Bulkin (http://doubleaw.com/)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: EdorFaus
-  //    input by: JB
-  //        note: If browsers start to support DOM Level 3 Load and Save (parsing/serializing),
-  //        note: we wouldn't need any such long code (even most of the code below). See
-  //        note: link below for a cross-browser implementation in JavaScript. HTML5 might
-  //        note: possibly support DOMParser, but that is not presently a standard.
-  //        note: Although innerHTML is widely used and may become standard as of HTML5, it is also not ideal for
-  //        note: use with a temporary holder before appending to the DOM (as is our last resort below),
-  //        note: since it may not work in an XML context
-  //        note: Using innerHTML to directly add to the BODY is very dangerous because it will
-  //        note: break all pre-existing references to HTMLElements.
-  //   example 1: echo('<div><p>abc</p><p>abc</p></div>');
-  //   returns 1: undefined
-
-  var isNode = typeof module !== 'undefined' && module.exports && typeof global !== 'undefined' && {}.toString.call(
-    global) == '[object global]'
-  if (isNode) {
-    var args = Array.prototype.slice.call(arguments)
-    return console.log(args.join(' '))
-  }
-
-  var arg = ''
-  var argc = arguments.length
-  var argv = arguments
-  var i = 0
-  var holder, win = this.window
-  var d = win.document
-  var ns_xhtml = 'http://www.w3.org/1999/xhtml'
-  // If we're in a XUL context
-  var ns_xul = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'
-
-  var stringToDOM = function (str, parent, ns, container) {
-    var extraNSs = ''
-    if (ns === ns_xul) {
-      extraNSs = ' xmlns:html="' + ns_xhtml + '"'
-    }
-    var stringContainer = '<' + container + ' xmlns="' + ns + '"' + extraNSs + '>' + str + '</' + container + '>'
-    var dils = win.DOMImplementationLS
-    var dp = win.DOMParser
-    var ax = win.ActiveXObject
-    if (dils && dils.createLSInput && dils.createLSParser) {
-      // Follows the DOM 3 Load and Save standard, but not
-      // implemented in browsers at present; HTML5 is to standardize on innerHTML, but not for XML (though
-      // possibly will also standardize with DOMParser); in the meantime, to ensure fullest browser support, could
-      // attach http://svn2.assembla.com/svn/brettz9/DOMToString/DOM3.js (see http://svn2.assembla.com/svn/brettz9/DOMToString/DOM3.xhtml for a simple test file)
-      var lsInput = dils.createLSInput()
-      // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
-      lsInput.stringData = stringContainer
-      // synchronous, no schema type
-      var lsParser = dils.createLSParser(1, null)
-      return lsParser.parse(lsInput)
-        .firstChild
-    } else if (dp) {
-      // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
-      try {
-        var fc = new dp()
-          .parseFromString(stringContainer, 'text/xml')
-        if (fc && fc.documentElement && fc.documentElement.localName !== 'parsererror' && fc.documentElement.namespaceURI !==
-          'http://www.mozilla.org/newlayout/xml/parsererror.xml') {
-          return fc.documentElement.firstChild
-        }
-        // If there's a parsing error, we just continue on
-      } catch (e) {
-        // If there's a parsing error, we just continue on
-      }
-    } else if (ax) {
-      // We don't bother with a holder in Explorer as it doesn't support namespaces
-      var axo = new ax('MSXML2.DOMDocument')
-      axo.loadXML(str)
-      return axo.documentElement
-    }
-    /* else if (win.XMLHttpRequest) {
-     // Supposed to work in older Safari
-      var req = new win.XMLHttpRequest;
-      req.open('GET', 'data:application/xml;charset=utf-8,'+encodeURIComponent(str), false);
-      if (req.overrideMimeType) {
-        req.overrideMimeType('application/xml');
-      }
-      req.send(null);
-      return req.responseXML;
-    }*/
-    // Document fragment did not work with innerHTML, so we create a temporary element holder
-    // If we're in XHTML, we'll try to allow the XHTML namespace to be available by default
-    // if (d.createElementNS && (d.contentType && d.contentType !== 'text/html')) {
-    // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways)
-    if (d.createElementNS && // Browser supports the method
-      (d.documentElement.namespaceURI || // We can use if the document is using a namespace
-        d.documentElement.nodeName.toLowerCase() !== 'html' || // We know it's not HTML4 or less, if the tag is not HTML (even if the root namespace is null)
-        (d.contentType && d.contentType !== 'text/html') // We know it's not regular HTML4 or less if this is Mozilla (only browser supporting the attribute) and the content type is something other than text/html; other HTML5 roots (like svg) still have a namespace
-      )) {
-      // Don't create namespaced elements if we're being served as HTML (currently only Mozilla supports this detection in true XHTML-supporting browsers, but Safari and Opera should work with the above DOMParser anyways, and IE doesn't support createElementNS anyways); last test is for the sake of being in a pure XML document
-      holder = d.createElementNS(ns, container)
-    } else {
-      // Document fragment did not work with innerHTML
-      holder = d.createElement(container)
-    }
-    holder.innerHTML = str
-    while (holder.firstChild) {
-      parent.appendChild(holder.firstChild)
-    }
-    return false
-    // throw 'Your browser does not support DOM parsing as required by echo()';
-  }
-
-  var ieFix = function (node) {
-    if (node.nodeType === 1) {
-      var newNode = d.createElement(node.nodeName)
-      var i, len
-      if (node.attributes && node.attributes.length > 0) {
-        for (i = 0, len = node.attributes.length; i < len; i++) {
-          newNode.setAttribute(node.attributes[i].nodeName, node.getAttribute(node.attributes[i].nodeName))
-        }
-      }
-      if (node.childNodes && node.childNodes.length > 0) {
-        for (i = 0, len = node.childNodes.length; i < len; i++) {
-          newNode.appendChild(ieFix(node.childNodes[i]))
-        }
-      }
-      return newNode
-    } else {
-      return d.createTextNode(node.nodeValue)
-    }
-  }
-
-  var replacer = function (s, m1, m2) {
-    // We assume for now that embedded variables do not have dollar sign; to add a dollar sign, you currently must use {$$var} (We might change this, however.)
-    // Doesn't cover all cases yet: see http://php.net/manual/en/language.types.string.php#language.types.string.syntax.double
-    if (m1 !== '\\') {
-      return m1 + eval(m2)
-    } else {
-      return s
-    }
-  }
-
-  this.php_js = this.php_js || {}
-  var phpjs = this.php_js
-  var ini = phpjs.ini
-  var obs = phpjs.obs
-  for (i = 0; i < argc; i++) {
-    arg = argv[i]
-    if (ini && ini['phpjs.echo_embedded_vars']) {
-      arg = arg.replace(/(.?)\{?\$(\w*?\}|\w*)/g, replacer)
-    }
-
-    if (!phpjs.flushing && obs && obs.length) {
-      // If flushing we output, but otherwise presence of a buffer means caching output
-      obs[obs.length - 1].buffer += arg
-      continue
-    }
-
-    if (d.appendChild) {
-      if (d.body) {
-        if (win.navigator.appName === 'Microsoft Internet Explorer') {
-          // We unfortunately cannot use feature detection, since this is an IE bug with cloneNode nodes being appended
-          d.body.appendChild(stringToDOM(ieFix(arg)))
-        } else {
-          var unappendedLeft = stringToDOM(arg, d.body, ns_xhtml, 'div')
-            .cloneNode(true) // We will not actually append the div tag (just using for providing XHTML namespace by default)
-          if (unappendedLeft) {
-            d.body.appendChild(unappendedLeft)
-          }
-        }
-      } else {
-        // We will not actually append the description tag (just using for providing XUL namespace by default)
-        d.documentElement.appendChild(stringToDOM(arg, d.documentElement, ns_xul, 'description'))
-      }
-    } else if (d.write) {
-      d.write(arg)
-    } else {
-      console.log(arg)
-    }
-  }
-}
-
-{% endhighlight %}
-
-## Notes
-- If browsers start to support DOM Level 3 Load and Save (parsing/serializing),,we wouldn't need any such long code (even most of the code below). See,link below for a cross-browser implementation in JavaScript. HTML5 might,possibly support DOMParser, but that is not presently a standard.,Although innerHTML is widely used and may become standard as of HTML5, it is also not ideal for,use with a temporary holder before appending to the DOM (as is our last resort below),,since it may not work in an XML context,Using innerHTML to directly add to the BODY is very dangerous because it will,break all pre-existing references to HTMLElements.
-
-## Example 1
-
-{% highlight javascript %}
-echo('<div><p>abc</p><p>abc</p></div>');
-{% endhighlight %}
-
-Should return
-
-{% highlight javascript %}
-echo('<div><p>abc</p><p>abc</p></div>');{% endhighlight %}
-
-
-## Authors
-
-
-Original by
-
-- Philip Peterson
-
-
-Improved by
-
-- echo is bad,Nate,Brett Zamir (http://brett-zamir.me),Brett Zamir (http://brett-zamir.me),Brett Zamir (http://brett-zamir.me)
-
-
-Bugfixed by
-
-- Eugene Bulkin (http://doubleaw.com/),Brett Zamir (http://brett-zamir.me),Brett Zamir (http://brett-zamir.me),EdorFaus
-
-
-Revised by
-
-- Der Simon (http://innerdom.sourceforge.net/)
-
-
-Input by
-
-- JB
-

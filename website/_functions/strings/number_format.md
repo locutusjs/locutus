@@ -1,334 +1,68 @@
 ---
-params:
-  headKeys:
-    discuss at:
-      - - 'http://phpjs.org/functions/number_format/'
-    original by:
-      - - 'Jonas Raoni Soares Silva (http://www.jsfromhell.com)'
-    improved by:
-      - - 'Kevin van Zonneveld (http://kevin.vanzonneveld.net)'
-        - davook
-        - 'Brett Zamir (http://brett-zamir.me)'
-        - 'Brett Zamir (http://brett-zamir.me)'
-        - Theriault
-        - 'Kevin van Zonneveld (http://kevin.vanzonneveld.net)'
-    bugfixed by:
-      - - 'Michael White (http://getsprink.com)'
-        - Benjamin Lupton
-        - 'Allan Jensen (http://www.winternet.no)'
-        - Howard Yeend
-        - Diogo Resende
-        - Rival
-        - 'Brett Zamir (http://brett-zamir.me)'
-    revised by:
-      - - 'Jonas Raoni Soares Silva (http://www.jsfromhell.com)'
-        - 'Luke Smith (http://lucassmith.name)'
-    input by:
-      - - 'Kheang Hok Chin (http://www.distantia.ca/)'
-        - Jay Klehr
-        - 'Amir Habibi (http://www.residence-mixte.com/)'
-        - Amirouche
-    example:
-      - - number_format(1234.56);
-      - - "number_format(1234.56, 2, ',', ' ');"
-      - - "number_format(1234.5678, 2, '.', '');"
-      - - "number_format(67, 2, ',', '.');"
-      - - number_format(1000);
-      - - 'number_format(67.311, 2);'
-      - - 'number_format(1000.55, 1);'
-      - - "number_format(67000, 5, ',', '.');"
-      - - 'number_format(0.9, 0);'
-      - - "number_format('1.20', 2);"
-      - - "number_format('1.20', 4);"
-      - - "number_format('1.2000', 3);"
-      - - "number_format('1 000,50', 2, '.', ' ');"
-      - - "number_format(1e-8, 8, '.', '');"
-    returns:
-      - - "'1,235'"
-      - - "'1 234,56'"
-      - - "'1234.57'"
-      - - "'67,00'"
-      - - "'1,000'"
-      - - "'67.31'"
-      - - "'1,000.6'"
-      - - "'67.000,00000'"
-      - - "'1'"
-      - - "'1.20'"
-      - - "'1.2000'"
-      - - "'1.200'"
-      - - "'100 050.00'"
-      - - "'0.00000001'"
+examples:
+  - - number_format(1234.56);
+  - - "number_format(1234.56, 2, ',', ' ');"
+  - - "number_format(1234.5678, 2, '.', '');"
+  - - "number_format(67, 2, ',', '.');"
+  - - number_format(1000);
+  - - 'number_format(67.311, 2);'
+  - - 'number_format(1000.55, 1);'
+  - - "number_format(67000, 5, ',', '.');"
+  - - 'number_format(0.9, 0);'
+  - - "number_format('1.20', 2);"
+  - - "number_format('1.20', 4);"
+  - - "number_format('1.2000', 3);"
+  - - "number_format('1 000,50', 2, '.', ' ');"
+  - - "number_format(1e-8, 8, '.', '');"
+returns:
+  - - "'1,235'"
+  - - "'1 234,56'"
+  - - "'1234.57'"
+  - - "'67,00'"
+  - - "'1,000'"
+  - - "'67.31'"
+  - - "'1,000.6'"
+  - - "'67.000,00000'"
+  - - "'1'"
+  - - "'1.20'"
+  - - "'1.2000'"
+  - - "'1.200'"
+  - - "'100 050.00'"
+  - - "'0.00000001'"
+authors:
+  original by:
+    - 'Jonas Raoni Soares Silva (http://www.jsfromhell.com)'
+  improved by:
+    - 'Kevin van Zonneveld (http://kevin.vanzonneveld.net)'
+    - davook
+    - 'Brett Zamir (http://brett-zamir.me)'
+    - 'Brett Zamir (http://brett-zamir.me)'
+    - Theriault
+    - 'Kevin van Zonneveld (http://kevin.vanzonneveld.net)'
+  bugfixed by:
+    - 'Michael White (http://getsprink.com)'
+    - Benjamin Lupton
+    - 'Allan Jensen (http://www.winternet.no)'
+    - Howard Yeend
+    - Diogo Resende
+    - Rival
+    - 'Brett Zamir (http://brett-zamir.me)'
+  revised by:
+    - 'Jonas Raoni Soares Silva (http://www.jsfromhell.com)'
+    - 'Luke Smith (http://lucassmith.name)'
+  input by:
+    - 'Kheang Hok Chin (http://www.distantia.ca/)'
+    - Jay Klehr
+    - 'Amir Habibi (http://www.residence-mixte.com/)'
+    - Amirouche
+notes: []
+layout: function
 function: number_format
 category: strings
-permalink: /functions/number_format
+code: "function number_format (number, decimals, dec_point, thousands_sep) {\n  //  discuss at: http://phpjs.org/functions/number_format/\n  // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)\n  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)\n  // improved by: davook\n  // improved by: Brett Zamir (http://brett-zamir.me)\n  // improved by: Brett Zamir (http://brett-zamir.me)\n  // improved by: Theriault\n  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)\n  // bugfixed by: Michael White (http://getsprink.com)\n  // bugfixed by: Benjamin Lupton\n  // bugfixed by: Allan Jensen (http://www.winternet.no)\n  // bugfixed by: Howard Yeend\n  // bugfixed by: Diogo Resende\n  // bugfixed by: Rival\n  // bugfixed by: Brett Zamir (http://brett-zamir.me)\n  //  revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)\n  //  revised by: Luke Smith (http://lucassmith.name)\n  //    input by: Kheang Hok Chin (http://www.distantia.ca/)\n  //    input by: Jay Klehr\n  //    input by: Amir Habibi (http://www.residence-mixte.com/)\n  //    input by: Amirouche\n  //   example 1: number_format(1234.56);\n  //   returns 1: '1,235'\n  //   example 2: number_format(1234.56, 2, ',', ' ');\n  //   returns 2: '1 234,56'\n  //   example 3: number_format(1234.5678, 2, '.', '');\n  //   returns 3: '1234.57'\n  //   example 4: number_format(67, 2, ',', '.');\n  //   returns 4: '67,00'\n  //   example 5: number_format(1000);\n  //   returns 5: '1,000'\n  //   example 6: number_format(67.311, 2);\n  //   returns 6: '67.31'\n  //   example 7: number_format(1000.55, 1);\n  //   returns 7: '1,000.6'\n  //   example 8: number_format(67000, 5, ',', '.');\n  //   returns 8: '67.000,00000'\n  //   example 9: number_format(0.9, 0);\n  //   returns 9: '1'\n  //  example 10: number_format('1.20', 2);\n  //  returns 10: '1.20'\n  //  example 11: number_format('1.20', 4);\n  //  returns 11: '1.2000'\n  //  example 12: number_format('1.2000', 3);\n  //  returns 12: '1.200'\n  //  example 13: number_format('1 000,50', 2, '.', ' ');\n  //  returns 13: '100 050.00'\n  //  example 14: number_format(1e-8, 8, '.', '');\n  //  returns 14: '0.00000001'\n\n  number = (number + '')\n    .replace(/[^0-9+\\-Ee.]/g, '')\n  var n = !isFinite(+number) ? 0 : +number,\n    prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),\n    sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,\n    dec = (typeof dec_point === 'undefined') ? '.' : dec_point,\n    s = '',\n    toFixedFix = function (n, prec) {\n      var k = Math.pow(10, prec)\n      return '' + (Math.round(n * k) / k)\n        .toFixed(prec)\n    }\n  // Fix for IE parseFloat(0.55).toFixed(0) = 0;\n  s = (prec ? toFixedFix(n, prec) : '' + Math.round(n))\n    .split('.')\n  if (s[0].length > 3) {\n    s[0] = s[0].replace(/\\B(?=(?:\\d{3})+(?!\\d))/g, sep)\n  }\n  if ((s[1] || '')\n    .length < prec) {\n    s[1] = s[1] || ''\n    s[1] += new Array(prec - s[1].length + 1)\n      .join('0')\n  }\n  return s.join(dec)\n}\n"
+permalink: /functions/number_format/
 redirect_from:
   - /functions/strings/number_format/
 ---
 
 <!-- WARNING! This file is auto generated by `npm run web:inject`, do not edit by hand -->
-
-Here's what a JavaScript equivalent for PHP’s array_chunk might look like
-
-{% highlight javascript %}
-function number_format (number, decimals, dec_point, thousands_sep) {
-  //  discuss at: http://phpjs.org/functions/number_format/
-  // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // improved by: davook
-  // improved by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Theriault
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // bugfixed by: Michael White (http://getsprink.com)
-  // bugfixed by: Benjamin Lupton
-  // bugfixed by: Allan Jensen (http://www.winternet.no)
-  // bugfixed by: Howard Yeend
-  // bugfixed by: Diogo Resende
-  // bugfixed by: Rival
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //  revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-  //  revised by: Luke Smith (http://lucassmith.name)
-  //    input by: Kheang Hok Chin (http://www.distantia.ca/)
-  //    input by: Jay Klehr
-  //    input by: Amir Habibi (http://www.residence-mixte.com/)
-  //    input by: Amirouche
-  //   example 1: number_format(1234.56);
-  //   returns 1: '1,235'
-  //   example 2: number_format(1234.56, 2, ',', ' ');
-  //   returns 2: '1 234,56'
-  //   example 3: number_format(1234.5678, 2, '.', '');
-  //   returns 3: '1234.57'
-  //   example 4: number_format(67, 2, ',', '.');
-  //   returns 4: '67,00'
-  //   example 5: number_format(1000);
-  //   returns 5: '1,000'
-  //   example 6: number_format(67.311, 2);
-  //   returns 6: '67.31'
-  //   example 7: number_format(1000.55, 1);
-  //   returns 7: '1,000.6'
-  //   example 8: number_format(67000, 5, ',', '.');
-  //   returns 8: '67.000,00000'
-  //   example 9: number_format(0.9, 0);
-  //   returns 9: '1'
-  //  example 10: number_format('1.20', 2);
-  //  returns 10: '1.20'
-  //  example 11: number_format('1.20', 4);
-  //  returns 11: '1.2000'
-  //  example 12: number_format('1.2000', 3);
-  //  returns 12: '1.200'
-  //  example 13: number_format('1 000,50', 2, '.', ' ');
-  //  returns 13: '100 050.00'
-  //  example 14: number_format(1e-8, 8, '.', '');
-  //  returns 14: '0.00000001'
-
-  number = (number + '')
-    .replace(/[^0-9+\-Ee.]/g, '')
-  var n = !isFinite(+number) ? 0 : +number,
-    prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-    sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-    dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-    s = '',
-    toFixedFix = function (n, prec) {
-      var k = Math.pow(10, prec)
-      return '' + (Math.round(n * k) / k)
-        .toFixed(prec)
-    }
-  // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-  s = (prec ? toFixedFix(n, prec) : '' + Math.round(n))
-    .split('.')
-  if (s[0].length > 3) {
-    s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep)
-  }
-  if ((s[1] || '')
-    .length < prec) {
-    s[1] = s[1] || ''
-    s[1] += new Array(prec - s[1].length + 1)
-      .join('0')
-  }
-  return s.join(dec)
-}
-
-{% endhighlight %}
-
-## Example 1
-
-{% highlight javascript %}
-number_format(1234.56);
-{% endhighlight %}
-
-Should return
-
-{% highlight javascript %}
-number_format(1234.56);{% endhighlight %}
-
-## Example 2
-
-{% highlight javascript %}
-number_format(1234.56, 2, ',', ' ');
-{% endhighlight %}
-
-Should return
-
-{% highlight javascript %}
-number_format(1234.56, 2, ',', ' ');{% endhighlight %}
-
-## Example 3
-
-{% highlight javascript %}
-number_format(1234.5678, 2, '.', '');
-{% endhighlight %}
-
-Should return
-
-{% highlight javascript %}
-number_format(1234.5678, 2, '.', '');{% endhighlight %}
-
-## Example 4
-
-{% highlight javascript %}
-number_format(67, 2, ',', '.');
-{% endhighlight %}
-
-Should return
-
-{% highlight javascript %}
-number_format(67, 2, ',', '.');{% endhighlight %}
-
-## Example 5
-
-{% highlight javascript %}
-number_format(1000);
-{% endhighlight %}
-
-Should return
-
-{% highlight javascript %}
-number_format(1000);{% endhighlight %}
-
-## Example 6
-
-{% highlight javascript %}
-number_format(67.311, 2);
-{% endhighlight %}
-
-Should return
-
-{% highlight javascript %}
-number_format(67.311, 2);{% endhighlight %}
-
-## Example 7
-
-{% highlight javascript %}
-number_format(1000.55, 1);
-{% endhighlight %}
-
-Should return
-
-{% highlight javascript %}
-number_format(1000.55, 1);{% endhighlight %}
-
-## Example 8
-
-{% highlight javascript %}
-number_format(67000, 5, ',', '.');
-{% endhighlight %}
-
-Should return
-
-{% highlight javascript %}
-number_format(67000, 5, ',', '.');{% endhighlight %}
-
-## Example 9
-
-{% highlight javascript %}
-number_format(0.9, 0);
-{% endhighlight %}
-
-Should return
-
-{% highlight javascript %}
-number_format(0.9, 0);{% endhighlight %}
-
-## Example 10
-
-{% highlight javascript %}
-number_format('1.20', 2);
-{% endhighlight %}
-
-Should return
-
-{% highlight javascript %}
-number_format('1.20', 2);{% endhighlight %}
-
-## Example 11
-
-{% highlight javascript %}
-number_format('1.20', 4);
-{% endhighlight %}
-
-Should return
-
-{% highlight javascript %}
-number_format('1.20', 4);{% endhighlight %}
-
-## Example 12
-
-{% highlight javascript %}
-number_format('1.2000', 3);
-{% endhighlight %}
-
-Should return
-
-{% highlight javascript %}
-number_format('1.2000', 3);{% endhighlight %}
-
-## Example 13
-
-{% highlight javascript %}
-number_format('1 000,50', 2, '.', ' ');
-{% endhighlight %}
-
-Should return
-
-{% highlight javascript %}
-number_format('1 000,50', 2, '.', ' ');{% endhighlight %}
-
-## Example 14
-
-{% highlight javascript %}
-number_format(1e-8, 8, '.', '');
-{% endhighlight %}
-
-Should return
-
-{% highlight javascript %}
-number_format(1e-8, 8, '.', '');{% endhighlight %}
-
-
-## Authors
-
-
-Original by
-
-- Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-
-
-Improved by
-
-- Kevin van Zonneveld (http://kevin.vanzonneveld.net),davook,Brett Zamir (http://brett-zamir.me),Brett Zamir (http://brett-zamir.me),Theriault,Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-
-
-Bugfixed by
-
-- Michael White (http://getsprink.com),Benjamin Lupton,Allan Jensen (http://www.winternet.no),Howard Yeend,Diogo Resende,Rival,Brett Zamir (http://brett-zamir.me)
-
-
-Revised by
-
-- Jonas Raoni Soares Silva (http://www.jsfromhell.com),Luke Smith (http://lucassmith.name)
-
-
-Input by
-
-- Kheang Hok Chin (http://www.distantia.ca/),Jay Klehr,Amir Habibi (http://www.residence-mixte.com/),Amirouche
-

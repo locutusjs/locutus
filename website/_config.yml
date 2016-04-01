@@ -31,13 +31,6 @@ collections:
   functions:
     output: true
 
-defaults:
-  - scope:
-      path: ""
-      type: functions
-    values:
-      layout: function
-
 exclude:
   - Makefile
   - Gemfile

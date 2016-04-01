@@ -1,0 +1,46 @@
+---
+layout: page
+---
+
+<p>
+  Here’s what a JavaScript equivalent for PHP’s array_chunk might look like
+</p>
+
+{% highlight javascript %}
+{{page.code}}
+{% endhighlight %}
+<ul>
+  <li><a href="https://github.com/kvz/phpjs/blob/master/functions/{{page.category}}/{{page.function}}.js">Raw function on GitHub</a></li>
+</ul>
+
+<p>Please note that php.js uses JavaScript objects as substitutes for PHP arrays, they are the closest match to this hashtable-like data structure.</p>
+<p>Please also note that php.js offers community built functions and goes by the <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">McDonald’s Theory</a>. We’ll put online functions that are far from perfect, in the hopes to spark better contributions.
+  Do you have one? Then please just:</p>
+<ul>
+  <li><a href="https://github.com/kvz/phpjs/edit/master/functions/{{page.category}}/{{page.function}}.js">Edit on GitHub</a></li>
+</ul>
+
+{% if page.notes != empty %}
+  <h2>Notes</h2>
+
+  <ul>
+  {% for note in page.notes %}
+    <li>{{note}}</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+{% if page.examples %}
+  <h2>Examples</h2>
+  {% for example in page.examples %}
+    {% assign return = page.returns[forloop.index0] %}
+
+    {% highlight javascript %}{{ example |join: '\n' }}{% endhighlight %}
+
+    Should return:
+
+    {% highlight javascript %}{{ return |join: '\n' }}{% endhighlight %}
+  {% endfor %}
+{% endif %}
+
+<p>Check <a href="/functions/#{{page.category}}">Other PHP functions in the {{page.category}} category</a>.</p>

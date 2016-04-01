@@ -1,222 +1,33 @@
 ---
-params:
-  headKeys:
-    discuss at:
-      - - 'http://phpjs.org/functions/var_export/'
-    original by:
-      - - Philip Peterson
-    improved by:
-      - - johnrembo
-        - 'Brett Zamir (http://brett-zamir.me)'
-    input by:
-      - - 'Brian Tafoya (http://www.premasolutions.com/)'
-        - 'Hans Henrik (http://hanshenrik.tk/)'
-    bugfixed by:
-      - - 'Brett Zamir (http://brett-zamir.me)'
-        - 'Brett Zamir (http://brett-zamir.me)'
-    depends on:
-      - - echo
-    example:
-      - - var_export(null);
-      - - "var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true);"
-      - - "data = 'Kevin';"
-        - 'var_export(data, true);'
-    returns:
-      - - 'null'
-      - - "\"array (\\n  0 => 'Kevin',\\n  1 => 'van',\\n  2 => 'Zonneveld'\\n)\""
-      - - "\"'Kevin'\""
+examples:
+  - - var_export(null);
+  - - "var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true);"
+  - - "data = 'Kevin';"
+    - 'var_export(data, true);'
+returns:
+  - - 'null'
+  - - "\"array (\\n  0 => 'Kevin',\\n  1 => 'van',\\n  2 => 'Zonneveld'\\n)\""
+  - - "\"'Kevin'\""
+authors:
+  original by:
+    - Philip Peterson
+  improved by:
+    - johnrembo
+    - 'Brett Zamir (http://brett-zamir.me)'
+  bugfixed by:
+    - 'Brett Zamir (http://brett-zamir.me)'
+    - 'Brett Zamir (http://brett-zamir.me)'
+  input by:
+    - 'Brian Tafoya (http://www.premasolutions.com/)'
+    - 'Hans Henrik (http://hanshenrik.tk/)'
+notes: []
+layout: function
 function: var_export
 category: var
-permalink: /functions/var_export
+code: "function var_export (mixed_expression, bool_return) {\n  //  discuss at: http://phpjs.org/functions/var_export/\n  // original by: Philip Peterson\n  // improved by: johnrembo\n  // improved by: Brett Zamir (http://brett-zamir.me)\n  //    input by: Brian Tafoya (http://www.premasolutions.com/)\n  //    input by: Hans Henrik (http://hanshenrik.tk/)\n  // bugfixed by: Brett Zamir (http://brett-zamir.me)\n  // bugfixed by: Brett Zamir (http://brett-zamir.me)\n  //  depends on: echo\n  //   example 1: var_export(null);\n  //   returns 1: null\n  //   example 2: var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true);\n  //   returns 2: \"array (\\n  0 => 'Kevin',\\n  1 => 'van',\\n  2 => 'Zonneveld'\\n)\"\n  //   example 3: data = 'Kevin';\n  //   example 3: var_export(data, true);\n  //   returns 3: \"'Kevin'\"\n\n  var retstr = '',\n    iret = '',\n    value,\n    cnt = 0,\n    x = [],\n    i = 0,\n    funcParts = [],\n    // We use the last argument (not part of PHP) to pass in\n    // our indentation level\n    idtLevel = arguments[2] || 2,\n    innerIndent = '',\n    outerIndent = '',\n    getFuncName = function (fn) {\n      var name = (/\\W*function\\s+([\\w\\$]+)\\s*\\(/)\n        .exec(fn)\n      if (!name) {\n        return '(Anonymous)'\n      }\n      return name[1]\n    }\n  _makeIndent = function (idtLevel) {\n    return (new Array(idtLevel + 1))\n      .join(' ')\n  }\n  __getType = function (inp) {\n    var i = 0,\n      match, types, cons, type = typeof inp\n    if (type === 'object' && (inp && inp.constructor) &&\n      getFuncName(inp.constructor) === 'PHPJS_Resource') {\n      return 'resource'\n    }\n    if (type === 'function') {\n      return 'function'\n    }\n    if (type === 'object' && !inp) {\n      // Should this be just null?\n      return 'null'\n    }\n    if (type === 'object') {\n      if (!inp.constructor) {\n        return 'object'\n      }\n      cons = inp.constructor.toString()\n      match = cons.match(/(\\w+)\\(/)\n      if (match) {\n        cons = match[1].toLowerCase()\n      }\n      types = ['boolean', 'number', 'string', 'array']\n      for (i = 0; i < types.length; i++) {\n        if (cons === types[i]) {\n          type = types[i]\n          break\n        }\n      }\n    }\n    return type\n  }\n  type = __getType(mixed_expression)\n\n  if (type === null) {\n    retstr = 'NULL'\n  } else if (type === 'array' || type === 'object') {\n    outerIndent = _makeIndent(idtLevel - 2)\n    innerIndent = _makeIndent(idtLevel)\n    for (i in mixed_expression) {\n      value = this.var_export(mixed_expression[i], 1, idtLevel + 2)\n      value = typeof value === 'string' ? value.replace(/</g, '&lt;')\n        .\n      replace(/>/g, '&gt;') : value\n      x[cnt++] = innerIndent + i + ' => ' +\n        (__getType(mixed_expression[i]) === 'array' ?\n          '\\n' : '') + value\n    }\n    iret = x.join(',\\n')\n    retstr = outerIndent + 'array (\\n' + iret + '\\n' + outerIndent + ')'\n  } else if (type === 'function') {\n    funcParts = mixed_expression.toString()\n      .\n    match(/function .*?\\((.*?)\\) \\{([\\s\\S]*)\\}/)\n\n    // For lambda functions, var_export() outputs such as the following:\n    // '\\000lambda_1'. Since it will probably not be a common use to\n    // expect this (unhelpful) form, we'll use another PHP-exportable\n    // construct, create_function() (though dollar signs must be on the\n    // variables in JavaScript); if using instead in JavaScript and you\n    // are using the namespaced version, note that create_function() will\n    // not be available as a global\n    retstr = \"create_function ('\" + funcParts[1] + \"', '\" +\n      funcParts[2].replace(new RegExp(\"'\", 'g'), \"\\\\'\") + \"')\"\n  } else if (type === 'resource') {\n    // Resources treated as null for var_export\n    retstr = 'NULL'\n  } else {\n    retstr = typeof mixed_expression !== 'string' ? mixed_expression :\n      \"'\" + mixed_expression.replace(/([\"'])/g, '\\\\$1')\n      .\n    replace(/\\0/g, '\\\\0') + \"'\"\n  }\n\n  if (!bool_return) {\n    this.echo(retstr)\n    return null\n  }\n\n  return retstr\n}\n"
+permalink: /functions/var_export/
 redirect_from:
   - /functions/var/var_export/
 ---
 
 <!-- WARNING! This file is auto generated by `npm run web:inject`, do not edit by hand -->
-
-Here's what a JavaScript equivalent for PHP’s array_chunk might look like
-
-{% highlight javascript %}
-function var_export (mixed_expression, bool_return) {
-  //  discuss at: http://phpjs.org/functions/var_export/
-  // original by: Philip Peterson
-  // improved by: johnrembo
-  // improved by: Brett Zamir (http://brett-zamir.me)
-  //    input by: Brian Tafoya (http://www.premasolutions.com/)
-  //    input by: Hans Henrik (http://hanshenrik.tk/)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //  depends on: echo
-  //   example 1: var_export(null);
-  //   returns 1: null
-  //   example 2: var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true);
-  //   returns 2: "array (\n  0 => 'Kevin',\n  1 => 'van',\n  2 => 'Zonneveld'\n)"
-  //   example 3: data = 'Kevin';
-  //   example 3: var_export(data, true);
-  //   returns 3: "'Kevin'"
-
-  var retstr = '',
-    iret = '',
-    value,
-    cnt = 0,
-    x = [],
-    i = 0,
-    funcParts = [],
-    // We use the last argument (not part of PHP) to pass in
-    // our indentation level
-    idtLevel = arguments[2] || 2,
-    innerIndent = '',
-    outerIndent = '',
-    getFuncName = function (fn) {
-      var name = (/\W*function\s+([\w\$]+)\s*\(/)
-        .exec(fn)
-      if (!name) {
-        return '(Anonymous)'
-      }
-      return name[1]
-    }
-  _makeIndent = function (idtLevel) {
-    return (new Array(idtLevel + 1))
-      .join(' ')
-  }
-  __getType = function (inp) {
-    var i = 0,
-      match, types, cons, type = typeof inp
-    if (type === 'object' && (inp && inp.constructor) &&
-      getFuncName(inp.constructor) === 'PHPJS_Resource') {
-      return 'resource'
-    }
-    if (type === 'function') {
-      return 'function'
-    }
-    if (type === 'object' && !inp) {
-      // Should this be just null?
-      return 'null'
-    }
-    if (type === 'object') {
-      if (!inp.constructor) {
-        return 'object'
-      }
-      cons = inp.constructor.toString()
-      match = cons.match(/(\w+)\(/)
-      if (match) {
-        cons = match[1].toLowerCase()
-      }
-      types = ['boolean', 'number', 'string', 'array']
-      for (i = 0; i < types.length; i++) {
-        if (cons === types[i]) {
-          type = types[i]
-          break
-        }
-      }
-    }
-    return type
-  }
-  type = __getType(mixed_expression)
-
-  if (type === null) {
-    retstr = 'NULL'
-  } else if (type === 'array' || type === 'object') {
-    outerIndent = _makeIndent(idtLevel - 2)
-    innerIndent = _makeIndent(idtLevel)
-    for (i in mixed_expression) {
-      value = this.var_export(mixed_expression[i], 1, idtLevel + 2)
-      value = typeof value === 'string' ? value.replace(/</g, '&lt;')
-        .
-      replace(/>/g, '&gt;') : value
-      x[cnt++] = innerIndent + i + ' => ' +
-        (__getType(mixed_expression[i]) === 'array' ?
-          '\n' : '') + value
-    }
-    iret = x.join(',\n')
-    retstr = outerIndent + 'array (\n' + iret + '\n' + outerIndent + ')'
-  } else if (type === 'function') {
-    funcParts = mixed_expression.toString()
-      .
-    match(/function .*?\((.*?)\) \{([\s\S]*)\}/)
-
-    // For lambda functions, var_export() outputs such as the following:
-    // '\000lambda_1'. Since it will probably not be a common use to
-    // expect this (unhelpful) form, we'll use another PHP-exportable
-    // construct, create_function() (though dollar signs must be on the
-    // variables in JavaScript); if using instead in JavaScript and you
-    // are using the namespaced version, note that create_function() will
-    // not be available as a global
-    retstr = "create_function ('" + funcParts[1] + "', '" +
-      funcParts[2].replace(new RegExp("'", 'g'), "\\'") + "')"
-  } else if (type === 'resource') {
-    // Resources treated as null for var_export
-    retstr = 'NULL'
-  } else {
-    retstr = typeof mixed_expression !== 'string' ? mixed_expression :
-      "'" + mixed_expression.replace(/(["'])/g, '\\$1')
-      .
-    replace(/\0/g, '\\0') + "'"
-  }
-
-  if (!bool_return) {
-    this.echo(retstr)
-    return null
-  }
-
-  return retstr
-}
-
-{% endhighlight %}
-
-## Example 1
-
-{% highlight javascript %}
-var_export(null);
-{% endhighlight %}
-
-Should return
-
-{% highlight javascript %}
-var_export(null);{% endhighlight %}
-
-## Example 2
-
-{% highlight javascript %}
-var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true);
-{% endhighlight %}
-
-Should return
-
-{% highlight javascript %}
-var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true);{% endhighlight %}
-
-## Example 3
-
-{% highlight javascript %}
-data = 'Kevin';,var_export(data, true);
-{% endhighlight %}
-
-Should return
-
-{% highlight javascript %}
-data = 'Kevin';,var_export(data, true);{% endhighlight %}
-
-
-## Authors
-
-
-Original by
-
-- Philip Peterson
-
-
-Improved by
-
-- johnrembo,Brett Zamir (http://brett-zamir.me)
-
-
-Bugfixed by
-
-- Brett Zamir (http://brett-zamir.me),Brett Zamir (http://brett-zamir.me)
-
-
-Input by
-
-- Brian Tafoya (http://www.premasolutions.com/),Hans Henrik (http://hanshenrik.tk/)
-

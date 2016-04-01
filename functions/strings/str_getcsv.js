@@ -6,8 +6,8 @@ function str_getcsv (input, delimiter, enclosure, escape) {
   //   example 2: str_getcsv('"row2""cell1","row2cell2","row2cell3"', null, null, '"');
   //   returns 2: ['row2"cell1', 'row2cell2', 'row2cell3']
 
-  // These test cases allowing for missing delimiters are not currently supported
   /*
+  // These test cases allowing for missing delimiters are not currently supported
     str_getcsv('"row2""cell1",row2cell2,row2cell3', null, null, '"');
     ['row2"cell1', 'row2cell2', 'row2cell3']
 
@@ -21,7 +21,8 @@ function str_getcsv (input, delimiter, enclosure, escape) {
     ['row1cell1', 'row1,cell2', 'row1","cell3'];
 
     Should also test newlines within
-*/
+  */
+
   var i, inpLen, output = []
   var backwards = function (str) {
     // We need to go backwards to simulate negative look-behind (don't split on
