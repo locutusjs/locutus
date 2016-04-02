@@ -12,7 +12,7 @@ function str_replace (search, replace, subject, count) {
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Oleg Eremeev
   // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca)
-  // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca) Corrected count
+  // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca)
   //    input by: Onno Marsman
   //    input by: Brett Zamir (http://brett-zamir.me)
   //    input by: Oleg Eremeev

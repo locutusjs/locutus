@@ -40,3 +40,9 @@ body>header h1 span:nth-child(2) {
   -moz-box-shadow: none;
   border: 0px none;
 }
+
+section.authors {
+  entry {
+    display: none;
+  }
+}

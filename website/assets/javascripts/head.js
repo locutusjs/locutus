@@ -4,7 +4,7 @@ process.chdir(__dirname);
 
 console.log([
   // Non-bower dependencies
-  'dep/modernizr-2.0.js'
+  'deps/modernizr-2.0.js'
 ].map(function (str) {
   var relative = path.resolve(str);
 

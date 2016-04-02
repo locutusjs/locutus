@@ -68,7 +68,8 @@
       <li><a href="/about/">About</a></li>
       <li><a href="/blog/archives/">Blog</a></li>
       <li><a href="/functions/">Functions</a></li>
-      <li><a href="https://github.com/kvz/phpjs/graphs/contributors">Authors</a></li>
+      <li><a href="/authors/">Authors</a></li>
+      <li><a href="https://github.com/kvz/phpjs">GitHub</a></li>
     </ul>
 
   </nav>
@@ -100,9 +101,11 @@
 
 
   <script type="text/javascript">
-    $('.on-the-githubs').onthegithubs();
-    // If you use bootstrap and want to enable tooltips
-    // $('a[rel]').tooltip();
+    $(document).ready(function() {
+      $('.on-the-githubs').onthegithubs();
+      // If you use bootstrap and want to enable tooltips
+      // $('a[rel]').tooltip();
+    })
   </script>
 
   <script type="text/javascript">

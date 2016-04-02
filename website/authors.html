@@ -1,0 +1,25 @@
+---
+layout: page
+title: "Authors of php.js"
+permalink: /authors/
+# {% assign typeCounter[author][types[0]] = typeCounter[author][types[0]] |plus: 1  %}
+---
+
+<p>
+  You can find a list of core contributors on
+  <a href="https://github.com/kvz/phpjs/graphs/contributor">GitHub</a>,
+  as well as a more finegrained achievement record below:
+</p>
+
+<section class="authors">
+  {% for function in site.functions %}
+    {% for types in function.authors %}
+      {% for author in types[1] %}
+        <entry data-function="{{function.function}}" data-type="{{types[0]}}">{{author |strip |markdownify}}</entry>
+      {% endfor %}
+    {% endfor %}
+  {% endfor %}
+
+  <div class="draw">
+  </div>
+</section>

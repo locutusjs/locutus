@@ -3,12 +3,12 @@ var fs   = require('fs');
 process.chdir(__dirname);
 
 console.log([
-  // Non-bower dependencies
-  'dep/ender.js',
-  'dep/octopress.js',
   // Bower dependencies
+  'deps/ender.js',
+  'deps/octopress.js',
   '../bower/jquery/dist/jquery.js',
-  '../bower/underscore/underscore.js'
+  '../bower/underscore/underscore.js',
+  'libs/authors.js'
   // '../bower/prism/prism.js',
   // '../bower/prism/components/prism-bash.js',
   // '../bower/prism/components/prism-coffeescript.js',
