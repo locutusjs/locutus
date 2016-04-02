@@ -5,7 +5,7 @@ function base64_encode (data) {
   // improved by: Thunder.m
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // improved by: Rafał Kukawski (http://kukawski.pl)
+  // improved by: Rafał Kukawski (http://blog.kukawski.pl)
   // bugfixed by: Pellentesque Malesuada
   //   example 1: base64_encode('Kevin van Zonneveld');
   //   returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='

@@ -1,7 +1,7 @@
 function filter_var(input, filter, options) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
-  // +   improved by: Rafał Kukawski (http://kukawski.pl)
+  // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)
   // -    depends on: addslashes
   // -    depends on: htmlspecialchars
   // -    depends on: strip_tags

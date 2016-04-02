@@ -2,7 +2,7 @@ function metaphone (word, max_phonemes) {
   //  discuss at: http://phpjs.org/functions/metaphone/
   // original by: Greg Frazier
   // improved by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Rafał Kukawski (http://kukawski.pl)
+  // improved by: Rafał Kukawski (http://blog.kukawski.pl)
   //   example 1: metaphone('Gnu');
   //   returns 1: 'N'
   //   example 2: metaphone('bigger');

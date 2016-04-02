@@ -4,7 +4,7 @@ function intval (mixed_var, base) {
   // improved by: stensi
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: Rafał Kukawski (http://kukawski.pl)
+  // bugfixed by: Rafał Kukawski (http://blog.kukawski.pl)
   //    input by: Matteo
   //   example 1: intval('Kevin van Zonneveld');
   //   returns 1: 0
