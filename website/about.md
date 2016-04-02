@@ -36,7 +36,7 @@ to achieve common tasks, like [formatting dates](http://phpjs.org/functions/strf
 or [generating a hashes](http://phpjs.org/functions/sha1/).
 
 php.js aims to show developers coming from the PHP world how to achieve these things
-in JavaScript. We had to write a lot of it in order to port {{ site.functions |size }} functions. We appreciate it. We hope you will too.
+in JavaScript. We had to write a lot of it in order to port {{ site.functions |size }} functions. We appreciate the language and hope you will too. php.js exists to aid in learning it, not to avoid that.
 
 One things you'll notice is that we're also porting low-level PHP functions like
 [strpos](http://phpjs.org/functions/strpos/)
