@@ -13,7 +13,7 @@ php.js is a resource that offers community-built JavaScript alternatives to PHP 
 
 **Why on earth would you port php to js?**
 
- - initially, there was a need for interoperable server/clientside functions for base64 and url encoding. then...
+ - to create interoperable server/client-side base64 and URL encoding functions that were lacking when we started
  - to see if we could
  - to learn JavaScript
  - to help others learn JavaScript
@@ -38,16 +38,16 @@ or [generating a hashes](http://phpjs.org/functions/sha1/).
 php.js aims to show developers coming from the PHP world how to achieve these things
 in JavaScript. We had to write a lot of it in order to port {{ site.functions |size }} functions. We appreciate the language and hope you will too. php.js exists to aid in learning it, not to avoid that.
 
-One things you'll notice is that we're also porting low-level PHP functions like
+One thing you'll notice is that we're also porting low-level PHP functions like
 [strpos](http://phpjs.org/functions/strpos/)
 that have perfectly good (and more performant) JavaScript equivalents right in its standard library by means of e.g.  [String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf).
 
-There are two reasons why we're going all-in:
+There are two reasons why we went the extra mile:
 
-1. To show by example how the behavior differs across language (`false` vs `-1` in the example of `strpos` vs `indexOf`)
-2. The geeky-challenge. Porting ALL-THE-THINGS suddenly opens up php.js to other fun experiments such as running actual `.php` files on V8. We're not sure why you would want that, but we sure think it's fun to see if we can manage. (this does bring the burden of mimicking PHP as good as we can, even its mistakes)
+1. To show newcomers by example how the behavior differs across languages (`false` vs `-1` in the example of `strpos` vs `indexOf`)
+2. The geeky-challenge of porting ALL-THE-THINGS also suddenly opens up php.js to other fun experiments such as running actual `.php` files on V8. While we would advice against using that for anything serious, we sure think it's fun to see if we can manage (this does pose the burden of mimicking PHP as good as we can, even its mistakes).
 
-Something we discovered was that php.js won't be able to fully mimic all of PHP on all platforms because some platforms do not preserve ordering in objects. Rightfully, because it's not part of ECMA. Instead of rolling our own data-structures, this is a case where we accept defeat. We do take comfort in the fact that most platforms preserve ordering, and there is rumors of it becoming a part of ECMA.
+Something we discovered was that php.js won't be able to fully support PHP arrays on all platforms because some platforms do not preserve ordering in objects. Rightfully, because it's not part of ECMA. Instead of rolling our own data-structures, this is a case where we accept defeat. We take comfort in the fact that most platforms preserve ordering, and there are rumors of it becoming a part of ECMA.
 
 Going by [The McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d) 
 we have plenty of functions online that aren't perfect just yet.
