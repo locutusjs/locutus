@@ -79,6 +79,7 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 ## Todo
 
 - [ ] Split out the npm module so you could do `var sprintf = require('phpjs/sprintf')`
+- [ ] Auto-deploys via Travis CI
 
 ## Sponsor development
 
