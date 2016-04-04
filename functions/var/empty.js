@@ -8,7 +8,7 @@ function empty (mixed_var) {
   // improved by: Onno Marsman
   // improved by: Francesco
   // improved by: Marc Jansen
-  // improved by: Rafal Kukawski
+  // improved by: Rafał Kukawski (http://blog.kukawski.pl)
   //   example 1: empty(null);
   //   returns 1: true
   //   example 2: empty(undefined);

@@ -9,7 +9,7 @@ function utf8_encode (argString) {
   // bugfixed by: Onno Marsman
   // bugfixed by: Onno Marsman
   // bugfixed by: Ulrich
-  // bugfixed by: Rafal Kukawski
+  // bugfixed by: Rafał Kukawski (http://blog.kukawski.pl)
   // bugfixed by: kirilloid
   //   example 1: utf8_encode('Kevin van Zonneveld');
   //   returns 1: 'Kevin van Zonneveld'

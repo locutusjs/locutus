@@ -5,7 +5,7 @@ function levenshtein (s1, s2, cost_ins, cost_rep, cost_del) {
   //       revised by: Andrea Giammarchi (http://webreflection.blogspot.com)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
   // reimplemented by: Alexander M Beedie
-  // reimplemented by: Rafał Kukawski
+  // reimplemented by: Rafał Kukawski (http://blog.kukawski.pl)
   //        example 1: levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld');
   //        returns 1: 3
   //        example 2: levenshtein("carrrot", "carrots");
