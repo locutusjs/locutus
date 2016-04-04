@@ -44,7 +44,7 @@
     "release:major": "env SEMANTIC=major npm run release",
     "release:minor": "env SEMANTIC=minor npm run release",
     "release:patch": "env SEMANTIC=patch npm run release",
-    "release": "git commit CHANGELOG.md -m 'Update CHANGELOG.md' && npm version ${SEMANTIC:-patch} -m \"Release %s\" && npm run version:replace && git commit test/fixture/*.stdio -m 'Update version' && git push --tags && git push && npm publish",
+    "release": "git commit CHANGELOG.md -m 'Update CHANGELOG.md' && npm version ${SEMANTIC:-patch} -m \"Release %s\" && git commit test/fixture/*.stdio -m 'Update version' && git push --tags && git push && npm publish",
     "test:functions": "node lib/cli.js --action test --debug",
     "test:module": "node build/npm.js && node test/npm/npm.js",
     "test:utils": "mocha --reporter spec",
