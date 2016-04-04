@@ -3,7 +3,6 @@ function ksort (inputArr, sort_flags) {
   // original by: GeekFG (http://geekfg.blogspot.com)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //        note: The examples are correct, this is a new way
   //        note: This function deviates from PHP in returning a copy of the array instead
   //        note: of acting by reference and returning true; this was necessary because
   //        note: IE does not allow deleting and re-adding of properties without caching
