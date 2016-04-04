@@ -18,6 +18,7 @@ function krsort (inputArr, sort_flags) {
   //        note: if the content is a numeric string, we treat the
   //        note: "original type" as numeric.
   //  depends on: i18n_loc_get_default
+  //  depends on: strnatcmp
   //   example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
   //   example 1: data = krsort(data);
   //   example 1: $result = data
