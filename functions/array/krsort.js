@@ -3,6 +3,7 @@ function krsort (inputArr, sort_flags) {
   // original by: GeekFG (http://geekfg.blogspot.com)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: pseudaria (https://github.com/pseudaria)
   //        note: The examples are correct, this is a new way
   //        note: This function deviates from PHP in returning a copy of the array instead
   //        note: of acting by reference and returning true; this was necessary because
