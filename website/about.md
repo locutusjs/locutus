@@ -65,7 +65,7 @@ php.js is licensed under the MIT licenses.
 
 The MIT license allows you to use the library as you see fit (even in commercial projects) as long as you redistribute original the license with it. You're not obligated to share your improvements, but obviously that would be greatly appreciated and ensure you won't lose your changes after you upgrade.
 
-	Copyright (c) 2007--{{ site.time | date: '%Y' }} Kevin van Zonneveld (http://kvz.io) 
+	Copyright (c) 2007-{{ site.time | date: '%Y' }} Kevin van Zonneveld (http://kvz.io) 
 	and Contributors (http://phpjs.org/authors)
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy of
