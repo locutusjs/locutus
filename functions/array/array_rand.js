@@ -1,38 +1,32 @@
-function array_rand (input, num_req) {
-  //  discuss at: http://phpjs.org/functions/array_rand/
-  // original by: Waldo Malqui Silva (http://waldo.malqui.info)
-  //   example 1: array_rand( ['Kevin'], 1 );
-  //   returns 1: 0
+function array_rand(array, num) {
+  //       discuss at: http://phpjs.org/functions/array_rand/
+  //      original by: Waldo Malqui Silva (http://waldo.malqui.info)
+  // reimplemented by: Rafał Kukawski
+  //        example 1: array_rand( ['Kevin'], 1 );
+  //        returns 1: 0
 
-  var indexes = []
-  var ticks = num_req || 1
-  var checkDuplicate = function (input, value) {
-    var exist = false,
-      index = 0,
-      il = input.length
-    while (index < il) {
-      if (input[index] === value) {
-        exist = true
-        break
-      }
-      index++
-    }
-    return exist
-  }
+  // By using Object.keys we support both, arrays and objects
+  // which phpjs wants to support
+  var keys = Object.keys(array);
 
-  if (Object.prototype.toString.call(input) === '[object Array]' && ticks <= input.length) {
-    while (true) {
-      var rand = Math.floor((Math.random() * input.length))
-      if (indexes.length === ticks) {
-        break
-      }
-      if (!checkDuplicate(indexes, rand)) {
-        indexes.push(rand)
-      }
-    }
+  if (typeof num === 'undefined' || num === null) {
+    num = 1;
   } else {
-    indexes = null
+    num = +num;
   }
 
-  return ((ticks == 1) ? indexes.join() : indexes)
+  if (isNaN(num) || num < 1 || num > keys.length) {
+    return null;
+  }
+
+  // shuffle the array of keys
+  for (var i = keys.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1)); // 0 ≤ j ≤ i
+
+    var tmp = keys[j];
+    keys[j] = keys[i];
+    keys[i] = tmp;
+  }
+
+  return num === 1 ? keys[0] : keys.slice(0, num);
 }
