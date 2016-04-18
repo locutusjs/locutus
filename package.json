@@ -53,6 +53,7 @@
     "test:module": "node test/npm/npm.js",
     "test:utils": "mocha --reporter spec",
     "test": "npm run test:utils && npm run test:functions && npm run test:module",
+    "reindex": "./scripts/reindex.sh src",
     "website:deploy": "npm run website:inject && cd website && npm run build && npm run deploy",
     "website:inject": "node src/_util/cli.js --action injectweb",
     "website:install": "cd website && npm install",

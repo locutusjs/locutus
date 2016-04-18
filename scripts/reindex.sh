@@ -21,6 +21,7 @@ pushd "${target}" > /dev/null
     -maxdepth 1 \
     -not \( -path './_*' -prune \) \
     ! -name index.js \
+    ! -name known-failures.txt \
   | egrep -v '^\.$' \
   | sed 's#\.js##g' \
   | sed 's#\./##g'
