@@ -1,4 +1,4 @@
-function defined(constant_name) {
+module.exports = function defined (constant_name)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

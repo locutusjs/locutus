@@ -1,4 +1,4 @@
-function ob_get_flush() {
+module.exports = function ob_get_flush ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: ob_get_flush();

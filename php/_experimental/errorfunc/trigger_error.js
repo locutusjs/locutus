@@ -1,4 +1,4 @@
-function trigger_error(error_msg, error_type) {
+module.exports = function trigger_error (error_msg, error_type)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Although this function should only allow the E_USER_ types, we'll allow the

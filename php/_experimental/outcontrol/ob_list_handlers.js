@@ -1,4 +1,4 @@
-function ob_list_handlers() {
+module.exports = function ob_list_handlers ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: ob_list_handlers();

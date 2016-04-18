@@ -1,4 +1,4 @@
-function date_default_timezone_get() {
+module.exports = function date_default_timezone_get ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: timezone_abbreviations_list

@@ -1,4 +1,4 @@
-function __FILE__() {
+module.exports = function __ FILE__()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Michael White (http://getsprink.com/)
   // +   improved by: Brett Zamir (http://brett-zamir.me)

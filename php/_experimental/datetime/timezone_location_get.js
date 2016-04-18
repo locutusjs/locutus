@@ -1,4 +1,4 @@
-function timezone_location_get(tzo) {
+module.exports = function timezone_location_get (tzo)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var tzo = timezone_open('Europe/Prague');

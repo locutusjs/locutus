@@ -1,4 +1,4 @@
-function exit(status) {
+module.exports = function exit (status)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +      input by: Paul

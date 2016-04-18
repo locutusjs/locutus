@@ -1,4 +1,4 @@
-function restore_include_path() {
+module.exports = function restore_include_path ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: restore_include_path();

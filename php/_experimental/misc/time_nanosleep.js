@@ -1,4 +1,4 @@
-function time_nanosleep(seconds, nanosecs) {
+module.exports = function time_nanosleep (seconds, nanosecs)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: For study purposes. Current implementation could lock up the user's browser.

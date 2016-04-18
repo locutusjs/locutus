@@ -1,4 +1,4 @@
-function bindtextdomain(domain, dir) {
+module.exports = function bindtextdomain (domain, dir)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: bindtextdomain('myapp', '/myapp/locale');

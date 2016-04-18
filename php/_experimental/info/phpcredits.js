@@ -1,4 +1,4 @@
-function phpcredits(flag) {
+module.exports = function phpcredits (flag)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Philip Peterson
   // +   improved by: Brett Zamir (http://brett-zamir.me)

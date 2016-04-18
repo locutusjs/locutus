@@ -1,4 +1,4 @@
-function aggregate_methods_by_regexp (obj, class_name, regexp, exclude) {
+module.exports = function aggregate_methods_by_regexp (obj, class_name, regexp, exclude)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)

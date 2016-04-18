@@ -1,4 +1,4 @@
-function filesize(url) {
+module.exports = function filesize (url)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Enrique Gonzalez
   // +      input by: Jani Hartikainen

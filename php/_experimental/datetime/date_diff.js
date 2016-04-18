@@ -1,4 +1,4 @@
-function date_diff(dt, dt2, absolute) {
+module.exports = function date_diff (dt, dt2, absolute)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var dt = date_create();

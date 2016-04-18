@@ -1,4 +1,4 @@
-function ini_restore(varname) {
+module.exports = function ini_restore (varname)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: ini_restore('date.timezone');

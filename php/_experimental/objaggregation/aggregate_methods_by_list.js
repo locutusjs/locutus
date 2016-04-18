@@ -1,4 +1,4 @@
-function aggregate_methods_by_list (obj, class_name, properties_list, exclude) {
+module.exports = function aggregate_methods_by_list (obj, class_name, properties_list, exclude)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: We can't copy privileged methods, as those require instantiation (with potential side-effects when called)

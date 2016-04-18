@@ -1,4 +1,4 @@
-function restore_exception_handler() {
+module.exports = function restore_exception_handler ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: restore_exception_handler();

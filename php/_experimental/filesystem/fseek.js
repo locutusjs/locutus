@@ -1,4 +1,4 @@
-function fseek(handle, offset, whence) {
+module.exports = function fseek (handle, offset, whence)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var h = fopen('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm', 'r');

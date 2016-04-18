@@ -1,4 +1,4 @@
-function func_num_args() {
+module.exports = function func_num_args ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: May not work in all JS implementations

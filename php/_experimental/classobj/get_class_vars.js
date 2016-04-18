@@ -1,4 +1,4 @@
-function get_class_vars(name) {
+module.exports = function get_class_vars (name)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: function Myclass(){privMethod = function (){};}

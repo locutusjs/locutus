@@ -1,4 +1,4 @@
-function bind_textdomain_codeset(domain, codeset) {
+module.exports = function bind_textdomain_codeset (domain, codeset)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: bind_textdomain_codeset('myapp', 'UTF-8');

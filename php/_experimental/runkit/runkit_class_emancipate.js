@@ -1,4 +1,4 @@
-function runkit_class_emancipate(classname) {
+module.exports = function runkit_class_emancipate (classname)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Function can only obtain classes from the global context

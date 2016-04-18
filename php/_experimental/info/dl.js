@@ -1,4 +1,4 @@
-function dl(library) {
+module.exports = function dl (library)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: The phpjs.extensions_detect_files custom option requires privileges (and Mozilla at present)

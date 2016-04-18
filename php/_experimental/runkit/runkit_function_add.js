@@ -1,4 +1,4 @@
-function runkit_function_add(funcname, arglist, code) {
+module.exports = function runkit_function_add (funcname, arglist, code)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Function can only be added to the global context; use create_function() for an anonymous function

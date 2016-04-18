@@ -1,4 +1,4 @@
-function get_included_files() {
+module.exports = function get_included_files ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Michael White (http://getsprink.com)
   // %        note 1: Uses global: php_js to keep track of included files
