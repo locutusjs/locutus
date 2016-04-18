@@ -5,10 +5,8 @@
     <h2>Go functions in JS</h2>
   {% elsif language.name == "php" %}
     <h2>PHP functions in JS</h2>
-  {% elsif language.name == "ruby" %}
-    <h2>Ruby functions in JS</h2>
   {% else %}
-    <h2>{{language.name}} functions in JS</h2>
+    <h2>{{language.name |capitalize}} functions in JS</h2>
   {% endif %}
 
   {% assign categories = language.items| group_by site.functions, "category" %}
