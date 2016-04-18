@@ -6,7 +6,7 @@ examples:
     rsort($arr);
     $results = $arr;
   - |-
-    ini_set('phpjs.strictForIn', true);
+    ini_set('locutus.strictForIn', true);
     fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
     rsort(fruits);
     $result = fruits;
@@ -36,7 +36,7 @@ notes:
 
     IE does not allow deleting and re-adding of properties without caching
 
-    of property position; you can set the ini of "phpjs.strictForIn" to true to
+    of property position; you can set the ini of "locutus.strictForIn" to true to
 
     get the PHP behavior, but use this only if you are in an environment
 
@@ -63,7 +63,7 @@ redirect_from:
   - /functions/array/rsort/
 ---
 function rsort (inputArr, sort_flags) {
-  //  discuss at: http://phpjs.org/functions/rsort/
+  //  discuss at: http://locutusjs.org/php/rsort/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -73,7 +73,7 @@ function rsort (inputArr, sort_flags) {
   //        note: This function deviates from PHP in returning a copy of the array instead
   //        note: of acting by reference and returning true; this was necessary because
   //        note: IE does not allow deleting and re-adding of properties without caching
-  //        note: of property position; you can set the ini of "phpjs.strictForIn" to true to
+  //        note: of property position; you can set the ini of "locutus.strictForIn" to true to
   //        note: get the PHP behavior, but use this only if you are in an environment
   //        note: such as Firefox extensions where for-in iteration order is fixed and true
   //        note: property deletion is supported. Note that we intend to implement the PHP
@@ -88,7 +88,7 @@ function rsort (inputArr, sort_flags) {
   //   example 1: rsort($arr);
   //   example 1: $results = $arr;
   //   returns 1: ['van', 'Zonneveld', 'Kevin']
-  //   example 2: ini_set('phpjs.strictForIn', true);
+  //   example 2: ini_set('locutus.strictForIn', true);
   //   example 2: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
   //   example 2: rsort(fruits);
   //   example 2: $result = fruits;
@@ -149,8 +149,8 @@ function rsort (inputArr, sort_flags) {
 
   this.php_js.ini = this.php_js.ini || {}
   // END REDUNDANT
-  strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
-    .ini['phpjs.strictForIn'].local_value !== 'off'
+  strictForIn = this.php_js.ini['locutus.strictForIn'] && this.php_js.ini['locutus.strictForIn'].local_value && this.php_js
+    .ini['locutus.strictForIn'].local_value !== 'off'
   populateArr = strictForIn ? inputArr : populateArr
 
   for (k in inputArr) {

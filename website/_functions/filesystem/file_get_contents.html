@@ -25,7 +25,7 @@ notes:
 
     Synchronous by default (as in PHP) so may lock up browser. Can
 
-    get async by setting a custom "phpjs.async" property to true and
+    get async by setting a custom "locutus.async" property to true and
     "notification" for an
 
     optional callback (both as context params, with responseText, and other
@@ -54,7 +54,7 @@ redirect_from:
   - /functions/filesystem/file_get_contents/
 ---
 function file_get_contents (url, flags, context, offset, maxLen) {
-  //  discuss at: http://phpjs.org/functions/file_get_contents/
+  //  discuss at: http://locutusjs.org/php/file_get_contents/
   // original by: Legaev Andrey
   //    input by: Jani Hartikainen
   //    input by: Raphael (Ao) RUDLER
@@ -63,7 +63,7 @@ function file_get_contents (url, flags, context, offset, maxLen) {
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //        note: This function uses XmlHttpRequest and cannot retrieve resource from different domain without modifications.
   //        note: Synchronous by default (as in PHP) so may lock up browser. Can
-  //        note: get async by setting a custom "phpjs.async" property to true and "notification" for an
+  //        note: get async by setting a custom "locutus.async" property to true and "notification" for an
   //        note: optional callback (both as context params, with responseText, and other JS-specific
   //        note: request properties available via 'this'). Note that file_get_contents() will not return the text
   //        note: in such a case (use this.responseText within the callback). Or, consider using
@@ -144,9 +144,9 @@ function file_get_contents (url, flags, context, offset, maxLen) {
     }
 
     var method = http_stream ? http_options.method : 'GET'
-    var async = !!(context && context.stream_params && context.stream_params['phpjs.async'])
+    var async = !!(context && context.stream_params && context.stream_params['locutus.async'])
 
-    if (ini['phpjs.ajaxBypassCache'] && ini['phpjs.ajaxBypassCache'].local_value) {
+    if (ini['locutus.ajaxBypassCache'] && ini['locutus.ajaxBypassCache'].local_value) {
       url += (url.match(/\?/) == null ? '?' : '&') + (new Date())
         .getTime() // Give optional means of forcing bypass of cache
     }
@@ -274,10 +274,10 @@ function file_get_contents (url, flags, context, offset, maxLen) {
     if (flagNames & OPTS.FILE_TEXT) {
       // Overrides how encoding is treated (regardless of what is returned from the server)
       var content_type = 'text/html'
-      if (http_options && http_options['phpjs.override']) {
+      if (http_options && http_options['locutus.override']) {
         // Fix: Could allow for non-HTTP as well
         // We use this, e.g., in gettext-related functions if character set
-        content_type = http_options['phpjs.override']
+        content_type = http_options['locutus.override']
         //   overridden earlier by bind_textdomain_codeset()
       } else {
         var encoding = (ini['unicode.stream_encoding'] && ini['unicode.stream_encoding'].local_value) ||
@@ -307,7 +307,7 @@ function file_get_contents (url, flags, context, offset, maxLen) {
     }
 
     try {
-      if (http_options && http_options['phpjs.sendAsBinary']) {
+      if (http_options && http_options['locutus.sendAsBinary']) {
         // For content sent in a POST or PUT request (use with file_put_contents()?)
         // In Firefox, only available FF3+
         req.sendAsBinary(content)

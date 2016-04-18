@@ -20,7 +20,7 @@ redirect_from:
   - /functions/info/ini_set/
 ---
 function ini_set (varname, newvalue) {
-  //  discuss at: http://phpjs.org/functions/ini_set/
+  //  discuss at: http://locutusjs.org/php/ini_set/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: This will not set a global_value or access level for the ini item
   //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong');
@@ -52,7 +52,7 @@ function ini_set (varname, newvalue) {
   switch (varname) {
     case 'extension':
       if (typeof this.dl === 'function') {
-      // This function is only experimental in php.js
+      // This function is only experimental in Locutus.js
         this.dl(newvalue)
       }
       _setArr(oldval, newvalue)

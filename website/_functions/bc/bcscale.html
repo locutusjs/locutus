@@ -5,7 +5,7 @@ examples:
 returns:
   - '3'
 dependencies:
-  - _phpjs_shared_bc
+  - _locutus_shared_bc
 authors:
   original by:
     - 'lmeyrick (https://sourceforge.net/projects/bcmath-js/)'
@@ -18,14 +18,14 @@ redirect_from:
   - /functions/bc/bcscale/
 ---
 function bcscale (scale) {
-  //  discuss at: http://phpjs.org/functions/bcscale/
+  //  discuss at: http://locutusjs.org/php/bcscale/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
-  //  depends on: _phpjs_shared_bc
+  //  depends on: _locutus_shared_bc
   //   example 1: bcscale(1);
   //   returns 1: 3
   //        todo: implement these testcases
 
-  var libbcmath = this._phpjs_shared_bc()
+  var libbcmath = this._locutus_shared_bc()
 
   scale = parseInt(scale, 10)
   if (isNaN(scale)) {

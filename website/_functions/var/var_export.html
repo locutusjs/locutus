@@ -33,7 +33,7 @@ redirect_from:
   - /functions/var/var_export/
 ---
 function var_export (mixed_expression, bool_return) {
-  //  discuss at: http://phpjs.org/functions/var_export/
+  //  discuss at: http://locutusjs.org/php/var_export/
   // original by: Philip Peterson
   // improved by: johnrembo
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -78,7 +78,7 @@ function var_export (mixed_expression, bool_return) {
     var i = 0,
       match, types, cons, type = typeof inp
     if (type === 'object' && (inp && inp.constructor) &&
-      getFuncName(inp.constructor) === 'PHPJS_Resource') {
+      getFuncName(inp.constructor) === 'LOCUTUS_Resource') {
       return 'resource'
     }
     if (type === 'function') {

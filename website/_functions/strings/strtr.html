@@ -41,7 +41,7 @@ redirect_from:
   - /functions/strings/strtr/
 ---
 function strtr (str, from, to) {
-  //  discuss at: http://phpjs.org/functions/strtr/
+  //  discuss at: http://locutusjs.org/php/strtr/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: uestla
   //    input by: Alan C
@@ -85,9 +85,9 @@ function strtr (str, from, to) {
   // Convert to normal from->to chars
   if (typeof from === 'object') {
     // Not thread-safe; temporarily set to true
-    tmpStrictForIn = this.ini_set('phpjs.strictForIn', false)
+    tmpStrictForIn = this.ini_set('locutus.strictForIn', false)
     from = this.krsort(from)
-    this.ini_set('phpjs.strictForIn', tmpStrictForIn)
+    this.ini_set('locutus.strictForIn', tmpStrictForIn)
 
     for (fr in from) {
       if (from.hasOwnProperty(fr)) {

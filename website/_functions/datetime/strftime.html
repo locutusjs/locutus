@@ -25,7 +25,7 @@ redirect_from:
   - /functions/datetime/strftime/
 ---
 function strftime (fmt, timestamp) {
-  //       discuss at: http://phpjs.org/functions/strftime/
+  //       discuss at: http://locutusjs.org/php/strftime/
   //      original by: Blues (http://tech.bluesmoon.info/)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
   //         input by: Alex
@@ -40,7 +40,7 @@ function strftime (fmt, timestamp) {
   // ensure setup of localization variables takes place
   this.setlocale('LC_ALL', 0)
   // END REDUNDANT
-  var phpjs = this.php_js
+  var locutus = this.php_js
 
   // BEGIN STATIC
   var _xPad = function (x, pad, r) {
@@ -53,8 +53,8 @@ function strftime (fmt, timestamp) {
     return x.toString()
   }
 
-  var locale = phpjs.localeCategories.LC_TIME
-  var locales = phpjs.locales
+  var locale = locutus.localeCategories.LC_TIME
+  var locales = locutus.locales
   var lc_time = locales[locale].LC_TIME
 
   var _formats = {

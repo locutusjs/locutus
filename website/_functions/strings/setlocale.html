@@ -26,7 +26,7 @@ redirect_from:
   - /functions/strings/setlocale/
 ---
 function setlocale (category, locale) {
-  //  discuss at: http://phpjs.org/functions/setlocale/
+  //  discuss at: http://locutusjs.org/php/setlocale/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: Blues (http://hacks.bluesmoon.info/strftime/strftime.js)
   // original by: YUI Library (http://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html)
@@ -144,16 +144,16 @@ function setlocale (category, locale) {
     this.php_js = {}
   }
 
-  var phpjs = this.php_js
+  var locutus = this.php_js
 
   // Reconcile Windows vs. *nix locale names?
   // Allow different priority orders of languages, esp. if implement gettext as in
   //     LANGUAGE env. var.? (e.g., show German if French is not available)
-  if (!phpjs.locales) {
+  if (!locutus.locales) {
     // Can add to the locales
-    phpjs.locales = {}
+    locutus.locales = {}
 
-    phpjs.locales.en = {
+    locutus.locales.en = {
       'LC_COLLATE': // For strcoll
 
         function (str1, str2) {
@@ -252,26 +252,26 @@ function setlocale (category, locale) {
       },
       nplurals: _nplurals2a
     }
-    phpjs.locales.en_US = _copy(phpjs.locales.en)
-    phpjs.locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z'
-    phpjs.locales.en_US.LC_TIME.x = '%D'
-    phpjs.locales.en_US.LC_TIME.X = '%r'
+    locutus.locales.en_US = _copy(locutus.locales.en)
+    locutus.locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z'
+    locutus.locales.en_US.LC_TIME.x = '%D'
+    locutus.locales.en_US.LC_TIME.X = '%r'
     // The following are based on *nix settings
-    phpjs.locales.en_US.LC_MONETARY.int_curr_symbol = 'USD '
-    phpjs.locales.en_US.LC_MONETARY.p_sign_posn = 1
-    phpjs.locales.en_US.LC_MONETARY.n_sign_posn = 1
-    phpjs.locales.en_US.LC_MONETARY.mon_grouping = [3, 3]
-    phpjs.locales.en_US.LC_NUMERIC.thousands_sep = ''
-    phpjs.locales.en_US.LC_NUMERIC.grouping = []
+    locutus.locales.en_US.LC_MONETARY.int_curr_symbol = 'USD '
+    locutus.locales.en_US.LC_MONETARY.p_sign_posn = 1
+    locutus.locales.en_US.LC_MONETARY.n_sign_posn = 1
+    locutus.locales.en_US.LC_MONETARY.mon_grouping = [3, 3]
+    locutus.locales.en_US.LC_NUMERIC.thousands_sep = ''
+    locutus.locales.en_US.LC_NUMERIC.grouping = []
 
-    phpjs.locales.en_GB = _copy(phpjs.locales.en)
-    phpjs.locales.en_GB.LC_TIME.r = '%l:%M:%S %P %Z'
+    locutus.locales.en_GB = _copy(locutus.locales.en)
+    locutus.locales.en_GB.LC_TIME.r = '%l:%M:%S %P %Z'
 
-    phpjs.locales.en_AU = _copy(phpjs.locales.en_GB)
+    locutus.locales.en_AU = _copy(locutus.locales.en_GB)
     // Assume C locale is like English (?) (We need C locale for LC_CTYPE)
-    phpjs.locales.C = _copy(phpjs.locales.en)
-    phpjs.locales.C.LC_CTYPE.CODESET = 'ANSI_X3.4-1968'
-    phpjs.locales.C.LC_MONETARY = {
+    locutus.locales.C = _copy(locutus.locales.en)
+    locutus.locales.C.LC_CTYPE.CODESET = 'ANSI_X3.4-1968'
+    locutus.locales.C.LC_MONETARY = {
       int_curr_symbol: '',
       currency_symbol: '',
       mon_decimal_point: '',
@@ -288,77 +288,77 @@ function setlocale (category, locale) {
       int_frac_digits: 127,
       frac_digits: 127
     }
-    phpjs.locales.C.LC_NUMERIC = {
+    locutus.locales.C.LC_NUMERIC = {
       decimal_point: '.',
       thousands_sep: '',
       grouping: []
     }
     // D_T_FMT
-    phpjs.locales.C.LC_TIME.c = '%a %b %e %H:%M:%S %Y'
+    locutus.locales.C.LC_TIME.c = '%a %b %e %H:%M:%S %Y'
     // D_FMT
-    phpjs.locales.C.LC_TIME.x = '%m/%d/%y'
+    locutus.locales.C.LC_TIME.x = '%m/%d/%y'
     // T_FMT
-    phpjs.locales.C.LC_TIME.X = '%H:%M:%S'
-    phpjs.locales.C.LC_MESSAGES.YESEXPR = '^[yY]'
-    phpjs.locales.C.LC_MESSAGES.NOEXPR = '^[nN]'
+    locutus.locales.C.LC_TIME.X = '%H:%M:%S'
+    locutus.locales.C.LC_MESSAGES.YESEXPR = '^[yY]'
+    locutus.locales.C.LC_MESSAGES.NOEXPR = '^[nN]'
 
-    phpjs.locales.fr = _copy(phpjs.locales.en)
-    phpjs.locales.fr.nplurals = _nplurals2b
-    phpjs.locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam']
-    phpjs.locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']
-    phpjs.locales.fr.LC_TIME.b = ['jan', 'f\u00E9v', 'mar', 'avr', 'mai', 'jun', 'jui', 'ao\u00FB', 'sep', 'oct',
+    locutus.locales.fr = _copy(locutus.locales.en)
+    locutus.locales.fr.nplurals = _nplurals2b
+    locutus.locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam']
+    locutus.locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']
+    locutus.locales.fr.LC_TIME.b = ['jan', 'f\u00E9v', 'mar', 'avr', 'mai', 'jun', 'jui', 'ao\u00FB', 'sep', 'oct',
       'nov', 'd\u00E9c'
     ]
-    phpjs.locales.fr.LC_TIME.B = ['janvier', 'f\u00E9vrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'ao\u00FBt',
+    locutus.locales.fr.LC_TIME.B = ['janvier', 'f\u00E9vrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'ao\u00FBt',
       'septembre', 'octobre', 'novembre', 'd\u00E9cembre'
     ]
-    phpjs.locales.fr.LC_TIME.c = '%a %d %b %Y %T %Z'
-    phpjs.locales.fr.LC_TIME.p = ['', '']
-    phpjs.locales.fr.LC_TIME.P = ['', '']
-    phpjs.locales.fr.LC_TIME.x = '%d.%m.%Y'
-    phpjs.locales.fr.LC_TIME.X = '%T'
+    locutus.locales.fr.LC_TIME.c = '%a %d %b %Y %T %Z'
+    locutus.locales.fr.LC_TIME.p = ['', '']
+    locutus.locales.fr.LC_TIME.P = ['', '']
+    locutus.locales.fr.LC_TIME.x = '%d.%m.%Y'
+    locutus.locales.fr.LC_TIME.X = '%T'
 
-    phpjs.locales.fr_CA = _copy(phpjs.locales.fr)
-    phpjs.locales.fr_CA.LC_TIME.x = '%Y-%m-%d'
+    locutus.locales.fr_CA = _copy(locutus.locales.fr)
+    locutus.locales.fr_CA.LC_TIME.x = '%Y-%m-%d'
   }
-  if (!phpjs.locale) {
-    phpjs.locale = 'en_US'
+  if (!locutus.locale) {
+    locutus.locale = 'en_US'
     var NS_XHTML = 'http://www.w3.org/1999/xhtml'
     var NS_XML = 'http://www.w3.org/XML/1998/namespace'
     if (d.getElementsByTagNameNS && d.getElementsByTagNameNS(NS_XHTML, 'html')[0]) {
       if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS && d.getElementsByTagNameNS(NS_XHTML,
           'html')[0].getAttributeNS(NS_XML, 'lang')) {
-        phpjs.locale = d.getElementsByTagName(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')
+        locutus.locale = d.getElementsByTagName(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')
       } else if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang) {
         // XHTML 1.0 only
-        phpjs.locale = d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang
+        locutus.locale = d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang
       }
     } else if (d.getElementsByTagName('html')[0] && d.getElementsByTagName('html')[0].lang) {
-      phpjs.locale = d.getElementsByTagName('html')[0].lang
+      locutus.locale = d.getElementsByTagName('html')[0].lang
     }
   }
   // PHP-style
-  phpjs.locale = phpjs.locale.replace('-', '_')
+  locutus.locale = locutus.locale.replace('-', '_')
   // Fix locale if declared locale hasn't been defined
-  if (!(phpjs.locale in phpjs.locales)) {
-    if (phpjs.locale.replace(/_[a-zA-Z]+$/, '') in phpjs.locales) {
-      phpjs.locale = phpjs.locale.replace(/_[a-zA-Z]+$/, '')
+  if (!(locutus.locale in locutus.locales)) {
+    if (locutus.locale.replace(/_[a-zA-Z]+$/, '') in locutus.locales) {
+      locutus.locale = locutus.locale.replace(/_[a-zA-Z]+$/, '')
     }
   }
 
-  if (!phpjs.localeCategories) {
-    phpjs.localeCategories = {
-      'LC_COLLATE': phpjs.locale,
+  if (!locutus.localeCategories) {
+    locutus.localeCategories = {
+      'LC_COLLATE': locutus.locale,
       // for string comparison, see strcoll()
-      'LC_CTYPE': phpjs.locale,
+      'LC_CTYPE': locutus.locale,
       // for character classification and conversion, for example strtoupper()
-      'LC_MONETARY': phpjs.locale,
+      'LC_MONETARY': locutus.locale,
       // for localeconv()
-      'LC_NUMERIC': phpjs.locale,
+      'LC_NUMERIC': locutus.locale,
       // for decimal separator (See also localeconv())
-      'LC_TIME': phpjs.locale,
+      'LC_TIME': locutus.locale,
       // for date and time formatting with strftime()
-      'LC_MESSAGES': phpjs.locale // for system responses (available if PHP was compiled with libintl)
+      'LC_MESSAGES': locutus.locale // for system responses (available if PHP was compiled with libintl)
     }
   }
   // END REDUNDANT

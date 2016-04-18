@@ -2,12 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>php.js demo</title>
+    <title>Locutus.js demo</title>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet" />
   </head>
   <body>
     <div class="container">
-      <h1>php.js demo</h1>
+      <h1>Locutus.js demo</h1>
       <div id="content"></div>
     </div>
   </body>
@@ -16,11 +16,11 @@
   <script type="text/javascript">
   </script>
 
-  <script src="../../lib/phpjsutil.js"></script>
+  <script src="../../src/_util/locutusutil.js"></script>
   <script type="text/javascript">
 
-    phpjsutil = new PhpjsUtil()
-    phpjsutil.parse('strtotime', code, function (err, result) {
+    locutusutil = new LocutusUtil()
+    locutusutil.parse('strtotime', code, function (err, result) {
       if (err) {
         $('#content').append('<pre class="alert-warning alert">' + JSON.stringify(err, undefined, 2) + '</pre>');
       }

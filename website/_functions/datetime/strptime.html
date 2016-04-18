@@ -29,7 +29,7 @@ redirect_from:
   - /functions/datetime/strptime/
 ---
 function strptime (dateStr, format) {
-  //  discuss at: http://phpjs.org/functions/strptime/
+  //  discuss at: http://locutusjs.org/php/strptime/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: strftime
   //  depends on: setlocale
@@ -127,9 +127,9 @@ Oy
   this.setlocale('LC_ALL', 0)
   // END REDUNDANT
 
-  var phpjs = this.php_js
-  var locale = phpjs.localeCategories.LC_TIME
-  var locales = phpjs.locales
+  var locutus = this.php_js
+  var locale = locutus.localeCategories.LC_TIME
+  var locales = locutus.locales
   var lc_time = locales[locale].LC_TIME
 
   // First replace aggregates (run in a loop because an agg may be made up of other aggs)

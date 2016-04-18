@@ -8,7 +8,7 @@ examples:
   - "array_change_key_case({ FuBaR: 42 }, 'CASE_UPPER');"
   - 'array_change_key_case({ FuBaR: 42 }, 2);'
   - |-
-    ini_set('phpjs.return_phpjs_arrays', 'on');
+    ini_set('locutus.return_locutus_arrays', 'on');
     var arr = [{a: 0}, {B: 1}, {c: 2}];
     var newArr = array_change_key_case(arr);
     newArr.splice(1, 1);
@@ -36,7 +36,7 @@ redirect_from:
   - /functions/array/array_change_key_case/
 ---
 function array_change_key_case (array, cs) {
-  //  discuss at: http://phpjs.org/functions/array_change_key_case/
+  //  discuss at: http://locutusjs.org/php/array_change_key_case/
   // original by: Ates Goral (http://magnetiq.com)
   // improved by: marrtins
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -52,7 +52,7 @@ function array_change_key_case (array, cs) {
   //   returns 5: {"FUBAR": 42}
   //   example 6: array_change_key_case({ FuBaR: 42 }, 2);
   //   returns 6: {"FUBAR": 42}
-  //   example 7: ini_set('phpjs.return_phpjs_arrays', 'on');
+  //   example 7: ini_set('locutus.return_locutus_arrays', 'on');
   //   example 7: var arr = [{a: 0}, {B: 1}, {c: 2}];
   //   example 7: var newArr = array_change_key_case(arr);
   //   example 7: newArr.splice(1, 1);
@@ -64,7 +64,7 @@ function array_change_key_case (array, cs) {
     return array
   }
   if (array && typeof array === 'object' && array.change_key_case) {
-    // Duck-type check for our own array()-created PHPJS_Array
+    // Duck-type check for our own array()-created LOCUTUS_Array
     return array.change_key_case(cs)
   }
   if (array && typeof array === 'object') {

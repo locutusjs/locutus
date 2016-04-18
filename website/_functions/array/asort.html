@@ -6,7 +6,7 @@ examples:
     data = asort(data);
     $result = data
   - |-
-    ini_set('phpjs.strictForIn', true);
+    ini_set('locutus.strictForIn', true);
     data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
     asort(data);
     $result = data
@@ -45,7 +45,7 @@ notes:
 
     IE does not allow deleting and re-adding of properties without caching
 
-    of property position; you can set the ini of "phpjs.strictForIn" to true to
+    of property position; you can set the ini of "locutus.strictForIn" to true to
 
     get the PHP behavior, but use this only if you are in an environment
 
@@ -72,7 +72,7 @@ redirect_from:
   - /functions/array/asort/
 ---
 function asort (inputArr, sort_flags) {
-  //  discuss at: http://phpjs.org/functions/asort/
+  //  discuss at: http://locutusjs.org/php/asort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -87,7 +87,7 @@ function asort (inputArr, sort_flags) {
   //        note: This function deviates from PHP in returning a copy of the array instead
   //        note: of acting by reference and returning true; this was necessary because
   //        note: IE does not allow deleting and re-adding of properties without caching
-  //        note: of property position; you can set the ini of "phpjs.strictForIn" to true to
+  //        note: of property position; you can set the ini of "locutus.strictForIn" to true to
   //        note: get the PHP behavior, but use this only if you are in an environment
   //        note: such as Firefox extensions where for-in iteration order is fixed and true
   //        note: property deletion is supported. Note that we intend to implement the PHP
@@ -103,7 +103,7 @@ function asort (inputArr, sort_flags) {
   //   example 1: data = asort(data);
   //   example 1: $result = data
   //   returns 1: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
-  //   example 2: ini_set('phpjs.strictForIn', true);
+  //   example 2: ini_set('locutus.strictForIn', true);
   //   example 2: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
   //   example 2: asort(data);
   //   example 2: $result = data
@@ -157,8 +157,8 @@ function asort (inputArr, sort_flags) {
   this.php_js = this.php_js || {}
   this.php_js.ini = this.php_js.ini || {}
   // END REDUNDANT
-  strictForIn = this.php_js.ini['phpjs.strictForIn'] && this.php_js.ini['phpjs.strictForIn'].local_value && this.php_js
-    .ini['phpjs.strictForIn'].local_value !== 'off'
+  strictForIn = this.php_js.ini['locutus.strictForIn'] && this.php_js.ini['locutus.strictForIn'].local_value && this.php_js
+    .ini['locutus.strictForIn'].local_value !== 'off'
   populateArr = strictForIn ? inputArr : populateArr
 
   // Get key and value arrays

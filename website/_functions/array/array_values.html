@@ -19,7 +19,7 @@ redirect_from:
   - /functions/array/array_values/
 ---
 function array_values (input) {
-  //  discuss at: http://phpjs.org/functions/array_values/
+  //  discuss at: http://locutusjs.org/php/array_values/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} );
@@ -29,7 +29,7 @@ function array_values (input) {
     key = ''
 
   if (input && typeof input === 'object' && input.change_key_case) {
-    // Duck-type check for our own array()-created PHPJS_Array
+    // Duck-type check for our own array()-created LOCUTUS_Array
     return input.values()
   }
 

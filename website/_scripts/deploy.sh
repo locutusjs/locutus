@@ -10,7 +10,7 @@ __file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
 __base="$(basename ${__file} .sh)"
 __webroot="$(cd "$(dirname "${__dir}")" && pwd)"
 
-ghpages_repo=${GHPAGES_REPO:-"kvz/phpjs"}
+ghpages_repo=${GHPAGES_REPO:-"locutusjs/locutus"}
 ghpages_branch=${GHPAGES_BRANCH:-"gh-pages"}
 ghpages_url=${GHPAGES_URL:-"git@github.com:${ghpages_repo}.git"}
 

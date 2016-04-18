@@ -42,7 +42,7 @@ redirect_from:
   - /functions/var/gettype/
 ---
 function gettype (mixed_var) {
-  //  discuss at: http://phpjs.org/functions/gettype/
+  //  discuss at: http://locutusjs.org/php/gettype/
   // original by: Paulo Freitas
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Douglas Crockford (http://javascript.crockford.com)
@@ -90,7 +90,7 @@ function gettype (mixed_var) {
         } else if (name === 'RegExp') {
           // not in PHP
           s = 'regexp'
-        } else if (name === 'PHPJS_Resource') {
+        } else if (name === 'LOCUTUS_Resource') {
           // Check against our own resource constructor
           s = 'resource'
         }

@@ -24,7 +24,7 @@ redirect_from:
   - /functions/var/print_r/
 ---
 function print_r (array, return_val) {
-  //  discuss at: http://phpjs.org/functions/print_r/
+  //  discuss at: http://locutusjs.org/php/print_r/
   // original by: Michael White (http://getsprink.com)
   // improved by: Ben Bryan
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -63,7 +63,7 @@ function print_r (array, return_val) {
     var str = ''
 
     if (typeof obj === 'object' && obj !== null && obj.constructor && getFuncName(obj.constructor) !==
-      'PHPJS_Resource') {
+      'LOCUTUS_Resource') {
       str += 'Array\n' + base_pad + '(\n'
       for (var key in obj) {
         if (Object.prototype.toString.call(obj[key]) === '[object Array]') {

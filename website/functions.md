@@ -32,8 +32,8 @@ redirect_from:
 
 
 
-If you are missing functions, there is a chance you may find them in our [experimental](https://github.com/kvz/phpjs/tree/master/experimental) 
-and [workbench](https://github.com/kvz/phpjs/tree/master/workbench) folders. Warning: we keep 
+If you are missing functions, there is a chance you may find them in our [experimental](https://github.com/locutusjs/locutus/tree/master/experimental) 
+and [workbench](https://github.com/locutusjs/locutus/tree/master/workbench) folders. Warning: we keep 
 these functions there for a reason.  
 
 {% assign categories = site.functions| group_by site.functions, "category" %}

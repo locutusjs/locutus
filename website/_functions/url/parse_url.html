@@ -44,7 +44,7 @@ redirect_from:
   - /functions/url/parse_url/
 ---
 function parse_url (str, component) {
-  //       discuss at: http://phpjs.org/functions/parse_url/
+  //       discuss at: http://locutusjs.org/php/parse_url/
   //      original by: Steven Levithan (http://blog.stevenlevithan.com)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
   //         input by: Lorenzo Pisani
@@ -74,7 +74,7 @@ function parse_url (str, component) {
 
   var query
   var ini = (this.php_js && this.php_js.ini) || {}
-  var mode = (ini['phpjs.parse_url.mode'] && ini['phpjs.parse_url.mode'].local_value) || 'php'
+  var mode = (ini['locutus.parse_url.mode'] && ini['locutus.parse_url.mode'].local_value) || 'php'
   var key = [
     'source',
     'scheme',
@@ -113,8 +113,8 @@ function parse_url (str, component) {
   }
 
   if (mode !== 'php') {
-    var name = (ini['phpjs.parse_url.queryKey'] &&
-      ini['phpjs.parse_url.queryKey'].local_value) || 'queryKey'
+    var name = (ini['locutus.parse_url.queryKey'] &&
+      ini['locutus.parse_url.queryKey'].local_value) || 'queryKey'
     parser = /(?:^|&)([^&=]*)=?([^&]*)/g
     uri[name] = {}
     query = uri[key[12]] || ''

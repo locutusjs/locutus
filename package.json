@@ -2,10 +2,10 @@
   "name": "locutus",
   "version": "2.0.0",
   "license": "MIT",
-  "description": "php.js offers community built php functions in javascript",
-  "homepage": "http://phpjs.org",
+  "description": "Locutus.js offers community built php functions in javascript",
+  "homepage": "http://locutusjs.org",
   "author": "Kevin van Zonneveld <kevin@vanzonneveld.net>",
-  "main": "index.js",
+  "main": "src/index.js",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -15,7 +15,6 @@
     "deep-equal-with-difflet": "0.1.2",
     "glob": "7.0.3",
     "mocha": "2.4.5",
-    "npm-check-updates": "2.6.1",
     "send": "0.13.2",
     "eslint": "2.5.3",
     "eslint-config-standard": "5.1.0",
@@ -26,21 +25,21 @@
   "keywords": [
     "php",
     "js",
-    "phpjs"
+    "locutus"
   ],
   "files": [
     "functions"
   ],
   "bugs": {
-    "url": "https://github.com/kvz/phpjs/issues"
+    "url": "https://github.com/locutusjs/locutus/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kvz/phpjs.git"
+    "url": "https://github.com/locutusjs/locutus.git"
   },
   "readmeFilename": "README.md",
   "scripts": {
-    "build:npm": "node lib/cli.js --action buildnpm --output dist/index.js && ls -al dist/index.js",
+    "build:npm": "node src/_util/cli.js --action buildnpm --output dist/index.js && ls -al dist/index.js",
     "build": "npm run build:npm",
     "playground:start": "cd test/browser && node server.js",
     "deploy": "npm run website:deploy",
@@ -50,17 +49,17 @@
     "release:minor": "env SEMANTIC=minor npm run release",
     "release:patch": "env SEMANTIC=patch npm run release",
     "release": "git commit CHANGELOG.md -m 'Update CHANGELOG.md' && npm version ${SEMANTIC:-patch} -m \"Release %s\" && git commit test/fixture/*.stdio -m 'Update version' && git push --tags && git push && npm publish",
-    "test:functions": "node lib/cli.js --action test --debug",
+    "test:functions": "node src/_util/cli.js --action test --debug",
     "test:module": "node dist/index.js && node test/npm/npm.js",
     "test:utils": "mocha --reporter spec",
     "test": "npm run test:utils && npm run test:functions && npm run test:module",
     "website:deploy": "npm run website:inject && cd website && npm run build && npm run deploy",
-    "website:inject": "node lib/cli.js --action injectweb",
+    "website:inject": "node src/_util/cli.js --action injectweb",
     "website:install": "cd website && npm install",
     "website:start": "cd website && npm run start"
   },
   "bin": {
-    "node lib/cli.js": "lib/cli.js"
+    "node src/_util/cli.js": "src/_util/cli.js"
   },
   "dependencies": {
     "fakefile": "0.0.8",

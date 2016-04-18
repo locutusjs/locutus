@@ -1,27 +1,27 @@
-# php.js
+# Locutus.js
 
 <!-- badges/ -->
-[![Join the chat at https://gitter.im/kvz/phpjs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kvz/phpjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://secure.travis-ci.org/kvz/phpjs.svg?branch=master)](http://travis-ci.org/kvz/phpjs "Check this project's build status on TravisCI")
-[![NPM version](http://badge.fury.io/js/phpjs.svg)](https://npmjs.org/package/phpjs "View this project on NPM")
-[![Dependency Status](https://david-dm.org/kvz/phpjs.svg?theme=shields.io)](https://david-dm.org/kvz/phpjs)
-[![Development Dependency Status](https://david-dm.org/kvz/phpjs/dev-status.svg?theme=shields.io)](https://david-dm.org/kvz/phpjs#info=devDependencies)
+[![Join the chat at https://gitter.im/locutusjs/locutus](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/locutusjs/locutus?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://secure.travis-ci.org/locutusjs/locutus.svg?branch=master)](http://travis-ci.org/locutusjs/locutus "Check this project's build status on TravisCI")
+[![NPM version](http://badge.fury.io/js/locutus.svg)](https://npmjs.org/package/locutus "View this project on NPM")
+[![Dependency Status](https://david-dm.org/locutusjs/locutus.svg?theme=shields.io)](https://david-dm.org/locutusjs/locutus)
+[![Development Dependency Status](https://david-dm.org/locutusjs/locutus/dev-status.svg?theme=shields.io)](https://david-dm.org/locutusjs/locutus#info=devDependencies)
 <!-- /badges -->
 
-php.js is a resource that offers community-built JavaScript alternatives to PHP functions.
+Locutus.js is a resource that offers community-built JavaScript alternatives to PHP functions.
 
-More info at: http://phpjs.org/about
+More info at: http://locutusjs.org/about
 
 ## module
 
 ```bash
 $ mkdir test && cd $_
-$ npm install phpjs
+$ npm install locutus
 $ $EDITOR try.js
 ```
 
 ```javascript
-var php = require('phpjs');
+var php = require('locutus');
 
 php.echo(php.sprintf('Hey, %s : )', 'you'));
 php.echo(php.parse_url('mysql://kevin:abcd1234@example.com/databasename')['pass']);
@@ -45,8 +45,8 @@ make test
 ```
 
 ```bash
-node bin/phpjs.js --action test --name sort
-node bin/phpjs.js --action test --category array
+node bin/locutus.js --action test --name sort
+node bin/locutus.js --action test --category array
 ```
 
 ### Web
@@ -65,8 +65,8 @@ Our website is [built with Jekyll](/blog/2016/04/02/jekyll/).
 
 Here's the flow that takes written functions to the website:
 
- - `npm run website:inject` runs `lib/cli.js`'s `injectweb` method
- - `injectweb` iterates over `./functions` and uses `lib/phpjsutil.js` to parse them, most significantly: the header comments that declare authors, tests, and dependencies
+ - `npm run website:inject` runs `src/_util/cli.js`'s `injectweb` method
+ - `injectweb` iterates over `./functions` and uses `src/_util/locutusutil.js` to parse them, most significantly: the header comments that declare authors, tests, and dependencies
  - `injectweb` then writes each function to `website/_functions`. This is a [Jekyll Collection](https://jekyllrb.com/docs/collections/). The code is written as the content, and all the other properties are added as [YAML front matter](https://jekyllrb.com/docs/frontmatter/)
  - Jekyll uses `website/_layouts/function.html` as the layout template for the function collection, this determines how all the properties are rendered.
  
@@ -78,14 +78,14 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 
 ## Todo
 
-- [ ] Split out the npm module so you could do `var sprintf = require('phpjs/sprintf')`
+- [ ] Split out the npm module so you could do `var sprintf = require('locutus/sprintf')`
 - [ ] Auto-deploys via Travis CI
 
 ## Sponsor development
 
 <!-- badges/ -->
-[![Gittip donate button](http://img.shields.io/gittip/kvz.png)](https://www.gittip.com/kvz/ "Sponsor the development of phpjs via Gittip")
-[![Flattr donate button](http://img.shields.io/flattr/donate.png?color=yellow)](https://flattr.com/submit/auto?user_id=kvz&url=https://github.com/kvz/phpjs&title=phpjs&language=&tags=github&category=software "Sponsor the development of phpjs via Flattr")
-[![PayPal donate button](http://img.shields.io/paypal/donate.png?color=yellow)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=kevin%40vanzonneveld%2enet&lc=NL&item_name=Open%20source%20donation%20to%20Kevin%20van%20Zonneveld&currency_code=USD&bn=PP-DonationsBF%3abtn_donate_SM%2egif%3aNonHosted "Sponsor the development of phpjs via Paypal")
-[![BitCoin donate button](http://img.shields.io/bitcoin/donate.png?color=yellow)](https://coinbase.com/checkouts/19BtCjLCboRgTAXiaEvnvkdoRyjd843Dg2 "Sponsor the development of phpjs via BitCoin")
+[![Gittip donate button](http://img.shields.io/gittip/kvz.png)](https://www.gittip.com/kvz/ "Sponsor the development of locutus via Gittip")
+[![Flattr donate button](http://img.shields.io/flattr/donate.png?color=yellow)](https://flattr.com/submit/auto?user_id=kvz&url=https://github.com/locutusjs/locutus&title=locutus&language=&tags=github&category=software "Sponsor the development of locutus via Flattr")
+[![PayPal donate button](http://img.shields.io/paypal/donate.png?color=yellow)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=kevin%40vanzonneveld%2enet&lc=NL&item_name=Open%20source%20donation%20to%20Kevin%20van%20Zonneveld&currency_code=USD&bn=PP-DonationsBF%3abtn_donate_SM%2egif%3aNonHosted "Sponsor the development of locutus via Paypal")
+[![BitCoin donate button](http://img.shields.io/bitcoin/donate.png?color=yellow)](https://coinbase.com/checkouts/19BtCjLCboRgTAXiaEvnvkdoRyjd843Dg2 "Sponsor the development of locutus via BitCoin")
 <!-- /badges -->

@@ -22,7 +22,7 @@ redirect_from:
   - /functions/var/var_dump/
 ---
 function var_dump () {
-  //  discuss at: http://phpjs.org/functions/var_dump/
+  //  discuss at: http://locutusjs.org/php/var_dump/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Zahlii
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -144,7 +144,7 @@ function var_dump () {
     var val = ''
 
     if (typeof obj === 'object' && obj !== null) {
-      if (obj.constructor && _getFuncName(obj.constructor) === 'PHPJS_Resource') {
+      if (obj.constructor && _getFuncName(obj.constructor) === 'LOCUTUS_Resource') {
         return obj.var_dump()
       }
       lgth = 0

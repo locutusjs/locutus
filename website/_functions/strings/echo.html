@@ -54,7 +54,7 @@ redirect_from:
   - /functions/strings/echo/
 ---
 function echo () {
-  //  discuss at: http://phpjs.org/functions/echo/
+  //  discuss at: http://locutusjs.org/php/echo/
   // original by: Philip Peterson
   // improved by: echo is bad
   // improved by: Nate
@@ -200,16 +200,16 @@ function echo () {
   }
 
   this.php_js = this.php_js || {}
-  var phpjs = this.php_js
-  var ini = phpjs.ini
-  var obs = phpjs.obs
+  var locutus = this.php_js
+  var ini = locutus.ini
+  var obs = locutus.obs
   for (i = 0; i < argc; i++) {
     arg = argv[i]
-    if (ini && ini['phpjs.echo_embedded_vars']) {
+    if (ini && ini['locutus.echo_embedded_vars']) {
       arg = arg.replace(/(.?)\{?\$(\w*?\}|\w*)/g, replacer)
     }
 
-    if (!phpjs.flushing && obs && obs.length) {
+    if (!locutus.flushing && obs && obs.length) {
       // If flushing we output, but otherwise presence of a buffer means caching output
       obs[obs.length - 1].buffer += arg
       continue

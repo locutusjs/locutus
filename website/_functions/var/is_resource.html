@@ -19,7 +19,7 @@ redirect_from:
   - /functions/var/is_resource/
 ---
 function is_resource (handle) {
-  //  discuss at: http://phpjs.org/functions/is_resource/
+  //  discuss at: http://locutusjs.org/php/is_resource/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Luis Salazar (http://www.freaky-media.com/)
   //   example 1: is_resource('a');
@@ -34,5 +34,5 @@ function is_resource (handle) {
     return name[1]
   }
   return !(!handle || typeof handle !== 'object' || !handle.constructor || getFuncName(handle.constructor) !==
-    'PHPJS_Resource')
+    'LOCUTUS_Resource')
 }
