@@ -1,5 +1,5 @@
 tools/_temp/*
-build/
+dist/
 nbproject
 .project
 .gitup.dat

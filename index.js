@@ -1,4 +1,4 @@
-var phpjs = require('./build/npm')
+var phpjs = require('./dist/index')
 
 phpjs.registerGlobals = function () {
   for (var key in this) {
