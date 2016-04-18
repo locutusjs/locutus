@@ -1,4 +1,4 @@
-module.exports = function (inputArr) {
+function array_push (inputArr) {
   //  discuss at: http://phpjs.org/functions/array_push/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -10,7 +10,7 @@ module.exports = function (inputArr) {
   //   example 1: array_push(['kevin','van'], 'zonneveld');
   //   returns 1: 3
 
- var i = 0,
+  var i = 0,
     pr = '',
     argv = arguments,
     argc = argv.length,

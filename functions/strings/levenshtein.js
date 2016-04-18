@@ -1,4 +1,4 @@
-module.exports = function (s1, s2, cost_ins, cost_rep, cost_del) {
+function levenshtein (s1, s2, cost_ins, cost_rep, cost_del) {
   //       discuss at: http://phpjs.org/functions/levenshtein/
   //      original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   //      bugfixed by: Onno Marsman
@@ -13,7 +13,7 @@ module.exports = function (s1, s2, cost_ins, cost_rep, cost_del) {
   //        example 3: levenshtein("carrrot", "carrots", 2, 3, 4);
   //        returns 3: 6
 
- var LEVENSHTEIN_MAX_LENGTH = 255 // PHP limits the function to max 255 character-long strings
+  var LEVENSHTEIN_MAX_LENGTH = 255 // PHP limits the function to max 255 character-long strings
 
   cost_ins = cost_ins == null ? 1 : +cost_ins
   cost_rep = cost_rep == null ? 1 : +cost_rep

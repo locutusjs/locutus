@@ -1,4 +1,4 @@
-module.exports = function (inputArr) {
+function array_unique (inputArr) {
   //  discuss at: http://phpjs.org/functions/array_unique/
   // original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   //    input by: duncan
@@ -15,7 +15,7 @@ module.exports = function (inputArr) {
   //   example 2: array_unique({'a': 'green', 0: 'red', 'b': 'green', 1: 'blue', 2: 'red'});
   //   returns 2: {a: 'green', 0: 'red', 1: 'blue'}
 
- var key = '',
+  var key = '',
     tmp_arr2 = {},
     val = ''
 

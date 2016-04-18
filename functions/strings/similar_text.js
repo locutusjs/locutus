@@ -1,4 +1,4 @@
-module.exports = function (first, second, percent) {
+function similar_text (first, second, percent) {
   //  discuss at: http://phpjs.org/functions/similar_text/
   // original by: Rafał Kukawski (http://blog.kukawski.pl)
   // bugfixed by: Chris McMacken
@@ -9,7 +9,7 @@ module.exports = function (first, second, percent) {
   //   example 2: similar_text('Hello World!', null);
   //   returns 2: 0
 
- if (first === null || second === null || typeof first === 'undefined' || typeof second === 'undefined') {
+  if (first === null || second === null || typeof first === 'undefined' || typeof second === 'undefined') {
     return 0
   }
 

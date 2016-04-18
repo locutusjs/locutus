@@ -1,11 +1,11 @@
-module.exports = function (f_string1, f_string2) {
+function strcasecmp (f_string1, f_string2) {
   //  discuss at: http://phpjs.org/functions/strcasecmp/
   // original by: Martijn Wieringa
   // bugfixed by: Onno Marsman
   //   example 1: strcasecmp('Hello', 'hello');
   //   returns 1: 0
 
- var string1 = (f_string1 + '')
+  var string1 = (f_string1 + '')
     .toLowerCase()
   var string2 = (f_string2 + '')
     .toLowerCase()

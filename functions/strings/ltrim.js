@@ -1,4 +1,4 @@
-module.exports = function (str, charlist) {
+function ltrim (str, charlist) {
   //  discuss at: http://phpjs.org/functions/ltrim/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Erkekjetter
@@ -7,7 +7,7 @@ module.exports = function (str, charlist) {
   //   example 1: ltrim('    Kevin van Zonneveld    ');
   //   returns 1: 'Kevin van Zonneveld    '
 
- charlist = !charlist ? ' \\s\u00A0' : (charlist + '')
+  charlist = !charlist ? ' \\s\u00A0' : (charlist + '')
     .replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '$1')
   var re = new RegExp('^[' + charlist + ']+', 'g')
   return (str + '')

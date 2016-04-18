@@ -1,4 +1,4 @@
-module.exports = function () {
+function array_merge () {
   //  discuss at: http://phpjs.org/functions/array_merge/
   // original by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Nate
@@ -13,7 +13,7 @@ module.exports = function () {
   //   example 2: array_merge(arr1, arr2)
   //   returns 2: {0: "data"}
 
- var args = Array.prototype.slice.call(arguments),
+  var args = Array.prototype.slice.call(arguments),
     argl = args.length,
     arg,
     retObj = {},

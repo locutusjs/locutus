@@ -1,4 +1,4 @@
-module.exports = function (vr, type) {
+function settype (vr, type) {
   //  discuss at: http://phpjs.org/functions/settype/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -14,7 +14,7 @@ module.exports = function (vr, type) {
   //   example 2: $result = foo
   //   returns 2: '1'
 
- var is_array = function (arr) {
+  var is_array = function (arr) {
     return typeof arr === 'object' && typeof arr.length === 'number' && !(arr.propertyIsEnumerable('length')) &&
       typeof arr.splice === 'function'
   }

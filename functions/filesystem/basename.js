@@ -1,4 +1,4 @@
-module.exports = function (path, suffix) {
+function basename (path, suffix) {
   //  discuss at: http://phpjs.org/functions/basename/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Ash Searle (http://hexmen.com/blog/)
@@ -14,7 +14,7 @@ module.exports = function (path, suffix) {
   //   example 4: basename('/some/path_ext.ext/','.ext');
   //   returns 4: 'path_ext'
 
- var b = path
+  var b = path
   var lastChar = b.charAt(b.length - 1)
 
   if (lastChar === '/' || lastChar === '\\') {

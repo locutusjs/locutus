@@ -1,4 +1,4 @@
-module.exports = function (array) {
+function array_unshift (array) {
   //  discuss at: http://phpjs.org/functions/array_unshift/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Martijn Wieringa
@@ -7,7 +7,7 @@ module.exports = function (array) {
   //   example 1: array_unshift(['van', 'Zonneveld'], 'Kevin');
   //   returns 1: 3
 
- var i = arguments.length
+  var i = arguments.length
 
   while (--i !== 0) {
     arguments[0].unshift(arguments[i])

@@ -1,4 +1,4 @@
-module.exports = function (format, timestamp) {
+function date (format, timestamp) {
   //  discuss at: http://phpjs.org/functions/date/
   // original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // original by: gettimeofday
@@ -55,7 +55,7 @@ module.exports = function (format, timestamp) {
   //   example 9: date('W Y-m-d', 1293974054); // 2011-01-02
   //   returns 9: '52 2011-01-02'
 
- var that = this
+  var that = this
   var jsdate, f
   // Keep this here (works, but for code commented-out below for file size reasons)
   // var tal= [];

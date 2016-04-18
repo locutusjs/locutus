@@ -1,4 +1,4 @@
-module.exports = function (pattern, input, flags) {
+function preg_grep (pattern, input, flags) {
   //  discuss at: http://phpjs.org/functions/preg_grep/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: If pass pattern as string, must escape backslashes, even for single quotes
@@ -9,7 +9,7 @@ module.exports = function (pattern, input, flags) {
   //   example 1: preg_grep("/^(\\d+)?\\.\\d+$/", arr);
   //   returns 1: {2: 4.5, 5: 4.4}
 
- var p = ''
+  var p = ''
   var retObj = {}
   // Todo: put flags as number and do bitwise checks (at least if other flags allowable); see pathinfo()
   var invert = (flags === 1 || flags === 'PREG_GREP_INVERT')

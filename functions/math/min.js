@@ -1,4 +1,4 @@
-module.exports = function () {
+function min () {
   //  discuss at: http://phpjs.org/functions/min/
   // original by: Onno Marsman
   //  revised by: Onno Marsman
@@ -17,7 +17,7 @@ module.exports = function () {
   //   example 6: min([2, 4, 8], [2, 5, 7]);
   //   returns 6: [2, 4, 8]
 
- var ar, retVal, i = 0,
+  var ar, retVal, i = 0,
     n = 0,
     argv = arguments,
     argc = argv.length,

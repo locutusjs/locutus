@@ -1,4 +1,4 @@
-module.exports = function (string) {
+function strlen (string) {
   //  discuss at: http://phpjs.org/functions/strlen/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Sakimori
@@ -15,7 +15,7 @@ module.exports = function (string) {
   //   example 2: strlen('A\ud87e\udc04Z');
   //   returns 2: 3
 
- var str = string + ''
+  var str = string + ''
   var i = 0,
     chr = '',
     lgth = 0

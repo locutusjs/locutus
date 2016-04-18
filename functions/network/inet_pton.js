@@ -1,4 +1,4 @@
-module.exports = function (a) {
+function inet_pton (a) {
   //  discuss at: http://phpjs.org/functions/inet_pton/
   // original by: Theriault
   //   example 1: inet_pton('::');
@@ -6,7 +6,7 @@ module.exports = function (a) {
   //   example 2: inet_pton('127.0.0.1');
   //   returns 2: '\x7F\x00\x00\x01'
 
- var r, m, x, i, j, f = String.fromCharCode
+  var r, m, x, i, j, f = String.fromCharCode
   // IPv4
   m = a.match(/^(?:\d{1,3}(?:\.|$)){4}/)
   if (m) {

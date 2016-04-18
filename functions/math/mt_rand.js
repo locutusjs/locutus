@@ -1,4 +1,4 @@
-module.exports = function (min, max) {
+function mt_rand (min, max) {
   //  discuss at: http://phpjs.org/functions/mt_rand/
   // original by: Onno Marsman
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -6,7 +6,7 @@ module.exports = function (min, max) {
   //   example 1: mt_rand(1, 1);
   //   returns 1: 1
 
- var argc = arguments.length
+  var argc = arguments.length
   if (argc === 0) {
     min = 0
     max = 2147483647

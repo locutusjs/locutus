@@ -1,11 +1,11 @@
-module.exports = function (dirent) {
+function gopher_parsedir (dirent) {
   //  discuss at: http://phpjs.org/functions/gopher_parsedir/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: var entry = gopher_parsedir('0All about my gopher site.\t/allabout.txt\tgopher.example.com\t70\u000d\u000a');
   //   example 1: entry.title;
   //   returns 1: 'All about my gopher site.'
 
- /* Types
+  /* Types
    * 0 = plain text file
    * 1 = directory menu listing
    * 2 = CSO search query

@@ -1,4 +1,4 @@
-module.exports = function (mixed_var) {
+function is_object (mixed_var) {
   //  discuss at: http://phpjs.org/functions/is_object/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Legaev Andrey
@@ -10,7 +10,7 @@ module.exports = function (mixed_var) {
   //   example 3: is_object(null);
   //   returns 3: false
 
- if (Object.prototype.toString.call(mixed_var) === '[object Array]') {
+  if (Object.prototype.toString.call(mixed_var) === '[object Array]') {
     return false
   }
   return mixed_var !== null && typeof mixed_var === 'object'

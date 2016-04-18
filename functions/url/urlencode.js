@@ -1,4 +1,4 @@
-module.exports = function (str) {
+function urlencode (str) {
   //       discuss at: http://phpjs.org/functions/urlencode/
   //      original by: Philip Peterson
   //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -24,7 +24,7 @@ module.exports = function (str) {
   //        example 3: urlencode('http://www.google.nl/search?q=php.js&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a');
   //        returns 3: 'http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3Dphp.js%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a'
 
- str = (str + '')
+  str = (str + '')
     .toString()
 
   // Tilde should be allowed unescaped in future versions of PHP (as reflected below), but if you want to reflect current

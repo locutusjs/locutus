@@ -1,4 +1,4 @@
-module.exports = function (inputArr) {
+function shuffle (inputArr) {
   //  discuss at: http://phpjs.org/functions/shuffle/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -25,7 +25,7 @@ module.exports = function (inputArr) {
   //   example 2: $result = data;
   //   returns 2: {5:'a', 'q':5, 3:'c', 2:'3', 4:5}
 
- var valArr = [],
+  var valArr = [],
     k = '',
     i = 0,
     strictForIn = false,

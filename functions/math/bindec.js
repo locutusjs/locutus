@@ -1,4 +1,4 @@
-module.exports = function (binary_string) {
+function bindec (binary_string) {
   //  discuss at: http://phpjs.org/functions/bindec/
   // original by: Philippe Baumann
   //   example 1: bindec('110011');
@@ -8,7 +8,7 @@ module.exports = function (binary_string) {
   //   example 3: bindec('111');
   //   returns 3: 7
 
- binary_string = (binary_string + '')
+  binary_string = (binary_string + '')
     .replace(/[^01]/gi, '')
   return parseInt(binary_string, 2)
 }

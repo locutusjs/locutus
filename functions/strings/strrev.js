@@ -1,4 +1,4 @@
-module.exports = function (string) {
+function strrev (string) {
   //       discuss at: http://phpjs.org/functions/strrev/
   //      original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //      bugfixed by: Onno Marsman
@@ -10,7 +10,7 @@ module.exports = function (string) {
   //        example 3: strrev('A\uD87E\uDC04Z') === 'Z\uD87E\uDC04A'; // surrogates
   //        returns 3: true
 
- string = string + ''
+  string = string + ''
 
   // Performance will be enhanced with the next two lines of code commented
   //      out if you don't care about combining characters

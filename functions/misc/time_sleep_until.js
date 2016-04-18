@@ -1,4 +1,4 @@
-module.exports = function (timestamp) {
+function time_sleep_until (timestamp) {
   //  discuss at: http://phpjs.org/functions/time_sleep_until/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: For study purposes. Current implementation could lock up the user's browser.
@@ -7,6 +7,6 @@ module.exports = function (timestamp) {
   //   example 1: time_sleep_until(1233146501) // delays until the time indicated by the given timestamp is reached
   //   returns 1: true
 
- while (new Date() < timestamp * 1000) {}
+  while (new Date() < timestamp * 1000) {}
   return true
 }

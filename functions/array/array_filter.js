@@ -1,4 +1,4 @@
-module.exports = function (arr, func) {
+function array_filter (arr, func) {
   //  discuss at: http://phpjs.org/functions/array_filter/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: max4ever
@@ -13,7 +13,7 @@ module.exports = function (arr, func) {
   //   example 3: array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined});
   //   returns 3: {"a":1, "c":-1};
 
- var retObj = {},
+  var retObj = {},
     k
 
   func = func || function (v) {

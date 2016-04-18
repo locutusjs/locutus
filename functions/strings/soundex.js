@@ -1,4 +1,4 @@
-module.exports = function (str) {
+function soundex (str) {
   //  discuss at: http://phpjs.org/functions/soundex/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // original by: Arnout Kazemier (http://www.3rd-Eden.com)
@@ -15,7 +15,7 @@ module.exports = function (str) {
   //   example 3: soundex('Euler');
   //   returns 3: 'E460'
 
- str = (str + '')
+  str = (str + '')
     .toUpperCase()
   if (!str) {
     return ''

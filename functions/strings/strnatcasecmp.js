@@ -1,4 +1,4 @@
-module.exports = function (str1, str2) {
+function strnatcasecmp (str1, str2) {
   //       discuss at: http://phpjs.org/functions/strnatcasecmp/
   //      original by: Martin Pool
   // reimplemented by: Pierre-Luc Paour
@@ -12,7 +12,7 @@ module.exports = function (str1, str2) {
   //        returns 1: 1
   //        returns 1: -1
 
- var a = (str1 + '')
+  var a = (str1 + '')
     .toLowerCase()
   var b = (str2 + '')
     .toLowerCase()

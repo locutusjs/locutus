@@ -1,4 +1,4 @@
-module.exports = function (url, flags, context, offset, maxLen) {
+function file_get_contents (url, flags, context, offset, maxLen) {
   //  discuss at: http://phpjs.org/functions/file_get_contents/
   // original by: Legaev Andrey
   //    input by: Jani Hartikainen
@@ -21,7 +21,7 @@ module.exports = function (url, flags, context, offset, maxLen) {
   //   example 1: buf.indexOf('Google') !== -1
   //   returns 1: true
 
- var tmp, headers = [],
+  var tmp, headers = [],
     newTmp = [],
     k = 0,
     i = 0,

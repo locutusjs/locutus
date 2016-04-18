@@ -1,4 +1,4 @@
-module.exports = function (name, value, expires, path, domain, secure) {
+function setrawcookie (name, value, expires, path, domain, secure) {
   //  discuss at: http://phpjs.org/functions/setrawcookie/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: setcookie
@@ -8,7 +8,7 @@ module.exports = function (name, value, expires, path, domain, secure) {
   //   example 1: setrawcookie('author_name', 'Kevin van Zonneveld');
   //   returns 1: true
 
- if (typeof expires === 'string' && (/^\d+$/)
+  if (typeof expires === 'string' && (/^\d+$/)
     .test(expires)) {
     expires = parseInt(expires, 10)
   }

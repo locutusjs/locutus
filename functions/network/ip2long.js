@@ -1,4 +1,4 @@
-module.exports = function (IP) {
+function ip2long (IP) {
   //  discuss at: http://phpjs.org/functions/ip2long/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Victor
@@ -11,7 +11,7 @@ module.exports = function (IP) {
   //   example 3: ip2long('255.255.255.256');
   //   returns 3: false
 
- var i = 0
+  var i = 0
   // PHP allows decimal, octal, and hexadecimal IP components.
   // PHP allows between 1 (e.g. 127) to 4 (e.g 127.0.0.1) components.
   IP = IP.match(

@@ -1,4 +1,4 @@
-module.exports = function () {
+function get_defined_functions () {
   //  discuss at: http://phpjs.org/functions/get_defined_functions/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -9,7 +9,7 @@ module.exports = function () {
   //   example 1: $result = found;
   //   returns 1: true
 
- var i = '',
+  var i = '',
     arr = [],
     already = {}
 

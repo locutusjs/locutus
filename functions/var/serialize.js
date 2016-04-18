@@ -1,4 +1,4 @@
-module.exports = function (mixed_value) {
+function serialize (mixed_value) {
   //  discuss at: http://phpjs.org/functions/serialize/
   // original by: Arpad Ray (mailto:arpad@php.net)
   // improved by: Dino
@@ -20,7 +20,7 @@ module.exports = function (mixed_value) {
   //   example 2: serialize({firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'});
   //   returns 2: 'a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}'
 
- var val, key, okey,
+  var val, key, okey,
     ktype = '',
     vals = '',
     count = 0,

@@ -1,4 +1,4 @@
-module.exports = function (data) {
+function base64_decode (data) {
   //  discuss at: http://phpjs.org/functions/base64_decode/
   // original by: Tyler Akins (http://rumkin.com)
   // improved by: Thunder.m
@@ -16,7 +16,7 @@ module.exports = function (data) {
   //   example 3: base64_decode('4pyTIMOgIGxhIG1vZGU=');
   //   returns 3: '✓ à la mode'
 
- var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
+  var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
   var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
     ac = 0,
     dec = '',

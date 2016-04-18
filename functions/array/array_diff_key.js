@@ -1,4 +1,4 @@
-module.exports = function (arr1) {
+function array_diff_key (arr1) {
   //  discuss at: http://phpjs.org/functions/array_diff_key/
   // original by: Ates Goral (http://magnetiq.com)
   //  revised by: Brett Zamir (http://brett-zamir.me)
@@ -8,7 +8,7 @@ module.exports = function (arr1) {
   //   example 2: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {red: 5});
   //   returns 2: {"green":2, "blue":3, "white":4}
 
- var argl = arguments.length,
+  var argl = arguments.length,
     retArr = {},
     k1 = '',
     i = 1,

@@ -1,4 +1,4 @@
-module.exports = function (haystack, needle) {
+function strrchr (haystack, needle) {
   //  discuss at: http://phpjs.org/functions/strrchr/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: Jason Wong (http://carrot.org/)
@@ -6,7 +6,7 @@ module.exports = function (haystack, needle) {
   //   example 1: strrchr("Line 1\nLine 2\nLine 3", 10).substr(1)
   //   returns 1: 'Line 3'
 
- var pos = 0
+  var pos = 0
 
   if (typeof needle !== 'string') {
     needle = String.fromCharCode(parseInt(needle, 10))

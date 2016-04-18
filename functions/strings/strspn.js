@@ -1,4 +1,4 @@
-module.exports = function (str1, str2, start, lgth) {
+function strspn (str1, str2, start, lgth) {
   //  discuss at: http://phpjs.org/functions/strspn/
   // original by: Valentina De Rosa
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -7,7 +7,7 @@ module.exports = function (str1, str2, start, lgth) {
   //   example 2: strspn('foo', 'o', 1, 2);
   //   returns 2: 2
 
- var found
+  var found
   var stri
   var strj
   var j = 0

@@ -1,4 +1,4 @@
-module.exports = function (s) {
+function bin2hex (s) {
   //  discuss at: http://phpjs.org/functions/bin2hex/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
@@ -9,7 +9,7 @@ module.exports = function (s) {
   //   example 2: bin2hex(String.fromCharCode(0x00));
   //   returns 2: '00'
 
- var i, l, o = '',
+  var i, l, o = '',
     n
 
   s += ''

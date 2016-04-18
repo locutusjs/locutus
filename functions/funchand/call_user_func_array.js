@@ -1,4 +1,4 @@
-module.exports = function (cb, parameters) {
+function call_user_func_array (cb, parameters) {
   //  discuss at: http://phpjs.org/functions/call_user_func_array/
   // original by: Thiago Mata (http://thiagomata.blog.com)
   //  revised by: Jon Hohle
@@ -10,7 +10,7 @@ module.exports = function (cb, parameters) {
   //   example 2: call_user_func_array('isNaN', [1]);
   //   returns 2: false
 
- var func
+  var func
 
   if (typeof cb === 'string') {
     func = (typeof this[cb] === 'function') ? this[cb] : func = (new Function(null, 'return ' + cb))()

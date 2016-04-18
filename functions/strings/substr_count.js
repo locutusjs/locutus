@@ -1,4 +1,4 @@
-module.exports = function (haystack, needle, offset, length) {
+function substr_count (haystack, needle, offset, length) {
   //  discuss at: http://phpjs.org/functions/substr_count/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
@@ -11,7 +11,7 @@ module.exports = function (haystack, needle, offset, length) {
   //   example 3: substr_count('Kevin van Zonneveld', 'Z', 0, 10);
   //   returns 3: false
 
- var cnt = 0
+  var cnt = 0
 
   haystack += ''
   needle += ''

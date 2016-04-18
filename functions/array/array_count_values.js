@@ -1,4 +1,4 @@
-module.exports = function (array) {
+function array_count_values (array) {
   //  discuss at: http://phpjs.org/functions/array_count_values/
   // original by: Ates Goral (http://magnetiq.com)
   // improved by: Michael White (http://getsprink.com)
@@ -13,7 +13,7 @@ module.exports = function (array) {
   //   example 3: array_count_values([ true, 4.2, 42, "fubar" ]);
   //   returns 3: {42:1, "fubar":1}
 
- var tmp_arr = {},
+  var tmp_arr = {},
     key = '',
     t = ''
 

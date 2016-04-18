@@ -1,4 +1,4 @@
-module.exports = function (search, replace, subject, count) {
+function str_ireplace (search, replace, subject, count) {
   //  discuss at: http://phpjs.org/functions/str_ireplace/
   // original by: Glen Arason (http://CanadianDomainRegistry.ca)
   //        note: Case-insensitive version of str_replace()
@@ -12,7 +12,7 @@ module.exports = function (search, replace, subject, count) {
   //   example 1: str_ireplace('M', 'e', 'name');
   //   returns 1: 'naee'
 
- var i = 0,
+  var i = 0,
     j = 0,
     temp = '',
     repl = '',

@@ -1,4 +1,4 @@
-module.exports = function (arr1) {
+function array_diff (arr1) {
   //  discuss at: http://phpjs.org/functions/array_diff/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Sanjoy Roy
@@ -6,7 +6,7 @@ module.exports = function (arr1) {
   //   example 1: array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld']);
   //   returns 1: {0:'Kevin'}
 
- var retArr = {},
+  var retArr = {},
     argl = arguments.length,
     k1 = '',
     i = 1,

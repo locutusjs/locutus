@@ -1,4 +1,4 @@
-module.exports = function (input, multiplier) {
+function str_repeat (input, multiplier) {
   //  discuss at: http://phpjs.org/functions/str_repeat/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
@@ -6,7 +6,7 @@ module.exports = function (input, multiplier) {
   //   example 1: str_repeat('-=', 10);
   //   returns 1: '-=-=-=-=-=-=-=-=-=-='
 
- var y = ''
+  var y = ''
   while (true) {
     if (multiplier & 1) {
       y += input

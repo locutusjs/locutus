@@ -1,4 +1,4 @@
-module.exports = function (str) {
+function quoted_printable_encode (str) {
   //  discuss at: http://phpjs.org/functions/quoted_printable_encode/
   // original by: Theriault
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -10,7 +10,7 @@ module.exports = function (str) {
   //   example 3: quoted_printable_encode('0123456789012345678901234567890123456789012345678901234567890123456789012345');
   //   returns 3: '012345678901234567890123456789012345678901234567890123456789012345678901234=\r\n5'
 
- var hexChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'],
+  var hexChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'],
     RFC2045Encode1IN = / \r\n|\r\n|[^!-<>-~ ]/gm,
     RFC2045Encode1OUT = function (sMatch) {
       // Encode space before CRLF sequence to prevent spaces from being stripped

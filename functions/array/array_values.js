@@ -1,11 +1,11 @@
-module.exports = function (input) {
+function array_values (input) {
   //  discuss at: http://phpjs.org/functions/array_values/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} );
   //   returns 1: {0: 'Kevin', 1: 'van Zonneveld'}
 
- var tmp_arr = [],
+  var tmp_arr = [],
     key = ''
 
   if (input && typeof input === 'object' && input.change_key_case) {

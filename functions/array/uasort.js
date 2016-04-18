@@ -1,4 +1,4 @@
-module.exports = function (inputArr, sorter) {
+function uasort (inputArr, sorter) {
   //  discuss at: http://phpjs.org/functions/uasort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -17,7 +17,7 @@ module.exports = function (inputArr, sorter) {
   //   example 1: $result = fruits;
   //   returns 1: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
 
- var valArr = [],
+  var valArr = [],
     tempKeyVal, tempValue, ret, k = '',
     i = 0,
     strictForIn = false,

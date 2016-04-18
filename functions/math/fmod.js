@@ -1,4 +1,4 @@
-module.exports = function (x, y) {
+function fmod (x, y) {
   //  discuss at: http://phpjs.org/functions/fmod/
   // original by: Onno Marsman
   //    input by: Brett Zamir (http://brett-zamir.me)
@@ -6,7 +6,7 @@ module.exports = function (x, y) {
   //   example 1: fmod(5.7, 1.3);
   //   returns 1: 0.5
 
- var tmp, tmp2, p = 0,
+  var tmp, tmp2, p = 0,
     pY = 0,
     l = 0.0,
     l2 = 0.0

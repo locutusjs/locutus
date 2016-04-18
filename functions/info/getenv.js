@@ -1,4 +1,4 @@
-module.exports = function (varname) {
+function getenv (varname) {
   //  discuss at: http://phpjs.org/functions/getenv/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: We are not using $_ENV as in PHP, you could define
@@ -8,7 +8,7 @@ module.exports = function (varname) {
   //   example 1: getenv('LC_ALL');
   //   returns 1: false
 
- if (!this.php_js || !this.php_js.ENV || !this.php_js.ENV[varname]) {
+  if (!this.php_js || !this.php_js.ENV || !this.php_js.ENV[varname]) {
     return false
   }
 

@@ -1,4 +1,4 @@
-module.exports = function (arr1) {
+function array_intersect (arr1) {
   //  discuss at: http://phpjs.org/functions/array_intersect/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: These only output associative arrays (would need to be
@@ -9,7 +9,7 @@ module.exports = function (arr1) {
   //   example 1: $result = array_intersect($array1, $array2, $array3);
   //   returns 1: {0: 'red', a: 'green'}
 
- var retArr = {},
+  var retArr = {},
     argl = arguments.length,
     arglm1 = argl - 1,
     k1 = '',

@@ -1,4 +1,4 @@
-module.exports = function (str, array) {
+function parse_str (str, array) {
   //       discuss at: http://phpjs.org/functions/parse_str/
   //      original by: Cagri Ekin
   //      improved by: Michael White (http://getsprink.com)
@@ -29,7 +29,7 @@ module.exports = function (str, array) {
   //        example 3: parse_str('abc[a][b]["c"]=def&abc[q]=t+5');
   //        returns 3: {"3":"a","a":{"b":{"c":"def"}},"q":"t 5"}
 
- var strArr = String(str)
+  var strArr = String(str)
     .replace(/^&/, '')
     .replace(/&$/, '')
     .split('&'),

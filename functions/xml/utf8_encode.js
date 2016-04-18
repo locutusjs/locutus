@@ -1,4 +1,4 @@
-module.exports = function (argString) {
+function utf8_encode (argString) {
   //  discuss at: http://phpjs.org/functions/utf8_encode/
   // original by: Webtoolkit.info (http://www.webtoolkit.info/)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -14,7 +14,7 @@ module.exports = function (argString) {
   //   example 1: utf8_encode('Kevin van Zonneveld');
   //   returns 1: 'Kevin van Zonneveld'
 
- if (argString === null || typeof argString === 'undefined') {
+  if (argString === null || typeof argString === 'undefined') {
     return ''
   }
 

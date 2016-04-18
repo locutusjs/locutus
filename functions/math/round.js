@@ -1,4 +1,4 @@
-module.exports = function (value, precision, mode) {
+function round (value, precision, mode) {
   //  discuss at: http://phpjs.org/functions/round/
   // original by: Philip Peterson
   //  revised by: Onno Marsman
@@ -25,7 +25,7 @@ module.exports = function (value, precision, mode) {
   //   example 5: round(58551.799999999996, 2);
   //   returns 5: 58551.8
 
- var m, f, isHalf, sgn // helper variables
+  var m, f, isHalf, sgn // helper variables
   // making sure precision is integer
   precision |= 0
   m = Math.pow(10, precision)

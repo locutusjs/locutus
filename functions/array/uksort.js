@@ -1,4 +1,4 @@
-module.exports = function (inputArr, sorter) {
+function uksort (inputArr, sorter) {
   //  discuss at: http://phpjs.org/functions/uksort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -17,7 +17,7 @@ module.exports = function (inputArr, sorter) {
   //   example 1: $result = data
   //   returns 1: {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
 
- var tmp_arr = {},
+  var tmp_arr = {},
     keys = [],
     i = 0,
     k = '',

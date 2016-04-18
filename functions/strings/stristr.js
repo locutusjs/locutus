@@ -1,4 +1,4 @@
-module.exports = function (haystack, needle, bool) {
+function stristr (haystack, needle, bool) {
   //  discuss at: http://phpjs.org/functions/stristr/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
@@ -7,7 +7,7 @@ module.exports = function (haystack, needle, bool) {
   //   example 2: stristr('Kevin van Zonneveld', 'VAN', true);
   //   returns 2: 'Kevin '
 
- var pos = 0
+  var pos = 0
 
   haystack += ''
   pos = haystack.toLowerCase()

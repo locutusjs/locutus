@@ -1,4 +1,4 @@
-module.exports = function (inputArr, sorter) {
+function usort (inputArr, sorter) {
   //  discuss at: http://phpjs.org/functions/usort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -16,7 +16,7 @@ module.exports = function (inputArr, sorter) {
   //   example 1: $result = stuff;
   //   returns 1: {0: '1', 1: '3', 2: '4', 3: '11'};
 
- var valArr = [],
+  var valArr = [],
     k = '',
     i = 0,
     strictForIn = false,

@@ -1,4 +1,4 @@
-module.exports = function (arr) {
+function array_multisort (arr) {
   //  discuss at: http://phpjs.org/functions/array_multisort/
   // original by: Theriault
   //   example 1: array_multisort([1, 2, 1, 2, 1, 2], [1, 2, 3, 4, 5, 6]);
@@ -16,7 +16,7 @@ module.exports = function (arr) {
   //        bits: HGFE DCBA
   //        args: Holds pointer to arguments for reassignment
 
- var g, i, j, k, l, sal, vkey, elIndex, lastSorts, tmpArray, zlast
+  var g, i, j, k, l, sal, vkey, elIndex, lastSorts, tmpArray, zlast
 
   var sortFlag = [0]
   var thingsToSort = []

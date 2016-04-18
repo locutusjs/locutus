@@ -1,4 +1,4 @@
-module.exports = function () {
+function mktime () {
   //  discuss at: http://phpjs.org/functions/mktime/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: baris ozdil
@@ -38,7 +38,7 @@ module.exports = function () {
   //   example 8: mktime(0, 0, -1, 1, 1, 1970)
   //   returns 8: -1
 
- var d = new Date(),
+  var d = new Date(),
     r = arguments,
     i = 0,
     e = ['Hours', 'Minutes', 'Seconds', 'Month', 'Date', 'FullYear']

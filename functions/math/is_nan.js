@@ -1,4 +1,4 @@
-module.exports = function (val) {
+function is_nan (val) {
   //  discuss at: http://phpjs.org/functions/is_nan/
   // original by: Onno Marsman
   //    input by: Robin
@@ -7,7 +7,7 @@ module.exports = function (val) {
   //   example 2: is_nan(0);
   //   returns 2: false
 
- var warningType = ''
+  var warningType = ''
 
   if (typeof val === 'number' && isNaN(val)) {
     return true

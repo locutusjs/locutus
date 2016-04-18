@@ -1,4 +1,4 @@
-module.exports = function (argStr1, argStr2, len) {
+function strncasecmp (argStr1, argStr2, len) {
   //  discuss at: http://phpjs.org/functions/strncasecmp/
   // original by: Saulo Vallory
   //    input by: Nate
@@ -15,7 +15,7 @@ module.exports = function (argStr1, argStr2, len) {
   //   example 5: strncasecmp('Version 12.15', 'Version 12.9', 20);
   //   returns 5: -8
 
- var diff, i = 0
+  var diff, i = 0
   var str1 = (argStr1 + '')
     .toLowerCase()
     .substr(0, len)

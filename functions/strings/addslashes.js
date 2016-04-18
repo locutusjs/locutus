@@ -1,4 +1,4 @@
-module.exports = function (str) {
+function addslashes (str) {
   //  discuss at: http://phpjs.org/functions/addslashes/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Ates Goral (http://magnetiq.com)
@@ -11,7 +11,7 @@ module.exports = function (str) {
   //   example 1: addslashes("kevin's birthday");
   //   returns 1: "kevin\\'s birthday"
 
- return (str + '')
+  return (str + '')
     .replace(/[\\"']/g, '\\$&')
     .replace(/\u0000/g, '\\0')
 }

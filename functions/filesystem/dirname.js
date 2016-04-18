@@ -1,4 +1,4 @@
-module.exports = function (path) {
+function dirname (path) {
   //  discuss at: http://phpjs.org/functions/dirname/
   // original by: Ozh
   // improved by: XoraX (http://www.xorax.info)
@@ -9,6 +9,6 @@ module.exports = function (path) {
   //   example 3: dirname('/dir/test/');
   //   returns 3: '/dir'
 
- return path.replace(/\\/g, '/')
+  return path.replace(/\\/g, '/')
     .replace(/\/[^\/]*\/?$/, '')
 }

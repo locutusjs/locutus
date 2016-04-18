@@ -1,4 +1,4 @@
-module.exports = function (path) {
+function realpath (path) {
   //  discuss at: http://phpjs.org/functions/realpath/
   // original by: mk.keck
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -6,7 +6,7 @@ module.exports = function (path) {
   //   example 1: realpath('../.././_supporters/pj_test_supportfile_1.htm');
   //   returns 1: 'file:/home/kevin/code/_supporters/pj_test_supportfile_1.htm'
 
- var p = 0,
+  var p = 0,
     arr = [] /* Save the root, if not given */
   var r = this.window.location.href /* Avoid input failures */
   path = (path + '')

@@ -1,4 +1,4 @@
-module.exports = function (str) {
+function quoted_printable_decode (str) {
   //       discuss at: http://phpjs.org/functions/quoted_printable_decode/
   //      original by: Ole Vrijenhoek
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
@@ -14,7 +14,7 @@ module.exports = function (str) {
   //        example 4: quoted_printable_decode("Lorem ipsum dolor sit amet=23, consectetur adipisicing elit");
   //        returns 4: 'Lorem ipsum dolor sit amet#, consectetur adipisicing elit'
 
- var RFC2045Decode1 = /=\r\n/gm,
+  var RFC2045Decode1 = /=\r\n/gm,
     // Decodes all equal signs followed by two hex digits
     RFC2045Decode2IN = /=([0-9A-F]{2})/gim,
     // the RFC states against decoding lower case encodings, but following apparent PHP behavior

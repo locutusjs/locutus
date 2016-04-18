@@ -1,4 +1,4 @@
-module.exports = function (haystack, needle, bool) {
+function strstr (haystack, needle, bool) {
   //  discuss at: http://phpjs.org/functions/strstr/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
@@ -12,7 +12,7 @@ module.exports = function (haystack, needle, bool) {
   //   example 4: strstr('name@example.com', '@', true);
   //   returns 4: 'name'
 
- var pos = 0
+  var pos = 0
 
   haystack += ''
   pos = haystack.indexOf(needle)

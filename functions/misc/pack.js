@@ -1,4 +1,4 @@
-module.exports = function (format) {
+function pack (format) {
   //  discuss at: http://phpjs.org/functions/pack/
   // original by: Tim de Koning (http://www.kingsquare.nl)
   //    parts by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
@@ -18,7 +18,7 @@ module.exports = function (format) {
   //   example 4: pack('d', -100.876)
   //   returns 4: "\u0000\u0000\u0000\u0000\u00008YÀ"
 
- var formatPointer = 0,
+  var formatPointer = 0,
     argumentPointer = 1,
     result = '',
     argument = '',

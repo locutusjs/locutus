@@ -1,4 +1,4 @@
-module.exports = function (str_data) {
+function utf8_decode (str_data) {
   //  discuss at: http://phpjs.org/functions/utf8_decode/
   // original by: Webtoolkit.info (http://www.webtoolkit.info/)
   //    input by: Aman Gupta
@@ -13,7 +13,7 @@ module.exports = function (str_data) {
   //   example 1: utf8_decode('Kevin van Zonneveld');
   //   returns 1: 'Kevin van Zonneveld'
 
- var tmp_arr = [],
+  var tmp_arr = [],
     i = 0,
     c1 = 0,
     seqlen = 0

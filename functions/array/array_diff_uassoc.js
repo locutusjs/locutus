@@ -1,4 +1,4 @@
-module.exports = function (arr1) {
+function array_diff_uassoc (arr1) {
   //  discuss at: http://phpjs.org/functions/array_diff_uassoc/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
@@ -6,7 +6,7 @@ module.exports = function (arr1) {
   //   example 1: array_diff_uassoc($array1, $array2, function (key1, key2){ return (key1 == key2 ? 0 : (key1 > key2 ? 1 : -1)); });
   //   returns 1: {b: 'brown', c: 'blue', 0: 'red'}
 
- var retArr = {},
+  var retArr = {},
     arglm1 = arguments.length - 1,
     cb = arguments[arglm1],
     arr = {},

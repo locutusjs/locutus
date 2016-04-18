@@ -1,4 +1,4 @@
-module.exports = function (input, allowed) {
+function strip_tags (input, allowed) {
   //  discuss at: http://phpjs.org/functions/strip_tags/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Luke Godfrey
@@ -32,7 +32,7 @@ module.exports = function (input, allowed) {
   //   example 7: strip_tags('1 <br/> 1', '<br><br/>');
   //   returns 7: '1 <br/> 1'
 
- allowed = (((allowed || '') + '')
+  allowed = (((allowed || '') + '')
       .toLowerCase()
       .match(/<[a-z][a-z0-9]*>/g) || [])
     .join('') // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)

@@ -1,4 +1,4 @@
-module.exports = function (arr) {
+function prev (arr) {
   //  discuss at: http://phpjs.org/functions/prev/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Uses global: php_js to store the array pointer
@@ -6,7 +6,7 @@ module.exports = function (arr) {
   //   example 1: prev(transport);
   //   returns 1: false
 
- this.php_js = this.php_js || {}
+  this.php_js = this.php_js || {}
   this.php_js.pointers = this.php_js.pointers || []
   var indexOf = function (value) {
     for (var i = 0, length = this.length; i < length; i++) {

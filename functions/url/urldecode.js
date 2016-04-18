@@ -1,4 +1,4 @@
-module.exports = function (str) {
+function urldecode (str) {
   //       discuss at: http://phpjs.org/functions/urldecode/
   //      original by: Philip Peterson
   //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -29,7 +29,7 @@ module.exports = function (str) {
   //        example 4: urldecode('%E5%A5%BD%3_4');
   //        returns 4: '\u597d%3_4'
 
- return decodeURIComponent((str + '')
+  return decodeURIComponent((str + '')
     .replace(/%(?![\da-f]{2})/gi, function () {
       // PHP tolerates poorly formed escape sequences
       return '%25'

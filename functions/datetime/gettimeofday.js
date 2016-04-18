@@ -1,4 +1,4 @@
-module.exports = function (return_float) {
+function gettimeofday (return_float) {
   //  discuss at: http://phpjs.org/functions/gettimeofday/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: Josh Fraser (http://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)
@@ -9,7 +9,7 @@ module.exports = function (return_float) {
   //   example 2: gettimeofday(true);
   //   returns 2: 1238748978.49
 
- var t = new Date(),
+  var t = new Date(),
     y = 0
 
   if (return_float) {

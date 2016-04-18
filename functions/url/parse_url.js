@@ -1,4 +1,4 @@
-module.exports = function (str, component) {
+function parse_url (str, component) {
   //       discuss at: http://phpjs.org/functions/parse_url/
   //      original by: Steven Levithan (http://blog.stevenlevithan.com)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
@@ -21,7 +21,7 @@ module.exports = function (str, component) {
   //        example 4: parse_url('https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar');
   //        returns 4: { scheme: 'https', host: 'www.example.com', path: '/a@b.c/folder', query: 'foo=bar', user: 'gooduser', pass: 'secretpassword' }
 
- try {
+  try {
     this.php_js = this.php_js || {}
   } catch (e) {
     this.php_js = {}

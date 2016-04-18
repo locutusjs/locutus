@@ -1,4 +1,4 @@
-module.exports = function (str, charlist) {
+function addcslashes (str, charlist) {
   //  discuss at: http://phpjs.org/functions/addcslashes/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: We show double backslashes in the return value example code below because a JavaScript string will not
@@ -16,7 +16,7 @@ module.exports = function (str, charlist) {
   //   example 6: addcslashes("\r\u0007\n", '\0'); // Do not recognize C escape sequences if not specified
   //   returns 6: "\r\u0007\n"
 
- var target = '',
+  var target = '',
     chrs = [],
     i = 0,
     j = 0,

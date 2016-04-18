@@ -1,4 +1,4 @@
-module.exports = function (str) {
+function stripslashes (str) {
   //       discuss at: http://phpjs.org/functions/stripslashes/
   //      original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //      improved by: Ates Goral (http://magnetiq.com)
@@ -15,7 +15,7 @@ module.exports = function (str) {
   //        example 2: stripslashes('Kevin\\\'s code');
   //        returns 2: "Kevin\'s code"
 
- return (str + '')
+  return (str + '')
     .replace(/\\(.?)/g, function (s, n1) {
       switch (n1) {
         case '\\':
