@@ -1,4 +1,4 @@
-// This file is only for assisting session testing; it is NOT a Locutus.js function
+// This file is only for assisting session testing; it is NOT a Locutus function
 /**
 * Get value of a cookie
 */

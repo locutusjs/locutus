@@ -1,8 +1,8 @@
-Thank you so much for becoming a Locutus.js contributor!
+Thank you so much for becoming a Locutus contributor!
 
 Here are a few pointers that could save us from disappointment, we'll keep it brief:
 
-1. By submitting a Pull Request you are giving Locutus.js permission to distribute your code under the MIT License.
+1. By submitting a Pull Request you are giving Locutus permission to distribute your code under the MIT License.
 1. Please adhere to our [coding standards](/blog/2016/04/01/standard-coding-style/).
 1. Please credit yourself in the function's header-comment: `(original by|improved by|bugfixed by|revised by|input by): Your Name (http://your.url)`
 1. If you're fixing bad behavior, please add an `example` that would fail before your patch, and a `result` that passes after your patch, to the function's header-comment

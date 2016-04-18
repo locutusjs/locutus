@@ -9,7 +9,7 @@ module.exports = function is_array (mixed_var) {
   // bugfixed by: Cord
   // bugfixed by: Manish
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //        note: In Locutus.js, javascript objects are like php associative arrays, thus JavaScript objects will also
+  //        note: In Locutus, javascript objects are like php associative arrays, thus JavaScript objects will also
   //        note: return true in this function (except for objects which inherit properties, being thus used as objects),
   //        note: unless you do ini_set('locutus.objectsAsArrays', 0), in which case only genuine JavaScript arrays
   //        note: will return true

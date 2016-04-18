@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "About Locutus.js"
+title: "About Locutus"
 date: 2012-09-26 17:18
 comments: true
 permalink: /about/
@@ -27,7 +27,7 @@ Locutus assimilaties other languages' standard libraries to JavaScript for fun a
 [vsprintf](http://locutusjs.io/php/vsprintf/), and
 [date](http://locutusjs.io/php/date/), that are too high-level for JavaScript.
 
-Locutus.js has ported most of PHP's functions already.
+Locutus has ported most of PHP's functions already.
 
 PHP is a language with a huge standard library that a large share of web developers
 are intimately familiar with.
@@ -37,8 +37,8 @@ standard library, developers coming from other languages are often wondering how
 to achieve common tasks, like [formatting dates](http://locutusjs.io/php/strftime/), 
 or [generating a hashes](http://locutusjs.io/php/sha1/).
 
-Locutus.js aims to show developers coming from the PHP world how to achieve these things
-in JavaScript. We had to write a lot of it in order to port {{ site.functions |size }} functions. We appreciate the language and hope you will too. Locutus.js exists to aid in learning it, not to avoid that.
+Locutus aims to show developers coming from the PHP world how to achieve these things
+in JavaScript. We had to write a lot of it in order to port {{ site.functions |size }} functions. We appreciate the language and hope you will too. Locutus exists to aid in learning it, not to avoid that.
 
 One thing you'll notice is that we're also porting low-level PHP functions like
 [strpos](http://locutusjs.io/php/strpos/)
@@ -47,9 +47,9 @@ that have perfectly good (and more performant) JavaScript equivalents right in i
 There are two reasons why we went the extra mile:
 
 1. To show newcomers by example how the behavior differs across languages (`false` vs `-1` in the example of `strpos` vs `indexOf`)
-2. The geeky-challenge of porting ALL-THE-THINGS also suddenly opens up Locutus.js to other fun experiments such as running actual `.php` files on V8. While we would advice against using that for anything serious, we sure think it's fun to see if we can manage (this does pose the burden of mimicking PHP as good as we can, even its mistakes).
+2. The geeky-challenge of porting ALL-THE-THINGS also suddenly opens up Locutus to other fun experiments such as running actual `.php` files on V8. While we would advice against using that for anything serious, we sure think it's fun to see if we can manage (this does pose the burden of mimicking PHP as good as we can, even its mistakes).
 
-Something we discovered was that Locutus.js won't be able to fully support PHP arrays on all platforms because some platforms do not preserve ordering in objects. Rightfully, because it's not part of ECMA. Instead of rolling our own data-structures, this is a case where we accept defeat. We take comfort in the fact that most platforms preserve ordering, and there are rumors of it becoming a part of ECMA.
+Something we discovered was that Locutus won't be able to fully support PHP arrays on all platforms because some platforms do not preserve ordering in objects. Rightfully, because it's not part of ECMA. Instead of rolling our own data-structures, this is a case where we accept defeat. We take comfort in the fact that most platforms preserve ordering, and there are rumors of it becoming a part of ECMA.
 
 Going by [The McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d) 
 we have plenty of functions online that aren't perfect just yet.
@@ -63,7 +63,7 @@ sending in a contribution.
 
 ## Licensing
 
-Locutus.js is licensed under the MIT licenses.
+Locutus is licensed under the MIT licenses.
 
 The MIT license allows you to use the library as you see fit (even in commercial projects) as long as you redistribute original the license with it. You're not obligated to share your improvements, but obviously that would be greatly appreciated and ensure you won't lose your changes after you upgrade.
 

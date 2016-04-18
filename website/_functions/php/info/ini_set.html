@@ -54,7 +54,7 @@ module.exports = function ini_set (varname, newvalue) {
   switch (varname) {
     case 'extension':
       if (typeof this.dl === 'function') {
-      // This function is only experimental in Locutus.js
+      // This function is only experimental in Locutus
         this.dl(newvalue)
       }
       _setArr(oldval, newvalue)

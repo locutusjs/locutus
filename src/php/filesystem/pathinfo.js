@@ -9,7 +9,7 @@ module.exports = function pathinfo (path, options) {
   //        note: The way the bitwise arguments are handled allows for greater flexibility
   //        note: & compatability. We might even standardize this code and use a similar approach for
   //        note: other bitwise PHP functions
-  //        note: Locutus.js tries very hard to stay away from a core.js file with global dependencies, because we like
+  //        note: Locutus tries very hard to stay away from a core.js file with global dependencies, because we like
   //        note: that you can just take a couple of functions and be on your way.
   //        note: But by way we implemented this function, if you want you can still declare the PATHINFO_*
   //        note: yourself, and then you can use: pathinfo('/www/index.html', PATHINFO_BASENAME | PATHINFO_EXTENSION);

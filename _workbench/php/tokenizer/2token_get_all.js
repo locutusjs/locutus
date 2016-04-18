@@ -4,9 +4,9 @@ module.exports = function token_get_all (source)  {
 	// + improved by: Brett Zamir (http://brett-zamir.me)
 	// - depends on: token_name
 	// % note 1: Token numbers depend on the PHP version
-	// % note 2: token_name is only necessary for a non-standard Locutus.js-specific use of this function;
+	// % note 2: token_name is only necessary for a non-standard Locutus-specific use of this function;
 	// % note 2: if you define an object on this.php_js.phpParser (where "this" is the scope of the
-	// % note 2: token_get_all function (either a namespaced Locutus.js object or the window object)),
+	// % note 2: token_get_all function (either a namespaced Locutus object or the window object)),
 	// % note 2: this function will call that object's methods if they have the same names as the tokens,
 	// % note 2: passing them the string, line number, and token number (in that order)
 	// * example 1: token_get_all('/'+'* comment *'+'/');

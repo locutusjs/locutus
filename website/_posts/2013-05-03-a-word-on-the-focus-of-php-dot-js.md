@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A Word on the Focus of Locutus.js"
+title: "A Word on the Focus of Locutus"
 date: 2013-05-03 13:18
 comments: true
 categories: [ focus ]
@@ -19,14 +19,14 @@ for. It makes the project less dependent on me and more a community effort.
 
 To move forward, sometimes you have to cut features.
 In this case I had to lose our compiler, a webtool that relied on server-side code
-to generate minified packages from Locutus.js functions.
+to generate minified packages from Locutus functions.
 
 Understandibly this has [raised](https://github.com/locutusjs/locutus/issues/75)
 [questions](http://locutusjs.io/about/index.html#comment-861825612).
 It is still possible to bundle 4 useful functions:
 
 ```bash
-# - Note that this combined 4 Locutus.js functions into a file called: myLocutus.js
+# - Note that this combined 4 Locutus functions into a file called: myLocutus.js
 # and minified version: myphp.min.js in the current directory.
 # - Note that this throws all functions into the
 # global scope. It would be better to put them in a dedicated locutus object.
@@ -46,10 +46,10 @@ curl -vo ./myphp.min.js \
     http://closure-compiler.appspot.com/compile
 ```
 
-but some people think Locutus.js should bundle all of it's functions into one big file:
+but some people think Locutus should bundle all of it's functions into one big file:
 
 > Not providing an all-in-one, downloadable, minified, ready-to-use
-> .js file is going to kill Locutus.js.
+> .js file is going to kill Locutus.
 > You've abandoned windows users, and really any non-CLI junkie.
 > While I am capable of compiling this myself, what a headache.
 > You've introduced a barrier-to-entry that didn't exist before,
@@ -59,29 +59,29 @@ but some people think Locutus.js should bundle all of it's functions into one bi
 > the momentum you worked so hard for.
 
 I'd like to comment on that here. While I appreciate the sentiment, wether the
-project is being killed by these changes depends on how you look at Locutus.js.
-To me, Locutus.js is a resource:
+project is being killed by these changes depends on how you look at Locutus.
+To me, Locutus is a resource:
 
  - For PHP developers that want see how it's done in JavaScript
  - That enables fun experiments
  - With a few higher level functions that are incredibly useful, and missing in JavaScript
 
-This is what I feel Locutus.js should focus on. Making functions. Making them better.
+This is what I feel Locutus should focus on. Making functions. Making them better.
 
-If - on the other hand - you think of Locutus.js as a
+If - on the other hand - you think of Locutus as a
 
  - 2.1MB, 451-function, ready-to-rock spaceship that you can plug into your website so you can keep typing PHP client-side, not caring about learning JavaScript or how that extra weight might impact the user experience
 
-..then yes, *these changes are going to kill Locutus.js*.
+..then yes, *these changes are going to kill Locutus*.
 
 I have limited time to spend on open source, and I want to spend it on things I enjoy and can believe in.
 Not on working to support use-cases that keep new developers from learning, or make the web slower.
 I'm sorry if this upsets folks but it really is my free time.
 
-Luckily though for people with different views, I released Locutus.js under MIT so
+Luckily though for people with different views, I released Locutus under MIT so
 it's cool for anybody to fork this project and run with it.
 
-If anything, knowing that the Locutus.js repository will focus on the raw `./functions`
+If anything, knowing that the Locutus repository will focus on the raw `./functions`
 makes this easier.
 
 

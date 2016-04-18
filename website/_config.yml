@@ -1,8 +1,8 @@
-name: Locutus.js
+name: Locutus
 baseurl: null
 description: Locutus assimilaties other languages' standard libraries to JavaScript for fun and educational purposes
 url: "http://locutusjs.io"
-author: Locutus.js
+author: Locutus
 
 markdown: kramdown
 

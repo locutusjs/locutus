@@ -1,4 +1,4 @@
-# Locutus.js
+# Locutus
 
 <!-- badges/ -->
 [![Join the chat at https://gitter.im/locutusjs/locutus](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/locutusjs/locutus?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)

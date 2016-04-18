@@ -8,7 +8,7 @@ module.exports = function xdiff_string_diff (old_data, new_data, context_lines, 
   //   example 1: xdiff_string_diff('', 'Hello world!');
   //   returns 1: '@@ -0,0 +1,1 @@\n+Hello world!'
 
-  // (This code was done by Imgen Tata; I have only reformatted for use in Locutus.js)
+  // (This code was done by Imgen Tata; I have only reformatted for use in Locutus)
 
   // See http://en.wikipedia.org/wiki/Diff#Unified_format
   var i = 0,

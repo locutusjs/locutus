@@ -17,7 +17,7 @@ module.exports = function get_defined_constants (categorize)  {
   // %        note 4: for each extension to which the "constants" will be added. For example, $P.pcre.PREG_OFFSET_CAPTURE
   // %        note 4: For the non-namespaced version, this will be created on window: alert(pcre.PREG_OFFSET_CAPTURE);
   // %        note 4: If you do ini_set('locutus.get_defined_constants.setConstants', true) then call this function,
-  // %        note 4: it will set the PHP constants as window globals for you, even if you are using the Locutus.js namespaced
+  // %        note 4: it will set the PHP constants as window globals for you, even if you are using the Locutus namespaced
   // %        note 4: version. For example, you can just do: alert(PREG_OFFSET_CAPTURE); . Only the constants set directly
   // %        note 4: at the level of window globals, will actually be immutable constants.
   // %        note 5: Note that our functions might not have been designed yet to handle PHP-style constants if at all, as
