@@ -1,3 +1,4 @@
+module.exports['.DS_Store'] = require('./.DS_Store')
 module.exports['array'] = require('./array')
 module.exports['bc'] = require('./bc')
 module.exports['ctype'] = require('./ctype')

@@ -1,0 +1,39 @@
+{% assign languages = site.functions| group_by site.functions, "language" %}
+
+{% for language in languages %}
+  {% if language.name == "golang" %}
+    <h2>Go functions in JS</h2>
+  {% elsif language.name == "php" %}
+    <h2>PHP functions in JS</h2>
+  {% elsif language.name == "ruby" %}
+    <h2>Ruby functions in JS</h2>
+  {% else %}
+    <h2>{{language.name}} functions in JS</h2>
+  {% endif %}
+
+  {% assign categories = language.items| group_by site.functions, "category" %}
+
+  {% if include.with_functions == false %}<ul id='category-list'>{% endif %}
+    {% for category in categories %}
+      {% if include.with_functions %}
+        <a name="{{ language.name }}-{{ category.name }}"></a>
+        <h3>{{category.name}} ({{category.items |size}})</h3>
+      {% else %}
+        <li>
+          <a href="/functions/#{{ language.name }}-{{ category.name }}">{{category.name}}</a>
+          ({{category.items |size}})
+        </li>
+      {% endif %}
+
+      {% if include.with_functions %}
+        <ul id='function-list'>
+          {% for function in category.items %}
+          <li>
+            <a href="/functions/{{function.function}}">{{function.function}}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endfor %}
+  {% if include.with_functions == false %}</ul><br />{% endif %}
+{% endfor %}

@@ -10,10 +10,10 @@ Hi everybody,
 
 The [new site](/blog/2012/09/26/new-site/) has no server-side code. Instead
 we generate HTML [using Octopress](http://kvz.io/blog/2012/09/25/blog-with-octopress/)
-and push to GitHub Pages, all from one [repository](https://github.com/locutusjs/locutus).
+and push to GitHub Pages, all from one [repository](https://github.com/kvz/locutus).
 
 This saves hosting costs/overhead and makes it really easy for people to submit
-pull requests and for [contributors](https://github.com/locutusjs/locutus/contributors)
+pull requests and for [contributors](https://github.com/kvz/locutus/contributors)
 to make changes that I don't always have time
 for. It makes the project less dependent on me and more a community effort.
 
@@ -21,7 +21,7 @@ To move forward, sometimes you have to cut features.
 In this case I had to lose our compiler, a webtool that relied on server-side code
 to generate minified packages from Locutus functions.
 
-Understandibly this has [raised](https://github.com/locutusjs/locutus/issues/75)
+Understandibly this has [raised](https://github.com/kvz/locutus/issues/75)
 [questions](http://locutusjs.io/about/index.html#comment-861825612).
 It is still possible to bundle 4 useful functions:
 
@@ -30,7 +30,7 @@ It is still possible to bundle 4 useful functions:
 # and minified version: myphp.min.js in the current directory.
 # - Note that this throws all functions into the
 # global scope. It would be better to put them in a dedicated locutus object.
-curl -sk https://raw.github.com/locutusjs/locutus/31bf3129f08672f8c1d6d0dcad2368ebc4ac57f2/functions/\
+curl -sk https://raw.github.com/kvz/locutus/31bf3129f08672f8c1d6d0dcad2368ebc4ac57f2/functions/\
 {datetime/date\
 ,datetime/strtotime\
 ,strings/md5\

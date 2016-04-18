@@ -9,12 +9,12 @@ redirect_from:
 - /
 ---
 
-Locutus assimilaties other languages' standard libraries to JavaScript for fun and educational purposes
+{{site.description}}
 
 **Why on earth would you port other languages to js?**
 
- - to create interoperable server/client-side base64 and URL encoding functions that were lacking when we started
- - to see if we could
+ - to create interoperable base64 and URL encoding functions that were lacking when we started
+ - to see if we can
  - to learn JavaScript
  - to help others learn JavaScript
  - to profit from a few more useful functions such as:
@@ -27,38 +27,40 @@ Locutus assimilaties other languages' standard libraries to JavaScript for fun a
 [vsprintf](http://locutusjs.io/php/vsprintf/), and
 [date](http://locutusjs.io/php/date/), that are too high-level for JavaScript.
 
-Locutus has ported most of PHP's functions already.
-
-PHP is a language with a huge standard library that a large share of web developers
-are intimately familiar with.
-
-JavaScript as a language is even more wide-spread, but lacking a similar large 
+JavaScript as a language is even wide-spread, but lacking a large 
 standard library, developers coming from other languages are often wondering how
 to achieve common tasks, like [formatting dates](http://locutusjs.io/php/strftime/), 
 or [generating a hashes](http://locutusjs.io/php/sha1/).
 
-Locutus aims to show developers coming from the PHP world how to achieve these things
-in JavaScript. We had to write a lot of it in order to port {{ site.functions |size }} functions. We appreciate the language and hope you will too. Locutus exists to aid in learning it, not to avoid that.
+Locutus aims to show developers coming from the other programming languages
+how to achieve these things in JavaScript. We had to write a lot of it in order to port {{ site.functions |size }} functions. We've come to appreciate the language and hope you will too. Locutus exists to aid in learning it, not to avoid that.
 
-One thing you'll notice is that we're also porting low-level PHP functions like
-[strpos](http://locutusjs.io/php/strpos/)
-that have perfectly good (and more performant) JavaScript equivalents right in its standard library by means of e.g.  [String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf).
+One thing you'll notice is that we're also porting low-level functions like PHP's
+[strpos](http://locutusjs.io/php/strpos/) or Go's [string.Index](/golang/strings/Index/)
+that have perfectly good (and more performant) JavaScript equivalents right in its standard library by means of [String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf).
 
 There are two reasons why we went the extra mile:
 
-1. To show newcomers by example how the behavior differs across languages (`false` vs `-1` in the example of `strpos` vs `indexOf`)
-2. The geeky-challenge of porting ALL-THE-THINGS also suddenly opens up Locutus to other fun experiments such as running actual `.php` files on V8. While we would advice against using that for anything serious, we sure think it's fun to see if we can manage (this does pose the burden of mimicking PHP as good as we can, even its mistakes).
+1. To show newcomers by example how the behavior differs across languages (`false` vs `-1` in the example of PHP's `strpos` vs JavaScript's `indexOf`)
+2. The geeky-challenge of porting ALL-THE-THINGS also opens up Locutus to other fun experiments such as running actual `.php` files on V8. While have no idea why you would want that, nor would we recommend it, we sure think it's fun to see if we can manage (this does bring the burden of mimicking the other languages as good as we can, even their mistakes).
 
-Something we discovered was that Locutus won't be able to fully support PHP arrays on all platforms because some platforms do not preserve ordering in objects. Rightfully, because it's not part of ECMA. Instead of rolling our own data-structures, this is a case where we accept defeat. We take comfort in the fact that most platforms preserve ordering, and there are rumors of it becoming a part of ECMA.
+## What we're not porting
+
+We're trying to stick to raw functions and won't be porting global environment, language constructs or data-types. While this would be possible to varying degrees, we feel this is outside Locutus' scope and welcome other projects to take a stab at this, using our modules (or not).
+
+One thing we discovered was that Locutus won't be able to fully support many of PHP's array functions because native arrays on PHP are more like Objects in JavaScript, except that some JavaScript platforms do not guarantee to preserve ordering in objects. Rightfully, because that behavior is not part of ECMA. Instead of rolling our own data-structures, this is a case where we accept defeat. We take comfort in the fact that most platforms preserve ordering, and put up big disclaimers with those functions. There are rumors of it becoming a part of ECMA.
+
+## A community effort
 
 Going by [The McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d) 
 we have plenty of functions online that aren't perfect just yet.
+
 If you know better ways, you're very welcome to send us a pull request : )
 
 ## Contributing
 
-We use [GitHub](http://github.com/locutusjs/locutus) for collaboration.
-Please do adhere to our [CONTRIBUTING.md](http://github.com/locutusjs/locutus/CONTRIBUTING.md) when you're
+We use [GitHub](http://github.com/kvz/locutus) for collaboration.
+Please do adhere to our [CONTRIBUTING.md](http://github.com/kvz/locutus/CONTRIBUTING.md) when you're
 sending in a contribution.
 
 ## Licensing

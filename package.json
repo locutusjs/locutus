@@ -31,11 +31,11 @@
     "functions"
   ],
   "bugs": {
-    "url": "https://github.com/locutusjs/locutus/issues"
+    "url": "https://github.com/kvz/locutus/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/locutusjs/locutus.git"
+    "url": "https://github.com/kvz/locutus.git"
   },
   "readmeFilename": "README.md",
   "scripts": {

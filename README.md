@@ -1,11 +1,11 @@
 # Locutus
 
 <!-- badges/ -->
-[![Join the chat at https://gitter.im/locutusjs/locutus](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/locutusjs/locutus?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://secure.travis-ci.org/locutusjs/locutus.svg?branch=master)](http://travis-ci.org/locutusjs/locutus "Check this project's build status on TravisCI")
+[![Join the chat at https://gitter.im/kvz/locutus](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kvz/locutus?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://secure.travis-ci.org/kvz/locutus.svg?branch=master)](http://travis-ci.org/kvz/locutus "Check this project's build status on TravisCI")
 [![NPM version](http://badge.fury.io/js/locutus.svg)](https://npmjs.org/package/locutus "View this project on NPM")
-[![Dependency Status](https://david-dm.org/locutusjs/locutus.svg?theme=shields.io)](https://david-dm.org/locutusjs/locutus)
-[![Development Dependency Status](https://david-dm.org/locutusjs/locutus/dev-status.svg?theme=shields.io)](https://david-dm.org/locutusjs/locutus#info=devDependencies)
+[![Dependency Status](https://david-dm.org/kvz/locutus.svg?theme=shields.io)](https://david-dm.org/kvz/locutus)
+[![Development Dependency Status](https://david-dm.org/kvz/locutus/dev-status.svg?theme=shields.io)](https://david-dm.org/kvz/locutus#info=devDependencies)
 <!-- /badges -->
 
 Locutus assimilaties other languages' standard libraries to JavaScript for fun and educational purposes
@@ -86,7 +86,7 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 
 <!-- badges/ -->
 [![Gittip donate button](http://img.shields.io/gittip/kvz.png)](https://www.gittip.com/kvz/ "Sponsor the development of locutus via Gittip")
-[![Flattr donate button](http://img.shields.io/flattr/donate.png?color=yellow)](https://flattr.com/submit/auto?user_id=kvz&url=https://github.com/locutusjs/locutus&title=locutus&language=&tags=github&category=software "Sponsor the development of locutus via Flattr")
+[![Flattr donate button](http://img.shields.io/flattr/donate.png?color=yellow)](https://flattr.com/submit/auto?user_id=kvz&url=https://github.com/kvz/locutus&title=locutus&language=&tags=github&category=software "Sponsor the development of locutus via Flattr")
 [![PayPal donate button](http://img.shields.io/paypal/donate.png?color=yellow)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=kevin%40vanzonneveld%2enet&lc=NL&item_name=Open%20source%20donation%20to%20Kevin%20van%20Zonneveld&currency_code=USD&bn=PP-DonationsBF%3abtn_donate_SM%2egif%3aNonHosted "Sponsor the development of locutus via Paypal")
 [![BitCoin donate button](http://img.shields.io/bitcoin/donate.png?color=yellow)](https://coinbase.com/checkouts/19BtCjLCboRgTAXiaEvnvkdoRyjd843Dg2 "Sponsor the development of locutus via BitCoin")
 <!-- /badges -->
