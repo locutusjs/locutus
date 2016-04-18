@@ -1,5 +1,5 @@
 module.exports = function assert_options (what, value) {
-  //  discuss at: http://locutusjs.org/php/assert_options/
+  //  discuss at: http://locutusjs.io/php/assert_options/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: assert_options('ASSERT_CALLBACK');
   //   returns 1: null

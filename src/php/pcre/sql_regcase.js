@@ -1,5 +1,5 @@
 module.exports = function sql_regcase (str) {
-  //  discuss at: http://locutusjs.org/php/sql_regcase/
+  //  discuss at: http://locutusjs.io/php/sql_regcase/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale
   //   example 1: sql_regcase('Foo - bar.');

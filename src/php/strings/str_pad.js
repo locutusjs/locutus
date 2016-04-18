@@ -1,5 +1,5 @@
 module.exports = function str_pad (input, pad_length, pad_string, pad_type) {
-  //  discuss at: http://locutusjs.org/php/str_pad/
+  //  discuss at: http://locutusjs.io/php/str_pad/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Michael White (http://getsprink.com)
   //    input by: Marco van Oort

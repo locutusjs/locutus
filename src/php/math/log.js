@@ -1,5 +1,5 @@
 module.exports = function log (arg, base) {
-  //  discuss at: http://locutusjs.org/php/log/
+  //  discuss at: http://locutusjs.io/php/log/
   // original by: Onno Marsman
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: log(8723321.4, 7);

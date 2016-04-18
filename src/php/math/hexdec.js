@@ -1,5 +1,5 @@
 module.exports = function hexdec (hex_string) {
-  //  discuss at: http://locutusjs.org/php/hexdec/
+  //  discuss at: http://locutusjs.io/php/hexdec/
   // original by: Philippe Baumann
   //   example 1: hexdec('that');
   //   returns 1: 10

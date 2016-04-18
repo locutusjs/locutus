@@ -1,5 +1,5 @@
 module.exports = function printf () {
-  //  discuss at: http://locutusjs.org/php/printf/
+  //  discuss at: http://locutusjs.io/php/printf/
   // original by: Ash Searle (http://hexmen.com/blog/)
   // improved by: Michael White (http://getsprink.com)
   // improved by: Brett Zamir (http://brett-zamir.me)

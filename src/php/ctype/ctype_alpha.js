@@ -1,5 +1,5 @@
 module.exports = function ctype_alpha (text) {
-  //  discuss at: http://locutusjs.org/php/ctype_alpha/
+  //  discuss at: http://locutusjs.io/php/ctype_alpha/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale
   //   example 1: ctype_alpha('Az');

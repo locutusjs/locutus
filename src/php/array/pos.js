@@ -1,5 +1,5 @@
 module.exports = function pos (arr) {
-  //  discuss at: http://locutusjs.org/php/pos/
+  //  discuss at: http://locutusjs.io/php/pos/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Uses global: php_js to store the array pointer
   //  depends on: current

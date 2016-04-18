@@ -1,5 +1,5 @@
 module.exports = function array_unshift (array) {
-  //  discuss at: http://locutusjs.org/php/array_unshift/
+  //  discuss at: http://locutusjs.io/php/array_unshift/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Martijn Wieringa
   // improved by: jmweb

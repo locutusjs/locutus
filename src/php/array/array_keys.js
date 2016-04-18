@@ -1,5 +1,5 @@
 module.exports = function array_keys (input, search_value, argStrict) {
-  //  discuss at: http://locutusjs.org/php/array_keys/
+  //  discuss at: http://locutusjs.io/php/array_keys/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Brett Zamir (http://brett-zamir.me)
   //    input by: P

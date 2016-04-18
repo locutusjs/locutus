@@ -1,5 +1,5 @@
 module.exports = function vsprintf (format, args) {
-  //  discuss at: http://locutusjs.org/php/vsprintf/
+  //  discuss at: http://locutusjs.io/php/vsprintf/
   // original by: ejsanders
   //  depends on: sprintf
   //   example 1: vsprintf('%04d-%02d-%02d', [1988, 8, 1]);

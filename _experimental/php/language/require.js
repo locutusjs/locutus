@@ -9,7 +9,7 @@ module.exports = function require (filename)  {
   // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
   // %        note 2: Uses global: php_js to keep track of included files
   // -    depends on: file_get_contents
-  // *     example 1: require('http://www.locutusjs.org/js/locutus/_supporters/pj_test_supportfile_2.js');
+  // *     example 1: require('http://www.locutusjs.io/js/locutus/_supporters/pj_test_supportfile_2.js');
   // *     returns 1: 2
   var d = this.window.document;
   var isXML = d.documentElement.nodeName !== 'HTML' || !d.write; // Latter is for silly comprehensiveness

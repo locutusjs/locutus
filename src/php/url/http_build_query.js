@@ -1,5 +1,5 @@
 module.exports = function http_build_query (formdata, numeric_prefix, arg_separator) {
-  //  discuss at: http://locutusjs.org/php/http_build_query/
+  //  discuss at: http://locutusjs.io/php/http_build_query/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Legaev Andrey
   // improved by: Michael White (http://getsprink.com)

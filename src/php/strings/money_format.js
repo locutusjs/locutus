@@ -1,5 +1,5 @@
 module.exports = function money_format (format, number) {
-  //  discuss at: http://locutusjs.org/php/money_format/
+  //  discuss at: http://locutusjs.io/php/money_format/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: daniel airton wermann (http://wermann.com.br)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

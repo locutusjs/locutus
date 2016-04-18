@@ -1,5 +1,5 @@
 module.exports = function array_values (input) {
-  //  discuss at: http://locutusjs.org/php/array_values/
+  //  discuss at: http://locutusjs.io/php/array_values/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} );

@@ -1,5 +1,5 @@
 module.exports = function array_slice (arr, offst, lgth, preserve_keys) {
-  //  discuss at: http://locutusjs.org/php/array_slice/
+  //  discuss at: http://locutusjs.io/php/array_slice/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: is_int
   //    input by: Brett Zamir (http://brett-zamir.me)

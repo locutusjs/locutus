@@ -1,5 +1,5 @@
 module.exports = function bindec (binary_string) {
-  //  discuss at: http://locutusjs.org/php/bindec/
+  //  discuss at: http://locutusjs.io/php/bindec/
   // original by: Philippe Baumann
   //   example 1: bindec('110011');
   //   returns 1: 51

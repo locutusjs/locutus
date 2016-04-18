@@ -1,5 +1,5 @@
 module.exports = function is_nan (val) {
-  //  discuss at: http://locutusjs.org/php/is_nan/
+  //  discuss at: http://locutusjs.io/php/is_nan/
   // original by: Onno Marsman
   //    input by: Robin
   //   example 1: is_nan(NaN);

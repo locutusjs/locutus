@@ -1,5 +1,5 @@
 module.exports = function dechex (number) {
-  //  discuss at: http://locutusjs.org/php/dechex/
+  //  discuss at: http://locutusjs.io/php/dechex/
   // original by: Philippe Baumann
   // bugfixed by: Onno Marsman
   // improved by: http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript

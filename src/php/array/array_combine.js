@@ -1,5 +1,5 @@
 module.exports = function array_combine (keys, values) {
-  //  discuss at: http://locutusjs.org/php/array_combine/
+  //  discuss at: http://locutusjs.io/php/array_combine/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: array_combine([0,1,2], ['kevin','van','zonneveld']);

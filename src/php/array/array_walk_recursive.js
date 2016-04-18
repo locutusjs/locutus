@@ -1,5 +1,5 @@
 module.exports = function array_walk_recursive (array, funcname, userdata) {
-  //  discuss at: http://locutusjs.org/php/array_walk_recursive/
+  //  discuss at: http://locutusjs.io/php/array_walk_recursive/
   // original by: Johnny Mast (http://www.phpvrouwen.nl)
   //   example 1: array_walk_recursive ({'a': 'b', 'c': {'d': 'e'}}, 'void', 'userdata');
   //   returns 1: true

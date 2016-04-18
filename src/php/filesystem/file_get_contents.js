@@ -1,5 +1,5 @@
 module.exports = function file_get_contents (url, flags, context, offset, maxLen) {
-  //  discuss at: http://locutusjs.org/php/file_get_contents/
+  //  discuss at: http://locutusjs.io/php/file_get_contents/
   // original by: Legaev Andrey
   //    input by: Jani Hartikainen
   //    input by: Raphael (Ao) RUDLER

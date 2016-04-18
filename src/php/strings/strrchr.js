@@ -1,5 +1,5 @@
 module.exports = function strrchr (haystack, needle) {
-  //  discuss at: http://locutusjs.org/php/strrchr/
+  //  discuss at: http://locutusjs.io/php/strrchr/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: Jason Wong (http://carrot.org/)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

@@ -1,5 +1,5 @@
 module.exports = function array_merge () {
-  //  discuss at: http://locutusjs.org/php/array_merge/
+  //  discuss at: http://locutusjs.io/php/array_merge/
   // original by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Nate
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

@@ -1,5 +1,5 @@
 module.exports = function rand (min, max) {
-  //  discuss at: http://locutusjs.org/php/rand/
+  //  discuss at: http://locutusjs.io/php/rand/
   // original by: Leslie Hoare
   // bugfixed by: Onno Marsman
   //        note: See the commented out code below for a version which will work with our experimental (though probably unnecessary) srand() function)

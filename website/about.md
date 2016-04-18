@@ -9,7 +9,7 @@ redirect_from:
 - /
 ---
 
-Locutus.js assimilaties other languages' standard libraries to JavaScript for fun and educational purposes
+Locutus assimilaties other languages' standard libraries to JavaScript for fun and educational purposes
 
 **Why on earth would you port other languages to js?**
 
@@ -18,14 +18,14 @@ Locutus.js assimilaties other languages' standard libraries to JavaScript for fu
  - to learn JavaScript
  - to help others learn JavaScript
  - to profit from a few more useful functions such as:
-[strip_tags](http://locutusjs.org/php/strip_tags/),
-[strtotime](http://locutusjs.org/php/strtotime/),
-[md5](http://locutusjs.org/php/md5/),
-[strftime](http://locutusjs.org/php/strftime/),
-[number_format](http://locutusjs.org/php/number_format/),
-[wordwrap](http://locutusjs.org/php/wordwrap/), 
-[vsprintf](http://locutusjs.org/php/vsprintf/), and
-[date](http://locutusjs.org/php/date/), that are too high-level for JavaScript.
+[strip_tags](http://locutusjs.io/php/strip_tags/),
+[strtotime](http://locutusjs.io/php/strtotime/),
+[md5](http://locutusjs.io/php/md5/),
+[strftime](http://locutusjs.io/php/strftime/),
+[number_format](http://locutusjs.io/php/number_format/),
+[wordwrap](http://locutusjs.io/php/wordwrap/), 
+[vsprintf](http://locutusjs.io/php/vsprintf/), and
+[date](http://locutusjs.io/php/date/), that are too high-level for JavaScript.
 
 Locutus.js has ported most of PHP's functions already.
 
@@ -34,14 +34,14 @@ are intimately familiar with.
 
 JavaScript as a language is even more wide-spread, but lacking a similar large 
 standard library, developers coming from other languages are often wondering how
-to achieve common tasks, like [formatting dates](http://locutusjs.org/php/strftime/), 
-or [generating a hashes](http://locutusjs.org/php/sha1/).
+to achieve common tasks, like [formatting dates](http://locutusjs.io/php/strftime/), 
+or [generating a hashes](http://locutusjs.io/php/sha1/).
 
 Locutus.js aims to show developers coming from the PHP world how to achieve these things
 in JavaScript. We had to write a lot of it in order to port {{ site.functions |size }} functions. We appreciate the language and hope you will too. Locutus.js exists to aid in learning it, not to avoid that.
 
 One thing you'll notice is that we're also porting low-level PHP functions like
-[strpos](http://locutusjs.org/php/strpos/)
+[strpos](http://locutusjs.io/php/strpos/)
 that have perfectly good (and more performant) JavaScript equivalents right in its standard library by means of e.g.  [String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf).
 
 There are two reasons why we went the extra mile:
@@ -68,7 +68,7 @@ Locutus.js is licensed under the MIT licenses.
 The MIT license allows you to use the library as you see fit (even in commercial projects) as long as you redistribute original the license with it. You're not obligated to share your improvements, but obviously that would be greatly appreciated and ensure you won't lose your changes after you upgrade.
 
 	Copyright (c) 2007-{{ site.time | date: '%Y' }} Kevin van Zonneveld (http://kvz.io) 
-	and Contributors (http://locutusjs.org/authors)
+	and Contributors (http://locutusjs.io/authors)
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy of
 	this software and associated documentation files (the "Software"), to deal in

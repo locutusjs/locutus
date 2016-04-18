@@ -1,5 +1,5 @@
 module.exports = function ctype_graph (text) {
-  //  discuss at: http://locutusjs.org/php/ctype_graph/
+  //  discuss at: http://locutusjs.io/php/ctype_graph/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale
   //   example 1: ctype_graph('!%');

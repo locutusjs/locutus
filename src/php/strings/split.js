@@ -1,5 +1,5 @@
 module.exports = function split (delimiter, string) {
-  //  discuss at: http://locutusjs.org/php/split/
+  //  discuss at: http://locutusjs.io/php/split/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  depends on: explode
   //   example 1: split(' ', 'Kevin van Zonneveld');

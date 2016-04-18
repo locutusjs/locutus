@@ -1,5 +1,5 @@
 module.exports = function quoted_printable_decode (str) {
-  //       discuss at: http://locutusjs.org/php/quoted_printable_decode/
+  //       discuss at: http://locutusjs.io/php/quoted_printable_decode/
   //      original by: Ole Vrijenhoek
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
   //      bugfixed by: Theriault

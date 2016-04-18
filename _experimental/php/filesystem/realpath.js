@@ -1,5 +1,5 @@
 module.exports = function realpath (path)  {
-  // From: http://locutusjs.org/php
+  // From: http://locutusjs.io/php
   // +   original by: mk.keck
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // %        note 1: Returned path is an url like e.g. 'http://yourhost.tld/path/'

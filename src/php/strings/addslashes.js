@@ -1,5 +1,5 @@
 module.exports = function addslashes (str) {
-  //  discuss at: http://locutusjs.org/php/addslashes/
+  //  discuss at: http://locutusjs.io/php/addslashes/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Ates Goral (http://magnetiq.com)
   // improved by: marrtins

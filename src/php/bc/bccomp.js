@@ -1,5 +1,5 @@
 module.exports = function bccomp (left_operand, right_operand, scale) {
-  //  discuss at: http://locutusjs.org/php/bccomp/
+  //  discuss at: http://locutusjs.io/php/bccomp/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //  depends on: _locutus_shared_bc
   //   example 1: bccomp(1, 2);

@@ -1,5 +1,5 @@
 module.exports = function is_scalar (mixed_var) {
-  //  discuss at: http://locutusjs.org/php/is_scalar/
+  //  discuss at: http://locutusjs.io/php/is_scalar/
   // original by: Paulo Freitas
   //   example 1: is_scalar(186.31);
   //   returns 1: true

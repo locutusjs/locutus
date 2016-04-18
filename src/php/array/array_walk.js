@@ -1,5 +1,5 @@
 module.exports = function array_walk (array, funcname, userdata) {
-  //  discuss at: http://locutusjs.org/php/array_walk/
+  //  discuss at: http://locutusjs.io/php/array_walk/
   // original by: Johnny Mast (http://www.phpvrouwen.nl)
   // bugfixed by: David
   // improved by: Brett Zamir (http://brett-zamir.me)

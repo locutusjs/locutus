@@ -1,5 +1,5 @@
 module.exports = function array_intersect_key (arr1) {
-  //  discuss at: http://locutusjs.org/php/array_intersect_key/
+  //  discuss at: http://locutusjs.io/php/array_intersect_key/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: These only output associative arrays (would need to be
   //        note: all numeric and counting from zero to be numeric)

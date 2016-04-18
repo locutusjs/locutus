@@ -1,5 +1,5 @@
 module.exports = function pi () {
-  //  discuss at: http://locutusjs.org/php/pi/
+  //  discuss at: http://locutusjs.io/php/pi/
   // original by: Onno Marsman
   // improved by: dude
   //   example 1: pi(8723321.4);

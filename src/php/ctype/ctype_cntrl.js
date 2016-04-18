@@ -1,5 +1,5 @@
 module.exports = function ctype_cntrl (text) {
-  //  discuss at: http://locutusjs.org/php/ctype_cntrl/
+  //  discuss at: http://locutusjs.io/php/ctype_cntrl/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale
   //   example 1: ctype_cntrl('\u0020');

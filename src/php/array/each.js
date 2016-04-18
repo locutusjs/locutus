@@ -1,5 +1,5 @@
 module.exports = function each (arr) {
-  //  discuss at: http://locutusjs.org/php/each/
+  //  discuss at: http://locutusjs.io/php/each/
   // original by: Ates Goral (http://magnetiq.com)
   //  revised by: Brett Zamir (http://brett-zamir.me)
   //        note: Uses global: php_js to store the array pointer

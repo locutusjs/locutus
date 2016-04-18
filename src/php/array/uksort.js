@@ -1,5 +1,5 @@
 module.exports = function uksort (inputArr, sorter) {
-  //  discuss at: http://locutusjs.org/php/uksort/
+  //  discuss at: http://locutusjs.io/php/uksort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //        note: The examples are correct, this is a new way

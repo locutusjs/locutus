@@ -1,5 +1,5 @@
 module.exports = function register_shutdown_function (cb)  {
-  // From: http://locutusjs.org/php
+  // From: http://locutusjs.io/php
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: register_shutdown_function(function(first, middle, last) {alert('Goodbye '+first+' '+middle+' '+last+'!');}, 'Kevin', 'van', 'Zonneveld');
   // *     returns 1: 'Goodbye Kevin van Zonneveld!'

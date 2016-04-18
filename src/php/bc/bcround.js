@@ -1,5 +1,5 @@
 module.exports = function bcround (val, precision) {
-  //  discuss at: http://locutusjs.org/php/bcround/
+  //  discuss at: http://locutusjs.io/php/bcround/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //  depends on: _locutus_shared_bc
   //   example 1: bcround(1, 2);

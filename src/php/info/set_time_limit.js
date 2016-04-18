@@ -1,5 +1,5 @@
 module.exports = function set_time_limit (seconds) {
-  //  discuss at: http://locutusjs.org/php/set_time_limit/
+  //  discuss at: http://locutusjs.io/php/set_time_limit/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        test: skip
   //   example 1: set_time_limit(4);

@@ -1,5 +1,5 @@
 module.exports = function array_flip (trans) {
-  //  discuss at: http://locutusjs.org/php/array_flip/
+  //  discuss at: http://locutusjs.io/php/array_flip/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Pier Paolo Ramon (http://www.mastersoup.com/)
   // improved by: Brett Zamir (http://brett-zamir.me)

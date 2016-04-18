@@ -1,5 +1,5 @@
 module.exports = function octdec (oct_string) {
-  //  discuss at: http://locutusjs.org/php/octdec/
+  //  discuss at: http://locutusjs.io/php/octdec/
   // original by: Philippe Baumann
   //   example 1: octdec('77');
   //   returns 1: 63

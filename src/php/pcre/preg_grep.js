@@ -1,5 +1,5 @@
 module.exports = function preg_grep (pattern, input, flags) {
-  //  discuss at: http://locutusjs.org/php/preg_grep/
+  //  discuss at: http://locutusjs.io/php/preg_grep/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: If pass pattern as string, must escape backslashes, even for single quotes
   //        note: The regular expression itself must be expressed JavaScript style

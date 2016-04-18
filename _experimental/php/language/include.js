@@ -10,7 +10,7 @@ module.exports = function include (filename)  {
   // %        note 1: Force Javascript execution to pause until the file is loaded. Usually causes failure if the file never loads. ( Use sparingly! )
   // %        note 2: The included file does not come available until a second script block, so typically use this in the header.
   // %        note 3: Uses global: php_js to keep track of included files
-  // *     example 1: include('http://www.locutusjs.org/js/locutus/_supporters/pj_test_supportfile_2.js');
+  // *     example 1: include('http://www.locutusjs.io/js/locutus/_supporters/pj_test_supportfile_2.js');
   // *     returns 1: 1
   var d = this.window.document;
   var isXML = d.documentElement.nodeName !== 'HTML' || !d.write; // Latter is for silly comprehensiveness

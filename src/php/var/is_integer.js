@@ -1,5 +1,5 @@
 module.exports = function is_integer (mixed_var) {
-  //  discuss at: http://locutusjs.org/php/is_integer/
+  //  discuss at: http://locutusjs.io/php/is_integer/
   // original by: Paulo Freitas
   //  depends on: is_int
   //        note: 1.0 is simplified to 1 before it can be accessed by the function, this makes

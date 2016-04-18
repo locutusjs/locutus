@@ -1,5 +1,5 @@
 module.exports = function fmod (x, y) {
-  //  discuss at: http://locutusjs.org/php/fmod/
+  //  discuss at: http://locutusjs.io/php/fmod/
   // original by: Onno Marsman
   //    input by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

@@ -1,5 +1,5 @@
 module.exports = function date_parse (date) {
-  //  discuss at: http://locutusjs.org/php/date_parse/
+  //  discuss at: http://locutusjs.io/php/date_parse/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: strtotime
   //   example 1: date_parse('2006-12-12 10:00:00.5');

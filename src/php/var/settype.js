@@ -1,5 +1,5 @@
 module.exports = function settype (vr, type) {
-  //  discuss at: http://locutusjs.org/php/settype/
+  //  discuss at: http://locutusjs.io/php/settype/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: Brett Zamir (http://brett-zamir.me)

@@ -1,5 +1,5 @@
 module.exports = function i18n_loc_get_default () {
-  //  discuss at: http://locutusjs.org/php/i18n_loc_get_default/
+  //  discuss at: http://locutusjs.io/php/i18n_loc_get_default/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Renamed in PHP6 from locale_get_default(). Not listed yet at php.net.
   //        note: List of locales at <http://demo.icu-project.org/icu-bin/locexp>

@@ -1,5 +1,5 @@
 module.exports = function sort (inputArr, sort_flags) {
-  //  discuss at: http://locutusjs.org/php/sort/
+  //  discuss at: http://locutusjs.io/php/sort/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)

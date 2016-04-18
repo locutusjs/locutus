@@ -1,5 +1,5 @@
 module.exports = function is_int (mixed_var) {
-  //  discuss at: http://locutusjs.org/php/is_int/
+  //  discuss at: http://locutusjs.io/php/is_int/
   // original by: Alex
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: WebDevHobo (http://webdevhobo.blogspot.com/)

@@ -1,5 +1,5 @@
 module.exports = function ctype_alnum (text) {
-  //  discuss at: http://locutusjs.org/php/ctype_alnum/
+  //  discuss at: http://locutusjs.io/php/ctype_alnum/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale
   //   example 1: ctype_alnum('AbC12');

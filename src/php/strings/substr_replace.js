@@ -1,5 +1,5 @@
 module.exports = function substr_replace (str, replace, start, length) {
-  //  discuss at: http://locutusjs.org/php/substr_replace/
+  //  discuss at: http://locutusjs.io/php/substr_replace/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: substr_replace('ABCDEFGH:/MNRPQR/', 'bob', 0);
   //   returns 1: 'bob'

@@ -1,9 +1,9 @@
 module.exports = function bin2hex (s) {
-  //  discuss at: http://locutusjs.org/php/bin2hex/
+  //  discuss at: http://locutusjs.io/php/bin2hex/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
   // bugfixed by: Linuxworld
-  // improved by: ntoniazzi (http://locutusjs.org/php/bin2hex:361#comment_177616)
+  // improved by: ntoniazzi (http://locutusjs.io/php/bin2hex:361#comment_177616)
   //   example 1: bin2hex('Kev');
   //   returns 1: '4b6576'
   //   example 2: bin2hex(String.fromCharCode(0x00));

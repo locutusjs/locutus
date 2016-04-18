@@ -1,5 +1,5 @@
 module.exports = function get_defined_constants (categorize)  {
-  // From: http://locutusjs.org/php
+  // From: http://locutusjs.io/php
   // +    original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Could possibly substitute some others like M_PI with JavaScript's Math.PI, etc., but here
   // %        note 1: sticking to PHP, except for changing: NULL to null, NAN to NaN, and INF to Number.POSITIVE_INFINITY

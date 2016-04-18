@@ -1,5 +1,5 @@
 module.exports = function is_object (mixed_var) {
-  //  discuss at: http://locutusjs.org/php/is_object/
+  //  discuss at: http://locutusjs.io/php/is_object/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Legaev Andrey
   // improved by: Michael White (http://getsprink.com)

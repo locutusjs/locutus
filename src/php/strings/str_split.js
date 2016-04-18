@@ -1,5 +1,5 @@
 module.exports = function str_split (string, split_length) {
-  //  discuss at: http://locutusjs.org/php/str_split/
+  //  discuss at: http://locutusjs.io/php/str_split/
   // original by: Martijn Wieringa
   // improved by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Onno Marsman

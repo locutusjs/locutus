@@ -1,5 +1,5 @@
 module.exports = function getrandmax () {
-  //  discuss at: http://locutusjs.org/php/getrandmax/
+  //  discuss at: http://locutusjs.io/php/getrandmax/
   // original by: Onno Marsman
   //   example 1: getrandmax();
   //   returns 1: 2147483647

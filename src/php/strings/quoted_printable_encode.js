@@ -1,5 +1,5 @@
 module.exports = function quoted_printable_encode (str) {
-  //  discuss at: http://locutusjs.org/php/quoted_printable_encode/
+  //  discuss at: http://locutusjs.io/php/quoted_printable_encode/
   // original by: Theriault
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Theriault

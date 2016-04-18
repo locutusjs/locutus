@@ -1,5 +1,5 @@
 module.exports = function array_chunk (input, size, preserve_keys) {
-  //  discuss at: http://locutusjs.org/php/array_chunk/
+  //  discuss at: http://locutusjs.io/php/array_chunk/
   // original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //        note: Important note: Per the ECMAScript specification, objects may not always iterate in a predictable order

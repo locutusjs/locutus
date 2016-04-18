@@ -1,5 +1,5 @@
 module.exports = function array_diff_key (arr1) {
-  //  discuss at: http://locutusjs.org/php/array_diff_key/
+  //  discuss at: http://locutusjs.io/php/array_diff_key/
   // original by: Ates Goral (http://magnetiq.com)
   //  revised by: Brett Zamir (http://brett-zamir.me)
   //    input by: Everlasto

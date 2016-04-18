@@ -1,5 +1,5 @@
 module.exports = function sprintf () {
-  //  discuss at: http://locutusjs.org/php/sprintf/
+  //  discuss at: http://locutusjs.io/php/sprintf/
   // original by: Ash Searle (http://hexmen.com/blog/)
   // improved by: Michael White (http://getsprink.com)
   // improved by: Jack

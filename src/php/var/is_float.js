@@ -1,5 +1,5 @@
 module.exports = function is_float (mixed_var) {
-  //  discuss at: http://locutusjs.org/php/is_float/
+  //  discuss at: http://locutusjs.io/php/is_float/
   // original by: Paulo Freitas
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // improved by: WebDevHobo (http://webdevhobo.blogspot.com/)

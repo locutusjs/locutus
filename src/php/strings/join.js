@@ -1,5 +1,5 @@
 module.exports = function join (glue, pieces) {
-  //  discuss at: http://locutusjs.org/php/join/
+  //  discuss at: http://locutusjs.io/php/join/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  depends on: implode
   //   example 1: join(' ', ['Kevin', 'van', 'Zonneveld']);

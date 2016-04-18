@@ -22,7 +22,7 @@ In this case I had to lose our compiler, a webtool that relied on server-side co
 to generate minified packages from Locutus.js functions.
 
 Understandibly this has [raised](https://github.com/locutusjs/locutus/issues/75)
-[questions](http://locutusjs.org/about/index.html#comment-861825612).
+[questions](http://locutusjs.io/about/index.html#comment-861825612).
 It is still possible to bundle 4 useful functions:
 
 ```bash

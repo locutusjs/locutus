@@ -1,5 +1,5 @@
 module.exports = function get_html_translation_table (table, quote_style) {
-  //  discuss at: http://locutusjs.org/php/get_html_translation_table/
+  //  discuss at: http://locutusjs.io/php/get_html_translation_table/
   // original by: Philip Peterson
   //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: noname

@@ -1,5 +1,5 @@
 module.exports = function ip2long (IP) {
-  //  discuss at: http://locutusjs.org/php/ip2long/
+  //  discuss at: http://locutusjs.io/php/ip2long/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Victor
   //  revised by: fearphage (http://http/my.opera.com/fearphage/)

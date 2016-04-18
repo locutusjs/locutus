@@ -1,5 +1,5 @@
 module.exports = function var_dump () {
-  //  discuss at: http://locutusjs.org/php/var_dump/
+  //  discuss at: http://locutusjs.io/php/var_dump/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Zahlii
   // improved by: Brett Zamir (http://brett-zamir.me)

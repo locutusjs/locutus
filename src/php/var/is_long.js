@@ -1,5 +1,5 @@
 module.exports = function is_long (mixed_var) {
-  //  discuss at: http://locutusjs.org/php/is_long/
+  //  discuss at: http://locutusjs.io/php/is_long/
   // original by: Paulo Freitas
   //  depends on: is_float
   //        note: 1.0 is simplified to 1 before it can be accessed by the function, this makes

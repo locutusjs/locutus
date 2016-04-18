@@ -1,5 +1,5 @@
 module.exports = function count (mixed_var, mode) {
-  //  discuss at: http://locutusjs.org/php/count/
+  //  discuss at: http://locutusjs.io/php/count/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Waldo Malqui Silva (http://waldo.malqui.info)
   //    input by: merabi

@@ -1,5 +1,5 @@
 module.exports = function bcscale (scale) {
-  //  discuss at: http://locutusjs.org/php/bcscale/
+  //  discuss at: http://locutusjs.io/php/bcscale/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //  depends on: _locutus_shared_bc
   //   example 1: bcscale(1);

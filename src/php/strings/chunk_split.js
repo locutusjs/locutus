@@ -1,5 +1,5 @@
 module.exports = function chunk_split (body, chunklen, end) {
-  //  discuss at: http://locutusjs.org/php/chunk_split/
+  //  discuss at: http://locutusjs.io/php/chunk_split/
   // original by: Paulo Freitas
   //    input by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

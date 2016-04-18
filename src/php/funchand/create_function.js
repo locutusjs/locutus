@@ -1,5 +1,5 @@
 module.exports = function create_function (args, code) {
-  //       discuss at: http://locutusjs.org/php/create_function/
+  //       discuss at: http://locutusjs.io/php/create_function/
   //      original by: Johnny Mast (http://www.phpvrouwen.nl)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
   //        example 1: f = create_function('a, b', "return (a + b);");

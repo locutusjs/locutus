@@ -1,5 +1,5 @@
 module.exports = function array_shift (inputArr) {
-  //  discuss at: http://locutusjs.org/php/array_shift/
+  //  discuss at: http://locutusjs.io/php/array_shift/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Martijn Wieringa
   //        note: Currently does not handle objects

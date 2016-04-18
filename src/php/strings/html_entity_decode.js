@@ -1,5 +1,5 @@
 module.exports = function html_entity_decode (string, quote_style) {
-  //  discuss at: http://locutusjs.org/php/html_entity_decode/
+  //  discuss at: http://locutusjs.io/php/html_entity_decode/
   // original by: john (http://www.jd-tech.net)
   //    input by: ger
   //    input by: Ratheous
@@ -28,7 +28,7 @@ module.exports = function html_entity_decode (string, quote_style) {
   }
 
   // fix &amp; problem
-  // http://locutusjs.org/php/get_html_translation_table:416#comment_97660
+  // http://locutusjs.io/php/get_html_translation_table:416#comment_97660
   delete (hash_map['&'])
   hash_map['&'] = '&amp;'
 

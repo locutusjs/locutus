@@ -1,5 +1,5 @@
 module.exports = function array () {
-  //  discuss at: http://locutusjs.org/php/array/
+  //  discuss at: http://locutusjs.io/php/array/
   // original by: d3x
   // improved by: Brett Zamir (http://brett-zamir.me)
   //        test: skip

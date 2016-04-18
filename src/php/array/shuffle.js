@@ -1,5 +1,5 @@
 module.exports = function shuffle (inputArr) {
-  //  discuss at: http://locutusjs.org/php/shuffle/
+  //  discuss at: http://locutusjs.io/php/shuffle/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: Brett Zamir (http://brett-zamir.me)

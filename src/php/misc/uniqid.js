@@ -1,5 +1,5 @@
 module.exports = function uniqid (prefix, more_entropy) {
-  //  discuss at: http://locutusjs.org/php/uniqid/
+  //  discuss at: http://locutusjs.io/php/uniqid/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: Kankrelune (http://www.webfaktory.info/)
   //        note: Uses an internal counter (in php_js global) to avoid collision

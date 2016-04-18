@@ -1,5 +1,5 @@
 module.exports = function utf8_decode (str_data) {
-  //  discuss at: http://locutusjs.org/php/utf8_decode/
+  //  discuss at: http://locutusjs.io/php/utf8_decode/
   // original by: Webtoolkit.info (http://www.webtoolkit.info/)
   //    input by: Aman Gupta
   //    input by: Brett Zamir (http://brett-zamir.me)

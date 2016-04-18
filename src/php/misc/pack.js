@@ -1,5 +1,5 @@
 module.exports = function pack (format) {
-  //  discuss at: http://locutusjs.org/php/pack/
+  //  discuss at: http://locutusjs.io/php/pack/
   // original by: Tim de Koning (http://www.kingsquare.nl)
   //    parts by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // bugfixed by: Tim de Koning (http://www.kingsquare.nl)

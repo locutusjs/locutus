@@ -1,5 +1,5 @@
 module.exports = function extract (arr, type, prefix)  {
-  // From: http://locutusjs.org/php
+  // From: http://locutusjs.io/php
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Only works by extracting into global context (whether called in the global scope or
   // %        note 1: within a function); also, the EXTR_REFS flag I believe can't be made to work

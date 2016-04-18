@@ -1,5 +1,5 @@
 module.exports = function ctype_punct (text) {
-  //  discuss at: http://locutusjs.org/php/ctype_punct/
+  //  discuss at: http://locutusjs.io/php/ctype_punct/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale
   //   example 1: ctype_punct('!?');

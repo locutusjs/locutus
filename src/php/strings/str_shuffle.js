@@ -1,5 +1,5 @@
 module.exports = function str_shuffle (str) {
-  //  discuss at: http://locutusjs.org/php/str_shuffle/
+  //  discuss at: http://locutusjs.io/php/str_shuffle/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: shuffled = str_shuffle("abcdef");
   //   example 1: shuffled.length

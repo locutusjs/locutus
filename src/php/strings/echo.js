@@ -1,5 +1,5 @@
 module.exports = function echo () {
-  //  discuss at: http://locutusjs.org/php/echo/
+  //  discuss at: http://locutusjs.io/php/echo/
   // original by: Philip Peterson
   // improved by: echo is bad
   // improved by: Nate

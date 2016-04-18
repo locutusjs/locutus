@@ -1,5 +1,5 @@
 module.exports = function rtrim (str, charlist) {
-  //  discuss at: http://locutusjs.org/php/rtrim/
+  //  discuss at: http://locutusjs.io/php/rtrim/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Erkekjetter
   //    input by: rem

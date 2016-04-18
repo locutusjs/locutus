@@ -1,5 +1,5 @@
 module.exports = function str_word_count (str, format, charlist) {
-  //  discuss at: http://locutusjs.org/php/str_word_count/
+  //  discuss at: http://locutusjs.io/php/str_word_count/
   // original by: Ole Vrijenhoek
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

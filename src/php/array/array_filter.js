@@ -1,5 +1,5 @@
 module.exports = function array_filter (arr, func) {
-  //  discuss at: http://locutusjs.org/php/array_filter/
+  //  discuss at: http://locutusjs.io/php/array_filter/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: max4ever
   // improved by: Brett Zamir (http://brett-zamir.me)

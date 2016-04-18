@@ -1,5 +1,5 @@
 module.exports = function call_user_func (cb) {
-  //  discuss at: http://locutusjs.org/php/call_user_func/
+  //  discuss at: http://locutusjs.io/php/call_user_func/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Diplom@t (http://difane.com/)
   // improved by: Brett Zamir (http://brett-zamir.me)

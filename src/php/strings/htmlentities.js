@@ -1,12 +1,12 @@
 module.exports = function htmlentities (string, quote_style, charset, double_encode) {
-  //  discuss at: http://locutusjs.org/php/htmlentities/
+  //  discuss at: http://locutusjs.io/php/htmlentities/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: nobbler
   // improved by: Jack
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)
-  // improved by: Dj (http://locutusjs.org/php/htmlentities:425#comment_134018)
+  // improved by: Dj (http://locutusjs.io/php/htmlentities:425#comment_134018)
   // bugfixed by: Onno Marsman
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //    input by: Ratheous

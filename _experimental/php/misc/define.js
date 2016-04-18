@@ -2,7 +2,7 @@ module.exports = function define (name, value)  {
   // Define a new constant
   //
   // version: 903.3016
-  // discuss at: http://locutusjs.org/php/define
+  // discuss at: http://locutusjs.io/php/define
   // +      original by: Paulo Freitas
   // +       revised by: Andrea Giammarchi (http://webreflection.blogspot.com)
   // + reimplemented by: Brett Zamir (http://brett-zamir.me)

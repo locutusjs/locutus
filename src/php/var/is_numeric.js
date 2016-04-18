@@ -1,5 +1,5 @@
 module.exports = function is_numeric (mixed_var) {
-  //  discuss at: http://locutusjs.org/php/is_numeric/
+  //  discuss at: http://locutusjs.io/php/is_numeric/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: David
   // improved by: taith

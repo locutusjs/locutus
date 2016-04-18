@@ -1,5 +1,5 @@
 module.exports = function base64_decode (data) {
-  //  discuss at: http://locutusjs.org/php/base64_decode/
+  //  discuss at: http://locutusjs.io/php/base64_decode/
   // original by: Tyler Akins (http://rumkin.com)
   // improved by: Thunder.m
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

@@ -1,5 +1,5 @@
 module.exports = function ctype_lower (text) {
-  //  discuss at: http://locutusjs.org/php/ctype_lower/
+  //  discuss at: http://locutusjs.io/php/ctype_lower/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale
   //   example 1: ctype_lower('abc');

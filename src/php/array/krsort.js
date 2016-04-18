@@ -1,5 +1,5 @@
 module.exports = function krsort (inputArr, sort_flags) {
-  //  discuss at: http://locutusjs.org/php/krsort/
+  //  discuss at: http://locutusjs.io/php/krsort/
   // original by: GeekFG (http://geekfg.blogspot.com)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)

@@ -1,5 +1,5 @@
 module.exports = function log1p (x) {
-  //  discuss at: http://locutusjs.org/php/log1p/
+  //  discuss at: http://locutusjs.io/php/log1p/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Robert Eisele (http://www.xarg.org/)
   //        note: Precision 'n' can be adjusted as desired

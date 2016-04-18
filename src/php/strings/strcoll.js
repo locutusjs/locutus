@@ -1,5 +1,5 @@
 module.exports = function strcoll (str1, str2) {
-  //  discuss at: http://locutusjs.org/php/strcoll/
+  //  discuss at: http://locutusjs.io/php/strcoll/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale

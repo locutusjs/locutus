@@ -1,5 +1,5 @@
 module.exports = function lcg_value () {
-  //  discuss at: http://locutusjs.org/php/lcg_value/
+  //  discuss at: http://locutusjs.io/php/lcg_value/
   // original by: Onno Marsman
   //        test: skip
   //   example 1: lcg_value()

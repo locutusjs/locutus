@@ -1,5 +1,5 @@
 module.exports = function assert (assertion)  {
-  // From: http://locutusjs.org/php
+  // From: http://locutusjs.io/php
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Do not pass untrusted user input to assert() in string form (you can test it beforehand though)
   // %        note 2: Does not provide perfect arguments to the assertion callback, as far as file location or line number

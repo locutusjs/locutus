@@ -1,5 +1,5 @@
 module.exports = function var_export (mixed_expression, bool_return) {
-  //  discuss at: http://locutusjs.org/php/var_export/
+  //  discuss at: http://locutusjs.io/php/var_export/
   // original by: Philip Peterson
   // improved by: johnrembo
   // improved by: Brett Zamir (http://brett-zamir.me)

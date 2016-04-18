@@ -1,5 +1,5 @@
 module.exports = function strncasecmp (argStr1, argStr2, len) {
-  //  discuss at: http://locutusjs.org/php/strncasecmp/
+  //  discuss at: http://locutusjs.io/php/strncasecmp/
   // original by: Saulo Vallory
   //    input by: Nate
   // bugfixed by: Onno Marsman

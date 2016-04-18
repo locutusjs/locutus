@@ -1,5 +1,5 @@
 module.exports = function strtotime (text, now) {
-  //  discuss at: http://locutusjs.org/php/strtotime/
+  //  discuss at: http://locutusjs.io/php/strtotime/
   //     version: 1109.2016
   // original by: Caio Ariede (http://caioariede.com)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

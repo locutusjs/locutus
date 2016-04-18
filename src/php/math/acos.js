@@ -1,5 +1,5 @@
 module.exports = function acos (arg) {
-  //  discuss at: http://locutusjs.org/php/acos/
+  //  discuss at: http://locutusjs.io/php/acos/
   // original by: Onno Marsman
   //        note: Sorry about the crippled test. Needed because precision differs accross platforms.
   //   example 1: (acos(0.3) + '').substr(0, 17);

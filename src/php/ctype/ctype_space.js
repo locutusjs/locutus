@@ -1,5 +1,5 @@
 module.exports = function ctype_space (text) {
-  //  discuss at: http://locutusjs.org/php/ctype_space/
+  //  discuss at: http://locutusjs.io/php/ctype_space/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale
   //   example 1: ctype_space('\t\n');

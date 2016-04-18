@@ -1,5 +1,5 @@
 module.exports = function bcadd (left_operand, right_operand, scale) {
-  //  discuss at: http://locutusjs.org/php/bcadd/
+  //  discuss at: http://locutusjs.io/php/bcadd/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //  depends on: _locutus_shared_bc
   //   example 1: bcadd(1, 2);

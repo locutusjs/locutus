@@ -1,5 +1,5 @@
 module.exports = function strftime (fmt, timestamp) {
-  //       discuss at: http://locutusjs.org/php/strftime/
+  //       discuss at: http://locutusjs.io/php/strftime/
   //      original by: Blues (http://tech.bluesmoon.info/)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
   //         input by: Alex

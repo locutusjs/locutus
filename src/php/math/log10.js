@@ -1,5 +1,5 @@
 module.exports = function log10 (arg) {
-  //  discuss at: http://locutusjs.org/php/log10/
+  //  discuss at: http://locutusjs.io/php/log10/
   // original by: Philip Peterson
   // improved by: Onno Marsman
   // improved by: Tod Gentille

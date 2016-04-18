@@ -1,5 +1,5 @@
 module.exports = function substr_count (haystack, needle, offset, length) {
-  //  discuss at: http://locutusjs.org/php/substr_count/
+  //  discuss at: http://locutusjs.io/php/substr_count/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
   // improved by: Brett Zamir (http://brett-zamir.me)

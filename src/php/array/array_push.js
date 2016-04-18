@@ -1,5 +1,5 @@
 module.exports = function array_push (inputArr) {
-  //  discuss at: http://locutusjs.org/php/array_push/
+  //  discuss at: http://locutusjs.io/php/array_push/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //        note: Note also that IE retains information about property position even

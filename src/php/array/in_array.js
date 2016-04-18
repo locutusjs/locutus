@@ -1,5 +1,5 @@
 module.exports = function in_array (needle, haystack, argStrict) {
-  //  discuss at: http://locutusjs.org/php/in_array/
+  //  discuss at: http://locutusjs.io/php/in_array/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: vlado houba
   // improved by: Jonas Sciangula Street (Joni2Back)

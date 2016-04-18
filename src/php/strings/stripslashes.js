@@ -1,5 +1,5 @@
 module.exports = function stripslashes (str) {
-  //       discuss at: http://locutusjs.org/php/stripslashes/
+  //       discuss at: http://locutusjs.io/php/stripslashes/
   //      original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //      improved by: Ates Goral (http://magnetiq.com)
   //      improved by: marrtins

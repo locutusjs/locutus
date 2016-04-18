@@ -1,5 +1,5 @@
 module.exports = function strval (str) {
-  //  discuss at: http://locutusjs.org/php/strval/
+  //  discuss at: http://locutusjs.io/php/strval/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

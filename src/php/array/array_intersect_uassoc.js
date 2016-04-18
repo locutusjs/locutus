@@ -1,5 +1,5 @@
 module.exports = function array_intersect_uassoc (arr1) {
-  //  discuss at: http://locutusjs.org/php/array_intersect_uassoc/
+  //  discuss at: http://locutusjs.io/php/array_intersect_uassoc/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
   //   example 1: $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}

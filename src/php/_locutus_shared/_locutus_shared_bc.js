@@ -1,5 +1,5 @@
 module.exports = function _locutus_shared_bc () {
-  // From: http://locutusjs.org/php
+  // From: http://locutusjs.io/php
   // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   // +   improved by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: _locutus_shared_bc();

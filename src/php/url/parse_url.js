@@ -1,5 +1,5 @@
 module.exports = function parse_url (str, component) {
-  //       discuss at: http://locutusjs.org/php/parse_url/
+  //       discuss at: http://locutusjs.io/php/parse_url/
   //      original by: Steven Levithan (http://blog.stevenlevithan.com)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
   //         input by: Lorenzo Pisani

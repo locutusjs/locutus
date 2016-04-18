@@ -1,8 +1,7 @@
 name: Locutus.js
 baseurl: null
-description: Locutus.js is a resource that offers community-built JavaScript alternatives to PHP functions.
-meta_description: Learn how to do it in JavaScript. Explore boundaries porting languages. Enjoy functions that turn out to be useful.
-url: "http://locutusjs.org"
+description: Locutus assimilaties other languages' standard libraries to JavaScript for fun and educational purposes
+url: "http://locutusjs.io"
 author: Locutus.js
 
 markdown: kramdown

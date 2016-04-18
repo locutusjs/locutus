@@ -1,5 +1,5 @@
 module.exports = function ctype_upper (text) {
-  //  discuss at: http://locutusjs.org/php/ctype_upper/
+  //  discuss at: http://locutusjs.io/php/ctype_upper/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale
   //   example 1: ctype_upper('AZ');

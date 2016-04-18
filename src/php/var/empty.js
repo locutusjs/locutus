@@ -1,5 +1,5 @@
 module.exports = function empty (mixed_var) {
-  //  discuss at: http://locutusjs.org/php/empty/
+  //  discuss at: http://locutusjs.io/php/empty/
   // original by: Philippe Baumann
   //    input by: Onno Marsman
   //    input by: LH

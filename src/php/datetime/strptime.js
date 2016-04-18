@@ -1,5 +1,5 @@
 module.exports = function strptime (dateStr, format) {
-  //  discuss at: http://locutusjs.org/php/strptime/
+  //  discuss at: http://locutusjs.io/php/strptime/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: strftime
   //  depends on: setlocale

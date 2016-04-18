@@ -1,5 +1,5 @@
 module.exports = function ctype_print (text) {
-  //  discuss at: http://locutusjs.org/php/ctype_print/
+  //  discuss at: http://locutusjs.io/php/ctype_print/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale
   //   example 1: ctype_print('AbC!#12');

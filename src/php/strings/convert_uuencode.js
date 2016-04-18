@@ -1,5 +1,5 @@
 module.exports = function convert_uuencode (str) {
-  //       discuss at: http://locutusjs.org/php/convert_uuencode/
+  //       discuss at: http://locutusjs.io/php/convert_uuencode/
   //      original by: Ole Vrijenhoek
   //      bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)

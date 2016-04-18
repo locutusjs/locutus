@@ -1,5 +1,5 @@
 module.exports = function prev (arr) {
-  //  discuss at: http://locutusjs.org/php/prev/
+  //  discuss at: http://locutusjs.io/php/prev/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Uses global: php_js to store the array pointer
   //   example 1: transport = ['foot', 'bike', 'car', 'plane'];

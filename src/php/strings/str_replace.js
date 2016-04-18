@@ -1,5 +1,5 @@
 module.exports = function str_replace (search, replace, subject, count) {
-  //  discuss at: http://locutusjs.org/php/str_replace/
+  //  discuss at: http://locutusjs.io/php/str_replace/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Gabriel Paderni
   // improved by: Philip Peterson

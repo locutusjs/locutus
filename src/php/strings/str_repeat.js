@@ -1,5 +1,5 @@
 module.exports = function str_repeat (input, multiplier) {
-  //  discuss at: http://locutusjs.org/php/str_repeat/
+  //  discuss at: http://locutusjs.io/php/str_repeat/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // improved by: Ian Carter (http://euona.com/)

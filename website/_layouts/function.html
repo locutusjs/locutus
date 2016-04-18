@@ -4,12 +4,21 @@ layout: page
 
 <p>
   Here’s what a JavaScript equivalent for
-  <a href="http://php.net/manual/en/function.{{page.function |slugify}}.php">PHP’s {{page.function}}</a>
+
+  {% if page.language == "golang" %}
+  <a href="https://golang.org/pkg/{{page.category}}/#{{page.function}}">Go's {{page.category}}.{{page.function}}</a>
+  {% elsif page.language == "php" %}
+  <a href="http://php.net/manual/en/function.{{page.function}}.php">PHP's {{page.function}}</a>
+  {% elsif page.language == "ruby" %}
+  <a href="http://ruby-doc.org/core-2.2.2/{{page.category}}.html#method-c-{{page.function}}">Ruby's {{page.category}}.{{page.function}}</a>
+  {% else %}
+  {{page.language}}'s {{page.function}}
+  {% endif %}
   looks like.
 </p>
 
 {% highlight javascript %}
-{{content}}
+{{content|replace: 'module.exports = ', ''}}
 {% endhighlight %}
 
 <a class="basic-alignment left themebutton" href="https://github.com/locutusjs/locutus/blob/master/functions/{{page.category}}/{{page.function}}.js">View on GitHub</a>
@@ -18,6 +27,27 @@ layout: page
 
 <div class="clearfix"></div>
 
+<h2>How to use</h2>
+<p>
+  NPM is the recommended installation method. It pairs nicely with a CommonJS
+  module bundler such as
+  <a href="http://webpack.github.io/" target="_blank" rel="external">webpack</a>,  <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a> or <a href="http://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+</p>
+
+{% highlight bash %}
+npm install --save locutus
+{% endhighlight %}
+
+{% highlight javascript %}
+{% if page.language == "golang" || page.language == "ruby" %}
+var {{page.category = require('locutus/{{page.language}}/{{page.category}}')
+// {{page.category}}.{{page.function}}()
+{% else %}
+var {{page.function |slugify| replace: '-', '_'}} = require('locutus/{{page.language}}/{{page.category}}/{{page.function}}')
+// {{page.function |slugify| replace: '-', '_'}}()
+{% endif %}
+
+{% endhighlight %}
 
 {% if page.category == "array" %}
 <h2>PHP arrays and JavaScript</h2>

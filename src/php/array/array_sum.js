@@ -1,5 +1,5 @@
 module.exports = function array_sum (array) {
-  //  discuss at: http://locutusjs.org/php/array_sum/
+  //  discuss at: http://locutusjs.io/php/array_sum/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Nate
   // bugfixed by: Gilbert

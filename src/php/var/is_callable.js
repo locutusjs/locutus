@@ -1,5 +1,5 @@
 module.exports = function is_callable (v, syntax_only, callable_name) {
-  //  discuss at: http://locutusjs.org/php/is_callable/
+  //  discuss at: http://locutusjs.io/php/is_callable/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: François
   // improved by: Brett Zamir (http://brett-zamir.me)

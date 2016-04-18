@@ -1,5 +1,5 @@
 module.exports = function deg2rad (angle) {
-  //  discuss at: http://locutusjs.org/php/deg2rad/
+  //  discuss at: http://locutusjs.io/php/deg2rad/
   // original by: Enrique Gonzalez
   // improved by: Thomas Grainger (http://graingert.co.uk)
   //   example 1: deg2rad(45);

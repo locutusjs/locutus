@@ -1,5 +1,5 @@
 module.exports = function get_headers (url, format) {
-  //  discuss at: http://locutusjs.org/php/get_headers/
+  //  discuss at: http://locutusjs.io/php/get_headers/
   // original by: Paulo Freitas
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //  depends on: array_filter

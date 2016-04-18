@@ -1,5 +1,5 @@
 module.exports = function ctype_digit (text) {
-  //  discuss at: http://locutusjs.org/php/ctype_digit/
+  //  discuss at: http://locutusjs.io/php/ctype_digit/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale
   //   example 1: ctype_digit('150');

@@ -6,7 +6,7 @@ module.exports = function require_once (filename)  {
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Uses global: php_js to keep track of included files (though private static variable in namespaced version)
   // -    depends on: require
-  // *     example 1: require_once('http://www.locutusjs.org/js/locutus/_supporters/pj_test_supportfile_2.js');
+  // *     example 1: require_once('http://www.locutusjs.io/js/locutus/_supporters/pj_test_supportfile_2.js');
   // *     returns 1: true
   var cur_file = {};
   cur_file[this.window.location.href] = 1;

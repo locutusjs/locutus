@@ -1,5 +1,5 @@
 module.exports = function ini_set (varname, newvalue) {
-  //  discuss at: http://locutusjs.org/php/ini_set/
+  //  discuss at: http://locutusjs.io/php/ini_set/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: This will not set a global_value or access level for the ini item
   //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong');

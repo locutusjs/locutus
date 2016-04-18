@@ -1,5 +1,5 @@
 module.exports = function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
-  //  discuss at: http://locutusjs.org/php/xdiff_string_diff
+  //  discuss at: http://locutusjs.io/php/xdiff_string_diff
   // original by: Brett Zamir (http://brett-zamir.me)
   //    based on: Imgen Tata (http://www.myipdf.com/)
   // bugfixed by: Imgen Tata (http://www.myipdf.com/)
