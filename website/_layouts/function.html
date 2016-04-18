@@ -44,12 +44,12 @@ var {{page.category = require('locutus/{{page.language}}/{{page.category}}')
 // {{page.category}}.{{page.function}}()
 {% else %}
 var {{page.function |slugify| replace: '-', '_'}} = require('locutus/{{page.language}}/{{page.category}}/{{page.function}}')
-// {{page.function |slugify| replace: '-', '_'}}()
+{{page.examples[0]}}
 {% endif %}
 
 {% endhighlight %}
 
-{% if page.category == "array" %}
+{% if page.language == "php" && page.category == "array" %}
 <h2>PHP arrays and JavaScript</h2>
 <p>
   Please note that Locutus uses JavaScript objects as substitutes for PHP arrays,
