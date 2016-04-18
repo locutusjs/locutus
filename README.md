@@ -8,31 +8,32 @@
 [![Development Dependency Status](https://david-dm.org/locutusjs/locutus/dev-status.svg?theme=shields.io)](https://david-dm.org/locutusjs/locutus#info=devDependencies)
 <!-- /badges -->
 
-Locutus.js assimilates other languages' standard libraries to JavaScript for educational purposes.
+Locutus.js assimilaties other languages' standard libraries to JavaScript for fun and educational purposes
 
 More info at: http://locutusjs.org/about
 
 ## module
 
 ```bash
-$ mkdir test && cd $_
-$ npm install locutus
-$ $EDITOR try.js
+$ npm install --save locutus
+$ ${EDITOR} try.js
 ```
 
 ```javascript
-var php = require('locutus');
+var php = require('locutus/php/strings/sprintf')
+var effectiveness = 'futile'
+php.echo(php.sprintf('Resistance is %s', effectiveness))
+```
 
-php.echo(php.sprintf('Hey, %s : )', 'you'));
-php.echo(php.parse_url('mysql://kevin:abcd1234@example.com/databasename')['pass']);
-php.echo(php.strtotime('2 januari 2012, 11:12:13 GMT'));
+```javascript
+var strings = require('locutus/golang/strings')
+strings.Contains('Locutus', 'cut')
 ```
 
 ```bash
 $ node try.js
-Hey, you : )
-abcd1234
-1325502733
+Resistance is futile
+true
 ```
 
 ## Testing

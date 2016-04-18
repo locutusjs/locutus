@@ -9,7 +9,7 @@ redirect_from:
 - /
 ---
 
-Locutus.js assimilates other languages' standard libraries to JavaScript for educational purposes
+Locutus.js assimilaties other languages' standard libraries to JavaScript for fun and educational purposes
 
 **Why on earth would you port other languages to js?**
 
