@@ -1,9 +1,1 @@
-var phpjs = require('./dist/index')
-
-phpjs.registerGlobals = function () {
-  for (var key in this) {
-    global[key] = this[key]
-  }
-}
-
-module.exports = phpjs
+module.exports.php = require('./php')

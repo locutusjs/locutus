@@ -5,7 +5,7 @@
   "description": "php.js offers community built php functions in javascript",
   "homepage": "http://phpjs.org",
   "author": "Kevin van Zonneveld <kevin@vanzonneveld.net>",
-  "main": "dist/index.js",
+  "main": "index.js",
   "engines": {
     "node": ">= 0.10.0"
   },
