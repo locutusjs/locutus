@@ -38,9 +38,9 @@ how to achieve these things in JavaScript. We had to write a lot of it in order 
 We've come to appreciate the language and hope you will too. Locutus exists to aid in learning it, not to avoid that.
 
 One thing you'll notice is that we're also porting low-level functions like Go's [string.Index](/golang/strings/Index/)
-that have perfectly good (and more performant) JavaScript equivalents right in its standard library by means of [String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf).
+that have perfectly good (and more performant) JavaScript equivalents supported natively by means of [String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf).
 
-There are two reasons why we went the extra mile:
+There are two reasons why we're going the extra mile:
 
 1. To show newcomers by example how the behavior differs across languages (`false` vs `-1` in the example of `strpos` vs JavaScript's `indexOf`)
 2. The geeky-challenge of porting ALL-THE-THINGS also opens up Locutus to other fun experiments such as running actual `.php` files on V8. While have no idea why you would want that, nor would we recommend it, we sure think it's fun to see if we can manage (this does bring the burden of mimicking the other languages as good as we can, even their mistakes).

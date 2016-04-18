@@ -6,15 +6,15 @@ layout: page
   Here’s what a JavaScript equivalent for
 
   {% if page.language == "golang" %}
-  <a href="https://golang.org/pkg/{{page.category}}/#{{page.function}}">Go's {{page.category}}.{{page.function}}</a>
+    <a href="https://golang.org/pkg/{{page.category}}/#{{page.function}}">Go's {{page.category}}.{{page.function}}</a>
   {% elsif page.language == "c" %}
-  <a href="http://en.cppreference.com/w/c/numeric/{{page.category}}/{{page.function}}">C's {{page.category}}.h's {{page.function}}</a>
+    <a href="http://en.cppreference.com/w/c/numeric/{{page.category}}/{{page.function}}">C's {{page.category}}.h's {{page.function}}</a>
   {% elsif page.language == "php" %}
-  <a href="http://php.net/manual/en/function.{{page.function}}.php">PHP's {{page.function}}</a>
+    <a href="http://php.net/manual/en/function.{{page.function}}.php">PHP's {{page.function}}</a>
   {% elsif page.language == "ruby" %}
-  <a href="http://ruby-doc.org/core-2.2.2/{{page.category}}.html#method-c-{{page.function}}">Ruby's {{page.category}}.{{page.function}}</a>
+    <a href="http://ruby-doc.org/core-2.2.2/{{page.category}}.html#method-c-{{page.function}}">Ruby's {{page.category}}.{{page.function}}</a>
   {% else %}
-  {{page.language |capitalize}}'s {{page.function}}
+    {{page.language |capitalize}}'s {{page.function}}
   {% endif %}
   looks like.
 </p>
@@ -42,7 +42,7 @@ npm install --save locutus
 
 {% highlight javascript %}
 {% if page.language == "golang" || page.language == "ruby" %}
-var {{page.category = require('locutus/{{page.language}}/{{page.category}}')
+var {{page.category}} = require('locutus/{{page.language}}/{{page.category}}')
 // {{page.category}}.{{page.function}}()
 {% else %}
 var {{page.function |slugify| replace: '-', '_'}} = require('locutus/{{page.language}}/{{page.category}}/{{page.function}}')

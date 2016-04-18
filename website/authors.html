@@ -22,7 +22,7 @@ permalink: /authors/
     <h2>{{language.name | capitalize}} authors</h2>
   {% endif %}
 
-  <section class="authors">
+  <section class="authors" data-language="{{language.name}}">
     {% for function in language.items %}
       {% for types in function.authors %}
         {% for author in types[1] %}

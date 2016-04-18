@@ -109,8 +109,12 @@ LocutusUtil.prototype.injectweb = function (args, options) {
       redirect_from: [
         '/functions/' + params.language + '/' + params.func_name + '/',
         '/functions/' + params.category + '/' + params.func_name + '/',
-        '/functions/' + params.func_name + '/'
+        '/' + params.language + '/' + params.func_name + '/'
       ]
+    }
+
+    if (params.language === 'php') {
+      data.redirect_from.push('/functions/' + params.func_name + '/')
     }
 
     try {
@@ -122,10 +126,6 @@ LocutusUtil.prototype.injectweb = function (args, options) {
     var buf = '---' + '\n' + yml + '\n' + '---' + '\n'
 
     buf += params.code
-
-    if (params.language === 'c') {
-      console.log({file:file, params:params, buf: buf, webfuncPath: webfuncPath})
-    }
 
     mkdirp(path.dirname(webfuncPath), function (err) {
       if (err) {
@@ -153,9 +153,6 @@ LocutusUtil.prototype.glob = function (pattern, workerCb) {
       var name = path.basename(file, '.js')
       if (file.indexOf('/_') === -1 && name !== 'index') {
         names.push({name: name, file: file})
-        console.log('adding: ' + file)
-      } else {
-        console.log('skipping: ' + file)
       }
     }
     names.forEach(function (props) {

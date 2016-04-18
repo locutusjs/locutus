@@ -27,7 +27,7 @@
         <ul id='function-list'>
           {% for function in category.items %}
           <li>
-            <a href="/functions/{{function.function}}">{{function.function}}</a>
+            <a href="/{{function.language}}/{{function.category}}/{{function.function}}">{{function.function}}</a>
           </li>
           {% endfor %}
         </ul>

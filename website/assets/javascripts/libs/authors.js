@@ -1,5 +1,6 @@
 $('section.authors').each(function () {
   var uniqueAuthors = {}
+  var language = $(this).data('language')
   $(this).find('entry').each(function () {
     var type = $(this).data('type')
     var func = $(this).data('function')
@@ -72,7 +73,7 @@ $('section.authors').each(function () {
     buf += '<small>'
     buf += contributions.join(' / ') + ' '
     if (author.total === 1) {
-      buf += '(<a href="/functions/' + author.functions[0] + '">' + author.functions[0] + '</a>) '
+      buf += '(<a href="/' + language + '/' + author.functions[0] + '">' + author.functions[0] + '</a>) '
     }
     buf += '</small>'
 
