@@ -1,10 +1,3 @@
-if (typeof require !== 'undefined') {
-  module.exports = function locutusutil (config) {
-    var self = new LocutusUtil(config)
-    return self
-  }
-}
-
 function LocutusUtil (config) {
   this.injectDependencies = []
 
@@ -310,3 +303,5 @@ LocutusUtil.prototype.test = function (params, cb) {
     }
   })
 }
+
+module.exports = LocutusUtil

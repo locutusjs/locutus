@@ -7,7 +7,7 @@ var mkdirp = require('mkdirp')
 var _ = require('underscore')
 var LocutusUtil = require('./locutusutil')
 var equal = require('deep-equal')
-var __root = path.join(__dirname, '..')
+var __root = path.dirname(path.dirname(__dirname))
 var beautify = require('js-beautify').js_beautify
 var YAML = require('js-yaml')
 
@@ -29,7 +29,6 @@ process.env.TZ = 'UTC'
 // --debug works out of the box. See -h
 cli.parse({
   action  : ['a', 'Test / Build', 'string', 'test'],
-  output  : ['o', 'Build output file', 'string', __root + '/dist/index.js'],
   name    : ['n', 'Function name to test', 'path', '*'],
   category: ['c', 'Category to test', 'path', '*'],
   abort   : ['a', 'Abort on first failure']
@@ -87,106 +86,6 @@ cli.lpad = function (str, len, pad) {
   }
 
   return (new Array(len - str.length).join(pad)) + str
-}
-
-// cli.cleanup = function (args, options) {
-//   var self = this
-//   var pattern = __root + '/php/' + options.category + '/' + options.name + '.js'
-//   self.glob(pattern, function (err, params, file) {
-//     if (err) {
-//       return self.error('Could not glob for ' + pattern + '. ' + err)
-//     }
-//
-//     var buf = ''
-//     buf += 'module.exports = function (' + params.func_arguments.join(', ') + ') {\n'
-//
-//     var longestKey = 0
-//     _.each(params.headKeys, function (items, key) {
-//       var len = key.length
-//       if (key === 'example') {
-//         key += 3
-//       }
-//       if (len >= longestKey) {
-//         longestKey = len
-//       }
-//     })
-//
-//     longestKey += 1
-//     var key, val, items, vals, i, itemNr
-//
-//     var headKeys = {
-//       'discuss at': [['http://locutusjs.org/php/' + params.name]]
-//     }
-//
-//     _.extend(headKeys, params.headKeys)
-//
-//     // If you want to overwrite:
-//     // headKeys['discuss at'] = [['http://locutusjs.org/php/' + params.name + '/']];
-//
-//     for (key in headKeys) {
-//       items = headKeys[key]
-//       for (itemNr in items) {
-//         vals = items[itemNr]
-//         for (i in vals) {
-//           val = vals[i]
-//           buf += '  // ' + self.lpad((key === 'example' ? (key + ' ' + ((itemNr * 1) + 1)) : key), longestKey) + ': ' + val + '\n'
-//         }
-//         if (key === 'example') {
-//           vals = headKeys.returns[itemNr]
-//
-//           for (i in vals) {
-//             val = vals[i]
-//             buf += '  // ' + self.lpad('returns' + ' ' + ((itemNr * 1) + 1), longestKey) + ': ' + val + '\n'
-//           }
-//
-//           delete headKeys.returns[itemNr]
-//         }
-//       }
-//     }
-//
-//     var indentation = 2
-//
-//     var newBody = params.body
-//     // Place "if (x) { //" comments on next line
-//     newBody = newBody.replace(/^( +)([^\{\n]+\{)( *)(\/\/.*)$/gm, '$1$2\n$1' + Array(indentation).join(' ') + '$4')
-//     // Place "xyz(); //" comments on previous line
-//     newBody = newBody.replace(/^( +)([^\. ][^\;\n]+\;)( *)(\/\/.*)$/gm, '$1$4\n$1$2')
-//
-//     buf += '\n'
-//     buf += Array(indentation).join(' ') + newBody
-//     buf += '\n'
-//     buf += '}\n'
-//
-//     buf.replace(/\r/g, '')
-//
-//     // console.log(buf);
-//     fs.writeFileSync(file, buf)
-//   })
-// }
-
-cli.buildnpm = function (args, options) {
-  var self = this
-  var pattern = __root + '/php/' + options.category + '/' + options.name + '.js'
-  fs.writeFileSync(options.output, '// This file is generated. \n')
-  fs.appendFileSync(options.output, '// Do NOT edit by hand. \n')
-
-  for (var global in locutusUtil.globals) {
-    fs.appendFileSync(options.output, 'module.exports.' + global + ' = ' + locutusUtil.globals[global] + '\n')
-  }
-  fs.appendFileSync(options.output, 'module.exports.window.window = module.exports.window\n')
-
-  var dir = path.dirname(options.output)
-  self.glob(pattern, function (err, params, file) {
-    if (err) {
-      return self.error('Could not glob for ' + pattern + '. ' + err)
-    }
-
-    var functionName = path.basename(file, '.js')
-
-    fs.writeFileSync(path.join(dir, functionName + '.js'), params.code, 'utf-8')
-    var buf = 'module.exports.' + functionName + ' = require(\'./' + functionName + '.js' + '\')\n'
-    fs.appendFileSync(options.output, buf)
-  })
 }
 
 cli.injectweb = function (args, options) {

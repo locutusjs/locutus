@@ -1,10 +1,11 @@
 var effectiveness = 'futile'
-var locutus = require('../..')
-var php = require('../../php')
-var strings = require('../../php/strings')
-var sprintf = require('../../php/strings/sprintf')
-var ruby = require('../../ruby')
-var math = require('../../ruby/Math')
+var location = '../../src'
+var locutus = require(location)
+var php = require(location + '/php')
+var strings = require(location + '/php/strings')
+var sprintf = require(location + '/php/strings/sprintf')
+var ruby = require(location + '/ruby')
+var math = require(location + '/ruby/Math')
 
 console.log(locutus.php.strings.sprintf('Resistance is %s', effectiveness))
 console.log(php.strings.sprintf('Resistance is %s', effectiveness))

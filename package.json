@@ -50,7 +50,7 @@
     "release:patch": "env SEMANTIC=patch npm run release",
     "release": "git commit CHANGELOG.md -m 'Update CHANGELOG.md' && npm version ${SEMANTIC:-patch} -m \"Release %s\" && git commit test/fixture/*.stdio -m 'Update version' && git push --tags && git push && npm publish",
     "test:functions": "node src/_util/cli.js --action test --debug",
-    "test:module": "node dist/index.js && node test/npm/npm.js",
+    "test:module": "node test/npm/npm.js",
     "test:utils": "mocha --reporter spec",
     "test": "npm run test:utils && npm run test:functions && npm run test:module",
     "website:deploy": "npm run website:inject && cd website && npm run build && npm run deploy",
