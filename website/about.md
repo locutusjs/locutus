@@ -18,30 +18,29 @@ redirect_from:
  - to learn JavaScript
  - to help others learn JavaScript
  - to profit from a few more useful functions such as:
-[strip_tags](http://locutusjs.io/php/strip_tags/),
-[strtotime](http://locutusjs.io/php/strtotime/),
-[md5](http://locutusjs.io/php/md5/),
-[strftime](http://locutusjs.io/php/strftime/),
-[number_format](http://locutusjs.io/php/number_format/),
-[wordwrap](http://locutusjs.io/php/wordwrap/), 
-[vsprintf](http://locutusjs.io/php/vsprintf/), and
-[date](http://locutusjs.io/php/date/), that do not exist in JavaScript's standard library.
+[strip_tags](/php/strip_tags/),
+[strtotime](/php/strtotime/),
+[md5](/php/md5/),
+[strftime](/php/strftime/),
+[number_format](/php/number_format/),
+[wordwrap](/php/wordwrap/), 
+[vsprintf](/php/vsprintf/), and
+[date](/php/date/), that do not exist in JavaScript's standard library.
 
 JavaScript as a language is even wide-spread, but lacking a large 
 standard library, developers coming from other languages are often wondering how
-to achieve common tasks, like [formatting dates](http://locutusjs.io/php/strftime/), 
-or [generating a hashes](http://locutusjs.io/php/sha1/).
+to achieve common tasks, like [formatting dates](/php/strftime/), 
+or [generating a hashes](/php/sha1/).
 
 Locutus aims to show developers coming from the other programming languages
 how to achieve these things in JavaScript. We had to write a lot of it in order to port {{ site.functions |size }} functions. We've come to appreciate the language and hope you will too. Locutus exists to aid in learning it, not to avoid that.
 
-One thing you'll notice is that we're also porting low-level functions like PHP's
-[strpos](http://locutusjs.io/php/strpos/) or Go's [string.Index](/golang/strings/Index/)
+One thing you'll notice is that we're also porting low-level functions like Go's [string.Index](/golang/strings/Index/)
 that have perfectly good (and more performant) JavaScript equivalents right in its standard library by means of [String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf).
 
 There are two reasons why we went the extra mile:
 
-1. To show newcomers by example how the behavior differs across languages (`false` vs `-1` in the example of PHP's `strpos` vs JavaScript's `indexOf`)
+1. To show newcomers by example how the behavior differs across languages (`false` vs `-1` in the example of `strpos` vs JavaScript's `indexOf`)
 2. The geeky-challenge of porting ALL-THE-THINGS also opens up Locutus to other fun experiments such as running actual `.php` files on V8. While have no idea why you would want that, nor would we recommend it, we sure think it's fun to see if we can manage (this does bring the burden of mimicking the other languages as good as we can, even their mistakes).
 
 ## What we're not porting
