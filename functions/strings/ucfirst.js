@@ -1,4 +1,4 @@
-function ucfirst (str) {
+module.exports = function (str) {
   //  discuss at: http://phpjs.org/functions/ucfirst/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
@@ -6,7 +6,7 @@ function ucfirst (str) {
   //   example 1: ucfirst('kevin van zonneveld');
   //   returns 1: 'Kevin van zonneveld'
 
-  str += ''
+ str += ''
   var f = str.charAt(0)
     .toUpperCase()
   return f + str.substr(1)

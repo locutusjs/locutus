@@ -1,4 +1,4 @@
-function substr_replace (str, replace, start, length) {
+module.exports = function (str, replace, start, length) {
   //  discuss at: http://phpjs.org/functions/substr_replace/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: substr_replace('ABCDEFGH:/MNRPQR/', 'bob', 0);
@@ -15,7 +15,7 @@ function substr_replace (str, replace, start, length) {
   //   example 6: substr_replace('ABCDEFGH:/MNRPQR/', '', 10, -1)
   //   returns 6: 'ABCDEFGH://'
 
-  if (start < 0) { // start position in str
+ if (start < 0) { // start position in str
     start = start + str.length
   }
   length = length !== undefined ? length : str.length

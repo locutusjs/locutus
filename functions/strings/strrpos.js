@@ -1,4 +1,4 @@
-function strrpos (haystack, needle, offset) {
+module.exports = function (haystack, needle, offset) {
   //  discuss at: http://phpjs.org/functions/strrpos/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
@@ -13,7 +13,7 @@ function strrpos (haystack, needle, offset) {
   //   example 4: strrpos('baa', 'a', 2);
   //   returns 4: 2
 
-  var i = -1
+ var i = -1
   if (offset) {
     i = (haystack + '')
       .slice(offset)

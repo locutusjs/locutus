@@ -1,4 +1,4 @@
-function array_map (callback) {
+module.exports = function (callback) {
   //  discuss at: http://phpjs.org/functions/array_map/
   // original by: Andrea Giammarchi (http://webreflection.blogspot.com)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -8,7 +8,7 @@ function array_map (callback) {
   //   example 1: array_map( function (a){return (a * a * a)}, [1, 2, 3, 4, 5] );
   //   returns 1: [ 1, 8, 27, 64, 125 ]
 
-  var argc = arguments.length,
+ var argc = arguments.length,
     argv = arguments,
     glbl = this.window,
     obj = null,

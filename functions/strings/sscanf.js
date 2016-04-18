@@ -1,4 +1,4 @@
-function sscanf (str, format) {
+module.exports = function (str, format) {
   //  discuss at: http://phpjs.org/functions/sscanf/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Since JS does not support scalar reference variables, any additional arguments to the function will
@@ -13,7 +13,7 @@ function sscanf (str, format) {
   //   example 3: sscanf("10--20", "%2$d--%1$d"); // Must escape '$' in PHP, but not JS
   //   returns 3: [20, 10]
 
-  // SETUP
+ // SETUP
   var retArr = [],
     num = 0,
     _NWS = /\S/,

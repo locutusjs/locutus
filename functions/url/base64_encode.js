@@ -1,4 +1,4 @@
-function base64_encode (data) {
+module.exports = function (data) {
   //  discuss at: http://phpjs.org/functions/base64_encode/
   // original by: Tyler Akins (http://rumkin.com)
   // improved by: Bayron Guevara
@@ -14,7 +14,7 @@ function base64_encode (data) {
   //   example 3: base64_encode('✓ à la mode');
   //   returns 3: '4pyTIMOgIGxhIG1vZGU='
 
-  var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
+ var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
   var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
     ac = 0,
     enc = '',

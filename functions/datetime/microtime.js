@@ -1,4 +1,4 @@
-function microtime (get_as_float) {
+module.exports = function (get_as_float) {
   //  discuss at: http://phpjs.org/functions/microtime/
   // original by: Paulo Freitas
   // improved by: Dumitru Uzun (http://duzun.me)
@@ -8,7 +8,7 @@ function microtime (get_as_float) {
   //   example 2: /^0\.[0-9]{1,6} [0-9]{10,10}$/.test(microtime())
   //   returns 2: true
 
-  if (typeof performance !== 'undefined' && performance.now) {
+ if (typeof performance !== 'undefined' && performance.now) {
     var now = (performance.now() + performance.timing.navigationStart) / 1e3
     if (get_as_float) return now
 

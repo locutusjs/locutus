@@ -1,4 +1,4 @@
-function reset (arr) {
+module.exports = function (arr) {
   //  discuss at: http://phpjs.org/functions/reset/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Legaev Andrey
@@ -7,7 +7,7 @@ function reset (arr) {
   //   example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
   //   returns 1: 'Kevin'
 
-  this.php_js = this.php_js || {}
+ this.php_js = this.php_js || {}
   this.php_js.pointers = this.php_js.pointers || []
   var indexOf = function (value) {
     for (var i = 0, length = this.length; i < length; i++) {

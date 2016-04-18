@@ -1,4 +1,4 @@
-function is_callable (v, syntax_only, callable_name) {
+module.exports = function (v, syntax_only, callable_name) {
   //  discuss at: http://phpjs.org/functions/is_callable/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: François
@@ -19,7 +19,7 @@ function is_callable (v, syntax_only, callable_name) {
   //   example 4: is_callable(function () {});
   //   returns 4: true
 
-  var name = '',
+ var name = '',
     obj = {},
     method = ''
   var getFuncName = function (fn) {

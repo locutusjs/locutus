@@ -1,4 +1,4 @@
-function ord (string) {
+module.exports = function (string) {
   //  discuss at: http://phpjs.org/functions/ord/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
@@ -9,7 +9,7 @@ function ord (string) {
   //   example 2: ord('\uD800\uDC00'); // surrogate pair to create a single Unicode character
   //   returns 2: 65536
 
-  var str = string + '',
+ var str = string + '',
     code = str.charCodeAt(0)
   if (0xD800 <= code && code <= 0xDBFF) {
     // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)

@@ -1,4 +1,4 @@
-function echo () {
+module.exports = function () {
   //  discuss at: http://phpjs.org/functions/echo/
   // original by: Philip Peterson
   // improved by: echo is bad
@@ -24,7 +24,7 @@ function echo () {
   //   example 1: echo('<div><p>abc</p><p>abc</p></div>');
   //   returns 1: undefined
 
-  var isNode = typeof module !== 'undefined' && module.exports && typeof global !== 'undefined' && {}.toString.call(
+ var isNode = typeof module !== 'undefined' && module.exports && typeof global !== 'undefined' && {}.toString.call(
     global) == '[object global]'
   if (isNode) {
     var args = Array.prototype.slice.call(arguments)

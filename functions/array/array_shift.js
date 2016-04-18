@@ -1,4 +1,4 @@
-function array_shift (inputArr) {
+module.exports = function (inputArr) {
   //  discuss at: http://phpjs.org/functions/array_shift/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Martijn Wieringa
@@ -6,7 +6,7 @@ function array_shift (inputArr) {
   //   example 1: array_shift(['Kevin', 'van', 'Zonneveld']);
   //   returns 1: 'Kevin'
 
-  var props = false,
+ var props = false,
     shift = undefined,
     pr = '',
     allDigits = /^\d$/,

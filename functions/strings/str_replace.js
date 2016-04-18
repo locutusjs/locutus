@@ -1,4 +1,4 @@
-function str_replace (search, replace, subject, count) {
+module.exports = function (search, replace, subject, count) {
   //  discuss at: http://phpjs.org/functions/str_replace/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Gabriel Paderni
@@ -28,7 +28,7 @@ function str_replace (search, replace, subject, count) {
   //   returns 4: 'xSyFxSyF' // cnt = 0 (incorrect before fix)
   //   returns 4: 'xSyFxSyF' // cnt = 4 (correct after fix)
 
-  var i = 0,
+ var i = 0,
     j = 0,
     temp = '',
     repl = '',

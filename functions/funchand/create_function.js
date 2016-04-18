@@ -1,4 +1,4 @@
-function create_function (args, code) {
+module.exports = function (args, code) {
   //       discuss at: http://phpjs.org/functions/create_function/
   //      original by: Johnny Mast (http://www.phpvrouwen.nl)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
@@ -6,7 +6,7 @@ function create_function (args, code) {
   //        example 1: f(1, 2);
   //        returns 1: 3
 
-  try {
+ try {
     return Function.apply(null, args.split(',')
       .concat(code))
   } catch (e) {

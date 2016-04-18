@@ -1,4 +1,4 @@
-function next (arr) {
+module.exports = function (arr) {
   //  discuss at: http://phpjs.org/functions/next/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Uses global: php_js to store the array pointer
@@ -7,7 +7,7 @@ function next (arr) {
   //   example 1: next(transport);
   //   returns 1: 'car'
 
-  this.php_js = this.php_js || {}
+ this.php_js = this.php_js || {}
   this.php_js.pointers = this.php_js.pointers || []
   var indexOf = function (value) {
     for (var i = 0, length = this.length; i < length; i++) {

@@ -1,4 +1,4 @@
-function strtok (str, tokens) {
+module.exports = function (str, tokens) {
   //  discuss at: http://phpjs.org/functions/strtok/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Use tab and newline as tokenizing characters as well
@@ -9,7 +9,7 @@ function strtok (str, tokens) {
   //   example 1: $b
   //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
 
-  this.php_js = this.php_js || {}
+ this.php_js = this.php_js || {}
   // END REDUNDANT
   if (tokens === undefined) {
     tokens = str

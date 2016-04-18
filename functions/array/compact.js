@@ -1,4 +1,4 @@
-function compact () {
+module.exports = function () {
   //  discuss at: http://phpjs.org/functions/compact/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Jack
@@ -8,7 +8,7 @@ function compact () {
   //   example 1: compact('var1', 'var2', 'var3');
   //   returns 1: {'var1': 'Kevin', 'var2': 'van', 'var3': 'Zonneveld'}
 
-  var matrix = {},
+ var matrix = {},
     that = this
 
   var process = function (value) {

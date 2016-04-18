@@ -1,4 +1,4 @@
-function array_pop (inputArr) {
+module.exports = function (inputArr) {
   //  discuss at: http://phpjs.org/functions/array_pop/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -19,7 +19,7 @@ function array_pop (inputArr) {
   //   example 2: $result = data
   //   returns 2: {firstName: 'Kevin'}
 
-  var key = '',
+ var key = '',
     lastKey = ''
 
   if (inputArr.hasOwnProperty('length')) {

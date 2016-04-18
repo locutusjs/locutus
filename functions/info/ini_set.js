@@ -1,4 +1,4 @@
-function ini_set (varname, newvalue) {
+module.exports = function (varname, newvalue) {
   //  discuss at: http://phpjs.org/functions/ini_set/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: This will not set a global_value or access level for the ini item
@@ -6,7 +6,7 @@ function ini_set (varname, newvalue) {
   //   example 1: ini_set('date.timezone', 'America/Chicago');
   //   returns 1: 'Asia/Hong_Kong'
 
-  var oldval = ''
+ var oldval = ''
   var self = this
 
   try {

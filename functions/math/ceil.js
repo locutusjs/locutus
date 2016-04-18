@@ -1,8 +1,8 @@
-function ceil (value) {
+module.exports = function (value) {
   //  discuss at: http://phpjs.org/functions/ceil/
   // original by: Onno Marsman
   //   example 1: ceil(8723321.4);
   //   returns 1: 8723322
 
-  return Math.ceil(value)
+ return Math.ceil(value)
 }

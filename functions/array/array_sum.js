@@ -1,4 +1,4 @@
-function array_sum (array) {
+module.exports = function (array) {
   //  discuss at: http://phpjs.org/functions/array_sum/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Nate
@@ -11,7 +11,7 @@ function array_sum (array) {
   //   example 2: array_sum(total);
   //   returns 2: 67.2
 
-  var key, sum = 0
+ var key, sum = 0
 
   if (array && typeof array === 'object' && array.change_key_case) {
     // Duck-type check for our own array()-created PHPJS_Array

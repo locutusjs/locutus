@@ -1,4 +1,4 @@
-function strtotime (text, now) {
+module.exports = function (text, now) {
   //  discuss at: http://phpjs.org/functions/strtotime/
   //     version: 1109.2016
   // original by: Caio Ariede (http://caioariede.com)
@@ -28,7 +28,7 @@ function strtotime (text, now) {
   //   example 7: strtotime('2009-05-04T08:30:00Z');
   //   returns 7: 1241425800
 
-  var parsed, match, today, year, date, days, ranges, len, times, regex, i, fail = false
+ var parsed, match, today, year, date, days, ranges, len, times, regex, i, fail = false
 
   if (!text) {
     return fail

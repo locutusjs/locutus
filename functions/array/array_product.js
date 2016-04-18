@@ -1,10 +1,10 @@
-function array_product (input) {
+module.exports = function (input) {
   //  discuss at: http://phpjs.org/functions/array_product/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //   example 1: array_product([ 2, 4, 6, 8 ]);
   //   returns 1: 384
 
-  var idx = 0,
+ var idx = 0,
     product = 1,
     il = 0
 

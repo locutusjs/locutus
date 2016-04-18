@@ -1,4 +1,4 @@
-function idate (format, timestamp) {
+module.exports = function (format, timestamp) {
   //  discuss at: http://phpjs.org/functions/idate/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: date
@@ -9,7 +9,7 @@ function idate (format, timestamp) {
   //   example 1: idate('y', 1255633200);
   //   returns 1: 9
 
-  if (format === undefined) {
+ if (format === undefined) {
     throw 'idate() expects at least 1 parameter, 0 given'
   }
   if (!format.length || format.length > 1) {

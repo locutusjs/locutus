@@ -1,4 +1,4 @@
-function isset () {
+module.exports = function () {
   //  discuss at: http://phpjs.org/functions/isset/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: FremyCompany
@@ -9,7 +9,7 @@ function isset () {
   //   example 2: isset( 'Kevin van Zonneveld' );
   //   returns 2: true
 
-  var a = arguments,
+ var a = arguments,
     l = a.length,
     i = 0,
     undef

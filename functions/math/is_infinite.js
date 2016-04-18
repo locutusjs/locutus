@@ -1,4 +1,4 @@
-function is_infinite (val) {
+module.exports = function (val) {
   //  discuss at: http://phpjs.org/functions/is_infinite/
   // original by: Onno Marsman
   //   example 1: is_infinite(Infinity);
@@ -8,7 +8,7 @@ function is_infinite (val) {
   //   example 3: is_infinite(0);
   //   returns 3: false
 
-  var warningType = ''
+ var warningType = ''
 
   if (val === Infinity || val === -Infinity) {
     return true

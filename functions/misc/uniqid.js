@@ -1,4 +1,4 @@
-function uniqid (prefix, more_entropy) {
+module.exports = function (prefix, more_entropy) {
   //  discuss at: http://phpjs.org/functions/uniqid/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: Kankrelune (http://www.webfaktory.info/)
@@ -11,7 +11,7 @@ function uniqid (prefix, more_entropy) {
   //   example 3: uniqid('bar', true);
   //   returns 3: 'bara20285b23dfd1.31879087'
 
-  if (typeof prefix === 'undefined') {
+ if (typeof prefix === 'undefined') {
     prefix = ''
   }
 

@@ -1,4 +1,4 @@
-function range (low, high, step) {
+module.exports = function (low, high, step) {
   //  discuss at: http://phpjs.org/functions/range/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //   example 1: range ( 0, 12 );
@@ -10,7 +10,7 @@ function range (low, high, step) {
   //   example 4: range( 'c', 'a' );
   //   returns 4: ['c', 'b', 'a']
 
-  var matrix = []
+ var matrix = []
   var inival, endval, plus
   var walker = step || 1
   var chars = false

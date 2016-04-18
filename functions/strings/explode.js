@@ -1,10 +1,10 @@
-function explode (delimiter, string, limit) {
+module.exports = function (delimiter, string, limit) {
   //  discuss at: http://phpjs.org/functions/explode/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //   example 1: explode(' ', 'Kevin van Zonneveld');
   //   returns 1: {0: 'Kevin', 1: 'van', 2: 'Zonneveld'}
 
-  if (arguments.length < 2 || typeof delimiter === 'undefined' || typeof string === 'undefined') return null
+ if (arguments.length < 2 || typeof delimiter === 'undefined' || typeof string === 'undefined') return null
   if (delimiter === '' || delimiter === false || delimiter === null) return false
   if (typeof delimiter === 'function' || typeof delimiter === 'object' || typeof string === 'function' || typeof string ===
     'object') {

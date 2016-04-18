@@ -1,4 +1,4 @@
-function unserialize (data) {
+module.exports = function (data) {
   //  discuss at: http://phpjs.org/functions/unserialize/
   // original by: Arpad Ray (mailto:arpad@php.net)
   // improved by: Pedro Tainha (http://www.pedrotainha.com)
@@ -23,7 +23,7 @@ function unserialize (data) {
   //   example 2: unserialize('a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}');
   //   returns 2: {firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'}
 
-  var that = this,
+ var that = this,
     utf8Overhead = function (chr) {
       // http://phpjs.org/functions/unserialize:571#comment_95906
       var code = chr.charCodeAt(0)

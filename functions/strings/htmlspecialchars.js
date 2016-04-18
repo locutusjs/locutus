@@ -1,4 +1,4 @@
-function htmlspecialchars (string, quote_style, charset, double_encode) {
+module.exports = function (string, quote_style, charset, double_encode) {
   //       discuss at: http://phpjs.org/functions/htmlspecialchars/
   //      original by: Mirek Slugen
   //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -19,7 +19,7 @@ function htmlspecialchars (string, quote_style, charset, double_encode) {
   //        example 3: htmlspecialchars('my "&entity;" is still here', null, null, false);
   //        returns 3: 'my &quot;&entity;&quot; is still here'
 
-  var optTemp = 0,
+ var optTemp = 0,
     i = 0,
     noquotes = false
   if (typeof quote_style === 'undefined' || quote_style === null) {

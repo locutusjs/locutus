@@ -1,4 +1,4 @@
-function empty (mixed_var) {
+module.exports = function (mixed_var) {
   //  discuss at: http://phpjs.org/functions/empty/
   // original by: Philippe Baumann
   //    input by: Onno Marsman
@@ -20,7 +20,7 @@ function empty (mixed_var) {
   //   example 5: empty({'aFunc' : function () { alert('humpty'); } });
   //   returns 5: false
 
-  var undef, key, i, len
+ var undef, key, i, len
   var emptyValues = [undef, null, false, 0, '', '0']
 
   for (i = 0, len = emptyValues.length; i < len; i++) {

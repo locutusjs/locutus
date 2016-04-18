@@ -1,4 +1,4 @@
-function number_format (number, decimals, dec_point, thousands_sep) {
+module.exports = function (number, decimals, dec_point, thousands_sep) {
   //  discuss at: http://phpjs.org/functions/number_format/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -49,7 +49,7 @@ function number_format (number, decimals, dec_point, thousands_sep) {
   //  example 14: number_format(1e-8, 8, '.', '');
   //  returns 14: '0.00000001'
 
-  number = (number + '')
+ number = (number + '')
     .replace(/[^0-9+\-Ee.]/g, '')
   var n = !isFinite(+number) ? 0 : +number,
     prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),

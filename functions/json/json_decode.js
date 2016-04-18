@@ -1,4 +1,4 @@
-function json_decode (str_json) {
+module.exports = function (str_json) {
   //       discuss at: http://phpjs.org/functions/json_decode/
   //      original by: Public Domain (http://www.json.org/json2.js)
   // reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -7,7 +7,7 @@ function json_decode (str_json) {
   //        example 1: json_decode('[ 1 ]');
   //        returns 1: [1]
 
-  /*
+ /*
         http://www.JSON.org/json2.js
         2008-11-19
         Public Domain.

@@ -1,4 +1,4 @@
-function substr (str, start, len) {
+module.exports = function (str, start, len) {
   //  discuss at: http://phpjs.org/functions/substr/
   //     version: 909.322
   // original by: Martijn Wieringa
@@ -27,7 +27,7 @@ function substr (str, start, len) {
   //   example 7: substr('a\uD801\uDC00z\uD801\uDC00', -3, -1)
   //   returns 7: '\uD801\uDC00z'
 
-  var i = 0,
+ var i = 0,
     allBMP = true,
     es = 0,
     el = 0,

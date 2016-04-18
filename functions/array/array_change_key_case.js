@@ -1,4 +1,4 @@
-function array_change_key_case (array, cs) {
+module.exports = function (array, cs) {
   //  discuss at: http://phpjs.org/functions/array_change_key_case/
   // original by: Ates Goral (http://magnetiq.com)
   // improved by: marrtins
@@ -21,7 +21,7 @@ function array_change_key_case (array, cs) {
   //   example 7: newArr.splice(1, 1);
   //   returns 7: {b: 1}
 
-  var case_fn, key, tmp_ar = {}
+ var case_fn, key, tmp_ar = {}
 
   if (Object.prototype.toString.call(array) === '[object Array]') {
     return array

@@ -1,4 +1,4 @@
-function trim (str, charlist) {
+module.exports = function (str, charlist) {
   //  discuss at: http://phpjs.org/functions/trim/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: mdsjack (http://www.mdsjack.bo.it)
@@ -16,7 +16,7 @@ function trim (str, charlist) {
   //   example 3: trim(16, 1);
   //   returns 3: 6
 
-  var whitespace, l = 0,
+ var whitespace, l = 0,
     i = 0
   str += ''
 

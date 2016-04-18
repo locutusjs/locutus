@@ -1,4 +1,4 @@
-function str_split (string, split_length) {
+module.exports = function (string, split_length) {
   //  discuss at: http://phpjs.org/functions/str_split/
   // original by: Martijn Wieringa
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -9,7 +9,7 @@ function str_split (string, split_length) {
   //   example 1: str_split('Hello Friend', 3);
   //   returns 1: ['Hel', 'lo ', 'Fri', 'end']
 
-  if (split_length === null) {
+ if (split_length === null) {
     split_length = 1
   }
   if (string === null || split_length < 1) {

@@ -1,4 +1,4 @@
-function metaphone (word, max_phonemes) {
+module.exports = function (word, max_phonemes) {
   //  discuss at: http://phpjs.org/functions/metaphone/
   // original by: Greg Frazier
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -12,7 +12,7 @@ function metaphone (word, max_phonemes) {
   //   example 4: metaphone('batch batcher');
   //   returns 4: 'BXBXR'
 
-  var type = typeof word
+ var type = typeof word
 
   if (type === 'undefined' || type === 'object' && word !== null) {
     // weird!

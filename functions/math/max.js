@@ -1,4 +1,4 @@
-function max () {
+module.exports = function () {
   //  discuss at: http://phpjs.org/functions/max/
   // original by: Onno Marsman
   //  revised by: Onno Marsman
@@ -17,7 +17,7 @@ function max () {
   //   example 6: max([2, 4, 8], [2, 5, 7]);
   //   returns 6: [2, 5, 7]
 
-  var ar, retVal, i = 0,
+ var ar, retVal, i = 0,
     n = 0,
     argv = arguments,
     argc = argv.length,

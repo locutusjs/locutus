@@ -1,4 +1,4 @@
-function array_pad (input, pad_size, pad_value) {
+module.exports = function (input, pad_size, pad_value) {
   //  discuss at: http://phpjs.org/functions/array_pad/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //   example 1: array_pad([ 7, 8, 9 ], 2, 'a');
@@ -10,7 +10,7 @@ function array_pad (input, pad_size, pad_value) {
   //   example 4: array_pad([ 7, 8, 9 ], -5, 'a');
   //   returns 4: [ 'a', 'a', 7, 8, 9 ]
 
-  var pad = [],
+ var pad = [],
     newArray = [],
     newLength,
     diff = 0,

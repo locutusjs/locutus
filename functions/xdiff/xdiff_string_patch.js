@@ -1,4 +1,4 @@
-function xdiff_string_patch (originalStr, patch, flags, error) {
+module.exports = function (originalStr, patch, flags, error) {
   //  discuss at: http://phpjs.org/functions/xdiff_string_patch/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Steven Levithan (stevenlevithan.com)
@@ -7,7 +7,7 @@ function xdiff_string_patch (originalStr, patch, flags, error) {
   //   example 1: xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!');
   //   returns 1: 'Hello world!'
 
-  // First two functions were adapted from Steven Levithan, also under an MIT license
+ // First two functions were adapted from Steven Levithan, also under an MIT license
   // Adapted from XRegExp 1.5.0
   // (c) 2007-2010 Steven Levithan
   // MIT License

@@ -1,4 +1,4 @@
-function each (arr) {
+module.exports = function (arr) {
   //  discuss at: http://phpjs.org/functions/each/
   // original by: Ates Goral (http://magnetiq.com)
   //  revised by: Brett Zamir (http://brett-zamir.me)
@@ -6,7 +6,7 @@ function each (arr) {
   //   example 1: each({a: "apple", b: "balloon"});
   //   returns 1: {0: "a", 1: "apple", key: "a", value: "apple"}
 
-  this.php_js = this.php_js || {}
+ this.php_js = this.php_js || {}
   this.php_js.pointers = this.php_js.pointers || []
   var indexOf = function (value) {
     for (var i = 0, length = this.length; i < length; i++) {

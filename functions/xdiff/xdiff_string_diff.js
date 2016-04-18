@@ -1,4 +1,4 @@
-function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
+module.exports = function (old_data, new_data, context_lines, minimal) {
   //  discuss at: http://phpjs.org/functions/xdiff_string_diff
   // original by: Brett Zamir (http://brett-zamir.me)
   //    based on: Imgen Tata (http://www.myipdf.com/)
@@ -8,7 +8,7 @@ function xdiff_string_diff (old_data, new_data, context_lines, minimal) {
   //   example 1: xdiff_string_diff('', 'Hello world!');
   //   returns 1: '@@ -0,0 +1,1 @@\n+Hello world!'
 
-  // (This code was done by Imgen Tata; I have only reformatted for use in php.js)
+ // (This code was done by Imgen Tata; I have only reformatted for use in php.js)
 
   // See http://en.wikipedia.org/wiki/Diff#Unified_format
   var i = 0,

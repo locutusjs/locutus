@@ -1,4 +1,4 @@
-function preg_quote (str, delimiter) {
+module.exports = function (str, delimiter) {
   //  discuss at: http://phpjs.org/functions/preg_quote/
   // original by: booeyOH
   // improved by: Ates Goral (http://magnetiq.com)
@@ -12,6 +12,6 @@ function preg_quote (str, delimiter) {
   //   example 3: preg_quote("\\.+*?[^]$(){}=!<>|:");
   //   returns 3: '\\\\\\.\\+\\*\\?\\[\\^\\]\\$\\(\\)\\{\\}\\=\\!\\<\\>\\|\\:'
 
-  return String(str)
+ return String(str)
     .replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\' + (delimiter || '') + '-]', 'g'), '\\$&')
 }

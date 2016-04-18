@@ -1,4 +1,4 @@
-function str_getcsv (input, delimiter, enclosure, escape) {
+module.exports = function (input, delimiter, enclosure, escape) {
   //  discuss at: http://phpjs.org/functions/str_getcsv/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: str_getcsv('"abc","def","ghi"');
@@ -6,7 +6,7 @@ function str_getcsv (input, delimiter, enclosure, escape) {
   //   example 2: str_getcsv('"row2""cell1","row2cell2","row2cell3"', null, null, '"');
   //   returns 2: ['row2"cell1', 'row2cell2', 'row2cell3']
 
-  /*
+ /*
   // These test cases allowing for missing delimiters are not currently supported
     str_getcsv('"row2""cell1",row2cell2,row2cell3', null, null, '"');
     ['row2"cell1', 'row2cell2', 'row2cell3']

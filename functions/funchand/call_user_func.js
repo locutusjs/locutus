@@ -1,4 +1,4 @@
-function call_user_func (cb) {
+module.exports = function (cb) {
   //  discuss at: http://phpjs.org/functions/call_user_func/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Diplom@t (http://difane.com/)
@@ -6,7 +6,7 @@ function call_user_func (cb) {
   //   example 1: call_user_func('isNaN', 'a');
   //   returns 1: true
 
-  var func
+ var func
 
   if (typeof cb === 'string') {
     func = (typeof this[cb] === 'function') ? this[cb] : func = (new Function(null, 'return ' + cb))()

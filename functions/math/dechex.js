@@ -1,4 +1,4 @@
-function dechex (number) {
+module.exports = function (number) {
   //  discuss at: http://phpjs.org/functions/dechex/
   // original by: Philippe Baumann
   // bugfixed by: Onno Marsman
@@ -11,7 +11,7 @@ function dechex (number) {
   //   example 3: dechex(-1415723993);
   //   returns 3: 'ab9dc427'
 
-  if (number < 0) {
+ if (number < 0) {
     number = 0xFFFFFFFF + number + 1
   }
   return parseInt(number, 10)

@@ -1,4 +1,4 @@
-function count_chars (str, mode) {
+module.exports = function (str, mode) {
   //  discuss at: http://phpjs.org/functions/count_chars/
   // original by: Ates Goral (http://magnetiq.com)
   // improved by: Jack
@@ -11,7 +11,7 @@ function count_chars (str, mode) {
   //   example 2: count_chars("Hello World!", 1);
   //   returns 2: {32:1,33:1,72:1,87:1,100:1,101:1,108:3,111:2,114:1}
 
-  var result = {},
+ var result = {},
     resultArr = [],
     i
 

@@ -1,4 +1,4 @@
-function is_array (mixed_var) {
+module.exports = function (mixed_var) {
   //  discuss at: http://phpjs.org/functions/is_array/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Legaev Andrey
@@ -22,7 +22,7 @@ function is_array (mixed_var) {
   //   example 4: is_array(function tmp_a(){this.name = 'Kevin'});
   //   returns 4: false
 
-  var ini,
+ var ini,
     _getFuncName = function (fn) {
       var name = (/\W*function\s+([\w\$]+)\s*\(/)
         .exec(fn)

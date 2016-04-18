@@ -1,4 +1,4 @@
-function array () {
+module.exports = function () {
   //  discuss at: http://phpjs.org/functions/array/
   // original by: d3x
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -9,7 +9,7 @@ function array () {
   //   example 2: array({0:2}, {a:41}, {2:3}).change_key_case('CASE_UPPER').keys();
   //   returns 2: [0,'A',2]
 
-  try {
+ try {
     this.php_js = this.php_js || {}
   } catch (e) {
     this.php_js = {}

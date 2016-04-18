@@ -1,4 +1,4 @@
-function array_walk_recursive (array, funcname, userdata) {
+module.exports = function (array, funcname, userdata) {
   //  discuss at: http://phpjs.org/functions/array_walk_recursive/
   // original by: Johnny Mast (http://www.phpvrouwen.nl)
   //   example 1: array_walk_recursive ({'a': 'b', 'c': {'d': 'e'}}, 'void', 'userdata');
@@ -6,7 +6,7 @@ function array_walk_recursive (array, funcname, userdata) {
   //   example 2: array_walk_recursive ('a', 'void', 'userdata');
   //   returns 2: false
 
-  var key
+ var key
 
   if (typeof array !== 'object') {
     return false

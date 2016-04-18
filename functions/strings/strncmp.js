@@ -1,4 +1,4 @@
-function strncmp (str1, str2, lgth) {
+module.exports = function (str1, str2, lgth) {
   //       discuss at: http://phpjs.org/functions/strncmp/
   //      original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //         input by: Steve Hilder
@@ -10,7 +10,7 @@ function strncmp (str1, str2, lgth) {
   //        example 2: strncmp('aaa', 'aab', 3 );
   //        returns 2: -1
 
-  var s1 = (str1 + '')
+ var s1 = (str1 + '')
     .substr(0, lgth)
   var s2 = (str2 + '')
     .substr(0, lgth)

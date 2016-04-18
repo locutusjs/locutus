@@ -1,4 +1,4 @@
-function count (mixed_var, mode) {
+module.exports = function (mixed_var, mode) {
   //  discuss at: http://phpjs.org/functions/count/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Waldo Malqui Silva (http://waldo.malqui.info)
@@ -11,7 +11,7 @@ function count (mixed_var, mode) {
   //   example 2: count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');
   //   returns 2: 6
 
-  var key, cnt = 0
+ var key, cnt = 0
 
   if (mixed_var === null || typeof mixed_var === 'undefined') {
     return 0

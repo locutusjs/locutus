@@ -1,4 +1,4 @@
-function i18n_loc_set_default (name) {
+module.exports = function (name) {
   //  discuss at: http://phpjs.org/functions/i18n_loc_set_default/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Renamed in PHP6 from locale_set_default(). Not listed yet at php.net
@@ -7,7 +7,7 @@ function i18n_loc_set_default (name) {
   //   example 1: i18n_loc_set_default('pt_PT');
   //   returns 1: true
 
-  // BEGIN REDUNDANT
+ // BEGIN REDUNDANT
   this.php_js = this.php_js || {}
   // END REDUNDANT
 

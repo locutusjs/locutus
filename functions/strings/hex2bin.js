@@ -1,4 +1,4 @@
-function hex2bin (s) {
+module.exports = function (s) {
   //  discuss at: http://phpjs.org/functions/hex2bin/
   // original by: Dumitru Uzun (http://duzun.me)
   //   example 1: hex2bin('44696d61');
@@ -8,7 +8,7 @@ function hex2bin (s) {
   //   example 3: hex2bin('2f1q')
   //   returns 3: false
 
-  var ret = [],
+ var ret = [],
     i = 0,
     l
 

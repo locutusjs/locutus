@@ -1,4 +1,4 @@
-function intval (mixed_var, base) {
+module.exports = function (mixed_var, base) {
   //  discuss at: http://phpjs.org/functions/intval/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: stensi
@@ -17,7 +17,7 @@ function intval (mixed_var, base) {
   //   example 5: intval('1e', 16);
   //   returns 5: 30
 
-  var tmp
+ var tmp
 
   var type = typeof mixed_var
 

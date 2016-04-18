@@ -1,4 +1,4 @@
-function array_fill_keys (keys, value) {
+module.exports = function (keys, value) {
   //  discuss at: http://phpjs.org/functions/array_fill_keys/
   // original by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
@@ -6,7 +6,7 @@ function array_fill_keys (keys, value) {
   //   example 1: array_fill_keys(keys, 'banana')
   //   returns 1: {"foo": "banana", 5: "banana", 10: "banana", "bar": "banana"}
 
-  var retObj = {},
+ var retObj = {},
     key = ''
 
   for (key in keys) {

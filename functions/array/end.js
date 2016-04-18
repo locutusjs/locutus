@@ -1,4 +1,4 @@
-function end (arr) {
+module.exports = function (arr) {
   //  discuss at: http://phpjs.org/functions/end/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Legaev Andrey
@@ -12,7 +12,7 @@ function end (arr) {
   //   example 2: end(['Kevin', 'van', 'Zonneveld']);
   //   returns 2: 'Zonneveld'
 
-  this.php_js = this.php_js || {}
+ this.php_js = this.php_js || {}
   this.php_js.pointers = this.php_js.pointers || []
   var indexOf = function (value) {
     for (var i = 0, length = this.length; i < length; i++) {

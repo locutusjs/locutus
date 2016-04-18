@@ -1,4 +1,4 @@
-function strripos (haystack, needle, offset) {
+module.exports = function (haystack, needle, offset) {
   //  discuss at: http://phpjs.org/functions/strripos/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
@@ -7,7 +7,7 @@ function strripos (haystack, needle, offset) {
   //   example 1: strripos('Kevin van Zonneveld', 'E');
   //   returns 1: 16
 
-  haystack = (haystack + '')
+ haystack = (haystack + '')
     .toLowerCase()
   needle = (needle + '')
     .toLowerCase()

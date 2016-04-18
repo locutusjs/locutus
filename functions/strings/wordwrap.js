@@ -1,4 +1,4 @@
-function wordwrap (str, int_width, str_break, cut) {
+module.exports = function (str, int_width, str_break, cut) {
   //  discuss at: http://phpjs.org/functions/wordwrap/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // improved by: Nick Callen
@@ -14,7 +14,7 @@ function wordwrap (str, int_width, str_break, cut) {
   //   example 3: wordwrap('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
   //   returns 3: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod \ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim \nveniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea \ncommodo consequat.'
 
-  var m = ((arguments.length >= 2) ? arguments[1] : 75)
+ var m = ((arguments.length >= 2) ? arguments[1] : 75)
   var b = ((arguments.length >= 3) ? arguments[2] : '\n')
   var c = ((arguments.length >= 4) ? arguments[3] : false)
 

@@ -1,4 +1,4 @@
-function rand (min, max) {
+module.exports = function (min, max) {
   //  discuss at: http://phpjs.org/functions/rand/
   // original by: Leslie Hoare
   // bugfixed by: Onno Marsman
@@ -6,7 +6,7 @@ function rand (min, max) {
   //   example 1: rand(1, 1);
   //   returns 1: 1
 
-  var argc = arguments.length
+ var argc = arguments.length
   if (argc === 0) {
     min = 0
     max = 2147483647

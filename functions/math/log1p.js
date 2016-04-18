@@ -1,4 +1,4 @@
-function log1p (x) {
+module.exports = function (x) {
   //  discuss at: http://phpjs.org/functions/log1p/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Robert Eisele (http://www.xarg.org/)
@@ -6,7 +6,7 @@ function log1p (x) {
   //   example 1: log1p(1e-15);
   //   returns 1: 9.999999999999995e-16
 
-  var ret = 0,
+ var ret = 0,
     // degree of precision
     n = 50
   if (x <= -1) {
