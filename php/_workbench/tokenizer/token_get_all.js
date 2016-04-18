@@ -1,4 +1,4 @@
-function token_get_all (source) {
+module.exports = function token_get_all (source)  {
 	// Split given source into PHP tokens
 	// + original by: Marco Marchiò
 	// + improved by: Brett Zamir (http://brett-zamir.me)

@@ -1,4 +1,4 @@
-function ini_set (varname, newvalue) {
+module.exports = function ini_set (varname, newvalue) {
   //  discuss at: http://phpjs.org/functions/ini_set/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: This will not set a global_value or access level for the ini item

@@ -1,4 +1,4 @@
-function octdec (oct_string) {
+module.exports = function octdec (oct_string) {
   //  discuss at: http://phpjs.org/functions/octdec/
   // original by: Philippe Baumann
   //   example 1: octdec('77');

@@ -1,4 +1,4 @@
-function debug_backtrace(provide_object) {
+module.exports = function debug_backtrace (provide_object)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Mozilla only

@@ -1,4 +1,4 @@
-function gmmktime () {
+module.exports = function gmmktime () {
   //  discuss at: http://phpjs.org/functions/gmmktime/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: mktime

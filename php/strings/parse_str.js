@@ -1,4 +1,4 @@
-function parse_str (str, array) {
+module.exports = function parse_str (str, array) {
   //       discuss at: http://phpjs.org/functions/parse_str/
   //      original by: Cagri Ekin
   //      improved by: Michael White (http://getsprink.com)

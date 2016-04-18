@@ -1,4 +1,4 @@
-function convert_cyr_string (str, from, to) {
+module.exports = function convert_cyr_string (str, from, to) {
   //  discuss at: http://phpjs.org/functions/convert_cyr_string/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Assumes and converts to Unicode strings with character

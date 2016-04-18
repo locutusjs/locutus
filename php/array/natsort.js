@@ -1,4 +1,4 @@
-function natsort (inputArr) {
+module.exports = function natsort (inputArr) {
   //  discuss at: http://phpjs.org/functions/natsort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)

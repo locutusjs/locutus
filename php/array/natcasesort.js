@@ -1,4 +1,4 @@
-function natcasesort (inputArr) {
+module.exports = function natcasesort (inputArr) {
   //  discuss at: http://phpjs.org/functions/natcasesort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)

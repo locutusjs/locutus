@@ -1,4 +1,4 @@
-function uasort (inputArr, sorter) {
+module.exports = function uasort (inputArr, sorter) {
   //  discuss at: http://phpjs.org/functions/uasort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)

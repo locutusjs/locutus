@@ -1,4 +1,4 @@
-function ksort (inputArr, sort_flags) {
+module.exports = function ksort (inputArr, sort_flags) {
   //  discuss at: http://phpjs.org/functions/ksort/
   // original by: GeekFG (http://geekfg.blogspot.com)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

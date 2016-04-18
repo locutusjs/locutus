@@ -1,4 +1,4 @@
-function rawurlencode (str) {
+module.exports = function rawurlencode (str) {
   //       discuss at: http://phpjs.org/functions/rawurlencode/
   //      original by: Brett Zamir (http://brett-zamir.me)
   //         input by: travc

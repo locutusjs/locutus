@@ -1,4 +1,4 @@
-function array_merge () {
+module.exports = function array_merge () {
   //  discuss at: http://phpjs.org/functions/array_merge/
   // original by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Nate

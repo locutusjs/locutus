@@ -1,4 +1,4 @@
-function bcsub (left_operand, right_operand, scale) {
+module.exports = function bcsub (left_operand, right_operand, scale) {
   //  discuss at: http://phpjs.org/functions/bcsub/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //  depends on: _phpjs_shared_bc

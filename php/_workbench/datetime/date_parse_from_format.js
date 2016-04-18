@@ -1,4 +1,4 @@
-function date_parse_from_format(format, dateArg) {
+module.exports = function date_parse_from_format (format, dateArg)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: strtotime

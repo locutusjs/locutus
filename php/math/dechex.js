@@ -1,4 +1,4 @@
-function dechex (number) {
+module.exports = function dechex (number) {
   //  discuss at: http://phpjs.org/functions/dechex/
   // original by: Philippe Baumann
   // bugfixed by: Onno Marsman

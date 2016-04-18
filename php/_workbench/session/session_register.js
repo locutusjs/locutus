@@ -1,4 +1,4 @@
-function session_register() {
+module.exports = function session_register ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Deprecated in PHP

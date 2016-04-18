@@ -1,4 +1,4 @@
-function strcmp (str1, str2) {
+module.exports = function strcmp (str1, str2) {
   //  discuss at: http://phpjs.org/functions/strcmp/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //    input by: Steve Hilder

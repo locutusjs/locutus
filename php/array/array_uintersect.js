@@ -1,4 +1,4 @@
-function array_uintersect (arr1) {
+module.exports = function array_uintersect (arr1) {
   //  discuss at: http://phpjs.org/functions/array_uintersect/
   // original by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Demosthenes Koptsis

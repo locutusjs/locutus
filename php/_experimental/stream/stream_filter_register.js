@@ -1,4 +1,4 @@
-function stream_filter_register(filtername, classname) {
+module.exports = function stream_filter_register (filtername, classname)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: function strtoupper_filter () {}

@@ -1,4 +1,4 @@
-function stristr (haystack, needle, bool) {
+module.exports = function stristr (haystack, needle, bool) {
   //  discuss at: http://phpjs.org/functions/stristr/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman

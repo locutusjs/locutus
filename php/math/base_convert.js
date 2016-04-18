@@ -1,4 +1,4 @@
-function base_convert (number, frombase, tobase) {
+module.exports = function base_convert (number, frombase, tobase) {
   //  discuss at: http://phpjs.org/functions/base_convert/
   // original by: Philippe Baumann
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)

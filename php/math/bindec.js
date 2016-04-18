@@ -1,4 +1,4 @@
-function bindec (binary_string) {
+module.exports = function bindec (binary_string) {
   //  discuss at: http://phpjs.org/functions/bindec/
   // original by: Philippe Baumann
   //   example 1: bindec('110011');

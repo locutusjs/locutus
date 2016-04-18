@@ -1,4 +1,4 @@
-function is_float (mixed_var) {
+module.exports = function is_float (mixed_var) {
   //  discuss at: http://phpjs.org/functions/is_float/
   // original by: Paulo Freitas
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

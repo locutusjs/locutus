@@ -1,4 +1,4 @@
-function log10 (arg) {
+module.exports = function log10 (arg) {
   //  discuss at: http://phpjs.org/functions/log10/
   // original by: Philip Peterson
   // improved by: Onno Marsman

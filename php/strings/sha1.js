@@ -1,4 +1,4 @@
-function sha1 (str) {
+module.exports = function sha1 (str) {
   //  discuss at: http://phpjs.org/functions/sha1/
   // original by: Webtoolkit.info (http://www.webtoolkit.info/)
   // improved by: Michael White (http://getsprink.com)

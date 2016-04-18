@@ -1,4 +1,4 @@
-function array_fill_keys (keys, value) {
+module.exports = function array_fill_keys (keys, value) {
   //  discuss at: http://phpjs.org/functions/array_fill_keys/
   // original by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

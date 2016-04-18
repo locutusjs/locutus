@@ -1,4 +1,4 @@
-function file_get_contents (url, flags, context, offset, maxLen) {
+module.exports = function file_get_contents (url, flags, context, offset, maxLen) {
   //  discuss at: http://phpjs.org/functions/file_get_contents/
   // original by: Legaev Andrey
   //    input by: Jani Hartikainen

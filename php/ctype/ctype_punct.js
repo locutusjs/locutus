@@ -1,4 +1,4 @@
-function ctype_punct (text) {
+module.exports = function ctype_punct (text) {
   //  discuss at: http://phpjs.org/functions/ctype_punct/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale

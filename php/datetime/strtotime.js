@@ -1,4 +1,4 @@
-function strtotime (text, now) {
+module.exports = function strtotime (text, now) {
   //  discuss at: http://phpjs.org/functions/strtotime/
   //     version: 1109.2016
   // original by: Caio Ariede (http://caioariede.com)

@@ -1,4 +1,4 @@
-function sizeof (mixed_var, mode) {
+module.exports = function sizeof (mixed_var, mode) {
   //  discuss at: http://phpjs.org/functions/sizeof/
   // original by: Philip Peterson
   //  depends on: count

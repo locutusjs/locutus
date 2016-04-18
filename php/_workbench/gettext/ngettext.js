@@ -1,4 +1,4 @@
-function ngettext(msgid1, msgid2, n) {
+module.exports = function ngettext (msgid1, msgid2, n)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: setlocale

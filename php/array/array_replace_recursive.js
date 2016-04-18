@@ -1,4 +1,4 @@
-function array_replace_recursive (arr) {
+module.exports = function array_replace_recursive (arr) {
   //  discuss at: http://phpjs.org/functions/array_replace_recursive/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: array_replace_recursive({'citrus' : ["orange"], 'berries' : ["blackberry", "raspberry"]}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']});

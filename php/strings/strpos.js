@@ -1,4 +1,4 @@
-function strpos (haystack, needle, offset) {
+module.exports = function strpos (haystack, needle, offset) {
   //  discuss at: http://phpjs.org/functions/strpos/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Onno Marsman

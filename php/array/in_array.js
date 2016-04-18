@@ -1,4 +1,4 @@
-function in_array (needle, haystack, argStrict) {
+module.exports = function in_array (needle, haystack, argStrict) {
   //  discuss at: http://phpjs.org/functions/in_array/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: vlado houba

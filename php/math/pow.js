@@ -1,4 +1,4 @@
-function pow (base, exp) {
+module.exports = function pow (base, exp) {
   //  discuss at: http://phpjs.org/functions/pow/
   // original by: Onno Marsman
   //   example 1: pow(8723321.4, 7);

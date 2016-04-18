@@ -1,4 +1,4 @@
-function pack (format) {
+module.exports = function pack (format) {
   //  discuss at: http://phpjs.org/functions/pack/
   // original by: Tim de Koning (http://www.kingsquare.nl)
   //    parts by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)

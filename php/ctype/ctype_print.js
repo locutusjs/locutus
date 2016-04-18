@@ -1,4 +1,4 @@
-function ctype_print (text) {
+module.exports = function ctype_print (text) {
   //  discuss at: http://phpjs.org/functions/ctype_print/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale

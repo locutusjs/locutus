@@ -1,4 +1,4 @@
-function strtok (str, tokens) {
+module.exports = function strtok (str, tokens) {
   //  discuss at: http://phpjs.org/functions/strtok/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Use tab and newline as tokenizing characters as well

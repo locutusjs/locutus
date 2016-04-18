@@ -1,4 +1,4 @@
-function basename (path, suffix) {
+module.exports = function basename (path, suffix) {
   //  discuss at: http://phpjs.org/functions/basename/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Ash Searle (http://hexmen.com/blog/)

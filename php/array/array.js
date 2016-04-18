@@ -1,4 +1,4 @@
-function array () {
+module.exports = function array () {
   //  discuss at: http://phpjs.org/functions/array/
   // original by: d3x
   // improved by: Brett Zamir (http://brett-zamir.me)

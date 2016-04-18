@@ -1,4 +1,4 @@
-function ezmlm_hash(address) {
+module.exports = function ezmlm_hash (address)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: ezmlm_hash('brettz');

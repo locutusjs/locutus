@@ -1,4 +1,4 @@
-function filter_list() {
+module.exports = function filter_list ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: filter_list();

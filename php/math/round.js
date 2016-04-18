@@ -1,4 +1,4 @@
-function round (value, precision, mode) {
+module.exports = function round (value, precision, mode) {
   //  discuss at: http://phpjs.org/functions/round/
   // original by: Philip Peterson
   //  revised by: Onno Marsman

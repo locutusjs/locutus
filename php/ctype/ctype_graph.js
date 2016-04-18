@@ -1,4 +1,4 @@
-function ctype_graph (text) {
+module.exports = function ctype_graph (text) {
   //  discuss at: http://phpjs.org/functions/ctype_graph/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale

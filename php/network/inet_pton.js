@@ -1,4 +1,4 @@
-function inet_pton (a) {
+module.exports = function inet_pton (a) {
   //  discuss at: http://phpjs.org/functions/inet_pton/
   // original by: Theriault
   //   example 1: inet_pton('::');

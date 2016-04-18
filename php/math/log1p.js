@@ -1,4 +1,4 @@
-function log1p (x) {
+module.exports = function log1p (x) {
   //  discuss at: http://phpjs.org/functions/log1p/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Robert Eisele (http://www.xarg.org/)

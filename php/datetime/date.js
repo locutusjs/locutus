@@ -1,4 +1,4 @@
-function date (format, timestamp) {
+module.exports = function date (format, timestamp) {
   //  discuss at: http://phpjs.org/functions/date/
   // original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // original by: gettimeofday

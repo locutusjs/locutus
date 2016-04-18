@@ -1,4 +1,4 @@
-function xmlwriter_start_document(xmlwriter, version, encoding, standalone) {
+module.exports = function xmlwriter_start_document (xmlwriter, version, encoding, standalone)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var xmlwriter = xmlwriter_open_memory();

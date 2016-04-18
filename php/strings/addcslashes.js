@@ -1,4 +1,4 @@
-function addcslashes (str, charlist) {
+module.exports = function addcslashes (str, charlist) {
   //  discuss at: http://phpjs.org/functions/addcslashes/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: We show double backslashes in the return value example code below because a JavaScript string will not

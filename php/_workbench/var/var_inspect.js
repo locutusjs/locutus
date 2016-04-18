@@ -1,4 +1,4 @@
-function var_inspect() {
+module.exports = function var_inspect ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: This function has not been documented yet (for PHP 6)

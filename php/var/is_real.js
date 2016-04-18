@@ -1,4 +1,4 @@
-function is_real (mixed_var) {
+module.exports = function is_real (mixed_var) {
   //  discuss at: http://phpjs.org/functions/is_real/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: is_float

@@ -1,4 +1,4 @@
-function mt_getrandmax () {
+module.exports = function mt_getrandmax () {
   //  discuss at: http://phpjs.org/functions/mt_getrandmax/
   // original by: Onno Marsman
   //   example 1: mt_getrandmax();

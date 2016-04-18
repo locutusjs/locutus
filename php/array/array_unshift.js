@@ -1,4 +1,4 @@
-function array_unshift (array) {
+module.exports = function array_unshift (array) {
   //  discuss at: http://phpjs.org/functions/array_unshift/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Martijn Wieringa

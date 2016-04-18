@@ -1,4 +1,4 @@
-function strncmp (str1, str2, lgth) {
+module.exports = function strncmp (str1, str2, lgth) {
   //       discuss at: http://phpjs.org/functions/strncmp/
   //      original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //         input by: Steve Hilder

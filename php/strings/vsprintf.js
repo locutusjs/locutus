@@ -1,4 +1,4 @@
-function vsprintf (format, args) {
+module.exports = function vsprintf (format, args) {
   //  discuss at: http://phpjs.org/functions/vsprintf/
   // original by: ejsanders
   //  depends on: sprintf

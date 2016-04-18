@@ -1,4 +1,4 @@
-function array_slice (arr, offst, lgth, preserve_keys) {
+module.exports = function array_slice (arr, offst, lgth, preserve_keys) {
   //  discuss at: http://phpjs.org/functions/array_slice/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: is_int

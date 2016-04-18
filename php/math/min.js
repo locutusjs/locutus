@@ -1,4 +1,4 @@
-function min () {
+module.exports = function min () {
   //  discuss at: http://phpjs.org/functions/min/
   // original by: Onno Marsman
   //  revised by: Onno Marsman

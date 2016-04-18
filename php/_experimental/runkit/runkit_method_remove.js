@@ -1,4 +1,4 @@
-function runkit_method_remove(classname, methodname) {
+module.exports = function runkit_method_remove (classname, methodname)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: runkit_method_remove('someClass', 'someMethod');

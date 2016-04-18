@@ -1,4 +1,4 @@
-function session_start() {
+module.exports = function session_start ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Louis Stowasser
   // +   improved by: Brett Zamir (http://brett-zamir.me)
@@ -35,7 +35,7 @@ function session_start() {
     * If not found, create it then pack everything in $_SESSION
     * into a cookie.
     */
-function session_start() {
+module.exports = function session_start ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Louis Stowasser
   // +   improved by: Brett Zamir (http://brett-zamir.me)

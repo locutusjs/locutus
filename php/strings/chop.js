@@ -1,4 +1,4 @@
-function chop (str, charlist) {
+module.exports = function chop (str, charlist) {
   //  discuss at: http://phpjs.org/functions/chop/
   // original by: Paulo Freitas
   //  depends on: rtrim

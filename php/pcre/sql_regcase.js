@@ -1,4 +1,4 @@
-function sql_regcase (str) {
+module.exports = function sql_regcase (str) {
   //  discuss at: http://phpjs.org/functions/sql_regcase/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale

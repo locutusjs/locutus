@@ -1,4 +1,4 @@
-function inclued_get_data() {
+module.exports = function inclued_get_data ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: inclued_get_data(); // for "include 'x.js';" called in /temp/z.js:

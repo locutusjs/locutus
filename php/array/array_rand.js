@@ -1,4 +1,4 @@
-function array_rand (input, num_req) {
+module.exports = function array_rand (input, num_req) {
   //  discuss at: http://phpjs.org/functions/array_rand/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //   example 1: array_rand( ['Kevin'], 1 );

@@ -1,4 +1,4 @@
-function md5_file (str_filename) {
+module.exports = function md5_file (str_filename) {
   //  discuss at: http://phpjs.org/functions/md5_file/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Brett Zamir (http://brett-zamir.me)

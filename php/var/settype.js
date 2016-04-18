@@ -1,4 +1,4 @@
-function settype (vr, type) {
+module.exports = function settype (vr, type) {
   //  discuss at: http://phpjs.org/functions/settype/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -53,8 +53,8 @@ function settype (vr, type) {
         } else if (v === false || v === null) {
           this[vr] = 0
         } else if (is_array(v) && v.length === 0) {
-        this[vr] = 0
-      } else if (typeof v === 'object') {
+          this[vr] = 0
+        } else if (typeof v === 'object') {
         this[vr] = 1
       }
 
@@ -74,8 +74,8 @@ function settype (vr, type) {
         } else if (is_array(v) && v.length === 0) {
           this[vr] = 0
         } else if (typeof v === 'object') {
-        this[vr] = 1
-      }
+          this[vr] = 1
+        }
         break
       case 'string':
         if (v === null || v === false) {

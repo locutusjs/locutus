@@ -1,4 +1,4 @@
-function stream_context_set_params(stream_or_context, params) {
+module.exports = function stream_context_set_params (stream_or_context, params)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var context = stream_context_create();

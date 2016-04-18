@@ -1,4 +1,4 @@
-function atanh (arg) {
+module.exports = function atanh (arg) {
   //  discuss at: http://phpjs.org/functions/atanh/
   // original by: Onno Marsman
   //   example 1: atanh(0.3);

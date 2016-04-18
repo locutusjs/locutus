@@ -1,4 +1,4 @@
-function asin (arg) {
+module.exports = function asin (arg) {
   //  discuss at: http://phpjs.org/functions/asin/
   // original by: Onno Marsman
   //        note: Sorry about the crippled test. Needed because precision differs accross platforms.

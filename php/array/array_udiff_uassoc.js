@@ -1,4 +1,4 @@
-function array_udiff_uassoc (arr1) {
+module.exports = function array_udiff_uassoc (arr1) {
   //  discuss at: http://phpjs.org/functions/array_udiff_uassoc/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}

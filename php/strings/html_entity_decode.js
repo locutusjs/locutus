@@ -1,4 +1,4 @@
-function html_entity_decode (string, quote_style) {
+module.exports = function html_entity_decode (string, quote_style) {
   //  discuss at: http://phpjs.org/functions/html_entity_decode/
   // original by: john (http://www.jd-tech.net)
   //    input by: ger

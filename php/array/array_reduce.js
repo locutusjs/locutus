@@ -1,4 +1,4 @@
-function array_reduce (a_input, callback) {
+module.exports = function array_reduce (a_input, callback) {
   //  discuss at: http://phpjs.org/functions/array_reduce/
   // original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
   //        note: Takes a function as an argument, not a function's name

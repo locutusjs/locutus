@@ -15,7 +15,7 @@
  * @param int [scale]               The optional parameter is used to set the number of digits after the decimal place in the result. You can also set the global scale for all functions by using bcscale()
  * @return string
  */
-function bcadd(left_operand, right_operand, scale) {
+module.exports = function bcadd (left_operand, right_operand, scale)  {
   var first, second, result;
 
   if (typeof(scale) == 'undefined') {
@@ -51,7 +51,7 @@ function bcadd(left_operand, right_operand, scale) {
  * @param int [scale]               The optional parameter is used to set the number of digits after the decimal place in the result. You can also set the global scale for all functions by using bcscale()
  * @return string
  */
-function bcsub(left_operand, right_operand, scale) {
+module.exports = function bcsub (left_operand, right_operand, scale)  {
   var first, second, result;
 
   if (typeof(scale) == 'undefined') {
@@ -86,7 +86,7 @@ function bcsub(left_operand, right_operand, scale) {
  * @param int [scale]               The optional parameter is used to set the number of digits after the decimal place in the result. You can also set the global scale for all functions by using bcscale()
  * @return int                      0: Left/Right are equal, 1 if left > right, -1 otherwise
  */
-function bccomp(left_operand, right_operand, scale) {
+module.exports = function bccomp (left_operand, right_operand, scale)  {
   var first, second; //bc_num
 
   if (typeof(scale) == 'undefined') {
@@ -109,7 +109,7 @@ function bccomp(left_operand, right_operand, scale) {
  * @param int   scale   The scale factor (0 to infinate)
  * @return bool
  */
-function bcscale(scale) {
+module.exports = function bcscale (scale)  {
   scale = parseInt(scale, 10);
   if (isNaN(scale)) {
     return false;
@@ -130,7 +130,7 @@ function bcscale(scale) {
  * @param int [scale]               The optional parameter is used to set the number of digits after the decimal place in the result. You can also set the global scale for all functions by using bcscale()
  * @return string                   The result as a string
  */
-function bcdiv(left_operand, right_operand, scale) {
+module.exports = function bcdiv (left_operand, right_operand, scale)  {
   var first, second, result;
 
   if (typeof(scale) == 'undefined') {
@@ -166,7 +166,7 @@ function bcdiv(left_operand, right_operand, scale) {
  * @param int [scale]               The optional parameter is used to set the number of digits after the decimal place in the result. You can also set the global scale for all functions by using bcscale()
  * @return string                   The result as a string
  */
-function bcmul(left_operand, right_operand, scale) {
+module.exports = function bcmul (left_operand, right_operand, scale)  {
   var first, second, result;
 
   if (typeof(scale) == 'undefined') {
@@ -200,7 +200,7 @@ function bcmul(left_operand, right_operand, scale) {
  * @param int    precision      The optional number of digits to round-to
  * @return string               In exact decimal places of precision (ie bcround('1.2222', 2) == '1.22' or bcround('1', 4) == '1.0000' )
  */
-function bcround(val, precision) {
+module.exports = function bcround (val, precision)  {
   var temp, result, digit;
   var right_operand;
 
