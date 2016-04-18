@@ -39,7 +39,7 @@
     "build:npm": "node lib/cli.js --action buildnpm --output build/npm.js && ls -al build/npm.js",
     "build": "npm run build:npm",
     "deploy": "npm run website:deploy",
-    "fix": "node lib/cli.js --action cleanup && eslint functions bin lib test tools --fix",
+    "fix": "eslint functions bin lib test tools --fix",
     "lint": "eslint functions",
     "release:major": "env SEMANTIC=major npm run release",
     "release:minor": "env SEMANTIC=minor npm run release",
