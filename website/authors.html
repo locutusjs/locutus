@@ -11,15 +11,29 @@ permalink: /authors/
   as well as a more finegrained achievement record below:
 </p>
 
-<section class="authors">
-  {% for function in site.functions %}
-    {% for types in function.authors %}
-      {% for author in types[1] %}
-        <entry data-function="{{function.function}}" data-type="{{types[0]}}">{{author |strip |markdownify}}</entry>
+{% assign languages = site.functions| group_by site.functions, "language" %}
+
+{% for language in languages %}
+  {% if language.name == "golang" %}
+    <h2>Go authors</h2>
+  {% elsif language.name == "php" %}
+    <h2>PHP authors</h2>
+  {% elsif language.name == "ruby" %}
+    <h2>Ruby authors</h2>
+  {% else %}
+    <h2>{{language.name}} authors</h2>
+  {% endif %}
+
+  <section class="authors">
+    {% for function in language.items %}
+      {% for types in function.authors %}
+        {% for author in types[1] %}
+          <entry data-function="{{function.function}}" data-type="{{types[0]}}">{{author |strip |markdownify}}</entry>
+        {% endfor %}
       {% endfor %}
     {% endfor %}
-  {% endfor %}
 
-  <div class="draw">
-  </div>
-</section>
+    <div class="draw">
+    </div>
+  </section>
+{% endfor %}
