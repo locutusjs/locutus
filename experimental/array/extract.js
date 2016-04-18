@@ -1,4 +1,4 @@
-function extract(arr, type, prefix) {
+module.exports = function extract (arr, type, prefix)  {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Only works by extracting into global context (whether called in the global scope or

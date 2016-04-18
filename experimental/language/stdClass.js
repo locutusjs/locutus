@@ -1,4 +1,4 @@
-function stdClass() {
+module.exports = function std Class()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var a = new stdClass();

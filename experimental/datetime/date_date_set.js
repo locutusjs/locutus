@@ -1,4 +1,4 @@
-function date_date_set(dt, year, month, day) {
+module.exports = function date_date_set (dt, year, month, day)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var dt = date_create();

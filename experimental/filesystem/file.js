@@ -1,4 +1,4 @@
-function file(url) {
+module.exports = function file (url)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Legaev Andrey
   // +      input by: Jani Hartikainen

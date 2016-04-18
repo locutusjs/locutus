@@ -1,4 +1,4 @@
-function require_once(filename) {
+module.exports = function require_once (filename)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Michael White (http://getsprink.com)
   // +      input by: Brett Zamir (http://brett-zamir.me)

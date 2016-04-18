@@ -1,4 +1,4 @@
-function foreach(arr, handler) {
+module.exports = function foreach (arr, handler)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: foreach (['a', 'b'], function (val) {alert(val);});

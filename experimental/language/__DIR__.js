@@ -1,4 +1,4 @@
-function __DIR__() {
+module.exports = function __ DIR__()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Michael White (http://getsprink.com/)
   // -    depends on: dirname

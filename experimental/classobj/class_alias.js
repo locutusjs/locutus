@@ -1,4 +1,4 @@
-function class_alias(clss, alias, autoload) {
+module.exports = function class_alias (clss, alias, autoload)  {
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: This function is not documented and only available in PHP source
   // *     example 1: function someFunc () {}

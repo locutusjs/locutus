@@ -1,4 +1,4 @@
-function fopen(filename, mode, use_include_path, context) {
+module.exports = function fopen (filename, mode, use_include_path, context)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   input by: Paul Smith

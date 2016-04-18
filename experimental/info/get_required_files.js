@@ -1,4 +1,4 @@
-function get_required_files() {
+module.exports = function get_required_files ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: get_included_files

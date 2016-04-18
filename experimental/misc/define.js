@@ -1,4 +1,4 @@
-function define(name, value) {
+module.exports = function define (name, value)  {
   // Define a new constant
   //
   // version: 903.3016

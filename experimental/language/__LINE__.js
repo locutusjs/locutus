@@ -1,4 +1,4 @@
-function __LINE__(e) {
+module.exports = function __ LINE__(e)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Not a function in PHP, so in experimental

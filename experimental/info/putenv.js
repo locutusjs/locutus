@@ -1,4 +1,4 @@
-function putenv(setting) {
+module.exports = function putenv (setting)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: We are not using $_ENV as in PHP, you could define

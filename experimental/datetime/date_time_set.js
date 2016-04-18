@@ -1,4 +1,4 @@
-function date_time_set(dt, hour, minute, second) {
+module.exports = function date_time_set (dt, hour, minute, second)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var dt = date_create();

@@ -1,4 +1,4 @@
-function ob_start(output_callback, chunk_size, erase) {
+module.exports = function ob_start (output_callback, chunk_size, erase)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: chunk_size and erase arguments are not presently supported

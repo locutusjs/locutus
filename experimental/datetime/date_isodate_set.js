@@ -1,4 +1,4 @@
-function date_isodate_set(dt, year, week, day) {
+module.exports = function date_isodate_set (dt, year, week, day)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var dt = date_create();

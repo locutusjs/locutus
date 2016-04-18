@@ -1,4 +1,4 @@
-function connection_timeout() {
+module.exports = function connection_timeout ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: connection_timeout();

@@ -1,4 +1,4 @@
-function get_declared_classes() {
+module.exports = function get_declared_classes ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +    depends on: class_exists

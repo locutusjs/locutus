@@ -1,4 +1,4 @@
-function die(status) {
+module.exports = function die (status)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   //  -   depends on: exit

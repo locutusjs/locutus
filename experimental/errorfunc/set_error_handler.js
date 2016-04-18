@@ -1,4 +1,4 @@
-function set_error_handler(callback) {
+module.exports = function set_error_handler (callback)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: set_error_handler(function (errno, errorObj, errfile, errline, errcontext) {alert(errorObj.getMessage());});

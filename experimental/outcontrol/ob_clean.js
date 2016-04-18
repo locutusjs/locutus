@@ -1,4 +1,4 @@
-function ob_clean() {
+module.exports = function ob_clean ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: ob_clean();

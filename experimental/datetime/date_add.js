@@ -1,4 +1,4 @@
-function date_add(dt, interval) {
+module.exports = function date_add (dt, interval)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var dt = date_create();

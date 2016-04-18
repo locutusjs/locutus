@@ -1,4 +1,4 @@
-function realpath(path) {
+module.exports = function realpath (path)  {
   // From: http://phpjs.org/functions
   // +   original by: mk.keck
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

@@ -1,4 +1,4 @@
-function define_syslog_variables() {
+module.exports = function define_syslog_variables ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: This function has been deprecated in PHP
