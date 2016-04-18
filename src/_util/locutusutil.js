@@ -123,9 +123,9 @@ LocutusUtil.prototype._loadDependencies = function (name, headKeys, dependencies
   }
 }
 
-LocutusUtil.prototype.parse = function (name, code, cb) {
+LocutusUtil.prototype.parse = function (fileOrName, code, cb) {
   if (!code) {
-    throw new Error('Unable to parse ' + name)
+    throw new Error('Unable to parse ' + fileOrName)
   }
 
   var patFuncStart = /^\s*module\.exports = function\s*([^\s)]+)\s*\(([^\)]*)\)\s*\{\s*/i
@@ -133,7 +133,7 @@ LocutusUtil.prototype.parse = function (name, code, cb) {
   var commentBlocks = this._commentBlocks(code)
 
   if (!commentBlocks[0]) {
-    throw new Error('Unable to parse ' + name)
+    throw new Error('Unable to parse ' + fileOrName)
   }
 
   var head = commentBlocks[0].raw.join('\n')
@@ -142,22 +142,22 @@ LocutusUtil.prototype.parse = function (name, code, cb) {
   body = body.replace(patFuncEnd, '')
   var headKeys = this._headKeys(commentBlocks[0].clean)
 
-  this._loadDependencies(name, headKeys, {}, function (err, dependencies) {
+  // Parse fucntion signature
+  var funcSigMatch = code.match(patFuncStart)
+  if (!funcSigMatch) {
+    throw new Error('Unable to parse ' + name)
+  }
+
+  this._loadDependencies(funcSigMatch[1], headKeys, {}, function (err, dependencies) {
     if (err) {
       return cb(err)
-    }
-
-    // Parse fucntion signature
-    var funcSigMatch = code.match(patFuncStart)
-    if (!funcSigMatch) {
-      throw new Error('Unable to parse ' + name)
     }
 
     cb(null, {
       headKeys      : headKeys,
       body          : body,
       head          : head,
-      name          : name,
+      name          : fileOrName,
       code          : code,
       dependencies  : dependencies,
       func_signature: funcSigMatch[0],
@@ -168,7 +168,7 @@ LocutusUtil.prototype.parse = function (name, code, cb) {
   })
 }
 
-LocutusUtil.prototype.opener = function (name, cb) {
+LocutusUtil.prototype.opener = function (fileOrName, cb) {
   return cb('Please override with a method that can translate a function-name to code in your environment')
 }
 
@@ -192,14 +192,14 @@ LocutusUtil.prototype.loadMultiple = function (names, cb) {
   }
 }
 
-LocutusUtil.prototype.load = function (name, cb) {
+LocutusUtil.prototype.load = function (fileOrName, cb) {
   var self = this
-  self.opener(name, function (err, code) {
+  self.opener(fileOrName, function (err, code) {
     if (err) {
       return cb(err)
     }
 
-    self.parse(name, code, function (err, params) {
+    self.parse(fileOrName, code, function (err, params) {
       if (err) {
         return cb(err)
       }

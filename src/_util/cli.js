@@ -57,15 +57,19 @@ var locutusUtil = new LocutusUtil({
 // Environment-specific file opener. function name needs to
 // be translated to code. The difficulty is in finding the
 // category.
-locutusUtil.opener = function (name, cb) {
-  var pattern = __src + '/*/*/' + name + '.js'
+locutusUtil.opener = function (fileOrName, cb) {
+  var pattern = fileOrName
+  if (fileOrName.indexOf('/') === -1) {
+    pattern = __src + '/*/*/' + fileOrName + '.js'
+  }
+
   glob(pattern, {}, function (err, files) {
     if (err) {
       return self.error('Could not glob for ' + pattern + '. ' + err)
     }
 
-    if (files.length > 1) {
-      return cb('Found ' + files.length + ' occurances of ' + name)
+    if (files.length !== 1) {
+      return cb('Found ' + files.length + ' occurances of ' + fileOrName + ' via pattern: ' + pattern)
     }
 
     var filepath = files[0]
@@ -133,6 +137,7 @@ cli.injectweb = function (args, options) {
       language: language,
       permalink: language + '/' + cat + '/' + params.func_name + '/',
       redirect_from: [
+        '/functions/' + language + '/' + params.func_name + '/',
         '/functions/' + cat + '/' + params.func_name + '/',
         '/functions/' + params.func_name + '/'
       ]
@@ -173,7 +178,7 @@ cli.glob = function (pattern, workerCb) {
       }
     }
     names.forEach(function (name) {
-      locutusUtil.load(name, function (err, params) {
+      locutusUtil.load(map[name], function (err, params) {
         if (err) {
           return workerCb(err)
         }

@@ -11,13 +11,13 @@ redirect_from:
 
 {{site.description}}
 
-**Why on earth would you port other languages to js?**
+**Why?**
 
  - to create interoperable encoding functions
  - to see if we can
  - to learn JavaScript
  - to help others learn JavaScript
- - to profit from a few more useful functions such as:
+ - to profit from a few useful functions such as:
 [strip_tags](/php/strip_tags/),
 [strtotime](/php/strtotime/),
 [md5](/php/md5/),
@@ -27,13 +27,15 @@ redirect_from:
 [vsprintf](/php/vsprintf/), and
 [date](/php/date/), that do not exist in JavaScript's standard library.
 
-JavaScript as a language is even wide-spread, but lacking a large 
+JavaScript as a language is wide-spread, but lacking a large 
 standard library, developers coming from other languages are often wondering how
 to achieve common tasks, like [formatting dates](/php/strftime/), 
 or [generating a hashes](/php/sha1/).
 
 Locutus aims to show developers coming from the other programming languages
-how to achieve these things in JavaScript. We had to write a lot of it in order to port {{ site.functions |size }} functions. We've come to appreciate the language and hope you will too. Locutus exists to aid in learning it, not to avoid that.
+how to achieve these things in JavaScript. We had to write a lot of it in order to port 
+[{{ site.functions |size }} functions](/functions).
+We've come to appreciate the language and hope you will too. Locutus exists to aid in learning it, not to avoid that.
 
 One thing you'll notice is that we're also porting low-level functions like Go's [string.Index](/golang/strings/Index/)
 that have perfectly good (and more performant) JavaScript equivalents right in its standard library by means of [String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf).
