@@ -63,6 +63,11 @@ locutusUtil.opener = function (name, cb) {
     if (err) {
       return self.error('Could not glob for ' + pattern + '. ' + err)
     }
+
+    if (files.length > 1) {
+      return cb('Found ' + files.length + ' occurances of ' + name)
+    }
+
     var filepath = files[0]
 
     if (path.basename(filepath) === 'index.js') {
