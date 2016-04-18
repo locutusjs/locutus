@@ -8,7 +8,7 @@
 [![Development Dependency Status](https://david-dm.org/locutusjs/locutus/dev-status.svg?theme=shields.io)](https://david-dm.org/locutusjs/locutus#info=devDependencies)
 <!-- /badges -->
 
-Locutus.js is a resource that offers community-built JavaScript alternatives to PHP functions.
+Locutus.js assimilates other languages' standard libraries to JavaScript for educational purposes.
 
 More info at: http://locutusjs.org/about
 

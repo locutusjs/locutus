@@ -9,9 +9,9 @@ redirect_from:
 - /
 ---
 
-Locutus.js is a resource that offers community-built JavaScript alternatives to PHP functions.
+Locutus.js assimilates other languages' standard libraries to JavaScript for educational purposes
 
-**Why on earth would you port php to js?**
+**Why on earth would you port other languages to js?**
 
  - to create interoperable server/client-side base64 and URL encoding functions that were lacking when we started
  - to see if we could
@@ -26,6 +26,8 @@ Locutus.js is a resource that offers community-built JavaScript alternatives to 
 [wordwrap](http://locutusjs.org/php/wordwrap/), 
 [vsprintf](http://locutusjs.org/php/vsprintf/), and
 [date](http://locutusjs.org/php/date/), that are too high-level for JavaScript.
+
+Locutus.js has ported most of PHP's functions already.
 
 PHP is a language with a huge standard library that a large share of web developers
 are intimately familiar with.
