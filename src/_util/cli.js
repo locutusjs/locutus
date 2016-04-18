@@ -7,7 +7,8 @@ var mkdirp = require('mkdirp')
 var _ = require('underscore')
 var LocutusUtil = require('./locutusutil')
 var equal = require('deep-equal')
-var __root = path.dirname(path.dirname(__dirname))
+var __src = path.dirname(__dirname)
+var __root = path.dirname(__src)
 var beautify = require('js-beautify').js_beautify
 var YAML = require('js-yaml')
 
@@ -57,12 +58,16 @@ var locutusUtil = new LocutusUtil({
 // be translated to code. The difficulty is in finding the
 // category.
 locutusUtil.opener = function (name, cb) {
-  var pattern = __root + '/php/*/' + name + '.js'
+  var pattern = __src + '/php/*/' + name + '.js'
   glob(pattern, {}, function (err, files) {
     if (err) {
       return self.error('Could not glob for ' + pattern + '. ' + err)
     }
     var filepath = files[0]
+
+    if (path.basename(filepath) === 'index.js') {
+      return cb(null)
+    }
 
     if (!filepath) {
       return cb('Could not find ' + pattern)
@@ -90,7 +95,7 @@ cli.lpad = function (str, len, pad) {
 
 cli.injectweb = function (args, options) {
   var self = this
-  var pattern = __root + '/php/' + options.category + '/' + options.name + '.js'
+  var pattern = __src + '/php/' + options.category + '/' + options.name + '.js'
 
   self.glob(pattern, function (err, params, file) {
     if (err) {
@@ -152,7 +157,7 @@ cli.glob = function (pattern, workerCb) {
     for (var i in files) {
       var file = files[i]
       var name = path.basename(file, '.js')
-      if (file.indexOf('/_') === -1) {
+      if (file.indexOf('/_') === -1 && name !== 'index') {
         names.push(name)
         map[name] = file
       }
@@ -171,7 +176,7 @@ cli.glob = function (pattern, workerCb) {
 
 cli.test = function (args, options) {
   var self = this
-  var pattern = __root + '/php/' + options.category + '/' + options.name + '.js'
+  var pattern = __src + '/php/' + options.category + '/' + options.name + '.js'
   self.pass_cnt = 0
   self.know_cnt = 0
   self.fail_cnt = 0
@@ -186,7 +191,7 @@ cli.test = function (args, options) {
     }
   })
 
-  var knownFailures = fs.readFileSync(__root + '/known_failures.txt', 'utf-8').split('\n')
+  var knownFailures = fs.readFileSync(__src + '/php/known-failures.txt', 'utf-8').split('\n')
 
   self.glob(pattern, function (err, params, file) {
     if (err) {

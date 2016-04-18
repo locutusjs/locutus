@@ -124,9 +124,18 @@ LocutusUtil.prototype._loadDependencies = function (name, headKeys, dependencies
 }
 
 LocutusUtil.prototype.parse = function (name, code, cb) {
+  if (!code) {
+    throw new Error('Unable to parse ' + name)
+  }
+
   var patFuncStart = /^\s*module\.exports = function\s*([^\s)]+)\s*\(([^\)]*)\)\s*\{\s*/i
   var patFuncEnd = /\s*}\s*$/
   var commentBlocks = this._commentBlocks(code)
+
+  if (!commentBlocks[0]) {
+    throw new Error('Unable to parse ' + name)
+  }
+
   var head = commentBlocks[0].raw.join('\n')
   var body = code.replace(head, '')
   body = body.replace(patFuncStart, '')
@@ -256,8 +265,9 @@ LocutusUtil.prototype.test = function (params, cb) {
       .replace(/that\.([a-z_])/g, '$1')
       .replace(/this\.([a-z_])/g, '$1')
       .replace(/window\.setTimeout/g, 'setTimeout')
+      .replace(/module\.exports = /g, '')
 
-    // self.debug(code);
+    // self.debug(code)
     eval(code)
 
     // Run each example

@@ -5,7 +5,7 @@ module.exports = function similar_text (first, second, percent) {
   // bugfixed by: Jarkko Rantavuori original by findings in stackoverflow (http://stackoverflow.com/questions/14136349/how-does-similar-text-work)
   // improved by: Markus Padourek (taken from http://www.kevinhq.com/2012/06/php-similartext-function-in-javascript_16.html)
   //   example 1: similar_text('Hello World!', 'Hello locutus!');
-  //   returns 1: 7
+  //   returns 1: 8
   //   example 2: similar_text('Hello World!', null);
   //   returns 2: 0
 
