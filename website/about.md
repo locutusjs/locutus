@@ -13,7 +13,7 @@ redirect_from:
 
 **Why on earth would you port other languages to js?**
 
- - to create interoperable base64 and URL encoding functions that were lacking when we started
+ - to create interoperable encoding functions
  - to see if we can
  - to learn JavaScript
  - to help others learn JavaScript
@@ -25,7 +25,7 @@ redirect_from:
 [number_format](http://locutusjs.io/php/number_format/),
 [wordwrap](http://locutusjs.io/php/wordwrap/), 
 [vsprintf](http://locutusjs.io/php/vsprintf/), and
-[date](http://locutusjs.io/php/date/), that are too high-level for JavaScript.
+[date](http://locutusjs.io/php/date/), that do not exist in JavaScript's standard library.
 
 JavaScript as a language is even wide-spread, but lacking a large 
 standard library, developers coming from other languages are often wondering how
