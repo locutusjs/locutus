@@ -128,6 +128,19 @@ LocutusUtil.prototype.parse = function (fileOrName, code, cb) {
     throw new Error('Unable to parse ' + fileOrName)
   }
 
+  var category
+  var language
+
+  if (fileOrName.indexOf('/') === -1) {
+    language = undefined
+    category = undefined
+  } else {
+    var parts = fileOrName.split('/')
+    var basefile = parts.pop()
+    category = parts.pop()
+    language = parts.pop()
+  }
+
   var patFuncStart = /^\s*module\.exports = function\s*([^\s)]+)\s*\(([^\)]*)\)\s*\{\s*/i
   var patFuncEnd = /\s*}\s*$/
   var commentBlocks = this._commentBlocks(code)
@@ -149,22 +162,26 @@ LocutusUtil.prototype.parse = function (fileOrName, code, cb) {
   }
 
   this._loadDependencies(funcSigMatch[1], headKeys, {}, function (err, dependencies) {
+  var params = {
+    headKeys      : headKeys,
+    body          : body,
+    head          : head,
+    name          : fileOrName,
+    code          : code,
+    language      : language,
+    category      : category,
+    func_signature: funcSigMatch[0],
+    func_name     : funcSigMatch[1],
+    func_arguments: funcSigMatch[2].split(/,\s*/),
+    commentBlocks : commentBlocks
+  }
+
     if (err) {
       return cb(err)
     }
 
-    cb(null, {
-      headKeys      : headKeys,
-      body          : body,
-      head          : head,
-      name          : fileOrName,
-      code          : code,
-      dependencies  : dependencies,
-      func_signature: funcSigMatch[0],
-      func_name     : funcSigMatch[1],
-      func_arguments: funcSigMatch[2].split(/,\s*/),
-      commentBlocks : commentBlocks
-    })
+    params.dependencies = dependencies
+
   })
 }
 
