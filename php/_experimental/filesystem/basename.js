@@ -1,4 +1,4 @@
-module.exports = function basename (path, suffix)  {
+function basename(path, suffix) {
   // http://kevin.vanzonneveld.net
   // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // +   improved by: Ash Searle (http://hexmen.com/blog/)

@@ -1,4 +1,4 @@
-module.exports = function deaggregate (obj, class_name)  {
+function deaggregate (obj, class_name) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var A = function () {};

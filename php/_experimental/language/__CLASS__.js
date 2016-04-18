@@ -1,4 +1,4 @@
-module.exports = function __ CLASS__()  {
+function __CLASS__() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Not a function in PHP, so in experimental

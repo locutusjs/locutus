@@ -1,4 +1,4 @@
-module.exports = function mail (to, subject, message, additional_headers, additional_parameters)  {
+function mail(to, subject, message, additional_headers, additional_parameters) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Currently only works if the SSJS SendMail method is available

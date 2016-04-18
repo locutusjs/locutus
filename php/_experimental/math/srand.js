@@ -1,4 +1,4 @@
-module.exports = function srand (seed)  {
+function srand(seed) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: gettimeofday

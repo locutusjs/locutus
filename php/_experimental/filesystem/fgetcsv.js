@@ -1,4 +1,4 @@
-module.exports = function fgetcsv (handle, length, delimiter, enclosure, escape)  {
+function fgetcsv(handle, length, delimiter, enclosure, escape) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: str_getcsv

@@ -1,4 +1,4 @@
-module.exports = function fgetss (handle, length, allowable_tags)  {
+function fgetss(handle, length, allowable_tags) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: strip_tags

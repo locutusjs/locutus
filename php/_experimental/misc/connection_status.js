@@ -1,4 +1,4 @@
-module.exports = function connection_status ()  {
+function connection_status() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: connection_status();

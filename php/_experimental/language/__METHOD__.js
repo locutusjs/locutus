@@ -1,4 +1,4 @@
-module.exports = function __ METHOD__()  {
+function __METHOD__() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Not a function in PHP, so in experimental

@@ -1,4 +1,4 @@
-module.exports = function error_log (message, message_type, destination, extra_headers)  {
+function error_log(message, message_type, destination, extra_headers) {
   // http://kevin.vanzonneveld.net
   // +   original by: Paul Hutchinson (http://restaurantthing.com/)
   // +   revised by: Brett Zamir (http://brett-zamir.me)

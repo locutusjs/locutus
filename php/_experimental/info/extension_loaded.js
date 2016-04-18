@@ -1,4 +1,4 @@
-module.exports = function extension_loaded (name)  {
+function extension_loaded(name) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: extension_loaded('strings');

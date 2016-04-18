@@ -1,4 +1,4 @@
-module.exports = function ob_get_status (full_status)  {
+function ob_get_status(full_status) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: ob_get_status(true);

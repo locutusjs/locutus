@@ -1,4 +1,4 @@
-module.exports = function list ()  {
+function list() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Only works in global context and deviates (by necessity) from

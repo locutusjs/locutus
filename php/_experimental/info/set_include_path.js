@@ -1,4 +1,4 @@
-module.exports = function set_include_path (new_include_path)  {
+function set_include_path(new_include_path) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Should influence require(), include(), fopen(), file(), readfile() and file_get_contents()

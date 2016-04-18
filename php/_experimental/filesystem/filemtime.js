@@ -1,4 +1,4 @@
-module.exports = function filemtime (file)  {
+function filemtime(file) {
   // +   original by: Ole Vrijenhoek (http://www.nervous.nl/)
   // +    bugfixed by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: get_headers

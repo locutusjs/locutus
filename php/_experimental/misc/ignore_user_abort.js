@@ -1,4 +1,4 @@
-module.exports = function ignore_user_abort (setting)  {
+function ignore_user_abort(setting) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: We cannot get the exact PHP meaning of abort, since 'abort', per the

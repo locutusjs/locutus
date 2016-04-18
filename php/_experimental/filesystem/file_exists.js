@@ -1,4 +1,4 @@
-module.exports = function file_exists (url)  {
+function file_exists(url) {
   // http://kevin.vanzonneveld.net
   // +   original by: Enrique Gonzalez
   // +      input by: Jani Hartikainen

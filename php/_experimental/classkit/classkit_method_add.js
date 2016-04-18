@@ -1,4 +1,4 @@
-module.exports = function classkit_method_add (classname, methodname, args, code, flags)  {
+function classkit_method_add(classname, methodname, args, code, flags) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: function a(){}

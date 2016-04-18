@@ -1,4 +1,4 @@
-module.exports = function date_interval_format (dateIntervalObj)  {
+function date_interval_format(dateIntervalObj) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var dtIntvObj = date_interval_create_from_date_string('+1 day');

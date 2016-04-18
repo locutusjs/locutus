@@ -1,4 +1,4 @@
-module.exports = function overload (class_name)  {
+function overload(class_name) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: This can only work in Mozilla at present

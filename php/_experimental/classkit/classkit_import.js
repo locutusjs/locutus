@@ -1,4 +1,4 @@
-module.exports = function classkit_import (file)  {
+function classkit_import(file) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: file_get_contents

@@ -1,4 +1,4 @@
-module.exports = function aggregate_methods (obj, class_name)  {
+function aggregate_methods (obj, class_name) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: We can't copy privileged functions, as those require instantiation (with potential side-effects when called)

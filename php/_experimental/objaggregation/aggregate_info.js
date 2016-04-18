@@ -1,4 +1,4 @@
-module.exports = function aggregate_info (obj)  {
+function aggregate_info (obj) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var A = function () {};

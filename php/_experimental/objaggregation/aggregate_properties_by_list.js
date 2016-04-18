@@ -1,4 +1,4 @@
-module.exports = function aggregate_properties_by_list (obj, class_name, properties_list, exclude)  {
+function aggregate_properties_by_list (obj, class_name, properties_list, exclude) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: We can't copy instance properties, as those require instantiation (with potential side-effects when called)

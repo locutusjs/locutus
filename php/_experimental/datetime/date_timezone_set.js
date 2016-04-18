@@ -1,4 +1,4 @@
-module.exports = function date_timezone_set (dt, tzo)  {
+function date_timezone_set(dt, tzo) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var dt = date_create();

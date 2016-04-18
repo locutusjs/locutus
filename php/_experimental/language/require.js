@@ -1,4 +1,4 @@
-module.exports = function require (filename)  {
+function require(filename) {
   // http://kevin.vanzonneveld.net
   // +   original by: Michael White (http://getsprink.com)
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

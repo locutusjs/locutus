@@ -1,4 +1,4 @@
-module.exports = function register_shutdown_function (cb)  {
+function register_shutdown_function(cb) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: register_shutdown_function(function(first, middle, last) {alert('Goodbye '+first+' '+middle+' '+last+'!');}, 'Kevin', 'van', 'Zonneveld');

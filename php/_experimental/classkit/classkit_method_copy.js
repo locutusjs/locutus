@@ -1,4 +1,4 @@
-module.exports = function classkit_method_copy (dClass, dMethod, sClass, sMethod)  {
+function classkit_method_copy(dClass, dMethod, sClass, sMethod) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: classkit_method_copy('newClass', 'newMethod', 'someClass', 'someMethod');

@@ -1,4 +1,4 @@
-module.exports = function runkit_function_remove (funcname)  {
+function runkit_function_remove(funcname) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Function can only remove from the global context

@@ -1,4 +1,4 @@
-module.exports = function readfile (filename, use_include_path, context)  {
+function readfile(filename, use_include_path, context) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: echo

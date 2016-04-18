@@ -1,4 +1,4 @@
-module.exports = function call_user_method_array (method, obj, params)  {
+function call_user_method_array(method, obj, params) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   input by: dnukem

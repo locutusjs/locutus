@@ -1,4 +1,4 @@
-module.exports = function localtime (timestamp, is_assoc)  {
+function localtime(timestamp, is_assoc) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +  original by: Josh Fraser (http://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)

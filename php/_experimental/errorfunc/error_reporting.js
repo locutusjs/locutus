@@ -1,4 +1,4 @@
-module.exports = function error_reporting (level)  {
+function error_reporting(level) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: ini_set

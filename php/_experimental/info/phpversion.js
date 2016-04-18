@@ -1,4 +1,4 @@
-module.exports = function phpversion ()  {
+function phpversion() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: We are using this to get the JavaScript version (since this is JavaScript and we can't get the PHP version anyways)

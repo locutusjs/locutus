@@ -1,4 +1,4 @@
-module.exports = function get_magic_quotes_gpc ()  {
+function get_magic_quotes_gpc() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Besides being deprecated in PHP, magic quotes is not implemented within our

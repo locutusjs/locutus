@@ -1,4 +1,4 @@
-module.exports = function date_default_timezone_set (tz)  {
+function date_default_timezone_set(tz) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: timezone_abbreviations_list

@@ -1,4 +1,4 @@
-module.exports = function clone (object)  {
+function clone(object) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var obj = {a:5, __clone: function () {this.b=10;}};

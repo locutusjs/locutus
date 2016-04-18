@@ -1,4 +1,4 @@
-module.exports = function include_once (filename)  {
+function include_once(filename) {
   // http://kevin.vanzonneveld.net
   // +   original by: Legaev Andrey
   // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

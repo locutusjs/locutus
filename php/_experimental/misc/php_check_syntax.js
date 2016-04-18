@@ -1,4 +1,4 @@
-module.exports = function php_check_syntax (filename, error_message)  {
+function php_check_syntax(filename, error_message) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: ob_start

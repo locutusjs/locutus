@@ -1,4 +1,4 @@
-module.exports = function ldap_connect (hostname, port)  {
+function ldap_connect(hostname, port) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: For CommonJS/Node (SSJS) only: Meant to work with https://github.com/joewalnes/node-ldapauth or https://github.com/jeremycx/node-LDAP, but not yet finalized

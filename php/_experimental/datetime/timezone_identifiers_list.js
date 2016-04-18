@@ -1,4 +1,4 @@
-module.exports = function timezone_identifiers_list (what, country)  {
+function timezone_identifiers_list(what, country) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Object argument shown in one place, but not in another

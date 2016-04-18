@@ -1,4 +1,4 @@
-module.exports = function runkit_class_adopt (classname, parentname)  {
+function runkit_class_adopt(classname, parentname) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Function can only obtain and set classes from the global context

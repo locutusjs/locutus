@@ -1,4 +1,4 @@
-module.exports = function date_create_from_format (dt, format, time, tzo)  {
+function date_create_from_format(dt, format, time, tzo) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var dt = date_create();

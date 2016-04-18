@@ -1,4 +1,4 @@
-module.exports = function timezone_abbreviations_list ()  {
+function timezone_abbreviations_list() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +      input by: ChaosNo1

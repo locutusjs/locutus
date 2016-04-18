@@ -1,4 +1,4 @@
-module.exports = function constant (name)  {
+function constant(name) {
   // http://kevin.vanzonneveld.net
   // +   original by: Paulo Freitas
   // +   improved by: Brett Zamir (http://brett-zamir.me)

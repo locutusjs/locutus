@@ -1,4 +1,4 @@
-module.exports = function ob_get_length ()  {
+function ob_get_length() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: ob_get_length();

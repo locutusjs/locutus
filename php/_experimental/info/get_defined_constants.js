@@ -1,4 +1,4 @@
-module.exports = function get_defined_constants (categorize)  {
+function get_defined_constants(categorize) {
   // From: http://phpjs.org/functions
   // +    original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Could possibly substitute some others like M_PI with JavaScript's Math.PI, etc., but here

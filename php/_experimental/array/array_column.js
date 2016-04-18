@@ -1,4 +1,4 @@
-module.exports = function array_column (array, column_key, index_key)  {
+function array_column(array, column_key, index_key) {
   // +   original by: Marcelo Camargo (https://github.com/haskellcamargo/)
   // %        note 1: Works only with associative objects, returning an empty
   // %        note 1: object in case of failure.

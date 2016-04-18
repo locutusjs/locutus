@@ -13,7 +13,7 @@ function hebrevc (hebrew_text, max_chars_per_line) {
         return false;
     }
 
-    return hebrew_text.replace(/[\u05d0-\u05ea \t\n\r!#$%&ï¿½()*+,\-./:;<=>\\?@\[\]^_ï¿½{|}~]*/, // hebrew, space, tab, newline, carriage return, punct // [\u0021-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007E]
+    return hebrew_text.replace(/[\u05d0-\u05ea \t\n\r!#$%&’()*+,\-./:;<=>\\?@\[\]^_‘{|}~]*/, // hebrew, space, tab, newline, carriage return, punct // [\u0021-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007E]
         function (n0) {
             for (var i = n0.length - 1, output = ''; i >= 0; i--) {
                 var c = n0.charAt(i);

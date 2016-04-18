@@ -1,4 +1,4 @@
-module.exports = function ob_implicit_flush ()  {
+function ob_implicit_flush() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: ob_implicit_flush();

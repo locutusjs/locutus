@@ -1,4 +1,4 @@
-module.exports = function php_user_filter ()  {
+function php_user_filter() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: To be extended on class refererenced in second argument of stream_filter_register()

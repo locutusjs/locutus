@@ -1,4 +1,4 @@
-module.exports = function assert (assertion)  {
+function assert(assertion) {
   // From: http://phpjs.org/functions
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Do not pass untrusted user input to assert() in string form (you can test it beforehand though)

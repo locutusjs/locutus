@@ -1,4 +1,4 @@
-module.exports = function restore_error_handler ()  {
+function restore_error_handler() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: restore_error_handler();

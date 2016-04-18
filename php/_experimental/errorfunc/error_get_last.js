@@ -1,4 +1,4 @@
-module.exports = function error_get_last ()  {
+function error_get_last() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: error_get_last();
