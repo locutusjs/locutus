@@ -282,17 +282,27 @@ LocutusUtil.prototype.test = function (params, cb) {
         continue
       }
 
+      var testExpected = params.headKeys.returns[i].join('\n')
+
       // Needs an eval so types are cast properly, also, expected may
       // contain code
-      eval('test.expected = ' + params.headKeys.returns[i].join('\n') + '')
+      eval('test.expected = ' + testExpected + '')
 
       // Let's do something evil. Execute line by line (see date.js why)
       // We need test.reslult be the last result of the example code
       for (var j in params.headKeys.example[i]) {
+        var testRun = params.headKeys.example[i][j]
+        var pat = new RegExp('([a-zA-Z_]+\\.)(' + params.func_name + ')', 'g')
+
+        // Remove category e.g. strings.Contains => Contains
+        testRun = testRun.replace(pat, '$2')
+        // console.log({pat:pat, testRun:testRun})
+
         if (+j === params.headKeys.example[i].length - 1) {
-          eval('test.result = ' + params.headKeys.example[i][j] + '')
+          // last action gets saved
+          eval('test.result = ' + testRun + '')
         } else {
-          eval(params.headKeys.example[i][j] + '')
+          eval(testRun + '')
         }
       }
 

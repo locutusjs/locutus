@@ -22,16 +22,24 @@ pushd "${target}" > /dev/null
     -not \( -path './_*' -prune \) \
     ! -name index.js \
     ! -name known-failures.txt \
+    ! -name .DS_Store \
   | egrep -v '^\.$' \
   | sed 's#\.js##g' \
   | sed 's#\./##g'
   )
 
   rm -f index.js
-  for entry in $(echo ${entries}); do
-    echo "module.exports['${entry}'] = require('./${entry}')" >> index.js
-    if [ -d "${entry}" ]; then
-      "${__file}" "${entry}"
+  for fileEntry in $(echo ${entries}); do
+    modEntry="${fileEntry}"
+
+    # To compensate for Git & Windows not liking that we have index.js and Index.js
+    if [ "${modEntry}" = "Index2" ]; then
+      modEntry="Index"
+    fi
+
+    echo "module.exports['${modEntry}'] = require('./${fileEntry}')" >> index.js
+    if [ -d "${fileEntry}" ]; then
+      "${__file}" "${fileEntry}"
     fi
   done
 popd > /dev/null

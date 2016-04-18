@@ -26,7 +26,7 @@ Understandibly this has [raised](https://github.com/kvz/locutus/issues/75)
 It is still possible to bundle 4 useful functions:
 
 ```bash
-# - Note that this combined 4 Locutus functions into a file called: myLocutus.js
+# - Note that this combined 4 Locutus functions into a file called: myLocutus
 # and minified version: myphp.min.js in the current directory.
 # - Note that this throws all functions into the
 # global scope. It would be better to put them in a dedicated locutus object.
@@ -35,14 +35,14 @@ curl -sk https://raw.github.com/kvz/locutus/31bf3129f08672f8c1d6d0dcad2368ebc4ac
 ,datetime/strtotime\
 ,strings/md5\
 ,strings/vsprintf\
-}.js |tee ./myLocutus.js && \
+}.js |tee ./myLocutus && \
 curl -vo ./myphp.min.js \
     -X POST \
     -H 'Expect: ' \
     --data-urlencode compilation_level="SIMPLE_OPTIMIZATIONS" \
     --data-urlencode output_format="text" \
     --data-urlencode output_info="compiled_code" \
-    --data-urlencode js_code@myLocutus.js \
+    --data-urlencode js_code@myLocutus \
     http://closure-compiler.appspot.com/compile
 ```
 
