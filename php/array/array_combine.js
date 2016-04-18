@@ -1,4 +1,4 @@
-module.exports = function array_combine (keys, values) {
+function array_combine (keys, values) {
   //  discuss at: http://phpjs.org/functions/array_combine/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)

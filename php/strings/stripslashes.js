@@ -1,4 +1,4 @@
-module.exports = function stripslashes (str) {
+function stripslashes (str) {
   //       discuss at: http://phpjs.org/functions/stripslashes/
   //      original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //      improved by: Ates Goral (http://magnetiq.com)

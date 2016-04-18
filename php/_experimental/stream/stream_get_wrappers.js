@@ -1,4 +1,4 @@
-module.exports = function stream_get_wrappers ()  {
+function stream_get_wrappers() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: stream_get_wrappers();

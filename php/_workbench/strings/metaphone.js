@@ -1,4 +1,4 @@
-module.exports = function metaphone (str)  {
+function metaphone(str) {
   // The code below is based on description from Wikipedia (http://en.wikipedia.org/wiki/Metaphone)
   // There are some modifications applied, like
   // - changing the order of rules

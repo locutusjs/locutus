@@ -1,4 +1,4 @@
-module.exports = function bcsqrt (operand, scale)  {
+function bcsqrt(operand, scale) {
   // http://kevin.vanzonneveld.net
   // +   original by: Robin Speekenbrink (http://www.kingsquare.nl/))
 

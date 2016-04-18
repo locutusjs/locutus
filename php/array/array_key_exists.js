@@ -1,4 +1,4 @@
-module.exports = function array_key_exists (key, search) {
+function array_key_exists (key, search) {
   //  discuss at: http://phpjs.org/functions/array_key_exists/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Felix Geisendoerfer (http://www.debuggable.com/felix)

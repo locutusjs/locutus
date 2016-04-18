@@ -1,4 +1,4 @@
-module.exports = function range (low, high, step) {
+function range (low, high, step) {
   //  discuss at: http://phpjs.org/functions/range/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //   example 1: range ( 0, 12 );

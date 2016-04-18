@@ -1,4 +1,4 @@
-module.exports = function dcngettext (domain, msgid1, msgid2, n, category)  {
+function dcngettext(domain, msgid1, msgid2, n, category) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: setlocale

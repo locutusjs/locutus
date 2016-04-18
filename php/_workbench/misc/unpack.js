@@ -1,4 +1,4 @@
-module.exports = function unpack (format, data)  {
+function unpack(format, data) {
   // http://kevin.vanzonneveld.net
   // +   original by: Tim de Koning (http://www.kingsquare.nl)
   // +      parts by: Jonas Raoni Soares Silva - http://www.jsfromhell.com

@@ -1,4 +1,4 @@
-module.exports = function session_decode (str)  {
+function session_decode(str) {
   // http://kevin.vanzonneveld.net
   // +   original by: Louis Stowasser
   // -    depends on: unserialize

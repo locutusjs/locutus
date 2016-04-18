@@ -1,4 +1,4 @@
-module.exports = function nl2br (str, is_xhtml) {
+function nl2br (str, is_xhtml) {
   //  discuss at: http://phpjs.org/functions/nl2br/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Philip Peterson

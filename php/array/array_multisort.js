@@ -1,4 +1,4 @@
-module.exports = function array_multisort (arr) {
+function array_multisort (arr) {
   //  discuss at: http://phpjs.org/functions/array_multisort/
   // original by: Theriault
   //   example 1: array_multisort([1, 2, 1, 2, 1, 2], [1, 2, 3, 4, 5, 6]);

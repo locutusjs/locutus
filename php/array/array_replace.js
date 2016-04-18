@@ -1,4 +1,4 @@
-module.exports = function array_replace (arr) {
+function array_replace (arr) {
   //  discuss at: http://phpjs.org/functions/array_replace/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"});

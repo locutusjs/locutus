@@ -1,4 +1,4 @@
-module.exports = function array_intersect (arr1) {
+function array_intersect (arr1) {
   //  discuss at: http://phpjs.org/functions/array_intersect/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: These only output associative arrays (would need to be

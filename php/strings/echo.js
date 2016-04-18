@@ -1,4 +1,4 @@
-module.exports = function echo () {
+function echo () {
   //  discuss at: http://phpjs.org/functions/echo/
   // original by: Philip Peterson
   // improved by: echo is bad

@@ -1,4 +1,4 @@
-module.exports = function serialize (mixed_value) {
+function serialize (mixed_value) {
   //  discuss at: http://phpjs.org/functions/serialize/
   // original by: Arpad Ray (mailto:arpad@php.net)
   // improved by: Dino

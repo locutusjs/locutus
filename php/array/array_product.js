@@ -1,4 +1,4 @@
-module.exports = function array_product (input) {
+function array_product (input) {
   //  discuss at: http://phpjs.org/functions/array_product/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //   example 1: array_product([ 2, 4, 6, 8 ]);

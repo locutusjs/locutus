@@ -1,4 +1,4 @@
-module.exports = function preg_split (pattern, subject, limit, flags)  {
+function preg_split(pattern, subject, limit, flags) {
   // http://kevin.vanzonneveld.net
   // + original by: Marco Marchiò
   // * example 1: preg_split(/[\s,]+/, 'hypertext language, programming');

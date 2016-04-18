@@ -1,4 +1,4 @@
-module.exports = function bcmul (left_operand, right_operand, scale) {
+function bcmul (left_operand, right_operand, scale) {
   //  discuss at: http://phpjs.org/functions/bcmul/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //  depends on: _phpjs_shared_bc

@@ -1,4 +1,4 @@
-module.exports = function easter_date (year)  {
+function easter_date(year) {
   // based on algorithm from polish wikipedia (http://pl.wikipedia.org/wiki/Wielkanoc)
 
   year = isNaN(year) ? new Date().getFullYear() : +year;

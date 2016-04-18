@@ -1,4 +1,4 @@
-module.exports = function array_diff_assoc (arr1) {
+function array_diff_assoc (arr1) {
   //  discuss at: http://phpjs.org/functions/array_diff_assoc/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: 0m3r

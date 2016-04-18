@@ -1,4 +1,4 @@
-module.exports = function stream_default_encoding (encoding)  {
+function stream_default_encoding(encoding) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Not yet documented at PHP site

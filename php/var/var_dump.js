@@ -1,4 +1,4 @@
-module.exports = function var_dump () {
+function var_dump () {
   //  discuss at: http://phpjs.org/functions/var_dump/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Zahlii

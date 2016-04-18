@@ -1,4 +1,4 @@
-module.exports = function runkit_superglobals ()  {
+function runkit_superglobals() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: You must manually define the superglobals to be able to use them.

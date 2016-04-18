@@ -1,4 +1,4 @@
-module.exports = function session_name (name)  {
+function session_name(name) {
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: session_name('aNewSess');
   // *     returns 1: 'PHPSESSID'

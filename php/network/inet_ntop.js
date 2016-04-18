@@ -1,4 +1,4 @@
-module.exports = function inet_ntop (a) {
+function inet_ntop (a) {
   //  discuss at: http://phpjs.org/functions/inet_ntop/
   // original by: Theriault
   //   example 1: inet_ntop('\x7F\x00\x00\x01');

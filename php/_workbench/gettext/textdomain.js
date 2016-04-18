@@ -1,4 +1,4 @@
-module.exports = function textdomain (domain)  {
+function textdomain(domain) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: textdomain('myapp');

@@ -1,4 +1,4 @@
-module.exports = function strtoupper (str) {
+function strtoupper (str) {
   //  discuss at: http://phpjs.org/functions/strtoupper/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Onno Marsman

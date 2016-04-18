@@ -1,4 +1,4 @@
-module.exports = function str_shuffle (str) {
+function str_shuffle (str) {
   //  discuss at: http://phpjs.org/functions/str_shuffle/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: shuffled = str_shuffle("abcdef");

@@ -1,4 +1,4 @@
-module.exports = function getenv (varname) {
+function getenv (varname) {
   //  discuss at: http://phpjs.org/functions/getenv/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: We are not using $_ENV as in PHP, you could define

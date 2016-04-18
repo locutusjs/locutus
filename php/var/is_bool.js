@@ -1,4 +1,4 @@
-module.exports = function is_bool (mixed_var) {
+function is_bool (mixed_var) {
   //  discuss at: http://phpjs.org/functions/is_bool/
   // original by: Onno Marsman
   // improved by: CoursesWeb (http://www.coursesweb.net/)

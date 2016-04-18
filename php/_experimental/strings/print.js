@@ -1,4 +1,4 @@
-module.exports = function print (arg)  {
+function print(arg) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Implemented correctly, but causes a problem for the phpjs.org compiler

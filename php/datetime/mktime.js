@@ -1,4 +1,4 @@
-module.exports = function mktime () {
+function mktime () {
   //  discuss at: http://phpjs.org/functions/mktime/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: baris ozdil

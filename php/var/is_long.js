@@ -1,4 +1,4 @@
-module.exports = function is_long (mixed_var) {
+function is_long (mixed_var) {
   //  discuss at: http://phpjs.org/functions/is_long/
   // original by: Paulo Freitas
   //  depends on: is_float

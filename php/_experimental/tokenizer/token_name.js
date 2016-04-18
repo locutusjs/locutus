@@ -1,4 +1,4 @@
-module.exports = function token_name (token)  {
+function token_name(token) {
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %        note 1: Token numbers actually depend on the PHP version
   // *     example 1: token_name(258);

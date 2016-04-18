@@ -1,4 +1,4 @@
-module.exports = function bcpow (left, right, scale)  {
+function bcpow(left, right, scale) {
   // http://kevin.vanzonneveld.net
   // +   original by: Robin Speekenbrink (http://www.kingsquare.nl/))
 

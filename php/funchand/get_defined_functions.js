@@ -1,4 +1,4 @@
-module.exports = function get_defined_functions () {
+function get_defined_functions () {
   //  discuss at: http://phpjs.org/functions/get_defined_functions/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)

@@ -1,4 +1,4 @@
-module.exports = function gmstrftime (format, timestamp) {
+function gmstrftime (format, timestamp) {
   //  discuss at: http://phpjs.org/functions/gmstrftime/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: Alex

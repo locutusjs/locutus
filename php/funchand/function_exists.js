@@ -1,4 +1,4 @@
-module.exports = function function_exists (func_name) {
+function function_exists (func_name) {
   //  discuss at: http://phpjs.org/functions/function_exists/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Steve Clay

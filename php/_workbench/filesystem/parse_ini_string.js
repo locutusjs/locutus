@@ -1,7 +1,7 @@
 // Original: http://nl3.php.net/manual/en/function.parse-ini-file.php#78815
 
 
-module.exports = function parse_ini_string ($filepath )  {
+function parse_ini_string($filepath ) {
   $ini = file($filepath);
   if (count($ini) == 0) { return array(); }
   $sections = array();

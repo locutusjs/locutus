@@ -1,4 +1,4 @@
-module.exports = function stream_filter_append (stream, filtername, read_write, params)  {
+function stream_filter_append(stream, filtername, read_write, params) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var fp = fopen('test.txt', 'w+');

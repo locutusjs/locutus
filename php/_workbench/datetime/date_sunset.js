@@ -1,4 +1,4 @@
-module.exports = function date_sunset (timestamp, format, latitude, longitude, zenith, gmt_offset)  {
+function date_sunset(timestamp, format, latitude, longitude, zenith, gmt_offset) {
   // depends on: ini_get
 
   var calc_sunset = 1; // One part that differs from date_sunrise

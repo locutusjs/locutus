@@ -1,4 +1,4 @@
-module.exports = function strcasecmp (f_string1, f_string2) {
+function strcasecmp (f_string1, f_string2) {
   //  discuss at: http://phpjs.org/functions/strcasecmp/
   // original by: Martijn Wieringa
   // bugfixed by: Onno Marsman

@@ -1,4 +1,4 @@
-module.exports = function getdate (timestamp) {
+function getdate (timestamp) {
   //  discuss at: http://phpjs.org/functions/getdate/
   // original by: Paulo Freitas
   //    input by: Alex

@@ -1,4 +1,4 @@
-module.exports = function runkit_method_rename (classname, methodname, newname)  {
+function runkit_method_rename(classname, methodname, newname) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: runkit_method_rename('someClass', 'someMethod', 'newMethod');

@@ -1,4 +1,4 @@
-module.exports = function chr (codePt) {
+function chr (codePt) {
   //  discuss at: http://phpjs.org/functions/chr/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)

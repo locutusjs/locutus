@@ -1,4 +1,4 @@
-module.exports = function substr_compare (main_str, str, offset, length, case_insensitivity) {
+function substr_compare (main_str, str, offset, length, case_insensitivity) {
   //  discuss at: http://phpjs.org/functions/substr_compare/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: strcasecmp, strcmp

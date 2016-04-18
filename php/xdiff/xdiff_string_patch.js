@@ -1,4 +1,4 @@
-module.exports = function xdiff_string_patch (originalStr, patch, flags, error) {
+function xdiff_string_patch (originalStr, patch, flags, error) {
   //  discuss at: http://phpjs.org/functions/xdiff_string_patch/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Steven Levithan (stevenlevithan.com)

@@ -1,4 +1,4 @@
-module.exports = function session_unregister (name)  {
+function session_unregister(name) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Deprecated in PHP
@@ -12,7 +12,7 @@ module.exports = function session_unregister (name)  {
   return true;
 }
 
-module.exports = function session_unregister ()  {
+function session_unregister() {
   // http://kevin.vanzonneveld.net
   // +   original by: Louis Stowasser
   // +   improved by: Brett Zamir (http://brett-zamir.me)

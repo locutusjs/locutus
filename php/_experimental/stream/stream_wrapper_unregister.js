@@ -1,4 +1,4 @@
-module.exports = function stream_wrapper_unregister (protocol)  {
+function stream_wrapper_unregister(protocol) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: stream_wrapper_unregister('var');

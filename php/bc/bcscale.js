@@ -1,4 +1,4 @@
-module.exports = function bcscale (scale) {
+function bcscale (scale) {
   //  discuss at: http://phpjs.org/functions/bcscale/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //  depends on: _phpjs_shared_bc

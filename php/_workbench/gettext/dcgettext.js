@@ -1,4 +1,4 @@
-module.exports = function dcgettext (domain, msg, category)  {
+function dcgettext(domain, msg, category) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: setlocale

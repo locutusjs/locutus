@@ -1,4 +1,4 @@
-module.exports = function expm1 (x) {
+function expm1 (x) {
   //  discuss at: http://phpjs.org/functions/expm1/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Robert Eisele (http://www.xarg.org/)

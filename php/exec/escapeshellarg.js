@@ -1,4 +1,4 @@
-module.exports = function escapeshellarg (arg) {
+function escapeshellarg (arg) {
   //  discuss at: http://phpjs.org/functions/escapeshellarg/
   // original by: Felix Geisendoerfer (http://www.debuggable.com/felix)
   // improved by: Brett Zamir (http://brett-zamir.me)

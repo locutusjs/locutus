@@ -1,4 +1,4 @@
-module.exports = function end (arr) {
+function end (arr) {
   //  discuss at: http://phpjs.org/functions/end/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Legaev Andrey

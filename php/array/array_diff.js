@@ -1,4 +1,4 @@
-module.exports = function array_diff (arr1) {
+function array_diff (arr1) {
   //  discuss at: http://phpjs.org/functions/array_diff/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Sanjoy Roy

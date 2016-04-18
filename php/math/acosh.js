@@ -1,4 +1,4 @@
-module.exports = function acosh (arg) {
+function acosh (arg) {
   //  discuss at: http://phpjs.org/functions/acosh/
   // original by: Onno Marsman
   //   example 1: acosh(8723321.4);

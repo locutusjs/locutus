@@ -1,4 +1,4 @@
-module.exports = function localeconv () {
+function localeconv () {
   //  discuss at: http://phpjs.org/functions/localeconv/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale

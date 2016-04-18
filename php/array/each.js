@@ -1,4 +1,4 @@
-module.exports = function each (arr) {
+function each (arr) {
   //  discuss at: http://phpjs.org/functions/each/
   // original by: Ates Goral (http://magnetiq.com)
   //  revised by: Brett Zamir (http://brett-zamir.me)

@@ -1,4 +1,4 @@
-module.exports = function levenshtein (s1, s2, cost_ins, cost_rep, cost_del) {
+function levenshtein (s1, s2, cost_ins, cost_rep, cost_del) {
   //       discuss at: http://phpjs.org/functions/levenshtein/
   //      original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   //      bugfixed by: Onno Marsman

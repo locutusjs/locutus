@@ -1,4 +1,4 @@
-module.exports = function gettype (mixed_var) {
+function gettype (mixed_var) {
   //  discuss at: http://phpjs.org/functions/gettype/
   // original by: Paulo Freitas
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

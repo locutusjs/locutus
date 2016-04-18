@@ -1,4 +1,4 @@
-module.exports = function array_pop (inputArr) {
+function array_pop (inputArr) {
   //  discuss at: http://phpjs.org/functions/array_pop/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

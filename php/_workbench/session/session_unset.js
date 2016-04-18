@@ -1,4 +1,4 @@
-module.exports = function session_unset ()  {
+function session_unset() {
   // http://kevin.vanzonneveld.net
   // +   original by: Louis Stowasser
   // +   improved by: Brett Zamir (http://brett-zamir.me)

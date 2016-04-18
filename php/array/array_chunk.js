@@ -1,4 +1,4 @@
-module.exports = function array_chunk (input, size, preserve_keys) {
+function array_chunk (input, size, preserve_keys) {
   //  discuss at: http://phpjs.org/functions/array_chunk/
   // original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // improved by: Brett Zamir (http://brett-zamir.me)

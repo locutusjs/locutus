@@ -1,4 +1,4 @@
-module.exports = function reset (arr) {
+function reset (arr) {
   //  discuss at: http://phpjs.org/functions/reset/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Legaev Andrey

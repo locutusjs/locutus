@@ -1,4 +1,4 @@
-module.exports = function trim (str, charlist) {
+function trim (str, charlist) {
   //  discuss at: http://phpjs.org/functions/trim/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: mdsjack (http://www.mdsjack.bo.it)

@@ -1,4 +1,4 @@
-module.exports = function shuffle (inputArr) {
+function shuffle (inputArr) {
   //  discuss at: http://phpjs.org/functions/shuffle/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

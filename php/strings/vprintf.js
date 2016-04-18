@@ -1,4 +1,4 @@
-module.exports = function vprintf (format, args) {
+function vprintf (format, args) {
   //       discuss at: http://phpjs.org/functions/vprintf/
   //      original by: Ash Searle (http://hexmen.com/blog/)
   //      improved by: Michael White (http://getsprink.com)

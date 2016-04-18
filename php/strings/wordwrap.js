@@ -1,4 +1,4 @@
-module.exports = function wordwrap (str, int_width, str_break, cut) {
+function wordwrap (str, int_width, str_break, cut) {
   //  discuss at: http://phpjs.org/functions/wordwrap/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // improved by: Nick Callen

@@ -1,4 +1,4 @@
-module.exports = function log (arg, base) {
+function log (arg, base) {
   //  discuss at: http://phpjs.org/functions/log/
   // original by: Onno Marsman
   // improved by: Brett Zamir (http://brett-zamir.me)

@@ -32,7 +32,7 @@ function $_SESSION() {
   return session_set_cookie('JSSESSID', t.serialize(t.$_SESSION), lifetime, path, domain, secure);
 }
 
-module.exports = function session_update ()  {
+function session_update() {
   // -    depends on: setcookie
 	this.setcookie('JSSESSID', this.serialize($_SESSION));
 }

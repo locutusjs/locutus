@@ -1,4 +1,4 @@
-module.exports = function split (delimiter, string) {
+function split (delimiter, string) {
   //  discuss at: http://phpjs.org/functions/split/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  depends on: explode

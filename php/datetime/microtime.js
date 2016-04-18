@@ -1,4 +1,4 @@
-module.exports = function microtime (get_as_float) {
+function microtime (get_as_float) {
   //  discuss at: http://phpjs.org/functions/microtime/
   // original by: Paulo Freitas
   // improved by: Dumitru Uzun (http://duzun.me)

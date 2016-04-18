@@ -1,4 +1,4 @@
-module.exports = function stream_register_wrapper (protocol, classname, flags)  {
+function stream_register_wrapper(protocol, classname, flags) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: stream_wrapper_register

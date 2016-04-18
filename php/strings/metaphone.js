@@ -1,4 +1,4 @@
-module.exports = function metaphone (word, max_phonemes) {
+function metaphone (word, max_phonemes) {
   //  discuss at: http://phpjs.org/functions/metaphone/
   // original by: Greg Frazier
   // improved by: Brett Zamir (http://brett-zamir.me)

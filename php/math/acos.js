@@ -1,4 +1,4 @@
-module.exports = function acos (arg) {
+function acos (arg) {
   //  discuss at: http://phpjs.org/functions/acos/
   // original by: Onno Marsman
   //        note: Sorry about the crippled test. Needed because precision differs accross platforms.

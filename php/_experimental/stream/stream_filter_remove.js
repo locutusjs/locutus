@@ -1,4 +1,4 @@
-module.exports = function stream_filter_remove (stream_filter)  {
+function stream_filter_remove(stream_filter) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var fp = fopen("test.txt", "rw");

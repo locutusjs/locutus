@@ -2,7 +2,7 @@
 /**
 * Get value of a cookie
 */
-module.exports = function getcookie (name)  {
+function getcookie(name) {
   var cookies = document.cookie.split(';'), i = 0, l = cookies.length,
       current;
   for (; i < l; i++) {

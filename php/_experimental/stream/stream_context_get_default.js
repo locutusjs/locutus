@@ -1,4 +1,4 @@
-module.exports = function stream_context_get_default (options)  {
+function stream_context_get_default(options) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: stream_context_create

@@ -1,4 +1,4 @@
-module.exports = function str_ireplace (search, replace, subject, count) {
+function str_ireplace (search, replace, subject, count) {
   //  discuss at: http://phpjs.org/functions/str_ireplace/
   // original by: Glen Arason (http://CanadianDomainRegistry.ca)
   //        note: Case-insensitive version of str_replace()

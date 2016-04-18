@@ -1,4 +1,4 @@
-module.exports = function strrev (string) {
+function strrev (string) {
   //       discuss at: http://phpjs.org/functions/strrev/
   //      original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //      bugfixed by: Onno Marsman

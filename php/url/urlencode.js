@@ -1,4 +1,4 @@
-module.exports = function urlencode (str) {
+function urlencode (str) {
   //       discuss at: http://phpjs.org/functions/urlencode/
   //      original by: Philip Peterson
   //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

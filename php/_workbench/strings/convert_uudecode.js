@@ -1,4 +1,4 @@
-module.exports = function convert_uudecode (str)  {
+function convert_uudecode(str) {
   // http://kevin.vanzonneveld.net
   // +   original by: Ole Vrijenhoek
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)

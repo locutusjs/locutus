@@ -1,4 +1,4 @@
-module.exports = function sha1_file (str_filename) {
+function sha1_file (str_filename) {
   //  discuss at: http://phpjs.org/functions/sha1_file/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  depends on: file_get_contents

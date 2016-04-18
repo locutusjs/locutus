@@ -1,4 +1,4 @@
-module.exports = function sinh (arg) {
+function sinh (arg) {
   //  discuss at: http://phpjs.org/functions/sinh/
   // original by: Onno Marsman
   //   example 1: sinh(-0.9834330348825909);

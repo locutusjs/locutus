@@ -1,4 +1,4 @@
-module.exports = function is_nan (val) {
+function is_nan (val) {
   //  discuss at: http://phpjs.org/functions/is_nan/
   // original by: Onno Marsman
   //    input by: Robin

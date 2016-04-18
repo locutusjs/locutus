@@ -1,4 +1,4 @@
-module.exports = function sscanf (str, format) {
+function sscanf (str, format) {
   //  discuss at: http://phpjs.org/functions/sscanf/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Since JS does not support scalar reference variables, any additional arguments to the function will

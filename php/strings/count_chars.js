@@ -1,4 +1,4 @@
-module.exports = function count_chars (str, mode) {
+function count_chars (str, mode) {
   //  discuss at: http://phpjs.org/functions/count_chars/
   // original by: Ates Goral (http://magnetiq.com)
   // improved by: Jack

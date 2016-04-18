@@ -1,4 +1,4 @@
-module.exports = function strnatcasecmp (str1, str2) {
+function strnatcasecmp (str1, str2) {
   //       discuss at: http://phpjs.org/functions/strnatcasecmp/
   //      original by: Martin Pool
   // reimplemented by: Pierre-Luc Paour

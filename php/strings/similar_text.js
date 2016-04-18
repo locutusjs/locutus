@@ -1,4 +1,4 @@
-module.exports = function similar_text (first, second, percent) {
+function similar_text (first, second, percent) {
   //  discuss at: http://phpjs.org/functions/similar_text/
   // original by: Rafał Kukawski (http://blog.kukawski.pl)
   // bugfixed by: Chris McMacken

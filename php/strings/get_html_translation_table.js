@@ -1,4 +1,4 @@
-module.exports = function get_html_translation_table (table, quote_style) {
+function get_html_translation_table (table, quote_style) {
   //  discuss at: http://phpjs.org/functions/get_html_translation_table/
   // original by: Philip Peterson
   //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

@@ -1,4 +1,4 @@
-module.exports = function base64_decode (data) {
+function base64_decode (data) {
   //  discuss at: http://phpjs.org/functions/base64_decode/
   // original by: Tyler Akins (http://rumkin.com)
   // improved by: Thunder.m

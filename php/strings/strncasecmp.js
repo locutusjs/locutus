@@ -1,4 +1,4 @@
-module.exports = function strncasecmp (argStr1, argStr2, len) {
+function strncasecmp (argStr1, argStr2, len) {
   //  discuss at: http://phpjs.org/functions/strncasecmp/
   // original by: Saulo Vallory
   //    input by: Nate

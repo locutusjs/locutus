@@ -1,4 +1,4 @@
-module.exports = function sprintf () {
+function sprintf () {
   //  discuss at: http://phpjs.org/functions/sprintf/
   // original by: Ash Searle (http://hexmen.com/blog/)
   // improved by: Michael White (http://getsprink.com)

@@ -1,4 +1,4 @@
-module.exports = function tanh (arg) {
+function tanh (arg) {
   //  discuss at: http://phpjs.org/functions/tanh/
   // original by: Onno Marsman
   // imprived by: Robert Eisele (http://www.xarg.org/)

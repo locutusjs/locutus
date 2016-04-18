@@ -1,4 +1,4 @@
-module.exports = function array_merge_recursive (arr1, arr2) {
+function array_merge_recursive (arr1, arr2) {
   //  discuss at: http://phpjs.org/functions/array_merge_recursive/
   // original by: Subhasis Deb
   //    input by: Brett Zamir (http://brett-zamir.me)

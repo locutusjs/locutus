@@ -1,4 +1,4 @@
-module.exports = function dngettext (domain, msgid1, msgid2, n)  {
+function dngettext(domain, msgid1, msgid2, n) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: setlocale

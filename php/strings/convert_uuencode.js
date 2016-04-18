@@ -1,4 +1,4 @@
-module.exports = function convert_uuencode (str) {
+function convert_uuencode (str) {
   //       discuss at: http://phpjs.org/functions/convert_uuencode/
   //      original by: Ole Vrijenhoek
   //      bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

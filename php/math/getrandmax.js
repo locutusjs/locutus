@@ -1,4 +1,4 @@
-module.exports = function getrandmax () {
+function getrandmax () {
   //  discuss at: http://phpjs.org/functions/getrandmax/
   // original by: Onno Marsman
   //   example 1: getrandmax();

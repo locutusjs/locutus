@@ -1,4 +1,4 @@
-module.exports = function var_export (mixed_expression, bool_return)  {
+function var_export (mixed_expression, bool_return) {
     // http://kevin.vanzonneveld.net
     // +   original by: Philip Peterson
     // +   improved by: johnrembo
@@ -106,7 +106,7 @@ module.exports = function var_export (mixed_expression, bool_return)  {
     }
 }
 
-module.exports = function echo ()  {
+function echo () {
     // http://kevin.vanzonneveld.net
     // +   original by: Philip Peterson
     // +   improved by: echo is bad

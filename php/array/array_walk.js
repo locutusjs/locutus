@@ -1,4 +1,4 @@
-module.exports = function array_walk (array, funcname, userdata) {
+function array_walk (array, funcname, userdata) {
   //  discuss at: http://phpjs.org/functions/array_walk/
   // original by: Johnny Mast (http://www.phpvrouwen.nl)
   // bugfixed by: David

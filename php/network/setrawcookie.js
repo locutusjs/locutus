@@ -1,4 +1,4 @@
-module.exports = function setrawcookie (name, value, expires, path, domain, secure) {
+function setrawcookie (name, value, expires, path, domain, secure) {
   //  discuss at: http://phpjs.org/functions/setrawcookie/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: setcookie

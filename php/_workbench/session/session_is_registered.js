@@ -1,4 +1,4 @@
-module.exports = function session_is_registered (name)  {
+function session_is_registered(name) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Deprecated in PHP

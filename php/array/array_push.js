@@ -1,4 +1,4 @@
-module.exports = function array_push (inputArr) {
+function array_push (inputArr) {
   //  discuss at: http://phpjs.org/functions/array_push/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)

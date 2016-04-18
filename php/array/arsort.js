@@ -1,4 +1,4 @@
-module.exports = function arsort (inputArr, sort_flags) {
+function arsort (inputArr, sort_flags) {
   //  discuss at: http://phpjs.org/functions/arsort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)

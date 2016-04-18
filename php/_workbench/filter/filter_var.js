@@ -1,4 +1,4 @@
-module.exports = function filter_var (input, filter, options)  {
+function filter_var(input, filter, options) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   improved by: Rafał Kukawski (http://blog.kukawski.pl)

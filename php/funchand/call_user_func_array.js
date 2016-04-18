@@ -1,4 +1,4 @@
-module.exports = function call_user_func_array (cb, parameters) {
+function call_user_func_array (cb, parameters) {
   //  discuss at: http://phpjs.org/functions/call_user_func_array/
   // original by: Thiago Mata (http://thiagomata.blog.com)
   //  revised by: Jon Hohle

@@ -1,4 +1,4 @@
-module.exports = function deg2rad (angle) {
+function deg2rad (angle) {
   //  discuss at: http://phpjs.org/functions/deg2rad/
   // original by: Enrique Gonzalez
   // improved by: Thomas Grainger (http://graingert.co.uk)

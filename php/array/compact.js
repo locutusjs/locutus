@@ -1,4 +1,4 @@
-module.exports = function compact () {
+function compact () {
   //  discuss at: http://phpjs.org/functions/compact/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Jack

@@ -1,4 +1,4 @@
-module.exports = function is_numeric (mixed_var) {
+function is_numeric (mixed_var) {
   //  discuss at: http://phpjs.org/functions/is_numeric/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: David

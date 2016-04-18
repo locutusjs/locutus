@@ -1,4 +1,4 @@
-module.exports = function date_interval_create_from_date_string (time)  {
+function date_interval_create_from_date_string(time) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: DateInterval

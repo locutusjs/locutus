@@ -1,4 +1,4 @@
-module.exports = function fmod (x, y) {
+function fmod (x, y) {
   //  discuss at: http://phpjs.org/functions/fmod/
   // original by: Onno Marsman
   //    input by: Brett Zamir (http://brett-zamir.me)

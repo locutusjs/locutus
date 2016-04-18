@@ -1,4 +1,4 @@
-module.exports = function str_word_count (str, format, charlist) {
+function str_word_count (str, format, charlist) {
   //  discuss at: http://phpjs.org/functions/str_word_count/
   // original by: Ole Vrijenhoek
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

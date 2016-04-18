@@ -1,4 +1,4 @@
-module.exports = function pathinfo (path, options) {
+function pathinfo (path, options) {
   //  discuss at: http://phpjs.org/functions/pathinfo/
   // original by: Nate
   //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

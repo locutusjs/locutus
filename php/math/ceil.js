@@ -1,4 +1,4 @@
-module.exports = function ceil (value) {
+function ceil (value) {
   //  discuss at: http://phpjs.org/functions/ceil/
   // original by: Onno Marsman
   //   example 1: ceil(8723321.4);

@@ -1,4 +1,4 @@
-module.exports = function xmlwriter_write_dtd_entity (xmlwriter, name, content, pe, pubid, sysid, ndataid)  {
+function xmlwriter_write_dtd_entity(xmlwriter, name, content, pe, pubid, sysid, ndataid) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var xmlwriter = xmlwriter_open_memory();

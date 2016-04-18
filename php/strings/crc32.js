@@ -1,4 +1,4 @@
-module.exports = function crc32 (str) {
+function crc32 (str) {
   //  discuss at: http://phpjs.org/functions/crc32/
   // original by: Webtoolkit.info (http://www.webtoolkit.info/)
   // improved by: T0bsn

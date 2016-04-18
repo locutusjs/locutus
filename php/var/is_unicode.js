@@ -1,4 +1,4 @@
-module.exports = function is_unicode (vr) {
+function is_unicode (vr) {
   //  discuss at: http://phpjs.org/functions/is_unicode/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Almost all strings in JavaScript should be Unicode

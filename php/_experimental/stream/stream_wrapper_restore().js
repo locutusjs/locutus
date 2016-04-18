@@ -1,4 +1,4 @@
-module.exports = function stream_wrapper_restore (protocol)  {
+function stream_wrapper_restore(protocol) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: stream_wrapper_restore('http');

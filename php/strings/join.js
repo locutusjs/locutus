@@ -1,4 +1,4 @@
-module.exports = function join (glue, pieces) {
+function join (glue, pieces) {
   //  discuss at: http://phpjs.org/functions/join/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  depends on: implode

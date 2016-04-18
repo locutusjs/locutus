@@ -1,4 +1,4 @@
-module.exports = function strchr (haystack, needle, bool) {
+function strchr (haystack, needle, bool) {
   //  discuss at: http://phpjs.org/functions/strchr/
   // original by: Philip Peterson
   //  depends on: strstr

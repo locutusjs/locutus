@@ -1,4 +1,4 @@
-module.exports = function strnatcmp (f_string1, f_string2, f_version) {
+function strnatcmp (f_string1, f_string2, f_version) {
   //  discuss at: http://phpjs.org/functions/strnatcmp/
   // original by: Martijn Wieringa
   // improved by: Michael White (http://getsprink.com)

@@ -1,4 +1,4 @@
-module.exports = function checkdate (m, d, y) {
+function checkdate (m, d, y) {
   //  discuss at: http://phpjs.org/functions/checkdate/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Pyerre

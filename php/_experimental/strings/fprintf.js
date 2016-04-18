@@ -1,4 +1,4 @@
-module.exports = function fprintf (handle, format)  {
+function fprintf(handle, format) {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir
   // -    depends on: sprintf

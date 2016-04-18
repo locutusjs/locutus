@@ -1,4 +1,4 @@
-module.exports = function str_rot13 (str) {
+function str_rot13 (str) {
   //  discuss at: http://phpjs.org/functions/str_rot13/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // improved by: Ates Goral (http://magnetiq.com)

@@ -1,4 +1,4 @@
-module.exports = function get_defined_vars ()  {
+function get_defined_vars() {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // +   bugfixed by: Brett Zamir (http://brett-zamir.me)

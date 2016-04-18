@@ -1,4 +1,4 @@
-module.exports = function session_destroy ()  {
+function session_destroy() {
   // http://kevin.vanzonneveld.net
   // +   original by: Louis Stowasser
   // +   improved by: Brett Zamir (http://brett-zamir.me)

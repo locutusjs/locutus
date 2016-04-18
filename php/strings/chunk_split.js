@@ -1,4 +1,4 @@
-module.exports = function chunk_split (body, chunklen, end) {
+function chunk_split (body, chunklen, end) {
   //  discuss at: http://phpjs.org/functions/chunk_split/
   // original by: Paulo Freitas
   //    input by: Brett Zamir (http://brett-zamir.me)

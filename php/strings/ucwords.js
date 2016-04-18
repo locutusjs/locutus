@@ -1,4 +1,4 @@
-module.exports = function ucwords (str) {
+function ucwords (str) {
   //  discuss at: http://phpjs.org/functions/ucwords/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // improved by: Waldo Malqui Silva (http://waldo.malqui.info)

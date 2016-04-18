@@ -1,4 +1,4 @@
-module.exports = function cosh (arg) {
+function cosh (arg) {
   //  discuss at: http://phpjs.org/functions/cosh/
   // original by: Onno Marsman
   //   example 1: cosh(-0.18127180117607017);
