@@ -1,4 +1,4 @@
-function isset () {
+module.exports = function isset () {
   //  discuss at: http://phpjs.org/functions/isset/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: FremyCompany

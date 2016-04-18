@@ -1,4 +1,4 @@
-function ucfirst (str) {
+module.exports = function ucfirst (str) {
   //  discuss at: http://phpjs.org/functions/ucfirst/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman

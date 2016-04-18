@@ -1,4 +1,4 @@
-function asinh (arg) {
+module.exports = function asinh (arg) {
   //  discuss at: http://phpjs.org/functions/asinh/
   // original by: Onno Marsman
   //   example 1: asinh(8723321.4);

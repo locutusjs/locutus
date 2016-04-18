@@ -1,4 +1,4 @@
-function is_array (mixed_var) {
+module.exports = function is_array (mixed_var) {
   //  discuss at: http://phpjs.org/functions/is_array/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Legaev Andrey

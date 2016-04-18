@@ -1,4 +1,4 @@
-function array_splice (arr, offst, lgth, replacement) {
+module.exports = function array_splice (arr, offst, lgth, replacement) {
   //  discuss at: http://phpjs.org/functions/array_splice/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: Theriault

@@ -1,4 +1,4 @@
-function quotemeta (str) {
+module.exports = function quotemeta (str) {
   //  discuss at: http://phpjs.org/functions/quotemeta/
   // original by: Paulo Freitas
   //   example 1: quotemeta(". + * ? ^ ( $ )");

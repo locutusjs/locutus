@@ -1,4 +1,4 @@
-function rad2deg (angle) {
+module.exports = function rad2deg (angle) {
   //  discuss at: http://phpjs.org/functions/rad2deg/
   // original by: Enrique Gonzalez
   // improved by: Brett Zamir (http://brett-zamir.me)

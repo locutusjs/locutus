@@ -1,4 +1,4 @@
-function strptime (dateStr, format) {
+module.exports = function strptime (dateStr, format) {
   //  discuss at: http://phpjs.org/functions/strptime/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: strftime

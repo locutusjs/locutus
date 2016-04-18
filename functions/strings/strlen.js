@@ -1,4 +1,4 @@
-function strlen (string) {
+module.exports = function strlen (string) {
   //  discuss at: http://phpjs.org/functions/strlen/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Sakimori

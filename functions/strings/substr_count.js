@@ -1,4 +1,4 @@
-function substr_count (haystack, needle, offset, length) {
+module.exports = function substr_count (haystack, needle, offset, length) {
   //  discuss at: http://phpjs.org/functions/substr_count/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman

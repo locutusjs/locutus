@@ -1,4 +1,4 @@
-function strcspn (str, mask, start, length) {
+module.exports = function strcspn (str, mask, start, length) {
   //  discuss at: http://phpjs.org/functions/strcspn/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: strcspn('abcdefg123', '1234567890');

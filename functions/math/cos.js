@@ -1,4 +1,4 @@
-function cos (arg) {
+module.exports = function cos (arg) {
   //  discuss at: http://phpjs.org/functions/cos/
   // original by: Onno Marsman
   //   example 1: Math.ceil(cos(8723321.4) * 10000000);

@@ -1,4 +1,4 @@
-function abs (mixed_number) {
+module.exports = function abs (mixed_number) {
   //  discuss at: http://phpjs.org/functions/abs/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Karol Kowalski

@@ -1,4 +1,4 @@
-function uniqid (prefix, more_entropy) {
+module.exports = function uniqid (prefix, more_entropy) {
   //  discuss at: http://phpjs.org/functions/uniqid/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: Kankrelune (http://www.webfaktory.info/)

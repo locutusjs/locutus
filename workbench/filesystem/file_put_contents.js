@@ -1,4 +1,4 @@
-function file_put_contents(aFile, data, flags, context) {
+module.exports = function file_put_contents (aFile, data, flags, context)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Only works at present in Mozilla (and unfinished too); might also allow context to determine

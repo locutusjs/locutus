@@ -1,4 +1,4 @@
-function session_encode() {
+module.exports = function session_encode ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Louis Stowasser
   // -    depends on: urldecode

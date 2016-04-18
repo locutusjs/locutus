@@ -1,4 +1,4 @@
-function array_filter (arr, func) {
+module.exports = function array_filter (arr, func) {
   //  discuss at: http://phpjs.org/functions/array_filter/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: max4ever

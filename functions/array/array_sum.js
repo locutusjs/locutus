@@ -1,4 +1,4 @@
-function array_sum (array) {
+module.exports = function array_sum (array) {
   //  discuss at: http://phpjs.org/functions/array_sum/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Nate

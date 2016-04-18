@@ -1,4 +1,4 @@
-function session_set_cookie_params(l, p, d, s, h) {
+module.exports = function session_set_cookie_params (l, p, d, s, h)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Louis Stowasser
   // +   improved by: Brett Zamir (http://brett-zamir.me)

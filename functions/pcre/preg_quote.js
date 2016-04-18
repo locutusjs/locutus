@@ -1,4 +1,4 @@
-function preg_quote (str, delimiter) {
+module.exports = function preg_quote (str, delimiter) {
   //  discuss at: http://phpjs.org/functions/preg_quote/
   // original by: booeyOH
   // improved by: Ates Goral (http://magnetiq.com)

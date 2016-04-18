@@ -1,4 +1,4 @@
-function date_parse (date) {
+module.exports = function date_parse (date) {
   //  discuss at: http://phpjs.org/functions/date_parse/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: strtotime

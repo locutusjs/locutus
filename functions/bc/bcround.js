@@ -1,4 +1,4 @@
-function bcround (val, precision) {
+module.exports = function bcround (val, precision) {
   //  discuss at: http://phpjs.org/functions/bcround/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //  depends on: _phpjs_shared_bc

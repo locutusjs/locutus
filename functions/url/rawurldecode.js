@@ -1,4 +1,4 @@
-function rawurldecode (str) {
+module.exports = function rawurldecode (str) {
   //       discuss at: http://phpjs.org/functions/rawurldecode/
   //      original by: Brett Zamir (http://brett-zamir.me)
   //         input by: travc

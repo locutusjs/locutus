@@ -1,4 +1,4 @@
-function strtr (str, from, to) {
+module.exports = function strtr (str, from, to) {
   //  discuss at: http://phpjs.org/functions/strtr/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: uestla

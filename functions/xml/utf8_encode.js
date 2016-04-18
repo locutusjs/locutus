@@ -1,4 +1,4 @@
-function utf8_encode (argString) {
+module.exports = function utf8_encode (argString) {
   //  discuss at: http://phpjs.org/functions/utf8_encode/
   // original by: Webtoolkit.info (http://www.webtoolkit.info/)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

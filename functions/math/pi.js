@@ -1,4 +1,4 @@
-function pi () {
+module.exports = function pi () {
   //  discuss at: http://phpjs.org/functions/pi/
   // original by: Onno Marsman
   // improved by: dude

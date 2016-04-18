@@ -1,4 +1,4 @@
-function array_change_key_case (array, cs) {
+module.exports = function array_change_key_case (array, cs) {
   //  discuss at: http://phpjs.org/functions/array_change_key_case/
   // original by: Ates Goral (http://magnetiq.com)
   // improved by: marrtins

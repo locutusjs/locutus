@@ -1,4 +1,4 @@
-function ord (string) {
+module.exports = function ord (string) {
   //  discuss at: http://phpjs.org/functions/ord/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman

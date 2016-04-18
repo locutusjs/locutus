@@ -1,4 +1,4 @@
-function time_sleep_until (timestamp) {
+module.exports = function time_sleep_until (timestamp) {
   //  discuss at: http://phpjs.org/functions/time_sleep_until/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: For study purposes. Current implementation could lock up the user's browser.

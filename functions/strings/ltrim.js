@@ -1,4 +1,4 @@
-function ltrim (str, charlist) {
+module.exports = function ltrim (str, charlist) {
   //  discuss at: http://phpjs.org/functions/ltrim/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Erkekjetter

@@ -1,4 +1,4 @@
-function printf () {
+module.exports = function printf () {
   //  discuss at: http://phpjs.org/functions/printf/
   // original by: Ash Searle (http://hexmen.com/blog/)
   // improved by: Michael White (http://getsprink.com)

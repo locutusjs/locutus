@@ -1,4 +1,4 @@
-function date_create(time, timezone) {
+module.exports = function date_create (time, timezone)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: DateTime

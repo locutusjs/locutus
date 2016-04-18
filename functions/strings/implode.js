@@ -1,4 +1,4 @@
-function implode (glue, pieces) {
+module.exports = function implode (glue, pieces) {
   //  discuss at: http://phpjs.org/functions/implode/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Waldo Malqui Silva (http://waldo.malqui.info)

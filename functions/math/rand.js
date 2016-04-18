@@ -1,4 +1,4 @@
-function rand (min, max) {
+module.exports = function rand (min, max) {
   //  discuss at: http://phpjs.org/functions/rand/
   // original by: Leslie Hoare
   // bugfixed by: Onno Marsman

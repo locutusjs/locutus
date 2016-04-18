@@ -1,4 +1,4 @@
-function decbin (number) {
+module.exports = function decbin (number) {
   //  discuss at: http://phpjs.org/functions/decbin/
   // original by: Enrique Gonzalez
   // bugfixed by: Onno Marsman

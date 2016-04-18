@@ -1,4 +1,4 @@
-function uksort (inputArr, sorter) {
+module.exports = function uksort (inputArr, sorter) {
   //  discuss at: http://phpjs.org/functions/uksort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)

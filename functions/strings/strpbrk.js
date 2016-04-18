@@ -1,4 +1,4 @@
-function strpbrk (haystack, char_list) {
+module.exports = function strpbrk (haystack, char_list) {
   //  discuss at: http://phpjs.org/functions/strpbrk/
   // original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
   // bugfixed by: Onno Marsman

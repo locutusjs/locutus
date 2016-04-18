@@ -1,4 +1,4 @@
-function gmdate (format, timestamp) {
+module.exports = function gmdate (format, timestamp) {
   //  discuss at: http://phpjs.org/functions/gmdate/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: Alex

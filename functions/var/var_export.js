@@ -1,4 +1,4 @@
-function var_export (mixed_expression, bool_return) {
+module.exports = function var_export (mixed_expression, bool_return) {
   //  discuss at: http://phpjs.org/functions/var_export/
   // original by: Philip Peterson
   // improved by: johnrembo

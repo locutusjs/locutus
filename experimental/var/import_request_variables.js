@@ -1,4 +1,4 @@
-function import_request_variables(types, prefix) {
+module.exports = function import_request_variables (types, prefix)  {
   // http://kevin.vanzonneveld.net
   // +      original by: Jalal Berrami
   // + reimplemented by: Brett Zamir (http://brett-zamir.me)

@@ -1,4 +1,4 @@
-function explode (delimiter, string, limit) {
+module.exports = function explode (delimiter, string, limit) {
   //  discuss at: http://phpjs.org/functions/explode/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //   example 1: explode(' ', 'Kevin van Zonneveld');

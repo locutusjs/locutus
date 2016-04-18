@@ -1,4 +1,4 @@
-function call_user_func (cb) {
+module.exports = function call_user_func (cb) {
   //  discuss at: http://phpjs.org/functions/call_user_func/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Diplom@t (http://difane.com/)

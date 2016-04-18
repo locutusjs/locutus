@@ -1,4 +1,4 @@
-function session_get_cookie_params(l, p, d, s) {
+module.exports = function session_get_cookie_params (l, p, d, s)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1:

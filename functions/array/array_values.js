@@ -1,4 +1,4 @@
-function array_values (input) {
+module.exports = function array_values (input) {
   //  discuss at: http://phpjs.org/functions/array_values/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)

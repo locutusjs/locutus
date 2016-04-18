@@ -1,4 +1,4 @@
-function preg_match(pattern, subject, matches, flags, offset) {
+module.exports = function preg_match (pattern, subject, matches, flags, offset)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Francis Lewis
   // +   improved by: Brett Zamir (http://brett-zamir.me)

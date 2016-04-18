@@ -1,4 +1,4 @@
-function stream_wrapper_register(protocol, classname, flags) {
+module.exports = function stream_wrapper_register (protocol, classname, flags)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: In addition to accepting a global classname, we'll also allow a class constructor to be passed in
@@ -74,7 +74,7 @@ streamWrapper   {
 
   // COPY-AND-PASTE
   /*
-function streamWrapper () {
+module.exports = function stream Wrapper ()  {
     this.context;
 }
 streamWrapper.prototype = {

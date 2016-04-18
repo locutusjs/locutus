@@ -1,4 +1,4 @@
-function dirname (path) {
+module.exports = function dirname (path) {
   //  discuss at: http://phpjs.org/functions/dirname/
   // original by: Ozh
   // improved by: XoraX (http://www.xorax.info)

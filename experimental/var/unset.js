@@ -1,4 +1,4 @@
-function unset() {
+module.exports = function unset ()  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var arr = ['a', 'b', 'c'];

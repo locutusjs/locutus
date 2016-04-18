@@ -1,4 +1,4 @@
-function vfprintf(handle, format, args) {
+module.exports = function vfprintf (handle, format, args)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir
   // -    depends on: sprintf

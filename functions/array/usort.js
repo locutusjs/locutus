@@ -1,4 +1,4 @@
-function usort (inputArr, sorter) {
+module.exports = function usort (inputArr, sorter) {
   //  discuss at: http://phpjs.org/functions/usort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)

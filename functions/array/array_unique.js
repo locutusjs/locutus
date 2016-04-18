@@ -1,4 +1,4 @@
-function array_unique (inputArr) {
+module.exports = function array_unique (inputArr) {
   //  discuss at: http://phpjs.org/functions/array_unique/
   // original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   //    input by: duncan

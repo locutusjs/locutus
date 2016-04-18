@@ -1,4 +1,4 @@
-function empty (mixed_var) {
+module.exports = function empty (mixed_var) {
   //  discuss at: http://phpjs.org/functions/empty/
   // original by: Philippe Baumann
   //    input by: Onno Marsman

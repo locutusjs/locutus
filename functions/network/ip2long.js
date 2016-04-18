@@ -1,4 +1,4 @@
-function ip2long (IP) {
+module.exports = function ip2long (IP) {
   //  discuss at: http://phpjs.org/functions/ip2long/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Victor

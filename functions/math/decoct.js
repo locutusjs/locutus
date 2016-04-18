@@ -1,4 +1,4 @@
-function decoct (number) {
+module.exports = function decoct (number) {
   //  discuss at: http://phpjs.org/functions/decoct/
   // original by: Enrique Gonzalez
   // bugfixed by: Onno Marsman

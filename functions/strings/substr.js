@@ -1,4 +1,4 @@
-function substr (str, start, len) {
+module.exports = function substr (str, start, len) {
   //  discuss at: http://phpjs.org/functions/substr/
   //     version: 909.322
   // original by: Martijn Wieringa

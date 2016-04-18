@@ -1,3 +1,3 @@
-function session_cache_limiter() {
+module.exports = function session_cache_limiter ()  {
 
 }

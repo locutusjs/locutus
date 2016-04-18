@@ -1,4 +1,4 @@
-function quoted_printable_encode (str) {
+module.exports = function quoted_printable_encode (str) {
   //  discuss at: http://phpjs.org/functions/quoted_printable_encode/
   // original by: Theriault
   // improved by: Brett Zamir (http://brett-zamir.me)

@@ -1,4 +1,4 @@
-function time () {
+module.exports = function time () {
   //  discuss at: http://phpjs.org/functions/time/
   // original by: GeekFG (http://geekfg.blogspot.com)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

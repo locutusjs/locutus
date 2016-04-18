@@ -1,4 +1,4 @@
-function htmlentities (string, quote_style, charset, double_encode) {
+module.exports = function htmlentities (string, quote_style, charset, double_encode) {
   //  discuss at: http://phpjs.org/functions/htmlentities/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

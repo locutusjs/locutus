@@ -1,4 +1,4 @@
-function rsort (inputArr, sort_flags) {
+module.exports = function rsort (inputArr, sort_flags) {
   //  discuss at: http://phpjs.org/functions/rsort/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: Brett Zamir (http://brett-zamir.me)

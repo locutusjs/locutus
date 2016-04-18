@@ -1,4 +1,4 @@
-function prev (arr) {
+module.exports = function prev (arr) {
   //  discuss at: http://phpjs.org/functions/prev/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Uses global: php_js to store the array pointer

@@ -1,4 +1,4 @@
-function print_r(array, return_val) {
+module.exports = function print_r (array, return_val)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Michael White (http://getsprink.com)
   // +   improved by: Ben Bryan

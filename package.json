@@ -27,6 +27,9 @@
     "js",
     "phpjs"
   ],
+  "files": [
+    "functions"
+  ],
   "bugs": {
     "url": "https://github.com/kvz/phpjs/issues"
   },
@@ -38,6 +41,7 @@
   "scripts": {
     "build:npm": "node lib/cli.js --action buildnpm --output build/npm.js && ls -al build/npm.js",
     "build": "npm run build:npm",
+    "playground:start": "cd test/browser && node server.js",
     "deploy": "npm run website:deploy",
     "fix": "eslint functions bin lib test tools --fix",
     "lint": "eslint functions",

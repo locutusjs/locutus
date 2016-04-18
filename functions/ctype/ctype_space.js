@@ -1,4 +1,4 @@
-function ctype_space (text) {
+module.exports = function ctype_space (text) {
   //  discuss at: http://phpjs.org/functions/ctype_space/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale

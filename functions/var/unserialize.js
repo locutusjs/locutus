@@ -1,4 +1,4 @@
-function unserialize (data) {
+module.exports = function unserialize (data) {
   //  discuss at: http://phpjs.org/functions/unserialize/
   // original by: Arpad Ray (mailto:arpad@php.net)
   // improved by: Pedro Tainha (http://www.pedrotainha.com)

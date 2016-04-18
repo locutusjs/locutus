@@ -1,4 +1,4 @@
-function is_double (mixed_var) {
+module.exports = function is_double (mixed_var) {
   //  discuss at: http://phpjs.org/functions/is_double/
   // original by: Paulo Freitas
   //  depends on: is_float

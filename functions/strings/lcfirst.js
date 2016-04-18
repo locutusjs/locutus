@@ -1,4 +1,4 @@
-function lcfirst (str) {
+module.exports = function lcfirst (str) {
   //  discuss at: http://phpjs.org/functions/lcfirst/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: lcfirst('Kevin Van Zonneveld');

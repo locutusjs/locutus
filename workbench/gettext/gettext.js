@@ -1,4 +1,4 @@
-function gettext(msg) {
+module.exports = function gettext (msg)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // -    depends on: setlocale

@@ -1,4 +1,4 @@
-function getlastmod () {
+module.exports = function getlastmod () {
   //  discuss at: http://phpjs.org/functions/getlastmod/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Will not work on browsers which don't support document.lastModified

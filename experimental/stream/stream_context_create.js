@@ -1,4 +1,4 @@
-function stream_context_create(options, params) {
+module.exports = function stream_context_create (options, params)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // %          note 1: Can be made to work as a wrapper for proprietary contexts as well

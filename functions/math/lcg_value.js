@@ -1,4 +1,4 @@
-function lcg_value () {
+module.exports = function lcg_value () {
   //  discuss at: http://phpjs.org/functions/lcg_value/
   // original by: Onno Marsman
   //        test: skip

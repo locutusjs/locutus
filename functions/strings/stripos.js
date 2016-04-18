@@ -1,4 +1,4 @@
-function stripos (f_haystack, f_needle, f_offset) {
+module.exports = function stripos (f_haystack, f_needle, f_offset) {
   //  discuss at: http://phpjs.org/functions/stripos/
   // original by: Martijn Wieringa
   //  revised by: Onno Marsman

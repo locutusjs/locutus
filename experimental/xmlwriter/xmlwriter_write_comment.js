@@ -1,4 +1,4 @@
-function xmlwriter_write_comment(xmlwriter, content) {
+module.exports = function xmlwriter_write_comment (xmlwriter, content)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Brett Zamir (http://brett-zamir.me)
   // *     example 1: var xmlwriter = xmlwriter_open_memory();

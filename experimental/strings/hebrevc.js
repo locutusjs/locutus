@@ -1,4 +1,4 @@
-function hebrevc (hebrew_text, max_chars_per_line) {
+module.exports = function hebrevc (hebrew_text, max_chars_per_line)  {
     // http://kevin.vanzonneveld.net
     // +   original by: Brett Zamir (http://brett-zamir.me)
     // %          note 1: max_chars_per_line is not supported and this is only a rough approximation of the function behavior

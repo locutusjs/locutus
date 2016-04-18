@@ -1,4 +1,4 @@
-function bcdiv (left_operand, right_operand, scale) {
+module.exports = function bcdiv (left_operand, right_operand, scale) {
   //  discuss at: http://phpjs.org/functions/bcdiv/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //  depends on: _phpjs_shared_bc

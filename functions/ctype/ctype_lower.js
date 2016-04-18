@@ -1,4 +1,4 @@
-function ctype_lower (text) {
+module.exports = function ctype_lower (text) {
   //  discuss at: http://phpjs.org/functions/ctype_lower/
   // original by: Brett Zamir (http://brett-zamir.me)
   //  depends on: setlocale

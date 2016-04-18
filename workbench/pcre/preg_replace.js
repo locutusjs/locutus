@@ -1,7 +1,7 @@
 //parameter limit is optional (default value is -1)
 //paramater pattern is a string type
 //ex: preg_replace("/Hello/i","Hi",strtoreplace)
-function preg_replace(pattern, replacement, subject, limit) {
+module.exports = function preg_replace (pattern, replacement, subject, limit)  {
   // http://kevin.vanzonneveld.net
   // +   original by: Ferdinand Silva
   // *     example 1: preg_replace('/van/', '', 'Kevin van Zonneveld');

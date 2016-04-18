@@ -1,4 +1,4 @@
-function get_meta_tags (file) {
+module.exports = function get_meta_tags (file) {
   //  discuss at: http://phpjs.org/functions/get_meta_tags/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: This function uses XmlHttpRequest and cannot retrieve resource from different domain.

@@ -1,4 +1,4 @@
-function urldecode (str) {
+module.exports = function urldecode (str) {
   //       discuss at: http://phpjs.org/functions/urldecode/
   //      original by: Philip Peterson
   //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

@@ -1,4 +1,4 @@
-function is_int (mixed_var) {
+module.exports = function is_int (mixed_var) {
   //  discuss at: http://phpjs.org/functions/is_int/
   // original by: Alex
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
