@@ -81,6 +81,8 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 ## Todo
 
 - [x] Split out the npm module so you could do `var sprintf = require('locutus/sprintf')`
+- [ ] Generate Mocha tests via require, vs using eval
+- [ ] Make eslint standard compliant
 - [ ] Auto-deploys via Travis CI
 
 ## Sponsor development
