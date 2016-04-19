@@ -55,8 +55,8 @@ module.exports = function settype (vr, type) {
         } else if (is_array(v) && v.length === 0) {
           this[vr] = 0
         } else if (typeof v === 'object') {
-        this[vr] = 1
-      }
+          this[vr] = 1
+        }
 
         break
       case 'float':
