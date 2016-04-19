@@ -479,7 +479,7 @@ LocutusUtil.prototype._test = function (params, cb) {
       .replace(/module\.exports = /g, '')
       .replace(/.*require\(.*/g, '')
 
-    self.cli.debug(code)
+    // self.cli.debug(code)
     // console.log(params)
     // process.cwd(self.__src + '/' + params.language + '/' + params.category)
     eval(code)
