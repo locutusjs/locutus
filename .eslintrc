@@ -3,12 +3,5 @@
   "env": {
     "browser": true,
     "node": true
-  },
-  "rules": {
-    "no-undef": 0,
-    "no-unused-vars": 0,
-    "no-eval": 0,
-    "key-spacing": 0,
-    "one-var": 0
   }
 }
