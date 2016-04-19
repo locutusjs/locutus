@@ -81,6 +81,8 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 ## Todo
 
 - [x] Split out the npm module so you could do `var sprintf = require('locutus/sprintf')`
+- [ ] Launch BC breaking blogpost
+- [ ] Move functions that overly rely on ini & locales & ajax file operations to experimental
 - [ ] Generate Mocha tests via require, vs using eval
 - [ ] Add live eslinting in browser
 - [ ] ES6
