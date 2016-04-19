@@ -10,11 +10,15 @@ module.exports = function strftime (fmt, timestamp) {
   //        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale
   //        returns 1: 'Tuesday'
 
+  if (typeof GLOBAL !== 'undefined') {
+    this.locutus = GLOBAL.locutus = GLOBAL.locutus || {}
+    this.setlocale = require('../strings/setlocale')
+  }
   this.locutus = this.locutus || {}
+
   // ensure setup of localization variables takes place
   this.setlocale('LC_ALL', 0)
   // END REDUNDANT
-  var locutus = this.locutus
 
   // BEGIN STATIC
   var _xPad = function (x, pad, r) {
@@ -27,8 +31,8 @@ module.exports = function strftime (fmt, timestamp) {
     return x.toString()
   }
 
-  var locale = locutus.localeCategories.LC_TIME
-  var locales = locutus.locales
+  var locale = this.locutus.localeCategories.LC_TIME
+  var locales = this.locutus.locales
   var lc_time = locales[locale].LC_TIME
 
   var _formats = {

@@ -462,6 +462,7 @@ LocutusUtil.prototype._test = function (params, cb) {
     var extracted = self.getRecursiveCode(params)
     codez = codez.concat(codez, extracted)
 
+    codez.unshift('var require = function() {};')
     codez.unshift('window.window' + ' = window;')
     for (var global in self.globals) {
       codez.unshift(global + ' = ' + self.globals[global] + ';')
@@ -472,12 +473,15 @@ LocutusUtil.prototype._test = function (params, cb) {
     // that. refers to locutus
     // this. refers to locutus
     var code = codez.join(';\n')
-      .replace(/that\.([a-z_])/g, '$1')
-      .replace(/this\.([a-z_])/g, '$1')
+      .replace(/that\.([a-z_0-9]+)/g, '$1')
+      .replace(/this\.([a-z_0-9]+)/g, '$1')
       .replace(/window\.setTimeout/g, 'setTimeout')
       .replace(/module\.exports = /g, '')
+      .replace(/.*require\(.*/g, '')
 
     self.cli.debug(code)
+    // console.log(params)
+    // process.cwd(self.__src + '/' + params.language + '/' + params.category)
     eval(code)
 
     if (!params.func_name) {

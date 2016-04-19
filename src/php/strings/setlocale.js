@@ -15,7 +15,7 @@ module.exports = function setlocale (category, locale) {
   var categ = '',
     cats = [],
     i = 0,
-    d = this.window.document
+    d = this.window ? this.window.document : null
 
   // BEGIN STATIC
   var _copy = function _copy (orig) {
@@ -111,11 +111,11 @@ module.exports = function setlocale (category, locale) {
   }
   // END STATIC
   // BEGIN REDUNDANT
-  try {
-    this.locutus = this.locutus || {}
-  } catch (e) {
-    this.locutus = {}
+  if (typeof GLOBAL !== 'undefined') {
+    this.locutus = GLOBAL.locutus = GLOBAL.locutus || {}
+    this.setlocale = require('../strings/setlocale')
   }
+  this.locutus = this.locutus || {}
 
   var locutus = this.locutus
 
@@ -296,18 +296,20 @@ module.exports = function setlocale (category, locale) {
   }
   if (!locutus.locale) {
     locutus.locale = 'en_US'
-    var NS_XHTML = 'http://www.w3.org/1999/xhtml'
-    var NS_XML = 'http://www.w3.org/XML/1998/namespace'
-    if (d.getElementsByTagNameNS && d.getElementsByTagNameNS(NS_XHTML, 'html')[0]) {
-      if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS && d.getElementsByTagNameNS(NS_XHTML,
-          'html')[0].getAttributeNS(NS_XML, 'lang')) {
-        locutus.locale = d.getElementsByTagName(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')
-      } else if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang) {
-        // XHTML 1.0 only
-        locutus.locale = d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang
+    if (d) {
+      var NS_XHTML = 'http://www.w3.org/1999/xhtml'
+      var NS_XML = 'http://www.w3.org/XML/1998/namespace'
+      if (d.getElementsByTagNameNS && d.getElementsByTagNameNS(NS_XHTML, 'html')[0]) {
+        if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS && d.getElementsByTagNameNS(NS_XHTML,
+            'html')[0].getAttributeNS(NS_XML, 'lang')) {
+          locutus.locale = d.getElementsByTagName(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')
+        } else if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang) {
+          // XHTML 1.0 only
+          locutus.locale = d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang
+        }
+      } else if (d.getElementsByTagName('html')[0] && d.getElementsByTagName('html')[0].lang) {
+        locutus.locale = d.getElementsByTagName('html')[0].lang
       }
-    } else if (d.getElementsByTagName('html')[0] && d.getElementsByTagName('html')[0].lang) {
-      locutus.locale = d.getElementsByTagName('html')[0].lang
     }
   }
   // PHP-style

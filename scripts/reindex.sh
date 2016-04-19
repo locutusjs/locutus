@@ -12,13 +12,13 @@ set -o nounset
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 __file="${__dir}/$(basename "${0}")"
 __base="$(basename ${__file})"
-__root="$(cd "$(dirname "${__dir}")" && pwd)"
 
-target="${1:-php}"
+target="${1:-src}"
 
 pushd "${target}" > /dev/null
   entries=$(find . \
     -maxdepth 1 \
+    -mindepth 1 \
     -not \( -path './_*' -prune \) \
     ! -name index.js \
     ! -name known-failures.txt \
@@ -37,7 +37,8 @@ pushd "${target}" > /dev/null
       modEntry="Index"
     fi
 
-    echo "module.exports['${modEntry}'] = require('./${fileEntry}')" >> index.js
+    echo -n "$(pwd)/index.js: "
+    echo "module.exports['${modEntry}'] = require('./${fileEntry}')" |tee -a index.js
     if [ -d "${fileEntry}" ]; then
       "${__file}" "${fileEntry}"
     fi
