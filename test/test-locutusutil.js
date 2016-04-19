@@ -3,7 +3,7 @@ var fs = require('fs')
 var glob = require('glob')
 var path = require('path')
 var __root = path.dirname(__dirname)
-var LocutusUtil = require('../src/_util/locutusutil')
+var LocutusUtil = require('../src/_util/locutus-util')
 var locutusUtil = new LocutusUtil({
   injectDependencies: ['ini_set', 'ini_get']
 })

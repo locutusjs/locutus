@@ -333,8 +333,8 @@ LocutusUtil.prototype.parse = function (fileOrName, code, cb) {
   var language
 
   if (fileOrName.indexOf('/') === -1) {
-    language = undefined
-    category = undefined
+    language = false
+    category = false
   } else {
     var parts = fileOrName.split('/')
     var basefile = parts.pop()
@@ -477,6 +477,16 @@ LocutusUtil.prototype.test = function (params, cb) {
 
     // self.debug(code)
     eval(code)
+
+    if (!params.func_name) {
+      throw new Error('No func_name in ' + JSON.stringify(params))
+    }
+    if (!params.headKeys) {
+      throw new Error('No headKeys in ' + params.func_name)
+    }
+    if (!params.headKeys.example) {
+      throw new Error('No example in ' + params.func_name)
+    }
 
     // Run each example
     for (var i in params.headKeys.example) {
