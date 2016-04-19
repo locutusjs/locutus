@@ -7,10 +7,16 @@ module.exports = function printf () {
   //   example 1: printf("%01.2f", 123.1);
   //   returns 1: 6
 
-  var isNode = typeof module !== 'undefined' && module.exports && typeof global !== 'undefined' && {}.toString.call(global) === '[object global]'
+  var isNode = typeof module !== 'undefined' && module.exports && typeof global !== 'undefined'
 
   var body, elmt, d = this.window.document
   var ret = ''
+  ret = this.sprintf.apply(this, arguments)
+
+  if (isNode) {
+    console.log(ret)
+    return ret.length
+  }
 
   var HTMLNS = 'http://www.w3.org/1999/xhtml'
   body = d.getElementsByTagNameNS ? (d.getElementsByTagNameNS(HTMLNS, 'body')[0] ? d.getElementsByTagNameNS(HTMLNS,
@@ -18,12 +24,6 @@ module.exports = function printf () {
 
   if (!body) {
     return false
-  }
-
-  ret = this.sprintf.apply(this, arguments)
-
-  if (isNode) {
-    return console.log(ret)
   }
 
   elmt = d.createTextNode(ret)

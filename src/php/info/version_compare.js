@@ -15,8 +15,8 @@ module.exports = function version_compare (v1, v2, operator) {
   //        example 4: version_compare('4.1.0.52','4.01.0.51');
   //        returns 4: 1
 
-  this.php_js = this.php_js || {}
-  this.php_js.ENV = this.php_js.ENV || {}
+  this.locutus = this.locutus || {}
+  this.locutus.ENV = this.locutus.ENV || {}
   // END REDUNDANT
   // Important: compare must be initialized at 0.
   var i,

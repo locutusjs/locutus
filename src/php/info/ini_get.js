@@ -6,12 +6,12 @@ module.exports = function ini_get (varname) {
   //   example 1: ini_get('date.timezone');
   //   returns 1: 'Asia/Hong_Kong'
 
-  if (this.php_js && this.php_js.ini && this.php_js.ini[varname] && this.php_js.ini[varname].local_value !==
+  if (this.locutus && this.locutus.ini && this.locutus.ini[varname] && this.locutus.ini[varname].local_value !==
     undefined) {
-    if (this.php_js.ini[varname].local_value === null) {
+    if (this.locutus.ini[varname].local_value === null) {
       return ''
     }
-    return this.php_js.ini[varname].local_value
+    return this.locutus.ini[varname].local_value
   }
 
   return ''

@@ -12,5 +12,5 @@ module.exports = function json_last_error () {
                                       // but JSON functions auto-escape these, so error not possible in JavaScript
       JSON_ERROR_SYNTAX = 4
       */
-  return this.php_js && this.php_js.last_error_json ? this.php_js.last_error_json : 0
+  return this.locutus && this.locutus.last_error_json ? this.locutus.last_error_json : 0
 }

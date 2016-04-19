@@ -47,6 +47,18 @@ true
 npm run test
 ```
 
+Single out one function: `natsort`
+
+```bash
+node src/_util/cli.js --debug --name natsort
+```
+
+Single out one language: `golang`
+
+```bash
+node src/_util/cli.js --debug --language golang
+```
+
 ## Website 
 
 We keep the website in `./website` for so it's easy to keep docs & code in sync. For those reading this screaming murder, [HashiCorp does this](https://github.com/hashicorp/terraform/tree/master/website) for all their projects, and it's working pretty well for them on a scale more impressive than ours.

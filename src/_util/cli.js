@@ -22,7 +22,6 @@ var locutusUtil = new LocutusUtil({
   cli               : cli,
   injectDependencies: ['ini_set', 'ini_get'],
   equal             : equal,
-  debug             : cli.debug,
   __src             : path.dirname(__dirname),
   __root            : path.dirname(path.dirname(__dirname)),
   globals           : {

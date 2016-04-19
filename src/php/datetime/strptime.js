@@ -92,12 +92,12 @@ Oy
   // END STATIC
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {}
+  this.locutus = this.locutus || {}
   // ensure setup of localization variables takes place
   this.setlocale('LC_ALL', 0)
   // END REDUNDANT
 
-  var locutus = this.php_js
+  var locutus = this.locutus
   var locale = locutus.localeCategories.LC_TIME
   var locales = locutus.locales
   var lc_time = locales[locale].LC_TIME

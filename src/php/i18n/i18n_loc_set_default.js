@@ -8,10 +8,10 @@ module.exports = function i18n_loc_set_default (name) {
   //   returns 1: true
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {}
+  this.locutus = this.locutus || {}
   // END REDUNDANT
 
-  this.php_js.i18nLocales = {
+  this.locutus.i18nLocales = {
     en_US_POSIX: {
       sorting: function (str1, str2) {
         // Fix: This one taken from strcmp, but need for other locales; we don't use localeCompare since its locale is not settable
@@ -20,6 +20,6 @@ module.exports = function i18n_loc_set_default (name) {
     }
   }
 
-  this.php_js.i18nLocale = name
+  this.locutus.i18nLocale = name
   return true
 }

@@ -22,13 +22,13 @@ module.exports = function parse_url (str, component) {
   //        returns 4: { scheme: 'https', host: 'www.example.com', path: '/a@b.c/folder', query: 'foo=bar', user: 'gooduser', pass: 'secretpassword' }
 
   try {
-    this.php_js = this.php_js || {}
+    this.locutus = this.locutus || {}
   } catch (e) {
-    this.php_js = {}
+    this.locutus = {}
   }
 
   var query
-  var ini = (this.php_js && this.php_js.ini) || {}
+  var ini = (this.locutus && this.locutus.ini) || {}
   var mode = (ini['locutus.parse_url.mode'] && ini['locutus.parse_url.mode'].local_value) || 'php'
   var key = [
     'source',

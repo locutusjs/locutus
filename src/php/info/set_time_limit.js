@@ -6,12 +6,12 @@ module.exports = function set_time_limit (seconds) {
   //   returns 1: undefined
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {}
+  this.locutus = this.locutus || {}
   // END REDUNDANT
 
   this.window.setTimeout(function () {
-    if (!this.php_js.timeoutStatus) {
-      this.php_js.timeoutStatus = true
+    if (!this.locutus.timeoutStatus) {
+      this.locutus.timeoutStatus = true
     }
     throw 'Maximum execution time exceeded'
   }, seconds * 1000)

@@ -14,11 +14,11 @@ module.exports = function localeconv () {
   this.setlocale('LC_ALL', 0)
   // END REDUNDANT
   // Make copies
-  for (prop in this.php_js.locales[this.php_js.localeCategories.LC_NUMERIC].LC_NUMERIC) {
-    arr[prop] = this.php_js.locales[this.php_js.localeCategories.LC_NUMERIC].LC_NUMERIC[prop]
+  for (prop in this.locutus.locales[this.locutus.localeCategories.LC_NUMERIC].LC_NUMERIC) {
+    arr[prop] = this.locutus.locales[this.locutus.localeCategories.LC_NUMERIC].LC_NUMERIC[prop]
   }
-  for (prop in this.php_js.locales[this.php_js.localeCategories.LC_MONETARY].LC_MONETARY) {
-    arr[prop] = this.php_js.locales[this.php_js.localeCategories.LC_MONETARY].LC_MONETARY[prop]
+  for (prop in this.locutus.locales[this.locutus.localeCategories.LC_MONETARY].LC_MONETARY) {
+    arr[prop] = this.locutus.locales[this.locutus.localeCategories.LC_MONETARY].LC_MONETARY[prop]
   }
 
   return arr

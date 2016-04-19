@@ -6,15 +6,15 @@ module.exports = function strftime (fmt, timestamp) {
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
   //      improved by: Brett Zamir (http://brett-zamir.me)
   //       depends on: setlocale
-  //             note: Uses global: php_js to store locale info
+  //             note: Uses global: locutus to store locale info
   //        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale
   //        returns 1: 'Tuesday'
 
-  this.php_js = this.php_js || {}
+  this.locutus = this.locutus || {}
   // ensure setup of localization variables takes place
   this.setlocale('LC_ALL', 0)
   // END REDUNDANT
-  var locutus = this.php_js
+  var locutus = this.locutus
 
   // BEGIN STATIC
   var _xPad = function (x, pad, r) {

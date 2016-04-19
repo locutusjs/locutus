@@ -49,7 +49,7 @@ module.exports = function sort (inputArr, sort_flags) {
     case 'SORT_LOCALE_STRING':
     // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
       var loc = this.i18n_loc_get_default()
-      sorter = this.php_js.i18nLocales[loc].sorting
+      sorter = this.locutus.i18nLocales[loc].sorting
       break
     case 'SORT_NUMERIC':
     // compare items numerically
@@ -79,14 +79,14 @@ module.exports = function sort (inputArr, sort_flags) {
 
   // BEGIN REDUNDANT
   try {
-    this.php_js = this.php_js || {}
+    this.locutus = this.locutus || {}
   } catch (e) {
-    this.php_js = {}
+    this.locutus = {}
   }
 
-  this.php_js.ini = this.php_js.ini || {}
+  this.locutus.ini = this.locutus.ini || {}
   // END REDUNDANT
-  strictForIn = this.php_js.ini['locutus.strictForIn'] && this.php_js.ini['locutus.strictForIn'].local_value && this.php_js
+  strictForIn = this.locutus.ini['locutus.strictForIn'] && this.locutus.ini['locutus.strictForIn'].local_value && this.locutus
     .ini['locutus.strictForIn'].local_value !== 'off'
   populateArr = strictForIn ? inputArr : populateArr
 

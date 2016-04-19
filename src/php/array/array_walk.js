@@ -44,9 +44,9 @@ module.exports = function array_walk (array, funcname, userdata) {
         }
       }
     } else if (typeof funcname === 'string') {
-      this.php_js = this.php_js || {}
-      this.php_js.ini = this.php_js.ini || {}
-      ini = this.php_js.ini['locutus.no-eval']
+      this.locutus = this.locutus || {}
+      this.locutus.ini = this.locutus.ini || {}
+      ini = this.locutus.ini['locutus.no-eval']
       if (ini && (
           parseInt(ini.local_value, 10) !== 0 && (!ini.local_value.toLowerCase || ini.local_value.toLowerCase() !==
             'off')

@@ -2,12 +2,12 @@ module.exports = function each (arr) {
   //  discuss at: http://locutusjs.io/php/each/
   // original by: Ates Goral (http://magnetiq.com)
   //  revised by: Brett Zamir (http://brett-zamir.me)
-  //        note: Uses global: php_js to store the array pointer
+  //        note: Uses global: locutus to store the array pointer
   //   example 1: each({a: "apple", b: "balloon"});
   //   returns 1: {0: "a", 1: "apple", key: "a", value: "apple"}
 
-  this.php_js = this.php_js || {}
-  this.php_js.pointers = this.php_js.pointers || []
+  this.locutus = this.locutus || {}
+  this.locutus.pointers = this.locutus.pointers || []
   var indexOf = function (value) {
     for (var i = 0, length = this.length; i < length; i++) {
       if (this[i] === value) {
@@ -17,7 +17,7 @@ module.exports = function each (arr) {
     return -1
   }
   // END REDUNDANT
-  var pointers = this.php_js.pointers
+  var pointers = this.locutus.pointers
   if (!pointers.indexOf) {
     pointers.indexOf = indexOf
   }

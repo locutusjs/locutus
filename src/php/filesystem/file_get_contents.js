@@ -35,11 +35,11 @@ module.exports = function file_get_contents (url, flags, context, offset, maxLen
   }
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {}
-  this.php_js.ini = this.php_js.ini || {}
+  this.locutus = this.locutus || {}
+  this.locutus.ini = this.locutus.ini || {}
   // END REDUNDANT
-  var ini = this.php_js.ini
-  context = context || this.php_js.default_streams_context || null
+  var ini = this.locutus.ini
+  context = context || this.locutus.default_streams_context || null
 
   if (!flags) {
     flags = 0

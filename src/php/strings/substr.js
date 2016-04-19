@@ -37,10 +37,10 @@ module.exports = function substr (str, start, len) {
   var end = str.length
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {}
-  this.php_js.ini = this.php_js.ini || {}
+  this.locutus = this.locutus || {}
+  this.locutus.ini = this.locutus.ini || {}
   // END REDUNDANT
-  switch ((this.php_js.ini['unicode.semantics'] && this.php_js.ini['unicode.semantics'].local_value.toLowerCase())) {
+  switch ((this.locutus.ini['unicode.semantics'] && this.locutus.ini['unicode.semantics'].local_value.toLowerCase())) {
     case 'on':
     // Full-blown Unicode including non-Basic-Multilingual-Plane characters
     // strlen()

@@ -14,10 +14,10 @@ bcscale#1
 bcsub#1
 compact#1
 convert_uuencode#1
+date_parse#1
 date#1
 date#2
 date#5
-date_parse#1
 function_exists#1
 get_defined_functions#1
 getdate#1
@@ -32,8 +32,10 @@ pack#1
 printf#1
 quoted_printable_encode#2
 realpath#1
+rsort#1
 serialize#1
 serialize#2
+sort#1
 strnatcasecmp#1
 strnatcmp#2
 vprintf#1

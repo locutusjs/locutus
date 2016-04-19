@@ -158,9 +158,9 @@ module.exports = function json_encode (mixed_val) {
     if (!(err instanceof SyntaxError)) {
       throw new Error('Unexpected error type in json_encode()')
     }
-    this.php_js = this.php_js || {}
+    this.locutus = this.locutus || {}
     // usable by json_last_error()
-    this.php_js.last_error_json = 4
+    this.locutus.last_error_json = 4
     return null
   }
 }

@@ -7,7 +7,7 @@ module.exports = function setlocale (category, locale) {
   //        note: Is extensible, but currently only implements locales en,
   //        note: en_US, en_GB, en_AU, fr, and fr_CA for LC_TIME only; C for LC_CTYPE;
   //        note: C and en for LC_MONETARY/LC_NUMERIC; en for LC_COLLATE
-  //        note: Uses global: php_js to store locale info
+  //        note: Uses global: locutus to store locale info
   //        note: Consider using http://demo.icu-project.org/icu-bin/locexp as basis for localization (as in i18n_loc_set_default())
   //   example 1: setlocale('LC_ALL', 'en_US');
   //   returns 1: 'en_US'
@@ -112,12 +112,12 @@ module.exports = function setlocale (category, locale) {
   // END STATIC
   // BEGIN REDUNDANT
   try {
-    this.php_js = this.php_js || {}
+    this.locutus = this.locutus || {}
   } catch (e) {
-    this.php_js = {}
+    this.locutus = {}
   }
 
-  var locutus = this.php_js
+  var locutus = this.locutus
 
   // Reconcile Windows vs. *nix locale names?
   // Allow different priority orders of languages, esp. if implement gettext as in
@@ -339,7 +339,7 @@ module.exports = function setlocale (category, locale) {
     locale = this.getenv(category) || this.getenv('LANG')
   } else if (Object.prototype.toString.call(locale) === '[object Array]') {
     for (i = 0; i < locale.length; i++) {
-      if (!(locale[i] in this.php_js.locales)) {
+      if (!(locale[i] in this.locutus.locales)) {
         if (i === locale.length - 1) {
           // none found
           return false
@@ -354,27 +354,27 @@ module.exports = function setlocale (category, locale) {
   // Just get the locale
   if (locale === '0' || locale === 0) {
     if (category === 'LC_ALL') {
-      for (categ in this.php_js.localeCategories) {
+      for (categ in this.locutus.localeCategories) {
         // Add ".UTF-8" or allow ".@latint", etc. to the end?
-        cats.push(categ + '=' + this.php_js.localeCategories[categ])
+        cats.push(categ + '=' + this.locutus.localeCategories[categ])
       }
       return cats.join(';')
     }
-    return this.php_js.localeCategories[category]
+    return this.locutus.localeCategories[category]
   }
 
-  if (!(locale in this.php_js.locales)) {
+  if (!(locale in this.locutus.locales)) {
     // Locale not found
     return false
   }
 
   // Set and get locale
   if (category === 'LC_ALL') {
-    for (categ in this.php_js.localeCategories) {
-      this.php_js.localeCategories[categ] = locale
+    for (categ in this.locutus.localeCategories) {
+      this.locutus.localeCategories[categ] = locale
     }
   } else {
-    this.php_js.localeCategories[category] = locale
+    this.locutus.localeCategories[category] = locale
   }
   return locale
 }

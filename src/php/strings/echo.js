@@ -143,8 +143,8 @@ module.exports = function echo () {
     }
   }
 
-  this.php_js = this.php_js || {}
-  var locutus = this.php_js
+  this.locutus = this.locutus || {}
+  var locutus = this.locutus
   var ini = locutus.ini
   var obs = locutus.obs
   for (i = 0; i < argc; i++) {

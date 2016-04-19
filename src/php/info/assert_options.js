@@ -5,9 +5,9 @@ module.exports = function assert_options (what, value) {
   //   returns 1: null
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {}
-  this.php_js.ini = this.php_js.ini || {}
-  this.php_js.assert_values = this.php_js.assert_values || {}
+  this.locutus = this.locutus || {}
+  this.locutus.ini = this.locutus.ini || {}
+  this.locutus.assert_values = this.locutus.assert_values || {}
   // END REDUNDANT
 
   var ini, dflt
@@ -36,12 +36,12 @@ module.exports = function assert_options (what, value) {
       throw 'Improper type for assert_options()'
   }
   // I presume this is to be the most recent value, instead of the default value
-  var originalValue = this.php_js.assert_values[ini] || (this.php_js.ini[ini] && this.php_js.ini[ini].local_value) ||
+  var originalValue = this.locutus.assert_values[ini] || (this.locutus.ini[ini] && this.locutus.ini[ini].local_value) ||
     dflt
 
   if (value) {
     // We use 'ini' instead of 'what' as key to be more convenient for assert() to test for current value
-    this.php_js.assert_values[ini] = value
+    this.locutus.assert_values[ini] = value
   }
   return originalValue
 }

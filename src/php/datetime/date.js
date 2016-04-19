@@ -30,10 +30,10 @@ module.exports = function date (format, timestamp) {
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: omid (http://locutusjs.io/php/380:380#comment_137122)
   // bugfixed by: Chris (http://www.devotis.nl/)
-  //        note: Uses global: php_js to store the default timezone
+  //        note: Uses global: locutus to store the default timezone
   //        note: Although the function potentially allows timezone info (see notes), it currently does not set
   //        note: per a timezone specified by date_default_timezone_set(). Implementers might use
-  //        note: this.php_js.currentTimezoneOffset and this.php_js.currentTimezoneDST set by that function
+  //        note: this.locutus.currentTimezoneOffset and this.locutus.currentTimezoneDST set by that function
   //        note: in order to adjust the dates in this function (or our other date functions!) accordingly
   //   example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
   //   returns 1: '09:09:40 m is month'
@@ -268,8 +268,8 @@ module.exports = function date (format, timestamp) {
       if (!tal.length) {
         tal = that.timezone_abbreviations_list();
       }
-      if (that.php_js && that.php_js.default_timezone) {
-        _default = that.php_js.default_timezone;
+      if (that.locutus && that.locutus.default_timezone) {
+        _default = that.locutus.default_timezone;
         for (abbr in tal) {
           for (i = 0; i < tal[abbr].length; i++) {
             if (tal[abbr][i].timezone_id === _default) {

@@ -9,11 +9,11 @@ module.exports = function strtok (str, tokens) {
   //   example 1: $b
   //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
 
-  this.php_js = this.php_js || {}
+  this.locutus = this.locutus || {}
   // END REDUNDANT
   if (tokens === undefined) {
     tokens = str
-    str = this.php_js.strtokleftOver
+    str = this.locutus.strtokleftOver
   }
   if (str.length === 0) {
     return false
@@ -26,6 +26,6 @@ module.exports = function strtok (str, tokens) {
       break
     }
   }
-  this.php_js.strtokleftOver = str.substr(i + 1)
+  this.locutus.strtokleftOver = str.substr(i + 1)
   return str.substring(0, i)
 }

@@ -6,7 +6,7 @@ module.exports = function nl_langinfo (item) {
   //   returns 1: 'Sunday'
 
   this.setlocale('LC_ALL', 0) // Ensure locale data is available
-  var loc = this.php_js.locales[this.php_js.localeCategories.LC_TIME]
+  var loc = this.locutus.locales[this.locutus.localeCategories.LC_TIME]
   if (item.indexOf('ABDAY_') === 0) {
     return loc.LC_TIME.a[parseInt(item.replace(/^ABDAY_/, ''), 10) - 1]
   } else if (item.indexOf('DAY_') === 0) {
@@ -38,7 +38,7 @@ module.exports = function nl_langinfo (item) {
       case 'ERA_T_FMT':
         return loc.LC_TIME[item]
     }
-    loc = this.php_js.locales[this.php_js.localeCategories.LC_MONETARY]
+    loc = this.locutus.locales[this.locutus.localeCategories.LC_MONETARY]
     if (item === 'CRNCYSTR') {
       // alias
       item = 'CURRENCY_SYMBOL'
@@ -64,7 +64,7 @@ module.exports = function nl_langinfo (item) {
       // Same as above, or return something different since this returns an array?
         return loc.LC_MONETARY[item.toLowerCase()]
     }
-    loc = this.php_js.locales[this.php_js.localeCategories.LC_NUMERIC]
+    loc = this.locutus.locales[this.locutus.localeCategories.LC_NUMERIC]
     switch (item) {
       case 'RADIXCHAR':
       // Fall-through
@@ -78,7 +78,7 @@ module.exports = function nl_langinfo (item) {
       // Same as above, or return something different since this returns an array?
         return loc.LC_NUMERIC[item.toLowerCase()]
     }
-    loc = this.php_js.locales[this.php_js.localeCategories.LC_MESSAGES]
+    loc = this.locutus.locales[this.locutus.localeCategories.LC_MESSAGES]
     switch (item) {
       case 'YESEXPR':
       // all fall-throughs
@@ -87,7 +87,7 @@ module.exports = function nl_langinfo (item) {
       case 'NOSTR':
         return loc.LC_MESSAGES[item]
     }
-    loc = this.php_js.locales[this.php_js.localeCategories.LC_CTYPE]
+    loc = this.locutus.locales[this.locutus.localeCategories.LC_CTYPE]
     if (item === 'CODESET') {
       return loc.LC_CTYPE[item]
     }

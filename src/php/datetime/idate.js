@@ -16,7 +16,7 @@ module.exports = function idate (format, timestamp) {
     throw 'idate format is one char'
   }
 
-  // Fix: Need to allow date_default_timezone_set() (check for this.php_js.default_timezone and use)
+  // Fix: Need to allow date_default_timezone_set() (check for this.locutus.default_timezone and use)
   var date = ((typeof timestamp === 'undefined') ? new Date() : // Not provided
       (timestamp instanceof Date) ? new Date(timestamp) : // Javascript Date()
       new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)

@@ -12,5 +12,5 @@ module.exports = function ctype_print (text) {
   // ensure setup of localization variables takes place
   this.setlocale('LC_ALL', 0)
   // END REDUNDANT
-  return text.search(this.php_js.locales[this.php_js.localeCategories.LC_CTYPE].LC_CTYPE.pr) !== -1
+  return text.search(this.locutus.locales[this.locutus.localeCategories.LC_CTYPE].LC_CTYPE.pr) !== -1
 }

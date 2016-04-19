@@ -63,11 +63,11 @@ module.exports = function is_array (mixed_var) {
   }
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {}
-  this.php_js.ini = this.php_js.ini || {}
+  this.locutus = this.locutus || {}
+  this.locutus.ini = this.locutus.ini || {}
   // END REDUNDANT
 
-  ini = this.php_js.ini['locutus.objectsAsArrays']
+  ini = this.locutus.ini['locutus.objectsAsArrays']
 
   return _isArray(mixed_var) ||
     // Allow returning true unless user has called

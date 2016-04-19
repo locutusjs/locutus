@@ -2,7 +2,7 @@ module.exports = function uniqid (prefix, more_entropy) {
   //  discuss at: http://locutusjs.io/php/uniqid/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: Kankrelune (http://www.webfaktory.info/)
-  //        note: Uses an internal counter (in php_js global) to avoid collision
+  //        note: Uses an internal counter (in locutus global) to avoid collision
   //        test: skip
   //   example 1: uniqid();
   //   returns 1: 'a30285b160c14'
@@ -32,22 +32,22 @@ module.exports = function uniqid (prefix, more_entropy) {
   }
 
   // BEGIN REDUNDANT
-  if (!this.php_js) {
-    this.php_js = {}
+  if (!this.locutus) {
+    this.locutus = {}
   }
   // END REDUNDANT
-  if (!this.php_js.uniqidSeed) {
+  if (!this.locutus.uniqidSeed) {
     // init seed with big random int
-    this.php_js.uniqidSeed = Math.floor(Math.random() * 0x75bcd15)
+    this.locutus.uniqidSeed = Math.floor(Math.random() * 0x75bcd15)
   }
-  this.php_js.uniqidSeed++
+  this.locutus.uniqidSeed++
 
   // start with prefix, add current milliseconds hex string
   retId = prefix
   retId += formatSeed(parseInt(new Date()
     .getTime() / 1000, 10), 8)
   // add seed hex string
-  retId += formatSeed(this.php_js.uniqidSeed, 5)
+  retId += formatSeed(this.locutus.uniqidSeed, 5)
   if (more_entropy) {
     // for more entropy we add a float lower to 10
     retId += (Math.random() * 10)

@@ -185,7 +185,7 @@ LocutusUtil.prototype.test = function (args, options) {
     }
   })
 
-  var knownFailures = fs.readFileSync(self.__src + '/php/known-failures.txt', 'utf-8').split('\n')
+  var knownFailures = fs.readFileSync(self.__src + '/php/known-failures.txt', 'utf-8').trim('').split('\n')
 
   self.glob(pattern, function (err, params, file) {
     if (err) {
@@ -198,7 +198,7 @@ LocutusUtil.prototype.test = function (args, options) {
     }
 
     self._test(params, function (err, test, params) {
-      var testName = params.name + '#' + (+(test.number * 1) + 1)
+      var testName = params.func_name + '#' + (+(test.number * 1) + 1)
       if (!err) {
         self.pass_cnt++
         self.cli.debug('--> ' + testName + ' passed. ')
@@ -400,8 +400,8 @@ LocutusUtil.prototype.loadMultiple = function (names, cb) {
       paramsMultiple[params.name] = params
 
       if (++loaded === names.length) {
-        console.log('loaded: ' + name)
-        console.log(paramsMultiple)
+        // console.log('loaded: ' + name)
+        // console.log(paramsMultiple)
         return cb(null, paramsMultiple)
       }
     })
@@ -477,7 +477,7 @@ LocutusUtil.prototype._test = function (params, cb) {
       .replace(/window\.setTimeout/g, 'setTimeout')
       .replace(/module\.exports = /g, '')
 
-    // self.debug(code)
+    self.cli.debug(code)
     eval(code)
 
     if (!params.func_name) {

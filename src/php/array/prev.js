@@ -1,13 +1,13 @@
 module.exports = function prev (arr) {
   //  discuss at: http://locutusjs.io/php/prev/
   // original by: Brett Zamir (http://brett-zamir.me)
-  //        note: Uses global: php_js to store the array pointer
+  //        note: Uses global: locutus to store the array pointer
   //   example 1: transport = ['foot', 'bike', 'car', 'plane'];
   //   example 1: prev(transport);
   //   returns 1: false
 
-  this.php_js = this.php_js || {}
-  this.php_js.pointers = this.php_js.pointers || []
+  this.locutus = this.locutus || {}
+  this.locutus.pointers = this.locutus.pointers || []
   var indexOf = function (value) {
     for (var i = 0, length = this.length; i < length; i++) {
       if (this[i] === value) {
@@ -17,7 +17,7 @@ module.exports = function prev (arr) {
     return -1
   }
   // END REDUNDANT
-  var pointers = this.php_js.pointers
+  var pointers = this.locutus.pointers
   if (!pointers.indexOf) {
     pointers.indexOf = indexOf
   }

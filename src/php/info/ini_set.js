@@ -10,22 +10,22 @@ module.exports = function ini_set (varname, newvalue) {
   var self = this
 
   try {
-    this.php_js = this.php_js || {}
+    this.locutus = this.locutus || {}
   } catch (e) {
-    this.php_js = {}
+    this.locutus = {}
   }
 
-  this.php_js.ini = this.php_js.ini || {}
-  this.php_js.ini[varname] = this.php_js.ini[varname] || {}
+  this.locutus.ini = this.locutus.ini || {}
+  this.locutus.ini[varname] = this.locutus.ini[varname] || {}
 
-  oldval = this.php_js.ini[varname].local_value
+  oldval = this.locutus.ini[varname].local_value
 
   var _setArr = function (oldval) {
     // Although these are set individually, they are all accumulated
     if (typeof oldval === 'undefined') {
-      self.php_js.ini[varname].local_value = []
+      self.locutus.ini[varname].local_value = []
     }
-    self.php_js.ini[varname].local_value.push(newvalue)
+    self.locutus.ini[varname].local_value.push(newvalue)
   }
 
   switch (varname) {
@@ -37,7 +37,7 @@ module.exports = function ini_set (varname, newvalue) {
       _setArr(oldval, newvalue)
       break
     default:
-      this.php_js.ini[varname].local_value = newvalue
+      this.locutus.ini[varname].local_value = newvalue
       break
   }
 

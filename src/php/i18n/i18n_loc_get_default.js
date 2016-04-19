@@ -10,11 +10,11 @@ module.exports = function i18n_loc_get_default () {
   //   returns 1: 'pt_PT'
 
   try {
-    this.php_js = this.php_js || {}
+    this.locutus = this.locutus || {}
   } catch (e) {
-    this.php_js = {}
+    this.locutus = {}
   }
 
   // Ensure defaults are set up
-  return this.php_js.i18nLocale || (i18n_loc_set_default('en_US_POSIX'), 'en_US_POSIX')
+  return this.locutus.i18nLocale || (i18n_loc_set_default('en_US_POSIX'), 'en_US_POSIX')
 }

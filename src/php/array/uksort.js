@@ -47,10 +47,10 @@ module.exports = function uksort (inputArr, sorter) {
   }
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {}
-  this.php_js.ini = this.php_js.ini || {}
+  this.locutus = this.locutus || {}
+  this.locutus.ini = this.locutus.ini || {}
   // END REDUNDANT
-  strictForIn = this.php_js.ini['locutus.strictForIn'] && this.php_js.ini['locutus.strictForIn'].local_value && this.php_js
+  strictForIn = this.locutus.ini['locutus.strictForIn'] && this.locutus.ini['locutus.strictForIn'].local_value && this.locutus
     .ini['locutus.strictForIn'].local_value !== 'off'
   populateArr = strictForIn ? inputArr : populateArr
 
