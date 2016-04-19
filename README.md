@@ -12,11 +12,16 @@ Locutus assimilaties other languages' standard libraries to JavaScript for fun a
 
 More info at: http://locutusjs.io/about
 
-## module
+## Install
 
 ```bash
-$ npm install --save locutus
-$ ${EDITOR} try.js
+npm install --save locutus
+```
+
+## Use
+
+```bash
+${EDITOR} try.js
 ```
 
 ```javascript
@@ -36,27 +41,11 @@ Resistance is futile
 true
 ```
 
-## Testing
-
-
-### cli
+## Test
 
 ```bash
-make test
+npm run test
 ```
-
-```bash
-node bin/locutus.js --action test --name sort
-node bin/locutus.js --action test --category array
-```
-
-### Web
-
-```bash
-PORT=8080 node test/browser/server.js
-```
-
-Point your webbrowser to http://localhost:8080
 
 ## Website 
 
@@ -66,8 +55,8 @@ Our website is [built with Jekyll](/blog/2016/04/02/jekyll/).
 
 Here's the flow that takes written functions to the website:
 
- - `npm run website:inject` runs `src/_util/cli.js`'s `injectweb` method
- - `injectweb` iterates over `./functions` and uses `src/_util/locutusutil.js` to parse them, most significantly: the header comments that declare authors, tests, and dependencies
+ - `npm run website:inject` runs `src/_util/locutus-util.js`'s `injectweb` method
+ - `injectweb` iterates over `./functions` and uses `src/_util/locutus-util.js` to parse them, most significantly: the header comments that declare authors, tests, and dependencies
  - `injectweb` then writes each function to `website/_functions`. This is a [Jekyll Collection](https://jekyllrb.com/docs/collections/). The code is written as the content, and all the other properties are added as [YAML front matter](https://jekyllrb.com/docs/frontmatter/)
  - Jekyll uses `website/_layouts/function.html` as the layout template for the function collection, this determines how all the properties are rendered.
  
@@ -79,7 +68,7 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 
 ## Todo
 
-- [ ] Split out the npm module so you could do `var sprintf = require('locutus/sprintf')`
+- [x] Split out the npm module so you could do `var sprintf = require('locutus/sprintf')`
 - [ ] Auto-deploys via Travis CI
 
 ## Sponsor development
