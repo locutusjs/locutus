@@ -22,16 +22,15 @@ module.exports = function is_array (mixed_var) {
   //   example 4: is_array(function tmp_a(){this.name = 'Kevin'});
   //   returns 4: false
 
-  var ini,
-    _getFuncName = function (fn) {
-      var name = (/\W*function\s+([\w\$]+)\s*\(/)
-        .exec(fn)
-      if (!name) {
-        return '(Anonymous)'
-      }
-      return name[1]
+  var ini
+  var _getFuncName = function (fn) {
+    var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn)
+    if (!name) {
+      return '(Anonymous)'
     }
-  _isArray = function (mixed_var) {
+    return name[1]
+  }
+  var _isArray = function (mixed_var) {
     // return Object.prototype.toString.call(mixed_var) === '[object Array]';
     // The above works, but let's do the even more stringent approach: (since Object.prototype.toString could be overridden)
     // Null, Not an object, no length property so couldn't be an Array (or String)
