@@ -19,6 +19,7 @@ cli.parse({
 })
 
 var locutusUtil = new LocutusUtil({
+  cli               : cli,
   injectDependencies: ['ini_set', 'ini_get'],
   equal             : equal,
   debug             : cli.debug,

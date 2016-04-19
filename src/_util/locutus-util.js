@@ -179,9 +179,9 @@ LocutusUtil.prototype.test = function (args, options) {
   process.on('exit', function () {
     var msg = self.pass_cnt + ' passed / ' + self.fail_cnt + ' failed  / ' + self.know_cnt + ' known / ' + self.skip_cnt + ' skipped'
     if (self.fail_cnt) {
-      cli.fatal(msg)
+      self.cli.fatal(msg)
     } else {
-      cli.ok(msg)
+      self.cli.ok(msg)
     }
   })
 
@@ -194,25 +194,25 @@ LocutusUtil.prototype.test = function (args, options) {
 
     if (params.headKeys.test && params.headKeys.test[0][0] === 'skip') {
       self.skip_cnt++
-      return cli.info('--> ' + params.name + ' skipped as instructed. ')
+      return self.cli.info('--> ' + params.name + ' skipped as instructed. ')
     }
 
-    self.test(params, function (err, test, params) {
+    self._test(params, function (err, test, params) {
       var testName = params.name + '#' + (+(test.number * 1) + 1)
       if (!err) {
         self.pass_cnt++
-        cli.debug('--> ' + testName + ' passed. ')
+        self.cli.debug('--> ' + testName + ' passed. ')
       } else {
         if (knownFailures.indexOf(testName) > -1) {
-          cli.error('--> ' + testName + ' known error. ')
-          cli.error(err)
+          self.cli.error('--> ' + testName + ' known error. ')
+          self.cli.error(err)
           self.know_cnt++
         } else {
-          cli.error('--> ' + testName + ' failed. ')
-          cli.error(err)
+          self.cli.error('--> ' + testName + ' failed. ')
+          self.cli.error(err)
           self.fail_cnt++
           if (options.abort) {
-            cli.fatal('Aborting on first failure as instructed. ')
+            self.cli.fatal('Aborting on first failure as instructed. ')
           }
         }
       }
@@ -400,6 +400,8 @@ LocutusUtil.prototype.loadMultiple = function (names, cb) {
       paramsMultiple[params.name] = params
 
       if (++loaded === names.length) {
+        console.log('loaded: ' + name)
+        console.log(paramsMultiple)
         return cb(null, paramsMultiple)
       }
     })
@@ -447,7 +449,7 @@ LocutusUtil.prototype.getRecursiveCode = function (params) {
   return codez
 }
 
-LocutusUtil.prototype.test = function (params, cb) {
+LocutusUtil.prototype._test = function (params, cb) {
   var self = this
   var codez = []
 
