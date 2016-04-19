@@ -32,6 +32,9 @@ gems:
 collections:
   functions:
     output: true
+  languages:
+    output: true
+    permalink: /:path/
 
 exclude:
   - Makefile

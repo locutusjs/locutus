@@ -1,0 +1,12 @@
+---
+layout: page
+---
+
+{{content}}
+
+{% include render_all.html with_functions=true only_languages=page.name %}
+
+We could still assimilate many more functions in this language.
+Get inspiration <a href="{{page.inspiration_url}}">here</a>
+and click "New file" <a href="https://github.com/kvz/locutus/tree/master/src/{{page.name}}/">on GitHub</a>
+to add one.

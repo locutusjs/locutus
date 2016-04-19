@@ -2,30 +2,11 @@
 layout: page
 ---
 
-{% if page.language == "golang" %}
-  {% assign humanLang="Go" %}
-{% elsif page.language == "php" %}
-  {% assign humanLang="PHP" %}
-{% else %}
-  {% assign humanLang=page.language |capitalize %}
-{% endif %}
+{% assign language = site.languages[page.language] %}
 
 <p>
   Here’s what a JavaScript equivalent for
-
-  {% if page.language == "golang" %}
-    <a href="https://golang.org/pkg/{{page.category}}/#{{page.function}}">{{humanLang}}'s {{page.category}}.{{page.function}}</a>
-  {% elsif page.language == "c" %}
-    <a href="http://en.cppreference.com/w/c/numeric/{{page.category}}/{{page.function}}">{{humanLang}}'s {{page.category}}.h's {{page.function}}</a>
-  {% elsif page.language == "php" %}
-    <a href="http://php.net/manual/en/function.{{page.function}}.php">{{humanLang}}'s {{page.function}}</a>
-  {% elsif page.language == "ruby" %}
-    <a href="http://ruby-doc.org/core-2.2.2/{{page.category}}.html#method-c-{{page.function}}">{{humanLang}}'s {{page.category}}.{{page.function}}</a>
-  {% elsif page.language == "python" %}
-    <a href="https://docs.python.org/3/library/{{page.category}}.html#{{page.category}}.{{page.function}}">{{humanLang}}'s {{page.category}}.{{page.function}}</a>
-  {% else %}
-    {{humanLang}}'s {{page.function}}
-  {% endif %}
+  {{ language.origin_template |replace: '[human]', language.human  |replace: '[category]', page.category |replace: '[function]', page.function }}
   looks like.
 </p>
 
@@ -122,5 +103,5 @@ var {{page.function |slugify| replace: '-', '_'}} = require('locutus/{{page.lang
 {% endif %}
 
 <p>
-  <a class="basic-alignment left themebutton" href="/functions/#{{page.category}}">&laquo; More {{page.category}} functions</a>
+  <a class="basic-alignment left themebutton" href="/{{page.language}}/#{{page.category}}">&laquo; More {{language.human}} {{page.category}} functions</a>
 </p>

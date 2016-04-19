@@ -45,6 +45,11 @@ There are two reasons why we're going the extra mile:
 1. To show newcomers by example how the behavior differs across languages (`false` vs `-1` in the example of `strpos` vs JavaScript's `indexOf`)
 2. The geeky-challenge of porting ALL-THE-THINGS also opens up Locutus to other fun experiments such as running actual `.php` files on V8. While have no idea why you would want that, nor would we recommend it, we sure think it's fun to see if we can manage (this does bring the burden of mimicking the other languages as good as we can, even their mistakes).
 
+## What we're not
+
+Even though Locutus is porting standard libraries from other languages, we don't see ourselves as 
+a viable standard library for JavaScript. We're too hefty, too diffuse, too hobby. If you're interested in something like that, we recommend taking a look at lodash, which is more lightweight, better tested, and has a better relation with JavaScript's native data types.
+
 ## What we're not porting
 
 We're trying to stick to raw functions and won't be porting global environment, language constructs or data-types. While this would be possible to varying degrees, we feel this is outside Locutus' scope and welcome other projects to take a stab at this, using our modules (or not).

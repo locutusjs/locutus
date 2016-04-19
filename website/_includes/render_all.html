@@ -1,80 +1,30 @@
-{% assign languages = site.functions| group_by site.functions, "language" %}
+{% for language in site.languages | sort: 'order' %}
+  {% if include.only_languages == "*" or include.only_languages == language.name %}
+    <h2 id="{{language.name}}">{{language.human}} functions in JS</h2>
 
-{% if include.with_functions == true %}
-  <p>
-    <br />
-    Jump to:
-  </p>
-  <ul class='language-list'>
-    {% for language in languages %}
-      {% if language.name == "golang" %}
-        {% assign humanLang="Go" %}
-      {% elsif language.name == "php" %}
-        {% assign humanLang="PHP" %}
-      {% else %}
-        {% assign humanLang=language.name |capitalize %}
-      {% endif %}
-      <li><a class="basic-alignment left themebutton" href="#{{language.name}}">{{humanLang}}</a></li>
-    {% endfor %}
-  </ul>
-  <div class="clearfix"></div>
-{% endif %}
+    {% assign categories = site.functions |where: "language", language.name |group_by site.functions, "category" %}
 
-
-{% for language in languages %}
-  {% if language.name == "golang" %}
-    {% assign humanLang="Go" %}
-  {% elsif language.name == "php" %}
-    {% assign humanLang="PHP" %}
-  {% else %}
-    {% assign humanLang=language.name |capitalize %}
-  {% endif %}
-
-  <h2 id="{{language.name}}">{{humanLang}} functions in JS</h2>
-
-  {% if language.name != "php" %}
-    <blockquote>
-      We could still assimilate many more functions in this language.
-
-      Get inspiration
-
-      {% if language.name == "golang" %}
-        <a href="https://golang.org/pkg/strings/">here</a>
-      {% elsif language.name == "c" %}
-        <a href="http://en.cppreference.com/w/c/numeric/math">here</a>
-      {% elsif language.name == "ruby" %}
-        <a href="http://ruby-doc.org/core-2.2.2/Math.html">here</a>
-      {% elsif language.name == "python" %}
-        <a href="https://docs.python.org/3/library/string.html">here</a>
-      {% endif %}
-
-      and click "New file" <a href="https://github.com/kvz/locutus/tree/master/src/{{language.name}}/">on GitHub</a>
-      to add one.
-    </blockquote>
-  {% endif %}
-
-  {% assign categories = language.items| group_by site.functions, "category" %}
-
-  {% if include.with_functions == false %}<ul id='category-list'>{% endif %}
-    {% for category in categories %}
-      {% if include.with_functions %}
-        <h3 id="{{ language.name }}-{{ category.name }}">{{category.name}} ({{category.items |size}})</h3>
-      {% else %}
-        <li>
-          <a href="/functions/#{{ language.name }}-{{ category.name }}">{{category.name}}</a>
-          ({{category.items |size}})
-        </li>
-      {% endif %}
-
-      {% if include.with_functions %}
-        <ul id='function-list'>
-          {% for function in category.items %}
+    {% if include.with_functions == false %}<ul id='category-list'>{% endif %}
+      {% for category in categories %}
+        {% if include.with_functions %}
+          <h3 id="{{ category.name }}">{{category.name}} ({{category.items |size}})</h3>
+        {% else %}
           <li>
-            <a href="/{{function.language}}/{{function.category}}/{{function.function}}">{{function.function}}</a>
+            <a href="/{{ language.name }}/#{{ category.name }}">{{category.name}}</a>
+            ({{category.items |size}})
           </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endfor %}
-  {% if include.with_functions == false %}</ul><br />{% endif %}
+        {% endif %}
+
+        {% if include.with_functions %}
+          <ul id='function-list'>
+            {% for function in category.items %}
+            <li>
+              <a href="/{{function.language}}/{{function.category}}/{{function.function}}">{{function.function}}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endfor %}
+    {% if include.with_functions == false %}</ul><br />{% endif %}
+  {% endif %}
 {% endfor %}

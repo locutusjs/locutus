@@ -1,7 +1,9 @@
 ---
-layout: page
-title: "Assimilated functions"
-permalink: /functions/
+layout: language
+order: 5
+human: PHP
+name: php
+origin_template: <a href="http://php.net/manual/en/function.[page.function].php">[language.human]'s [page.function]</a>
 redirect_from:
 - /categories/
 - /categories/array/
@@ -26,14 +28,12 @@ redirect_from:
 - /categories/xdiff/
 - /categories/xml/
 - /functions/index/
+- /functions/
 - /packages/
 - /packages/index/
 ---
 
 If you are missing functions, there is a chance you may find them in our
-<a href="https://github.com/kvz/locutus/tree/master/_experimental">experimental</a> and
-<a href="https://github.com/kvz/locutus/tree/master/_workbench">workbench</a>
+<a href="https://github.com/kvz/locutus/tree/master/_experimental/{{page.name}}">experimental</a> and
+<a href="https://github.com/kvz/locutus/tree/master/_workbench/{{page.name}}">workbench</a>
 folders. Warning: we keep these functions there for a reason.
-
-
-{% include render_all.html with_functions=true %}

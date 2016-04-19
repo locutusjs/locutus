@@ -63,9 +63,11 @@
     </form>
 
     <ul class="main-navigation">
+      {% for language in site.languages | sort: 'order' %}
+        <li><a href="/{{language.name}}/#{{language.name}}">{{language.human}}</a></li>
+      {% endfor %}
       <li><a href="/about/">About</a></li>
       <li><a href="/blog/archives/">Blog</a></li>
-      <li><a href="/functions/">Functions</a></li>
       <li><a href="/authors/">Authors</a></li>
       <li><a href="https://github.com/kvz/locutus">GitHub</a></li>
     </ul>
