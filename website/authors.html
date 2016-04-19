@@ -15,12 +15,14 @@ permalink: /authors/
 
 {% for language in languages %}
   {% if language.name == "golang" %}
-    <h2>Go authors</h2>
+    {% assign humanLang="Go" %}
   {% elsif language.name == "php" %}
-    <h2>PHP authors</h2>
+    {% assign humanLang="PHP" %}
   {% else %}
-    <h2>{{language.name | capitalize}} authors</h2>
+    {% assign humanLang=language.name |capitalize %}
   {% endif %}
+
+  <h2>{{humanLang}} authors</h2>
 
   <section class="authors" data-language="{{language.name}}">
     {% for function in language.items %}

@@ -61,32 +61,10 @@ If you know better ways, you're very welcome to send us a pull request : )
 ## Contributing
 
 We use [GitHub](http://github.com/kvz/locutus) for collaboration.
-Please do adhere to our [CONTRIBUTING.md](http://github.com/kvz/locutus/CONTRIBUTING.md) when you're
-sending in a contribution.
+Please do adhere to our [CONTRIBUTING.md](http://github.com/kvz/locutus/CONTRIBUTING.md) guidelines when you're sending in a contribution.
 
 ## Licensing
 
 Locutus is licensed under the MIT licenses.
 
-The MIT license allows you to use the library as you see fit (even in commercial projects) as long as you redistribute original the license with it. You're not obligated to share your improvements, but obviously that would be greatly appreciated and ensure you won't lose your changes after you upgrade.
-
-	Copyright (c) 2007-{{ site.time | date: '%Y' }} Kevin van Zonneveld (http://kvz.io) 
-	and Contributors (http://locutusjs.io/authors)
-
-	Permission is hereby granted, free of charge, to any person obtaining a copy of
-	this software and associated documentation files (the "Software"), to deal in
-	the Software without restriction, including without limitation the rights to
-	use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
-	of the Software, and to permit persons to whom the Software is furnished to do
-	so, subject to the following conditions:
-
-	The above copyright notice and this permission notice shall be included in all
-	copies or substantial portions of the Software.
-
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-	SOFTWARE.
+[The MIT license](https://github.com/kvz/locutus/blob/master/LICENSE) allows you to use the library as you see fit (even in commercial projects) as long as you redistribute original the license with it. You're not obligated to share your improvements, but obviously that would be greatly appreciated and ensure you won't lose your changes after you upgrade.

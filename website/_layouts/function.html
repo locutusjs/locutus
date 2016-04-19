@@ -2,19 +2,29 @@
 layout: page
 ---
 
+{% if page.language == "golang" %}
+  {% assign humanLang="Go" %}
+{% elsif page.language == "php" %}
+  {% assign humanLang="PHP" %}
+{% else %}
+  {% assign humanLang=page.language |capitalize %}
+{% endif %}
+
 <p>
   Here’s what a JavaScript equivalent for
 
   {% if page.language == "golang" %}
-    <a href="https://golang.org/pkg/{{page.category}}/#{{page.function}}">Go's {{page.category}}.{{page.function}}</a>
+    <a href="https://golang.org/pkg/{{page.category}}/#{{page.function}}">{{humanLang}}'s {{page.category}}.{{page.function}}</a>
   {% elsif page.language == "c" %}
-    <a href="http://en.cppreference.com/w/c/numeric/{{page.category}}/{{page.function}}">C's {{page.category}}.h's {{page.function}}</a>
+    <a href="http://en.cppreference.com/w/c/numeric/{{page.category}}/{{page.function}}">{{humanLang}}'s {{page.category}}.h's {{page.function}}</a>
   {% elsif page.language == "php" %}
-    <a href="http://php.net/manual/en/function.{{page.function}}.php">PHP's {{page.function}}</a>
+    <a href="http://php.net/manual/en/function.{{page.function}}.php">{{humanLang}}'s {{page.function}}</a>
   {% elsif page.language == "ruby" %}
-    <a href="http://ruby-doc.org/core-2.2.2/{{page.category}}.html#method-c-{{page.function}}">Ruby's {{page.category}}.{{page.function}}</a>
+    <a href="http://ruby-doc.org/core-2.2.2/{{page.category}}.html#method-c-{{page.function}}">{{humanLang}}'s {{page.category}}.{{page.function}}</a>
+  {% elsif page.language == "python" %}
+    <a href="https://docs.python.org/3/library/{{page.category}}.html#{{page.category}}.{{page.function}}">{{humanLang}}'s {{page.category}}.{{page.function}}</a>
   {% else %}
-    {{page.language |capitalize}}'s {{page.function}}
+    {{humanLang}}'s {{page.function}}
   {% endif %}
   looks like.
 </p>
