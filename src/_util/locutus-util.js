@@ -1,5 +1,4 @@
 var glob = require('glob')
-var globby = require('globby')
 var path = require('path')
 var fs = require('fs')
 var YAML = require('js-yaml')
@@ -171,14 +170,21 @@ LocutusUtil.prototype.glob = function (pattern, workerCb) {
 LocutusUtil.prototype.test = function (args, options) {
   var self = this
   var pattern = self.__src + '/' + options.language + '/' + options.category + '/' + options.name + '.js'
-  self.pass_cnt = 0
-  self.know_cnt = 0
-  self.fail_cnt = 0
-  self.skip_cnt = 0
+  self.passed = []
+  self.known = []
+  self.failed = []
+  self.skiped = []
 
   process.on('exit', function () {
-    var msg = self.pass_cnt + ' passed / ' + self.fail_cnt + ' failed  / ' + self.know_cnt + ' known / ' + self.skip_cnt + ' skipped'
-    if (self.fail_cnt) {
+    var msg = [
+      self.passed.length + ' passed',
+      self.failed.length + ' failed ',
+      self.known.length + ' known',
+      self.skiped.length + ' skipped'
+    ].join(' / ')
+
+    if (self.failed.length) {
+      self.cli.error('Tests that broke the build: ' + '\n - ' + self.failed.join('\n - '))
       self.cli.fatal(msg)
     } else {
       self.cli.ok(msg)
@@ -193,24 +199,24 @@ LocutusUtil.prototype.test = function (args, options) {
     }
 
     if (params.headKeys.test && params.headKeys.test[0][0] === 'skip') {
-      self.skip_cnt++
-      return self.cli.info('--> ' + params.name + ' skipped as instructed. ')
+      self.skiped.push(params.func_name)
+      return self.cli.info('--> ' + params.func_name + ' skipped as instructed. ')
     }
 
     self._test(params, function (err, test, params) {
       var testName = params.func_name + '#' + (+(test.number * 1) + 1)
       if (!err) {
-        self.pass_cnt++
+        self.passed.push(testName)
         self.cli.debug('--> ' + testName + ' passed. ')
       } else {
         if (knownFailures.indexOf(testName) > -1) {
           self.cli.error('--> ' + testName + ' known error. ')
           self.cli.error(err)
-          self.know_cnt++
+          self.known.push(testName)
         } else {
           self.cli.error('--> ' + testName + ' failed. ')
           self.cli.error(err)
-          self.fail_cnt++
+          self.failed.push(testName)
           if (options.abort) {
             self.cli.fatal('Aborting on first failure as instructed. ')
           }
