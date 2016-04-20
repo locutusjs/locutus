@@ -26,10 +26,10 @@ module.exports = function http_build_query (formdata, numeric_prefix, arg_separa
     } else if (val === false) {
       val = '0'
     }
-    if (val != null) {
+    if (val !== null) {
       if (typeof val === 'object') {
         for (k in val) {
-          if (val[k] != null) {
+          if (val[k] !== null) {
             tmp.push(_http_build_query_helper(key + '[' + k + ']', val[k], arg_separator))
           }
         }

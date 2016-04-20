@@ -11,7 +11,7 @@ module.exports = function base64_decode (data) {
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //   example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
   //   returns 1: 'Kevin van Zonneveld'
-  //   example 2: base64_decode('YQ===');
+  //   example 2: base64_decode('YQ==');
   //   returns 2: 'a'
   //   example 3: base64_decode('4pyTIMOgIGxhIG1vZGU=');
   //   returns 3: '✓ à la mode'
@@ -41,9 +41,9 @@ module.exports = function base64_decode (data) {
     o2 = bits >> 8 & 0xff
     o3 = bits & 0xff
 
-    if (h3 == 64) {
+    if (h3 === 64) {
       tmp_arr[ac++] = String.fromCharCode(o1)
-    } else if (h4 == 64) {
+    } else if (h4 === 64) {
       tmp_arr[ac++] = String.fromCharCode(o1, o2)
     } else {
       tmp_arr[ac++] = String.fromCharCode(o1, o2, o3)

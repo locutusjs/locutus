@@ -27,11 +27,11 @@ module.exports = function substr_compare (main_str, str, offset, length, case_in
       .toLowerCase()
     str = (str + '')
       .toLowerCase()
-    if (main_str == str) {
+    if (main_str === str) {
       return 0
     }
     return (main_str > str) ? 1 : -1
   }
   // Works as strcmp
-  return ((main_str == str) ? 0 : ((main_str > str) ? 1 : -1))
+  return ((main_str === str) ? 0 : ((main_str > str) ? 1 : -1))
 }

@@ -184,7 +184,7 @@ module.exports = function strtotime (text, now) {
   if (!isNaN(parsed = Date.parse(text))) {
     return parsed / 1000 | 0
   }
-  // Browsers != Chrome have problems parsing ISO 8601 date strings, as they do
+  // Browsers !== Chrome have problems parsing ISO 8601 date strings, as they do
   // not accept lower case characters, space, or shortened time zones.
   // Therefore, fix these problems and try again.
   // Examples:
@@ -194,7 +194,7 @@ module.exports = function strtotime (text, now) {
   if (match = text.match(
       /^([0-9]{4}-[0-9]{2}-[0-9]{2})[ t]([0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]+)?)([\+-][0-9]{2}(:[0-9]{2})?|z)/)) {
     // fix time zone information
-    if (match[4] == 'z') {
+    if (match[4] === 'z') {
       match[4] = 'Z'
     } else if (match[4].match(/^([\+-][0-9]{2})$/)) {
       match[4] = match[4] + ':00'

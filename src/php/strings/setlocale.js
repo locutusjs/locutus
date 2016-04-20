@@ -131,7 +131,7 @@ module.exports = function setlocale (category, locale) {
 
         function (str1, str2) {
         // Fix: This one taken from strcmp, but need for other locales; we don't use localeCompare since its locale is not settable
-          return (str1 == str2) ? 0 : ((str1 > str2) ? 1 : -1)
+          return (str1 === str2) ? 0 : ((str1 > str2) ? 1 : -1)
         },
       'LC_CTYPE': {
         // Need to change any of these for English as opposed to C?

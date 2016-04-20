@@ -66,7 +66,7 @@ module.exports = function xdiff_string_diff (old_data, new_data, context_lines, 
         for (j = 0; j < basic_types.length; j++) {
           basic_type = basic_types[j]
 
-          if (basic_type == type) {
+          if (basic_type === type) {
             for (i = 1; i < args_len; i++) {
               if (typeof args[i] !== type) {
                 throw new Error('Bad type')
@@ -130,9 +130,9 @@ module.exports = function xdiff_string_diff (old_data, new_data, context_lines, 
         for (j = 0; j < basic_types.length; j++) {
           basic_type = basic_types[j]
 
-          if (basic_type == type) {
+          if (basic_type === type) {
             for (i = 1; i < args_len; i++) {
-              if (typeof args[i] != type) {
+              if (typeof args[i] !== type) {
                 return false
               }
             }
@@ -262,7 +262,7 @@ module.exports = function xdiff_string_diff (old_data, new_data, context_lines, 
     return false
   }
 
-  if (old_data == new_data) {
+  if (old_data === new_data) {
     return ''
   }
 

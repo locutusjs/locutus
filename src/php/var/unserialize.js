@@ -29,7 +29,7 @@ module.exports = function unserialize (data) {
       var code = chr.charCodeAt(0)
       if (code < 0x0080 || 0x00A0 <= code && code <= 0x00FF || [338, 339, 352, 353, 376, 402, 8211, 8212, 8216, 8217,
           8218, 8220, 8221, 8222, 8224, 8225, 8226, 8230, 8240, 8364, 8482
-        ].indexOf(code) != -1) {
+        ].indexOf(code) !== -1) {
         return 0
       }
       if (code < 0x0800) {
@@ -45,7 +45,7 @@ module.exports = function unserialize (data) {
       buf = [],
       chr = data.slice(offset, offset + 1)
 
-    while (chr != stopchr) {
+    while (chr !== stopchr) {
       if ((i + offset) > data.length) {
         error('Error', 'Invalid')
       }
@@ -124,7 +124,7 @@ module.exports = function unserialize (data) {
         chrs = readData[0]
         readdata = readData[1]
         dataoffset += chrs + 2
-        if (chrs != parseInt(stringlength, 10) && chrs != readdata.length) {
+        if (chrs !== parseInt(stringlength, 10) && chrs !== readdata.length) {
           error('SyntaxError', 'String length mismatch')
         }
         break

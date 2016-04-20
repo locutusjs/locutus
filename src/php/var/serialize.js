@@ -88,7 +88,7 @@ module.exports = function serialize (mixed_value) {
     /*
         if (type === 'object') {
           var objname = mixed_value.constructor.toString().match(/(\w+)\(\)/);
-          if (objname == undefined) {
+          if (objname === undefined) {
             return;
           }
           objname[1] = this.serialize(objname[1]);

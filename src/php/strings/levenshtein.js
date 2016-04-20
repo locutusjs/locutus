@@ -19,7 +19,7 @@ module.exports = function levenshtein (s1, s2, cost_ins, cost_rep, cost_del) {
   cost_rep = cost_rep == null ? 1 : +cost_rep
   cost_del = cost_del == null ? 1 : +cost_del
 
-  if (s1 == s2) {
+  if (s1 === s2) {
     return 0
   }
 
@@ -65,7 +65,7 @@ module.exports = function levenshtein (s1, s2, cost_ins, cost_rep, cost_del) {
     p2[0] = p1[0] + cost_del
 
     for (i2 = 0; i2 < l2; i2++) {
-      c0 = p1[i2] + ((s1[i1] == s2[i2]) ? 0 : cost_rep)
+      c0 = p1[i2] + ((s1[i1] === s2[i2]) ? 0 : cost_rep)
       c1 = p1[i2 + 1] + cost_del
 
       if (c1 < c0) {

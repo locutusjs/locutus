@@ -45,11 +45,11 @@ module.exports = function version_compare (v1, v2, operator) {
     // It replaces every _, -, and + with a dot.
     // It surrounds any nonsequence of numbers/dots with dots.
     // It replaces sequences of dots with a single dot.
-    //    version_compare('4..0', '4.0') == 0
+    //    version_compare('4..0', '4.0') === 0
     // Important: A string of 0 length needs to be converted into a value
     // even less than an unexisting value in vm (-7), hence [-8].
     // It's also important to not strip spaces because of this.
-    //   version_compare('', ' ') == 1
+    //   version_compare('', ' ') === 1
     prepVersion = function (v) {
       v = ('' + v)
         .replace(/[_\-+]/g, '.')
@@ -68,7 +68,7 @@ module.exports = function version_compare (v1, v2, operator) {
   v2 = prepVersion(v2)
   x = Math.max(v1.length, v2.length)
   for (i = 0; i < x; i++) {
-    if (v1[i] == v2[i]) {
+    if (v1[i] === v2[i]) {
       continue
     }
     v1[i] = numVersion(v1[i])
@@ -98,12 +98,12 @@ module.exports = function version_compare (v1, v2, operator) {
     case '<=':
     case 'le':
       return (compare <= 0)
-    case '==':
+    case '===':
     case '=':
     case 'eq':
       return (compare === 0)
     case '<>':
-    case '!=':
+    case '!==':
     case 'ne':
       return (compare !== 0)
     case '':

@@ -69,14 +69,14 @@ module.exports = function strtr (str, from, to) {
     if (fromTypeStr) {
       istr = str.charAt(i)
       for (j = 0; j < lenFrom; j++) {
-        if (istr == from.charAt(j)) {
+        if (istr === from.charAt(j)) {
           match = true
           break
         }
       }
     } else {
       for (j = 0; j < lenFrom; j++) {
-        if (str.substr(i, from[j].length) == from[j]) {
+        if (str.substr(i, from[j].length) === from[j]) {
           match = true
           // Fast forward
           i = (i + from[j].length) - 1

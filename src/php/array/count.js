@@ -22,14 +22,14 @@ module.exports = function count (mixed_var, mode) {
   if (mode === 'COUNT_RECURSIVE') {
     mode = 1
   }
-  if (mode != 1) {
+  if (mode !== 1) {
     mode = 0
   }
 
   for (key in mixed_var) {
     if (mixed_var.hasOwnProperty(key)) {
       cnt++
-      if (mode == 1 && mixed_var[key] && (mixed_var[key].constructor === Array || mixed_var[key].constructor ===
+      if (mode === 1 && mixed_var[key] && (mixed_var[key].constructor === Array || mixed_var[key].constructor ===
           Object)) {
         cnt += this.count(mixed_var[key], 1)
       }

@@ -61,7 +61,7 @@ module.exports = function substr (str, start, len) {
           }
         } else {
           var surrogatePairs = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g
-          while ((surrogatePairs.exec(str)) != null) {
+          while ((surrogatePairs.exec(str)) !== null) {
             var li = surrogatePairs.lastIndex
             if (li - 2 < start) {
               start++

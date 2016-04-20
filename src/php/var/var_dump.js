@@ -40,7 +40,7 @@ module.exports = function var_dump () {
     } else if (typeof val === 'string') {
       ret = 'string(' + val.length + ') "' + val + '"'
     } else if (typeof val === 'number') {
-      if (parseFloat(val) == parseInt(val, 10)) {
+      if (parseFloat(val) === parseInt(val, 10)) {
         ret = 'int(' + val + ')'
       } else {
         ret = 'float(' + val + ')'

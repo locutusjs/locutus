@@ -19,7 +19,7 @@ module.exports = function strnatcmp (f_string1, f_string2, f_version) {
 
   var i = 0
 
-  if (f_version == undefined) {
+  if (f_version === undefined) {
     f_version = false
   }
 
@@ -45,13 +45,13 @@ module.exports = function strnatcmp (f_string1, f_string2, f_version) {
           text = false
         }
         buffer += chr
-      } else if ((text == false) && (chr === '.') && (i < (f_string.length - 1)) && (f_string.substring(i + 1, i +
+      } else if ((text === false) && (chr === '.') && (i < (f_string.length - 1)) && (f_string.substring(i + 1, i +
             2)
           .match(/\d/))) {
         result[result.length] = buffer
         buffer = ''
       } else {
-        if (text == false) {
+        if (text === false) {
           if (buffer.length > 0) {
             result[result.length] = parseInt(buffer, 10)
             buffer = ''
@@ -92,7 +92,7 @@ module.exports = function strnatcmp (f_string1, f_string2, f_version) {
       if (isNaN(array2[i])) {
         text = true
 
-        if ((r = this.strcmp(array1[i], array2[i])) != 0) {
+        if ((r = this.strcmp(array1[i], array2[i])) !== 0) {
           return r
         }
       } else if (text) {
@@ -108,11 +108,11 @@ module.exports = function strnatcmp (f_string1, f_string2, f_version) {
       }
     } else {
       if (text || f_version) {
-        if ((r = (array1[i] - array2[i])) != 0) {
+        if ((r = (array1[i] - array2[i])) !== 0) {
           return r
         }
       } else {
-        if ((r = this.strcmp(array1[i].toString(), array2[i].toString())) != 0) {
+        if ((r = this.strcmp(array1[i].toString(), array2[i].toString())) !== 0) {
           return r
         }
       }

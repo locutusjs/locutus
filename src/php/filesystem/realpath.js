@@ -20,10 +20,10 @@ module.exports = function realpath (path) {
   arr = path.split('/') /* The path is an array now */
   path = [] /* Foreach part make a check */
   for (var k in arr) { /* This is'nt really interesting */
-    if (arr[k] == '.') {
+    if (arr[k] === '.') {
       continue
     } /* This reduces the realpath */
-    if (arr[k] == '..') {
+    if (arr[k] === '..') {
       /* But only if there more than 3 parts in the path-array.
        * The first three parts are for the uri */
       if (path.length > 3) {

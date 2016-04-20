@@ -9,7 +9,7 @@ module.exports = function str_shuffle (str) {
     throw 'Wrong parameter count for str_shuffle()'
   }
 
-  if (str == null) {
+  if (str === null) {
     return ''
   }
 

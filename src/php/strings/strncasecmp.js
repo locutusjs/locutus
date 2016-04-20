@@ -26,14 +26,14 @@ module.exports = function strncasecmp (argStr1, argStr2, len) {
   if (str1.length !== str2.length) {
     if (str1.length < str2.length) {
       len = str1.length
-      if (str2.substr(0, str1.length) == str1) {
+      if (str2.substr(0, str1.length) === str1) {
         // return the difference of chars
         return str1.length - str2.length
       }
     } else {
       len = str2.length
       // str1 is longer than str2
-      if (str1.substr(0, str2.length) == str2) {
+      if (str1.substr(0, str2.length) === str2) {
         // return the difference of chars
         return str1.length - str2.length
       }

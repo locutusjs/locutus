@@ -34,5 +34,5 @@ module.exports = function array_rand (input, num_req) {
     indexes = null
   }
 
-  return ((ticks == 1) ? indexes.join() : indexes)
+  return ((ticks === 1) ? indexes.join() : indexes)
 }

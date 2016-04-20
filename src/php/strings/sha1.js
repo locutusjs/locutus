@@ -78,7 +78,7 @@ module.exports = function sha1 (str) {
 
   word_array.push(i)
 
-  while ((word_array.length % 16) != 14) {
+  while ((word_array.length % 16) !== 14) {
     word_array.push(0)
   }
 

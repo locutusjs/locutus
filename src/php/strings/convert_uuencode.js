@@ -33,7 +33,7 @@ module.exports = function convert_uuencode (str) {
     for (i in bytes) {
       bytes[i] = bytes[i].charCodeAt(0)
     }
-    if (bytes.length != 0) {
+    if (bytes.length !== 0) {
       return bytes.length
     } else {
       return 0
@@ -63,7 +63,7 @@ module.exports = function convert_uuencode (str) {
 
     for (i = 0; i <= (tmp2.length / 6) - 1; i++) {
       tmp1 = tmp2.substr(a, 6)
-      if (tmp1 == '000000') {
+      if (tmp1 === '000000') {
         encoded += chr(96)
       } else {
         encoded += chr(parseInt(tmp1, 2) + 32)

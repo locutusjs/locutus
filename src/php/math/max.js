@@ -56,9 +56,9 @@ module.exports = function max () {
           }
           for (i = 0, n = cl; i < n; ++i) {
             tmp = _compare(current[i], next[i])
-            if (tmp == 1) {
+            if (tmp === 1) {
               return 1
-            } else if (tmp == -1) {
+            } else if (tmp === -1) {
               return -1
             }
           }
@@ -68,18 +68,18 @@ module.exports = function max () {
       } else if (typeof next === 'object') {
         return 1
       } else if (isNaN(next) && !isNaN(current)) {
-        if (current == 0) {
+        if (current === 0) {
           return 0
         }
         return (current < 0 ? 1 : -1)
       } else if (isNaN(current) && !isNaN(next)) {
-        if (next == 0) {
+        if (next === 0) {
           return 0
         }
         return (next > 0 ? 1 : -1)
       }
 
-      if (next == current) {
+      if (next === current) {
         return 0
       }
       return (next > current ? 1 : -1)
@@ -101,7 +101,7 @@ module.exports = function max () {
 
   retVal = ar[0]
   for (i = 1, n = ar.length; i < n; ++i) {
-    if (_compare(retVal, ar[i]) == 1) {
+    if (_compare(retVal, ar[i]) === 1) {
       retVal = ar[i]
     }
   }

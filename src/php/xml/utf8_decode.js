@@ -43,7 +43,7 @@ module.exports = function utf8_decode (str_data) {
       c1 = ((c1 << 0x06) | (str_data.charCodeAt(ai + i) & 0x3F))
     }
 
-    if (seqlen == 4) {
+    if (seqlen === 4) {
       c1 -= 0x10000
       tmp_arr.push(String.fromCharCode(0xD800 | ((c1 >> 10) & 0x3FF)), String.fromCharCode(0xDC00 | (c1 & 0x3FF)))
     } else {

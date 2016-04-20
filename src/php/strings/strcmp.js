@@ -9,5 +9,5 @@ module.exports = function strcmp (str1, str2) {
   //   example 2: strcmp( 'owald', 'waldo' );
   //   returns 2: -1
 
-  return ((str1 == str2) ? 0 : ((str1 > str2) ? 1 : -1))
+  return ((str1 === str2) ? 0 : ((str1 > str2) ? 1 : -1))
 }

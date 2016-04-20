@@ -71,7 +71,7 @@ module.exports = function _locutus_shared_bc () {
         tmp = this.n_value.join('')
 
         // add minus sign (if applicable) then add the integer part
-        r = ((this.n_sign == libbcmath.PLUS) ? '' : this.n_sign) + tmp.substr(0, this.n_len)
+        r = ((this.n_sign === libbcmath.PLUS) ? '' : this.n_sign) + tmp.substr(0, this.n_len)
 
         // if decimal places, add a . and the decimal part
         if (this.n_scale > 0) {
@@ -128,7 +128,7 @@ module.exports = function _locutus_shared_bc () {
      * This is the "user callable" routine to compare numbers N1 and N2.
      * @param {bc_num} n1
      * @param {bc_num} n2
-     * @return int -1, 0, 1  (n1 < n2, ==, n1 > n2)
+     * @return int -1, 0, 1  (n1 < n2, ===, n1 > n2)
      */
     bc_compare           : function (n1, n2) {
       return libbcmath._bc_do_compare(n1, n2, true, false)
@@ -140,7 +140,7 @@ module.exports = function _locutus_shared_bc () {
       if (digit === 0) {
         libbcmath.memset(result, 0, 0, size) // memset (result, 0, size);
       } else {
-        if (digit == 1) {
+        if (digit === 1) {
           libbcmath.memcpy(result, r_ptr, num, n_ptr, size) // memcpy (result, num, size);
         } else { /*  Initialize */
           nptr = n_ptr + size - 1 // nptr = (unsigned char *) (num+size-1);
@@ -197,7 +197,7 @@ module.exports = function _locutus_shared_bc () {
       if (n2.n_scale === 0) {
         if (n2.n_len === 1 && n2.n_value[0] === 1) {
           qval = libbcmath.bc_new_num(n1.n_len, scale) // qval = bc_new_num (n1->n_len, scale);
-          qval.n_sign = (n1.n_sign == n2.n_sign ? libbcmath.PLUS : libbcmath.MINUS)
+          qval.n_sign = (n1.n_sign === n2.n_sign ? libbcmath.PLUS : libbcmath.MINUS)
           libbcmath.memset(qval.n_value, n1.n_len, 0, scale) // memset (&qval->n_value[n1->n_len],0,scale);
           libbcmath.memcpy(qval.n_value, 0, n1.n_value, 0, n1.n_len + libbcmath.MIN(n1.n_scale, scale)) // memcpy (qval->n_value, n1->n_value, n1->n_len + MIN(n1->n_scale,scale));
           // can we return here? not in c src, but can't see why-not.
@@ -235,7 +235,7 @@ module.exports = function _locutus_shared_bc () {
       libbcmath.memcpy(num2, 0, n2.n_value, 0, len2) // memcpy (num2, n2.n_value, len2);
       num2[len2] = 0 // *(num2+len2) = 0;
       n2ptr = 0 // n2ptr = num2;
-      while (num2[n2ptr] === 0) { // while (*n2ptr == 0)
+      while (num2[n2ptr] === 0) { // while (*n2ptr === 0)
         n2ptr++
         len2--
       }
@@ -266,7 +266,7 @@ module.exports = function _locutus_shared_bc () {
       if (!zero) { /* Normalize */
         // norm = libbcmath.cint(10 / (libbcmath.cint(n2.n_value[n2ptr]) + 1)); //norm =  10 / ((int)*n2ptr + 1);
         norm = Math.floor(10 / (n2.n_value[n2ptr] + 1)) // norm =  10 / ((int)*n2ptr + 1);
-        if (norm != 1) {
+        if (norm !== 1) {
           libbcmath._one_mult(num1, 0, len1 + scale1 + extra + 1, norm, num1, 0) // libbcmath._one_mult(num1, len1+scale1+extra+1, norm, num1);
           libbcmath._one_mult(n2.n_value, n2ptr, len2, norm, n2.n_value, n2ptr) // libbcmath._one_mult(n2ptr, len2, norm, n2ptr);
           // @CHECK Is the pointer affected by the call? if so, maybe need to adjust points on return?
@@ -282,7 +282,7 @@ module.exports = function _locutus_shared_bc () {
 
         /* Loop */
         while (qdig <= len1 + scale - len2) { /* Calculate the quotient digit guess. */
-          if (n2.n_value[n2ptr] == num1[qdig]) {
+          if (n2.n_value[n2ptr] === num1[qdig]) {
             qguess = 9
           } else {
             qguess = Math.floor((num1[qdig] * 10 + num1[qdig + 1]) / n2.n_value[n2ptr])
@@ -323,7 +323,7 @@ module.exports = function _locutus_shared_bc () {
           }
 
           /* Test for negative result. */
-          if (borrow == 1) {
+          if (borrow === 1) {
             qguess--
             ptr1 = qdig + len2 // (unsigned char *) num1+qdig+len2;
             ptr2 = len2 - 1 // (unsigned char *) n2ptr+len2-1;
@@ -344,7 +344,7 @@ module.exports = function _locutus_shared_bc () {
               }
               num1[ptr1--] = val //* ptr1-- = val;
             }
-            if (carry == 1) {
+            if (carry === 1) {
               // num1[ptr1] = libbcmath.cint((num1[ptr1] + 1) % 10);  // *ptr1 = (*ptr1 + 1) % 10; // @CHECK
               num1[ptr1] = (num1[ptr1] + 1) % 10 // *ptr1 = (*ptr1 + 1) % 10; // @CHECK
             }
@@ -357,7 +357,7 @@ module.exports = function _locutus_shared_bc () {
       }
 
       /* Clean up and return the number. */
-      qval.n_sign = (n1.n_sign == n2.n_sign ? libbcmath.PLUS : libbcmath.MINUS)
+      qval.n_sign = (n1.n_sign === n2.n_sign ? libbcmath.PLUS : libbcmath.MINUS)
       if (libbcmath.bc_is_zero(qval)) {
         qval.n_sign = libbcmath.PLUS
       }
@@ -397,7 +397,7 @@ module.exports = function _locutus_shared_bc () {
       pval = libbcmath._bc_rec_mul(n1, len1, n2, len2, full_scale)
 
       // Assign to prod and clean up the number.
-      pval.n_sign = (n1.n_sign == n2.n_sign ? libbcmath.PLUS : libbcmath.MINUS)
+      pval.n_sign = (n1.n_sign === n2.n_sign ? libbcmath.PLUS : libbcmath.MINUS)
       // pval.n_value = pval.n_ptr; // @FIX
       pval.n_len = len2 + len1 + 1 - full_scale
       pval.n_scale = prod_scale
@@ -600,7 +600,7 @@ module.exports = function _locutus_shared_bc () {
       }
       libbcmath._bc_shift_addsub(prod, m3, n, 0)
       libbcmath._bc_shift_addsub(prod, m3, 0, 0)
-      libbcmath._bc_shift_addsub(prod, m2, n, d1.n_sign != d2.n_sign)
+      libbcmath._bc_shift_addsub(prod, m2, n, d1.n_sign !== d2.n_sign)
 
       return prod
       // Now clean up!
@@ -628,8 +628,8 @@ module.exports = function _locutus_shared_bc () {
       var n1ptr, n2ptr // int
       var count // int
       /* First, compare signs. */
-      if (use_sign && (n1.n_sign != n2.n_sign)) {
-        if (n1.n_sign == libbcmath.PLUS) {
+      if (use_sign && (n1.n_sign !== n2.n_sign)) {
+        if (n1.n_sign === libbcmath.PLUS) {
           return (1) /* Positive N1 > Negative N2 */
         } else {
           return (-1) /* Negative N1 < Positive N1 */
@@ -637,15 +637,15 @@ module.exports = function _locutus_shared_bc () {
       }
 
       /* Now compare the magnitude. */
-      if (n1.n_len != n2.n_len) {
+      if (n1.n_len !== n2.n_len) {
         if (n1.n_len > n2.n_len) { /* Magnitude of n1 > n2. */
-          if (!use_sign || (n1.n_sign == libbcmath.PLUS)) {
+          if (!use_sign || (n1.n_sign === libbcmath.PLUS)) {
             return (1)
           } else {
             return (-1)
           }
         } else { /* Magnitude of n1 < n2. */
-          if (!use_sign || (n1.n_sign == libbcmath.PLUS)) {
+          if (!use_sign || (n1.n_sign === libbcmath.PLUS)) {
             return (-1)
           } else {
             return (1)
@@ -659,25 +659,25 @@ module.exports = function _locutus_shared_bc () {
       n1ptr = 0
       n2ptr = 0
 
-      while ((count > 0) && (n1.n_value[n1ptr] == n2.n_value[n2ptr])) {
+      while ((count > 0) && (n1.n_value[n1ptr] === n2.n_value[n2ptr])) {
         n1ptr++
         n2ptr++
         count--
       }
 
-      if (ignore_last && (count == 1) && (n1.n_scale == n2.n_scale)) {
+      if (ignore_last && (count === 1) && (n1.n_scale === n2.n_scale)) {
         return (0)
       }
 
       if (count !== 0) {
         if (n1.n_value[n1ptr] > n2.n_value[n2ptr]) { /* Magnitude of n1 > n2. */
-          if (!use_sign || n1.n_sign == libbcmath.PLUS) {
+          if (!use_sign || n1.n_sign === libbcmath.PLUS) {
             return (1)
           } else {
             return (-1)
           }
         } else { /* Magnitude of n1 < n2. */
-          if (!use_sign || n1.n_sign == libbcmath.PLUS) {
+          if (!use_sign || n1.n_sign === libbcmath.PLUS) {
             return (-1)
           } else {
             return (1)
@@ -686,11 +686,11 @@ module.exports = function _locutus_shared_bc () {
       }
 
       /* They are equal up to the last part of the equal part of the fraction. */
-      if (n1.n_scale != n2.n_scale) {
+      if (n1.n_scale !== n2.n_scale) {
         if (n1.n_scale > n2.n_scale) {
           for (count = (n1.n_scale - n2.n_scale); count > 0; count--) {
             if (n1.n_value[n1ptr++] !== 0) { /* Magnitude of n1 > n2. */
-              if (!use_sign || n1.n_sign == libbcmath.PLUS) {
+              if (!use_sign || n1.n_sign === libbcmath.PLUS) {
                 return (1)
               } else {
                 return (-1)
@@ -700,7 +700,7 @@ module.exports = function _locutus_shared_bc () {
         } else {
           for (count = (n2.n_scale - n1.n_scale); count > 0; count--) {
             if (n2.n_value[n2ptr++] !== 0) { /* Magnitude of n1 < n2. */
-              if (!use_sign || n1.n_sign == libbcmath.PLUS) {
+              if (!use_sign || n1.n_sign === libbcmath.PLUS) {
                 return (-1)
               } else {
                 return (1)
@@ -722,7 +722,7 @@ module.exports = function _locutus_shared_bc () {
     bc_sub               : function (n1, n2, scale_min) {
       var diff // bc_num
       var cmp_res, res_scale // int
-      if (n1.n_sign != n2.n_sign) {
+      if (n1.n_sign !== n2.n_sign) {
         diff = libbcmath._bc_do_add(n1, n2, scale_min)
         diff.n_sign = n1.n_sign
       } else { /* subtraction must be done. */
@@ -732,7 +732,7 @@ module.exports = function _locutus_shared_bc () {
           case -1:
             /* n1 is less than n2, subtract n1 from n2. */
             diff = libbcmath._bc_do_sub(n2, n1, scale_min)
-            diff.n_sign = (n2.n_sign == libbcmath.PLUS ? libbcmath.MINUS : libbcmath.PLUS)
+            diff.n_sign = (n2.n_sign === libbcmath.PLUS ? libbcmath.MINUS : libbcmath.PLUS)
             break
           case 0:
             /* They are equal! return zero! */
@@ -785,7 +785,7 @@ module.exports = function _locutus_shared_bc () {
       sumptr = (sum_scale + sum_digits - 1)
 
       // Add the fraction part.  First copy the longer fraction (ie when adding 1.2345 to 1 we know .2345 is correct already) .
-      if (n1bytes != n2bytes) {
+      if (n1bytes !== n2bytes) {
         if (n1bytes > n2bytes) {
           // n1 has more dp then n2
           while (n1bytes > n2bytes) {
@@ -855,7 +855,7 @@ module.exports = function _locutus_shared_bc () {
       }
 
       // Set final carry.
-      if (carry == 1) {
+      if (carry === 1) {
         sum.n_value[sumptr] += 1
         // *sumptr += 1;
       }
@@ -915,7 +915,7 @@ module.exports = function _locutus_shared_bc () {
       borrow = 0
 
       // Take care of the longer scaled number.
-      if (n1.n_scale != min_scale) {
+      if (n1.n_scale !== min_scale) {
         // n1 has the longer scale
         for (count = n1.n_scale - min_scale; count > 0; count--) {
           diff.n_value[diffptr--] = n1.n_value[n1ptr--]
@@ -952,7 +952,7 @@ module.exports = function _locutus_shared_bc () {
       }
 
       // If n1 has more digits then n2, we now do that subtract.
-      if (diff_len != min_len) {
+      if (diff_len !== min_len) {
         for (count = diff_len - min_len; count > 0; count--) {
           val = n1.n_value[n1ptr--] - borrow
           // val = *n1ptr-- - borrow;
@@ -1013,7 +1013,7 @@ module.exports = function _locutus_shared_bc () {
     php_str2num          : function (str) {
       var p
       p = str.indexOf('.')
-      if (p == -1) {
+      if (p === -1) {
         return libbcmath.bc_str2num(str, 0)
       } else {
         return libbcmath.bc_str2num(str, (str.length - p))
@@ -1191,7 +1191,7 @@ module.exports = function _locutus_shared_bc () {
       var count // int
       var nptr // int
       /* Quick check. */
-      // if (num == BCG(_zero_)) return TRUE;
+      // if (num === BCG(_zero_)) return TRUE;
       /* Initialize */
       count = num.n_len + num.n_scale
       nptr = 0 // num->n_value;

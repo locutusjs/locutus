@@ -22,12 +22,12 @@ module.exports = function strspn (str1, str2, start, lgth) {
     stri = str1.substring(i, i + 1)
     for (j = 0; j <= str2.length; j++) {
       strj = str2.substring(j, j + 1)
-      if (stri == strj) {
+      if (stri === strj) {
         found = 1
         break
       }
     }
-    if (found != 1) {
+    if (found !== 1) {
       return i
     }
   }

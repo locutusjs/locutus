@@ -12,7 +12,7 @@ module.exports = function strcasecmp (f_string1, f_string2) {
 
   if (string1 > string2) {
     return 1
-  } else if (string1 == string2) {
+  } else if (string1 === string2) {
     return 0
   }
 

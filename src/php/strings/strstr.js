@@ -16,7 +16,7 @@ module.exports = function strstr (haystack, needle, bool) {
 
   haystack += ''
   pos = haystack.indexOf(needle)
-  if (pos == -1) {
+  if (pos === -1) {
     return false
   } else {
     if (bool) {

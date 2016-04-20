@@ -23,7 +23,7 @@ module.exports = function array () {
         nonstrict = !strict,
         length = this.length
       while (i < length) {
-        if (this[i] === value || (nonstrict && this[i] == value)) {
+        if (this[i] === value || (nonstrict && this[i] === value)) {
           return i
         }
         i++
@@ -262,7 +262,7 @@ module.exports = function array () {
         }
         for (i = 0, vl = haystack.length; i < vl; i++) {
           val = haystack[i]
-          if ((strict && val === needle) || (!strict && val == needle)) {
+          if ((strict && val === needle) || (!strict && val === needle)) {
             return _.keys[i]
           }
         }

@@ -26,12 +26,10 @@ module.exports = function wordwrap (str, int_width, str_break, cut) {
     return str
   }
 
-  for (i = -1, l = (r = str.split(/\r\n|\n|\r/))
-    .length; ++i < l; r[i] += s) {
-    for (s = r[i], r[i] = ''; s.length > m; r[i] += s.slice(0, j) + ((s = s.slice(j))
-        .length ? b : '')) {
-      j = c == 2 || (j = s.slice(0, m + 1)
-        .match(/\S*(\s)?$/))[1] ? m : j.input.length - j[0].length || c == 1 && m || j.input.length + (j = s.slice(
+  for (i = -1, l = (r = str.split(/\r\n|\n|\r/)).length; ++i < l; r[i] += s) {
+    for (s = r[i], r[i] = ''; s.length > m; r[i] += s.slice(0, j) + ((s = s.slice(j)).length ? b : '')) {
+      j = c === 2 || (j = s.slice(0, m + 1)
+        .match(/\S*(\s)?$/))[1] ? m : j.input.length - j[0].length || c === true && m || j.input.length + (j = s.slice(
           m)
         .match(/^\S*/))[0].length
     }

@@ -17,7 +17,7 @@ module.exports = function array_combine (keys, values) {
   }
 
   // number of elements does not match
-  if (keycount != values.length) {
+  if (keycount !== values.length) {
     return false
   }
 

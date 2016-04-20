@@ -44,7 +44,7 @@ module.exports = function array_slice (arr, offst, lgth, preserve_keys) {
       if (arrlgth >= lgth) {
         break
       }
-      if (it == offst) {
+      if (it === offst) {
         start = true
       }
       if (!start) {

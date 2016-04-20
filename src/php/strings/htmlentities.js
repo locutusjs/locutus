@@ -20,7 +20,7 @@ module.exports = function htmlentities (string, quote_style, charset, double_enc
   var hash_map = this.get_html_translation_table('HTML_ENTITIES', quote_style),
     symbol = ''
 
-  string = string == null ? '' : string + ''
+  string = string === null ? '' : string + ''
 
   if (!hash_map) {
     return false
@@ -30,7 +30,7 @@ module.exports = function htmlentities (string, quote_style, charset, double_enc
     hash_map["'"] = '&#039;'
   }
 
-  double_encode = double_encode == null || !!double_encode
+  double_encode = double_encode === null || !!double_encode
 
   var regex = new RegExp('&(?:#\\d+|#x[\\da-f]+|[a-zA-Z][\\da-z]*);|[' +
     Object.keys(hash_map)

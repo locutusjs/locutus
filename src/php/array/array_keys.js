@@ -27,7 +27,7 @@ module.exports = function array_keys (input, search_value, argStrict) {
       if (search) {
         if (strict && input[key] !== search_value) {
           include = false
-        } else if (input[key] != search_value) {
+        } else if (input[key] !== search_value) {
           include = false
         }
       }

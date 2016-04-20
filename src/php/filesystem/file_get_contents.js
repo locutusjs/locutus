@@ -92,7 +92,7 @@ module.exports = function file_get_contents (url, flags, context, offset, maxLen
     var async = !!(context && context.stream_params && context.stream_params['locutus.async'])
 
     if (ini['locutus.ajaxBypassCache'] && ini['locutus.ajaxBypassCache'].local_value) {
-      url += (url.match(/\?/) == null ? '?' : '&') + (new Date())
+      url += (url.match(/\?/) === null ? '?' : '&') + (new Date())
         .getTime() // Give optional means of forcing bypass of cache
     }
 

@@ -35,7 +35,7 @@ module.exports = function bcround (val, precision) {
   if (digit >= 5) {
     // round away from zero by adding 1 (or -1) at the "precision".. ie 1.44999 @ 3dp = (1.44999 + 0.001).toString().substr(0,5)
     right_operand.n_value[right_operand.n_len + right_operand.n_scale - 1] = 1
-    if (temp.n_sign == libbcmath.MINUS) {
+    if (temp.n_sign === libbcmath.MINUS) {
       // round down
       right_operand.n_sign = libbcmath.MINUS
     }

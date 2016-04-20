@@ -24,7 +24,7 @@ module.exports = function arsort (inputArr, sort_flags) {
   //  depends on: i18n_loc_get_default
   //   example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
   //   example 1: data = arsort(data);
-  //   returns 1: data == {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
+  //   returns 1: data === {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
   //   example 2: ini_set('locutus.strictForIn', true);
   //   example 2: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
   //   example 2: arsort(data);

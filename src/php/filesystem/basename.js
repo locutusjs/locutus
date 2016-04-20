@@ -23,7 +23,7 @@ module.exports = function basename (path, suffix) {
 
   b = b.replace(/^.*[\/\\]/g, '')
 
-  if (typeof suffix === 'string' && b.substr(b.length - suffix.length) == suffix) {
+  if (typeof suffix === 'string' && b.substr(b.length - suffix.length) === suffix) {
     b = b.substr(0, b.length - suffix.length)
   }
 

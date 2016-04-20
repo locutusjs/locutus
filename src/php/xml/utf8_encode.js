@@ -35,17 +35,17 @@ module.exports = function utf8_encode (argString) {
       enc = String.fromCharCode(
         (c1 >> 6) | 192, (c1 & 63) | 128
       )
-    } else if ((c1 & 0xF800) != 0xD800) {
+    } else if ((c1 & 0xF800) !== 0xD800) {
       enc = String.fromCharCode(
         (c1 >> 12) | 224, ((c1 >> 6) & 63) | 128, (c1 & 63) | 128
       )
     } else {
       // surrogate pairs
-      if ((c1 & 0xFC00) != 0xD800) {
+      if ((c1 & 0xFC00) !== 0xD800) {
         throw new RangeError('Unmatched trail surrogate at ' + n)
       }
       var c2 = string.charCodeAt(++n)
-      if ((c2 & 0xFC00) != 0xDC00) {
+      if ((c2 & 0xFC00) !== 0xDC00) {
         throw new RangeError('Unmatched lead surrogate at ' + (n - 1))
       }
       c1 = ((c1 & 0x3FF) << 10) + (c2 & 0x3FF) + 0x10000

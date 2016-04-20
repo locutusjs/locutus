@@ -42,7 +42,7 @@ module.exports = function date (format, timestamp) {
   //   example 3: date('Y W o', 1062462400);
   //   returns 3: '2003 36 2003'
   //   example 4: x = date('Y m d', (new Date()).getTime()/1000);
-  //   example 4: (x+'').length == 10 // 2009 01 09
+  //   example 4: (x+'').length === 10 // 2009 01 09
   //   returns 4: true
   //   example 5: date('W', 1104534000);
   //   returns 5: '53'
@@ -105,7 +105,7 @@ module.exports = function date (format, timestamp) {
       // Ordinal suffix for day of month; st, nd, rd, th
       var j = f.j()
       var i = j % 10
-      if (i <= 3 && parseInt((j % 100) / 10, 10) == 1) {
+      if (i <= 3 && parseInt((j % 100) / 10, 10) === 1) {
         i = 0
       }
       return ['st', 'nd', 'rd'][i - 1] || 'th'

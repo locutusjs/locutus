@@ -41,7 +41,7 @@ module.exports = function array_search (needle, haystack, argStrict) {
 
   for (key in haystack) {
     if (haystack.hasOwnProperty(key)) {
-      if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
+      if ((strict && haystack[key] === needle) || (!strict && haystack[key] === needle)) {
         return key
       }
     }
