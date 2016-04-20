@@ -16,7 +16,7 @@ function flatten () {
   return flat
 }
 
-function LocutusUtil (config) {
+function Util (config) {
   this.injectDependencies = []
 
   // Overwrite properties with config
@@ -27,20 +27,20 @@ function LocutusUtil (config) {
 
 // Should be overridden by a more sofisticated function
 // such as cli.debug when run in node.js
-LocutusUtil.prototype.debug = function (a) {
+Util.prototype.debug = function (a) {
   return console.log(a)
 }
 
 // Should be overridden by a more sofisticated function
 // such as assert.deepEqual when run in node.js
-LocutusUtil.prototype.equal = function (a, b) {
+Util.prototype.equal = function (a, b) {
   return JSON.stringify(a) === JSON.stringify(b)
 }
 
 // Environment-specific file opener. function name needs to
 // be translated to code. The difficulty is in finding the
 // category.
-LocutusUtil.prototype.opener = function (fileOrName, cb) {
+Util.prototype.opener = function (fileOrName, cb) {
   var self = this
   var pattern = fileOrName
   if (fileOrName.indexOf('/') === -1) {
@@ -75,7 +75,7 @@ LocutusUtil.prototype.opener = function (fileOrName, cb) {
   })
 }
 
-LocutusUtil.prototype.injectweb = function (args, options) {
+Util.prototype.injectweb = function (args, options) {
   var self = this
   var pattern = self.__src + '/' + options.language + '/' + options.category + '/' + options.name + '.js'
 
@@ -135,7 +135,7 @@ LocutusUtil.prototype.injectweb = function (args, options) {
   })
 }
 
-LocutusUtil.prototype.glob = function (pattern, workerCb) {
+Util.prototype.glob = function (pattern, workerCb) {
   var bailed = false
   var self = this
   glob(pattern, {}, function (err, files) {
@@ -167,7 +167,7 @@ LocutusUtil.prototype.glob = function (pattern, workerCb) {
   })
 }
 
-LocutusUtil.prototype.test = function (args, options) {
+Util.prototype.test = function (args, options) {
   var self = this
   var pattern = self.__src + '/' + options.language + '/' + options.category + '/' + options.name + '.js'
   self.passed = []
@@ -226,7 +226,7 @@ LocutusUtil.prototype.test = function (args, options) {
   })
 }
 
-LocutusUtil.prototype._commentBlocks = function (code) {
+Util.prototype._commentBlocks = function (code) {
   var cnt = 0
   var comment = []
   var commentBlocks = []
@@ -254,7 +254,7 @@ LocutusUtil.prototype._commentBlocks = function (code) {
   return commentBlocks
 }
 
-LocutusUtil.prototype._headKeys = function (headLines) {
+Util.prototype._headKeys = function (headLines) {
   var i
   var keys = {}
   var match = []
@@ -290,7 +290,7 @@ LocutusUtil.prototype._headKeys = function (headLines) {
   return keys
 }
 
-LocutusUtil.prototype.contains = function (array, value) {
+Util.prototype.contains = function (array, value) {
   var i = array.length
   while (i--) {
     if (array[i] === value) {
@@ -300,7 +300,7 @@ LocutusUtil.prototype.contains = function (array, value) {
   return false
 }
 
-LocutusUtil.prototype._loadDependencies = function (name, headKeys, dependencies, cb) {
+Util.prototype._loadDependencies = function (name, headKeys, dependencies, cb) {
   var self = this
 
   if (!headKeys['depends on'] || !headKeys['depends on'].length) {
@@ -330,7 +330,7 @@ LocutusUtil.prototype._loadDependencies = function (name, headKeys, dependencies
   }
 }
 
-LocutusUtil.prototype.parse = function (fileOrName, code, cb) {
+Util.prototype.parse = function (fileOrName, code, cb) {
   if (!code) {
     throw new Error('Unable to parse ' + fileOrName)
   }
@@ -392,7 +392,7 @@ LocutusUtil.prototype.parse = function (fileOrName, code, cb) {
   })
 }
 
-LocutusUtil.prototype.loadMultiple = function (names, cb) {
+Util.prototype.loadMultiple = function (names, cb) {
   var self = this
   var paramsMultiple = {}
   var loaded = 0
@@ -414,7 +414,7 @@ LocutusUtil.prototype.loadMultiple = function (names, cb) {
   }
 }
 
-LocutusUtil.prototype.load = function (fileOrName, cb) {
+Util.prototype.load = function (fileOrName, cb) {
   var self = this
   self.opener(fileOrName, function (err, code) {
     if (err) {
@@ -425,7 +425,7 @@ LocutusUtil.prototype.load = function (fileOrName, cb) {
   })
 }
 
-LocutusUtil.prototype.unique = function (array) {
+Util.prototype.unique = function (array) {
   var a = array.concat()
 
   for (var i = 0; i < a.length; ++i) {
@@ -439,7 +439,7 @@ LocutusUtil.prototype.unique = function (array) {
   return a
 }
 
-LocutusUtil.prototype.getRecursiveCode = function (params) {
+Util.prototype.getRecursiveCode = function (params) {
   var self = this
   var codez = []
 
@@ -455,7 +455,7 @@ LocutusUtil.prototype.getRecursiveCode = function (params) {
   return codez
 }
 
-LocutusUtil.prototype._test = function (params, cb) {
+Util.prototype._test = function (params, cb) {
   var self = this
   var codez = []
 
@@ -554,4 +554,4 @@ LocutusUtil.prototype._test = function (params, cb) {
   })
 }
 
-module.exports = LocutusUtil
+module.exports = Util

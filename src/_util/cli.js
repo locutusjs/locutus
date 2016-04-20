@@ -3,7 +3,7 @@ var cli = require('cli').enable('status', 'help', 'version', 'glob', 'timeout')
 var fs = require('fs')
 var path = require('path')
 var _ = require('underscore')
-var LocutusUtil = require('./locutus-util')
+var Util = require('./util')
 var equal = require('deep-equal')
 
 // Not ideal: http://stackoverflow.com/questions/8083410/how-to-set-default-timezone-in-node-js
@@ -18,7 +18,7 @@ cli.parse({
   abort   : ['a', 'Abort on first failure']
 })
 
-var locutusUtil = new LocutusUtil({
+var util = new Util({
   cli               : cli,
   injectDependencies: ['ini_set', 'ini_get'],
   equal             : equal,
@@ -40,5 +40,5 @@ var locutusUtil = new LocutusUtil({
 })
 
 cli.main(function (args, options) {
-  locutusUtil[options.action](args, options)
+  util[options.action](args, options)
 })

@@ -1,10 +1,9 @@
 var assert = require('assert')
 var fs = require('fs')
-var glob = require('glob')
 var path = require('path')
 var __root = path.dirname(__dirname)
-var LocutusUtil = require('../src/_util/locutus-util')
-var locutusUtil = new LocutusUtil({
+var Util = require('../src/_util/util')
+var util = new Util({
   injectDependencies: ['ini_set', 'ini_get']
 })
 assert.deepEqualWithDifflet = require('deep-equal-with-difflet')
@@ -16,7 +15,7 @@ var files = {
   'is_binary'            : fs.readFileSync(__root + '/test/fixtures/func_is_binary.js', 'utf-8')
 }
 
-locutusUtil.opener = function (name, cb) {
+util.opener = function (name, cb) {
   return cb(null, files[name])
 }
 
@@ -25,7 +24,7 @@ var fixture = JSON.parse(fs.readFileSync(__root + '/test/fixtures/fix_array_chan
 describe('locutusutil', function () {
   describe('parse', function () {
     it('should return exact fixture', function (done) {
-      locutusUtil.parse('array_change_key_case', files['array_change_key_case'], function (err, params) {
+      util.parse('array_change_key_case', files['array_change_key_case'], function (err, params) {
         // fs.writeFileSync(__root + '/test/fixtures/fix_array_change_key_case.js', JSON.stringify(params, null, '  '))
         assert.equal(null, err)
         assert.deepEqualWithDifflet(params, fixture)
