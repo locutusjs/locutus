@@ -6,7 +6,7 @@ module.exports = function substr_compare (main_str, str, offset, length, case_in
   //   returns 1: 0
 
   if (!offset && offset !== 0) {
-    throw 'Missing offset for substr_compare()'
+    throw new Error('Missing offset for substr_compare()')
   }
 
   if (offset < 0) {

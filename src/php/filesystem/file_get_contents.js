@@ -63,7 +63,7 @@ module.exports = function file_get_contents (url, flags, context, offset, maxLen
 
   if (flagNames & OPTS.FILE_BINARY && (flagNames & OPTS.FILE_TEXT)) {
     // These flags shouldn't be together
-    throw 'You cannot pass both FILE_BINARY and FILE_TEXT to file_get_contents()'
+    throw new Error('You cannot pass both FILE_BINARY and FILE_TEXT to file_get_contents()')
   }
 
   if ((flagNames & OPTS.FILE_USE_INCLUDE_PATH) && ini.include_path && ini.include_path.local_value) {
@@ -175,7 +175,7 @@ module.exports = function file_get_contents (url, flags, context, offset, maxLen
                 }
                 break
               default:
-                throw 'Unrecognized ready state for file_get_contents()'
+                throw new Error('Unrecognized ready state for file_get_contents()')
             }
           }
         }

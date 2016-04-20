@@ -132,7 +132,7 @@ module.exports = function convert_cyr_string (str, from, to) {
       break
     default:
     // warning
-      throw 'Unknown source charset: ' + from
+      throw new Error('Unknown source charset: ') + from
   }
 
   switch (to.toUpperCase()) {
@@ -153,7 +153,7 @@ module.exports = function convert_cyr_string (str, from, to) {
       break
     default:
     // fix: make a warning
-      throw 'Unknown destination charset: ' + to
+      throw new Error('Unknown destination charset: ') + to
   }
 
   if (!str) {

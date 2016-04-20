@@ -10,10 +10,10 @@ module.exports = function idate (format, timestamp) {
   //   returns 1: 9
 
   if (format === undefined) {
-    throw 'idate() expects at least 1 parameter, 0 given'
+    throw new Error('idate() expects at least 1 parameter, 0 given')
   }
   if (!format.length || format.length > 1) {
-    throw 'idate format is one char'
+    throw new Error('idate format is one char')
   }
 
   // Fix: Need to allow date_default_timezone_set() (check for this.locutus.default_timezone and use)
@@ -69,6 +69,6 @@ module.exports = function idate (format, timestamp) {
     case 'Z':
       return -date.getTimezoneOffset() * 60
     default:
-      throw 'Unrecognized date format token'
+      throw new Error('Unrecognized date format token')
   }
 }

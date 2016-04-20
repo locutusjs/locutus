@@ -6,7 +6,7 @@ module.exports = function str_shuffle (str) {
   //   returns 1: 6
 
   if (arguments.length === 0) {
-    throw 'Wrong parameter count for str_shuffle()'
+    throw new Error('Wrong parameter count for str_shuffle()')
   }
 
   if (str === null) {

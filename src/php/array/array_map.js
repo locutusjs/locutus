@@ -34,7 +34,7 @@ module.exports = function array_map (callback) {
       } else if (typeof callback === 'object' && callback.length) {
         obj = typeof callback[0] === 'string' ? glbl[callback[0]] : callback[0]
         if (typeof obj === 'undefined') {
-          throw 'Object not found: ' + callback[0]
+          throw new Error('Object not found: ') + callback[0]
         }
         cb = typeof callback[1] === 'string' ? obj[callback[1]] : callback[1]
       }

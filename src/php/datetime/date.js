@@ -233,7 +233,7 @@ module.exports = function date (format, timestamp) {
       // timezone_abbreviations_list() function.
       /*              return that.date_default_timezone_get();
        */
-      throw 'Not supported (see source code of date() for timezone on how to add support)'
+      throw new Error('Not supported (see source code of date() for timezone on how to add support)')
     },
     I: function () {
       // DST observed?; 0 or 1

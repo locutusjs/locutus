@@ -119,7 +119,7 @@ Oy
     // Even if the callback returns null after assigning to the return object, the object won't be saved anyways
     var testNull = match ? cb.apply(null, match) : null
     if (testNull === null) {
-      throw 'No match in string'
+      throw new Error('No match in string')
     }
     return j + match[0].length
   }
@@ -340,7 +340,7 @@ Oy
           // Timezone; on my system, strftime gives PST, but strptime treats text as unparsed
             break
           default:
-            throw 'Unrecognized formatting character in strptime()'
+            throw new Error('Unrecognized formatting character in strptime()')
         }
       } catch (e) {
         if (e === 'No match in string') {

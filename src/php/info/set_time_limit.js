@@ -13,6 +13,6 @@ module.exports = function set_time_limit (seconds) {
     if (!this.locutus.timeoutStatus) {
       this.locutus.timeoutStatus = true
     }
-    throw 'Maximum execution time exceeded'
+    throw new Error('Maximum execution time exceeded')
   }, seconds * 1000)
 }

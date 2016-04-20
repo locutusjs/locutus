@@ -57,7 +57,7 @@ module.exports = function sscanf (str, format) {
       var testNull = retArr[digit !== undefined ? digit : retArr.length] = match ? (cb ? cb.apply(null, match) :
         match[0]) : null
       if (testNull === null) {
-        throw 'No match in string'
+        throw new Error('No match in string')
       }
       return j + match[0].length
     }
@@ -65,7 +65,7 @@ module.exports = function sscanf (str, format) {
   }
 
   if (arguments.length < 2) {
-    throw 'Not enough arguments passed to sscanf'
+    throw new Error('Not enough arguments passed to sscanf')
   }
 
   // PROCESS
@@ -95,7 +95,7 @@ module.exports = function sscanf (str, format) {
 
       var tmpDigit = digit
       if (tmpDigit && preConvs[1] === undefined) {
-        throw 'All groups in sscanf() must be expressed as numeric if any have already been used'
+        throw new Error('All groups in sscanf() must be expressed as numeric if any have already been used')
       }
       digit = preConvs[1] ? parseInt(preConvs[1], 10) - 1 : undefined
 
@@ -117,7 +117,7 @@ module.exports = function sscanf (str, format) {
           // Treats subsequent as long double (for e,f,g)
             break
           default:
-            throw 'Unexpected size specifier in sscanf()!'
+            throw new Error('Unexpected size specifier in sscanf()!')
             break
         }
       }
@@ -228,9 +228,9 @@ module.exports = function sscanf (str, format) {
             break
           case '':
           // If no character left in expression
-            throw 'Missing character after percent mark in sscanf() format argument'
+            throw new Error('Missing character after percent mark in sscanf() format argument')
           default:
-            throw 'Unrecognized character after percent mark in sscanf() format argument'
+            throw new Error('Unrecognized character after percent mark in sscanf() format argument')
         }
       } catch (e) {
         if (e === 'No match in string') {

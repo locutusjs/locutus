@@ -26,7 +26,7 @@ module.exports = function gopher_parsedir (dirent) {
   var entry = dirent.match(entryPattern)
 
   if (entry === null) {
-    throw 'Could not parse the directory entry'
+    throw new Error('Could not parse the directory entry')
     // return false;
   }
 

@@ -66,7 +66,7 @@ module.exports = function addcslashes (str, charlist) {
           // Range ends with character
           rangeEnd = charlist.charAt(postOctalPos + 2)
         } else {
-          throw 'Range with no end point'
+          throw new Error('Range with no end point')
         }
         end = rangeEnd.charCodeAt(0)
         if (end > begin) {
@@ -102,7 +102,7 @@ module.exports = function addcslashes (str, charlist) {
         // Range ends with character
         rangeEnd = charlist.charAt(i + 3)
       } else {
-        throw 'Range with no end point'
+        throw new Error('Range with no end point')
       }
       end = rangeEnd.charCodeAt(0)
       if (end > begin) {

@@ -32,22 +32,22 @@ module.exports = function strlen (string) {
     if (0xD800 <= code && code <= 0xDBFF) {
       // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
       if (str.length <= (i + 1)) {
-        throw 'High surrogate without following low surrogate'
+        throw new Error('High surrogate without following low surrogate')
       }
       next = str.charCodeAt(i + 1)
       if (0xDC00 > next || next > 0xDFFF) {
-        throw 'High surrogate without following low surrogate'
+        throw new Error('High surrogate without following low surrogate')
       }
       return str.charAt(i) + str.charAt(i + 1)
     } else if (0xDC00 <= code && code <= 0xDFFF) {
       // Low surrogate
       if (i === 0) {
-        throw 'Low surrogate without preceding high surrogate'
+        throw new Error('Low surrogate without preceding high surrogate')
       }
       prev = str.charCodeAt(i - 1)
       if (0xD800 > prev || prev > 0xDBFF) {
         // (could change last hex to 0xDB7F to treat high private surrogates as single characters)
-        throw 'Low surrogate without preceding high surrogate'
+        throw new Error('Low surrogate without preceding high surrogate')
       }
       // We can pass over low surrogates now as the second component in a pair which we have already processed
       return false

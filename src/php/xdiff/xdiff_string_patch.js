@@ -137,7 +137,7 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, error) 
               break
             default:
             // Reconcile with returning errrors arg?
-              throw 'Unrecognized initial character in unidiff line'
+              throw new Error('Unrecognized initial character in unidiff line')
           }
         }
         if (lines[i]) {
@@ -173,7 +173,7 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, error) 
               break
             default:
             // Reconcile with returning errrors arg?
-              throw 'Unrecognized initial character in unidiff line'
+              throw new Error('Unrecognized initial character in unidiff line')
           }
         }
         if (lines[i]) {

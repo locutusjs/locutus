@@ -110,7 +110,7 @@ module.exports = function echo () {
       parent.appendChild(holder.firstChild)
     }
     return false
-    // throw 'Your browser does not support DOM parsing as required by echo()';
+    // throw new Error('Your browser does not support DOM parsing as required by echo()');
   }
 
   var ieFix = function (node) {
