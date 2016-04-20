@@ -38,8 +38,7 @@
   },
   "readmeFilename": "README.md",
   "scripts": {
-    "build:npm": "node src/_util/cli.js --action buildnpm --output dist/index.js && ls -al dist/index.js",
-    "build": "npm run build:npm",
+    "build": "npm run reindex",
     "playground:start": "cd test/browser && node server.js",
     "deploy": "npm run website:deploy",
     "fix": "eslint src test --fix",
