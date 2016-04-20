@@ -85,6 +85,7 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 - [ ] ES6
 - [ ] Make eslint standard compliant
 - [ ] Auto-deploys via Travis CI
+- [ ] Maybe move `module.exports = acos` to bottom line, then function signature can stay BC
 - [x] Split out the npm module so you could do `var sprintf = require('locutus/sprintf')`
 - [x] Launch BC breaking blogpost
 - [-] Add live eslinting in browser
