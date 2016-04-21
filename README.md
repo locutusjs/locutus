@@ -32,7 +32,7 @@ php.echo(php.sprintf('Resistance is %s', effectiveness))
 
 ```javascript
 var strings = require('locutus/golang/strings')
-strings.Contains('Locutus', 'cut')
+console.log(strings.Contains('Locutus', 'cut'))
 ```
 
 ```bash

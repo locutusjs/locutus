@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Breaking Backwards Compatibility"
-date: 2016-04-02
 comments: true
 categories: [ future ]
 ---
@@ -36,4 +35,4 @@ The new version will be available as `v2.0.0`, as well as `master` by the time I
 
 Stay tuned for more,
 
-Kevin
+[Kevin](http://twitter.com/kvz)

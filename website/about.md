@@ -48,7 +48,7 @@ There are two reasons why we're going the extra mile:
 ## What we're not
 
 Even though Locutus is porting standard libraries from other languages, we don't see ourselves as 
-a viable standard library for JavaScript. We're too hefty, too diffuse, too hobby. If you're interested in something like that, we recommend taking a look at lodash, which is more lightweight, better tested, and has a better relation with JavaScript's native data types.
+a viable standard library for JavaScript. We're too hefty, too diffuse, too hobby. If you're interested in something like that, we recommend taking a look at [lodash](https://lodash.com/), which is in comparison is lightweight, focussed, and better tested too.
 
 ## What we're not porting
 
