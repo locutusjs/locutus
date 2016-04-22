@@ -86,6 +86,12 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 - [ ] Make eslint standard compliant
 - [ ] Auto-deploys via Travis CI
 - [ ] Maybe move `module.exports = acos` to bottom line, then function signature can stay BC
+- [ ] Adopt better global detection, use $locutus.golang.<specifics>
+- [ ] Remove `;` from examples
+- [ ] Port a few more tricky/interdepending Ruby functions
+- [ ] Port a few more tricky/interdepending Python functions
+- [ ] Port a few more tricky/interdepending Go functions
+- [x] In util.opener: First `*` should point to the requesting/current language
 - [x] Split out the npm module so you could do `var sprintf = require('locutus/sprintf')`
 - [x] Launch BC breaking blogpost
 - [-] Add live eslinting in browser

@@ -40,16 +40,27 @@ Util.prototype.equal = function (a, b) {
 // Environment-specific file opener. function name needs to
 // be translated to code. The difficulty is in finding the
 // category.
-Util.prototype.opener = function (fileOrName, cb) {
+Util.prototype.opener = function (fileOrName, requesterParams, cb) {
   var self = this
-  var pattern = fileOrName
-  if (fileOrName.indexOf('/') === -1) {
-    pattern = self.__src + '/*/*/' + fileOrName + '.js'
+  var pattern
+
+  var language = requesterParams.language || '*'
+
+  if (path.basename(fileOrName, '.js').indexOf('.') !== -1) {
+    pattern = self.__src + '/' + language + '/' + fileOrName.replace(/\./g, '/') + '.js'
+  } else if (fileOrName.indexOf('/') === -1) {
+    pattern = self.__src + '/' + language + '/*/' + fileOrName + '.js'
+  } else {
+    pattern = fileOrName
   }
+
+  pattern = pattern.replace('golang/strings/Index.js', 'golang/strings/Index2.js')
+
+  self.cli.debug('loading: ' + pattern)
 
   glob(pattern, {}, function (err, files) {
     if (err) {
-      return self.error('Could not glob for ' + pattern + '. ' + err)
+      return self.cli.error('Could not glob for ' + pattern + '. ' + err)
     }
 
     if (files.length !== 1) {
@@ -81,7 +92,7 @@ Util.prototype.injectweb = function (args, options) {
 
   self.glob(pattern, function (err, params, file) {
     if (err) {
-      return self.error('Could not glob for ' + pattern + '. ' + err)
+      return self.cli.error('Could not glob for ' + pattern + '. ' + err)
     }
 
     var authors = {}
@@ -128,7 +139,7 @@ Util.prototype.injectweb = function (args, options) {
 
     mkdirp(path.dirname(webfuncPath), function (err) {
       if (err) {
-        return self.error('Could not mkdir  for ' + webfuncPath + '. ' + err)
+        return self.cli.error('Could not mkdir  for ' + webfuncPath + '. ' + err)
       }
       fs.writeFileSync(webfuncPath, buf)
     })
@@ -155,7 +166,7 @@ Util.prototype.glob = function (pattern, workerCb) {
       }
     }
     names.forEach(function (props) {
-      self.load(props.file, function (err, params) {
+      self.load(props.file, {}, function (err, params) {
         if (err) {
           bailed = true
           return workerCb(err)
@@ -195,7 +206,7 @@ Util.prototype.test = function (args, options) {
 
   self.glob(pattern, function (err, params, file) {
     if (err) {
-      return self.error('Could not glob for ' + pattern + '. ' + err)
+      return self.cli.error('Could not glob for ' + pattern + '. ' + err)
     }
 
     if (params.headKeys.test && params.headKeys.test[0][0] === 'skip') {
@@ -300,10 +311,10 @@ Util.prototype.contains = function (array, value) {
   return false
 }
 
-Util.prototype._loadDependencies = function (name, headKeys, dependencies, cb) {
+Util.prototype._loadDependencies = function (name, requesterParams, dependencies, cb) {
   var self = this
 
-  if (!headKeys['depends on'] || !headKeys['depends on'].length) {
+  if (!requesterParams.headKeys['depends on'] || !requesterParams.headKeys['depends on'].length) {
     if (cb) {
       cb(null, {})
     }
@@ -312,18 +323,18 @@ Util.prototype._loadDependencies = function (name, headKeys, dependencies, cb) {
   var i
   var depname
   var loaded = 0
-  for (i in headKeys['depends on']) {
-    depname = headKeys['depends on'][i][0]
+  for (i in requesterParams.headKeys['depends on']) {
+    depname = requesterParams.headKeys['depends on'][i][0]
 
-    self.load(depname, function (err, params) {
+    self.load(depname, requesterParams, function (err, params) {
       if (err) {
         return cb(err)
       }
 
       dependencies[depname] = params
-      self._loadDependencies(depname, params.headKeys, dependencies)
+      self._loadDependencies(depname, params, dependencies)
 
-      if (cb && ++loaded === headKeys['depends on'].length) {
+      if (cb && ++loaded === requesterParams.headKeys['depends on'].length) {
         cb(null, dependencies)
       }
     })
@@ -353,7 +364,7 @@ Util.prototype.parse = function (fileOrName, code, cb) {
   var commentBlocks = this._commentBlocks(code)
 
   if (!commentBlocks[0]) {
-    throw new Error('Unable to parse ' + fileOrName)
+    throw new Error('Unable to parse ' + fileOrName + '. Did not find any comment blocks in: ' + code)
   }
 
   var head = commentBlocks[0].raw.join('\n')
@@ -382,7 +393,7 @@ Util.prototype.parse = function (fileOrName, code, cb) {
     commentBlocks : commentBlocks
   }
 
-  this._loadDependencies(funcSigMatch[1], headKeys, {}, function (err, dependencies) {
+  this._loadDependencies(funcSigMatch[1], params, {}, function (err, dependencies) {
     if (err) {
       return cb(err)
     }
@@ -398,7 +409,7 @@ Util.prototype.loadMultiple = function (names, cb) {
   var loaded = 0
   for (var i in names) {
     var name = names[i]
-    self.load(name, function (err, params) {
+    self.load(name, {}, function (err, params) {
       if (err) {
         return cb(err)
       }
@@ -414,9 +425,9 @@ Util.prototype.loadMultiple = function (names, cb) {
   }
 }
 
-Util.prototype.load = function (fileOrName, cb) {
+Util.prototype.load = function (fileOrName, requesterParams, cb) {
   var self = this
-  self.opener(fileOrName, function (err, code) {
+  self.opener(fileOrName, requesterParams, function (err, code) {
     if (err) {
       return cb(err)
     }
