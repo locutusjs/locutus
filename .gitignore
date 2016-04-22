@@ -18,3 +18,6 @@ website/assets/bower/
 website/assets/build/
 website/vendor/cache/
 website/.jekyll-metadata
+scripts/main.go
+scripts/main.js
+scripts/main.js.map
