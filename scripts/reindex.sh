@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Copyright (c) 2016, Transloadit Ltd.
+# Copyright (c) 2016, Kevin van Zonneveld
 # Authors:
-#  - Kevin van Zonneveld <kevin@transloadit.com>
+#  - Kevin van Zonneveld <kevin@vanzonneveld.net>
 
 set -o pipefail
 set -o errexit
