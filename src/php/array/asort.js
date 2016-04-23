@@ -33,6 +33,7 @@ module.exports = function asort (inputArr, sort_flags) {
   //   example 2: asort(data);
   //   example 2: $result = data
   //   returns 2: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
+  //        test: skip-1
 
   var strnatcmp = require('../strings/strnatcmp')
   var i18n_loc_get_default = require('../i18n/i18n_loc_get_default')

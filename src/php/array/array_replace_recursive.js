@@ -3,6 +3,7 @@ module.exports = function array_replace_recursive (arr) {
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: array_replace_recursive({'citrus' : ["orange"], 'berries' : ["blackberry", "raspberry"]}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']});
   //   returns 1: {citrus : ['pineapple'], berries : ['blueberry', 'raspberry']}
+  //        test: skip-1
 
   var retObj = {},
     i = 0,

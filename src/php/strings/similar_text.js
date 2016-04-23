@@ -42,11 +42,11 @@ module.exports = function similar_text (first, second, percent) {
 
   if (sum) {
     if (pos1 && pos2) {
-      sum += this.similar_text(first.substr(0, pos1), second.substr(0, pos2))
+      sum += similar_text(first.substr(0, pos1), second.substr(0, pos2))
     }
 
     if ((pos1 + max < firstLength) && (pos2 + max < secondLength)) {
-      sum += this.similar_text(first.substr(pos1 + max, firstLength - pos1 - max), second.substr(pos2 + max,
+      sum += similar_text(first.substr(pos1 + max, firstLength - pos1 - max), second.substr(pos2 + max,
         secondLength - pos2 - max))
     }
   }

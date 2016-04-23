@@ -29,6 +29,7 @@ module.exports = function arsort (inputArr, sort_flags) {
   //   example 2: arsort(data);
   //   example 2: $result = data;
   //   returns 2: {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
+  //        test: skip-1
 
   var i18n_loc_get_default = require('../i18n/i18n_loc_get_default')
   var valArr = [],

@@ -18,6 +18,7 @@ module.exports = function array_splice (arr, offst, lgth, replacement) {
   //   example 3: input = ["red", "green", "blue", "yellow"]
   //   example 3: array_splice(input, -1, 1, ["black", "maroon"]);
   //   returns 3: ["yellow"]
+  //        test: skip-1
 
   var is_int = require('../var/is_int')
 

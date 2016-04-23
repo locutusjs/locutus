@@ -24,6 +24,7 @@
     "lodash": "4.11.1",
     "mkdirp": "0.5.1",
     "mocha": "2.4.5",
+    "rimraf": "2.5.2",
     "send": "0.13.2",
     "underscore": "1.8.3"
   },
@@ -56,7 +57,7 @@
     "test:languages": "npm run test:write && mocha --reporter spec test/languages/**/*.js",
     "test:module": "node test/npm/npm.js",
     "test:utils": "mocha --reporter spec",
-    "test:write": "node src/_util/cli.js --action writetests",
+    "test:write": "rimraf test/languages && node src/_util/cli.js --action writetests",
     "test": "npm run test:utils && npm run test:languages && npm run test:module",
     "reindex": "./scripts/reindex.sh src",
     "website:deploy": "npm run website:inject && cd website && npm run build && npm run deploy",

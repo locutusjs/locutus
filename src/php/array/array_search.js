@@ -3,13 +3,14 @@ module.exports = function array_search (needle, haystack, argStrict) {
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  //        test: skip
+  //        test: skip-all
   //   example 1: array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'});
   //   returns 1: 'surname'
   //   example 2: ini_set('locutus.return_locutus_arrays', 'on');
   //   example 2: var ordered_arr = array({3:'value'}, {2:'value'}, {'a':'value'}, {'b':'value'});
-  //   example 2: var key = array_search(/val/g, ordered_arr); // or var key = ordered_arr.search(/val/g);
+  //   example 2: array_search(/val/g, ordered_arr); // or var key = ordered_arr.search(/val/g);
   //   returns 2: '3'
+  //        test: skip-2
 
   var strict = !!argStrict,
     key = ''

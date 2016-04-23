@@ -5,7 +5,7 @@ module.exports = function array_walk (array, funcname, userdata) {
   // improved by: Brett Zamir (http://brett-zamir.me)
   //        note: Using ini_set('locutus.no-eval', true) will only work with
   //        note: user-defined string functions, not built-in functions like void()
-  //        test: skip
+  //        test: skip-all
   //   example 1: array_walk ({'a':'b'}, 'void', 'userdata');
   //   returns 1: true
   //   example 2: array_walk ('a', 'void', 'userdata');

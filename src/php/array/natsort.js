@@ -15,6 +15,7 @@ module.exports = function natsort (inputArr) {
   //   example 1: $array1 = {a:"img12.png", b:"img10.png", c:"img2.png", d:"img1.png"};
   //   example 1: $array1 = natsort($array1);
   //   returns 1: {d: 'img1.png', c: 'img2.png', b: 'img10.png', a: 'img12.png'}
+  //        test: skip-1
 
   var strnatcmp = require('../strings/strnatcmp')
 

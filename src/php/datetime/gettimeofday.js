@@ -8,6 +8,7 @@ module.exports = function gettimeofday (return_float) {
   //   returns 1: {sec: 12, usec: 153000, minuteswest: -480, dsttime: 0}
   //   example 2: gettimeofday(true);
   //   returns 2: 1238748978.49
+  //        test: skip-all
 
   var t = new Date(),
     y = 0

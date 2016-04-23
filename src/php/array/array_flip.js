@@ -3,7 +3,7 @@ module.exports = function array_flip (trans) {
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Pier Paolo Ramon (http://www.mastersoup.com/)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //        test: skip
+  //        test: skip-all
   //   example 1: array_flip( {a: 1, b: 1, c: 2} );
   //   returns 1: {1: 'b', 2: 'c'}
   //   example 2: ini_set('locutus.return_locutus_arrays', 'on');

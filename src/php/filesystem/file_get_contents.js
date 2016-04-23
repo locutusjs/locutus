@@ -16,8 +16,8 @@ module.exports = function file_get_contents (url, flags, context, offset, maxLen
   //        note: The context argument is only implemented for http, and only partially (see below for
   //        note: "Presently unimplemented HTTP context options"); also the arguments passed to
   //        note: notification are incomplete
-  //        test: skip
-  //   example 1: var buf file_get_contents('http://google.com');
+  //        test: skip-all
+  //   example 1: var buf = file_get_contents('http://google.com');
   //   example 1: buf.indexOf('Google') !== -1
   //   returns 1: true
 

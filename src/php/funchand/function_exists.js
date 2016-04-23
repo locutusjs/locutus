@@ -6,6 +6,7 @@ module.exports = function function_exists (func_name) {
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: function_exists('isFinite');
   //   returns 1: true
+  //        test: skip-1
 
   if (typeof func_name === 'string') {
     func_name = this.window[func_name]

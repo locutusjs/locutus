@@ -5,6 +5,7 @@ module.exports = function printf () {
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: printf("%01.2f", 123.1);
   //   returns 1: 6
+  //        test: skip-1
 
   var sprintf = require('../strings/sprintf')
   var isNode = typeof module !== 'undefined' && module.exports && typeof global !== 'undefined'

@@ -182,32 +182,10 @@ Util.prototype.glob = function (pattern, workerCb) {
 Util.prototype.writetests = function (args, options) {
   var self = this
   var pattern = self.__src + '/' + options.language + '/' + options.category.replace(/\./g, '/') + '/' + options.name + '.js'
-  self.passed = []
-  self.known = []
-  self.failed = []
-  self.skiped = []
-
-  process.on('exit', function () {
-    var msg = [
-      self.passed.length + ' passed',
-      self.failed.length + ' failed ',
-      self.known.length + ' known',
-      self.skiped.length + ' skipped'
-    ].join(' / ')
-
-    if (self.failed.length) {
-      self.error('Tests that broke the build: ' + '\n - ' + self.failed.join('\n - '))
-      self.fatal(msg)
-    } else {
-      self.ok(msg)
-    }
-  })
-
-  var knownFailures = fs.readFileSync(self.__src + '/php/known-failures.txt', 'utf-8').trim('').split('\n')
 
   var q = async.queue(self._writeTest.bind(self), 1)
   q.drain = function () {
-    self.info('Done.')
+    self.info('Written all language tests.')
   }
 
   self.glob(pattern, function (err, params, file) {
@@ -215,34 +193,7 @@ Util.prototype.writetests = function (args, options) {
       return self.error('Could not glob for ' + pattern + '. ' + err)
     }
 
-    if (params.headKeys.test && params.headKeys.test[0][0] === 'skip') {
-      self.skiped.push(params.func_name)
-      return self.info('--> ' + params.func_name + ' skipped as instructed. ')
-    }
-
     q.push(params)
-    //
-    //
-    // self._writeTest(params, function (err, test, params) {
-    //   var testName = params.func_name + '#' + (+(test.number * 1) + 1)
-    //   if (!err) {
-    //     self.passed.push(testName)
-    //     self.debug('--> ' + testName + ' passed. ')
-    //   } else {
-    //     if (knownFailures.indexOf(testName) > -1) {
-    //       self.error('--> ' + testName + ' known error. ')
-    //       self.error(err)
-    //       self.known.push(testName)
-    //     } else {
-    //       self.error('--> ' + testName + ' failed. ')
-    //       self.error(err)
-    //       self.failed.push(testName)
-    //       if (options.abort) {
-    //         self.fatal('Aborting on first failure as instructed. ')
-    //       }
-    //     }
-    //   }
-    // })
   })
 }
 
@@ -465,11 +416,24 @@ Util.prototype._writeTest = function (params, cb) {
     throw new Error('No example in ' + params.func_name)
   }
 
+  var testProps = ''
+  if (params.headKeys.test) {
+    testProps = params.headKeys.test[0][0]
+  }
+
+  var describeSkip = ''
+  if (testProps.indexOf('skip-all') !== -1) {
+    describeSkip = '.skip'
+  }
+
   var codez = []
 
   for (var global in self.globals) {
     codez.push(global + ' = ' + self.globals[global] + '')
   }
+
+  // Not ideal: http://stackoverflow.com/questions/8083410/how-to-set-default-timezone-in-node-js
+  codez.push('process.env.TZ = \'UTC\'')
 
   codez.push('window.window' + ' = window')
 
@@ -477,13 +441,17 @@ Util.prototype._writeTest = function (params, cb) {
   if (params.language === 'php') {
     codez.push('var ' + 'ini_set' + ' = require(\'' + self.__src + '/' + 'php/info/ini_set' + '\')')
     codez.push('var ' + 'ini_get' + ' = require(\'' + self.__src + '/' + 'php/info/ini_get' + '\')')
+    if ([ 'array_search' ].indexOf(params.func_name) !== -1) {
+      codez.push('var ' + 'array' + ' = require(\'' + self.__src + '/' + 'php/array/array' + '\')')
+    }
   }
   codez.push('var ' + params.func_name + ' = require(\'' + self.__src + '/' + params.filepath + '\')')
 
   codez.push('')
 
-  codez.push('describe(\'' + params.language + '\', function () {')
-  codez.push('  describe(\'' + params.codepath + '\', function () {')
+  codez.push('describe' + describeSkip + '(\'' + params.language + '.' + params.codepath + '\', function () {')
+  // codez.push('  describe(\'' + params.category + '\', function () {')
+  // codez.push('    describe' + params. + '(\'' + params.func_name + '\', function () {')
 
   // Run each example
   for (var i in params.headKeys.example) {
@@ -491,40 +459,40 @@ Util.prototype._writeTest = function (params, cb) {
       throw new Error('There is no return for example ' + i, test, params)
     }
 
-    codez.push('    it(\'should pass test ' + (parseInt(i, 10) + 1) + '\', function (done) {')
+    var humanIndex = parseInt(i, 10) + 1
+    var itSkip = ''
+    if (testProps.indexOf('skip-' + humanIndex) !== -1) {
+      itSkip = '.skip'
+    }
 
-    codez.push('      ' + params.headKeys.example[i].join('\n      '))
+    codez.push('  it' + itSkip + '(\'should pass example ' + (humanIndex) + '\', function (done) {')
+
+    codez.push('    ' + params.headKeys.example[i].join('\n' + '    '))
 
     var testExpected = params.headKeys.returns[i].join('\n')
 
-    // Needs an eval so types are cast properly, also, expected may
-    // contain code
-    codez.push('      expected = ' + testExpected + '')
+    codez.push('    var expected = ' + testExpected + '')
 
     // Execute line by line (see date.js why)
     // We need result be the last result of the example code
     for (var j in params.headKeys.example[i]) {
       var testRun = params.headKeys.example[i][j]
-      var pat = new RegExp('([a-zA-Z_]+\\.)(' + params.func_name + ')', 'g')
-
-      // Remove category e.g. strings.Contains => Contains
-      testRun = testRun.replace(pat, '$2')
-      // console.log({pat:pat, testRun:testRun})
 
       if (+j === params.headKeys.example[i].length - 1) {
         // last action gets saved
-        codez.push('      result = ' + testRun + '')
+        codez.push('    var result = ' + testRun + '')
       } else {
         codez.push(testRun + '')
       }
     }
 
-    codez.push('      expect(result).to.equal(expected)')
-    codez.push('      done()')
-    codez.push('    })')
+    codez.push('    expect(result).to.deep.equal(expected)')
+    codez.push('    done()')
+    codez.push('  })')
   }
 
-  codez.push('  })')
+  // codez.push('    })')
+  // codez.push('  })')
   codez.push('})')
 
   var code = codez.join('\n')

@@ -27,6 +27,7 @@ module.exports = function krsort (inputArr, sort_flags) {
   //   example 2: krsort(data);
   //   example 2: $result = data
   //   returns 2: {3: 'Kevin', 2: 'van', 1: 'Zonneveld'}
+  //        test: skip-all
 
   var i18n_loc_get_default = require('../i18n/i18n_loc_get_default')
   var strnatcmp = require('../strings/strnatcmp')

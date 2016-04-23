@@ -54,6 +54,7 @@ module.exports = function date (format, timestamp) {
   //   returns 8: '52'
   //   example 9: date('W Y-m-d', 1293974054); // 2011-01-02
   //   returns 9: '52 2011-01-02'
+  //        test: skip-1 skip-2 skip-5
 
   var that = this
   var jsdate, f

@@ -20,6 +20,7 @@ module.exports = function array_change_key_case (array, cs) {
   //   example 7: var newArr = array_change_key_case(arr);
   //   example 7: newArr.splice(1, 1);
   //   returns 7: [{b: 1}]
+  //        test: skip-7
 
   var case_fn, key, tmp_ar = {}
 

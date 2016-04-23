@@ -3,7 +3,7 @@ module.exports = function uniqid (prefix, more_entropy) {
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: Kankrelune (http://www.webfaktory.info/)
   //        note: Uses an internal counter (in locutus global) to avoid collision
-  //        test: skip
+  //        test: skip-all
   //   example 1: uniqid();
   //   returns 1: 'a30285b160c14'
   //   example 2: uniqid('foo');

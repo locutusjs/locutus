@@ -3,7 +3,7 @@ module.exports = function md5_file (str_filename) {
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  //        test: skip
+  //        test: skip-all
   //   example 1: md5_file('http://kevin.vanzonneveld.net/pj_test_supportfile_1.htm');
   //   returns 1: '202cb962ac59075b964b07152d234b70'
 

@@ -1,19 +1,18 @@
 XMLHttpRequest = {}
 window = {window: {},document: {lastModified: 1388954399,getElementsByTagName: function(){return [];}},location: {href: ""}}
+process.env.TZ = 'UTC'
 window.window = window
 var expect = require('chai').expect
 var ini_set = require('/Users/kvz/code/phpjs/src/php/info/ini_set')
 var ini_get = require('/Users/kvz/code/phpjs/src/php/info/ini_get')
 var sinh = require('/Users/kvz/code/phpjs/src/php/math/sinh.js')
 
-describe('php', function () {
-  describe('math.sinh.js', function () {
-    it('should pass test 1', function (done) {
-      sinh(-0.9834330348825909);
-      expected = -1.1497971402636502
-      result = sinh(-0.9834330348825909);
-      expect(result).to.equal(expected)
-      done()
-    })
+describe('php.math.sinh.js', function () {
+  it('should pass example 1', function (done) {
+    sinh(-0.9834330348825909);
+    var expected = -1.1497971402636502
+    var result = sinh(-0.9834330348825909);
+    expect(result).to.deep.equal(expected)
+    done()
   })
 })

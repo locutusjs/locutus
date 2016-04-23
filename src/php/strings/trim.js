@@ -14,7 +14,7 @@ module.exports = function trim (str, charlist) {
   //   example 2: trim('Hello World', 'Hdle');
   //   returns 2: 'o Wor'
   //   example 3: trim(16, 1);
-  //   returns 3: 6
+  //   returns 3: '6'
 
   var whitespace, l = 0,
     i = 0

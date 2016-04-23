@@ -5,6 +5,7 @@ module.exports = function call_user_func (cb) {
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: call_user_func('isNaN', 'a');
   //   returns 1: true
+  //        test: skip-1
 
   var func
 

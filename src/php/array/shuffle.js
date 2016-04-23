@@ -13,7 +13,7 @@ module.exports = function shuffle (inputArr) {
   //        note: property deletion is supported. Note that we intend to implement the PHP
   //        note: behavior by default if IE ever does allow it; only gives shallow copy since
   //        note: is by reference in PHP anyways
-  //        test: skip
+  //        test: skip-all
   //   example 1: ini_set('locutus.strictForIn', true);
   //   example 1: shuffle(data);
   //   example 1: $result = data;

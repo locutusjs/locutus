@@ -21,6 +21,7 @@ module.exports = function gettype (mixed_var) {
   //   example 6: gettype(['test']);
   //   returns 6: 'object'
   //   returns 6: 'array'
+  //        test: skip-6
 
   var is_float = require('../var/is_float')
 

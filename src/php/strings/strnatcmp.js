@@ -15,6 +15,7 @@ module.exports = function strnatcmp (f_string1, f_string2, f_version) {
   //   returns 4: -6
   //   example 5: strnatcmp('Version 12.15', 'Version 12.9', true);
   //   returns 5: 6
+  //        test: skip-2
 
   var strcmp = require('../strings/strcmp')
   var i = 0

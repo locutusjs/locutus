@@ -4,6 +4,7 @@ module.exports = function bcscale (scale) {
   //   example 1: bcscale(1);
   //   returns 1: 3
   //        todo: implement these testcases
+  //        test: skip-1
 
   var _locutus_shared_bc = require('../_locutus_shared/_locutus_shared_bc')
   var libbcmath = _locutus_shared_bc()

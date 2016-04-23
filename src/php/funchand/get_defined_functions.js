@@ -8,6 +8,7 @@ module.exports = function get_defined_functions () {
   //   example 1: found = test_in_array(funcs, 'get_defined_functions');
   //   example 1: $result = found;
   //   returns 1: true
+  //        test: skip-1
 
   var i = '',
     arr = [],

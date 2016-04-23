@@ -3,7 +3,7 @@ module.exports = function get_meta_tags (file) {
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
   //        note: Synchronous so may lock up browser, mainly here for study purposes.
-  //        test: skip
+  //        test: skip-all
   //   example 1: get_meta_tags('http://kevin.vanzonneveld.net/pj_test_supportfile_2.htm');
   //   returns 1: {description: 'a php manual', author: 'name', keywords: 'php documentation', 'geo_position': '49.33;-86.59'}
 

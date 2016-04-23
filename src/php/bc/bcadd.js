@@ -4,6 +4,7 @@ module.exports = function bcadd (left_operand, right_operand, scale) {
   //   example 1: bcadd(1, 2);
   //   returns 1: 3
   //        todo: implement these testcases
+  //        test: skip-1
 
   var _locutus_shared_bc = require('../_locutus_shared/_locutus_shared_bc')
   var libbcmath = _locutus_shared_bc()

@@ -9,7 +9,7 @@ module.exports = function array_filter (arr, func) {
   //   returns 1: {"a": 1, "c": 3, "e": 5}
   //   example 2: var even = function (num) {return (!(num & 1));}
   //   example 2: array_filter([6, 7, 8, 9, 10, 11, 12], even);
-  //   returns 2: {0: 6, 2: 8, 4: 10, 6: 12}
+  //   returns 2: [ 6, , 8, , 10, , 12 ]
   //   example 3: array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined});
   //   returns 3: {"a":1, "c":-1};
 

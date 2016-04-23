@@ -6,6 +6,7 @@ module.exports = function convert_uuencode (str) {
   // reimplemented by: Ole Vrijenhoek
   //        example 1: convert_uuencode("test\ntext text\r\n");
   //        returns 1: "0=&5S=`IT97AT('1E>'0-\"@``"
+  //        test: skip-1
 
   var is_scalar = require('../var/is_scalar')
 

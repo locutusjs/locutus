@@ -11,7 +11,7 @@ module.exports = function sprintf () {
   //    input by: Paulo Freitas
   //    input by: Brett Zamir (http://brett-zamir.me)
   //   example 1: sprintf("%01.2f", 123.1);
-  //   returns 1: 123.10
+  //   returns 1: '123.10'
   //   example 2: sprintf("[%10s]", 'monkey');
   //   returns 2: '[    monkey]'
   //   example 3: sprintf("[%'#10s]", 'monkey');

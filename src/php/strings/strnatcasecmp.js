@@ -8,9 +8,10 @@ module.exports = function strnatcasecmp (str1, str2) {
   //         input by: Devan Penner-Woelk
   //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //        example 1: strnatcasecmp(10, 1);
-  //        example 1: strnatcasecmp('1', '10');
   //        returns 1: 1
-  //        returns 1: -1
+  //        example 2: strnatcasecmp('1', '10');
+  //        returns 2: -1
+  //        test: skip-all
 
   var a = (str1 + '')
     .toLowerCase()

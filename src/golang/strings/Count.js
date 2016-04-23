@@ -5,7 +5,7 @@ module.exports = function Count (s, sep) {
   //   returns 1: 3
   //   example 2: strings.Count("five", "") // before & after each rune
   //   returns 2: 5
-  //        test: skip
+  //        test: skip-all
 
   var Index = require('../strings/Index2')
   var RuneCountInString = require('../unicode/utf8/RuneCountInString')

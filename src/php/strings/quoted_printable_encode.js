@@ -9,6 +9,7 @@ module.exports = function quoted_printable_encode (str) {
   //   returns 2: 'abc  =20\r\n123  =20\r\n'
   //   example 3: quoted_printable_encode('0123456789012345678901234567890123456789012345678901234567890123456789012345');
   //   returns 3: '012345678901234567890123456789012345678901234567890123456789012345678901234=\r\n5'
+  //        test: skip-2
 
   var hexChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'],
     RFC2045Encode1IN = / \r\n|\r\n|[^!-<>-~ ]/gm,

@@ -8,7 +8,7 @@ module.exports = function array_keys (input, search_value, argStrict) {
   // improved by: jd
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} );
-  //   returns 1: {0: 'firstname', 1: 'surname'}
+  //   returns 1: [ 'firstname', 'surname' ]
 
   var search = typeof search_value !== 'undefined',
     tmp_arr = [],
