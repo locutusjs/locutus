@@ -1,6 +1,7 @@
 var glob = require('glob')
 var path = require('path')
 var fs = require('fs')
+var async = require('async')
 var YAML = require('js-yaml')
 var mkdirp = require('mkdirp')
 var _ = require('lodash')
@@ -178,7 +179,7 @@ Util.prototype.glob = function (pattern, workerCb) {
   })
 }
 
-Util.prototype.test = function (args, options) {
+Util.prototype.writetests = function (args, options) {
   var self = this
   var pattern = self.__src + '/' + options.language + '/' + options.category.replace(/\./g, '/') + '/' + options.name + '.js'
   self.passed = []
@@ -204,6 +205,11 @@ Util.prototype.test = function (args, options) {
 
   var knownFailures = fs.readFileSync(self.__src + '/php/known-failures.txt', 'utf-8').trim('').split('\n')
 
+  var q = async.queue(self._writeTest.bind(self), 1)
+  q.drain = function () {
+    self.info('Done.')
+  }
+
   self.glob(pattern, function (err, params, file) {
     if (err) {
       return self.error('Could not glob for ' + pattern + '. ' + err)
@@ -214,26 +220,29 @@ Util.prototype.test = function (args, options) {
       return self.info('--> ' + params.func_name + ' skipped as instructed. ')
     }
 
-    self._test(params, function (err, test, params) {
-      var testName = params.func_name + '#' + (+(test.number * 1) + 1)
-      if (!err) {
-        self.passed.push(testName)
-        self.debug('--> ' + testName + ' passed. ')
-      } else {
-        if (knownFailures.indexOf(testName) > -1) {
-          self.error('--> ' + testName + ' known error. ')
-          self.error(err)
-          self.known.push(testName)
-        } else {
-          self.error('--> ' + testName + ' failed. ')
-          self.error(err)
-          self.failed.push(testName)
-          if (options.abort) {
-            self.fatal('Aborting on first failure as instructed. ')
-          }
-        }
-      }
-    })
+    q.push(params)
+    //
+    //
+    // self._writeTest(params, function (err, test, params) {
+    //   var testName = params.func_name + '#' + (+(test.number * 1) + 1)
+    //   if (!err) {
+    //     self.passed.push(testName)
+    //     self.debug('--> ' + testName + ' passed. ')
+    //   } else {
+    //     if (knownFailures.indexOf(testName) > -1) {
+    //       self.error('--> ' + testName + ' known error. ')
+    //       self.error(err)
+    //       self.known.push(testName)
+    //     } else {
+    //       self.error('--> ' + testName + ' failed. ')
+    //       self.error(err)
+    //       self.failed.push(testName)
+    //       if (options.abort) {
+    //         self.fatal('Aborting on first failure as instructed. ')
+    //       }
+    //     }
+    //   }
+    // })
   })
 }
 
@@ -443,22 +452,8 @@ Util.prototype.load = function (fileOrName, requesterParams, cb) {
   })
 }
 
-Util.prototype._test = function (params, cb) {
+Util.prototype._writeTest = function (params, cb) {
   var self = this
-  var codez = []
-
-  for (var global in self.globals) {
-    codez.push(global + ' = ' + self.globals[global] + ';')
-  }
-  codez.push('locutus = {}')
-  codez.push('window.window' + ' = window')
-
-  codez.push('var ' + 'expect' + ' = require(\'chai\').expect')
-  if (params.language === 'php') {
-    codez.push('var ' + 'ini_set' + ' = require(\'' + self.__src + '/' + 'php/info/ini_set' + '\')')
-    codez.push('var ' + 'ini_get' + ' = require(\'' + self.__src + '/' + 'php/info/ini_get' + '\')')
-  }
-  codez.push('var ' + params.func_name + ' = require(\'' + self.__src + '/' + params.filepath + '\')')
 
   if (!params.func_name) {
     throw new Error('No func_name in ' + JSON.stringify(params))
@@ -470,27 +465,44 @@ Util.prototype._test = function (params, cb) {
     throw new Error('No example in ' + params.func_name)
   }
 
+  var codez = []
+
+  for (var global in self.globals) {
+    codez.push(global + ' = ' + self.globals[global] + '')
+  }
+
+  codez.push('window.window' + ' = window')
+
+  codez.push('var ' + 'expect' + ' = require(\'chai\').expect')
+  if (params.language === 'php') {
+    codez.push('var ' + 'ini_set' + ' = require(\'' + self.__src + '/' + 'php/info/ini_set' + '\')')
+    codez.push('var ' + 'ini_get' + ' = require(\'' + self.__src + '/' + 'php/info/ini_get' + '\')')
+  }
+  codez.push('var ' + params.func_name + ' = require(\'' + self.__src + '/' + params.filepath + '\')')
+
+  codez.push('')
+
+  codez.push('describe(\'' + params.language + '\', function () {')
+  codez.push('  describe(\'' + params.codepath + '\', function () {')
+
   // Run each example
   for (var i in params.headKeys.example) {
-    codez.push([
-      'var test = {',
-      'example: params.headKeys.example[i].join(\'\n\'),',
-      'number: i',
-      '}'
-    ].join('\n'))
-
     if (!params.headKeys.returns[i] || !params.headKeys.returns[i].length) {
       throw new Error('There is no return for example ' + i, test, params)
     }
+
+    codez.push('    it(\'should pass test ' + (parseInt(i, 10) + 1) + '\', function (done) {')
+
+    codez.push('      ' + params.headKeys.example[i].join('\n      '))
 
     var testExpected = params.headKeys.returns[i].join('\n')
 
     // Needs an eval so types are cast properly, also, expected may
     // contain code
-    codez.push('test.expected = ' + testExpected + '') // eslint-disable-line no-eval
+    codez.push('      expected = ' + testExpected + '')
 
-    // Let's do something evil. Execute line by line (see date.js why)
-    // We need test.reslult be the last result of the example code
+    // Execute line by line (see date.js why)
+    // We need result be the last result of the example code
     for (var j in params.headKeys.example[i]) {
       var testRun = params.headKeys.example[i][j]
       var pat = new RegExp('([a-zA-Z_]+\\.)(' + params.func_name + ')', 'g')
@@ -501,25 +513,34 @@ Util.prototype._test = function (params, cb) {
 
       if (+j === params.headKeys.example[i].length - 1) {
         // last action gets saved
-        codez.push('test.result = ' + testRun + '') // eslint-disable-line no-eval
+        codez.push('      result = ' + testRun + '')
       } else {
-        codez.push(testRun + '') // eslint-disable-line no-eval
+        codez.push(testRun + '')
       }
     }
 
-    codez.push('expect(test.result).to.be(test.expected)')
-
-    var code = codez.join(';\n')
-      .replace(/window\.setTimeout/g, 'setTimeout')
-
-    var testpath = params.fullpath.replace('/src/', '/test/')
-
-    fs.writeFileSync(testpath, code, 'utf-8')
-    self.debug('written: ' + testpath)
-
-    cb(null, test, params)
-    continue
+    codez.push('      expect(result).to.equal(expected)')
+    codez.push('      done()')
+    codez.push('    })')
   }
+
+  codez.push('  })')
+  codez.push('})')
+
+  var code = codez.join('\n')
+    .replace(/window\.setTimeout/g, 'setTimeout')
+
+  var basename = path.basename(params.filepath)
+  var subdir = path.dirname(params.filepath)
+  var testpath = this.__test + '/languages/' + subdir + '/test-' + basename
+  var testdir = path.dirname(testpath)
+  mkdirp(testdir, function (err) {
+    if (err) {
+      throw new Error(err)
+    }
+    self.debug('writing: ' + testpath)
+    fs.writeFile(testpath, code, 'utf-8', cb)
+  })
 }
 
 module.exports = Util

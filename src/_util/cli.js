@@ -27,6 +27,7 @@ var util = new Util({
   equal: equal,
   __src: path.dirname(__dirname),
   __root: path.dirname(path.dirname(__dirname)),
+  __test: path.dirname(path.dirname(__dirname)) + '/test',
   globals: {
     'XMLHttpRequest': '{}',
     'window': '{' +

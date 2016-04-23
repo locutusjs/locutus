@@ -4,7 +4,7 @@ module.exports = function vsprintf (format, args) {
   //   example 1: vsprintf('%04d-%02d-%02d', [1988, 8, 1]);
   //   returns 1: '1988-08-01'
 
-  var sprintf = require('../string/sprintf')
+  var sprintf = require('../strings/sprintf')
 
   return sprintf.apply(this, [format].concat(args))
 }

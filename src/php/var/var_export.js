@@ -81,7 +81,7 @@ module.exports = function var_export (mixed_expression, bool_return) {
     outerIndent = _makeIndent(idtLevel - 2)
     innerIndent = _makeIndent(idtLevel)
     for (i in mixed_expression) {
-      value = this.var_export(mixed_expression[i], 1, idtLevel + 2)
+      value = var_export(mixed_expression[i], 1, idtLevel + 2)
       value = typeof value === 'string' ? value.replace(/</g, '&lt;')
         .
       replace(/>/g, '&gt;') : value

@@ -6,9 +6,9 @@ module.exports = function capwords (str) {
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
   //    input by: James (http://www.james-bell.co.uk/)
-  //   example 1: string.capwords('kevin van  zonneveld');
+  //   example 1: capwords('kevin van  zonneveld');
   //   returns 1: 'Kevin Van  Zonneveld'
-  //   example 2: string.capwords('HELLO WORLD');
+  //   example 2: capwords('HELLO WORLD');
   //   returns 2: 'HELLO WORLD'
 
   return (str + '')
