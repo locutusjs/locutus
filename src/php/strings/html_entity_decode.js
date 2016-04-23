@@ -11,19 +11,18 @@ module.exports = function html_entity_decode (string, quote_style) {
   // bugfixed by: Onno Marsman
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Fox
-  //  depends on: get_html_translation_table
   //   example 1: html_entity_decode('Kevin &amp; van Zonneveld');
   //   returns 1: 'Kevin & van Zonneveld'
   //   example 2: html_entity_decode('&amp;lt;');
   //   returns 2: '&lt;'
 
-  var hash_map = {},
-    symbol = '',
-    tmp_str = '',
-    entity = ''
+  var get_html_translation_table = require('../strings/get_html_translation_table')
+  var hash_map = {}
+  var tmp_str = ''
+  var entity = ''
   tmp_str = string.toString()
 
-  if (false === (hash_map = this.get_html_translation_table('HTML_ENTITIES', quote_style))) {
+  if (false === (hash_map = get_html_translation_table('HTML_ENTITIES', quote_style))) {
     return false
   }
 

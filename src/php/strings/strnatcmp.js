@@ -4,7 +4,6 @@ module.exports = function strnatcmp (f_string1, f_string2, f_version) {
   // improved by: Michael White (http://getsprink.com)
   // improved by: Jack
   // bugfixed by: Onno Marsman
-  //  depends on: strcmp
   //        note: Added f_version argument against code guidelines, because it's so neat
   //   example 1: strnatcmp('Price 12.9', 'Price 12.15');
   //   returns 1: 1
@@ -17,6 +16,7 @@ module.exports = function strnatcmp (f_string1, f_string2, f_version) {
   //   example 5: strnatcmp('Version 12.15', 'Version 12.9', true);
   //   returns 5: 6
 
+  var strcmp = require('../strings/strcmp')
   var i = 0
 
   if (f_version === undefined) {
@@ -92,7 +92,7 @@ module.exports = function strnatcmp (f_string1, f_string2, f_version) {
       if (isNaN(array2[i])) {
         text = true
 
-        if ((r = this.strcmp(array1[i], array2[i])) !== 0) {
+        if ((r = strcmp(array1[i], array2[i])) !== 0) {
           return r
         }
       } else if (text) {
@@ -112,7 +112,7 @@ module.exports = function strnatcmp (f_string1, f_string2, f_version) {
           return r
         }
       } else {
-        if ((r = this.strcmp(array1[i].toString(), array2[i].toString())) !== 0) {
+        if ((r = strcmp(array1[i].toString(), array2[i].toString())) !== 0) {
           return r
         }
       }

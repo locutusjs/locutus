@@ -3,21 +3,22 @@ module.exports = function printf () {
   // original by: Ash Searle (http://hexmen.com/blog/)
   // improved by: Michael White (http://getsprink.com)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //  depends on: sprintf
   //   example 1: printf("%01.2f", 123.1);
   //   returns 1: 6
 
+  var sprintf = require('../strings/sprintf')
   var isNode = typeof module !== 'undefined' && module.exports && typeof global !== 'undefined'
 
   var body, elmt, d = this.window.document
   var ret = ''
-  ret = this.sprintf.apply(this, arguments)
+  ret = sprintf.apply(this, arguments)
 
   if (isNode) {
     console.log(ret)
     return ret.length
   }
 
+  // @todo Use echo
   var HTMLNS = 'http://www.w3.org/1999/xhtml'
   body = d.getElementsByTagNameNS ? (d.getElementsByTagNameNS(HTMLNS, 'body')[0] ? d.getElementsByTagNameNS(HTMLNS,
     'body')[0] : d.documentElement.lastChild) : d.getElementsByTagName('body')[0]

@@ -14,7 +14,6 @@ module.exports = function pathinfo (path, options) {
   //        note: But by way we implemented this function, if you want you can still declare the PATHINFO_*
   //        note: yourself, and then you can use: pathinfo('/www/index.html', PATHINFO_BASENAME | PATHINFO_EXTENSION);
   //        note: which makes it fully compliant with PHP syntax.
-  //  depends on: basename
   //   example 1: pathinfo('/www/htdocs/index.html', 1);
   //   returns 1: '/www/htdocs'
   //   example 2: pathinfo('/www/htdocs/index.html', 'PATHINFO_BASENAME');
@@ -30,6 +29,7 @@ module.exports = function pathinfo (path, options) {
   //   example 7: pathinfo('/www/htdocs/index.html');
   //   returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
 
+  var basename = require('../filesystem/basename')
   var opt = '',
     real_opt = '',
     optName = '',
@@ -92,14 +92,14 @@ module.exports = function pathinfo (path, options) {
 
   if (options & OPTS.PATHINFO_BASENAME) {
     if (false === have_basename) {
-      have_basename = this.basename(path)
+      have_basename = basename(path)
     }
     tmp_arr.basename = have_basename
   }
 
   if (options & OPTS.PATHINFO_EXTENSION) {
     if (false === have_basename) {
-      have_basename = this.basename(path)
+      have_basename = basename(path)
     }
     if (false === have_extension) {
       have_extension = __getExt(have_basename)
@@ -111,7 +111,7 @@ module.exports = function pathinfo (path, options) {
 
   if (options & OPTS.PATHINFO_FILENAME) {
     if (false === have_basename) {
-      have_basename = this.basename(path)
+      have_basename = basename(path)
     }
     if (false === have_extension) {
       have_extension = __getExt(have_basename)

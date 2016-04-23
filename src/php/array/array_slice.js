@@ -1,7 +1,6 @@
 module.exports = function array_slice (arr, offst, lgth, preserve_keys) {
   //  discuss at: http://locutusjs.io/php/array_slice/
   // original by: Brett Zamir (http://brett-zamir.me)
-  //  depends on: is_int
   //    input by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //        note: Relies on is_int because !isNaN accepts floats
@@ -9,6 +8,8 @@ module.exports = function array_slice (arr, offst, lgth, preserve_keys) {
   //   returns 1: {0: 'c', 1: 'd'}
   //   example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true);
   //   returns 2: {2: 'c', 3: 'd'}
+
+  var is_int = require('../var/is_int')
 
   /*
       if ('callee' in arr && 'length' in arr) {
@@ -50,7 +51,7 @@ module.exports = function array_slice (arr, offst, lgth, preserve_keys) {
       if (!start) {
         continue
       }++arrlgth
-      if (this.is_int(key) && !preserve_keys) {
+      if (is_int(key) && !preserve_keys) {
         assoc[no_pk_idx++] = arr[key]
       } else {
         assoc[key] = arr[key]

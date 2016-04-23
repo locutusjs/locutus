@@ -6,7 +6,6 @@ module.exports = function str_word_count (str, format, charlist) {
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //    input by: Bug?
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //  depends on: ctype_alpha
   //   example 1: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 1);
   //   returns 1: ['Hello', 'fri', 'nd', "you're", 'looking', 'good', 'today']
   //   example 2: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 2);
@@ -16,6 +15,7 @@ module.exports = function str_word_count (str, format, charlist) {
   //   example 4: str_word_count('hey', 2);
   //   returns 4: {0: 'hey'}
 
+  var ctype_alpha = require('../ctype/ctype_alpha')
   var len = str.length,
     cl = charlist && charlist.length,
     chr = '',
@@ -80,7 +80,7 @@ module.exports = function str_word_count (str, format, charlist) {
     if ((c = _getWholeChar(str, i)) === false) {
       continue
     }
-    match = this.ctype_alpha(c) || (reg && c.search(reg) !== -1) || ((i !== 0 && i !== len - 1) && c === '-') || // No hyphen at beginning or end unless allowed in charlist (or locale)
+    match = ctype_alpha(c) || (reg && c.search(reg) !== -1) || ((i !== 0 && i !== len - 1) && c === '-') || // No hyphen at beginning or end unless allowed in charlist (or locale)
       // No apostrophe at beginning unless allowed in charlist (or locale)
       (i !== 0 && c === "'")
     if (match) {

@@ -1,12 +1,12 @@
 module.exports = function bcmul (left_operand, right_operand, scale) {
   //  discuss at: http://locutusjs.io/php/bcmul/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
-  //  depends on: _locutus_shared_bc
   //   example 1: bcmul(1, 2);
   //   returns 1: 3
   //        todo: implement these testcases
 
-  var libbcmath = this._locutus_shared_bc()
+  var _locutus_shared_bc = require('../_locutus_shared/_locutus_shared_bc')
+  var libbcmath = _locutus_shared_bc()
 
   var first, second, result
 

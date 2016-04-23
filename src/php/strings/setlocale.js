@@ -3,7 +3,6 @@ module.exports = function setlocale (category, locale) {
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: Blues (http://hacks.bluesmoon.info/strftime/strftime.js)
   // original by: YUI Library (http://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html)
-  //  depends on: getenv
   //        note: Is extensible, but currently only implements locales en,
   //        note: en_US, en_GB, en_AU, fr, and fr_CA for LC_TIME only; C for LC_CTYPE;
   //        note: C and en for LC_MONETARY/LC_NUMERIC; en for LC_COLLATE
@@ -11,6 +10,8 @@ module.exports = function setlocale (category, locale) {
   //        note: Consider using http://demo.icu-project.org/icu-bin/locexp as basis for localization (as in i18n_loc_set_default())
   //   example 1: setlocale('LC_ALL', 'en_US');
   //   returns 1: 'en_US'
+
+  var getenv = require('../info/getenv')
 
   var categ = '',
     cats = [],
@@ -338,7 +339,7 @@ module.exports = function setlocale (category, locale) {
   }
   // END REDUNDANT
   if (locale === null || locale === '') {
-    locale = this.getenv(category) || this.getenv('LANG')
+    locale = getenv(category) || getenv('LANG')
   } else if (Object.prototype.toString.call(locale) === '[object Array]') {
     for (i = 0; i < locale.length; i++) {
       if (!(locale[i] in this.locutus.locales)) {

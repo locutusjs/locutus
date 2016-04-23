@@ -3,7 +3,6 @@ module.exports = function array_flip (trans) {
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Pier Paolo Ramon (http://www.mastersoup.com/)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //  depends on: array
   //        test: skip
   //   example 1: array_flip( {a: 1, b: 1, c: 2} );
   //   returns 1: {1: 'b', 2: 'c'}

@@ -13,9 +13,10 @@ redirect_from:
 
 **Why?**
 
- - to create interoperable encoding functions
+ - to create interoperable functions, useful when you app involves more than one programming languages
  - to see if we can
- - to learn JavaScript
+ - as a fun rainy Sunday afternoon pastime, instead of solving a crossword puzzle: port a function : )
+ - to get a deeper of the languages involved
  - to help others learn JavaScript
  - to profit from a few useful functions such as:
 [strip_tags](/php/strip_tags/),

@@ -17,3 +17,9 @@ if ($global === undefined || $global.Array === undefined) {
 if (typeof module !== 'undefined') {
   $module = module
 }
+
+if (typeof GLOBAL !== 'undefined') {
+  this.locutus = GLOBAL.locutus = GLOBAL.locutus || {}
+  // var setlocale = require('../strings/setlocale')
+}
+this.locutus = this.locutus || {}

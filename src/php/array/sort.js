@@ -19,7 +19,6 @@ module.exports = function sort (inputArr, sort_flags) {
   //        note: default) SORT_REGULAR flag distinguishes by key type,
   //        note: if the content is a numeric string, we treat the
   //        note: "original type" as numeric.
-  //  depends on: i18n_loc_get_default
   //   example 1: var arr = ['Kevin', 'van', 'Zonneveld']
   //   example 1: sort(arr);
   //   example 1: $result = arr;
@@ -29,6 +28,8 @@ module.exports = function sort (inputArr, sort_flags) {
   //   example 2: sort(fruits);
   //   example 2: $result = fruits;
   //   returns 2: {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
+
+  var i18n_loc_get_default = require('../i18n/i18n_loc_get_default')
 
   var valArr = [],
     keyArr = [],
@@ -48,7 +49,7 @@ module.exports = function sort (inputArr, sort_flags) {
       break
     case 'SORT_LOCALE_STRING':
     // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
-      var loc = this.i18n_loc_get_default()
+      var loc = i18n_loc_get_default()
       sorter = this.locutus.i18nLocales[loc].sorting
       break
     case 'SORT_NUMERIC':

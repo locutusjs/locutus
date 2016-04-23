@@ -1,9 +1,10 @@
 module.exports = function date_parse (date) {
   //  discuss at: http://locutusjs.io/php/date_parse/
   // original by: Brett Zamir (http://brett-zamir.me)
-  //  depends on: strtotime
   //   example 1: date_parse('2006-12-12 10:00:00.5');
   //   returns 1: {year : 2006, month: 12, day: 12, hour: 10, minute: 0, second: 0, fraction: 0.5, warning_count: 0, warnings: [], error_count: 0, errors: [], is_localtime: false}
+
+  var strtotime = require('../datetime/strtotime')
 
   // BEGIN REDUNDANT
   this.locutus = this.locutus || {}
@@ -16,7 +17,7 @@ module.exports = function date_parse (date) {
   try {
     // Allow strtotime to return a decimal (which it normally does not)
     this.locutus.date_parse_state = true
-    ts = this.strtotime(date)
+    ts = strtotime(date)
     this.locutus.date_parse_state = false
   } finally {
     if (!ts) {

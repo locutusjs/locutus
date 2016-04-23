@@ -4,9 +4,10 @@ module.exports = function convert_uuencode (str) {
   //      bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
   // reimplemented by: Ole Vrijenhoek
-  //       depends on: is_scalar
   //        example 1: convert_uuencode("test\ntext text\r\n");
   //        returns 1: "0=&5S=`IT97AT('1E>'0-\"@``"
+
+  var is_scalar = require('../var/is_scalar')
 
   var chr = function (c) {
     return String.fromCharCode(c)
@@ -14,7 +15,7 @@ module.exports = function convert_uuencode (str) {
 
   if (!str || str === '') {
     return chr(0)
-  } else if (!this.is_scalar(str)) {
+  } else if (!is_scalar(str)) {
     return false
   }
 

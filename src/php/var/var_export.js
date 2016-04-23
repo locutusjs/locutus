@@ -7,7 +7,6 @@ module.exports = function var_export (mixed_expression, bool_return) {
   //    input by: Hans Henrik (http://hanshenrik.tk/)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //  depends on: echo
   //   example 1: var_export(null);
   //   returns 1: null
   //   example 2: var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true);
@@ -16,6 +15,7 @@ module.exports = function var_export (mixed_expression, bool_return) {
   //   example 3: var_export(data, true);
   //   returns 3: "'Kevin'"
 
+  var echo = require('../strings/echo')
   var retstr = '',
     iret = '',
     value,
@@ -116,7 +116,7 @@ module.exports = function var_export (mixed_expression, bool_return) {
   }
 
   if (!bool_return) {
-    this.echo(retstr)
+    echo(retstr)
     return null
   }
 

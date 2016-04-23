@@ -10,11 +10,12 @@ module.exports = function http_build_query (formdata, numeric_prefix, arg_separa
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: MIO_KODUKI (http://mio-koduki.blogspot.com/)
   //        note: If the value is null, key and value are skipped in the http_build_query of PHP while in locutus they are not.
-  //  depends on: urlencode
   //   example 1: http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;');
   //   returns 1: 'foo=bar&amp;php=hypertext+processor&amp;baz=boom&amp;cow=milk'
   //   example 2: http_build_query({'php': 'hypertext processor', 0: 'foo', 1: 'bar', 2: 'baz', 3: 'boom', 'cow': 'milk'}, 'myvar_');
   //   returns 2: 'myvar_0=foo&myvar_1=bar&myvar_2=baz&myvar_3=boom&php=hypertext+processor&cow=milk'
+
+  var urlencode = require('../url/urlencode')
 
   var value, key, tmp = [],
     that = this
@@ -35,7 +36,7 @@ module.exports = function http_build_query (formdata, numeric_prefix, arg_separa
         }
         return tmp.join(arg_separator)
       } else if (typeof val !== 'function') {
-        return that.urlencode(key) + '=' + that.urlencode(val)
+        return urlencode(key) + '=' + urlencode(val)
       } else {
         throw new Error('There was an error processing for http_build_query().')
       }

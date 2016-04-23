@@ -1,11 +1,12 @@
 module.exports = function nl_langinfo (item) {
   //  discuss at: http://locutusjs.io/php/nl_langinfo/
   // original by: Brett Zamir (http://brett-zamir.me)
-  //  depends on: setlocale
   //   example 1: nl_langinfo('DAY_1');
   //   returns 1: 'Sunday'
 
-  this.setlocale('LC_ALL', 0) // Ensure locale data is available
+  var setlocale = require('../strings/setlocale')
+
+  setlocale('LC_ALL', 0) // Ensure locale data is available
   var loc = this.locutus.locales[this.locutus.localeCategories.LC_TIME]
   if (item.indexOf('ABDAY_') === 0) {
     return loc.LC_TIME.a[parseInt(item.replace(/^ABDAY_/, ''), 10) - 1]

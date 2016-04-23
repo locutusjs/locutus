@@ -3,13 +3,15 @@ module.exports = function vprintf (format, args) {
   //      original by: Ash Searle (http://hexmen.com/blog/)
   //      improved by: Michael White (http://getsprink.com)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
-  //       depends on: sprintf
   //        example 1: vprintf("%01.2f", 123.1);
   //        returns 1: 6
 
+  var sprintf = require('../strings/sprintf')
   var body, elmt
-  var ret = '',
-    d = this.window.document
+  var ret = ''
+  var d = this.window.document
+
+  // @todo This environmental printing belongs in echo
 
   // .shift() does not work to get first item in bodies
   var HTMLNS = 'http://www.w3.org/1999/xhtml'
@@ -20,7 +22,7 @@ module.exports = function vprintf (format, args) {
     return false
   }
 
-  ret = this.sprintf.apply(this, [format].concat(args))
+  ret = sprintf.apply(this, [format].concat(args))
 
   elmt = d.createTextNode(ret)
   body.appendChild(elmt)

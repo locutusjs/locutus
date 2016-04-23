@@ -3,12 +3,13 @@ module.exports = function Count (s, sep) {
   // original by: Ash Searle (http://hexmen.com/blog/)
   // improved by: Michael White (http://getsprink.com)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //  depends on: strings.Index
-  //  depends on: unicode.utf8.RuneCountInString
   //   example 1: strings.Count("cheese", "e")
   //   returns 1: 3
   //   example 2: strings.Count("five", "") // before & after each rune
   //   returns 2: 5
+
+  var Index = require('../strings/Index')
+  var RuneCountInString = require('../unicode/utf8/RuneCountInString')
 
   var pos
   var n = 0

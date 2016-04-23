@@ -5,9 +5,10 @@ module.exports = function print_r (array, return_val) {
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Brett Zamir (http://brett-zamir.me)
-  //  depends on: echo
   //   example 1: print_r(1, true);
   //   returns 1: 1
+
+  var echo = require('../strings/echo')
 
   var output = '',
     pad_char = ' ',
@@ -61,16 +62,17 @@ module.exports = function print_r (array, return_val) {
   output = formatArray(array, 0, pad_val, pad_char)
 
   if (return_val !== true) {
+    // @todo: Environment specifics for printing should be part of echo
     if (d.body) {
-      this.echo(output)
+      echo(output)
     } else {
       try {
         // We're in XUL, so appending as plain text won't work; trigger an error out of XUL
         d = XULDocument
-        this.echo('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">' + output + '</pre>')
+        echo('<pre xmlns="http://www.w3.org/1999/xhtml" style="white-space:pre;">' + output + '</pre>')
       } catch (e) {
         // Outputting as plain text may work in some plain XML
-        this.echo(output)
+        echo(output)
       }
     }
     return true

@@ -9,7 +9,6 @@ module.exports = function array_splice (arr, offst, lgth, replacement) {
   //        note: after being supposedly deleted, so use of this function may produce
   //        note: unexpected results in IE if you later attempt to add back properties
   //        note: with the same keys that had been deleted
-  //  depends on: is_int
   //   example 1: input = {4: "red", 'abc': "green", 2: "blue", 'dud': "yellow"};
   //   example 1: array_splice(input, 2);
   //   returns 1: {0: "blue", 'dud': "yellow"}
@@ -19,6 +18,8 @@ module.exports = function array_splice (arr, offst, lgth, replacement) {
   //   example 3: input = ["red", "green", "blue", "yellow"]
   //   example 3: array_splice(input, -1, 1, ["black", "maroon"]);
   //   returns 3: ["yellow"]
+
+  var is_int = require('../var/is_int')
 
   var _checkToUpIndices = function (arr, ct, key) {
     // Deal with situation, e.g., if encounter index 4 and try to set it to 0, but 0 exists later in loop (need to
@@ -69,7 +70,7 @@ module.exports = function array_splice (arr, offst, lgth, replacement) {
     for (key in arr) {
       ct += 1
       if (ct < offst) {
-        if (this.is_int(key)) {
+        if (is_int(key)) {
           int_ct += 1
           if (parseInt(key, 10) === int_ct) {
             // Key is already numbered ok, so don't need to change key for value
@@ -83,7 +84,7 @@ module.exports = function array_splice (arr, offst, lgth, replacement) {
         }
         continue
       }
-      if (returnArr && this.is_int(key)) {
+      if (returnArr && is_int(key)) {
         rmvd.push(arr[key])
         // PHP starts over here too
         rmvdObj[rmvd_ct++] = arr[key]

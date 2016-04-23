@@ -1,17 +1,12 @@
 module.exports = function sql_regcase (str) {
   //  discuss at: http://locutusjs.io/php/sql_regcase/
   // original by: Brett Zamir (http://brett-zamir.me)
-  //  depends on: setlocale
   //   example 1: sql_regcase('Foo - bar.');
   //   returns 1: '[Ff][Oo][Oo] - [Bb][Aa][Rr].'
 
-  if (typeof GLOBAL !== 'undefined') {
-    this.locutus = GLOBAL.locutus = GLOBAL.locutus || {}
-    this.setlocale = require('../strings/setlocale')
-  }
-  this.locutus = this.locutus || {}
+  var setlocale = require('../strings/setlocale')
 
-  this.setlocale('LC_ALL', 0)
+  setlocale('LC_ALL', 0)
   var i = 0,
     upper = '',
     lower = '',

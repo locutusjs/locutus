@@ -5,7 +5,6 @@ module.exports = function gettype (mixed_var) {
   // improved by: Douglas Crockford (http://javascript.crockford.com)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //    input by: KELAN
-  //  depends on: is_float
   //        note: 1.0 is simplified to 1 before it can be accessed by the function, this makes
   //        note: it different from the PHP implementation. We can't fix this unfortunately.
   //   example 1: gettype(1);
@@ -22,6 +21,8 @@ module.exports = function gettype (mixed_var) {
   //   example 6: gettype(['test']);
   //   returns 6: 'object'
   //   returns 6: 'array'
+
+  var is_float = require('../var/is_float')
 
   var s = typeof mixed_var,
     name
@@ -56,7 +57,7 @@ module.exports = function gettype (mixed_var) {
       s = 'null'
     }
   } else if (s === 'number') {
-    s = this.is_float(mixed_var) ? 'double' : 'integer'
+    s = is_float(mixed_var) ? 'double' : 'integer'
   }
   return s
 }

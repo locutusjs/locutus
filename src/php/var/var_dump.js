@@ -3,12 +3,12 @@ module.exports = function var_dump () {
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Zahlii
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //  depends on: echo
   //        note: For returning a string, use var_export() with the second argument set to true
   //        test: skip
   //   example 1: var_dump(1);
   //   returns 1: 'int(1)'
 
+  var echo = require('../strings/echo')
   var output = '',
     pad_char = ' ',
     pad_val = 4,
@@ -152,5 +152,5 @@ module.exports = function var_dump () {
     output += '\n' + _formatArray(arguments[i], 0, pad_val, pad_char)
   }
 
-  this.echo(output)
+  echo(output)
 }

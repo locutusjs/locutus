@@ -6,10 +6,10 @@ module.exports = function md5 (str) {
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  //  depends on: utf8_encode
   //   example 1: md5('Kevin van Zonneveld');
   //   returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'
 
+  var utf8_encode = require('../xml/utf8_encode')
   var xl
 
   var rotateLeft = function (lValue, iShiftBits) {
@@ -123,7 +123,7 @@ module.exports = function md5 (str) {
     S43 = 15,
     S44 = 21
 
-  str = this.utf8_encode(str)
+  str = utf8_encode(str)
   x = convertToWordArray(str)
   a = 0x67452301
   b = 0xEFCDAB89

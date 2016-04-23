@@ -3,7 +3,6 @@ module.exports = function money_format (format, number) {
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: daniel airton wermann (http://wermann.com.br)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //  depends on: setlocale
   //        note: This depends on setlocale having the appropriate
   //        note: locale (these examples use 'en_US')
   //   example 1: money_format('%i', 1234.56);
@@ -35,6 +34,8 @@ module.exports = function money_format (format, number) {
   //  example 14: money_format('%i', 3590);
   //  returns 14: ' USD 3,590.00'
 
+  var setlocale = require('../strings/setlocale')
+
   // Per PHP behavior, there seems to be no extra padding for sign when there is a positive number, though my
   // understanding of the description is that there should be padding; need to revisit examples
 
@@ -47,7 +48,7 @@ module.exports = function money_format (format, number) {
   var regex = /%((=.|[+^(!-])*?)(\d*?)(#(\d+))?(\.(\d+))?([in%])/g
 
   // Ensure the locale data we need is set up
-  this.setlocale('LC_ALL', 0)
+  setlocale('LC_ALL', 0)
   var monetary = this.locutus.locales[this.locutus.localeCategories['LC_MONETARY']]['LC_MONETARY']
 
   var doReplace = function (n0, flags, n2, width, n4, left, n6, right, conversion) {

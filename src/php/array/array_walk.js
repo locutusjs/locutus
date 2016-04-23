@@ -3,7 +3,6 @@ module.exports = function array_walk (array, funcname, userdata) {
   // original by: Johnny Mast (http://www.phpvrouwen.nl)
   // bugfixed by: David
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //  depends on: array
   //        note: Using ini_set('locutus.no-eval', true) will only work with
   //        note: user-defined string functions, not built-in functions like void()
   //        test: skip

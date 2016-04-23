@@ -5,19 +5,19 @@ module.exports = function strftime (fmt, timestamp) {
   //         input by: Alex
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
   //      improved by: Brett Zamir (http://brett-zamir.me)
-  //       depends on: setlocale
   //             note: Uses global: locutus to store locale info
   //        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale
   //        returns 1: 'Tuesday'
 
+  var setlocale = require('../strings/setlocale')
+
   if (typeof GLOBAL !== 'undefined') {
     this.locutus = GLOBAL.locutus = GLOBAL.locutus || {}
-    this.setlocale = require('../strings/setlocale')
   }
   this.locutus = this.locutus || {}
 
   // ensure setup of localization variables takes place
-  this.setlocale('LC_ALL', 0)
+  setlocale('LC_ALL', 0)
   // END REDUNDANT
 
   // BEGIN STATIC

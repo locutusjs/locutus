@@ -3,11 +3,11 @@ module.exports = function get_meta_tags (file) {
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
   //        note: Synchronous so may lock up browser, mainly here for study purposes.
-  //  depends on: file_get_contents
   //        test: skip
   //   example 1: get_meta_tags('http://kevin.vanzonneveld.net/pj_test_supportfile_2.htm');
   //   returns 1: {description: 'a php manual', author: 'name', keywords: 'php documentation', 'geo_position': '49.33;-86.59'}
 
+  var file_get_contents = require('../filesystem/file_get_contents')
   var fulltxt = ''
 
   if (false) {
@@ -16,7 +16,7 @@ module.exports = function get_meta_tags (file) {
       '<meta name="DESCRIPTION" content="a php manual">' + '<meta name="geo.position" content="49.33;-86.59">' +
       '</head>'
   } else {
-    fulltxt = this.file_get_contents(file)
+    fulltxt = file_get_contents(file)
       .match(/^[\s\S]*<\/head>/i) // We have to disallow some character, so we choose a Unicode non-character
   }
 

@@ -24,8 +24,6 @@ module.exports = function asort (inputArr, sort_flags) {
   //        note: default) SORT_REGULAR flag distinguishes by key type,
   //        note: if the content is a numeric string, we treat the
   //        note: "original type" as numeric.
-  //  depends on: strnatcmp
-  //  depends on: i18n_loc_get_default
   //   example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
   //   example 1: data = asort(data);
   //   example 1: $result = data
@@ -35,6 +33,9 @@ module.exports = function asort (inputArr, sort_flags) {
   //   example 2: asort(data);
   //   example 2: $result = data
   //   returns 2: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
+
+  var strnatcmp = require('../strings/strnatcmp')
+  var i18n_loc_get_default = require('../i18n/i18n_loc_get_default')
 
   var valArr = [],
     valArrLen = 0,
@@ -46,12 +47,12 @@ module.exports = function asort (inputArr, sort_flags) {
     case 'SORT_STRING':
     // compare items as strings
       sorter = function (a, b) {
-        return that.strnatcmp(a, b)
+        return strnatcmp(a, b)
       }
       break
     case 'SORT_LOCALE_STRING':
     // compare items as strings, based on the current locale (set with i18n_loc_set_default() as of PHP6)
-      var loc = this.i18n_loc_get_default()
+      var loc = i18n_loc_get_default()
       sorter = this.locutus.i18nLocales[loc].sorting
       break
     case 'SORT_NUMERIC':
