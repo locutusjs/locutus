@@ -45,14 +45,17 @@ Util.prototype.opener = function (fileOrName, requesterParams, cb) {
   var language = requesterParams.language || '*'
 
   if (path.basename(fileOrName, '.js').indexOf('.') !== -1) {
-    // unicode.utf8.RuneCountInString or strings.sprintf
+    // periods in the basename, like: unicode.utf8.RuneCountInString or strings.sprintf
     pattern = self.__src + '/' + language + '/' + fileOrName.replace(/\./g, '/') + '.js'
   } else if (fileOrName.indexOf('/') === -1) {
-    // sprintf
+    // no slashes, like: sprintf
     pattern = self.__src + '/' + language + '/*/' + fileOrName + '.js'
-  } else {
-    // php/strings/sprintf
+  } else if (fileOrName.substr(0, 1) === '/') {
+    // absolute path, like: /Users/john/code/locutus/php/strings/sprintf.js
     pattern = fileOrName
+  } else {
+    // relative path, like: php/strings/sprintf.js
+    pattern = self.__src + '/' + fileOrName
   }
 
   pattern = pattern.replace('golang/strings/Index.js', 'golang/strings/Index2.js')
@@ -298,7 +301,7 @@ Util.prototype.parse = function (filepath, code, cb) {
   }
 
   if (filepath.indexOf('/') === -1) {
-    return cb(new Error('Parse only accepts relative filepaths. Received: -\'' + filepath + '\''))
+    return cb(new Error('Parse only accepts relative filepaths. Received: \'' + filepath + '\''))
   }
 
   var parts = filepath.split('/')
