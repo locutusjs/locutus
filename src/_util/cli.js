@@ -24,7 +24,6 @@ var util = new Util({
   fatal: cli.fatal,
   info: cli.info,
   ok: cli.ok,
-  injectDependencies: ['ini_set', 'ini_get'],
   equal: equal,
   __src: path.dirname(__dirname),
   __root: path.dirname(path.dirname(__dirname)),

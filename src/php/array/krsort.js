@@ -29,7 +29,7 @@ module.exports = function krsort (inputArr, sort_flags) {
   //   returns 2: {3: 'Kevin', 2: 'van', 1: 'Zonneveld'}
 
   var i18n_loc_get_default = require('../i18n/i18n_loc_get_default')
-  var strnatcmp = require('../strngs/strnatcmp')
+  var strnatcmp = require('../strings/strnatcmp')
 
   var tmp_arr = {},
     keys = [],

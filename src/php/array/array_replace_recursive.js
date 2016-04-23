@@ -21,7 +21,7 @@ module.exports = function array_replace_recursive (arr) {
   for (i = 1; i < argl; i++) {
     for (p in arguments[i]) {
       if (retObj[p] && typeof retObj[p] === 'object') {
-        retObj[p] = this.array_replace_recursive(retObj[p], arguments[i][p])
+        retObj[p] = array_replace_recursive(retObj[p], arguments[i][p])
       } else {
         retObj[p] = arguments[i][p]
       }

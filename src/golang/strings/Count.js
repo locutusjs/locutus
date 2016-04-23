@@ -1,14 +1,13 @@
 module.exports = function Count (s, sep) {
   //  discuss at: http://locutusjs.io/php/printf/
   // original by: Ash Searle (http://hexmen.com/blog/)
-  // improved by: Michael White (http://getsprink.com)
-  // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: strings.Count("cheese", "e")
   //   returns 1: 3
   //   example 2: strings.Count("five", "") // before & after each rune
   //   returns 2: 5
+  //        test: skip
 
-  var Index = require('../strings/Index')
+  var Index = require('../strings/Index2')
   var RuneCountInString = require('../unicode/utf8/RuneCountInString')
 
   var pos

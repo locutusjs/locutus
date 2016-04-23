@@ -44,7 +44,7 @@ describe('locutusutil', function () {
       util.load('strings.Count', {}, function (err, params) {
         // fs.writeFileSync(__root + '/test/fixtures/fix_array_change_key_case.js', JSON.stringify(params, null, '  '))
         expect(err).to.deep.equal(null)
-        expect(params.headKeys['depends on']).to.deep.equal([ [ 'strings.Index', 'unicode.utf8.RuneCountInString' ] ])
+        expect(params.headKeys).to.deep.equal([ [ 'strings.Index', 'unicode.utf8.RuneCountInString' ] ])
         done()
       })
     })

@@ -31,7 +31,7 @@ module.exports = function count (mixed_var, mode) {
       cnt++
       if (mode === 1 && mixed_var[key] && (mixed_var[key].constructor === Array || mixed_var[key].constructor ===
           Object)) {
-        cnt += this.count(mixed_var[key], 1)
+        cnt += count(mixed_var[key], 1)
       }
     }
   }
