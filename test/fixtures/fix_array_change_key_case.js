@@ -177,8 +177,8 @@
       "head": "  //  discuss at: http://phpjs.org/functions/pos/\n  // original by: Brett Zamir (http://brett-zamir.me)\n  //        note: Uses global: php_js to store the array pointer\n  //  depends on: current\n  //   example 1: transport = ['foot', 'bike', 'car', 'plane'];\n  //   example 1: pos(transport);\n  //   returns 1: 'foot'",
       "name": "pos",
       "code": "module.exports = function pos (arr) {\n  //  discuss at: http://phpjs.org/functions/pos/\n  // original by: Brett Zamir (http://brett-zamir.me)\n  //        note: Uses global: php_js to store the array pointer\n  //  depends on: current\n  //   example 1: transport = ['foot', 'bike', 'car', 'plane'];\n  //   example 1: pos(transport);\n  //   returns 1: 'foot'\n\n  return this.current(arr)\n}\n",
-      "language": false,
-      "category": false,
+      "language": "php",
+      "category": "strings",
       "func_signature": "module.exports = function pos (arr) {\n  ",
       "func_name": "pos",
       "func_arguments": [
@@ -240,8 +240,8 @@
           "head": "  //  discuss at: http://phpjs.org/functions/current/\n  // original by: Brett Zamir (http://brett-zamir.me)\n  //        note: Uses global: php_js to store the array pointer\n  //   example 1: transport = ['foot', 'bike', 'car', 'plane'];\n  //   example 1: current(transport);\n  //   returns 1: 'foot'",
           "name": "current",
           "code": "module.exports = function current (arr) {\n  //  discuss at: http://phpjs.org/functions/current/\n  // original by: Brett Zamir (http://brett-zamir.me)\n  //        note: Uses global: php_js to store the array pointer\n  //   example 1: transport = ['foot', 'bike', 'car', 'plane'];\n  //   example 1: current(transport);\n  //   returns 1: 'foot'\n\n  this.php_js = this.php_js || {}\n  this.php_js.pointers = this.php_js.pointers || []\n  var indexOf = function (value) {\n    for (var i = 0, length = this.length; i < length; i++) {\n      if (this[i] === value) {\n        return i\n      }\n    }\n    return -1\n  }\n  // END REDUNDANT\n  var pointers = this.php_js.pointers\n  if (!pointers.indexOf) {\n    pointers.indexOf = indexOf\n  }\n  if (pointers.indexOf(arr) === -1) {\n    pointers.push(arr, 0)\n  }\n  var arrpos = pointers.indexOf(arr)\n  var cursor = pointers[arrpos + 1]\n  if (Object.prototype.toString.call(arr) === '[object Array]') {\n    return arr[cursor] || false\n  }\n  var ct = 0\n  for (var k in arr) {\n    if (ct === cursor) {\n      return arr[k]\n    }\n    ct++\n  }\n  // Empty\n  return false\n}\n",
-          "language": false,
-          "category": false,
+          "language": "php",
+          "category": "strings",
           "func_signature": "module.exports = function current (arr) {\n  ",
           "func_name": "current",
           "func_arguments": [
@@ -320,8 +320,8 @@
       "head": "  //  discuss at: http://phpjs.org/functions/current/\n  // original by: Brett Zamir (http://brett-zamir.me)\n  //        note: Uses global: php_js to store the array pointer\n  //   example 1: transport = ['foot', 'bike', 'car', 'plane'];\n  //   example 1: current(transport);\n  //   returns 1: 'foot'",
       "name": "current",
       "code": "module.exports = function current (arr) {\n  //  discuss at: http://phpjs.org/functions/current/\n  // original by: Brett Zamir (http://brett-zamir.me)\n  //        note: Uses global: php_js to store the array pointer\n  //   example 1: transport = ['foot', 'bike', 'car', 'plane'];\n  //   example 1: current(transport);\n  //   returns 1: 'foot'\n\n  this.php_js = this.php_js || {}\n  this.php_js.pointers = this.php_js.pointers || []\n  var indexOf = function (value) {\n    for (var i = 0, length = this.length; i < length; i++) {\n      if (this[i] === value) {\n        return i\n      }\n    }\n    return -1\n  }\n  // END REDUNDANT\n  var pointers = this.php_js.pointers\n  if (!pointers.indexOf) {\n    pointers.indexOf = indexOf\n  }\n  if (pointers.indexOf(arr) === -1) {\n    pointers.push(arr, 0)\n  }\n  var arrpos = pointers.indexOf(arr)\n  var cursor = pointers[arrpos + 1]\n  if (Object.prototype.toString.call(arr) === '[object Array]') {\n    return arr[cursor] || false\n  }\n  var ct = 0\n  for (var k in arr) {\n    if (ct === cursor) {\n      return arr[k]\n    }\n    ct++\n  }\n  // Empty\n  return false\n}\n",
-      "language": false,
-      "category": false,
+      "language": "php",
+      "category": "strings",
       "func_signature": "module.exports = function current (arr) {\n  ",
       "func_name": "current",
       "func_arguments": [
