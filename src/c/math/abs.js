@@ -1,9 +1,6 @@
 module.exports = function abs (mixed_number) {
   //  discuss at: http://locutusjs.io/c/abs/
-  // original by: Waldo Malqui Silva (http://waldo.malqui.info)
-  // improved by: Karol Kowalski
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // improved by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //   example 1: abs(4.2);
   //   returns 1: 4.2
   //   example 2: abs(-4.2);
