@@ -80,9 +80,8 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 
 ## Todo
 
-- [ ] Move functions that overly rely on ini & locales & ajax file operations to experimental
-- [ ] Generate Mocha tests via require, vs using eval
 - [ ] ES6
+- [ ] Move functions that overly rely on ini & locales & ajax file operations to \_legacy
 - [ ] Make eslint standard compliant
 - [ ] Auto-deploys via Travis CI
 - [ ] Maybe move `module.exports = acos` to bottom line, then function signature can stay BC
@@ -91,6 +90,11 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 - [ ] Port a few more tricky/interdepending Ruby functions
 - [ ] Port a few more tricky/interdepending Python functions
 - [ ] Port a few more tricky/interdepending Go functions
+- [ ] Port a few more tricky/interdepending Rust functions
+- [ ] Parse requires with ast like browserify. Then we can add dependencies back to website
+- [ ] Rework injectweb after structural changes in util.js
+- [x] Generate mocha language tests
+- [x] Use require for dependencies
 - [x] In util.opener: First `*` should point to the requesting/current language
 - [x] Split out the npm module so you could do `var sprintf = require('locutus/sprintf')`
 - [x] Launch BC breaking blogpost
