@@ -5,18 +5,18 @@ window.window = window
 var expect = require('chai').expect
 var Count = require('/Users/kvz/code/phpjs/src/golang/strings/Count.js')
 
-describe.skip('golang.strings.Count.js', function () {
+describe('golang.strings.Count.js', function () {
   it('should pass example 1', function (done) {
-    strings.Count("cheese", "e")
+    Count("cheese", "e")
     var expected = 3
-    var result = strings.Count("cheese", "e")
+    var result = Count("cheese", "e")
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    strings.Count("five", "") // before & after each rune
+    Count("five", "") // before & after each rune
     var expected = 5
-    var result = strings.Count("five", "") // before & after each rune
+    var result = Count("five", "") // before & after each rune
     expect(result).to.deep.equal(expected)
     done()
   })
