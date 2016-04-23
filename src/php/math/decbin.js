@@ -5,11 +5,11 @@ module.exports = function decbin (number) {
   // improved by: http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
   //    input by: pilus
   //    input by: nord_ua
-  //   example 1: decbin(12);
+  //   example 1: decbin(12)
   //   returns 1: '1100'
-  //   example 2: decbin(26);
+  //   example 2: decbin(26)
   //   returns 2: '11010'
-  //   example 3: decbin('26');
+  //   example 3: decbin('26')
   //   returns 3: '11010'
 
   if (number < 0) {

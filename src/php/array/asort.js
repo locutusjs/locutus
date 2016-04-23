@@ -24,13 +24,13 @@ module.exports = function asort (inputArr, sort_flags) {
   //        note: default) SORT_REGULAR flag distinguishes by key type,
   //        note: if the content is a numeric string, we treat the
   //        note: "original type" as numeric.
-  //   example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
-  //   example 1: data = asort(data);
+  //   example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+  //   example 1: data = asort(data)
   //   example 1: $result = data
   //   returns 1: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
-  //   example 2: ini_set('locutus.strictForIn', true);
-  //   example 2: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
-  //   example 2: asort(data);
+  //   example 2: ini_set('locutus.strictForIn', true)
+  //   example 2: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+  //   example 2: asort(data)
   //   example 2: $result = data
   //   returns 2: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
   //        test: skip-1

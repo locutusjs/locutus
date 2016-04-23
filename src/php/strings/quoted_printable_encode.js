@@ -3,11 +3,11 @@ module.exports = function quoted_printable_encode (str) {
   // original by: Theriault
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Theriault
-  //   example 1: quoted_printable_encode('a=b=c');
+  //   example 1: quoted_printable_encode('a=b=c')
   //   returns 1: 'a=3Db=3Dc'
-  //   example 2: quoted_printable_encode('abc   \r\n123   \r\n');
+  //   example 2: quoted_printable_encode('abc   \r\n123   \r\n')
   //   returns 2: 'abc  =20\r\n123  =20\r\n'
-  //   example 3: quoted_printable_encode('0123456789012345678901234567890123456789012345678901234567890123456789012345');
+  //   example 3: quoted_printable_encode('0123456789012345678901234567890123456789012345678901234567890123456789012345')
   //   returns 3: '012345678901234567890123456789012345678901234567890123456789012345678901234=\r\n5'
   //        test: skip-2
 

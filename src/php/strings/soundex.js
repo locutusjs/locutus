@@ -8,11 +8,11 @@ module.exports = function soundex (str) {
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Brett Zamir (http://brett-zamir.me)
   //  revised by: Rafał Kukawski (http://blog.kukawski.pl)
-  //   example 1: soundex('Kevin');
+  //   example 1: soundex('Kevin')
   //   returns 1: 'K150'
-  //   example 2: soundex('Ellery');
+  //   example 2: soundex('Ellery')
   //   returns 2: 'E460'
-  //   example 3: soundex('Euler');
+  //   example 3: soundex('Euler')
   //   returns 3: 'E460'
 
   str = (str + '')

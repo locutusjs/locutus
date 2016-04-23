@@ -9,14 +9,14 @@ module.exports = function array_splice (arr, offst, lgth, replacement) {
   //        note: after being supposedly deleted, so use of this function may produce
   //        note: unexpected results in IE if you later attempt to add back properties
   //        note: with the same keys that had been deleted
-  //   example 1: input = {4: "red", 'abc': "green", 2: "blue", 'dud': "yellow"};
-  //   example 1: array_splice(input, 2);
+  //   example 1: input = {4: "red", 'abc': "green", 2: "blue", 'dud': "yellow"}
+  //   example 1: array_splice(input, 2)
   //   returns 1: {0: "blue", 'dud': "yellow"}
-  //   example 2: input = ["red", "green", "blue", "yellow"];
-  //   example 2: array_splice(input, 3, 0, "purple");
+  //   example 2: input = ["red", "green", "blue", "yellow"]
+  //   example 2: array_splice(input, 3, 0, "purple")
   //   returns 2: []
   //   example 3: input = ["red", "green", "blue", "yellow"]
-  //   example 3: array_splice(input, -1, 1, ["black", "maroon"]);
+  //   example 3: array_splice(input, -1, 1, ["black", "maroon"])
   //   returns 3: ["yellow"]
   //        test: skip-1
 

@@ -9,11 +9,11 @@ module.exports = function base64_decode (data) {
   // bugfixed by: Onno Marsman
   // bugfixed by: Pellentesque Malesuada
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  //   example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
+  //   example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==')
   //   returns 1: 'Kevin van Zonneveld'
-  //   example 2: base64_decode('YQ==');
+  //   example 2: base64_decode('YQ==')
   //   returns 2: 'a'
-  //   example 3: base64_decode('4pyTIMOgIGxhIG1vZGU=');
+  //   example 3: base64_decode('4pyTIMOgIGxhIG1vZGU=')
   //   returns 3: '✓ à la mode'
 
   var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='

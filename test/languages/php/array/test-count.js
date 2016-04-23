@@ -9,16 +9,16 @@ var count = require('/Users/kvz/code/phpjs/src/php/array/count.js')
 
 describe('php.array.count.js', function () {
   it('should pass example 1', function (done) {
-    count([[0,0],[0,-4]], 'COUNT_RECURSIVE');
+    count([[0,0],[0,-4]], 'COUNT_RECURSIVE')
     var expected = 6
-    var result = count([[0,0],[0,-4]], 'COUNT_RECURSIVE');
+    var result = count([[0,0],[0,-4]], 'COUNT_RECURSIVE')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');
+    count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE')
     var expected = 6
-    var result = count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');
+    var result = count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE')
     expect(result).to.deep.equal(expected)
     done()
   })

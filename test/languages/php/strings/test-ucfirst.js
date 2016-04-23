@@ -9,9 +9,9 @@ var ucfirst = require('/Users/kvz/code/phpjs/src/php/strings/ucfirst.js')
 
 describe('php.strings.ucfirst.js', function () {
   it('should pass example 1', function (done) {
-    ucfirst('kevin van zonneveld');
+    ucfirst('kevin van zonneveld')
     var expected = 'Kevin van zonneveld'
-    var result = ucfirst('kevin van zonneveld');
+    var result = ucfirst('kevin van zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })

@@ -4,7 +4,7 @@ module.exports = function strpbrk (haystack, char_list) {
   // bugfixed by: Onno Marsman
   //  revised by: Christoph
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: strpbrk('This is a Simple text.', 'is');
+  //   example 1: strpbrk('This is a Simple text.', 'is')
   //   returns 1: 'is is a Simple text.'
 
   for (var i = 0, len = haystack.length; i < len; ++i) {

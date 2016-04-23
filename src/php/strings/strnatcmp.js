@@ -5,15 +5,15 @@ module.exports = function strnatcmp (f_string1, f_string2, f_version) {
   // improved by: Jack
   // bugfixed by: Onno Marsman
   //        note: Added f_version argument against code guidelines, because it's so neat
-  //   example 1: strnatcmp('Price 12.9', 'Price 12.15');
+  //   example 1: strnatcmp('Price 12.9', 'Price 12.15')
   //   returns 1: 1
-  //   example 2: strnatcmp('Price 12.09', 'Price 12.15');
+  //   example 2: strnatcmp('Price 12.09', 'Price 12.15')
   //   returns 2: -1
-  //   example 3: strnatcmp('Price 12.90', 'Price 12.15');
+  //   example 3: strnatcmp('Price 12.90', 'Price 12.15')
   //   returns 3: 1
-  //   example 4: strnatcmp('Version 12.9', 'Version 12.15', true);
+  //   example 4: strnatcmp('Version 12.9', 'Version 12.15', true)
   //   returns 4: -6
-  //   example 5: strnatcmp('Version 12.15', 'Version 12.9', true);
+  //   example 5: strnatcmp('Version 12.15', 'Version 12.9', true)
   //   returns 5: 6
   //        test: skip-2
 

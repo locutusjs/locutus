@@ -19,14 +19,14 @@ module.exports = function rsort (inputArr, sort_flags) {
   //        note: default) SORT_REGULAR flag distinguishes by key type,
   //        note: if the content is a numeric string, we treat the
   //        note: "original type" as numeric.
-  //   example 1: $arr = ['Kevin', 'van', 'Zonneveld'];
-  //   example 1: rsort($arr);
-  //   example 1: $results = $arr;
+  //   example 1: $arr = ['Kevin', 'van', 'Zonneveld']
+  //   example 1: rsort($arr)
+  //   example 1: $results = $arr
   //   returns 1: ['van', 'Zonneveld', 'Kevin']
-  //   example 2: ini_set('locutus.strictForIn', true);
-  //   example 2: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
-  //   example 2: rsort(fruits);
-  //   example 2: $result = fruits;
+  //   example 2: ini_set('locutus.strictForIn', true)
+  //   example 2: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+  //   example 2: rsort(fruits)
+  //   example 2: $result = fruits
   //   returns 2: {0: 'orange', 1: 'lemon', 2: 'banana', 3: 'apple'}
   //        test: skip-1
 

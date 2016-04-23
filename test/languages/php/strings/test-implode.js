@@ -9,16 +9,16 @@ var implode = require('/Users/kvz/code/phpjs/src/php/strings/implode.js')
 
 describe('php.strings.implode.js', function () {
   it('should pass example 1', function (done) {
-    implode(' ', ['Kevin', 'van', 'Zonneveld']);
+    implode(' ', ['Kevin', 'van', 'Zonneveld'])
     var expected = 'Kevin van Zonneveld'
-    var result = implode(' ', ['Kevin', 'van', 'Zonneveld']);
+    var result = implode(' ', ['Kevin', 'van', 'Zonneveld'])
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    implode(' ', {first:'Kevin', last: 'van Zonneveld'});
+    implode(' ', {first:'Kevin', last: 'van Zonneveld'})
     var expected = 'Kevin van Zonneveld'
-    var result = implode(' ', {first:'Kevin', last: 'van Zonneveld'});
+    var result = implode(' ', {first:'Kevin', last: 'van Zonneveld'})
     expect(result).to.deep.equal(expected)
     done()
   })

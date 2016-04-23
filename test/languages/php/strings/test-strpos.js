@@ -9,9 +9,9 @@ var strpos = require('/Users/kvz/code/phpjs/src/php/strings/strpos.js')
 
 describe('php.strings.strpos.js', function () {
   it('should pass example 1', function (done) {
-    strpos('Kevin van Zonneveld', 'e', 5);
+    strpos('Kevin van Zonneveld', 'e', 5)
     var expected = 14
-    var result = strpos('Kevin van Zonneveld', 'e', 5);
+    var result = strpos('Kevin van Zonneveld', 'e', 5)
     expect(result).to.deep.equal(expected)
     done()
   })

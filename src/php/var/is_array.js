@@ -13,13 +13,13 @@ module.exports = function is_array (mixed_var) {
   //        note: return true in this function (except for objects which inherit properties, being thus used as objects),
   //        note: unless you do ini_set('locutus.objectsAsArrays', 0), in which case only genuine JavaScript arrays
   //        note: will return true
-  //   example 1: is_array(['Kevin', 'van', 'Zonneveld']);
+  //   example 1: is_array(['Kevin', 'van', 'Zonneveld'])
   //   returns 1: true
-  //   example 2: is_array('Kevin van Zonneveld');
+  //   example 2: is_array('Kevin van Zonneveld')
   //   returns 2: false
-  //   example 3: is_array({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
+  //   example 3: is_array({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
   //   returns 3: true
-  //   example 4: is_array(function tmp_a(){this.name = 'Kevin'});
+  //   example 4: is_array(function tmp_a(){this.name = 'Kevin'})
   //   returns 4: false
 
   var ini

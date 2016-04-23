@@ -9,18 +9,18 @@ var sscanf = require('/Users/kvz/code/phpjs/src/php/strings/sscanf.js')
 
 describe('php.strings.sscanf.js', function () {
   it('should pass example 1', function (done) {
-    sscanf('SN/2350001', 'SN/%d');
+    sscanf('SN/2350001', 'SN/%d')
     var expected = [2350001]
-    var result = sscanf('SN/2350001', 'SN/%d');
+    var result = sscanf('SN/2350001', 'SN/%d')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
     var myVar; // Will be set by function
-    sscanf('SN/2350001', 'SN/%d', 'myVar');
+    sscanf('SN/2350001', 'SN/%d', 'myVar')
     var expected = 1
 var myVar; // Will be set by function
-    var result = sscanf('SN/2350001', 'SN/%d', 'myVar');
+    var result = sscanf('SN/2350001', 'SN/%d', 'myVar')
     expect(result).to.deep.equal(expected)
     done()
   })

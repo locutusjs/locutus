@@ -9,9 +9,9 @@ var atanh = require('/Users/kvz/code/phpjs/src/php/math/atanh.js')
 
 describe('php.math.atanh.js', function () {
   it('should pass example 1', function (done) {
-    atanh(0.3);
+    atanh(0.3)
     var expected = 0.3095196042031118
-    var result = atanh(0.3);
+    var result = atanh(0.3)
     expect(result).to.deep.equal(expected)
     done()
   })

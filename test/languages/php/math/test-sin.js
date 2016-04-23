@@ -9,9 +9,9 @@ var sin = require('/Users/kvz/code/phpjs/src/php/math/sin.js')
 
 describe('php.math.sin.js', function () {
   it('should pass example 1', function (done) {
-    Math.ceil(sin(8723321.4) * 10000000);
+    Math.ceil(sin(8723321.4) * 10000000)
     var expected = -9834330
-    var result = Math.ceil(sin(8723321.4) * 10000000);
+    var result = Math.ceil(sin(8723321.4) * 10000000)
     expect(result).to.deep.equal(expected)
     done()
   })

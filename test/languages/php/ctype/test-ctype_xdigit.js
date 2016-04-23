@@ -9,9 +9,9 @@ var ctype_xdigit = require('/Users/kvz/code/phpjs/src/php/ctype/ctype_xdigit.js'
 
 describe('php.ctype.ctype_xdigit.js', function () {
   it('should pass example 1', function (done) {
-    ctype_xdigit('01dF');
+    ctype_xdigit('01dF')
     var expected = true
-    var result = ctype_xdigit('01dF');
+    var result = ctype_xdigit('01dF')
     expect(result).to.deep.equal(expected)
     done()
   })

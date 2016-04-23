@@ -17,19 +17,19 @@ module.exports = function strip_tags (input, allowed) {
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Tomasz Wesolowski
   //  revised by: Rafał Kukawski (http://blog.kukawski.pl/)
-  //   example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i><b>');
+  //   example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i><b>')
   //   returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
-  //   example 2: strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>', '<p>');
+  //   example 2: strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>', '<p>')
   //   returns 2: '<p>Kevin van Zonneveld</p>'
-  //   example 3: strip_tags("<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>", "<a>");
+  //   example 3: strip_tags("<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>", "<a>")
   //   returns 3: "<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>"
-  //   example 4: strip_tags('1 < 5 5 > 1');
+  //   example 4: strip_tags('1 < 5 5 > 1')
   //   returns 4: '1 < 5 5 > 1'
-  //   example 5: strip_tags('1 <br/> 1');
+  //   example 5: strip_tags('1 <br/> 1')
   //   returns 5: '1  1'
-  //   example 6: strip_tags('1 <br/> 1', '<br>');
+  //   example 6: strip_tags('1 <br/> 1', '<br>')
   //   returns 6: '1 <br/> 1'
-  //   example 7: strip_tags('1 <br/> 1', '<br><br/>');
+  //   example 7: strip_tags('1 <br/> 1', '<br><br/>')
   //   returns 7: '1 <br/> 1'
 
   allowed = (((allowed || '') + '')

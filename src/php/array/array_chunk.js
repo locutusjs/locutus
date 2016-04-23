@@ -3,13 +3,13 @@ module.exports = function array_chunk (input, size, preserve_keys) {
   // original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //        note: Important note: Per the ECMAScript specification, objects may not always iterate in a predictable order
-  //   example 1: array_chunk(['Kevin', 'van', 'Zonneveld'], 2);
+  //   example 1: array_chunk(['Kevin', 'van', 'Zonneveld'], 2)
   //   returns 1: [['Kevin', 'van'], ['Zonneveld']]
-  //   example 2: array_chunk(['Kevin', 'van', 'Zonneveld'], 2, true);
+  //   example 2: array_chunk(['Kevin', 'van', 'Zonneveld'], 2, true)
   //   returns 2: [{0:'Kevin', 1:'van'}, {2: 'Zonneveld'}]
-  //   example 3: array_chunk({1:'Kevin', 2:'van', 3:'Zonneveld'}, 2);
+  //   example 3: array_chunk({1:'Kevin', 2:'van', 3:'Zonneveld'}, 2)
   //   returns 3: [['Kevin', 'van'], ['Zonneveld']]
-  //   example 4: array_chunk({1:'Kevin', 2:'van', 3:'Zonneveld'}, 2, true);
+  //   example 4: array_chunk({1:'Kevin', 2:'van', 3:'Zonneveld'}, 2, true)
   //   returns 4: [{1: 'Kevin', 2: 'van'}, {3: 'Zonneveld'}]
 
 

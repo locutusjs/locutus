@@ -9,9 +9,9 @@ var ctype_space = require('/Users/kvz/code/phpjs/src/php/ctype/ctype_space.js')
 
 describe('php.ctype.ctype_space.js', function () {
   it('should pass example 1', function (done) {
-    ctype_space('\t\n');
+    ctype_space('\t\n')
     var expected = true
-    var result = ctype_space('\t\n');
+    var result = ctype_space('\t\n')
     expect(result).to.deep.equal(expected)
     done()
   })

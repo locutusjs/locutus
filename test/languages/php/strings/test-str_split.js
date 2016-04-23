@@ -9,9 +9,9 @@ var str_split = require('/Users/kvz/code/phpjs/src/php/strings/str_split.js')
 
 describe('php.strings.str_split.js', function () {
   it('should pass example 1', function (done) {
-    str_split('Hello Friend', 3);
+    str_split('Hello Friend', 3)
     var expected = ['Hel', 'lo ', 'Fri', 'end']
-    var result = str_split('Hello Friend', 3);
+    var result = str_split('Hello Friend', 3)
     expect(result).to.deep.equal(expected)
     done()
   })

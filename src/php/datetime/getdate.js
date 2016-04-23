@@ -3,7 +3,7 @@ module.exports = function getdate (timestamp) {
   // original by: Paulo Freitas
   //    input by: Alex
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: getdate(1055901520);
+  //   example 1: getdate(1055901520)
   //   returns 1: {'seconds': 40, 'minutes': 58, 'hours': 21, 'mday': 17, 'wday': 2, 'mon': 6, 'year': 2003, 'yday': 167, 'weekday': 'Tuesday', 'month': 'June', '0': 1055901520}
   //        test: skip-1
 

@@ -9,9 +9,9 @@ var log1p = require('/Users/kvz/code/phpjs/src/php/math/log1p.js')
 
 describe('php.math.log1p.js', function () {
   it('should pass example 1', function (done) {
-    log1p(1e-15);
+    log1p(1e-15)
     var expected = 9.999999999999995e-16
-    var result = log1p(1e-15);
+    var result = log1p(1e-15)
     expect(result).to.deep.equal(expected)
     done()
   })

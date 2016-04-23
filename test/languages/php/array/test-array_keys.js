@@ -9,9 +9,9 @@ var array_keys = require('/Users/kvz/code/phpjs/src/php/array/array_keys.js')
 
 describe('php.array.array_keys.js', function () {
   it('should pass example 1', function (done) {
-    array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} );
+    array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} )
     var expected = [ 'firstname', 'surname' ]
-    var result = array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} );
+    var result = array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} )
     expect(result).to.deep.equal(expected)
     done()
   })

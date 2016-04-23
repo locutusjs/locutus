@@ -4,11 +4,11 @@ module.exports = function str_rot13 (str) {
   // improved by: Ates Goral (http://magnetiq.com)
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)
   // bugfixed by: Onno Marsman
-  //   example 1: str_rot13('Kevin van Zonneveld');
+  //   example 1: str_rot13('Kevin van Zonneveld')
   //   returns 1: 'Xriva ina Mbaariryq'
-  //   example 2: str_rot13('Xriva ina Mbaariryq');
+  //   example 2: str_rot13('Xriva ina Mbaariryq')
   //   returns 2: 'Kevin van Zonneveld'
-  //   example 3: str_rot13(33);
+  //   example 3: str_rot13(33)
   //   returns 3: '33'
 
   return (str + '')

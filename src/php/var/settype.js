@@ -5,12 +5,12 @@ module.exports = function settype (vr, type) {
   //  revised by: Brett Zamir (http://brett-zamir.me)
   //        note: Credits to Crockford also
   //        note: only works on global variables, and "vr" must be passed in as a string
-  //   example 1: foo = '5bar';
-  //   example 1: settype('foo', 'integer');
+  //   example 1: foo = '5bar'
+  //   example 1: settype('foo', 'integer')
   //   example 1: $result = foo
   //   returns 1: 5
-  //   example 2: foo = true;
-  //   example 2: settype('foo', 'string');
+  //   example 2: foo = true
+  //   example 2: settype('foo', 'string')
   //   example 2: $result = foo
   //   returns 2: '1'
 

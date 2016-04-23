@@ -9,7 +9,7 @@ module.exports = function str_ireplace (search, replace, subject, count) {
   //        note: str_ireplace($search, $replace, $subject, 'MyCount');
   //      format: str_ireplace($search, $replace, $subject[, 'count'])
   //       input: str_ireplace($search, $replace, $subject[, {string}]);
-  //   example 1: str_ireplace('M', 'e', 'name');
+  //   example 1: str_ireplace('M', 'e', 'name')
   //   returns 1: 'naee'
 
   var i = 0,

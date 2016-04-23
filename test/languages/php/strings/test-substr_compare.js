@@ -9,9 +9,9 @@ var substr_compare = require('/Users/kvz/code/phpjs/src/php/strings/substr_compa
 
 describe('php.strings.substr_compare.js', function () {
   it('should pass example 1', function (done) {
-    substr_compare("abcde", "bc", 1, 2);
+    substr_compare("abcde", "bc", 1, 2)
     var expected = 0
-    var result = substr_compare("abcde", "bc", 1, 2);
+    var result = substr_compare("abcde", "bc", 1, 2)
     expect(result).to.deep.equal(expected)
     done()
   })

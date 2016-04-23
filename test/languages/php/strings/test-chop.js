@@ -9,9 +9,9 @@ var chop = require('/Users/kvz/code/phpjs/src/php/strings/chop.js')
 
 describe('php.strings.chop.js', function () {
   it('should pass example 1', function (done) {
-    chop('    Kevin van Zonneveld    ');
+    chop('    Kevin van Zonneveld    ')
     var expected = '    Kevin van Zonneveld'
-    var result = chop('    Kevin van Zonneveld    ');
+    var result = chop('    Kevin van Zonneveld    ')
     expect(result).to.deep.equal(expected)
     done()
   })

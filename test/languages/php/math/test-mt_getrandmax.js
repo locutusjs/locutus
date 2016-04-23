@@ -9,9 +9,9 @@ var mt_getrandmax = require('/Users/kvz/code/phpjs/src/php/math/mt_getrandmax.js
 
 describe('php.math.mt_getrandmax.js', function () {
   it('should pass example 1', function (done) {
-    mt_getrandmax();
+    mt_getrandmax()
     var expected = 2147483647
-    var result = mt_getrandmax();
+    var result = mt_getrandmax()
     expect(result).to.deep.equal(expected)
     done()
   })

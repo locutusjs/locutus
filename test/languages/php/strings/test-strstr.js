@@ -9,30 +9,30 @@ var strstr = require('/Users/kvz/code/phpjs/src/php/strings/strstr.js')
 
 describe('php.strings.strstr.js', function () {
   it('should pass example 1', function (done) {
-    strstr('Kevin van Zonneveld', 'van');
+    strstr('Kevin van Zonneveld', 'van')
     var expected = 'van Zonneveld'
-    var result = strstr('Kevin van Zonneveld', 'van');
+    var result = strstr('Kevin van Zonneveld', 'van')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    strstr('Kevin van Zonneveld', 'van', true);
+    strstr('Kevin van Zonneveld', 'van', true)
     var expected = 'Kevin '
-    var result = strstr('Kevin van Zonneveld', 'van', true);
+    var result = strstr('Kevin van Zonneveld', 'van', true)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    strstr('name@example.com', '@');
+    strstr('name@example.com', '@')
     var expected = '@example.com'
-    var result = strstr('name@example.com', '@');
+    var result = strstr('name@example.com', '@')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 4', function (done) {
-    strstr('name@example.com', '@', true);
+    strstr('name@example.com', '@', true)
     var expected = 'name'
-    var result = strstr('name@example.com', '@', true);
+    var result = strstr('name@example.com', '@', true)
     expect(result).to.deep.equal(expected)
     done()
   })

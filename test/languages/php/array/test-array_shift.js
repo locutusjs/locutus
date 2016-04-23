@@ -9,9 +9,9 @@ var array_shift = require('/Users/kvz/code/phpjs/src/php/array/array_shift.js')
 
 describe('php.array.array_shift.js', function () {
   it('should pass example 1', function (done) {
-    array_shift(['Kevin', 'van', 'Zonneveld']);
+    array_shift(['Kevin', 'van', 'Zonneveld'])
     var expected = 'Kevin'
-    var result = array_shift(['Kevin', 'van', 'Zonneveld']);
+    var result = array_shift(['Kevin', 'van', 'Zonneveld'])
     expect(result).to.deep.equal(expected)
     done()
   })

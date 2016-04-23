@@ -1,9 +1,9 @@
 module.exports = function str_getcsv (input, delimiter, enclosure, escape) {
   //  discuss at: http://locutusjs.io/php/str_getcsv/
   // original by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: str_getcsv('"abc","def","ghi"');
+  //   example 1: str_getcsv('"abc","def","ghi"')
   //   returns 1: ['abc', 'def', 'ghi']
-  //   example 2: str_getcsv('"row2""cell1","row2cell2","row2cell3"', null, null, '"');
+  //   example 2: str_getcsv('"row2""cell1","row2cell2","row2cell3"', null, null, '"')
   //   returns 2: ['row2"cell1', 'row2cell2', 'row2cell3']
 
   /*

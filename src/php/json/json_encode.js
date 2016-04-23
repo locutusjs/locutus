@@ -5,7 +5,7 @@ module.exports = function json_encode (mixed_val) {
   //      improved by: Michael White
   //         input by: felix
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //        example 1: json_encode('Kevin');
+  //        example 1: json_encode('Kevin')
   //        returns 1: '"Kevin"'
 
   /*

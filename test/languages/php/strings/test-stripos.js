@@ -9,9 +9,9 @@ var stripos = require('/Users/kvz/code/phpjs/src/php/strings/stripos.js')
 
 describe('php.strings.stripos.js', function () {
   it('should pass example 1', function (done) {
-    stripos('ABC', 'a');
+    stripos('ABC', 'a')
     var expected = 0
-    var result = stripos('ABC', 'a');
+    var result = stripos('ABC', 'a')
     expect(result).to.deep.equal(expected)
     done()
   })

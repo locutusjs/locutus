@@ -9,9 +9,9 @@ var bccomp = require('/Users/kvz/code/phpjs/src/php/bc/bccomp.js')
 
 describe('php.bc.bccomp.js', function () {
   it.skip('should pass example 1', function (done) {
-    bccomp(1, 2);
+    bccomp(1, 2)
     var expected = 3
-    var result = bccomp(1, 2);
+    var result = bccomp(1, 2)
     expect(result).to.deep.equal(expected)
     done()
   })

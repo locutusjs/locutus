@@ -4,7 +4,7 @@ module.exports = function sha1 (str) {
   // improved by: Michael White (http://getsprink.com)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: sha1('Kevin van Zonneveld');
+  //   example 1: sha1('Kevin van Zonneveld')
   //   returns 1: '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
 
   var rotate_left = function (n, s) {

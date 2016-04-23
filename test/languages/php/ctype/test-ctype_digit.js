@@ -9,9 +9,9 @@ var ctype_digit = require('/Users/kvz/code/phpjs/src/php/ctype/ctype_digit.js')
 
 describe('php.ctype.ctype_digit.js', function () {
   it('should pass example 1', function (done) {
-    ctype_digit('150');
+    ctype_digit('150')
     var expected = true
-    var result = ctype_digit('150');
+    var result = ctype_digit('150')
     expect(result).to.deep.equal(expected)
     done()
   })

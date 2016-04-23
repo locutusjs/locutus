@@ -9,16 +9,16 @@ var inet_ntop = require('/Users/kvz/code/phpjs/src/php/network/inet_ntop.js')
 
 describe('php.network.inet_ntop.js', function () {
   it('should pass example 1', function (done) {
-    inet_ntop('\x7F\x00\x00\x01');
+    inet_ntop('\x7F\x00\x00\x01')
     var expected = '127.0.0.1'
-    var result = inet_ntop('\x7F\x00\x00\x01');
+    var result = inet_ntop('\x7F\x00\x00\x01')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    inet_ntop('\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\1');
+    inet_ntop('\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\1')
     var expected = '::1'
-    var result = inet_ntop('\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\1');
+    var result = inet_ntop('\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\1')
     expect(result).to.deep.equal(expected)
     done()
   })

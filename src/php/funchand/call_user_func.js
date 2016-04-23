@@ -3,7 +3,7 @@ module.exports = function call_user_func (cb) {
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Diplom@t (http://difane.com/)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: call_user_func('isNaN', 'a');
+  //   example 1: call_user_func('isNaN', 'a')
   //   returns 1: true
   //        test: skip-1
 

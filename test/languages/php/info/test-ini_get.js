@@ -9,11 +9,11 @@ var ini_get = require('/Users/kvz/code/phpjs/src/php/info/ini_get.js')
 
 describe('php.info.ini_get.js', function () {
   it('should pass example 1', function (done) {
-    ini_set('date.timezone', 'Asia/Hong_Kong');
-    ini_get('date.timezone');
+    ini_set('date.timezone', 'Asia/Hong_Kong')
+    ini_get('date.timezone')
     var expected = 'Asia/Hong_Kong'
-ini_set('date.timezone', 'Asia/Hong_Kong');
-    var result = ini_get('date.timezone');
+ini_set('date.timezone', 'Asia/Hong_Kong')
+    var result = ini_get('date.timezone')
     expect(result).to.deep.equal(expected)
     done()
   })

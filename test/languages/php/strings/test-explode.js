@@ -9,9 +9,9 @@ var explode = require('/Users/kvz/code/phpjs/src/php/strings/explode.js')
 
 describe('php.strings.explode.js', function () {
   it('should pass example 1', function (done) {
-    explode(' ', 'Kevin van Zonneveld');
+    explode(' ', 'Kevin van Zonneveld')
     var expected = [ 'Kevin', 'van', 'Zonneveld' ]
-    var result = explode(' ', 'Kevin van Zonneveld');
+    var result = explode(' ', 'Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })

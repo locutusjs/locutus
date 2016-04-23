@@ -6,9 +6,9 @@ module.exports = function count_chars (str, mode) {
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Brett Zamir (http://brett-zamir.me)
   //  revised by: Theriault
-  //   example 1: count_chars("Hello World!", 3);
+  //   example 1: count_chars("Hello World!", 3)
   //   returns 1: " !HWdelor"
-  //   example 2: count_chars("Hello World!", 1);
+  //   example 2: count_chars("Hello World!", 1)
   //   returns 2: {32:1,33:1,72:1,87:1,100:1,101:1,108:3,111:2,114:1}
 
   var result = {},

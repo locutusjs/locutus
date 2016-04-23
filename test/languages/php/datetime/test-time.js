@@ -9,10 +9,10 @@ var time = require('/Users/kvz/code/phpjs/src/php/datetime/time.js')
 
 describe('php.datetime.time.js', function () {
   it('should pass example 1', function (done) {
-    timeStamp = time();
+    timeStamp = time()
     timeStamp > 1000000000 && timeStamp < 2000000000
     var expected = true
-timeStamp = time();
+timeStamp = time()
     var result = timeStamp > 1000000000 && timeStamp < 2000000000
     expect(result).to.deep.equal(expected)
     done()

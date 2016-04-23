@@ -16,7 +16,7 @@ module.exports = function get_html_translation_table (table, quote_style) {
   //        note: dependencies to Locutus, meaning the constants are not
   //        note: real constants, but strings instead. Integers are also supported if someone
   //        note: chooses to create the constants themselves.
-  //   example 1: get_html_translation_table('HTML_SPECIALCHARS');
+  //   example 1: get_html_translation_table('HTML_SPECIALCHARS')
   //   returns 1: {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
 
   var entities = {},

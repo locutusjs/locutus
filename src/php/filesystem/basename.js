@@ -5,13 +5,13 @@ module.exports = function basename (path, suffix) {
   // improved by: Lincoln Ramsay
   // improved by: djmix
   // improved by: Dmitry Gorelenkov
-  //   example 1: basename('/www/site/home.htm', '.htm');
+  //   example 1: basename('/www/site/home.htm', '.htm')
   //   returns 1: 'home'
-  //   example 2: basename('ecra.php?p=1');
+  //   example 2: basename('ecra.php?p=1')
   //   returns 2: 'ecra.php?p=1'
-  //   example 3: basename('/some/path/');
+  //   example 3: basename('/some/path/')
   //   returns 3: 'path'
-  //   example 4: basename('/some/path_ext.ext/','.ext');
+  //   example 4: basename('/some/path_ext.ext/','.ext')
   //   returns 4: 'path_ext'
 
   var b = path

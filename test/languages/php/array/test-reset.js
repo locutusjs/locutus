@@ -9,9 +9,9 @@ var reset = require('/Users/kvz/code/phpjs/src/php/array/reset.js')
 
 describe('php.array.reset.js', function () {
   it('should pass example 1', function (done) {
-    reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
+    reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
     var expected = 'Kevin'
-    var result = reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
+    var result = reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
     expect(result).to.deep.equal(expected)
     done()
   })

@@ -9,30 +9,30 @@ var metaphone = require('/Users/kvz/code/phpjs/src/php/strings/metaphone.js')
 
 describe('php.strings.metaphone.js', function () {
   it('should pass example 1', function (done) {
-    metaphone('Gnu');
+    metaphone('Gnu')
     var expected = 'N'
-    var result = metaphone('Gnu');
+    var result = metaphone('Gnu')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    metaphone('bigger');
+    metaphone('bigger')
     var expected = 'BKR'
-    var result = metaphone('bigger');
+    var result = metaphone('bigger')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    metaphone('accuracy');
+    metaphone('accuracy')
     var expected = 'AKKRS'
-    var result = metaphone('accuracy');
+    var result = metaphone('accuracy')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 4', function (done) {
-    metaphone('batch batcher');
+    metaphone('batch batcher')
     var expected = 'BXBXR'
-    var result = metaphone('batch batcher');
+    var result = metaphone('batch batcher')
     expect(result).to.deep.equal(expected)
     done()
   })

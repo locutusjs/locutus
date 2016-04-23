@@ -4,7 +4,7 @@ module.exports = function strpos (haystack, needle, offset) {
   // improved by: Onno Marsman
   // improved by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Daniel Esteban
-  //   example 1: strpos('Kevin van Zonneveld', 'e', 5);
+  //   example 1: strpos('Kevin van Zonneveld', 'e', 5)
   //   returns 1: 14
 
   var i = (haystack + '')

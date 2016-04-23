@@ -9,9 +9,9 @@ var ctype_alpha = require('/Users/kvz/code/phpjs/src/php/ctype/ctype_alpha.js')
 
 describe('php.ctype.ctype_alpha.js', function () {
   it('should pass example 1', function (done) {
-    ctype_alpha('Az');
+    ctype_alpha('Az')
     var expected = true
-    var result = ctype_alpha('Az');
+    var result = ctype_alpha('Az')
     expect(result).to.deep.equal(expected)
     done()
   })

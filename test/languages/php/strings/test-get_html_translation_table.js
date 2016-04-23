@@ -9,9 +9,9 @@ var get_html_translation_table = require('/Users/kvz/code/phpjs/src/php/strings/
 
 describe('php.strings.get_html_translation_table.js', function () {
   it('should pass example 1', function (done) {
-    get_html_translation_table('HTML_SPECIALCHARS');
+    get_html_translation_table('HTML_SPECIALCHARS')
     var expected = {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
-    var result = get_html_translation_table('HTML_SPECIALCHARS');
+    var result = get_html_translation_table('HTML_SPECIALCHARS')
     expect(result).to.deep.equal(expected)
     done()
   })

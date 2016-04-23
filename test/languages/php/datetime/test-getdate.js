@@ -9,9 +9,9 @@ var getdate = require('/Users/kvz/code/phpjs/src/php/datetime/getdate.js')
 
 describe('php.datetime.getdate.js', function () {
   it.skip('should pass example 1', function (done) {
-    getdate(1055901520);
+    getdate(1055901520)
     var expected = {'seconds': 40, 'minutes': 58, 'hours': 21, 'mday': 17, 'wday': 2, 'mon': 6, 'year': 2003, 'yday': 167, 'weekday': 'Tuesday', 'month': 'June', '0': 1055901520}
-    var result = getdate(1055901520);
+    var result = getdate(1055901520)
     expect(result).to.deep.equal(expected)
     done()
   })

@@ -9,9 +9,9 @@ var bcscale = require('/Users/kvz/code/phpjs/src/php/bc/bcscale.js')
 
 describe('php.bc.bcscale.js', function () {
   it.skip('should pass example 1', function (done) {
-    bcscale(1);
+    bcscale(1)
     var expected = 3
-    var result = bcscale(1);
+    var result = bcscale(1)
     expect(result).to.deep.equal(expected)
     done()
   })

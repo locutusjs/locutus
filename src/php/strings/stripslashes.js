@@ -10,9 +10,9 @@ module.exports = function stripslashes (str) {
   //         input by: Rick Waldron
   //         input by: Brant Messenger (http://www.brantmessenger.com/)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
-  //        example 1: stripslashes('Kevin\'s code');
+  //        example 1: stripslashes('Kevin\'s code')
   //        returns 1: "Kevin's code"
-  //        example 2: stripslashes('Kevin\\\'s code');
+  //        example 2: stripslashes('Kevin\\\'s code')
   //        returns 2: "Kevin\'s code"
 
   return (str + '')

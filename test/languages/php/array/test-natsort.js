@@ -9,11 +9,11 @@ var natsort = require('/Users/kvz/code/phpjs/src/php/array/natsort.js')
 
 describe('php.array.natsort.js', function () {
   it.skip('should pass example 1', function (done) {
-    $array1 = {a:"img12.png", b:"img10.png", c:"img2.png", d:"img1.png"};
-    $array1 = natsort($array1);
+    $array1 = {a:"img12.png", b:"img10.png", c:"img2.png", d:"img1.png"}
+    $array1 = natsort($array1)
     var expected = {d: 'img1.png', c: 'img2.png', b: 'img10.png', a: 'img12.png'}
-$array1 = {a:"img12.png", b:"img10.png", c:"img2.png", d:"img1.png"};
-    var result = $array1 = natsort($array1);
+$array1 = {a:"img12.png", b:"img10.png", c:"img2.png", d:"img1.png"}
+    var result = $array1 = natsort($array1)
     expect(result).to.deep.equal(expected)
     done()
   })

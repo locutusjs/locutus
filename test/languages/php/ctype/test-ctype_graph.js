@@ -9,9 +9,9 @@ var ctype_graph = require('/Users/kvz/code/phpjs/src/php/ctype/ctype_graph.js')
 
 describe('php.ctype.ctype_graph.js', function () {
   it('should pass example 1', function (done) {
-    ctype_graph('!%');
+    ctype_graph('!%')
     var expected = true
-    var result = ctype_graph('!%');
+    var result = ctype_graph('!%')
     expect(result).to.deep.equal(expected)
     done()
   })

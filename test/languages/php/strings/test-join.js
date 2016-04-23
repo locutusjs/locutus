@@ -9,9 +9,9 @@ var join = require('/Users/kvz/code/phpjs/src/php/strings/join.js')
 
 describe('php.strings.join.js', function () {
   it('should pass example 1', function (done) {
-    join(' ', ['Kevin', 'van', 'Zonneveld']);
+    join(' ', ['Kevin', 'van', 'Zonneveld'])
     var expected = 'Kevin van Zonneveld'
-    var result = join(' ', ['Kevin', 'van', 'Zonneveld']);
+    var result = join(' ', ['Kevin', 'van', 'Zonneveld'])
     expect(result).to.deep.equal(expected)
     done()
   })

@@ -14,15 +14,15 @@ module.exports = function round (value, precision, mode) {
   //        note: - for implementing PHP constant arguments look at
   //        note: the pathinfo() function, it offers the greatest
   //        note: flexibility & compatibility possible
-  //   example 1: round(1241757, -3);
+  //   example 1: round(1241757, -3)
   //   returns 1: 1242000
-  //   example 2: round(3.6);
+  //   example 2: round(3.6)
   //   returns 2: 4
-  //   example 3: round(2.835, 2);
+  //   example 3: round(2.835, 2)
   //   returns 3: 2.84
-  //   example 4: round(1.1749999999999, 2);
+  //   example 4: round(1.1749999999999, 2)
   //   returns 4: 1.17
-  //   example 5: round(58551.799999999996, 2);
+  //   example 5: round(58551.799999999996, 2)
   //   returns 5: 58551.8
 
   var m, f, isHalf, sgn // helper variables

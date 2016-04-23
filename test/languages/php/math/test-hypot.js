@@ -9,16 +9,16 @@ var hypot = require('/Users/kvz/code/phpjs/src/php/math/hypot.js')
 
 describe('php.math.hypot.js', function () {
   it('should pass example 1', function (done) {
-    hypot(3, 4);
+    hypot(3, 4)
     var expected = 5
-    var result = hypot(3, 4);
+    var result = hypot(3, 4)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    hypot([], 'a');
+    hypot([], 'a')
     var expected = null
-    var result = hypot([], 'a');
+    var result = hypot([], 'a')
     expect(result).to.deep.equal(expected)
     done()
   })

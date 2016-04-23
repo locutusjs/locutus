@@ -8,7 +8,7 @@ module.exports = function addslashes (str) {
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Oskar Larsson Högfeldt (http://oskar-lh.name/)
   //    input by: Denny Wardhana
-  //   example 1: addslashes("kevin's birthday");
+  //   example 1: addslashes("kevin's birthday")
   //   returns 1: "kevin\\'s birthday"
 
   return (str + '')

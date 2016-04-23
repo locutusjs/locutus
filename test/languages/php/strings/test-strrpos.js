@@ -9,30 +9,30 @@ var strrpos = require('/Users/kvz/code/phpjs/src/php/strings/strrpos.js')
 
 describe('php.strings.strrpos.js', function () {
   it('should pass example 1', function (done) {
-    strrpos('Kevin van Zonneveld', 'e');
+    strrpos('Kevin van Zonneveld', 'e')
     var expected = 16
-    var result = strrpos('Kevin van Zonneveld', 'e');
+    var result = strrpos('Kevin van Zonneveld', 'e')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    strrpos('somepage.com', '.', false);
+    strrpos('somepage.com', '.', false)
     var expected = 8
-    var result = strrpos('somepage.com', '.', false);
+    var result = strrpos('somepage.com', '.', false)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    strrpos('baa', 'a', 3);
+    strrpos('baa', 'a', 3)
     var expected = false
-    var result = strrpos('baa', 'a', 3);
+    var result = strrpos('baa', 'a', 3)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 4', function (done) {
-    strrpos('baa', 'a', 2);
+    strrpos('baa', 'a', 2)
     var expected = 2
-    var result = strrpos('baa', 'a', 2);
+    var result = strrpos('baa', 'a', 2)
     expect(result).to.deep.equal(expected)
     done()
   })

@@ -9,9 +9,9 @@ var array_key_exists = require('/Users/kvz/code/phpjs/src/php/array/array_key_ex
 
 describe('php.array.array_key_exists.js', function () {
   it('should pass example 1', function (done) {
-    array_key_exists('kevin', {'kevin': 'van Zonneveld'});
+    array_key_exists('kevin', {'kevin': 'van Zonneveld'})
     var expected = true
-    var result = array_key_exists('kevin', {'kevin': 'van Zonneveld'});
+    var result = array_key_exists('kevin', {'kevin': 'van Zonneveld'})
     expect(result).to.deep.equal(expected)
     done()
   })

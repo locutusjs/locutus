@@ -9,9 +9,9 @@ var sinh = require('/Users/kvz/code/phpjs/src/php/math/sinh.js')
 
 describe('php.math.sinh.js', function () {
   it('should pass example 1', function (done) {
-    sinh(-0.9834330348825909);
+    sinh(-0.9834330348825909)
     var expected = -1.1497971402636502
-    var result = sinh(-0.9834330348825909);
+    var result = sinh(-0.9834330348825909)
     expect(result).to.deep.equal(expected)
     done()
   })

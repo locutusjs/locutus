@@ -9,9 +9,9 @@ var is_unicode = require('/Users/kvz/code/phpjs/src/php/var/is_unicode.js')
 
 describe('php.var.is_unicode.js', function () {
   it('should pass example 1', function (done) {
-    is_unicode('We the peoples of the United Nations...!');
+    is_unicode('We the peoples of the United Nations...!')
     var expected = true
-    var result = is_unicode('We the peoples of the United Nations...!');
+    var result = is_unicode('We the peoples of the United Nations...!')
     expect(result).to.deep.equal(expected)
     done()
   })

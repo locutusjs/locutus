@@ -9,23 +9,23 @@ var soundex = require('/Users/kvz/code/phpjs/src/php/strings/soundex.js')
 
 describe('php.strings.soundex.js', function () {
   it('should pass example 1', function (done) {
-    soundex('Kevin');
+    soundex('Kevin')
     var expected = 'K150'
-    var result = soundex('Kevin');
+    var result = soundex('Kevin')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    soundex('Ellery');
+    soundex('Ellery')
     var expected = 'E460'
-    var result = soundex('Ellery');
+    var result = soundex('Ellery')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    soundex('Euler');
+    soundex('Euler')
     var expected = 'E460'
-    var result = soundex('Euler');
+    var result = soundex('Euler')
     expect(result).to.deep.equal(expected)
     done()
   })

@@ -21,7 +21,7 @@ module.exports = function echo () {
   //        note: since it may not work in an XML context
   //        note: Using innerHTML to directly add to the BODY is very dangerous because it will
   //        note: break all pre-existing references to HTMLElements.
-  //   example 1: echo('<div><p>abc</p><p>abc</p></div>');
+  //   example 1: echo('<div><p>abc</p><p>abc</p></div>')
   //   returns 1: undefined
 
   var isNode = typeof module !== 'undefined' && module.exports && typeof global !== 'undefined' && {}.toString.call(global) === '[object global]'

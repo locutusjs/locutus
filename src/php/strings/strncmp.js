@@ -5,9 +5,9 @@ module.exports = function strncmp (str1, str2, lgth) {
   //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //       revised by: gorthaur
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
-  //        example 1: strncmp('aaa', 'aab', 2);
+  //        example 1: strncmp('aaa', 'aab', 2)
   //        returns 1: 0
-  //        example 2: strncmp('aaa', 'aab', 3 );
+  //        example 2: strncmp('aaa', 'aab', 3 )
   //        returns 2: -1
 
   var s1 = (str1 + '')

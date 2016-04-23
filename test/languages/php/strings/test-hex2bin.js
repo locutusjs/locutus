@@ -9,16 +9,16 @@ var hex2bin = require('/Users/kvz/code/phpjs/src/php/strings/hex2bin.js')
 
 describe('php.strings.hex2bin.js', function () {
   it('should pass example 1', function (done) {
-    hex2bin('44696d61');
+    hex2bin('44696d61')
     var expected = 'Dima'
-    var result = hex2bin('44696d61');
+    var result = hex2bin('44696d61')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    hex2bin('00');
+    hex2bin('00')
     var expected = '\x00'
-    var result = hex2bin('00');
+    var result = hex2bin('00')
     expect(result).to.deep.equal(expected)
     done()
   })

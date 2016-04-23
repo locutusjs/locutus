@@ -9,9 +9,9 @@ var rtrim = require('/Users/kvz/code/phpjs/src/php/strings/rtrim.js')
 
 describe('php.strings.rtrim.js', function () {
   it('should pass example 1', function (done) {
-    rtrim('    Kevin van Zonneveld    ');
+    rtrim('    Kevin van Zonneveld    ')
     var expected = '    Kevin van Zonneveld'
-    var result = rtrim('    Kevin van Zonneveld    ');
+    var result = rtrim('    Kevin van Zonneveld    ')
     expect(result).to.deep.equal(expected)
     done()
   })

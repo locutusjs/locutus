@@ -2,9 +2,9 @@ module.exports = function is_nan (val) {
   //  discuss at: http://locutusjs.io/php/is_nan/
   // original by: Onno Marsman
   //    input by: Robin
-  //   example 1: is_nan(NaN);
+  //   example 1: is_nan(NaN)
   //   returns 1: true
-  //   example 2: is_nan(0);
+  //   example 2: is_nan(0)
   //   returns 2: false
 
   var warningType = ''

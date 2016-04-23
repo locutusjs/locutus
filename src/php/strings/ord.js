@@ -4,7 +4,7 @@ module.exports = function ord (string) {
   // bugfixed by: Onno Marsman
   // improved by: Brett Zamir (http://brett-zamir.me)
   //    input by: incidence
-  //   example 1: ord('K');
+  //   example 1: ord('K')
   //   returns 1: 75
   //   example 2: ord('\uD800\uDC00'); // surrogate pair to create a single Unicode character
   //   returns 2: 65536

@@ -11,9 +11,9 @@ module.exports = function html_entity_decode (string, quote_style) {
   // bugfixed by: Onno Marsman
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Fox
-  //   example 1: html_entity_decode('Kevin &amp; van Zonneveld');
+  //   example 1: html_entity_decode('Kevin &amp; van Zonneveld')
   //   returns 1: 'Kevin & van Zonneveld'
-  //   example 2: html_entity_decode('&amp;lt;');
+  //   example 2: html_entity_decode('&amp;lt;')
   //   returns 2: '&lt;'
 
   var get_html_translation_table = require('../strings/get_html_translation_table')

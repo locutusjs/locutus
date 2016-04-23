@@ -9,9 +9,9 @@ var strrev = require('/Users/kvz/code/phpjs/src/php/strings/strrev.js')
 
 describe('php.strings.strrev.js', function () {
   it('should pass example 1', function (done) {
-    strrev('Kevin van Zonneveld');
+    strrev('Kevin van Zonneveld')
     var expected = 'dlevennoZ nav niveK'
-    var result = strrev('Kevin van Zonneveld');
+    var result = strrev('Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })

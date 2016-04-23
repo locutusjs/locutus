@@ -9,16 +9,16 @@ var array_walk_recursive = require('/Users/kvz/code/phpjs/src/php/array/array_wa
 
 describe('php.array.array_walk_recursive.js', function () {
   it('should pass example 1', function (done) {
-    array_walk_recursive ({'a': 'b', 'c': {'d': 'e'}}, 'void', 'userdata');
+    array_walk_recursive ({'a': 'b', 'c': {'d': 'e'}}, 'void', 'userdata')
     var expected = true
-    var result = array_walk_recursive ({'a': 'b', 'c': {'d': 'e'}}, 'void', 'userdata');
+    var result = array_walk_recursive ({'a': 'b', 'c': {'d': 'e'}}, 'void', 'userdata')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    array_walk_recursive ('a', 'void', 'userdata');
+    array_walk_recursive ('a', 'void', 'userdata')
     var expected = false
-    var result = array_walk_recursive ('a', 'void', 'userdata');
+    var result = array_walk_recursive ('a', 'void', 'userdata')
     expect(result).to.deep.equal(expected)
     done()
   })

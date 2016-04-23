@@ -9,16 +9,16 @@ var is_null = require('/Users/kvz/code/phpjs/src/php/var/is_null.js')
 
 describe('php.var.is_null.js', function () {
   it('should pass example 1', function (done) {
-    is_null('23');
+    is_null('23')
     var expected = false
-    var result = is_null('23');
+    var result = is_null('23')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    is_null(null);
+    is_null(null)
     var expected = true
-    var result = is_null(null);
+    var result = is_null(null)
     expect(result).to.deep.equal(expected)
     done()
   })

@@ -9,9 +9,9 @@ var each = require('/Users/kvz/code/phpjs/src/php/array/each.js')
 
 describe('php.array.each.js', function () {
   it('should pass example 1', function (done) {
-    each({a: "apple", b: "balloon"});
+    each({a: "apple", b: "balloon"})
     var expected = {0: "a", 1: "apple", key: "a", value: "apple"}
-    var result = each({a: "apple", b: "balloon"});
+    var result = each({a: "apple", b: "balloon"})
     expect(result).to.deep.equal(expected)
     done()
   })

@@ -1,7 +1,7 @@
 module.exports = function ctype_graph (text) {
   //  discuss at: http://locutusjs.io/php/ctype_graph/
   // original by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: ctype_graph('!%');
+  //   example 1: ctype_graph('!%')
   //   returns 1: true
 
   var setlocale = require('../strings/setlocale')

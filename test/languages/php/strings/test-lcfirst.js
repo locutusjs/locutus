@@ -9,9 +9,9 @@ var lcfirst = require('/Users/kvz/code/phpjs/src/php/strings/lcfirst.js')
 
 describe('php.strings.lcfirst.js', function () {
   it('should pass example 1', function (done) {
-    lcfirst('Kevin Van Zonneveld');
+    lcfirst('Kevin Van Zonneveld')
     var expected = 'kevin Van Zonneveld'
-    var result = lcfirst('Kevin Van Zonneveld');
+    var result = lcfirst('Kevin Van Zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })

@@ -9,9 +9,9 @@ var ltrim = require('/Users/kvz/code/phpjs/src/php/strings/ltrim.js')
 
 describe('php.strings.ltrim.js', function () {
   it('should pass example 1', function (done) {
-    ltrim('    Kevin van Zonneveld    ');
+    ltrim('    Kevin van Zonneveld    ')
     var expected = 'Kevin van Zonneveld    '
-    var result = ltrim('    Kevin van Zonneveld    ');
+    var result = ltrim('    Kevin van Zonneveld    ')
     expect(result).to.deep.equal(expected)
     done()
   })

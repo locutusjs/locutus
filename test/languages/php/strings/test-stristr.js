@@ -9,16 +9,16 @@ var stristr = require('/Users/kvz/code/phpjs/src/php/strings/stristr.js')
 
 describe('php.strings.stristr.js', function () {
   it('should pass example 1', function (done) {
-    stristr('Kevin van Zonneveld', 'Van');
+    stristr('Kevin van Zonneveld', 'Van')
     var expected = 'van Zonneveld'
-    var result = stristr('Kevin van Zonneveld', 'Van');
+    var result = stristr('Kevin van Zonneveld', 'Van')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    stristr('Kevin van Zonneveld', 'VAN', true);
+    stristr('Kevin van Zonneveld', 'VAN', true)
     var expected = 'Kevin '
-    var result = stristr('Kevin van Zonneveld', 'VAN', true);
+    var result = stristr('Kevin van Zonneveld', 'VAN', true)
     expect(result).to.deep.equal(expected)
     done()
   })

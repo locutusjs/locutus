@@ -6,15 +6,15 @@ module.exports = function intval (mixed_var, base) {
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Rafał Kukawski (http://blog.kukawski.pl)
   //    input by: Matteo
-  //   example 1: intval('Kevin van Zonneveld');
+  //   example 1: intval('Kevin van Zonneveld')
   //   returns 1: 0
-  //   example 2: intval(4.2);
+  //   example 2: intval(4.2)
   //   returns 2: 4
-  //   example 3: intval(42, 8);
+  //   example 3: intval(42, 8)
   //   returns 3: 42
-  //   example 4: intval('09');
+  //   example 4: intval('09')
   //   returns 4: 9
-  //   example 5: intval('1e', 16);
+  //   example 5: intval('1e', 16)
   //   returns 5: 30
 
   var tmp

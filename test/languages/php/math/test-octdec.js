@@ -9,9 +9,9 @@ var octdec = require('/Users/kvz/code/phpjs/src/php/math/octdec.js')
 
 describe('php.math.octdec.js', function () {
   it('should pass example 1', function (done) {
-    octdec('77');
+    octdec('77')
     var expected = 63
-    var result = octdec('77');
+    var result = octdec('77')
     expect(result).to.deep.equal(expected)
     done()
   })

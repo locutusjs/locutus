@@ -9,9 +9,9 @@ var expm1 = require('/Users/kvz/code/phpjs/src/php/math/expm1.js')
 
 describe('php.math.expm1.js', function () {
   it('should pass example 1', function (done) {
-    expm1(1e-15);
+    expm1(1e-15)
     var expected = 1.0000000000000007e-15
-    var result = expm1(1e-15);
+    var result = expm1(1e-15)
     expect(result).to.deep.equal(expected)
     done()
   })

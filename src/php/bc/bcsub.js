@@ -1,7 +1,7 @@
 module.exports = function bcsub (left_operand, right_operand, scale) {
   //  discuss at: http://locutusjs.io/php/bcsub/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
-  //   example 1: bcsub(1, 2);
+  //   example 1: bcsub(1, 2)
   //   returns 1: -1
   //        todo: implement these testcases
   //        test: skip-1

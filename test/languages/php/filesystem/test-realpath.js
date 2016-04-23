@@ -9,9 +9,9 @@ var realpath = require('/Users/kvz/code/phpjs/src/php/filesystem/realpath.js')
 
 describe('php.filesystem.realpath.js', function () {
   it.skip('should pass example 1', function (done) {
-    realpath('../.././_supporters/pj_test_supportfile_1.htm');
+    realpath('../.././_supporters/pj_test_supportfile_1.htm')
     var expected = 'file:/home/kevin/code/_supporters/pj_test_supportfile_1.htm'
-    var result = realpath('../.././_supporters/pj_test_supportfile_1.htm');
+    var result = realpath('../.././_supporters/pj_test_supportfile_1.htm')
     expect(result).to.deep.equal(expected)
     done()
   })

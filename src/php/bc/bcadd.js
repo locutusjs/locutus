@@ -1,7 +1,7 @@
 module.exports = function bcadd (left_operand, right_operand, scale) {
   //  discuss at: http://locutusjs.io/php/bcadd/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
-  //   example 1: bcadd(1, 2);
+  //   example 1: bcadd(1, 2)
   //   returns 1: 3
   //        todo: implement these testcases
   //        test: skip-1

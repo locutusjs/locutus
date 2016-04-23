@@ -3,7 +3,7 @@ module.exports = function array_shift (inputArr) {
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Martijn Wieringa
   //        note: Currently does not handle objects
-  //   example 1: array_shift(['Kevin', 'van', 'Zonneveld']);
+  //   example 1: array_shift(['Kevin', 'van', 'Zonneveld'])
   //   returns 1: 'Kevin'
 
   var props = false,

@@ -4,13 +4,13 @@ module.exports = function strrpos (haystack, needle, offset) {
   // bugfixed by: Onno Marsman
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //    input by: saulius
-  //   example 1: strrpos('Kevin van Zonneveld', 'e');
+  //   example 1: strrpos('Kevin van Zonneveld', 'e')
   //   returns 1: 16
-  //   example 2: strrpos('somepage.com', '.', false);
+  //   example 2: strrpos('somepage.com', '.', false)
   //   returns 2: 8
-  //   example 3: strrpos('baa', 'a', 3);
+  //   example 3: strrpos('baa', 'a', 3)
   //   returns 3: false
-  //   example 4: strrpos('baa', 'a', 2);
+  //   example 4: strrpos('baa', 'a', 2)
   //   returns 4: 2
 
   var i = -1

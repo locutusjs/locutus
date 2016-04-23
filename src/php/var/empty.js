@@ -9,15 +9,15 @@ module.exports = function empty (mixed_var) {
   // improved by: Francesco
   // improved by: Marc Jansen
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)
-  //   example 1: empty(null);
+  //   example 1: empty(null)
   //   returns 1: true
-  //   example 2: empty(undefined);
+  //   example 2: empty(undefined)
   //   returns 2: true
-  //   example 3: empty([]);
+  //   example 3: empty([])
   //   returns 3: true
-  //   example 4: empty({});
+  //   example 4: empty({})
   //   returns 4: true
-  //   example 5: empty({'aFunc' : function () { alert('humpty'); } });
+  //   example 5: empty({'aFunc' : function () { alert('humpty'); } })
   //   returns 5: false
 
   var undef, key, i, len

@@ -9,16 +9,16 @@ var chunk_split = require('/Users/kvz/code/phpjs/src/php/strings/chunk_split.js'
 
 describe('php.strings.chunk_split.js', function () {
   it('should pass example 1', function (done) {
-    chunk_split('Hello world!', 1, '*');
+    chunk_split('Hello world!', 1, '*')
     var expected = 'H*e*l*l*o* *w*o*r*l*d*!*'
-    var result = chunk_split('Hello world!', 1, '*');
+    var result = chunk_split('Hello world!', 1, '*')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    chunk_split('Hello world!', 10, '*');
+    chunk_split('Hello world!', 10, '*')
     var expected = 'Hello worl*d!*'
-    var result = chunk_split('Hello world!', 10, '*');
+    var result = chunk_split('Hello world!', 10, '*')
     expect(result).to.deep.equal(expected)
     done()
   })

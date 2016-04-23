@@ -10,7 +10,7 @@ module.exports = function utf8_decode (str_data) {
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: kirilloid
   // bugfixed by: w35l3y (http://www.wesley.eti.br)
-  //   example 1: utf8_decode('Kevin van Zonneveld');
+  //   example 1: utf8_decode('Kevin van Zonneveld')
   //   returns 1: 'Kevin van Zonneveld'
 
   var tmp_arr = [],

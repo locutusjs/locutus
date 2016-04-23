@@ -9,23 +9,23 @@ var bindec = require('/Users/kvz/code/phpjs/src/php/math/bindec.js')
 
 describe('php.math.bindec.js', function () {
   it('should pass example 1', function (done) {
-    bindec('110011');
+    bindec('110011')
     var expected = 51
-    var result = bindec('110011');
+    var result = bindec('110011')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    bindec('000110011');
+    bindec('000110011')
     var expected = 51
-    var result = bindec('000110011');
+    var result = bindec('000110011')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    bindec('111');
+    bindec('111')
     var expected = 7
-    var result = bindec('111');
+    var result = bindec('111')
     expect(result).to.deep.equal(expected)
     done()
   })

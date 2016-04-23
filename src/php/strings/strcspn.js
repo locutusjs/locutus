@@ -1,9 +1,9 @@
 module.exports = function strcspn (str, mask, start, length) {
   //  discuss at: http://locutusjs.io/php/strcspn/
   // original by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: strcspn('abcdefg123', '1234567890');
+  //   example 1: strcspn('abcdefg123', '1234567890')
   //   returns 1: 7
-  //   example 2: strcspn('123abc', '1234567890');
+  //   example 2: strcspn('123abc', '1234567890')
   //   returns 2: 3
 
   start = start ? start : 0

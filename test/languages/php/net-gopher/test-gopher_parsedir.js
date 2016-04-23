@@ -9,11 +9,11 @@ var gopher_parsedir = require('/Users/kvz/code/phpjs/src/php/net-gopher/gopher_p
 
 describe('php.net-gopher.gopher_parsedir.js', function () {
   it('should pass example 1', function (done) {
-    var entry = gopher_parsedir('0All about my gopher site.\t/allabout.txt\tgopher.example.com\t70\u000d\u000a');
-    entry.title;
+    var entry = gopher_parsedir('0All about my gopher site.\t/allabout.txt\tgopher.example.com\t70\u000d\u000a')
+    entry.title
     var expected = 'All about my gopher site.'
-var entry = gopher_parsedir('0All about my gopher site.\t/allabout.txt\tgopher.example.com\t70\u000d\u000a');
-    var result = entry.title;
+var entry = gopher_parsedir('0All about my gopher site.\t/allabout.txt\tgopher.example.com\t70\u000d\u000a')
+    var result = entry.title
     expect(result).to.deep.equal(expected)
     done()
   })

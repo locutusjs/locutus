@@ -9,9 +9,9 @@ var xdiff_string_patch = require('/Users/kvz/code/phpjs/src/php/xdiff/xdiff_stri
 
 describe('php.xdiff.xdiff_string_patch.js', function () {
   it('should pass example 1', function (done) {
-    xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!');
+    xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!')
     var expected = 'Hello world!'
-    var result = xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!');
+    var result = xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!')
     expect(result).to.deep.equal(expected)
     done()
   })

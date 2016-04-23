@@ -9,9 +9,9 @@ var call_user_func = require('/Users/kvz/code/phpjs/src/php/funchand/call_user_f
 
 describe('php.funchand.call_user_func.js', function () {
   it.skip('should pass example 1', function (done) {
-    call_user_func('isNaN', 'a');
+    call_user_func('isNaN', 'a')
     var expected = true
-    var result = call_user_func('isNaN', 'a');
+    var result = call_user_func('isNaN', 'a')
     expect(result).to.deep.equal(expected)
     done()
   })

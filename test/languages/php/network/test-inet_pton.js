@@ -9,16 +9,16 @@ var inet_pton = require('/Users/kvz/code/phpjs/src/php/network/inet_pton.js')
 
 describe('php.network.inet_pton.js', function () {
   it('should pass example 1', function (done) {
-    inet_pton('::');
+    inet_pton('::')
     var expected = '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0'
-    var result = inet_pton('::');
+    var result = inet_pton('::')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    inet_pton('127.0.0.1');
+    inet_pton('127.0.0.1')
     var expected = '\x7F\x00\x00\x01'
-    var result = inet_pton('127.0.0.1');
+    var result = inet_pton('127.0.0.1')
     expect(result).to.deep.equal(expected)
     done()
   })

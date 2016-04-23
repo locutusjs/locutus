@@ -1,7 +1,7 @@
 module.exports = function ctype_alpha (text) {
   //  discuss at: http://locutusjs.io/php/ctype_alpha/
   // original by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: ctype_alpha('Az');
+  //   example 1: ctype_alpha('Az')
   //   returns 1: true
 
   var setlocale = require('../strings/setlocale')

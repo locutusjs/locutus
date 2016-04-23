@@ -9,9 +9,9 @@ var rad2deg = require('/Users/kvz/code/phpjs/src/php/math/rad2deg.js')
 
 describe('php.math.rad2deg.js', function () {
   it('should pass example 1', function (done) {
-    rad2deg(3.141592653589793);
+    rad2deg(3.141592653589793)
     var expected = 180
-    var result = rad2deg(3.141592653589793);
+    var result = rad2deg(3.141592653589793)
     expect(result).to.deep.equal(expected)
     done()
   })

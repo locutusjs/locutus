@@ -9,10 +9,10 @@ var str_shuffle = require('/Users/kvz/code/phpjs/src/php/strings/str_shuffle.js'
 
 describe('php.strings.str_shuffle.js', function () {
   it('should pass example 1', function (done) {
-    shuffled = str_shuffle("abcdef");
+    shuffled = str_shuffle("abcdef")
     shuffled.length
     var expected = 6
-shuffled = str_shuffle("abcdef");
+shuffled = str_shuffle("abcdef")
     var result = shuffled.length
     expect(result).to.deep.equal(expected)
     done()

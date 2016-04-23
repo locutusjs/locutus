@@ -9,9 +9,9 @@ var ctype_lower = require('/Users/kvz/code/phpjs/src/php/ctype/ctype_lower.js')
 
 describe('php.ctype.ctype_lower.js', function () {
   it('should pass example 1', function (done) {
-    ctype_lower('abc');
+    ctype_lower('abc')
     var expected = true
-    var result = ctype_lower('abc');
+    var result = ctype_lower('abc')
     expect(result).to.deep.equal(expected)
     done()
   })

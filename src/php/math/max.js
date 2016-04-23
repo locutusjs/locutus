@@ -4,17 +4,17 @@ module.exports = function max () {
   //  revised by: Onno Marsman
   // improved by: Jack
   //        note: Long code cause we're aiming for maximum PHP compatibility
-  //   example 1: max(1, 3, 5, 6, 7);
+  //   example 1: max(1, 3, 5, 6, 7)
   //   returns 1: 7
-  //   example 2: max([2, 4, 5]);
+  //   example 2: max([2, 4, 5])
   //   returns 2: 5
-  //   example 3: max(0, 'hello');
+  //   example 3: max(0, 'hello')
   //   returns 3: 0
-  //   example 4: max('hello', 0);
+  //   example 4: max('hello', 0)
   //   returns 4: 'hello'
-  //   example 5: max(-1, 'hello');
+  //   example 5: max(-1, 'hello')
   //   returns 5: 'hello'
-  //   example 6: max([2, 4, 8], [2, 5, 7]);
+  //   example 6: max([2, 4, 8], [2, 5, 7])
   //   returns 6: [2, 5, 7]
 
   var ar, retVal, i = 0,

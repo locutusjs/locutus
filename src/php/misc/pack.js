@@ -9,7 +9,7 @@ module.exports = function pack (format) {
   //        note: 'machine dependent byte order and size' aren't
   //        note: applicable for JavaScript; pack works as on a 32bit,
   //        note: little endian machine
-  //   example 1: pack('nvc*', 0x1234, 0x5678, 65, 66);
+  //   example 1: pack('nvc*', 0x1234, 0x5678, 65, 66)
   //   returns 1: '4xVAB'
   //   example 2: pack('H4', '2345')
   //   returns 2: '#E'

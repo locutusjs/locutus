@@ -9,10 +9,10 @@ var microtime = require('/Users/kvz/code/phpjs/src/php/datetime/microtime.js')
 
 describe('php.datetime.microtime.js', function () {
   it('should pass example 1', function (done) {
-    timeStamp = microtime(true);
+    timeStamp = microtime(true)
     timeStamp > 1000000000 && timeStamp < 2000000000
     var expected = true
-timeStamp = microtime(true);
+timeStamp = microtime(true)
     var result = timeStamp > 1000000000 && timeStamp < 2000000000
     expect(result).to.deep.equal(expected)
     done()

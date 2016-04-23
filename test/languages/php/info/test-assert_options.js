@@ -9,9 +9,9 @@ var assert_options = require('/Users/kvz/code/phpjs/src/php/info/assert_options.
 
 describe('php.info.assert_options.js', function () {
   it('should pass example 1', function (done) {
-    assert_options('ASSERT_CALLBACK');
+    assert_options('ASSERT_CALLBACK')
     var expected = null
-    var result = assert_options('ASSERT_CALLBACK');
+    var result = assert_options('ASSERT_CALLBACK')
     expect(result).to.deep.equal(expected)
     done()
   })

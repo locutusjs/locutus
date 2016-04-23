@@ -9,16 +9,16 @@ var strnatcasecmp = require('/Users/kvz/code/phpjs/src/php/strings/strnatcasecmp
 
 describe.skip('php.strings.strnatcasecmp.js', function () {
   it('should pass example 1', function (done) {
-    strnatcasecmp(10, 1);
+    strnatcasecmp(10, 1)
     var expected = 1
-    var result = strnatcasecmp(10, 1);
+    var result = strnatcasecmp(10, 1)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    strnatcasecmp('1', '10');
+    strnatcasecmp('1', '10')
     var expected = -1
-    var result = strnatcasecmp('1', '10');
+    var result = strnatcasecmp('1', '10')
     expect(result).to.deep.equal(expected)
     done()
   })

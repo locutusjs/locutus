@@ -3,13 +3,13 @@ module.exports = function strstr (haystack, needle, bool) {
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  //   example 1: strstr('Kevin van Zonneveld', 'van');
+  //   example 1: strstr('Kevin van Zonneveld', 'van')
   //   returns 1: 'van Zonneveld'
-  //   example 2: strstr('Kevin van Zonneveld', 'van', true);
+  //   example 2: strstr('Kevin van Zonneveld', 'van', true)
   //   returns 2: 'Kevin '
-  //   example 3: strstr('name@example.com', '@');
+  //   example 3: strstr('name@example.com', '@')
   //   returns 3: '@example.com'
-  //   example 4: strstr('name@example.com', '@', true);
+  //   example 4: strstr('name@example.com', '@', true)
   //   returns 4: 'name'
 
   var pos = 0

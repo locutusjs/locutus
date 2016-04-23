@@ -4,9 +4,9 @@ module.exports = function array_slice (arr, offst, lgth, preserve_keys) {
   //    input by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //        note: Relies on is_int because !isNaN accepts floats
-  //   example 1: array_slice(["a", "b", "c", "d", "e"], 2, -1);
+  //   example 1: array_slice(["a", "b", "c", "d", "e"], 2, -1)
   //   returns 1: [ 'c', 'd' ]
-  //   example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true);
+  //   example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true)
   //   returns 2: {2: 'c', 3: 'd'}
 
   var is_int = require('../var/is_int')

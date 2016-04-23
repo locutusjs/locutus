@@ -5,7 +5,7 @@ module.exports = function setrawcookie (name, value, expires, path, domain, secu
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Michael
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: setrawcookie('author_name', 'Kevin van Zonneveld');
+  //   example 1: setrawcookie('author_name', 'Kevin van Zonneveld')
   //   returns 1: true
 
   if (typeof expires === 'string' && (/^\d+$/)

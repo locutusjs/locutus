@@ -4,7 +4,7 @@ module.exports = function setcookie (name, value, expires, path, domain, secure)
   // bugfixed by: Andreas
   // bugfixed by: Onno Marsman
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  //   example 1: setcookie('author_name', 'Kevin van Zonneveld');
+  //   example 1: setcookie('author_name', 'Kevin van Zonneveld')
   //   returns 1: true
 
   var setrawcookie = require('../network/setrawcookie')

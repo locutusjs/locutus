@@ -9,23 +9,23 @@ var preg_quote = require('/Users/kvz/code/phpjs/src/php/pcre/preg_quote.js')
 
 describe('php.pcre.preg_quote.js', function () {
   it('should pass example 1', function (done) {
-    preg_quote("$40");
+    preg_quote("$40")
     var expected = '\\$40'
-    var result = preg_quote("$40");
+    var result = preg_quote("$40")
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    preg_quote("*RRRING* Hello?");
+    preg_quote("*RRRING* Hello?")
     var expected = '\\*RRRING\\* Hello\\?'
-    var result = preg_quote("*RRRING* Hello?");
+    var result = preg_quote("*RRRING* Hello?")
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    preg_quote("\\.+*?[^]$(){}=!<>|:");
+    preg_quote("\\.+*?[^]$(){}=!<>|:")
     var expected = '\\\\\\.\\+\\*\\?\\[\\^\\]\\$\\(\\)\\{\\}\\=\\!\\<\\>\\|\\:'
-    var result = preg_quote("\\.+*?[^]$(){}=!<>|:");
+    var result = preg_quote("\\.+*?[^]$(){}=!<>|:")
     expect(result).to.deep.equal(expected)
     done()
   })

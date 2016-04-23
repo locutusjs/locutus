@@ -2,7 +2,7 @@ module.exports = function microtime (get_as_float) {
   //  discuss at: http://locutusjs.io/php/microtime/
   // original by: Paulo Freitas
   // improved by: Dumitru Uzun (http://duzun.me)
-  //   example 1: timeStamp = microtime(true);
+  //   example 1: timeStamp = microtime(true)
   //   example 1: timeStamp > 1000000000 && timeStamp < 2000000000
   //   returns 1: true
   //   example 2: /^0\.[0-9]{1,6} [0-9]{10,10}$/.test(microtime())

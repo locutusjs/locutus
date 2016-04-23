@@ -12,11 +12,11 @@ module.exports = function htmlspecialchars (string, quote_style, charset, double
   //         input by: felix
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
   //             note: charset argument not supported
-  //        example 1: htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES');
+  //        example 1: htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES')
   //        returns 1: '&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;'
-  //        example 2: htmlspecialchars("ab\"c'd", ['ENT_NOQUOTES', 'ENT_QUOTES']);
+  //        example 2: htmlspecialchars("ab\"c'd", ['ENT_NOQUOTES', 'ENT_QUOTES'])
   //        returns 2: 'ab"c&#039;d'
-  //        example 3: htmlspecialchars('my "&entity;" is still here', null, null, false);
+  //        example 3: htmlspecialchars('my "&entity;" is still here', null, null, false)
   //        returns 3: 'my &quot;&entity;&quot; is still here'
 
   var optTemp = 0,

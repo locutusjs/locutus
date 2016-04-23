@@ -3,7 +3,7 @@ module.exports = function fmod (x, y) {
   // original by: Onno Marsman
   //    input by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  //   example 1: fmod(5.7, 1.3);
+  //   example 1: fmod(5.7, 1.3)
   //   returns 1: 0.5
 
   var tmp, tmp2, p = 0,

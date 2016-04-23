@@ -16,9 +16,9 @@ describe.skip('php.datetime.strptime.js', function () {
     done()
   })
   it('should pass example 2', function (done) {
-    strptime('2009extra', '%Y');
+    strptime('2009extra', '%Y')
     var expected = {tm_sec:0, tm_min:0, tm_hour:0, tm_mday:0, tm_mon:0, tm_year:109, tm_wday:3, tm_yday: -1, unparsed: 'extra'}
-    var result = strptime('2009extra', '%Y');
+    var result = strptime('2009extra', '%Y')
     expect(result).to.deep.equal(expected)
     done()
   })

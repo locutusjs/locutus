@@ -9,9 +9,9 @@ var cos = require('/Users/kvz/code/phpjs/src/php/math/cos.js')
 
 describe('php.math.cos.js', function () {
   it('should pass example 1', function (done) {
-    Math.ceil(cos(8723321.4) * 10000000);
+    Math.ceil(cos(8723321.4) * 10000000)
     var expected = -1812718
-    var result = Math.ceil(cos(8723321.4) * 10000000);
+    var result = Math.ceil(cos(8723321.4) * 10000000)
     expect(result).to.deep.equal(expected)
     done()
   })

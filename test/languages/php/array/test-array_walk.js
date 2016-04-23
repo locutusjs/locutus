@@ -9,41 +9,41 @@ var array_walk = require('/Users/kvz/code/phpjs/src/php/array/array_walk.js')
 
 describe.skip('php.array.array_walk.js', function () {
   it('should pass example 1', function (done) {
-    array_walk ({'a':'b'}, 'void', 'userdata');
+    array_walk ({'a':'b'}, 'void', 'userdata')
     var expected = true
-    var result = array_walk ({'a':'b'}, 'void', 'userdata');
+    var result = array_walk ({'a':'b'}, 'void', 'userdata')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    array_walk ('a', 'void', 'userdata');
+    array_walk ('a', 'void', 'userdata')
     var expected = false
-    var result = array_walk ('a', 'void', 'userdata');
+    var result = array_walk ('a', 'void', 'userdata')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    array_walk ([3, 4], function () {}, 'userdata');
+    array_walk ([3, 4], function () {}, 'userdata')
     var expected = true
-    var result = array_walk ([3, 4], function () {}, 'userdata');
+    var result = array_walk ([3, 4], function () {}, 'userdata')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 4', function (done) {
-    array_walk ({40: 'My age', 50: 'My IQ'}, [window, 'prompt']);
+    array_walk ({40: 'My age', 50: 'My IQ'}, [window, 'prompt'])
     var expected = true
-    var result = array_walk ({40: 'My age', 50: 'My IQ'}, [window, 'prompt']);
+    var result = array_walk ({40: 'My age', 50: 'My IQ'}, [window, 'prompt'])
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 5', function (done) {
-    ini_set('locutus.return_locutus_arrays', 'on');
-    var arr = array({40: 'My age'}, {50: 'My IQ'});
-    array_walk(arr, [window, 'prompt']);
+    ini_set('locutus.return_locutus_arrays', 'on')
+    var arr = array({40: 'My age'}, {50: 'My IQ'})
+    array_walk(arr, [window, 'prompt'])
     var expected = '[object Object]'
-ini_set('locutus.return_locutus_arrays', 'on');
-var arr = array({40: 'My age'}, {50: 'My IQ'});
-    var result = array_walk(arr, [window, 'prompt']);
+ini_set('locutus.return_locutus_arrays', 'on')
+var arr = array({40: 'My age'}, {50: 'My IQ'})
+    var result = array_walk(arr, [window, 'prompt'])
     expect(result).to.deep.equal(expected)
     done()
   })

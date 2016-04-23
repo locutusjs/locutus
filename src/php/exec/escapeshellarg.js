@@ -2,7 +2,7 @@ module.exports = function escapeshellarg (arg) {
   //  discuss at: http://locutusjs.io/php/escapeshellarg/
   // original by: Felix Geisendoerfer (http://www.debuggable.com/felix)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: escapeshellarg("kevin's birthday");
+  //   example 1: escapeshellarg("kevin's birthday")
   //   returns 1: "'kevin\\'s birthday'"
 
   var ret = ''

@@ -12,10 +12,10 @@ module.exports = function array_pop (inputArr) {
   //        note: being retained. So use of this function with "associative arrays"
   //        note: (objects) may lead to unexpected behavior in an IE environment if
   //        note: you add back properties with the same keys that you removed
-  //   example 1: array_pop([0,1,2]);
+  //   example 1: array_pop([0,1,2])
   //   returns 1: 2
-  //   example 2: data = {firstName: 'Kevin', surName: 'van Zonneveld'};
-  //   example 2: lastElem = array_pop(data);
+  //   example 2: data = {firstName: 'Kevin', surName: 'van Zonneveld'}
+  //   example 2: lastElem = array_pop(data)
   //   example 2: $result = data
   //   returns 2: {firstName: 'Kevin'}
 

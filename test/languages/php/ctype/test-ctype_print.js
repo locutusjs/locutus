@@ -9,9 +9,9 @@ var ctype_print = require('/Users/kvz/code/phpjs/src/php/ctype/ctype_print.js')
 
 describe('php.ctype.ctype_print.js', function () {
   it('should pass example 1', function (done) {
-    ctype_print('AbC!#12');
+    ctype_print('AbC!#12')
     var expected = true
-    var result = ctype_print('AbC!#12');
+    var result = ctype_print('AbC!#12')
     expect(result).to.deep.equal(expected)
     done()
   })

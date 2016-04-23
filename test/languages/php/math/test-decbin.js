@@ -9,23 +9,23 @@ var decbin = require('/Users/kvz/code/phpjs/src/php/math/decbin.js')
 
 describe('php.math.decbin.js', function () {
   it('should pass example 1', function (done) {
-    decbin(12);
+    decbin(12)
     var expected = '1100'
-    var result = decbin(12);
+    var result = decbin(12)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    decbin(26);
+    decbin(26)
     var expected = '11010'
-    var result = decbin(26);
+    var result = decbin(26)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    decbin('26');
+    decbin('26')
     var expected = '11010'
-    var result = decbin('26');
+    var result = decbin('26')
     expect(result).to.deep.equal(expected)
     done()
   })

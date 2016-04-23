@@ -8,7 +8,7 @@ module.exports = function setlocale (category, locale) {
   //        note: C and en for LC_MONETARY/LC_NUMERIC; en for LC_COLLATE
   //        note: Uses global: locutus to store locale info
   //        note: Consider using http://demo.icu-project.org/icu-bin/locexp as basis for localization (as in i18n_loc_set_default())
-  //   example 1: setlocale('LC_ALL', 'en_US');
+  //   example 1: setlocale('LC_ALL', 'en_US')
   //   returns 1: 'en_US'
 
   var getenv = require('../info/getenv')

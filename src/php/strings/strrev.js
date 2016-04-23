@@ -3,7 +3,7 @@ module.exports = function strrev (string) {
   //      original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //      bugfixed by: Onno Marsman
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
-  //        example 1: strrev('Kevin van Zonneveld');
+  //        example 1: strrev('Kevin van Zonneveld')
   //        returns 1: 'dlevennoZ nav niveK'
   //        example 2: strrev('a\u0301haB') === 'Baha\u0301'; // combining
   //        returns 2: true

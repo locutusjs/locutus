@@ -4,7 +4,7 @@ module.exports = function convert_uuencode (str) {
   //      bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
   // reimplemented by: Ole Vrijenhoek
-  //        example 1: convert_uuencode("test\ntext text\r\n");
+  //        example 1: convert_uuencode("test\ntext text\r\n")
   //        returns 1: "0=&5S=`IT97AT('1E>'0-\"@``"
   //        test: skip-1
 

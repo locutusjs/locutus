@@ -9,9 +9,9 @@ var exp = require('/Users/kvz/code/phpjs/src/php/math/exp.js')
 
 describe('php.math.exp.js', function () {
   it('should pass example 1', function (done) {
-    exp(0.3);
+    exp(0.3)
     var expected = 1.3498588075760032
-    var result = exp(0.3);
+    var result = exp(0.3)
     expect(result).to.deep.equal(expected)
     done()
   })

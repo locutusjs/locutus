@@ -3,9 +3,9 @@ module.exports = function array_diff_key (arr1) {
   // original by: Ates Goral (http://magnetiq.com)
   //  revised by: Brett Zamir (http://brett-zamir.me)
   //    input by: Everlasto
-  //   example 1: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5});
+  //   example 1: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5})
   //   returns 1: {"green":2, "blue":3, "white":4}
-  //   example 2: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {red: 5});
+  //   example 2: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {red: 5})
   //   returns 2: {"green":2, "blue":3, "white":4}
 
   var argl = arguments.length,

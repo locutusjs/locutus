@@ -9,9 +9,9 @@ var crc32 = require('/Users/kvz/code/phpjs/src/php/strings/crc32.js')
 
 describe('php.strings.crc32.js', function () {
   it('should pass example 1', function (done) {
-    crc32('Kevin van Zonneveld');
+    crc32('Kevin van Zonneveld')
     var expected = 1249991249
-    var result = crc32('Kevin van Zonneveld');
+    var result = crc32('Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })

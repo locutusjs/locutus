@@ -14,19 +14,19 @@ module.exports = function pathinfo (path, options) {
   //        note: But by way we implemented this function, if you want you can still declare the PATHINFO_*
   //        note: yourself, and then you can use: pathinfo('/www/index.html', PATHINFO_BASENAME | PATHINFO_EXTENSION);
   //        note: which makes it fully compliant with PHP syntax.
-  //   example 1: pathinfo('/www/htdocs/index.html', 1);
+  //   example 1: pathinfo('/www/htdocs/index.html', 1)
   //   returns 1: '/www/htdocs'
-  //   example 2: pathinfo('/www/htdocs/index.html', 'PATHINFO_BASENAME');
+  //   example 2: pathinfo('/www/htdocs/index.html', 'PATHINFO_BASENAME')
   //   returns 2: 'index.html'
-  //   example 3: pathinfo('/www/htdocs/index.html', 'PATHINFO_EXTENSION');
+  //   example 3: pathinfo('/www/htdocs/index.html', 'PATHINFO_EXTENSION')
   //   returns 3: 'html'
-  //   example 4: pathinfo('/www/htdocs/index.html', 'PATHINFO_FILENAME');
+  //   example 4: pathinfo('/www/htdocs/index.html', 'PATHINFO_FILENAME')
   //   returns 4: 'index'
-  //   example 5: pathinfo('/www/htdocs/index.html', 2 | 4);
+  //   example 5: pathinfo('/www/htdocs/index.html', 2 | 4)
   //   returns 5: {basename: 'index.html', extension: 'html'}
-  //   example 6: pathinfo('/www/htdocs/index.html', 'PATHINFO_ALL');
+  //   example 6: pathinfo('/www/htdocs/index.html', 'PATHINFO_ALL')
   //   returns 6: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
-  //   example 7: pathinfo('/www/htdocs/index.html');
+  //   example 7: pathinfo('/www/htdocs/index.html')
   //   returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
 
   var basename = require('../filesystem/basename')

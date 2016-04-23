@@ -9,16 +9,16 @@ var is_bool = require('/Users/kvz/code/phpjs/src/php/var/is_bool.js')
 
 describe('php.var.is_bool.js', function () {
   it('should pass example 1', function (done) {
-    is_bool(false);
+    is_bool(false)
     var expected = true
-    var result = is_bool(false);
+    var result = is_bool(false)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    is_bool(0);
+    is_bool(0)
     var expected = false
-    var result = is_bool(0);
+    var result = is_bool(0)
     expect(result).to.deep.equal(expected)
     done()
   })

@@ -4,7 +4,7 @@ module.exports = function array_unshift (array) {
   // improved by: Martijn Wieringa
   // improved by: jmweb
   //        note: Currently does not handle objects
-  //   example 1: array_unshift(['van', 'Zonneveld'], 'Kevin');
+  //   example 1: array_unshift(['van', 'Zonneveld'], 'Kevin')
   //   returns 1: 3
 
   var i = arguments.length

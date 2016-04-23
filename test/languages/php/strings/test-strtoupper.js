@@ -9,9 +9,9 @@ var strtoupper = require('/Users/kvz/code/phpjs/src/php/strings/strtoupper.js')
 
 describe('php.strings.strtoupper.js', function () {
   it('should pass example 1', function (done) {
-    strtoupper('Kevin van Zonneveld');
+    strtoupper('Kevin van Zonneveld')
     var expected = 'KEVIN VAN ZONNEVELD'
-    var result = strtoupper('Kevin van Zonneveld');
+    var result = strtoupper('Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })

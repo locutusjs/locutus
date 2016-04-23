@@ -9,9 +9,9 @@ var acosh = require('/Users/kvz/code/phpjs/src/php/math/acosh.js')
 
 describe('php.math.acosh.js', function () {
   it('should pass example 1', function (done) {
-    acosh(8723321.4);
+    acosh(8723321.4)
     var expected = 16.674657798418625
-    var result = acosh(8723321.4);
+    var result = acosh(8723321.4)
     expect(result).to.deep.equal(expected)
     done()
   })

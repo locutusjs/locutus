@@ -9,9 +9,9 @@ var array_reverse = require('/Users/kvz/code/phpjs/src/php/array/array_reverse.j
 
 describe('php.array.array_reverse.js', function () {
   it('should pass example 1', function (done) {
-    array_reverse( [ 'php', '4.0', ['green', 'red'] ], true);
+    array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
     var expected = { 2: ['green', 'red'], 1: '4.0', 0: 'php'}
-    var result = array_reverse( [ 'php', '4.0', ['green', 'red'] ], true);
+    var result = array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
     expect(result).to.deep.equal(expected)
     done()
   })

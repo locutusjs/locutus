@@ -9,16 +9,16 @@ var is_string = require('/Users/kvz/code/phpjs/src/php/var/is_string.js')
 
 describe('php.var.is_string.js', function () {
   it('should pass example 1', function (done) {
-    is_string('23');
+    is_string('23')
     var expected = true
-    var result = is_string('23');
+    var result = is_string('23')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    is_string(23.5);
+    is_string(23.5)
     var expected = false
-    var result = is_string(23.5);
+    var result = is_string(23.5)
     expect(result).to.deep.equal(expected)
     done()
   })

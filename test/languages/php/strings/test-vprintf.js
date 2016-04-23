@@ -9,9 +9,9 @@ var vprintf = require('/Users/kvz/code/phpjs/src/php/strings/vprintf.js')
 
 describe('php.strings.vprintf.js', function () {
   it.skip('should pass example 1', function (done) {
-    vprintf("%01.2f", 123.1);
+    vprintf("%01.2f", 123.1)
     var expected = 6
-    var result = vprintf("%01.2f", 123.1);
+    var result = vprintf("%01.2f", 123.1)
     expect(result).to.deep.equal(expected)
     done()
   })

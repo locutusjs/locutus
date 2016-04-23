@@ -9,9 +9,9 @@ var function_exists = require('/Users/kvz/code/phpjs/src/php/funchand/function_e
 
 describe('php.funchand.function_exists.js', function () {
   it.skip('should pass example 1', function (done) {
-    function_exists('isFinite');
+    function_exists('isFinite')
     var expected = true
-    var result = function_exists('isFinite');
+    var result = function_exists('isFinite')
     expect(result).to.deep.equal(expected)
     done()
   })

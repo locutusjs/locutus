@@ -4,7 +4,7 @@ module.exports = function function_exists (func_name) {
   // improved by: Steve Clay
   // improved by: Legaev Andrey
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: function_exists('isFinite');
+  //   example 1: function_exists('isFinite')
   //   returns 1: true
   //        test: skip-1
 

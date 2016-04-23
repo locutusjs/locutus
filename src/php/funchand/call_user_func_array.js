@@ -5,9 +5,9 @@ module.exports = function call_user_func_array (cb, parameters) {
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Diplom@t (http://difane.com/)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: call_user_func_array('isNaN', ['a']);
+  //   example 1: call_user_func_array('isNaN', ['a'])
   //   returns 1: true
-  //   example 2: call_user_func_array('isNaN', [1]);
+  //   example 2: call_user_func_array('isNaN', [1])
   //   returns 2: false
   //        test: skip-all
 

@@ -9,9 +9,9 @@ var sha1 = require('/Users/kvz/code/phpjs/src/php/strings/sha1.js')
 
 describe('php.strings.sha1.js', function () {
   it('should pass example 1', function (done) {
-    sha1('Kevin van Zonneveld');
+    sha1('Kevin van Zonneveld')
     var expected = '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
-    var result = sha1('Kevin van Zonneveld');
+    var result = sha1('Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })

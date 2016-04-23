@@ -4,7 +4,7 @@ module.exports = function i18n_loc_set_default (name) {
   //        note: Renamed in PHP6 from locale_set_default(). Not listed yet at php.net
   //        note: List of locales at http://demo.icu-project.org/icu-bin/locexp (use for implementing other locales here)
   //        note: To be usable with sort() if it is passed the SORT_LOCALE_STRING sorting flag: http://php.net/manual/en/function.sort.php
-  //   example 1: i18n_loc_set_default('pt_PT');
+  //   example 1: i18n_loc_set_default('pt_PT')
   //   returns 1: true
 
   // BEGIN REDUNDANT

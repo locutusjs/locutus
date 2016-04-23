@@ -9,9 +9,9 @@ var bcsub = require('/Users/kvz/code/phpjs/src/php/bc/bcsub.js')
 
 describe('php.bc.bcsub.js', function () {
   it.skip('should pass example 1', function (done) {
-    bcsub(1, 2);
+    bcsub(1, 2)
     var expected = -1
-    var result = bcsub(1, 2);
+    var result = bcsub(1, 2)
     expect(result).to.deep.equal(expected)
     done()
   })

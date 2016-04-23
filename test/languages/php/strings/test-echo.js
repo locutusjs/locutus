@@ -9,9 +9,9 @@ var echo = require('/Users/kvz/code/phpjs/src/php/strings/echo.js')
 
 describe('php.strings.echo.js', function () {
   it('should pass example 1', function (done) {
-    echo('<div><p>abc</p><p>abc</p></div>');
+    echo('<div><p>abc</p><p>abc</p></div>')
     var expected = undefined
-    var result = echo('<div><p>abc</p><p>abc</p></div>');
+    var result = echo('<div><p>abc</p><p>abc</p></div>')
     expect(result).to.deep.equal(expected)
     done()
   })

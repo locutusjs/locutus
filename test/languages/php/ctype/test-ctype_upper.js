@@ -9,9 +9,9 @@ var ctype_upper = require('/Users/kvz/code/phpjs/src/php/ctype/ctype_upper.js')
 
 describe('php.ctype.ctype_upper.js', function () {
   it('should pass example 1', function (done) {
-    ctype_upper('AZ');
+    ctype_upper('AZ')
     var expected = true
-    var result = ctype_upper('AZ');
+    var result = ctype_upper('AZ')
     expect(result).to.deep.equal(expected)
     done()
   })

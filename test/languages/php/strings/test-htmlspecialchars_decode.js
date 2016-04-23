@@ -9,16 +9,16 @@ var htmlspecialchars_decode = require('/Users/kvz/code/phpjs/src/php/strings/htm
 
 describe('php.strings.htmlspecialchars_decode.js', function () {
   it('should pass example 1', function (done) {
-    htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
+    htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES')
     var expected = '<p>this -> &quot;</p>'
-    var result = htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
+    var result = htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    htmlspecialchars_decode("&amp;quot;");
+    htmlspecialchars_decode("&amp;quot;")
     var expected = '&quot;'
-    var result = htmlspecialchars_decode("&amp;quot;");
+    var result = htmlspecialchars_decode("&amp;quot;")
     expect(result).to.deep.equal(expected)
     done()
   })

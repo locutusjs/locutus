@@ -6,11 +6,11 @@ module.exports = function levenshtein (s1, s2, cost_ins, cost_rep, cost_del) {
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
   // reimplemented by: Alexander M Beedie
   // reimplemented by: Rafał Kukawski (http://blog.kukawski.pl)
-  //        example 1: levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld');
+  //        example 1: levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld')
   //        returns 1: 3
-  //        example 2: levenshtein("carrrot", "carrots");
+  //        example 2: levenshtein("carrrot", "carrots")
   //        returns 2: 2
-  //        example 3: levenshtein("carrrot", "carrots", 2, 3, 4);
+  //        example 3: levenshtein("carrrot", "carrots", 2, 3, 4)
   //        returns 3: 6
 
   var LEVENSHTEIN_MAX_LENGTH = 255 // PHP limits the function to max 255 character-long strings

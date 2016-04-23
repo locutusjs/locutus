@@ -9,9 +9,9 @@ var idate = require('/Users/kvz/code/phpjs/src/php/datetime/idate.js')
 
 describe('php.datetime.idate.js', function () {
   it('should pass example 1', function (done) {
-    idate('y', 1255633200);
+    idate('y', 1255633200)
     var expected = 9
-    var result = idate('y', 1255633200);
+    var result = idate('y', 1255633200)
     expect(result).to.deep.equal(expected)
     done()
   })

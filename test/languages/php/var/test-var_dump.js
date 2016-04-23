@@ -9,9 +9,9 @@ var var_dump = require('/Users/kvz/code/phpjs/src/php/var/var_dump.js')
 
 describe.skip('php.var.var_dump.js', function () {
   it('should pass example 1', function (done) {
-    var_dump(1);
+    var_dump(1)
     var expected = 'int(1)'
-    var result = var_dump(1);
+    var result = var_dump(1)
     expect(result).to.deep.equal(expected)
     done()
   })

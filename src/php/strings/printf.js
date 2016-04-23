@@ -3,7 +3,7 @@ module.exports = function printf () {
   // original by: Ash Searle (http://hexmen.com/blog/)
   // improved by: Michael White (http://getsprink.com)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: printf("%01.2f", 123.1);
+  //   example 1: printf("%01.2f", 123.1)
   //   returns 1: 6
   //        test: skip-1
 

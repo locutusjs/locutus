@@ -5,10 +5,10 @@ module.exports = function sscanf (str, format) {
   //        note: only be allowable here as strings referring to a global variable (which will then be set to the value
   //        note: found in 'str' corresponding to the appropriate conversion specification in 'format'
   //        note: I am unclear on how WS is to be handled here because documentation seems to me to contradict PHP behavior
-  //   example 1: sscanf('SN/2350001', 'SN/%d');
+  //   example 1: sscanf('SN/2350001', 'SN/%d')
   //   returns 1: [2350001]
   //   example 2: var myVar; // Will be set by function
-  //   example 2: sscanf('SN/2350001', 'SN/%d', 'myVar');
+  //   example 2: sscanf('SN/2350001', 'SN/%d', 'myVar')
   //   returns 2: 1
   //   example 3: sscanf("10--20", "%2$d--%1$d"); // Must escape '$' in PHP, but not JS
   //   returns 3: [20, 10]

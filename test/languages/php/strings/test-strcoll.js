@@ -9,9 +9,9 @@ var strcoll = require('/Users/kvz/code/phpjs/src/php/strings/strcoll.js')
 
 describe('php.strings.strcoll.js', function () {
   it('should pass example 1', function (done) {
-    strcoll('a', 'b');
+    strcoll('a', 'b')
     var expected = -1
-    var result = strcoll('a', 'b');
+    var result = strcoll('a', 'b')
     expect(result).to.deep.equal(expected)
     done()
   })

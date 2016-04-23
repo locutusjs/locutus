@@ -5,7 +5,7 @@ module.exports = function var_dump () {
   // improved by: Brett Zamir (http://brett-zamir.me)
   //        note: For returning a string, use var_export() with the second argument set to true
   //        test: skip-all
-  //   example 1: var_dump(1);
+  //   example 1: var_dump(1)
   //   returns 1: 'int(1)'
 
   var echo = require('../strings/echo')

@@ -9,9 +9,9 @@ var is_buffer = require('/Users/kvz/code/phpjs/src/php/var/is_buffer.js')
 
 describe('php.var.is_buffer.js', function () {
   it('should pass example 1', function (done) {
-    is_buffer('This could be binary or a regular string as far as JavaScript knows...');
+    is_buffer('This could be binary or a regular string as far as JavaScript knows...')
     var expected = true
-    var result = is_buffer('This could be binary or a regular string as far as JavaScript knows...');
+    var result = is_buffer('This could be binary or a regular string as far as JavaScript knows...')
     expect(result).to.deep.equal(expected)
     done()
   })

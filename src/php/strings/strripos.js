@@ -4,7 +4,7 @@ module.exports = function strripos (haystack, needle, offset) {
   // bugfixed by: Onno Marsman
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //    input by: saulius
-  //   example 1: strripos('Kevin van Zonneveld', 'E');
+  //   example 1: strripos('Kevin van Zonneveld', 'E')
   //   returns 1: 16
 
   haystack = (haystack + '')

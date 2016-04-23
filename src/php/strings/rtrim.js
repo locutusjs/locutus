@@ -6,7 +6,7 @@ module.exports = function rtrim (str, charlist) {
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Onno Marsman
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: rtrim('    Kevin van Zonneveld    ');
+  //   example 1: rtrim('    Kevin van Zonneveld    ')
   //   returns 1: '    Kevin van Zonneveld'
 
   charlist = !charlist ? ' \\s\u00A0' : (charlist + '')

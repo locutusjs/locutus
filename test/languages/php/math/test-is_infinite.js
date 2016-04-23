@@ -9,23 +9,23 @@ var is_infinite = require('/Users/kvz/code/phpjs/src/php/math/is_infinite.js')
 
 describe('php.math.is_infinite.js', function () {
   it('should pass example 1', function (done) {
-    is_infinite(Infinity);
+    is_infinite(Infinity)
     var expected = true
-    var result = is_infinite(Infinity);
+    var result = is_infinite(Infinity)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    is_infinite(-Infinity);
+    is_infinite(-Infinity)
     var expected = true
-    var result = is_infinite(-Infinity);
+    var result = is_infinite(-Infinity)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    is_infinite(0);
+    is_infinite(0)
     var expected = false
-    var result = is_infinite(0);
+    var result = is_infinite(0)
     expect(result).to.deep.equal(expected)
     done()
   })

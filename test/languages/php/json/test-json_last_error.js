@@ -9,9 +9,9 @@ var json_last_error = require('/Users/kvz/code/phpjs/src/php/json/json_last_erro
 
 describe('php.json.json_last_error.js', function () {
   it('should pass example 1', function (done) {
-    json_last_error();
+    json_last_error()
     var expected = 0
-    var result = json_last_error();
+    var result = json_last_error()
     expect(result).to.deep.equal(expected)
     done()
   })

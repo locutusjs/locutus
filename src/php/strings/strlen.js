@@ -9,10 +9,10 @@ module.exports = function strlen (string) {
   //        note: May look like overkill, but in order to be truly faithful to handling all Unicode
   //        note: characters and to this function in PHP which does not count the number of bytes
   //        note: but counts the number of characters, something like this is really necessary.
-  //   example 1: strlen('Kevin van Zonneveld');
+  //   example 1: strlen('Kevin van Zonneveld')
   //   returns 1: 19
-  //   example 2: ini_set('unicode.semantics', 'on');
-  //   example 2: strlen('A\ud87e\udc04Z');
+  //   example 2: ini_set('unicode.semantics', 'on')
+  //   example 2: strlen('A\ud87e\udc04Z')
   //   returns 2: 3
 
   var str = string + ''

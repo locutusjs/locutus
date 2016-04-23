@@ -9,9 +9,9 @@ var atan2 = require('/Users/kvz/code/phpjs/src/php/math/atan2.js')
 
 describe('php.math.atan2.js', function () {
   it('should pass example 1', function (done) {
-    atan2(1, 1);
+    atan2(1, 1)
     var expected = 0.7853981633974483
-    var result = atan2(1, 1);
+    var result = atan2(1, 1)
     expect(result).to.deep.equal(expected)
     done()
   })

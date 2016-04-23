@@ -7,9 +7,9 @@ module.exports = function end (arr) {
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //        note: Uses global: locutus to store the array pointer
-  //   example 1: end({0: 'Kevin', 1: 'van', 2: 'Zonneveld'});
+  //   example 1: end({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
   //   returns 1: 'Zonneveld'
-  //   example 2: end(['Kevin', 'van', 'Zonneveld']);
+  //   example 2: end(['Kevin', 'van', 'Zonneveld'])
   //   returns 2: 'Zonneveld'
 
   this.locutus = this.locutus || {}

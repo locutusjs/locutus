@@ -6,9 +6,9 @@ module.exports = function count (mixed_var, mode) {
   // bugfixed by: Soren Hansen
   // bugfixed by: Olivier Louvignes (http://mg-crea.com/)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: count([[0,0],[0,-4]], 'COUNT_RECURSIVE');
+  //   example 1: count([[0,0],[0,-4]], 'COUNT_RECURSIVE')
   //   returns 1: 6
-  //   example 2: count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');
+  //   example 2: count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE')
   //   returns 2: 6
 
   var key, cnt = 0

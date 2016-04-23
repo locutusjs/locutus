@@ -9,9 +9,9 @@ var str_repeat = require('/Users/kvz/code/phpjs/src/php/strings/str_repeat.js')
 
 describe('php.strings.str_repeat.js', function () {
   it('should pass example 1', function (done) {
-    str_repeat('-=', 10);
+    str_repeat('-=', 10)
     var expected = '-=-=-=-=-=-=-=-=-=-='
-    var result = str_repeat('-=', 10);
+    var result = str_repeat('-=', 10)
     expect(result).to.deep.equal(expected)
     done()
   })

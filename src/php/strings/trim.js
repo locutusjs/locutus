@@ -9,11 +9,11 @@ module.exports = function trim (str, charlist) {
   //    input by: Erkekjetter
   //    input by: DxGx
   // bugfixed by: Onno Marsman
-  //   example 1: trim('    Kevin van Zonneveld    ');
+  //   example 1: trim('    Kevin van Zonneveld    ')
   //   returns 1: 'Kevin van Zonneveld'
-  //   example 2: trim('Hello World', 'Hdle');
+  //   example 2: trim('Hello World', 'Hdle')
   //   returns 2: 'o Wor'
-  //   example 3: trim(16, 1);
+  //   example 3: trim(16, 1)
   //   returns 3: '6'
 
   var whitespace, l = 0,

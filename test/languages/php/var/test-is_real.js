@@ -9,9 +9,9 @@ var is_real = require('/Users/kvz/code/phpjs/src/php/var/is_real.js')
 
 describe('php.var.is_real.js', function () {
   it('should pass example 1', function (done) {
-    is_real(186.31);
+    is_real(186.31)
     var expected = true
-    var result = is_real(186.31);
+    var result = is_real(186.31)
     expect(result).to.deep.equal(expected)
     done()
   })

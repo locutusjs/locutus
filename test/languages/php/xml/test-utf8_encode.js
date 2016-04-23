@@ -9,9 +9,9 @@ var utf8_encode = require('/Users/kvz/code/phpjs/src/php/xml/utf8_encode.js')
 
 describe('php.xml.utf8_encode.js', function () {
   it('should pass example 1', function (done) {
-    utf8_encode('Kevin van Zonneveld');
+    utf8_encode('Kevin van Zonneveld')
     var expected = 'Kevin van Zonneveld'
-    var result = utf8_encode('Kevin van Zonneveld');
+    var result = utf8_encode('Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })

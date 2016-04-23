@@ -1,7 +1,7 @@
 module.exports = function nl_langinfo (item) {
   //  discuss at: http://locutusjs.io/php/nl_langinfo/
   // original by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: nl_langinfo('DAY_1');
+  //   example 1: nl_langinfo('DAY_1')
   //   returns 1: 'Sunday'
 
   var setlocale = require('../strings/setlocale')

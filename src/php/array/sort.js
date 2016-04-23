@@ -20,13 +20,13 @@ module.exports = function sort (inputArr, sort_flags) {
   //        note: if the content is a numeric string, we treat the
   //        note: "original type" as numeric.
   //   example 1: var arr = ['Kevin', 'van', 'Zonneveld']
-  //   example 1: sort(arr);
-  //   example 1: $result = arr;
+  //   example 1: sort(arr)
+  //   example 1: $result = arr
   //   returns 1: ['Kevin', 'Zonneveld', 'van']
-  //   example 2: ini_set('locutus.strictForIn', true);
-  //   example 2: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
-  //   example 2: sort(fruits);
-  //   example 2: $result = fruits;
+  //   example 2: ini_set('locutus.strictForIn', true)
+  //   example 2: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+  //   example 2: sort(fruits)
+  //   example 2: $result = fruits
   //   returns 2: {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
   //        test: skip-1
 

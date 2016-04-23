@@ -11,7 +11,7 @@ module.exports = function utf8_encode (argString) {
   // bugfixed by: Ulrich
   // bugfixed by: Rafał Kukawski (http://blog.kukawski.pl)
   // bugfixed by: kirilloid
-  //   example 1: utf8_encode('Kevin van Zonneveld');
+  //   example 1: utf8_encode('Kevin van Zonneveld')
   //   returns 1: 'Kevin van Zonneveld'
 
   if (argString === null || typeof argString === 'undefined') {

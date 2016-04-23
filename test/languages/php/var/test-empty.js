@@ -9,37 +9,37 @@ var empty = require('/Users/kvz/code/phpjs/src/php/var/empty.js')
 
 describe('php.var.empty.js', function () {
   it('should pass example 1', function (done) {
-    empty(null);
+    empty(null)
     var expected = true
-    var result = empty(null);
+    var result = empty(null)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    empty(undefined);
+    empty(undefined)
     var expected = true
-    var result = empty(undefined);
+    var result = empty(undefined)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    empty([]);
+    empty([])
     var expected = true
-    var result = empty([]);
+    var result = empty([])
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 4', function (done) {
-    empty({});
+    empty({})
     var expected = true
-    var result = empty({});
+    var result = empty({})
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 5', function (done) {
-    empty({'aFunc' : function () { alert('humpty'); } });
+    empty({'aFunc' : function () { alert('humpty'); } })
     var expected = false
-    var result = empty({'aFunc' : function () { alert('humpty'); } });
+    var result = empty({'aFunc' : function () { alert('humpty'); } })
     expect(result).to.deep.equal(expected)
     done()
   })

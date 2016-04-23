@@ -9,9 +9,9 @@ var str_ireplace = require('/Users/kvz/code/phpjs/src/php/strings/str_ireplace.j
 
 describe('php.strings.str_ireplace.js', function () {
   it('should pass example 1', function (done) {
-    str_ireplace('M', 'e', 'name');
+    str_ireplace('M', 'e', 'name')
     var expected = 'naee'
-    var result = str_ireplace('M', 'e', 'name');
+    var result = str_ireplace('M', 'e', 'name')
     expect(result).to.deep.equal(expected)
     done()
   })

@@ -5,7 +5,7 @@ module.exports = function getenv (varname) {
   //        note: "$_ENV = this.locutus.ENV;" and get/set accordingly
   //        note: Returns e.g. 'en-US' when set global this.locutus.ENV is set
   //        note: Uses global: locutus to store environment info
-  //   example 1: getenv('LC_ALL');
+  //   example 1: getenv('LC_ALL')
   //   returns 1: false
 
   if (!this.locutus || !this.locutus.ENV || !this.locutus.ENV[varname]) {

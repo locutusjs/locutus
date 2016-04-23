@@ -3,7 +3,7 @@ module.exports = function vprintf (format, args) {
   //      original by: Ash Searle (http://hexmen.com/blog/)
   //      improved by: Michael White (http://getsprink.com)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
-  //        example 1: vprintf("%01.2f", 123.1);
+  //        example 1: vprintf("%01.2f", 123.1)
   //        returns 1: 6
   //        test: skip-1
 

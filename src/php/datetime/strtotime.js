@@ -13,19 +13,19 @@ module.exports = function strtotime (text, now) {
   // bugfixed by: Artur Tchernychev
   // bugfixed by: Stephan Bösch-Plepelits (http://github.com/plepe)
   //        note: Examples all have a fixed timestamp to prevent tests to fail because of variable time(zones)
-  //   example 1: strtotime('+1 day', 1129633200);
+  //   example 1: strtotime('+1 day', 1129633200)
   //   returns 1: 1129719600
-  //   example 2: strtotime('+1 week 2 days 4 hours 2 seconds', 1129633200);
+  //   example 2: strtotime('+1 week 2 days 4 hours 2 seconds', 1129633200)
   //   returns 2: 1130425202
-  //   example 3: strtotime('last month', 1129633200);
+  //   example 3: strtotime('last month', 1129633200)
   //   returns 3: 1127041200
-  //   example 4: strtotime('2009-05-04 08:30:00 GMT');
+  //   example 4: strtotime('2009-05-04 08:30:00 GMT')
   //   returns 4: 1241425800
-  //   example 5: strtotime('2009-05-04 08:30:00+00');
+  //   example 5: strtotime('2009-05-04 08:30:00+00')
   //   returns 5: 1241425800
-  //   example 6: strtotime('2009-05-04 08:30:00+02:00');
+  //   example 6: strtotime('2009-05-04 08:30:00+02:00')
   //   returns 6: 1241418600
-  //   example 7: strtotime('2009-05-04T08:30:00Z');
+  //   example 7: strtotime('2009-05-04T08:30:00Z')
   //   returns 7: 1241425800
 
   var parsed, match, today, year, date, days, ranges, len, times, regex, i, fail = false

@@ -35,18 +35,19 @@ module.exports = function date (format, timestamp) {
   //        note: per a timezone specified by date_default_timezone_set(). Implementers might use
   //        note: this.locutus.currentTimezoneOffset and this.locutus.currentTimezoneDST set by that function
   //        note: in order to adjust the dates in this function (or our other date functions!) accordingly
-  //   example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400);
+  //   example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400)
   //   returns 1: '09:09:40 m is month'
-  //   example 2: date('F j, Y, g:i a', 1062462400);
+  //   example 2: date('F j, Y, g:i a', 1062462400)
   //   returns 2: 'September 2, 2003, 2:26 am'
-  //   example 3: date('Y W o', 1062462400);
+  //   example 3: date('Y W o', 1062462400)
   //   returns 3: '2003 36 2003'
-  //   example 4: x = date('Y m d', (new Date()).getTime()/1000);
-  //   example 4: (x+'').length === 10 // 2009 01 09
-  //   returns 4: true
-  //   example 5: date('W', 1104534000);
+  //   example 4: var x = date('Y m d', (new Date()).getTime() / 1000)
+  //   example 4: x = x + ''
+  //   example 4: $result = x.length // 2009 01 09
+  //   returns 4: 10
+  //   example 5: date('W', 1104534000)
   //   returns 5: '53'
-  //   example 6: date('B t', 1104534000);
+  //   example 6: date('B t', 1104534000)
   //   returns 6: '999 31'
   //   example 7: date('W U', 1293750000.82); // 2010-12-31
   //   returns 7: '52 1293750000'

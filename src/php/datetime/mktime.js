@@ -17,14 +17,14 @@ module.exports = function mktime () {
   //  revised by: Theriault
   //        note: The return values of the following examples are
   //        note: received only if your system's timezone is UTC.
-  //   example 1: mktime(14, 10, 2, 2, 1, 2008);
+  //   example 1: mktime(14, 10, 2, 2, 1, 2008)
   //   returns 1: 1201875002
-  //   example 2: mktime(0, 0, 0, 0, 1, 2008);
+  //   example 2: mktime(0, 0, 0, 0, 1, 2008)
   //   returns 2: 1196467200
-  //   example 3: make = mktime();
-  //   example 3: td = new Date();
-  //   example 3: real = Math.floor(td.getTime() / 1000);
-  //   example 3: diff = (real - make);
+  //   example 3: make = mktime()
+  //   example 3: td = new Date()
+  //   example 3: real = Math.floor(td.getTime() / 1000)
+  //   example 3: diff = (real - make)
   //   example 3: diff < 5
   //   returns 3: true
   //   example 4: mktime(0, 0, 0, 13, 1, 1997)

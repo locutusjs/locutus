@@ -9,9 +9,9 @@ var floor = require('/Users/kvz/code/phpjs/src/php/math/floor.js')
 
 describe('php.math.floor.js', function () {
   it('should pass example 1', function (done) {
-    floor(8723321.4);
+    floor(8723321.4)
     var expected = 8723321
-    var result = floor(8723321.4);
+    var result = floor(8723321.4)
     expect(result).to.deep.equal(expected)
     done()
   })

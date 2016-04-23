@@ -9,9 +9,9 @@ var json_encode = require('/Users/kvz/code/phpjs/src/php/json/json_encode.js')
 
 describe('php.json.json_encode.js', function () {
   it('should pass example 1', function (done) {
-    json_encode('Kevin');
+    json_encode('Kevin')
     var expected = '"Kevin"'
-    var result = json_encode('Kevin');
+    var result = json_encode('Kevin')
     expect(result).to.deep.equal(expected)
     done()
   })

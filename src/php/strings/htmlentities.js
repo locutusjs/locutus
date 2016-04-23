@@ -11,9 +11,9 @@ module.exports = function htmlentities (string, quote_style, charset, double_enc
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //    input by: Ratheous
   //        note: function is compatible with PHP 5.2 and older
-  //   example 1: htmlentities('Kevin & van Zonneveld');
+  //   example 1: htmlentities('Kevin & van Zonneveld')
   //   returns 1: 'Kevin &amp; van Zonneveld'
-  //   example 2: htmlentities("foo'bar","ENT_QUOTES");
+  //   example 2: htmlentities("foo'bar","ENT_QUOTES")
   //   returns 2: 'foo&#039;bar'
 
   var get_html_translation_table = require('../strings/get_html_translation_table')

@@ -9,9 +9,9 @@ var escapeshellarg = require('/Users/kvz/code/phpjs/src/php/exec/escapeshellarg.
 
 describe('php.exec.escapeshellarg.js', function () {
   it('should pass example 1', function (done) {
-    escapeshellarg("kevin's birthday");
+    escapeshellarg("kevin's birthday")
     var expected = "'kevin\\'s birthday'"
-    var result = escapeshellarg("kevin's birthday");
+    var result = escapeshellarg("kevin's birthday")
     expect(result).to.deep.equal(expected)
     done()
   })

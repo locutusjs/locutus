@@ -9,18 +9,18 @@ var strlen = require('/Users/kvz/code/phpjs/src/php/strings/strlen.js')
 
 describe('php.strings.strlen.js', function () {
   it('should pass example 1', function (done) {
-    strlen('Kevin van Zonneveld');
+    strlen('Kevin van Zonneveld')
     var expected = 19
-    var result = strlen('Kevin van Zonneveld');
+    var result = strlen('Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    ini_set('unicode.semantics', 'on');
-    strlen('A\ud87e\udc04Z');
+    ini_set('unicode.semantics', 'on')
+    strlen('A\ud87e\udc04Z')
     var expected = 3
-ini_set('unicode.semantics', 'on');
-    var result = strlen('A\ud87e\udc04Z');
+ini_set('unicode.semantics', 'on')
+    var result = strlen('A\ud87e\udc04Z')
     expect(result).to.deep.equal(expected)
     done()
   })

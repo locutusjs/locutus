@@ -11,11 +11,10 @@ module.exports = function usort (inputArr, sorter) {
   //        note: property deletion is supported. Note that we intend to implement the PHP
   //        note: behavior by default if IE ever does allow it; only gives shallow copy since
   //        note: is by reference in PHP anyways
-  //   example 1: $stuff = {d: '3', a: '1', b: '11', c: '4'};
-  //   example 1: usort($stuff, function (a, b) {return(a-b);});
-  //   example 1: $result = $stuff;
-  //   returns 1: {0: '1', 1: '3', 2: '4', 3: '11'};
-
+  //   example 1: $stuff = {d: '3', a: '1', b: '11', c: '4'}
+  //   example 1: usort($stuff, function (a, b) {return(a-b);})
+  //   example 1: $result = $stuff
+  //   returns 1: {0: '1', 1: '3', 2: '4', 3: '11'}
   var valArr = [],
     k = '',
     i = 0,

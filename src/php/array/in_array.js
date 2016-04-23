@@ -5,15 +5,15 @@ module.exports = function in_array (needle, haystack, argStrict) {
   // improved by: Jonas Sciangula Street (Joni2Back)
   //    input by: Billy
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: in_array('van', ['Kevin', 'van', 'Zonneveld']);
+  //   example 1: in_array('van', ['Kevin', 'van', 'Zonneveld'])
   //   returns 1: true
-  //   example 2: in_array('vlado', {0: 'Kevin', vlado: 'van', 1: 'Zonneveld'});
+  //   example 2: in_array('vlado', {0: 'Kevin', vlado: 'van', 1: 'Zonneveld'})
   //   returns 2: false
-  //   example 3: in_array(1, ['1', '2', '3']);
-  //   example 3: in_array(1, ['1', '2', '3'], false);
+  //   example 3: in_array(1, ['1', '2', '3'])
+  //   example 3: in_array(1, ['1', '2', '3'], false)
   //   returns 3: true
   //   returns 3: true
-  //   example 4: in_array(1, ['1', '2', '3'], true);
+  //   example 4: in_array(1, ['1', '2', '3'], true)
   //   returns 4: false
 
   var key = '',

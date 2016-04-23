@@ -7,7 +7,7 @@ module.exports = function array_push (inputArr) {
   //        note: add back properties with the same keys (including numeric) that had
   //        note: been deleted, the order will be as before; thus, this function is not
   //        note: really recommended with associative arrays (objects) in IE environments
-  //   example 1: array_push(['kevin','van'], 'zonneveld');
+  //   example 1: array_push(['kevin','van'], 'zonneveld')
   //   returns 1: 3
 
   var i = 0,

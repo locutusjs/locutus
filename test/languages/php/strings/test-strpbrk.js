@@ -9,9 +9,9 @@ var strpbrk = require('/Users/kvz/code/phpjs/src/php/strings/strpbrk.js')
 
 describe('php.strings.strpbrk.js', function () {
   it('should pass example 1', function (done) {
-    strpbrk('This is a Simple text.', 'is');
+    strpbrk('This is a Simple text.', 'is')
     var expected = 'is is a Simple text.'
-    var result = strpbrk('This is a Simple text.', 'is');
+    var result = strpbrk('This is a Simple text.', 'is')
     expect(result).to.deep.equal(expected)
     done()
   })

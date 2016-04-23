@@ -18,9 +18,9 @@ module.exports = function unserialize (data) {
   //    input by: Jaroslaw Czarniak
   //        note: We feel the main purpose of this function should be to ease the transport of data between php & js
   //        note: Aiming for PHP-compatibility, we have to translate objects to arrays
-  //   example 1: unserialize('a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}');
+  //   example 1: unserialize('a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}')
   //   returns 1: ['Kevin', 'van', 'Zonneveld']
-  //   example 2: unserialize('a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}');
+  //   example 2: unserialize('a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}')
   //   returns 2: {firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'}
 
   var that = this,

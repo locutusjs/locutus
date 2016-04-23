@@ -3,7 +3,7 @@ module.exports = function mt_rand (min, max) {
   // original by: Onno Marsman
   // improved by: Brett Zamir (http://brett-zamir.me)
   //    input by: Kongo
-  //   example 1: mt_rand(1, 1);
+  //   example 1: mt_rand(1, 1)
   //   returns 1: 1
 
   var argc = arguments.length

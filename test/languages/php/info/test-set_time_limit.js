@@ -9,9 +9,9 @@ var set_time_limit = require('/Users/kvz/code/phpjs/src/php/info/set_time_limit.
 
 describe.skip('php.info.set_time_limit.js', function () {
   it('should pass example 1', function (done) {
-    set_time_limit(4);
+    set_time_limit(4)
     var expected = undefined
-    var result = set_time_limit(4);
+    var result = set_time_limit(4)
     expect(result).to.deep.equal(expected)
     done()
   })

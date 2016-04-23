@@ -4,11 +4,11 @@ module.exports = function uniqid (prefix, more_entropy) {
   //  revised by: Kankrelune (http://www.webfaktory.info/)
   //        note: Uses an internal counter (in locutus global) to avoid collision
   //        test: skip-all
-  //   example 1: uniqid();
+  //   example 1: uniqid()
   //   returns 1: 'a30285b160c14'
-  //   example 2: uniqid('foo');
+  //   example 2: uniqid('foo')
   //   returns 2: 'fooa30285b1cd361'
-  //   example 3: uniqid('bar', true);
+  //   example 3: uniqid('bar', true)
   //   returns 3: 'bara20285b23dfd1.31879087'
 
   if (typeof prefix === 'undefined') {

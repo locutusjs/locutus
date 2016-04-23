@@ -12,8 +12,8 @@ module.exports = function uksort (inputArr, sorter) {
   //        note: property deletion is supported. Note that we intend to implement the PHP
   //        note: behavior by default if IE ever does allow it; only gives shallow copy since
   //        note: is by reference in PHP anyways
-  //   example 1: $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
-  //   example 1: uksort($data, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); });
+  //   example 1: $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+  //   example 1: uksort($data, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })
   //   example 1: $result = $data
   //   returns 1: {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
 

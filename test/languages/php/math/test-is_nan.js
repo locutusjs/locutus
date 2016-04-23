@@ -9,16 +9,16 @@ var is_nan = require('/Users/kvz/code/phpjs/src/php/math/is_nan.js')
 
 describe('php.math.is_nan.js', function () {
   it('should pass example 1', function (done) {
-    is_nan(NaN);
+    is_nan(NaN)
     var expected = true
-    var result = is_nan(NaN);
+    var result = is_nan(NaN)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    is_nan(0);
+    is_nan(0)
     var expected = false
-    var result = is_nan(0);
+    var result = is_nan(0)
     expect(result).to.deep.equal(expected)
     done()
   })

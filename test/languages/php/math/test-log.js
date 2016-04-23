@@ -9,9 +9,9 @@ var log = require('/Users/kvz/code/phpjs/src/php/math/log.js')
 
 describe('php.math.log.js', function () {
   it('should pass example 1', function (done) {
-    log(8723321.4, 7);
+    log(8723321.4, 7)
     var expected = 8.212871815082147
-    var result = log(8723321.4, 7);
+    var result = log(8723321.4, 7)
     expect(result).to.deep.equal(expected)
     done()
   })

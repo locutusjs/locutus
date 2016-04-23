@@ -6,7 +6,7 @@ module.exports = function md5 (str) {
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  //   example 1: md5('Kevin van Zonneveld');
+  //   example 1: md5('Kevin van Zonneveld')
   //   returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'
 
   var utf8_encode = require('../xml/utf8_encode')

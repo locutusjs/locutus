@@ -9,9 +9,9 @@ var bcadd = require('/Users/kvz/code/phpjs/src/php/bc/bcadd.js')
 
 describe('php.bc.bcadd.js', function () {
   it.skip('should pass example 1', function (done) {
-    bcadd(1, 2);
+    bcadd(1, 2)
     var expected = 3
-    var result = bcadd(1, 2);
+    var result = bcadd(1, 2)
     expect(result).to.deep.equal(expected)
     done()
   })

@@ -9,9 +9,9 @@ var array_push = require('/Users/kvz/code/phpjs/src/php/array/array_push.js')
 
 describe('php.array.array_push.js', function () {
   it('should pass example 1', function (done) {
-    array_push(['kevin','van'], 'zonneveld');
+    array_push(['kevin','van'], 'zonneveld')
     var expected = 3
-    var result = array_push(['kevin','van'], 'zonneveld');
+    var result = array_push(['kevin','van'], 'zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })

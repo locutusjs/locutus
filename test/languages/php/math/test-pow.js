@@ -9,9 +9,9 @@ var pow = require('/Users/kvz/code/phpjs/src/php/math/pow.js')
 
 describe('php.math.pow.js', function () {
   it('should pass example 1', function (done) {
-    pow(8723321.4, 7);
+    pow(8723321.4, 7)
     var expected = 3.8439091680778995e+48
-    var result = pow(8723321.4, 7);
+    var result = pow(8723321.4, 7)
     expect(result).to.deep.equal(expected)
     done()
   })

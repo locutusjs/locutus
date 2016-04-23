@@ -9,9 +9,9 @@ var mt_rand = require('/Users/kvz/code/phpjs/src/php/math/mt_rand.js')
 
 describe('php.math.mt_rand.js', function () {
   it('should pass example 1', function (done) {
-    mt_rand(1, 1);
+    mt_rand(1, 1)
     var expected = 1
-    var result = mt_rand(1, 1);
+    var result = mt_rand(1, 1)
     expect(result).to.deep.equal(expected)
     done()
   })

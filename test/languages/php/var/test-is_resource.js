@@ -9,9 +9,9 @@ var is_resource = require('/Users/kvz/code/phpjs/src/php/var/is_resource.js')
 
 describe('php.var.is_resource.js', function () {
   it('should pass example 1', function (done) {
-    is_resource('a');
+    is_resource('a')
     var expected = false
-    var result = is_resource('a');
+    var result = is_resource('a')
     expect(result).to.deep.equal(expected)
     done()
   })

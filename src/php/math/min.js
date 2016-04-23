@@ -4,17 +4,17 @@ module.exports = function min () {
   //  revised by: Onno Marsman
   // improved by: Jack
   //        note: Long code cause we're aiming for maximum PHP compatibility
-  //   example 1: min(1, 3, 5, 6, 7);
+  //   example 1: min(1, 3, 5, 6, 7)
   //   returns 1: 1
-  //   example 2: min([2, 4, 5]);
+  //   example 2: min([2, 4, 5])
   //   returns 2: 2
-  //   example 3: min(0, 'hello');
+  //   example 3: min(0, 'hello')
   //   returns 3: 0
-  //   example 4: min('hello', 0);
+  //   example 4: min('hello', 0)
   //   returns 4: 'hello'
-  //   example 5: min(-1, 'hello');
+  //   example 5: min(-1, 'hello')
   //   returns 5: -1
-  //   example 6: min([2, 4, 8], [2, 5, 7]);
+  //   example 6: min([2, 4, 8], [2, 5, 7])
   //   returns 6: [2, 4, 8]
 
   var ar, retVal, i = 0,

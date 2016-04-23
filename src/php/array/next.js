@@ -2,9 +2,9 @@ module.exports = function next (arr) {
   //  discuss at: http://locutusjs.io/php/next/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Uses global: locutus to store the array pointer
-  //   example 1: transport = ['foot', 'bike', 'car', 'plane'];
-  //   example 1: next(transport);
-  //   example 1: next(transport);
+  //   example 1: transport = ['foot', 'bike', 'car', 'plane']
+  //   example 1: next(transport)
+  //   example 1: next(transport)
   //   returns 1: 'car'
 
   this.locutus = this.locutus || {}

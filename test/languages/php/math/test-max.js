@@ -9,44 +9,44 @@ var max = require('/Users/kvz/code/phpjs/src/php/math/max.js')
 
 describe('php.math.max.js', function () {
   it('should pass example 1', function (done) {
-    max(1, 3, 5, 6, 7);
+    max(1, 3, 5, 6, 7)
     var expected = 7
-    var result = max(1, 3, 5, 6, 7);
+    var result = max(1, 3, 5, 6, 7)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    max([2, 4, 5]);
+    max([2, 4, 5])
     var expected = 5
-    var result = max([2, 4, 5]);
+    var result = max([2, 4, 5])
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    max(0, 'hello');
+    max(0, 'hello')
     var expected = 0
-    var result = max(0, 'hello');
+    var result = max(0, 'hello')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 4', function (done) {
-    max('hello', 0);
+    max('hello', 0)
     var expected = 'hello'
-    var result = max('hello', 0);
+    var result = max('hello', 0)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 5', function (done) {
-    max(-1, 'hello');
+    max(-1, 'hello')
     var expected = 'hello'
-    var result = max(-1, 'hello');
+    var result = max(-1, 'hello')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 6', function (done) {
-    max([2, 4, 8], [2, 5, 7]);
+    max([2, 4, 8], [2, 5, 7])
     var expected = [2, 5, 7]
-    var result = max([2, 4, 8], [2, 5, 7]);
+    var result = max([2, 4, 8], [2, 5, 7])
     expect(result).to.deep.equal(expected)
     done()
   })

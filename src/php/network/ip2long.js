@@ -4,11 +4,11 @@ module.exports = function ip2long (IP) {
   // improved by: Victor
   //  revised by: fearphage (http://http/my.opera.com/fearphage/)
   //  revised by: Theriault
-  //   example 1: ip2long('192.0.34.166');
+  //   example 1: ip2long('192.0.34.166')
   //   returns 1: 3221234342
-  //   example 2: ip2long('0.0xABCDEF');
+  //   example 2: ip2long('0.0xABCDEF')
   //   returns 2: 11259375
-  //   example 3: ip2long('255.255.255.256');
+  //   example 3: ip2long('255.255.255.256')
   //   returns 3: false
 
   var i = 0

@@ -5,7 +5,7 @@ module.exports = function print_r (array, return_val) {
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: print_r(1, true);
+  //   example 1: print_r(1, true)
   //   returns 1: '1'
 
   var echo = require('../strings/echo')

@@ -9,9 +9,9 @@ var setcookie = require('/Users/kvz/code/phpjs/src/php/network/setcookie.js')
 
 describe('php.network.setcookie.js', function () {
   it('should pass example 1', function (done) {
-    setcookie('author_name', 'Kevin van Zonneveld');
+    setcookie('author_name', 'Kevin van Zonneveld')
     var expected = true
-    var result = setcookie('author_name', 'Kevin van Zonneveld');
+    var result = setcookie('author_name', 'Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })

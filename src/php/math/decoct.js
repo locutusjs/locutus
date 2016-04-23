@@ -4,9 +4,9 @@ module.exports = function decoct (number) {
   // bugfixed by: Onno Marsman
   // improved by: http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
   //    input by: pilus
-  //   example 1: decoct(15);
+  //   example 1: decoct(15)
   //   returns 1: '17'
-  //   example 2: decoct(264);
+  //   example 2: decoct(264)
   //   returns 2: '410'
 
   if (number < 0) {

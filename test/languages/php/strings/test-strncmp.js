@@ -9,16 +9,16 @@ var strncmp = require('/Users/kvz/code/phpjs/src/php/strings/strncmp.js')
 
 describe('php.strings.strncmp.js', function () {
   it('should pass example 1', function (done) {
-    strncmp('aaa', 'aab', 2);
+    strncmp('aaa', 'aab', 2)
     var expected = 0
-    var result = strncmp('aaa', 'aab', 2);
+    var result = strncmp('aaa', 'aab', 2)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    strncmp('aaa', 'aab', 3 );
+    strncmp('aaa', 'aab', 3 )
     var expected = -1
-    var result = strncmp('aaa', 'aab', 3 );
+    var result = strncmp('aaa', 'aab', 3 )
     expect(result).to.deep.equal(expected)
     done()
   })

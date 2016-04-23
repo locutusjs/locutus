@@ -1,11 +1,11 @@
 module.exports = function is_finite (val) {
   //  discuss at: http://locutusjs.io/php/is_finite/
   // original by: Onno Marsman
-  //   example 1: is_finite(Infinity);
+  //   example 1: is_finite(Infinity)
   //   returns 1: false
-  //   example 2: is_finite(-Infinity);
+  //   example 2: is_finite(-Infinity)
   //   returns 2: false
-  //   example 3: is_finite(0);
+  //   example 3: is_finite(0)
   //   returns 3: true
 
   var warningType = ''

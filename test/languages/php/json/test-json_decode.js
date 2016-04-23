@@ -9,9 +9,9 @@ var json_decode = require('/Users/kvz/code/phpjs/src/php/json/json_decode.js')
 
 describe('php.json.json_decode.js', function () {
   it('should pass example 1', function (done) {
-    json_decode('[ 1 ]');
+    json_decode('[ 1 ]')
     var expected = [1]
-    var result = json_decode('[ 1 ]');
+    var result = json_decode('[ 1 ]')
     expect(result).to.deep.equal(expected)
     done()
   })

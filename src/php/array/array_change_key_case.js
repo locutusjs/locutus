@@ -5,20 +5,20 @@ module.exports = function array_change_key_case (array, cs) {
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: array_change_key_case(42)
   //   returns 1: false
-  //   example 2: array_change_key_case([ 3, 5 ]);
+  //   example 2: array_change_key_case([ 3, 5 ])
   //   returns 2: [3, 5]
-  //   example 3: array_change_key_case({ FuBaR: 42 });
+  //   example 3: array_change_key_case({ FuBaR: 42 })
   //   returns 3: {"fubar": 42}
-  //   example 4: array_change_key_case({ FuBaR: 42 }, 'CASE_LOWER');
+  //   example 4: array_change_key_case({ FuBaR: 42 }, 'CASE_LOWER')
   //   returns 4: {"fubar": 42}
-  //   example 5: array_change_key_case({ FuBaR: 42 }, 'CASE_UPPER');
+  //   example 5: array_change_key_case({ FuBaR: 42 }, 'CASE_UPPER')
   //   returns 5: {"FUBAR": 42}
-  //   example 6: array_change_key_case({ FuBaR: 42 }, 2);
+  //   example 6: array_change_key_case({ FuBaR: 42 }, 2)
   //   returns 6: {"FUBAR": 42}
-  //   example 7: ini_set('locutus.return_locutus_arrays', 'on');
-  //   example 7: var arr = [{a: 0}, {B: 1}, {c: 2}];
-  //   example 7: var newArr = array_change_key_case(arr);
-  //   example 7: newArr.splice(1, 1);
+  //   example 7: ini_set('locutus.return_locutus_arrays', 'on')
+  //   example 7: var arr = [{a: 0}, {B: 1}, {c: 2}]
+  //   example 7: var newArr = array_change_key_case(arr)
+  //   example 7: newArr.splice(1, 1)
   //   returns 7: [{b: 1}]
   //        test: skip-7
 

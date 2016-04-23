@@ -9,23 +9,23 @@ var trim = require('/Users/kvz/code/phpjs/src/php/strings/trim.js')
 
 describe('php.strings.trim.js', function () {
   it('should pass example 1', function (done) {
-    trim('    Kevin van Zonneveld    ');
+    trim('    Kevin van Zonneveld    ')
     var expected = 'Kevin van Zonneveld'
-    var result = trim('    Kevin van Zonneveld    ');
+    var result = trim('    Kevin van Zonneveld    ')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    trim('Hello World', 'Hdle');
+    trim('Hello World', 'Hdle')
     var expected = 'o Wor'
-    var result = trim('Hello World', 'Hdle');
+    var result = trim('Hello World', 'Hdle')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    trim(16, 1);
+    trim(16, 1)
     var expected = '6'
-    var result = trim(16, 1);
+    var result = trim(16, 1)
     expect(result).to.deep.equal(expected)
     done()
   })

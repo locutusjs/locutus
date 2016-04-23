@@ -9,30 +9,30 @@ var mktime = require('/Users/kvz/code/phpjs/src/php/datetime/mktime.js')
 
 describe('php.datetime.mktime.js', function () {
   it('should pass example 1', function (done) {
-    mktime(14, 10, 2, 2, 1, 2008);
+    mktime(14, 10, 2, 2, 1, 2008)
     var expected = 1201875002
-    var result = mktime(14, 10, 2, 2, 1, 2008);
+    var result = mktime(14, 10, 2, 2, 1, 2008)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    mktime(0, 0, 0, 0, 1, 2008);
+    mktime(0, 0, 0, 0, 1, 2008)
     var expected = 1196467200
-    var result = mktime(0, 0, 0, 0, 1, 2008);
+    var result = mktime(0, 0, 0, 0, 1, 2008)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    make = mktime();
-    td = new Date();
-    real = Math.floor(td.getTime() / 1000);
-    diff = (real - make);
+    make = mktime()
+    td = new Date()
+    real = Math.floor(td.getTime() / 1000)
+    diff = (real - make)
     diff < 5
     var expected = true
-make = mktime();
-td = new Date();
-real = Math.floor(td.getTime() / 1000);
-diff = (real - make);
+make = mktime()
+td = new Date()
+real = Math.floor(td.getTime() / 1000)
+diff = (real - make)
     var result = diff < 5
     expect(result).to.deep.equal(expected)
     done()

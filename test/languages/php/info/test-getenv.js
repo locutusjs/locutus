@@ -9,9 +9,9 @@ var getenv = require('/Users/kvz/code/phpjs/src/php/info/getenv.js')
 
 describe('php.info.getenv.js', function () {
   it('should pass example 1', function (done) {
-    getenv('LC_ALL');
+    getenv('LC_ALL')
     var expected = false
-    var result = getenv('LC_ALL');
+    var result = getenv('LC_ALL')
     expect(result).to.deep.equal(expected)
     done()
   })

@@ -9,9 +9,9 @@ var is_float = require('/Users/kvz/code/phpjs/src/php/var/is_float.js')
 
 describe('php.var.is_float.js', function () {
   it('should pass example 1', function (done) {
-    is_float(186.31);
+    is_float(186.31)
     var expected = true
-    var result = is_float(186.31);
+    var result = is_float(186.31)
     expect(result).to.deep.equal(expected)
     done()
   })

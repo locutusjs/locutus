@@ -9,9 +9,9 @@ var bcround = require('/Users/kvz/code/phpjs/src/php/bc/bcround.js')
 
 describe('php.bc.bcround.js', function () {
   it.skip('should pass example 1', function (done) {
-    bcround(1, 2);
+    bcround(1, 2)
     var expected = 3
-    var result = bcround(1, 2);
+    var result = bcround(1, 2)
     expect(result).to.deep.equal(expected)
     done()
   })

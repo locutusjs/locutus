@@ -9,16 +9,16 @@ var isset = require('/Users/kvz/code/phpjs/src/php/var/isset.js')
 
 describe('php.var.isset.js', function () {
   it('should pass example 1', function (done) {
-    isset( undefined, true);
+    isset( undefined, true)
     var expected = false
-    var result = isset( undefined, true);
+    var result = isset( undefined, true)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    isset( 'Kevin van Zonneveld' );
+    isset( 'Kevin van Zonneveld' )
     var expected = true
-    var result = isset( 'Kevin van Zonneveld' );
+    var result = isset( 'Kevin van Zonneveld' )
     expect(result).to.deep.equal(expected)
     done()
   })

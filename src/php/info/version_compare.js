@@ -6,13 +6,13 @@ module.exports = function version_compare (v1, v2, operator) {
   //      improved by: Brett Zamir (http://brett-zamir.me)
   //      improved by: Scott Baker
   //      improved by: Theriault
-  //        example 1: version_compare('8.2.5rc', '8.2.5a');
+  //        example 1: version_compare('8.2.5rc', '8.2.5a')
   //        returns 1: 1
-  //        example 2: version_compare('8.2.50', '8.2.52', '<');
+  //        example 2: version_compare('8.2.50', '8.2.52', '<')
   //        returns 2: true
-  //        example 3: version_compare('5.3.0-dev', '5.3.0');
+  //        example 3: version_compare('5.3.0-dev', '5.3.0')
   //        returns 3: -1
-  //        example 4: version_compare('4.1.0.52','4.01.0.51');
+  //        example 4: version_compare('4.1.0.52','4.01.0.51')
   //        returns 4: 1
 
   this.locutus = this.locutus || {}

@@ -7,11 +7,11 @@ module.exports = function base64_encode (data) {
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)
   // bugfixed by: Pellentesque Malesuada
-  //   example 1: base64_encode('Kevin van Zonneveld');
+  //   example 1: base64_encode('Kevin van Zonneveld')
   //   returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
-  //   example 2: base64_encode('a');
+  //   example 2: base64_encode('a')
   //   returns 2: 'YQ=='
-  //   example 3: base64_encode('✓ à la mode');
+  //   example 3: base64_encode('✓ à la mode')
   //   returns 3: '4pyTIMOgIGxhIG1vZGU='
 
   var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='

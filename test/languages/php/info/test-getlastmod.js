@@ -9,9 +9,9 @@ var getlastmod = require('/Users/kvz/code/phpjs/src/php/info/getlastmod.js')
 
 describe.skip('php.info.getlastmod.js', function () {
   it('should pass example 1', function (done) {
-    getlastmod();
+    getlastmod()
     var expected = 1237610043
-    var result = getlastmod();
+    var result = getlastmod()
     expect(result).to.deep.equal(expected)
     done()
   })

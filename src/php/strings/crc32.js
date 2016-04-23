@@ -2,7 +2,7 @@ module.exports = function crc32 (str) {
   //  discuss at: http://locutusjs.io/php/crc32/
   // original by: Webtoolkit.info (http://www.webtoolkit.info/)
   // improved by: T0bsn
-  //   example 1: crc32('Kevin van Zonneveld');
+  //   example 1: crc32('Kevin van Zonneveld')
   //   returns 1: 1249991249
 
   var utf8_encode = require('../xml/utf8_encode')

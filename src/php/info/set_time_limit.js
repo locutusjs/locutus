@@ -2,7 +2,7 @@ module.exports = function set_time_limit (seconds) {
   //  discuss at: http://locutusjs.io/php/set_time_limit/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        test: skip-all
-  //   example 1: set_time_limit(4);
+  //   example 1: set_time_limit(4)
   //   returns 1: undefined
 
   // BEGIN REDUNDANT

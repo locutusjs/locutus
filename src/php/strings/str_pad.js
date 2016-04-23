@@ -4,9 +4,9 @@ module.exports = function str_pad (input, pad_length, pad_string, pad_type) {
   // improved by: Michael White (http://getsprink.com)
   //    input by: Marco van Oort
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: str_pad('Kevin van Zonneveld', 30, '-=', 'STR_PAD_LEFT');
+  //   example 1: str_pad('Kevin van Zonneveld', 30, '-=', 'STR_PAD_LEFT')
   //   returns 1: '-=-=-=-=-=-Kevin van Zonneveld'
-  //   example 2: str_pad('Kevin van Zonneveld', 30, '-', 'STR_PAD_BOTH');
+  //   example 2: str_pad('Kevin van Zonneveld', 30, '-', 'STR_PAD_BOTH')
   //   returns 2: '------Kevin van Zonneveld-----'
 
   var half = '',

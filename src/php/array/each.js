@@ -3,7 +3,7 @@ module.exports = function each (arr) {
   // original by: Ates Goral (http://magnetiq.com)
   //  revised by: Brett Zamir (http://brett-zamir.me)
   //        note: Uses global: locutus to store the array pointer
-  //   example 1: each({a: "apple", b: "balloon"});
+  //   example 1: each({a: "apple", b: "balloon"})
   //   returns 1: {0: "a", 1: "apple", key: "a", value: "apple"}
 
   this.locutus = this.locutus || {}

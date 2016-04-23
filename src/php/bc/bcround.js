@@ -1,7 +1,7 @@
 module.exports = function bcround (val, precision) {
   //  discuss at: http://locutusjs.io/php/bcround/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
-  //   example 1: bcround(1, 2);
+  //   example 1: bcround(1, 2)
   //   returns 1: 3
   //        todo: implement these testcases
   //        test: skip-1

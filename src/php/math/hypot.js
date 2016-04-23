@@ -2,9 +2,9 @@ module.exports = function hypot (x, y) {
   //  discuss at: http://locutusjs.io/php/hypot/
   // original by: Onno Marsman
   // imprived by: Robert Eisele (http://www.xarg.org/)
-  //   example 1: hypot(3, 4);
+  //   example 1: hypot(3, 4)
   //   returns 1: 5
-  //   example 2: hypot([], 'a');
+  //   example 2: hypot([], 'a')
   //   returns 2: null
 
   x = Math.abs(x)

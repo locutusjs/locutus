@@ -9,9 +9,9 @@ var rand = require('/Users/kvz/code/phpjs/src/php/math/rand.js')
 
 describe('php.math.rand.js', function () {
   it('should pass example 1', function (done) {
-    rand(1, 1);
+    rand(1, 1)
     var expected = 1
-    var result = rand(1, 1);
+    var result = rand(1, 1)
     expect(result).to.deep.equal(expected)
     done()
   })

@@ -9,16 +9,16 @@ var htmlentities = require('/Users/kvz/code/phpjs/src/php/strings/htmlentities.j
 
 describe('php.strings.htmlentities.js', function () {
   it('should pass example 1', function (done) {
-    htmlentities('Kevin & van Zonneveld');
+    htmlentities('Kevin & van Zonneveld')
     var expected = 'Kevin &amp; van Zonneveld'
-    var result = htmlentities('Kevin & van Zonneveld');
+    var result = htmlentities('Kevin & van Zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    htmlentities("foo'bar","ENT_QUOTES");
+    htmlentities("foo'bar","ENT_QUOTES")
     var expected = 'foo&#039;bar'
-    var result = htmlentities("foo'bar","ENT_QUOTES");
+    var result = htmlentities("foo'bar","ENT_QUOTES")
     expect(result).to.deep.equal(expected)
     done()
   })

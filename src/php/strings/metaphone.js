@@ -3,13 +3,13 @@ module.exports = function metaphone (word, max_phonemes) {
   // original by: Greg Frazier
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)
-  //   example 1: metaphone('Gnu');
+  //   example 1: metaphone('Gnu')
   //   returns 1: 'N'
-  //   example 2: metaphone('bigger');
+  //   example 2: metaphone('bigger')
   //   returns 2: 'BKR'
-  //   example 3: metaphone('accuracy');
+  //   example 3: metaphone('accuracy')
   //   returns 3: 'AKKRS'
-  //   example 4: metaphone('batch batcher');
+  //   example 4: metaphone('batch batcher')
   //   returns 4: 'BXBXR'
 
   var type = typeof word

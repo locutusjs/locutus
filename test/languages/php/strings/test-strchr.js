@@ -9,16 +9,16 @@ var strchr = require('/Users/kvz/code/phpjs/src/php/strings/strchr.js')
 
 describe('php.strings.strchr.js', function () {
   it('should pass example 1', function (done) {
-    strchr('Kevin van Zonneveld', 'van');
+    strchr('Kevin van Zonneveld', 'van')
     var expected = 'van Zonneveld'
-    var result = strchr('Kevin van Zonneveld', 'van');
+    var result = strchr('Kevin van Zonneveld', 'van')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    strchr('Kevin van Zonneveld', 'van', true);
+    strchr('Kevin van Zonneveld', 'van', true)
     var expected = 'Kevin '
-    var result = strchr('Kevin van Zonneveld', 'van', true);
+    var result = strchr('Kevin van Zonneveld', 'van', true)
     expect(result).to.deep.equal(expected)
     done()
   })

@@ -9,9 +9,9 @@ var pack = require('/Users/kvz/code/phpjs/src/php/misc/pack.js')
 
 describe('php.misc.pack.js', function () {
   it.skip('should pass example 1', function (done) {
-    pack('nvc*', 0x1234, 0x5678, 65, 66);
+    pack('nvc*', 0x1234, 0x5678, 65, 66)
     var expected = '4xVAB'
-    var result = pack('nvc*', 0x1234, 0x5678, 65, 66);
+    var result = pack('nvc*', 0x1234, 0x5678, 65, 66)
     expect(result).to.deep.equal(expected)
     done()
   })

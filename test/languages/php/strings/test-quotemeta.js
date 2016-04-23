@@ -9,9 +9,9 @@ var quotemeta = require('/Users/kvz/code/phpjs/src/php/strings/quotemeta.js')
 
 describe('php.strings.quotemeta.js', function () {
   it('should pass example 1', function (done) {
-    quotemeta(". + * ? ^ ( $ )");
+    quotemeta(". + * ? ^ ( $ )")
     var expected = '\\. \\+ \\* \\? \\^ \\( \\$ \\)'
-    var result = quotemeta(". + * ? ^ ( $ )");
+    var result = quotemeta(". + * ? ^ ( $ )")
     expect(result).to.deep.equal(expected)
     done()
   })

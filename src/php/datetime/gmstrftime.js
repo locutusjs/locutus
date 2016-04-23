@@ -3,7 +3,7 @@ module.exports = function gmstrftime (format, timestamp) {
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: Alex
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: gmstrftime("%A", 1062462400);
+  //   example 1: gmstrftime("%A", 1062462400)
   //   returns 1: 'Tuesday'
 
   var strftime = require('../datetime/strftime')

@@ -3,10 +3,10 @@ module.exports = function array () {
   // original by: d3x
   // improved by: Brett Zamir (http://brett-zamir.me)
   //        test: skip-all
-  //   example 1: array('Kevin', 'van', 'Zonneveld');
+  //   example 1: array('Kevin', 'van', 'Zonneveld')
   //   returns 1: ['Kevin', 'van', 'Zonneveld']
-  //   example 2: ini_set('locutus.return_locutus_arrays', 'on');
-  //   example 2: array({0:2}, {a:41}, {2:3}).change_key_case('CASE_UPPER').keys();
+  //   example 2: ini_set('locutus.return_locutus_arrays', 'on')
+  //   example 2: array({0:2}, {a:41}, {2:3}).change_key_case('CASE_UPPER').keys()
   //   returns 2: [0,'A',2]
 
   try {

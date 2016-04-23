@@ -9,12 +9,12 @@ var uksort = require('/Users/kvz/code/phpjs/src/php/array/uksort.js')
 
 describe('php.array.uksort.js', function () {
   it('should pass example 1', function (done) {
-    $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
-    uksort($data, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); });
+    $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+    uksort($data, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })
     $result = $data
     var expected = {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
-$data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'};
-uksort($data, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); });
+$data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+uksort($data, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })
     var result = $result = $data
     expect(result).to.deep.equal(expected)
     done()

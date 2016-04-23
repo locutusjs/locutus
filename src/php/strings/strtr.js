@@ -9,18 +9,18 @@ module.exports = function strtr (str, from, to) {
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: $trans = {'hello' : 'hi', 'hi' : 'hello'};
+  //   example 1: $trans = {'hello' : 'hi', 'hi' : 'hello'}
   //   example 1: strtr('hi all, I said hello', $trans)
   //   returns 1: 'hello all, I said hi'
-  //   example 2: strtr('äaabaåccasdeöoo', 'äåö','aao');
+  //   example 2: strtr('äaabaåccasdeöoo', 'äåö','aao')
   //   returns 2: 'aaabaaccasdeooo'
-  //   example 3: strtr('ääääääää', 'ä', 'a');
+  //   example 3: strtr('ääääääää', 'ä', 'a')
   //   returns 3: 'aaaaaaaa'
-  //   example 4: strtr('http', 'pthxyz','xyzpth');
+  //   example 4: strtr('http', 'pthxyz','xyzpth')
   //   returns 4: 'zyyx'
-  //   example 5: strtr('zyyx', 'pthxyz','xyzpth');
+  //   example 5: strtr('zyyx', 'pthxyz','xyzpth')
   //   returns 5: 'http'
-  //   example 6: strtr('aa', {'a':1,'aa':2});
+  //   example 6: strtr('aa', {'a':1,'aa':2})
   //   returns 6: '2'
 
   var krsort = require('../array/krsort')

@@ -9,9 +9,9 @@ var doubleval = require('/Users/kvz/code/phpjs/src/php/var/doubleval.js')
 
 describe('php.var.doubleval.js', function () {
   it('should pass example 1', function (done) {
-    doubleval(186);
+    doubleval(186)
     var expected = 186.00
-    var result = doubleval(186);
+    var result = doubleval(186)
     expect(result).to.deep.equal(expected)
     done()
   })

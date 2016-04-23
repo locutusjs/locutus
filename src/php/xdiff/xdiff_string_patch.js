@@ -4,7 +4,7 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, error) 
   // improved by: Steven Levithan (stevenlevithan.com)
   //        note: The XDIFF_PATCH_IGNORESPACE flag and the error argument are not currently supported
   //        note: This has not been widely tested
-  //   example 1: xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!');
+  //   example 1: xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!')
   //   returns 1: 'Hello world!'
 
   // First two functions were adapted from Steven Levithan, also under an MIT license

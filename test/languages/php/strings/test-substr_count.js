@@ -9,23 +9,23 @@ var substr_count = require('/Users/kvz/code/phpjs/src/php/strings/substr_count.j
 
 describe('php.strings.substr_count.js', function () {
   it('should pass example 1', function (done) {
-    substr_count('Kevin van Zonneveld', 'e');
+    substr_count('Kevin van Zonneveld', 'e')
     var expected = 3
-    var result = substr_count('Kevin van Zonneveld', 'e');
+    var result = substr_count('Kevin van Zonneveld', 'e')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    substr_count('Kevin van Zonneveld', 'K', 1);
+    substr_count('Kevin van Zonneveld', 'K', 1)
     var expected = 0
-    var result = substr_count('Kevin van Zonneveld', 'K', 1);
+    var result = substr_count('Kevin van Zonneveld', 'K', 1)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    substr_count('Kevin van Zonneveld', 'Z', 0, 10);
+    substr_count('Kevin van Zonneveld', 'Z', 0, 10)
     var expected = false
-    var result = substr_count('Kevin van Zonneveld', 'Z', 0, 10);
+    var result = substr_count('Kevin van Zonneveld', 'Z', 0, 10)
     expect(result).to.deep.equal(expected)
     done()
   })

@@ -9,16 +9,16 @@ var strcspn = require('/Users/kvz/code/phpjs/src/php/strings/strcspn.js')
 
 describe('php.strings.strcspn.js', function () {
   it('should pass example 1', function (done) {
-    strcspn('abcdefg123', '1234567890');
+    strcspn('abcdefg123', '1234567890')
     var expected = 7
-    var result = strcspn('abcdefg123', '1234567890');
+    var result = strcspn('abcdefg123', '1234567890')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    strcspn('123abc', '1234567890');
+    strcspn('123abc', '1234567890')
     var expected = 3
-    var result = strcspn('123abc', '1234567890');
+    var result = strcspn('123abc', '1234567890')
     expect(result).to.deep.equal(expected)
     done()
   })

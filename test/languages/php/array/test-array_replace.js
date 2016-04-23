@@ -9,9 +9,9 @@ var array_replace = require('/Users/kvz/code/phpjs/src/php/array/array_replace.j
 
 describe('php.array.array_replace.js', function () {
   it('should pass example 1', function (done) {
-    array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"});
+    array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"})
     var expected = {0: 'grape', 1: 'banana', 2: 'apple', 3: 'raspberry', 4: 'cherry'}
-    var result = array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"});
+    var result = array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"})
     expect(result).to.deep.equal(expected)
     done()
   })

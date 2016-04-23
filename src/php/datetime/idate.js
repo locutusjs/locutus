@@ -6,7 +6,7 @@ module.exports = function idate (format, timestamp) {
   //    input by: Alex
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // improved by: Theriault
-  //   example 1: idate('y', 1255633200);
+  //   example 1: idate('y', 1255633200)
   //   returns 1: 9
 
   if (format === undefined) {

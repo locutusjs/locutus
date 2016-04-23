@@ -9,9 +9,9 @@ var array_product = require('/Users/kvz/code/phpjs/src/php/array/array_product.j
 
 describe('php.array.array_product.js', function () {
   it('should pass example 1', function (done) {
-    array_product([ 2, 4, 6, 8 ]);
+    array_product([ 2, 4, 6, 8 ])
     var expected = 384
-    var result = array_product([ 2, 4, 6, 8 ]);
+    var result = array_product([ 2, 4, 6, 8 ])
     expect(result).to.deep.equal(expected)
     done()
   })

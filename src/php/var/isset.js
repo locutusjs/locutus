@@ -4,9 +4,9 @@ module.exports = function isset () {
   // improved by: FremyCompany
   // improved by: Onno Marsman
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)
-  //   example 1: isset( undefined, true);
+  //   example 1: isset( undefined, true)
   //   returns 1: false
-  //   example 2: isset( 'Kevin van Zonneveld' );
+  //   example 2: isset( 'Kevin van Zonneveld' )
   //   returns 2: true
 
   var a = arguments,

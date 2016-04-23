@@ -18,13 +18,13 @@ module.exports = function str_replace (search, replace, subject, count) {
   //    input by: Oleg Eremeev
   //        note: The count parameter must be passed as a string in order
   //        note: to find a global variable in which the result will be given
-  //   example 1: str_replace(' ', '.', 'Kevin van Zonneveld');
+  //   example 1: str_replace(' ', '.', 'Kevin van Zonneveld')
   //   returns 1: 'Kevin.van.Zonneveld'
-  //   example 2: str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars');
+  //   example 2: str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars')
   //   returns 2: 'hemmo, mars'
-  //   example 3: str_replace(Array('S','F'),'x','ASDFASDF');
+  //   example 3: str_replace(Array('S','F'),'x','ASDFASDF')
   //   returns 3: 'AxDxAxDx'
-  //   example 4: str_replace(['A','D'], ['x','y'] , 'ASDFASDF' , 'cnt');
+  //   example 4: str_replace(['A','D'], ['x','y'] , 'ASDFASDF' , 'cnt')
   //   returns 4: 'xSyFxSyF' // cnt = 0 (incorrect before fix)
   //   returns 4: 'xSyFxSyF' // cnt = 4 (correct after fix)
 

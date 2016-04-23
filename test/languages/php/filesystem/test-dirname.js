@@ -9,23 +9,23 @@ var dirname = require('/Users/kvz/code/phpjs/src/php/filesystem/dirname.js')
 
 describe('php.filesystem.dirname.js', function () {
   it('should pass example 1', function (done) {
-    dirname('/etc/passwd');
+    dirname('/etc/passwd')
     var expected = '/etc'
-    var result = dirname('/etc/passwd');
+    var result = dirname('/etc/passwd')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    dirname('c:/Temp/x');
+    dirname('c:/Temp/x')
     var expected = 'c:/Temp'
-    var result = dirname('c:/Temp/x');
+    var result = dirname('c:/Temp/x')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    dirname('/dir/test/');
+    dirname('/dir/test/')
     var expected = '/dir'
-    var result = dirname('/dir/test/');
+    var result = dirname('/dir/test/')
     expect(result).to.deep.equal(expected)
     done()
   })

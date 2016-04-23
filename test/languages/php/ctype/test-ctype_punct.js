@@ -9,9 +9,9 @@ var ctype_punct = require('/Users/kvz/code/phpjs/src/php/ctype/ctype_punct.js')
 
 describe('php.ctype.ctype_punct.js', function () {
   it('should pass example 1', function (done) {
-    ctype_punct('!?');
+    ctype_punct('!?')
     var expected = true
-    var result = ctype_punct('!?');
+    var result = ctype_punct('!?')
     expect(result).to.deep.equal(expected)
     done()
   })

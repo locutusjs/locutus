@@ -3,7 +3,7 @@ module.exports = function realpath (path) {
   // original by: mk.keck
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //        note: Returned path is an url like e.g. 'http://yourhost.tld/path/'
-  //   example 1: realpath('../.././_supporters/pj_test_supportfile_1.htm');
+  //   example 1: realpath('../.././_supporters/pj_test_supportfile_1.htm')
   //   returns 1: 'file:/home/kevin/code/_supporters/pj_test_supportfile_1.htm'
   //        test: skip-1
 

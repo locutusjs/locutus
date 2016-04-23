@@ -9,9 +9,9 @@ var base_convert = require('/Users/kvz/code/phpjs/src/php/math/base_convert.js')
 
 describe('php.math.base_convert.js', function () {
   it('should pass example 1', function (done) {
-    base_convert('A37334', 16, 2);
+    base_convert('A37334', 16, 2)
     var expected = '101000110111001100110100'
-    var result = base_convert('A37334', 16, 2);
+    var result = base_convert('A37334', 16, 2)
     expect(result).to.deep.equal(expected)
     done()
   })

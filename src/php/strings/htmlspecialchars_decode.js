@@ -14,9 +14,9 @@ module.exports = function htmlspecialchars_decode (string, quote_style) {
   //         input by: Mailfaker (http://www.weedem.fr/)
   //       revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
-  //        example 1: htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES');
+  //        example 1: htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES')
   //        returns 1: '<p>this -> &quot;</p>'
-  //        example 2: htmlspecialchars_decode("&amp;quot;");
+  //        example 2: htmlspecialchars_decode("&amp;quot;")
   //        returns 2: '&quot;'
 
   var optTemp = 0,

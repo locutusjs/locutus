@@ -9,9 +9,9 @@ var array_replace_recursive = require('/Users/kvz/code/phpjs/src/php/array/array
 
 describe('php.array.array_replace_recursive.js', function () {
   it.skip('should pass example 1', function (done) {
-    array_replace_recursive({'citrus' : ["orange"], 'berries' : ["blackberry", "raspberry"]}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']});
+    array_replace_recursive({'citrus' : ["orange"], 'berries' : ["blackberry", "raspberry"]}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']})
     var expected = {citrus : ['pineapple'], berries : ['blueberry', 'raspberry']}
-    var result = array_replace_recursive({'citrus' : ["orange"], 'berries' : ["blackberry", "raspberry"]}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']});
+    var result = array_replace_recursive({'citrus' : ["orange"], 'berries' : ["blackberry", "raspberry"]}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']})
     expect(result).to.deep.equal(expected)
     done()
   })

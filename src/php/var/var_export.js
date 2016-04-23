@@ -7,12 +7,12 @@ module.exports = function var_export (mixed_expression, bool_return) {
   //    input by: Hans Henrik (http://hanshenrik.tk/)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: var_export(null);
+  //   example 1: var_export(null)
   //   returns 1: null
-  //   example 2: var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true);
+  //   example 2: var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true)
   //   returns 2: "array (\n  0 => 'Kevin',\n  1 => 'van',\n  2 => 'Zonneveld'\n)"
-  //   example 3: data = 'Kevin';
-  //   example 3: var_export(data, true);
+  //   example 3: data = 'Kevin'
+  //   example 3: var_export(data, true)
   //   returns 3: "'Kevin'"
 
   var echo = require('../strings/echo')

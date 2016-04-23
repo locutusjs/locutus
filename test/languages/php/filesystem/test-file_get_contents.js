@@ -9,10 +9,10 @@ var file_get_contents = require('/Users/kvz/code/phpjs/src/php/filesystem/file_g
 
 describe.skip('php.filesystem.file_get_contents.js', function () {
   it('should pass example 1', function (done) {
-    var buf = file_get_contents('http://google.com');
+    var buf = file_get_contents('http://google.com')
     buf.indexOf('Google') !== -1
     var expected = true
-var buf = file_get_contents('http://google.com');
+var buf = file_get_contents('http://google.com')
     var result = buf.indexOf('Google') !== -1
     expect(result).to.deep.equal(expected)
     done()

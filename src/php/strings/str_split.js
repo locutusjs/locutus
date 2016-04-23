@@ -6,7 +6,7 @@ module.exports = function str_split (string, split_length) {
   //  revised by: Theriault
   //  revised by: Rafał Kukawski (http://blog.kukawski.pl/)
   //    input by: Bjorn Roesbeke (http://www.bjornroesbeke.be/)
-  //   example 1: str_split('Hello Friend', 3);
+  //   example 1: str_split('Hello Friend', 3)
   //   returns 1: ['Hel', 'lo ', 'Fri', 'end']
 
   if (split_length === null) {

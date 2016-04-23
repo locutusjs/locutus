@@ -9,9 +9,9 @@ var strcasecmp = require('/Users/kvz/code/phpjs/src/php/strings/strcasecmp.js')
 
 describe('php.strings.strcasecmp.js', function () {
   it('should pass example 1', function (done) {
-    strcasecmp('Hello', 'hello');
+    strcasecmp('Hello', 'hello')
     var expected = 0
-    var result = strcasecmp('Hello', 'hello');
+    var result = strcasecmp('Hello', 'hello')
     expect(result).to.deep.equal(expected)
     done()
   })

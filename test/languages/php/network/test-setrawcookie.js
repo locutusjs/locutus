@@ -9,9 +9,9 @@ var setrawcookie = require('/Users/kvz/code/phpjs/src/php/network/setrawcookie.j
 
 describe('php.network.setrawcookie.js', function () {
   it('should pass example 1', function (done) {
-    setrawcookie('author_name', 'Kevin van Zonneveld');
+    setrawcookie('author_name', 'Kevin van Zonneveld')
     var expected = true
-    var result = setrawcookie('author_name', 'Kevin van Zonneveld');
+    var result = setrawcookie('author_name', 'Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })

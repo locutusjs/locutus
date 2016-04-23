@@ -9,9 +9,9 @@ var i18n_loc_set_default = require('/Users/kvz/code/phpjs/src/php/i18n/i18n_loc_
 
 describe('php.i18n.i18n_loc_set_default.js', function () {
   it('should pass example 1', function (done) {
-    i18n_loc_set_default('pt_PT');
+    i18n_loc_set_default('pt_PT')
     var expected = true
-    var result = i18n_loc_set_default('pt_PT');
+    var result = i18n_loc_set_default('pt_PT')
     expect(result).to.deep.equal(expected)
     done()
   })

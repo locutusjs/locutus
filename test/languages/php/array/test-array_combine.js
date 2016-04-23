@@ -9,9 +9,9 @@ var array_combine = require('/Users/kvz/code/phpjs/src/php/array/array_combine.j
 
 describe('php.array.array_combine.js', function () {
   it('should pass example 1', function (done) {
-    array_combine([0,1,2], ['kevin','van','zonneveld']);
+    array_combine([0,1,2], ['kevin','van','zonneveld'])
     var expected = {0: 'kevin', 1: 'van', 2: 'zonneveld'}
-    var result = array_combine([0,1,2], ['kevin','van','zonneveld']);
+    var result = array_combine([0,1,2], ['kevin','van','zonneveld'])
     expect(result).to.deep.equal(expected)
     done()
   })

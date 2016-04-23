@@ -4,7 +4,7 @@ module.exports = function json_decode (str_json) {
   // reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //      improved by: T.J. Leahy
   //      improved by: Michael White
-  //        example 1: json_decode('[ 1 ]');
+  //        example 1: json_decode('[ 1 ]')
   //        returns 1: [1]
 
   /*

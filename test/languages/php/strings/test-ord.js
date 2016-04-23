@@ -9,9 +9,9 @@ var ord = require('/Users/kvz/code/phpjs/src/php/strings/ord.js')
 
 describe('php.strings.ord.js', function () {
   it('should pass example 1', function (done) {
-    ord('K');
+    ord('K')
     var expected = 75
-    var result = ord('K');
+    var result = ord('K')
     expect(result).to.deep.equal(expected)
     done()
   })
