@@ -11,8 +11,11 @@ module.exports = function capwords (str) {
   //   example 2: capwords('HELLO WORLD')
   //   returns 2: 'HELLO WORLD'
 
-  return (str + '')
-    .replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function ($1) {
-      return $1.toUpperCase()
-    })
+  var pattern = /^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g
+  str = (str + '')
+  str = str.replace(pattern, function ($1) {
+    return $1.toUpperCase()
+  })
+
+  return str
 }

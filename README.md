@@ -8,7 +8,7 @@
 [![Development Dependency Status](https://david-dm.org/kvz/locutus/dev-status.svg?theme=shields.io)](https://david-dm.org/kvz/locutus#info=devDependencies)
 <!-- /badges -->
 
-Locutus assimilaties other languages' standard libraries to JavaScript for fun and educational purposes
+Locutus assimilates other languages' standard libraries to JavaScript for fun and educational purposes
 
 More info at: http://locutusjs.io/about
 
@@ -61,8 +61,8 @@ Our website is [built with Jekyll](/blog/2016/04/02/jekyll/).
 
 Here's the flow that takes written functions to the website:
 
- - `npm run website:inject` runs `src/_util/locutus-util.js`'s `injectweb` method
- - `injectweb` iterates over `./functions` and uses `src/_util/locutus-util.js` to parse them, most significantly: the header comments that declare authors, tests, and dependencies
+ - `npm run website:inject` runs `src/_util/util.js`'s `injectweb` method
+ - `injectweb` iterates over `./functions` and uses `src/_util/util.js` to parse them, most significantly: the header comments that declare authors, tests, and dependencies
  - `injectweb` then writes each function to `website/_functions`. This is a [Jekyll Collection](https://jekyllrb.com/docs/collections/). The code is written as the content, and all the other properties are added as [YAML front matter](https://jekyllrb.com/docs/frontmatter/)
  - Jekyll uses `website/_layouts/function.html` as the layout template for the function collection, this determines how all the properties are rendered.
  
@@ -76,16 +76,19 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 
 - [ ] ES6
 - [ ] Move functions that overly rely on ini & locales & ajax file operations to \_legacy
-- [ ] Make eslint standard compliant
 - [ ] Auto-deploys via Travis CI
 - [ ] Maybe move `module.exports = acos` to bottom line, then function signature can stay BC
 - [ ] Adopt better global detection, use $locutus.golang.<specifics>
 - [ ] Port a few more tricky/interdepending Ruby functions
 - [ ] Port a few more tricky/interdepending Python functions
 - [ ] Port a few more tricky/interdepending Go functions
-- [ ] Port a few more tricky/interdepending Rust functions
 - [ ] Parse requires with ast like browserify. Then we can add dependencies back to website
-- [ ] Rework injectweb after structural changes in util.js
+- [ ] Add eslint warnings to website function
+- [ ] Add more 'social' buttons to website (twitter, github)
+- [ ] Instead of `index.js` (and its `Index.js` conflicts) add e.g. `Math.js` indexes
+- [-] Port a few more tricky/interdepending Rust functions
+- [-] Make eslint standard compliant
+- [x] Rework injectweb after structural changes in util.js
 - [x] Remove `;` from examples
 - [x] Generate mocha language tests
 - [x] Use require for dependencies

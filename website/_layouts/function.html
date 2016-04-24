@@ -2,7 +2,14 @@
 layout: page
 ---
 
-{% assign language = site.languages[page.language] %}
+{% assign language = "notfound" %}
+
+{% for lang in site.languages %}
+  {% if lang.name == page.language %}
+    {% assign language = lang %}
+    {% break %}
+  {% endif %}
+{% endfor %}
 
 <p>
   Here’s what a JavaScript equivalent for
@@ -24,22 +31,21 @@ layout: page
 <p>
   NPM is the recommended installation method. It pairs nicely with a CommonJS
   module bundler such as
-  <a href="http://webpack.github.io/" target="_blank" rel="external">webpack</a>,  <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a> or <a href="http://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+  <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>,
+  <a href="http://webpack.github.io/" target="_blank" rel="external">webpack</a> or
+  <a href="http://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
 </p>
 
 {% highlight bash %}
-npm install --save locutus
+npm install --save --save-exact locutus
 {% endhighlight %}
 
 {% highlight javascript %}
-{% if page.language == "golang" || page.language == "ruby" %}
+var {{page.function}} = require('locutus/{{page.language}}/{{page.category}}/{{page.function}}')
+// Use `{{page.function}}` here
+// Alternatively you could require `{{page.category}}` like so:
 var {{page.category}} = require('locutus/{{page.language}}/{{page.category}}')
-// {{page.category}}.{{page.function}}()
-{% else %}
-var {{page.function |slugify| replace: '-', '_'}} = require('locutus/{{page.language}}/{{page.category}}/{{page.function}}')
-{{page.examples[0]}}
-{% endif %}
-
+// Use `{{page.category}}.{{page.function}}` here
 {% endhighlight %}
 
 {% if page.language == "php" && page.category == "array" %}
