@@ -2371,7 +2371,8 @@ aside.sidebar section.about {
     margin-bottom: 2em
 }
 
-aside.sidebar img {
+aside.sidebar img.roundedimage,
+aside.sidebar section.roundedimages img {
     -webkit-border-radius: 0.3em;
     -moz-border-radius: 0.3em;
     -ms-border-radius: 0.3em;
