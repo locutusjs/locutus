@@ -50,13 +50,7 @@ npm run test
 Single out one function: `natsort`
 
 ```bash
-node src/_util/cli.js --debug --name natsort
-```
-
-Single out one language: `golang`
-
-```bash
-node src/_util/cli.js --debug --language golang
+DEBUG=locutus:* mocha test/languages/**/*.js --grep natsort
 ```
 
 ## Website 
@@ -86,13 +80,13 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 - [ ] Auto-deploys via Travis CI
 - [ ] Maybe move `module.exports = acos` to bottom line, then function signature can stay BC
 - [ ] Adopt better global detection, use $locutus.golang.<specifics>
-- [ ] Remove `;` from examples
 - [ ] Port a few more tricky/interdepending Ruby functions
 - [ ] Port a few more tricky/interdepending Python functions
 - [ ] Port a few more tricky/interdepending Go functions
 - [ ] Port a few more tricky/interdepending Rust functions
 - [ ] Parse requires with ast like browserify. Then we can add dependencies back to website
 - [ ] Rework injectweb after structural changes in util.js
+- [x] Remove `;` from examples
 - [x] Generate mocha language tests
 - [x] Use require for dependencies
 - [x] In util.opener: First `*` should point to the requesting/current language

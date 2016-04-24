@@ -4,18 +4,15 @@ examples:
   - >-
     strptime('20091112222135', '%Y%m%d%H%M%S'); // Return value will depend on
     date and locale
-
-    strptime('2009extra', '%Y');
+  - 'strptime(''2009extra'', ''%Y'')'
 returns:
   - >-
     {tm_sec: 35, tm_min: 21, tm_hour: 22, tm_mday: 12, tm_mon: 10, tm_year: 109,
     tm_wday: 4, tm_yday: 315, unparsed: ''}
-
+  - >-
     {tm_sec:0, tm_min:0, tm_hour:0, tm_mday:0, tm_mon:0, tm_year:109, tm_wday:3,
     tm_yday: -1, unparsed: 'extra'}
-dependencies:
-  - setlocale
-  - array_map
+dependencies: []
 authors:
   original by:
     - 'Brett Zamir (http://brett-zamir.me)'
@@ -36,16 +33,16 @@ module.exports = function strptime (dateStr, format) {
   //  discuss at: http://locutusjs.io/php/strptime/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: strftime
-  //  depends on: setlocale
-  //  depends on: array_map
   //        test: skip-all
   //   example 1: strptime('20091112222135', '%Y%m%d%H%M%S'); // Return value will depend on date and locale
-  //   example 1: strptime('2009extra', '%Y');
+  //   example 2: strptime('2009extra', '%Y')
   //   returns 1: {tm_sec: 35, tm_min: 21, tm_hour: 22, tm_mday: 12, tm_mon: 10, tm_year: 109, tm_wday: 4, tm_yday: 315, unparsed: ''}
-  //   returns 1: {tm_sec:0, tm_min:0, tm_hour:0, tm_mday:0, tm_mon:0, tm_year:109, tm_wday:3, tm_yday: -1, unparsed: 'extra'}
+  //   returns 2: {tm_sec:0, tm_min:0, tm_hour:0, tm_mday:0, tm_mon:0, tm_year:109, tm_wday:3, tm_yday: -1, unparsed: 'extra'}
+
+  var setlocale = require('../strings/setlocale')
+  var array_map = require('../array/array_map')
 
   // tm_isdst is in other docs; why not PHP?
-
   // Needs more thorough testing and examples
 
   var retObj = {
@@ -126,12 +123,12 @@ Oy
   // END STATIC
 
   // BEGIN REDUNDANT
-  this.php_js = this.php_js || {}
+  this.locutus = this.locutus || {}
   // ensure setup of localization variables takes place
-  this.setlocale('LC_ALL', 0)
+  setlocale('LC_ALL', 0)
   // END REDUNDANT
 
-  var locutus = this.php_js
+  var locutus = this.locutus
   var locale = locutus.localeCategories.LC_TIME
   var locales = locutus.locales
   var lc_time = locales[locale].LC_TIME
@@ -153,13 +150,13 @@ Oy
     // Even if the callback returns null after assigning to the return object, the object won't be saved anyways
     var testNull = match ? cb.apply(null, match) : null
     if (testNull === null) {
-      throw 'No match in string'
+      throw new Error('No match in string')
     }
     return j + match[0].length
   }
 
   var _addLocalized = function (j, formatChar, category) {
-    return _addNext(j, that.array_map(
+    return _addNext(j, array_map(
         _preg_quote, lc_time[formatChar])
       .join('|'), // Could make each parenthesized instead and pass index to callback
 
@@ -374,7 +371,7 @@ Oy
           // Timezone; on my system, strftime gives PST, but strptime treats text as unparsed
             break
           default:
-            throw 'Unrecognized formatting character in strptime()'
+            throw new Error('Unrecognized formatting character in strptime()')
         }
       } catch (e) {
         if (e === 'No match in string') {
