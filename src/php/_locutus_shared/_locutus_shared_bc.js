@@ -1,9 +1,17 @@
 module.exports = function _locutus_shared_bc () {
+  //  discuss at: http://locutusjs.io/php/_locutus_shared/_locutus_shared_bc
+  // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  //   example 1: _locutus_shared_bc()
+  //   returns 1: {}
+  //        test: skip-all
+
   // From: http://locutusjs.io/php
-  // +   original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
-  // +   improved by: Brett Zamir (http://brett-zamir.me)
-  // *     example 1: _locutus_shared_bc();
-  // *     returns 1: {}
+  // +   original by:
+  // +
+  // *
+  // *
+  // *
   /**
    * BC Math Library for Javascript
    * Ported from the PHP5 bcmath extension source code,
