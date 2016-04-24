@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "async": "2.0.0-rc.3",
+    "browserify": "13.0.0",
     "budo": "8.2.1",
     "chai": "3.5.0",
     "cross-env": "1.0.7",
@@ -48,7 +49,8 @@
   },
   "readmeFilename": "README.md",
   "scripts": {
-    "browser:watch": "budo test/browser/app.js --live",
+    "browser:bundle": "browserify test/browser/app.js --outfile test/browser/bundle.js",
+    "browser:watch": "budo test/browser/app.js --live --serve test/browser/bundle.js",
     "build:indices": "./scripts/reindex.sh src",
     "build:tests": "rimraf test/languages && node src/_util/cli.js writetests",
     "build": "npm-run-all build:*",
