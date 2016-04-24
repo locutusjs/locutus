@@ -108,6 +108,8 @@ var {{page.category}} = require('locutus/{{page.language}}/{{page.category}}')
   {% endfor %}
 {% endif %}
 
+{% include add_more.html language=language.name inspiration_urls=language.inspiration_urls %}
+
 <p>
   <a class="basic-alignment left themebutton" href="/{{page.language}}/#{{page.category}}">&laquo; More {{language.human}} {{page.category}} functions</a>
 </p>

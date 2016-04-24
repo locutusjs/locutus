@@ -6,11 +6,4 @@ layout: page
 
 {% include render_all.html with_functions=true only_languages=page.name %}
 
-We could still assimilate many more functions in this language.
-Get inspiration
-<a href="{{page.inspiration_url}}">here</a>
-and click "New file"
-<a href="https://github.com/kvz/locutus/tree/master/src/{{page.name}}/">on GitHub</a>
-to add one. Please do check out our
-<a href="https://github.com/kvz/locutus/CONTRIBUTING.md">contributing guidelines</a>
-though.
+{% include add_more.html language=page.name inspiration_urls=page.inspiration_urls %}

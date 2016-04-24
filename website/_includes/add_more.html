@@ -1,0 +1,13 @@
+{% if include.language != 'php' %}
+  <blockquote>
+    We could still assimilate many more functions in this language.
+    Get inspiration
+    {{include.inspiration_urls|array_to_sentence_string }}.
+    <br />
+    Afterwards you can just click "New file"
+    <a href="https://github.com/kvz/locutus/tree/master/src/{{include.name}}/">on GitHub</a>
+    to fork, add it, and submit a PR. Please do check out our
+    <a href="https://github.com/kvz/locutus/CONTRIBUTING.md">contributing guidelines</a>
+    though.
+  </blockquote>
+{% endif %}
