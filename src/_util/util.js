@@ -12,7 +12,7 @@ function Util (config) {
   for (var k in config) {
     this[k] = config[k]
   }
-  this.global = {
+  this.globals = {
     'XMLHttpRequest': '{}',
     'window': '{' +
       'window: {},' +

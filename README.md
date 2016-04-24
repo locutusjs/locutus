@@ -50,7 +50,7 @@ npm run test
 Single out one function: `natsort`
 
 ```bash
-DEBUG=locutus:* mocha test/languages/**/*.js --grep natsort
+TEST_GREP=natsort npm run test:languages
 ```
 
 ## Website 
