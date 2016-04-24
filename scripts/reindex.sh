@@ -37,8 +37,9 @@ pushd "${target}" > /dev/null
       modEntry="Index"
     fi
 
-    echo -n "$(pwd)/index.js: "
-    echo "module.exports['${modEntry}'] = require('./${fileEntry}')" |tee -a index.js
+    editFile="$(pwd)/index.js"
+    echo -n "${editFile}: "
+    echo "module.exports['${modEntry}'] = require('./${fileEntry}')" |tee -a "${editFile}"
     if [ -d "${fileEntry}" ]; then
       "${__file}" "${fileEntry}"
     fi
