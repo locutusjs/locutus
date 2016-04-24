@@ -24,8 +24,7 @@ module.exports = function echo () {
   //   example 1: echo('<div><p>abc</p><p>abc</p></div>')
   //   returns 1: undefined
 
-  var isNode = typeof module !== 'undefined' && module.exports && typeof global !== 'undefined' && {}.toString.call(global) === '[object global]'
-  if (isNode) {
+  if (typeof window === 'undefined') { /* web page */
     var args = Array.prototype.slice.call(arguments)
     return console.log(args.join(' '))
   }

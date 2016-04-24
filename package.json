@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "async": "2.0.0-rc.3",
+    "budo": "8.2.1",
     "chai": "3.5.0",
     "cross-env": "1.0.7",
     "depurar": "0.2.0",
@@ -24,7 +25,6 @@
     "mkdirp": "0.5.1",
     "mocha": "2.4.5",
     "npm-run-all": "1.8.0",
-    "send": "0.13.2",
     "rimraf": "2.5.2"
   },
   "keywords": [
@@ -63,6 +63,7 @@
     "test:module": "node test/npm/npm.js",
     "test:utils": "mocha --reporter spec",
     "test": "npm-run-all test:*",
+    "test:browser": "budo test/browser/app.js --live",
     "website:deploy": "npm run website:inject && cd website && npm run build && npm run deploy",
     "website:inject": "rimraf website/_functions/* && node src/_util/cli.js injectweb",
     "website:install": "cd website && npm install",

@@ -1,3 +1,6 @@
+// Execute: test:module
+// To test this in a local terminal
+
 var effectiveness = 'futile'
 var location = '../../src'
 var locutus = require(location)
