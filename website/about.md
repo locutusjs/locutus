@@ -34,14 +34,16 @@ even though it has a perfectly good (and more performant) native JavaScript equi
 
 We're going the extra mile in writing wrappers around these to show newcomers by example how the behavior differs (or not) across languages.
 
-Initially we also had the idea that if enough parts of a language were ported, you might even be able to run entire programs written in other languages in JavaScript. While it was fun to try and we had some success in doing this for PHP, we let this goal go as it forced us to write many hacks, while we would never be able to get it to work perfectly, anyway.
+Initially we also had the idea that if enough parts of a language were ported, you might even be able to run entire programs written in other languages in JavaScript. While it was fun to try and we had some success in doing this for PHP, we let this goal go as it drove us to write many hacks, while we would never be able to get it to work well, anyway. Projects like [GopherJS](https://github.com/gopherjs/gopherjs) or [Emscripten](http://kripken.github.io/emscripten-site/) offer better routes to that end.
 
 ## What we're not
 
 Even though Locutus is porting standard libraries from other languages, 
 we don't see ourselves as drop in standard library for JavaScript. 
 
-We're too hefty, too diffuse, too hobby. If you're interested in something like that, we recommend taking a look at [lodash](https://lodash.com/), which in comparison is more lightweight, focussed, and better tested too. That said, there are good bits to be found in this repo already, and Locutus makes it easy to require and bundle just a single function that you deem worthy of your project.
+If you're interested in something like that, we recommend taking a look at [lodash](https://lodash.com/), which in comparison is more lightweight, focussed, mature. 
+
+That being said, there are good bits to be found in this repo already, and Locutus makes it easy to require and bundle just a single function that you do deem worthy of entering your project.
 
 ## What we're not porting
 
