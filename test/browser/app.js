@@ -1,4 +1,4 @@
-// Execute: npm run test:browser
+// Execute: npm run browser:watch
 // To test this in a local webbrowser with an empty index.html
 var sprintf = require('../../src/php/strings/sprintf')
 var echo = require('../../src/php/strings/echo')
