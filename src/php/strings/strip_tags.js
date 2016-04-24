@@ -10,7 +10,7 @@ module.exports = function strip_tags (input, allowed) {
   //    input by: Bobby Drake
   //    input by: Evertjan Garretsen
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // bugfixed by: Onno Marsman
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Eric Nagel

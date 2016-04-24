@@ -1,4 +1,5 @@
-{% for language in site.languages | sort: 'order' %}
+{% assign sortedLanguages = site.languages | sort: 'order' %}
+{% for language in sortedLanguages %}
   {% if include.only_languages == "*" or include.only_languages == language.name %}
     <h2 id="{{language.name}}">{{language.human}} functions in JS</h2>
 

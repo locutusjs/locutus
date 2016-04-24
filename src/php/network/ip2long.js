@@ -3,7 +3,7 @@ module.exports = function ip2long (IP) {
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Victor
   //  revised by: fearphage (http://http/my.opera.com/fearphage/)
-  //  revised by: Theriault
+  //  revised by: Theriault (https://github.com/Theriault)
   //   example 1: ip2long('192.0.34.166')
   //   returns 1: 3221234342
   //   example 2: ip2long('0.0xABCDEF')

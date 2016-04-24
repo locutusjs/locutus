@@ -5,7 +5,7 @@ module.exports = function str_replace (search, replace, subject, count) {
   // improved by: Philip Peterson
   // improved by: Simon Willison (http://simonwillison.net)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // improved by: Onno Marsman
+  // improved by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //  revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // bugfixed by: Anton Ongson
@@ -13,7 +13,7 @@ module.exports = function str_replace (search, replace, subject, count) {
   // bugfixed by: Oleg Eremeev
   // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca)
   // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca)
-  //    input by: Onno Marsman
+  //    input by: Onno Marsman (https://twitter.com/onnomarsman)
   //    input by: Brett Zamir (http://brett-zamir.me)
   //    input by: Oleg Eremeev
   //        note: The count parameter must be passed as a string in order

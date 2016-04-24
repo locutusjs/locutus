@@ -5,7 +5,7 @@ module.exports = function stripslashes (str) {
   //      improved by: marrtins
   //      improved by: rezna
   //         fixed by: Mick@el
-  //      bugfixed by: Onno Marsman
+  //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
   //         input by: Rick Waldron
   //         input by: Brant Messenger (http://www.brantmessenger.com/)

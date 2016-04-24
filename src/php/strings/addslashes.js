@@ -4,7 +4,7 @@ module.exports = function addslashes (str) {
   // improved by: Ates Goral (http://magnetiq.com)
   // improved by: marrtins
   // improved by: Nate
-  // improved by: Onno Marsman
+  // improved by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Oskar Larsson Högfeldt (http://oskar-lh.name/)
   //    input by: Denny Wardhana

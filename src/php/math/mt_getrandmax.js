@@ -1,6 +1,6 @@
 module.exports = function mt_getrandmax () {
   //  discuss at: http://locutusjs.io/php/mt_getrandmax/
-  // original by: Onno Marsman
+  // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: mt_getrandmax()
   //   returns 1: 2147483647
 

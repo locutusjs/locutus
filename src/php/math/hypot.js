@@ -1,6 +1,6 @@
 module.exports = function hypot (x, y) {
   //  discuss at: http://locutusjs.io/php/hypot/
-  // original by: Onno Marsman
+  // original by: Onno Marsman (https://twitter.com/onnomarsman)
   // imprived by: Robert Eisele (http://www.xarg.org/)
   //   example 1: hypot(3, 4)
   //   returns 1: 5

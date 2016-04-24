@@ -42,10 +42,11 @@ npm install --save --save-exact locutus
 
 {% highlight javascript %}
 var {{page.function}} = require('locutus/{{page.language}}/{{page.category}}/{{page.function}}')
-// Use `{{page.function}}` here
+// and you can use `{{page.function}}` here
+
 // Alternatively you could require `{{page.category}}` like so:
 var {{page.category}} = require('locutus/{{page.language}}/{{page.category}}')
-// Use `{{page.category}}.{{page.function}}` here
+// and you can use `{{page.category}}.{{page.function}}` here
 {% endhighlight %}
 
 {% if page.language == "php" && page.category == "array" %}

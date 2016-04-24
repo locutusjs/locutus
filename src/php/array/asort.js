@@ -3,7 +3,7 @@ module.exports = function asort (inputArr, sort_flags) {
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Theriault
+  // improved by: Theriault (https://github.com/Theriault)
   //    input by: paulo kuong
   // bugfixed by: Adam Wallner (http://web2.bitbaro.hu/)
   //        note: SORT_STRING (as well as natsort and natcasesort) might also be

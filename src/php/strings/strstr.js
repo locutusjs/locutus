@@ -1,7 +1,7 @@
 module.exports = function strstr (haystack, needle, bool) {
   //  discuss at: http://locutusjs.io/php/strstr/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // bugfixed by: Onno Marsman
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //   example 1: strstr('Kevin van Zonneveld', 'van')
   //   returns 1: 'van Zonneveld'

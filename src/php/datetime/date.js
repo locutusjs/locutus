@@ -9,15 +9,15 @@ module.exports = function date (format, timestamp) {
   // improved by: Tim Wiel
   // improved by: Bryan Elliott
   // improved by: David Randall
-  // improved by: Theriault
-  // improved by: Theriault
+  // improved by: Theriault (https://github.com/Theriault)
+  // improved by: Theriault (https://github.com/Theriault)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Theriault
+  // improved by: Theriault (https://github.com/Theriault)
   // improved by: Thomas Beaucourt (http://www.webapp.fr)
   // improved by: JT
-  // improved by: Theriault
+  // improved by: Theriault (https://github.com/Theriault)
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)
-  // improved by: Theriault
+  // improved by: Theriault (https://github.com/Theriault)
   //    input by: Brett Zamir (http://brett-zamir.me)
   //    input by: majak
   //    input by: Alex

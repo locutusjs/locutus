@@ -2,7 +2,7 @@ module.exports = function uasort (inputArr, sorter) {
   //  discuss at: http://locutusjs.io/php/uasort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Theriault
+  // improved by: Theriault (https://github.com/Theriault)
   //        note: This function deviates from PHP in returning a copy of the array instead
   //        note: of acting by reference and returning true; this was necessary because
   //        note: IE does not allow deleting and re-adding of properties without caching

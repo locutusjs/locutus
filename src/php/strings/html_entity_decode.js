@@ -8,7 +8,7 @@ module.exports = function html_entity_decode (string, quote_style) {
   // improved by: marc andreu
   //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // bugfixed by: Onno Marsman
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Fox
   //   example 1: html_entity_decode('Kevin &amp; van Zonneveld')

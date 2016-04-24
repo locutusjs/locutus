@@ -1,11 +1,11 @@
 module.exports = function empty (mixed_var) {
   //  discuss at: http://locutusjs.io/php/empty/
   // original by: Philippe Baumann
-  //    input by: Onno Marsman
+  //    input by: Onno Marsman (https://twitter.com/onnomarsman)
   //    input by: LH
   //    input by: Stoyan Kyosev (http://www.svest.org/)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // improved by: Onno Marsman
+  // improved by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Francesco
   // improved by: Marc Jansen
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)

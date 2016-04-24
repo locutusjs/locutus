@@ -2,8 +2,8 @@ module.exports = function quoted_printable_decode (str) {
   //       discuss at: http://locutusjs.io/php/quoted_printable_decode/
   //      original by: Ole Vrijenhoek
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //      bugfixed by: Theriault
-  // reimplemented by: Theriault
+  //      bugfixed by: Theriault (https://github.com/Theriault)
+  // reimplemented by: Theriault (https://github.com/Theriault)
   //      improved by: Brett Zamir (http://brett-zamir.me)
   //        example 1: quoted_printable_decode('a=3Db=3Dc')
   //        returns 1: 'a=b=c'

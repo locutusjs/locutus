@@ -1,6 +1,6 @@
 module.exports = function is_infinite (val) {
   //  discuss at: http://locutusjs.io/php/is_infinite/
-  // original by: Onno Marsman
+  // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: is_infinite(Infinity)
   //   returns 1: true
   //   example 2: is_infinite(-Infinity)

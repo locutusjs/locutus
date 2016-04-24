@@ -3,7 +3,7 @@ module.exports = function gettimeofday (return_float) {
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: Josh Fraser (http://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)
   //    parts by: Breaking Par Consulting Inc (http://www.breakingpar.com/bkp/home.nsf/0/87256B280015193F87256CFB006C45F7)
-  //  revised by: Theriault
+  //  revised by: Theriault (https://github.com/Theriault)
   //   example 1: gettimeofday()
   //   returns 1: {sec: 12, usec: 153000, minuteswest: -480, dsttime: 0}
   //   example 2: gettimeofday(true)

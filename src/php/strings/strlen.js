@@ -4,7 +4,7 @@ module.exports = function strlen (string) {
   // improved by: Sakimori
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Kirk Strobeck
-  // bugfixed by: Onno Marsman
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //  revised by: Brett Zamir (http://brett-zamir.me)
   //        note: May look like overkill, but in order to be truly faithful to handling all Unicode
   //        note: characters and to this function in PHP which does not count the number of bytes

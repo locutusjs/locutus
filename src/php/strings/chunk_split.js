@@ -3,7 +3,7 @@ module.exports = function chunk_split (body, chunklen, end) {
   // original by: Paulo Freitas
   //    input by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // improved by: Theriault
+  // improved by: Theriault (https://github.com/Theriault)
   //   example 1: chunk_split('Hello world!', 1, '*')
   //   returns 1: 'H*e*l*l*o* *w*o*r*l*d*!*'
   //   example 2: chunk_split('Hello world!', 10, '*')

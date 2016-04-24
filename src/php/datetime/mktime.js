@@ -14,7 +14,7 @@ module.exports = function mktime () {
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Marc Palau
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //  revised by: Theriault
+  //  revised by: Theriault (https://github.com/Theriault)
   //        note: The return values of the following examples are
   //        note: received only if your system's timezone is UTC.
   //   example 1: mktime(14, 10, 2, 2, 1, 2008)

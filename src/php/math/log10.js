@@ -1,7 +1,7 @@
 module.exports = function log10 (arg) {
   //  discuss at: http://locutusjs.io/php/log10/
   // original by: Philip Peterson
-  // improved by: Onno Marsman
+  // improved by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Tod Gentille
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: log10(10)

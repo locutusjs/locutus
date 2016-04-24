@@ -1,7 +1,7 @@
 module.exports = function levenshtein (s1, s2, cost_ins, cost_rep, cost_del) {
   //       discuss at: http://locutusjs.io/php/levenshtein/
   //      original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
-  //      bugfixed by: Onno Marsman
+  //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //       revised by: Andrea Giammarchi (http://webreflection.blogspot.com)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
   // reimplemented by: Alexander M Beedie

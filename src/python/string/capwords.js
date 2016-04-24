@@ -4,7 +4,7 @@ module.exports = function capwords (str) {
   // improved by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Robin
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // bugfixed by: Onno Marsman
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //    input by: James (http://www.james-bell.co.uk/)
   //   example 1: capwords('kevin van  zonneveld')
   //   returns 1: 'Kevin Van  Zonneveld'

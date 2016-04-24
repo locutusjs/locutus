@@ -3,7 +3,7 @@ module.exports = function strnatcmp (f_string1, f_string2, f_version) {
   // original by: Martijn Wieringa
   // improved by: Michael White (http://getsprink.com)
   // improved by: Jack
-  // bugfixed by: Onno Marsman
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //        note: Added f_version argument against code guidelines, because it's so neat
   //   example 1: strnatcmp('Price 12.9', 'Price 12.15')
   //   returns 1: 1

@@ -1,7 +1,7 @@
 module.exports = function min () {
   //  discuss at: http://locutusjs.io/php/min/
-  // original by: Onno Marsman
-  //  revised by: Onno Marsman
+  // original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //  revised by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Jack
   //        note: Long code cause we're aiming for maximum PHP compatibility
   //   example 1: min(1, 3, 5, 6, 7)

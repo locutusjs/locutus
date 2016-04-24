@@ -2,7 +2,7 @@ module.exports = function checkdate (m, d, y) {
   //  discuss at: http://locutusjs.io/php/checkdate/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Pyerre
-  // improved by: Theriault
+  // improved by: Theriault (https://github.com/Theriault)
   //   example 1: checkdate(12, 31, 2000)
   //   returns 1: true
   //   example 2: checkdate(2, 29, 2001)

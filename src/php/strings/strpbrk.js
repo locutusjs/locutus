@@ -1,7 +1,7 @@
 module.exports = function strpbrk (haystack, char_list) {
   //  discuss at: http://locutusjs.io/php/strpbrk/
   // original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
-  // bugfixed by: Onno Marsman
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //  revised by: Christoph
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: strpbrk('This is a Simple text.', 'is')

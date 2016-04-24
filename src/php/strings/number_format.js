@@ -5,7 +5,7 @@ module.exports = function number_format (number, decimals, dec_point, thousands_
   // improved by: davook
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Theriault
+  // improved by: Theriault (https://github.com/Theriault)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Michael White (http://getsprink.com)
   // bugfixed by: Benjamin Lupton

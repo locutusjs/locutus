@@ -3,7 +3,7 @@ module.exports = function str_rot13 (str) {
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // improved by: Ates Goral (http://magnetiq.com)
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)
-  // bugfixed by: Onno Marsman
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: str_rot13('Kevin van Zonneveld')
   //   returns 1: 'Xriva ina Mbaariryq'
   //   example 2: str_rot13('Xriva ina Mbaariryq')

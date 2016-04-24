@@ -1,7 +1,7 @@
 module.exports = function strripos (haystack, needle, offset) {
   //  discuss at: http://locutusjs.io/php/strripos/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // bugfixed by: Onno Marsman
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //    input by: saulius
   //   example 1: strripos('Kevin van Zonneveld', 'E')

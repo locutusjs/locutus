@@ -6,7 +6,7 @@ module.exports = function utf8_decode (str_data) {
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Norman "zEh" Fuchs
   // bugfixed by: hitwork
-  // bugfixed by: Onno Marsman
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: kirilloid
   // bugfixed by: w35l3y (http://www.wesley.eti.br)

@@ -2,10 +2,10 @@ module.exports = function count_chars (str, mode) {
   //  discuss at: http://locutusjs.io/php/count_chars/
   // original by: Ates Goral (http://magnetiq.com)
   // improved by: Jack
-  // bugfixed by: Onno Marsman
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Brett Zamir (http://brett-zamir.me)
-  //  revised by: Theriault
+  //  revised by: Theriault (https://github.com/Theriault)
   //   example 1: count_chars("Hello World!", 3)
   //   returns 1: " !HWdelor"
   //   example 2: count_chars("Hello World!", 1)

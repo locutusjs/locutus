@@ -2,7 +2,7 @@ module.exports = function arsort (inputArr, sort_flags) {
   //  discuss at: http://locutusjs.io/php/arsort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Theriault
+  // improved by: Theriault (https://github.com/Theriault)
   //        note: SORT_STRING (as well as natsort and natcasesort) might also be
   //        note: integrated into all of these functions by adapting the code at
   //        note: http://sourcefrog.net/projects/natsort/natcompare.js

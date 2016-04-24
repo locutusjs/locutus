@@ -4,7 +4,7 @@ module.exports = function preg_quote (str, delimiter) {
   // improved by: Ates Goral (http://magnetiq.com)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: Onno Marsman
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: preg_quote("$40")
   //   returns 1: '\\$40'
   //   example 2: preg_quote("*RRRING* Hello?")

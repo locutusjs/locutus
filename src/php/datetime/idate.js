@@ -5,7 +5,7 @@ module.exports = function idate (format, timestamp) {
   // original by: gettimeofday
   //    input by: Alex
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Theriault
+  // improved by: Theriault (https://github.com/Theriault)
   //   example 1: idate('y', 1255633200)
   //   returns 1: 9
 

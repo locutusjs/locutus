@@ -1,7 +1,7 @@
 module.exports = function decoct (number) {
   //  discuss at: http://locutusjs.io/php/decoct/
   // original by: Enrique Gonzalez
-  // bugfixed by: Onno Marsman
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
   //    input by: pilus
   //   example 1: decoct(15)

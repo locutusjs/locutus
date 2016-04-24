@@ -6,7 +6,9 @@ $('section.authors').each(function () {
     var func = $(this).data('function')
     var author = $(this).text()
     var m = false
-    if ((m = author.match(/^\s*(.+)\s*\(([^\)]+)\)\s*$/))) {
+    if ((m = author.match(/Kevin van Zonneveld/))) {
+      return
+    } else if ((m = author.match(/^\s*(.+)\s*\(([^\)]+)\)\s*$/))) {
       author = '<a href="' + m[2] + '">' + m[1] + '</a>'
     } else if ((m = author.match(/^\s*(https?\:\/\/.+)\s*$/i))) {
       author = '<a href="' + m[1] + '">' + m[1].split('/')[2] + '</a>'
@@ -48,18 +50,14 @@ $('section.authors').each(function () {
     var author = authorList[i]
     position++
 
-    if (position === 10 || position === 5) {
-      buf += '<li style="margin-bottom:' + (position) + 'px;">'
-    } else {
-      buf += '<li>'
-    }
+    buf += '<li>'
 
     if (position < 11) {
-      buf += '<strong>'
+      // buf += '<strong>'
     }
     buf += author.author
     if (position < 11) {
-      buf += '</strong>'
+      // buf += '</strong>'
     }
 
     var contributionKeys = ['original by', 'improved by', 'bugfixed by', 'revised by', 'input by']

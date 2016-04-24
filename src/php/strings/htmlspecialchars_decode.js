@@ -3,7 +3,7 @@ module.exports = function htmlspecialchars_decode (string, quote_style) {
   //      original by: Mirek Slugen
   //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //      bugfixed by: Mateusz "loonquawl" Zalega
-  //      bugfixed by: Onno Marsman
+  //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
   //         input by: ReverseSyntax

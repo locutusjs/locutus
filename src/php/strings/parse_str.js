@@ -4,7 +4,7 @@ module.exports = function parse_str (str, array) {
   //      improved by: Michael White (http://getsprink.com)
   //      improved by: Jack
   //      improved by: Brett Zamir (http://brett-zamir.me)
-  //      bugfixed by: Onno Marsman
+  //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
   //      bugfixed by: stag019
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)

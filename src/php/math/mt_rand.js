@@ -1,6 +1,6 @@
 module.exports = function mt_rand (min, max) {
   //  discuss at: http://locutusjs.io/php/mt_rand/
-  // original by: Onno Marsman
+  // original by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //    input by: Kongo
   //   example 1: mt_rand(1, 1)

@@ -7,7 +7,7 @@ module.exports = function htmlentities (string, quote_style, charset, double_enc
   // improved by: Jack
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)
   // improved by: Dj (http://locutusjs.io/php/htmlentities:425#comment_134018)
-  // bugfixed by: Onno Marsman
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //    input by: Ratheous
   //        note: function is compatible with PHP 5.2 and older

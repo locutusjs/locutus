@@ -6,8 +6,8 @@ module.exports = function utf8_encode (argString) {
   // improved by: Jack
   // improved by: Yves Sucaet
   // improved by: kirilloid
-  // bugfixed by: Onno Marsman
-  // bugfixed by: Onno Marsman
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Ulrich
   // bugfixed by: Rafał Kukawski (http://blog.kukawski.pl)
   // bugfixed by: kirilloid

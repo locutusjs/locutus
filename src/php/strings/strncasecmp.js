@@ -2,7 +2,7 @@ module.exports = function strncasecmp (argStr1, argStr2, len) {
   //  discuss at: http://locutusjs.io/php/strncasecmp/
   // original by: Saulo Vallory
   //    input by: Nate
-  // bugfixed by: Onno Marsman
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //        note: Returns < 0 if str1 is less than str2 ; > 0 if str1 is greater than str2 , and 0 if they are equal.
   //   example 1: strncasecmp('Price 12.9', 'Price 12.15', 2)
   //   returns 1: 0

@@ -3,7 +3,7 @@ module.exports = function array_pop (inputArr) {
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Brett Zamir (http://brett-zamir.me)
-  //    input by: Theriault
+  //    input by: Theriault (https://github.com/Theriault)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //        note: While IE (and other browsers) support iterating an object's

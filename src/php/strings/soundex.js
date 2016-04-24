@@ -4,7 +4,7 @@ module.exports = function soundex (str) {
   // original by: Arnout Kazemier (http://www.3rd-Eden.com)
   // improved by: Jack
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // bugfixed by: Onno Marsman
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Brett Zamir (http://brett-zamir.me)
   //  revised by: Rafał Kukawski (http://blog.kukawski.pl)

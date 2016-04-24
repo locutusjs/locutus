@@ -1,8 +1,8 @@
 module.exports = function quoted_printable_encode (str) {
   //  discuss at: http://locutusjs.io/php/quoted_printable_encode/
-  // original by: Theriault
+  // original by: Theriault (https://github.com/Theriault)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Theriault
+  // improved by: Theriault (https://github.com/Theriault)
   //   example 1: quoted_printable_encode('a=b=c')
   //   returns 1: 'a=3Db=3Dc'
   //   example 2: quoted_printable_encode('abc   \r\n123   \r\n')

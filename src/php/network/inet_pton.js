@@ -1,6 +1,6 @@
 module.exports = function inet_pton (a) {
   //  discuss at: http://locutusjs.io/php/inet_pton/
-  // original by: Theriault
+  // original by: Theriault (https://github.com/Theriault)
   //   example 1: inet_pton('::')
   //   returns 1: '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0'
   //   example 2: inet_pton('127.0.0.1')
