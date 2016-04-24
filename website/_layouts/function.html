@@ -98,7 +98,7 @@ var {{page.category}} = require('locutus/{{page.language}}/{{page.category}}')
 
 {% if page.examples %}
   {% for example in page.examples %}
-    <h2>Example {{forloop.index | limit: 5}}</h2>
+    <h2>Example {{forloop.index | limit: 3}}</h2>
     {% assign return = page.returns[forloop.index0] %}
 
     {% highlight javascript %}{{ example }}{% endhighlight %}

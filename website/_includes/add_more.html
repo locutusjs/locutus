@@ -1,13 +1,15 @@
 {% if include.language != 'php' %}
-  <blockquote>
+  <h2>Welcoming your addition</h2>
+  <p>
     We could still assimilate many more functions in this language.
-    Get inspiration
+    Get inspiration from
     {{include.inspiration_urls|array_to_sentence_string }}.
-    <br />
-    Afterwards you can just click "New file"
-    <a href="https://github.com/kvz/locutus/tree/master/src/{{include.name}}/">on GitHub</a>
-    to fork, add it, and submit a PR. Please do check out our
+    Afterwards you can click "New file" in the appropriate folder
+    <a href="https://github.com/kvz/locutus/tree/master/src/{{include.name}}/">on GitHub</a>.
+    This will fork the project to your account, directly add the file to it, and send a
+    Pull Request to us. We will then review it. If it's useful to the project and in line with our
     <a href="https://github.com/kvz/locutus/CONTRIBUTING.md">contributing guidelines</a>
-    though.
-  </blockquote>
+    your work will become part of Locutus and you'll be credited in the <a href="/authors">authors</a>
+    section accordingly.
+  </p>
 {% endif %}

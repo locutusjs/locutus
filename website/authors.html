@@ -11,21 +11,12 @@ permalink: /authors/
   as well as a more finegrained achievement record below:
 </p>
 
-{% assign languages = site.functions| group_by site.functions, "language" %}
+{% for language in site.languages | sort: 'order' %}
+  <h2 id="{{language.name}}">{{language.human}} authors</h2>
 
-{% for language in languages %}
-  {% if language.name == "golang" %}
-    {% assign humanLang="Go" %}
-  {% elsif language.name == "php" %}
-    {% assign humanLang="PHP" %}
-  {% else %}
-    {% assign humanLang=language.name |capitalize %}
-  {% endif %}
-
-  <h2>{{humanLang}} authors</h2>
-
+  {% assign functions = site.functions |where: "language", language.name %}
   <section class="authors" data-language="{{language.name}}">
-    {% for function in language.items %}
+    {% for function in functions %}
       {% for types in function.authors %}
         {% for author in types[1] %}
           <entry data-function="{{function.function}}" data-type="{{types[0]}}">{{author |strip |markdownify}}</entry>
