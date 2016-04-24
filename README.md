@@ -8,7 +8,7 @@
 [![Development Dependency Status](https://david-dm.org/kvz/locutus/dev-status.svg?theme=shields.io)](https://david-dm.org/kvz/locutus#info=devDependencies)
 <!-- /badges -->
 
-Locutus assimilates other languages' standard libraries to JavaScript for fun and educational purposes
+Locutus assimilates functions from other languages' standard libraries to JavaScript for fun and educational purposes
 
 More info at: http://locutusjs.io/about
 
