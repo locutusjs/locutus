@@ -3,7 +3,7 @@ module.exports = function round (value, precision, mode) {
   // original by: Philip Peterson
   //  revised by: Onno Marsman (https://twitter.com/onnomarsman)
   //  revised by: T.Wild
-  //  revised by: Rafał Kukawski (http://blog.kukawski.pl/)
+  //  revised by: Rafał Kukawski (http://blog.kukawski.pl)
   //    input by: Greenseed
   //    input by: meo
   //    input by: William

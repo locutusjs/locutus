@@ -4,7 +4,7 @@ module.exports = function str_split (string, split_length) {
   // improved by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //  revised by: Theriault (https://github.com/Theriault)
-  //  revised by: Rafał Kukawski (http://blog.kukawski.pl/)
+  //  revised by: Rafał Kukawski (http://blog.kukawski.pl)
   //    input by: Bjorn Roesbeke (http://www.bjornroesbeke.be/)
   //   example 1: str_split('Hello Friend', 3)
   //   returns 1: ['Hel', 'lo ', 'Fri', 'end']

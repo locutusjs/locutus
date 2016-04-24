@@ -16,7 +16,7 @@ module.exports = function strip_tags (input, allowed) {
   // bugfixed by: Eric Nagel
   // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: Tomasz Wesolowski
-  //  revised by: Rafał Kukawski (http://blog.kukawski.pl/)
+  //  revised by: Rafał Kukawski (http://blog.kukawski.pl)
   //   example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i><b>')
   //   returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
   //   example 2: strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>', '<p>')
