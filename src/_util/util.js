@@ -37,25 +37,27 @@ function Util (config) {
 }
 
 Util.prototype.injectweb = function (args, cb) {
-  this._runFunctionOnAll(this._injectweb, cb)
+  this._runFunctionOnAll(this._injectwebOne, cb)
 }
 
 Util.prototype.reindex = function (args, cb) {
-  this._reindexBuffer = {}
-  this._runFunctionOnAll(this._reindex, function (err) {
+  var self = this
+  self._reindexBuffer = {}
+  self._runFunctionOnAll(self._reindexOne, function (err) {
     if (err) {
       return cb(err)
     }
-    for (var indexJs in this._reindexBuffer) {
-      var requires = this._reindexBuffer[indexJs]
+    for (var indexJs in self._reindexBuffer) {
+      var requires = self._reindexBuffer[indexJs]
       requires.sort()
+      debug('writing: ' + indexJs)
       fs.writeFileSync(indexJs, requires.join('\n'), 'utf-8')
     }
   })
 }
 
 Util.prototype.writetests = function (args, cb) {
-  this._runFunctionOnAll(this._writetest, cb)
+  this._runFunctionOnAll(this._writetestOne, cb)
 }
 
 Util.prototype._runFunctionOnAll = function (runFunc, cb) {
@@ -76,12 +78,10 @@ Util.prototype._runFunctionOnAll = function (runFunc, cb) {
 
   q.push(files)
 
-  q.drain = function () {
-    cb(null)
-  }
+  q.drain = cb
 }
 
-Util.prototype._reindex = function (params, cb) {
+Util.prototype._reindexOne = function (params, cb) {
   var fullpath = this.__src + '/' + params.filepath
   var dir = path.dirname(fullpath)
   var basefile = path.basename(fullpath, '.js')
@@ -97,10 +97,10 @@ Util.prototype._reindex = function (params, cb) {
   }
 
   this._reindexBuffer[indexJs].push('module.exports[\'' + module + '\'] = require(\'./' + basefile + '\')')
-  return cb()
+  return cb(null)
 }
 
-Util.prototype._injectweb = function (params, cb) {
+Util.prototype._injectwebOne = function (params, cb) {
   var authors = {}
   var keys = ['original by', 'improved by', 'bugfixed by', 'revised by', 'input by']
   keys.forEach(function (key) {
@@ -151,7 +151,7 @@ Util.prototype._injectweb = function (params, cb) {
   })
 }
 
-Util.prototype._writetest = function (params, cb) {
+Util.prototype._writetestOne = function (params, cb) {
   var self = this
 
   if (!params.func_name) {
