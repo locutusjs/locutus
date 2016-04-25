@@ -25,19 +25,21 @@ function cleanFile (filepath, cb) {
 }
 
 function splitFunctions (pkgNameSlug, pkgContent) {
-  var fncMatches = pkgContent.match(/^\s+([A-Z][a-zA-Z]+) = function([\s\S]+?)\$pkg\.[A-Z][a-zA-Z]+ = [A-Z][a-zA-Z]+$/mg)
+  var fncMatches = pkgContent.match(/^\s+([a-zA-Z]+) = function([\s\S]+?)\$pkg\.[a-zA-Z]+ = [a-zA-Z]+$/mg)
   if (!fncMatches) {
     return
   }
 
   fncMatches.forEach(function (fncBody) {
-    var parsed = fncBody.match(/^\s+([A-Z][a-zA-Z]+)/)
+    var parsed = fncBody.match(/^\s+([a-zA-Z]+)/)
     var fncName = parsed[1]
     var fncNameSlug = fncName.replace(/[^A-Za-z0-9]+/g, '-')
     var fncFile = 'split-' + pkgNameSlug + '-' + fncNameSlug + '.js'
     var fncContent = fncBody
 
     fncContent = stripIndent(fncBody)
+    fncContent = fncContent.replace(/([a-zA-Z]+) = function/, 'module.exports = function $1')
+    fncContent = fncContent.replace(/^\$pkg\..+$/mg, '').trim() + '\n'
 
     fs.writeFile(fncFile, fncContent, 'utf-8', function (err) {
       if (err) {

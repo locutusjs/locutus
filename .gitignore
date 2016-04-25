@@ -19,4 +19,5 @@ website/assets/build/
 website/vendor/cache/
 website/.jekyll-metadata
 scripts/main.js
+scripts/split-*.js
 scripts/main.js.map
