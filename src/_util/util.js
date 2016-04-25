@@ -51,7 +51,7 @@ Util.prototype.reindex = function (args, cb) {
       var requires = self._reindexBuffer[indexJs]
       requires.sort()
       debug('writing: ' + indexJs)
-      fs.writeFileSync(indexJs, requires.join('\n'), 'utf-8')
+      fs.writeFileSync(indexJs, requires.join('\n') + '\n', 'utf-8')
     }
   })
 }
