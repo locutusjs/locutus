@@ -56,7 +56,7 @@
     "build:tests": "rimraf test/languages && node src/_util/cli.js writetests",
     "build": "npm-run-all build:*",
     "deploy": "npm run website:deploy",
-    "fix": "js-beautify --replace src/**/*.js && eslint src test,!languages --fix",
+    "fix": "js-beautify --replace src/*.js  src/*/*.js src/*/*/*.js && eslint src test,!languages --fix",
     "lint": "eslint src",
     "playground:start": "cd test/browser && node server.js",
     "release:major": "env SEMANTIC=major npm run release",

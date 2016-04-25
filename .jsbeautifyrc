@@ -10,6 +10,7 @@
   "space_after_anon_function": true,
   "brace_style": "collapse",
   "keep_array_indentation": false,
+  "keep_comment_indentation": true,
   "keep_function_indentation": false,
   "space_before_conditional": true,
   "break_chained_methods": false,
