@@ -65,7 +65,7 @@
     <ul class="main-navigation">
       {% assign sortedLanguages = site.languages | sort: 'order' %}
       {% for language in sortedLanguages %}
-        <li><a href="/{{language.name}}/#{{language.name}}">{{language.human}}</a></li>
+        <li><a href="/{{language.name}}/">{{language.human}}</a></li>
       {% endfor %}
       <li><a href="/about/">About</a></li>
       <li><a href="/blog/archives/">Blog</a></li>

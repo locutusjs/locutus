@@ -51,7 +51,7 @@
   "scripts": {
     "browser:bundle": "browserify test/browser/app.js --outfile test/browser/bundle.js",
     "browser:watch": "budo test/browser/app.js --live --serve test/browser/bundle.js",
-    "build:indices": "./scripts/reindex.sh src",
+    "build:indices": "node src/_util/cli.js reindex",
     "build:tests": "rimraf test/languages && node src/_util/cli.js writetests",
     "build": "npm-run-all build:*",
     "deploy": "npm run website:deploy",
@@ -63,7 +63,7 @@
     "release:patch": "env SEMANTIC=patch npm run release",
     "release": "git commit CHANGELOG.md -m 'Update CHANGELOG.md' && npm version ${SEMANTIC:-patch} -m \"Release %s\" && git commit test/fixture/*.stdio -m 'Update version' && git push --tags && git push && npm publish",
     "test:languages": "npm run build:tests && cross-env DEBUG=locutus:* mocha --reporter spec test/languages/**/*.js --grep \"${TEST_GREP:-}\"",
-    "test:module": "node test/npm/npm.js",
+    "test:module": "node test/module/module.js",
     "test:utils": "mocha --reporter spec",
     "test": "npm-run-all test:*",
     "website:deploy": "npm run website:inject && cd website && npm run build && npm run deploy",

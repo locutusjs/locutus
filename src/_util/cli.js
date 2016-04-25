@@ -1,12 +1,7 @@
 #!/usr/bin/env node
-var path = require('path')
 var Util = require('./util')
 
-var util = new Util({
-  __src: path.dirname(__dirname),
-  __root: path.dirname(path.dirname(__dirname)),
-  __test: path.dirname(path.dirname(__dirname)) + '/test'
-})
+var util = new Util()
 
 util[process.argv[2]](process.argv, function (err) {
   if (err) {

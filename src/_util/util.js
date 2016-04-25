@@ -8,17 +8,21 @@ var debug = require('depurar')('locutus')
 var _ = require('lodash')
 
 function Util (config) {
+  this.__src = path.dirname(__dirname)
+  this.__root = path.dirname(path.dirname(__dirname))
+  this.__test = path.dirname(path.dirname(__dirname)) + '/test'
+
   this.globals = {
     'XMLHttpRequest': '{}',
     'window': '{' +
-    'window: {},' +
-    'document: {' +
-    'lastModified: 1388954399,' +
-    'getElementsByTagName: function(){return [];}' +
-    '},' +
-    'location: {' +
-    'href: ""' +
-    '}' +
+      'window: {},' +
+      'document: {' +
+        'lastModified: 1388954399,' +
+        'getElementsByTagName: function(){return [];}' +
+      '},' +
+      'location: {' +
+        'href: ""' +
+      '}' +
     '}'
   }
   this.pattern = [this.__src + '/**/**/*.js', '!**/index.js', '!**/_util/**']
@@ -28,10 +32,26 @@ function Util (config) {
   for (var k in config) {
     this[k] = config[k]
   }
+
+  this._reindexBuffer = {}
 }
 
 Util.prototype.injectweb = function (args, cb) {
   this._runFunctionOnAll(this._injectweb, cb)
+}
+
+Util.prototype.reindex = function (args, cb) {
+  this._reindexBuffer = {}
+  this._runFunctionOnAll(this._reindex, function (err) {
+    if (err) {
+      return cb(err)
+    }
+    for (var indexJs in this._reindexBuffer) {
+      var requires = this._reindexBuffer[indexJs]
+      requires.sort()
+      fs.writeFileSync(indexJs, requires.join('\n'), 'utf-8')
+    }
+  })
 }
 
 Util.prototype.writetests = function (args, cb) {
@@ -59,6 +79,25 @@ Util.prototype._runFunctionOnAll = function (runFunc, cb) {
   q.drain = function () {
     cb(null)
   }
+}
+
+Util.prototype._reindex = function (params, cb) {
+  var fullpath = this.__src + '/' + params.filepath
+  var dir = path.dirname(fullpath)
+  var basefile = path.basename(fullpath, '.js')
+  var indexJs = dir + '/index.js'
+
+  var module = basefile
+  if (basefile === 'Index2') {
+    module = 'Index'
+  }
+
+  if (!this._reindexBuffer[indexJs]) {
+    this._reindexBuffer[indexJs] = []
+  }
+
+  this._reindexBuffer[indexJs].push('module.exports[\'' + module + '\'] = require(\'./' + basefile + '\')')
+  return cb()
 }
 
 Util.prototype._injectweb = function (params, cb) {
@@ -278,12 +317,6 @@ Util.prototype._load = function (fileOrName, requesterParams, cb) {
     }
 
     var filepath = path.relative(self.__src, fullpath)
-    // console.log({
-    //   src: self.__src,
-    //   fullpath: fullpath,
-    //   filepath: filepath
-    // })
-
     self._parse(filepath, code, cb)
   })
 }
