@@ -188,7 +188,7 @@ Util.prototype._writetestOne = function (params, cb) {
 
   // Add globals
   for (var global in self.globals) {
-    codez.push(global + ' = ' + self.globals[global])
+    codez.push('var ' + global + ' = ' + self.globals[global])
   }
 
   // Set timezone for testing dates
@@ -212,7 +212,7 @@ Util.prototype._writetestOne = function (params, cb) {
 
   codez.push('')
 
-  codez.push('describe' + describeSkip + '(\'' + params.language + '.' + params.codepath + '\', function () {')
+  codez.push('describe' + describeSkip + '(\'src/' + params.filepath + '\', function () {')
 
   // Run each example
   for (var i in params.headKeys.example) {
