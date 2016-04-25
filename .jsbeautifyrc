@@ -15,8 +15,8 @@
   "break_chained_methods": true,
   "eval_code": false,
   "unescape_strings": false,
-  "wrap_line_length": 80,
+  "wrap_line_length": 120,
   "wrap_attributes": "auto",
   "wrap_attributes_indent_size": 2,
-  "end_with_newline": false
+  "end_with_newline": true
 }
