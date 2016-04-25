@@ -71,15 +71,15 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 
 ## Todo
 
-- [ ] ES6
 - [ ] Move functions that overly rely on ini & locales & ajax file operations to \_legacy
-- [ ] Auto-deploys via Travis CI
+- [ ] ES6
 - [ ] Adopt better global detection, use $locutus.golang.<specifics>
 - [ ] Port a few more tricky/interdepending Ruby functions
 - [ ] Port a few more tricky/interdepending Python functions
 - [ ] Port a few more tricky/interdepending Go functions
-- [ ] Parse requires with ast like browserify. Then we can add dependencies back to website
 - [ ] Add eslint warnings to website function
+- [ ] Parse requires with ast like browserify. Then we can add dependencies back to website
+- [ ] Auto-deploys via Travis CI
 - [-] Maybe move `module.exports = acos` to bottom line, then function signature can stay BC
 - [x] Add more 'social' buttons to website (twitter, github)
 - [-] Instead of `index.js` (and its `Index.js` conflicts) add e.g. `Math.js` indexes
