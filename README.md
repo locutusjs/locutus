@@ -3,9 +3,6 @@
 <!-- badges/ -->
 [![Join the chat at https://gitter.im/kvz/locutus](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kvz/locutus?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://secure.travis-ci.org/kvz/locutus.svg?branch=master)](http://travis-ci.org/kvz/locutus "Check this project's build status on TravisCI")
-[![NPM version](http://badge.fury.io/js/locutus.svg)](https://npmjs.org/package/locutus "View this project on NPM")
-[![Dependency Status](https://david-dm.org/kvz/locutus.svg?theme=shields.io)](https://david-dm.org/kvz/locutus)
-[![Development Dependency Status](https://david-dm.org/kvz/locutus/dev-status.svg?theme=shields.io)](https://david-dm.org/kvz/locutus#info=devDependencies)
 <!-- /badges -->
 
 Locutus assimilates functions from other languages' standard libraries to JavaScript for fun and educational purposes
@@ -15,7 +12,7 @@ More info at: http://locutusjs.io/about
 ## Install
 
 ```bash
-npm install --save locutus
+npm install --save --save-exact locutus
 ```
 
 ## Use

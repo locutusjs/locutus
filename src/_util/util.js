@@ -26,7 +26,7 @@ function Util (config) {
     '}'
   }
   this.pattern = [this.__src + '/**/**/*.js', '!**/index.js', '!**/_util/**']
-  this.concurrency = 1
+  this.concurrency = 8
 
   // Overwrite properties with config
   for (var k in config) {
