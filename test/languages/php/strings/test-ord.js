@@ -12,8 +12,8 @@ window = { // eslint-disable-line no-native-reassign
 }
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('/Users/kvz/code/phpjs/src/php/info/ini_set')
-var ini_get = require('/Users/kvz/code/phpjs/src/php/info/ini_get')
+var ini_set = require('/Users/kvz/code/phpjs/src/php/info/ini_set') // eslint-disable-line no-unused-vars
+var ini_get = require('/Users/kvz/code/phpjs/src/php/info/ini_get') // eslint-disable-line no-unused-vars
 var ord = require('/Users/kvz/code/phpjs/src/php/strings/ord.js')
 
 describe('php.strings.ord.js', function () {
