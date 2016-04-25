@@ -32,10 +32,10 @@ describe('src/php/var/var_export.js', function () {
     done()
   })
   it('should pass example 3', function (done) {
-    data = 'Kevin'
+    var data = 'Kevin'
     var_export(data, true)
     var expected = "'Kevin'"
-data = 'Kevin'
+var data = 'Kevin'
     var result = var_export(data, true)
     expect(result).to.deep.equal(expected)
     done()
