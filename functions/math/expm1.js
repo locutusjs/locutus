@@ -1,3 +1,7 @@
+Math.expm1 = Math.expm1 || function (x) {
+  return (x < 1e-5 && -1e-5 < x) ? x + 0.5 * x * x : Math.exp(x) - 1
+}
+
 function expm1 (x) {
   //  discuss at: http://phpjs.org/functions/expm1/
   // original by: Brett Zamir (http://brett-zamir.me)
@@ -6,5 +10,5 @@ function expm1 (x) {
   //   example 1: expm1(1e-15);
   //   returns 1: 1.0000000000000007e-15
 
-  return (x < 1e-5 && -1e-5 < x) ? x + 0.5 * x * x : Math.exp(x) - 1
+  return Math.expm1(x)
 }
