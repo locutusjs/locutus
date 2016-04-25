@@ -15,15 +15,15 @@ function Util (config) {
   this.globals = {
     'XMLHttpRequest': '{} // eslint-disable-line no-native-reassign',
     'window': '{ // eslint-disable-line no-native-reassign\n' +
-      '  window: {},\n' +
-      '  document: {\n' +
-      '    lastModified: 1388954399,\n' +
-      '    getElementsByTagName: function () { return [] }\n' +
-      '  },\n' +
-      '  location: {\n' +
-      '    href: ""\n' +
-      '  }\n' +
-      '}'
+    '  window: {},\n' +
+    '  document: {\n' +
+    '    lastModified: 1388954399,\n' +
+    '    getElementsByTagName: function () { return [] }\n' +
+    '  },\n' +
+    '  location: {\n' +
+    '    href: ""\n' +
+    '  }\n' +
+    '}'
   }
   this.pattern = [this.__src + '/**/**/*.js', '!**/index.js', '!**/_util/**']
   this.concurrency = 8

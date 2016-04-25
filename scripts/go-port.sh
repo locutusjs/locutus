@@ -18,7 +18,10 @@ __root="$(cd "$(dirname "${__dir}")" && pwd)"
 [ -d "${GOPATH}/src/github.com/golang/go" ] || go get -u github.com/golang/go
 
 pushd "${__dir}"
+  rm -f main.js
   "${GOPATH}/bin/gopherjs" build --verbose main.go
-  ls main.js
+  ls -al main.js
+  "${__root}/node_modules/.bin/js-beautify" --replace main.js
   "${__root}/node_modules/.bin/eslint" --fix main.js
+  node go-split.js main.js
 popd
