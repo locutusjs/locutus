@@ -3,8 +3,8 @@ module.exports = function base64_encode (data) { // eslint-disable-line camelcas
   // original by: Tyler Akins (http://rumkin.com)
   // improved by: Bayron Guevara
   // improved by: Thunder.m
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)
   // bugfixed by: Pellentesque Malesuada
   //   example 1: base64_encode('Kevin van Zonneveld')

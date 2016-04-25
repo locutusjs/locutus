@@ -1,7 +1,7 @@
 module.exports = function utf8_encode (argString) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/utf8_encode/
   // original by: Webtoolkit.info (http://www.webtoolkit.info/)
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   // improved by: sowberry
   // improved by: Jack
   // improved by: Yves Sucaet

@@ -1,6 +1,6 @@
 module.exports = function LastIndex (s, sep) {
   //  discuss at: http://locutusjs.io/golang/strings/LastIndex
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // original by: Kevin van Zonneveld (http://kvz.io)
   //    input by: GopherJS (http://www.gopherjs.org/)
   //   example 1: LastIndex('go gopher', 'go')
   //   returns 1: 3

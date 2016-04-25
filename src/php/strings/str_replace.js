@@ -1,15 +1,15 @@
 module.exports = function str_replace (search, replace, subject, count) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/str_replace/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Gabriel Paderni
   // improved by: Philip Peterson
   // improved by: Simon Willison (http://simonwillison.net)
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //  revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // bugfixed by: Anton Ongson
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Oleg Eremeev
   // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca)
   // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca)

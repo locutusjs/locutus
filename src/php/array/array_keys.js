@@ -1,9 +1,9 @@
 module.exports = function array_keys (input, search_value, argStrict) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_keys/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // original by: Kevin van Zonneveld (http://kvz.io)
   //    input by: Brett Zamir (http://brett-zamir.me)
   //    input by: P
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // improved by: jd
   // improved by: Brett Zamir (http://brett-zamir.me)

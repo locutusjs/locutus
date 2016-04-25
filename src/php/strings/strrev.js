@@ -1,6 +1,6 @@
 module.exports = function strrev (string) {
   //       discuss at: http://locutusjs.io/php/strrev/
-  //      original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //      original by: Kevin van Zonneveld (http://kvz.io)
   //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
   //        example 1: strrev('Kevin van Zonneveld')

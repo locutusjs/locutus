@@ -2,7 +2,7 @@ module.exports = function chunk_split (body, chunklen, end) { // eslint-disable-
   //  discuss at: http://locutusjs.io/php/chunk_split/
   // original by: Paulo Freitas
   //    input by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Theriault (https://github.com/Theriault)
   //   example 1: chunk_split('Hello world!', 1, '*')
   //   returns 1: 'H*e*l*l*o* *w*o*r*l*d*!*'

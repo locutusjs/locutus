@@ -1,6 +1,6 @@
 module.exports = function strpos (haystack, needle, offset) {
   //  discuss at: http://locutusjs.io/php/strpos/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Daniel Esteban

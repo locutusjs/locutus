@@ -4,7 +4,7 @@ module.exports = function empty (mixed_var) {
   //    input by: Onno Marsman (https://twitter.com/onnomarsman)
   //    input by: LH
   //    input by: Stoyan Kyosev (http://www.svest.org/)
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Francesco
   // improved by: Marc Jansen

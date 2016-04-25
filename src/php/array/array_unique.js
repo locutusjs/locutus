@@ -3,9 +3,9 @@ module.exports = function array_unique (inputArr) { // eslint-disable-line camel
   // original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   //    input by: duncan
   //    input by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Nate
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // improved by: Michael Grier
   //        note: The second argument, sort_flags is not implemented;

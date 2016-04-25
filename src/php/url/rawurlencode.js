@@ -5,7 +5,7 @@ module.exports = function rawurlencode (str) {
   //         input by: Brett Zamir (http://brett-zamir.me)
   //         input by: Michael Grier
   //         input by: Ratheous
-  //      bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //      bugfixed by: Kevin van Zonneveld (http://kvz.io)
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
   //      bugfixed by: Joris
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
@@ -15,8 +15,8 @@ module.exports = function rawurlencode (str) {
   //             note: pages served as UTF-8
   //        example 1: rawurlencode('Kevin van Zonneveld!')
   //        returns 1: 'Kevin%20van%20Zonneveld%21'
-  //        example 2: rawurlencode('http://kevin.vanzonneveld.net/')
-  //        returns 2: 'http%3A%2F%2Fkevin.vanzonneveld.net%2F'
+  //        example 2: rawurlencode('http://kvz.io/')
+  //        returns 2: 'http%3A%2F%2Fkvz.io%2F'
   //        example 3: rawurlencode('http://www.google.nl/search?q=Locutus&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a')
   //        returns 3: 'http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a'
 

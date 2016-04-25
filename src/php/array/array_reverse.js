@@ -1,6 +1,6 @@
 module.exports = function array_reverse (array, preserve_keys) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_reverse/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Karol Kowalski
   //   example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
   //   returns 1: { 2: ['green', 'red'], 1: '4.0', 0: 'php'}

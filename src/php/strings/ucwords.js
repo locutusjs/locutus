@@ -3,7 +3,7 @@ module.exports = function ucwords (str) {
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // improved by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Robin
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //    input by: James (http://www.james-bell.co.uk/)
   //   example 1: ucwords('kevin van  zonneveld')

@@ -1,8 +1,8 @@
 module.exports = function array_search (needle, haystack, argStrict) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_search/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // original by: Kevin van Zonneveld (http://kvz.io)
   //    input by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   //        test: skip-all
   //   example 1: array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'})
   //   returns 1: 'surname'

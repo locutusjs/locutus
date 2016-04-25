@@ -1,6 +1,6 @@
 module.exports = function array_shift (inputArr) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_shift/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Martijn Wieringa
   //        note: Currently does not handle objects
   //   example 1: array_shift(['Kevin', 'van', 'Zonneveld'])

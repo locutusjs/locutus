@@ -1,9 +1,9 @@
 module.exports = function rtrim (str, charlist) {
   //  discuss at: http://locutusjs.io/php/rtrim/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // original by: Kevin van Zonneveld (http://kvz.io)
   //    input by: Erkekjetter
   //    input by: rem
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //   example 1: rtrim('    Kevin van Zonneveld    ')

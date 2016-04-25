@@ -1,12 +1,12 @@
 module.exports = function htmlspecialchars (string, quote_style, charset, double_encode) {
   //       discuss at: http://locutusjs.io/php/htmlspecialchars/
   //      original by: Mirek Slugen
-  //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //      improved by: Kevin van Zonneveld (http://kvz.io)
   //      bugfixed by: Nathan
   //      bugfixed by: Arno
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //       revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //       revised by: Kevin van Zonneveld (http://kvz.io)
   //         input by: Ratheous
   //         input by: Mailfaker (http://www.weedem.fr/)
   //         input by: felix

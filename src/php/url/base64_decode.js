@@ -2,13 +2,13 @@ module.exports = function base64_decode (data) { // eslint-disable-line camelcas
   //  discuss at: http://locutusjs.io/php/base64_decode/
   // original by: Tyler Akins (http://rumkin.com)
   // improved by: Thunder.m
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   //    input by: Aman Gupta
   //    input by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Pellentesque Malesuada
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   //   example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==')
   //   returns 1: 'Kevin van Zonneveld'
   //   example 2: base64_decode('YQ==')

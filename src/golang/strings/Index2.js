@@ -1,6 +1,6 @@
 module.exports = function Index (s, sep) {
   //  discuss at: http://locutusjs.io/golang/strings/Index
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // original by: Kevin van Zonneveld (http://kvz.io)
   //   example 1: Index('Kevin', 'K')
   //   returns 1: 0
   //   example 2: Index('Kevin', 'Z')

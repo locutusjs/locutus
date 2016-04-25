@@ -1,13 +1,13 @@
 module.exports = function nl2br (str, is_xhtml) {
   //  discuss at: http://locutusjs.io/php/nl2br/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Philip Peterson
   // improved by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Atli Þór
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Maximusya
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   //    input by: Brett Zamir (http://brett-zamir.me)
   //   example 1: nl2br('Kevin\nvan\nZonneveld')
   //   returns 1: 'Kevin<br />\nvan<br />\nZonneveld'

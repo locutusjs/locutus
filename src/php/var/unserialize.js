@@ -2,14 +2,14 @@ module.exports = function unserialize (data) {
   //  discuss at: http://locutusjs.io/php/unserialize/
   // original by: Arpad Ray (mailto:arpad@php.net)
   // improved by: Pedro Tainha (http://www.pedrotainha.com)
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Chris
   // improved by: James
   // improved by: Le Torbi
   // improved by: Eli Skeggs
   // bugfixed by: dptr1988
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //  revised by: d3x
   //    input by: Brett Zamir (http://brett-zamir.me)

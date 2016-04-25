@@ -32,9 +32,9 @@ describe('php.strings.strip_tags.js', function () {
     done()
   })
   it('should pass example 3', function (done) {
-    strip_tags("<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>", "<a>")
-    var expected = "<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>"
-    var result = strip_tags("<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>", "<a>")
+    strip_tags("<a href='http://kvz.io'>Kevin van Zonneveld</a>", "<a>")
+    var expected = "<a href='http://kvz.io'>Kevin van Zonneveld</a>"
+    var result = strip_tags("<a href='http://kvz.io'>Kevin van Zonneveld</a>", "<a>")
     expect(result).to.deep.equal(expected)
     done()
   })

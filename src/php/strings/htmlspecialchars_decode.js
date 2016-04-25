@@ -1,7 +1,7 @@
 module.exports = function htmlspecialchars_decode (string, quote_style) { // eslint-disable-line camelcase
   //       discuss at: http://locutusjs.io/php/htmlspecialchars_decode/
   //      original by: Mirek Slugen
-  //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //      improved by: Kevin van Zonneveld (http://kvz.io)
   //      bugfixed by: Mateusz "loonquawl" Zalega
   //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
@@ -12,7 +12,7 @@ module.exports = function htmlspecialchars_decode (string, quote_style) { // esl
   //         input by: Francois
   //         input by: Ratheous
   //         input by: Mailfaker (http://www.weedem.fr/)
-  //       revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //       revised by: Kevin van Zonneveld (http://kvz.io)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
   //        example 1: htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES')
   //        returns 1: '<p>this -> &quot;</p>'

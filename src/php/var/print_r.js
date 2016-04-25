@@ -3,7 +3,7 @@ module.exports = function print_r (array, return_val) { // eslint-disable-line c
   // original by: Michael White (http://getsprink.com)
   // improved by: Ben Bryan
   // improved by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   //    input by: Brett Zamir (http://brett-zamir.me)
   //   example 1: print_r(1, true)
   //   returns 1: '1'

@@ -25,9 +25,9 @@ describe('php.url.urlencode.js', function () {
     done()
   })
   it('should pass example 2', function (done) {
-    urlencode('http://kevin.vanzonneveld.net/')
-    var expected = 'http%3A%2F%2Fkevin.vanzonneveld.net%2F'
-    var result = urlencode('http://kevin.vanzonneveld.net/')
+    urlencode('http://kvz.io/')
+    var expected = 'http%3A%2F%2Fkvz.io%2F'
+    var result = urlencode('http://kvz.io/')
     expect(result).to.deep.equal(expected)
     done()
   })

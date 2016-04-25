@@ -3,7 +3,7 @@ module.exports = function date (format, timestamp) {
   // original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // original by: gettimeofday
   //    parts by: Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   // improved by: MeEtc (http://yass.meetcweb.com)
   // improved by: Brad Touesnard
   // improved by: Tim Wiel
@@ -24,9 +24,9 @@ module.exports = function date (format, timestamp) {
   //    input by: Martin
   //    input by: Alex Wilson
   //    input by: Haravikk
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: majak
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: omid (http://locutusjs.io/php/380:380#comment_137122)
   // bugfixed by: Chris (http://www.devotis.nl/)

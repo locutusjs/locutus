@@ -2,7 +2,7 @@ module.exports = function strcmp (str1, str2) {
   //  discuss at: http://locutusjs.io/php/strcmp/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //    input by: Steve Hilder
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   //  revised by: gorthaur
   //   example 1: strcmp( 'waldo', 'owald' )
   //   returns 1: 1

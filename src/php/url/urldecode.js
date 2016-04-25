@@ -1,8 +1,8 @@
 module.exports = function urldecode (str) {
   //       discuss at: http://locutusjs.io/php/urldecode/
   //      original by: Philip Peterson
-  //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //      improved by: Kevin van Zonneveld (http://kvz.io)
+  //      improved by: Kevin van Zonneveld (http://kvz.io)
   //      improved by: Brett Zamir (http://brett-zamir.me)
   //      improved by: Lars Fischer
   //      improved by: Orlando
@@ -14,7 +14,7 @@ module.exports = function urldecode (str) {
   //         input by: Ratheous
   //         input by: e-mike
   //         input by: lovio
-  //      bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //      bugfixed by: Kevin van Zonneveld (http://kvz.io)
   //      bugfixed by: Rob
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
   //             note: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/
@@ -22,8 +22,8 @@ module.exports = function urldecode (str) {
   //             note: pages served as UTF-8
   //        example 1: urldecode('Kevin+van+Zonneveld%21')
   //        returns 1: 'Kevin van Zonneveld!'
-  //        example 2: urldecode('http%3A%2F%2Fkevin.vanzonneveld.net%2F')
-  //        returns 2: 'http://kevin.vanzonneveld.net/'
+  //        example 2: urldecode('http%3A%2F%2Fkvz.io%2F')
+  //        returns 2: 'http://kvz.io/'
   //        example 3: urldecode('http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a')
   //        returns 3: 'http://www.google.nl/search?q=Locutus&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a'
   //        example 4: urldecode('%E5%A5%BD%3_4')

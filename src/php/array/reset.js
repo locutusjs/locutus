@@ -1,6 +1,6 @@
 module.exports = function reset (arr) {
   //  discuss at: http://locutusjs.io/php/reset/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // original by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Legaev Andrey
   //  revised by: Brett Zamir (http://brett-zamir.me)
   //        note: Uses global: locutus to store the array pointer

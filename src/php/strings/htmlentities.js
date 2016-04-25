@@ -1,8 +1,8 @@
 module.exports = function htmlentities (string, quote_style, charset, double_encode) {
   //  discuss at: http://locutusjs.io/php/htmlentities/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // original by: Kevin van Zonneveld (http://kvz.io)
+  //  revised by: Kevin van Zonneveld (http://kvz.io)
+  //  revised by: Kevin van Zonneveld (http://kvz.io)
   // improved by: nobbler
   // improved by: Jack
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)

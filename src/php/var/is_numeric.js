@@ -1,6 +1,6 @@
 module.exports = function is_numeric (mixed_var) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/is_numeric/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: David
   // improved by: taith
   // bugfixed by: Tim de Koning

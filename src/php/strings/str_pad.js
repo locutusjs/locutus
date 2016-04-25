@@ -1,6 +1,6 @@
 module.exports = function str_pad (input, pad_length, pad_string, pad_type) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/str_pad/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Michael White (http://getsprink.com)
   //    input by: Marco van Oort
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

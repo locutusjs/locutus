@@ -3,7 +3,7 @@ module.exports = function file_get_contents (url, flags, context, offset, maxLen
   // original by: Legaev Andrey
   //    input by: Jani Hartikainen
   //    input by: Raphael (Ao) RUDLER
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //        note: This function uses XmlHttpRequest and cannot retrieve resource from different domain without modifications.

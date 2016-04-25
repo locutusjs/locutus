@@ -1,6 +1,6 @@
 module.exports = function stripslashes (str) {
   //       discuss at: http://locutusjs.io/php/stripslashes/
-  //      original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //      original by: Kevin van Zonneveld (http://kvz.io)
   //      improved by: Ates Goral (http://magnetiq.com)
   //      improved by: marrtins
   //      improved by: rezna

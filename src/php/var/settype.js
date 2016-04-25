@@ -1,7 +1,7 @@
 module.exports = function settype (vr, type) {
   //  discuss at: http://locutusjs.io/php/settype/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   //  revised by: Brett Zamir (http://brett-zamir.me)
   //        note: Credits to Crockford also
   //        note: only works on global variables, and "vr" must be passed in as a string

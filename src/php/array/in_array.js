@@ -1,6 +1,6 @@
 module.exports = function in_array (needle, haystack, argStrict) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/in_array/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: vlado houba
   // improved by: Jonas Sciangula Street (Joni2Back)
   //    input by: Billy

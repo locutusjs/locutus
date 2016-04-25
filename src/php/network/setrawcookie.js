@@ -2,7 +2,7 @@ module.exports = function setrawcookie (name, value, expires, path, domain, secu
   //  discuss at: http://locutusjs.io/php/setrawcookie/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: setcookie
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   //    input by: Michael
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //   example 1: setrawcookie('author_name', 'Kevin van Zonneveld')

@@ -1,6 +1,6 @@
 module.exports = function isset () {
   //  discuss at: http://locutusjs.io/php/isset/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: FremyCompany
   // improved by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)

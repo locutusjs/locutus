@@ -1,7 +1,7 @@
 module.exports = function gettype (mixed_var) {
   //  discuss at: http://locutusjs.io/php/gettype/
   // original by: Paulo Freitas
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Douglas Crockford (http://javascript.crockford.com)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //    input by: KELAN

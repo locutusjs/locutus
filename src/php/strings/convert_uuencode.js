@@ -1,7 +1,7 @@
 module.exports = function convert_uuencode (str) { // eslint-disable-line camelcase
   //       discuss at: http://locutusjs.io/php/convert_uuencode/
   //      original by: Ole Vrijenhoek
-  //      bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //      bugfixed by: Kevin van Zonneveld (http://kvz.io)
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
   // reimplemented by: Ole Vrijenhoek
   //        example 1: convert_uuencode("test\ntext text\r\n")

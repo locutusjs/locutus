@@ -5,8 +5,8 @@ module.exports = function strtr (str, from, to) {
   //    input by: Alan C
   //    input by: Taras Bogach
   //    input by: jpfle
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //   example 1: $trans = {'hello' : 'hi', 'hi' : 'hello'}

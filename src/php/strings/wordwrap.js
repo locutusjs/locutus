@@ -2,7 +2,7 @@ module.exports = function wordwrap (str, int_width, str_break, cut) {
   //  discuss at: http://locutusjs.io/php/wordwrap/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // improved by: Nick Callen
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Sakimori
   //  revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // bugfixed by: Michael Grier

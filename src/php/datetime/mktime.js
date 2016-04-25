@@ -1,8 +1,8 @@
 module.exports = function mktime () {
   //  discuss at: http://locutusjs.io/php/mktime/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: baris ozdil
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   // improved by: FGFEmperor
   // improved by: Brett Zamir (http://brett-zamir.me)
   //    input by: gabriel paderni
@@ -10,8 +10,8 @@ module.exports = function mktime () {
   //    input by: jakes
   //    input by: 3D-GRAF
   //    input by: Chris
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Marc Palau
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //  revised by: Theriault (https://github.com/Theriault)

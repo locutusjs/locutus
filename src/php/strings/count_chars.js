@@ -3,7 +3,7 @@ module.exports = function count_chars (str, mode) { // eslint-disable-line camel
   // original by: Ates Goral (http://magnetiq.com)
   // improved by: Jack
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   //    input by: Brett Zamir (http://brett-zamir.me)
   //  revised by: Theriault (https://github.com/Theriault)
   //   example 1: count_chars("Hello World!", 3)

@@ -4,9 +4,9 @@ module.exports = function strnatcasecmp (str1, str2) {
   // reimplemented by: Pierre-Luc Paour
   // reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
-  //      bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //      bugfixed by: Kevin van Zonneveld (http://kvz.io)
   //         input by: Devan Penner-Woelk
-  //      improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //      improved by: Kevin van Zonneveld (http://kvz.io)
   //        example 1: strnatcasecmp(10, 1)
   //        returns 1: 1
   //        example 2: strnatcasecmp('1', '10')

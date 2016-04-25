@@ -3,9 +3,9 @@ module.exports = function soundex (str) {
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // original by: Arnout Kazemier (http://www.3rd-Eden.com)
   // improved by: Jack
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   //    input by: Brett Zamir (http://brett-zamir.me)
   //  revised by: Rafał Kukawski (http://blog.kukawski.pl)
   //   example 1: soundex('Kevin')

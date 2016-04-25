@@ -2,7 +2,7 @@ module.exports = function array_count_values (array) { // eslint-disable-line ca
   //  discuss at: http://locutusjs.io/php/array_count_values/
   // original by: Ates Goral (http://magnetiq.com)
   // improved by: Michael White (http://getsprink.com)
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   //    input by: sankai
   //    input by: Shingo
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

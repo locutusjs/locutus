@@ -1,6 +1,6 @@
 module.exports = function array_unshift (array) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_unshift/
-  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Martijn Wieringa
   // improved by: jmweb
   //        note: Currently does not handle objects

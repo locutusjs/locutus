@@ -4,10 +4,10 @@ module.exports = function html_entity_decode (string, quote_style) { // eslint-d
   //    input by: ger
   //    input by: Ratheous
   //    input by: Nick Kolosov (http://sammy.ru)
-  // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Kevin van Zonneveld (http://kvz.io)
   // improved by: marc andreu
-  //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
-  //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //  revised by: Kevin van Zonneveld (http://kvz.io)
+  //  revised by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Fox
