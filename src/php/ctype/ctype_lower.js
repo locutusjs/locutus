@@ -8,9 +8,13 @@ module.exports = function ctype_lower (text) { // eslint-disable-line camelcase
   if (typeof text !== 'string') {
     return false
   }
-  // BEGIN REDUNDANT
+
   // ensure setup of localization variables takes place
   setlocale('LC_ALL', 0)
-  // END REDUNDANT
-  return text.search(this.locutus.locales[this.locutus.localeCategories.LC_CTYPE].LC_CTYPE.lw) !== -1
+
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+
+  return text.search($locutus.php.locales[$locutus.php.localeCategories.LC_CTYPE].LC_CTYPE.lw) !== -1
 }

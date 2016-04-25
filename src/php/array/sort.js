@@ -30,28 +30,32 @@ module.exports = function sort (inputArr, sort_flags) {
   //   returns 2: {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
   //        test: skip-1
 
-  var i18n_loc_get_default = require('../i18n/i18n_loc_get_default')
+  var i18nlgd = require('../i18n/i18n_loc_get_default')
+  var strnatcmp = require('../strings/strnatcmp')
 
-  var valArr = [],
-    keyArr = [],
-    k = '',
-    i = 0,
-    sorter = false,
-    that = this,
-    strictForIn = false,
-    populateArr = []
+  var sorter
+  var i
+  var k
+  var strictForIn = false
+  var populateArr = {}
+
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
+  $locutus.php.locales = $locutus.php.locales || {}
 
   switch (sort_flags) {
     case 'SORT_STRING':
     // compare items as strings
       sorter = function (a, b) {
-        return that.strnatcmp(a, b)
+        return strnatcmp(b, a)
       }
       break
     case 'SORT_LOCALE_STRING':
     // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
-      var loc = i18n_loc_get_default()
-      sorter = this.locutus.i18nLocales[loc].sorting
+      var loc = i18nlgd()
+      sorter = $locutus.locales[loc].sorting
       break
     case 'SORT_NUMERIC':
     // compare items numerically
@@ -79,17 +83,8 @@ module.exports = function sort (inputArr, sort_flags) {
       break
   }
 
-  // BEGIN REDUNDANT
-  try {
-    this.locutus = this.locutus || {}
-  } catch (e) {
-    this.locutus = {}
-  }
-
-  this.locutus.ini = this.locutus.ini || {}
-  // END REDUNDANT
-  strictForIn = this.locutus.ini['locutus.strictForIn'] && this.locutus.ini['locutus.strictForIn'].local_value && this.locutus
-    .ini['locutus.strictForIn'].local_value !== 'off'
+  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.strictForIn') : undefined)
+  strictForIn = iniVal !== 'off'
   populateArr = strictForIn ? inputArr : populateArr
 
   for (k in inputArr) {

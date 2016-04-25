@@ -11,10 +11,9 @@ module.exports = function strftime (fmt, timestamp) {
 
   var setlocale = require('../strings/setlocale')
 
-  if (typeof GLOBAL !== 'undefined') {
-    this.locutus = GLOBAL.locutus = GLOBAL.locutus || {}
-  }
-  this.locutus = this.locutus || {}
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
 
   // ensure setup of localization variables takes place
   setlocale('LC_ALL', 0)
@@ -31,22 +30,21 @@ module.exports = function strftime (fmt, timestamp) {
     return x.toString()
   }
 
-  var locale = this.locutus.localeCategories.LC_TIME
-  var locales = this.locutus.locales
-  var lc_time = locales[locale].LC_TIME
+  var locale = $locutus.php.localeCategories.LC_TIME
+  var lcTime = $locutus.php.locales[locale].LC_TIME
 
   var _formats = {
     a: function (d) {
-      return lc_time.a[d.getDay()]
+      return lcTime.a[d.getDay()]
     },
     A: function (d) {
-      return lc_time.A[d.getDay()]
+      return lcTime.A[d.getDay()]
     },
     b: function (d) {
-      return lc_time.b[d.getMonth()]
+      return lcTime.b[d.getMonth()]
     },
     B: function (d) {
-      return lc_time.B[d.getMonth()]
+      return lcTime.B[d.getMonth()]
     },
     C: function (d) {
       return _xPad(parseInt(d.getFullYear() / 100, 10), 0)
@@ -93,10 +91,10 @@ module.exports = function strftime (fmt, timestamp) {
     },
     M: ['getMinutes', '0'],
     p: function (d) {
-      return lc_time.p[d.getHours() >= 12 ? 1 : 0]
+      return lcTime.p[d.getHours() >= 12 ? 1 : 0]
     },
     P: function (d) {
-      return lc_time.P[d.getHours() >= 12 ? 1 : 0]
+      return lcTime.P[d.getHours() >= 12 ? 1 : 0]
     },
     s: function (d) {
       // Yahoo uses return parseInt(d.getTime()/1000, 10);
@@ -207,7 +205,7 @@ Oy
   while (fmt.match(/%[cDFhnrRtTxX]/)) {
     fmt = fmt.replace(/%([cDFhnrRtTxX])/g, function (m0, m1) {
       var f = _aggregates[m1]
-      return (f === 'locale' ? lc_time[m1] : f)
+      return (f === 'locale' ? lcTime[m1] : f)
     })
   }
 

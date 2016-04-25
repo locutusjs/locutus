@@ -1,4 +1,4 @@
-module.exports = function krsort (inputArr, sort_flags) {
+module.exports = function krsort (inputArr, sortFlags) {
   //  discuss at: http://locutusjs.io/php/krsort/
   // original by: GeekFG (http://geekfg.blogspot.com)
   // improved by: Kevin van Zonneveld (http://kvz.io)
@@ -29,16 +29,24 @@ module.exports = function krsort (inputArr, sort_flags) {
   //   returns 2: {3: 'Kevin', 2: 'van', 1: 'Zonneveld'}
   //        test: skip-all
 
-  var i18n_loc_get_default = require('../i18n/i18n_loc_get_default')
+  var i18nlgd = require('../i18n/i18n_loc_get_default')
   var strnatcmp = require('../strings/strnatcmp')
 
-  var tmp_arr = {},
-    keys = [],
-    sorter, i, k, that = this,
-    strictForIn = false,
-    populateArr = {}
+  var tmpArr = {}
+  var keys = []
+  var sorter
+  var i
+  var k
+  var strictForIn = false
+  var populateArr = {}
 
-  switch (sort_flags) {
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
+  $locutus.php.locales = $locutus.php.locales || {}
+
+  switch (sortFlags) {
     case 'SORT_STRING':
     // compare items as strings
       sorter = function (a, b) {
@@ -47,8 +55,8 @@ module.exports = function krsort (inputArr, sort_flags) {
       break
     case 'SORT_LOCALE_STRING':
     // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
-      var loc = i18n_loc_get_default()
-      sorter = this.locutus.i18nLocales[loc].sorting
+      var loc = i18nlgd()
+      sorter = $locutus.locales[loc].sorting
       break
     case 'SORT_NUMERIC':
     // compare items numerically
@@ -84,25 +92,21 @@ module.exports = function krsort (inputArr, sort_flags) {
   }
   keys.sort(sorter)
 
-  // BEGIN REDUNDANT
-  this.locutus = this.locutus || {}
-  this.locutus.ini = this.locutus.ini || {}
-  // END REDUNDANT
-  strictForIn = this.locutus.ini['locutus.strictForIn'] && this.locutus.ini['locutus.strictForIn'].local_value && this.locutus
-    .ini['locutus.strictForIn'].local_value !== 'off'
+  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.strictForIn') : undefined)
+  strictForIn = iniVal !== 'off'
   populateArr = strictForIn ? inputArr : populateArr
 
   // Rebuild array with sorted key names
   for (i = 0; i < keys.length; i++) {
     k = keys[i]
-    tmp_arr[k] = inputArr[k]
+    tmpArr[k] = inputArr[k]
     if (strictForIn) {
       delete inputArr[k]
     }
   }
-  for (i in tmp_arr) {
-    if (tmp_arr.hasOwnProperty(i)) {
-      populateArr[i] = tmp_arr[i]
+  for (i in tmpArr) {
+    if (tmpArr.hasOwnProperty(i)) {
+      populateArr[i] = tmpArr[i]
     }
   }
 

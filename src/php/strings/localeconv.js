@@ -7,19 +7,23 @@ module.exports = function localeconv () {
 
   var setlocale = require('../strings/setlocale')
 
-  var arr = {},
-    prop = ''
+  var arr = {}
+  var prop = ''
 
-  // BEGIN REDUNDANT
   // ensure setup of localization variables takes place, if not already
   setlocale('LC_ALL', 0)
-  // END REDUNDANT
+
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
+
   // Make copies
-  for (prop in this.locutus.locales[this.locutus.localeCategories.LC_NUMERIC].LC_NUMERIC) {
-    arr[prop] = this.locutus.locales[this.locutus.localeCategories.LC_NUMERIC].LC_NUMERIC[prop]
+  for (prop in $locutus.php.locales[$locutus.php.localeCategories.LC_NUMERIC].LC_NUMERIC) {
+    arr[prop] = $locutus.php.locales[$locutus.php.localeCategories.LC_NUMERIC].LC_NUMERIC[prop]
   }
-  for (prop in this.locutus.locales[this.locutus.localeCategories.LC_MONETARY].LC_MONETARY) {
-    arr[prop] = this.locutus.locales[this.locutus.localeCategories.LC_MONETARY].LC_MONETARY[prop]
+  for (prop in $locutus.php.locales[$locutus.php.localeCategories.LC_MONETARY].LC_MONETARY) {
+    arr[prop] = $locutus.php.locales[$locutus.php.localeCategories.LC_MONETARY].LC_MONETARY[prop]
   }
 
   return arr

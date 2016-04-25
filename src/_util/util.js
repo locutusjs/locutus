@@ -202,9 +202,6 @@ Util.prototype._writetestOne = function (params, cb) {
   if (params.language === 'php') {
     codez.push('var ' + 'ini_set' + ' = require(\'' + self.__src + '/' + 'php/info/ini_set' + '\') // eslint-disable-line no-unused-vars')
     codez.push('var ' + 'ini_get' + ' = require(\'' + self.__src + '/' + 'php/info/ini_get' + '\') // eslint-disable-line no-unused-vars')
-    if ([ 'array_search' ].indexOf(params.func_name) !== -1) {
-      codez.push('var ' + 'array' + ' = require(\'' + self.__src + '/' + 'php/array/array' + '\') // eslint-disable-line no-unused-vars')
-    }
   }
 
   // Add the main function to test

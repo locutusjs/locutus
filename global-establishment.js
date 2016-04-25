@@ -1,25 +1,10 @@
-var $global
-var $module
-if (typeof window !== 'undefined') { /* web page */
-  $global = window
-} else if (typeof self !== 'undefined') { /* web worker */
-  $global = self
-} else if (typeof global !== 'undefined') { /* Node.js */
-  $global = global
-  $global.require = require
-} else { /* others (e.g. Nashorn) */
-  $global = this
-}
+var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+$global.$locutus = $global.$locutus || {}
+var $locutus = $global.$locutus
+$locutus.php = $locutus.php || {}
+$locutus.php.ini = $locutus.php.ini || {}
+$locutus.php.pointers = $locutus.php.pointers || []
+$locutus.php.locales = $locutus.php.locales || {}
+var pointers = $locutus.php.pointers
 
-if ($global === undefined || $global.Array === undefined) {
-  throw new Error('no global object found')
-}
-if (typeof module !== 'undefined') {
-  $module = module
-}
-
-if (typeof GLOBAL !== 'undefined') {
-  this.locutus = GLOBAL.locutus = GLOBAL.locutus || {}
-  // var setlocale = require('../strings/setlocale')
-}
-this.locutus = this.locutus || {}
+var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.objectsAsArrays') : undefined)

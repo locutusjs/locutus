@@ -4,44 +4,34 @@ module.exports = function assert_options (what, value) { // eslint-disable-line 
   //   example 1: assert_options('ASSERT_CALLBACK')
   //   returns 1: null
 
-  // BEGIN REDUNDANT
-  this.locutus = this.locutus || {}
-  this.locutus.ini = this.locutus.ini || {}
-  this.locutus.assert_values = this.locutus.assert_values || {}
-  // END REDUNDANT
-
-  var ini, dflt
+  var iniKey, defaultVal
   switch (what) {
     case 'ASSERT_ACTIVE':
-      ini = 'assert.active'
-      dflt = 1
+      iniKey = 'assert.active'
+      defaultVal = 1
       break
     case 'ASSERT_WARNING':
-      ini = 'assert.warning'
-      dflt = 1
+      iniKey = 'assert.warning'
+      defaultVal = 1
       throw new Error('We have not yet implemented warnings for us to throw in JavaScript (assert_options())')
     case 'ASSERT_BAIL':
-      ini = 'assert.bail'
-      dflt = 0
+      iniKey = 'assert.bail'
+      defaultVal = 0
       break
     case 'ASSERT_QUIET_EVAL':
-      ini = 'assert.quiet_eval'
-      dflt = 0
+      iniKey = 'assert.quiet_eval'
+      defaultVal = 0
       break
     case 'ASSERT_CALLBACK':
-      ini = 'assert.callback'
-      dflt = null
+      iniKey = 'assert.callback'
+      defaultVal = null
       break
     default:
       throw new Error('Improper type for assert_options()')
   }
-  // I presume this is to be the most recent value, instead of the default value
-  var originalValue = this.locutus.assert_values[ini] || (this.locutus.ini[ini] && this.locutus.ini[ini].local_value) ||
-    dflt
 
-  if (value) {
-    // We use 'ini' instead of 'what' as key to be more convenient for assert() to test for current value
-    this.locutus.assert_values[ini] = value
-  }
-  return originalValue
+  // I presume this is to be the most recent value, instead of the default value
+  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')(iniKey) : undefined) || defaultVal
+
+  return iniVal
 }

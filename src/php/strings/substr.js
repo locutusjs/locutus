@@ -26,20 +26,18 @@ module.exports = function substr (str, start, len) {
   //   example 7: substr('a\uD801\uDC00z\uD801\uDC00', -3, -1)
   //   returns 7: '\uD801\uDC00z'
 
-  var i = 0,
-    allBMP = true,
-    es = 0,
-    el = 0,
-    se = 0,
-    ret = ''
-  str += ''
+  var i = 0
+  var allBMP = true
+  var es = 0
+  var el = 0
+  var se = 0
+  var ret = ''
   var end = str.length
+  str += ''
 
-  // BEGIN REDUNDANT
-  this.locutus = this.locutus || {}
-  this.locutus.ini = this.locutus.ini || {}
-  // END REDUNDANT
-  switch ((this.locutus.ini['unicode.semantics'] && this.locutus.ini['unicode.semantics'].local_value.toLowerCase())) {
+  var iniRaw = (typeof require !== 'undefined' ? require('../info/ini_get')('unicode.semantics') : undefined)
+
+  switch (iniRaw && iniRaw.local_value && iniRaw.local_value.toLowerCase()) {
     case 'on':
     // Full-blown Unicode including non-Basic-Multilingual-Plane characters
     // strlen()

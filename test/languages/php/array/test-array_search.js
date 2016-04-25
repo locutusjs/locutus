@@ -14,7 +14,6 @@ process.env.TZ = 'UTC'
 var expect = require('chai').expect
 var ini_set = require('/Users/kvz/code/phpjs/src/php/info/ini_set') // eslint-disable-line no-unused-vars
 var ini_get = require('/Users/kvz/code/phpjs/src/php/info/ini_get') // eslint-disable-line no-unused-vars
-var array = require('/Users/kvz/code/phpjs/src/php/array/array') // eslint-disable-line no-unused-vars
 var array_search = require('/Users/kvz/code/phpjs/src/php/array/array_search.js')
 
 describe.skip('src/php/array/array_search.js', function () {

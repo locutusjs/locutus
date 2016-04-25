@@ -33,7 +33,7 @@ module.exports = function date (format, timestamp) {
   //        note: Uses global: locutus to store the default timezone
   //        note: Although the function potentially allows timezone info (see notes), it currently does not set
   //        note: per a timezone specified by date_default_timezone_set(). Implementers might use
-  //        note: this.locutus.currentTimezoneOffset and this.locutus.currentTimezoneDST set by that function
+  //        note: $locutus.currentTimezoneOffset and $locutus.currentTimezoneDST set by that function
   //        note: in order to adjust the dates in this function (or our other date functions!) accordingly
   //   example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400)
   //   returns 1: '09:09:40 m is month'
@@ -57,11 +57,10 @@ module.exports = function date (format, timestamp) {
   //   returns 9: '52 2011-01-02'
   //        test: skip-1 skip-2 skip-5
 
-  var that = this
   var jsdate, f
   // Keep this here (works, but for code commented-out below for file size reasons)
   // var tal= [];
-  var txt_words = [
+  var txtWords = [
     'Sun', 'Mon', 'Tues', 'Wednes', 'Thurs', 'Fri', 'Satur',
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
@@ -97,7 +96,7 @@ module.exports = function date (format, timestamp) {
     },
     l: function () {
       // Full day name; Monday...Sunday
-      return txt_words[f.w()] + 'day'
+      return txtWords[f.w()] + 'day'
     },
     N: function () {
       // ISO-8601 day of week; 1[Mon]..7[Sun]
@@ -134,7 +133,7 @@ module.exports = function date (format, timestamp) {
     // Month
     F: function () {
       // Full month name; January...December
-      return txt_words[6 + f.n()]
+      return txtWords[6 + f.n()]
     },
     m: function () {
       // Month w/leading 0; 01...12
@@ -263,15 +262,14 @@ module.exports = function date (format, timestamp) {
       return (O.substr(0, 3) + ':' + O.substr(3, 2))
     },
     T: function () {
-      // Timezone abbreviation; e.g. EST, MDT, ...
       // The following works, but requires inclusion of the very
       // large timezone_abbreviations_list() function.
       /*              var abbr, i, os, _default;
       if (!tal.length) {
         tal = that.timezone_abbreviations_list();
       }
-      if (that.locutus && that.locutus.default_timezone) {
-        _default = that.locutus.default_timezone;
+      if ($locutus && $locutus.default_timezone) {
+        _default = $locutus.default_timezone;
         for (abbr in tal) {
           for (i = 0; i < tal[abbr].length; i++) {
             if (tal[abbr][i].timezone_id === _default) {
@@ -311,12 +309,11 @@ module.exports = function date (format, timestamp) {
     }
   }
   this.date = function (format, timestamp) {
-    that = this
     jsdate = (timestamp === undefined ? new Date() : // Not provided
       (timestamp instanceof Date) ? new Date(timestamp) : // JS Date()
       new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
     )
     return format.replace(formatChr, formatChrCb)
   }
-  return this.date(format, timestamp)
+  return date(format, timestamp)
 }

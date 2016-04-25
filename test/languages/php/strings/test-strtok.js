@@ -18,17 +18,17 @@ var strtok = require('/Users/kvz/code/phpjs/src/php/strings/strtok.js')
 
 describe('src/php/strings/strtok.js', function () {
   it('should pass example 1', function (done) {
-    $string = "\t\t\t\nThis is\tan example\nstring\n"
-    $tok = strtok($string, " \n\t")
-    $b = ''
+    var $string = "\t\t\t\nThis is\tan example\nstring\n"
+    var $tok = strtok($string, " \n\t")
+    var $b = ''
     while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
-    $b
+    $result = $b
     var expected = "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
-$string = "\t\t\t\nThis is\tan example\nstring\n"
-$tok = strtok($string, " \n\t")
-$b = ''
+var $string = "\t\t\t\nThis is\tan example\nstring\n"
+var $tok = strtok($string, " \n\t")
+var $b = ''
 while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
-    var result = $b
+    var result = $result = $b
     expect(result).to.deep.equal(expected)
     done()
   })

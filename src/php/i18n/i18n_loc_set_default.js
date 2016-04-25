@@ -7,19 +7,19 @@ module.exports = function i18n_loc_set_default (name) { // eslint-disable-line c
   //   example 1: i18n_loc_set_default('pt_PT')
   //   returns 1: true
 
-  // BEGIN REDUNDANT
-  this.locutus = this.locutus || {}
-  // END REDUNDANT
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
+  $locutus.php.locales = $locutus.php.locales || {}
 
-  this.locutus.i18nLocales = {
-    en_US_POSIX: {
-      sorting: function (str1, str2) {
-        // Fix: This one taken from strcmp, but need for other locales; we don't use localeCompare since its locale is not settable
-        return (str1 === str2) ? 0 : ((str1 > str2) ? 1 : -1)
-      }
+  $locutus.php.locales.en_US_POSIX = {
+    sorting: function (str1, str2) {
+      // Fix: This one taken from strcmp, but need for other locales; we don't use localeCompare since its locale is not settable
+      return (str1 === str2) ? 0 : ((str1 > str2) ? 1 : -1)
     }
   }
 
-  this.locutus.i18nLocale = name
+  $locutus.php.locale_default = name
   return true
 }

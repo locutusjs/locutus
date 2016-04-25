@@ -16,20 +16,19 @@ module.exports = function strlen (string) {
   //   returns 2: 3
 
   var str = string + ''
-  var i = 0,
-    chr = '',
-    lgth = 0
+  var i = 0
+  var lgth = 0
 
-  if (!this.locutus || !this.locutus.ini || !this.locutus.ini['unicode.semantics'] || this.locutus.ini[
-      'unicode.semantics'].local_value.toLowerCase() !== 'on') {
+  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('unicode.semantics') : undefined)
+  if (iniVal !== 'on') {
     return string.length
   }
 
   var getWholeChar = function (str, i) {
     var code = str.charCodeAt(i)
-    var next = '',
-      prev = ''
-    if (0xD800 <= code && code <= 0xDBFF) {
+    var next = ''
+    var prev = ''
+    if (code >= 0xD800 && code <= 0xDBFF) {
       // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
       if (str.length <= (i + 1)) {
         throw new Error('High surrogate without following low surrogate')
@@ -55,6 +54,7 @@ module.exports = function strlen (string) {
     return str.charAt(i)
   }
 
+  var chr
   for (i = 0, lgth = 0; i < str.length; i++) {
     if ((chr = getWholeChar(str, i)) === false) {
       continue

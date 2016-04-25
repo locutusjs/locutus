@@ -6,20 +6,10 @@ module.exports = function date_parse (date) { // eslint-disable-line camelcase
   //        test: skip-1
 
   var strtotime = require('../datetime/strtotime')
-
-  // BEGIN REDUNDANT
-  this.locutus = this.locutus || {}
-  // END REDUNDANT
-
-  var ts,
-    warningsOffset = this.locutus.warnings ? this.locutus.warnings.length : null,
-    errorsOffset = this.locutus.errors ? this.locutus.errors.length : null
+  var ts
 
   try {
-    // Allow strtotime to return a decimal (which it normally does not)
-    this.locutus.date_parse_state = true
     ts = strtotime(date)
-    this.locutus.date_parse_state = false
   } finally {
     if (!ts) {
       return false
@@ -28,15 +18,8 @@ module.exports = function date_parse (date) { // eslint-disable-line camelcase
 
   var dt = new Date(ts * 1000)
 
-  var retObj = {
-    // Grab any new warnings or errors added (not implemented yet in strtotime()); throwing warnings, notices, or errors could also be easily monitored by using 'watch' on this.locutus.latestWarning, etc. and/or calling any defined error handlers
-    warning_count: warningsOffset !== null ? this.locutus.warnings.slice(warningsOffset)
-      .length : 0,
-    warnings: warningsOffset !== null ? this.locutus.warnings.slice(warningsOffset) : [],
-    error_count: errorsOffset !== null ? this.locutus.errors.slice(errorsOffset)
-      .length : 0,
-    errors: errorsOffset !== null ? this.locutus.errors.slice(errorsOffset) : []
-  }
+  var retObj = {}
+
   retObj.year = dt.getFullYear()
   retObj.month = dt.getMonth() + 1
   retObj.day = dt.getDate()

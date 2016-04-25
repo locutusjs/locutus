@@ -5,13 +5,14 @@ module.exports = function set_time_limit (seconds) { // eslint-disable-line came
   //   example 1: set_time_limit(4)
   //   returns 1: undefined
 
-  // BEGIN REDUNDANT
-  this.locutus = this.locutus || {}
-  // END REDUNDANT
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
 
   this.window.setTimeout(function () {
-    if (!this.locutus.timeoutStatus) {
-      this.locutus.timeoutStatus = true
+    if (!$locutus.php.timeoutStatus) {
+      $locutus.php.timeoutStatus = true
     }
     throw new Error('Maximum execution time exceeded')
   }, seconds * 1000)

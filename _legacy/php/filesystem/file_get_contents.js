@@ -21,6 +21,7 @@ module.exports = function file_get_contents (url, flags, context, offset, maxLen
   //   example 1: buf.indexOf('Google') !== -1
   //   returns 1: true
 
+
   var tmp, headers = [],
     newTmp = [],
     k = 0,
@@ -34,12 +35,8 @@ module.exports = function file_get_contents (url, flags, context, offset, maxLen
     return value.substring(1) !== ''
   }
 
-  // BEGIN REDUNDANT
-  this.locutus = this.locutus || {}
-  this.locutus.ini = this.locutus.ini || {}
-  // END REDUNDANT
-  var ini = this.locutus.ini
-  context = context || this.locutus.default_streams_context || null
+  var ini = $locutus.ini
+  context = context || $locutus.default_streams_context || null
 
   if (!flags) {
     flags = 0

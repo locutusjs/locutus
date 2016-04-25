@@ -9,13 +9,13 @@ module.exports = function i18n_loc_get_default () { // eslint-disable-line camel
   //   returns 1: 'pt_PT'
   //        test: skip-1
 
-  var i18n_loc_set_default = require('../i18n/i18n_loc_set_default')
-  try {
-    this.locutus = this.locutus || {}
-  } catch (e) {
-    this.locutus = {}
-  }
+  var i18lsd = require('../i18n/i18n_loc_set_default')
 
-  // Ensure defaults are set up
-  return this.locutus.i18nLocale || (i18n_loc_set_default('en_US_POSIX'), 'en_US_POSIX')
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
+  $locutus.php.locales = $locutus.php.locales || {}
+
+  return $locutus.php.locale_default || (i18lsd('en_US_POSIX'), 'en_US_POSIX')
 }

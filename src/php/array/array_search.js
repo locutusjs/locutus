@@ -12,8 +12,8 @@ module.exports = function array_search (needle, haystack, argStrict) { // eslint
   //   returns 2: '3'
   //        test: skip-2
 
-  var strict = !!argStrict,
-    key = ''
+  var strict = !!argStrict
+  var key = ''
 
   if (haystack && typeof haystack === 'object' && haystack.change_key_case) {
     // Duck-type check for our own array()-created LOCUTUS_Array

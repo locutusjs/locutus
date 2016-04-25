@@ -1,4 +1,4 @@
-module.exports = function json_decode (str_json) { // eslint-disable-line camelcase
+module.exports = function json_decode (strJson) { // eslint-disable-line camelcase
   //       discuss at: http://phpjs.org/functions/json_decode/
   //      original by: Public Domain (http://www.json.org/json2.js)
   // reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -8,31 +8,36 @@ module.exports = function json_decode (str_json) { // eslint-disable-line camelc
   //        returns 1: [1]
 
   /*
-        http://www.JSON.org/json2.js
-        2008-11-19
-        Public Domain.
-        NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
-        See http://www.JSON.org/js.html
-      */
+    http://www.JSON.org/json2.js
+    2008-11-19
+    Public Domain.
+    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+    See http://www.JSON.org/js.html
+  */
+
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
 
   var json = this.window.JSON
   if (typeof json === 'object' && typeof json.parse === 'function') {
     try {
-      return json.parse(str_json)
+      return json.parse(strJson)
     } catch (err) {
       if (!(err instanceof SyntaxError)) {
         throw new Error('Unexpected error type in json_decode()')
       }
-      this.locutus = this.locutus || {}
+
       // usable by json_last_error()
-      this.locutus.last_error_json = 4
+      $locutus.php.last_error_json = 4
       return null
     }
   }
 
   var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g
   var j
-  var text = str_json
+  var text = strJson
 
   // Parsing happens in four stages. In the first stage, we replace certain
   // Unicode characters with escape sequences. JavaScript handles many characters
@@ -61,7 +66,6 @@ module.exports = function json_decode (str_json) { // eslint-disable-line camelc
     .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
       .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
       .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
-
     // In the third stage we use the eval function to compile the text into a
     // JavaScript structure. The '{' operator is subject to a syntactic ambiguity
     // in JavaScript: it can begin a block or an object literal. We wrap the text
@@ -71,8 +75,7 @@ module.exports = function json_decode (str_json) { // eslint-disable-line camelc
     return j
   }
 
-  this.locutus = this.locutus || {}
   // usable by json_last_error()
-  this.locutus.last_error_json = 4
+  $locutus.php.last_error_json = 4
   return null
 }

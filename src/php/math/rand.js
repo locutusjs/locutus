@@ -24,10 +24,10 @@ module.exports = function rand (min, max) {
   // 0x7fffffff
   var rand_seed, ctx, PHP_RAND_MAX=2147483647;
 
-  if (!this.locutus || this.locutus.rand_seed === undefined) {
+  if (!$locutus || $locutus.rand_seed === undefined) {
     this.srand();
   }
-  rand_seed = this.locutus.rand_seed;
+  rand_seed = $locutus.rand_seed;
 
   var argc = arguments.length;
   if (argc === 1) {
@@ -40,8 +40,8 @@ module.exports = function rand (min, max) {
 
   var php_rand = function (ctxArg) {
    // php_rand_r
-    this.locutus.rand_seed = do_rand(ctxArg);
-    return parseInt(this.locutus.rand_seed, 10);
+    $locutus.rand_seed = do_rand(ctxArg);
+    return parseInt($locutus.rand_seed, 10);
   };
 
   var number = php_rand(rand_seed);

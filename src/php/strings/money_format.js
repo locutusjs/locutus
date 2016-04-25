@@ -49,11 +49,17 @@ module.exports = function money_format (format, number) { // eslint-disable-line
 
   // Ensure the locale data we need is set up
   setlocale('LC_ALL', 0)
-  var monetary = this.locutus.locales[this.locutus.localeCategories['LC_MONETARY']]['LC_MONETARY']
+
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
+
+  var monetary = $locutus.php.locales[$locutus.php.localeCategories['LC_MONETARY']]['LC_MONETARY']
 
   var doReplace = function (n0, flags, n2, width, n4, left, n6, right, conversion) {
-    var value = '',
-      repl = ''
+    var value = ''
+    var repl = ''
     if (conversion === '%') {
       // Percent does not seem to be allowed with intervening content
       return '%'
@@ -77,49 +83,48 @@ module.exports = function money_format (format, number) { // eslint-disable-line
     // Get decimal portion
     var fraction = decpos !== -1 ? number.slice(decpos + 1) : ''
 
-    var _str_splice = function (integerStr, idx, thous_sep) {
+    var _strSplice = function (integerStr, idx, thouSep) {
       var integerArr = integerStr.split('')
-      integerArr.splice(idx, 0, thous_sep)
+      integerArr.splice(idx, 0, thouSep)
       return integerArr.join('')
     }
 
-    var init_lgth = integer.length
+    var intLen = integer.length
     left = parseInt(left, 10)
-    var filler = init_lgth < left
+    var filler = intLen < left
     if (filler) {
-      var fillnum = left - init_lgth
-      integer = new Array(fillnum + 1)
-        .join(fill) + integer
+      var fillnum = left - intLen
+      integer = new Array(fillnum + 1).join(fill) + integer
     }
     if (flags.indexOf('^') === -1) {
       // flag: ^ (disable grouping characters (of locale))
       // use grouping characters
       // ','
-      var thous_sep = monetary.mon_thousands_sep
+      var thouSep = monetary.mon_thousands_sep
       // [3] (every 3 digits in U.S.A. locale)
-      var mon_grouping = monetary.mon_grouping
+      var monGrouping = monetary.monGrouping
 
-      if (mon_grouping[0] < integer.length) {
-        for (var i = 0, idx = integer.length; i < mon_grouping.length; i++) {
+      if (monGrouping[0] < integer.length) {
+        for (var i = 0, idx = integer.length; i < monGrouping.length; i++) {
           // e.g., 3
-          idx -= mon_grouping[i]
+          idx -= monGrouping[i]
           if (idx <= 0) {
             break
           }
           if (filler && idx < fillnum) {
-            thous_sep = fill
+            thouSep = fill
           }
-          integer = _str_splice(integer, idx, thous_sep)
+          integer = _strSplice(integer, idx, thouSep)
         }
       }
-      if (mon_grouping[i - 1] > 0) {
+      if (monGrouping[i - 1] > 0) {
         // Repeating last grouping (may only be one) until highest portion of integer reached
-        while (idx > mon_grouping[i - 1]) {
-          idx -= mon_grouping[i - 1]
+        while (idx > monGrouping[i - 1]) {
+          idx -= monGrouping[i - 1]
           if (filler && idx < fillnum) {
-            thous_sep = fill
+            thouSep = fill
           }
-          integer = _str_splice(integer, idx, thous_sep)
+          integer = _strSplice(integer, idx, thouSep)
         }
       }
     }
@@ -130,7 +135,7 @@ module.exports = function money_format (format, number) { // eslint-disable-line
       value = integer
     } else {
       // '.'
-      var dec_pt = monetary.mon_decimal_point
+      var decPt = monetary.monDecPoint
       if (right === '' || right === undefined) {
         right = conversion === 'i' ? monetary.int_frac_digits : monetary.frac_digits
       }
@@ -139,18 +144,16 @@ module.exports = function money_format (format, number) { // eslint-disable-line
       if (right === 0) {
         // Only remove fractional portion if explicitly set to zero digits
         fraction = ''
-        dec_pt = ''
+        decPt = ''
       } else if (right < fraction.length) {
         fraction = Math.round(parseFloat(fraction.slice(0, right) + '.' + fraction.substr(right, 1))) + ''
         if (right > fraction.length) {
-          fraction = new Array(right - fraction.length + 1)
-            .join('0') + fraction // prepend with 0's
+          fraction = new Array(right - fraction.length + 1).join('0') + fraction // prepend with 0's
         }
       } else if (right > fraction.length) {
-        fraction += new Array(right - fraction.length + 1)
-          .join('0') // pad with 0's
+        fraction += new Array(right - fraction.length + 1).join('0') // pad with 0's
       }
-      value = integer + dec_pt + fraction
+      value = integer + decPt + fraction
     }
 
     var symbol = ''

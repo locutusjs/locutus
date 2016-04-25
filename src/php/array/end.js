@@ -12,8 +12,13 @@ module.exports = function end (arr) {
   //   example 2: end(['Kevin', 'van', 'Zonneveld'])
   //   returns 2: 'Zonneveld'
 
-  this.locutus = this.locutus || {}
-  this.locutus.pointers = this.locutus.pointers || []
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
+  $locutus.php.pointers = $locutus.php.pointers || []
+  var pointers = $locutus.php.pointers
+
   var indexOf = function (value) {
     for (var i = 0, length = this.length; i < length; i++) {
       if (this[i] === value) {
@@ -22,8 +27,7 @@ module.exports = function end (arr) {
     }
     return -1
   }
-  // END REDUNDANT
-  var pointers = this.locutus.pointers
+
   if (!pointers.indexOf) {
     pointers.indexOf = indexOf
   }

@@ -1,4 +1,4 @@
-module.exports = function uniqid (prefix, more_entropy) {
+module.exports = function uniqid (prefix, moreEntropy) {
   //  discuss at: http://locutusjs.io/php/uniqid/
   // original by: Kevin van Zonneveld (http://kvz.io)
   //  revised by: Kankrelune (http://www.webfaktory.info/)
@@ -16,43 +16,38 @@ module.exports = function uniqid (prefix, more_entropy) {
   }
 
   var retId
-  var formatSeed = function (seed, reqWidth) {
-    seed = parseInt(seed, 10)
-      .toString(16) // to hex str
+  var _formatSeed = function (seed, reqWidth) {
+    seed = parseInt(seed, 10).toString(16) // to hex str
     if (reqWidth < seed.length) {
       // so long we split
       return seed.slice(seed.length - reqWidth)
     }
     if (reqWidth > seed.length) {
       // so short we pad
-      return Array(1 + (reqWidth - seed.length))
-        .join('0') + seed
+      return Array(1 + (reqWidth - seed.length)).join('0') + seed
     }
     return seed
   }
 
-  // BEGIN REDUNDANT
-  if (!this.locutus) {
-    this.locutus = {}
-  }
-  // END REDUNDANT
-  if (!this.locutus.uniqidSeed) {
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
+
+  if (!$locutus.php.uniqidSeed) {
     // init seed with big random int
-    this.locutus.uniqidSeed = Math.floor(Math.random() * 0x75bcd15)
+    $locutus.php.uniqidSeed = Math.floor(Math.random() * 0x75bcd15)
   }
-  this.locutus.uniqidSeed++
+  $locutus.php.uniqidSeed++
 
   // start with prefix, add current milliseconds hex string
   retId = prefix
-  retId += formatSeed(parseInt(new Date()
-    .getTime() / 1000, 10), 8)
+  retId += _formatSeed(parseInt(new Date().getTime() / 1000, 10), 8)
   // add seed hex string
-  retId += formatSeed(this.locutus.uniqidSeed, 5)
-  if (more_entropy) {
+  retId += _formatSeed($locutus.php.uniqidSeed, 5)
+  if (moreEntropy) {
     // for more entropy we add a float lower to 10
-    retId += (Math.random() * 10)
-      .toFixed(8)
-      .toString()
+    retId += (Math.random() * 10).toFixed(8).toString()
   }
 
   return retId

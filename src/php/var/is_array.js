@@ -60,20 +60,22 @@ module.exports = function is_array (mixedVar) { // eslint-disable-line camelcase
     return false
   }
 
-  // BEGIN REDUNDANT
-  this.locutus = this.locutus || {}
-  this.locutus.ini = this.locutus.ini || {}
-  // END REDUNDANT
+  var isArray = _isArray(mixedVar)
 
-  var ini = this.locutus.ini['locutus.objectsAsArrays']
+  if (isArray) {
+    return true
+  }
 
-  return _isArray(mixedVar) ||
-    // Allow returning true unless user has called
-    // ini_set('locutus.objectsAsArrays', 0) to disallow objects as arrays
-    ((!ini || ( // if it's not set to 0 and it's not 'off', check for objects as arrays
-      (parseInt(ini.local_value, 10) !== 0 && (!ini.local_value.toLowerCase || ini.local_value.toLowerCase() !==
-        'off')))) && (
-      Object.prototype.toString.call(mixedVar) === '[object Object]' && _getFuncName(mixedVar.constructor) ===
-      'Object' // Most likely a literal and intended as assoc. array
-    ))
+  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.objectsAsArrays') : undefined)
+  if (iniVal && iniVal !== 'off') {
+    var asString = Object.prototype.toString.call(mixedVar)
+    var asFunc = _getFuncName(mixedVar.constructor)
+
+    if (asString === '[object Object]' && asFunc === 'Object') {
+      // Most likely a literal and intended as assoc. array
+      return true
+    }
+  }
+
+  return false
 }

@@ -2,18 +2,21 @@ module.exports = function strtok (str, tokens) {
   //  discuss at: http://locutusjs.io/php/strtok/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: Use tab and newline as tokenizing characters as well
-  //   example 1: $string = "\t\t\t\nThis is\tan example\nstring\n"
-  //   example 1: $tok = strtok($string, " \n\t")
-  //   example 1: $b = ''
+  //   example 1: var $string = "\t\t\t\nThis is\tan example\nstring\n"
+  //   example 1: var $tok = strtok($string, " \n\t")
+  //   example 1: var $b = ''
   //   example 1: while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
-  //   example 1: $b
+  //   example 1: $result = $b
   //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
 
-  this.locutus = this.locutus || {}
-  // END REDUNDANT
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
+
   if (tokens === undefined) {
     tokens = str
-    str = this.locutus.strtokleftOver
+    str = $locutus.php.strtokleftOver
   }
   if (str.length === 0) {
     return false
@@ -26,6 +29,7 @@ module.exports = function strtok (str, tokens) {
       break
     }
   }
-  this.locutus.strtokleftOver = str.substr(i + 1)
+  $locutus.php.strtokleftOver = str.substr(i + 1)
+
   return str.substring(0, i)
 }

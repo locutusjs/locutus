@@ -46,12 +46,8 @@ module.exports = function uksort (inputArr, sorter) {
     return false
   }
 
-  // BEGIN REDUNDANT
-  this.locutus = this.locutus || {}
-  this.locutus.ini = this.locutus.ini || {}
-  // END REDUNDANT
-  strictForIn = this.locutus.ini['locutus.strictForIn'] && this.locutus.ini['locutus.strictForIn'].local_value && this.locutus
-    .ini['locutus.strictForIn'].local_value !== 'off'
+  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.strictForIn') : undefined)
+  strictForIn = iniVal !== 'off'
   populateArr = strictForIn ? inputArr : populateArr
 
   // Rebuild array with sorted key names

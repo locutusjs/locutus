@@ -1,4 +1,4 @@
-module.exports = function asort (inputArr, sort_flags) {
+module.exports = function asort (inputArr, sortFlags) {
   //  discuss at: http://locutusjs.io/php/asort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -36,40 +36,49 @@ module.exports = function asort (inputArr, sort_flags) {
   //        test: skip-1
 
   var strnatcmp = require('../strings/strnatcmp')
-  var i18n_loc_get_default = require('../i18n/i18n_loc_get_default')
+  var i18nlgd = require('../i18n/i18n_loc_get_default')
 
-  var valArr = [],
-    valArrLen = 0,
-    k, i, ret, sorter, that = this,
-    strictForIn = false,
-    populateArr = {}
+  var valArr = []
+  var valArrLen = 0
+  var k
+  var i
+  var sorter
+  var strictForIn = false
+  var populateArr = {}
 
-  switch (sort_flags) {
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
+  $locutus.php.locales = $locutus.php.locales || {}
+
+  switch (sortFlags) {
     case 'SORT_STRING':
-    // compare items as strings
+      // compare items as strings
       sorter = function (a, b) {
         return strnatcmp(a, b)
       }
       break
     case 'SORT_LOCALE_STRING':
-    // compare items as strings, based on the current locale (set with i18n_loc_set_default() as of PHP6)
-      var loc = i18n_loc_get_default()
-      sorter = this.locutus.i18nLocales[loc].sorting
+      // compare items as strings, based on the current locale (set with i18n_loc_set_default() as of PHP6)
+      var loc = i18nlgd()
+      sorter = $locutus.php.locales[loc].sorting
       break
     case 'SORT_NUMERIC':
-    // compare items numerically
+      // compare items numerically
       sorter = function (a, b) {
         return (a - b)
       }
       break
     case 'SORT_REGULAR':
-    // compare items normally (don't change types)
+      // compare items normally (don't change types)
+      break
     default:
       sorter = function (a, b) {
-        var aFloat = parseFloat(a),
-          bFloat = parseFloat(b),
-          aNumeric = aFloat + '' === a,
-          bNumeric = bFloat + '' === b
+        var aFloat = parseFloat(a)
+        var bFloat = parseFloat(b)
+        var aNumeric = aFloat + '' === a
+        var bNumeric = bFloat + '' === b
         if (aNumeric && bNumeric) {
           return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0
         } else if (aNumeric && !bNumeric) {
@@ -82,12 +91,8 @@ module.exports = function asort (inputArr, sort_flags) {
       break
   }
 
-  // BEGIN REDUNDANT
-  this.locutus = this.locutus || {}
-  this.locutus.ini = this.locutus.ini || {}
-  // END REDUNDANT
-  strictForIn = this.locutus.ini['locutus.strictForIn'] && this.locutus.ini['locutus.strictForIn'].local_value && this.locutus
-    .ini['locutus.strictForIn'].local_value !== 'off'
+  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.strictForIn') : undefined)
+  strictForIn = iniVal !== 'off'
   populateArr = strictForIn ? inputArr : populateArr
 
   // Get key and value arrays

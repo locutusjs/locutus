@@ -6,38 +6,38 @@ module.exports = function ini_set (varname, newvalue) { // eslint-disable-line c
   //   example 1: ini_set('date.timezone', 'America/Chicago')
   //   returns 1: 'Asia/Hong_Kong'
 
-  var oldval = ''
-  var self = this
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
+  $locutus.php.ini = $locutus.php.ini || {}
 
-  try {
-    this.locutus = this.locutus || {}
-  } catch (e) {
-    this.locutus = {}
+  $locutus.php.ini = $locutus.php.ini || {}
+  $locutus.php.ini[varname] = $locutus.php.ini[varname] || {}
+
+  var oldval = $locutus.php.ini[varname].local_value
+
+  if (newvalue === true || (newvalue + '').toLowerCase().trim() === 'on') {
+    newvalue = 'on'
   }
-
-  this.locutus.ini = this.locutus.ini || {}
-  this.locutus.ini[varname] = this.locutus.ini[varname] || {}
-
-  oldval = this.locutus.ini[varname].local_value
+  if (newvalue === false || (newvalue + '').toLowerCase().trim() === 'off') {
+    newvalue = 'off'
+  }
 
   var _setArr = function (oldval) {
     // Although these are set individually, they are all accumulated
     if (typeof oldval === 'undefined') {
-      self.locutus.ini[varname].local_value = []
+      $locutus.ini[varname].local_value = []
     }
-    self.locutus.ini[varname].local_value.push(newvalue)
+    $locutus.ini[varname].local_value.push(newvalue)
   }
 
   switch (varname) {
     case 'extension':
-      if (typeof this.dl === 'function') {
-      // This function is only experimental in Locutus
-        this.dl(newvalue)
-      }
       _setArr(oldval, newvalue)
       break
     default:
-      this.locutus.ini[varname].local_value = newvalue
+      $locutus.php.ini[varname].local_value = newvalue
       break
   }
 

@@ -21,15 +21,10 @@ module.exports = function parse_url (str, component) { // eslint-disable-line ca
   //        example 4: parse_url('https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar')
   //        returns 4: { scheme: 'https', host: 'www.example.com', path: '/a@b.c/folder', query: 'foo=bar', user: 'gooduser', pass: 'secretpassword' }
 
-  try {
-    this.locutus = this.locutus || {}
-  } catch (e) {
-    this.locutus = {}
-  }
-
   var query
-  var ini = (this.locutus && this.locutus.ini) || {}
-  var mode = (ini['locutus.parse_url.mode'] && ini['locutus.parse_url.mode'].local_value) || 'php'
+  var iniRaw = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.mode') : undefined)
+  var mode = iniRaw && iniRaw.local_value || 'php'
+
   var key = [
     'source',
     'scheme',
@@ -63,13 +58,12 @@ module.exports = function parse_url (str, component) { // eslint-disable-line ca
   }
 
   if (component) {
-    return uri[component.replace('PHP_URL_', '')
-      .toLowerCase()]
+    return uri[component.replace('PHP_URL_', '').toLowerCase()]
   }
 
   if (mode !== 'php') {
-    var name = (ini['locutus.parse_url.queryKey'] &&
-      ini['locutus.parse_url.queryKey'].local_value) || 'queryKey'
+    var iniRawName = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.queryKey') : undefined)
+    var name = iniRawName && iniRawName.local_value || 'queryKey'
     parser = /(?:^|&)([^&=]*)=?([^&]*)/g
     uri[name] = {}
     query = uri[key[12]] || ''

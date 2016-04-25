@@ -5,16 +5,21 @@ module.exports = function sql_regcase (str) { // eslint-disable-line camelcase
   //   returns 1: '[Ff][Oo][Oo] - [Bb][Aa][Rr].'
 
   var setlocale = require('../strings/setlocale')
+  var i = 0
+  var upper = ''
+  var lower = ''
+  var pos = 0
+  var retStr = ''
 
   setlocale('LC_ALL', 0)
-  var i = 0,
-    upper = '',
-    lower = '',
-    pos = 0,
-    retStr = ''
 
-  upper = this.locutus.locales[this.locutus.localeCategories.LC_CTYPE].LC_CTYPE.upper
-  lower = this.locutus.locales[this.locutus.localeCategories.LC_CTYPE].LC_CTYPE.lower
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
+
+  upper = $locutus.php.locales[$locutus.php.localeCategories.LC_CTYPE].LC_CTYPE.upper
+  lower = $locutus.php.locales[$locutus.php.localeCategories.LC_CTYPE].LC_CTYPE.lower
 
   for (i = 0; i < str.length; i++) {
     if (((pos = upper.indexOf(str.charAt(i))) !== -1) || ((pos = lower.indexOf(str.charAt(i))) !== -1)) {

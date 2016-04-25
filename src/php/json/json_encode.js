@@ -1,4 +1,4 @@
-module.exports = function json_encode (mixed_val) { // eslint-disable-line camelcase
+module.exports = function json_encode (mixedVal) { // eslint-disable-line camelcase
   //       discuss at: http://phpjs.org/functions/json_encode/
   //      original by: Public Domain (http://www.json.org/json2.js)
   // reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -9,17 +9,24 @@ module.exports = function json_encode (mixed_val) { // eslint-disable-line camel
   //        returns 1: '"Kevin"'
 
   /*
-        http://www.JSON.org/json2.js
-        2008-11-19
-        Public Domain.
-        NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
-        See http://www.JSON.org/js.html
-      */
-  var retVal, json = this.window.JSON
+    http://www.JSON.org/json2.js
+    2008-11-19
+    Public Domain.
+    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+    See http://www.JSON.org/js.html
+  */
+
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
+
+  var retVal
+  var json = this.window.JSON
   try {
     if (typeof json === 'object' && typeof json.stringify === 'function') {
       // Errors will not be caught here if our own equivalent to resource
-      retVal = json.stringify(mixed_val)
+      retVal = json.stringify(mixedVal)
       //  (an instance of PHPJS_Resource) is used
       if (retVal === undefined) {
         throw new SyntaxError('json_encode')
@@ -27,11 +34,11 @@ module.exports = function json_encode (mixed_val) { // eslint-disable-line camel
       return retVal
     }
 
-    var value = mixed_val
+    var value = mixedVal
 
     var quote = function (string) {
       var escapable =
-        /[\\\"\u0000-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g
+        /[\\"\u0000-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g
       var meta = {
         // table of character substitutions
         '\b': '\\b',
@@ -138,9 +145,7 @@ module.exports = function json_encode (mixed_val) { // eslint-disable-line camel
           gap = mind
           return v
         case 'undefined':
-        // Fall-through
         case 'function':
-        // Fall-through
         default:
           throw new SyntaxError('json_encode')
       }
@@ -151,16 +156,14 @@ module.exports = function json_encode (mixed_val) { // eslint-disable-line camel
     return str('', {
       '': value
     })
-
   } catch (err) {
     // Todo: ensure error handling above throws a SyntaxError in all cases where it could
     // (i.e., when the JSON global is not available and there is an error)
     if (!(err instanceof SyntaxError)) {
       throw new Error('Unexpected error type in json_encode()')
     }
-    this.locutus = this.locutus || {}
     // usable by json_last_error()
-    this.locutus.last_error_json = 4
+    $locutus.php.last_error_json = 4
     return null
   }
 }

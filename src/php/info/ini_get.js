@@ -6,12 +6,17 @@ module.exports = function ini_get (varname) { // eslint-disable-line camelcase
   //   example 1: ini_get('date.timezone')
   //   returns 1: 'Asia/Hong_Kong'
 
-  if (this.locutus && this.locutus.ini && this.locutus.ini[varname] && this.locutus.ini[varname].local_value !==
-    undefined) {
-    if (this.locutus.ini[varname].local_value === null) {
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
+  $locutus.php.ini = $locutus.php.ini || {}
+
+  if ($locutus.php.ini[varname] && $locutus.php.ini[varname].local_value !== undefined) {
+    if ($locutus.php.ini[varname].local_value === null) {
       return ''
     }
-    return this.locutus.ini[varname].local_value
+    return $locutus.php.ini[varname].local_value
   }
 
   return ''

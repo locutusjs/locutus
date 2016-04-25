@@ -10,14 +10,14 @@ module.exports = function array () {
   //   returns 2: [0,'A',2]
 
   try {
-    this.locutus = this.locutus || {}
+    $locutus = $locutus || {}
   } catch (e) {
-    this.locutus = {}
+    $locutus = {}
   }
 
   var arrInst, e, __, that = this,
     LOCUTUS_Array = function LOCUTUS_Array () {}
-  mainArgs = arguments, p = this.locutus,
+  mainArgs = arguments, p = $locutus,
     _indexOf = function (value, from, strict) {
       var i = from || 0,
         nonstrict = !strict,
@@ -168,10 +168,7 @@ module.exports = function array () {
                 funcname(_.values[i], _.keys[i])
               }
             }
-          } else if (typeof funcname === 'string') {
-            this.locutus = this.locutus || {}
-            this.locutus.ini = this.locutus.ini || {}
-            ini = this.locutus.ini['locutus.no-eval']
+            ini = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.no-eval') : undefined)
             if (ini && (
                 parseInt(ini.local_value, 10) !== 0 && (!ini.local_value.toLowerCase || ini.local_value
                   .toLowerCase() !== 'off')

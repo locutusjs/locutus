@@ -81,6 +81,7 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 - [ ] Add eslint warnings to website function
 - [ ] Parse requires with ast like browserify. Then we can add dependencies back to website
 - [ ] Auto-deploys via Travis CI
+- [ ] `json_*` functions can leverage Node's
 - [ ] Use `\u` for octals in `_examples` for ES2015 compatibility
 - [-] Maybe move `module.exports = acos` to bottom line, then function signature can stay BC
 - [x] Add more 'social' buttons to website (twitter, github)

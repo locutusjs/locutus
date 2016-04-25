@@ -6,12 +6,6 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
   //   returns 1: {}
   //        test: skip-all
 
-  // From: http://locutusjs.io/php
-  // +   original by:
-  // +
-  // *
-  // *
-  // *
   /**
    * BC Math Library for Javascript
    * Ported from the PHP5 bcmath extension source code,

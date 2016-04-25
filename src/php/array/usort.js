@@ -27,12 +27,8 @@ module.exports = function usort (inputArr, sorter) {
     sorter = this[sorter[0]][sorter[1]]
   }
 
-  // BEGIN REDUNDANT
-  this.locutus = this.locutus || {}
-  this.locutus.ini = this.locutus.ini || {}
-  // END REDUNDANT
-  strictForIn = this.locutus.ini['locutus.strictForIn'] && this.locutus.ini['locutus.strictForIn'].local_value && this.locutus
-    .ini['locutus.strictForIn'].local_value !== 'off'
+  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.strictForIn') : undefined)
+  strictForIn = iniVal !== 'off'
   populateArr = strictForIn ? inputArr : populateArr
 
   for (k in inputArr) {
