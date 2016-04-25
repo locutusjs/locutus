@@ -1,4 +1,4 @@
-module.exports = function is_array (mixed_var) { // eslint-disable-line camelcase
+module.exports = function is_array (mixedVar) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/is_array/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Legaev Andrey
@@ -22,7 +22,6 @@ module.exports = function is_array (mixed_var) { // eslint-disable-line camelcas
   //   example 4: is_array(function tmp_a(){this.name = 'Kevin'})
   //   returns 4: false
 
-  var ini
   var _getFuncName = function (fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn)
     if (!name) {
@@ -30,34 +29,34 @@ module.exports = function is_array (mixed_var) { // eslint-disable-line camelcas
     }
     return name[1]
   }
-  var _isArray = function (mixed_var) {
-    // return Object.prototype.toString.call(mixed_var) === '[object Array]';
+  var _isArray = function (mixedVar) {
+    // return Object.prototype.toString.call(mixedVar) === '[object Array]';
     // The above works, but let's do the even more stringent approach: (since Object.prototype.toString could be overridden)
     // Null, Not an object, no length property so couldn't be an Array (or String)
-    if (!mixed_var || typeof mixed_var !== 'object' || typeof mixed_var.length !== 'number') {
+    if (!mixedVar || typeof mixedVar !== 'object' || typeof mixedVar.length !== 'number') {
       return false
     }
-    var len = mixed_var.length
-    mixed_var[mixed_var.length] = 'bogus'
+    var len = mixedVar.length
+    mixedVar[mixedVar.length] = 'bogus'
     // The only way I can think of to get around this (or where there would be trouble) would be to have an object defined
     // with a custom "length" getter which changed behavior on each call (or a setter to mess up the following below) or a custom
     // setter for numeric properties, but even that would need to listen for specific indexes; but there should be no false negatives
     // and such a false positive would need to rely on later JavaScript innovations like __defineSetter__
-    if (len !== mixed_var.length) {
+    if (len !== mixedVar.length) {
       // We know it's an array since length auto-changed with the addition of a
       // numeric property at its length end, so safely get rid of our bogus element
-      mixed_var.length -= 1
+      mixedVar.length -= 1
       return true
     }
     // Get rid of the property we added onto a non-array object; only possible
     // side-effect is if the user adds back the property later, it will iterate
     // this property in the older order placement in IE (an order which should not
     // be depended on anyways)
-    delete mixed_var[mixed_var.length]
+    delete mixedVar[mixedVar.length]
     return false
   }
 
-  if (!mixed_var || typeof mixed_var !== 'object') {
+  if (!mixedVar || typeof mixedVar !== 'object') {
     return false
   }
 
@@ -66,15 +65,15 @@ module.exports = function is_array (mixed_var) { // eslint-disable-line camelcas
   this.locutus.ini = this.locutus.ini || {}
   // END REDUNDANT
 
-  ini = this.locutus.ini['locutus.objectsAsArrays']
+  var ini = this.locutus.ini['locutus.objectsAsArrays']
 
-  return _isArray(mixed_var) ||
+  return _isArray(mixedVar) ||
     // Allow returning true unless user has called
     // ini_set('locutus.objectsAsArrays', 0) to disallow objects as arrays
     ((!ini || ( // if it's not set to 0 and it's not 'off', check for objects as arrays
       (parseInt(ini.local_value, 10) !== 0 && (!ini.local_value.toLowerCase || ini.local_value.toLowerCase() !==
         'off')))) && (
-      Object.prototype.toString.call(mixed_var) === '[object Object]' && _getFuncName(mixed_var.constructor) ===
+      Object.prototype.toString.call(mixedVar) === '[object Object]' && _getFuncName(mixedVar.constructor) ===
       'Object' // Most likely a literal and intended as assoc. array
     ))
 }

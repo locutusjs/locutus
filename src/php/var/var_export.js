@@ -1,4 +1,4 @@
-module.exports = function var_export (mixed_expression, bool_return) { // eslint-disable-line camelcase
+module.exports = function var_export (mixedExpression, boolReturn) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/var_export/
   // original by: Philip Peterson
   // improved by: johnrembo
@@ -11,38 +11,41 @@ module.exports = function var_export (mixed_expression, bool_return) { // eslint
   //   returns 1: null
   //   example 2: var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true)
   //   returns 2: "array (\n  0 => 'Kevin',\n  1 => 'van',\n  2 => 'Zonneveld'\n)"
-  //   example 3: data = 'Kevin'
+  //   example 3: var data = 'Kevin'
   //   example 3: var_export(data, true)
   //   returns 3: "'Kevin'"
 
   var echo = require('../strings/echo')
-  var retstr = '',
-    iret = '',
-    value,
-    cnt = 0,
-    x = [],
-    i = 0,
-    funcParts = [],
-    // We use the last argument (not part of PHP) to pass in
-    // our indentation level
-    idtLevel = arguments[2] || 2,
-    innerIndent = '',
-    outerIndent = '',
-    getFuncName = function (fn) {
-      var name = (/\W*function\s+([\w\$]+)\s*\(/)
-        .exec(fn)
-      if (!name) {
-        return '(Anonymous)'
-      }
-      return name[1]
+  var retstr = ''
+  var iret = ''
+  var value
+  var cnt = 0
+  var x = []
+  var i = 0
+  var funcParts = []
+  // We use the last argument (not part of PHP) to pass in
+  // our indentation level
+  var idtLevel = arguments[2] || 2
+  var innerIndent = ''
+  var outerIndent = ''
+  var getFuncName = function (fn) {
+    var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn)
+    if (!name) {
+      return '(Anonymous)'
     }
-  _makeIndent = function (idtLevel) {
+    return name[1]
+  }
+
+  var _makeIndent = function (idtLevel) {
     return (new Array(idtLevel + 1))
       .join(' ')
   }
-  __getType = function (inp) {
-    var i = 0,
-      match, types, cons, type = typeof inp
+  var __getType = function (inp) {
+    var i = 0
+    var match
+    var types
+    var cons
+    var type = typeof inp
     if (type === 'object' && (inp && inp.constructor) &&
       getFuncName(inp.constructor) === 'LOCUTUS_Resource') {
       return 'resource'
@@ -73,28 +76,24 @@ module.exports = function var_export (mixed_expression, bool_return) { // eslint
     }
     return type
   }
-  type = __getType(mixed_expression)
+  var type = __getType(mixedExpression)
 
   if (type === null) {
     retstr = 'NULL'
   } else if (type === 'array' || type === 'object') {
     outerIndent = _makeIndent(idtLevel - 2)
     innerIndent = _makeIndent(idtLevel)
-    for (i in mixed_expression) {
-      value = var_export(mixed_expression[i], 1, idtLevel + 2)
+    for (i in mixedExpression) {
+      value = var_export(mixedExpression[i], 1, idtLevel + 2)
       value = typeof value === 'string' ? value.replace(/</g, '&lt;')
-        .
-      replace(/>/g, '&gt;') : value
+        .replace(/>/g, '&gt;') : value
       x[cnt++] = innerIndent + i + ' => ' +
-        (__getType(mixed_expression[i]) === 'array' ?
-          '\n' : '') + value
+        (__getType(mixedExpression[i]) === 'array' ? '\n' : '') + value
     }
     iret = x.join(',\n')
     retstr = outerIndent + 'array (\n' + iret + '\n' + outerIndent + ')'
   } else if (type === 'function') {
-    funcParts = mixed_expression.toString()
-      .
-    match(/function .*?\((.*?)\) \{([\s\S]*)\}/)
+    funcParts = mixedExpression.toString().match(/function .*?\((.*?)\) \{([\s\S]*)\}/)
 
     // For lambda functions, var_export() outputs such as the following:
     // '\000lambda_1'. Since it will probably not be a common use to
@@ -109,13 +108,11 @@ module.exports = function var_export (mixed_expression, bool_return) { // eslint
     // Resources treated as null for var_export
     retstr = 'NULL'
   } else {
-    retstr = typeof mixed_expression !== 'string' ? mixed_expression :
-      "'" + mixed_expression.replace(/(["'])/g, '\\$1')
-      .
-    replace(/\0/g, '\\0') + "'"
+    retstr = typeof mixedExpression !== 'string' ? mixedExpression
+      : "'" + mixedExpression.replace(/(["'])/g, '\\$1').replace(/\0/g, '\\0') + "'"
   }
 
-  if (!bool_return) {
+  if (!boolReturn) {
     echo(retstr)
     return null
   }

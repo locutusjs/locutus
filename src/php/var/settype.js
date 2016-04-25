@@ -5,16 +5,16 @@ module.exports = function settype (vr, type) {
   //  revised by: Brett Zamir (http://brett-zamir.me)
   //        note: Credits to Crockford also
   //        note: only works on global variables, and "vr" must be passed in as a string
-  //   example 1: foo = '5bar'
-  //   example 1: settype('foo', 'integer')
-  //   example 1: $result = foo
+  //   example 1: var $foo = '5bar'
+  //   example 1: settype('$foo', 'integer')
+  //   example 1: $result = $foo
   //   returns 1: 5
-  //   example 2: foo = true
-  //   example 2: settype('foo', 'string')
-  //   example 2: $result = foo
+  //   example 2: var $foo = true
+  //   example 2: settype('$foo', 'string')
+  //   example 2: $result = $foo
   //   returns 2: '1'
 
-  var is_array = function (arr) {
+  var isArray = function (arr) {
     return typeof arr === 'object' && typeof arr.length === 'number' && !(arr.propertyIsEnumerable('length')) &&
       typeof arr.splice === 'function'
   }
@@ -24,11 +24,11 @@ module.exports = function settype (vr, type) {
   try {
     switch (type) {
       case 'boolean':
-        if (is_array(v) && v.length === 0) {
+        if (isArray(v) && v.length === 0) {
           this[vr] = false
         } else if (v === '0') {
           this[vr] = false
-        } else if (typeof v === 'object' && !is_array(v)) {
+        } else if (typeof v === 'object' && !isArray(v)) {
           var lgth = false
           for (i in v) {
             lgth = true
@@ -52,7 +52,7 @@ module.exports = function settype (vr, type) {
           this[vr] = 1
         } else if (v === false || v === null) {
           this[vr] = 0
-        } else if (is_array(v) && v.length === 0) {
+        } else if (isArray(v) && v.length === 0) {
           this[vr] = 0
         } else if (typeof v === 'object') {
           this[vr] = 1
@@ -71,7 +71,7 @@ module.exports = function settype (vr, type) {
           this[vr] = 1
         } else if (v === false || v === null) {
           this[vr] = 0
-        } else if (is_array(v) && v.length === 0) {
+        } else if (isArray(v) && v.length === 0) {
           this[vr] = 0
         } else if (typeof v === 'object') {
           this[vr] = 1
@@ -80,7 +80,7 @@ module.exports = function settype (vr, type) {
       case 'string':
         if (v === null || v === false) {
           this[vr] = ''
-        } else if (is_array(v)) {
+        } else if (isArray(v)) {
           this[vr] = 'Array'
         } else if (typeof v === 'object') {
           this[vr] = 'Object'
@@ -100,7 +100,7 @@ module.exports = function settype (vr, type) {
       case 'object':
         if (v === null) {
           this[vr] = {}
-        } else if (is_array(v)) {
+        } else if (isArray(v)) {
           for (i = 0, obj = {}; i < v.length; i++) {
             obj[i] = v
           }

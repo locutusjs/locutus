@@ -23,27 +23,26 @@ module.exports = function unserialize (data) {
   //   example 2: unserialize('a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}')
   //   returns 2: {firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'}
 
-  var that = this,
-    utf8Overhead = function (chr) {
-      // http://locutusjs.io/php/unserialize:571#comment_95906
-      var code = chr.charCodeAt(0)
-      if (code < 0x0080 || 0x00A0 <= code && code <= 0x00FF || [338, 339, 352, 353, 376, 402, 8211, 8212, 8216, 8217,
-          8218, 8220, 8221, 8222, 8224, 8225, 8226, 8230, 8240, 8364, 8482
-        ].indexOf(code) !== -1) {
-        return 0
-      }
-      if (code < 0x0800) {
-        return 1
-      }
-      return 2
+  var that = this
+  var utf8Overhead = function (chr) {
+    // http://locutusjs.io/php/unserialize:571#comment_95906
+    var code = chr.charCodeAt(0)
+    var zeroCodes = [ 338, 339, 352, 353, 376, 402, 8211, 8212, 8216, 8217, 8218, 8220, 8221, 8222, 8224, 8225, 8226, 8230, 8240, 8364, 8482 ]
+    if (code < 0x0080 || code >= 0x00A0 && code <= 0x00FF || zeroCodes.indexOf(code) !== -1) {
+      return 0
     }
-  error = function (type, msg, filename, line) {
+    if (code < 0x0800) {
+      return 1
+    }
+    return 2
+  }
+  var error = function (type, msg, filename, line) {
     throw new that.window[type](msg, filename, line)
   }
-  read_until = function (data, offset, stopchr) {
-    var i = 2,
-      buf = [],
-      chr = data.slice(offset, offset + 1)
+  var readUntil = function (data, offset, stopchr) {
+    var i = 2
+    var buf = []
+    var chr = data.slice(offset, offset + 1)
 
     while (chr !== stopchr) {
       if ((i + offset) > data.length) {
@@ -55,7 +54,7 @@ module.exports = function unserialize (data) {
     }
     return [buf.length, buf.join('')]
   }
-  read_chrs = function (data, offset, length) {
+  var readChrs = function (data, offset, length) {
     var i, chr, buf
 
     buf = []
@@ -66,20 +65,34 @@ module.exports = function unserialize (data) {
     }
     return [buf.length, buf.join('')]
   }
-  _unserialize = function (data, offset) {
-    var dtype, dataoffset, keyandchrs, keys, contig,
-      length, array, readdata, readData, ccount,
-      stringlength, i, key, kprops, kchrs, vprops,
-      vchrs, value, chrs = 0,
-      typeconvert = function (x) {
-        return x
-      }
+  var _unserialize = function (data, offset) {
+    var dtype
+    var dataoffset
+    var keyandchrs
+    var keys
+    var contig
+    var length
+    var array
+    var readdata
+    var readData
+    var ccount
+    var stringlength
+    var i
+    var key
+    var kprops
+    var kchrs
+    var vprops
+    var vchrs
+    var value
+    var chrs = 0
+    var typeconvert = function (x) {
+      return x
+    }
 
     if (!offset) {
       offset = 0
     }
-    dtype = (data.slice(offset, offset + 1))
-      .toLowerCase()
+    dtype = (data.slice(offset, offset + 1)).toLowerCase()
 
     dataoffset = offset + 2
 
@@ -88,7 +101,7 @@ module.exports = function unserialize (data) {
         typeconvert = function (x) {
           return parseInt(x, 10)
         }
-        readData = read_until(data, dataoffset, ';')
+        readData = readUntil(data, dataoffset, ';')
         chrs = readData[0]
         readdata = readData[1]
         dataoffset += chrs + 1
@@ -97,7 +110,7 @@ module.exports = function unserialize (data) {
         typeconvert = function (x) {
           return parseInt(x, 10) !== 0
         }
-        readData = read_until(data, dataoffset, ';')
+        readData = readUntil(data, dataoffset, ';')
         chrs = readData[0]
         readdata = readData[1]
         dataoffset += chrs + 1
@@ -106,7 +119,7 @@ module.exports = function unserialize (data) {
         typeconvert = function (x) {
           return parseFloat(x)
         }
-        readData = read_until(data, dataoffset, ';')
+        readData = readUntil(data, dataoffset, ';')
         chrs = readData[0]
         readdata = readData[1]
         dataoffset += chrs + 1
@@ -115,12 +128,12 @@ module.exports = function unserialize (data) {
         readdata = null
         break
       case 's':
-        ccount = read_until(data, dataoffset, ':')
+        ccount = readUntil(data, dataoffset, ':')
         chrs = ccount[0]
         stringlength = ccount[1]
         dataoffset += chrs + 2
 
-        readData = read_chrs(data, dataoffset + 1, parseInt(stringlength, 10))
+        readData = readChrs(data, dataoffset + 1, parseInt(stringlength, 10))
         chrs = readData[0]
         readdata = readData[1]
         dataoffset += chrs + 2
@@ -131,7 +144,7 @@ module.exports = function unserialize (data) {
       case 'a':
         readdata = {}
 
-        keyandchrs = read_until(data, dataoffset, ':')
+        keyandchrs = readUntil(data, dataoffset, ':')
         chrs = keyandchrs[0]
         keys = keyandchrs[1]
         dataoffset += chrs + 2
@@ -150,16 +163,18 @@ module.exports = function unserialize (data) {
           value = vprops[2]
           dataoffset += vchrs
 
-          if (key !== i)
+          if (key !== i) {
             contig = false
+          }
 
           readdata[key] = value
         }
 
         if (contig) {
           array = new Array(length)
-          for (i = 0; i < length; i++)
+          for (i = 0; i < length; i++) {
             array[i] = readdata[i]
+          }
           readdata = array
         }
 
