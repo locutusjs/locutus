@@ -1,4 +1,4 @@
-module.exports = function array_reduce (a_input, callback) {
+module.exports = function array_reduce (a_input, callback) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_reduce/
   // original by: Alfonso Jimenez (http://www.alfonsojimenez.com)
   //        note: Takes a function as an argument, not a function's name

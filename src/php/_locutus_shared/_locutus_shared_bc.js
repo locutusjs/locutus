@@ -1,4 +1,4 @@
-module.exports = function _locutus_shared_bc () {
+module.exports = function _locutus_shared_bc () { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/_locutus_shared/_locutus_shared_bc
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   // improved by: Brett Zamir (http://brett-zamir.me)

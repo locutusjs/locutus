@@ -1,4 +1,4 @@
-module.exports = function array_combine (keys, values) {
+module.exports = function array_combine (keys, values) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_combine/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Brett Zamir (http://brett-zamir.me)

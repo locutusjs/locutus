@@ -1,4 +1,4 @@
-module.exports = function array_search (needle, haystack, argStrict) {
+module.exports = function array_search (needle, haystack, argStrict) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_search/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //    input by: Brett Zamir (http://brett-zamir.me)

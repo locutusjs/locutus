@@ -1,4 +1,4 @@
-module.exports = function is_scalar (mixed_var) {
+module.exports = function is_scalar (mixed_var) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/is_scalar/
   // original by: Paulo Freitas
   //   example 1: is_scalar(186.31)

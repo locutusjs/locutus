@@ -1,4 +1,4 @@
-module.exports = function is_object (mixed_var) {
+module.exports = function is_object (mixed_var) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/is_object/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Legaev Andrey

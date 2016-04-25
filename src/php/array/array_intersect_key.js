@@ -1,4 +1,4 @@
-module.exports = function array_intersect_key (arr1) {
+module.exports = function array_intersect_key (arr1) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_intersect_key/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: These only output associative arrays (would need to be

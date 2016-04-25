@@ -1,4 +1,4 @@
-module.exports = function html_entity_decode (string, quote_style) {
+module.exports = function html_entity_decode (string, quote_style) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/html_entity_decode/
   // original by: john (http://www.jd-tech.net)
   //    input by: ger

@@ -1,4 +1,4 @@
-module.exports = function array_shift (inputArr) {
+module.exports = function array_shift (inputArr) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_shift/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Martijn Wieringa

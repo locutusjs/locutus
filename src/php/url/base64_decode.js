@@ -1,4 +1,4 @@
-module.exports = function base64_decode (data) {
+module.exports = function base64_decode (data) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/base64_decode/
   // original by: Tyler Akins (http://rumkin.com)
   // improved by: Thunder.m

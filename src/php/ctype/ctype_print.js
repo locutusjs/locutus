@@ -1,4 +1,4 @@
-module.exports = function ctype_print (text) {
+module.exports = function ctype_print (text) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/ctype_print/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: ctype_print('AbC!#12')

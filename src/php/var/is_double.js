@@ -1,4 +1,4 @@
-module.exports = function is_double (mixed_var) {
+module.exports = function is_double (mixed_var) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/is_double/
   // original by: Paulo Freitas
   //        note: 1.0 is simplified to 1 before it can be accessed by the function, this makes

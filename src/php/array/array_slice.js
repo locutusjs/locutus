@@ -1,4 +1,4 @@
-module.exports = function array_slice (arr, offst, lgth, preserve_keys) {
+module.exports = function array_slice (arr, offst, lgth, preserve_keys) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_slice/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: Brett Zamir (http://brett-zamir.me)

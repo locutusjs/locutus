@@ -1,4 +1,4 @@
-module.exports = function get_defined_functions () {
+module.exports = function get_defined_functions () { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/get_defined_functions/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)

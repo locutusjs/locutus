@@ -1,4 +1,4 @@
-module.exports = function str_split (string, split_length) {
+module.exports = function str_split (string, split_length) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/str_split/
   // original by: Martijn Wieringa
   // improved by: Brett Zamir (http://brett-zamir.me)

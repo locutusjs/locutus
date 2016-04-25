@@ -1,4 +1,4 @@
-module.exports = function str_ireplace (search, replace, subject, count) {
+module.exports = function str_ireplace (search, replace, subject, count) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/str_ireplace/
   // original by: Glen Arason (http://CanadianDomainRegistry.ca)
   //        note: Case-insensitive version of str_replace()

@@ -1,4 +1,4 @@
-module.exports = function get_headers (url, format) {
+module.exports = function get_headers (url, format) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/get_headers/
   // original by: Paulo Freitas
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

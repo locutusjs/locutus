@@ -1,4 +1,4 @@
-module.exports = function version_compare (v1, v2, operator) {
+module.exports = function version_compare (v1, v2, operator) { // eslint-disable-line camelcase
   //       discuss at: http://locutusjs.io/php/version_compare/
   //      original by: Philippe Jausions (http://pear.php.net/user/jausions)
   //      original by: Aidan Lister (http://aidanlister.com/)

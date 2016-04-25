@@ -1,4 +1,4 @@
-module.exports = function quoted_printable_decode (str) {
+module.exports = function quoted_printable_decode (str) { // eslint-disable-line camelcase
   //       discuss at: http://locutusjs.io/php/quoted_printable_decode/
   //      original by: Ole Vrijenhoek
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)

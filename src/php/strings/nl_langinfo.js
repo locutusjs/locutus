@@ -1,4 +1,4 @@
-module.exports = function nl_langinfo (item) {
+module.exports = function nl_langinfo (item) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/nl_langinfo/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: nl_langinfo('DAY_1')

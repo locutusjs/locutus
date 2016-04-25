@@ -1,4 +1,4 @@
-module.exports = function utf8_decode (str_data) {
+module.exports = function utf8_decode (str_data) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/utf8_decode/
   // original by: Webtoolkit.info (http://www.webtoolkit.info/)
   //    input by: Aman Gupta

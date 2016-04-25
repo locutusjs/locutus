@@ -1,4 +1,4 @@
-module.exports = function str_getcsv (input, delimiter, enclosure, escape) {
+module.exports = function str_getcsv (input, delimiter, enclosure, escape) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/str_getcsv/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: str_getcsv('"abc","def","ghi"')

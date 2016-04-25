@@ -1,4 +1,4 @@
-module.exports = function number_format (number, decimals, dec_point, thousands_sep) {
+module.exports = function number_format (number, decimals, dec_point, thousands_sep) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/number_format/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

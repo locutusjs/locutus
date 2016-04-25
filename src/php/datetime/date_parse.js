@@ -1,4 +1,4 @@
-module.exports = function date_parse (date) {
+module.exports = function date_parse (date) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/date_parse/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: date_parse('2006-12-12 10:00:00.5')

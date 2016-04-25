@@ -1,4 +1,4 @@
-module.exports = function call_user_func (cb) {
+module.exports = function call_user_func (cb) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/call_user_func/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Diplom@t (http://difane.com/)

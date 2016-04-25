@@ -1,4 +1,4 @@
-module.exports = function convert_uuencode (str) {
+module.exports = function convert_uuencode (str) { // eslint-disable-line camelcase
   //       discuss at: http://locutusjs.io/php/convert_uuencode/
   //      original by: Ole Vrijenhoek
   //      bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

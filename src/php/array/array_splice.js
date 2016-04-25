@@ -1,4 +1,4 @@
-module.exports = function array_splice (arr, offst, lgth, replacement) {
+module.exports = function array_splice (arr, offst, lgth, replacement) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_splice/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: Theriault (https://github.com/Theriault)

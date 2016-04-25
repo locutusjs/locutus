@@ -1,4 +1,4 @@
-module.exports = function array_unique (inputArr) {
+module.exports = function array_unique (inputArr) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_unique/
   // original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   //    input by: duncan

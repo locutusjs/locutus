@@ -1,4 +1,4 @@
-module.exports = function print_r (array, return_val) {
+module.exports = function print_r (array, return_val) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/print_r/
   // original by: Michael White (http://getsprink.com)
   // improved by: Ben Bryan

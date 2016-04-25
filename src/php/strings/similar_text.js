@@ -1,4 +1,4 @@
-module.exports = function similar_text (first, second, percent) {
+module.exports = function similar_text (first, second, percent) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/similar_text/
   // original by: Rafał Kukawski (http://blog.kukawski.pl)
   // bugfixed by: Chris McMacken

@@ -1,4 +1,4 @@
-module.exports = function gopher_parsedir (dirent) {
+module.exports = function gopher_parsedir (dirent) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/gopher_parsedir/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: var entry = gopher_parsedir('0All about my gopher site.\t/allabout.txt\tgopher.example.com\t70\u000d\u000a')

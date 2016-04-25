@@ -1,4 +1,4 @@
-module.exports = function get_html_translation_table (table, quote_style) {
+module.exports = function get_html_translation_table (table, quote_style) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/get_html_translation_table/
   // original by: Philip Peterson
   //  revised by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

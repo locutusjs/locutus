@@ -1,4 +1,4 @@
-module.exports = function substr_replace (str, replace, start, length) {
+module.exports = function substr_replace (str, replace, start, length) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/substr_replace/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: substr_replace('ABCDEFGH:/MNRPQR/', 'bob', 0)

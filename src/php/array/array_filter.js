@@ -1,4 +1,4 @@
-module.exports = function array_filter (arr, func) {
+module.exports = function array_filter (arr, func) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_filter/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: max4ever

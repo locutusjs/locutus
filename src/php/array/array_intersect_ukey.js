@@ -1,4 +1,4 @@
-module.exports = function array_intersect_ukey (arr1) {
+module.exports = function array_intersect_ukey (arr1) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_intersect_ukey/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: $array1 = {blue: 1, red: 2, green: 3, purple: 4}

@@ -1,4 +1,4 @@
-module.exports = function xdiff_string_patch (originalStr, patch, flags, error) {
+module.exports = function xdiff_string_patch (originalStr, patch, flags, error) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/xdiff_string_patch/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Steven Levithan (stevenlevithan.com)

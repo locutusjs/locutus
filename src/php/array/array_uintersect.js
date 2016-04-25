@@ -1,4 +1,4 @@
-module.exports = function array_uintersect (arr1) {
+module.exports = function array_uintersect (arr1) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_uintersect/
   // original by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Demosthenes Koptsis

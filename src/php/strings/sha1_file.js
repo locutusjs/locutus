@@ -1,4 +1,4 @@
-module.exports = function sha1_file (str_filename) {
+module.exports = function sha1_file (str_filename) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/sha1_file/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //        test: skip-all

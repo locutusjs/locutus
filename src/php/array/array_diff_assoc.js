@@ -1,4 +1,4 @@
-module.exports = function array_diff_assoc (arr1) {
+module.exports = function array_diff_assoc (arr1) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_diff_assoc/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // bugfixed by: 0m3r

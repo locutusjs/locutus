@@ -1,4 +1,4 @@
-module.exports = function is_infinite (val) {
+module.exports = function is_infinite (val) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/is_infinite/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: is_infinite(Infinity)

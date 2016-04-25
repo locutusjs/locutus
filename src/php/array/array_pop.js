@@ -1,4 +1,4 @@
-module.exports = function array_pop (inputArr) {
+module.exports = function array_pop (inputArr) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_pop/
   // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)

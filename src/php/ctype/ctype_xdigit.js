@@ -1,4 +1,4 @@
-module.exports = function ctype_xdigit (text) {
+module.exports = function ctype_xdigit (text) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/ctype_xdigit/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: ctype_xdigit('01dF')

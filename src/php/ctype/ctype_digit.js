@@ -1,4 +1,4 @@
-module.exports = function ctype_digit (text) {
+module.exports = function ctype_digit (text) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/ctype_digit/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: ctype_digit('150')

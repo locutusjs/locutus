@@ -1,4 +1,4 @@
-module.exports = function ini_set (varname, newvalue) {
+module.exports = function ini_set (varname, newvalue) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/ini_set/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: This will not set a global_value or access level for the ini item

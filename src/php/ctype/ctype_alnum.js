@@ -1,4 +1,4 @@
-module.exports = function ctype_alnum (text) {
+module.exports = function ctype_alnum (text) { // eslint-disable-line camelcase // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/ctype_alnum/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: ctype_alnum('AbC12')
