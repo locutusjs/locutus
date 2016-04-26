@@ -8,17 +8,18 @@ module.exports = function array_map (callback) { // eslint-disable-line camelcas
   //   example 1: array_map( function (a){return (a * a * a)}, [1, 2, 3, 4, 5] )
   //   returns 1: [ 1, 8, 27, 64, 125 ]
 
-  var argc = arguments.length,
-    argv = arguments,
-    glbl = this.window,
-    obj = null,
-    cb = callback,
-    j = argv[1].length,
-    i = 0,
-    k = 1,
-    m = 0,
-    tmp = [],
-    tmp_ar = []
+  var argc = arguments.length
+  var argv = arguments
+  var obj = null
+  var cb = callback
+  var j = argv[1].length
+  var i = 0
+  var k = 1
+  var m = 0
+  var tmp = []
+  var tmpArr = []
+
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
 
   while (i < j) {
     while (k < argc) {
@@ -30,21 +31,21 @@ module.exports = function array_map (callback) { // eslint-disable-line camelcas
 
     if (callback) {
       if (typeof callback === 'string') {
-        cb = glbl[callback]
+        cb = $global[callback]
       } else if (typeof callback === 'object' && callback.length) {
-        obj = typeof callback[0] === 'string' ? glbl[callback[0]] : callback[0]
+        obj = typeof callback[0] === 'string' ? $global[callback[0]] : callback[0]
         if (typeof obj === 'undefined') {
-          throw new Error('Object not found: ') + callback[0]
+          throw new Error('Object not found: ' + callback[0])
         }
         cb = typeof callback[1] === 'string' ? obj[callback[1]] : callback[1]
       }
-      tmp_ar[i++] = cb.apply(obj, tmp)
+      tmpArr[i++] = cb.apply(obj, tmp)
     } else {
-      tmp_ar[i++] = tmp
+      tmpArr[i++] = tmp
     }
 
     tmp = []
   }
 
-  return tmp_ar
+  return tmpArr
 }

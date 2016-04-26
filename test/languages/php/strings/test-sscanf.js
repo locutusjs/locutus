@@ -27,11 +27,11 @@ describe('src/php/strings/sscanf.js', function () {
   it('should pass example 2', function (done) {
     var myVar = {}
     sscanf('SN/2350001', 'SN/%d', myVar)
-    $result = myVar.value
-    var expected = 1
+    var $result = myVar.value
+    var expected = 2350001
 var myVar = {}
 sscanf('SN/2350001', 'SN/%d', myVar)
-    var result = $result = myVar.value
+    var result = myVar.value
     expect(result).to.deep.equal(expected)
     done()
   })

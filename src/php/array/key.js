@@ -4,8 +4,8 @@ module.exports = function key (arr) {
   //    input by: Riddler (http://www.frontierwebdev.com/)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //        note: Uses global: locutus to store the array pointer
-  //   example 1: array = {fruit1: 'apple', 'fruit2': 'orange'}
-  //   example 1: key(array)
+  //   example 1: var $array = {fruit1: 'apple', 'fruit2': 'orange'}
+  //   example 1: key($array)
   //   returns 1: 'fruit1'
 
   var $global = (typeof window !== 'undefined' ? window : GLOBAL)
@@ -46,5 +46,6 @@ module.exports = function key (arr) {
   if (arr.length === 0) {
     return false
   }
+
   return cursor
 }

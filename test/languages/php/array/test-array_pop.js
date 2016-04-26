@@ -25,13 +25,13 @@ describe('src/php/array/array_pop.js', function () {
     done()
   })
   it('should pass example 2', function (done) {
-    data = {firstName: 'Kevin', surName: 'van Zonneveld'}
-    lastElem = array_pop(data)
-    var $result = data
+    var $data = {firstName: 'Kevin', surName: 'van Zonneveld'}
+    var $lastElem = array_pop($data)
+    var $result = $data
     var expected = {firstName: 'Kevin'}
-data = {firstName: 'Kevin', surName: 'van Zonneveld'}
-lastElem = array_pop(data)
-    var result = data
+var $data = {firstName: 'Kevin', surName: 'van Zonneveld'}
+var $lastElem = array_pop($data)
+    var result = $data
     expect(result).to.deep.equal(expected)
     done()
   })

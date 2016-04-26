@@ -18,13 +18,13 @@ var next = require('/Users/kvz/code/phpjs/src/php/array/next.js')
 
 describe('src/php/array/next.js', function () {
   it('should pass example 1', function (done) {
-    transport = ['foot', 'bike', 'car', 'plane']
-    next(transport)
-    next(transport)
+    var $transport = ['foot', 'bike', 'car', 'plane']
+    next($transport)
+    next($transport)
     var expected = 'car'
-transport = ['foot', 'bike', 'car', 'plane']
-next(transport)
-    var result = next(transport)
+var $transport = ['foot', 'bike', 'car', 'plane']
+next($transport)
+    var result = next($transport)
     expect(result).to.deep.equal(expected)
     done()
   })

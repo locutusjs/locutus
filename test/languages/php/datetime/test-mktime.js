@@ -32,17 +32,17 @@ describe('src/php/datetime/mktime.js', function () {
     done()
   })
   it('should pass example 3', function (done) {
-    make = mktime()
-    td = new Date()
-    real = Math.floor(td.getTime() / 1000)
-    diff = (real - make)
-    diff < 5
+    var $make = mktime()
+    var $td = new Date()
+    var $real = Math.floor($td.getTime() / 1000)
+    var $diff = ($real - $make)
+    $diff < 5
     var expected = true
-make = mktime()
-td = new Date()
-real = Math.floor(td.getTime() / 1000)
-diff = (real - make)
-    var result = diff < 5
+var $make = mktime()
+var $td = new Date()
+var $real = Math.floor($td.getTime() / 1000)
+var $diff = ($real - $make)
+    var result = $diff < 5
     expect(result).to.deep.equal(expected)
     done()
   })

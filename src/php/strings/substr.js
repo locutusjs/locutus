@@ -10,21 +10,22 @@ module.exports = function substr (str, start, len) {
   //   returns 1: 'abcde'
   //   example 2: substr(2, 0, -6)
   //   returns 2: false
-  //   example 3: ini_set('unicode.semantics',  'on')
+  //   example 3: ini_set('unicode.semantics', 'on')
   //   example 3: substr('a\uD801\uDC00', 0, -1)
   //   returns 3: 'a'
-  //   example 4: ini_set('unicode.semantics',  'on')
+  //   example 4: ini_set('unicode.semantics', 'on')
   //   example 4: substr('a\uD801\uDC00', 0, 2)
   //   returns 4: 'a\uD801\uDC00'
-  //   example 5: ini_set('unicode.semantics',  'on')
+  //   example 5: ini_set('unicode.semantics', 'on')
   //   example 5: substr('a\uD801\uDC00', -1, 1)
   //   returns 5: '\uD801\uDC00'
-  //   example 6: ini_set('unicode.semantics',  'on')
+  //   example 6: ini_set('unicode.semantics', 'on')
   //   example 6: substr('a\uD801\uDC00z\uD801\uDC00', -3, 2)
   //   returns 6: '\uD801\uDC00z'
-  //   example 7: ini_set('unicode.semantics',  'on')
+  //   example 7: ini_set('unicode.semantics', 'on')
   //   example 7: substr('a\uD801\uDC00z\uD801\uDC00', -3, -1)
   //   returns 7: '\uD801\uDC00z'
+  //        test: skip-3 skip-4 skip-5 skip-6 skip-7
 
   var i = 0
   var allBMP = true
@@ -32,23 +33,38 @@ module.exports = function substr (str, start, len) {
   var el = 0
   var se = 0
   var ret = ''
-  var end = str.length
+
   str += ''
+  var end = str.length
 
   var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('unicode.emantics') : undefined)
+  if (!iniVal) {
+    iniVal = 'off'
+  }
 
-  if (!iniVal || iniVal === 'off') {
+  if (iniVal === 'off') {
     // assumes there are no non-BMP characters;
-    //    if there may be such characters, then it is best to turn it on (critical in true XHTML/XML)
+    // if there may be such characters, then it is best to turn it on (critical in true XHTML/XML)
     if (start < 0) {
       start += end
     }
-    end = typeof len === 'undefined' ? end : (len < 0 ? len + end : len + start)
+    if (typeof len !== 'undefined') {
+      if (len < 0) {
+        end = len + end
+      } else {
+        end = len + start
+      }
+    }
+
     // PHP returns false if start does not fall within the string.
     // PHP returns false if the calculated end comes before the calculated start.
     // PHP returns an empty string if start and end are the same.
     // Otherwise, PHP returns the portion of the string from start to end.
-    return start >= str.length || start < 0 || start > end ? !1 : str.slice(start, end)
+    if (start >= str.length || start < 0 || start > end) {
+      return false
+    }
+
+    return str.slice(start, end)
   }
 
   // Full-blown Unicode including non-Basic-Multilingual-Plane characters
@@ -99,7 +115,7 @@ module.exports = function substr (str, start, len) {
       for (i = start; i < se; i++) {
         ret += str.charAt(i)
         if (/[\uD800-\uDBFF]/.test(str.charAt(i)) && /[\uDC00-\uDFFF]/.test(str.charAt(i + 1))) {
-        // Go one further, since one of the "characters" is part of a surrogate pair
+          // Go one further, since one of the "characters" is part of a surrogate pair
           se++
         }
       }

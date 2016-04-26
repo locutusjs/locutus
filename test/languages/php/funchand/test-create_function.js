@@ -18,11 +18,11 @@ var create_function = require('/Users/kvz/code/phpjs/src/php/funchand/create_fun
 
 describe('src/php/funchand/create_function.js', function () {
   it('should pass example 1', function (done) {
-    f = create_function('a, b', "return (a + b);")
-    f(1, 2)
+    var $f = create_function('a, b', 'return (a + b)')
+    $f(1, 2)
     var expected = 3
-f = create_function('a, b', "return (a + b);")
-    var result = f(1, 2)
+var $f = create_function('a, b', 'return (a + b)')
+    var result = $f(1, 2)
     expect(result).to.deep.equal(expected)
     done()
   })

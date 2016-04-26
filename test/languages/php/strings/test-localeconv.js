@@ -14,6 +14,7 @@ process.env.TZ = 'UTC'
 var expect = require('chai').expect
 var ini_set = require('/Users/kvz/code/phpjs/src/php/info/ini_set') // eslint-disable-line no-unused-vars
 var ini_get = require('/Users/kvz/code/phpjs/src/php/info/ini_get') // eslint-disable-line no-unused-vars
+var setlocale = require('/Users/kvz/code/phpjs/src/php/strings/setlocale') // eslint-disable-line no-unused-vars
 var localeconv = require('/Users/kvz/code/phpjs/src/php/strings/localeconv.js')
 
 describe('src/php/strings/localeconv.js', function () {

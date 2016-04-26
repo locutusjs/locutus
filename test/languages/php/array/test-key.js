@@ -18,11 +18,11 @@ var key = require('/Users/kvz/code/phpjs/src/php/array/key.js')
 
 describe('src/php/array/key.js', function () {
   it('should pass example 1', function (done) {
-    array = {fruit1: 'apple', 'fruit2': 'orange'}
-    key(array)
+    var $array = {fruit1: 'apple', 'fruit2': 'orange'}
+    key($array)
     var expected = 'fruit1'
-array = {fruit1: 'apple', 'fruit2': 'orange'}
-    var result = key(array)
+var $array = {fruit1: 'apple', 'fruit2': 'orange'}
+    var result = key($array)
     expect(result).to.deep.equal(expected)
     done()
   })

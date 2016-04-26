@@ -18,11 +18,11 @@ var current = require('/Users/kvz/code/phpjs/src/php/array/current.js')
 
 describe('src/php/array/current.js', function () {
   it('should pass example 1', function (done) {
-    transport = ['foot', 'bike', 'car', 'plane']
-    current(transport)
+    var $transport = ['foot', 'bike', 'car', 'plane']
+    current($transport)
     var expected = 'foot'
-transport = ['foot', 'bike', 'car', 'plane']
-    var result = current(transport)
+var $transport = ['foot', 'bike', 'car', 'plane']
+    var result = current($transport)
     expect(result).to.deep.equal(expected)
     done()
   })

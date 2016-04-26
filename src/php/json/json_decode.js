@@ -20,7 +20,7 @@ module.exports = function json_decode (strJson) { // eslint-disable-line camelca
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 
-  var json = this.window.JSON
+  var json = $global.JSON
   if (typeof json === 'object' && typeof json.parse === 'function') {
     try {
       return json.parse(strJson)

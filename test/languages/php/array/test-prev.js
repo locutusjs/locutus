@@ -18,11 +18,11 @@ var prev = require('/Users/kvz/code/phpjs/src/php/array/prev.js')
 
 describe('src/php/array/prev.js', function () {
   it('should pass example 1', function (done) {
-    transport = ['foot', 'bike', 'car', 'plane']
-    prev(transport)
+    var $transport = ['foot', 'bike', 'car', 'plane']
+    prev($transport)
     var expected = false
-transport = ['foot', 'bike', 'car', 'plane']
-    var result = prev(transport)
+var $transport = ['foot', 'bike', 'car', 'plane']
+    var result = prev($transport)
     expect(result).to.deep.equal(expected)
     done()
   })

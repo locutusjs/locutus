@@ -41,9 +41,9 @@ module.exports = function date (format, timestamp) {
   //   returns 2: 'September 2, 2003, 2:26 am'
   //   example 3: date('Y W o', 1062462400)
   //   returns 3: '2003 36 2003'
-  //   example 4: var x = date('Y m d', (new Date()).getTime() / 1000)
-  //   example 4: x = x + ''
-  //   example 4: var $result = x.length // 2009 01 09
+  //   example 4: var $x = date('Y m d', (new Date()).getTime() / 1000)
+  //   example 4: $x = $x + ''
+  //   example 4: var $result = $x.length // 2009 01 09
   //   returns 4: 10
   //   example 5: date('W', 1104534000)
   //   returns 5: '53'
@@ -308,12 +308,14 @@ module.exports = function date (format, timestamp) {
       return jsdate / 1000 | 0
     }
   }
-  this.date = function (format, timestamp) {
-    jsdate = (timestamp === undefined ? new Date() : // Not provided
-      (timestamp instanceof Date) ? new Date(timestamp) : // JS Date()
-      new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
+
+  var _date = function (format, timestamp) {
+    jsdate = (timestamp === undefined ? new Date() // Not provided
+      : (timestamp instanceof Date) ? new Date(timestamp) // JS Date()
+      : new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
     )
     return format.replace(formatChr, formatChrCb)
   }
-  return date(format, timestamp)
+
+  return _date(format, timestamp)
 }

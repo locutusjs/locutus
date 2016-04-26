@@ -14,13 +14,13 @@ module.exports = function array_pop (inputArr) { // eslint-disable-line camelcas
   //        note: you add back properties with the same keys that you removed
   //   example 1: array_pop([0,1,2])
   //   returns 1: 2
-  //   example 2: data = {firstName: 'Kevin', surName: 'van Zonneveld'}
-  //   example 2: lastElem = array_pop(data)
-  //   example 2: var $result = data
+  //   example 2: var $data = {firstName: 'Kevin', surName: 'van Zonneveld'}
+  //   example 2: var $lastElem = array_pop($data)
+  //   example 2: var $result = $data
   //   returns 2: {firstName: 'Kevin'}
 
-  var key = '',
-    lastKey = ''
+  var key = ''
+  var lastKey = ''
 
   if (inputArr.hasOwnProperty('length')) {
     // Indexed

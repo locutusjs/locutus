@@ -5,12 +5,11 @@ module.exports = function sscanf (str, format) {
   //   returns 1: [2350001]
   //   example 2: var myVar = {}
   //   example 2: sscanf('SN/2350001', 'SN/%d', myVar)
-  //   example 2: $result = myVar.value
-  //   returns 2: 1
+  //   example 2: var $result = myVar.value
+  //   returns 2: 2350001
   //   example 3: sscanf("10--20", "%2$d--%1$d") // Must escape '$' in PHP, but not JS
   //   returns 3: [20, 10]
 
-  // SETUP
   var retArr = []
   var _NWS = /\S/
   var args = arguments

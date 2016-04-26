@@ -21,8 +21,8 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 
+  var json = $global.JSON
   var retVal
-  var json = this.window.JSON
   try {
     if (typeof json === 'object' && typeof json.stringify === 'function') {
       // Errors will not be caught here if our own equivalent to resource

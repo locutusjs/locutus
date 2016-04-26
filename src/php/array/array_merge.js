@@ -4,26 +4,26 @@ module.exports = function array_merge () { // eslint-disable-line camelcase
   // bugfixed by: Nate
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //    input by: josh
-  //   example 1: arr1 = {"color": "red", 0: 2, 1: 4}
-  //   example 1: arr2 = {0: "a", 1: "b", "color": "green", "shape": "trapezoid", 2: 4}
-  //   example 1: array_merge(arr1, arr2)
+  //   example 1: var $arr1 = {"color": "red", 0: 2, 1: 4}
+  //   example 1: var $arr2 = {0: "a", 1: "b", "color": "green", "shape": "trapezoid", 2: 4}
+  //   example 1: array_merge($arr1, $arr2)
   //   returns 1: {"color": "green", 0: 2, 1: 4, 2: "a", 3: "b", "shape": "trapezoid", 4: 4}
-  //   example 2: arr1 = []
-  //   example 2: arr2 = {1: "data"}
-  //   example 2: array_merge(arr1, arr2)
+  //   example 2: var $arr1 = []
+  //   example 2: var $arr2 = {1: "data"}
+  //   example 2: array_merge($arr1, $arr2)
   //   returns 2: {0: "data"}
 
-  var args = Array.prototype.slice.call(arguments),
-    argl = args.length,
-    arg,
-    retObj = {},
-    k = '',
-    argil = 0,
-    j = 0,
-    i = 0,
-    ct = 0,
-    toStr = Object.prototype.toString,
-    retArr = true
+  var args = Array.prototype.slice.call(arguments)
+  var argl = args.length
+  var arg
+  var retObj = {}
+  var k = ''
+  var argil = 0
+  var j = 0
+  var i = 0
+  var ct = 0
+  var toStr = Object.prototype.toString
+  var retArr = true
 
   for (i = 0; i < argl; i++) {
     if (toStr.call(args[i]) !== '[object Array]') {
@@ -58,5 +58,6 @@ module.exports = function array_merge () { // eslint-disable-line camelcase
       }
     }
   }
+
   return retObj
 }

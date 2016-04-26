@@ -9,18 +9,18 @@ module.exports = function array_splice (arr, offst, lgth, replacement) { // esli
   //        note: after being supposedly deleted, so use of this function may produce
   //        note: unexpected results in IE if you later attempt to add back properties
   //        note: with the same keys that had been deleted
-  //   example 1: input = {4: "red", 'abc': "green", 2: "blue", 'dud': "yellow"}
-  //   example 1: array_splice(input, 2)
+  //   example 1: var $input = {4: "red", 'abc': "green", 2: "blue", 'dud': "yellow"}
+  //   example 1: array_splice($input, 2)
   //   returns 1: {0: "blue", 'dud': "yellow"}
-  //   example 2: input = ["red", "green", "blue", "yellow"]
-  //   example 2: array_splice(input, 3, 0, "purple")
+  //   example 2: var $input = ["red", "green", "blue", "yellow"]
+  //   example 2: array_splice($input, 3, 0, "purple")
   //   returns 2: []
-  //   example 3: input = ["red", "green", "blue", "yellow"]
-  //   example 3: array_splice(input, -1, 1, ["black", "maroon"])
+  //   example 3: var $input = ["red", "green", "blue", "yellow"]
+  //   example 3: array_splice($input, -1, 1, ["black", "maroon"])
   //   returns 3: ["yellow"]
   //        test: skip-1
 
-  var is_int = require('../var/is_int')
+  var isInt = require('../var/is_int')
 
   var _checkToUpIndices = function (arr, ct, key) {
     // Deal with situation, e.g., if encounter index 4 and try to set it to 0, but 0 exists later in loop (need to
@@ -52,16 +52,16 @@ module.exports = function array_splice (arr, offst, lgth, replacement) { // esli
      // Deal with array-like objects as input
     delete arr.length;
     }*/
-    var lgt = 0,
-      ct = -1,
-      rmvd = [],
-      rmvdObj = {},
-      repl_ct = -1,
-      int_ct = -1
-    var returnArr = true,
-      rmvd_ct = 0,
-      rmvd_lgth = 0,
-      key = ''
+    var lgt = 0
+    var ct = -1
+    var rmvd = []
+    var rmvdObj = {}
+    var replCt = -1
+    var intCt = -1
+    var returnArr = true
+    var rmvdCt = 0
+    var rmvdLngth = 0
+    var key = ''
     // rmvdObj.length = 0;
     for (key in arr) {
       // Can do arr.__count__ in some browsers
@@ -71,38 +71,38 @@ module.exports = function array_splice (arr, offst, lgth, replacement) { // esli
     for (key in arr) {
       ct += 1
       if (ct < offst) {
-        if (is_int(key)) {
-          int_ct += 1
-          if (parseInt(key, 10) === int_ct) {
+        if (isInt(key)) {
+          intCt += 1
+          if (parseInt(key, 10) === intCt) {
             // Key is already numbered ok, so don't need to change key for value
             continue
           }
           // Deal with situation, e.g.,
-          _checkToUpIndices(arr, int_ct, key)
+          _checkToUpIndices(arr, intCt, key)
           // if encounter index 4 and try to set it to 0, but 0 exists later in loop
-          arr[int_ct] = arr[key]
+          arr[intCt] = arr[key]
           delete arr[key]
         }
         continue
       }
-      if (returnArr && is_int(key)) {
+      if (returnArr && isInt(key)) {
         rmvd.push(arr[key])
         // PHP starts over here too
-        rmvdObj[rmvd_ct++] = arr[key]
+        rmvdObj[rmvdCt++] = arr[key]
       } else {
         rmvdObj[key] = arr[key]
         returnArr = false
       }
-      rmvd_lgth += 1
+      rmvdLngth += 1
       // rmvdObj.length += 1;
-      if (replacement && replacement[++repl_ct]) {
-        arr[key] = replacement[repl_ct]
+      if (replacement && replacement[++replCt]) {
+        arr[key] = replacement[replCt]
       } else {
         delete arr[key]
       }
     }
     // Make (back) into an array-like object
-    // arr.length = lgt - rmvd_lgth + (replacement ? replacement.length : 0);
+    // arr.length = lgt - rmvdLngth + (replacement ? replacement.length : 0);
     return returnArr ? rmvd : rmvdObj
   }
 
@@ -110,5 +110,6 @@ module.exports = function array_splice (arr, offst, lgth, replacement) { // esli
     replacement.unshift(offst, lgth)
     return Array.prototype.splice.apply(arr, replacement)
   }
+
   return arr.splice(offst, lgth)
 }

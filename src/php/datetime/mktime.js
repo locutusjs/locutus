@@ -21,11 +21,11 @@ module.exports = function mktime () {
   //   returns 1: 1201875002
   //   example 2: mktime(0, 0, 0, 0, 1, 2008)
   //   returns 2: 1196467200
-  //   example 3: make = mktime()
-  //   example 3: td = new Date()
-  //   example 3: real = Math.floor(td.getTime() / 1000)
-  //   example 3: diff = (real - make)
-  //   example 3: diff < 5
+  //   example 3: var $make = mktime()
+  //   example 3: var $td = new Date()
+  //   example 3: var $real = Math.floor($td.getTime() / 1000)
+  //   example 3: var $diff = ($real - $make)
+  //   example 3: $diff < 5
   //   returns 3: true
   //   example 4: mktime(0, 0, 0, 13, 1, 1997)
   //   returns 4: 883612800
@@ -38,10 +38,10 @@ module.exports = function mktime () {
   //   example 8: mktime(0, 0, -1, 1, 1, 1970)
   //   returns 8: -1
 
-  var d = new Date(),
-    r = arguments,
-    i = 0,
-    e = ['Hours', 'Minutes', 'Seconds', 'Month', 'Date', 'FullYear']
+  var d = new Date()
+  var r = arguments
+  var i = 0
+  var e = ['Hours', 'Minutes', 'Seconds', 'Month', 'Date', 'FullYear']
 
   for (i = 0; i < e.length; i++) {
     if (typeof r[i] === 'undefined') {
