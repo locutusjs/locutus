@@ -8,10 +8,10 @@ var file_get_contents = require('/Users/kvz/code/phpjs/src/php/filesystem/file_g
 describe('src/php/filesystem/file_get_contents.js', function () {
   it('should pass example 1', function (done) {
     var $buf = file_get_contents('test/never-change.txt')
-    var $result = $buf.indexOf('file_get_contents') !== -1
+    var $result = $buf.indexOf('hash') !== -1
     var expected = true
 var $buf = file_get_contents('test/never-change.txt')
-    var result = $buf.indexOf('file_get_contents') !== -1
+    var result = $buf.indexOf('hash') !== -1
     expect(result).to.deep.equal(expected)
     done()
   })

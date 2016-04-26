@@ -4,15 +4,16 @@ module.exports = function uniqid (prefix, moreEntropy) {
   //  revised by: Kankrelune (http://www.webfaktory.info/)
   //        note: Uses an internal counter (in locutus global) to avoid collision
   //   example 1: var $id = uniqid()
-  //   example 1: var $result = $id.length === 'a30285b160c14'.length
+  //   example 1: var $result = $id.length === 13
   //   returns 1: true
   //   example 2: var $id = uniqid('foo')
-  //   example 2: var $result = $id.length === 'fooa30285b1cd361'.length
+  //   example 2: var $result = $id.length === (13 + 'foo'.length)
   //   returns 2: true
   //   example 3: var $id = uniqid('bar', true)
-  //   example 3: var $result = $id.length === 'bara20285b23dfd1.31879087'.length
+  //   example 3: var $result = $id.length === (23 + 'bar'.length)
   //   returns 3: true
 
+  //   example 3: var $result = $id.length === 'bara20285b23dfd1.31879087'.length
   if (typeof prefix === 'undefined') {
     prefix = ''
   }

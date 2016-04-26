@@ -8,28 +8,28 @@ var uniqid = require('/Users/kvz/code/phpjs/src/php/misc/uniqid.js')
 describe('src/php/misc/uniqid.js', function () {
   it('should pass example 1', function (done) {
     var $id = uniqid()
-    var $result = $id.length === 'a30285b160c14'.length
+    var $result = $id.length === 13
     var expected = true
 var $id = uniqid()
-    var result = $id.length === 'a30285b160c14'.length
+    var result = $id.length === 13
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
     var $id = uniqid('foo')
-    var $result = $id.length === 'fooa30285b1cd361'.length
+    var $result = $id.length === (13 + 'foo'.length)
     var expected = true
 var $id = uniqid('foo')
-    var result = $id.length === 'fooa30285b1cd361'.length
+    var result = $id.length === (13 + 'foo'.length)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
     var $id = uniqid('bar', true)
-    var $result = $id.length === 'bara20285b23dfd1.31879087'.length
+    var $result = $id.length === (23 + 'bar'.length)
     var expected = true
 var $id = uniqid('bar', true)
-    var result = $id.length === 'bara20285b23dfd1.31879087'.length
+    var result = $id.length === (23 + 'bar'.length)
     expect(result).to.deep.equal(expected)
     done()
   })
