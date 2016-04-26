@@ -107,6 +107,13 @@ var {{page.category}} = require('locutus/{{page.language}}/{{page.category}}')
     Should return:
     {% highlight javascript %}{{ return }}{% endhighlight %}
   {% endfor %}
+
+  <blockquote>
+    Please not that our examples are also test cases that we use to automatically verify
+    our functions work correctly. This would explain that they are
+    not always as straightforward to human beings.
+  </blockquote>
+
 {% endif %}
 
 {% include add_more.html language=language.name inspiration_urls=language.inspiration_urls %}
