@@ -22,8 +22,11 @@ module.exports = function parse_url (str, component) { // eslint-disable-line ca
   //        returns 4: { scheme: 'https', host: 'www.example.com', path: '/a@b.c/folder', query: 'foo=bar', user: 'gooduser', pass: 'secretpassword' }
 
   var query
-  var iniRaw = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.mode') : undefined)
-  var mode = iniRaw && iniRaw.local_value || 'php'
+
+  var mode = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.mode') : undefined)
+  if (!mode) {
+    mode = 'php'
+  }
 
   var key = [
     'source',
@@ -62,8 +65,10 @@ module.exports = function parse_url (str, component) { // eslint-disable-line ca
   }
 
   if (mode !== 'php') {
-    var iniRawName = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.queryKey') : undefined)
-    var name = iniRawName && iniRawName.local_value || 'queryKey'
+    var name = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.queryKey') : undefined)
+    if (!name) {
+      name = 'queryKey'
+    }
     parser = /(?:^|&)([^&=]*)=?([^&]*)/g
     uri[name] = {}
     query = uri[key[12]] || ''

@@ -19,11 +19,11 @@ var ksort = require('/Users/kvz/code/phpjs/src/php/array/ksort.js')
 describe('src/php/array/ksort.js', function () {
   it.skip('should pass example 1', function (done) {
     var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-    $data = ksort($data)
+    var $data = ksort($data)
     var $result = $data
     var expected = {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
 var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-$data = ksort($data)
+var $data = ksort($data)
     var result = $data
     expect(result).to.deep.equal(expected)
     done()

@@ -19,11 +19,11 @@ var asort = require('/Users/kvz/code/phpjs/src/php/array/asort.js')
 describe('src/php/array/asort.js', function () {
   it.skip('should pass example 1', function (done) {
     var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-    $data = asort($data)
+    var $data = asort($data)
     var $result = $data
     var expected = {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
 var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-$data = asort($data)
+var $data = asort($data)
     var result = $data
     expect(result).to.deep.equal(expected)
     done()

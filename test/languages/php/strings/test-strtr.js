@@ -18,10 +18,10 @@ var strtr = require('/Users/kvz/code/phpjs/src/php/strings/strtr.js')
 
 describe('src/php/strings/strtr.js', function () {
   it('should pass example 1', function (done) {
-    $trans = {'hello' : 'hi', 'hi' : 'hello'}
+    var $trans = {'hello' : 'hi', 'hi' : 'hello'}
     strtr('hi all, I said hello', $trans)
     var expected = 'hello all, I said hi'
-$trans = {'hello' : 'hi', 'hi' : 'hello'}
+var $trans = {'hello' : 'hi', 'hi' : 'hello'}
     var result = strtr('hi all, I said hello', $trans)
     expect(result).to.deep.equal(expected)
     done()

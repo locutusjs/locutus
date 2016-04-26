@@ -17,7 +17,7 @@ module.exports = function ksort (inputArr, sortFlags) {
   //        note: if the content is a numeric string, we treat the
   //        note: "original type" as numeric.
   //   example 1: var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-  //   example 1: $data = ksort($data)
+  //   example 1: var $data = ksort($data)
   //   example 1: var $result = $data
   //   returns 1: {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
   //   example 2: ini_set('locutus.strictForIn', true)

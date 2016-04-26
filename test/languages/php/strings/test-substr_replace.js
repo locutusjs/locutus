@@ -25,10 +25,10 @@ describe('src/php/strings/substr_replace.js', function () {
     done()
   })
   it('should pass example 2', function (done) {
-    $var = 'ABCDEFGH:/MNRPQR/'
+    var $var = 'ABCDEFGH:/MNRPQR/'
     substr_replace($var, 'bob', 0, $var.length)
     var expected = 'bob'
-$var = 'ABCDEFGH:/MNRPQR/'
+var $var = 'ABCDEFGH:/MNRPQR/'
     var result = substr_replace($var, 'bob', 0, $var.length)
     expect(result).to.deep.equal(expected)
     done()

@@ -3,7 +3,7 @@ module.exports = function substr_replace (str, replace, start, length) { // esli
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: substr_replace('ABCDEFGH:/MNRPQR/', 'bob', 0)
   //   returns 1: 'bob'
-  //   example 2: $var = 'ABCDEFGH:/MNRPQR/'
+  //   example 2: var $var = 'ABCDEFGH:/MNRPQR/'
   //   example 2: substr_replace($var, 'bob', 0, $var.length)
   //   returns 2: 'bob'
   //   example 3: substr_replace('ABCDEFGH:/MNRPQR/', 'bob', 0, 0)

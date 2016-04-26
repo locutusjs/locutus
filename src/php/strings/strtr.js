@@ -9,7 +9,7 @@ module.exports = function strtr (str, from, to) {
   // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: $trans = {'hello' : 'hi', 'hi' : 'hello'}
+  //   example 1: var $trans = {'hello' : 'hi', 'hi' : 'hello'}
   //   example 1: strtr('hi all, I said hello', $trans)
   //   returns 1: 'hello all, I said hi'
   //   example 2: strtr('äaabaåccasdeöoo', 'äåö','aao')
@@ -24,17 +24,17 @@ module.exports = function strtr (str, from, to) {
   //   returns 6: '2'
 
   var krsort = require('../array/krsort')
-  var ini_set = require('../info/ini_set')
+  var iniSet = require('../info/ini_set')
 
-  var fr = '',
-    i = 0,
-    j = 0,
-    lenStr = 0,
-    lenFrom = 0,
-    tmpStrictForIn = false,
-    fromTypeStr = '',
-    toTypeStr = '',
-    istr = ''
+  var fr = ''
+  var i = 0
+  var j = 0
+  var lenStr = 0
+  var lenFrom = 0
+  var tmpStrictForIn = false
+  var fromTypeStr = ''
+  var toTypeStr = ''
+  var istr = ''
   var tmpFrom = []
   var tmpTo = []
   var ret = ''
@@ -45,9 +45,9 @@ module.exports = function strtr (str, from, to) {
   if (typeof from === 'object') {
     // Not thread-safe; temporarily set to true
     // @todo: Don't rely on ini here, use internal krsort instead
-    tmpStrictForIn = ini_set('locutus.strictForIn', false)
+    tmpStrictForIn = iniSet('locutus.strictForIn', false)
     from = krsort(from)
-    ini_set('locutus.strictForIn', tmpStrictForIn)
+    iniSet('locutus.strictForIn', tmpStrictForIn)
 
     for (fr in from) {
       if (from.hasOwnProperty(fr)) {

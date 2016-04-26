@@ -15,38 +15,37 @@ module.exports = function str_word_count (str, format, charlist) { // eslint-dis
   //   example 4: str_word_count('hey', 2)
   //   returns 4: {0: 'hey'}
 
-  var ctype_alpha = require('../ctype/ctype_alpha')
-  var len = str.length,
-    cl = charlist && charlist.length,
-    chr = '',
-    tmpStr = '',
-    i = 0,
-    c = '',
-    wArr = [],
-    wC = 0,
-    assoc = {},
-    aC = 0,
-    reg = '',
-    match = false
+  var ctypeAlpha = require('../ctype/ctype_alpha')
+  var len = str.length
+  var cl = charlist && charlist.length
+  var chr = ''
+  var tmpStr = ''
+  var i = 0
+  var c = ''
+  var wArr = []
+  var wC = 0
+  var assoc = {}
+  var aC = 0
+  var reg = ''
+  var match = false
 
   // BEGIN STATIC
-  var _preg_quote = function (str) {
-    return (str + '')
-      .replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!<>\|\:])/g, '\\$1')
+  var _pregQuote = function (str) {
+    return (str + '').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}=!<>\|:])/g, '\\$1')
   }
-  _getWholeChar = function (str, i) {
+  var _getWholeChar = function (str, i) {
     // Use for rare cases of non-BMP characters
     var code = str.charCodeAt(i)
     if (code < 0xD800 || code > 0xDFFF) {
       return str.charAt(i)
     }
-    if (0xD800 <= code && code <= 0xDBFF) {
+    if (code >= 0xD800 && code <= 0xDBFF) {
       // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
       if (str.length <= (i + 1)) {
         throw new Error('High surrogate without following low surrogate')
       }
       var next = str.charCodeAt(i + 1)
-      if (0xDC00 > next || next > 0xDFFF) {
+      if (next < 0xDC00 || next > 0xDFFF) {
         throw new Error('High surrogate without following low surrogate')
       }
       return str.charAt(i) + str.charAt(i + 1)
@@ -56,7 +55,7 @@ module.exports = function str_word_count (str, format, charlist) { // eslint-dis
       throw new Error('Low surrogate without preceding high surrogate')
     }
     var prev = str.charCodeAt(i - 1)
-    if (0xD800 > prev || prev > 0xDBFF) {
+    if (prev < 0xD800 || prev > 0xDBFF) {
       // (could change last hex to 0xDB7F to treat high private surrogates as single characters)
       throw new Error('Low surrogate without preceding high surrogate')
     }
@@ -65,12 +64,12 @@ module.exports = function str_word_count (str, format, charlist) { // eslint-dis
   }
   // END STATIC
   if (cl) {
-    reg = '^(' + _preg_quote(_getWholeChar(charlist, 0))
+    reg = '^(' + _pregQuote(_getWholeChar(charlist, 0))
     for (i = 1; i < cl; i++) {
       if ((chr = _getWholeChar(charlist, i)) === false) {
         continue
       }
-      reg += '|' + _preg_quote(chr)
+      reg += '|' + _pregQuote(chr)
     }
     reg += ')$'
     reg = new RegExp(reg)
@@ -80,7 +79,7 @@ module.exports = function str_word_count (str, format, charlist) { // eslint-dis
     if ((c = _getWholeChar(str, i)) === false) {
       continue
     }
-    match = ctype_alpha(c) || (reg && c.search(reg) !== -1) || ((i !== 0 && i !== len - 1) && c === '-') || // No hyphen at beginning or end unless allowed in charlist (or locale)
+    match = ctypeAlpha(c) || (reg && c.search(reg) !== -1) || ((i !== 0 && i !== len - 1) && c === '-') || // No hyphen at beginning or end unless allowed in charlist (or locale)
       // No apostrophe at beginning unless allowed in charlist (or locale)
       (i !== 0 && c === "'")
     if (match) {

@@ -115,7 +115,6 @@ module.exports = function setlocale (category, locale) {
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
-  $locutus.php.locales = $locutus.php.locales || {}
 
   // Reconcile Windows vs. *nix locale names?
   // Allow different priority orders of languages, esp. if implement gettext as in
@@ -294,7 +293,7 @@ module.exports = function setlocale (category, locale) {
   }
   if (!$locutus.php.locale) {
     $locutus.php.locale = 'en_US'
-    if (window && window.document) {
+    if (typeof window !== 'undefined' && window.document) {
       var NS_XHTML = 'http://www.w3.org/1999/xhtml'
       var NS_XML = 'http://www.w3.org/XML/1998/namespace'
       if (window.document.getElementsByTagNameNS && window.document.getElementsByTagNameNS(NS_XHTML, 'html')[0]) {
