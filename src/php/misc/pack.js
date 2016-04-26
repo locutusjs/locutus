@@ -10,7 +10,7 @@ module.exports = function pack (format) {
   //        note: applicable for JavaScript; pack works as on a 32bit,
   //        note: little endian machine
   //   example 1: pack('nvc*', 0x1234, 0x5678, 65, 66)
-  //   returns 1: '4xVAB'
+  //   returns 1: '\u00124xVAB'
   //   example 2: pack('H4', '2345')
   //   returns 2: '#E'
   //   example 3: pack('H*', 'D5')
@@ -19,17 +19,32 @@ module.exports = function pack (format) {
   //   returns 4: "\u0000\u0000\u0000\u0000\u00008YÀ"
   //        test: skip-1
 
-  var formatPointer = 0,
-    argumentPointer = 1,
-    result = '',
-    argument = '',
-    i = 0,
-    r = [],
-    instruction, quantifier, word, precisionBits, exponentBits, extraNullCount
+  var formatPointer = 0
+  var argumentPointer = 1
+  var result = ''
+  var argument = ''
+  var i = 0
+  var r = []
+  var instruction, quantifier, word, precisionBits, exponentBits, extraNullCount
 
   // vars used by float encoding
-  var bias, minExp, maxExp, minUnnormExp, status, exp, len, bin, signal, n, intPart, floatPart, lastBit, rounded, j,
-    k, tmpResult
+  var bias
+  var minExp
+  var maxExp
+  var minUnnormExp
+  var status
+  var exp
+  var len
+  var bin
+  var signal
+  var n
+  var intPart
+  var floatPart
+  var lastBit
+  var rounded
+  var j
+  var k
+  var tmpResult
 
   while (formatPointer < format.length) {
     instruction = format.charAt(formatPointer)
@@ -47,9 +62,9 @@ module.exports = function pack (format) {
     // Now pack variables: 'quantifier' times 'instruction'
     switch (instruction) {
       case 'a':
-      // NUL-padded string
       case 'A':
-      // SPACE-padded string
+        // NUL-padded string
+        // SPACE-padded string
         if (typeof arguments[argumentPointer] === 'undefined') {
           throw new Error('Warning:  pack() Type ' + instruction + ': not enough arguments')
         } else {
@@ -72,9 +87,9 @@ module.exports = function pack (format) {
         argumentPointer++
         break
       case 'h':
-      // Hex string, low nibble first
       case 'H':
-      // Hex string, high nibble first
+        // Hex string, low nibble first
+        // Hex string, high nibble first
         if (typeof arguments[argumentPointer] === 'undefined') {
           throw new Error('Warning: pack() Type ' + instruction + ': not enough arguments')
         } else {
@@ -88,14 +103,14 @@ module.exports = function pack (format) {
         }
 
         for (i = 0; i < quantifier; i += 2) {
-        // Always get per 2 bytes...
+          // Always get per 2 bytes...
           word = argument[i]
           if (((i + 1) >= quantifier) || typeof argument[i + 1] === 'undefined') {
             word += '0'
           } else {
             word += argument[i + 1]
           }
-        // The fastest way to reverse?
+          // The fastest way to reverse?
           if (instruction === 'h') {
             word = word[1] + word[0]
           }
@@ -105,10 +120,10 @@ module.exports = function pack (format) {
         break
 
       case 'c':
-      // signed char
       case 'C':
-      // unsigned char
-      // c and C is the same in pack
+        // signed char
+        // unsigned char
+        // c and C is the same in pack
         if (quantifier === '*') {
           quantifier = arguments.length - argumentPointer
         }
@@ -123,11 +138,11 @@ module.exports = function pack (format) {
         break
 
       case 's':
-      // signed short (always 16 bit, machine byte order)
       case 'S':
-      // unsigned short (always 16 bit, machine byte order)
       case 'v':
-      // s and S is the same in pack
+        // signed short (always 16 bit, machine byte order)
+        // unsigned short (always 16 bit, machine byte order)
+        // s and S is the same in pack
         if (quantifier === '*') {
           quantifier = arguments.length - argumentPointer
         }
@@ -143,7 +158,7 @@ module.exports = function pack (format) {
         break
 
       case 'n':
-      // unsigned short (always 16 bit, big endian byte order)
+        // unsigned short (always 16 bit, big endian byte order)
         if (quantifier === '*') {
           quantifier = arguments.length - argumentPointer
         }
@@ -159,15 +174,15 @@ module.exports = function pack (format) {
         break
 
       case 'i':
-      // signed integer (machine dependent size and byte order)
       case 'I':
-      // unsigned integer (machine dependent size and byte order)
       case 'l':
-      // signed long (always 32 bit, machine byte order)
       case 'L':
-      // unsigned long (always 32 bit, machine byte order)
       case 'V':
-      // unsigned long (always 32 bit, little endian byte order)
+        // signed integer (machine dependent size and byte order)
+        // unsigned integer (machine dependent size and byte order)
+        // signed long (always 32 bit, machine byte order)
+        // unsigned long (always 32 bit, machine byte order)
+        // unsigned long (always 32 bit, little endian byte order)
         if (quantifier === '*') {
           quantifier = arguments.length - argumentPointer
         }
@@ -185,7 +200,7 @@ module.exports = function pack (format) {
 
         break
       case 'N':
-      // unsigned long (always 32 bit, big endian byte order)
+        // unsigned long (always 32 bit, big endian byte order)
         if (quantifier === '*') {
           quantifier = arguments.length - argumentPointer
         }
@@ -203,10 +218,10 @@ module.exports = function pack (format) {
         break
 
       case 'f':
-      // float (machine dependent size and representation)
       case 'd':
-      // double (machine dependent size and representation)
-      // version based on IEEE754
+        // float (machine dependent size and representation)
+        // double (machine dependent size and representation)
+        // version based on IEEE754
         precisionBits = 23
         exponentBits = 8
         if (instruction === 'd') {
@@ -247,8 +262,7 @@ module.exports = function pack (format) {
           }
           for (k = -1; ++k < len && !bin[k];) {}
 
-          if (bin[(lastBit = precisionBits - 1 + (k = (exp = bias + 1 - k) >= minExp && exp <= maxExp ? k + 1 :
-            bias + 1 - (exp = minExp - 1))) + 1]) {
+          if (bin[(lastBit = precisionBits - 1 + (k = (exp = bias + 1 - k) >= minExp && exp <= maxExp ? k + 1 : bias + 1 - (exp = minExp - 1))) + 1]) {
             if (!(rounded = bin[lastBit])) {
               for (j = lastBit + 2; !rounded && j < len; rounded = bin[j++]) {}
             }
@@ -308,7 +322,7 @@ module.exports = function pack (format) {
         break
 
       case 'x':
-      // NUL byte
+        // NUL byte
         if (quantifier === '*') {
           throw new Error('Warning: pack(): Type x: \'*\' ignored')
         }
@@ -318,7 +332,7 @@ module.exports = function pack (format) {
         break
 
       case 'X':
-      // Back up one byte
+        // Back up one byte
         if (quantifier === '*') {
           throw new Error('Warning: pack(): Type X: \'*\' ignored')
         }
@@ -332,7 +346,7 @@ module.exports = function pack (format) {
         break
 
       case '@':
-      // NUL-fill to absolute position
+        // NUL-fill to absolute position
         if (quantifier === '*') {
           throw new Error('Warning: pack(): Type X: \'*\' ignored')
         }
@@ -348,7 +362,7 @@ module.exports = function pack (format) {
         break
 
       default:
-        throw new Error('Warning:  pack() Type ' + instruction + ': unknown format code')
+        throw new Error('Warning: pack() Type ' + instruction + ': unknown format code')
     }
   }
   if (argumentPointer < arguments.length) {

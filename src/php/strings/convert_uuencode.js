@@ -6,9 +6,8 @@ module.exports = function convert_uuencode (str) { // eslint-disable-line camelc
   // reimplemented by: Ole Vrijenhoek
   //        example 1: convert_uuencode("test\ntext text\r\n")
   //        returns 1: "0=&5S=`IT97AT('1E>'0-\"@``"
-  //        test: skip-1
 
-  var is_scalar = require('../var/is_scalar')
+  var isScalar = require('../var/is_scalar')
 
   var chr = function (c) {
     return String.fromCharCode(c)
@@ -16,22 +15,22 @@ module.exports = function convert_uuencode (str) { // eslint-disable-line camelc
 
   if (!str || str === '') {
     return chr(0)
-  } else if (!is_scalar(str)) {
+  } else if (!isScalar(str)) {
     return false
   }
 
-  var c = 0,
-    u = 0,
-    i = 0,
-    a = 0
-  var encoded = '',
-    tmp1 = '',
-    tmp2 = '',
-    bytes = {}
+  var c = 0
+  var u = 0
+  var i = 0
+  var a = 0
+  var encoded = ''
+  var tmp1 = ''
+  var tmp2 = ''
+  var bytes = {}
 
   // divide string into chunks of 45 characters
   var chunk = function () {
-    bytes = str.substr(u, 45)
+    bytes = str.substr(u, 45).split('')
     for (i in bytes) {
       bytes[i] = bytes[i].charCodeAt(0)
     }
@@ -51,8 +50,7 @@ module.exports = function convert_uuencode (str) { // eslint-disable-line camelc
 
     // Convert each char in bytes[] to a byte
     for (i in bytes) {
-      tmp1 = bytes[i].charCodeAt(0)
-        .toString(2)
+      tmp1 = bytes[i].charCodeAt(0).toString(2)
       while (tmp1.length < 8) {
         tmp1 = '0' + tmp1
       }

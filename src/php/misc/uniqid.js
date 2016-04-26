@@ -3,13 +3,15 @@ module.exports = function uniqid (prefix, moreEntropy) {
   // original by: Kevin van Zonneveld (http://kvz.io)
   //  revised by: Kankrelune (http://www.webfaktory.info/)
   //        note: Uses an internal counter (in locutus global) to avoid collision
-  //        test: skip-all
-  //   example 1: uniqid()
-  //   returns 1: 'a30285b160c14'
-  //   example 2: uniqid('foo')
-  //   returns 2: 'fooa30285b1cd361'
-  //   example 3: uniqid('bar', true)
-  //   returns 3: 'bara20285b23dfd1.31879087'
+  //   example 1: var $id = uniqid()
+  //   example 1: var $result = $id.length === 'a30285b160c14'.length
+  //   returns 1: true
+  //   example 2: var $id = uniqid('foo')
+  //   example 2: var $result = $id.length === 'fooa30285b1cd361'.length
+  //   returns 2: true
+  //   example 3: var $id = uniqid('bar', true)
+  //   example 3: var $result = $id.length === 'bara20285b23dfd1.31879087'.length
+  //   returns 3: true
 
   if (typeof prefix === 'undefined') {
     prefix = ''

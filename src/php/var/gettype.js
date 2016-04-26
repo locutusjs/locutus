@@ -1,4 +1,4 @@
-module.exports = function gettype (mixed_var) {
+module.exports = function gettype (mixedVar) {
   //  discuss at: http://locutusjs.io/php/gettype/
   // original by: Paulo Freitas
   // improved by: Kevin van Zonneveld (http://kvz.io)
@@ -18,31 +18,29 @@ module.exports = function gettype (mixed_var) {
   //   example 5: gettype({0: function () {return false;}})
   //   returns 5: 'object'
   //   example 6: gettype({0: 'test', length: 1, splice: function () {}})
-  //   example 6: gettype(['test'])
   //   returns 6: 'object'
-  //   returns 6: 'array'
-  //        test: skip-6
+  //   example 7: gettype(['test'])
+  //   returns 7: 'array'
 
-  var is_float = require('../var/is_float')
+  var isFloat = require('../var/is_float')
 
-  var s = typeof mixed_var,
-    name
-  var getFuncName = function (fn) {
-    var name = (/\W*function\s+([\w\$]+)\s*\(/)
-      .exec(fn)
+  var s = typeof mixedVar
+  var name
+  var _getFuncName = function (fn) {
+    var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn)
     if (!name) {
       return '(Anonymous)'
     }
     return name[1]
   }
+
   if (s === 'object') {
-    if (mixed_var !== null) {
+    if (mixedVar !== null) {
       // From: http://javascript.crockford.com/remedial.html
-      if (typeof mixed_var.length === 'number' && !(mixed_var.propertyIsEnumerable('length')) && typeof mixed_var
-        .splice === 'function') {
+      if (typeof mixedVar.length === 'number' && !(mixedVar.propertyIsEnumerable('length')) && typeof mixedVar.splice === 'function') {
         s = 'array'
-      } else if (mixed_var.constructor && getFuncName(mixed_var.constructor)) {
-        name = getFuncName(mixed_var.constructor)
+      } else if (mixedVar.constructor && _getFuncName(mixedVar.constructor)) {
+        name = _getFuncName(mixedVar.constructor)
         if (name === 'Date') {
           // not in PHP
           s = 'date'
@@ -58,7 +56,8 @@ module.exports = function gettype (mixed_var) {
       s = 'null'
     }
   } else if (s === 'number') {
-    s = is_float(mixed_var) ? 'double' : 'integer'
+    s = isFloat(mixedVar) ? 'double' : 'integer'
   }
+
   return s
 }

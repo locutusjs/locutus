@@ -1,11 +1,10 @@
-module.exports = function is_callable (v, syntax_only, callable_name) { // eslint-disable-line camelcase
+module.exports = function is_callable (v, syntaxOnly, callableName) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/is_callable/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: François
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //        note: The variable callable_name cannot work as a string variable passed by reference as in PHP (since JavaScript does not support passing strings by reference), but instead will take the name of a global variable and set that instead
+  //        note: The variable callableName cannot work as a string variable passed by reference as in PHP (since JavaScript does not support passing strings by reference), but instead will take the name of a global variable and set that instead
   //        note: When used on an object, depends on a constructor property being kept on the object prototype
-  //        test: skip-all
   //   example 1: is_callable('is_callable')
   //   returns 1: true
   //   example 2: is_callable('bogusFunction', true)
@@ -19,19 +18,21 @@ module.exports = function is_callable (v, syntax_only, callable_name) { // eslin
   //   example 4: is_callable(function () {})
   //   returns 4: true
 
-  var name = '',
-    obj = {},
-    method = ''
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+
+  var name = ''
+  var obj = {}
+  var method = ''
+
   var getFuncName = function (fn) {
-    var name = (/\W*function\s+([\w\$]+)\s*\(/)
-      .exec(fn)
+    var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn)
     if (!name) {
       return '(Anonymous)'
     }
     return name[1]
   }
   if (typeof v === 'string') {
-    obj = this.window
+    obj = $global
     method = v
     name = v
   } else if (typeof v === 'function') {
@@ -44,9 +45,9 @@ module.exports = function is_callable (v, syntax_only, callable_name) { // eslin
   } else {
     return false
   }
-  if (syntax_only || typeof obj[method] === 'function') {
-    if (callable_name) {
-      this.window[callable_name] = name
+  if (syntaxOnly || typeof obj[method] === 'function') {
+    if (callableName) {
+      $global[callableName] = name
     }
     return true
   }

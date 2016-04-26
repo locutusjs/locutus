@@ -1,13 +1,12 @@
-module.exports = function bcadd (left_operand, right_operand, scale) {
+module.exports = function bcadd (leftOperand, rightOperand, scale) {
   //  discuss at: http://locutusjs.io/php/bcadd/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcadd(1, 2)
-  //   returns 1: 3
+  //   returns 1: '3'
   //        todo: implement these testcases
-  //        test: skip-1
 
-  var _locutus_shared_bc = require('../_locutus_shared/_locutus_shared_bc')
-  var libbcmath = _locutus_shared_bc()
+  var bc = require('../_locutus_shared/_locutus_shared_bc')
+  var libbcmath = bc()
 
   var first, second, result
 
@@ -21,8 +20,8 @@ module.exports = function bcadd (left_operand, right_operand, scale) {
   second = libbcmath.bc_init_num()
   result = libbcmath.bc_init_num()
 
-  first = libbcmath.php_str2num(left_operand.toString())
-  second = libbcmath.php_str2num(right_operand.toString())
+  first = libbcmath.php_str2num(leftOperand.toString())
+  second = libbcmath.php_str2num(rightOperand.toString())
 
   result = libbcmath.bc_add(first, second, scale)
 

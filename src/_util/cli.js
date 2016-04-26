@@ -2,9 +2,9 @@
 
 var Util = require('./util')
 
-var util = new Util()
+var util = new Util(process.argv)
 
-util[process.argv[2]](process.argv, function (err) {
+util[process.argv[2]](function (err) {
   if (err) {
     throw new Error(err)
   }

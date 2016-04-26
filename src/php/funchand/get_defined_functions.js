@@ -4,26 +4,31 @@ module.exports = function get_defined_functions () { // eslint-disable-line came
   // improved by: Brett Zamir (http://brett-zamir.me)
   //        note: Test case 1: If get_defined_functions can find itself in the defined functions, it worked :)
   //   example 1: function test_in_array (array, p_val) {for(var i = 0, l = array.length; i < l; i++) {if(array[i] === p_val) return true;} return false;}
-  //   example 1: funcs = get_defined_functions()
-  //   example 1: found = test_in_array(funcs, 'get_defined_functions')
-  //   example 1: var $result = found
+  //   example 1: var $funcs = get_defined_functions()
+  //   example 1: var $found = test_in_array($funcs, 'get_defined_functions')
+  //   example 1: var $result = $found
   //   returns 1: true
   //        test: skip-1
 
-  var i = '',
-    arr = [],
-    already = {}
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
 
-  for (i in this.window) {
+  var i = ''
+  var arr = []
+  var already = {}
+
+  for (i in $global) {
     try {
-      if (typeof this.window[i] === 'function') {
+      if (typeof $global[i] === 'function') {
         if (!already[i]) {
           already[i] = 1
           arr.push(i)
         }
-      } else if (typeof this.window[i] === 'object') {
-        for (var j in this.window[i]) {
-          if (typeof this.window[j] === 'function' && this.window[j] && !already[j]) {
+      } else if (typeof $global[i] === 'object') {
+        for (var j in $global[i]) {
+          if (typeof $global[j] === 'function' && $global[j] && !already[j]) {
             already[j] = 1
             arr.push(j)
           }

@@ -9,11 +9,11 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
   //   returns 1: 'int(1)'
 
   var echo = require('../strings/echo')
-  var output = '',
-    pad_char = ' ',
-    pad_val = 4,
-    lgth = 0,
-    i = 0
+  var output = ''
+  var padChar = ' '
+  var padVal = 4
+  var lgth = 0
+  var i = 0
 
   var _getFuncName = function (fn) {
     var name = (/\W*function\s+([\w\$]+)\s*\(/)
@@ -24,14 +24,14 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
     return name[1]
   }
 
-  var _repeat_char = function (len, pad_char) {
+  var _repeatChar = function (len, padChar) {
     var str = ''
     for (var i = 0; i < len; i++) {
-      str += pad_char
+      str += padChar
     }
     return str
   }
-  var _getInnerVal = function (val, thick_pad) {
+  var _getInnerVal = function (val, thickPad) {
     var ret = ''
     if (val === null) {
       ret = 'NULL'
@@ -45,16 +45,15 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
       } else {
         ret = 'float(' + val + ')'
       }
-    }
-    // The remaining are not PHP behavior because these values only exist in this exact form in JavaScript
-    else if (typeof val === 'undefined') {
+    } else if (typeof val === 'undefined') {
+      // The remaining are not PHP behavior because these values only exist in this exact form in JavaScript
       ret = 'undefined'
     } else if (typeof val === 'function') {
       var funcLines = val.toString()
         .split('\n')
       ret = ''
       for (var i = 0, fll = funcLines.length; i < fll; i++) {
-        ret += (i !== 0 ? '\n' + thick_pad : '') + funcLines[i]
+        ret += (i !== 0 ? '\n' + thickPad : '') + funcLines[i]
       }
     } else if (val instanceof Date) {
       ret = 'Date(' + val + ')'
@@ -109,14 +108,13 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
     return ret
   }
 
-  var _formatArray = function (obj, cur_depth, pad_val, pad_char) {
-    var someProp = ''
-    if (cur_depth > 0) {
-      cur_depth++
+  var _formatArray = function (obj, curDepth, padVal, padChar) {
+    if (curDepth > 0) {
+      curDepth++
     }
 
-    var base_pad = _repeat_char(pad_val * (cur_depth - 1), pad_char)
-    var thick_pad = _repeat_char(pad_val * (cur_depth + 1), pad_char)
+    var basePad = _repeatChar(padVal * (curDepth - 1), padChar)
+    var thickPad = _repeatChar(padVal * (curDepth + 1), padChar)
     var str = ''
     var val = ''
 
@@ -125,32 +123,37 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
         return obj.var_dump()
       }
       lgth = 0
-      for (someProp in obj) {
-        lgth++
+      for (var someProp in obj) {
+        if (obj.hasOwnProperty(someProp)) {
+          lgth++
+        }
       }
       str += 'array(' + lgth + ') {\n'
       for (var key in obj) {
         var objVal = obj[key]
         if (typeof objVal === 'object' && objVal !== null && !(objVal instanceof Date) && !(objVal instanceof RegExp) &&
           !objVal.nodeName) {
-          str += thick_pad + '[' + key + '] =>\n' + thick_pad + _formatArray(objVal, cur_depth + 1, pad_val,
-            pad_char)
+          str += thickPad + '[' + key + '] =>\n' + thickPad + _formatArray(objVal, curDepth + 1, padVal,
+            padChar)
         } else {
-          val = _getInnerVal(objVal, thick_pad)
-          str += thick_pad + '[' + key + '] =>\n' + thick_pad + val + '\n'
+          val = _getInnerVal(objVal, thickPad)
+          str += thickPad + '[' + key + '] =>\n' + thickPad + val + '\n'
         }
       }
-      str += base_pad + '}\n'
+      str += basePad + '}\n'
     } else {
-      str = _getInnerVal(obj, thick_pad)
+      str = _getInnerVal(obj, thickPad)
     }
     return str
   }
 
-  output = _formatArray(arguments[0], 0, pad_val, pad_char)
+  output = _formatArray(arguments[0], 0, padVal, padChar)
   for (i = 1; i < arguments.length; i++) {
-    output += '\n' + _formatArray(arguments[i], 0, pad_val, pad_char)
+    output += '\n' + _formatArray(arguments[i], 0, padVal, padChar)
   }
 
   echo(output)
+
+  // Not how PHP does it, but helps us test:
+  return output
 }

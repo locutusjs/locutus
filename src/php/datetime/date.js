@@ -36,9 +36,9 @@ module.exports = function date (format, timestamp) {
   //        note: $locutus.currentTimezoneOffset and $locutus.currentTimezoneDST set by that function
   //        note: in order to adjust the dates in this function (or our other date functions!) accordingly
   //   example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400)
-  //   returns 1: '09:09:40 m is month'
+  //   returns 1: '07:09:40 m is month'
   //   example 2: date('F j, Y, g:i a', 1062462400)
-  //   returns 2: 'September 2, 2003, 2:26 am'
+  //   returns 2: 'September 2, 2003, 12:26 am'
   //   example 3: date('Y W o', 1062462400)
   //   returns 3: '2003 36 2003'
   //   example 4: var $x = date('Y m d', (new Date()).getTime() / 1000)
@@ -46,7 +46,7 @@ module.exports = function date (format, timestamp) {
   //   example 4: var $result = $x.length // 2009 01 09
   //   returns 4: 10
   //   example 5: date('W', 1104534000)
-  //   returns 5: '53'
+  //   returns 5: '52'
   //   example 6: date('B t', 1104534000)
   //   returns 6: '999 31'
   //   example 7: date('W U', 1293750000.82); // 2010-12-31

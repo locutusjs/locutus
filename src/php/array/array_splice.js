@@ -18,7 +18,6 @@ module.exports = function array_splice (arr, offst, lgth, replacement) { // esli
   //   example 3: var $input = ["red", "green", "blue", "yellow"]
   //   example 3: array_splice($input, -1, 1, ["black", "maroon"])
   //   returns 3: ["yellow"]
-  //        test: skip-1
 
   var isInt = require('../var/is_int')
 

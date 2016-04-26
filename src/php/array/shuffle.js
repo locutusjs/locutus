@@ -4,32 +4,17 @@ module.exports = function shuffle (inputArr) {
   //  revised by: Kevin van Zonneveld (http://kvz.io)
   //  revised by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //        note: This function deviates from PHP in returning a copy of the array instead
-  //        note: of acting by reference and returning true; this was necessary because
-  //        note: IE does not allow deleting and re-adding of properties without caching
-  //        note: of property position; you can set the ini of "locutus.strictForIn" to true to
-  //        note: get the PHP behavior, but use this only if you are in an environment
-  //        note: such as Firefox extensions where for-in iteration order is fixed and true
-  //        note: property deletion is supported. Note that we intend to implement the PHP
-  //        note: behavior by default if IE ever does allow it; only gives shallow copy since
-  //        note: is by reference in PHP anyways
-  //        test: skip-all
+  //   example 1: var $data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5}
   //   example 1: ini_set('locutus.strictForIn', true)
-  //   example 1: shuffle(data)
-  //   example 1: var $result = data
-  //   returns 1: {5:'a', 4:5, 'q':5, 3:'c', 2:'3'}
-  //   example 2: var data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5}
-  //   example 2: ini_set('locutus.strictForIn', true)
-  //   example 2: var data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5}
-  //   example 2: shuffle(data)
-  //   example 2: var $result = data
-  //   returns 2: {5:'a', 'q':5, 3:'c', 2:'3', 4:5}
+  //   example 1: shuffle($data)
+  //   example 1: var $result = $data.q
+  //   returns 1: 5
 
-  var valArr = [],
-    k = '',
-    i = 0,
-    strictForIn = false,
-    populateArr = []
+  var valArr = []
+  var k = ''
+  var i = 0
+  var strictForIn = false
+  var populateArr = []
 
   for (k in inputArr) {
     // Get key and value arrays
@@ -45,7 +30,10 @@ module.exports = function shuffle (inputArr) {
   })
 
   var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.strictForIn') : undefined)
-  strictForIn = iniVal !== 'off'
+  if (!iniVal) {
+    iniVal = 'on'
+  }
+  strictForIn = iniVal === 'on'
   populateArr = strictForIn ? inputArr : populateArr
 
   for (i = 0; i < valArr.length; i++) {

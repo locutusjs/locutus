@@ -1,4 +1,4 @@
-module.exports = function gettimeofday (return_float) {
+module.exports = function gettimeofday (returnFloat) {
   //  discuss at: http://locutusjs.io/php/gettimeofday/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: Josh Fraser (http://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)
@@ -6,14 +6,14 @@ module.exports = function gettimeofday (return_float) {
   //  revised by: Theriault (https://github.com/Theriault)
   //   example 1: gettimeofday()
   //   returns 1: {sec: 12, usec: 153000, minuteswest: -480, dsttime: 0}
-  //   example 2: gettimeofday(true)
-  //   returns 2: 1238748978.49
-  //        test: skip-all
+  //   example 2: var $timeStamp = gettimeofday(true)
+  //   example 2: var $result = $timeStamp > 1000000000 && $timeStamp < 2000000000
+  //   returns 2: true
 
-  var t = new Date(),
-    y = 0
+  var t = new Date()
+  var y = 0
 
-  if (return_float) {
+  if (returnFloat) {
     return t.getTime() / 1000
   }
 

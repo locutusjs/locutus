@@ -5,17 +5,12 @@ module.exports = function array_values (input) { // eslint-disable-line camelcas
   //   example 1: array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} )
   //   returns 1: [ 'Kevin', 'van Zonneveld' ]
 
-  var tmp_arr = [],
-    key = ''
-
-  if (input && typeof input === 'object' && input.change_key_case) {
-    // Duck-type check for our own array()-created LOCUTUS_Array
-    return input.values()
-  }
+  var tmpArr = []
+  var key = ''
 
   for (key in input) {
-    tmp_arr[tmp_arr.length] = input[key]
+    tmpArr[tmpArr.length] = input[key]
   }
 
-  return tmp_arr
+  return tmpArr
 }

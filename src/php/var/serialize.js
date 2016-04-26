@@ -1,4 +1,4 @@
-module.exports = function serialize (mixed_value) {
+module.exports = function serialize (mixedValue) {
   //  discuss at: http://locutusjs.io/php/serialize/
   // original by: Arpad Ray (mailto:arpad@php.net)
   // improved by: Dino
@@ -19,102 +19,108 @@ module.exports = function serialize (mixed_value) {
   //   returns 1: 'a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}'
   //   example 2: serialize({firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'})
   //   returns 2: 'a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}'
-  //        test: skip-all
 
-  var val, key, okey,
-    ktype = '',
-    vals = '',
-    count = 0,
-    _utf8Size = function (str) {
-      var size = 0,
-        i = 0,
-        l = str.length,
-        code = ''
-      for (i = 0; i < l; i++) {
-        code = str.charCodeAt(i)
-        if (code < 0x0080) {
-          size += 1
-        } else if (code < 0x0800) {
-          size += 2
-        } else {
-          size += 3
+  var val, key, okey
+  var ktype = ''
+  var vals = ''
+  var count = 0
+
+  var _utf8Size = function (str) {
+    var size = 0
+    var i = 0
+    var l = str.length
+    var code = ''
+    for (i = 0; i < l; i++) {
+      code = str.charCodeAt(i)
+      if (code < 0x0080) {
+        size += 1
+      } else if (code < 0x0800) {
+        size += 2
+      } else {
+        size += 3
+      }
+    }
+    return size
+  }
+
+  var _getType = function (inp) {
+    var match
+    var key
+    var cons
+    var types
+    var type = typeof inp
+
+    if (type === 'object' && !inp) {
+      return 'null'
+    }
+
+    if (type === 'object') {
+      if (!inp.constructor) {
+        return 'object'
+      }
+      cons = inp.constructor.toString()
+      match = cons.match(/(\w+)\(/)
+      if (match) {
+        cons = match[1].toLowerCase()
+      }
+      types = ['boolean', 'number', 'string', 'array']
+      for (key in types) {
+        if (cons === types[key]) {
+          type = types[key]
+          break
         }
       }
-      return size
-    },
-    _getType = function (inp) {
-      var match, key, cons, types, type = typeof inp
+    }
+    return type
+  }
 
-      if (type === 'object' && !inp) {
-        return 'null'
-      }
-
-      if (type === 'object') {
-        if (!inp.constructor) {
-          return 'object'
-        }
-        cons = inp.constructor.toString()
-        match = cons.match(/(\w+)\(/)
-        if (match) {
-          cons = match[1].toLowerCase()
-        }
-        types = ['boolean', 'number', 'string', 'array']
-        for (key in types) {
-          if (cons === types[key]) {
-            type = types[key]
-            break
-          }
-        }
-      }
-      return type
-    },
-    type = _getType(mixed_value)
+  var type = _getType(mixedValue)
 
   switch (type) {
     case 'function':
       val = ''
       break
     case 'boolean':
-      val = 'b:' + (mixed_value ? '1' : '0')
+      val = 'b:' + (mixedValue ? '1' : '0')
       break
     case 'number':
-      val = (Math.round(mixed_value) === mixed_value ? 'i' : 'd') + ':' + mixed_value
+      val = (Math.round(mixedValue) === mixedValue ? 'i' : 'd') + ':' + mixedValue
       break
     case 'string':
-      val = 's:' + _utf8Size(mixed_value) + ':"' + mixed_value + '"'
+      val = 's:' + _utf8Size(mixedValue) + ':"' + mixedValue + '"'
       break
     case 'array':
     case 'object':
       val = 'a'
-    /*
-        if (type === 'object') {
-          var objname = mixed_value.constructor.toString().match(/(\w+)\(\)/);
-          if (objname === undefined) {
-            return;
-          }
-          objname[1] = this.serialize(objname[1]);
-          val = 'O' + objname[1].substring(1, objname[1].length - 1);
+      /*
+      if (type === 'object') {
+        var objname = mixedValue.constructor.toString().match(/(\w+)\(\)/);
+        if (objname === undefined) {
+          return;
         }
-        */
+        objname[1] = serialize(objname[1]);
+        val = 'O' + objname[1].substring(1, objname[1].length - 1);
+      }
+      */
 
-      for (key in mixed_value) {
-        if (mixed_value.hasOwnProperty(key)) {
-          ktype = _getType(mixed_value[key])
+      for (key in mixedValue) {
+        if (mixedValue.hasOwnProperty(key)) {
+          ktype = _getType(mixedValue[key])
           if (ktype === 'function') {
             continue
           }
 
           okey = (key.match(/^[0-9]+$/) ? parseInt(key, 10) : key)
-          vals += this.serialize(okey) + this.serialize(mixed_value[key])
+          vals += serialize(okey) + serialize(mixedValue[key])
           count++
         }
       }
       val += ':' + count + ':{' + vals + '}'
       break
     case 'undefined':
-    // Fall-through
     default:
-    // if the JS object has a property which contains a null value, the string cannot be unserialized by PHP
+      // Fall-through
+      // if the JS object has a property which contains a null value, the string cannot be unserialized by PHP
       val = 'N'
       break
   }

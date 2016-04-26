@@ -5,25 +5,26 @@ module.exports = function array_diff_uassoc (arr1) { // eslint-disable-line came
   //   example 1: var $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
   //   example 1: array_diff_uassoc($array1, $array2, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })
   //   returns 1: {b: 'brown', c: 'blue', 0: 'red'}
-  //        test: skip-1
 
-  var retArr = {},
-    arglm1 = arguments.length - 1,
-    cb = arguments[arglm1],
-    arr = {},
-    i = 1,
-    k1 = '',
-    k = ''
-  cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[
-    cb[0]][cb[1]] : cb
+  var retArr = {}
+  var arglm1 = arguments.length - 1
+  var cb = arguments[arglm1]
+  var arr = {}
+  var i = 1
+  var k1 = ''
+  var k = ''
 
-  arr1keys: for (k1 in arr1) {
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+
+  cb = (typeof cb === 'string') ? $global[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? $global[cb[0]][cb[1]] : cb
+
+  arr1keys: for (k1 in arr1) { // eslint-disable-line no-labels
     for (i = 1; i < arglm1; i++) {
       arr = arguments[i]
       for (k in arr) {
         if (arr[k] === arr1[k1] && cb(k, k1) === 0) {
           // If it reaches here, it was found in at least one array, so try next value
-          continue arr1keys
+          continue arr1keys // eslint-disable-line no-labels
         }
       }
       retArr[k1] = arr1[k1]

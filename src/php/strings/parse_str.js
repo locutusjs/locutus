@@ -16,7 +16,6 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
   //         input by: jeicquest
   //             note: When no argument is specified, will put variables in global scope.
   //             note: When a particular argument has been passed, and the returned value is different parse_str of PHP. For example, a=b=c&d====c
-  //             test: skip-all
   //        example 1: var arr = {}
   //        example 1: parse_str('first=foo&second=bar', arr)
   //        example 1: var $result = arr
@@ -29,25 +28,39 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
   //        example 3: parse_str('abc[a][b]["c"]=def&abc[q]=t+5')
   //        returns 3: {"3":"a","a":{"b":{"c":"def"}},"q":"t 5"}
 
-  var strArr = String(str)
-    .replace(/^&/, '')
-    .replace(/&$/, '')
-    .split('&'),
-    sal = strArr.length,
-    i, j, ct, p, lastObj, obj, lastIter, undef, chr, tmp, key, value,
-    postLeftBracketPos, keys, keysLen,
-    fixStr = function (str) {
-      return decodeURIComponent(str.replace(/\+/g, '%20'))
-    }
+  var strArr = String(str).replace(/^&/, '').replace(/&$/, '').split('&')
+  var sal = strArr.length
+  var i
+  var j
+  var ct
+  var p
+  var lastObj
+  var obj
+  var undef
+  var chr
+  var tmp
+  var key
+  var value
+  var postLeftBracketPos
+  var keys
+  var keysLen
+  var _fixStr = function (str) {
+    return decodeURIComponent(str.replace(/\+/g, '%20'))
+  }
+
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
 
   if (!array) {
-    array = this.window
+    array = $global
   }
 
   for (i = 0; i < sal; i++) {
     tmp = strArr[i].split('=')
-    key = fixStr(tmp[0])
-    value = (tmp.length < 2) ? '' : fixStr(tmp[1])
+    key = _fixStr(tmp[0])
+    value = (tmp.length < 2) ? '' : _fixStr(tmp[1])
 
     while (key.charAt(0) === ' ') {
       key = key.slice(1)
@@ -89,9 +102,7 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
 
       obj = array
       for (j = 0, keysLen = keys.length; j < keysLen; j++) {
-        key = keys[j].replace(/^['"]/, '')
-          .replace(/['"]$/, '')
-        lastIter = j !== keys.length - 1
+        key = keys[j].replace(/^['"]/, '').replace(/['"]$/, '')
         lastObj = obj
         if ((key !== '' && key !== ' ') || j === 0) {
           if (obj[key] === undef) {

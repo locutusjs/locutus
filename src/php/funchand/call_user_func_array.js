@@ -9,14 +9,33 @@ module.exports = function call_user_func_array (cb, parameters) { // eslint-disa
   //   returns 1: true
   //   example 2: call_user_func_array('isNaN', [1])
   //   returns 2: false
-  //        test: skip-all
 
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
   var func
+  var scope = null
 
   if (typeof cb === 'string') {
-    func = (typeof this[cb] === 'function') ? this[cb] : func = (new Function(null, 'return ' + cb))()
+    if (typeof $global[cb] === 'function') {
+      func = $global[cb]
+    } else {
+      func = (new Function(null, 'return ' + cb)()) // eslint-disable-line no-new-func
+    }
   } else if (Object.prototype.toString.call(cb) === '[object Array]') {
-    func = (typeof cb[0] === 'string') ? eval(cb[0] + "['" + cb[1] + "']") : func = cb[0][cb[1]]
+    if (typeof cb[0] === 'string') {
+      func = eval(cb[0] + "['" + cb[1] + "']") // eslint-disable-line no-eval
+    } else {
+      func = cb[0][cb[1]]
+    }
+
+    if (typeof cb[0] === 'string') {
+      if (typeof $global[cb[0]] === 'function') {
+        scope = $global[cb[0]]
+      } else {
+        scope = eval(cb[0]) // eslint-disable-line no-eval
+      }
+    } else if (typeof cb[0] === 'object') {
+      scope = cb[0]
+    }
   } else if (typeof cb === 'function') {
     func = cb
   }
@@ -25,6 +44,5 @@ module.exports = function call_user_func_array (cb, parameters) { // eslint-disa
     throw new Error(func + ' is not a valid function')
   }
 
-  return (typeof cb[0] === 'string') ? func.apply(eval(cb[0]), parameters) : (typeof cb[0] !== 'object') ? func.apply(
-    null, parameters) : func.apply(cb[0], parameters)
+  return func.apply(scope, parameters)
 }

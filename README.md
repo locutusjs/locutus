@@ -86,7 +86,9 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 
 ## Todo
 
+- [ ] One way of checking pure Arrays vs PHP arrays (`Object.prototype.toString.call(arr1) === '[object Array]'`, `typeof retObj[p] === 'object'`, `var asString = Object.prototype.toString.call(mixedVar) var asFunc = _getFuncName(mixedVar.constructor) if (asString === '[object Object]' && asFunc === 'Object') {` )
 - [ ] Track all cases of `window`, see if they make sense
+- [ ] Track all cases of `setTimeout`, use them without window prefix. Remove codez hack
 - [ ] Read up on `i18n_loc_set_default` and `setlocale` in php manual, see if new behavior is warrented
 - [ ] `json_*` functions can leverage Node's
 - [ ] See if we need to merge `sort` functions into one helper function and `require` that. Use `arsort` as an example
@@ -103,6 +105,7 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 - [ ] Port a few more tricky/interdepending Go functions
 - [ ] Add eslint warnings to website function
 - [ ] Parse requires with ast like browserify. Then we can add dependencies back to website
+- [ ] Compare test cases against `php -r`
 - [ ] Auto-deploys via Travis CI
 - [x] Adopt better global detection, use $locutus.golang.<specifics>
 - [-] Maybe move `module.exports = acos` to bottom line, then function signature can stay BC

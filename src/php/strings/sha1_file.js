@@ -1,13 +1,16 @@
 module.exports = function sha1_file (str_filename) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/sha1_file/
   // original by: Kevin van Zonneveld (http://kvz.io)
-  //        test: skip-all
-  //   example 1: sha1_file('http://kvz.io/pj_test_supportfile_1.htm')
-  //   returns 1: '40bd001563085fc35165329ea1ff5c5ecbdbbeef'
+  //   example 1: sha1_file('test/never-change.txt')
+  //   returns 1: '0ea65a1f4b4d69712affc58240932f3eb8a2af66'
 
-  var file_get_contents = require('../filesystem/file_get_contents')
+  var fileGetContents = require('../filesystem/file_get_contents')
   var sha1 = require('../strings/sha1')
-  var buf = file_get_contents(str_filename)
+  var buf = fileGetContents(str_filename)
+
+  if (buf === false) {
+    return false
+  }
 
   return sha1(buf)
 }

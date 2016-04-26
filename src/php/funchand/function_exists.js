@@ -1,4 +1,4 @@
-module.exports = function function_exists (func_name) { // eslint-disable-line camelcase
+module.exports = function function_exists (funcName) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/function_exists/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Steve Clay
@@ -8,8 +8,11 @@ module.exports = function function_exists (func_name) { // eslint-disable-line c
   //   returns 1: true
   //        test: skip-1
 
-  if (typeof func_name === 'string') {
-    func_name = this.window[func_name]
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+
+  if (typeof funcName === 'string') {
+    funcName = $global[funcName]
   }
-  return typeof func_name === 'function'
+
+  return typeof funcName === 'function'
 }

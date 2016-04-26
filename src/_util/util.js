@@ -7,40 +7,43 @@ var mkdirp = require('mkdirp')
 var debug = require('depurar')('locutus')
 var _ = require('lodash')
 
-function Util (config) {
+function Util (argv) {
   this.__src = path.dirname(__dirname)
   this.__root = path.dirname(path.dirname(__dirname))
   this.__test = path.dirname(path.dirname(__dirname)) + '/test'
 
-  this.globals = {
-    'XMLHttpRequest': '{} // eslint-disable-line no-native-reassign',
-    'window': '{ // eslint-disable-line no-native-reassign\n' +
-    '  window: {},\n' +
-    '  document: {\n' +
-    '    lastModified: 1388954399,\n' +
-    '    getElementsByTagName: function () { return [] }\n' +
-    '  },\n' +
-    '  location: {\n' +
-    '    href: ""\n' +
-    '  }\n' +
-    '}'
-  }
+
+  this.globals = {}
+  // this.globals = {
+  //   'XMLHttpRequest': '{} // eslint-disable-line no-native-reassign',
+  //   'window': '{ // eslint-disable-line no-native-reassign\n' +
+  //   '  window: {},\n' +
+  //   '  document: {\n' +
+  //   '    lastModified: 1388954399,\n' +
+  //   '    getElementsByTagName: function () { return [] }\n' +
+  //   '  },\n' +
+  //   '  location: {\n' +
+  //   '    href: ""\n' +
+  //   '  }\n' +
+  //   '}'
+  // }
+
   this.pattern = [this.__src + '/**/**/*.js', '!**/index.js', '!**/_util/**']
   this.concurrency = 8
 
-  // Overwrite properties with config
-  for (var k in config) {
-    this[k] = config[k]
+  this.allowSkips = true
+  if (argv.indexOf('--noskip')) {
+    this.allowSkips = false
   }
 
   this._reindexBuffer = {}
 }
 
-Util.prototype.injectweb = function (args, cb) {
+Util.prototype.injectweb = function (cb) {
   this._runFunctionOnAll(this._injectwebOne, cb)
 }
 
-Util.prototype.reindex = function (args, cb) {
+Util.prototype.reindex = function (cb) {
   var self = this
   self._reindexBuffer = {}
   self._runFunctionOnAll(self._reindexOne, function (err) {
@@ -56,7 +59,7 @@ Util.prototype.reindex = function (args, cb) {
   })
 }
 
-Util.prototype.writetests = function (args, cb) {
+Util.prototype.writetests = function (cb) {
   this._runFunctionOnAll(this._writetestOne, cb)
 }
 
@@ -104,7 +107,7 @@ Util.prototype._reindexOne = function (params, cb) {
 
 Util.prototype._injectwebOne = function (params, cb) {
   var authors = {}
-  var keys = ['original by', 'improved by', 'bugfixed by', 'revised by', 'input by']
+  var keys = ['original by', 'improved by', 'parts by', 'bugfixed by', 'revised by', 'input by']
   keys.forEach(function (key) {
     if (params.headKeys[key]) {
       authors[key] = _.flattenDeep(params.headKeys[key])
@@ -178,7 +181,7 @@ Util.prototype._writetestOne = function (params, cb) {
   }
 
   var describeSkip = ''
-  if (testProps.indexOf('skip-all') !== -1) {
+  if (self.allowSkips && testProps.indexOf('skip-all') !== -1) {
     describeSkip = '.skip'
   }
 
@@ -205,6 +208,9 @@ Util.prototype._writetestOne = function (params, cb) {
     if (params.func_name === 'localeconv') {
       codez.push('var ' + 'setlocale' + ' = require(\'' + self.__src + '/' + 'php/strings/setlocale' + '\') // eslint-disable-line no-unused-vars')
     }
+    if (params.func_name === 'i18n_loc_get_default') {
+      codez.push('var ' + 'setlocale' + ' = require(\'' + self.__src + '/' + 'php/i18n/i18n_loc_set_default' + '\') // eslint-disable-line no-unused-vars')
+    }
   }
 
   // Add the main function to test
@@ -222,7 +228,7 @@ Util.prototype._writetestOne = function (params, cb) {
 
     var humanIndex = parseInt(i, 10) + 1
     var itSkip = ''
-    if (testProps.indexOf('skip-' + humanIndex) !== -1) {
+    if (self.allowSkips && testProps.indexOf('skip-' + humanIndex) !== -1) {
       itSkip = '.skip'
     }
 
@@ -466,7 +472,7 @@ Util.prototype._headKeys = function (headLines) {
   var num = 0
 
   for (i in headLines) {
-    if (!(match = headLines[i].match(/^\s*\W?\s*([a-z\ 0-9]+)\s*:\s*(.*)\s*$/))) {
+    if (!(match = headLines[i].match(/^\s*\W?\s*([a-z 0-9]+)\s*:\s*(.*)\s*$/))) {
       continue
     }
     key = match[1]

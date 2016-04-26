@@ -15,28 +15,21 @@ module.exports = function array_change_key_case (array, cs) { // eslint-disable-
   //   returns 5: {"FUBAR": 42}
   //   example 6: array_change_key_case({ FuBaR: 42 }, 2)
   //   returns 6: {"FUBAR": 42}
-  //   example 7: ini_set('locutus.return_locutus_arrays', 'on')
-  //   example 7: var arr = [{a: 0}, {B: 1}, {c: 2}]
-  //   example 7: var newArr = array_change_key_case(arr)
-  //   example 7: newArr.splice(1, 1)
-  //   returns 7: [{b: 1}]
-  //        test: skip-7
 
-  var case_fn, key, tmp_ar = {}
+  var caseFnc
+  var key
+  var tmpArr = {}
 
   if (Object.prototype.toString.call(array) === '[object Array]') {
     return array
   }
-  if (array && typeof array === 'object' && array.change_key_case) {
-    // Duck-type check for our own array()-created LOCUTUS_Array
-    return array.change_key_case(cs)
-  }
+
   if (array && typeof array === 'object') {
-    case_fn = (!cs || cs === 'CASE_LOWER') ? 'toLowerCase' : 'toUpperCase'
+    caseFnc = (!cs || cs === 'CASE_LOWER') ? 'toLowerCase' : 'toUpperCase'
     for (key in array) {
-      tmp_ar[key[case_fn]()] = array[key]
+      tmpArr[key[caseFnc]()] = array[key]
     }
-    return tmp_ar
+    return tmpArr
   }
 
   return false

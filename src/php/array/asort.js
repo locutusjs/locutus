@@ -25,7 +25,7 @@ module.exports = function asort (inputArr, sortFlags) {
   //        note: if the content is a numeric string, we treat the
   //        note: "original type" as numeric.
   //   example 1: var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-  //   example 1: var $data = asort($data)
+  //   example 1: asort($data)
   //   example 1: var $result = $data
   //   returns 1: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
   //   example 2: ini_set('locutus.strictForIn', true)
@@ -33,7 +33,6 @@ module.exports = function asort (inputArr, sortFlags) {
   //   example 2: asort($data)
   //   example 2: var $result = $data
   //   returns 2: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
-  //        test: skip-1
 
   var strnatcmp = require('../strings/strnatcmp')
   var i18nlgd = require('../i18n/i18n_loc_get_default')

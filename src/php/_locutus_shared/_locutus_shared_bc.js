@@ -2,9 +2,9 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
   //  discuss at: http://locutusjs.io/php/_locutus_shared/_locutus_shared_bc
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //   example 1: _locutus_shared_bc()
-  //   returns 1: {}
-  //        test: skip-all
+  //   example 1: var $bc = _locutus_shared_bc()
+  //   example 1: var $result = $bc.PLUS
+  //   returns 1: '+'
 
   /**
    * BC Math Library for Javascript
@@ -371,9 +371,8 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
     },
 
 
-
-    MUL_BASE_DIGITS      : 80,
-    MUL_SMALL_DIGITS     : (this.MUL_BASE_DIGITS / 4),
+    MUL_BASE_DIGITS: 80,
+    MUL_SMALL_DIGITS: (80 / 4),
     // #define MUL_SMALL_DIGITS mul_base_digits/4
 
     /* The multiply routine.  N2 times N1 is put int PROD with the scale of

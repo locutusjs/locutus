@@ -7,7 +7,6 @@ module.exports = function i18n_loc_get_default () { // eslint-disable-line camel
   //   example 1: i18n_loc_set_default('pt_PT')
   //   example 1: i18n_loc_get_default()
   //   returns 1: 'pt_PT'
-  //        test: skip-1
 
   var i18lsd = require('../i18n/i18n_loc_set_default')
 

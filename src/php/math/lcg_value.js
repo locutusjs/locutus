@@ -1,9 +1,9 @@
 module.exports = function lcg_value () { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/lcg_value/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
-  //        test: skip-all
-  //   example 1: lcg_value()
-  //   returns 1: 1
+  //   example 1: var $rnd = lcg_value()
+  //   example 1: var $result = $rnd >= 0 && $rnd <= 1
+  //   returns 1: true
 
   return Math.random()
 }

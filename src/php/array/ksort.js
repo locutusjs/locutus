@@ -17,7 +17,7 @@ module.exports = function ksort (inputArr, sortFlags) {
   //        note: if the content is a numeric string, we treat the
   //        note: "original type" as numeric.
   //   example 1: var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-  //   example 1: var $data = ksort($data)
+  //   example 1: ksort($data)
   //   example 1: var $result = $data
   //   returns 1: {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
   //   example 2: ini_set('locutus.strictForIn', true)
@@ -25,7 +25,6 @@ module.exports = function ksort (inputArr, sortFlags) {
   //   example 2: ksort($data)
   //   example 2: var $result = $data
   //   returns 2: {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
-  //        test: skip-1
 
   var i18nlgd = require('../i18n/i18n_loc_get_default')
   var strnatcmp = require('../strings/strnatcmp')

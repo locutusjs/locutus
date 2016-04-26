@@ -6,19 +6,10 @@ module.exports = function array_search (needle, haystack, argStrict) { // eslint
   //        test: skip-all
   //   example 1: array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'})
   //   returns 1: 'surname'
-  //   example 2: ini_set('locutus.return_locutus_arrays', 'on')
-  //   example 2: var ordered_arr = array({3:'value'}, {2:'value'}, {'a':'value'}, {'b':'value'})
-  //   example 2: array_search(/val/g, ordered_arr); // or var key = ordered_arr.search(/val/g)
-  //   returns 2: '3'
-  //        test: skip-2
 
   var strict = !!argStrict
   var key = ''
 
-  if (haystack && typeof haystack === 'object' && haystack.change_key_case) {
-    // Duck-type check for our own array()-created LOCUTUS_Array
-    return haystack.search(needle, argStrict)
-  }
   if (typeof needle === 'object' && needle.exec) {
     // Duck-type for RegExp
     if (!strict) {

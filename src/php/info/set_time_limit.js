@@ -10,7 +10,7 @@ module.exports = function set_time_limit (seconds) { // eslint-disable-line came
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 
-  this.window.setTimeout(function () {
+  setTimeout(function () {
     if (!$locutus.php.timeoutStatus) {
       $locutus.php.timeoutStatus = true
     }
