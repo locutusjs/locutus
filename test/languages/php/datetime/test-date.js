@@ -6,14 +6,14 @@ var ini_get = require('/Users/kvz/code/phpjs/src/php/info/ini_get') // eslint-di
 var date = require('/Users/kvz/code/phpjs/src/php/datetime/date.js')
 
 describe('src/php/datetime/date.js', function () {
-  it('should pass example 1', function (done) {
+  it.skip('should pass example 1', function (done) {
     date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400)
     var expected = '07:09:40 m is month'
     var result = date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400)
     expect(result).to.deep.equal(expected)
     done()
   })
-  it('should pass example 2', function (done) {
+  it.skip('should pass example 2', function (done) {
     date('F j, Y, g:i a', 1062462400)
     var expected = 'September 2, 2003, 12:26 am'
     var result = date('F j, Y, g:i a', 1062462400)
@@ -38,7 +38,7 @@ $x = $x + ''
     expect(result).to.deep.equal(expected)
     done()
   })
-  it('should pass example 5', function (done) {
+  it.skip('should pass example 5', function (done) {
     date('W', 1104534000)
     var expected = '52'
     var result = date('W', 1104534000)

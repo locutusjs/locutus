@@ -5,7 +5,7 @@ var ini_set = require('/Users/kvz/code/phpjs/src/php/info/ini_set') // eslint-di
 var ini_get = require('/Users/kvz/code/phpjs/src/php/info/ini_get') // eslint-disable-line no-unused-vars
 var array_search = require('/Users/kvz/code/phpjs/src/php/array/array_search.js')
 
-describe('src/php/array/array_search.js', function () {
+describe.skip('src/php/array/array_search.js', function () {
   it('should pass example 1', function (done) {
     array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'})
     var expected = 'surname'

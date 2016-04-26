@@ -6,7 +6,7 @@ var ini_get = require('/Users/kvz/code/phpjs/src/php/info/ini_get') // eslint-di
 var function_exists = require('/Users/kvz/code/phpjs/src/php/funchand/function_exists.js')
 
 describe('src/php/funchand/function_exists.js', function () {
-  it('should pass example 1', function (done) {
+  it.skip('should pass example 1', function (done) {
     function_exists('isFinite')
     var expected = true
     var result = function_exists('isFinite')

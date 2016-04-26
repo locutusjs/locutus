@@ -6,7 +6,7 @@ var ini_get = require('/Users/kvz/code/phpjs/src/php/info/ini_get') // eslint-di
 var rsort = require('/Users/kvz/code/phpjs/src/php/array/rsort.js')
 
 describe('src/php/array/rsort.js', function () {
-  it('should pass example 1', function (done) {
+  it.skip('should pass example 1', function (done) {
     var $arr = ['Kevin', 'van', 'Zonneveld']
     rsort($arr)
     var $result = $arr

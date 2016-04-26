@@ -5,7 +5,7 @@ var ini_set = require('/Users/kvz/code/phpjs/src/php/info/ini_set') // eslint-di
 var ini_get = require('/Users/kvz/code/phpjs/src/php/info/ini_get') // eslint-disable-line no-unused-vars
 var var_dump = require('/Users/kvz/code/phpjs/src/php/var/var_dump.js')
 
-describe('src/php/var/var_dump.js', function () {
+describe.skip('src/php/var/var_dump.js', function () {
   it('should pass example 1', function (done) {
     var_dump(1)
     var expected = 'int(1)'

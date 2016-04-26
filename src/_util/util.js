@@ -12,7 +12,6 @@ function Util (argv) {
   this.__root = path.dirname(path.dirname(__dirname))
   this.__test = path.dirname(path.dirname(__dirname)) + '/test'
 
-
   this.globals = {}
   // this.globals = {
   //   'XMLHttpRequest': '{} // eslint-disable-line no-native-reassign',
@@ -31,10 +30,7 @@ function Util (argv) {
   this.pattern = [this.__src + '/**/**/*.js', '!**/index.js', '!**/_util/**']
   this.concurrency = 8
 
-  this.allowSkips = true
-  if (argv.indexOf('--noskip')) {
-    this.allowSkips = false
-  }
+  this.allowSkip = (argv.indexOf('--noskip') === -1)
 
   this._reindexBuffer = {}
 }
@@ -181,7 +177,7 @@ Util.prototype._writetestOne = function (params, cb) {
   }
 
   var describeSkip = ''
-  if (self.allowSkips && testProps.indexOf('skip-all') !== -1) {
+  if (self.allowSkip && testProps.indexOf('skip-all') !== -1) {
     describeSkip = '.skip'
   }
 
@@ -228,7 +224,7 @@ Util.prototype._writetestOne = function (params, cb) {
 
     var humanIndex = parseInt(i, 10) + 1
     var itSkip = ''
-    if (self.allowSkips && testProps.indexOf('skip-' + humanIndex) !== -1) {
+    if (self.allowSkip && testProps.indexOf('skip-' + humanIndex) !== -1) {
       itSkip = '.skip'
     }
 

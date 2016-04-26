@@ -5,7 +5,7 @@ var ini_set = require('/Users/kvz/code/phpjs/src/php/info/ini_set') // eslint-di
 var ini_get = require('/Users/kvz/code/phpjs/src/php/info/ini_get') // eslint-disable-line no-unused-vars
 var strnatcasecmp = require('/Users/kvz/code/phpjs/src/php/strings/strnatcasecmp.js')
 
-describe('src/php/strings/strnatcasecmp.js', function () {
+describe.skip('src/php/strings/strnatcasecmp.js', function () {
   it('should pass example 1', function (done) {
     strnatcasecmp(10, 1)
     var expected = 1
