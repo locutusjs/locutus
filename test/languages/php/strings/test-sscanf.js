@@ -25,18 +25,20 @@ describe('src/php/strings/sscanf.js', function () {
     done()
   })
   it('should pass example 2', function (done) {
-    var myVar; // Will be set by function
-    sscanf('SN/2350001', 'SN/%d', 'myVar')
+    var myVar = {}
+    sscanf('SN/2350001', 'SN/%d', myVar)
+    $result = myVar.value
     var expected = 1
-var myVar; // Will be set by function
-    var result = sscanf('SN/2350001', 'SN/%d', 'myVar')
+var myVar = {}
+sscanf('SN/2350001', 'SN/%d', myVar)
+    var result = $result = myVar.value
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    sscanf("10--20", "%2$d--%1$d"); // Must escape '$' in PHP, but not JS
+    sscanf("10--20", "%2$d--%1$d") // Must escape '$' in PHP, but not JS
     var expected = [20, 10]
-    var result = sscanf("10--20", "%2$d--%1$d"); // Must escape '$' in PHP, but not JS
+    var result = sscanf("10--20", "%2$d--%1$d") // Must escape '$' in PHP, but not JS
     expect(result).to.deep.equal(expected)
     done()
   })

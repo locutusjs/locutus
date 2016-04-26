@@ -26,7 +26,7 @@ module.exports = function str_replace (search, replace, subject, countObj) { // 
   //   returns 3: 'AxDxAxDx'
   //   example 4: var countObj = {}
   //   example 4: str_replace(['A','D'], ['x','y'] , 'ASDFASDF' , countObj)
-  //   example 4: var $result = countObj.count
+  //   example 4: var $result = countObj.value
   //   returns 4: 4
 
   var i = 0
@@ -59,7 +59,7 @@ module.exports = function str_replace (search, replace, subject, countObj) { // 
   }
 
   if (typeof countObj !== 'undefined') {
-    countObj.count = 0
+    countObj.value = 0
   }
 
   for (i = 0, sl = s.length; i < sl; i++) {
@@ -71,7 +71,7 @@ module.exports = function str_replace (search, replace, subject, countObj) { // 
       repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0]
       s[i] = (temp).split(f[j]).join(repl)
       if (typeof countObj !== 'undefined') {
-        countObj.count += ((temp.split(f[j])).length - 1)
+        countObj.value += ((temp.split(f[j])).length - 1)
       }
     }
   }

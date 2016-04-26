@@ -87,6 +87,7 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 ## Todo
 
 - [ ] Track all cases of `window`, see if they make sense
+- [ ] Read up on `i18n_loc_set_default` and `setlocale` in php manual, see if new behavior is warrented
 - [ ] `json_*` functions can leverage Node's
 - [ ] See if we need to merge `sort` functions into one helper function and `require` that. Use `arsort` as an example
 - [ ] Test `is_array` in-browser to see if the `require` for `ini_get` works correctly with browserify

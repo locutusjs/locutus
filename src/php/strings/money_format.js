@@ -55,7 +55,7 @@ module.exports = function money_format (format, number) { // eslint-disable-line
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 
-  var monetary = $locutus.php.locales[$locutus.php.localeCategories['LC_MONETARY']]['LC_MONETARY']
+  var monetary = $locutus.php.locales[$locutus.php.localeCategories.LC_MONETARY].LC_MONETARY
 
   var doReplace = function (n0, flags, n2, width, n4, left, n6, right, conversion) {
     var value = ''
@@ -64,8 +64,7 @@ module.exports = function money_format (format, number) { // eslint-disable-line
       // Percent does not seem to be allowed with intervening content
       return '%'
     }
-    var fill = flags && (/=./)
-      .test(flags) ? flags.match(/=(.)/)[1] : ' ' // flag: =f (numeric fill)
+    var fill = flags && (/=./).test(flags) ? flags.match(/=(.)/)[1] : ' ' // flag: =f (numeric fill)
     // flag: ! (suppress currency symbol)
     var showCurrSymbol = !flags || flags.indexOf('!') === -1
     // field width: w (minimum field width)
@@ -102,7 +101,7 @@ module.exports = function money_format (format, number) { // eslint-disable-line
       // ','
       var thouSep = monetary.mon_thousands_sep
       // [3] (every 3 digits in U.S.A. locale)
-      var monGrouping = monetary.monGrouping
+      var monGrouping = monetary.mon_grouping
 
       if (monGrouping[0] < integer.length) {
         for (var i = 0, idx = integer.length; i < monGrouping.length; i++) {
@@ -135,7 +134,7 @@ module.exports = function money_format (format, number) { // eslint-disable-line
       value = integer
     } else {
       // '.'
-      var decPt = monetary.monDecPoint
+      var decPt = monetary.mon_decimal_point
       if (right === '' || right === undefined) {
         right = conversion === 'i' ? monetary.int_frac_digits : monetary.frac_digits
       }
@@ -161,24 +160,24 @@ module.exports = function money_format (format, number) { // eslint-disable-line
       // 'i' vs. 'n' ('USD' vs. '$')
       symbol = conversion === 'i' ? monetary.int_curr_symbol : monetary.currency_symbol
     }
-    var sign_posn = neg ? monetary.n_sign_posn : monetary.p_sign_posn
+    var signPosn = neg ? monetary.n_sign_posn : monetary.p_sign_posn
 
     // 0: no space between curr. symbol and value
     // 1: space sep. them unless symb. and sign are adjacent then space sep. them from value
     // 2: space sep. sign and value unless symb. and sign are adjacent then space separates
-    var sep_by_space = neg ? monetary.n_sep_by_space : monetary.p_sep_by_space
+    var sepBySpace = neg ? monetary.n_sep_by_space : monetary.p_sep_by_space
 
     // p_cs_precedes, n_cs_precedes // positive currency symbol follows value = 0; precedes value = 1
-    var cs_precedes = neg ? monetary.n_cs_precedes : monetary.p_cs_precedes
+    var csPrecedes = neg ? monetary.n_cs_precedes : monetary.p_cs_precedes
 
     // Assemble symbol/value/sign and possible space as appropriate
     if (flags.indexOf('(') !== -1) {
       // flag: parenth. for negative
-      // Fix: unclear on whether and how sep_by_space, sign_posn, or cs_precedes have
-      // an impact here (as they do below), but assuming for now behaves as sign_posn 0 as
-      // far as localized sep_by_space and sign_posn behavior
-      repl = (cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') : '') + value + (!cs_precedes ? (
-        sep_by_space === 1 ? ' ' : '') + symbol : '')
+      // Fix: unclear on whether and how sepBySpace, signPosn, or csPrecedes have
+      // an impact here (as they do below), but assuming for now behaves as signPosn 0 as
+      // far as localized sepBySpace and signPosn behavior
+      repl = (csPrecedes ? symbol + (sepBySpace === 1 ? ' ' : '') : '') + value + (!csPrecedes ? (
+        sepBySpace === 1 ? ' ' : '') + symbol : '')
       if (neg) {
         repl = '(' + repl + ')'
       } else {
@@ -187,57 +186,48 @@ module.exports = function money_format (format, number) { // eslint-disable-line
     } else {
       // '+' is default
       // ''
-      var pos_sign = monetary.positive_sign
+      var posSign = monetary.positive_sign
       // '-'
-      var neg_sign = monetary.negative_sign
-      var sign = neg ? (neg_sign) : (pos_sign)
-      var otherSign = neg ? (pos_sign) : (neg_sign)
+      var negSign = monetary.negative_sign
+      var sign = neg ? (negSign) : (posSign)
+      var otherSign = neg ? (posSign) : (negSign)
       var signPadding = ''
-      if (sign_posn) {
+      if (signPosn) {
         // has a sign
-        signPadding = new Array(otherSign.length - sign.length + 1)
-          .join(' ')
+        signPadding = new Array(otherSign.length - sign.length + 1).join(' ')
       }
 
       var valueAndCS = ''
-      switch (sign_posn) {
+      switch (signPosn) {
         // 0: parentheses surround value and curr. symbol;
         // 1: sign precedes them;
         // 2: sign follows them;
         // 3: sign immed. precedes curr. symbol; (but may be space between)
         // 4: sign immed. succeeds curr. symbol; (but may be space between)
         case 0:
-          valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space ===
-          1 ? ' ' : '') + symbol
+          valueAndCS = csPrecedes ? symbol + (sepBySpace === 1 ? ' ' : '') + value : value + (sepBySpace === 1 ? ' ' : '') + symbol
           repl = '(' + valueAndCS + ')'
           break
         case 1:
-          valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space ===
-          1 ? ' ' : '') + symbol
-          repl = signPadding + sign + (sep_by_space === 2 ? ' ' : '') + valueAndCS
+          valueAndCS = csPrecedes ? symbol + (sepBySpace === 1 ? ' ' : '') + value : value + (sepBySpace === 1 ? ' ' : '') + symbol
+          repl = signPadding + sign + (sepBySpace === 2 ? ' ' : '') + valueAndCS
           break
         case 2:
-          valueAndCS = cs_precedes ? symbol + (sep_by_space === 1 ? ' ' : '') + value : value + (sep_by_space ===
-          1 ? ' ' : '') + symbol
-          repl = valueAndCS + (sep_by_space === 2 ? ' ' : '') + sign + signPadding
+          valueAndCS = csPrecedes ? symbol + (sepBySpace === 1 ? ' ' : '') + value : value + (sepBySpace === 1 ? ' ' : '') + symbol
+          repl = valueAndCS + (sepBySpace === 2 ? ' ' : '') + sign + signPadding
           break
         case 3:
-          repl = cs_precedes ? signPadding + sign + (sep_by_space === 2 ? ' ' : '') + symbol + (sep_by_space ===
-          1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + sign + signPadding + (
-          sep_by_space === 2 ? ' ' : '') + symbol
+          repl = csPrecedes ? signPadding + sign + (sepBySpace === 2 ? ' ' : '') + symbol + (sepBySpace === 1 ? ' ' : '') + value : value + (sepBySpace === 1 ? ' ' : '') + sign + signPadding + (sepBySpace === 2 ? ' ' : '') + symbol
           break
         case 4:
-          repl = cs_precedes ? symbol + (sep_by_space === 2 ? ' ' : '') + signPadding + sign + (sep_by_space ===
-          1 ? ' ' : '') + value : value + (sep_by_space === 1 ? ' ' : '') + symbol + (sep_by_space === 2 ?
-          ' ' : '') + sign + signPadding
+          repl = csPrecedes ? symbol + (sepBySpace === 2 ? ' ' : '') + signPadding + sign + (sepBySpace === 1 ? ' ' : '') + value : value + (sepBySpace === 1 ? ' ' : '') + symbol + (sepBySpace === 2 ? ' ' : '') + sign + signPadding
           break
       }
     }
 
     var padding = width - repl.length
     if (padding > 0) {
-      padding = new Array(padding + 1)
-        .join(' ')
+      padding = new Array(padding + 1).join(' ')
       // Fix: How does p_sep_by_space affect the count if there is a space? Included in count presumably?
       if (flags.indexOf('-') !== -1) {
         // left-justified (pad to right)

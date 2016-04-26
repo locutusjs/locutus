@@ -39,10 +39,13 @@ describe('src/php/strings/str_replace.js', function () {
     done()
   })
   it('should pass example 4', function (done) {
-    str_replace(['A','D'], ['x','y'] , 'ASDFASDF' , 'cnt')
-    var expected = 'xSyFxSyF' // cnt = 0 (incorrect before fix)
-'xSyFxSyF' // cnt = 4 (correct after fix)
-    var result = str_replace(['A','D'], ['x','y'] , 'ASDFASDF' , 'cnt')
+    var countObj = {}
+    str_replace(['A','D'], ['x','y'] , 'ASDFASDF' , countObj)
+    var $result = countObj.value
+    var expected = 4
+var countObj = {}
+str_replace(['A','D'], ['x','y'] , 'ASDFASDF' , countObj)
+    var result = countObj.value
     expect(result).to.deep.equal(expected)
     done()
   })
