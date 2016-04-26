@@ -5,7 +5,7 @@ module.exports = function convert_uuencode (str) { // eslint-disable-line camelc
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
   // reimplemented by: Ole Vrijenhoek
   //        example 1: convert_uuencode("test\ntext text\r\n")
-  //        returns 1: "0=&5S=`IT97AT('1E>'0-\"@``"
+  //        returns 1: "0=&5S=`IT97AT('1E>'0-\"@\n`\n"
 
   var isScalar = require('../var/is_scalar')
 
@@ -34,15 +34,10 @@ module.exports = function convert_uuencode (str) { // eslint-disable-line camelc
     for (i in bytes) {
       bytes[i] = bytes[i].charCodeAt(0)
     }
-    if (bytes.length !== 0) {
-      return bytes.length
-    } else {
-      return 0
-    }
+    return bytes.length || 0
   }
 
-  while (chunk() !== 0) {
-    c = chunk()
+  while ((c = chunk()) !== 0) {
     u += 45
 
     // New line encoded data starts with number of bytes encoded.
@@ -50,7 +45,7 @@ module.exports = function convert_uuencode (str) { // eslint-disable-line camelc
 
     // Convert each char in bytes[] to a byte
     for (i in bytes) {
-      tmp1 = bytes[i].charCodeAt(0).toString(2)
+      tmp1 = bytes[i].toString(2)
       while (tmp1.length < 8) {
         tmp1 = '0' + tmp1
       }

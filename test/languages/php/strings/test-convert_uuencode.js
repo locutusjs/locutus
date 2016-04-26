@@ -8,7 +8,7 @@ var convert_uuencode = require('/Users/kvz/code/phpjs/src/php/strings/convert_uu
 describe('src/php/strings/convert_uuencode.js', function () {
   it('should pass example 1', function (done) {
     convert_uuencode("test\ntext text\r\n")
-    var expected = "0=&5S=`IT97AT('1E>'0-\"@``"
+    var expected = "0=&5S=`IT97AT('1E>'0-\"@\n`\n"
     var result = convert_uuencode("test\ntext text\r\n")
     expect(result).to.deep.equal(expected)
     done()

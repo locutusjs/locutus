@@ -8,7 +8,7 @@ var md5_file = require('/Users/kvz/code/phpjs/src/php/strings/md5_file.js')
 describe('src/php/strings/md5_file.js', function () {
   it('should pass example 1', function (done) {
     md5_file('test/never-change.txt')
-    var expected = '202cb962ac59075b964b07152d234b70'
+    var expected = 'bc3aa724b0ec7dce4c26e7f4d0d9b064'
     var result = md5_file('test/never-change.txt')
     expect(result).to.deep.equal(expected)
     done()
