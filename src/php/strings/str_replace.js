@@ -1,4 +1,4 @@
-module.exports = function str_replace (search, replace, subject, count) { // eslint-disable-line camelcase
+module.exports = function str_replace (search, replace, subject, countObj) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/str_replace/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Gabriel Paderni
@@ -24,26 +24,32 @@ module.exports = function str_replace (search, replace, subject, count) { // esl
   //   returns 2: 'hemmo, mars'
   //   example 3: str_replace(Array('S','F'),'x','ASDFASDF')
   //   returns 3: 'AxDxAxDx'
-  //   example 4: str_replace(['A','D'], ['x','y'] , 'ASDFASDF' , 'cnt')
-  //   returns 4: 'xSyFxSyF' // cnt = 0 (incorrect before fix)
-  //   returns 4: 'xSyFxSyF' // cnt = 4 (correct after fix)
+  //   example 4: var countObj = {}
+  //   example 4: str_replace(['A','D'], ['x','y'] , 'ASDFASDF' , countObj)
+  //   example 4: var $result = countObj.count
+  //   returns 4: 4
 
-  var i = 0,
-    j = 0,
-    temp = '',
-    repl = '',
-    sl = 0,
-    fl = 0,
-    f = [].concat(search),
-    r = [].concat(replace),
-    s = subject,
-    ra = Object.prototype.toString.call(r) === '[object Array]',
-    sa = Object.prototype.toString.call(s) === '[object Array]'
+  var i = 0
+  var j = 0
+  var temp = ''
+  var repl = ''
+  var sl = 0
+  var fl = 0
+  var f = [].concat(search)
+  var r = [].concat(replace)
+  var s = subject
+  var ra = Object.prototype.toString.call(r) === '[object Array]'
+  var sa = Object.prototype.toString.call(s) === '[object Array]'
   s = [].concat(s)
+
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
+  var $locutus = $global.$locutus
+  $locutus.php = $locutus.php || {}
 
   if (typeof (search) === 'object' && typeof (replace) === 'string') {
     temp = replace
-    replace = new Array()
+    replace = []
     for (i = 0; i < search.length; i += 1) {
       replace[i] = temp
     }
@@ -52,8 +58,8 @@ module.exports = function str_replace (search, replace, subject, count) { // esl
     ra = Object.prototype.toString.call(r) === '[object Array]'
   }
 
-  if (count) {
-    this.window[count] = 0
+  if (typeof countObj !== 'undefined') {
+    countObj.count = 0
   }
 
   for (i = 0, sl = s.length; i < sl; i++) {
@@ -63,12 +69,9 @@ module.exports = function str_replace (search, replace, subject, count) { // esl
     for (j = 0, fl = f.length; j < fl; j++) {
       temp = s[i] + ''
       repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0]
-      s[i] = (temp)
-        .split(f[j])
-        .join(repl)
-      if (count) {
-        this.window[count] += ((temp.split(f[j]))
-          .length - 1)
+      s[i] = (temp).split(f[j]).join(repl)
+      if (typeof countObj !== 'undefined') {
+        countObj.count += ((temp.split(f[j])).length - 1)
       }
     }
   }

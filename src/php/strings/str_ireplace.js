@@ -31,7 +31,7 @@ module.exports = function str_ireplace (search, replace, subject, count) { // es
 
   if (typeof (search) === 'object') {
     temp = search
-    search = new Array()
+    search = []
     for (i = 0; i < temp.length; i += 1) {
       search[i] = temp[i].toLowerCase()
     }
@@ -41,7 +41,7 @@ module.exports = function str_ireplace (search, replace, subject, count) { // es
 
   if (typeof (subject) === 'object') {
     temp = subject
-    subject = new Array()
+    subject = []
     for (i = 0; i < temp.length; i += 1) {
       subject[i] = temp[i].toLowerCase()
     }
@@ -51,7 +51,7 @@ module.exports = function str_ireplace (search, replace, subject, count) { // es
 
   if (typeof (search) === 'object' && typeof (replace) === 'string') {
     temp = replace
-    replace = new Array()
+    replace = []
     for (i = 0; i < search.length; i += 1) {
       replace[i] = temp
     }
