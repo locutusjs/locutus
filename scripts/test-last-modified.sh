@@ -15,7 +15,7 @@ __base="$(basename ${__file})"
 __root="$(cd "$(dirname "${__dir}")" && pwd)"
 
 pushd "${__root}/src" > /dev/null
-  filepath="$(find . -type f -print0 | xargs -0 stat -f "%m %N" | sort -rn | head -1 | cut -f2- -d" ")"
+  filepath="$(find . -type f -print0 | xargs -0 stat -f "%m %N" | grep -v '/_util/' | sort -rn | head -1 | cut -f2- -d" ")"
   subdir="$(dirname "${filepath}")"
   basefile="$(basename "${filepath}")"
   testfile="${__root}/test/languages/${subdir}/test-${basefile}"

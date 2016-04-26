@@ -5,6 +5,7 @@ var async = require('async')
 var YAML = require('js-yaml')
 var mkdirp = require('mkdirp')
 var debug = require('depurar')('locutus')
+var indentString = require('indent-string')
 var _ = require('lodash')
 
 function Util (argv) {
@@ -171,6 +172,15 @@ Util.prototype._writetestOne = function (params, cb) {
     throw new Error('No example in ' + params.func_name)
   }
 
+  var basename = path.basename(params.filepath)
+  var subdir = path.dirname(params.filepath)
+  var testpath = this.__test + '/languages/' + subdir + '/test-' + basename
+  var testdir = path.dirname(testpath)
+  var relativeSrcForTest = path.relative(testdir, self.__src)
+
+  // console.log(relativeSrcForTest)
+  // process.exit(1)
+
   var testProps = ''
   if (params.headKeys.test) {
     testProps = params.headKeys.test[0][0]
@@ -199,18 +209,18 @@ Util.prototype._writetestOne = function (params, cb) {
   // Add language-wide dependencies
   // @todo: It would be great if we could remove this
   if (params.language === 'php') {
-    codez.push('var ' + 'ini_set' + ' = require(\'' + self.__src + '/' + 'php/info/ini_set' + '\') // eslint-disable-line no-unused-vars')
-    codez.push('var ' + 'ini_get' + ' = require(\'' + self.__src + '/' + 'php/info/ini_get' + '\') // eslint-disable-line no-unused-vars')
+    codez.push('var ' + 'ini_set' + ' = require(\'' + relativeSrcForTest + '/' + 'php/info/ini_set' + '\') // eslint-disable-line no-unused-vars,camelcase')
+    codez.push('var ' + 'ini_get' + ' = require(\'' + relativeSrcForTest + '/' + 'php/info/ini_get' + '\') // eslint-disable-line no-unused-vars,camelcase')
     if (params.func_name === 'localeconv') {
-      codez.push('var ' + 'setlocale' + ' = require(\'' + self.__src + '/' + 'php/strings/setlocale' + '\') // eslint-disable-line no-unused-vars')
+      codez.push('var ' + 'setlocale' + ' = require(\'' + relativeSrcForTest + '/' + 'php/strings/setlocale' + '\') // eslint-disable-line no-unused-vars,camelcase')
     }
     if (params.func_name === 'i18n_loc_get_default') {
-      codez.push('var ' + 'setlocale' + ' = require(\'' + self.__src + '/' + 'php/i18n/i18n_loc_set_default' + '\') // eslint-disable-line no-unused-vars')
+      codez.push('var ' + 'setlocale' + ' = require(\'' + relativeSrcForTest + '/' + 'php/i18n/i18n_loc_set_default' + '\') // eslint-disable-line no-unused-vars,camelcase')
     }
   }
 
   // Add the main function to test
-  codez.push('var ' + params.func_name + ' = require(\'' + self.__src + '/' + params.filepath + '\')')
+  codez.push('var ' + params.func_name + ' = require(\'' + relativeSrcForTest + '/' + params.filepath + '\') // eslint-disable-line no-unused-vars,camelcase')
 
   codez.push('')
 
@@ -230,11 +240,12 @@ Util.prototype._writetestOne = function (params, cb) {
 
     codez.push('  it' + itSkip + '(\'should pass example ' + (humanIndex) + '\', function (done) {')
 
-    codez.push('    ' + params.headKeys.example[i].join('\n' + '    '))
+    var body = []
+    body.push(params.headKeys.example[i].join('\n'))
 
     var testExpected = params.headKeys.returns[i].join('\n')
 
-    codez.push('    var expected = ' + testExpected + '')
+    body.push('var expected = ' + testExpected)
 
     // Execute line by line (see date.js why)
     // We need result be the last result of the example code
@@ -243,14 +254,17 @@ Util.prototype._writetestOne = function (params, cb) {
 
       if (parseInt(j, 10) === params.headKeys.example[i].length - 1) {
         // last action gets saved
-        codez.push('    var result = ' + testRun.replace('var $result = ', '') + '')
+        body.push('var result = ' + testRun.replace('var $result = ', ''))
       } else {
-        codez.push(testRun + '')
+        body.push(testRun)
       }
     }
 
-    codez.push('    expect(result).to.deep.equal(expected)')
-    codez.push('    done()')
+    body.push('expect(result).to.deep.equal(expected)')
+    body.push('done()')
+
+    codez.push(indentString(body.join('\n'), ' ', 4))
+
     codez.push('  })')
   }
 
@@ -261,10 +275,6 @@ Util.prototype._writetestOne = function (params, cb) {
     .replace(/window\.setTimeout/g, 'setTimeout')
 
   // Write to disk
-  var basename = path.basename(params.filepath)
-  var subdir = path.dirname(params.filepath)
-  var testpath = this.__test + '/languages/' + subdir + '/test-' + basename
-  var testdir = path.dirname(testpath)
   mkdirp(testdir, function (err) {
     if (err) {
       throw new Error(err)

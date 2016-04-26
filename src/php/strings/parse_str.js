@@ -28,7 +28,6 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
   //        example 3: parse_str('a[b]["c"]=def&a[q]=t+5', $abc)
   //        example 3: var $result = $abc
   //        returns 3: {"3":"a","a":{"b":{"c":"def"},"q":"t 5"}}
-
   var strArr = String(str).replace(/^&/, '').replace(/&$/, '').split('&')
   var sal = strArr.length
   var i
