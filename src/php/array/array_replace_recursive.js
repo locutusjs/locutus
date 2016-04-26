@@ -17,14 +17,14 @@ module.exports = function array_replace_recursive (arr) { // eslint-disable-line
   // it seems they are not altered, but rather the copy that is returned
   // So we make a copy here, instead of acting on arr itself
   if (Object.prototype.toString.call(arr) === '[object Array]') {
-    retObj = {}
-    for (p in arr) {
-      retObj[p] = arr[p]
-    }
-  } else {
     retObj = []
     for (p in arr) {
       retObj.push(arr[p])
+    }
+  } else {
+    retObj = {}
+    for (p in arr) {
+      retObj[p] = arr[p]
     }
   }
 

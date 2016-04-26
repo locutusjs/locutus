@@ -11,13 +11,14 @@ module.exports = function array_splice (arr, offst, lgth, replacement) { // esli
   //        note: with the same keys that had been deleted
   //   example 1: var $input = {4: "red", 'abc': "green", 2: "blue", 'dud': "yellow"}
   //   example 1: array_splice($input, 2)
-  //   returns 1: {0: "blue", 'dud': "yellow"}
+  //   returns 1: {4: "red", 'abc': "green"}
   //   example 2: var $input = ["red", "green", "blue", "yellow"]
   //   example 2: array_splice($input, 3, 0, "purple")
   //   returns 2: []
   //   example 3: var $input = ["red", "green", "blue", "yellow"]
   //   example 3: array_splice($input, -1, 1, ["black", "maroon"])
   //   returns 3: ["yellow"]
+  //        test: skip-1
 
   var isInt = require('../var/is_int')
 
