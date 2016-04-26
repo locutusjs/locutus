@@ -12,17 +12,17 @@ module.exports = function uasort (inputArr, sorter) {
   //        note: property deletion is supported. Note that we intend to implement the PHP
   //        note: behavior by default if IE ever does allow it; only gives shallow copy since
   //        note: is by reference in PHP anyways
-  //   example 1: var sorter = function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;}
-  //   example 1: $fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-  //   example 1: uasort($fruits, sorter)
-  //   example 1: $results = $fruits
+  //   example 1: var $sorter = function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;}
+  //   example 1: var $fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+  //   example 1: uasort($fruits, $sorter)
+  //   example 1: var $result = $fruits
   //   returns 1: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
 
-  var valArr = [],
-    tempKeyVal, tempValue, ret, k = '',
-    i = 0,
-    strictForIn = false,
-    populateArr = {}
+  var valArr = []
+  var k = ''
+  var i = 0
+  var strictForIn = false
+  var populateArr = {}
 
   if (typeof sorter === 'string') {
     sorter = this[sorter]

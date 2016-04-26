@@ -1,4 +1,4 @@
-module.exports = function sort (inputArr, sort_flags) {
+module.exports = function sort (inputArr, sortFlags) {
   //  discuss at: http://locutusjs.io/php/sort/
   // original by: Kevin van Zonneveld (http://kvz.io)
   //  revised by: Brett Zamir (http://brett-zamir.me)
@@ -19,14 +19,14 @@ module.exports = function sort (inputArr, sort_flags) {
   //        note: default) SORT_REGULAR flag distinguishes by key type,
   //        note: if the content is a numeric string, we treat the
   //        note: "original type" as numeric.
-  //   example 1: var arr = ['Kevin', 'van', 'Zonneveld']
-  //   example 1: sort(arr)
-  //   example 1: $result = arr
+  //   example 1: var $arr = ['Kevin', 'van', 'Zonneveld']
+  //   example 1: sort($arr)
+  //   example 1: var $result = $arr
   //   returns 1: ['Kevin', 'Zonneveld', 'van']
   //   example 2: ini_set('locutus.strictForIn', true)
-  //   example 2: fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-  //   example 2: sort(fruits)
-  //   example 2: $result = fruits
+  //   example 2: var $fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+  //   example 2: sort($fruits)
+  //   example 2: var $result = $fruits
   //   returns 2: {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
   //        test: skip-1
 
@@ -45,32 +45,32 @@ module.exports = function sort (inputArr, sort_flags) {
   $locutus.php = $locutus.php || {}
   $locutus.php.locales = $locutus.php.locales || {}
 
-  switch (sort_flags) {
+  switch (sortFlags) {
     case 'SORT_STRING':
-    // compare items as strings
+      // compare items as strings
       sorter = function (a, b) {
         return strnatcmp(b, a)
       }
       break
     case 'SORT_LOCALE_STRING':
-    // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
+      // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
       var loc = i18nlgd()
       sorter = $locutus.locales[loc].sorting
       break
     case 'SORT_NUMERIC':
-    // compare items numerically
+      // compare items numerically
       sorter = function (a, b) {
         return (a - b)
       }
       break
     case 'SORT_REGULAR':
-    // compare items normally (don't change types)
     default:
       sorter = function (a, b) {
-        var aFloat = parseFloat(a),
-          bFloat = parseFloat(b),
-          aNumeric = aFloat + '' === a,
-          bNumeric = bFloat + '' === b
+        var aFloat = parseFloat(a)
+        var bFloat = parseFloat(b)
+        var aNumeric = aFloat + '' === a
+        var bNumeric = bFloat + '' === b
+
         if (aNumeric && bNumeric) {
           return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0
         } else if (aNumeric && !bNumeric) {
@@ -78,6 +78,7 @@ module.exports = function sort (inputArr, sort_flags) {
         } else if (!aNumeric && bNumeric) {
           return -1
         }
+
         return a > b ? 1 : a < b ? -1 : 0
       }
       break
@@ -87,6 +88,7 @@ module.exports = function sort (inputArr, sort_flags) {
   strictForIn = iniVal !== 'off'
   populateArr = strictForIn ? inputArr : populateArr
 
+  var valArr = []
   for (k in inputArr) {
     // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {

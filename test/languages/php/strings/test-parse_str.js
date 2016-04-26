@@ -20,22 +20,22 @@ describe.skip('src/php/strings/parse_str.js', function () {
   it('should pass example 1', function (done) {
     var arr = {}
     parse_str('first=foo&second=bar', arr)
-    $result = arr
+    var $result = arr
     var expected = { first: 'foo', second: 'bar' }
 var arr = {}
 parse_str('first=foo&second=bar', arr)
-    var result = $result = arr
+    var result = arr
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
     var arr = {}
     parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.', arr)
-    $result = arr
+    var $result = arr
     var expected = { str_a: "Jack and Jill didn't see the well." }
 var arr = {}
 parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.', arr)
-    var result = $result = arr
+    var result = arr
     expect(result).to.deep.equal(expected)
     done()
   })

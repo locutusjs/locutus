@@ -18,15 +18,15 @@ var uasort = require('/Users/kvz/code/phpjs/src/php/array/uasort.js')
 
 describe('src/php/array/uasort.js', function () {
   it('should pass example 1', function (done) {
-    var sorter = function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;}
-    $fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-    uasort($fruits, sorter)
-    $results = $fruits
+    var $sorter = function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;}
+    var $fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+    uasort($fruits, $sorter)
+    var $result = $fruits
     var expected = {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
-var sorter = function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;}
-$fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-uasort($fruits, sorter)
-    var result = $results = $fruits
+var $sorter = function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;}
+var $fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+uasort($fruits, $sorter)
+    var result = $fruits
     expect(result).to.deep.equal(expected)
     done()
   })

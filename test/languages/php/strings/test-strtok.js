@@ -22,13 +22,13 @@ describe('src/php/strings/strtok.js', function () {
     var $tok = strtok($string, " \n\t")
     var $b = ''
     while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
-    $result = $b
+    var $result = $b
     var expected = "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
 var $string = "\t\t\t\nThis is\tan example\nstring\n"
 var $tok = strtok($string, " \n\t")
 var $b = ''
 while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
-    var result = $result = $b
+    var result = $b
     expect(result).to.deep.equal(expected)
     done()
   })

@@ -21,18 +21,19 @@ module.exports = function arsort (inputArr, sortFlags) {
   //        note: default) SORT_REGULAR flag distinguishes by key type,
   //        note: if the content is a numeric string, we treat the
   //        note: "original type" as numeric.
-  //   example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-  //   example 1: data = arsort(data)
-  //   returns 1: data === {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
+  //   example 1: var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+  //   example 1: arsort($data)
+  //   example 1: var $result = $data
+  //   returns 1: {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
   //   example 2: ini_set('locutus.strictForIn', true)
-  //   example 2: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-  //   example 2: arsort(data)
-  //   example 2: $result = data
+  //   example 2: var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+  //   example 2: arsort($data)
+  //   example 2: var $result = $data
   //   returns 2: {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
   //        test: skip-1
 
   var i18lgd = require('../i18n/i18n_loc_get_default')
-  var strnatcmp = require('../string/strnatcmp')
+  var strnatcmp = require('../strings/strnatcmp')
   var valArr = []
   var valArrLen = 0
   var k
@@ -107,6 +108,9 @@ module.exports = function arsort (inputArr, sortFlags) {
   // Repopulate the old array
   for (i = 0, valArrLen = valArr.length; i < valArrLen; i++) {
     populateArr[valArr[i][0]] = valArr[i][1]
+    if (strictForIn) {
+      inputArr[valArr[i][0]] = valArr[i][1]
+    }
   }
 
   return strictForIn || populateArr

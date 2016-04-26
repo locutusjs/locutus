@@ -1,6 +1,6 @@
 // var fs = require('fs')
 var expect = require('chai').expect
-var Util = require('../src/_util/util')
+var Util = require('../../src/_util/util')
 
 describe('util', function () {
   describe('_load', function () {

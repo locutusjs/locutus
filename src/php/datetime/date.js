@@ -43,7 +43,7 @@ module.exports = function date (format, timestamp) {
   //   returns 3: '2003 36 2003'
   //   example 4: var x = date('Y m d', (new Date()).getTime() / 1000)
   //   example 4: x = x + ''
-  //   example 4: $result = x.length // 2009 01 09
+  //   example 4: var $result = x.length // 2009 01 09
   //   returns 4: 10
   //   example 5: date('W', 1104534000)
   //   returns 5: '53'

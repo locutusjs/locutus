@@ -25,26 +25,26 @@ describe('src/php/array/array_multisort.js', function () {
     done()
   })
   it('should pass example 2', function (done) {
-    characters = {A: 'Edward', B: 'Locke', C: 'Sabin', D: 'Terra', E: 'Edward'}
-    jobs = {A: 'Warrior', B: 'Thief', C: 'Monk', D: 'Mage', E: 'Knight'}
-    array_multisort(characters, 'SORT_DESC', 'SORT_STRING', jobs, 'SORT_ASC', 'SORT_STRING')
+    var $characters = {A: 'Edward', B: 'Locke', C: 'Sabin', D: 'Terra', E: 'Edward'}
+    var $jobs = {A: 'Warrior', B: 'Thief', C: 'Monk', D: 'Mage', E: 'Knight'}
+    array_multisort($characters, 'SORT_DESC', 'SORT_STRING', $jobs, 'SORT_ASC', 'SORT_STRING')
     var expected = true
-characters = {A: 'Edward', B: 'Locke', C: 'Sabin', D: 'Terra', E: 'Edward'}
-jobs = {A: 'Warrior', B: 'Thief', C: 'Monk', D: 'Mage', E: 'Knight'}
-    var result = array_multisort(characters, 'SORT_DESC', 'SORT_STRING', jobs, 'SORT_ASC', 'SORT_STRING')
+var $characters = {A: 'Edward', B: 'Locke', C: 'Sabin', D: 'Terra', E: 'Edward'}
+var $jobs = {A: 'Warrior', B: 'Thief', C: 'Monk', D: 'Mage', E: 'Knight'}
+    var result = array_multisort($characters, 'SORT_DESC', 'SORT_STRING', $jobs, 'SORT_ASC', 'SORT_STRING')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    lastnames = [ 'Carter','Adams','Monroe','Tyler','Madison','Kennedy','Adams']
-    firstnames = ['James', 'John' ,'James', 'John', 'James',  'John',   'John']
-    president = [ 39,      6,      5,       10,     4,       35,        2    ]
-    array_multisort(firstnames, 'SORT_DESC', 'SORT_STRING', lastnames, 'SORT_ASC', 'SORT_STRING', president, 'SORT_NUMERIC')
+    var $lastnames = [ 'Carter','Adams','Monroe','Tyler','Madison','Kennedy','Adams']
+    var $firstnames = ['James', 'John' ,'James', 'John', 'James',  'John',   'John']
+    var $president = [ 39, 6, 5, 10, 4, 35, 2 ]
+    array_multisort($firstnames, 'SORT_DESC', 'SORT_STRING', $lastnames, 'SORT_ASC', 'SORT_STRING', $president, 'SORT_NUMERIC')
     var expected = true
-lastnames = [ 'Carter','Adams','Monroe','Tyler','Madison','Kennedy','Adams']
-firstnames = ['James', 'John' ,'James', 'John', 'James',  'John',   'John']
-president = [ 39,      6,      5,       10,     4,       35,        2    ]
-    var result = array_multisort(firstnames, 'SORT_DESC', 'SORT_STRING', lastnames, 'SORT_ASC', 'SORT_STRING', president, 'SORT_NUMERIC')
+var $lastnames = [ 'Carter','Adams','Monroe','Tyler','Madison','Kennedy','Adams']
+var $firstnames = ['James', 'John' ,'James', 'John', 'James',  'John',   'John']
+var $president = [ 39, 6, 5, 10, 4, 35, 2 ]
+    var result = array_multisort($firstnames, 'SORT_DESC', 'SORT_STRING', $lastnames, 'SORT_ASC', 'SORT_STRING', $president, 'SORT_NUMERIC')
     expect(result).to.deep.equal(expected)
     done()
   })

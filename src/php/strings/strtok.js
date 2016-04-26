@@ -6,7 +6,7 @@ module.exports = function strtok (str, tokens) {
   //   example 1: var $tok = strtok($string, " \n\t")
   //   example 1: var $b = ''
   //   example 1: while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
-  //   example 1: $result = $b
+  //   example 1: var $result = $b
   //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
 
   var $global = (typeof window !== 'undefined' ? window : GLOBAL)

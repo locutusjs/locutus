@@ -36,13 +36,13 @@ describe.skip('src/php/var/is_callable.js', function () {
     SomeClass.prototype.someMethod = function (){}
     var testObj = new SomeClass()
     is_callable([testObj, 'someMethod'], true, 'myVar')
-    $result = myVar
+    var $result = myVar
     var expected = 'SomeClass::someMethod'
 function SomeClass () {}
 SomeClass.prototype.someMethod = function (){}
 var testObj = new SomeClass()
 is_callable([testObj, 'someMethod'], true, 'myVar')
-    var result = $result = myVar
+    var result = myVar
     expect(result).to.deep.equal(expected)
     done()
   })

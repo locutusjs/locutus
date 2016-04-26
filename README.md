@@ -15,6 +15,12 @@ More info at: http://locutusjs.io/about
 npm install --save --save-exact locutus
 ```
 
+For ease of development, we recommend these global installs:
+
+```bash
+npm install --global mocha babel-cli
+```
+
 ## Use
 
 ```bash
@@ -50,6 +56,15 @@ Single out one function: `natsort`
 TEST_GREP=natsort npm run test:languages
 ```
 
+This startes by rewriting the test-cases, which is useful if you're changing the tests themselves as well. If that's not needed as you're iterating purely on the implementation, here's a speedier way of singling out `natsort`:
+
+```bash
+env DEBUG=locutus:* mocha \
+  --compilers js:babel-register \
+  --reporter spec \
+test/languages/php/array/test-natsort.js
+```
+
 ## Website 
 
 We keep the website in `./website` for so it's easy to keep docs & code in sync. For those reading this screaming murder, [HashiCorp does this](https://github.com/hashicorp/terraform/tree/master/website) for all their projects, and it's working pretty well for them on a scale more impressive than ours.
@@ -71,7 +86,12 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 
 ## Todo
 
-- [ ] Move functions that overly rely on ini & locales & ajax file operations to \_legacy
+- [ ] Track all cases of `window`, see if they make sense
+- [ ] `json_*` functions can leverage Node's
+- [ ] See if we need to merge `sort` functions into one helper function and `require` that. Use `arsort` as an example
+- [ ] Use `\u` for octals in `_examples` for ES2015 compatibility
+- [ ] Rename `strictForIn` to `sortByReference`
+- [ ] Move functions that overly rely on ini & locales & global & ajax file operations to \_legacy
 - [ ] Remove XUL from functions
 - [ ] ES6
 - [ ] Port a few more tricky/interdepending Ruby functions
@@ -80,9 +100,6 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 - [ ] Add eslint warnings to website function
 - [ ] Parse requires with ast like browserify. Then we can add dependencies back to website
 - [ ] Auto-deploys via Travis CI
-- [ ] Tack all cases of `window`, see if they make sense
-- [ ] `json_*` functions can leverage Node's
-- [ ] Use `\u` for octals in `_examples` for ES2015 compatibility
 - [x] Adopt better global detection, use $locutus.golang.<specifics>
 - [-] Maybe move `module.exports = acos` to bottom line, then function signature can stay BC
 - [x] Add more 'social' buttons to website (twitter, github)

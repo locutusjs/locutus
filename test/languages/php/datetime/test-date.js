@@ -41,11 +41,11 @@ describe('src/php/datetime/date.js', function () {
   it('should pass example 4', function (done) {
     var x = date('Y m d', (new Date()).getTime() / 1000)
     x = x + ''
-    $result = x.length // 2009 01 09
+    var $result = x.length // 2009 01 09
     var expected = 10
 var x = date('Y m d', (new Date()).getTime() / 1000)
 x = x + ''
-    var result = $result = x.length // 2009 01 09
+    var result = x.length // 2009 01 09
     expect(result).to.deep.equal(expected)
     done()
   })

@@ -18,26 +18,26 @@ var rsort = require('/Users/kvz/code/phpjs/src/php/array/rsort.js')
 
 describe('src/php/array/rsort.js', function () {
   it.skip('should pass example 1', function (done) {
-    $arr = ['Kevin', 'van', 'Zonneveld']
+    var $arr = ['Kevin', 'van', 'Zonneveld']
     rsort($arr)
-    $results = $arr
+    var $result = $arr
     var expected = ['van', 'Zonneveld', 'Kevin']
-$arr = ['Kevin', 'van', 'Zonneveld']
+var $arr = ['Kevin', 'van', 'Zonneveld']
 rsort($arr)
-    var result = $results = $arr
+    var result = $arr
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
     ini_set('locutus.strictForIn', true)
-    fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-    rsort(fruits)
-    $result = fruits
+    var $fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+    rsort($fruits)
+    var $result = $fruits
     var expected = {0: 'orange', 1: 'lemon', 2: 'banana', 3: 'apple'}
 ini_set('locutus.strictForIn', true)
-fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-rsort(fruits)
-    var result = $result = fruits
+var $fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+rsort($fruits)
+    var result = $fruits
     expect(result).to.deep.equal(expected)
     done()
   })

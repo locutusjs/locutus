@@ -236,9 +236,9 @@ Util.prototype._writetestOne = function (params, cb) {
     for (var j in params.headKeys.example[i]) {
       var testRun = params.headKeys.example[i][j]
 
-      if (+j === params.headKeys.example[i].length - 1) {
+      if (parseInt(j, 10) === params.headKeys.example[i].length - 1) {
         // last action gets saved
-        codez.push('    var result = ' + testRun + '')
+        codez.push('    var result = ' + testRun.replace('var $result = ', '') + '')
       } else {
         codez.push(testRun + '')
       }

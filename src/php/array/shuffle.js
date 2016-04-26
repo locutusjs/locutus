@@ -16,13 +16,13 @@ module.exports = function shuffle (inputArr) {
   //        test: skip-all
   //   example 1: ini_set('locutus.strictForIn', true)
   //   example 1: shuffle(data)
-  //   example 1: $result = data
+  //   example 1: var $result = data
   //   returns 1: {5:'a', 4:5, 'q':5, 3:'c', 2:'3'}
   //   example 2: var data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5}
   //   example 2: ini_set('locutus.strictForIn', true)
   //   example 2: var data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5}
   //   example 2: shuffle(data)
-  //   example 2: $result = data
+  //   example 2: var $result = data
   //   returns 2: {5:'a', 'q':5, 3:'c', 2:'3', 4:5}
 
   var valArr = [],

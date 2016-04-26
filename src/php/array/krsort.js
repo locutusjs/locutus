@@ -20,12 +20,12 @@ module.exports = function krsort (inputArr, sortFlags) {
   //        note: "original type" as numeric.
   //   example 1: data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
   //   example 1: data = krsort(data)
-  //   example 1: $result = data
+  //   example 1: var $result = data
   //   returns 1: {d: 'lemon', c: 'apple', b: 'banana', a: 'orange'}
   //   example 2: ini_set('locutus.strictForIn', true)
   //   example 2: data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}
   //   example 2: krsort(data)
-  //   example 2: $result = data
+  //   example 2: var $result = data
   //   returns 2: {3: 'Kevin', 2: 'van', 1: 'Zonneveld'}
   //        test: skip-all
 

@@ -16,7 +16,7 @@ module.exports = function array_pop (inputArr) { // eslint-disable-line camelcas
   //   returns 1: 2
   //   example 2: data = {firstName: 'Kevin', surName: 'van Zonneveld'}
   //   example 2: lastElem = array_pop(data)
-  //   example 2: $result = data
+  //   example 2: var $result = data
   //   returns 2: {firstName: 'Kevin'}
 
   var key = '',

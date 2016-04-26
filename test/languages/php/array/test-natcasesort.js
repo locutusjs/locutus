@@ -18,13 +18,13 @@ var natcasesort = require('/Users/kvz/code/phpjs/src/php/array/natcasesort.js')
 
 describe('src/php/array/natcasesort.js', function () {
   it('should pass example 1', function (done) {
-    $array1 = {a:'IMG0.png', b:'img12.png', c:'img10.png', d:'img2.png', e:'img1.png', f:'IMG3.png'}
+    var $array1 = {a:'IMG0.png', b:'img12.png', c:'img10.png', d:'img2.png', e:'img1.png', f:'IMG3.png'}
     natcasesort($array1)
-    $results = $array1
+    var $result = $array1
     var expected = {a: 'IMG0.png', e: 'img1.png', d: 'img2.png', f: 'IMG3.png', c: 'img10.png', b: 'img12.png'}
-$array1 = {a:'IMG0.png', b:'img12.png', c:'img10.png', d:'img2.png', e:'img1.png', f:'IMG3.png'}
+var $array1 = {a:'IMG0.png', b:'img12.png', c:'img10.png', d:'img2.png', e:'img1.png', f:'IMG3.png'}
 natcasesort($array1)
-    var result = $results = $array1
+    var result = $array1
     expect(result).to.deep.equal(expected)
     done()
   })

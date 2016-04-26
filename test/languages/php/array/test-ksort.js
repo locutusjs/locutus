@@ -18,26 +18,26 @@ var ksort = require('/Users/kvz/code/phpjs/src/php/array/ksort.js')
 
 describe('src/php/array/ksort.js', function () {
   it.skip('should pass example 1', function (done) {
-    data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-    data = ksort(data)
-    $result = data
+    var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+    $data = ksort($data)
+    var $result = $data
     var expected = {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
-data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-data = ksort(data)
-    var result = $result = data
+var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+$data = ksort($data)
+    var result = $data
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
     ini_set('locutus.strictForIn', true)
-    data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}
-    ksort(data)
-    $result = data
+    var $data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}
+    ksort($data)
+    var $result = $data
     var expected = {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
 ini_set('locutus.strictForIn', true)
-data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}
-ksort(data)
-    var result = $result = data
+var $data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}
+ksort($data)
+    var result = $data
     expect(result).to.deep.equal(expected)
     done()
   })

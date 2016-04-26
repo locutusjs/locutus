@@ -21,12 +21,12 @@ describe('src/php/funchand/get_defined_functions.js', function () {
     function test_in_array (array, p_val) {for(var i = 0, l = array.length; i < l; i++) {if(array[i] === p_val) return true;} return false;}
     funcs = get_defined_functions()
     found = test_in_array(funcs, 'get_defined_functions')
-    $result = found
+    var $result = found
     var expected = true
 function test_in_array (array, p_val) {for(var i = 0, l = array.length; i < l; i++) {if(array[i] === p_val) return true;} return false;}
 funcs = get_defined_functions()
 found = test_in_array(funcs, 'get_defined_functions')
-    var result = $result = found
+    var result = found
     expect(result).to.deep.equal(expected)
     done()
   })

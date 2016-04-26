@@ -6,7 +6,7 @@ module.exports = function array_intersect (arr1) { // eslint-disable-line camelc
   //   example 1: $array1 = {'a' : 'green', 0:'red', 1: 'blue'}
   //   example 1: $array2 = {'b' : 'green', 0:'yellow', 1:'red'}
   //   example 1: $array3 = ['green', 'red']
-  //   example 1: $result = array_intersect($array1, $array2, $array3)
+  //   example 1: var $result = array_intersect($array1, $array2, $array3)
   //   returns 1: {0: 'red', a: 'green'}
 
   var retArr = {},

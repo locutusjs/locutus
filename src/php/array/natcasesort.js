@@ -14,9 +14,9 @@ module.exports = function natcasesort (inputArr) {
   //        note: is by reference in PHP anyways
   //        note: We cannot use numbers as keys and have them be reordered since they
   //        note: adhere to numerical order in some implementations
-  //   example 1: $array1 = {a:'IMG0.png', b:'img12.png', c:'img10.png', d:'img2.png', e:'img1.png', f:'IMG3.png'}
+  //   example 1: var $array1 = {a:'IMG0.png', b:'img12.png', c:'img10.png', d:'img2.png', e:'img1.png', f:'IMG3.png'}
   //   example 1: natcasesort($array1)
-  //   example 1: $results = $array1
+  //   example 1: var $result = $array1
   //   returns 1: {a: 'IMG0.png', e: 'img1.png', d: 'img2.png', f: 'IMG3.png', c: 'img10.png', b: 'img12.png'}
 
   var strnatcasecmp = require('../strings/strnatcasecmp')

@@ -20,11 +20,11 @@ describe.skip('src/php/array/shuffle.js', function () {
   it('should pass example 1', function (done) {
     ini_set('locutus.strictForIn', true)
     shuffle(data)
-    $result = data
+    var $result = data
     var expected = {5:'a', 4:5, 'q':5, 3:'c', 2:'3'}
 ini_set('locutus.strictForIn', true)
 shuffle(data)
-    var result = $result = data
+    var result = data
     expect(result).to.deep.equal(expected)
     done()
   })
@@ -33,13 +33,13 @@ shuffle(data)
     ini_set('locutus.strictForIn', true)
     var data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5}
     shuffle(data)
-    $result = data
+    var $result = data
     var expected = {5:'a', 'q':5, 3:'c', 2:'3', 4:5}
 var data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5}
 ini_set('locutus.strictForIn', true)
 var data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5}
 shuffle(data)
-    var result = $result = data
+    var result = data
     expect(result).to.deep.equal(expected)
     done()
   })
