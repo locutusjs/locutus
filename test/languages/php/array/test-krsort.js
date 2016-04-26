@@ -22,7 +22,7 @@ describe('src/php/array/krsort.js', function () {
     var $data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}
     krsort($data)
     var $result = $data
-    var expected = {3: 'Kevin', 2: 'van', 1: 'Zonneveld'}
+    var expected = {3: 'Zonneveld', 2: 'van', 1: 'Kevin'}
     ini_set('locutus.strictForIn', true)
     var $data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}
     krsort($data)

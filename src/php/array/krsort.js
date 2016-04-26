@@ -26,7 +26,7 @@ module.exports = function krsort (inputArr, sortFlags) {
   //   example 2: var $data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}
   //   example 2: krsort($data)
   //   example 2: var $result = $data
-  //   returns 2: {3: 'Kevin', 2: 'van', 1: 'Zonneveld'}
+  //   returns 2: {3: 'Zonneveld', 2: 'van', 1: 'Kevin'}
 
   var i18nlgd = require('../i18n/i18n_loc_get_default')
   var strnatcmp = require('../strings/strnatcmp')
@@ -47,30 +47,30 @@ module.exports = function krsort (inputArr, sortFlags) {
 
   switch (sortFlags) {
     case 'SORT_STRING':
-    // compare items as strings
+      // compare items as strings
       sorter = function (a, b) {
         return strnatcmp(b, a)
       }
       break
     case 'SORT_LOCALE_STRING':
-    // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
+      // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
       var loc = i18nlgd()
       sorter = $locutus.locales[loc].sorting
       break
     case 'SORT_NUMERIC':
-    // compare items numerically
+      // compare items numerically
       sorter = function (a, b) {
         return (b - a)
       }
       break
     case 'SORT_REGULAR':
-    // compare items normally (don't change types)
     default:
+      // compare items normally (don't change types)
       sorter = function (b, a) {
-        var aFloat = parseFloat(a),
-          bFloat = parseFloat(b),
-          aNumeric = aFloat + '' === a,
-          bNumeric = bFloat + '' === b
+        var aFloat = parseFloat(a)
+        var bFloat = parseFloat(b)
+        var aNumeric = aFloat + '' === a
+        var bNumeric = bFloat + '' === b
         if (aNumeric && bNumeric) {
           return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0
         } else if (aNumeric && !bNumeric) {
@@ -92,7 +92,10 @@ module.exports = function krsort (inputArr, sortFlags) {
   keys.sort(sorter)
 
   var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.strictForIn') : undefined)
-  strictForIn = iniVal !== 'off'
+  if (!iniVal) {
+    iniVal = 'on'
+  }
+  strictForIn = iniVal === 'on'
   populateArr = strictForIn ? inputArr : populateArr
 
   // Rebuild array with sorted key names
