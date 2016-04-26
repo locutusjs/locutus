@@ -16,17 +16,18 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
   //         input by: jeicquest
   //             note: When no argument is specified, will put variables in global scope.
   //             note: When a particular argument has been passed, and the returned value is different parse_str of PHP. For example, a=b=c&d====c
-  //        example 1: var arr = {}
-  //        example 1: parse_str('first=foo&second=bar', arr)
-  //        example 1: var $result = arr
+  //        example 1: var $arr = {}
+  //        example 1: parse_str('first=foo&second=bar', $arr)
+  //        example 1: var $result = $arr
   //        returns 1: { first: 'foo', second: 'bar' }
-  //        example 2: var arr = {}
-  //        example 2: parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.', arr)
-  //        example 2: var $result = arr
+  //        example 2: var $arr = {}
+  //        example 2: parse_str('str_a=Jack+and+Jill+didn%27t+see+the+well.', $arr)
+  //        example 2: var $result = $arr
   //        returns 2: { str_a: "Jack and Jill didn't see the well." }
-  //        example 3: var abc = {3:'a'}
-  //        example 3: parse_str('abc[a][b]["c"]=def&abc[q]=t+5')
-  //        returns 3: {"3":"a","a":{"b":{"c":"def"}},"q":"t 5"}
+  //        example 3: var $abc = {3:'a'}
+  //        example 3: parse_str('a[b]["c"]=def&a[q]=t+5', $abc)
+  //        example 3: var $result = $abc
+  //        returns 3: {"3":"a","a":{"b":{"c":"def"},"q":"t 5"}}
 
   var strArr = String(str).replace(/^&/, '').replace(/&$/, '').split('&')
   var sal = strArr.length
@@ -44,6 +45,7 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
   var postLeftBracketPos
   var keys
   var keysLen
+
   var _fixStr = function (str) {
     return decodeURIComponent(str.replace(/\+/g, '%20'))
   }
