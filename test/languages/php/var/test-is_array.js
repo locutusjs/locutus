@@ -39,6 +39,15 @@ describe('src/php/var/is_array.js', function () {
     done()
   })
   it('should pass example 4', function (done) {
+    ini_set('locutus.objectsAsArrays', 0)
+    is_array({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
+    var expected = false
+ini_set('locutus.objectsAsArrays', 0)
+    var result = is_array({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 5', function (done) {
     is_array(function tmp_a(){this.name = 'Kevin'})
     var expected = false
     var result = is_array(function tmp_a(){this.name = 'Kevin'})

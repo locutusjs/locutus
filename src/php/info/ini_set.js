@@ -17,10 +17,11 @@ module.exports = function ini_set (varname, newvalue) { // eslint-disable-line c
 
   var oldval = $locutus.php.ini[varname].local_value
 
-  if (newvalue === true || (newvalue + '').toLowerCase().trim() === 'on') {
+  var lowerStr = (newvalue + '').toLowerCase().trim()
+  if (newvalue === true || lowerStr === 'on' || lowerStr === '1') {
     newvalue = 'on'
   }
-  if (newvalue === false || (newvalue + '').toLowerCase().trim() === 'off') {
+  if (newvalue === false || lowerStr === 'off' || lowerStr === '0') {
     newvalue = 'off'
   }
 

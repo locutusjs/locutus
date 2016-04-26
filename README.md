@@ -89,6 +89,7 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 - [ ] Track all cases of `window`, see if they make sense
 - [ ] `json_*` functions can leverage Node's
 - [ ] See if we need to merge `sort` functions into one helper function and `require` that. Use `arsort` as an example
+- [ ] Test `is_array` in-browser to see if the `require` for `ini_get` works correctly with browserify
 - [ ] Use `\u` for octals in `_examples` for ES2015 compatibility
 - [ ] Rename `strictForIn` to `sortByReference`
 - [ ] Move functions that overly rely on ini & locales & global & ajax file operations to \_legacy
