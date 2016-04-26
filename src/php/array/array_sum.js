@@ -7,9 +7,9 @@ module.exports = function array_sum (array) { // eslint-disable-line camelcase
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: array_sum([4, 9, 182.6])
   //   returns 1: 195.6
-  //   example 2: $total = []
+  //   example 2: var $total = []
   //   example 2: var $index = 0.1
-  //   example 2: for (y = 0; y < 12; y++){ $total[y] = y + $index }
+  //   example 2: for (var $y = 0; $y < 12; $y++){ $total[$y] = $y + $index }
   //   example 2: array_sum($total)
   //   returns 2: 67.2
 

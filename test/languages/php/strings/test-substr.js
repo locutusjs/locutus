@@ -31,47 +31,47 @@ describe('src/php/strings/substr.js', function () {
     expect(result).to.deep.equal(expected)
     done()
   })
-  it('should pass example 3', function (done) {
-    ini_set('unicode.semantics',  'on')
+  it.skip('should pass example 3', function (done) {
+    ini_set('unicode.semantics', 'on')
     substr('a\uD801\uDC00', 0, -1)
     var expected = 'a'
-ini_set('unicode.semantics',  'on')
+ini_set('unicode.semantics', 'on')
     var result = substr('a\uD801\uDC00', 0, -1)
     expect(result).to.deep.equal(expected)
     done()
   })
-  it('should pass example 4', function (done) {
-    ini_set('unicode.semantics',  'on')
+  it.skip('should pass example 4', function (done) {
+    ini_set('unicode.semantics', 'on')
     substr('a\uD801\uDC00', 0, 2)
     var expected = 'a\uD801\uDC00'
-ini_set('unicode.semantics',  'on')
+ini_set('unicode.semantics', 'on')
     var result = substr('a\uD801\uDC00', 0, 2)
     expect(result).to.deep.equal(expected)
     done()
   })
-  it('should pass example 5', function (done) {
-    ini_set('unicode.semantics',  'on')
+  it.skip('should pass example 5', function (done) {
+    ini_set('unicode.semantics', 'on')
     substr('a\uD801\uDC00', -1, 1)
     var expected = '\uD801\uDC00'
-ini_set('unicode.semantics',  'on')
+ini_set('unicode.semantics', 'on')
     var result = substr('a\uD801\uDC00', -1, 1)
     expect(result).to.deep.equal(expected)
     done()
   })
-  it('should pass example 6', function (done) {
-    ini_set('unicode.semantics',  'on')
+  it.skip('should pass example 6', function (done) {
+    ini_set('unicode.semantics', 'on')
     substr('a\uD801\uDC00z\uD801\uDC00', -3, 2)
     var expected = '\uD801\uDC00z'
-ini_set('unicode.semantics',  'on')
+ini_set('unicode.semantics', 'on')
     var result = substr('a\uD801\uDC00z\uD801\uDC00', -3, 2)
     expect(result).to.deep.equal(expected)
     done()
   })
-  it('should pass example 7', function (done) {
-    ini_set('unicode.semantics',  'on')
+  it.skip('should pass example 7', function (done) {
+    ini_set('unicode.semantics', 'on')
     substr('a\uD801\uDC00z\uD801\uDC00', -3, -1)
     var expected = '\uD801\uDC00z'
-ini_set('unicode.semantics',  'on')
+ini_set('unicode.semantics', 'on')
     var result = substr('a\uD801\uDC00z\uD801\uDC00', -3, -1)
     expect(result).to.deep.equal(expected)
     done()

@@ -25,14 +25,14 @@ describe('src/php/array/array_sum.js', function () {
     done()
   })
   it('should pass example 2', function (done) {
-    $total = []
+    var $total = []
     var $index = 0.1
-    for (y = 0; y < 12; y++){ $total[y] = y + $index }
+    for (var $y = 0; $y < 12; $y++){ $total[$y] = $y + $index }
     array_sum($total)
     var expected = 67.2
-$total = []
+var $total = []
 var $index = 0.1
-for (y = 0; y < 12; y++){ $total[y] = y + $index }
+for (var $y = 0; $y < 12; $y++){ $total[$y] = $y + $index }
     var result = array_sum($total)
     expect(result).to.deep.equal(expected)
     done()
