@@ -7,9 +7,11 @@ var gettimeofday = require('../../../../src/php/datetime/gettimeofday.js') // es
 
 describe('src/php/datetime/gettimeofday.js', function () {
   it('should pass example 1', function (done) {
-    gettimeofday()
-    var expected = {sec: 12, usec: 153000, minuteswest: -480, dsttime: 0}
-    var result = gettimeofday()
+    var $obj = gettimeofday()
+    var $result = ('sec' in $obj && 'usec' in $obj && 'minuteswest' in $obj &&80, 'dsttime' in $obj)
+    var expected = true
+    var $obj = gettimeofday()
+    var result = ('sec' in $obj && 'usec' in $obj && 'minuteswest' in $obj &&80, 'dsttime' in $obj)
     expect(result).to.deep.equal(expected)
     done()
   })

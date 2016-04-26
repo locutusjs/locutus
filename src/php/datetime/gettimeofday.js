@@ -4,8 +4,9 @@ module.exports = function gettimeofday (returnFloat) {
   // original by: Josh Fraser (http://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)
   //    parts by: Breaking Par Consulting Inc (http://www.breakingpar.com/bkp/home.nsf/0/87256B280015193F87256CFB006C45F7)
   //  revised by: Theriault (https://github.com/Theriault)
-  //   example 1: gettimeofday()
-  //   returns 1: {sec: 12, usec: 153000, minuteswest: -480, dsttime: 0}
+  //   example 1: var $obj = gettimeofday()
+  //   example 1: var $result = ('sec' in $obj && 'usec' in $obj && 'minuteswest' in $obj &&80, 'dsttime' in $obj)
+  //   returns 1: true
   //   example 2: var $timeStamp = gettimeofday(true)
   //   example 2: var $result = $timeStamp > 1000000000 && $timeStamp < 2000000000
   //   returns 2: true
