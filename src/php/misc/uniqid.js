@@ -13,7 +13,6 @@ module.exports = function uniqid (prefix, moreEntropy) {
   //   example 3: var $result = $id.length === (23 + 'bar'.length)
   //   returns 3: true
 
-  //   example 3: var $result = $id.length === 'bara20285b23dfd1.31879087'.length
   if (typeof prefix === 'undefined') {
     prefix = ''
   }
