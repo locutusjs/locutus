@@ -119,7 +119,7 @@ module.exports = function setlocale (category, locale) {
   // Reconcile Windows vs. *nix locale names?
   // Allow different priority orders of languages, esp. if implement gettext as in
   //     LANGUAGE env. var.? (e.g., show German if French is not available)
-  if (!$locutus.php.locales) {
+  if (!$locutus.php.locales || !$locutus.php.locales.fr_CA || !$locutus.php.locales.fr_CA.LC_TIME || !$locutus.php.locales.fr_CA.LC_TIME.x) {
     // Can add to the locales
     $locutus.php.locales = {}
 
