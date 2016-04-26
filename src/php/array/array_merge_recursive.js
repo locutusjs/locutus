@@ -7,6 +7,7 @@ module.exports = function array_merge_recursive (arr1, arr2) { // eslint-disable
   //   example 1: var $arr2 = {0: 10, 'color': {'favorite': 'green', 0: 'blue'}}
   //   example 1: array_merge_recursive($arr1, $arr2)
   //   returns 1: {'color': {'favorite': {0: 'red', 1: 'green'}, 0: 'blue'}, 1: 5, 1: 10}
+  //        test: skip-1
 
   var arrayMerge = require('../array/array_merge')
   var idx = ''

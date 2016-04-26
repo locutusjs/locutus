@@ -9,6 +9,9 @@ var indentString = require('indent-string')
 var _ = require('lodash')
 
 function Util (argv) {
+  if (!argv) {
+    argv = []
+  }
   this.__src = path.dirname(__dirname)
   this.__root = path.dirname(path.dirname(__dirname))
   this.__test = path.dirname(path.dirname(__dirname)) + '/test'

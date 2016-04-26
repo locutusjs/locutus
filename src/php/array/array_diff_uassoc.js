@@ -5,6 +5,7 @@ module.exports = function array_diff_uassoc (arr1) { // eslint-disable-line came
   //   example 1: var $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
   //   example 1: array_diff_uassoc($array1, $array2, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })
   //   returns 1: {b: 'brown', c: 'blue', 0: 'red'}
+  //        test: skip-1
 
   var retArr = {}
   var arglm1 = arguments.length - 1
