@@ -215,7 +215,7 @@ Util.prototype._writetestOne = function (params, cb) {
       codez.push('var ' + 'setlocale' + ' = require(\'' + relativeSrcForTest + '/' + 'php/strings/setlocale' + '\') // eslint-disable-line no-unused-vars,camelcase')
     }
     if (params.func_name === 'i18n_loc_get_default') {
-      codez.push('var ' + 'setlocale' + ' = require(\'' + relativeSrcForTest + '/' + 'php/i18n/i18n_loc_set_default' + '\') // eslint-disable-line no-unused-vars,camelcase')
+      codez.push('var ' + 'i18n_loc_set_default' + ' = require(\'' + relativeSrcForTest + '/' + 'php/i18n/i18n_loc_set_default' + '\') // eslint-disable-line no-unused-vars,camelcase')
     }
   }
 

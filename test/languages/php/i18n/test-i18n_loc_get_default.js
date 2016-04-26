@@ -3,11 +3,18 @@ process.env.TZ = 'UTC'
 var expect = require('chai').expect
 var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var setlocale = require('../../../../src/php/i18n/i18n_loc_set_default') // eslint-disable-line no-unused-vars,camelcase
+var i18n_loc_set_default = require('../../../../src/php/i18n/i18n_loc_set_default') // eslint-disable-line no-unused-vars,camelcase
 var i18n_loc_get_default = require('../../../../src/php/i18n/i18n_loc_get_default.js') // eslint-disable-line no-unused-vars,camelcase
 
 describe('src/php/i18n/i18n_loc_get_default.js', function () {
   it('should pass example 1', function (done) {
+    i18n_loc_get_default()
+    var expected = 'en_US_POSIX'
+    var result = i18n_loc_get_default()
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 2', function (done) {
     i18n_loc_set_default('pt_PT')
     i18n_loc_get_default()
     var expected = 'pt_PT'
