@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var fmod = require('../../../../src/php/math/fmod.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/fmod.js', function () {
+describe('src/php/math/fmod.js (tested in test/languages/php/math/test-fmod.js)', function () {
   it('should pass example 1', function (done) {
-    fmod(5.7, 1.3)
     var expected = 0.5
     var result = fmod(5.7, 1.3)
     expect(result).to.deep.equal(expected)

@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var bcscale = require('../../../../src/php/bc/bcscale.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/bc/bcscale.js', function () {
+describe('src/php/bc/bcscale.js (tested in test/languages/php/bc/test-bcscale.js)', function () {
   it('should pass example 1', function (done) {
-    bcscale(1)
     var expected = true
     var result = bcscale(1)
     expect(result).to.deep.equal(expected)

@@ -5,17 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var floatval = require('../../../../src/php/var/floatval.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/var/floatval.js', function () {
+describe('src/php/var/floatval.js (tested in test/languages/php/var/test-floatval.js)', function () {
   it('should pass example 1', function (done) {
-    floatval('150.03_page-section')
     var expected = 150.03
     var result = floatval('150.03_page-section')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    floatval('page: 3')
-    floatval('-50 + 8')
     var expected = 0
     -50
     floatval('page: 3')

@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var tanh = require('../../../../src/php/math/tanh.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/tanh.js', function () {
+describe('src/php/math/tanh.js (tested in test/languages/php/math/test-tanh.js)', function () {
   it('should pass example 1', function (done) {
-    tanh(5.4251848798444815)
     var expected = 0.9999612058841574
     var result = tanh(5.4251848798444815)
     expect(result).to.deep.equal(expected)

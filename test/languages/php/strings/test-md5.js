@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var md5 = require('../../../../src/php/strings/md5.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/md5.js', function () {
+describe('src/php/strings/md5.js (tested in test/languages/php/strings/test-md5.js)', function () {
   it('should pass example 1', function (done) {
-    md5('Kevin van Zonneveld')
     var expected = '6e658d4bfcb59cc13f96c14450ac40b9'
     var result = md5('Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)

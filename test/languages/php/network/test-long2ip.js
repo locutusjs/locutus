@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var long2ip = require('../../../../src/php/network/long2ip.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/network/long2ip.js', function () {
+describe('src/php/network/long2ip.js (tested in test/languages/php/network/test-long2ip.js)', function () {
   it('should pass example 1', function (done) {
-    long2ip( 3221234342 )
     var expected = '192.0.34.166'
     var result = long2ip( 3221234342 )
     expect(result).to.deep.equal(expected)

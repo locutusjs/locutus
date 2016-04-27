@@ -5,23 +5,20 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var wordwrap = require('../../../../src/php/strings/wordwrap.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/wordwrap.js', function () {
+describe('src/php/strings/wordwrap.js (tested in test/languages/php/strings/test-wordwrap.js)', function () {
   it('should pass example 1', function (done) {
-    wordwrap('Kevin van Zonneveld', 6, '|', true)
     var expected = 'Kevin |van |Zonnev|eld'
     var result = wordwrap('Kevin van Zonneveld', 6, '|', true)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    wordwrap('The quick brown fox jumped over the lazy dog.', 20, '<br />\n')
     var expected = 'The quick brown fox <br />\njumped over the lazy<br />\n dog.'
     var result = wordwrap('The quick brown fox jumped over the lazy dog.', 20, '<br />\n')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    wordwrap('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.')
     var expected = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod \ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim \nveniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea \ncommodo consequat.'
     var result = wordwrap('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.')
     expect(result).to.deep.equal(expected)

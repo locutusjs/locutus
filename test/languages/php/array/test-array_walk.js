@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var array_walk = require('../../../../src/php/array/array_walk.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/array_walk.js', function () {
+describe('src/php/array/array_walk.js (tested in test/languages/php/array/test-array_walk.js)', function () {
   it('should pass example 1', function (done) {
-    array_walk ([3, 4], function () {}, 'userdata')
     var expected = true
     var result = array_walk ([3, 4], function () {}, 'userdata')
     expect(result).to.deep.equal(expected)

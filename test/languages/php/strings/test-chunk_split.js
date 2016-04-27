@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var chunk_split = require('../../../../src/php/strings/chunk_split.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/chunk_split.js', function () {
+describe('src/php/strings/chunk_split.js (tested in test/languages/php/strings/test-chunk_split.js)', function () {
   it('should pass example 1', function (done) {
-    chunk_split('Hello world!', 1, '*')
     var expected = 'H*e*l*l*o* *w*o*r*l*d*!*'
     var result = chunk_split('Hello world!', 1, '*')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    chunk_split('Hello world!', 10, '*')
     var expected = 'Hello worl*d!*'
     var result = chunk_split('Hello world!', 10, '*')
     expect(result).to.deep.equal(expected)

@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var xdiff_string_diff = require('../../../../src/php/xdiff/xdiff_string_diff.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/xdiff/xdiff_string_diff.js', function () {
+describe('src/php/xdiff/xdiff_string_diff.js (tested in test/languages/php/xdiff/test-xdiff_string_diff.js)', function () {
   it('should pass example 1', function (done) {
-    xdiff_string_diff('', 'Hello world!')
     var expected = '@@ -0,0 +1,1 @@\n+Hello world!'
     var result = xdiff_string_diff('', 'Hello world!')
     expect(result).to.deep.equal(expected)

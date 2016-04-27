@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var function_exists = require('../../../../src/php/funchand/function_exists.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/funchand/function_exists.js', function () {
-  it.skip('should pass example 1', function (done) {
-    function_exists('isFinite')
+describe('src/php/funchand/function_exists.js (tested in test/languages/php/funchand/test-function_exists.js)', function () {
+  it('should pass example 1', function (done) {
     var expected = true
     var result = function_exists('isFinite')
     expect(result).to.deep.equal(expected)

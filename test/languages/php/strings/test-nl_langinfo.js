@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var nl_langinfo = require('../../../../src/php/strings/nl_langinfo.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/nl_langinfo.js', function () {
+describe('src/php/strings/nl_langinfo.js (tested in test/languages/php/strings/test-nl_langinfo.js)', function () {
   it('should pass example 1', function (done) {
-    nl_langinfo('DAY_1')
     var expected = 'Sunday'
     var result = nl_langinfo('DAY_1')
     expect(result).to.deep.equal(expected)

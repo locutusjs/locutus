@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var sizeof = require('../../../../src/php/array/sizeof.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/sizeof.js', function () {
+describe('src/php/array/sizeof.js (tested in test/languages/php/array/test-sizeof.js)', function () {
   it('should pass example 1', function (done) {
-    sizeof([[0,0],[0,-4]], 'COUNT_RECURSIVE')
     var expected = 6
     var result = sizeof([[0,0],[0,-4]], 'COUNT_RECURSIVE')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    sizeof({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE')
     var expected = 6
     var result = sizeof({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE')
     expect(result).to.deep.equal(expected)

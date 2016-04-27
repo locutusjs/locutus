@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var ctype_lower = require('../../../../src/php/ctype/ctype_lower.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/ctype/ctype_lower.js', function () {
+describe('src/php/ctype/ctype_lower.js (tested in test/languages/php/ctype/test-ctype_lower.js)', function () {
   it('should pass example 1', function (done) {
-    ctype_lower('abc')
     var expected = true
     var result = ctype_lower('abc')
     expect(result).to.deep.equal(expected)

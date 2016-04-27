@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var ucfirst = require('../../../../src/php/strings/ucfirst.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/ucfirst.js', function () {
+describe('src/php/strings/ucfirst.js (tested in test/languages/php/strings/test-ucfirst.js)', function () {
   it('should pass example 1', function (done) {
-    ucfirst('kevin van zonneveld')
     var expected = 'Kevin van zonneveld'
     var result = ucfirst('kevin van zonneveld')
     expect(result).to.deep.equal(expected)

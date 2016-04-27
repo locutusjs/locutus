@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var bcsub = require('../../../../src/php/bc/bcsub.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/bc/bcsub.js', function () {
+describe('src/php/bc/bcsub.js (tested in test/languages/php/bc/test-bcsub.js)', function () {
   it('should pass example 1', function (done) {
-    bcsub(1, 2)
     var expected = '-1'
     var result = bcsub(1, 2)
     expect(result).to.deep.equal(expected)

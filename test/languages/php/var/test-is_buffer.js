@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var is_buffer = require('../../../../src/php/var/is_buffer.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/var/is_buffer.js', function () {
+describe('src/php/var/is_buffer.js (tested in test/languages/php/var/test-is_buffer.js)', function () {
   it('should pass example 1', function (done) {
-    is_buffer('This could be binary or a regular string as far as JavaScript knows...')
     var expected = true
     var result = is_buffer('This could be binary or a regular string as far as JavaScript knows...')
     expect(result).to.deep.equal(expected)

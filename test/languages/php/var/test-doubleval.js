@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var doubleval = require('../../../../src/php/var/doubleval.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/var/doubleval.js', function () {
+describe('src/php/var/doubleval.js (tested in test/languages/php/var/test-doubleval.js)', function () {
   it('should pass example 1', function (done) {
-    doubleval(186)
     var expected = 186.00
     var result = doubleval(186)
     expect(result).to.deep.equal(expected)

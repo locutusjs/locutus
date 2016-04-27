@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var rad2deg = require('../../../../src/php/math/rad2deg.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/rad2deg.js', function () {
+describe('src/php/math/rad2deg.js (tested in test/languages/php/math/test-rad2deg.js)', function () {
   it('should pass example 1', function (done) {
-    rad2deg(3.141592653589793)
     var expected = 180
     var result = rad2deg(3.141592653589793)
     expect(result).to.deep.equal(expected)

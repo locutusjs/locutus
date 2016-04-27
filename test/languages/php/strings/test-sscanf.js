@@ -5,18 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var sscanf = require('../../../../src/php/strings/sscanf.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/sscanf.js', function () {
+describe('src/php/strings/sscanf.js (tested in test/languages/php/strings/test-sscanf.js)', function () {
   it('should pass example 1', function (done) {
-    sscanf('SN/2350001', 'SN/%d')
     var expected = [2350001]
     var result = sscanf('SN/2350001', 'SN/%d')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    var myVar = {}
-    sscanf('SN/2350001', 'SN/%d', myVar)
-    var $result = myVar.value
     var expected = 2350001
     var myVar = {}
     sscanf('SN/2350001', 'SN/%d', myVar)
@@ -25,7 +21,6 @@ describe('src/php/strings/sscanf.js', function () {
     done()
   })
   it('should pass example 3', function (done) {
-    sscanf("10--20", "%2$d--%1$d") // Must escape '$' in PHP, but not JS
     var expected = [20, 10]
     var result = sscanf("10--20", "%2$d--%1$d") // Must escape '$' in PHP, but not JS
     expect(result).to.deep.equal(expected)

@@ -5,30 +5,26 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var metaphone = require('../../../../src/php/strings/metaphone.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/metaphone.js', function () {
+describe('src/php/strings/metaphone.js (tested in test/languages/php/strings/test-metaphone.js)', function () {
   it('should pass example 1', function (done) {
-    metaphone('Gnu')
     var expected = 'N'
     var result = metaphone('Gnu')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    metaphone('bigger')
     var expected = 'BKR'
     var result = metaphone('bigger')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    metaphone('accuracy')
     var expected = 'AKKRS'
     var result = metaphone('accuracy')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 4', function (done) {
-    metaphone('batch batcher')
     var expected = 'BXBXR'
     var result = metaphone('batch batcher')
     expect(result).to.deep.equal(expected)

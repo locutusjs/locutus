@@ -5,32 +5,26 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var str_replace = require('../../../../src/php/strings/str_replace.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/str_replace.js', function () {
+describe('src/php/strings/str_replace.js (tested in test/languages/php/strings/test-str_replace.js)', function () {
   it('should pass example 1', function (done) {
-    str_replace(' ', '.', 'Kevin van Zonneveld')
     var expected = 'Kevin.van.Zonneveld'
     var result = str_replace(' ', '.', 'Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars')
     var expected = 'hemmo, mars'
     var result = str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    str_replace(Array('S','F'),'x','ASDFASDF')
     var expected = 'AxDxAxDx'
     var result = str_replace(Array('S','F'),'x','ASDFASDF')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 4', function (done) {
-    var countObj = {}
-    str_replace(['A','D'], ['x','y'] , 'ASDFASDF' , countObj)
-    var $result = countObj.value
     var expected = 4
     var countObj = {}
     str_replace(['A','D'], ['x','y'] , 'ASDFASDF' , countObj)

@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var acosh = require('../../../../src/php/math/acosh.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/acosh.js', function () {
+describe('src/php/math/acosh.js (tested in test/languages/php/math/test-acosh.js)', function () {
   it('should pass example 1', function (done) {
-    acosh(8723321.4)
     var expected = 16.674657798418625
     var result = acosh(8723321.4)
     expect(result).to.deep.equal(expected)

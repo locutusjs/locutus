@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var ord = require('../../../../src/php/strings/ord.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/ord.js', function () {
+describe('src/php/strings/ord.js (tested in test/languages/php/strings/test-ord.js)', function () {
   it('should pass example 1', function (done) {
-    ord('K')
     var expected = 75
     var result = ord('K')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    ord('\uD800\uDC00'); // surrogate pair to create a single Unicode character
     var expected = 65536
     var result = ord('\uD800\uDC00'); // surrogate pair to create a single Unicode character
     expect(result).to.deep.equal(expected)

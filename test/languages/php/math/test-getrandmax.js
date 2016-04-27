@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var getrandmax = require('../../../../src/php/math/getrandmax.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/getrandmax.js', function () {
+describe('src/php/math/getrandmax.js (tested in test/languages/php/math/test-getrandmax.js)', function () {
   it('should pass example 1', function (done) {
-    getrandmax()
     var expected = 2147483647
     var result = getrandmax()
     expect(result).to.deep.equal(expected)

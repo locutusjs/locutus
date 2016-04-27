@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var ctype_space = require('../../../../src/php/ctype/ctype_space.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/ctype/ctype_space.js', function () {
+describe('src/php/ctype/ctype_space.js (tested in test/languages/php/ctype/test-ctype_space.js)', function () {
   it('should pass example 1', function (done) {
-    ctype_space('\t\n')
     var expected = true
     var result = ctype_space('\t\n')
     expect(result).to.deep.equal(expected)

@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var setrawcookie = require('../../../../src/php/network/setrawcookie.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/network/setrawcookie.js', function () {
+describe('src/php/network/setrawcookie.js (tested in test/languages/php/network/test-setrawcookie.js)', function () {
   it('should pass example 1', function (done) {
-    setrawcookie('author_name', 'Kevin van Zonneveld')
     var expected = true
     var result = setrawcookie('author_name', 'Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)

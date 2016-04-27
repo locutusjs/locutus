@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var sql_regcase = require('../../../../src/php/pcre/sql_regcase.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/pcre/sql_regcase.js', function () {
+describe('src/php/pcre/sql_regcase.js (tested in test/languages/php/pcre/test-sql_regcase.js)', function () {
   it('should pass example 1', function (done) {
-    sql_regcase('Foo - bar.')
     var expected = '[Ff][Oo][Oo] - [Bb][Aa][Rr].'
     var result = sql_regcase('Foo - bar.')
     expect(result).to.deep.equal(expected)

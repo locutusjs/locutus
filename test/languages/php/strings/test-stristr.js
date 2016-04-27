@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var stristr = require('../../../../src/php/strings/stristr.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/stristr.js', function () {
+describe('src/php/strings/stristr.js (tested in test/languages/php/strings/test-stristr.js)', function () {
   it('should pass example 1', function (done) {
-    stristr('Kevin van Zonneveld', 'Van')
     var expected = 'van Zonneveld'
     var result = stristr('Kevin van Zonneveld', 'Van')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    stristr('Kevin van Zonneveld', 'VAN', true)
     var expected = 'Kevin '
     var result = stristr('Kevin van Zonneveld', 'VAN', true)
     expect(result).to.deep.equal(expected)

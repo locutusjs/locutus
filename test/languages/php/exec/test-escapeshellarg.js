@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var escapeshellarg = require('../../../../src/php/exec/escapeshellarg.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/exec/escapeshellarg.js', function () {
+describe('src/php/exec/escapeshellarg.js (tested in test/languages/php/exec/test-escapeshellarg.js)', function () {
   it('should pass example 1', function (done) {
-    escapeshellarg("kevin's birthday")
     var expected = "'kevin\\'s birthday'"
     var result = escapeshellarg("kevin's birthday")
     expect(result).to.deep.equal(expected)

@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var bcmul = require('../../../../src/php/bc/bcmul.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/bc/bcmul.js', function () {
+describe('src/php/bc/bcmul.js (tested in test/languages/php/bc/test-bcmul.js)', function () {
   it('should pass example 1', function (done) {
-    bcmul(1, 2)
     var expected = '2'
     var result = bcmul(1, 2)
     expect(result).to.deep.equal(expected)

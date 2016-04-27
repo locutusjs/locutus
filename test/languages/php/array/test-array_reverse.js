@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var array_reverse = require('../../../../src/php/array/array_reverse.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/array_reverse.js', function () {
+describe('src/php/array/array_reverse.js (tested in test/languages/php/array/test-array_reverse.js)', function () {
   it('should pass example 1', function (done) {
-    array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
     var expected = { 2: ['green', 'red'], 1: '4.0', 0: 'php'}
     var result = array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
     expect(result).to.deep.equal(expected)

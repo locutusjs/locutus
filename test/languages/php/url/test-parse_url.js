@@ -5,30 +5,26 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var parse_url = require('../../../../src/php/url/parse_url.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/url/parse_url.js', function () {
+describe('src/php/url/parse_url.js (tested in test/languages/php/url/test-parse_url.js)', function () {
   it('should pass example 1', function (done) {
-    parse_url('http://username:password@hostname/path?arg=value#anchor')
     var expected = {scheme: 'http', host: 'hostname', user: 'username', pass: 'password', path: '/path', query: 'arg=value', fragment: 'anchor'}
     var result = parse_url('http://username:password@hostname/path?arg=value#anchor')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    parse_url('http://en.wikipedia.org/wiki/%22@%22_%28album%29')
     var expected = {scheme: 'http', host: 'en.wikipedia.org', path: '/wiki/%22@%22_%28album%29'}
     var result = parse_url('http://en.wikipedia.org/wiki/%22@%22_%28album%29')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    parse_url('https://host.domain.tld/a@b.c/folder')
     var expected = {scheme: 'https', host: 'host.domain.tld', path: '/a@b.c/folder'}
     var result = parse_url('https://host.domain.tld/a@b.c/folder')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 4', function (done) {
-    parse_url('https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar')
     var expected = { scheme: 'https', host: 'www.example.com', path: '/a@b.c/folder', query: 'foo=bar', user: 'gooduser', pass: 'secretpassword' }
     var result = parse_url('https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar')
     expect(result).to.deep.equal(expected)

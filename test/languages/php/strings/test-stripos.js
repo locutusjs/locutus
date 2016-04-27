@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var stripos = require('../../../../src/php/strings/stripos.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/stripos.js', function () {
+describe('src/php/strings/stripos.js (tested in test/languages/php/strings/test-stripos.js)', function () {
   it('should pass example 1', function (done) {
-    stripos('ABC', 'a')
     var expected = 0
     var result = stripos('ABC', 'a')
     expect(result).to.deep.equal(expected)

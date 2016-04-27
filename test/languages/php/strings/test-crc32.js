@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var crc32 = require('../../../../src/php/strings/crc32.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/crc32.js', function () {
+describe('src/php/strings/crc32.js (tested in test/languages/php/strings/test-crc32.js)', function () {
   it('should pass example 1', function (done) {
-    crc32('Kevin van Zonneveld')
     var expected = 1249991249
     var result = crc32('Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)

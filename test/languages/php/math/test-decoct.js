@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var decoct = require('../../../../src/php/math/decoct.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/decoct.js', function () {
+describe('src/php/math/decoct.js (tested in test/languages/php/math/test-decoct.js)', function () {
   it('should pass example 1', function (done) {
-    decoct(15)
     var expected = '17'
     var result = decoct(15)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    decoct(264)
     var expected = '410'
     var result = decoct(264)
     expect(result).to.deep.equal(expected)

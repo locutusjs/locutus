@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var json_last_error = require('../../../../src/php/json/json_last_error.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/json/json_last_error.js', function () {
+describe('src/php/json/json_last_error.js (tested in test/languages/php/json/test-json_last_error.js)', function () {
   it('should pass example 1', function (done) {
-    json_last_error()
     var expected = 0
     var result = json_last_error()
     expect(result).to.deep.equal(expected)

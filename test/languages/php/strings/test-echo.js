@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var echo = require('../../../../src/php/strings/echo.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/echo.js', function () {
+describe('src/php/strings/echo.js (tested in test/languages/php/strings/test-echo.js)', function () {
   it('should pass example 1', function (done) {
-    echo('<div><p>abc</p><p>abc</p></div>')
     var expected = undefined
     var result = echo('<div><p>abc</p><p>abc</p></div>')
     expect(result).to.deep.equal(expected)

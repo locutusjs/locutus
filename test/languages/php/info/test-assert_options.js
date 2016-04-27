@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var assert_options = require('../../../../src/php/info/assert_options.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/info/assert_options.js', function () {
+describe('src/php/info/assert_options.js (tested in test/languages/php/info/test-assert_options.js)', function () {
   it('should pass example 1', function (done) {
-    assert_options('ASSERT_CALLBACK')
     var expected = null
     var result = assert_options('ASSERT_CALLBACK')
     expect(result).to.deep.equal(expected)

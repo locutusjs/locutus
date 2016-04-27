@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var strval = require('../../../../src/php/var/strval.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/var/strval.js', function () {
+describe('src/php/var/strval.js (tested in test/languages/php/var/test-strval.js)', function () {
   it('should pass example 1', function (done) {
-    strval({red: 1, green: 2, blue: 3, white: 4})
     var expected = 'Object'
     var result = strval({red: 1, green: 2, blue: 3, white: 4})
     expect(result).to.deep.equal(expected)

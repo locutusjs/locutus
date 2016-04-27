@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var strtolower = require('../../../../src/php/strings/strtolower.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/strtolower.js', function () {
+describe('src/php/strings/strtolower.js (tested in test/languages/php/strings/test-strtolower.js)', function () {
   it('should pass example 1', function (done) {
-    strtolower('Kevin van Zonneveld')
     var expected = 'kevin van zonneveld'
     var result = strtolower('Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)

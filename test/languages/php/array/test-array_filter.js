@@ -5,10 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var array_filter = require('../../../../src/php/array/array_filter.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/array_filter.js', function () {
+describe('src/php/array/array_filter.js (tested in test/languages/php/array/test-array_filter.js)', function () {
   it('should pass example 1', function (done) {
-    var odd = function (num) {return (num & 1);}
-    array_filter({"a": 1, "b": 2, "c": 3, "d": 4, "e": 5}, odd)
     var expected = {"a": 1, "c": 3, "e": 5}
     var odd = function (num) {return (num & 1);}
     var result = array_filter({"a": 1, "b": 2, "c": 3, "d": 4, "e": 5}, odd)
@@ -16,8 +14,6 @@ describe('src/php/array/array_filter.js', function () {
     done()
   })
   it('should pass example 2', function (done) {
-    var even = function (num) {return (!(num & 1));}
-    array_filter([6, 7, 8, 9, 10, 11, 12], even)
     var expected = [ 6, , 8, , 10, , 12 ]
     var even = function (num) {return (!(num & 1));}
     var result = array_filter([6, 7, 8, 9, 10, 11, 12], even)
@@ -25,7 +21,6 @@ describe('src/php/array/array_filter.js', function () {
     done()
   })
   it('should pass example 3', function (done) {
-    array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined})
     var expected = {"a":1, "c":-1}
     var result = array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined})
     expect(result).to.deep.equal(expected)

@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var ctype_print = require('../../../../src/php/ctype/ctype_print.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/ctype/ctype_print.js', function () {
+describe('src/php/ctype/ctype_print.js (tested in test/languages/php/ctype/test-ctype_print.js)', function () {
   it('should pass example 1', function (done) {
-    ctype_print('AbC!#12')
     var expected = true
     var result = ctype_print('AbC!#12')
     expect(result).to.deep.equal(expected)

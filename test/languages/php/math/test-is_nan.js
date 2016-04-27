@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var is_nan = require('../../../../src/php/math/is_nan.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/is_nan.js', function () {
+describe('src/php/math/is_nan.js (tested in test/languages/php/math/test-is_nan.js)', function () {
   it('should pass example 1', function (done) {
-    is_nan(NaN)
     var expected = true
     var result = is_nan(NaN)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    is_nan(0)
     var expected = false
     var result = is_nan(0)
     expect(result).to.deep.equal(expected)

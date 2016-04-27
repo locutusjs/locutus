@@ -5,24 +5,20 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var var_export = require('../../../../src/php/var/var_export.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/var/var_export.js', function () {
+describe('src/php/var/var_export.js (tested in test/languages/php/var/test-var_export.js)', function () {
   it('should pass example 1', function (done) {
-    var_export(null)
     var expected = null
     var result = var_export(null)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true)
     var expected = "array (\n  0 => 'Kevin',\n  1 => 'van',\n  2 => 'Zonneveld'\n)"
     var result = var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    var data = 'Kevin'
-    var_export(data, true)
     var expected = "'Kevin'"
     var data = 'Kevin'
     var result = var_export(data, true)

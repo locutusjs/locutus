@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var lcfirst = require('../../../../src/php/strings/lcfirst.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/lcfirst.js', function () {
+describe('src/php/strings/lcfirst.js (tested in test/languages/php/strings/test-lcfirst.js)', function () {
   it('should pass example 1', function (done) {
-    lcfirst('Kevin Van Zonneveld')
     var expected = 'kevin Van Zonneveld'
     var result = lcfirst('Kevin Van Zonneveld')
     expect(result).to.deep.equal(expected)

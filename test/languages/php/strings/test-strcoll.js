@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var strcoll = require('../../../../src/php/strings/strcoll.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/strcoll.js', function () {
+describe('src/php/strings/strcoll.js (tested in test/languages/php/strings/test-strcoll.js)', function () {
   it('should pass example 1', function (done) {
-    strcoll('a', 'b')
     var expected = -1
     var result = strcoll('a', 'b')
     expect(result).to.deep.equal(expected)

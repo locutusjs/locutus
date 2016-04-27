@@ -5,18 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var array_multisort = require('../../../../src/php/array/array_multisort.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/array_multisort.js', function () {
+describe('src/php/array/array_multisort.js (tested in test/languages/php/array/test-array_multisort.js)', function () {
   it('should pass example 1', function (done) {
-    array_multisort([1, 2, 1, 2, 1, 2], [1, 2, 3, 4, 5, 6])
     var expected = true
     var result = array_multisort([1, 2, 1, 2, 1, 2], [1, 2, 3, 4, 5, 6])
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    var $characters = {A: 'Edward', B: 'Locke', C: 'Sabin', D: 'Terra', E: 'Edward'}
-    var $jobs = {A: 'Warrior', B: 'Thief', C: 'Monk', D: 'Mage', E: 'Knight'}
-    array_multisort($characters, 'SORT_DESC', 'SORT_STRING', $jobs, 'SORT_ASC', 'SORT_STRING')
     var expected = true
     var $characters = {A: 'Edward', B: 'Locke', C: 'Sabin', D: 'Terra', E: 'Edward'}
     var $jobs = {A: 'Warrior', B: 'Thief', C: 'Monk', D: 'Mage', E: 'Knight'}
@@ -25,10 +21,6 @@ describe('src/php/array/array_multisort.js', function () {
     done()
   })
   it('should pass example 3', function (done) {
-    var $lastnames = [ 'Carter','Adams','Monroe','Tyler','Madison','Kennedy','Adams']
-    var $firstnames = ['James', 'John' ,'James', 'John', 'James',  'John',   'John']
-    var $president = [ 39, 6, 5, 10, 4, 35, 2 ]
-    array_multisort($firstnames, 'SORT_DESC', 'SORT_STRING', $lastnames, 'SORT_ASC', 'SORT_STRING', $president, 'SORT_NUMERIC')
     var expected = true
     var $lastnames = [ 'Carter','Adams','Monroe','Tyler','Madison','Kennedy','Adams']
     var $firstnames = ['James', 'John' ,'James', 'John', 'James',  'John',   'John']

@@ -5,12 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var uasort = require('../../../../src/php/array/uasort.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/uasort.js', function () {
+describe('src/php/array/uasort.js (tested in test/languages/php/array/test-uasort.js)', function () {
   it('should pass example 1', function (done) {
-    var $sorter = function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;}
-    var $fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-    uasort($fruits, $sorter)
-    var $result = $fruits
     var expected = {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
     var $sorter = function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;}
     var $fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}

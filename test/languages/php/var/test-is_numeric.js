@@ -5,44 +5,38 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var is_numeric = require('../../../../src/php/var/is_numeric.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/var/is_numeric.js', function () {
+describe('src/php/var/is_numeric.js (tested in test/languages/php/var/test-is_numeric.js)', function () {
   it('should pass example 1', function (done) {
-    is_numeric(186.31)
     var expected = true
     var result = is_numeric(186.31)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    is_numeric('Kevin van Zonneveld')
     var expected = false
     var result = is_numeric('Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    is_numeric(' +186.31e2')
     var expected = true
     var result = is_numeric(' +186.31e2')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 4', function (done) {
-    is_numeric('')
     var expected = false
     var result = is_numeric('')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 5', function (done) {
-    is_numeric([])
     var expected = false
     var result = is_numeric([])
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 6', function (done) {
-    is_numeric('1 ')
     var expected = false
     var result = is_numeric('1 ')
     expect(result).to.deep.equal(expected)

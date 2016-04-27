@@ -5,10 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var key = require('../../../../src/php/array/key.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/key.js', function () {
+describe('src/php/array/key.js (tested in test/languages/php/array/test-key.js)', function () {
   it('should pass example 1', function (done) {
-    var $array = {fruit1: 'apple', 'fruit2': 'orange'}
-    key($array)
     var expected = 'fruit1'
     var $array = {fruit1: 'apple', 'fruit2': 'orange'}
     var result = key($array)

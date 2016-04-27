@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var addcslashes = require('../../../../src/php/strings/addcslashes.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/addcslashes.js', function () {
+describe('src/php/strings/addcslashes.js (tested in test/languages/php/strings/test-addcslashes.js)', function () {
   it('should pass example 1', function (done) {
-    addcslashes('foo[ ]', 'A..z'); // Escape all ASCII within capital A to lower z range, including square brackets
     var expected = "\\f\\o\\o\\[ \\]"
     var result = addcslashes('foo[ ]', 'A..z'); // Escape all ASCII within capital A to lower z range, including square brackets
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    addcslashes("zoo['.']", 'z..A'); // Only escape z, period, and A here since not a lower-to-higher range
     var expected = "\\zoo['\\.']"
     var result = addcslashes("zoo['.']", 'z..A'); // Only escape z, period, and A here since not a lower-to-higher range
     expect(result).to.deep.equal(expected)

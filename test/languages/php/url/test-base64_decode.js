@@ -5,23 +5,20 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var base64_decode = require('../../../../src/php/url/base64_decode.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/url/base64_decode.js', function () {
+describe('src/php/url/base64_decode.js (tested in test/languages/php/url/test-base64_decode.js)', function () {
   it('should pass example 1', function (done) {
-    base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==')
     var expected = 'Kevin van Zonneveld'
     var result = base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    base64_decode('YQ==')
     var expected = 'a'
     var result = base64_decode('YQ==')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    base64_decode('4pyTIMOgIGxhIG1vZGU=')
     var expected = '✓ à la mode'
     var result = base64_decode('4pyTIMOgIGxhIG1vZGU=')
     expect(result).to.deep.equal(expected)

@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var stripslashes = require('../../../../src/php/strings/stripslashes.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/stripslashes.js', function () {
+describe('src/php/strings/stripslashes.js (tested in test/languages/php/strings/test-stripslashes.js)', function () {
   it('should pass example 1', function (done) {
-    stripslashes('Kevin\'s code')
     var expected = "Kevin's code"
     var result = stripslashes('Kevin\'s code')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    stripslashes('Kevin\\\'s code')
     var expected = "Kevin\'s code"
     var result = stripslashes('Kevin\\\'s code')
     expect(result).to.deep.equal(expected)

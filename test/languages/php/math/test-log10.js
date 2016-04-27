@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var log10 = require('../../../../src/php/math/log10.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/log10.js', function () {
+describe('src/php/math/log10.js (tested in test/languages/php/math/test-log10.js)', function () {
   it('should pass example 1', function (done) {
-    log10(10)
     var expected = 1
     var result = log10(10)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    log10(1)
     var expected = 0
     var result = log10(1)
     expect(result).to.deep.equal(expected)

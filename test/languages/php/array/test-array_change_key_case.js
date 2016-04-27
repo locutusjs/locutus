@@ -5,44 +5,38 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var array_change_key_case = require('../../../../src/php/array/array_change_key_case.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/array_change_key_case.js', function () {
+describe('src/php/array/array_change_key_case.js (tested in test/languages/php/array/test-array_change_key_case.js)', function () {
   it('should pass example 1', function (done) {
-    array_change_key_case(42)
     var expected = false
     var result = array_change_key_case(42)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    array_change_key_case([ 3, 5 ])
     var expected = [3, 5]
     var result = array_change_key_case([ 3, 5 ])
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    array_change_key_case({ FuBaR: 42 })
     var expected = {"fubar": 42}
     var result = array_change_key_case({ FuBaR: 42 })
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 4', function (done) {
-    array_change_key_case({ FuBaR: 42 }, 'CASE_LOWER')
     var expected = {"fubar": 42}
     var result = array_change_key_case({ FuBaR: 42 }, 'CASE_LOWER')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 5', function (done) {
-    array_change_key_case({ FuBaR: 42 }, 'CASE_UPPER')
     var expected = {"FUBAR": 42}
     var result = array_change_key_case({ FuBaR: 42 }, 'CASE_UPPER')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 6', function (done) {
-    array_change_key_case({ FuBaR: 42 }, 2)
     var expected = {"FUBAR": 42}
     var result = array_change_key_case({ FuBaR: 42 }, 2)
     expect(result).to.deep.equal(expected)

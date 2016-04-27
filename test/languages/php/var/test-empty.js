@@ -5,37 +5,32 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var empty = require('../../../../src/php/var/empty.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/var/empty.js', function () {
+describe('src/php/var/empty.js (tested in test/languages/php/var/test-empty.js)', function () {
   it('should pass example 1', function (done) {
-    empty(null)
     var expected = true
     var result = empty(null)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    empty(undefined)
     var expected = true
     var result = empty(undefined)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    empty([])
     var expected = true
     var result = empty([])
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 4', function (done) {
-    empty({})
     var expected = true
     var result = empty({})
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 5', function (done) {
-    empty({'aFunc' : function () { alert('humpty'); } })
     var expected = false
     var result = empty({'aFunc' : function () { alert('humpty'); } })
     expect(result).to.deep.equal(expected)

@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var hexdec = require('../../../../src/php/math/hexdec.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/hexdec.js', function () {
+describe('src/php/math/hexdec.js (tested in test/languages/php/math/test-hexdec.js)', function () {
   it('should pass example 1', function (done) {
-    hexdec('that')
     var expected = 10
     var result = hexdec('that')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    hexdec('a0')
     var expected = 160
     var result = hexdec('a0')
     expect(result).to.deep.equal(expected)

@@ -5,10 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var create_function = require('../../../../src/php/funchand/create_function.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/funchand/create_function.js', function () {
+describe('src/php/funchand/create_function.js (tested in test/languages/php/funchand/test-create_function.js)', function () {
   it('should pass example 1', function (done) {
-    var $f = create_function('a, b', 'return (a + b)')
-    $f(1, 2)
     var expected = 3
     var $f = create_function('a, b', 'return (a + b)')
     var result = $f(1, 2)

@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var is_double = require('../../../../src/php/var/is_double.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/var/is_double.js', function () {
+describe('src/php/var/is_double.js (tested in test/languages/php/var/test-is_double.js)', function () {
   it('should pass example 1', function (done) {
-    is_double(186.31)
     var expected = true
     var result = is_double(186.31)
     expect(result).to.deep.equal(expected)

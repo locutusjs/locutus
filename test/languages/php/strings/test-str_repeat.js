@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var str_repeat = require('../../../../src/php/strings/str_repeat.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/str_repeat.js', function () {
+describe('src/php/strings/str_repeat.js (tested in test/languages/php/strings/test-str_repeat.js)', function () {
   it('should pass example 1', function (done) {
-    str_repeat('-=', 10)
     var expected = '-=-=-=-=-=-=-=-=-=-='
     var result = str_repeat('-=', 10)
     expect(result).to.deep.equal(expected)

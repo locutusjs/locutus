@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var json_decode = require('../../../../src/php/json/json_decode.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/json/json_decode.js', function () {
+describe('src/php/json/json_decode.js (tested in test/languages/php/json/test-json_decode.js)', function () {
   it('should pass example 1', function (done) {
-    json_decode('[ 1 ]')
     var expected = [1]
     var result = json_decode('[ 1 ]')
     expect(result).to.deep.equal(expected)

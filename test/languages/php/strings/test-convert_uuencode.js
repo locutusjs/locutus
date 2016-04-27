@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var convert_uuencode = require('../../../../src/php/strings/convert_uuencode.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/convert_uuencode.js', function () {
+describe('src/php/strings/convert_uuencode.js (tested in test/languages/php/strings/test-convert_uuencode.js)', function () {
   it('should pass example 1', function (done) {
-    convert_uuencode("test\ntext text\r\n")
     var expected = "0=&5S=`IT97AT('1E>'0-\"@\n`\n"
     var result = convert_uuencode("test\ntext text\r\n")
     expect(result).to.deep.equal(expected)

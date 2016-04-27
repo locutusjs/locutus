@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var ctype_cntrl = require('../../../../src/php/ctype/ctype_cntrl.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/ctype/ctype_cntrl.js', function () {
+describe('src/php/ctype/ctype_cntrl.js (tested in test/languages/php/ctype/test-ctype_cntrl.js)', function () {
   it('should pass example 1', function (done) {
-    ctype_cntrl('\u0020')
     var expected = false
     var result = ctype_cntrl('\u0020')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    ctype_cntrl('\u001F')
     var expected = true
     var result = ctype_cntrl('\u001F')
     expect(result).to.deep.equal(expected)

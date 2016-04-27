@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var reset = require('../../../../src/php/array/reset.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/reset.js', function () {
+describe('src/php/array/reset.js (tested in test/languages/php/array/test-reset.js)', function () {
   it('should pass example 1', function (done) {
-    reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
     var expected = 'Kevin'
     var result = reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
     expect(result).to.deep.equal(expected)

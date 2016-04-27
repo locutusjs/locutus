@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var time_sleep_until = require('../../../../src/php/misc/time_sleep_until.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/misc/time_sleep_until.js', function () {
+describe('src/php/misc/time_sleep_until.js (tested in test/languages/php/misc/test-time_sleep_until.js)', function () {
   it('should pass example 1', function (done) {
-    time_sleep_until(1233146501) // delays until the time indicated by the given timestamp is reached
     var expected = true
     var result = time_sleep_until(1233146501) // delays until the time indicated by the given timestamp is reached
     expect(result).to.deep.equal(expected)

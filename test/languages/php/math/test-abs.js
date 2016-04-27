@@ -5,30 +5,26 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var abs = require('../../../../src/php/math/abs.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/abs.js', function () {
+describe('src/php/math/abs.js (tested in test/languages/php/math/test-abs.js)', function () {
   it('should pass example 1', function (done) {
-    abs(4.2)
     var expected = 4.2
     var result = abs(4.2)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    abs(-4.2)
     var expected = 4.2
     var result = abs(-4.2)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    abs(-5)
     var expected = 5
     var result = abs(-5)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 4', function (done) {
-    abs('_argos')
     var expected = 0
     var result = abs('_argos')
     expect(result).to.deep.equal(expected)

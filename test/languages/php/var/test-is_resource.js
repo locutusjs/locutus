@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var is_resource = require('../../../../src/php/var/is_resource.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/var/is_resource.js', function () {
+describe('src/php/var/is_resource.js (tested in test/languages/php/var/test-is_resource.js)', function () {
   it('should pass example 1', function (done) {
-    is_resource('a')
     var expected = false
     var result = is_resource('a')
     expect(result).to.deep.equal(expected)

@@ -5,23 +5,20 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var trim = require('../../../../src/php/strings/trim.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/trim.js', function () {
+describe('src/php/strings/trim.js (tested in test/languages/php/strings/test-trim.js)', function () {
   it('should pass example 1', function (done) {
-    trim('    Kevin van Zonneveld    ')
     var expected = 'Kevin van Zonneveld'
     var result = trim('    Kevin van Zonneveld    ')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    trim('Hello World', 'Hdle')
     var expected = 'o Wor'
     var result = trim('Hello World', 'Hdle')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    trim(16, 1)
     var expected = '6'
     var result = trim(16, 1)
     expect(result).to.deep.equal(expected)

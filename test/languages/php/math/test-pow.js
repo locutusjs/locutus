@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var pow = require('../../../../src/php/math/pow.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/pow.js', function () {
+describe('src/php/math/pow.js (tested in test/languages/php/math/test-pow.js)', function () {
   it('should pass example 1', function (done) {
-    pow(8723321.4, 7)
     var expected = 3.8439091680778995e+48
     var result = pow(8723321.4, 7)
     expect(result).to.deep.equal(expected)

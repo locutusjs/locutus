@@ -5,10 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var ini_set = require('../../../../src/php/info/ini_set.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/info/ini_set.js', function () {
+describe('src/php/info/ini_set.js (tested in test/languages/php/info/test-ini_set.js)', function () {
   it('should pass example 1', function (done) {
-    ini_set('date.timezone', 'Asia/Hong_Kong')
-    ini_set('date.timezone', 'America/Chicago')
     var expected = 'Asia/Hong_Kong'
     ini_set('date.timezone', 'Asia/Hong_Kong')
     var result = ini_set('date.timezone', 'America/Chicago')

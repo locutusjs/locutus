@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var setlocale = require('../../../../src/php/strings/setlocale.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/setlocale.js', function () {
+describe('src/php/strings/setlocale.js (tested in test/languages/php/strings/test-setlocale.js)', function () {
   it('should pass example 1', function (done) {
-    setlocale('LC_ALL', 'en_US')
     var expected = 'en_US'
     var result = setlocale('LC_ALL', 'en_US')
     expect(result).to.deep.equal(expected)

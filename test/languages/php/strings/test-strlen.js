@@ -5,17 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var strlen = require('../../../../src/php/strings/strlen.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/strlen.js', function () {
+describe('src/php/strings/strlen.js (tested in test/languages/php/strings/test-strlen.js)', function () {
   it('should pass example 1', function (done) {
-    strlen('Kevin van Zonneveld')
     var expected = 19
     var result = strlen('Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    ini_set('unicode.semantics', 'on')
-    strlen('A\ud87e\udc04Z')
     var expected = 3
     ini_set('unicode.semantics', 'on')
     var result = strlen('A\ud87e\udc04Z')

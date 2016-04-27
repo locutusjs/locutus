@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var get_html_translation_table = require('../../../../src/php/strings/get_html_translation_table.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/get_html_translation_table.js', function () {
+describe('src/php/strings/get_html_translation_table.js (tested in test/languages/php/strings/test-get_html_translation_table.js)', function () {
   it('should pass example 1', function (done) {
-    get_html_translation_table('HTML_SPECIALCHARS')
     var expected = {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
     var result = get_html_translation_table('HTML_SPECIALCHARS')
     expect(result).to.deep.equal(expected)

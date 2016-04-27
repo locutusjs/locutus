@@ -5,23 +5,20 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var soundex = require('../../../../src/php/strings/soundex.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/soundex.js', function () {
+describe('src/php/strings/soundex.js (tested in test/languages/php/strings/test-soundex.js)', function () {
   it('should pass example 1', function (done) {
-    soundex('Kevin')
     var expected = 'K150'
     var result = soundex('Kevin')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    soundex('Ellery')
     var expected = 'E460'
     var result = soundex('Ellery')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    soundex('Euler')
     var expected = 'E460'
     var result = soundex('Euler')
     expect(result).to.deep.equal(expected)

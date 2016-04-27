@@ -5,23 +5,20 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var hex2bin = require('../../../../src/php/strings/hex2bin.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/hex2bin.js', function () {
+describe('src/php/strings/hex2bin.js (tested in test/languages/php/strings/test-hex2bin.js)', function () {
   it('should pass example 1', function (done) {
-    hex2bin('44696d61')
     var expected = 'Dima'
     var result = hex2bin('44696d61')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    hex2bin('00')
     var expected = '\x00'
     var result = hex2bin('00')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    hex2bin('2f1q')
     var expected = false
     var result = hex2bin('2f1q')
     expect(result).to.deep.equal(expected)

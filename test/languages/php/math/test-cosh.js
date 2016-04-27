@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var cosh = require('../../../../src/php/math/cosh.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/cosh.js', function () {
+describe('src/php/math/cosh.js (tested in test/languages/php/math/test-cosh.js)', function () {
   it('should pass example 1', function (done) {
-    cosh(-0.18127180117607017)
     var expected = 1.0164747716114113
     var result = cosh(-0.18127180117607017)
     expect(result).to.deep.equal(expected)

@@ -5,12 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var shuffle = require('../../../../src/php/array/shuffle.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/shuffle.js', function () {
+describe('src/php/array/shuffle.js (tested in test/languages/php/array/test-shuffle.js)', function () {
   it('should pass example 1', function (done) {
-    var $data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5}
-    ini_set('locutus.strictForIn', true)
-    shuffle($data)
-    var $result = $data.q
     var expected = 5
     var $data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5}
     ini_set('locutus.strictForIn', true)

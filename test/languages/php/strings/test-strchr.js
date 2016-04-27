@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var strchr = require('../../../../src/php/strings/strchr.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/strchr.js', function () {
+describe('src/php/strings/strchr.js (tested in test/languages/php/strings/test-strchr.js)', function () {
   it('should pass example 1', function (done) {
-    strchr('Kevin van Zonneveld', 'van')
     var expected = 'van Zonneveld'
     var result = strchr('Kevin van Zonneveld', 'van')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    strchr('Kevin van Zonneveld', 'van', true)
     var expected = 'Kevin '
     var result = strchr('Kevin van Zonneveld', 'van', true)
     expect(result).to.deep.equal(expected)

@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var is_unicode = require('../../../../src/php/var/is_unicode.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/var/is_unicode.js', function () {
+describe('src/php/var/is_unicode.js (tested in test/languages/php/var/test-is_unicode.js)', function () {
   it('should pass example 1', function (done) {
-    is_unicode('We the peoples of the United Nations...!')
     var expected = true
     var result = is_unicode('We the peoples of the United Nations...!')
     expect(result).to.deep.equal(expected)

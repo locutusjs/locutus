@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var ltrim = require('../../../../src/php/strings/ltrim.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/ltrim.js', function () {
+describe('src/php/strings/ltrim.js (tested in test/languages/php/strings/test-ltrim.js)', function () {
   it('should pass example 1', function (done) {
-    ltrim('    Kevin van Zonneveld    ')
     var expected = 'Kevin van Zonneveld    '
     var result = ltrim('    Kevin van Zonneveld    ')
     expect(result).to.deep.equal(expected)

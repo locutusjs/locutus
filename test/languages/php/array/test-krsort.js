@@ -5,11 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var krsort = require('../../../../src/php/array/krsort.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/krsort.js', function () {
+describe('src/php/array/krsort.js (tested in test/languages/php/array/test-krsort.js)', function () {
   it('should pass example 1', function (done) {
-    var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-    krsort($data)
-    var $result = $data
     var expected = {d: 'lemon', c: 'apple', b: 'banana', a: 'orange'}
     var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
     krsort($data)
@@ -18,10 +15,6 @@ describe('src/php/array/krsort.js', function () {
     done()
   })
   it('should pass example 2', function (done) {
-    ini_set('locutus.strictForIn', true)
-    var $data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}
-    krsort($data)
-    var $result = $data
     var expected = {3: 'Zonneveld', 2: 'van', 1: 'Kevin'}
     ini_set('locutus.strictForIn', true)
     var $data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}

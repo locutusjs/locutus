@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var array_reduce = require('../../../../src/php/array/array_reduce.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/array_reduce.js', function () {
+describe('src/php/array/array_reduce.js (tested in test/languages/php/array/test-array_reduce.js)', function () {
   it('should pass example 1', function (done) {
-    array_reduce([1, 2, 3, 4, 5], function (v, w){v += w;return v;})
     var expected = 15
     var result = array_reduce([1, 2, 3, 4, 5], function (v, w){v += w;return v;})
     expect(result).to.deep.equal(expected)

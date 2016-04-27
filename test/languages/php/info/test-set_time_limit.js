@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var set_time_limit = require('../../../../src/php/info/set_time_limit.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe.skip('src/php/info/set_time_limit.js', function () {
+describe('src/php/info/set_time_limit.js (tested in test/languages/php/info/test-set_time_limit.js)', function () {
   it('should pass example 1', function (done) {
-    set_time_limit(4)
     var expected = undefined
     var result = set_time_limit(4)
     expect(result).to.deep.equal(expected)

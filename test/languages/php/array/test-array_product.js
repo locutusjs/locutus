@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var array_product = require('../../../../src/php/array/array_product.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/array_product.js', function () {
+describe('src/php/array/array_product.js (tested in test/languages/php/array/test-array_product.js)', function () {
   it('should pass example 1', function (done) {
-    array_product([ 2, 4, 6, 8 ])
     var expected = 384
     var result = array_product([ 2, 4, 6, 8 ])
     expect(result).to.deep.equal(expected)

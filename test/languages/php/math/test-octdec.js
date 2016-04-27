@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var octdec = require('../../../../src/php/math/octdec.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/octdec.js', function () {
+describe('src/php/math/octdec.js (tested in test/languages/php/math/test-octdec.js)', function () {
   it('should pass example 1', function (done) {
-    octdec('77')
     var expected = 63
     var result = octdec('77')
     expect(result).to.deep.equal(expected)

@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var call_user_func_array = require('../../../../src/php/funchand/call_user_func_array.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/funchand/call_user_func_array.js', function () {
+describe('src/php/funchand/call_user_func_array.js (tested in test/languages/php/funchand/test-call_user_func_array.js)', function () {
   it('should pass example 1', function (done) {
-    call_user_func_array('isNaN', ['a'])
     var expected = true
     var result = call_user_func_array('isNaN', ['a'])
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    call_user_func_array('isNaN', [1])
     var expected = false
     var result = call_user_func_array('isNaN', [1])
     expect(result).to.deep.equal(expected)

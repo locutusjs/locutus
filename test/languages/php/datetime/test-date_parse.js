@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var date_parse = require('../../../../src/php/datetime/date_parse.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/datetime/date_parse.js', function () {
+describe('src/php/datetime/date_parse.js (tested in test/languages/php/datetime/test-date_parse.js)', function () {
   it('should pass example 1', function (done) {
-    date_parse('2006-12-12 10:00:00')
     var expected = {year : 2006, month: 12, day: 12, hour: 10, minute: 0, second: 0, fraction: 0, is_localtime: false}
     var result = date_parse('2006-12-12 10:00:00')
     expect(result).to.deep.equal(expected)

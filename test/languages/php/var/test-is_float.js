@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var is_float = require('../../../../src/php/var/is_float.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/var/is_float.js', function () {
+describe('src/php/var/is_float.js (tested in test/languages/php/var/test-is_float.js)', function () {
   it('should pass example 1', function (done) {
-    is_float(186.31)
     var expected = true
     var result = is_float(186.31)
     expect(result).to.deep.equal(expected)

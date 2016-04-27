@@ -5,10 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var current = require('../../../../src/php/array/current.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/current.js', function () {
+describe('src/php/array/current.js (tested in test/languages/php/array/test-current.js)', function () {
   it('should pass example 1', function (done) {
-    var $transport = ['foot', 'bike', 'car', 'plane']
-    current($transport)
     var expected = 'foot'
     var $transport = ['foot', 'bike', 'car', 'plane']
     var result = current($transport)

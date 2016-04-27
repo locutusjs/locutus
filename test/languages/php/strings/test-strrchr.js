@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var strrchr = require('../../../../src/php/strings/strrchr.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/strrchr.js', function () {
+describe('src/php/strings/strrchr.js (tested in test/languages/php/strings/test-strrchr.js)', function () {
   it('should pass example 1', function (done) {
-    strrchr("Line 1\nLine 2\nLine 3", 10).substr(1)
     var expected = 'Line 3'
     var result = strrchr("Line 1\nLine 2\nLine 3", 10).substr(1)
     expect(result).to.deep.equal(expected)

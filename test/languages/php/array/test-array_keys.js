@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var array_keys = require('../../../../src/php/array/array_keys.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/array_keys.js', function () {
+describe('src/php/array/array_keys.js (tested in test/languages/php/array/test-array_keys.js)', function () {
   it('should pass example 1', function (done) {
-    array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} )
     var expected = [ 'firstname', 'surname' ]
     var result = array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} )
     expect(result).to.deep.equal(expected)

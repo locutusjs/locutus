@@ -5,30 +5,26 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var is_int = require('../../../../src/php/var/is_int.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/var/is_int.js', function () {
+describe('src/php/var/is_int.js (tested in test/languages/php/var/test-is_int.js)', function () {
   it('should pass example 1', function (done) {
-    is_int(23)
     var expected = true
     var result = is_int(23)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    is_int('23')
     var expected = false
     var result = is_int('23')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    is_int(23.5)
     var expected = false
     var result = is_int(23.5)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 4', function (done) {
-    is_int(true)
     var expected = false
     var result = is_int(true)
     expect(result).to.deep.equal(expected)

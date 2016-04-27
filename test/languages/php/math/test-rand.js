@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var rand = require('../../../../src/php/math/rand.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/rand.js', function () {
+describe('src/php/math/rand.js (tested in test/languages/php/math/test-rand.js)', function () {
   it('should pass example 1', function (done) {
-    rand(1, 1)
     var expected = 1
     var result = rand(1, 1)
     expect(result).to.deep.equal(expected)

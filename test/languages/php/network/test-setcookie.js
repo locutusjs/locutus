@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var setcookie = require('../../../../src/php/network/setcookie.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/network/setcookie.js', function () {
+describe('src/php/network/setcookie.js (tested in test/languages/php/network/test-setcookie.js)', function () {
   it('should pass example 1', function (done) {
-    setcookie('author_name', 'Kevin van Zonneveld')
     var expected = true
     var result = setcookie('author_name', 'Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)

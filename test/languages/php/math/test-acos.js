@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var acos = require('../../../../src/php/math/acos.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/acos.js', function () {
+describe('src/php/math/acos.js (tested in test/languages/php/math/test-acos.js)', function () {
   it('should pass example 1', function (done) {
-    (acos(0.3) + '').substr(0, 17)
     var expected = "1.266103672779499"
     var result = (acos(0.3) + '').substr(0, 17)
     expect(result).to.deep.equal(expected)

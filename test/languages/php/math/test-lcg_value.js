@@ -5,10 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var lcg_value = require('../../../../src/php/math/lcg_value.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/lcg_value.js', function () {
+describe('src/php/math/lcg_value.js (tested in test/languages/php/math/test-lcg_value.js)', function () {
   it('should pass example 1', function (done) {
-    var $rnd = lcg_value()
-    var $result = $rnd >= 0 && $rnd <= 1
     var expected = true
     var $rnd = lcg_value()
     var result = $rnd >= 0 && $rnd <= 1

@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var printf = require('../../../../src/php/strings/printf.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/printf.js', function () {
+describe('src/php/strings/printf.js (tested in test/languages/php/strings/test-printf.js)', function () {
   it('should pass example 1', function (done) {
-    printf("%01.2f", 123.1)
     var expected = 6
     var result = printf("%01.2f", 123.1)
     expect(result).to.deep.equal(expected)

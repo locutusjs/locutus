@@ -5,30 +5,26 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var pack = require('../../../../src/php/misc/pack.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/misc/pack.js', function () {
-  it.skip('should pass example 1', function (done) {
-    pack('nvc*', 0x1234, 0x5678, 65, 66)
+describe('src/php/misc/pack.js (tested in test/languages/php/misc/test-pack.js)', function () {
+  it('should pass example 1', function (done) {
     var expected = '\u00124xVAB'
     var result = pack('nvc*', 0x1234, 0x5678, 65, 66)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    pack('H4', '2345')
     var expected = '#E'
     var result = pack('H4', '2345')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    pack('H*', 'D5')
     var expected = 'Õ'
     var result = pack('H*', 'D5')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 4', function (done) {
-    pack('d', -100.876)
     var expected = "\u0000\u0000\u0000\u0000\u00008YÀ"
     var result = pack('d', -100.876)
     expect(result).to.deep.equal(expected)

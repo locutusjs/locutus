@@ -5,11 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var uksort = require('../../../../src/php/array/uksort.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/uksort.js', function () {
+describe('src/php/array/uksort.js (tested in test/languages/php/array/test-uksort.js)', function () {
   it('should pass example 1', function (done) {
-    var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-    uksort($data, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })
-    var $result = $data
     var expected = {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
     var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
     uksort($data, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })

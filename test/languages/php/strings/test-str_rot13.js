@@ -5,23 +5,20 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var str_rot13 = require('../../../../src/php/strings/str_rot13.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/str_rot13.js', function () {
+describe('src/php/strings/str_rot13.js (tested in test/languages/php/strings/test-str_rot13.js)', function () {
   it('should pass example 1', function (done) {
-    str_rot13('Kevin van Zonneveld')
     var expected = 'Xriva ina Mbaariryq'
     var result = str_rot13('Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    str_rot13('Xriva ina Mbaariryq')
     var expected = 'Kevin van Zonneveld'
     var result = str_rot13('Xriva ina Mbaariryq')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    str_rot13(33)
     var expected = '33'
     var result = str_rot13(33)
     expect(result).to.deep.equal(expected)

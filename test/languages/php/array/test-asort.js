@@ -5,11 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var asort = require('../../../../src/php/array/asort.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/asort.js', function () {
+describe('src/php/array/asort.js (tested in test/languages/php/array/test-asort.js)', function () {
   it('should pass example 1', function (done) {
-    var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-    asort($data)
-    var $result = $data
     var expected = {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
     var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
     asort($data)
@@ -18,10 +15,6 @@ describe('src/php/array/asort.js', function () {
     done()
   })
   it('should pass example 2', function (done) {
-    ini_set('locutus.strictForIn', true)
-    var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-    asort($data)
-    var $result = $data
     var expected = {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
     ini_set('locutus.strictForIn', true)
     var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}

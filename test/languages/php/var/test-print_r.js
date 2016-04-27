@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var print_r = require('../../../../src/php/var/print_r.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/var/print_r.js', function () {
+describe('src/php/var/print_r.js (tested in test/languages/php/var/test-print_r.js)', function () {
   it('should pass example 1', function (done) {
-    print_r(1, true)
     var expected = '1'
     var result = print_r(1, true)
     expect(result).to.deep.equal(expected)

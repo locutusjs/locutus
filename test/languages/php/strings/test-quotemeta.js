@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var quotemeta = require('../../../../src/php/strings/quotemeta.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/quotemeta.js', function () {
+describe('src/php/strings/quotemeta.js (tested in test/languages/php/strings/test-quotemeta.js)', function () {
   it('should pass example 1', function (done) {
-    quotemeta(". + * ? ^ ( $ )")
     var expected = '\\. \\+ \\* \\? \\^ \\( \\$ \\)'
     var result = quotemeta(". + * ? ^ ( $ )")
     expect(result).to.deep.equal(expected)

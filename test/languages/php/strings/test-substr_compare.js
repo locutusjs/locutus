@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var substr_compare = require('../../../../src/php/strings/substr_compare.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/substr_compare.js', function () {
+describe('src/php/strings/substr_compare.js (tested in test/languages/php/strings/test-substr_compare.js)', function () {
   it('should pass example 1', function (done) {
-    substr_compare("abcde", "bc", 1, 2)
     var expected = 0
     var result = substr_compare("abcde", "bc", 1, 2)
     expect(result).to.deep.equal(expected)

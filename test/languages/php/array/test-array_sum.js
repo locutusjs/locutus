@@ -5,19 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var array_sum = require('../../../../src/php/array/array_sum.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/array_sum.js', function () {
+describe('src/php/array/array_sum.js (tested in test/languages/php/array/test-array_sum.js)', function () {
   it('should pass example 1', function (done) {
-    array_sum([4, 9, 182.6])
     var expected = 195.6
     var result = array_sum([4, 9, 182.6])
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    var $total = []
-    var $index = 0.1
-    for (var $y = 0; $y < 12; $y++){ $total[$y] = $y + $index }
-    array_sum($total)
     var expected = 67.2
     var $total = []
     var $index = 0.1

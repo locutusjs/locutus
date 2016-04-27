@@ -5,10 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var str_shuffle = require('../../../../src/php/strings/str_shuffle.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/str_shuffle.js', function () {
+describe('src/php/strings/str_shuffle.js (tested in test/languages/php/strings/test-str_shuffle.js)', function () {
   it('should pass example 1', function (done) {
-    var $shuffled = str_shuffle("abcdef")
-    var $result = $shuffled.length
     var expected = 6
     var $shuffled = str_shuffle("abcdef")
     var result = $shuffled.length

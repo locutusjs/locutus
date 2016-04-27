@@ -5,10 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var prev = require('../../../../src/php/array/prev.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/prev.js', function () {
+describe('src/php/array/prev.js (tested in test/languages/php/array/test-prev.js)', function () {
   it('should pass example 1', function (done) {
-    var $transport = ['foot', 'bike', 'car', 'plane']
-    prev($transport)
     var expected = false
     var $transport = ['foot', 'bike', 'car', 'plane']
     var result = prev($transport)

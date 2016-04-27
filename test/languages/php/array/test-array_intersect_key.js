@@ -5,11 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var array_intersect_key = require('../../../../src/php/array/array_intersect_key.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/array_intersect_key.js', function () {
+describe('src/php/array/array_intersect_key.js (tested in test/languages/php/array/test-array_intersect_key.js)', function () {
   it('should pass example 1', function (done) {
-    var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
-    var $array2 = {a: 'green', 0: 'yellow', 1: 'red'}
-    array_intersect_key($array1, $array2)
     var expected = {0: 'red', a: 'green'}
     var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
     var $array2 = {a: 'green', 0: 'yellow', 1: 'red'}

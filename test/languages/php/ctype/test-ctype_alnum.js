@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var ctype_alnum = require('../../../../src/php/ctype/ctype_alnum.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/ctype/ctype_alnum.js', function () {
+describe('src/php/ctype/ctype_alnum.js (tested in test/languages/php/ctype/test-ctype_alnum.js)', function () {
   it('should pass example 1', function (done) {
-    ctype_alnum('AbC12')
     var expected = true
     var result = ctype_alnum('AbC12')
     expect(result).to.deep.equal(expected)

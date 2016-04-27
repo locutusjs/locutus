@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var bcdiv = require('../../../../src/php/bc/bcdiv.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/bc/bcdiv.js', function () {
+describe('src/php/bc/bcdiv.js (tested in test/languages/php/bc/test-bcdiv.js)', function () {
   it('should pass example 1', function (done) {
-    bcdiv(1, 2)
     var expected = '0'
     var result = bcdiv(1, 2)
     expect(result).to.deep.equal(expected)

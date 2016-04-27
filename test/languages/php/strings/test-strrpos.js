@@ -5,30 +5,26 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var strrpos = require('../../../../src/php/strings/strrpos.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/strrpos.js', function () {
+describe('src/php/strings/strrpos.js (tested in test/languages/php/strings/test-strrpos.js)', function () {
   it('should pass example 1', function (done) {
-    strrpos('Kevin van Zonneveld', 'e')
     var expected = 16
     var result = strrpos('Kevin van Zonneveld', 'e')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    strrpos('somepage.com', '.', false)
     var expected = 8
     var result = strrpos('somepage.com', '.', false)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    strrpos('baa', 'a', 3)
     var expected = false
     var result = strrpos('baa', 'a', 3)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 4', function (done) {
-    strrpos('baa', 'a', 2)
     var expected = 2
     var result = strrpos('baa', 'a', 2)
     expect(result).to.deep.equal(expected)

@@ -5,27 +5,20 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var is_callable = require('../../../../src/php/var/is_callable.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/var/is_callable.js', function () {
+describe('src/php/var/is_callable.js (tested in test/languages/php/var/test-is_callable.js)', function () {
   it('should pass example 1', function (done) {
-    is_callable('is_callable')
     var expected = true
     var result = is_callable('is_callable')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    is_callable('bogusFunction', true)
     var expected = true // gives true because does not do strict checking
     var result = is_callable('bogusFunction', true)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    function SomeClass () {}
-    SomeClass.prototype.someMethod = function (){}
-    var testObj = new SomeClass()
-    is_callable([testObj, 'someMethod'], true, 'myVar')
-    var $result = myVar
     var expected = 'SomeClass::someMethod'
     function SomeClass () {}
     SomeClass.prototype.someMethod = function (){}
@@ -36,7 +29,6 @@ describe('src/php/var/is_callable.js', function () {
     done()
   })
   it('should pass example 4', function (done) {
-    is_callable(function () {})
     var expected = true
     var result = is_callable(function () {})
     expect(result).to.deep.equal(expected)

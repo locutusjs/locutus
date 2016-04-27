@@ -5,10 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var microtime = require('../../../../src/php/datetime/microtime.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/datetime/microtime.js', function () {
+describe('src/php/datetime/microtime.js (tested in test/languages/php/datetime/test-microtime.js)', function () {
   it('should pass example 1', function (done) {
-    var $timeStamp = microtime(true)
-    $timeStamp > 1000000000 && $timeStamp < 2000000000
     var expected = true
     var $timeStamp = microtime(true)
     var result = $timeStamp > 1000000000 && $timeStamp < 2000000000
@@ -16,7 +14,6 @@ describe('src/php/datetime/microtime.js', function () {
     done()
   })
   it('should pass example 2', function (done) {
-    /^0\.[0-9]{1,6} [0-9]{10,10}$/.test(microtime())
     var expected = true
     var result = /^0\.[0-9]{1,6} [0-9]{10,10}$/.test(microtime())
     expect(result).to.deep.equal(expected)

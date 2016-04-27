@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var end = require('../../../../src/php/array/end.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/end.js', function () {
+describe('src/php/array/end.js (tested in test/languages/php/array/test-end.js)', function () {
   it('should pass example 1', function (done) {
-    end({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
     var expected = 'Zonneveld'
     var result = end({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    end(['Kevin', 'van', 'Zonneveld'])
     var expected = 'Zonneveld'
     var result = end(['Kevin', 'van', 'Zonneveld'])
     expect(result).to.deep.equal(expected)

@@ -5,23 +5,20 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var is_infinite = require('../../../../src/php/math/is_infinite.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/is_infinite.js', function () {
+describe('src/php/math/is_infinite.js (tested in test/languages/php/math/test-is_infinite.js)', function () {
   it('should pass example 1', function (done) {
-    is_infinite(Infinity)
     var expected = true
     var result = is_infinite(Infinity)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    is_infinite(-Infinity)
     var expected = true
     var result = is_infinite(-Infinity)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    is_infinite(0)
     var expected = false
     var result = is_infinite(0)
     expect(result).to.deep.equal(expected)

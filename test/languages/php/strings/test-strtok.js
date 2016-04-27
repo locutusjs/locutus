@@ -5,13 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var strtok = require('../../../../src/php/strings/strtok.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/strtok.js', function () {
+describe('src/php/strings/strtok.js (tested in test/languages/php/strings/test-strtok.js)', function () {
   it('should pass example 1', function (done) {
-    var $string = "\t\t\t\nThis is\tan example\nstring\n"
-    var $tok = strtok($string, " \n\t")
-    var $b = ''
-    while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
-    var $result = $b
     var expected = "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
     var $string = "\t\t\t\nThis is\tan example\nstring\n"
     var $tok = strtok($string, " \n\t")

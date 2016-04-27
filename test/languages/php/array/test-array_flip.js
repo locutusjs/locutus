@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var array_flip = require('../../../../src/php/array/array_flip.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/array_flip.js', function () {
+describe('src/php/array/array_flip.js (tested in test/languages/php/array/test-array_flip.js)', function () {
   it('should pass example 1', function (done) {
-    array_flip( {a: 1, b: 1, c: 2} )
     var expected = {1: 'b', 2: 'c'}
     var result = array_flip( {a: 1, b: 1, c: 2} )
     expect(result).to.deep.equal(expected)

@@ -5,10 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var uniqid = require('../../../../src/php/misc/uniqid.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/misc/uniqid.js', function () {
+describe('src/php/misc/uniqid.js (tested in test/languages/php/misc/test-uniqid.js)', function () {
   it('should pass example 1', function (done) {
-    var $id = uniqid()
-    var $result = $id.length === 13
     var expected = true
     var $id = uniqid()
     var result = $id.length === 13
@@ -16,8 +14,6 @@ describe('src/php/misc/uniqid.js', function () {
     done()
   })
   it('should pass example 2', function (done) {
-    var $id = uniqid('foo')
-    var $result = $id.length === (13 + 'foo'.length)
     var expected = true
     var $id = uniqid('foo')
     var result = $id.length === (13 + 'foo'.length)
@@ -25,8 +21,6 @@ describe('src/php/misc/uniqid.js', function () {
     done()
   })
   it('should pass example 3', function (done) {
-    var $id = uniqid('bar', true)
-    var $result = $id.length === (23 + 'bar'.length)
     var expected = true
     var $id = uniqid('bar', true)
     var result = $id.length === (23 + 'bar'.length)

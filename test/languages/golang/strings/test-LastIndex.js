@@ -3,16 +3,14 @@ process.env.TZ = 'UTC'
 var expect = require('chai').expect
 var LastIndex = require('../../../../src/golang/strings/LastIndex.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/golang/strings/LastIndex.js', function () {
+describe('src/golang/strings/LastIndex.js (tested in test/languages/golang/strings/test-LastIndex.js)', function () {
   it('should pass example 1', function (done) {
-    LastIndex('go gopher', 'go')
     var expected = 3
     var result = LastIndex('go gopher', 'go')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    LastIndex('go gopher', 'rodent')
     var expected = -1
     var result = LastIndex('go gopher', 'rodent')
     expect(result).to.deep.equal(expected)

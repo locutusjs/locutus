@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var log = require('../../../../src/php/math/log.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/log.js', function () {
+describe('src/php/math/log.js (tested in test/languages/php/math/test-log.js)', function () {
   it('should pass example 1', function (done) {
-    log(8723321.4, 7)
     var expected = 8.212871815082147
     var result = log(8723321.4, 7)
     expect(result).to.deep.equal(expected)

@@ -5,10 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var gettimeofday = require('../../../../src/php/datetime/gettimeofday.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/datetime/gettimeofday.js', function () {
+describe('src/php/datetime/gettimeofday.js (tested in test/languages/php/datetime/test-gettimeofday.js)', function () {
   it('should pass example 1', function (done) {
-    var $obj = gettimeofday()
-    var $result = ('sec' in $obj && 'usec' in $obj && 'minuteswest' in $obj &&80, 'dsttime' in $obj)
     var expected = true
     var $obj = gettimeofday()
     var result = ('sec' in $obj && 'usec' in $obj && 'minuteswest' in $obj &&80, 'dsttime' in $obj)
@@ -16,8 +14,6 @@ describe('src/php/datetime/gettimeofday.js', function () {
     done()
   })
   it('should pass example 2', function (done) {
-    var $timeStamp = gettimeofday(true)
-    var $result = $timeStamp > 1000000000 && $timeStamp < 2000000000
     var expected = true
     var $timeStamp = gettimeofday(true)
     var result = $timeStamp > 1000000000 && $timeStamp < 2000000000

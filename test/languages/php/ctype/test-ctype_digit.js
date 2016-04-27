@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var ctype_digit = require('../../../../src/php/ctype/ctype_digit.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/ctype/ctype_digit.js', function () {
+describe('src/php/ctype/ctype_digit.js (tested in test/languages/php/ctype/test-ctype_digit.js)', function () {
   it('should pass example 1', function (done) {
-    ctype_digit('150')
     var expected = true
     var result = ctype_digit('150')
     expect(result).to.deep.equal(expected)

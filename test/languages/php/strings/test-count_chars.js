@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var count_chars = require('../../../../src/php/strings/count_chars.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/count_chars.js', function () {
+describe('src/php/strings/count_chars.js (tested in test/languages/php/strings/test-count_chars.js)', function () {
   it('should pass example 1', function (done) {
-    count_chars("Hello World!", 3)
     var expected = " !HWdelor"
     var result = count_chars("Hello World!", 3)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    count_chars("Hello World!", 1)
     var expected = {32:1,33:1,72:1,87:1,100:1,101:1,108:3,111:2,114:1}
     var result = count_chars("Hello World!", 1)
     expect(result).to.deep.equal(expected)

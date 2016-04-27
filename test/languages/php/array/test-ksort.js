@@ -5,11 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var ksort = require('../../../../src/php/array/ksort.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/ksort.js', function () {
+describe('src/php/array/ksort.js (tested in test/languages/php/array/test-ksort.js)', function () {
   it('should pass example 1', function (done) {
-    var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-    ksort($data)
-    var $result = $data
     var expected = {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
     var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
     ksort($data)
@@ -18,10 +15,6 @@ describe('src/php/array/ksort.js', function () {
     done()
   })
   it('should pass example 2', function (done) {
-    ini_set('locutus.strictForIn', true)
-    var $data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}
-    ksort($data)
-    var $result = $data
     var expected = {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
     ini_set('locutus.strictForIn', true)
     var $data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}

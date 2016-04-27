@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var strpbrk = require('../../../../src/php/strings/strpbrk.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/strpbrk.js', function () {
+describe('src/php/strings/strpbrk.js (tested in test/languages/php/strings/test-strpbrk.js)', function () {
   it('should pass example 1', function (done) {
-    strpbrk('This is a Simple text.', 'is')
     var expected = 'is is a Simple text.'
     var result = strpbrk('This is a Simple text.', 'is')
     expect(result).to.deep.equal(expected)

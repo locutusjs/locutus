@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var vsprintf = require('../../../../src/php/strings/vsprintf.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/vsprintf.js', function () {
+describe('src/php/strings/vsprintf.js (tested in test/languages/php/strings/test-vsprintf.js)', function () {
   it('should pass example 1', function (done) {
-    vsprintf('%04d-%02d-%02d', [1988, 8, 1])
     var expected = '1988-08-01'
     var result = vsprintf('%04d-%02d-%02d', [1988, 8, 1])
     expect(result).to.deep.equal(expected)

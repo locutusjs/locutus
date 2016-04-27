@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var array_diff = require('../../../../src/php/array/array_diff.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/array_diff.js', function () {
+describe('src/php/array/array_diff.js (tested in test/languages/php/array/test-array_diff.js)', function () {
   it('should pass example 1', function (done) {
-    array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld'])
     var expected = {0:'Kevin'}
     var result = array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld'])
     expect(result).to.deep.equal(expected)

@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var strcasecmp = require('../../../../src/php/strings/strcasecmp.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/strcasecmp.js', function () {
+describe('src/php/strings/strcasecmp.js (tested in test/languages/php/strings/test-strcasecmp.js)', function () {
   it('should pass example 1', function (done) {
-    strcasecmp('Hello', 'hello')
     var expected = 0
     var result = strcasecmp('Hello', 'hello')
     expect(result).to.deep.equal(expected)

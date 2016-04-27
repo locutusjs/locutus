@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var htmlentities = require('../../../../src/php/strings/htmlentities.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/htmlentities.js', function () {
+describe('src/php/strings/htmlentities.js (tested in test/languages/php/strings/test-htmlentities.js)', function () {
   it('should pass example 1', function (done) {
-    htmlentities('Kevin & van Zonneveld')
     var expected = 'Kevin &amp; van Zonneveld'
     var result = htmlentities('Kevin & van Zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    htmlentities("foo'bar","ENT_QUOTES")
     var expected = 'foo&#039;bar'
     var result = htmlentities("foo'bar","ENT_QUOTES")
     expect(result).to.deep.equal(expected)

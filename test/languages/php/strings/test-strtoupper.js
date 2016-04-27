@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var strtoupper = require('../../../../src/php/strings/strtoupper.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/strtoupper.js', function () {
+describe('src/php/strings/strtoupper.js (tested in test/languages/php/strings/test-strtoupper.js)', function () {
   it('should pass example 1', function (done) {
-    strtoupper('Kevin van Zonneveld')
     var expected = 'KEVIN VAN ZONNEVELD'
     var result = strtoupper('Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)

@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var strcmp = require('../../../../src/php/strings/strcmp.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/strcmp.js', function () {
+describe('src/php/strings/strcmp.js (tested in test/languages/php/strings/test-strcmp.js)', function () {
   it('should pass example 1', function (done) {
-    strcmp( 'waldo', 'owald' )
     var expected = 1
     var result = strcmp( 'waldo', 'owald' )
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    strcmp( 'owald', 'waldo' )
     var expected = -1
     var result = strcmp( 'owald', 'waldo' )
     expect(result).to.deep.equal(expected)

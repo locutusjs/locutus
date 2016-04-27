@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var atanh = require('../../../../src/php/math/atanh.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/atanh.js', function () {
+describe('src/php/math/atanh.js (tested in test/languages/php/math/test-atanh.js)', function () {
   it('should pass example 1', function (done) {
-    atanh(0.3)
     var expected = 0.3095196042031118
     var result = atanh(0.3)
     expect(result).to.deep.equal(expected)

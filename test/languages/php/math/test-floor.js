@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var floor = require('../../../../src/php/math/floor.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/floor.js', function () {
+describe('src/php/math/floor.js (tested in test/languages/php/math/test-floor.js)', function () {
   it('should pass example 1', function (done) {
-    floor(8723321.4)
     var expected = 8723321
     var result = floor(8723321.4)
     expect(result).to.deep.equal(expected)

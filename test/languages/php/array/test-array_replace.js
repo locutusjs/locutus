@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var array_replace = require('../../../../src/php/array/array_replace.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/array_replace.js', function () {
+describe('src/php/array/array_replace.js (tested in test/languages/php/array/test-array_replace.js)', function () {
   it('should pass example 1', function (done) {
-    array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"})
     var expected = {0: 'grape', 1: 'banana', 2: 'apple', 3: 'raspberry', 4: 'cherry'}
     var result = array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"})
     expect(result).to.deep.equal(expected)

@@ -5,11 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var array_merge = require('../../../../src/php/array/array_merge.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/array_merge.js', function () {
+describe('src/php/array/array_merge.js (tested in test/languages/php/array/test-array_merge.js)', function () {
   it('should pass example 1', function (done) {
-    var $arr1 = {"color": "red", 0: 2, 1: 4}
-    var $arr2 = {0: "a", 1: "b", "color": "green", "shape": "trapezoid", 2: 4}
-    array_merge($arr1, $arr2)
     var expected = {"color": "green", 0: 2, 1: 4, 2: "a", 3: "b", "shape": "trapezoid", 4: 4}
     var $arr1 = {"color": "red", 0: 2, 1: 4}
     var $arr2 = {0: "a", 1: "b", "color": "green", "shape": "trapezoid", 2: 4}
@@ -18,9 +15,6 @@ describe('src/php/array/array_merge.js', function () {
     done()
   })
   it('should pass example 2', function (done) {
-    var $arr1 = []
-    var $arr2 = {1: "data"}
-    array_merge($arr1, $arr2)
     var expected = {0: "data"}
     var $arr1 = []
     var $arr2 = {1: "data"}

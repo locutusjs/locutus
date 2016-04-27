@@ -179,9 +179,10 @@ Util.prototype._writetestOne = function (params, cb) {
   var subdir = path.dirname(params.filepath)
   var testpath = this.__test + '/languages/' + subdir + '/test-' + basename
   var testdir = path.dirname(testpath)
-  var relativeSrcForTest = path.relative(testdir, self.__src)
+  var relativeSrcForTestDir = path.relative(testdir, self.__src)
+  var relativeTestFileForRoot = path.relative(self.__root, testpath)
 
-  // console.log(relativeSrcForTest)
+  // console.log(relativeSrcForTestDir)
   // process.exit(1)
 
   var testProps = ''
@@ -212,22 +213,22 @@ Util.prototype._writetestOne = function (params, cb) {
   // Add language-wide dependencies
   // @todo: It would be great if we could remove this
   if (params.language === 'php') {
-    codez.push('var ' + 'ini_set' + ' = require(\'' + relativeSrcForTest + '/' + 'php/info/ini_set' + '\') // eslint-disable-line no-unused-vars,camelcase')
-    codez.push('var ' + 'ini_get' + ' = require(\'' + relativeSrcForTest + '/' + 'php/info/ini_get' + '\') // eslint-disable-line no-unused-vars,camelcase')
+    codez.push('var ' + 'ini_set' + ' = require(\'' + relativeSrcForTestDir + '/' + 'php/info/ini_set' + '\') // eslint-disable-line no-unused-vars,camelcase')
+    codez.push('var ' + 'ini_get' + ' = require(\'' + relativeSrcForTestDir + '/' + 'php/info/ini_get' + '\') // eslint-disable-line no-unused-vars,camelcase')
     if (params.func_name === 'localeconv') {
-      codez.push('var ' + 'setlocale' + ' = require(\'' + relativeSrcForTest + '/' + 'php/strings/setlocale' + '\') // eslint-disable-line no-unused-vars,camelcase')
+      codez.push('var ' + 'setlocale' + ' = require(\'' + relativeSrcForTestDir + '/' + 'php/strings/setlocale' + '\') // eslint-disable-line no-unused-vars,camelcase')
     }
     if (params.func_name === 'i18n_loc_get_default') {
-      codez.push('var ' + 'i18n_loc_set_default' + ' = require(\'' + relativeSrcForTest + '/' + 'php/i18n/i18n_loc_set_default' + '\') // eslint-disable-line no-unused-vars,camelcase')
+      codez.push('var ' + 'i18n_loc_set_default' + ' = require(\'' + relativeSrcForTestDir + '/' + 'php/i18n/i18n_loc_set_default' + '\') // eslint-disable-line no-unused-vars,camelcase')
     }
   }
 
   // Add the main function to test
-  codez.push('var ' + params.func_name + ' = require(\'' + relativeSrcForTest + '/' + params.filepath + '\') // eslint-disable-line no-unused-vars,camelcase')
+  codez.push('var ' + params.func_name + ' = require(\'' + relativeSrcForTestDir + '/' + params.filepath + '\') // eslint-disable-line no-unused-vars,camelcase')
 
   codez.push('')
 
-  codez.push('describe' + describeSkip + '(\'src/' + params.filepath + '\', function () {')
+  codez.push('describe' + describeSkip + '(\'src/' + params.filepath + ' (tested in ' + relativeTestFileForRoot + ')\', function () {')
 
   // Run each example
   for (var i in params.headKeys.example) {
@@ -244,7 +245,6 @@ Util.prototype._writetestOne = function (params, cb) {
     codez.push('  it' + itSkip + '(\'should pass example ' + (humanIndex) + '\', function (done) {')
 
     var body = []
-    body.push(params.headKeys.example[i].join('\n'))
 
     var testExpected = params.headKeys.returns[i].join('\n')
 
@@ -253,13 +253,11 @@ Util.prototype._writetestOne = function (params, cb) {
     // Execute line by line (see date.js why)
     // We need result be the last result of the example code
     for (var j in params.headKeys.example[i]) {
-      var testRun = params.headKeys.example[i][j]
-
       if (parseInt(j, 10) === params.headKeys.example[i].length - 1) {
         // last action gets saved
-        body.push('var result = ' + testRun.replace('var $result = ', ''))
+        body.push('var result = ' + params.headKeys.example[i][j].replace('var $result = ', ''))
       } else {
-        body.push(testRun)
+        body.push(params.headKeys.example[i][j])
       }
     }
 

@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var is_binary = require('../../../../src/php/var/is_binary.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/var/is_binary.js', function () {
+describe('src/php/var/is_binary.js (tested in test/languages/php/var/test-is_binary.js)', function () {
   it('should pass example 1', function (done) {
-    is_binary('This could be binary as far as JavaScript knows...')
     var expected = true
     var result = is_binary('This could be binary as far as JavaScript knows...')
     expect(result).to.deep.equal(expected)

@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var strspn = require('../../../../src/php/strings/strspn.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/strspn.js', function () {
+describe('src/php/strings/strspn.js (tested in test/languages/php/strings/test-strspn.js)', function () {
   it('should pass example 1', function (done) {
-    strspn('42 is the answer, what is the question ...', '1234567890')
     var expected = 2
     var result = strspn('42 is the answer, what is the question ...', '1234567890')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    strspn('foo', 'o', 1, 2)
     var expected = 2
     var result = strspn('foo', 'o', 1, 2)
     expect(result).to.deep.equal(expected)

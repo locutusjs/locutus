@@ -5,10 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var _locutus_shared_bc = require('../../../../src/php/_locutus_shared/_locutus_shared_bc.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/_locutus_shared/_locutus_shared_bc.js', function () {
+describe('src/php/_locutus_shared/_locutus_shared_bc.js (tested in test/languages/php/_locutus_shared/test-_locutus_shared_bc.js)', function () {
   it('should pass example 1', function (done) {
-    var $bc = _locutus_shared_bc()
-    var $result = $bc.PLUS
     var expected = '+'
     var $bc = _locutus_shared_bc()
     var result = $bc.PLUS

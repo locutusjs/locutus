@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var strripos = require('../../../../src/php/strings/strripos.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/strripos.js', function () {
+describe('src/php/strings/strripos.js (tested in test/languages/php/strings/test-strripos.js)', function () {
   it('should pass example 1', function (done) {
-    strripos('Kevin van Zonneveld', 'E')
     var expected = 16
     var result = strripos('Kevin van Zonneveld', 'E')
     expect(result).to.deep.equal(expected)

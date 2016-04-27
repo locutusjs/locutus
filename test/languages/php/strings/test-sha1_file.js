@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var sha1_file = require('../../../../src/php/strings/sha1_file.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/sha1_file.js', function () {
+describe('src/php/strings/sha1_file.js (tested in test/languages/php/strings/test-sha1_file.js)', function () {
   it('should pass example 1', function (done) {
-    sha1_file('test/never-change.txt')
     var expected = '0ea65a1f4b4d69712affc58240932f3eb8a2af66'
     var result = sha1_file('test/never-change.txt')
     expect(result).to.deep.equal(expected)

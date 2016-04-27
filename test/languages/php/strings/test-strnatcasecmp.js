@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var strnatcasecmp = require('../../../../src/php/strings/strnatcasecmp.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe.skip('src/php/strings/strnatcasecmp.js', function () {
+describe('src/php/strings/strnatcasecmp.js (tested in test/languages/php/strings/test-strnatcasecmp.js)', function () {
   it('should pass example 1', function (done) {
-    strnatcasecmp(10, 1)
     var expected = 1
     var result = strnatcasecmp(10, 1)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    strnatcasecmp('1', '10')
     var expected = -1
     var result = strnatcasecmp('1', '10')
     expect(result).to.deep.equal(expected)

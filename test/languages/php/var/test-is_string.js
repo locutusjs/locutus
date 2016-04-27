@@ -5,16 +5,14 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var is_string = require('../../../../src/php/var/is_string.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/var/is_string.js', function () {
+describe('src/php/var/is_string.js (tested in test/languages/php/var/test-is_string.js)', function () {
   it('should pass example 1', function (done) {
-    is_string('23')
     var expected = true
     var result = is_string('23')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    is_string(23.5)
     var expected = false
     var result = is_string(23.5)
     expect(result).to.deep.equal(expected)

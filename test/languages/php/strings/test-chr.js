@@ -5,10 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var chr = require('../../../../src/php/strings/chr.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/strings/chr.js', function () {
+describe('src/php/strings/chr.js (tested in test/languages/php/strings/test-chr.js)', function () {
   it('should pass example 1', function (done) {
-    chr(75) === 'K'
-    chr(65536) === '\uD800\uDC00'
     var expected = true
     true
     chr(75) === 'K'

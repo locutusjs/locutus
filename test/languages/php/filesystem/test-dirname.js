@@ -5,23 +5,20 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var dirname = require('../../../../src/php/filesystem/dirname.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/filesystem/dirname.js', function () {
+describe('src/php/filesystem/dirname.js (tested in test/languages/php/filesystem/test-dirname.js)', function () {
   it('should pass example 1', function (done) {
-    dirname('/etc/passwd')
     var expected = '/etc'
     var result = dirname('/etc/passwd')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    dirname('c:/Temp/x')
     var expected = 'c:/Temp'
     var result = dirname('c:/Temp/x')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    dirname('/dir/test/')
     var expected = '/dir'
     var result = dirname('/dir/test/')
     expect(result).to.deep.equal(expected)

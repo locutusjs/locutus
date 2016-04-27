@@ -5,23 +5,20 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var dechex = require('../../../../src/php/math/dechex.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/dechex.js', function () {
+describe('src/php/math/dechex.js (tested in test/languages/php/math/test-dechex.js)', function () {
   it('should pass example 1', function (done) {
-    dechex(10)
     var expected = 'a'
     var result = dechex(10)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    dechex(47)
     var expected = '2f'
     var result = dechex(47)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    dechex(-1415723993)
     var expected = 'ab9dc427'
     var result = dechex(-1415723993)
     expect(result).to.deep.equal(expected)

@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var inet_ntop = require('../../../../src/php/network/inet_ntop.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/network/inet_ntop.js', function () {
+describe('src/php/network/inet_ntop.js (tested in test/languages/php/network/test-inet_ntop.js)', function () {
   it('should pass example 1', function (done) {
-    inet_ntop('\x7F\x00\x00\x01')
     var expected = '127.0.0.1'
     var result = inet_ntop('\x7F\x00\x00\x01')
     expect(result).to.deep.equal(expected)

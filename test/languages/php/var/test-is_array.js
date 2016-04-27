@@ -5,31 +5,26 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var is_array = require('../../../../src/php/var/is_array.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/var/is_array.js', function () {
+describe('src/php/var/is_array.js (tested in test/languages/php/var/test-is_array.js)', function () {
   it('should pass example 1', function (done) {
-    is_array(['Kevin', 'van', 'Zonneveld'])
     var expected = true
     var result = is_array(['Kevin', 'van', 'Zonneveld'])
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    is_array('Kevin van Zonneveld')
     var expected = false
     var result = is_array('Kevin van Zonneveld')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    is_array({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
     var expected = true
     var result = is_array({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 4', function (done) {
-    ini_set('locutus.objectsAsArrays', 0)
-    is_array({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
     var expected = false
     ini_set('locutus.objectsAsArrays', 0)
     var result = is_array({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
@@ -37,7 +32,6 @@ describe('src/php/var/is_array.js', function () {
     done()
   })
   it('should pass example 5', function (done) {
-    is_array(function tmp_a(){this.name = 'Kevin'})
     var expected = false
     var result = is_array(function tmp_a(){this.name = 'Kevin'})
     expect(result).to.deep.equal(expected)

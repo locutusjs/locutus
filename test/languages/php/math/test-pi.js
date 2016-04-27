@@ -5,9 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var pi = require('../../../../src/php/math/pi.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/math/pi.js', function () {
+describe('src/php/math/pi.js (tested in test/languages/php/math/test-pi.js)', function () {
   it('should pass example 1', function (done) {
-    pi(8723321.4)
     var expected = 3.141592653589793
     var result = pi(8723321.4)
     expect(result).to.deep.equal(expected)

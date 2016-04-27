@@ -5,10 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var time = require('../../../../src/php/datetime/time.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/datetime/time.js', function () {
+describe('src/php/datetime/time.js (tested in test/languages/php/datetime/test-time.js)', function () {
   it('should pass example 1', function (done) {
-    var $timeStamp = time()
-    var $result = $timeStamp > 1000000000 && $timeStamp < 2000000000
     var expected = true
     var $timeStamp = time()
     var result = $timeStamp > 1000000000 && $timeStamp < 2000000000

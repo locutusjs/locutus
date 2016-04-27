@@ -5,11 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var next = require('../../../../src/php/array/next.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/next.js', function () {
+describe('src/php/array/next.js (tested in test/languages/php/array/test-next.js)', function () {
   it('should pass example 1', function (done) {
-    var $transport = ['foot', 'bike', 'car', 'plane']
-    next($transport)
-    next($transport)
     var expected = 'car'
     var $transport = ['foot', 'bike', 'car', 'plane']
     next($transport)

@@ -5,10 +5,8 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var array_splice = require('../../../../src/php/array/array_splice.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/array/array_splice.js', function () {
-  it.skip('should pass example 1', function (done) {
-    var $input = {4: "red", 'abc': "green", 2: "blue", 'dud': "yellow"}
-    array_splice($input, 2)
+describe('src/php/array/array_splice.js (tested in test/languages/php/array/test-array_splice.js)', function () {
+  it('should pass example 1', function (done) {
     var expected = {4: "red", 'abc': "green"}
     var $input = {4: "red", 'abc': "green", 2: "blue", 'dud': "yellow"}
     var result = array_splice($input, 2)
@@ -16,8 +14,6 @@ describe('src/php/array/array_splice.js', function () {
     done()
   })
   it('should pass example 2', function (done) {
-    var $input = ["red", "green", "blue", "yellow"]
-    array_splice($input, 3, 0, "purple")
     var expected = []
     var $input = ["red", "green", "blue", "yellow"]
     var result = array_splice($input, 3, 0, "purple")
@@ -25,8 +21,6 @@ describe('src/php/array/array_splice.js', function () {
     done()
   })
   it('should pass example 3', function (done) {
-    var $input = ["red", "green", "blue", "yellow"]
-    array_splice($input, -1, 1, ["black", "maroon"])
     var expected = ["yellow"]
     var $input = ["red", "green", "blue", "yellow"]
     var result = array_splice($input, -1, 1, ["black", "maroon"])
