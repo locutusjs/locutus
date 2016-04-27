@@ -270,6 +270,7 @@ Util.prototype._writetestOne = function (params, cb) {
   }
 
   codez.push('})')
+  codez.push('')
 
   // Legacy browser-> Node replacements
   var code = codez.join('\n')
