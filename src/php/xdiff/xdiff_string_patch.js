@@ -13,85 +13,85 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, error) 
   // MIT License
   // <http://xregexp.com>
   var getNativeFlags = function (regex) {
-      return (regex.global ? 'g' : '') + (regex.ignoreCase ? 'i' : '') + (regex.multiline ? 'm' : '') + (regex.extended ?
-          'x' : '') + // Proposed for ES4; included in AS3
-        (regex.sticky ? 'y' : '')
-    },
-    cbSplit = function (string, sep /* separator */) {
-      // If separator `s` is not a regex, use the native `split`
-      if (!(sep instanceof RegExp)) {
-        // Had problems to get it to work here using prototype test
-        return String.prototype.split.apply(string, arguments)
-      }
-      var str = String(string),
-        output = [],
-        lastLastIndex = 0,
-        match, lastLength, limit = Infinity,
+    return (regex.global ? 'g' : '') + (regex.ignoreCase ? 'i' : '') + (regex.multiline ? 'm' : '') + (regex.extended ? 'x' : '') + (regex.sticky ? 'y' : '')  // Proposed for ES4; included in AS3
+  }
 
-        // This is required if not `s.global`, and it avoids needing to set `s.lastIndex` to zero
-        // and restore it to its original value when we're done using the regex
-        x = sep._xregexp,
-        // Brett paring down
-        s = new RegExp(sep.source, getNativeFlags(sep) + 'g')
-      if (x) {
-        s._xregexp = {
-          source: x.source,
-          captureNames: x.captureNames ? x.captureNames.slice(0) : null
-        }
-      }
-
-      while ((match = s.exec(str))) {
-        // Run the altered `exec` (required for `lastIndex` fix, etc.)
-        if (s.lastIndex > lastLastIndex) {
-          output.push(str.slice(lastLastIndex, match.index))
-
-          if (match.length > 1 && match.index < str.length) {
-            Array.prototype.push.apply(output, match.slice(1))
-          }
-
-          lastLength = match[0].length
-          lastLastIndex = s.lastIndex
-
-          if (output.length >= limit) {
-            break
-          }
-        }
-
-        if (s.lastIndex === match.index) {
-          s.lastIndex++
-        }
-      }
-
-      if (lastLastIndex === str.length) {
-        if (!s.test('') || lastLength) {
-          output.push('')
-        }
-      } else {
-        output.push(str.slice(lastLastIndex))
-      }
-
-      return output.length > limit ? output.slice(0, limit) : output
-    },
-    i = 0,
-    ll = 0,
-    ranges = [],
-    lastLinePos = 0,
-    firstChar = '',
-    rangeExp = /^@@\s+-(\d+),(\d+)\s+\+(\d+),(\d+)\s+@@$/,
-    lineBreaks = /\r?\n/,
-    lines = cbSplit(patch.replace(/(\r?\n)+$/, ''), lineBreaks),
-    origLines = cbSplit(originalStr, lineBreaks),
-    newStrArr = [],
-    linePos = 0,
-    errors = '',
-    // Both string & integer (constant) input is allowed
-    optTemp = 0,
-    OPTS = {
-      // Unsure of actual PHP values, so better to rely on string
-      'XDIFF_PATCH_NORMAL': 1,
-      'XDIFF_PATCH_REVERSE': 2,
-      'XDIFF_PATCH_IGNORESPACE': 4
+  var cbSplit = function (string, sep /* separator */) {
+    // If separator `s` is not a regex, use the native `split`
+    if (!(sep instanceof RegExp)) {
+      // Had problems to get it to work here using prototype test
+      return String.prototype.split.apply(string, arguments)
     }
+    var str = String(string)
+    var output = []
+    var lastLastIndex = 0
+    var match
+    var lastLength
+    var limit = Infinity
+    var x = sep._xregexp
+    // This is required if not `s.global`, and it avoids needing to set `s.lastIndex` to zero
+    // and restore it to its original value when we're done using the regex
+    // Brett paring down
+    var s = new RegExp(sep.source, getNativeFlags(sep) + 'g')
+    if (x) {
+      s._xregexp = {
+        source: x.source,
+        captureNames: x.captureNames ? x.captureNames.slice(0) : null
+      }
+    }
+
+    while ((match = s.exec(str))) {
+      // Run the altered `exec` (required for `lastIndex` fix, etc.)
+      if (s.lastIndex > lastLastIndex) {
+        output.push(str.slice(lastLastIndex, match.index))
+
+        if (match.length > 1 && match.index < str.length) {
+          Array.prototype.push.apply(output, match.slice(1))
+        }
+
+        lastLength = match[0].length
+        lastLastIndex = s.lastIndex
+
+        if (output.length >= limit) {
+          break
+        }
+      }
+
+      if (s.lastIndex === match.index) {
+        s.lastIndex++
+      }
+    }
+
+    if (lastLastIndex === str.length) {
+      if (!s.test('') || lastLength) {
+        output.push('')
+      }
+    } else {
+      output.push(str.slice(lastLastIndex))
+    }
+
+    return output.length > limit ? output.slice(0, limit) : output
+  }
+
+  var i = 0
+  var ll = 0
+  var ranges = []
+  var lastLinePos = 0
+  var firstChar = ''
+  var rangeExp = /^@@\s+-(\d+),(\d+)\s+\+(\d+),(\d+)\s+@@$/
+  var lineBreaks = /\r?\n/
+  var lines = cbSplit(patch.replace(/(\r?\n)+$/, ''), lineBreaks)
+  var origLines = cbSplit(originalStr, lineBreaks)
+  var newStrArr = []
+  var linePos = 0
+  var errors = ''
+  var optTemp = 0 // Both string & integer (constant) input is allowed
+  var OPTS = {
+    // Unsure of actual PHP values, so better to rely on string
+    'XDIFF_PATCH_NORMAL': 1,
+    'XDIFF_PATCH_REVERSE': 2,
+    'XDIFF_PATCH_IGNORESPACE': 4
+  }
 
   // Input defaulting & sanitation
   if (typeof originalStr !== 'string' || !patch) {
@@ -188,5 +188,6 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, error) 
   if (typeof error === 'string') {
     this.window[error] = errors
   }
+
   return newStrArr.join('\n')
 }

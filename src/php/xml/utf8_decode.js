@@ -1,4 +1,4 @@
-module.exports = function utf8_decode (str_data) { // eslint-disable-line camelcase
+module.exports = function utf8_decode (strData) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/utf8_decode/
   // original by: Webtoolkit.info (http://www.webtoolkit.info/)
   //    input by: Aman Gupta
@@ -13,15 +13,15 @@ module.exports = function utf8_decode (str_data) { // eslint-disable-line camelc
   //   example 1: utf8_decode('Kevin van Zonneveld')
   //   returns 1: 'Kevin van Zonneveld'
 
-  var tmp_arr = [],
-    i = 0,
-    c1 = 0,
-    seqlen = 0
+  var tmpArr = []
+  var i = 0
+  var c1 = 0
+  var seqlen = 0
 
-  str_data += ''
+  strData += ''
 
-  while (i < str_data.length) {
-    c1 = str_data.charCodeAt(i) & 0xFF
+  while (i < strData.length) {
+    c1 = strData.charCodeAt(i) & 0xFF
     seqlen = 0
 
     // http://en.wikipedia.org/wiki/UTF-8#Codepage_layout
@@ -40,18 +40,18 @@ module.exports = function utf8_decode (str_data) { // eslint-disable-line camelc
     }
 
     for (var ai = 1; ai < seqlen; ++ai) {
-      c1 = ((c1 << 0x06) | (str_data.charCodeAt(ai + i) & 0x3F))
+      c1 = ((c1 << 0x06) | (strData.charCodeAt(ai + i) & 0x3F))
     }
 
     if (seqlen === 4) {
       c1 -= 0x10000
-      tmp_arr.push(String.fromCharCode(0xD800 | ((c1 >> 10) & 0x3FF)), String.fromCharCode(0xDC00 | (c1 & 0x3FF)))
+      tmpArr.push(String.fromCharCode(0xD800 | ((c1 >> 10) & 0x3FF)), String.fromCharCode(0xDC00 | (c1 & 0x3FF)))
     } else {
-      tmp_arr.push(String.fromCharCode(c1))
+      tmpArr.push(String.fromCharCode(c1))
     }
 
     i += seqlen
   }
 
-  return tmp_arr.join('')
+  return tmpArr.join('')
 }

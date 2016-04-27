@@ -20,8 +20,10 @@ module.exports = function utf8_encode (argString) { // eslint-disable-line camel
 
   // .replace(/\r\n/g, "\n").replace(/\r/g, "\n");
   var string = (argString + '')
-  var utftext = '',
-    start, end, stringl = 0
+  var utftext = ''
+  var start
+  var end
+  var stringl = 0
 
   start = end = 0
   stringl = string.length
