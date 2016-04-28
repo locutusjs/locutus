@@ -1,4 +1,4 @@
-export default function ip2long (argIP) {
+module.exports = function ip2long (argIP) {
   //  discuss at: http://locutusjs.io/php/ip2long/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Victor
@@ -35,5 +35,6 @@ export default function ip2long (argIP) {
   if (argIP[1] >= argIP[5] || argIP[2] >= argIP[6] || argIP[3] >= argIP[7] || argIP[4] >= argIP[8]) {
     return false
   }
+
   return argIP[1] * (argIP[0] === 1 || 16777216) + argIP[2] * (argIP[0] <= 2 || 65536) + argIP[3] * (argIP[0] <= 3 || 256) + argIP[4] * 1
 }
