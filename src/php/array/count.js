@@ -1,4 +1,4 @@
-module.exports = function count (mixed_var, mode) {
+module.exports = function count (mixedVar, mode) {
   //  discuss at: http://locutusjs.io/php/count/
   // original by: Kevin van Zonneveld (http://kvz.io)
   //    input by: Waldo Malqui Silva (http://waldo.malqui.info)
@@ -13,9 +13,9 @@ module.exports = function count (mixed_var, mode) {
 
   var key, cnt = 0
 
-  if (mixed_var === null || typeof mixed_var === 'undefined') {
+  if (mixedVar === null || typeof mixedVar === 'undefined') {
     return 0
-  } else if (mixed_var.constructor !== Array && mixed_var.constructor !== Object) {
+  } else if (mixedVar.constructor !== Array && mixedVar.constructor !== Object) {
     return 1
   }
 
@@ -26,12 +26,12 @@ module.exports = function count (mixed_var, mode) {
     mode = 0
   }
 
-  for (key in mixed_var) {
-    if (mixed_var.hasOwnProperty(key)) {
+  for (key in mixedVar) {
+    if (mixedVar.hasOwnProperty(key)) {
       cnt++
-      if (mode === 1 && mixed_var[key] && (mixed_var[key].constructor === Array || mixed_var[key].constructor ===
+      if (mode === 1 && mixedVar[key] && (mixedVar[key].constructor === Array || mixedVar[key].constructor ===
           Object)) {
-        cnt += count(mixed_var[key], 1)
+        cnt += count(mixedVar[key], 1)
       }
     }
   }

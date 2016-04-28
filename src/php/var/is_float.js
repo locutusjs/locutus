@@ -1,4 +1,4 @@
-module.exports = function is_float (mixed_var) { // eslint-disable-line camelcase
+module.exports = function is_float (mixedVar) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/is_float/
   // original by: Paulo Freitas
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
@@ -9,5 +9,5 @@ module.exports = function is_float (mixed_var) { // eslint-disable-line camelcas
   //   example 1: is_float(186.31)
   //   returns 1: true
 
-  return +mixed_var === mixed_var && (!isFinite(mixed_var) || !!(mixed_var % 1))
+  return +mixedVar === mixedVar && (!isFinite(mixedVar) || !!(mixedVar % 1))
 }

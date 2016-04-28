@@ -1,4 +1,4 @@
-module.exports = function doubleval (mixed_var) {
+module.exports = function doubleval (mixedVar) {
   //  discuss at: http://locutusjs.io/php/doubleval/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: 1.0 is simplified to 1 before it can be accessed by the function, this makes
@@ -8,5 +8,5 @@ module.exports = function doubleval (mixed_var) {
 
   var floatval = require('../var/floatval')
 
-  return floatval(mixed_var)
+  return floatval(mixedVar)
 }

@@ -1,4 +1,4 @@
-module.exports = function sizeof (mixed_var, mode) {
+module.exports = function sizeof (mixedVar, mode) {
   //  discuss at: http://locutusjs.io/php/sizeof/
   // original by: Philip Peterson
   //   example 1: sizeof([[0,0],[0,-4]], 'COUNT_RECURSIVE')
@@ -8,5 +8,5 @@ module.exports = function sizeof (mixed_var, mode) {
 
   var count = require('../array/count')
 
-  return count(mixed_var, mode)
+  return count(mixedVar, mode)
 }

@@ -1,4 +1,4 @@
-module.exports = function http_build_query (formdata, numeric_prefix, arg_separator) { // eslint-disable-line camelcase
+module.exports = function http_build_query (formdata, numericPrefix, argSeparator) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/http_build_query/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Legaev Andrey
@@ -17,11 +17,13 @@ module.exports = function http_build_query (formdata, numeric_prefix, arg_separa
 
   var urlencode = require('../url/urlencode')
 
-  var value, key, tmp = [],
-    that = this
+  var value
+  var key
+  var tmp = []
 
-  var _http_build_query_helper = function (key, val, arg_separator) {
-    var k, tmp = []
+  var _httpBuildQueryHelper = function (key, val, argSeparator) {
+    var k
+    var tmp = []
     if (val === true) {
       val = '1'
     } else if (val === false) {
@@ -31,10 +33,10 @@ module.exports = function http_build_query (formdata, numeric_prefix, arg_separa
       if (typeof val === 'object') {
         for (k in val) {
           if (val[k] !== null) {
-            tmp.push(_http_build_query_helper(key + '[' + k + ']', val[k], arg_separator))
+            tmp.push(_httpBuildQueryHelper(key + '[' + k + ']', val[k], argSeparator))
           }
         }
-        return tmp.join(arg_separator)
+        return tmp.join(argSeparator)
       } else if (typeof val !== 'function') {
         return urlencode(key) + '=' + urlencode(val)
       } else {
@@ -45,19 +47,19 @@ module.exports = function http_build_query (formdata, numeric_prefix, arg_separa
     }
   }
 
-  if (!arg_separator) {
-    arg_separator = '&'
+  if (!argSeparator) {
+    argSeparator = '&'
   }
   for (key in formdata) {
     value = formdata[key]
-    if (numeric_prefix && !isNaN(key)) {
-      key = String(numeric_prefix) + key
+    if (numericPrefix && !isNaN(key)) {
+      key = String(numericPrefix) + key
     }
-    var query = _http_build_query_helper(key, value, arg_separator)
+    var query = _httpBuildQueryHelper(key, value, argSeparator)
     if (query !== '') {
       tmp.push(query)
     }
   }
 
-  return tmp.join(arg_separator)
+  return tmp.join(argSeparator)
 }

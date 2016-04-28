@@ -7,6 +7,5 @@ module.exports = function is_real (mixedVar) { // eslint-disable-line camelcase
   //   returns 1: true
 
   var _isFloat = require('../var/is_float')
-
   return _isFloat(mixedVar)
 }

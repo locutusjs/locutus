@@ -1,4 +1,4 @@
-module.exports = function intval (mixed_var, base) {
+module.exports = function intval (mixedVar, base) {
   //  discuss at: http://locutusjs.io/php/intval/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: stensi
@@ -19,15 +19,15 @@ module.exports = function intval (mixed_var, base) {
 
   var tmp
 
-  var type = typeof mixed_var
+  var type = typeof mixedVar
 
   if (type === 'boolean') {
-    return +mixed_var
+    return +mixedVar
   } else if (type === 'string') {
-    tmp = parseInt(mixed_var, base || 10)
+    tmp = parseInt(mixedVar, base || 10)
     return (isNaN(tmp) || !isFinite(tmp)) ? 0 : tmp
-  } else if (type === 'number' && isFinite(mixed_var)) {
-    return mixed_var | 0
+  } else if (type === 'number' && isFinite(mixedVar)) {
+    return mixedVar | 0
   } else {
     return 0
   }

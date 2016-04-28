@@ -1,4 +1,4 @@
-module.exports = function base64_encode (data) { // eslint-disable-line camelcase
+module.exports = function base64_encode (stringToEncode) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/base64_encode/
   // original by: Tyler Akins (http://rumkin.com)
   // improved by: Bayron Guevara
@@ -14,23 +14,39 @@ module.exports = function base64_encode (data) { // eslint-disable-line camelcas
   //   example 3: base64_encode('✓ à la mode')
   //   returns 3: '4pyTIMOgIGxhIG1vZGU='
 
-  var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
-  var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
-    ac = 0,
-    enc = '',
-    tmp_arr = []
-
-  if (!data) {
-    return data
+  if (typeof window !== 'undefined') {
+    if (typeof window.btoa !== 'undefined') {
+      return window.btoa(escape(encodeURIComponent(stringToEncode)))
+    }
+  } else {
+    return new Buffer(stringToEncode).toString('base64')
   }
 
-  data = unescape(encodeURIComponent(data))
+  var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
+  var o1
+  var o2
+  var o3
+  var h1
+  var h2
+  var h3
+  var h4
+  var bits
+  var i = 0
+  var ac = 0
+  var enc = ''
+  var tmpArr = []
+
+  if (!stringToEncode) {
+    return stringToEncode
+  }
+
+  stringToEncode = unescape(encodeURIComponent(stringToEncode))
 
   do {
     // pack three octets into four hexets
-    o1 = data.charCodeAt(i++)
-    o2 = data.charCodeAt(i++)
-    o3 = data.charCodeAt(i++)
+    o1 = stringToEncode.charCodeAt(i++)
+    o2 = stringToEncode.charCodeAt(i++)
+    o3 = stringToEncode.charCodeAt(i++)
 
     bits = o1 << 16 | o2 << 8 | o3
 
@@ -40,12 +56,12 @@ module.exports = function base64_encode (data) { // eslint-disable-line camelcas
     h4 = bits & 0x3f
 
     // use hexets to index into b64, and append result to encoded string
-    tmp_arr[ac++] = b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4)
-  } while (i < data.length)
+    tmpArr[ac++] = b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4)
+  } while (i < stringToEncode.length)
 
-  enc = tmp_arr.join('')
+  enc = tmpArr.join('')
 
-  var r = data.length % 3
+  var r = stringToEncode.length % 3
 
   return (r ? enc.slice(0, r - 3) : enc) + '==='.slice(r || 3)
 }

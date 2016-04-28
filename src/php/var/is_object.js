@@ -1,4 +1,4 @@
-module.exports = function is_object (mixed_var) { // eslint-disable-line camelcase
+module.exports = function is_object (mixedVar) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/is_object/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Legaev Andrey
@@ -10,8 +10,8 @@ module.exports = function is_object (mixed_var) { // eslint-disable-line camelca
   //   example 3: is_object(null)
   //   returns 3: false
 
-  if (Object.prototype.toString.call(mixed_var) === '[object Array]') {
+  if (Object.prototype.toString.call(mixedVar) === '[object Array]') {
     return false
   }
-  return mixed_var !== null && typeof mixed_var === 'object'
+  return mixedVar !== null && typeof mixedVar === 'object'
 }

@@ -1,4 +1,4 @@
-module.exports = function is_long (mixed_var) { // eslint-disable-line camelcase
+module.exports = function is_long (mixedVar) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/is_long/
   // original by: Paulo Freitas
   //        note: 1.0 is simplified to 1 before it can be accessed by the function, this makes
@@ -6,6 +6,6 @@ module.exports = function is_long (mixed_var) { // eslint-disable-line camelcase
   //   example 1: is_long(186.31)
   //   returns 1: true
 
-  var is_float = require('../var/is_float')
-  return is_float(mixed_var)
+  var _isFloat = require('../var/is_float')
+  return _isFloat(mixedVar)
 }

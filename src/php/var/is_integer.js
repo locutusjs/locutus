@@ -1,4 +1,4 @@
-module.exports = function is_integer (mixed_var) { // eslint-disable-line camelcase
+module.exports = function is_integer (mixedVar) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/is_integer/
   // original by: Paulo Freitas
   //        note: 1.0 is simplified to 1 before it can be accessed by the function, this makes
@@ -8,6 +8,6 @@ module.exports = function is_integer (mixed_var) { // eslint-disable-line camelc
   //   example 2: is_integer(12)
   //   returns 2: true
 
-  var is_int = require('../var/is_int')
-  return is_int(mixed_var)
+  var _isInt = require('../var/is_int')
+  return _isInt(mixedVar)
 }

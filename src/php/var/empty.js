@@ -1,4 +1,4 @@
-module.exports = function empty (mixed_var) {
+module.exports = function empty (mixedVar) {
   //  discuss at: http://locutusjs.io/php/empty/
   // original by: Philippe Baumann
   //    input by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -20,21 +20,23 @@ module.exports = function empty (mixed_var) {
   //   example 5: empty({'aFunc' : function () { alert('humpty'); } })
   //   returns 5: false
 
-  var undef, key, i, len
+  var undef
+  var key
+  var i
+  var len
   var emptyValues = [undef, null, false, 0, '', '0']
 
   for (i = 0, len = emptyValues.length; i < len; i++) {
-    if (mixed_var === emptyValues[i]) {
+    if (mixedVar === emptyValues[i]) {
       return true
     }
   }
 
-  if (typeof mixed_var === 'object') {
-    for (key in mixed_var) {
-      // TODO: should we check for own properties only?
-      // if (mixed_var.hasOwnProperty(key)) {
-      return false
-      // }
+  if (typeof mixedVar === 'object') {
+    for (key in mixedVar) {
+      if (mixedVar.hasOwnProperty(key)) {
+        return false
+      }
     }
     return true
   }
