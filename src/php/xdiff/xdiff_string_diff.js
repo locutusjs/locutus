@@ -1,4 +1,4 @@
-module.exports = function xdiff_string_diff (old_data, new_data, context_lines, minimal) { // eslint-disable-line camelcase
+module.exports = function xdiff_string_diff (oldData, newData, contextLines, minimal) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/xdiff_string_diff
   // original by: Brett Zamir (http://brett-zamir.me)
   //    based on: Imgen Tata (http://www.myipdf.com/)
@@ -11,409 +11,437 @@ module.exports = function xdiff_string_diff (old_data, new_data, context_lines, 
   // (This code was done by Imgen Tata; I have only reformatted for use in Locutus)
 
   // See http://en.wikipedia.org/wiki/Diff#Unified_format
-  var i = 0,
-    j = 0,
-    k = 0,
-    ori_hunk_start, new_hunk_start, ori_hunk_end, new_hunk_end, ori_hunk_line_no, new_hunk_line_no, ori_hunk_size,
-    new_hunk_size,
-    // Potential configuration
-    MAX_CONTEXT_LINES = Number.POSITIVE_INFINITY,
-    MIN_CONTEXT_LINES = 0,
-    DEFAULT_CONTEXT_LINES = 3,
-    //
-    HEADER_PREFIX = '@@ ',
-    HEADER_SUFFIX = ' @@',
-    ORIGINAL_INDICATOR = '-',
-    NEW_INDICATOR = '+',
-    RANGE_SEPARATOR = ',',
-    CONTEXT_INDICATOR = ' ',
-    DELETION_INDICATOR = '-',
-    ADDITION_INDICATOR = '+',
-    ori_lines, new_lines, NEW_LINE = '\n',
-    /**
-     * Trims string
-     */
-    trim = function (text) {
-      if (typeof text !== 'string') {
-        throw new Error('String parameter required')
-      }
+  var i = 0
+  var j = 0
+  var k = 0
+  var oriHunkStart
+  var newHunkStart
+  var oriHunkEnd
+  var newHunkEnd
+  var oriHunkLineNo
+  var newHunkLineNo
+  var oriHunkSize
+  var newHunkSize
+  var MAX_CONTEXT_LINES = Number.POSITIVE_INFINITY // Potential configuration
+  var MIN_CONTEXT_LINES = 0
+  var DEFAULT_CONTEXT_LINES = 3
+  var HEADER_PREFIX = '@@ ' //
+  var HEADER_SUFFIX = ' @@'
+  var ORIGINAL_INDICATOR = '-'
+  var NEW_INDICATOR = '+'
+  var RANGE_SEPARATOR = ','
+  var CONTEXT_INDICATOR = ' '
+  var DELETION_INDICATOR = '-'
+  var ADDITION_INDICATOR = '+'
+  var oriLines
+  var newLines
+  var NEW_LINE = '\n'
 
-      return text.replace(/(^\s*)|(\s*$)/g, '')
-    },
-    /**
-     * Verifies type of arguments
-     */
-    verify_type = function (type) {
-      var args = arguments,
-        args_len = arguments.length,
-        basic_types = ['number', 'boolean', 'string', 'function', 'object', 'undefined'],
-        basic_type, i, j, type_of_type = typeof type
-      if (type_of_type !== 'string' && type_of_type !== 'function') {
+  /**
+   * Trims string
+   */
+  var trim = function (text) {
+    if (typeof text !== 'string') {
+      throw new Error('String parameter required')
+    }
+
+    return text.replace(/(^\s*)|(\s*$)/g, '')
+  }
+  /**
+   * Verifies type of arguments
+   */
+  var verifyType = function (type) {
+    var args = arguments
+    var argsLen = arguments.length
+    var basicTypes = ['number', 'boolean', 'string', 'function', 'object', 'undefined']
+    var basicType
+    var i
+    var j
+    var typeOfType = typeof type
+    if (typeOfType !== 'string' && typeOfType !== 'function') {
+      throw new Error('Bad type parameter')
+    }
+
+    if (argsLen < 2) {
+      throw new Error('Too few arguments')
+    }
+
+    if (typeOfType === 'string') {
+      type = trim(type)
+
+      if (type === '') {
         throw new Error('Bad type parameter')
       }
 
-      if (args_len < 2) {
-        throw new Error('Too few arguments')
-      }
+      for (j = 0; j < basicTypes.length; j++) {
+        basicType = basicTypes[j]
 
-      if (type_of_type === 'string') {
-        type = trim(type)
-
-        if (type === '') {
-          throw new Error('Bad type parameter')
-        }
-
-        for (j = 0; j < basic_types.length; j++) {
-          basic_type = basic_types[j]
-
-          if (basic_type === type) {
-            for (i = 1; i < args_len; i++) {
-              if (typeof args[i] !== type) {
-                throw new Error('Bad type')
-              }
+        if (basicType === type) {
+          for (i = 1; i < argsLen; i++) {
+            if (typeof args[i] !== type) {
+              throw new Error('Bad type')
             }
-
-            return
           }
-        }
 
-        throw new Error('Bad type parameter')
-      }
-
-      // Not basic type. we need to use instanceof operator
-      for (i = 1; i < args_len; i++) {
-        if (!(args[i] instanceof type)) {
-          throw new Error('Bad type')
+          return
         }
       }
-    },
-    /**
-     * Checks if the specified array contains an element with specified value
-     */
-    has_value = function (array, value) {
-      var i
-      verify_type(Array, array)
 
-      for (i = 0; i < array.length; i++) {
-        if (array[i] === value) {
+      throw new Error('Bad type parameter')
+    }
+
+    // Not basic type. we need to use instanceof operator
+    for (i = 1; i < argsLen; i++) {
+      if (!(args[i] instanceof type)) {
+        throw new Error('Bad type')
+      }
+    }
+  }
+
+  /**
+   * Checks if the specified array contains an element with specified value
+   */
+  var hasValue = function (array, value) {
+    var i
+    verifyType(Array, array)
+
+    for (i = 0; i < array.length; i++) {
+      if (array[i] === value) {
+        return true
+      }
+    }
+
+    return false
+  }
+
+  /**
+   * Checks the type of arguments
+   * @param {String | Function} type Specifies the desired type
+   * @return {Boolean} Return true if all arguments after the type argument are of specified type. Else false
+   */
+  var areTypeOf = function (type) {
+    var args = arguments
+    var argsLen = arguments.length
+    var basicTypes = ['number', 'boolean', 'string', 'function', 'object', 'undefined']
+    var basicType
+    var i
+    var j
+    var typeOfType = typeof type
+
+    if (typeOfType !== 'string' && typeOfType !== 'function') {
+      throw new Error('Bad type parameter')
+    }
+
+    if (argsLen < 2) {
+      throw new Error('Too few arguments')
+    }
+
+    if (typeOfType === 'string') {
+      type = trim(type)
+
+      if (type === '') {
+        return false
+      }
+
+      for (j = 0; j < basicTypes.length; j++) {
+        basicType = basicTypes[j]
+
+        if (basicType === type) {
+          for (i = 1; i < argsLen; i++) {
+            if (typeof args[i] !== type) {
+              return false
+            }
+          }
+
           return true
         }
       }
 
-      return false
-    },
-    /**
-     * Checks the type of arguments
-     * @param {String | Function} type Specifies the desired type
-     * @return {Boolean} Return true if all arguments after the type argument are of specified type. Else false
-     */
-    are_type_of = function (type) {
-      var args = arguments,
-        args_len = arguments.length,
-        basic_types = ['number', 'boolean', 'string', 'function', 'object', 'undefined'],
-        basic_type, i, j, type_of_type = typeof type
-      if (type_of_type !== 'string' && type_of_type !== 'function') {
-        throw new Error('Bad type parameter')
-      }
-
-      if (args_len < 2) {
-        throw new Error('Too few arguments')
-      }
-
-      if (type_of_type === 'string') {
-        type = trim(type)
-
-        if (type === '') {
-          return false
-        }
-
-        for (j = 0; j < basic_types.length; j++) {
-          basic_type = basic_types[j]
-
-          if (basic_type === type) {
-            for (i = 1; i < args_len; i++) {
-              if (typeof args[i] !== type) {
-                return false
-              }
-            }
-
-            return true
-          }
-        }
-
-        throw new Error('Bad type parameter')
-      }
-
-      // Not basic type. we need to use instanceof operator
-      for (i = 1; i < args_len; i++) {
-        if (!(args[i] instanceof type)) {
-          return false
-        }
-      }
-
-      return true
-    },
-    /*
-     * Initialize and return an array with specified size and initial value
-     */
-    get_initialized_array = function (array_size, init_value) {
-      var array = [],
-        i
-      verify_type('number', array_size)
-
-      for (i = 0; i < array_size; i++) {
-        array.push(init_value)
-      }
-
-      return array
-    },
-    /**
-     * Splits text into lines and return as a string array
-     */
-    split_into_lines = function (text) {
-      verify_type('string', text)
-
-      if (text === '') {
-        return []
-      }
-      return text.split('\n')
-    },
-    is_empty_array = function (obj) {
-      return are_type_of(Array, obj) && obj.length === 0
-    },
-    /**
-     * Finds longest common sequence between two sequences
-     * @see {@link http://wordaligned.org/articles/longest-common-subsequence}
-     */
-    find_longest_common_sequence = function (seq1, seq2, seq1_is_in_lcs, seq2_is_in_lcs) {
-      if (!are_type_of(Array, seq1, seq2)) {
-        throw new Error('Array parameters are required')
-      }
-
-      // Deal with edge case
-      if (is_empty_array(seq1) || is_empty_array(seq2)) {
-        return []
-      }
-
-      // Function to calculate lcs lengths
-      var lcs_lens = function (xs, ys) {
-          var i, j, prev,
-            curr = get_initialized_array(ys.length + 1, 0)
-
-          for (i = 0; i < xs.length; i++) {
-            prev = curr.slice(0)
-            for (j = 0; j < ys.length; j++) {
-              if (xs[i] === ys[j]) {
-                curr[j + 1] = prev[j] + 1
-              } else {
-                curr[j + 1] = Math.max(curr[j], prev[j + 1])
-              }
-            }
-          }
-
-          return curr
-        },
-        // Function to find lcs and fill in the array to indicate the optimal longest common sequence
-        find_lcs = function (xs, xidx, xs_is_in, ys) {
-          var i, xb, xe, ll_b, ll_e, pivot, max, yb, ye,
-            nx = xs.length,
-            ny = ys.length
-
-          if (nx === 0) {
-            return []
-          }
-          if (nx === 1) {
-            if (has_value(ys, xs[0])) {
-              xs_is_in[xidx] = true
-              return [xs[0]]
-            }
-            return []
-          }
-          i = Math.floor(nx / 2)
-          xb = xs.slice(0, i)
-          xe = xs.slice(i)
-          ll_b = lcs_lens(xb, ys)
-          ll_e = lcs_lens(xe.slice(0)
-            .reverse(), ys.slice(0)
-            .reverse())
-
-          pivot = 0
-          max = 0
-          for (j = 0; j <= ny; j++) {
-            if (ll_b[j] + ll_e[ny - j] > max) {
-              pivot = j
-              max = ll_b[j] + ll_e[ny - j]
-            }
-          }
-          yb = ys.slice(0, pivot)
-          ye = ys.slice(pivot)
-          return find_lcs(xb, xidx, xs_is_in, yb)
-            .concat(find_lcs(xe, xidx + i, xs_is_in, ye))
-        }
-
-      // Fill in seq1_is_in_lcs to find the optimal longest common subsequence of first sequence
-      find_lcs(seq1, 0, seq1_is_in_lcs, seq2)
-      // Fill in seq2_is_in_lcs to find the optimal longest common subsequence of second sequence and return the result
-      return find_lcs(seq2, 0, seq2_is_in_lcs, seq1)
+      throw new Error('Bad type parameter')
     }
 
+    // Not basic type. we need to use instanceof operator
+    for (i = 1; i < argsLen; i++) {
+      if (!(args[i] instanceof type)) {
+        return false
+      }
+    }
+
+    return true
+  }
+
+  /*
+   * Initialize and return an array with specified size and initial value
+   */
+  var getInitializedArray = function (arraySize, initValue) {
+    var array = []
+    var i
+    verifyType('number', arraySize)
+
+    for (i = 0; i < arraySize; i++) {
+      array.push(initValue)
+    }
+
+    return array
+  }
+
+  /**
+   * Splits text into lines and return as a string array
+   */
+  var _splitIntoLines = function (text) {
+    verifyType('string', text)
+
+    if (text === '') {
+      return []
+    }
+    return text.split('\n')
+  }
+
+  var _isEmptyArray = function (obj) {
+    return areTypeOf(Array, obj) && obj.length === 0
+  }
+
+  /**
+   * Finds longest common sequence between two sequences
+   * @see {@link http://wordaligned.org/articles/longest-common-subsequence}
+   */
+  var _findLongestCommonSequence = function (seq1, seq2, seq1IsInLcs, seq2IsInLcs) {
+    if (!areTypeOf(Array, seq1, seq2)) {
+      throw new Error('Array parameters are required')
+    }
+
+    // Deal with edge case
+    if (_isEmptyArray(seq1) || _isEmptyArray(seq2)) {
+      return []
+    }
+
+    // Function to calculate lcs lengths
+    var lcsLens = function (xs, ys) {
+      var i
+      var j
+      var prev
+      var curr = getInitializedArray(ys.length + 1, 0)
+
+      for (i = 0; i < xs.length; i++) {
+        prev = curr.slice(0)
+        for (j = 0; j < ys.length; j++) {
+          if (xs[i] === ys[j]) {
+            curr[j + 1] = prev[j] + 1
+          } else {
+            curr[j + 1] = Math.max(curr[j], prev[j + 1])
+          }
+        }
+      }
+
+      return curr
+    }
+
+    // Function to find lcs and fill in the array to indicate the optimal longest common sequence
+    var findLcs = function (xs, xidx, xIsIn, ys) {
+      var i
+      var xb
+      var xe
+      var llB
+      var llE
+      var pivot
+      var max
+      var yb
+      var ye
+      var nx = xs.length
+      var ny = ys.length
+
+      if (nx === 0) {
+        return []
+      }
+      if (nx === 1) {
+        if (hasValue(ys, xs[0])) {
+          xIsIn[xidx] = true
+          return [xs[0]]
+        }
+        return []
+      }
+      i = Math.floor(nx / 2)
+      xb = xs.slice(0, i)
+      xe = xs.slice(i)
+      llB = lcsLens(xb, ys)
+      llE = lcsLens(xe.slice(0)
+        .reverse(), ys.slice(0)
+        .reverse())
+
+      pivot = 0
+      max = 0
+      for (j = 0; j <= ny; j++) {
+        if (llB[j] + llE[ny - j] > max) {
+          pivot = j
+          max = llB[j] + llE[ny - j]
+        }
+      }
+      yb = ys.slice(0, pivot)
+      ye = ys.slice(pivot)
+      return findLcs(xb, xidx, xIsIn, yb).concat(findLcs(xe, xidx + i, xIsIn, ye))
+    }
+
+    // Fill in seq1IsInLcs to find the optimal longest common subsequence of first sequence
+    findLcs(seq1, 0, seq1IsInLcs, seq2)
+    // Fill in seq2IsInLcs to find the optimal longest common subsequence of second sequence and return the result
+    return findLcs(seq2, 0, seq2IsInLcs, seq1)
+  }
+
   // First, check the parameters
-  if (are_type_of('string', old_data, new_data) === false) {
+  if (areTypeOf('string', oldData, newData) === false) {
     return false
   }
 
-  if (old_data === new_data) {
+  if (oldData === newData) {
     return ''
   }
 
-  if (typeof context_lines !== 'number' || context_lines > MAX_CONTEXT_LINES || context_lines < MIN_CONTEXT_LINES) {
-    context_lines = DEFAULT_CONTEXT_LINES
+  if (typeof contextLines !== 'number' || contextLines > MAX_CONTEXT_LINES || contextLines < MIN_CONTEXT_LINES) {
+    contextLines = DEFAULT_CONTEXT_LINES
   }
 
-  ori_lines = split_into_lines(old_data)
-  new_lines = split_into_lines(new_data)
-  var ori_len = ori_lines.length,
-    new_len = new_lines.length,
-    ori_is_in_lcs = get_initialized_array(ori_len, false),
-    new_is_in_lcs = get_initialized_array(new_len, false),
-    lcs_len = find_longest_common_sequence(ori_lines, new_lines, ori_is_in_lcs, new_is_in_lcs)
-    .length,
-    unidiff = ''
+  oriLines = _splitIntoLines(oldData)
+  newLines = _splitIntoLines(newData)
+  var oriLen = oriLines.length
+  var newLen = newLines.length
+  var oriIsInLcs = getInitializedArray(oriLen, false)
+  var newIsInLcs = getInitializedArray(newLen, false)
+  var lcsLen = _findLongestCommonSequence(oriLines, newLines, oriIsInLcs, newIsInLcs).length
+  var unidiff = ''
 
-  if (lcs_len === 0) {
+  if (lcsLen === 0) {
     // No common sequence
-    unidiff = HEADER_PREFIX + ORIGINAL_INDICATOR + (ori_len > 0 ? '1' : '0') + RANGE_SEPARATOR + ori_len + ' ' +
-      NEW_INDICATOR + (new_len > 0 ? '1' : '0') + RANGE_SEPARATOR + new_len + HEADER_SUFFIX
+    unidiff = HEADER_PREFIX + ORIGINAL_INDICATOR + (oriLen > 0 ? '1' : '0') + RANGE_SEPARATOR + oriLen + ' ' +
+      NEW_INDICATOR + (newLen > 0 ? '1' : '0') + RANGE_SEPARATOR + newLen + HEADER_SUFFIX
 
-    for (i = 0; i < ori_len; i++) {
-      unidiff += NEW_LINE + DELETION_INDICATOR + ori_lines[i]
+    for (i = 0; i < oriLen; i++) {
+      unidiff += NEW_LINE + DELETION_INDICATOR + oriLines[i]
     }
 
-    for (j = 0; j < new_len; j++) {
-      unidiff += NEW_LINE + ADDITION_INDICATOR + new_lines[j]
+    for (j = 0; j < newLen; j++) {
+      unidiff += NEW_LINE + ADDITION_INDICATOR + newLines[j]
     }
 
     return unidiff
   }
 
-  var leading_context = [],
-    trailing_context = [],
-    actual_leading_context = [],
-    actual_trailing_context = [],
+  var leadingContext = []
+  var trailingContext = []
+  var actualLeadingContext = []
+  var actualTrailingContext = []
 
-    // Regularize leading context by the context_lines parameter
-    regularize_leading_context = function (context) {
-      if (context.length === 0 || context_lines === 0) {
-        return []
-      }
-
-      var context_start_pos = Math.max(context.length - context_lines, 0)
-
-      return context.slice(context_start_pos)
-    },
-
-    // Regularize trailing context by the context_lines parameter
-    regularize_trailing_context = function (context) {
-      if (context.length === 0 || context_lines === 0) {
-        return []
-      }
-
-      return context.slice(0, Math.min(context_lines, context.length))
+  // Regularize leading context by the contextLines parameter
+  var regularizeLeadingContext = function (context) {
+    if (context.length === 0 || contextLines === 0) {
+      return []
     }
 
+    var contextStartPos = Math.max(context.length - contextLines, 0)
+
+    return context.slice(contextStartPos)
+  }
+
+  // Regularize trailing context by the contextLines parameter
+  var regularizeTrailingContext = function (context) {
+    if (context.length === 0 || contextLines === 0) {
+      return []
+    }
+
+    return context.slice(0, Math.min(contextLines, context.length))
+  }
+
   // Skip common lines in the beginning
-  while (i < ori_len && ori_is_in_lcs[i] === true && new_is_in_lcs[i] === true) {
-    leading_context.push(ori_lines[i])
+  while (i < oriLen && oriIsInLcs[i] === true && newIsInLcs[i] === true) {
+    leadingContext.push(oriLines[i])
     i++
   }
 
   j = i
   // The index in the longest common sequence
   k = i
-  ori_hunk_start = i
-  new_hunk_start = j
-  ori_hunk_end = i
-  new_hunk_end = j
+  oriHunkStart = i
+  newHunkStart = j
+  oriHunkEnd = i
+  newHunkEnd = j
 
-  while (i < ori_len || j < new_len) {
-    while (i < ori_len && ori_is_in_lcs[i] === false) {
+  while (i < oriLen || j < newLen) {
+    while (i < oriLen && oriIsInLcs[i] === false) {
       i++
     }
-    ori_hunk_end = i
+    oriHunkEnd = i
 
-    while (j < new_len && new_is_in_lcs[j] === false) {
+    while (j < newLen && newIsInLcs[j] === false) {
       j++
     }
-    new_hunk_end = j
+    newHunkEnd = j
 
     // Find the trailing context
-    trailing_context = []
-    while (i < ori_len && ori_is_in_lcs[i] === true && j < new_len && new_is_in_lcs[j] === true) {
-      trailing_context.push(ori_lines[i])
+    trailingContext = []
+    while (i < oriLen && oriIsInLcs[i] === true && j < newLen && newIsInLcs[j] === true) {
+      trailingContext.push(oriLines[i])
       k++
       i++
       j++
     }
 
-    if (k >= lcs_len || // No more in longest common lines
-      trailing_context.length >= 2 * context_lines) {
+    if (k >= lcsLen || // No more in longest common lines
+      trailingContext.length >= 2 * contextLines) {
       // Context break found
-      if (trailing_context.length < 2 * context_lines) {
+      if (trailingContext.length < 2 * contextLines) {
         // It must be last block of common lines but not a context break
-        trailing_context = []
+        trailingContext = []
 
         // Force break out
-        i = ori_len
-        j = new_len
+        i = oriLen
+        j = newLen
 
         // Update hunk ends to force output to the end
-        ori_hunk_end = ori_len
-        new_hunk_end = new_len
+        oriHunkEnd = oriLen
+        newHunkEnd = newLen
       }
 
       // Output the diff hunk
 
       // Trim the leading and trailing context block
-      actual_leading_context = regularize_leading_context(leading_context)
-      actual_trailing_context = regularize_trailing_context(trailing_context)
+      actualLeadingContext = regularizeLeadingContext(leadingContext)
+      actualTrailingContext = regularizeTrailingContext(trailingContext)
 
-      ori_hunk_start -= actual_leading_context.length
-      new_hunk_start -= actual_leading_context.length
-      ori_hunk_end += actual_trailing_context.length
-      new_hunk_end += actual_trailing_context.length
+      oriHunkStart -= actualLeadingContext.length
+      newHunkStart -= actualLeadingContext.length
+      oriHunkEnd += actualTrailingContext.length
+      newHunkEnd += actualTrailingContext.length
 
-      ori_hunk_line_no = ori_hunk_start + 1
-      new_hunk_line_no = new_hunk_start + 1
-      ori_hunk_size = ori_hunk_end - ori_hunk_start
-      new_hunk_size = new_hunk_end - new_hunk_start
+      oriHunkLineNo = oriHunkStart + 1
+      newHunkLineNo = newHunkStart + 1
+      oriHunkSize = oriHunkEnd - oriHunkStart
+      newHunkSize = newHunkEnd - newHunkStart
 
       // Build header
-      unidiff += HEADER_PREFIX + ORIGINAL_INDICATOR + ori_hunk_line_no + RANGE_SEPARATOR + ori_hunk_size + ' ' +
-        NEW_INDICATOR + new_hunk_line_no + RANGE_SEPARATOR + new_hunk_size + HEADER_SUFFIX + NEW_LINE
+      unidiff += HEADER_PREFIX + ORIGINAL_INDICATOR + oriHunkLineNo + RANGE_SEPARATOR + oriHunkSize + ' ' +
+        NEW_INDICATOR + newHunkLineNo + RANGE_SEPARATOR + newHunkSize + HEADER_SUFFIX + NEW_LINE
 
       // Build the diff hunk content
-      while (ori_hunk_start < ori_hunk_end || new_hunk_start < new_hunk_end) {
-        if (ori_hunk_start < ori_hunk_end && ori_is_in_lcs[ori_hunk_start] === true && new_is_in_lcs[
-            new_hunk_start] === true) {
+      while (oriHunkStart < oriHunkEnd || newHunkStart < newHunkEnd) {
+        if (oriHunkStart < oriHunkEnd && oriIsInLcs[oriHunkStart] === true && newIsInLcs[newHunkStart] === true) {
           // The context line
-          unidiff += CONTEXT_INDICATOR + ori_lines[ori_hunk_start] + NEW_LINE
-          ori_hunk_start++
-          new_hunk_start++
-        } else if (ori_hunk_start < ori_hunk_end && ori_is_in_lcs[ori_hunk_start] === false) {
+          unidiff += CONTEXT_INDICATOR + oriLines[oriHunkStart] + NEW_LINE
+          oriHunkStart++
+          newHunkStart++
+        } else if (oriHunkStart < oriHunkEnd && oriIsInLcs[oriHunkStart] === false) {
           // The deletion line
-          unidiff += DELETION_INDICATOR + ori_lines[ori_hunk_start] + NEW_LINE
-          ori_hunk_start++
-        } else if (new_hunk_start < new_hunk_end && new_is_in_lcs[new_hunk_start] === false) {
+          unidiff += DELETION_INDICATOR + oriLines[oriHunkStart] + NEW_LINE
+          oriHunkStart++
+        } else if (newHunkStart < newHunkEnd && newIsInLcs[newHunkStart] === false) {
           // The additional line
-          unidiff += ADDITION_INDICATOR + new_lines[new_hunk_start] + NEW_LINE
-          new_hunk_start++
+          unidiff += ADDITION_INDICATOR + newLines[newHunkStart] + NEW_LINE
+          newHunkStart++
         }
       }
 
       // Update hunk position and leading context
-      ori_hunk_start = i
-      new_hunk_start = j
-      leading_context = trailing_context
+      oriHunkStart = i
+      newHunkStart = j
+      leadingContext = trailingContext
     }
   }
 
