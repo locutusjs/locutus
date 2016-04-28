@@ -9,13 +9,15 @@ module.exports = function implode (glue, pieces) {
   //   example 2: implode(' ', {first:'Kevin', last: 'van Zonneveld'})
   //   returns 2: 'Kevin van Zonneveld'
 
-  var i = '',
-    retVal = '',
-    tGlue = ''
+  var i = ''
+  var retVal = ''
+  var tGlue = ''
+
   if (arguments.length === 1) {
     pieces = glue
     glue = ''
   }
+
   if (typeof pieces === 'object') {
     if (Object.prototype.toString.call(pieces) === '[object Array]') {
       return pieces.join(glue)
@@ -26,5 +28,6 @@ module.exports = function implode (glue, pieces) {
     }
     return retVal
   }
+
   return pieces
 }

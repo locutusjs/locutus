@@ -8,9 +8,9 @@ module.exports = function hex2bin (s) {
   //   example 3: hex2bin('2f1q')
   //   returns 3: false
 
-  var ret = [],
-    i = 0,
-    l
+  var ret = []
+  var i = 0
+  var l
 
   s += ''
 

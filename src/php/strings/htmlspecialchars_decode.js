@@ -1,4 +1,4 @@
-module.exports = function htmlspecialchars_decode (string, quote_style) { // eslint-disable-line camelcase
+module.exports = function htmlspecialchars_decode (string, quoteStyle) { // eslint-disable-line camelcase
   //       discuss at: http://locutusjs.io/php/htmlspecialchars_decode/
   //      original by: Mirek Slugen
   //      improved by: Kevin van Zonneveld (http://kvz.io)
@@ -19,11 +19,12 @@ module.exports = function htmlspecialchars_decode (string, quote_style) { // esl
   //        example 2: htmlspecialchars_decode("&amp;quot;")
   //        returns 2: '&quot;'
 
-  var optTemp = 0,
-    i = 0,
-    noquotes = false
-  if (typeof quote_style === 'undefined') {
-    quote_style = 2
+  var optTemp = 0
+  var i = 0
+  var noquotes = false
+
+  if (typeof quoteStyle === 'undefined') {
+    quoteStyle = 2
   }
   string = string.toString()
     .replace(/&lt;/g, '<')
@@ -36,23 +37,23 @@ module.exports = function htmlspecialchars_decode (string, quote_style) { // esl
     'ENT_QUOTES': 3,
     'ENT_IGNORE': 4
   }
-  if (quote_style === 0) {
+  if (quoteStyle === 0) {
     noquotes = true
   }
-  if (typeof quote_style !== 'number') {
+  if (typeof quoteStyle !== 'number') {
     // Allow for a single string or an array of string flags
-    quote_style = [].concat(quote_style)
-    for (i = 0; i < quote_style.length; i++) {
+    quoteStyle = [].concat(quoteStyle)
+    for (i = 0; i < quoteStyle.length; i++) {
       // Resolve string input to bitwise e.g. 'PATHINFO_EXTENSION' becomes 4
-      if (OPTS[quote_style[i]] === 0) {
+      if (OPTS[quoteStyle[i]] === 0) {
         noquotes = true
-      } else if (OPTS[quote_style[i]]) {
-        optTemp = optTemp | OPTS[quote_style[i]]
+      } else if (OPTS[quoteStyle[i]]) {
+        optTemp = optTemp | OPTS[quoteStyle[i]]
       }
     }
-    quote_style = optTemp
+    quoteStyle = optTemp
   }
-  if (quote_style & OPTS.ENT_HTML_QUOTE_SINGLE) {
+  if (quoteStyle & OPTS.ENT_HTML_QUOTE_SINGLE) {
     string = string.replace(/&#0*39;/g, "'") // PHP doesn't currently escape if more than one 0, but it should
     // string = string.replace(/&apos;|&#x0*27;/g, "'"); // This would also be useful here, but not a part of PHP
   }

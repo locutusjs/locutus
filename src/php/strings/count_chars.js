@@ -11,9 +11,9 @@ module.exports = function count_chars (str, mode) { // eslint-disable-line camel
   //   example 2: count_chars("Hello World!", 1)
   //   returns 2: {32:1,33:1,72:1,87:1,100:1,101:1,108:3,111:2,114:1}
 
-  var result = {},
-    resultArr = [],
-    i
+  var result = {}
+  var resultArr = []
+  var i
 
   str = ('' + str)
     .split('')
@@ -28,26 +28,20 @@ module.exports = function count_chars (str, mode) { // eslint-disable-line camel
   }
 
   if (mode === 2 || mode === 4) {
-
     for (i = 0; i !== str.length; i += 1) {
       delete result[str[i].charCodeAt(0)]
     }
     for (i in result) {
       result[i] = (mode === 4) ? String.fromCharCode(i) : 0
     }
-
   } else if (mode === 3) {
-
     for (i = 0; i !== str.length; i += 1) {
       result[i] = str[i].slice(0, 1)
     }
-
   } else {
-
     for (i = 0; i !== str.length; i += 1) {
       result[str[i].charCodeAt(0)] = str[i].length
     }
-
   }
   if (mode < 3) {
     return result
@@ -56,5 +50,6 @@ module.exports = function count_chars (str, mode) { // eslint-disable-line camel
   for (i in result) {
     resultArr.push(result[i])
   }
+
   return resultArr.join('')
 }

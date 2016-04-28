@@ -9,7 +9,7 @@ module.exports = function md5 (str) {
   //   example 1: md5('Kevin van Zonneveld')
   //   returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'
 
-  var utf8_encode = require('../xml/utf8_encode')
+  var utf8Encode = require('../xml/utf8_encode')
   var xl
 
   var rotateLeft = function (lValue, iShiftBits) {
@@ -73,9 +73,9 @@ module.exports = function md5 (str) {
   var convertToWordArray = function (str) {
     var lWordCount
     var lMessageLength = str.length
-    var lNumberOfWords_temp1 = lMessageLength + 8
-    var lNumberOfWords_temp2 = (lNumberOfWords_temp1 - (lNumberOfWords_temp1 % 64)) / 64
-    var lNumberOfWords = (lNumberOfWords_temp2 + 1) * 16
+    var lNumberOfWordsTemp1 = lMessageLength + 8
+    var lNumberOfWordsTemp2 = (lNumberOfWordsTemp1 - (lNumberOfWordsTemp1 % 64)) / 64
+    var lNumberOfWords = (lNumberOfWordsTemp2 + 1) * 16
     var lWordArray = new Array(lNumberOfWords - 1)
     var lBytePosition = 0
     var lByteCount = 0
@@ -94,36 +94,47 @@ module.exports = function md5 (str) {
   }
 
   var wordToHex = function (lValue) {
-    var wordToHexValue = '',
-      wordToHexValue_temp = '',
-      lByte, lCount
+    var wordToHexValue = ''
+    var wordToHexValueTemp = ''
+    var lByte
+    var lCount
+
     for (lCount = 0; lCount <= 3; lCount++) {
       lByte = (lValue >>> (lCount * 8)) & 255
-      wordToHexValue_temp = '0' + lByte.toString(16)
-      wordToHexValue = wordToHexValue + wordToHexValue_temp.substr(wordToHexValue_temp.length - 2, 2)
+      wordToHexValueTemp = '0' + lByte.toString(16)
+      wordToHexValue = wordToHexValue + wordToHexValueTemp.substr(wordToHexValueTemp.length - 2, 2)
     }
     return wordToHexValue
   }
 
-  var x = [],
-    k, AA, BB, CC, DD, a, b, c, d, S11 = 7,
-    S12 = 12,
-    S13 = 17,
-    S14 = 22,
-    S21 = 5,
-    S22 = 9,
-    S23 = 14,
-    S24 = 20,
-    S31 = 4,
-    S32 = 11,
-    S33 = 16,
-    S34 = 23,
-    S41 = 6,
-    S42 = 10,
-    S43 = 15,
-    S44 = 21
+  var x = []
+  var k
+  var AA
+  var BB
+  var CC
+  var DD
+  var a
+  var b
+  var c
+  var d
+  var S11 = 7
+  var S12 = 12
+  var S13 = 17
+  var S14 = 22
+  var S21 = 5
+  var S22 = 9
+  var S23 = 14
+  var S24 = 20
+  var S31 = 4
+  var S32 = 11
+  var S33 = 16
+  var S34 = 23
+  var S41 = 6
+  var S42 = 10
+  var S43 = 15
+  var S44 = 21
 
-  str = utf8_encode(str)
+  str = utf8Encode(str)
   x = convertToWordArray(str)
   a = 0x67452301
   b = 0xEFCDAB89

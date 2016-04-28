@@ -1,4 +1,4 @@
-module.exports = function get_html_translation_table (table, quote_style) { // eslint-disable-line camelcase
+module.exports = function get_html_translation_table (table, quoteStyle) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/get_html_translation_table/
   // original by: Philip Peterson
   //  revised by: Kevin van Zonneveld (http://kvz.io)
@@ -19,13 +19,13 @@ module.exports = function get_html_translation_table (table, quote_style) { // e
   //   example 1: get_html_translation_table('HTML_SPECIALCHARS')
   //   returns 1: {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
 
-  var entities = {},
-    hash_map = {},
-    decimal
-  var constMappingTable = {},
-    constMappingQuoteStyle = {}
-  var useTable = {},
-    useQuoteStyle = {}
+  var entities = {}
+  var hashMap = {}
+  var decimal
+  var constMappingTable = {}
+  var constMappingQuoteStyle = {}
+  var useTable = {}
+  var useQuoteStyle = {}
 
   // Translate arguments
   constMappingTable[0] = 'HTML_SPECIALCHARS'
@@ -34,13 +34,20 @@ module.exports = function get_html_translation_table (table, quote_style) { // e
   constMappingQuoteStyle[2] = 'ENT_COMPAT'
   constMappingQuoteStyle[3] = 'ENT_QUOTES'
 
-  useTable = !isNaN(table) ? constMappingTable[table] : table ? table.toUpperCase() : 'HTML_SPECIALCHARS'
-  useQuoteStyle = !isNaN(quote_style) ? constMappingQuoteStyle[quote_style] : quote_style ? quote_style.toUpperCase() :
-    'ENT_COMPAT'
+  useTable = !isNaN(table)
+    ? constMappingTable[table]
+    : table
+      ? table.toUpperCase()
+      : 'HTML_SPECIALCHARS'
+
+  useQuoteStyle = !isNaN(quoteStyle)
+    ? constMappingQuoteStyle[quoteStyle]
+    : quoteStyle
+      ? quoteStyle.toUpperCase()
+      : 'ENT_COMPAT'
 
   if (useTable !== 'HTML_SPECIALCHARS' && useTable !== 'HTML_ENTITIES') {
     throw new Error('Table: ' + useTable + ' not supported')
-    // return false;
   }
 
   entities['38'] = '&amp;'
@@ -155,9 +162,9 @@ module.exports = function get_html_translation_table (table, quote_style) { // e
   // ascii decimals to real symbols
   for (decimal in entities) {
     if (entities.hasOwnProperty(decimal)) {
-      hash_map[String.fromCharCode(decimal)] = entities[decimal]
+      hashMap[String.fromCharCode(decimal)] = entities[decimal]
     }
   }
 
-  return hash_map
+  return hashMap
 }

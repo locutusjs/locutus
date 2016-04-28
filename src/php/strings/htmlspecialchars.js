@@ -1,4 +1,4 @@
-module.exports = function htmlspecialchars (string, quote_style, charset, double_encode) {
+module.exports = function htmlspecialchars (string, quoteStyle, charset, doubleEncode) {
   //       discuss at: http://locutusjs.io/php/htmlspecialchars/
   //      original by: Mirek Slugen
   //      improved by: Kevin van Zonneveld (http://kvz.io)
@@ -19,19 +19,22 @@ module.exports = function htmlspecialchars (string, quote_style, charset, double
   //        example 3: htmlspecialchars('my "&entity;" is still here', null, null, false)
   //        returns 3: 'my &quot;&entity;&quot; is still here'
 
-  var optTemp = 0,
-    i = 0,
-    noquotes = false
-  if (typeof quote_style === 'undefined' || quote_style === null) {
-    quote_style = 2
+  var optTemp = 0
+  var i = 0
+  var noquotes = false
+  if (typeof quoteStyle === 'undefined' || quoteStyle === null) {
+    quoteStyle = 2
   }
   string = string || ''
   string = string.toString()
-  if (double_encode !== false) {
+
+  if (doubleEncode !== false) {
     // Put this first to avoid double-encoding
     string = string.replace(/&/g, '&amp;')
   }
-  string = string.replace(/</g, '&lt;')
+
+  string = string
+    .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
 
   var OPTS = {
@@ -42,23 +45,23 @@ module.exports = function htmlspecialchars (string, quote_style, charset, double
     'ENT_QUOTES': 3,
     'ENT_IGNORE': 4
   }
-  if (quote_style === 0) {
+  if (quoteStyle === 0) {
     noquotes = true
   }
-  if (typeof quote_style !== 'number') {
+  if (typeof quoteStyle !== 'number') {
     // Allow for a single string or an array of string flags
-    quote_style = [].concat(quote_style)
-    for (i = 0; i < quote_style.length; i++) {
+    quoteStyle = [].concat(quoteStyle)
+    for (i = 0; i < quoteStyle.length; i++) {
       // Resolve string input to bitwise e.g. 'ENT_IGNORE' becomes 4
-      if (OPTS[quote_style[i]] === 0) {
+      if (OPTS[quoteStyle[i]] === 0) {
         noquotes = true
-      } else if (OPTS[quote_style[i]]) {
-        optTemp = optTemp | OPTS[quote_style[i]]
+      } else if (OPTS[quoteStyle[i]]) {
+        optTemp = optTemp | OPTS[quoteStyle[i]]
       }
     }
-    quote_style = optTemp
+    quoteStyle = optTemp
   }
-  if (quote_style & OPTS.ENT_HTML_QUOTE_SINGLE) {
+  if (quoteStyle & OPTS.ENT_HTML_QUOTE_SINGLE) {
     string = string.replace(/'/g, '&#039;')
   }
   if (!noquotes) {
