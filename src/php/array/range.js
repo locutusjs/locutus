@@ -27,7 +27,7 @@ module.exports = function range (low, high, step) {
     endval = (isNaN(high) ? 0 : high)
   }
 
-  plus = ((inival > endval) ? false : true)
+  plus = !(inival > endval)
   if (plus) {
     while (inival <= endval) {
       matrix.push(((chars) ? String.fromCharCode(inival) : inival))

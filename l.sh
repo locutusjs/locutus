@@ -20,3 +20,4 @@ basefile="$(basename "${filepath}")"
 mkdir -p "${__dir}/_legacy/${subdirNoSrc}/"
 git mv "${filepath}" "${__dir}/_legacy/${subdirNoSrc}/"
 git rm -f "${__dir}/test/languages/${subdirNoSrc}/test-${basefile}"
+npm run build:indices
