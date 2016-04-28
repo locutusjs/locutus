@@ -4,7 +4,8 @@ module.exports = function array_map (callback) { // eslint-disable-line camelcas
   // improved by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //    input by: thekid
-  //      note 1: If the callback is a string (or object, if an array is supplied), it can only work if the function name is in the global context
+  //      note 1: If the callback is a string (or object, if an array is supplied),
+  //      note 1: it can only work if the function name is in the global context
   //   example 1: array_map( function (a){return (a * a * a)}, [1, 2, 3, 4, 5] )
   //   returns 1: [ 1, 8, 27, 64, 125 ]
 

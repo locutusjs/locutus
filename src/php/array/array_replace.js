@@ -13,7 +13,9 @@ module.exports = function array_replace (arr) { // eslint-disable-line camelcase
     throw new Error('There should be at least 2 arguments passed to array_replace()')
   }
 
-  // Although docs state that the arguments are passed in by reference, it seems they are not altered, but rather the copy that is returned (just guessing), so we make a copy here, instead of acting on arr itself
+  // Although docs state that the arguments are passed in by reference,
+  // it seems they are not altered, but rather the copy that is returned
+  // (just guessing), so we make a copy here, instead of acting on arr itself
   for (p in arr) {
     retObj[p] = arr[p]
   }

@@ -34,7 +34,8 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
    * Note: this is just the shared library file and does not include the php-style functions.
    *       use bcmath{-min}.js for functions like bcadd, bcsub etc.
    *
-   * Feel free to use how-ever you want, just email any bug-fixes/improvements to the sourceforge project:
+   * Feel free to use how-ever you want, just email any bug-fixes/improvements
+   * to the sourceforge project:
    *
    *
    * Ported from the PHP5 bcmath extension source code,
@@ -151,9 +152,7 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
 
           while (size-- > 0) {
             value = num[nptr--] * digit + carry // value = *nptr-- * digit + carry;
-              // result[rptr--] = Libbcmath.cint(value % Libbcmath.BASE); // @CHECK cint //*rptr-- = value % BASE;
             result[rptr--] = value % Libbcmath.BASE // @CHECK cint //*rptr-- = value % BASE;
-              // carry = Libbcmath.cint(value / Libbcmath.BASE);   // @CHECK cint //carry = value / BASE;
             carry = Math.floor(value / Libbcmath.BASE) // @CHECK cint //carry = value / BASE;
           }
 
@@ -195,15 +194,20 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
       */
 
       /* Test for divide by 1.  If it is we must truncate. */
-      // todo: check where scale > 0 too.. can't see why not (ie bc_is_zero - add bc_is_one function)
+      // @todo: check where scale > 0 too.. can't see why not
+      // (ie bc_is_zero - add bc_is_one function)
       if (n2.n_scale === 0) {
         if (n2.n_len === 1 && n2.n_value[0] === 1) {
           qval = Libbcmath.bc_new_num(n1.n_len, scale) // qval = bc_new_num (n1->n_len, scale);
           qval.n_sign = (n1.n_sign === n2.n_sign ? Libbcmath.PLUS : Libbcmath.MINUS)
-          Libbcmath.memset(qval.n_value, n1.n_len, 0, scale) // memset (&qval->n_value[n1->n_len],0,scale);
-          Libbcmath.memcpy(qval.n_value, 0, n1.n_value, 0, n1.n_len + Libbcmath.MIN(n1.n_scale, scale)) // memcpy (qval->n_value, n1->n_value, n1->n_len + MIN(n1->n_scale,scale));
-            // can we return here? not in c src, but can't see why-not.
-            // return qval;
+          // memset (&qval->n_value[n1->n_len],0,scale):
+          Libbcmath.memset(qval.n_value, n1.n_len, 0, scale)
+          // memcpy (qval->n_value, n1->n_value, n1->n_len + MIN(n1->n_scale,scale)):
+          Libbcmath.memcpy(
+            qval.n_value, 0, n1.n_value, 0, n1.n_len + Libbcmath.MIN(n1.n_scale, scale)
+          )
+          // can we return here? not in c src, but can't see why-not.
+          // return qval;
         }
       }
 
@@ -223,21 +227,30 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
         extra = 0
       }
 
-      num1 = Libbcmath.safe_emalloc(1, n1.n_len + n1.n_scale, extra + 2) // num1 = (unsigned char *) safe_emalloc (1, n1.n_len+n1.n_scale, extra+2);
+      // num1 = (unsigned char *) safe_emalloc (1, n1.n_len+n1.n_scale, extra+2):
+      num1 = Libbcmath.safe_emalloc(1, n1.n_len + n1.n_scale, extra + 2)
       if (num1 === null) {
         Libbcmath.bc_out_of_memory()
       }
-      Libbcmath.memset(num1, 0, 0, n1.n_len + n1.n_scale + extra + 2) // memset (num1, 0, n1->n_len+n1->n_scale+extra+2);
-      Libbcmath.memcpy(num1, 1, n1.n_value, 0, n1.n_len + n1.n_scale) // memcpy (num1+1, n1.n_value, n1.n_len+n1.n_scale);
-      len2 = n2.n_len + scale2 // len2 = n2->n_len + scale2;
-      num2 = Libbcmath.safe_emalloc(1, len2, 1) // num2 = (unsigned char *) safe_emalloc (1, len2, 1);
+      // memset (num1, 0, n1->n_len+n1->n_scale+extra+2):
+      Libbcmath.memset(num1, 0, 0, n1.n_len + n1.n_scale + extra + 2)
+      // memcpy (num1+1, n1.n_value, n1.n_len+n1.n_scale):
+      Libbcmath.memcpy(num1, 1, n1.n_value, 0, n1.n_len + n1.n_scale)
+      // len2 = n2->n_len + scale2:
+      len2 = n2.n_len + scale2
+      // num2 = (unsigned char *) safe_emalloc (1, len2, 1):
+      num2 = Libbcmath.safe_emalloc(1, len2, 1)
       if (num2 === null) {
         Libbcmath.bc_out_of_memory()
       }
-      Libbcmath.memcpy(num2, 0, n2.n_value, 0, len2) // memcpy (num2, n2.n_value, len2);
-      num2[len2] = 0 // *(num2+len2) = 0;
-      n2ptr = 0 // n2ptr = num2;
-      while (num2[n2ptr] === 0) { // while (*n2ptr === 0)
+      // memcpy (num2, n2.n_value, len2):
+      Libbcmath.memcpy(num2, 0, n2.n_value, 0, len2)
+      // *(num2+len2) = 0:
+      num2[len2] = 0
+      // n2ptr = num2:
+      n2ptr = 0
+      // while (*n2ptr === 0):
+      while (num2[n2ptr] === 0) {
         n2ptr++
         len2--
       }
@@ -256,22 +269,29 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
       }
 
       /* Allocate and zero the storage for the quotient. */
-      qval = Libbcmath.bc_new_num(qdigits - scale, scale) // qval = bc_new_num (qdigits-scale,scale);
-      Libbcmath.memset(qval.n_value, 0, 0, qdigits) // memset (qval->n_value, 0, qdigits);
+      // qval = bc_new_num (qdigits-scale,scale);
+      qval = Libbcmath.bc_new_num(qdigits - scale, scale)
+      // memset (qval->n_value, 0, qdigits);
+      Libbcmath.memset(qval.n_value, 0, 0, qdigits)
         /* Allocate storage for the temporary storage mval. */
-      mval = Libbcmath.safe_emalloc(1, len2, 1) // mval = (unsigned char *) safe_emalloc (1, len2, 1);
+      // mval = (unsigned char *) safe_emalloc (1, len2, 1);
+      mval = Libbcmath.safe_emalloc(1, len2, 1)
       if (mval === null) {
         Libbcmath.bc_out_of_memory()
       }
 
       /* Now for the full divide algorithm. */
       if (!zero) { /* Normalize */
-        // norm = Libbcmath.cint(10 / (Libbcmath.cint(n2.n_value[n2ptr]) + 1)); //norm =  10 / ((int)*n2ptr + 1);
+        // norm = Libbcmath.cint(10 / (Libbcmath.cint(n2.n_value[n2ptr]) + 1));
+        // norm =  10 / ((int)*n2ptr + 1)
         norm = Math.floor(10 / (n2.n_value[n2ptr] + 1)) // norm =  10 / ((int)*n2ptr + 1);
         if (norm !== 1) {
-          Libbcmath._one_mult(num1, 0, len1 + scale1 + extra + 1, norm, num1, 0) // Libbcmath._one_mult(num1, len1+scale1+extra+1, norm, num1);
-          Libbcmath._one_mult(n2.n_value, n2ptr, len2, norm, n2.n_value, n2ptr) // Libbcmath._one_mult(n2ptr, len2, norm, n2ptr);
-            // @CHECK Is the pointer affected by the call? if so, maybe need to adjust points on return?
+          // Libbcmath._one_mult(num1, len1+scale1+extra+1, norm, num1);
+          Libbcmath._one_mult(num1, 0, len1 + scale1 + extra + 1, norm, num1, 0)
+          // Libbcmath._one_mult(n2ptr, len2, norm, n2ptr);
+          Libbcmath._one_mult(n2.n_value, n2ptr, len2, norm, n2.n_value, n2ptr)
+          // @todo: Check: Is the pointer affected by the call? if so,
+          // maybe need to adjust points on return?
         }
 
         /* Initialize divide loop. */
@@ -288,13 +308,17 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
             qguess = 9
           } else {
             qguess = Math.floor((num1[qdig] * 10 + num1[qdig + 1]) / n2.n_value[n2ptr])
-          } /* Test qguess. */
+          }
+          /* Test qguess. */
 
-          if (n2.n_value[n2ptr + 1] * qguess > (num1[qdig] * 10 + num1[qdig + 1] - n2.n_value[n2ptr] * qguess) *
-            10 + num1[qdig + 2]) { // if (n2ptr[1]*qguess > (num1[qdig]*10 + num1[qdig+1] - *n2ptr*qguess)*10 + num1[qdig+2]) {
-            qguess-- /* And again. */
-            if (n2.n_value[n2ptr + 1] * qguess > (num1[qdig] * 10 + num1[qdig + 1] - n2.n_value[n2ptr] * qguess) *
-              10 + num1[qdig + 2]) { // if (n2ptr[1]*qguess > (num1[qdig]*10 + num1[qdig+1] - *n2ptr*qguess)*10 + num1[qdig+2])
+          if (n2.n_value[n2ptr + 1] * qguess >
+            (num1[qdig] * 10 + num1[qdig + 1] - n2.n_value[n2ptr] * qguess) *
+            10 + num1[qdig + 2]) {
+            qguess--
+            /* And again. */
+            if (n2.n_value[n2ptr + 1] * qguess >
+              (num1[qdig] * 10 + num1[qdig + 1] - n2.n_value[n2ptr] * qguess) *
+              10 + num1[qdig + 2]) {
               qguess--
             }
           }
@@ -303,18 +327,22 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
           borrow = 0
           if (qguess !== 0) {
             mval[0] = 0 //* mval = 0; // @CHECK is this to fix ptr2 < 0?
-            Libbcmath._one_mult(n2.n_value, n2ptr, len2, qguess, mval, 1) // _one_mult (n2ptr, len2, qguess, mval+1); // @CHECK
+            // _one_mult (n2ptr, len2, qguess, mval+1); // @CHECK
+            Libbcmath._one_mult(n2.n_value, n2ptr, len2, qguess, mval, 1)
             ptr1 = qdig + len2 // (unsigned char *) num1+qdig+len2;
             ptr2 = len2 // (unsigned char *) mval+len2;
-              // @CHECK: Does a negative pointer return null?
-              //         ptr2 can be < 0 here as ptr1 = len2, thus count < len2+1 will always fail ?
+            // @todo: CHECK: Does a negative pointer return null?
+            // ptr2 can be < 0 here as ptr1 = len2, thus count < len2+1 will always fail ?
             for (count = 0; count < len2 + 1; count++) {
               if (ptr2 < 0) {
-                // val = Libbcmath.cint(num1[ptr1]) - 0 - borrow;    //val = (int) *ptr1 - (int) *ptr2-- - borrow;
+                // val = Libbcmath.cint(num1[ptr1]) - 0 - borrow;
+                // val = (int) *ptr1 - (int) *ptr2-- - borrow;
                 val = num1[ptr1] - 0 - borrow // val = (int) *ptr1 - (int) *ptr2-- - borrow;
               } else {
-                // val = Libbcmath.cint(num1[ptr1]) - Libbcmath.cint(mval[ptr2--]) - borrow;    //val = (int) *ptr1 - (int) *ptr2-- - borrow;
-                val = num1[ptr1] - mval[ptr2--] - borrow // val = (int) *ptr1 - (int) *ptr2-- - borrow;
+                // val = Libbcmath.cint(num1[ptr1]) - Libbcmath.cint(mval[ptr2--]) - borrow;
+                // val = (int) *ptr1 - (int) *ptr2-- - borrow;
+                // val = (int) *ptr1 - (int) *ptr2-- - borrow;
+                val = num1[ptr1] - mval[ptr2--] - borrow
               }
               if (val < 0) {
                 val += 10
@@ -334,11 +362,15 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
             carry = 0
             for (count = 0; count < len2; count++) {
               if (ptr2 < 0) {
-                // val = Libbcmath.cint(num1[ptr1]) + 0 + carry; //val = (int) *ptr1 + (int) *ptr2-- + carry;
-                val = num1[ptr1] + 0 + carry // val = (int) *ptr1 + (int) *ptr2-- + carry;
+                // val = Libbcmath.cint(num1[ptr1]) + 0 + carry;
+                // val = (int) *ptr1 + (int) *ptr2-- + carry;
+                // val = (int) *ptr1 + (int) *ptr2-- + carry;
+                val = num1[ptr1] + 0 + carry
               } else {
-                // val = Libbcmath.cint(num1[ptr1]) + Libbcmath.cint(n2.n_value[ptr2--]) + carry; //val = (int) *ptr1 + (int) *ptr2-- + carry;
-                val = num1[ptr1] + n2.n_value[ptr2--] + carry // val = (int) *ptr1 + (int) *ptr2-- + carry;
+                // val = Libbcmath.cint(num1[ptr1]) + Libbcmath.cint(n2.n_value[ptr2--]) + carry;
+                // val = (int) *ptr1 + (int) *ptr2-- + carry;
+                // val = (int) *ptr1 + (int) *ptr2-- + carry;
+                val = num1[ptr1] + n2.n_value[ptr2--] + carry
               }
               if (val > 9) {
                 val -= 10
@@ -349,8 +381,10 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
               num1[ptr1--] = val //* ptr1-- = val;
             }
             if (carry === 1) {
-              // num1[ptr1] = Libbcmath.cint((num1[ptr1] + 1) % 10);  // *ptr1 = (*ptr1 + 1) % 10; // @CHECK
-              num1[ptr1] = (num1[ptr1] + 1) % 10 // *ptr1 = (*ptr1 + 1) % 10; // @CHECK
+              // num1[ptr1] = Libbcmath.cint((num1[ptr1] + 1) % 10);
+              // *ptr1 = (*ptr1 + 1) % 10; // @CHECK
+              // *ptr1 = (*ptr1 + 1) % 10; // @CHECK
+              num1[ptr1] = (num1[ptr1] + 1) % 10
             }
           }
 
@@ -392,7 +426,9 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
       len1 = n1.n_len + n1.n_scale
       len2 = n2.n_len + n2.n_scale
       fullScale = n1.n_scale + n2.n_scale
-      prodScale = Libbcmath.MIN(fullScale, Libbcmath.MAX(scale, Libbcmath.MAX(n1.n_scale, n2.n_scale)))
+      prodScale = Libbcmath.MIN(
+        fullScale, Libbcmath.MAX(scale, Libbcmath.MAX(n1.n_scale, n2.n_scale))
+      )
 
       // pval = Libbcmath.bc_init_num(); // allow pass by ref
       // Do the multiply
@@ -436,12 +472,16 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
 
       // Here is the loop...
       for (indx = 0; indx < prodlen - 1; indx++) {
-        n1ptr = n1end - Libbcmath.MAX(0, indx - n2len + 1) // (char *) (n1end - MAX(0, indx-n2len+1));
-        n2ptr = n2end - Libbcmath.MIN(indx, n2len - 1) // (char *) (n2end - MIN(indx, n2len-1));
+        // (char *) (n1end - MAX(0, indx-n2len+1));
+        n1ptr = n1end - Libbcmath.MAX(0, indx - n2len + 1)
+        // (char *) (n2end - MIN(indx, n2len-1));
+        n2ptr = n2end - Libbcmath.MIN(indx, n2len - 1)
         while ((n1ptr >= 0) && (n2ptr <= n2end)) {
-          sum += n1.n_value[n1ptr--] * n2.n_value[n2ptr++] // sum += *n1ptr-- * *n2ptr++;
+          // sum += *n1ptr-- * *n2ptr++;
+          sum += n1.n_value[n1ptr--] * n2.n_value[n2ptr++]
         }
-        prod.n_value[pvptr--] = Math.floor(sum % Libbcmath.BASE) //* pvptr-- = sum % BASE;
+        //* pvptr-- = sum % BASE;
+        prod.n_value[pvptr--] = Math.floor(sum % Libbcmath.BASE)
         sum = Math.floor(sum / Libbcmath.BASE) // sum = sum / BASE;
       }
       prod.n_value[pvptr] = sum //* pvptr = sum;
@@ -466,7 +506,8 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
       }
 
       // Set up pointers and others
-      accp = accum.n_len + accum.n_scale - shift - 1 // (signed char *)(accum->n_value + accum->n_len + accum->n_scale - shift - 1);
+      // (signed char *)(accum->n_value + accum->n_len + accum->n_scale - shift - 1);
+      accp = accum.n_len + accum.n_scale - shift - 1
       valp = val.n_len = 1 // (signed char *)(val->n_value + val->n_len - 1);
       carry = 0
       if (sub) {
@@ -530,7 +571,9 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
       var n, prodlen, m1zero // int
       var d1len, d2len // int
         // Base case?
-      if ((ulen + vlen) < Libbcmath.MUL_BASE_DIGITS || ulen < Libbcmath.MUL_SMALL_DIGITS || vlen < Libbcmath.MUL_SMALL_DIGITS) {
+      if ((ulen + vlen) < Libbcmath.MUL_BASE_DIGITS ||
+        ulen < Libbcmath.MUL_SMALL_DIGITS ||
+        vlen < Libbcmath.MUL_SMALL_DIGITS) {
         return Libbcmath._bc_simp_mul(u, ulen, v, vlen, fullScale)
       }
 
@@ -764,15 +807,6 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
       sumDigits = Libbcmath.MAX(n1.n_len, n2.n_len) + 1
       sum = Libbcmath.bc_new_num(sumDigits, Libbcmath.MAX(sumScale, scaleMin))
 
-      /* Not needed?
-    if (scaleMin > sumScale) {
-      sumptr = (char *) (sum->n_value + sumScale + sumDigits);
-      for (count = scaleMin - sumScale; count > 0; count--) {
-        *sumptr++ = 0;
-      }
-    }
-    */
-
       // Start with the fraction part.  Initialize the pointers.
       n1bytes = n1.n_scale
       n2bytes = n2.n_scale
@@ -780,7 +814,8 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
       n2ptr = (n2.n_len + n2bytes - 1)
       sumptr = (sumScale + sumDigits - 1)
 
-      // Add the fraction part.  First copy the longer fraction (ie when adding 1.2345 to 1 we know .2345 is correct already) .
+      // Add the fraction part.  First copy the longer fraction
+      // (ie when adding 1.2345 to 1 we know .2345 is correct already) .
       if (n1bytes !== n2bytes) {
         if (n1bytes > n2bytes) {
           // n1 has more dp then n2
@@ -863,15 +898,16 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
     /**
      * Perform a subtraction
      *
-     // Perform subtraction: N2 is subtracted from N1 and the value is
-     //  returned.  The signs of N1 and N2 are ignored.  Also, N1 is
-     //  assumed to be larger than N2.  SCALE_MIN is the minimum scale
-     //  of the result.
+     * Perform subtraction: N2 is subtracted from N1 and the value is
+     *  returned.  The signs of N1 and N2 are ignored.  Also, N1 is
+     *  assumed to be larger than N2.  SCALE_MIN is the minimum scale
+     *  of the result.
      *
      * Basic school maths says to subtract 2 numbers..
      * 1. make them the same length, the decimal places, and the integer part
      * 2. start from the right and subtract the two numbers from each other
-     * 3. if the sum of the 2 numbers < 0, carry -1 to the next set and add 10 (ie 18 > carry 1 becomes 8). thus 0.9 + 0.9 = 1.8
+     * 3. if the sum of the 2 numbers < 0, carry -1 to the next set and add 10
+     * (ie 18 > carry 1 becomes 8). thus 0.9 + 0.9 = 1.8
      *
      * @param {bc_num} n1
      * @param {bc_num} n2
@@ -994,7 +1030,8 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
       return new Libbcmath.bc_new_num(1, 0) // eslint-disable-line new-cap
     },
 
-    _bc_rm_leading_zeros: function (num) { /* We can move n_value to point to the first non zero digit! */
+    _bc_rm_leading_zeros: function (num) {
+      /* We can move n_value to point to the first non zero digit! */
       while ((num.n_value[0] === 0) && (num.n_len > 1)) {
         num.n_value.shift()
         num.n_len--
@@ -1163,7 +1200,8 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
 
     /**
      * Replacement c function
-     * Obviously can't work like c does, so we've added an "offset" param so you could do memcpy(dest+1, src, len) as memcpy(dest, 1, src, len)
+     * Obviously can't work like c does, so we've added an "offset"
+     * param so you could do memcpy(dest+1, src, len) as memcpy(dest, 1, src, len)
      * Also only works on arrays
      */
     memcpy: function (dest, ptr, src, srcptr, len) {

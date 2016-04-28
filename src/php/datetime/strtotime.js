@@ -11,7 +11,8 @@ module.exports = function strtotime (text, now) {
   // bugfixed by: Wagner B. Soares
   // bugfixed by: Artur Tchernychev
   // bugfixed by: Stephan Bösch-Plepelits (http://github.com/plepe)
-  //      note 1: Examples all have a fixed timestamp to prevent tests to fail because of variable time(zones)
+  //      note 1: Examples all have a fixed timestamp to prevent
+  //      note 1: tests to fail because of variable time(zones)
   //   example 1: strtotime('+1 day', 1129633200)
   //   returns 1: 1129719600
   //   example 2: strtotime('+1 week 2 days 4 hours 2 seconds', 1129633200)
@@ -56,7 +57,16 @@ module.exports = function strtotime (text, now) {
   // dates with two-digit years differently
   // etc...etc...
   // ...therefore we manually parse lots of common date formats
-  match = text.match(/^(\d{1,4})([\-\.\/:])(\d{1,2})([\-\.\/:])(\d{1,4})(?:\s(\d{1,2}):(\d{2})?:?(\d{2})?)?(?:\s([A-Z]+)?)?$/)
+  var pattern = new RegExp([
+    '^(\\d{1,4})',
+    '([\\-\\.\\/:])',
+    '(\\d{1,2})',
+    '([\\-\\.\\/:])',
+    '(\\d{1,4})',
+    '(?:\\s(\\d{1,2}):(\\d{2})?:?(\\d{2})?)?',
+    '(?:\\s([A-Z]+)?)?$'
+  ].join(''))
+  match = text.match(pattern)
 
   if (match && match[2] === match[4]) {
     if (match[1] > 1901) {
@@ -181,7 +191,13 @@ module.exports = function strtotime (text, now) {
   //   2015-04-15 20:33:59+02
   //   2015-04-15 20:33:59z
   //   2015-04-15t20:33:59+02:00
-  match = text.match(/^([0-9]{4}-[0-9]{2}-[0-9]{2})[ t]([0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]+)?)([\+-][0-9]{2}(:[0-9]{2})?|z)/)
+  pattern = new RegExp([
+    '^([0-9]{4}-[0-9]{2}-[0-9]{2})',
+    '[ t]',
+    '([0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?)',
+    '([\\+-][0-9]{2}(:[0-9]{2})?|z)'
+  ].join(''))
+  match = text.match(pattern)
   if (match) {
     // fix time zone information
     if (match[4] === 'z') {
@@ -234,7 +250,9 @@ module.exports = function strtotime (text, now) {
   }
 
   function process (val) {
-    var splt = val.split(' ') // Todo: Reconcile this with regex using \s, taking into account browser issues with split and regexes
+    // @Todo: Reconcile this with regex using \s, taking into account
+    // browser issues with split and regexes
+    var splt = val.split(' ')
     var type = splt[0]
     var range = splt[1].substring(0, 3)
     var typeIsNumber = /\d+/.test(type)

@@ -12,11 +12,22 @@ module.exports = function array_multisort (arr) { // eslint-disable-line camelca
   //   example 3: var $president = [ 39, 6, 5, 10, 4, 35, 2 ]
   //   example 3: array_multisort($firstnames, 'SORT_DESC', 'SORT_STRING', $lastnames, 'SORT_ASC', 'SORT_STRING', $president, 'SORT_NUMERIC')
   //   returns 3: true
-  //      note 1: flags: Translation table for sort arguments. Each argument turns on certain bits in the flag byte through addition.
+  //      note 1: flags: Translation table for sort arguments.
+  //      note 1: Each argument turns on certain bits in the flag byte through addition.
   //      note 1: bits: HGFE DCBA
   //      note 1: args: Holds pointer to arguments for reassignment
 
-  var g, i, j, k, l, sal, vkey, elIndex, lastSorts, tmpArray, zlast
+  var g
+  var i
+  var j
+  var k
+  var l
+  var sal
+  var vkey
+  var elIndex
+  var lastSorts
+  var tmpArray
+  var zlast
 
   var sortFlag = [0]
   var thingsToSort = []
@@ -82,7 +93,8 @@ module.exports = function array_multisort (arr) { // eslint-disable-line camelca
   ]
 
   // Store first argument into sortArrs and sortKeys if an Object.
-  // First Argument should be either a Javascript Array or an Object, otherwise function would return FALSE like in PHP
+  // First Argument should be either a Javascript Array or an Object,
+  // otherwise function would return FALSE like in PHP
   if (Object.prototype.toString.call(arr) === '[object Array]') {
     sortArrs[0] = arr
   } else if (arr && typeof arr === 'object') {
@@ -96,13 +108,15 @@ module.exports = function array_multisort (arr) { // eslint-disable-line camelca
     return false
   }
 
-  // arrMainLength: Holds the length of the first array. All other arrays must be of equal length, otherwise function would return FALSE like in PHP
-  //
-  // sortComponents: Holds 2 indexes per every section of the array that can be sorted. As this is the start, the whole array can be sorted.
+  // arrMainLength: Holds the length of the first array.
+  // All other arrays must be of equal length, otherwise function would return FALSE like in PHP
+  // sortComponents: Holds 2 indexes per every section of the array
+  // that can be sorted. As this is the start, the whole array can be sorted.
   var arrMainLength = sortArrs[0].length
   var sortComponents = [0, arrMainLength]
 
-  // Loop through all other arguments, checking lengths and sort flags of arrays and adding them to the above variables.
+  // Loop through all other arguments, checking lengths and sort flags
+  // of arrays and adding them to the above variables.
   var argl = arguments.length
   for (j = 1; j < argl; j++) {
     if (Object.prototype.toString.call(arguments[j]) === '[object Array]') {
@@ -126,8 +140,10 @@ module.exports = function array_multisort (arr) { // eslint-disable-line camelca
       }
     } else if (typeof arguments[j] === 'string') {
       var lFlag = sortFlag.pop()
-      // Keep extra parentheses around latter flags check to avoid minimization leading to CDATA closer
-      if (typeof flags[arguments[j]] === 'undefined' || ((((flags[arguments[j]]) >>> 4) & (lFlag >>> 4)) > 0)) {
+      // Keep extra parentheses around latter flags check
+      // to avoid minimization leading to CDATA closer
+      if (typeof flags[arguments[j]] === 'undefined' ||
+        ((((flags[arguments[j]]) >>> 4) & (lFlag >>> 4)) > 0)) {
         return false
       }
       sortFlag.push(lFlag + flags[arguments[j]])
@@ -149,7 +165,8 @@ module.exports = function array_multisort (arr) { // eslint-disable-line camelca
       nLastSort = []
       lastSort = []
 
-      // If there are no sortComponents, then no more sorting is neeeded. Copy the array back to the argument.
+      // If there are no sortComponents, then no more sorting is neeeded.
+      // Copy the array back to the argument.
       if (sortComponents.length === 0) {
         if (Object.prototype.toString.call(arguments[i]) === '[object Array]') {
           args[i] = sortArrs[i]

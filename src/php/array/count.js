@@ -30,8 +30,9 @@ module.exports = function count (mixedVar, mode) {
   for (key in mixedVar) {
     if (mixedVar.hasOwnProperty(key)) {
       cnt++
-      if (mode === 1 && mixedVar[key] && (mixedVar[key].constructor === Array || mixedVar[key].constructor ===
-          Object)) {
+      if (mode === 1 && mixedVar[key] &&
+        (mixedVar[key].constructor === Array ||
+          mixedVar[key].constructor === Object)) {
         cnt += count(mixedVar[key], 1)
       }
     }

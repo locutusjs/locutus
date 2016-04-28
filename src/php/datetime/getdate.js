@@ -6,9 +6,28 @@ module.exports = function getdate (timestamp) {
   //   example 1: getdate(1055901520)
   //   returns 1: {'seconds': 40, 'minutes': 58, 'hours': 1, 'mday': 18, 'wday': 3, 'mon': 6, 'year': 2003, 'yday': 168, 'weekday': 'Wednesday', 'month': 'June', '0': 1055901520}
 
-  var _w = ['Sun', 'Mon', 'Tues', 'Wednes', 'Thurs', 'Fri', 'Satur']
-  var _m = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
-    'November', 'December'
+  var _w = [
+    'Sun',
+    'Mon',
+    'Tues',
+    'Wednes',
+    'Thurs',
+    'Fri',
+    'Satur'
+  ]
+  var _m = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
   ]
   var d = ((typeof timestamp === 'undefined') ? new Date()
     : (timestamp instanceof Date) ? new Date(timestamp)  // Not provided

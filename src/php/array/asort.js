@@ -59,7 +59,8 @@ module.exports = function asort (inputArr, sortFlags) {
       }
       break
     case 'SORT_LOCALE_STRING':
-      // compare items as strings, based on the current locale (set with i18n_loc_set_default() as of PHP6)
+      // compare items as strings, based on the current locale
+      // (set with i18n_loc_set_default() as of PHP6)
       var loc = i18nlgd()
       sorter = $locutus.php.locales[loc].sorting
       break

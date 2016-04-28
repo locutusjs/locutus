@@ -4,7 +4,8 @@ module.exports = function json_decode (strJson) { // eslint-disable-line camelca
   // reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //      improved by: T.J. Leahy
   //      improved by: Michael White
-  //           note 1: If node or the browser does not offer JSON.parse, this function falls backslash
+  //           note 1: If node or the browser does not offer JSON.parse,
+  //           note 1: this function falls backslash
   //           note 1: to its own implementation using eval, and hence should be considered unsafe
   //        example 1: json_decode('[ 1 ]')
   //        returns 1: [1]
@@ -37,7 +38,20 @@ module.exports = function json_decode (strJson) { // eslint-disable-line camelca
     }
   }
 
-  var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g
+  var chars = [
+    '\u0000',
+    '\u00ad',
+    '\u0600-\u0604',
+    '\u070f',
+    '\u17b4',
+    '\u17b5',
+    '\u200c-\u200f',
+    '\u2028-\u202f',
+    '\u2060-\u206f',
+    '\ufeff',
+    '\ufff0-\uffff'
+  ].join('')
+  var cx = new RegExp('[' + chars + ']', 'g')
   var j
   var text = strJson
 

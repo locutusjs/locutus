@@ -30,7 +30,8 @@ module.exports = function array_intersect_key (arr1) { // eslint-disable-line ca
           if (i === arglm1) {
             retArr[k1] = arr1[k1]
           }
-          // If the innermost loop always leads at least once to an equal value, continue the loop until done
+          // If the innermost loop always leads at least once to an equal value,
+          // continue the loop until done
           continue arrs // eslint-disable-line no-labels
         }
       }

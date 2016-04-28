@@ -38,7 +38,8 @@ module.exports = function array_uintersect_uassoc (arr1) { // eslint-disable-lin
           if (i === arguments.length - 3) {
             retArr[k1] = arr1[k1]
           }
-          // If the innermost loop always leads at least once to an equal value, continue the loop until done
+          // If the innermost loop always leads at least once to an equal value,
+          // continue the loop until done
           continue arrs // eslint-disable-line no-labels
         }
       }

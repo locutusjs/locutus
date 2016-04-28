@@ -26,8 +26,11 @@ module.exports = function idate (format, timestamp) {
 
   switch (format) {
     case 'B':
-      return Math.floor(((_date.getUTCHours() * 36e2) + (_date.getUTCMinutes() * 60) + _date.getUTCSeconds() + 36e2) /
-      86.4) % 1e3
+      return Math.floor((
+        (_date.getUTCHours() * 36e2) +
+        (_date.getUTCMinutes() * 60) +
+        _date.getUTCSeconds() + 36e2
+      ) / 86.4) % 1e3
     case 'd':
       return _date.getDate()
     case 'h':
@@ -58,7 +61,11 @@ module.exports = function idate (format, timestamp) {
     case 'w':
       return _date.getDay()
     case 'W':
-      a = new Date(_date.getFullYear(), _date.getMonth(), _date.getDate() - (_date.getDay() || 7) + 3)
+      a = new Date(
+        _date.getFullYear(),
+        _date.getMonth(),
+        _date.getDate() - (_date.getDay() || 7) + 3
+      )
       return 1 + Math.round((a - (new Date(a.getFullYear(), 0, 4))) / 864e5 / 7)
     case 'y':
       return parseInt((_date.getFullYear() + '')

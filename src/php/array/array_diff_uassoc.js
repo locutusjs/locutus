@@ -17,7 +17,11 @@ module.exports = function array_diff_uassoc (arr1) { // eslint-disable-line came
 
   var $global = (typeof window !== 'undefined' ? window : GLOBAL)
 
-  cb = (typeof cb === 'string') ? $global[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? $global[cb[0]][cb[1]] : cb
+  cb = (typeof cb === 'string')
+    ? $global[cb]
+    : (Object.prototype.toString.call(cb) === '[object Array]')
+      ? $global[cb[0]][cb[1]]
+      : cb
 
   arr1keys: for (k1 in arr1) { // eslint-disable-line no-labels
     for (i = 1; i < arglm1; i++) {

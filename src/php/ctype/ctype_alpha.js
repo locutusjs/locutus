@@ -14,6 +14,7 @@ module.exports = function ctype_alpha (text) { // eslint-disable-line camelcase
   var $global = (typeof window !== 'undefined' ? window : GLOBAL)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
+  var p = $locutus.php
 
-  return text.search($locutus.php.locales[$locutus.php.localeCategories.LC_CTYPE].LC_CTYPE.al) !== -1
+  return text.search(p.locales[p.localeCategories.LC_CTYPE].LC_CTYPE.al) !== -1
 }

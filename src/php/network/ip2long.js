@@ -14,9 +14,15 @@ module.exports = function ip2long (argIP) {
   let i = 0
   // PHP allows decimal, octal, and hexadecimal IP components.
   // PHP allows between 1 (e.g. 127) to 4 (e.g 127.0.0.1) components.
-  argIP = argIP.match(
-    /^([1-9]\d*|0[0-7]*|0x[\da-f]+)(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?(?:\.([1-9]\d*|0[0-7]*|0x[\da-f]+))?$/i
-  ) // Verify argIP format.
+
+  const pattern = new RegExp([
+    '^([1-9]\\d*|0[0-7]*|0x[\\da-f]+)',
+    '(?:\\.([1-9]\\d*|0[0-7]*|0x[\\da-f]+))?',
+    '(?:\\.([1-9]\\d*|0[0-7]*|0x[\\da-f]+))?',
+    '(?:\\.([1-9]\\d*|0[0-7]*|0x[\\da-f]+))?$'
+  ].join(''), 'i')
+
+  argIP = argIP.match(pattern) // Verify argIP format.
   if (!argIP) {
     // Invalid format.
     return false
@@ -32,9 +38,15 @@ module.exports = function ip2long (argIP) {
   argIP.push(256, 256, 256, 256)
   // Recalculate overflow of last component supplied to make up for missing components.
   argIP[4 + argIP[0]] *= Math.pow(256, 4 - argIP[0])
-  if (argIP[1] >= argIP[5] || argIP[2] >= argIP[6] || argIP[3] >= argIP[7] || argIP[4] >= argIP[8]) {
+  if (argIP[1] >= argIP[5] ||
+    argIP[2] >= argIP[6] ||
+    argIP[3] >= argIP[7] ||
+    argIP[4] >= argIP[8]) {
     return false
   }
 
-  return argIP[1] * (argIP[0] === 1 || 16777216) + argIP[2] * (argIP[0] <= 2 || 65536) + argIP[3] * (argIP[0] <= 3 || 256) + argIP[4] * 1
+  return argIP[1] * (argIP[0] === 1 || 16777216) +
+    argIP[2] * (argIP[0] <= 2 || 65536) +
+    argIP[3] * (argIP[0] <= 3 || 256) +
+    argIP[4] * 1
 }

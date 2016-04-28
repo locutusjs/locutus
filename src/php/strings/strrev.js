@@ -6,9 +6,10 @@ module.exports = function strrev (string) {
   //        example 1: strrev('Kevin van Zonneveld')
   //        returns 1: 'dlevennoZ nav niveK'
   //        example 2: strrev('a\u0301haB')
-  //        returns 2: 'Baha\u0301'; // combining
+  //        returns 2: 'Baha\u0301' // combining
   //        example 3: strrev('A\uD87E\uDC04Z')
-  //        returns 3: 'Z\uD87E\uDC04A'  // surrogates
+  //        returns 3: 'Z\uD87E\uDC04A' // surrogates
+  //             test: 'skip-3'
 
   string = string + ''
 

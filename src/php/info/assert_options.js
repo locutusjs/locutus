@@ -13,7 +13,9 @@ module.exports = function assert_options (what, value) { // eslint-disable-line 
     case 'ASSERT_WARNING':
       iniKey = 'assert.warning'
       defaultVal = 1
-      throw new Error('We have not yet implemented warnings for us to throw in JavaScript (assert_options())')
+      var msg = 'We have not yet implemented warnings for us to throw '
+      msg += 'in JavaScript (assert_options())'
+      throw new Error(msg)
     case 'ASSERT_BAIL':
       iniKey = 'assert.bail'
       defaultVal = 0
