@@ -16,7 +16,7 @@ describe('src/php/array/arsort.js (tested in test/languages/php/array/test-arsor
   })
   it('should pass example 2', function (done) {
     var expected = {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
-    ini_set('locutus.strictForIn', true)
+    ini_set('locutus.sortByReference', true)
     var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
     arsort($data)
     var result = $data

@@ -16,7 +16,7 @@ describe('src/php/array/rsort.js (tested in test/languages/php/array/test-rsort.
   })
   it('should pass example 2', function (done) {
     var expected = {0: 'orange', 1: 'lemon', 2: 'banana', 3: 'apple'}
-    ini_set('locutus.strictForIn', true)
+    ini_set('locutus.sortByReference', true)
     var $fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
     rsort($fruits)
     var result = $fruits

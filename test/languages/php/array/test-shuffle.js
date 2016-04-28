@@ -9,7 +9,7 @@ describe('src/php/array/shuffle.js (tested in test/languages/php/array/test-shuf
   it('should pass example 1', function (done) {
     var expected = 5
     var $data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5}
-    ini_set('locutus.strictForIn', true)
+    ini_set('locutus.sortByReference', true)
     shuffle($data)
     var result = $data.q
     expect(result).to.deep.equal(expected)

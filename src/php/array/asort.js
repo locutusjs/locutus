@@ -14,7 +14,7 @@ module.exports = function asort (inputArr, sortFlags) {
   //      note 1: This function deviates from PHP in returning a copy of the array instead
   //      note 1: of acting by reference and returning true; this was necessary because
   //      note 1: IE does not allow deleting and re-adding of properties without caching
-  //      note 1: of property position; you can set the ini of "locutus.strictForIn" to true to
+  //      note 1: of property position; you can set the ini of "locutus.sortByReference" to true to
   //      note 1: get the PHP behavior, but use this only if you are in an environment
   //      note 1: such as Firefox extensions where for-in iteration order is fixed and true
   //      note 1: property deletion is supported. Note that we intend to implement the PHP
@@ -28,7 +28,7 @@ module.exports = function asort (inputArr, sortFlags) {
   //   example 1: asort($data)
   //   example 1: var $result = $data
   //   returns 1: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
-  //   example 2: ini_set('locutus.strictForIn', true)
+  //   example 2: ini_set('locutus.sortByReference', true)
   //   example 2: var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
   //   example 2: asort($data)
   //   example 2: var $result = $data
@@ -42,7 +42,7 @@ module.exports = function asort (inputArr, sortFlags) {
   var k
   var i
   var sorter
-  var strictForIn = false
+  var sortByReference = false
   var populateArr = {}
 
   var $global = (typeof window !== 'undefined' ? window : GLOBAL)
@@ -90,15 +90,15 @@ module.exports = function asort (inputArr, sortFlags) {
       break
   }
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.strictForIn') : undefined)
-  strictForIn = iniVal !== 'off'
-  populateArr = strictForIn ? inputArr : populateArr
+  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined)
+  sortByReference = iniVal !== 'off'
+  populateArr = sortByReference ? inputArr : populateArr
 
   // Get key and value arrays
   for (k in inputArr) {
     if (inputArr.hasOwnProperty(k)) {
       valArr.push([k, inputArr[k]])
-      if (strictForIn) {
+      if (sortByReference) {
         delete inputArr[k]
       }
     }
@@ -113,5 +113,5 @@ module.exports = function asort (inputArr, sortFlags) {
     populateArr[valArr[i][0]] = valArr[i][1]
   }
 
-  return strictForIn || populateArr
+  return sortByReference || populateArr
 }

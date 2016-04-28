@@ -8,7 +8,7 @@ module.exports = function krsort (inputArr, sortFlags) {
   //      note 1: This function deviates from PHP in returning a copy of the array instead
   //      note 1: of acting by reference and returning true; this was necessary because
   //      note 1: IE does not allow deleting and re-adding of properties without caching
-  //      note 1: of property position; you can set the ini of "locutus.strictForIn" to true to
+  //      note 1: of property position; you can set the ini of "locutus.sortByReference" to true to
   //      note 1: get the PHP behavior, but use this only if you are in an environment
   //      note 1: such as Firefox extensions where for-in iteration order is fixed and true
   //      note 1: property deletion is supported. Note that we intend to implement the PHP
@@ -22,7 +22,7 @@ module.exports = function krsort (inputArr, sortFlags) {
   //   example 1: krsort($data)
   //   example 1: var $result = $data
   //   returns 1: {d: 'lemon', c: 'apple', b: 'banana', a: 'orange'}
-  //   example 2: ini_set('locutus.strictForIn', true)
+  //   example 2: ini_set('locutus.sortByReference', true)
   //   example 2: var $data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}
   //   example 2: krsort($data)
   //   example 2: var $result = $data
@@ -36,7 +36,7 @@ module.exports = function krsort (inputArr, sortFlags) {
   var sorter
   var i
   var k
-  var strictForIn = false
+  var sortByReference = false
   var populateArr = {}
 
   var $global = (typeof window !== 'undefined' ? window : GLOBAL)
@@ -91,18 +91,18 @@ module.exports = function krsort (inputArr, sortFlags) {
   }
   keys.sort(sorter)
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.strictForIn') : undefined)
+  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined)
   if (!iniVal) {
     iniVal = 'on'
   }
-  strictForIn = iniVal === 'on'
-  populateArr = strictForIn ? inputArr : populateArr
+  sortByReference = iniVal === 'on'
+  populateArr = sortByReference ? inputArr : populateArr
 
   // Rebuild array with sorted key names
   for (i = 0; i < keys.length; i++) {
     k = keys[i]
     tmpArr[k] = inputArr[k]
-    if (strictForIn) {
+    if (sortByReference) {
       delete inputArr[k]
     }
   }
@@ -112,5 +112,5 @@ module.exports = function krsort (inputArr, sortFlags) {
     }
   }
 
-  return strictForIn || populateArr
+  return sortByReference || populateArr
 }

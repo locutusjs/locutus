@@ -31,7 +31,7 @@ module.exports = function strtr (str, trFrom, trTo) {
   var j = 0
   var lenStr = 0
   var lenFrom = 0
-  var strictForIn = false
+  var sortByReference = false
   var fromTypeStr = ''
   var toTypeStr = ''
   var istr = ''
@@ -45,9 +45,9 @@ module.exports = function strtr (str, trFrom, trTo) {
   if (typeof trFrom === 'object') {
     // Not thread-safe; temporarily set to true
     // @todo: Don't rely on ini here, use internal krsort instead
-    strictForIn = iniSet('locutus.strictForIn', false)
+    sortByReference = iniSet('locutus.sortByReference', false)
     trFrom = krsort(trFrom)
-    iniSet('locutus.strictForIn', strictForIn)
+    iniSet('locutus.sortByReference', sortByReference)
 
     for (fr in trFrom) {
       if (trFrom.hasOwnProperty(fr)) {

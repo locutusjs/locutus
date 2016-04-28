@@ -16,7 +16,7 @@ describe('src/php/array/sort.js (tested in test/languages/php/array/test-sort.js
   })
   it('should pass example 2', function (done) {
     var expected = {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
-    ini_set('locutus.strictForIn', true)
+    ini_set('locutus.sortByReference', true)
     var $fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
     sort($fruits)
     var result = $fruits

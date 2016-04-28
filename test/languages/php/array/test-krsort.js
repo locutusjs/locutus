@@ -16,7 +16,7 @@ describe('src/php/array/krsort.js (tested in test/languages/php/array/test-krsor
   })
   it('should pass example 2', function (done) {
     var expected = {3: 'Zonneveld', 2: 'van', 1: 'Kevin'}
-    ini_set('locutus.strictForIn', true)
+    ini_set('locutus.sortByReference', true)
     var $data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}
     krsort($data)
     var result = $data
