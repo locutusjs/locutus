@@ -26,7 +26,7 @@ Unreleased and unplanned todos
 - [ ] Track all cases of `setTimeout`, use them without window prefix. Remove `codez` replace hack
 - [ ] Test `is_array` in-browser to see if the `require` for `ini_get` works correctly with Browserify
 - [ ] Track down all `iniRaw`s and replace them with `iniVal`, use a single way of doing defaults
-- [ ] Use native `sha1` and `md5` encoding when available
+- [x] Use native `sha1` and `md5` encoding when available
 - [x] Remove XUL from functions
 - [x] Rename `strictForIn` to `sortByReference`
 - [x] Remove `// (BEGIN|END) (STATIC|REDUNDANT)`

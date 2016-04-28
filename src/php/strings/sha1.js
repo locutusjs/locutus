@@ -4,28 +4,30 @@ module.exports = function sha1 (str) {
   // improved by: Michael White (http://getsprink.com)
   // improved by: Kevin van Zonneveld (http://kvz.io)
   //    input by: Brett Zamir (http://brett-zamir.me)
+  //      note 1: Keep in mind that in accordance with PHP, the whole string is buffered and then
+  //      note 1: hashed. If available, we'd recommend using Node's native crypto modules directly
+  //      note 1: in a steaming fashion for faster and more efficient hashing
   //   example 1: sha1('Kevin van Zonneveld')
   //   returns 1: '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
+
+  var hash
+  try {
+    var crypto = require('crypto')
+    var sha1sum = crypto.createHash('sha1')
+    sha1sum.update(str)
+    hash = sha1sum.digest('hex')
+  } catch (e) {
+    hash = undefined
+  }
+
+  if (hash !== undefined) {
+    return hash
+  }
 
   var _rotateLeft = function (n, s) {
     var t4 = (n << s) | (n >>> (32 - s))
     return t4
   }
-
-  /* var lsb_hex = function (val) {
-   // Not in use; needed?
-    var str="";
-    var i;
-    var vh;
-    var vl;
-
-    for ( i=0; i<=6; i+=2 ) {
-      vh = (val>>>(i*4+4))&0x0f;
-      vl = (val>>>(i*4))&0x0f;
-      str += vh.toString(16) + vl.toString(16);
-    }
-    return str;
-  };*/
 
   var _cvtHex = function (val) {
     var str = ''

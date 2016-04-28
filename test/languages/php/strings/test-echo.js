@@ -8,7 +8,7 @@ var echo = require('../../../../src/php/strings/echo.js') // eslint-disable-line
 describe('src/php/strings/echo.js (tested in test/languages/php/strings/test-echo.js)', function () {
   it('should pass example 1', function (done) {
     var expected = undefined
-    var result = echo('<div><p>abc</p><p>abc</p></div>')
+    var result = echo('Hello world')
     expect(result).to.deep.equal(expected)
     done()
   })

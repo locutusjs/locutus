@@ -6,17 +6,34 @@ module.exports = function md5 (str) {
   // improved by: Kevin van Zonneveld (http://kvz.io)
   //    input by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  //      note 1: Keep in mind that in accordance with PHP, the whole string is buffered and then
+  //      note 1: hashed. If available, we'd recommend using Node's native crypto modules directly
+  //      note 1: in a steaming fashion for faster and more efficient hashing
   //   example 1: md5('Kevin van Zonneveld')
   //   returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'
+
+  var hash
+  try {
+    var crypto = require('crypto')
+    var md5sum = crypto.createHash('md5')
+    md5sum.update(str)
+    hash = md5sum.digest('hex')
+  } catch (e) {
+    hash = undefined
+  }
+
+  if (hash !== undefined) {
+    return hash
+  }
 
   var utf8Encode = require('../xml/utf8_encode')
   var xl
 
-  var rotateLeft = function (lValue, iShiftBits) {
+  var _rotateLeft = function (lValue, iShiftBits) {
     return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits))
   }
 
-  var addUnsigned = function (lX, lY) {
+  var _addUnsigned = function (lX, lY) {
     var lX4, lY4, lX8, lY8, lResult
     lX8 = (lX & 0x80000000)
     lY8 = (lY & 0x80000000)
@@ -51,26 +68,26 @@ module.exports = function md5 (str) {
   }
 
   var _FF = function (a, b, c, d, x, s, ac) {
-    a = addUnsigned(a, addUnsigned(addUnsigned(_F(b, c, d), x), ac))
-    return addUnsigned(rotateLeft(a, s), b)
+    a = _addUnsigned(a, _addUnsigned(_addUnsigned(_F(b, c, d), x), ac))
+    return _addUnsigned(_rotateLeft(a, s), b)
   }
 
   var _GG = function (a, b, c, d, x, s, ac) {
-    a = addUnsigned(a, addUnsigned(addUnsigned(_G(b, c, d), x), ac))
-    return addUnsigned(rotateLeft(a, s), b)
+    a = _addUnsigned(a, _addUnsigned(_addUnsigned(_G(b, c, d), x), ac))
+    return _addUnsigned(_rotateLeft(a, s), b)
   }
 
   var _HH = function (a, b, c, d, x, s, ac) {
-    a = addUnsigned(a, addUnsigned(addUnsigned(_H(b, c, d), x), ac))
-    return addUnsigned(rotateLeft(a, s), b)
+    a = _addUnsigned(a, _addUnsigned(_addUnsigned(_H(b, c, d), x), ac))
+    return _addUnsigned(_rotateLeft(a, s), b)
   }
 
   var _II = function (a, b, c, d, x, s, ac) {
-    a = addUnsigned(a, addUnsigned(addUnsigned(_I(b, c, d), x), ac))
-    return addUnsigned(rotateLeft(a, s), b)
+    a = _addUnsigned(a, _addUnsigned(_addUnsigned(_I(b, c, d), x), ac))
+    return _addUnsigned(_rotateLeft(a, s), b)
   }
 
-  var convertToWordArray = function (str) {
+  var _convertToWordArray = function (str) {
     var lWordCount
     var lMessageLength = str.length
     var lNumberOfWordsTemp1 = lMessageLength + 8
@@ -93,7 +110,7 @@ module.exports = function md5 (str) {
     return lWordArray
   }
 
-  var wordToHex = function (lValue) {
+  var _wordToHex = function (lValue) {
     var wordToHexValue = ''
     var wordToHexValueTemp = ''
     var lByte
@@ -135,7 +152,7 @@ module.exports = function md5 (str) {
   var S44 = 21
 
   str = utf8Encode(str)
-  x = convertToWordArray(str)
+  x = _convertToWordArray(str)
   a = 0x67452301
   b = 0xEFCDAB89
   c = 0x98BADCFE
@@ -211,13 +228,13 @@ module.exports = function md5 (str) {
     d = _II(d, a, b, c, x[k + 11], S42, 0xBD3AF235)
     c = _II(c, d, a, b, x[k + 2], S43, 0x2AD7D2BB)
     b = _II(b, c, d, a, x[k + 9], S44, 0xEB86D391)
-    a = addUnsigned(a, AA)
-    b = addUnsigned(b, BB)
-    c = addUnsigned(c, CC)
-    d = addUnsigned(d, DD)
+    a = _addUnsigned(a, AA)
+    b = _addUnsigned(b, BB)
+    c = _addUnsigned(c, CC)
+    d = _addUnsigned(d, DD)
   }
 
-  var temp = wordToHex(a) + wordToHex(b) + wordToHex(c) + wordToHex(d)
+  var temp = _wordToHex(a) + _wordToHex(b) + _wordToHex(c) + _wordToHex(d)
 
   return temp.toLowerCase()
 }
