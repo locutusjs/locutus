@@ -27,7 +27,7 @@ Unreleased and unplanned todos
 - [ ] Test `is_array` in-browser to see if the `require` for `ini_get` works correctly with Browserify
 - [ ] Track down all `iniRaw`s and replace them with `iniVal`, use a single way of doing defaults
 - [ ] Use native `sha1` and `md5` encoding when available
-- [ ] Remove XUL from functions
+- [x] Remove XUL from functions
 - [x] Rename `strictForIn` to `sortByReference`
 - [x] Remove `// (BEGIN|END) (STATIC|REDUNDANT)`
 - [x] Index all `note`s
