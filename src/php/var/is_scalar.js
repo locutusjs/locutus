@@ -1,4 +1,4 @@
-module.exports = function is_scalar (mixed_var) { // eslint-disable-line camelcase
+module.exports = function is_scalar (mixedVar) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/is_scalar/
   // original by: Paulo Freitas
   //   example 1: is_scalar(186.31)
@@ -6,6 +6,5 @@ module.exports = function is_scalar (mixed_var) { // eslint-disable-line camelca
   //   example 2: is_scalar({0: 'Kevin van Zonneveld'})
   //   returns 2: false
 
-  return (/boolean|number|string/)
-    .test(typeof mixed_var)
+  return (/boolean|number|string/).test(typeof mixedVar)
 }

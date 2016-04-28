@@ -1,4 +1,4 @@
-module.exports = function is_real (mixed_var) { // eslint-disable-line camelcase
+module.exports = function is_real (mixedVar) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/is_real/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        note: 1.0 is simplified to 1 before it can be accessed by the function, this makes
@@ -6,7 +6,7 @@ module.exports = function is_real (mixed_var) { // eslint-disable-line camelcase
   //   example 1: is_real(186.31)
   //   returns 1: true
 
-  var is_float = require('../var/is_float')
+  var _isFloat = require('../var/is_float')
 
-  return is_float(mixed_var)
+  return _isFloat(mixedVar)
 }
