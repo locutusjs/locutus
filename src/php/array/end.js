@@ -6,7 +6,7 @@ module.exports = function end (arr) {
   //  revised by: Brett Zamir (http://brett-zamir.me)
   // improved by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Kevin van Zonneveld (http://kvz.io)
-  //        note: Uses global: locutus to store the array pointer
+  //      note 1: Uses global: locutus to store the array pointer
   //   example 1: end({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
   //   returns 1: 'Zonneveld'
   //   example 2: end(['Kevin', 'van', 'Zonneveld'])

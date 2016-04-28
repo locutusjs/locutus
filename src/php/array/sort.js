@@ -3,22 +3,22 @@ module.exports = function sort (inputArr, sortFlags) {
   // original by: Kevin van Zonneveld (http://kvz.io)
   //  revised by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //        note: SORT_STRING (as well as natsort and natcasesort) might also be
-  //        note: integrated into all of these functions by adapting the code at
-  //        note: http://sourcefrog.net/projects/natsort/natcompare.js
-  //        note: This function deviates from PHP in returning a copy of the array instead
-  //        note: of acting by reference and returning true; this was necessary because
-  //        note: IE does not allow deleting and re-adding of properties without caching
-  //        note: of property position; you can set the ini of "locutus.strictForIn" to true to
-  //        note: get the PHP behavior, but use this only if you are in an environment
-  //        note: such as Firefox extensions where for-in iteration order is fixed and true
-  //        note: property deletion is supported. Note that we intend to implement the PHP
-  //        note: behavior by default if IE ever does allow it; only gives shallow copy since
-  //        note: is by reference in PHP anyways
-  //        note: Since JS objects' keys are always strings, and (the
-  //        note: default) SORT_REGULAR flag distinguishes by key type,
-  //        note: if the content is a numeric string, we treat the
-  //        note: "original type" as numeric.
+  //      note 1: SORT_STRING (as well as natsort and natcasesort) might also be
+  //      note 1: integrated into all of these functions by adapting the code at
+  //      note 1: http://sourcefrog.net/projects/natsort/natcompare.js
+  //      note 1: This function deviates from PHP in returning a copy of the array instead
+  //      note 1: of acting by reference and returning true; this was necessary because
+  //      note 1: IE does not allow deleting and re-adding of properties without caching
+  //      note 1: of property position; you can set the ini of "locutus.strictForIn" to true to
+  //      note 1: get the PHP behavior, but use this only if you are in an environment
+  //      note 1: such as Firefox extensions where for-in iteration order is fixed and true
+  //      note 1: property deletion is supported. Note that we intend to implement the PHP
+  //      note 1: behavior by default if IE ever does allow it; only gives shallow copy since
+  //      note 1: is by reference in PHP anyways
+  //      note 1: Since JS objects' keys are always strings, and (the
+  //      note 1: default) SORT_REGULAR flag distinguishes by key type,
+  //      note 1: if the content is a numeric string, we treat the
+  //      note 1: "original type" as numeric.
   //   example 1: var $arr = ['Kevin', 'van', 'Zonneveld']
   //   example 1: sort($arr)
   //   example 1: var $result = $arr

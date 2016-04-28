@@ -5,7 +5,7 @@ module.exports = function strftime (fmt, timestamp) {
   //         input by: Alex
   //      bugfixed by: Brett Zamir (http://brett-zamir.me)
   //      improved by: Brett Zamir (http://brett-zamir.me)
-  //             note: Uses global: locutus to store locale info
+  //           note 1: Uses global: locutus to store locale info
   //        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale
   //        returns 1: 'Tuesday'
 

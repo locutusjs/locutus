@@ -5,8 +5,8 @@ module.exports = function gettype (mixedVar) {
   // improved by: Douglas Crockford (http://javascript.crockford.com)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //    input by: KELAN
-  //        note: 1.0 is simplified to 1 before it can be accessed by the function, this makes
-  //        note: it different from the PHP implementation. We can't fix this unfortunately.
+  //      note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //      note 1: it different from the PHP implementation. We can't fix this unfortunately.
   //   example 1: gettype(1)
   //   returns 1: 'integer'
   //   example 2: gettype(undefined)

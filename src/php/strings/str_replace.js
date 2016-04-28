@@ -16,8 +16,8 @@ module.exports = function str_replace (search, replace, subject, countObj) { // 
   //    input by: Onno Marsman (https://twitter.com/onnomarsman)
   //    input by: Brett Zamir (http://brett-zamir.me)
   //    input by: Oleg Eremeev
-  //        note: The count parameter must be passed as a string in order
-  //        note: to find a global variable in which the result will be given
+  //      note 1: The count parameter must be passed as a string in order
+  //      note 1: to find a global variable in which the result will be given
   //   example 1: str_replace(' ', '.', 'Kevin van Zonneveld')
   //   returns 1: 'Kevin.van.Zonneveld'
   //   example 2: str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars')

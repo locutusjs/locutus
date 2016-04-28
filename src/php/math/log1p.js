@@ -2,7 +2,7 @@ module.exports = function log1p (x) {
   //  discuss at: http://locutusjs.io/php/log1p/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Robert Eisele (http://www.xarg.org/)
-  //        note: Precision 'n' can be adjusted as desired
+  //      note 1: Precision 'n' can be adjusted as desired
   //   example 1: log1p(1e-15)
   //   returns 1: 9.999999999999995e-16
 

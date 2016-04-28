@@ -3,7 +3,7 @@ module.exports = function array_filter (arr, func) { // eslint-disable-line came
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: max4ever
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //        note: Takes a function as an argument, not a function's name
+  //      note 1: Takes a function as an argument, not a function's name
   //   example 1: var odd = function (num) {return (num & 1);}
   //   example 1: array_filter({"a": 1, "b": 2, "c": 3, "d": 4, "e": 5}, odd)
   //   returns 1: {"a": 1, "c": 3, "e": 5}

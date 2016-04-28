@@ -3,7 +3,7 @@ module.exports = function max () {
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //  revised by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Jack
-  //        note: Long code cause we're aiming for maximum PHP compatibility
+  //      note 1: Long code cause we're aiming for maximum PHP compatibility
   //   example 1: max(1, 3, 5, 6, 7)
   //   returns 1: 7
   //   example 2: max([2, 4, 5])

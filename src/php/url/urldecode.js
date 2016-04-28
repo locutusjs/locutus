@@ -17,9 +17,9 @@ module.exports = function urldecode (str) {
   //      bugfixed by: Kevin van Zonneveld (http://kvz.io)
   //      bugfixed by: Rob
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
-  //             note: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/
-  //             note: Please be aware that this function expects to decode from UTF-8 encoded strings, as found on
-  //             note: pages served as UTF-8
+  //           note 1: info on what encoding functions to use from: http://xkr.us/articles/javascript/encode-compare/
+  //           note 1: Please be aware that this function expects to decode from UTF-8 encoded strings, as found on
+  //           note 1: pages served as UTF-8
   //        example 1: urldecode('Kevin+van+Zonneveld%21')
   //        returns 1: 'Kevin van Zonneveld!'
   //        example 2: urldecode('http%3A%2F%2Fkvz.io%2F')

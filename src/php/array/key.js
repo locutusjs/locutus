@@ -3,7 +3,7 @@ module.exports = function key (arr) {
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: Riddler (http://www.frontierwebdev.com/)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //        note: Uses global: locutus to store the array pointer
+  //      note 1: Uses global: locutus to store the array pointer
   //   example 1: var $array = {fruit1: 'apple', 'fruit2': 'orange'}
   //   example 1: key($array)
   //   returns 1: 'fruit1'

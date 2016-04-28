@@ -30,7 +30,7 @@ Unreleased and unplanned todos
 - [ ] Remove XUL from functions
 - [ ] Rename `strictForIn` to `sortByReference`
 - [ ] Remove `// (BEGIN|END) (STATIC|REDUNDANT)`
-- [ ] Index all `note`s
+- [x] Index all `note`s
 - [x] Either deprecate or document all functions using `eval` or `new Function`
 - [x] Port Util to ES6 class
 - [x] Write one function (`ip2long`) in ES6 and make it pass tests & linting

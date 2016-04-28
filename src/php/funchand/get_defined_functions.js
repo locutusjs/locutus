@@ -2,7 +2,7 @@ module.exports = function get_defined_functions () { // eslint-disable-line came
   //  discuss at: http://locutusjs.io/php/get_defined_functions/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //        note: Test case 1: If get_defined_functions can find itself in the defined functions, it worked :)
+  //      note 1: Test case 1: If get_defined_functions can find itself in the defined functions, it worked :)
   //   example 1: function test_in_array (array, p_val) {for(var i = 0, l = array.length; i < l; i++) {if(array[i] === p_val) return true;} return false;}
   //   example 1: var $funcs = get_defined_functions()
   //   example 1: var $found = test_in_array($funcs, 'get_defined_functions')

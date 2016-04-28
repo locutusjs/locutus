@@ -11,7 +11,7 @@ module.exports = function strtotime (text, now) {
   // bugfixed by: Wagner B. Soares
   // bugfixed by: Artur Tchernychev
   // bugfixed by: Stephan Bösch-Plepelits (http://github.com/plepe)
-  //        note: Examples all have a fixed timestamp to prevent tests to fail because of variable time(zones)
+  //      note 1: Examples all have a fixed timestamp to prevent tests to fail because of variable time(zones)
   //   example 1: strtotime('+1 day', 1129633200)
   //   returns 1: 1129719600
   //   example 2: strtotime('+1 week 2 days 4 hours 2 seconds', 1129633200)

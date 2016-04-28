@@ -3,11 +3,11 @@ module.exports = function call_user_func (cb, parameters) { // eslint-disable-li
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Diplom@t (http://difane.com/)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //        note: Depends on call_user_func_array which in turn depends on the `cb` that is passed,
-  //        note: this function can use `eval`.
-  //        note: The `eval` input is however checked to only allow valid function names,
-  //        note: So it should not be unsafer than uses without eval (seeing as you can)
-  //        note: already pass any function to be executed here.
+  //      note 1: Depends on call_user_func_array which in turn depends on the `cb` that is passed,
+  //      note 1: this function can use `eval`.
+  //      note 1: The `eval` input is however checked to only allow valid function names,
+  //      note 1: So it should not be unsafer than uses without eval (seeing as you can)
+  //      note 1: already pass any function to be executed here.
   //   example 1: call_user_func('isNaN', 'a')
   //   returns 1: true
 

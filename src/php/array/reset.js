@@ -3,7 +3,7 @@ module.exports = function reset (arr) {
   // original by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Legaev Andrey
   //  revised by: Brett Zamir (http://brett-zamir.me)
-  //        note: Uses global: locutus to store the array pointer
+  //      note 1: Uses global: locutus to store the array pointer
   //   example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
   //   returns 1: 'Kevin'
 

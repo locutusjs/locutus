@@ -14,8 +14,8 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
   //         input by: Zaide (http://zaidesthings.com/)
   //         input by: David Pesta (http://davidpesta.com/)
   //         input by: jeicquest
-  //             note: When no argument is specified, will put variables in global scope.
-  //             note: When a particular argument has been passed, and the returned value is different parse_str of PHP. For example, a=b=c&d====c
+  //           note 1: When no argument is specified, will put variables in global scope.
+  //           note 1: When a particular argument has been passed, and the returned value is different parse_str of PHP. For example, a=b=c&d====c
   //        example 1: var $arr = {}
   //        example 1: parse_str('first=foo&second=bar', $arr)
   //        example 1: var $result = $arr

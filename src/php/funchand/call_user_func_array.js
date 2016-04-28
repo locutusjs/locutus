@@ -5,10 +5,10 @@ module.exports = function call_user_func_array (cb, parameters) { // eslint-disa
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Diplom@t (http://difane.com/)
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //        note: Depending on the `cb` that is passed, this function can use `eval` and/or `new Function`.
-  //        note: The `eval` input is however checked to only allow valid function names,
-  //        note: So it should not be unsafer than uses without eval (seeing as you can)
-  //        note: already pass any function to be executed here.
+  //      note 1: Depending on the `cb` that is passed, this function can use `eval` and/or `new Function`.
+  //      note 1: The `eval` input is however checked to only allow valid function names,
+  //      note 1: So it should not be unsafer than uses without eval (seeing as you can)
+  //      note 1: already pass any function to be executed here.
   //   example 1: call_user_func_array('isNaN', ['a'])
   //   returns 1: true
   //   example 2: call_user_func_array('isNaN', [1])

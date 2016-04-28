@@ -10,9 +10,9 @@ module.exports = function rawurlencode (str) {
   //      bugfixed by: Joris
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
-  //             note: This reflects PHP 5.3/6.0+ behavior
-  //             note: Please be aware that this function expects to encode into UTF-8 encoded strings, as found on
-  //             note: pages served as UTF-8
+  //           note 1: This reflects PHP 5.3/6.0+ behavior
+  //           note 1: Please be aware that this function expects to encode into UTF-8 encoded strings, as found on
+  //           note 1: pages served as UTF-8
   //        example 1: rawurlencode('Kevin van Zonneveld!')
   //        returns 1: 'Kevin%20van%20Zonneveld%21'
   //        example 2: rawurlencode('http://kvz.io/')

@@ -5,13 +5,13 @@ module.exports = function parse_url (str, component) { // eslint-disable-line ca
   //         input by: Lorenzo Pisani
   //         input by: Tony
   //      improved by: Brett Zamir (http://brett-zamir.me)
-  //             note: original by http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
-  //             note: blog post at http://blog.stevenlevithan.com/archives/parseuri
-  //             note: demo at http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
-  //             note: Does not replace invalid characters with '_' as in PHP, nor does it return false with
-  //             note: a seriously malformed URL.
-  //             note: Besides function name, is essentially the same as parseUri as well as our allowing
-  //             note: an extra slash after the scheme/protocol (to allow file:/// as in PHP)
+  //           note 1: original by http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
+  //           note 1: blog post at http://blog.stevenlevithan.com/archives/parseuri
+  //           note 1: demo at http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
+  //           note 1: Does not replace invalid characters with '_' as in PHP, nor does it return false with
+  //           note 1: a seriously malformed URL.
+  //           note 1: Besides function name, is essentially the same as parseUri as well as our allowing
+  //           note 1: an extra slash after the scheme/protocol (to allow file:/// as in PHP)
   //        example 1: parse_url('http://username:password@hostname/path?arg=value#anchor')
   //        returns 1: {scheme: 'http', host: 'hostname', user: 'username', pass: 'password', path: '/path', query: 'arg=value', fragment: 'anchor'}
   //        example 2: parse_url('http://en.wikipedia.org/wiki/%22@%22_%28album%29')

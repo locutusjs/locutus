@@ -9,10 +9,10 @@ module.exports = function is_array (mixedVar) { // eslint-disable-line camelcase
   // bugfixed by: Cord
   // bugfixed by: Manish
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //        note: In Locutus, javascript objects are like php associative arrays, thus JavaScript objects will also
-  //        note: return true in this function (except for objects which inherit properties, being thus used as objects),
-  //        note: unless you do ini_set('locutus.objectsAsArrays', 0), in which case only genuine JavaScript arrays
-  //        note: will return true
+  //      note 1: In Locutus, javascript objects are like php associative arrays, thus JavaScript objects will also
+  //      note 1: return true in this function (except for objects which inherit properties, being thus used as objects),
+  //      note 1: unless you do ini_set('locutus.objectsAsArrays', 0), in which case only genuine JavaScript arrays
+  //      note 1: will return true
   //   example 1: is_array(['Kevin', 'van', 'Zonneveld'])
   //   returns 1: true
   //   example 2: is_array('Kevin van Zonneveld')

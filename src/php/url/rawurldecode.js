@@ -8,8 +8,8 @@ module.exports = function rawurldecode (str) {
   //      bugfixed by: Kevin van Zonneveld (http://kvz.io)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
   //      improved by: Brett Zamir (http://brett-zamir.me)
-  //             note: Please be aware that this function expects to decode from UTF-8 encoded strings, as found on
-  //             note: pages served as UTF-8
+  //           note 1: Please be aware that this function expects to decode from UTF-8 encoded strings, as found on
+  //           note 1: pages served as UTF-8
   //        example 1: rawurldecode('Kevin+van+Zonneveld%21')
   //        returns 1: 'Kevin+van+Zonneveld!'
   //        example 2: rawurldecode('http%3A%2F%2Fkvz.io%2F')

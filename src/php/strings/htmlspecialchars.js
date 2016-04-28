@@ -11,7 +11,7 @@ module.exports = function htmlspecialchars (string, quoteStyle, charset, doubleE
   //         input by: Mailfaker (http://www.weedem.fr/)
   //         input by: felix
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
-  //             note: charset argument not supported
+  //           note 1: charset argument not supported
   //        example 1: htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES')
   //        returns 1: '&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;'
   //        example 2: htmlspecialchars("ab\"c'd", ['ENT_NOQUOTES', 'ENT_QUOTES'])

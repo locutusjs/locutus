@@ -30,11 +30,11 @@ module.exports = function date (format, timestamp) {
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: omid (http://locutusjs.io/php/380:380#comment_137122)
   // bugfixed by: Chris (http://www.devotis.nl/)
-  //        note: Uses global: locutus to store the default timezone
-  //        note: Although the function potentially allows timezone info (see notes), it currently does not set
-  //        note: per a timezone specified by date_default_timezone_set(). Implementers might use
-  //        note: $locutus.currentTimezoneOffset and $locutus.currentTimezoneDST set by that function
-  //        note: in order to adjust the dates in this function (or our other date functions!) accordingly
+  //      note 1: Uses global: locutus to store the default timezone
+  //      note 1: Although the function potentially allows timezone info (see notes), it currently does not set
+  //      note 1: per a timezone specified by date_default_timezone_set(). Implementers might use
+  //      note 1: $locutus.currentTimezoneOffset and $locutus.currentTimezoneDST set by that function
+  //      note 1: in order to adjust the dates in this function (or our other date functions!) accordingly
   //   example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400)
   //   returns 1: '07:09:40 m is month'
   //   example 2: date('F j, Y, g:i a', 1062462400)

@@ -2,7 +2,7 @@ module.exports = function uniqid (prefix, moreEntropy) {
   //  discuss at: http://locutusjs.io/php/uniqid/
   // original by: Kevin van Zonneveld (http://kvz.io)
   //  revised by: Kankrelune (http://www.webfaktory.info/)
-  //        note: Uses an internal counter (in locutus global) to avoid collision
+  //      note 1: Uses an internal counter (in locutus global) to avoid collision
   //   example 1: var $id = uniqid()
   //   example 1: var $result = $id.length === 13
   //   returns 1: true

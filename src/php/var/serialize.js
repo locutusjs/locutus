@@ -13,8 +13,8 @@ module.exports = function serialize (mixedValue) {
   // bugfixed by: Codestar (http://codestarlive.com/)
   //    input by: DtTvB (http://dt.in.th/2008-09-16.string-length-in-bytes.html)
   //    input by: Martin (http://www.erlenwiese.de/)
-  //        note: We feel the main purpose of this function should be to ease the transport of data between php & js
-  //        note: Aiming for PHP-compatibility, we have to translate objects to arrays
+  //      note 1: We feel the main purpose of this function should be to ease the transport of data between php & js
+  //      note 1: Aiming for PHP-compatibility, we have to translate objects to arrays
   //   example 1: serialize(['Kevin', 'van', 'Zonneveld'])
   //   returns 1: 'a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}'
   //   example 2: serialize({firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'})

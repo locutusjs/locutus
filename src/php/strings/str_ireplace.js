@@ -1,12 +1,12 @@
 module.exports = function str_ireplace (search, replace, subject, count) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/str_ireplace/
   // original by: Glen Arason (http://CanadianDomainRegistry.ca)
-  //        note: Case-insensitive version of str_replace()
-  //        note: Compliant with PHP 5.0 str_ireplace() Full details at:
-  //        note: http://ca3.php.net/manual/en/function.str-ireplace.php
-  //        note: The count parameter (optional) if used must be passed in as a
-  //        note: string. eg global var MyCount:
-  //        note: str_ireplace($search, $replace, $subject, 'MyCount');
+  //      note 1: Case-insensitive version of str_replace()
+  //      note 1: Compliant with PHP 5.0 str_ireplace() Full details at:
+  //      note 1: http://ca3.php.net/manual/en/function.str-ireplace.php
+  //      note 1: The count parameter (optional) if used must be passed in as a
+  //      note 1: string. eg global var MyCount:
+  //      note 1: str_ireplace($search, $replace, $subject, 'MyCount');
   //      format: str_ireplace($search, $replace, $subject[, 'count'])
   //       input: str_ireplace($search, $replace, $subject[, {string}]);
   //   example 1: str_ireplace('M', 'e', 'name')

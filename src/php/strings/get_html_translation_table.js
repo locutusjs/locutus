@@ -12,10 +12,10 @@ module.exports = function get_html_translation_table (table, quoteStyle) { // es
   // improved by: Brett Zamir (http://brett-zamir.me)
   //    input by: Frank Forte
   //    input by: Ratheous
-  //        note: It has been decided that we're not going to add global
-  //        note: dependencies to Locutus, meaning the constants are not
-  //        note: real constants, but strings instead. Integers are also supported if someone
-  //        note: chooses to create the constants themselves.
+  //      note 1: It has been decided that we're not going to add global
+  //      note 1: dependencies to Locutus, meaning the constants are not
+  //      note 1: real constants, but strings instead. Integers are also supported if someone
+  //      note 1: chooses to create the constants themselves.
   //   example 1: get_html_translation_table('HTML_SPECIALCHARS')
   //   returns 1: {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
 

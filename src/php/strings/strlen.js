@@ -6,9 +6,9 @@ module.exports = function strlen (string) {
   //    input by: Kirk Strobeck
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //  revised by: Brett Zamir (http://brett-zamir.me)
-  //        note: May look like overkill, but in order to be truly faithful to handling all Unicode
-  //        note: characters and to this function in PHP which does not count the number of bytes
-  //        note: but counts the number of characters, something like this is really necessary.
+  //      note 1: May look like overkill, but in order to be truly faithful to handling all Unicode
+  //      note 1: characters and to this function in PHP which does not count the number of bytes
+  //      note 1: but counts the number of characters, something like this is really necessary.
   //   example 1: strlen('Kevin van Zonneveld')
   //   returns 1: 19
   //   example 2: ini_set('unicode.semantics', 'on')

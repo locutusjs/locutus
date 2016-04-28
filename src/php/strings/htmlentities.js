@@ -10,7 +10,7 @@ module.exports = function htmlentities (string, quoteStyle, charset, doubleEncod
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //    input by: Ratheous
-  //        note: function is compatible with PHP 5.2 and older
+  //      note 1: function is compatible with PHP 5.2 and older
   //   example 1: htmlentities('Kevin & van Zonneveld')
   //   returns 1: 'Kevin &amp; van Zonneveld'
   //   example 2: htmlentities("foo'bar","ENT_QUOTES")

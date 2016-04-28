@@ -15,8 +15,8 @@ module.exports = function mktime () {
   // bugfixed by: Marc Palau
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //  revised by: Theriault (https://github.com/Theriault)
-  //        note: The return values of the following examples are
-  //        note: received only if your system's timezone is UTC.
+  //      note 1: The return values of the following examples are
+  //      note 1: received only if your system's timezone is UTC.
   //   example 1: mktime(14, 10, 2, 2, 1, 2008)
   //   returns 1: 1201875002
   //   example 2: mktime(0, 0, 0, 0, 1, 2008)

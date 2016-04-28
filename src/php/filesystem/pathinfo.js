@@ -5,15 +5,15 @@ module.exports = function pathinfo (path, options) {
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Dmitry Gorelenkov
   //    input by: Timo
-  //        note: Inspired by actual PHP source: php5-5.2.6/ext/standard/string.c line #1559
-  //        note: The way the bitwise arguments are handled allows for greater flexibility
-  //        note: & compatability. We might even standardize this code and use a similar approach for
-  //        note: other bitwise PHP functions
-  //        note: Locutus tries very hard to stay away from a core.js file with global dependencies, because we like
-  //        note: that you can just take a couple of functions and be on your way.
-  //        note: But by way we implemented this function, if you want you can still declare the PATHINFO_*
-  //        note: yourself, and then you can use: pathinfo('/www/index.html', PATHINFO_BASENAME | PATHINFO_EXTENSION);
-  //        note: which makes it fully compliant with PHP syntax.
+  //      note 1: Inspired by actual PHP source: php5-5.2.6/ext/standard/string.c line #1559
+  //      note 1: The way the bitwise arguments are handled allows for greater flexibility
+  //      note 1: & compatability. We might even standardize this code and use a similar approach for
+  //      note 1: other bitwise PHP functions
+  //      note 1: Locutus tries very hard to stay away from a core.js file with global dependencies, because we like
+  //      note 1: that you can just take a couple of functions and be on your way.
+  //      note 1: But by way we implemented this function, if you want you can still declare the PATHINFO_*
+  //      note 1: yourself, and then you can use: pathinfo('/www/index.html', PATHINFO_BASENAME | PATHINFO_EXTENSION);
+  //      note 1: which makes it fully compliant with PHP syntax.
   //   example 1: pathinfo('/www/htdocs/index.html', 1)
   //   returns 1: '/www/htdocs'
   //   example 2: pathinfo('/www/htdocs/index.html', 'PATHINFO_BASENAME')

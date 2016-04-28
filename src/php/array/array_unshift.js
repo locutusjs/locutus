@@ -3,7 +3,7 @@ module.exports = function array_unshift (array) { // eslint-disable-line camelca
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Martijn Wieringa
   // improved by: jmweb
-  //        note: Currently does not handle objects
+  //      note 1: Currently does not handle objects
   //   example 1: array_unshift(['van', 'Zonneveld'], 'Kevin')
   //   returns 1: 3
 

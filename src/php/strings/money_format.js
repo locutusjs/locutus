@@ -3,8 +3,8 @@ module.exports = function money_format (format, number) { // eslint-disable-line
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: daniel airton wermann (http://wermann.com.br)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //        note: This depends on setlocale having the appropriate
-  //        note: locale (these examples use 'en_US')
+  //      note 1: This depends on setlocale having the appropriate
+  //      note 1: locale (these examples use 'en_US')
   //   example 1: money_format('%i', 1234.56)
   //   returns 1: ' USD 1,234.56'
   //   example 2: money_format('%14#8.2n', 1234.5678)

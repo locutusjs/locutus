@@ -3,7 +3,7 @@ module.exports = function array_slice (arr, offst, lgth, preserveKeys) { // esli
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (http://kvz.io)
-  //        note: Relies on is_int because !isNaN accepts floats
+  //      note 1: Relies on is_int because !isNaN accepts floats
   //   example 1: array_slice(["a", "b", "c", "d", "e"], 2, -1)
   //   returns 1: [ 'c', 'd' ]
   //   example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true)

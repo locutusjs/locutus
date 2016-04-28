@@ -1,7 +1,7 @@
 module.exports = function is_unicode (vr) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/is_unicode/
   // original by: Brett Zamir (http://brett-zamir.me)
-  //        note: Almost all strings in JavaScript should be Unicode
+  //      note 1: Almost all strings in JavaScript should be Unicode
   //   example 1: is_unicode('We the peoples of the United Nations...!')
   //   returns 1: true
 

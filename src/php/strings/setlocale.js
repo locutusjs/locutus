@@ -3,11 +3,11 @@ module.exports = function setlocale (category, locale) {
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: Blues (http://hacks.bluesmoon.info/strftime/strftime.js)
   // original by: YUI Library (http://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html)
-  //        note: Is extensible, but currently only implements locales en,
-  //        note: en_US, en_GB, en_AU, fr, and fr_CA for LC_TIME only; C for LC_CTYPE;
-  //        note: C and en for LC_MONETARY/LC_NUMERIC; en for LC_COLLATE
-  //        note: Uses global: locutus to store locale info
-  //        note: Consider using http://demo.icu-project.org/icu-bin/locexp as basis for localization (as in i18n_loc_set_default())
+  //      note 1: Is extensible, but currently only implements locales en,
+  //      note 1: en_US, en_GB, en_AU, fr, and fr_CA for LC_TIME only; C for LC_CTYPE;
+  //      note 1: C and en for LC_MONETARY/LC_NUMERIC; en for LC_COLLATE
+  //      note 1: Uses global: locutus to store locale info
+  //      note 1: Consider using http://demo.icu-project.org/icu-bin/locexp as basis for localization (as in i18n_loc_set_default())
   //   example 1: setlocale('LC_ALL', 'en_US')
   //   returns 1: 'en_US'
 

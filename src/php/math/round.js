@@ -9,11 +9,11 @@ module.exports = function round (value, precision, mode) {
   //    input by: William
   //    input by: Josep Sanz (http://www.ws3.es/)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //        note: Great work. Ideas for improvement:
-  //        note: - code more compliant with developer guidelines
-  //        note: - for implementing PHP constant arguments look at
-  //        note: the pathinfo() function, it offers the greatest
-  //        note: flexibility & compatibility possible
+  //      note 1: Great work. Ideas for improvement:
+  //      note 1: - code more compliant with developer guidelines
+  //      note 1: - for implementing PHP constant arguments look at
+  //      note 1: the pathinfo() function, it offers the greatest
+  //      note 1: flexibility & compatibility possible
   //   example 1: round(1241757, -3)
   //   returns 1: 1242000
   //   example 2: round(3.6)

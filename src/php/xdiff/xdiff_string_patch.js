@@ -2,8 +2,8 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, error) 
   //  discuss at: http://locutusjs.io/php/xdiff_string_patch/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Steven Levithan (stevenlevithan.com)
-  //        note: The XDIFF_PATCH_IGNORESPACE flag and the error argument are not currently supported
-  //        note: This has not been widely tested
+  //      note 1: The XDIFF_PATCH_IGNORESPACE flag and the error argument are not currently supported
+  //      note 1: This has not been widely tested
   //   example 1: xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!')
   //   returns 1: 'Hello world!'
 
