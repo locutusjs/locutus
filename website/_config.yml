@@ -23,7 +23,7 @@ kramdown:
 
 encoding: UTF-8
 timezone: Europe/Amsterdam
-permalink: /blog/:year/:month/:day/:title/
+permalink: /blog/:year/:month/:title/
 
 gems:
   - jekyll-feed

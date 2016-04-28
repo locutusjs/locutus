@@ -1,25 +1,42 @@
 # Changelog
 
+Our combined changelog and roadmap. It contains todos as well as dones.
+
 Only project-wide changes are mentioned here. For individual function changelogs, please refer to their
 respective Git histories.
 
-## Ideabox
+Locutus does not follow SemVer as we're a work in progress, and even though we try, 
+we cannot guarantee BC-safety for the hundreds of contributions across the many l
+anguages that Locutus is assimilating.
 
-Unreleased and unplanned todos
+Instead, we recommend using version pinning, and inspect changes for the few particular functions you rely on
+when you upgrade.
+
+## Backlog
+
+Ideas that will be planned and find their way into a release at one point
 
 - [ ] Have _one_ way of checking pure JS arrays vs PHP arrays (vs: `Object.prototype.toString.call(arr1) === '[object Array]'`, `typeof retObj[p] === 'object'`, `var asString = Object.prototype.toString.call(mixedVar) var asFunc = _getFuncName(mixedVar.constructor) if (asString === '[object Object]' && asFunc === 'Object') {` )
-- [ ] Auto-deploys of `master` to http://locutusjs.io via Travis CI
 - [ ] Compare example test cases for PHP against `php -r` to make sure they are correctly mimicking the most recent stable behavior
 - [ ] Investigate if we can have one helper function for intersecting, and use that in all `array_*diff*` and `array_*sort*` functions. Refrain from using `labels`, as those functions currently still rely on
 - [ ] Investigate if we can have one helper function for sorting, and use that in all `*sort*` functions
 - [ ] Investigate if we can have one helper function to resolve `Function/'function'/'Class::function'/[$object, 'function']`, and use that in `is_callable`, `array_walk`, `call_user_func_array` etc.
-- [ ] Address remaining test failures that are now skipped (find out via `npm run test:languages:noskip`)
 - [ ] Port a few more tricky/inter-depending Ruby functions
 - [ ] Port a few more tricky/inter-depending Python functions
 - [ ] Port a few more tricky/inter-depending Go functions
 - [ ] Parse `require`s with AST just like Browserify does. Then we can add dependencies back to website
 
-## v2.0.0 (Unreleased)
+## v2.0.1
+
+Released: Not yet
+
+- [ ] Triage all open issues and PRs via waffle.io
+- [ ] Auto-deploys of `master` to http://locutusjs.io via Travis CI
+- [ ] Address the 25 remaining test failures that are currently skipped (find out which ones via `npm run test:languages:noskip`)
+
+## v2.0.0
+
+Released: Not yet
 
 - [x] Change `fix(me)?` and `Todo` to `@todo`
 - [x] Replace single line `/**/` comments with `//`
@@ -57,7 +74,10 @@ Unreleased and unplanned todos
 - [x] In util.opener: First `*` should point to the requesting/current language
 - [x] Split out the npm module so you could do `var sprintf = require('locutus/sprintf')`
 - [x] Launch BC breaking blogpost
+- [x] Roll out support for Ruby, C, Go, Python
 
-## v1.3.2 (2016-04-04)
+## v1.3.2
 
-- [x] Start using CHANGELOG https://github.com/kvz/phpjs/releases/tag/v1.3.2
+Released: April 4, 2016
+
+- [x] Start using a CHANGELOG https://github.com/kvz/phpjs/releases/tag/v1.3.2
