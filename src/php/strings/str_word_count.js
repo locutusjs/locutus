@@ -29,7 +29,6 @@ module.exports = function str_word_count (str, format, charlist) { // eslint-dis
   var reg = ''
   var match = false
 
-  // BEGIN STATIC
   var _pregQuote = function (str) {
     return (str + '').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}=!<>\|:])/g, '\\$1')
   }
@@ -62,7 +61,7 @@ module.exports = function str_word_count (str, format, charlist) { // eslint-dis
     // We can pass over low surrogates now as the second component in a pair which we have already processed
     return false
   }
-  // END STATIC
+
   if (cl) {
     reg = '^(' + _pregQuote(_getWholeChar(charlist, 0))
     for (i = 1; i < cl; i++) {

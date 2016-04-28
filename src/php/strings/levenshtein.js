@@ -38,7 +38,6 @@ module.exports = function levenshtein (s1, s2, costIns, costRep, costDel) {
   //   return -1;
   // }
 
-  // BEGIN STATIC
   var split = false
   try {
     split = !('0')[0]
@@ -46,7 +45,7 @@ module.exports = function levenshtein (s1, s2, costIns, costRep, costDel) {
     // Earlier IE may not support access by string index
     split = true
   }
-  // END STATIC
+
   if (split) {
     s1 = s1.split('')
     s2 = s2.split('')

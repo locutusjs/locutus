@@ -29,7 +29,7 @@ Unreleased and unplanned todos
 - [ ] Use native `sha1` and `md5` encoding when available
 - [ ] Remove XUL from functions
 - [ ] Rename `strictForIn` to `sortByReference`
-- [ ] Remove `// (BEGIN|END) (STATIC|REDUNDANT)`
+- [x] Remove `// (BEGIN|END) (STATIC|REDUNDANT)`
 - [x] Index all `note`s
 - [x] Either deprecate or document all functions using `eval` or `new Function`
 - [x] Port Util to ES6 class

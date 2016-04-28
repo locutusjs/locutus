@@ -17,9 +17,7 @@ module.exports = function strftime (fmt, timestamp) {
 
   // ensure setup of localization variables takes place
   setlocale('LC_ALL', 0)
-  // END REDUNDANT
 
-  // BEGIN STATIC
   var _xPad = function (x, pad, r) {
     if (typeof r === 'undefined') {
       r = 10
@@ -151,7 +149,6 @@ module.exports = function strftime (fmt, timestamp) {
       return '%'
     }
   }
-  // END STATIC
 
   var _date = (typeof timestamp === 'undefined')
     ? new Date()

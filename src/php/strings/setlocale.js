@@ -331,7 +331,7 @@ module.exports = function setlocale (category, locale) {
       'LC_MESSAGES': $locutus.php.locale // for system responses (available if PHP was compiled with libintl)
     }
   }
-  // END REDUNDANT
+
   if (locale === null || locale === '') {
     locale = getenv(category) || getenv('LANG')
   } else if (Object.prototype.toString.call(locale) === '[object Array]') {
