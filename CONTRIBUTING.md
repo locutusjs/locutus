@@ -1,5 +1,9 @@
 Thank you so much for becoming a Locutus contributor!
 
+Even if you have write access, all code changes should be done via a pull request. This way
+we can peer-review, and also Travis CI can check if the code adheres to our policies before
+merging it in.
+
 Here are a few pointers that could save us from disappointment, we'll keep it brief:
 
 1. By submitting a Pull Request you are giving Locutus permission to distribute your code under the MIT License.

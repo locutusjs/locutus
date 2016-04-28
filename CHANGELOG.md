@@ -38,6 +38,8 @@ Released: Not yet
 
 Released: Not yet
 
+- [ ] Rename `_locutus_shared` to `_helpers`. Rename `_locutus_shared_bc` to `bc`
+- [ ] Add `estarget` option to all functions, set `ip2long` to `es2015`
 - [x] Change `fix(me)?` and `Todo` to `@todo`
 - [x] Replace single line `/**/` comments with `//`
 - [x] Enforce a 100 character line-length via eslint, and change all functions accordingly
