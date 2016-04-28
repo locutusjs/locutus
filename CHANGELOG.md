@@ -28,7 +28,7 @@ Unreleased and unplanned todos
 - [ ] Track down all `iniRaw`s and replace them with `iniVal`, use a single way of doing defaults
 - [ ] Use native `sha1` and `md5` encoding when available
 - [ ] Remove XUL from functions
-- [ ] Rename `strictForIn` to `sortByReference`
+- [x] Rename `strictForIn` to `sortByReference`
 - [x] Remove `// (BEGIN|END) (STATIC|REDUNDANT)`
 - [x] Index all `note`s
 - [x] Either deprecate or document all functions using `eval` or `new Function`
