@@ -26,13 +26,10 @@ module.exports = function similar_text (first, second, percent) { // eslint-disa
   var l
   var sum
 
-  max = 0
-
   for (p = 0; p < firstLength; p++) {
     for (q = 0; q < secondLength; q++) {
-      for (l = 0;
-        (p + l < firstLength) && (q + l < secondLength) && (first.charAt(p + l) === second.charAt(q + l)); l++)
-        ;
+      for (l = 0; (p + l < firstLength) && (q + l < secondLength) && (first.charAt(p + l) === second.charAt(q + l)); l++) {
+      }
       if (l > max) {
         max = l
         pos1 = p
