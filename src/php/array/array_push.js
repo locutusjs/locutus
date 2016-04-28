@@ -10,14 +10,15 @@ module.exports = function array_push (inputArr) { // eslint-disable-line camelca
   //   example 1: array_push(['kevin','van'], 'zonneveld')
   //   returns 1: 3
 
-  var i = 0,
-    pr = '',
-    argv = arguments,
-    argc = argv.length,
-    allDigits = /^\d$/,
-    size = 0,
-    highestIdx = 0,
-    len = 0
+  var i = 0
+  var pr = ''
+  var argv = arguments
+  var argc = argv.length
+  var allDigits = /^\d$/
+  var size = 0
+  var highestIdx = 0
+  var len = 0
+
   if (inputArr.hasOwnProperty('length')) {
     for (i = 1; i < argc; i++) {
       inputArr[inputArr.length] = argv[i]
@@ -38,5 +39,6 @@ module.exports = function array_push (inputArr) { // eslint-disable-line camelca
   for (i = 1; i < argc; i++) {
     inputArr[++highestIdx] = argv[i]
   }
+
   return len + i - 1
 }

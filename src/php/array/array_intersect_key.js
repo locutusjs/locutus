@@ -8,19 +8,19 @@ module.exports = function array_intersect_key (arr1) { // eslint-disable-line ca
   //   example 1: array_intersect_key($array1, $array2)
   //   returns 1: {0: 'red', a: 'green'}
 
-  var retArr = {},
-    argl = arguments.length,
-    arglm1 = argl - 1,
-    k1 = '',
-    arr = {},
-    i = 0,
-    k = ''
+  var retArr = {}
+  var argl = arguments.length
+  var arglm1 = argl - 1
+  var k1 = ''
+  var arr = {}
+  var i = 0
+  var k = ''
 
-  arr1keys: for (k1 in arr1) {
+  arr1keys: for (k1 in arr1) { // eslint-disable-line no-labels
     if (!arr1.hasOwnProperty(k1)) {
       continue
     }
-    arrs: for (i = 1; i < argl; i++) {
+    arrs: for (i = 1; i < argl; i++) { // eslint-disable-line no-labels
       arr = arguments[i]
       for (k in arr) {
         if (!arr.hasOwnProperty(k)) {
@@ -31,11 +31,11 @@ module.exports = function array_intersect_key (arr1) { // eslint-disable-line ca
             retArr[k1] = arr1[k1]
           }
           // If the innermost loop always leads at least once to an equal value, continue the loop until done
-          continue arrs
+          continue arrs // eslint-disable-line no-labels
         }
       }
       // If it reaches here, it wasn't found in at least one array, so try next value
-      continue arr1keys
+      continue arr1keys // eslint-disable-line no-labels
     }
   }
 

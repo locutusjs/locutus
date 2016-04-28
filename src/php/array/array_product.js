@@ -4,9 +4,9 @@ module.exports = function array_product (input) { // eslint-disable-line camelca
   //   example 1: array_product([ 2, 4, 6, 8 ])
   //   returns 1: 384
 
-  var idx = 0,
-    product = 1,
-    il = 0
+  var idx = 0
+  var product = 1
+  var il = 0
 
   if (Object.prototype.toString.call(input) !== '[object Array]') {
     return null
@@ -17,5 +17,6 @@ module.exports = function array_product (input) { // eslint-disable-line camelca
     product *= (!isNaN(input[idx]) ? input[idx] : 0)
     idx++
   }
+
   return product
 }

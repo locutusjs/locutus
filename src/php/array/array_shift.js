@@ -6,9 +6,6 @@ module.exports = function array_shift (inputArr) { // eslint-disable-line camelc
   //   example 1: array_shift(['Kevin', 'van', 'Zonneveld'])
   //   returns 1: 'Kevin'
 
-  var pr = ''
-  var allDigits = /^\d$/
-  var int_ct = -1
   var _checkToUpIndices = function (arr, ct, key) {
     // Deal with situation, e.g., if encounter index 4 and try to set it to 0, but 0 exists later in loop (need to
     // increment all subsequent (skipping current key, since we need its value below) until find unused)

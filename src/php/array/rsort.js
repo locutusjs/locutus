@@ -67,10 +67,10 @@ module.exports = function rsort (inputArr, sortFlags) {
     default:
       // compare items normally (don't change types)
       sorter = function (b, a) {
-        var aFloat = parseFloat(a),
-          bFloat = parseFloat(b),
-          aNumeric = aFloat + '' === a,
-          bNumeric = bFloat + '' === b
+        var aFloat = parseFloat(a)
+        var bFloat = parseFloat(b)
+        var aNumeric = aFloat + '' === a
+        var bNumeric = bFloat + '' === b
         if (aNumeric && bNumeric) {
           return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0
         } else if (aNumeric && !bNumeric) {

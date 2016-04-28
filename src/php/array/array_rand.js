@@ -1,15 +1,15 @@
-module.exports = function array_rand (input, num_req) { // eslint-disable-line camelcase
+module.exports = function array_rand (input, numReq) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_rand/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //   example 1: array_rand( ['Kevin'], 1 )
   //   returns 1: 0
 
   var indexes = []
-  var ticks = num_req || 1
+  var ticks = numReq || 1
   var checkDuplicate = function (input, value) {
-    var exist = false,
-      index = 0,
-      il = input.length
+    var exist = false
+    var index = 0
+    var il = input.length
     while (index < il) {
       if (input[index] === value) {
         exist = true

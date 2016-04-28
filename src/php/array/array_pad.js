@@ -1,4 +1,4 @@
-module.exports = function array_pad (input, pad_size, pad_value) { // eslint-disable-line camelcase
+module.exports = function array_pad (input, padSize, padValue) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_pad/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //   example 1: array_pad([ 7, 8, 9 ], 2, 'a')
@@ -10,21 +10,21 @@ module.exports = function array_pad (input, pad_size, pad_value) { // eslint-dis
   //   example 4: array_pad([ 7, 8, 9 ], -5, 'a')
   //   returns 4: [ 'a', 'a', 7, 8, 9 ]
 
-  var pad = [],
-    newArray = [],
-    newLength,
-    diff = 0,
-    i = 0
+  var pad = []
+  var newArray = []
+  var newLength
+  var diff = 0
+  var i = 0
 
-  if (Object.prototype.toString.call(input) === '[object Array]' && !isNaN(pad_size)) {
-    newLength = ((pad_size < 0) ? (pad_size * -1) : pad_size)
+  if (Object.prototype.toString.call(input) === '[object Array]' && !isNaN(padSize)) {
+    newLength = ((padSize < 0) ? (padSize * -1) : padSize)
     diff = newLength - input.length
 
     if (diff > 0) {
       for (i = 0; i < diff; i++) {
-        newArray[i] = pad_value
+        newArray[i] = padValue
       }
-      pad = ((pad_size < 0) ? newArray.concat(input) : input.concat(newArray))
+      pad = ((padSize < 0) ? newArray.concat(input) : input.concat(newArray))
     } else {
       pad = input
     }

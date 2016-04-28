@@ -1,25 +1,22 @@
-module.exports = function array_reverse (array, preserve_keys) { // eslint-disable-line camelcase
+module.exports = function array_reverse (array, preserveKeys) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_reverse/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Karol Kowalski
   //   example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
   //   returns 1: { 2: ['green', 'red'], 1: '4.0', 0: 'php'}
 
-  var isArray = Object.prototype.toString.call(array) === '[object Array]',
-    tmp_arr = preserve_keys ? {} : [],
-    key
+  var isArray = Object.prototype.toString.call(array) === '[object Array]'
+  var tmpArr = preserveKeys ? {} : []
+  var key
 
-  if (isArray && !preserve_keys) {
-    return array.slice(0)
-      .reverse()
+  if (isArray && !preserveKeys) {
+    return array.slice(0).reverse()
   }
 
-  if (preserve_keys) {
+  if (preserveKeys) {
     var keys = []
     for (key in array) {
-      // if (array.hasOwnProperty(key)) {
       keys.push(key)
-      // }
     }
 
     var i = keys.length
@@ -28,15 +25,13 @@ module.exports = function array_reverse (array, preserve_keys) { // eslint-disab
       // FIXME: don't rely on browsers keeping keys in insertion order
       // it's implementation specific
       // eg. the result will differ from expected in Google Chrome
-      tmp_arr[key] = array[key]
+      tmpArr[key] = array[key]
     }
   } else {
     for (key in array) {
-      // if (array.hasOwnProperty(key)) {
-      tmp_arr.unshift(array[key])
-      // }
+      tmpArr.unshift(array[key])
     }
   }
 
-  return tmp_arr
+  return tmpArr
 }

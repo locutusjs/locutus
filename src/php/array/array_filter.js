@@ -12,8 +12,9 @@ module.exports = function array_filter (arr, func) { // eslint-disable-line came
   //   returns 2: [ 6, , 8, , 10, , 12 ]
   //   example 3: array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined})
   //   returns 3: {"a":1, "c":-1}
-  var retObj = {},
-    k
+
+  var retObj = {}
+  var k
 
   func = func || function (v) {
     return v

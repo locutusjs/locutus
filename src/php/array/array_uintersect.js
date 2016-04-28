@@ -17,7 +17,6 @@ module.exports = function array_uintersect (arr1) { // eslint-disable-line camel
   var k = ''
 
   var $global = (typeof window !== 'undefined' ? window : GLOBAL)
-  $global.$locutus = $global.$locutus || {}
 
   cb = (typeof cb === 'string')
     ? $global[cb]

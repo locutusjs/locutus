@@ -1,4 +1,4 @@
-module.exports = function array_keys (input, search_value, argStrict) { // eslint-disable-line camelcase
+module.exports = function array_keys (input, searchValue, argStrict) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_keys/
   // original by: Kevin van Zonneveld (http://kvz.io)
   //    input by: Brett Zamir (http://brett-zamir.me)
@@ -10,28 +10,28 @@ module.exports = function array_keys (input, search_value, argStrict) { // eslin
   //   example 1: array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} )
   //   returns 1: [ 'firstname', 'surname' ]
 
-  var search = typeof search_value !== 'undefined',
-    tmp_arr = [],
-    strict = !!argStrict,
-    include = true,
-    key = ''
+  var search = typeof searchValue !== 'undefined'
+  var tmpArr = []
+  var strict = !!argStrict
+  var include = true
+  var key = ''
 
   for (key in input) {
     if (input.hasOwnProperty(key)) {
       include = true
       if (search) {
-        if (strict && input[key] !== search_value) {
+        if (strict && input[key] !== searchValue) {
           include = false
-        } else if (input[key] !== search_value) {
+        } else if (input[key] !== searchValue) {
           include = false
         }
       }
 
       if (include) {
-        tmp_arr[tmp_arr.length] = key
+        tmpArr[tmpArr.length] = key
       }
     }
   }
 
-  return tmp_arr
+  return tmpArr
 }

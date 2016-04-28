@@ -92,6 +92,7 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 - [ ] Read up on `i18n_loc_set_default` and `setlocale` in php manual, see if new behavior is warrented
 - [ ] `json_*` functions can leverage Node's
 - [ ] See if we need to merge `sort` functions into one helper function and `require` that. Use `arsort` as an example
+- [ ] See if we need to merge `diff` and `intersect` functions into one helper function and `require` that. Refrain from using `labels`
 - [ ] Test `is_array` in-browser to see if the `require` for `ini_get` works correctly with browserify
 - [ ] Track down all `iniRaw`s and replace them with `iniVal`
 - [ ] Add a default mode to `ini_get`
