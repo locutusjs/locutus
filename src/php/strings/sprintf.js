@@ -21,7 +21,7 @@ module.exports = function sprintf () {
   //   example 5: sprintf('%-03s', 'E')
   //   returns 5: 'E00'
 
-  var regex = /%%|%(\d+\$)?([\-+\'#0 ]*)(\*\d+\$|\*|\d+)?(?:\.(\*\d+\$|\*|\d+))?([scboxXuideEfFgG])/g
+  var regex = /%%|%(\d+\$)?([\-+'#0 ]*)(\*\d+\$|\*|\d+)?(?:\.(\*\d+\$|\*|\d+))?([scboxXuideEfFgG])/g
   var a = arguments
   var i = 0
   var format = a[i++]
@@ -86,7 +86,7 @@ module.exports = function sprintf () {
     var customPadChar = ' '
     var flagsl = flags.length
     var j
-    for (j = 0; flags && j < flagsl; j++) {
+    for (j = 0; j < flagsl; j++) {
       switch (flags.charAt(j)) {
         case ' ':
           positivePrefix = ' '

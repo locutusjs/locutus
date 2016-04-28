@@ -12,22 +12,22 @@ module.exports = function str_ireplace (search, replace, subject, count) { // es
   //   example 1: str_ireplace('M', 'e', 'name')
   //   returns 1: 'naee'
 
-  var i = 0,
-    j = 0,
-    temp = '',
-    repl = '',
-    sl = 0,
-    fl = 0,
-    f = '',
-    r = '',
-    s = '',
-    ra = '',
-    sa = '',
-    otemp = '',
-    oi = '',
-    ofjl = '',
-    os = subject,
-    osa = Object.prototype.toString.call(os) === '[object Array]'
+  var i = 0
+  var j = 0
+  var temp = ''
+  var repl = ''
+  var sl = 0
+  var fl = 0
+  var f = ''
+  var r = ''
+  var s = ''
+  var ra = ''
+  // var sa = ''
+  var otemp = ''
+  var oi = ''
+  var ofjl = ''
+  var os = subject
+  var osa = Object.prototype.toString.call(os) === '[object Array]'
 
   if (typeof (search) === 'object') {
     temp = search
@@ -62,7 +62,7 @@ module.exports = function str_ireplace (search, replace, subject, count) { // es
   r = [].concat(replace)
   ra = Object.prototype.toString.call(r) === '[object Array]'
   s = subject
-  sa = Object.prototype.toString.call(s) === '[object Array]'
+  // sa = Object.prototype.toString.call(s) === '[object Array]'
   s = [].concat(s)
   os = [].concat(os)
 
@@ -77,23 +77,19 @@ module.exports = function str_ireplace (search, replace, subject, count) { // es
     for (j = 0, fl = f.length; j < fl; j++) {
       temp = s[i] + ''
       repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0]
-      s[i] = (temp)
-        .split(f[j])
-        .join(repl)
+      s[i] = (temp).split(f[j]).join(repl)
       otemp = os[i] + ''
       oi = temp.indexOf(f[j])
       ofjl = f[j].length
       if (oi >= 0) {
-        os[i] = (otemp)
-          .split(otemp.substr(oi, ofjl))
-          .join(repl)
+        os[i] = (otemp).split(otemp.substr(oi, ofjl)).join(repl)
       }
 
       if (count) {
-        this.window[count] += ((temp.split(f[j]))
-          .length - 1)
+        this.window[count] += ((temp.split(f[j])).length - 1)
       }
     }
   }
+
   return osa ? os : os[0]
 }

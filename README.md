@@ -95,8 +95,10 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 - [ ] Test `is_array` in-browser to see if the `require` for `ini_get` works correctly with browserify
 - [ ] Track down all `iniRaw`s and replace them with `iniVal`
 - [ ] Add a default mode to `ini_get`
+- [ ] Use native `sha1` and `md5` encoding if available
 - [ ] Use `\u` for octals in `_examples` for ES2015 compatibility
 - [ ] Rename `strictForIn` to `sortByReference`
+- [ ] Remove `// (BEGIN|END) (STATIC|REDUNDANT)`
 - [ ] Move functions that overly rely on ini & locales & global & ajax file operations to \_legacy
 - [ ] Remove XUL from functions
 - [ ] ES6

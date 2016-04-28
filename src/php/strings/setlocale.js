@@ -17,7 +17,6 @@ module.exports = function setlocale (category, locale) {
   var cats = []
   var i = 0
 
-  // BEGIN STATIC
   var _copy = function _copy (orig) {
     if (orig instanceof RegExp) {
       return new RegExp(orig)
@@ -43,10 +42,10 @@ module.exports = function setlocale (category, locale) {
   // Need to look into http://cldr.unicode.org/ (maybe future JavaScript); Dojo has some functions (under new BSD),
   // including JSON conversions of LDML XML from CLDR: http://bugs.dojotoolkit.org/browser/dojo/trunk/cldr
   // and docs at http://api.dojotoolkit.org/jsdoc/HEAD/dojo.cldr
-  var _nplurals1 = function (n) {
-    // e.g., Japanese
-    return 0
-  }
+  // var _nplurals1 = function (n) {
+  //   // e.g., Japanese
+  //   return 0
+  // }
   var _nplurals2a = function (n) {
     // e.g., English
     return n !== 1 ? 1 : 0
@@ -55,61 +54,60 @@ module.exports = function setlocale (category, locale) {
     // e.g., French
     return n > 1 ? 1 : 0
   }
-  var _nplurals2c = function (n) {
-    // e.g., Icelandic (MDC)
-    return n % 10 === 1 && n % 100 !== 11 ? 0 : 1
-  }
-  var _nplurals3a = function (n) {
-    // e.g., Latvian (MDC has a different order from gettext)
-    return n % 10 === 1 && n % 100 !== 11 ? 0 : n !== 0 ? 1 : 2
-  }
-  var _nplurals3b = function (n) {
-    // e.g., Scottish Gaelic
-    return n === 1 ? 0 : n === 2 ? 1 : 2
-  }
-  var _nplurals3c = function (n) {
-    // e.g., Romanian
-    return n === 1 ? 0 : (n === 0 || (n % 100 > 0 && n % 100 < 20)) ? 1 : 2
-  }
-  var _nplurals3d = function (n) {
-    // e.g., Lithuanian (MDC has a different order from gettext)
-    return n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >= 2 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2
-  }
-  var _nplurals3e = function (n) {
-    // e.g., Croatian
-    return n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 :
-      2
-  }
-  var _nplurals3f = function (n) {
-    // e.g., Slovak
-    return n === 1 ? 0 : n >= 2 && n <= 4 ? 1 : 2
-  }
-  var _nplurals3g = function (n) {
-    // e.g., Polish
-    return n === 1 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2
-  }
-  var _nplurals3h = function (n) {
-    // e.g., Macedonian (MDC)
-    return n % 10 === 1 ? 0 : n % 10 === 2 ? 1 : 2
-  }
-  var _nplurals4a = function (n) {
-    // e.g., Slovenian
-    return n % 100 === 1 ? 0 : n % 100 === 2 ? 1 : n % 100 === 3 || n % 100 === 4 ? 2 : 3
-  }
-  var _nplurals4b = function (n) {
-    // e.g., Maltese (MDC)
-    return n === 1 ? 0 : n === 0 || (n % 100 && n % 100 <= 10) ? 1 : n % 100 >= 11 && n % 100 <= 19 ? 2 : 3
-  }
-  var _nplurals5 = function (n) {
-    // e.g., Irish Gaeilge (MDC)
-    return n === 1 ? 0 : n === 2 ? 1 : n >= 3 && n <= 6 ? 2 : n >= 7 && n <= 10 ? 3 : 4
-  }
-  var _nplurals6 = function (n) {
-    // e.g., Arabic (MDC) - Per MDC puts 0 as last group
-    return n === 0 ? 5 : n === 1 ? 0 : n === 2 ? 1 : n % 100 >= 3 && n % 100 <= 10 ? 2 : n % 100 >= 11 && n % 100 <=
-      99 ? 3 : 4
-  }
-  // END STATIC
+  // var _nplurals2c = function (n) {
+  //   // e.g., Icelandic (MDC)
+  //   return n % 10 === 1 && n % 100 !== 11 ? 0 : 1
+  // }
+  // var _nplurals3a = function (n) {
+  //   // e.g., Latvian (MDC has a different order from gettext)
+  //   return n % 10 === 1 && n % 100 !== 11 ? 0 : n !== 0 ? 1 : 2
+  // }
+  // var _nplurals3b = function (n) {
+  //   // e.g., Scottish Gaelic
+  //   return n === 1 ? 0 : n === 2 ? 1 : 2
+  // }
+  // var _nplurals3c = function (n) {
+  //   // e.g., Romanian
+  //   return n === 1 ? 0 : (n === 0 || (n % 100 > 0 && n % 100 < 20)) ? 1 : 2
+  // }
+  // var _nplurals3d = function (n) {
+  //   // e.g., Lithuanian (MDC has a different order from gettext)
+  //   return n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >= 2 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2
+  // }
+  // var _nplurals3e = function (n) {
+  //   // e.g., Croatian
+  //   return n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 :
+  //     2
+  // }
+  // var _nplurals3f = function (n) {
+  //   // e.g., Slovak
+  //   return n === 1 ? 0 : n >= 2 && n <= 4 ? 1 : 2
+  // }
+  // var _nplurals3g = function (n) {
+  //   // e.g., Polish
+  //   return n === 1 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2
+  // }
+  // var _nplurals3h = function (n) {
+  //   // e.g., Macedonian (MDC)
+  //   return n % 10 === 1 ? 0 : n % 10 === 2 ? 1 : 2
+  // }
+  // var _nplurals4a = function (n) {
+  //   // e.g., Slovenian
+  //   return n % 100 === 1 ? 0 : n % 100 === 2 ? 1 : n % 100 === 3 || n % 100 === 4 ? 2 : 3
+  // }
+  // var _nplurals4b = function (n) {
+  //   // e.g., Maltese (MDC)
+  //   return n === 1 ? 0 : n === 0 || (n % 100 && n % 100 <= 10) ? 1 : n % 100 >= 11 && n % 100 <= 19 ? 2 : 3
+  // }
+  // var _nplurals5 = function (n) {
+  //   // e.g., Irish Gaeilge (MDC)
+  //   return n === 1 ? 0 : n === 2 ? 1 : n >= 3 && n <= 6 ? 2 : n >= 7 && n <= 10 ? 3 : 4
+  // }
+  // var _nplurals6 = function (n) {
+  //   // e.g., Arabic (MDC) - Per MDC puts 0 as last group
+  //   return n === 0 ? 5 : n === 1 ? 0 : n === 2 ? 1 : n % 100 >= 3 && n % 100 <= 10 ? 2 : n % 100 >= 11 && n % 100 <=
+  //     99 ? 3 : 4
+  // }
 
   var $global = (typeof window !== 'undefined' ? window : GLOBAL)
   $global.$locutus = $global.$locutus || {}

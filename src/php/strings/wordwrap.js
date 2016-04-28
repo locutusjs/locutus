@@ -1,4 +1,4 @@
-module.exports = function wordwrap (str, int_width, str_break, cut) {
+module.exports = function wordwrap (str, intWidth, strBreak, cut) {
   //  discuss at: http://locutusjs.io/php/wordwrap/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // improved by: Nick Callen
@@ -7,6 +7,8 @@ module.exports = function wordwrap (str, int_width, str_break, cut) {
   //  revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // bugfixed by: Michael Grier
   // bugfixed by: Feras ALHAEK
+  //      note 1: It would be great if this function could be split up to have
+  //      note 1: smaller line lengths, less ternary operators, and more readable variable names
   //   example 1: wordwrap('Kevin van Zonneveld', 6, '|', true)
   //   returns 1: 'Kevin |van |Zonnev|eld'
   //   example 2: wordwrap('The quick brown fox jumped over the lazy dog.', 20, '<br />\n')
@@ -28,10 +30,7 @@ module.exports = function wordwrap (str, int_width, str_break, cut) {
 
   for (i = -1, l = (r = str.split(/\r\n|\n|\r/)).length; ++i < l; r[i] += s) {
     for (s = r[i], r[i] = ''; s.length > m; r[i] += s.slice(0, j) + ((s = s.slice(j)).length ? b : '')) {
-      j = c === 2 || (j = s.slice(0, m + 1)
-        .match(/\S*(\s)?$/))[1] ? m : j.input.length - j[0].length || c === true && m || j.input.length + (j = s.slice(
-          m)
-        .match(/^\S*/))[0].length
+      j = c === 2 || (j = s.slice(0, m + 1).match(/\S*(\s)?$/))[1] ? m : j.input.length - j[0].length || c === true && m || j.input.length + (j = s.slice(m).match(/^\S*/))[0].length
     }
   }
 

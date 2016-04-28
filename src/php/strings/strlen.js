@@ -34,17 +34,17 @@ module.exports = function strlen (string) {
         throw new Error('High surrogate without following low surrogate')
       }
       next = str.charCodeAt(i + 1)
-      if (0xDC00 > next || next > 0xDFFF) {
+      if (next < 0xDC00 || next > 0xDFFF) {
         throw new Error('High surrogate without following low surrogate')
       }
       return str.charAt(i) + str.charAt(i + 1)
-    } else if (0xDC00 <= code && code <= 0xDFFF) {
+    } else if (code >= 0xDC00 && code <= 0xDFFF) {
       // Low surrogate
       if (i === 0) {
         throw new Error('Low surrogate without preceding high surrogate')
       }
       prev = str.charCodeAt(i - 1)
-      if (0xD800 > prev || prev > 0xDBFF) {
+      if (prev < 0xD800 || prev > 0xDBFF) {
         // (could change last hex to 0xDB7F to treat high private surrogates as single characters)
         throw new Error('Low surrogate without preceding high surrogate')
       }
@@ -54,11 +54,14 @@ module.exports = function strlen (string) {
     return str.charAt(i)
   }
 
-  var chr
   for (i = 0, lgth = 0; i < str.length; i++) {
-    if ((chr = getWholeChar(str, i)) === false) {
+    if ((getWholeChar(str, i)) === false) {
       continue
-    } // Adapt this line at the top of any loop, passing in the whole string and the current iteration and returning a variable to represent the individual character; purpose is to treat the first part of a surrogate pair as the whole character and then ignore the second part
+    }
+    // Adapt this line at the top of any loop, passing in the whole string and
+    // the current iteration and returning a variable to represent the individual character;
+    // purpose is to treat the first part of a surrogate pair as the whole character and then
+    // ignore the second part
     lgth++
   }
   return lgth

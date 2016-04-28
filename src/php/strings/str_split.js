@@ -1,4 +1,4 @@
-module.exports = function str_split (string, split_length) { // eslint-disable-line camelcase
+module.exports = function str_split (string, splitLength) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/str_split/
   // original by: Martijn Wieringa
   // improved by: Brett Zamir (http://brett-zamir.me)
@@ -9,18 +9,20 @@ module.exports = function str_split (string, split_length) { // eslint-disable-l
   //   example 1: str_split('Hello Friend', 3)
   //   returns 1: ['Hel', 'lo ', 'Fri', 'end']
 
-  if (split_length === null) {
-    split_length = 1
+  if (splitLength === null) {
+    splitLength = 1
   }
-  if (string === null || split_length < 1) {
+  if (string === null || splitLength < 1) {
     return false
   }
+
   string += ''
-  var chunks = [],
-    pos = 0,
-    len = string.length
+  var chunks = []
+  var pos = 0
+  var len = string.length
+
   while (pos < len) {
-    chunks.push(string.slice(pos, pos += split_length))
+    chunks.push(string.slice(pos, pos += splitLength))
   }
 
   return chunks

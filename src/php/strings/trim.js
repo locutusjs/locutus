@@ -16,8 +16,9 @@ module.exports = function trim (str, charlist) {
   //   example 3: trim(16, 1)
   //   returns 3: '6'
 
-  var whitespace, l = 0,
-    i = 0
+  var whitespace
+  var l = 0
+  var i = 0
   str += ''
 
   if (!charlist) {
@@ -27,7 +28,7 @@ module.exports = function trim (str, charlist) {
   } else {
     // preg_quote custom list
     charlist += ''
-    whitespace = charlist.replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '$1')
+    whitespace = charlist.replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^:])/g, '$1')
   }
 
   l = str.length

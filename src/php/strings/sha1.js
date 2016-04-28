@@ -7,7 +7,7 @@ module.exports = function sha1 (str) {
   //   example 1: sha1('Kevin van Zonneveld')
   //   returns 1: '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
 
-  var rotate_left = function (n, s) {
+  var _rotateLeft = function (n, s) {
     var t4 = (n << s) | (n >>> (32 - s))
     return t4
   }
@@ -27,7 +27,7 @@ module.exports = function sha1 (str) {
     return str;
   };*/
 
-  var cvt_hex = function (val) {
+  var _cvtHex = function (val) {
     var str = ''
     var i
     var v
@@ -52,45 +52,45 @@ module.exports = function sha1 (str) {
 
   // utf8_encode
   str = unescape(encodeURIComponent(str))
-  var str_len = str.length
+  var strLen = str.length
 
-  var word_array = []
-  for (i = 0; i < str_len - 3; i += 4) {
+  var wordArray = []
+  for (i = 0; i < strLen - 3; i += 4) {
     j = str.charCodeAt(i) << 24 | str.charCodeAt(i + 1) << 16 | str.charCodeAt(i + 2) << 8 | str.charCodeAt(i + 3)
-    word_array.push(j)
+    wordArray.push(j)
   }
 
-  switch (str_len % 4) {
+  switch (strLen % 4) {
     case 0:
       i = 0x080000000
       break
     case 1:
-      i = str.charCodeAt(str_len - 1) << 24 | 0x0800000
+      i = str.charCodeAt(strLen - 1) << 24 | 0x0800000
       break
     case 2:
-      i = str.charCodeAt(str_len - 2) << 24 | str.charCodeAt(str_len - 1) << 16 | 0x08000
+      i = str.charCodeAt(strLen - 2) << 24 | str.charCodeAt(strLen - 1) << 16 | 0x08000
       break
     case 3:
-      i = str.charCodeAt(str_len - 3) << 24 | str.charCodeAt(str_len - 2) << 16 | str.charCodeAt(str_len - 1) <<
+      i = str.charCodeAt(strLen - 3) << 24 | str.charCodeAt(strLen - 2) << 16 | str.charCodeAt(strLen - 1) <<
       8 | 0x80
       break
   }
 
-  word_array.push(i)
+  wordArray.push(i)
 
-  while ((word_array.length % 16) !== 14) {
-    word_array.push(0)
+  while ((wordArray.length % 16) !== 14) {
+    wordArray.push(0)
   }
 
-  word_array.push(str_len >>> 29)
-  word_array.push((str_len << 3) & 0x0ffffffff)
+  wordArray.push(strLen >>> 29)
+  wordArray.push((strLen << 3) & 0x0ffffffff)
 
-  for (blockstart = 0; blockstart < word_array.length; blockstart += 16) {
+  for (blockstart = 0; blockstart < wordArray.length; blockstart += 16) {
     for (i = 0; i < 16; i++) {
-      W[i] = word_array[blockstart + i]
+      W[i] = wordArray[blockstart + i]
     }
     for (i = 16; i <= 79; i++) {
-      W[i] = rotate_left(W[i - 3] ^ W[i - 8] ^ W[i - 14] ^ W[i - 16], 1)
+      W[i] = _rotateLeft(W[i - 3] ^ W[i - 8] ^ W[i - 14] ^ W[i - 16], 1)
     }
 
     A = H0
@@ -100,37 +100,37 @@ module.exports = function sha1 (str) {
     E = H4
 
     for (i = 0; i <= 19; i++) {
-      temp = (rotate_left(A, 5) + ((B & C) | (~B & D)) + E + W[i] + 0x5A827999) & 0x0ffffffff
+      temp = (_rotateLeft(A, 5) + ((B & C) | (~B & D)) + E + W[i] + 0x5A827999) & 0x0ffffffff
       E = D
       D = C
-      C = rotate_left(B, 30)
+      C = _rotateLeft(B, 30)
       B = A
       A = temp
     }
 
     for (i = 20; i <= 39; i++) {
-      temp = (rotate_left(A, 5) + (B ^ C ^ D) + E + W[i] + 0x6ED9EBA1) & 0x0ffffffff
+      temp = (_rotateLeft(A, 5) + (B ^ C ^ D) + E + W[i] + 0x6ED9EBA1) & 0x0ffffffff
       E = D
       D = C
-      C = rotate_left(B, 30)
+      C = _rotateLeft(B, 30)
       B = A
       A = temp
     }
 
     for (i = 40; i <= 59; i++) {
-      temp = (rotate_left(A, 5) + ((B & C) | (B & D) | (C & D)) + E + W[i] + 0x8F1BBCDC) & 0x0ffffffff
+      temp = (_rotateLeft(A, 5) + ((B & C) | (B & D) | (C & D)) + E + W[i] + 0x8F1BBCDC) & 0x0ffffffff
       E = D
       D = C
-      C = rotate_left(B, 30)
+      C = _rotateLeft(B, 30)
       B = A
       A = temp
     }
 
     for (i = 60; i <= 79; i++) {
-      temp = (rotate_left(A, 5) + (B ^ C ^ D) + E + W[i] + 0xCA62C1D6) & 0x0ffffffff
+      temp = (_rotateLeft(A, 5) + (B ^ C ^ D) + E + W[i] + 0xCA62C1D6) & 0x0ffffffff
       E = D
       D = C
-      C = rotate_left(B, 30)
+      C = _rotateLeft(B, 30)
       B = A
       A = temp
     }
@@ -142,6 +142,6 @@ module.exports = function sha1 (str) {
     H4 = (H4 + E) & 0x0ffffffff
   }
 
-  temp = cvt_hex(H0) + cvt_hex(H1) + cvt_hex(H2) + cvt_hex(H3) + cvt_hex(H4)
+  temp = _cvtHex(H0) + _cvtHex(H1) + _cvtHex(H2) + _cvtHex(H3) + _cvtHex(H4)
   return temp.toLowerCase()
 }

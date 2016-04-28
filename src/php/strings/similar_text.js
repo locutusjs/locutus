@@ -16,12 +16,15 @@ module.exports = function similar_text (first, second, percent) { // eslint-disa
   first += ''
   second += ''
 
-  var pos1 = 0,
-    pos2 = 0,
-    max = 0,
-    firstLength = first.length,
-    secondLength = second.length,
-    p, q, l, sum
+  var pos1 = 0
+  var pos2 = 0
+  var max = 0
+  var firstLength = first.length
+  var secondLength = second.length
+  var p
+  var q
+  var l
+  var sum
 
   max = 0
 
