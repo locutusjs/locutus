@@ -84,49 +84,6 @@ At the time of writing, the Jekyll Asset pipeline is in a bad place, and so SASS
 
 Typing `npm run website:deploy` in the root of the project takes care of all the building steps above, and then force pushes the generated HTML to the `gh-pages` branch of this repo.
 
-## Todo
-
-- [ ] One way of checking pure Arrays vs PHP arrays (`Object.prototype.toString.call(arr1) === '[object Array]'`, `typeof retObj[p] === 'object'`, `var asString = Object.prototype.toString.call(mixedVar) var asFunc = _getFuncName(mixedVar.constructor) if (asString === '[object Object]' && asFunc === 'Object') {` )
-- [ ] Track all cases of `window`, see if they make sense
-- [ ] Track all cases of `setTimeout`, use them without window prefix. Remove codez hack
-- [ ] Read up on `i18n_loc_set_default` and `setlocale` in php manual, see if new behavior is warrented
-- [ ] `json_*` functions can leverage Node's
-- [ ] See if we need to merge `sort` functions into one helper function and `require` that. Use `arsort` as an example
-- [ ] See if we need to merge `diff` and `intersect` functions into one helper function and `require` that. Refrain from using `labels`
-- [ ] Test `is_array` in-browser to see if the `require` for `ini_get` works correctly with browserify
-- [ ] Track down all `iniRaw`s and replace them with `iniVal`
-- [ ] Add a default mode to `ini_get`
-- [ ] Use native `sha1` and `md5` encoding if available
-- [ ] Use `\u` for octals in `_examples` for ES2015 compatibility
-- [ ] Rename `strictForIn` to `sortByReference`
-- [ ] Remove `// (BEGIN|END) (STATIC|REDUNDANT)`
-- [ ] Move functions that overly rely on ini & locales & global & ajax file operations to \_legacy
-- [ ] Remove XUL from functions
-- [ ] ES6
-- [ ] Port a few more tricky/interdepending Ruby functions
-- [ ] Port a few more tricky/interdepending Python functions
-- [ ] Port a few more tricky/interdepending Go functions
-- [ ] Index all `note`s
-- [ ] Add eslint warnings to website function
-- [ ] Parse requires with ast like browserify. Then we can add dependencies back to website
-- [ ] Compare test cases against `php -r`
-- [ ] Auto-deploys via Travis CI
-- [ ] Either deprecate or document all functions using `eval` or  `new Function`
-- [x] Adopt better global detection, use $locutus.golang.<specifics>
-- [-] Maybe move `module.exports = acos` to bottom line, then function signature can stay BC
-- [x] Add more 'social' buttons to website (twitter, github)
-- [-] Instead of `index.js` (and its `Index.js` conflicts) add e.g. `Math.js` indexes
-- [-] Port a few more tricky/interdepending Rust functions
-- [-] Make eslint standard compliant
-- [x] Rework injectweb after structural changes in util.js
-- [x] Remove `;` from examples
-- [x] Generate mocha language tests
-- [x] Use require for dependencies
-- [x] In util.opener: First `*` should point to the requesting/current language
-- [x] Split out the npm module so you could do `var sprintf = require('locutus/sprintf')`
-- [x] Launch BC breaking blogpost
-- [-] Add live eslinting in browser
-
 ## Sponsor development
 
 <!-- badges/ -->

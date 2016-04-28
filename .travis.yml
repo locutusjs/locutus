@@ -19,6 +19,6 @@ addons:
    - g++-4.8
    - php5-cli
 script:
-  - npm run lint || true
+  - npm run lint
   - npm run build
   - npm run test
