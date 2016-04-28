@@ -1,4 +1,4 @@
-module.exports = function abs (mixed_number) {
+module.exports = function abs (mixedNumber) {
   //  discuss at: http://locutusjs.io/c/abs/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Karol Kowalski
@@ -13,5 +13,5 @@ module.exports = function abs (mixed_number) {
   //   example 4: abs('_argos')
   //   returns 4: 0
 
-  return Math.abs(mixed_number) || 0
+  return Math.abs(mixedNumber) || 0
 }
