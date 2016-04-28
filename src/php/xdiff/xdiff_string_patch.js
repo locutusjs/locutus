@@ -27,7 +27,7 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, errorOb
     ].join('')
   }
 
-  var _cbSplit = function (string, sep /* separator */) {
+  var _cbSplit = function (string, sep) {
     // If separator `s` is not a regex, use the native `split`
     if (!(sep instanceof RegExp)) {
       // Had problems to get it to work here using prototype test

@@ -64,11 +64,11 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
      */
     bc_num: function () {
       this.n_sign = null // sign
-      this.n_len = null /* (int) The number of digits before the decimal point. */
-      this.n_scale = null /* (int) The number of digits after the decimal point. */
-        // this.n_refs = null; /* (int) The number of pointers to this number. */
-        // this.n_text = null; /* ?? Linked list for available list. */
-      this.n_value = null /* array as value, where 1.23 = [1,2,3] */
+      this.n_len = null // (int) The number of digits before the decimal point.
+      this.n_scale = null // (int) The number of digits after the decimal point.
+        // this.n_refs = null; // (int) The number of pointers to this number.
+        // this.n_text = null; // ?? Linked list for available list.
+      this.n_value = null // array as value, where 1.23 = [1,2,3]
       this.toString = function () {
         var r, tmp
         tmp = this.n_value.join('')
@@ -102,24 +102,24 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
       if (n1.n_sign === n2.n_sign) {
         sum = Libbcmath._bc_do_add(n1, n2, scaleMin)
         sum.n_sign = n1.n_sign
-      } else { /* subtraction must be done. */
-        cmpRes = Libbcmath._bc_do_compare(n1, n2, false, false) /* Compare magnitudes. */
+      } else { // subtraction must be done.
+        cmpRes = Libbcmath._bc_do_compare(n1, n2, false, false) // Compare magnitudes.
         switch (cmpRes) {
           case -1:
-            /* n1 is less than n2, subtract n1 from n2. */
+            // n1 is less than n2, subtract n1 from n2.
             sum = Libbcmath._bc_do_sub(n2, n1, scaleMin)
             sum.n_sign = n2.n_sign
             break
 
           case 0:
-            /* They are equal! return zero with the correct scale! */
+            // They are equal! return zero with the correct scale!
             resScale = Libbcmath.MAX(scaleMin, Libbcmath.MAX(n1.n_scale, n2.n_scale))
             sum = Libbcmath.bc_new_num(1, resScale)
             Libbcmath.memset(sum.n_value, 0, 0, resScale + 1)
             break
 
           case 1:
-            /* n2 is less than n1, subtract n2 from n1. */
+            // n2 is less than n1, subtract n2 from n1.
             sum = Libbcmath._bc_do_sub(n1, n2, scaleMin)
             sum.n_sign = n1.n_sign
         }
@@ -145,7 +145,7 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
       } else {
         if (digit === 1) {
           Libbcmath.memcpy(result, rPtr, num, nPtr, size) // memcpy (result, num, size);
-        } else { /*  Initialize */
+        } else { // Initialize
           nptr = nPtr + size - 1 // nptr = (unsigned char *) (num+size-1);
           rptr = rPtr + size - 1 // rptr = (unsigned char *) (result+size-1);
           carry = 0
@@ -175,12 +175,12 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
       var zero // char
       var norm // int
       // var ptrs // return object from one_mul
-      /* Test for divide by zero. (return failure) */
+      // Test for divide by zero. (return failure)
       if (Libbcmath.bc_is_zero(n2)) {
         return -1
       }
 
-      /* Test for zero divide by anything (return zero) */
+      // Test for zero divide by anything (return zero)
       if (Libbcmath.bc_is_zero(n1)) {
         return Libbcmath.bc_new_num(1, scale)
       }
@@ -193,7 +193,7 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
         }
       */
 
-      /* Test for divide by 1.  If it is we must truncate. */
+      // Test for divide by 1.  If it is we must truncate.
       // @todo: check where scale > 0 too.. can't see why not
       // (ie bc_is_zero - add bc_is_one function)
       if (n2.n_scale === 0) {
@@ -255,33 +255,33 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
         len2--
       }
 
-      /* Calculate the number of quotient digits. */
+      // Calculate the number of quotient digits.
       if (len2 > len1 + scale) {
         qdigits = scale + 1
         zero = true
       } else {
         zero = false
         if (len2 > len1) {
-          qdigits = scale + 1 /* One for the zero integer part. */
+          qdigits = scale + 1 // One for the zero integer part.
         } else {
           qdigits = len1 - len2 + scale + 1
         }
       }
 
-      /* Allocate and zero the storage for the quotient. */
+      // Allocate and zero the storage for the quotient.
       // qval = bc_new_num (qdigits-scale,scale);
       qval = Libbcmath.bc_new_num(qdigits - scale, scale)
       // memset (qval->n_value, 0, qdigits);
       Libbcmath.memset(qval.n_value, 0, 0, qdigits)
-        /* Allocate storage for the temporary storage mval. */
+        // Allocate storage for the temporary storage mval.
       // mval = (unsigned char *) safe_emalloc (1, len2, 1);
       mval = Libbcmath.safe_emalloc(1, len2, 1)
       if (mval === null) {
         Libbcmath.bc_out_of_memory()
       }
 
-      /* Now for the full divide algorithm. */
-      if (!zero) { /* Normalize */
+      // Now for the full divide algorithm.
+      if (!zero) { // Normalize
         // norm = Libbcmath.cint(10 / (Libbcmath.cint(n2.n_value[n2ptr]) + 1));
         // norm =  10 / ((int)*n2ptr + 1)
         norm = Math.floor(10 / (n2.n_value[n2ptr] + 1)) // norm =  10 / ((int)*n2ptr + 1);
@@ -294,7 +294,7 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
           // maybe need to adjust points on return?
         }
 
-        /* Initialize divide loop. */
+        // Initialize divide loop.
         qdig = 0
         if (len2 > len1) {
           qptr = len2 - len1 // qptr = (unsigned char *) qval.n_value+len2-len1;
@@ -302,20 +302,20 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
           qptr = 0 // qptr = (unsigned char *) qval.n_value;
         }
 
-        /* Loop */
-        while (qdig <= len1 + scale - len2) { /* Calculate the quotient digit guess. */
+        // Loop
+        while (qdig <= len1 + scale - len2) { // Calculate the quotient digit guess.
           if (n2.n_value[n2ptr] === num1[qdig]) {
             qguess = 9
           } else {
             qguess = Math.floor((num1[qdig] * 10 + num1[qdig + 1]) / n2.n_value[n2ptr])
           }
-          /* Test qguess. */
+          // Test qguess.
 
           if (n2.n_value[n2ptr + 1] * qguess >
             (num1[qdig] * 10 + num1[qdig + 1] - n2.n_value[n2ptr] * qguess) *
             10 + num1[qdig + 2]) {
             qguess--
-            /* And again. */
+            // And again.
             if (n2.n_value[n2ptr + 1] * qguess >
               (num1[qdig] * 10 + num1[qdig + 1] - n2.n_value[n2ptr] * qguess) *
               10 + num1[qdig + 2]) {
@@ -323,7 +323,7 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
             }
           }
 
-          /* Multiply and subtract. */
+          // Multiply and subtract.
           borrow = 0
           if (qguess !== 0) {
             mval[0] = 0 //* mval = 0; // @CHECK is this to fix ptr2 < 0?
@@ -354,7 +354,7 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
             }
           }
 
-          /* Test for negative result. */
+          // Test for negative result.
           if (borrow === 1) {
             qguess--
             ptr1 = qdig + len2 // (unsigned char *) num1+qdig+len2;
@@ -388,13 +388,13 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
             }
           }
 
-          /* We now know the quotient digit. */
+          // We now know the quotient digit.
           qval.n_value[qptr++] = qguess //* qptr++ =  qguess;
           qdig++
         }
       }
 
-      /* Clean up and return the number. */
+      // Clean up and return the number.
       qval.n_sign = (n1.n_sign === n2.n_sign ? Libbcmath.PLUS : Libbcmath.MINUS)
       if (Libbcmath.bc_is_zero(qval)) {
         qval.n_sign = Libbcmath.PLUS
@@ -403,7 +403,7 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
 
       return qval
 
-      // return 0;    /* Everything is OK. */
+      // return 0;    // Everything is OK.
     },
 
     MUL_BASE_DIGITS: 80,
@@ -459,7 +459,7 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
     _bc_simp_mul: function (n1, n1len, n2, n2len, fullScale) {
       var prod // bc_num
       var n1ptr, n2ptr, pvptr // char *n1ptr, *n2ptr, *pvptr;
-      var n1end, n2end // char *n1end, *n2end;        /* To the end of n1 and n2. */
+      var n1end, n2end // char *n1end, *n2end;        // To the end of n1 and n2.
       var indx, sum, prodlen // int indx, sum, prodlen;
       prodlen = n1len + n2len + 1
 
@@ -670,24 +670,24 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
     _bc_do_compare: function (n1, n2, useSign, ignoreLast) {
       var n1ptr, n2ptr // int
       var count // int
-        /* First, compare signs. */
+        // First, compare signs.
       if (useSign && (n1.n_sign !== n2.n_sign)) {
         if (n1.n_sign === Libbcmath.PLUS) {
-          return (1) /* Positive N1 > Negative N2 */
+          return (1) // Positive N1 > Negative N2
         } else {
-          return (-1) /* Negative N1 < Positive N1 */
+          return (-1) // Negative N1 < Positive N1
         }
       }
 
-      /* Now compare the magnitude. */
+      // Now compare the magnitude.
       if (n1.n_len !== n2.n_len) {
-        if (n1.n_len > n2.n_len) { /* Magnitude of n1 > n2. */
+        if (n1.n_len > n2.n_len) { // Magnitude of n1 > n2.
           if (!useSign || (n1.n_sign === Libbcmath.PLUS)) {
             return (1)
           } else {
             return (-1)
           }
-        } else { /* Magnitude of n1 < n2. */
+        } else { // Magnitude of n1 < n2.
           if (!useSign || (n1.n_sign === Libbcmath.PLUS)) {
             return (-1)
           } else {
@@ -713,13 +713,13 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
       }
 
       if (count !== 0) {
-        if (n1.n_value[n1ptr] > n2.n_value[n2ptr]) { /* Magnitude of n1 > n2. */
+        if (n1.n_value[n1ptr] > n2.n_value[n2ptr]) { // Magnitude of n1 > n2.
           if (!useSign || n1.n_sign === Libbcmath.PLUS) {
             return (1)
           } else {
             return (-1)
           }
-        } else { /* Magnitude of n1 < n2. */
+        } else { // Magnitude of n1 < n2.
           if (!useSign || n1.n_sign === Libbcmath.PLUS) {
             return (-1)
           } else {
@@ -728,11 +728,11 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
         }
       }
 
-      /* They are equal up to the last part of the equal part of the fraction. */
+      // They are equal up to the last part of the equal part of the fraction.
       if (n1.n_scale !== n2.n_scale) {
         if (n1.n_scale > n2.n_scale) {
           for (count = (n1.n_scale - n2.n_scale); count > 0; count--) {
-            if (n1.n_value[n1ptr++] !== 0) { /* Magnitude of n1 > n2. */
+            if (n1.n_value[n1ptr++] !== 0) { // Magnitude of n1 > n2.
               if (!useSign || n1.n_sign === Libbcmath.PLUS) {
                 return (1)
               } else {
@@ -742,7 +742,7 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
           }
         } else {
           for (count = (n2.n_scale - n1.n_scale); count > 0; count--) {
-            if (n2.n_value[n2ptr++] !== 0) { /* Magnitude of n1 < n2. */
+            if (n2.n_value[n2ptr++] !== 0) { // Magnitude of n1 < n2.
               if (!useSign || n1.n_sign === Libbcmath.PLUS) {
                 return (-1)
               } else {
@@ -753,7 +753,7 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
         }
       }
 
-      /* They must be equal! */
+      // They must be equal!
       return (0)
     },
 
@@ -766,30 +766,30 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
       if (n1.n_sign !== n2.n_sign) {
         diff = Libbcmath._bc_do_add(n1, n2, scaleMin)
         diff.n_sign = n1.n_sign
-      } else { /* subtraction must be done. */
-        /* Compare magnitudes. */
+      } else { // subtraction must be done.
+        // Compare magnitudes.
         cmpRes = Libbcmath._bc_do_compare(n1, n2, false, false)
         switch (cmpRes) {
           case -1:
-            /* n1 is less than n2, subtract n1 from n2. */
+            // n1 is less than n2, subtract n1 from n2.
             diff = Libbcmath._bc_do_sub(n2, n1, scaleMin)
             diff.n_sign = (n2.n_sign === Libbcmath.PLUS ? Libbcmath.MINUS : Libbcmath.PLUS)
             break
           case 0:
-            /* They are equal! return zero! */
+            // They are equal! return zero!
             resScale = Libbcmath.MAX(scaleMin, Libbcmath.MAX(n1.n_scale, n2.n_scale))
             diff = Libbcmath.bc_new_num(1, resScale)
             Libbcmath.memset(diff.n_value, 0, 0, resScale + 1)
             break
           case 1:
-            /* n2 is less than n1, subtract n2 from n1. */
+            // n2 is less than n1, subtract n2 from n1.
             diff = Libbcmath._bc_do_sub(n1, n2, scaleMin)
             diff.n_sign = n1.n_sign
             break
         }
       }
 
-      /* Clean up and return. */
+      // Clean up and return.
       // bc_free_num (result);
       //* result = diff;
       return diff
@@ -1031,7 +1031,7 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
     },
 
     _bc_rm_leading_zeros: function (num) {
-      /* We can move n_value to point to the first non zero digit! */
+      // We can move n_value to point to the first non zero digit!
       while ((num.n_value[0] === 0) && (num.n_len > 1)) {
         num.n_value.shift()
         num.n_len--
@@ -1066,7 +1066,7 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
     bc_str2num: function (strIn, scale) {
       var str, num, ptr, digits, strscale, zeroInt, nptr
         // remove any non-expected characters
-        /* Check for valid number and count digits. */
+        // Check for valid number and count digits.
 
       str = strIn.split('') // convert to array
       ptr = 0 // str
@@ -1074,24 +1074,24 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
       strscale = 0
       zeroInt = false
       if ((str[ptr] === '+') || (str[ptr] === '-')) {
-        ptr++ /* Sign */
+        ptr++ // Sign
       }
       while (str[ptr] === '0') {
-        ptr++ /* Skip leading zeros. */
+        ptr++ // Skip leading zeros.
       }
       // while (Libbcmath.isdigit(str[ptr])) {
       while ((str[ptr]) % 1 === 0) { // Libbcmath.isdigit(str[ptr])) {
         ptr++
-        digits++ /* digits */
+        digits++ // digits
       }
 
       if (str[ptr] === '.') {
-        ptr++ /* decimal point */
+        ptr++ // decimal point
       }
       // while (Libbcmath.isdigit(str[ptr])) {
       while ((str[ptr]) % 1 === 0) { // Libbcmath.isdigit(str[ptr])) {
         ptr++
-        strscale++ /* digits */
+        strscale++ // digits
       }
 
       if ((str[ptr]) || (digits + strscale === 0)) {
@@ -1100,7 +1100,7 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
           //* num = bc_copy_num (BCG(_zero_));
       }
 
-      /* Adjust numbers and allocate storage and initialize fields. */
+      // Adjust numbers and allocate storage and initialize fields.
       strscale = Libbcmath.MIN(strscale, scale)
       if (digits === 0) {
         zeroInt = true
@@ -1109,7 +1109,7 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
 
       num = Libbcmath.bc_new_num(digits, strscale)
 
-      /* Build the whole number. */
+      // Build the whole number.
       ptr = 0 // str
       if (str[ptr] === '-') {
         num.n_sign = Libbcmath.MINUS
@@ -1123,7 +1123,7 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
         }
       }
       while (str[ptr] === '0') {
-        ptr++ /* Skip leading zeros. */
+        ptr++ // Skip leading zeros.
       }
 
       nptr = 0 // (*num)->n_value;
@@ -1136,9 +1136,9 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
           //* nptr++ = CH_VAL(*ptr++);
       }
 
-      /* Build the fractional part. */
+      // Build the fractional part.
       if (strscale > 0) {
-        ptr++ /* skip the decimal point! */
+        ptr++ // skip the decimal point!
         for (; strscale > 0; strscale--) {
           num.n_value[nptr++] = Libbcmath.CH_VAL(str[ptr++])
         }
@@ -1220,12 +1220,12 @@ module.exports = function _locutus_shared_bc () { // eslint-disable-line camelca
     bc_is_zero: function (num) {
       var count // int
       var nptr // int
-      /* Quick check. */
+      // Quick check.
       // if (num === BCG(_zero_)) return TRUE;
-      /* Initialize */
+      // Initialize
       count = num.n_len + num.n_scale
       nptr = 0 // num->n_value;
-      /* The check */
+      // The check
       while ((count > 0) && (num.n_value[nptr++] === 0)) {
         count--
       }

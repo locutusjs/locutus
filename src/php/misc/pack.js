@@ -284,7 +284,7 @@ module.exports = function pack (format) {
           } else {
             if (exp < minExp) {
               if (exp !== bias + 1 - len && exp < minUnnormExp) {
-                /* "encodeFloat::float underflow" */
+                // "encodeFloat::float underflow"
               }
               k = bias + 1 - (exp = minExp - 1)
             }

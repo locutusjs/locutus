@@ -23,7 +23,7 @@ Unreleased and unplanned todos
 ## v2.0.0 (Unreleased)
 
 - [ ] Change `fix(me)?` and `Todo` to `@todo`
-- [ ] Replace single line `/**/` comments with `//`
+- [x] Replace single line `/**/` comments with `//`
 - [x] Enforce a 100 character line-length via eslint, and change all functions accordingly
 - [x] Do not pass values by reference via the `window` global, use e.g. `countObj.value` and `errorObj.value` instead
 - [x] Have _one_ way of getting an `ini` value and its default
