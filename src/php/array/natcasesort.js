@@ -26,8 +26,8 @@ module.exports = function natcasesort (inputArr) {
   var sortByReference = false
   var populateArr = {}
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined)
-  sortByReference = iniVal !== 'off'
+  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 
   // Get key and value arrays

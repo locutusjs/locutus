@@ -16,13 +16,14 @@ module.exports = function strlen (string) {
   //   returns 2: 3
 
   var str = string + ''
+
+  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('unicode.semantics') : undefined) || 'off'
+  if (iniVal === 'off') {
+    return str.length
+  }
+
   var i = 0
   var lgth = 0
-
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('unicode.semantics') : undefined)
-  if (iniVal !== 'on') {
-    return string.length
-  }
 
   var getWholeChar = function (str, i) {
     var code = str.charCodeAt(i)
@@ -64,5 +65,6 @@ module.exports = function strlen (string) {
     // ignore the second part
     lgth++
   }
+
   return lgth
 }

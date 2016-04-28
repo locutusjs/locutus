@@ -91,10 +91,7 @@ module.exports = function krsort (inputArr, sortFlags) {
   }
   keys.sort(sorter)
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined)
-  if (!iniVal) {
-    iniVal = 'on'
-  }
+  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

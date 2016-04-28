@@ -24,7 +24,7 @@ Unreleased and unplanned todos
 
 - [ ] Be more strict about line-lengths
 - [ ] Track all cases of `window`, see if they make sense
-- [ ] Track down all `iniRaw`s and replace them with `iniVal`, use a single way of doing defaults
+- [x] Have _one_ way of getting an `ini` value and its default
 - [x] Track all cases of `setTimeout`, use them without window prefix. Remove `codez` replace hack
 - [x] Track all cases of XMLHttpRequest
 - [x] Test `is_array` in-browser to see if the `require` for `ini_get` works correctly with Browserify

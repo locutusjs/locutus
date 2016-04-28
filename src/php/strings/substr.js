@@ -27,20 +27,10 @@ module.exports = function substr (str, start, len) {
   //   returns 7: '\uD801\uDC00z'
   //        test: skip-3 skip-4 skip-5 skip-6 skip-7
 
-  var i = 0
-  var allBMP = true
-  var es = 0
-  var el = 0
-  var se = 0
-  var ret = ''
-
   str += ''
   var end = str.length
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('unicode.emantics') : undefined)
-  if (!iniVal) {
-    iniVal = 'off'
-  }
+  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('unicode.emantics') : undefined) || 'off'
 
   if (iniVal === 'off') {
     // assumes there are no non-BMP characters;
@@ -68,7 +58,13 @@ module.exports = function substr (str, start, len) {
   }
 
   // Full-blown Unicode including non-Basic-Multilingual-Plane characters
-  // strlen()
+  var i = 0
+  var allBMP = true
+  var es = 0
+  var el = 0
+  var se = 0
+  var ret = ''
+
   for (i = 0; i < str.length; i++) {
     if (/[\uD800-\uDBFF]/.test(str.charAt(i)) && /[\uDC00-\uDFFF]/.test(str.charAt(i + 1))) {
       allBMP = false

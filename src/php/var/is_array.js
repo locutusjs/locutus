@@ -22,7 +22,7 @@ module.exports = function is_array (mixedVar) { // eslint-disable-line camelcase
   //   example 4: ini_set('locutus.objectsAsArrays', 0)
   //   example 4: is_array({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
   //   returns 4: false
-  //   example 5: is_array(function tmp_a(){this.name = 'Kevin'})
+  //   example 5: is_array(function tmp_a (){ this.name = 'Kevin' })
   //   returns 5: false
 
   var _getFuncName = function (fn) {
@@ -69,8 +69,8 @@ module.exports = function is_array (mixedVar) { // eslint-disable-line camelcase
     return true
   }
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.objectsAsArrays') : undefined)
-  if (!iniVal || iniVal === 'on') {
+  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.objectsAsArrays') : undefined) || 'on'
+  if (iniVal === 'on') {
     var asString = Object.prototype.toString.call(mixedVar)
     var asFunc = _getFuncName(mixedVar.constructor)
 

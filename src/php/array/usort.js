@@ -28,8 +28,8 @@ module.exports = function usort (inputArr, sorter) {
     sorter = this[sorter[0]][sorter[1]]
   }
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined)
-  sortByReference = iniVal !== 'off'
+  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 
   for (k in inputArr) {

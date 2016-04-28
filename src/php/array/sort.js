@@ -84,8 +84,8 @@ module.exports = function sort (inputArr, sortFlags) {
       break
   }
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined)
-  sortByReference = iniVal !== 'off'
+  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 
   var valArr = []

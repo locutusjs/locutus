@@ -11,32 +11,34 @@ module.exports = function range (low, high, step) {
   //   returns 4: ['c', 'b', 'a']
 
   var matrix = []
-  var inival, endval, plus
+  var iVal
+  var endval
+  var plus
   var walker = step || 1
   var chars = false
 
   if (!isNaN(low) && !isNaN(high)) {
-    inival = low
+    iVal = low
     endval = high
   } else if (isNaN(low) && isNaN(high)) {
     chars = true
-    inival = low.charCodeAt(0)
+    iVal = low.charCodeAt(0)
     endval = high.charCodeAt(0)
   } else {
-    inival = (isNaN(low) ? 0 : low)
+    iVal = (isNaN(low) ? 0 : low)
     endval = (isNaN(high) ? 0 : high)
   }
 
-  plus = !(inival > endval)
+  plus = !(iVal > endval)
   if (plus) {
-    while (inival <= endval) {
-      matrix.push(((chars) ? String.fromCharCode(inival) : inival))
-      inival += walker
+    while (iVal <= endval) {
+      matrix.push(((chars) ? String.fromCharCode(iVal) : iVal))
+      iVal += walker
     }
   } else {
-    while (inival >= endval) {
-      matrix.push(((chars) ? String.fromCharCode(inival) : inival))
-      inival -= walker
+    while (iVal >= endval) {
+      matrix.push(((chars) ? String.fromCharCode(iVal) : iVal))
+      iVal -= walker
     }
   }
 

@@ -33,7 +33,7 @@ describe('src/php/var/is_array.js (tested in test/languages/php/var/test-is_arra
   })
   it('should pass example 5', function (done) {
     var expected = false
-    var result = is_array(function tmp_a(){this.name = 'Kevin'})
+    var result = is_array(function tmp_a (){ this.name = 'Kevin' })
     expect(result).to.deep.equal(expected)
     done()
   })
