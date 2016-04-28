@@ -36,10 +36,13 @@ module.exports = function money_format (format, number) { // eslint-disable-line
 
   var setlocale = require('../strings/setlocale')
 
-  // Per PHP behavior, there seems to be no extra padding for sign when there is a positive number, though my
-  // understanding of the description is that there should be padding; need to revisit examples
+  // Per PHP behavior, there seems to be no extra padding
+  // for sign when there is a positive number, though my
+  // understanding of the description is that there should be padding;
+  // need to revisit examples
 
-  // Helpful info at http://ftp.gnu.org/pub/pub/old-gnu/Manuals/glibc-2.2.3/html_chapter/libc_7.html and http://publib.boulder.ibm.com/infocenter/zos/v1r10/index.jsp?topic=/com.ibm.zos.r10.bpxbd00/strfmp.htm
+  // Helpful info at http://ftp.gnu.org/pub/pub/old-gnu/Manuals/glibc-2.2.3/html_chapter/libc_7.html
+  // and http://publib.boulder.ibm.com/infocenter/zos/v1r10/index.jsp?topic=/com.ibm.zos.r10.bpxbd00/strfmp.htm
 
   if (typeof number !== 'number') {
     return null
@@ -145,7 +148,9 @@ module.exports = function money_format (format, number) { // eslint-disable-line
         fraction = ''
         decPt = ''
       } else if (right < fraction.length) {
-        fraction = Math.round(parseFloat(fraction.slice(0, right) + '.' + fraction.substr(right, 1))) + ''
+        fraction = Math.round(parseFloat(
+          fraction.slice(0, right) + '.' + fraction.substr(right, 1)
+        ))
         if (right > fraction.length) {
           fraction = new Array(right - fraction.length + 1).join('0') + fraction // prepend with 0's
         }
@@ -167,7 +172,8 @@ module.exports = function money_format (format, number) { // eslint-disable-line
     // 2: space sep. sign and value unless symb. and sign are adjacent then space separates
     var sepBySpace = neg ? monetary.n_sep_by_space : monetary.p_sep_by_space
 
-    // p_cs_precedes, n_cs_precedes // positive currency symbol follows value = 0; precedes value = 1
+    // p_cs_precedes, n_cs_precedes
+    // positive currency symbol follows value = 0; precedes value = 1
     var csPrecedes = neg ? monetary.n_cs_precedes : monetary.p_cs_precedes
 
     // Assemble symbol/value/sign and possible space as appropriate
@@ -205,22 +211,36 @@ module.exports = function money_format (format, number) { // eslint-disable-line
         // 3: sign immed. precedes curr. symbol; (but may be space between)
         // 4: sign immed. succeeds curr. symbol; (but may be space between)
         case 0:
-          valueAndCS = csPrecedes ? symbol + (sepBySpace === 1 ? ' ' : '') + value : value + (sepBySpace === 1 ? ' ' : '') + symbol
+          valueAndCS = csPrecedes
+            ? symbol + (sepBySpace === 1 ? ' ' : '') + value
+            : value + (sepBySpace === 1 ? ' ' : '') + symbol
           repl = '(' + valueAndCS + ')'
           break
         case 1:
-          valueAndCS = csPrecedes ? symbol + (sepBySpace === 1 ? ' ' : '') + value : value + (sepBySpace === 1 ? ' ' : '') + symbol
+          valueAndCS = csPrecedes
+            ? symbol + (sepBySpace === 1 ? ' ' : '') + value
+            : value + (sepBySpace === 1 ? ' ' : '') + symbol
           repl = signPadding + sign + (sepBySpace === 2 ? ' ' : '') + valueAndCS
           break
         case 2:
-          valueAndCS = csPrecedes ? symbol + (sepBySpace === 1 ? ' ' : '') + value : value + (sepBySpace === 1 ? ' ' : '') + symbol
+          valueAndCS = csPrecedes
+            ? symbol + (sepBySpace === 1 ? ' ' : '') + value
+            : value + (sepBySpace === 1 ? ' ' : '') + symbol
           repl = valueAndCS + (sepBySpace === 2 ? ' ' : '') + sign + signPadding
           break
         case 3:
-          repl = csPrecedes ? signPadding + sign + (sepBySpace === 2 ? ' ' : '') + symbol + (sepBySpace === 1 ? ' ' : '') + value : value + (sepBySpace === 1 ? ' ' : '') + sign + signPadding + (sepBySpace === 2 ? ' ' : '') + symbol
+          repl = csPrecedes
+            ? signPadding + sign + (sepBySpace === 2 ? ' ' : '') + symbol +
+              (sepBySpace === 1 ? ' ' : '') + value
+            : value + (sepBySpace === 1 ? ' ' : '') + sign + signPadding +
+              (sepBySpace === 2 ? ' ' : '') + symbol
           break
         case 4:
-          repl = csPrecedes ? symbol + (sepBySpace === 2 ? ' ' : '') + signPadding + sign + (sepBySpace === 1 ? ' ' : '') + value : value + (sepBySpace === 1 ? ' ' : '') + symbol + (sepBySpace === 2 ? ' ' : '') + sign + signPadding
+          repl = csPrecedes
+            ? symbol + (sepBySpace === 2 ? ' ' : '') + signPadding + sign +
+              (sepBySpace === 1 ? ' ' : '') + value
+            : value + (sepBySpace === 1 ? ' ' : '') + symbol +
+              (sepBySpace === 2 ? ' ' : '') + sign + signPadding
           break
       }
     }
@@ -228,7 +248,8 @@ module.exports = function money_format (format, number) { // eslint-disable-line
     var padding = width - repl.length
     if (padding > 0) {
       padding = new Array(padding + 1).join(' ')
-      // Fix: How does p_sep_by_space affect the count if there is a space? Included in count presumably?
+      // @todo How does p_sep_by_space affect the count if there is a space?
+      // Included in count presumably?
       if (flags.indexOf('-') !== -1) {
         // left-justified (pad to right)
         repl += padding

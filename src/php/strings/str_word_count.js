@@ -39,7 +39,8 @@ module.exports = function str_word_count (str, format, charlist) { // eslint-dis
       return str.charAt(i)
     }
     if (code >= 0xD800 && code <= 0xDBFF) {
-      // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
+      // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single
+      // characters)
       if (str.length <= (i + 1)) {
         throw new Error('High surrogate without following low surrogate')
       }
@@ -58,7 +59,8 @@ module.exports = function str_word_count (str, format, charlist) { // eslint-dis
       // (could change last hex to 0xDB7F to treat high private surrogates as single characters)
       throw new Error('Low surrogate without preceding high surrogate')
     }
-    // We can pass over low surrogates now as the second component in a pair which we have already processed
+    // We can pass over low surrogates now as the second component in a pair which we have already
+    // processed
     return false
   }
 

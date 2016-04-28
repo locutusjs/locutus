@@ -60,7 +60,8 @@ module.exports = function metaphone (word, maxPhonemes) {
   var pc // previous char
   var l = word.length
   var meta = ''
-  var traditional = true // traditional is an internal param that could be exposed for now let it be a local var
+  // traditional is an internal param that could be exposed for now let it be a local var
+  var traditional = true
 
   switch (cc) {
     case 'A':
@@ -97,7 +98,7 @@ module.exports = function metaphone (word, maxPhonemes) {
       break
   }
 
-  for (; i < l && (maxPhonemes === 0 || meta.length < maxPhonemes); i += 1) { // eslint-disable-line no-unmodified-loop-condition
+  for (; i < l && (maxPhonemes === 0 || meta.length < maxPhonemes); i += 1) { // eslint-disable-line no-unmodified-loop-condition,max-len
     cc = word.charAt(i)
     nc = word.charAt(i + 1)
     pc = word.charAt(i - 1)

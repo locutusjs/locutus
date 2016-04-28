@@ -22,7 +22,8 @@ module.exports = function is_infinite (val) { // eslint-disable-line camelcase
     warningType = 'string'
   }
   if (warningType) {
-    throw new Error('Warning: is_infinite() expects parameter 1 to be double, ' + warningType + ' given')
+    var msg = 'Warning: is_infinite() expects parameter 1 to be double, ' + warningType + ' given'
+    throw new Error(msg)
   }
 
   return false

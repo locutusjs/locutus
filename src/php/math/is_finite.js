@@ -22,7 +22,8 @@ module.exports = function is_finite (val) { // eslint-disable-line camelcase
     warningType = 'string'
   }
   if (warningType) {
-    throw new Error('Warning: is_finite() expects parameter 1 to be double, ' + warningType + ' given')
+    var msg = 'Warning: is_finite() expects parameter 1 to be double, ' + warningType + ' given'
+    throw new Error(msg)
   }
 
   return true

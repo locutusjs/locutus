@@ -1,7 +1,8 @@
 module.exports = function addcslashes (str, charlist) {
   //  discuss at: http://locutusjs.io/php/addcslashes/
   // original by: Brett Zamir (http://brett-zamir.me)
-  //      note 1: We show double backslashes in the return value example code below because a JavaScript string will not
+  //      note 1: We show double backslashes in the return value example
+  //      note 1: code below because a JavaScript string will not
   //      note 1: render them as backslashes otherwise
   //   example 1: addcslashes('foo[ ]', 'A..z'); // Escape all ASCII within capital A to lower z range, including square brackets
   //   returns 1: "\\f\\o\\o\\[ \\]"
@@ -150,7 +151,8 @@ module.exports = function addcslashes (str, charlist) {
 
             // 3-length-padded UTF-8 octets
             if ((escHexGrp = percentHex.exec(encoded)) !== null) {
-              target += _pad(parseInt(escHexGrp[1], 16).toString(8), 3) // already added a slash above
+              // already added a slash above:
+              target += _pad(parseInt(escHexGrp[1], 16).toString(8), 3)
             }
             while ((escHexGrp = percentHex.exec(encoded)) !== null) {
               target += '\\' + _pad(parseInt(escHexGrp[1], 16).toString(8), 3)

@@ -99,7 +99,8 @@ module.exports = function md5 (str) {
     while (lByteCount < lMessageLength) {
       lWordCount = (lByteCount - (lByteCount % 4)) / 4
       lBytePosition = (lByteCount % 4) * 8
-      lWordArray[lWordCount] = (lWordArray[lWordCount] | (str.charCodeAt(lByteCount) << lBytePosition))
+      lWordArray[lWordCount] = (lWordArray[lWordCount] |
+        (str.charCodeAt(lByteCount) << lBytePosition))
       lByteCount++
     }
     lWordCount = (lByteCount - (lByteCount % 4)) / 4

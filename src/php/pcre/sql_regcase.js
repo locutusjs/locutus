@@ -21,12 +21,15 @@ module.exports = function sql_regcase (str) { // eslint-disable-line camelcase
   upper = $locutus.php.locales[$locutus.php.localeCategories.LC_CTYPE].LC_CTYPE.upper
   lower = $locutus.php.locales[$locutus.php.localeCategories.LC_CTYPE].LC_CTYPE.lower
 
+  // @todo: Make this more readable
   for (i = 0; i < str.length; i++) {
-    if (((pos = upper.indexOf(str.charAt(i))) !== -1) || ((pos = lower.indexOf(str.charAt(i))) !== -1)) {
+    if (((pos = upper.indexOf(str.charAt(i))) !== -1) ||
+      ((pos = lower.indexOf(str.charAt(i))) !== -1)) {
       retStr += '[' + upper.charAt(pos) + lower.charAt(pos) + ']'
     } else {
       retStr += str.charAt(i)
     }
   }
+
   return retStr
 }

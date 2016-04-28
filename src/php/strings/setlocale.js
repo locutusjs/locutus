@@ -36,14 +36,16 @@ module.exports = function setlocale (category, locale) {
     return newObj
   }
 
-  // Function usable by a ngettext implementation (apparently not an accessible part of setlocale(), but locale-specific)
-  // See http://www.gnu.org/software/gettext/manual/gettext.html#Plural-forms though amended with others from
-  // https://developer.mozilla.org/En/Localization_and_Plurals (new categories noted with "MDC" below, though
-  // not sure of whether there is a convention for the relative order of these newer groups as far as ngettext)
-  // The function name indicates the number of plural forms (nplural)
-  // Need to look into http://cldr.unicode.org/ (maybe future JavaScript); Dojo has some functions (under new BSD),
-  // including JSON conversions of LDML XML from CLDR: http://bugs.dojotoolkit.org/browser/dojo/trunk/cldr
-  // and docs at http://api.dojotoolkit.org/jsdoc/HEAD/dojo.cldr
+  // Function usable by a ngettext implementation (apparently not an accessible part of setlocale(),
+  // but locale-specific) See http://www.gnu.org/software/gettext/manual/gettext.html#Plural-forms
+  // though amended with others from https://developer.mozilla.org/En/Localization_and_Plurals (new
+  // categories noted with "MDC" below, though not sure of whether there is a convention for the
+  // relative order of these newer groups as far as ngettext) The function name indicates the number
+  // of plural forms (nplural) Need to look into http://cldr.unicode.org/ (maybe future JavaScript);
+  // Dojo has some functions (under new BSD), including JSON conversions of LDML XML from CLDR:
+  // http://bugs.dojotoolkit.org/browser/dojo/trunk/cldr and docs at
+  // http://api.dojotoolkit.org/jsdoc/HEAD/dojo.cldr
+
   // var _nplurals1 = function (n) {
   //   // e.g., Japanese
   //   return 0
@@ -56,60 +58,6 @@ module.exports = function setlocale (category, locale) {
     // e.g., French
     return n > 1 ? 1 : 0
   }
-  // var _nplurals2c = function (n) {
-  //   // e.g., Icelandic (MDC)
-  //   return n % 10 === 1 && n % 100 !== 11 ? 0 : 1
-  // }
-  // var _nplurals3a = function (n) {
-  //   // e.g., Latvian (MDC has a different order from gettext)
-  //   return n % 10 === 1 && n % 100 !== 11 ? 0 : n !== 0 ? 1 : 2
-  // }
-  // var _nplurals3b = function (n) {
-  //   // e.g., Scottish Gaelic
-  //   return n === 1 ? 0 : n === 2 ? 1 : 2
-  // }
-  // var _nplurals3c = function (n) {
-  //   // e.g., Romanian
-  //   return n === 1 ? 0 : (n === 0 || (n % 100 > 0 && n % 100 < 20)) ? 1 : 2
-  // }
-  // var _nplurals3d = function (n) {
-  //   // e.g., Lithuanian (MDC has a different order from gettext)
-  //   return n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >= 2 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2
-  // }
-  // var _nplurals3e = function (n) {
-  //   // e.g., Croatian
-  //   return n % 10 === 1 && n % 100 !== 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 :
-  //     2
-  // }
-  // var _nplurals3f = function (n) {
-  //   // e.g., Slovak
-  //   return n === 1 ? 0 : n >= 2 && n <= 4 ? 1 : 2
-  // }
-  // var _nplurals3g = function (n) {
-  //   // e.g., Polish
-  //   return n === 1 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2
-  // }
-  // var _nplurals3h = function (n) {
-  //   // e.g., Macedonian (MDC)
-  //   return n % 10 === 1 ? 0 : n % 10 === 2 ? 1 : 2
-  // }
-  // var _nplurals4a = function (n) {
-  //   // e.g., Slovenian
-  //   return n % 100 === 1 ? 0 : n % 100 === 2 ? 1 : n % 100 === 3 || n % 100 === 4 ? 2 : 3
-  // }
-  // var _nplurals4b = function (n) {
-  //   // e.g., Maltese (MDC)
-  //   return n === 1 ? 0 : n === 0 || (n % 100 && n % 100 <= 10) ? 1 : n % 100 >= 11 && n % 100 <= 19 ? 2 : 3
-  // }
-  // var _nplurals5 = function (n) {
-  //   // e.g., Irish Gaeilge (MDC)
-  //   return n === 1 ? 0 : n === 2 ? 1 : n >= 3 && n <= 6 ? 2 : n >= 7 && n <= 10 ? 3 : 4
-  // }
-  // var _nplurals6 = function (n) {
-  //   // e.g., Arabic (MDC) - Per MDC puts 0 as last group
-  //   return n === 0 ? 5 : n === 1 ? 0 : n === 2 ? 1 : n % 100 >= 3 && n % 100 <= 10 ? 2 : n % 100 >= 11 && n % 100 <=
-  //     99 ? 3 : 4
-  // }
 
   var $global = (typeof window !== 'undefined' ? window : GLOBAL)
   $global.$locutus = $global.$locutus || {}
@@ -119,17 +67,19 @@ module.exports = function setlocale (category, locale) {
   // Reconcile Windows vs. *nix locale names?
   // Allow different priority orders of languages, esp. if implement gettext as in
   // LANGUAGE env. var.? (e.g., show German if French is not available)
-  if (!$locutus.php.locales || !$locutus.php.locales.fr_CA || !$locutus.php.locales.fr_CA.LC_TIME || !$locutus.php.locales.fr_CA.LC_TIME.x) {
+  if (!$locutus.php.locales ||
+    !$locutus.php.locales.fr_CA ||
+    !$locutus.php.locales.fr_CA.LC_TIME ||
+    !$locutus.php.locales.fr_CA.LC_TIME.x) {
     // Can add to the locales
     $locutus.php.locales = {}
 
     $locutus.php.locales.en = {
-      'LC_COLLATE': // For strcoll
-
-        function (str1, str2) {
-        // Fix: This one taken from strcmp, but need for other locales; we don't use localeCompare since its locale is not settable
-          return (str1 === str2) ? 0 : ((str1 > str2) ? 1 : -1)
-        },
+      'LC_COLLATE': function (str1, str2) {
+        // Fix: This one taken from strcmp, but need for other locales; we don't use localeCompare
+        // since its locale is not settable
+        return (str1 === str2) ? 0 : ((str1 > str2) ? 1 : -1)
+      },
       'LC_CTYPE': {
         // Need to change any of these for English as opposed to C?
         an: /^[A-Za-z\d]+$/g,
@@ -149,14 +99,16 @@ module.exports = function setlocale (category, locale) {
         upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
       },
       'LC_TIME': {
-        // Comments include nl_langinfo() constant equivalents and any changes from Blues' implementation
+        // Comments include nl_langinfo() constant equivalents and any
+        // changes from Blues' implementation
         a: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         // ABDAY_
         A: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         // DAY_
         b: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         // ABMON_
-        B: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
+        B: ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+          'August', 'September', 'October',
           'November', 'December'
         ],
         // MON_
@@ -190,7 +142,9 @@ module.exports = function setlocale (category, locale) {
         mon_decimal_point: '.',
         mon_thousands_sep: ',',
         mon_grouping: [3],
-        // use mon_thousands_sep; "" for no grouping; additional array members indicate successive group lengths after first group (e.g., if to be 1,23,456, could be [3, 2])
+        // use mon_thousands_sep; "" for no grouping; additional array members
+        // indicate successive group lengths after first group
+        // (e.g., if to be 1,23,456, could be [3, 2])
         positive_sign: '',
         negative_sign: '-',
         int_frac_digits: 2,
@@ -199,13 +153,17 @@ module.exports = function setlocale (category, locale) {
         p_cs_precedes: 1,
         // positive currency symbol follows value = 0; precedes value = 1
         p_sep_by_space: 0,
-        // 0: no space between curr. symbol and value; 1: space sep. them unless symb. and sign are adjacent then space sep. them from value; 2: space sep. sign and value unless symb. and sign are adjacent then space separates
+        // 0: no space between curr. symbol and value; 1: space sep. them unless symb.
+        // and sign are adjacent then space sep. them from value; 2: space sep. sign
+        // and value unless symb. and sign are adjacent then space separates
         n_cs_precedes: 1,
         // see p_cs_precedes
         n_sep_by_space: 0,
         // see p_sep_by_space
         p_sign_posn: 3,
-        // 0: parentheses surround quantity and curr. symbol; 1: sign precedes them; 2: sign follows them; 3: sign immed. precedes curr. symbol; 4: sign immed. succeeds curr. symbol
+        // 0: parentheses surround quantity and curr. symbol; 1: sign precedes them;
+        // 2: sign follows them; 3: sign immed. precedes curr. symbol; 4: sign immed.
+        // succeeds curr. symbol
         n_sign_posn: 0 // see p_sign_posn
       },
       'LC_NUMERIC': {
@@ -275,11 +233,14 @@ module.exports = function setlocale (category, locale) {
     $locutus.php.locales.fr = _copy($locutus.php.locales.en)
     $locutus.php.locales.fr.nplurals = _nplurals2b
     $locutus.php.locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam']
-    $locutus.php.locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']
-    $locutus.php.locales.fr.LC_TIME.b = ['jan', 'f\u00E9v', 'mar', 'avr', 'mai', 'jun', 'jui', 'ao\u00FB', 'sep', 'oct',
+    $locutus.php.locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi',
+      'jeudi', 'vendredi', 'samedi']
+    $locutus.php.locales.fr.LC_TIME.b = ['jan', 'f\u00E9v', 'mar', 'avr', 'mai',
+      'jun', 'jui', 'ao\u00FB', 'sep', 'oct',
       'nov', 'd\u00E9c'
     ]
-    $locutus.php.locales.fr.LC_TIME.B = ['janvier', 'f\u00E9vrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'ao\u00FBt',
+    $locutus.php.locales.fr.LC_TIME.B = ['janvier', 'f\u00E9vrier', 'mars',
+      'avril', 'mai', 'juin', 'juillet', 'ao\u00FBt',
       'septembre', 'octobre', 'novembre', 'd\u00E9cembre'
     ]
     $locutus.php.locales.fr.LC_TIME.c = '%a %d %b %Y %T %Z'
@@ -295,17 +256,22 @@ module.exports = function setlocale (category, locale) {
     $locutus.php.locale = 'en_US'
     // Try to establish the locale via the `window` global
     if (typeof window !== 'undefined' && window.document) {
+      var d = window.document
       var NS_XHTML = 'http://www.w3.org/1999/xhtml'
       var NS_XML = 'http://www.w3.org/XML/1998/namespace'
-      if (window.document.getElementsByTagNameNS && window.document.getElementsByTagNameNS(NS_XHTML, 'html')[0]) {
-        if (window.document.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS && window.document.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')) {
-          $locutus.php.locale = window.document.getElementsByTagName(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')
-        } else if (window.document.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang) {
+      if (d.getElementsByTagNameNS &&
+        d.getElementsByTagNameNS(NS_XHTML, 'html')[0]) {
+        if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS &&
+          d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')) {
+          $locutus.php.locale = d.getElementsByTagName(NS_XHTML, 'html')[0]
+            .getAttributeNS(NS_XML, 'lang')
+        } else if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang) {
           // XHTML 1.0 only
-          $locutus.php.locale = window.document.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang
+          $locutus.php.locale = d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang
         }
-      } else if (window.document.getElementsByTagName('html')[0] && window.document.getElementsByTagName('html')[0].lang) {
-        $locutus.php.locale = window.document.getElementsByTagName('html')[0].lang
+      } else if (d.getElementsByTagName('html')[0] &&
+        d.getElementsByTagName('html')[0].lang) {
+        $locutus.php.locale = d.getElementsByTagName('html')[0].lang
       }
     }
   }
@@ -330,7 +296,8 @@ module.exports = function setlocale (category, locale) {
       // for decimal separator (See also localeconv())
       'LC_TIME': $locutus.php.locale,
       // for date and time formatting with strftime()
-      'LC_MESSAGES': $locutus.php.locale // for system responses (available if PHP was compiled with libintl)
+      // for system responses (available if PHP was compiled with libintl):
+      'LC_MESSAGES': $locutus.php.locale
     }
   }
 

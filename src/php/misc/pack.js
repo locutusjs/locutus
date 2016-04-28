@@ -5,10 +5,10 @@ module.exports = function pack (format) {
   // bugfixed by: Tim de Koning (http://www.kingsquare.nl)
   //      note 1: Float encoding by: Jonas Raoni Soares Silva
   //      note 1: Home: http://www.kingsquare.nl/blog/12-12-2009/13507444
-  //      note 1: Feedback: locutus-pack@kingsquare.nl
-  //      note 1: 'machine dependent byte order and size' aren't
+  //      note 1: Feedback: phpjs-pack@kingsquare.nl
+  //      note 1: "machine dependent byte order and size" aren't
   //      note 1: applicable for JavaScript; pack works as on a 32bit,
-  //      note 1: little endian machine
+  //      note 1: little endian machine.
   //   example 1: pack('nvc*', 0x1234, 0x5678, 65, 66)
   //   returns 1: '\u00124xVAB'
   //   example 2: pack('H4', '2345')
@@ -99,7 +99,8 @@ module.exports = function pack (format) {
           quantifier = argument.length
         }
         if (quantifier > argument.length) {
-          throw new Error('Warning: pack() Type ' + instruction + ': not enough characters in string')
+          var msg = 'Warning: pack() Type ' + instruction + ': not enough characters in string'
+          throw new Error(msg)
         }
 
         for (i = 0; i < quantifier; i += 2) {
@@ -262,7 +263,13 @@ module.exports = function pack (format) {
           }
           for (k = -1; ++k < len && !bin[k];) {}
 
-          if (bin[(lastBit = precisionBits - 1 + (k = (exp = bias + 1 - k) >= minExp && exp <= maxExp ? k + 1 : bias + 1 - (exp = minExp - 1))) + 1]) {
+          // @todo: Make this more readable:
+          var key = (lastBit = precisionBits - 1 +
+            (k =
+              (exp = bias + 1 - k) >= minExp &&
+              exp <= maxExp ? k + 1 : bias + 1 - (exp = minExp - 1))) + 1
+
+          if (bin[key]) {
             if (!(rounded = bin[lastBit])) {
               for (j = lastBit + 2; !rounded && j < len; rounded = bin[j++]) {}
             }
@@ -276,7 +283,9 @@ module.exports = function pack (format) {
             ++k
           } else {
             if (exp < minExp) {
-              if (exp !== bias + 1 - len && exp < minUnnormExp) { /* "encodeFloat::float underflow" */ }
+              if (exp !== bias + 1 - len && exp < minUnnormExp) {
+                /* "encodeFloat::float underflow" */
+              }
               k = bias + 1 - (exp = minExp - 1)
             }
           }
@@ -301,9 +310,10 @@ module.exports = function pack (format) {
 
           n = 0
           j = 0
-          k = (tmpResult = (signal ? '1' : '0') + tmpResult + bin.slice(k, k + precisionBits)
+          k = (tmpResult = (signal ? '1' : '0') + tmpResult + (bin
+            .slice(k, k + precisionBits)
             .join(''))
-          .length
+          ).length
           r = []
 
           for (; k;) {
@@ -366,7 +376,8 @@ module.exports = function pack (format) {
     }
   }
   if (argumentPointer < arguments.length) {
-    throw new Error('Warning: pack(): ' + (arguments.length - argumentPointer) + ' arguments unused')
+    var msg2 = 'Warning: pack(): ' + (arguments.length - argumentPointer) + ' arguments unused'
+    throw new Error(msg2)
   }
 
   return result

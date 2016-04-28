@@ -54,8 +54,10 @@ module.exports = function htmlspecialchars_decode (string, quoteStyle) { // esli
     quoteStyle = optTemp
   }
   if (quoteStyle & OPTS.ENT_HTML_QUOTE_SINGLE) {
-    string = string.replace(/&#0*39;/g, "'") // PHP doesn't currently escape if more than one 0, but it should
-    // string = string.replace(/&apos;|&#x0*27;/g, "'"); // This would also be useful here, but not a part of PHP
+    // PHP doesn't currently escape if more than one 0, but it should:
+    string = string.replace(/&#0*39;/g, "'")
+    // This would also be useful here, but not a part of PHP:
+    // string = string.replace(/&apos;|&#x0*27;/g, "'");
   }
   if (!noquotes) {
     string = string.replace(/&quot;/g, '"')
