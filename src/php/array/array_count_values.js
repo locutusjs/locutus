@@ -13,11 +13,11 @@ module.exports = function array_count_values (array) { // eslint-disable-line ca
   //   example 3: array_count_values([ true, 4.2, 42, "fubar" ])
   //   returns 3: {42:1, "fubar":1}
 
-  var tmp_arr = {},
-    key = '',
-    t = ''
+  var tmpArr = {}
+  var key = ''
+  var t = ''
 
-  var __getType = function (obj) {
+  var _getType = function (obj) {
     // Objects are php associative arrays.
     var t = typeof obj
     t = t.toLowerCase()
@@ -27,30 +27,30 @@ module.exports = function array_count_values (array) { // eslint-disable-line ca
     return t
   }
 
-  var __countValue = function (tmp_arr, value) {
-    switch (typeof value) {
-      case 'number':
-        if (Math.floor(value) !== value) {
-          return
-        }
-      // Fall-through
-      case 'string':
-        if (value in tmp_arr && tmp_arr.hasOwnProperty(value)) {
-          ++tmp_arr[value]
-        } else {
-          tmp_arr[value] = 1
-        }
+  var _countValue = function (tmpArr, value) {
+    if (typeof value === 'number') {
+      if (Math.floor(value) !== value) {
+        return
+      }
+    } else if (typeof value !== 'string') {
+      return
+    }
+
+    if (value in tmpArr && tmpArr.hasOwnProperty(value)) {
+      ++tmpArr[value]
+    } else {
+      tmpArr[value] = 1
     }
   }
 
-  t = __getType(array)
+  t = _getType(array)
   if (t === 'array') {
     for (key in array) {
       if (array.hasOwnProperty(key)) {
-        __countValue.call(this, tmp_arr, array[key])
+        _countValue.call(this, tmpArr, array[key])
       }
     }
   }
 
-  return tmp_arr
+  return tmpArr
 }
