@@ -24,7 +24,7 @@ module.exports = function sha1 (str) {
     return hash
   }
 
-  var _rotateLeft = function (n, s) {
+  var _rotLeft = function (n, s) {
     var t4 = (n << s) | (n >>> (32 - s))
     return t4
   }
@@ -58,7 +58,10 @@ module.exports = function sha1 (str) {
 
   var wordArray = []
   for (i = 0; i < strLen - 3; i += 4) {
-    j = str.charCodeAt(i) << 24 | str.charCodeAt(i + 1) << 16 | str.charCodeAt(i + 2) << 8 | str.charCodeAt(i + 3)
+    j = str.charCodeAt(i) << 24 |
+      str.charCodeAt(i + 1) << 16 |
+      str.charCodeAt(i + 2) << 8 |
+      str.charCodeAt(i + 3)
     wordArray.push(j)
   }
 
@@ -73,7 +76,9 @@ module.exports = function sha1 (str) {
       i = str.charCodeAt(strLen - 2) << 24 | str.charCodeAt(strLen - 1) << 16 | 0x08000
       break
     case 3:
-      i = str.charCodeAt(strLen - 3) << 24 | str.charCodeAt(strLen - 2) << 16 | str.charCodeAt(strLen - 1) <<
+      i = str.charCodeAt(strLen - 3) << 24 |
+        str.charCodeAt(strLen - 2) << 16 |
+        str.charCodeAt(strLen - 1) <<
       8 | 0x80
       break
   }
@@ -92,7 +97,7 @@ module.exports = function sha1 (str) {
       W[i] = wordArray[blockstart + i]
     }
     for (i = 16; i <= 79; i++) {
-      W[i] = _rotateLeft(W[i - 3] ^ W[i - 8] ^ W[i - 14] ^ W[i - 16], 1)
+      W[i] = _rotLeft(W[i - 3] ^ W[i - 8] ^ W[i - 14] ^ W[i - 16], 1)
     }
 
     A = H0
@@ -102,37 +107,37 @@ module.exports = function sha1 (str) {
     E = H4
 
     for (i = 0; i <= 19; i++) {
-      temp = (_rotateLeft(A, 5) + ((B & C) | (~B & D)) + E + W[i] + 0x5A827999) & 0x0ffffffff
+      temp = (_rotLeft(A, 5) + ((B & C) | (~B & D)) + E + W[i] + 0x5A827999) & 0x0ffffffff
       E = D
       D = C
-      C = _rotateLeft(B, 30)
+      C = _rotLeft(B, 30)
       B = A
       A = temp
     }
 
     for (i = 20; i <= 39; i++) {
-      temp = (_rotateLeft(A, 5) + (B ^ C ^ D) + E + W[i] + 0x6ED9EBA1) & 0x0ffffffff
+      temp = (_rotLeft(A, 5) + (B ^ C ^ D) + E + W[i] + 0x6ED9EBA1) & 0x0ffffffff
       E = D
       D = C
-      C = _rotateLeft(B, 30)
+      C = _rotLeft(B, 30)
       B = A
       A = temp
     }
 
     for (i = 40; i <= 59; i++) {
-      temp = (_rotateLeft(A, 5) + ((B & C) | (B & D) | (C & D)) + E + W[i] + 0x8F1BBCDC) & 0x0ffffffff
+      temp = (_rotLeft(A, 5) + ((B & C) | (B & D) | (C & D)) + E + W[i] + 0x8F1BBCDC) & 0x0ffffffff
       E = D
       D = C
-      C = _rotateLeft(B, 30)
+      C = _rotLeft(B, 30)
       B = A
       A = temp
     }
 
     for (i = 60; i <= 79; i++) {
-      temp = (_rotateLeft(A, 5) + (B ^ C ^ D) + E + W[i] + 0xCA62C1D6) & 0x0ffffffff
+      temp = (_rotLeft(A, 5) + (B ^ C ^ D) + E + W[i] + 0xCA62C1D6) & 0x0ffffffff
       E = D
       D = C
-      C = _rotateLeft(B, 30)
+      C = _rotLeft(B, 30)
       B = A
       A = temp
     }

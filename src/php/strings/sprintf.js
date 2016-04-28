@@ -26,31 +26,31 @@ module.exports = function sprintf () {
   var i = 0
   var format = a[i++]
 
-  // pad()
-  var pad = function (str, len, chr, leftJustify) {
+  var _pad = function (str, len, chr, leftJustify) {
     if (!chr) {
       chr = ' '
     }
-    var padding = (str.length >= len) ? '' : new Array(1 + len - str.length >>> 0)
-      .join(chr)
+    var padding = (str.length >= len) ? '' : new Array(1 + len - str.length >>> 0).join(chr)
     return leftJustify ? str + padding : padding + str
   }
 
-  // justify()
   var justify = function (value, prefix, leftJustify, minWidth, zeroPad, customPadChar) {
     var diff = minWidth - value.length
     if (diff > 0) {
       if (leftJustify || !zeroPad) {
-        value = pad(value, minWidth, customPadChar, leftJustify)
+        value = _pad(value, minWidth, customPadChar, leftJustify)
       } else {
-        value = value.slice(0, prefix.length) + pad('', diff, '0', true) + value.slice(prefix.length)
+        value = [
+          value.slice(0, prefix.length),
+          _pad('', diff, '0', true),
+          value.slice(prefix.length)
+        ].join('')
       }
     }
     return value
   }
 
-  // formatBaseX()
-  var formatBaseX = function (value, base, prefix, leftJustify, minWidth, precision, zeroPad) {
+  var _formatBaseX = function (value, base, prefix, leftJustify, minWidth, precision, zeroPad) {
     // Note: casts negative numbers to positive ones
     var number = value >>> 0
     prefix = (prefix && number && {
@@ -58,12 +58,12 @@ module.exports = function sprintf () {
       '8': '0',
       '16': '0x'
     }[base]) || ''
-    value = prefix + pad(number.toString(base), precision || 0, '0', false)
+    value = prefix + _pad(number.toString(base), precision || 0, '0', false)
     return justify(value, prefix, leftJustify, minWidth, zeroPad)
   }
 
-  // formatString()
-  var formatString = function (value, leftJustify, minWidth, precision, zeroPad, customPadChar) {
+  // _formatString()
+  var _formatString = function (value, leftJustify, minWidth, precision, zeroPad, customPadChar) {
     if (precision !== null && precision !== undefined) {
       value = value.slice(0, precision)
     }
@@ -147,31 +147,31 @@ module.exports = function sprintf () {
 
     switch (type) {
       case 's':
-        return formatString(String(value), leftJustify, minWidth, precision, zeroPad, customPadChar)
+        return _formatString(value + '', leftJustify, minWidth, precision, zeroPad, customPadChar)
       case 'c':
-        return formatString(String.fromCharCode(+value), leftJustify, minWidth, precision, zeroPad)
+        return _formatString(String.fromCharCode(+value), leftJustify, minWidth, precision, zeroPad)
       case 'b':
-        return formatBaseX(value, 2, prefixBaseX, leftJustify, minWidth, precision, zeroPad)
+        return _formatBaseX(value, 2, prefixBaseX, leftJustify, minWidth, precision, zeroPad)
       case 'o':
-        return formatBaseX(value, 8, prefixBaseX, leftJustify, minWidth, precision, zeroPad)
+        return _formatBaseX(value, 8, prefixBaseX, leftJustify, minWidth, precision, zeroPad)
       case 'x':
-        return formatBaseX(value, 16, prefixBaseX, leftJustify, minWidth, precision, zeroPad)
+        return _formatBaseX(value, 16, prefixBaseX, leftJustify, minWidth, precision, zeroPad)
       case 'X':
-        return formatBaseX(value, 16, prefixBaseX, leftJustify, minWidth, precision, zeroPad)
+        return _formatBaseX(value, 16, prefixBaseX, leftJustify, minWidth, precision, zeroPad)
         .toUpperCase()
       case 'u':
-        return formatBaseX(value, 10, prefixBaseX, leftJustify, minWidth, precision, zeroPad)
+        return _formatBaseX(value, 10, prefixBaseX, leftJustify, minWidth, precision, zeroPad)
       case 'i':
       case 'd':
         number = +value || 0
-      // Plain Math.round doesn't just truncate
+        // Plain Math.round doesn't just truncate
         number = Math.round(number - number % 1)
         prefix = number < 0 ? '-' : positivePrefix
-        value = prefix + pad(String(Math.abs(number)), precision, '0', false)
+        value = prefix + _pad(String(Math.abs(number)), precision, '0', false)
         return justify(value, prefix, leftJustify, minWidth, zeroPad)
       case 'e':
       case 'E':
-      case 'f': // Should handle locales (as per setlocale)
+      case 'f': // @todo Should handle locales (as per setlocale)
       case 'F':
       case 'g':
       case 'G':

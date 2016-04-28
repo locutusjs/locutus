@@ -46,9 +46,11 @@ module.exports = function strnatcmp (fString1, fString2, fVersion) {
           text = false
         }
         buffer += chr
-      } else if ((text === false) && (chr === '.') && (i < (fString.length - 1)) && (fString.substring(i + 1, i +
-            2)
-          .match(/\d/))) {
+      } else if ((text === false) &&
+        (chr === '.') &&
+        (i < (fString.length - 1)) &&
+        (fString.substring(i + 1, i + 2).match(/\d/))) {
+        // @todo ^--- Break this up to make it more readable
         result[result.length] = buffer
         buffer = ''
       } else {

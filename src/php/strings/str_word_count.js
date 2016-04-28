@@ -78,8 +78,12 @@ module.exports = function str_word_count (str, format, charlist) { // eslint-dis
     if ((c = _getWholeChar(str, i)) === false) {
       continue
     }
-    match = ctypeAlpha(c) || (reg && c.search(reg) !== -1) || ((i !== 0 && i !== len - 1) && c === '-') || // No hyphen at beginning or end unless allowed in charlist (or locale)
-      // No apostrophe at beginning unless allowed in charlist (or locale)
+    // No hyphen at beginning or end unless allowed in charlist (or locale)
+    // No apostrophe at beginning unless allowed in charlist (or locale)
+    // @todo Make this more readable
+    match = ctypeAlpha(c) ||
+      (reg && c.search(reg) !== -1) ||
+      ((i !== 0 && i !== len - 1) && c === '-') ||
       (i !== 0 && c === "'")
     if (match) {
       if (tmpStr === '' && format === 2) {

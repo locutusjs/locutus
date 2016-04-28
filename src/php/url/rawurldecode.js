@@ -8,14 +8,15 @@ module.exports = function rawurldecode (str) {
   //      bugfixed by: Kevin van Zonneveld (http://kvz.io)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
   //      improved by: Brett Zamir (http://brett-zamir.me)
-  //           note 1: Please be aware that this function expects to decode from UTF-8 encoded strings, as found on
+  //           note 1: Please be aware that this function expects to decode
+  //           note 1: from UTF-8 encoded strings, as found on
   //           note 1: pages served as UTF-8
   //        example 1: rawurldecode('Kevin+van+Zonneveld%21')
   //        returns 1: 'Kevin+van+Zonneveld!'
   //        example 2: rawurldecode('http%3A%2F%2Fkvz.io%2F')
   //        returns 2: 'http://kvz.io/'
-  //        example 3: rawurldecode('http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a')
-  //        returns 3: 'http://www.google.nl/search?q=Locutus&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a'
+  //        example 3: rawurldecode('http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3D')
+  //        returns 3: 'http://www.google.nl/search?q=Locutus&ie='
 
   return decodeURIComponent((str + '')
     .replace(/%(?![\da-f]{2})/gi, function () {

@@ -9,9 +9,12 @@ module.exports = function is_array (mixedVar) { // eslint-disable-line camelcase
   // bugfixed by: Cord
   // bugfixed by: Manish
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //      note 1: In Locutus, javascript objects are like php associative arrays, thus JavaScript objects will also
-  //      note 1: return true in this function (except for objects which inherit properties, being thus used as objects),
-  //      note 1: unless you do ini_set('locutus.objectsAsArrays', 0), in which case only genuine JavaScript arrays
+  //      note 1: In Locutus, javascript objects are like php associative arrays,
+  //      note 1: thus JavaScript objects will also
+  //      note 1: return true in this function (except for objects which inherit properties,
+  //      note 1: being thus used as objects),
+  //      note 1: unless you do ini_set('locutus.objectsAsArrays', 0),
+  //      note 1: in which case only genuine JavaScript arrays
   //      note 1: will return true
   //   example 1: is_array(['Kevin', 'van', 'Zonneveld'])
   //   returns 1: true
@@ -34,17 +37,22 @@ module.exports = function is_array (mixedVar) { // eslint-disable-line camelcase
   }
   var _isArray = function (mixedVar) {
     // return Object.prototype.toString.call(mixedVar) === '[object Array]';
-    // The above works, but let's do the even more stringent approach: (since Object.prototype.toString could be overridden)
+    // The above works, but let's do the even more stringent approach:
+    // (since Object.prototype.toString could be overridden)
     // Null, Not an object, no length property so couldn't be an Array (or String)
     if (!mixedVar || typeof mixedVar !== 'object' || typeof mixedVar.length !== 'number') {
       return false
     }
     var len = mixedVar.length
     mixedVar[mixedVar.length] = 'bogus'
-    // The only way I can think of to get around this (or where there would be trouble) would be to have an object defined
-    // with a custom "length" getter which changed behavior on each call (or a setter to mess up the following below) or a custom
-    // setter for numeric properties, but even that would need to listen for specific indexes; but there should be no false negatives
-    // and such a false positive would need to rely on later JavaScript innovations like __defineSetter__
+    // The only way I can think of to get around this (or where there would be trouble)
+    // would be to have an object defined
+    // with a custom "length" getter which changed behavior on each call
+    // (or a setter to mess up the following below) or a custom
+    // setter for numeric properties, but even that would need to listen for
+    // specific indexes; but there should be no false negatives
+    // and such a false positive would need to rely on later JavaScript
+    // innovations like __defineSetter__
     if (len !== mixedVar.length) {
       // We know it's an array since length auto-changed with the addition of a
       // numeric property at its length end, so safely get rid of our bogus element

@@ -22,6 +22,7 @@ Unreleased and unplanned todos
 
 ## v2.0.0 (Unreleased)
 
+- [ ] Change `fix(me)?` to `@todo`
 - [ ] Be more strict about line-lengths
 - [x] Do not pass values by reference via the `window` global, use e.g. `countObj.value` and `errorObj.value` instead
 - [x] Have _one_ way of getting an `ini` value and its default

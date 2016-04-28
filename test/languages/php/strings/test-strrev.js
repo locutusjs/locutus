@@ -13,14 +13,14 @@ describe('src/php/strings/strrev.js (tested in test/languages/php/strings/test-s
     done()
   })
   it('should pass example 2', function (done) {
-    var expected = true
-    var result = strrev('a\u0301haB') === 'Baha\u0301'; // combining
+    var expected = 'Baha\u0301'; // combining
+    var result = strrev('a\u0301haB')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    var expected = true
-    var result = strrev('A\uD87E\uDC04Z') === 'Z\uD87E\uDC04A'; // surrogates
+    var expected = 'Z\uD87E\uDC04A'  // surrogates
+    var result = strrev('A\uD87E\uDC04Z')
     expect(result).to.deep.equal(expected)
     done()
   })

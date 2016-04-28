@@ -37,7 +37,10 @@ module.exports = function gettype (mixedVar) {
   if (s === 'object') {
     if (mixedVar !== null) {
       // From: http://javascript.crockford.com/remedial.html
-      if (typeof mixedVar.length === 'number' && !(mixedVar.propertyIsEnumerable('length')) && typeof mixedVar.splice === 'function') {
+      // @todo: Break up this lengthy if statement
+      if (typeof mixedVar.length === 'number' &&
+        !(mixedVar.propertyIsEnumerable('length')) &&
+        typeof mixedVar.splice === 'function') {
         s = 'array'
       } else if (mixedVar.constructor && _getFuncName(mixedVar.constructor)) {
         name = _getFuncName(mixedVar.constructor)

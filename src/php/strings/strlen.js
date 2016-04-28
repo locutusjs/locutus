@@ -30,7 +30,8 @@ module.exports = function strlen (string) {
     var next = ''
     var prev = ''
     if (code >= 0xD800 && code <= 0xDBFF) {
-      // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
+      // High surrogate (could change last hex to 0xDB7F to
+      // treat high private surrogates as single characters)
       if (str.length <= (i + 1)) {
         throw new Error('High surrogate without following low surrogate')
       }
@@ -46,10 +47,12 @@ module.exports = function strlen (string) {
       }
       prev = str.charCodeAt(i - 1)
       if (prev < 0xD800 || prev > 0xDBFF) {
-        // (could change last hex to 0xDB7F to treat high private surrogates as single characters)
+        // (could change last hex to 0xDB7F to treat high private surrogates
+        // as single characters)
         throw new Error('Low surrogate without preceding high surrogate')
       }
-      // We can pass over low surrogates now as the second component in a pair which we have already processed
+      // We can pass over low surrogates now as the second
+      // component in a pair which we have already processed
       return false
     }
     return str.charAt(i)

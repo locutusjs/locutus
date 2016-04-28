@@ -8,12 +8,14 @@ module.exports = function parse_url (str, component) { // eslint-disable-line ca
   //           note 1: original by http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
   //           note 1: blog post at http://blog.stevenlevithan.com/archives/parseuri
   //           note 1: demo at http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
-  //           note 1: Does not replace invalid characters with '_' as in PHP, nor does it return false with
+  //           note 1: Does not replace invalid characters with '_' as in PHP,
+  //           note 1: nor does it return false with
   //           note 1: a seriously malformed URL.
-  //           note 1: Besides function name, is essentially the same as parseUri as well as our allowing
+  //           note 1: Besides function name, is essentially the same as parseUri as
+  //           note 1: well as our allowing
   //           note 1: an extra slash after the scheme/protocol (to allow file:/// as in PHP)
-  //        example 1: parse_url('http://username:password@hostname/path?arg=value#anchor')
-  //        returns 1: {scheme: 'http', host: 'hostname', user: 'username', pass: 'password', path: '/path', query: 'arg=value', fragment: 'anchor'}
+  //        example 1: parse_url('http://user:pass@host/path?a=v#a')
+  //        returns 1: {scheme: 'http', host: 'host', user: 'user', pass: 'pass', path: '/path', query: 'a=v', fragment: 'a'}
   //        example 2: parse_url('http://en.wikipedia.org/wiki/%22@%22_%28album%29')
   //        returns 2: {scheme: 'http', host: 'en.wikipedia.org', path: '/wiki/%22@%22_%28album%29'}
   //        example 3: parse_url('https://host.domain.tld/a@b.c/folder')
@@ -23,10 +25,7 @@ module.exports = function parse_url (str, component) { // eslint-disable-line ca
 
   var query
 
-  var mode = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.mode') : undefined)
-  if (!mode) {
-    mode = 'php'
-  }
+  var mode = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.mode') : undefined) || 'php'
 
   var key = [
     'source',
@@ -44,10 +43,27 @@ module.exports = function parse_url (str, component) { // eslint-disable-line ca
     'query',
     'fragment'
   ]
+
+  // For loose we added one optional slash to post-scheme to catch file:/// (should restrict this)
   var parser = {
-    php: /^(?:([^:\/?#]+):)?(?:\/\/()(?:(?:()(?:([^:@\/]*):?([^:@\/]*))?@)?([^:\/?#]*)(?::(\d*))?))?()(?:(()(?:(?:[^?#\/]*\/)*)()(?:[^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,
-    strict: /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@\/]*):?([^:@\/]*))?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,
-    loose: /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/\/?)?((?:(([^:@\/]*):?([^:@\/]*))?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/ // Added one optional slash to post-scheme to catch file:/// (should restrict this)
+    php: new RegExp([
+      '(?:([^:\\/?#]+):)?',
+      '(?:\\/\\/()(?:(?:()(?:([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?',
+      '()',
+      '(?:(()(?:(?:[^?#\\/]*\\/)*)()(?:[^?#]*))(?:\\?([^#]*))?(?:#(.*))?)'
+    ].join('')),
+    strict: new RegExp([
+      '(?:([^:\\/?#]+):)?',
+      '(?:\\/\\/((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?',
+      '((((?:[^?#\\/]*\\/)*)([^?#]*))(?:\\?([^#]*))?(?:#(.*))?)'
+    ].join('')),
+    loose: new RegExp([
+      '(?:(?![^:@]+:[^:@\\/]*@)([^:\\/?#.]+):)?',
+      '(?:\\/\\/\\/?)?',
+      '((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?)',
+      '(((\\/(?:[^?#](?![^?#\\/]*\\.[^?#\\/.]+(?:[?#]|$)))*\\/?)?([^?#\\/]*))',
+      '(?:\\?([^#]*))?(?:#(.*))?)'
+    ].join(''))
   }
 
   var m = parser[mode].exec(str)
@@ -65,10 +81,7 @@ module.exports = function parse_url (str, component) { // eslint-disable-line ca
   }
 
   if (mode !== 'php') {
-    var name = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.queryKey') : undefined)
-    if (!name) {
-      name = 'queryKey'
-    }
+    var name = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.queryKey') : undefined) || 'queryKey'
     parser = /(?:^|&)([^&=]*)=?([^&]*)/g
     uri[name] = {}
     query = uri[key[12]] || ''
