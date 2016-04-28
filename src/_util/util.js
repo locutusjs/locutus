@@ -260,9 +260,7 @@ class Util {
     codez.push('})')
     codez.push('')
 
-    // Legacy browser-> Node replacements
     var code = codez.join('\n')
-      .replace(/window\.setTimeout/g, 'setTimeout')
 
     // Write to disk
     mkdirp(testdir, function (err) {
