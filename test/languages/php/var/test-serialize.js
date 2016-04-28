@@ -13,8 +13,8 @@ describe('src/php/var/serialize.js (tested in test/languages/php/var/test-serial
     done()
   })
   it('should pass example 2', function (done) {
-    var expected = 'a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}'
-    var result = serialize({firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'})
+    var expected = 'a:2:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";}'
+    var result = serialize({firstName: 'Kevin', midName: 'van'})
     expect(result).to.deep.equal(expected)
     done()
   })

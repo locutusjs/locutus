@@ -20,8 +20,35 @@ module.exports = function is_numeric (mixedVar) { // eslint-disable-line camelca
   //   example 6: is_numeric('1 ')
   //   returns 6: false
 
-  var whitespace =
-    ' \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000'
-  return (typeof mixedVar === 'number' || (typeof mixedVar === 'string' && whitespace.indexOf(mixedVar.slice(-1)) ===
-    -1)) && mixedVar !== '' && !isNaN(mixedVar)
+  var whitespace = [
+    ' ',
+    '\n',
+    '\r',
+    '\t',
+    '\f',
+    '\x0b',
+    '\xa0',
+    '\u2000',
+    '\u2001',
+    '\u2002',
+    '\u2003',
+    '\u2004',
+    '\u2005',
+    '\u2006',
+    '\u2007',
+    '\u2008',
+    '\u2009',
+    '\u200a',
+    '\u200b',
+    '\u2028',
+    '\u2029',
+    '\u3000'
+  ].join('')
+
+  // @todo: Break this up using many single conditions with early returns
+  return (typeof mixedVar === 'number' ||
+    (typeof mixedVar === 'string' &&
+    whitespace.indexOf(mixedVar.slice(-1)) === -1)) &&
+    mixedVar !== '' &&
+    !isNaN(mixedVar)
 }

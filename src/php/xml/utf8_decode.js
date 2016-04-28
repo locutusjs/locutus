@@ -45,7 +45,8 @@ module.exports = function utf8_decode (strData) { // eslint-disable-line camelca
 
     if (seqlen === 4) {
       c1 -= 0x10000
-      tmpArr.push(String.fromCharCode(0xD800 | ((c1 >> 10) & 0x3FF)), String.fromCharCode(0xDC00 | (c1 & 0x3FF)))
+      tmpArr.push(String.fromCharCode(0xD800 | ((c1 >> 10) & 0x3FF)))
+      tmpArr.push(String.fromCharCode(0xDC00 | (c1 & 0x3FF)))
     } else {
       tmpArr.push(String.fromCharCode(c1))
     }

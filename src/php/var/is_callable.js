@@ -5,8 +5,10 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
   // improved by: Brett Zamir (http://brett-zamir.me)
   //      note 1: The variable callableName cannot work as a string variable passed by
   //      note 1: reference as in PHP (since JavaScript does not support passing
-  //      note 1: strings by reference), but instead will take the name of a global variable and set that instead.
-  //      note 1: When used on an object, depends on a constructor property being kept on the object prototype
+  //      note 1: strings by reference), but instead will take the name of
+  //      note 1: a global variable and set that instead.
+  //      note 1: When used on an object, depends on a constructor property
+  //      note 1: being kept on the object prototype
   //      note 2: Depending on the `callableName` that is passed, this function can use eval.
   //      note 2: The eval input is however checked to only allow valid function names,
   //      note 2: So it should not be unsafer than uses without eval (seeing as you can)
@@ -48,7 +50,10 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
     validFunctionName = !!name.match(validJSFunctionNamePattern)
   } else if (typeof mixedVar === 'function') {
     return true
-  } else if (Object.prototype.toString.call(mixedVar) === '[object Array]' && mixedVar.length === 2 && typeof mixedVar[0] === 'object' && typeof mixedVar[1] === 'string') {
+  } else if (Object.prototype.toString.call(mixedVar) === '[object Array]' &&
+    mixedVar.length === 2 &&
+    typeof mixedVar[0] === 'object' &&
+    typeof mixedVar[1] === 'string') {
     obj = mixedVar[0]
     method = mixedVar[1]
     name = (obj.constructor && getFuncName(obj.constructor)) + '::' + method

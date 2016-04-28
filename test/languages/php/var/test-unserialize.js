@@ -13,8 +13,8 @@ describe('src/php/var/unserialize.js (tested in test/languages/php/var/test-unse
     done()
   })
   it('should pass example 2', function (done) {
-    var expected = {firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'}
-    var result = unserialize('a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}')
+    var expected = {firstName: 'Kevin', midName: 'van'}
+    var result = unserialize('a:2:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";}')
     expect(result).to.deep.equal(expected)
     done()
   })

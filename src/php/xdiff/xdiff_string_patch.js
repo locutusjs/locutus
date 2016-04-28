@@ -2,8 +2,9 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, errorOb
   //  discuss at: http://locutusjs.io/php/xdiff_string_patch/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Steven Levithan (stevenlevithan.com)
-  //      note 1: The XDIFF_PATCH_IGNORESPACE flag and the error argument are not currently supported
-  //      note 2: This has not been tested exhaustively yet
+  //      note 1: The XDIFF_PATCH_IGNORESPACE flag and the error argument are not
+  //      note 1: currently supported.
+  //      note 2: This has not been tested exhaustively yet.
   //      note 3: The errorObj parameter (optional) if used must be passed in as a
   //      note 3: object. The errors will then be written by reference into it's `value` property
   //   example 1: xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!')
@@ -16,7 +17,14 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, errorOb
   // <http://xregexp.com>
 
   var _getNativeFlags = function (regex) {
-    return (regex.global ? 'g' : '') + (regex.ignoreCase ? 'i' : '') + (regex.multiline ? 'm' : '') + (regex.extended ? 'x' : '') + (regex.sticky ? 'y' : '')  // Proposed for ES4; included in AS3
+    // Proposed for ES4; included in AS3
+    return [
+      (regex.global ? 'g' : ''),
+      (regex.ignoreCase ? 'i' : ''),
+      (regex.multiline ? 'm' : ''),
+      (regex.extended ? 'x' : ''),
+      (regex.sticky ? 'y' : '')
+    ].join('')
   }
 
   var _cbSplit = function (string, sep /* separator */) {

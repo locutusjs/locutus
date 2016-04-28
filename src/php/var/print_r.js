@@ -37,14 +37,24 @@ module.exports = function print_r (array, returnVal) { // eslint-disable-line ca
     var thickPad = repeatChar(padVal * (curDepth + 1), padChar)
     var str = ''
 
-    if (typeof obj === 'object' && obj !== null && obj.constructor && getFuncName(obj.constructor) !==
-      'LOCUTUS_Resource') {
+    if (typeof obj === 'object' &&
+      obj !== null &&
+      obj.constructor) {
       str += 'Array\n' + basePad + '(\n'
       for (var key in obj) {
         if (Object.prototype.toString.call(obj[key]) === '[object Array]') {
-          str += thickPad + '[' + key + '] => ' + formatArray(obj[key], curDepth + 1, padVal, padChar)
+          str += thickPad
+          str += '['
+          str += key
+          str += '] => '
+          str += formatArray(obj[key], curDepth + 1, padVal, padChar)
         } else {
-          str += thickPad + '[' + key + '] => ' + obj[key] + '\n'
+          str += thickPad
+          str += '['
+          str += key
+          str += '] => '
+          str += obj[key]
+          str += '\n'
         }
       }
       str += basePad + ')\n'

@@ -8,7 +8,7 @@ var is_buffer = require('../../../../src/php/var/is_buffer.js') // eslint-disabl
 describe('src/php/var/is_buffer.js (tested in test/languages/php/var/test-is_buffer.js)', function () {
   it('should pass example 1', function (done) {
     var expected = true
-    var result = is_buffer('This could be binary or a regular string as far as JavaScript knows...')
+    var result = is_buffer('This could be binary or a regular string...')
     expect(result).to.deep.equal(expected)
     done()
   })

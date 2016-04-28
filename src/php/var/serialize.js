@@ -13,12 +13,13 @@ module.exports = function serialize (mixedValue) {
   // bugfixed by: Codestar (http://codestarlive.com/)
   //    input by: DtTvB (http://dt.in.th/2008-09-16.string-length-in-bytes.html)
   //    input by: Martin (http://www.erlenwiese.de/)
-  //      note 1: We feel the main purpose of this function should be to ease the transport of data between php & js
+  //      note 1: We feel the main purpose of this function should be to ease
+  //      note 1: the transport of data between php & js
   //      note 1: Aiming for PHP-compatibility, we have to translate objects to arrays
   //   example 1: serialize(['Kevin', 'van', 'Zonneveld'])
   //   returns 1: 'a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}'
-  //   example 2: serialize({firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'})
-  //   returns 2: 'a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}'
+  //   example 2: serialize({firstName: 'Kevin', midName: 'van'})
+  //   returns 2: 'a:2:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";}'
 
   var val, key, okey
   var ktype = ''
@@ -120,12 +121,14 @@ module.exports = function serialize (mixedValue) {
     case 'undefined':
     default:
       // Fall-through
-      // if the JS object has a property which contains a null value, the string cannot be unserialized by PHP
+      // if the JS object has a property which contains a null value,
+      // the string cannot be unserialized by PHP
       val = 'N'
       break
   }
   if (type !== 'object' && type !== 'array') {
     val += ';'
   }
+
   return val
 }

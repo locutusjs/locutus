@@ -16,19 +16,42 @@ module.exports = function unserialize (data) {
   //    input by: Martin (http://www.erlenwiese.de/)
   //    input by: kilops
   //    input by: Jaroslaw Czarniak
-  //      note 1: We feel the main purpose of this function should be to ease the transport of data between php & js
+  //      note 1: We feel the main purpose of this function should be
+  //      note 1: to ease the transport of data between php & js
   //      note 1: Aiming for PHP-compatibility, we have to translate objects to arrays
   //   example 1: unserialize('a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}')
   //   returns 1: ['Kevin', 'van', 'Zonneveld']
-  //   example 2: unserialize('a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}')
-  //   returns 2: {firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'}
+  //   example 2: unserialize('a:2:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";}')
+  //   returns 2: {firstName: 'Kevin', midName: 'van'}
 
   var $global = (typeof window !== 'undefined' ? window : GLOBAL)
 
   var utf8Overhead = function (chr) {
     // http://locutusjs.io/php/unserialize:571#comment_95906
     var code = chr.charCodeAt(0)
-    var zeroCodes = [ 338, 339, 352, 353, 376, 402, 8211, 8212, 8216, 8217, 8218, 8220, 8221, 8222, 8224, 8225, 8226, 8230, 8240, 8364, 8482 ]
+    var zeroCodes = [
+      338,
+      339,
+      352,
+      353,
+      376,
+      402,
+      8211,
+      8212,
+      8216,
+      8217,
+      8218,
+      8220,
+      8221,
+      8222,
+      8224,
+      8225,
+      8226,
+      8230,
+      8240,
+      8364,
+      8482
+    ]
     if (code < 0x0080 || code >= 0x00A0 && code <= 0x00FF || zeroCodes.indexOf(code) !== -1) {
       return 0
     }
@@ -37,7 +60,8 @@ module.exports = function unserialize (data) {
     }
     return 2
   }
-  var error = function (type, msg, filename, line) {
+  var error = function (type,
+    msg, filename, line) {
     throw new $global[type](msg, filename, line)
   }
   var readUntil = function (data, offset, stopchr) {

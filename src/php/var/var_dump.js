@@ -46,7 +46,8 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
         ret = 'float(' + val + ')'
       }
     } else if (typeof val === 'undefined') {
-      // The remaining are not PHP behavior because these values only exist in this exact form in JavaScript
+      // The remaining are not PHP behavior because these values
+      // only exist in this exact form in JavaScript
       ret = 'undefined'
     } else if (typeof val === 'function') {
       var funcLines = val.toString()
@@ -63,7 +64,8 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
       // Different than PHP's DOMElement
       switch (val.nodeType) {
         case 1:
-          if (typeof val.namespaceURI === 'undefined' || val.namespaceURI === 'http://www.w3.org/1999/xhtml') {
+          if (typeof val.namespaceURI === 'undefined' ||
+            val.namespaceURI === 'http://www.w3.org/1999/xhtml') {
           // Undefined namespace could be plain XML, but namespaceURI not widely supported
             ret = 'HTMLElement("' + val.nodeName + '")'
           } else {
@@ -131,13 +133,26 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
       str += 'array(' + lgth + ') {\n'
       for (var key in obj) {
         var objVal = obj[key]
-        if (typeof objVal === 'object' && objVal !== null && !(objVal instanceof Date) && !(objVal instanceof RegExp) &&
+        if (typeof objVal === 'object' &&
+          objVal !== null &&
+          !(objVal instanceof Date) &&
+          !(objVal instanceof RegExp) &&
           !objVal.nodeName) {
-          str += thickPad + '[' + key + '] =>\n' + thickPad + _formatArray(objVal, curDepth + 1, padVal,
-            padChar)
+          str += thickPad
+          str += '['
+          str += key
+          str += '] =>\n'
+          str += thickPad
+          str += _formatArray(objVal, curDepth + 1, padVal, padChar)
         } else {
           val = _getInnerVal(objVal, thickPad)
-          str += thickPad + '[' + key + '] =>\n' + thickPad + val + '\n'
+          str += thickPad
+          str += '['
+          str += key
+          str += '] =>\n'
+          str += thickPad
+          str += val
+          str += '\n'
         }
       }
       str += basePad + '}\n'
