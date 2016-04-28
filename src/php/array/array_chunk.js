@@ -28,7 +28,7 @@ module.exports = function array_chunk (input, size, preserveKeys) { // eslint-di
       while (i < l) {
         (x = i % size)
           ? n[c][i] = input[i]
-          : n[++c] = {}, n[c][i] = input[i]
+          : n[++c] = {}; n[c][i] = input[i]
         i++
       }
     } else {
@@ -45,7 +45,7 @@ module.exports = function array_chunk (input, size, preserveKeys) { // eslint-di
         if (input.hasOwnProperty(p)) {
           (x = i % size)
             ? n[c][p] = input[p]
-            : n[++c] = {}, n[c][p] = input[p]
+            : n[++c] = {}; n[c][p] = input[p]
           i++
         }
       }
