@@ -13,28 +13,21 @@ module.exports = function print_r (array, returnVal) { // eslint-disable-line ca
   var output = ''
   var padChar = ' '
   var padVal = 4
-  var getFuncName = function (fn) {
-    var name = (/\W*function\s+([\w\$]+)\s*\(/)
-      .exec(fn)
-    if (!name) {
-      return '(Anonymous)'
-    }
-    return name[1]
-  }
-  var repeatChar = function (len, padChar) {
+
+  var _repeatChar = function (len, padChar) {
     var str = ''
     for (var i = 0; i < len; i++) {
       str += padChar
     }
     return str
   }
-  var formatArray = function (obj, curDepth, padVal, padChar) {
+  var _formatArray = function (obj, curDepth, padVal, padChar) {
     if (curDepth > 0) {
       curDepth++
     }
 
-    var basePad = repeatChar(padVal * curDepth, padChar)
-    var thickPad = repeatChar(padVal * (curDepth + 1), padChar)
+    var basePad = _repeatChar(padVal * curDepth, padChar)
+    var thickPad = _repeatChar(padVal * (curDepth + 1), padChar)
     var str = ''
 
     if (typeof obj === 'object' &&
@@ -47,7 +40,7 @@ module.exports = function print_r (array, returnVal) { // eslint-disable-line ca
           str += '['
           str += key
           str += '] => '
-          str += formatArray(obj[key], curDepth + 1, padVal, padChar)
+          str += _formatArray(obj[key], curDepth + 1, padVal, padChar)
         } else {
           str += thickPad
           str += '['
@@ -68,7 +61,7 @@ module.exports = function print_r (array, returnVal) { // eslint-disable-line ca
     return str
   }
 
-  output = formatArray(array, 0, padVal, padChar)
+  output = _formatArray(array, 0, padVal, padChar)
 
   if (returnVal !== true) {
     echo(output)
