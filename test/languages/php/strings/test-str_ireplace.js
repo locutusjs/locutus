@@ -12,4 +12,12 @@ describe('src/php/strings/str_ireplace.js (tested in test/languages/php/strings/
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 2', function (done) {
+    var expected = 1
+    var $countObj = {}
+    str_ireplace('M', 'e', 'name', $countObj)
+    var result = $countObj.value
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })

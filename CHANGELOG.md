@@ -23,7 +23,7 @@ Unreleased and unplanned todos
 ## v2.0.0 (Unreleased)
 
 - [ ] Be more strict about line-lengths
-- [ ] Track all cases of `window`, see if they make sense
+- [x] Do not pass values by reference via the `window` global, use e.g. `countObj.value` and `errorObj.value` instead
 - [x] Have _one_ way of getting an `ini` value and its default
 - [x] Track all cases of `setTimeout`, use them without window prefix. Remove `codez` replace hack
 - [x] Track all cases of XMLHttpRequest

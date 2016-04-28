@@ -23,7 +23,8 @@ module.exports = function unserialize (data) {
   //   example 2: unserialize('a:3:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";s:7:"surName";s:9:"Zonneveld";}')
   //   returns 2: {firstName: 'Kevin', midName: 'van', surName: 'Zonneveld'}
 
-  var that = this
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+
   var utf8Overhead = function (chr) {
     // http://locutusjs.io/php/unserialize:571#comment_95906
     var code = chr.charCodeAt(0)
@@ -37,7 +38,7 @@ module.exports = function unserialize (data) {
     return 2
   }
   var error = function (type, msg, filename, line) {
-    throw new that.window[type](msg, filename, line)
+    throw new $global[type](msg, filename, line)
   }
   var readUntil = function (data, offset, stopchr) {
     var i = 2

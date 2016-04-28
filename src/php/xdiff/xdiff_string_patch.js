@@ -1,9 +1,11 @@
-module.exports = function xdiff_string_patch (originalStr, patch, flags, error) { // eslint-disable-line camelcase
+module.exports = function xdiff_string_patch (originalStr, patch, flags, errorObj) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/xdiff_string_patch/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Steven Levithan (stevenlevithan.com)
   //      note 1: The XDIFF_PATCH_IGNORESPACE flag and the error argument are not currently supported
-  //      note 1: This has not been widely tested
+  //      note 2: This has not been tested exhaustively yet
+  //      note 3: The errorObj parameter (optional) if used must be passed in as a
+  //      note 3: object. The errors will then be written by reference into it's `value` property
   //   example 1: xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!')
   //   returns 1: 'Hello world!'
 
@@ -12,11 +14,12 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, error) 
   // (c) 2007-2010 Steven Levithan
   // MIT License
   // <http://xregexp.com>
-  var getNativeFlags = function (regex) {
+
+  var _getNativeFlags = function (regex) {
     return (regex.global ? 'g' : '') + (regex.ignoreCase ? 'i' : '') + (regex.multiline ? 'm' : '') + (regex.extended ? 'x' : '') + (regex.sticky ? 'y' : '')  // Proposed for ES4; included in AS3
   }
 
-  var cbSplit = function (string, sep /* separator */) {
+  var _cbSplit = function (string, sep /* separator */) {
     // If separator `s` is not a regex, use the native `split`
     if (!(sep instanceof RegExp)) {
       // Had problems to get it to work here using prototype test
@@ -32,7 +35,7 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, error) 
     // This is required if not `s.global`, and it avoids needing to set `s.lastIndex` to zero
     // and restore it to its original value when we're done using the regex
     // Brett paring down
-    var s = new RegExp(sep.source, getNativeFlags(sep) + 'g')
+    var s = new RegExp(sep.source, _getNativeFlags(sep) + 'g')
     if (x) {
       s._xregexp = {
         source: x.source,
@@ -80,8 +83,8 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, error) 
   var firstChar = ''
   var rangeExp = /^@@\s+-(\d+),(\d+)\s+\+(\d+),(\d+)\s+@@$/
   var lineBreaks = /\r?\n/
-  var lines = cbSplit(patch.replace(/(\r?\n)+$/, ''), lineBreaks)
-  var origLines = cbSplit(originalStr, lineBreaks)
+  var lines = _cbSplit(patch.replace(/(\r?\n)+$/, ''), lineBreaks)
+  var origLines = _cbSplit(originalStr, lineBreaks)
   var newStrArr = []
   var linePos = 0
   var errors = ''
@@ -185,8 +188,9 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, error) 
       newStrArr[newStrArr.length] = origLines[linePos++]
     }
   }
-  if (typeof error === 'string') {
-    this.window[error] = errors
+
+  if (errorObj) {
+    errorObj.value = errors
   }
 
   return newStrArr.join('\n')

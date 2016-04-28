@@ -8,6 +8,8 @@ module.exports = function setlocale (category, locale) {
   //      note 1: C and en for LC_MONETARY/LC_NUMERIC; en for LC_COLLATE
   //      note 1: Uses global: locutus to store locale info
   //      note 1: Consider using http://demo.icu-project.org/icu-bin/locexp as basis for localization (as in i18n_loc_set_default())
+  //      note 2: This function tries to establish the locale via the `window` global.
+  //      note 2: This feature will not work in Node and hence is Browser-only
   //   example 1: setlocale('LC_ALL', 'en_US')
   //   returns 1: 'en_US'
 
@@ -116,7 +118,7 @@ module.exports = function setlocale (category, locale) {
 
   // Reconcile Windows vs. *nix locale names?
   // Allow different priority orders of languages, esp. if implement gettext as in
-  //     LANGUAGE env. var.? (e.g., show German if French is not available)
+  // LANGUAGE env. var.? (e.g., show German if French is not available)
   if (!$locutus.php.locales || !$locutus.php.locales.fr_CA || !$locutus.php.locales.fr_CA.LC_TIME || !$locutus.php.locales.fr_CA.LC_TIME.x) {
     // Can add to the locales
     $locutus.php.locales = {}
@@ -291,12 +293,12 @@ module.exports = function setlocale (category, locale) {
   }
   if (!$locutus.php.locale) {
     $locutus.php.locale = 'en_US'
+    // Try to establish the locale via the `window` global
     if (typeof window !== 'undefined' && window.document) {
       var NS_XHTML = 'http://www.w3.org/1999/xhtml'
       var NS_XML = 'http://www.w3.org/XML/1998/namespace'
       if (window.document.getElementsByTagNameNS && window.document.getElementsByTagNameNS(NS_XHTML, 'html')[0]) {
-        if (window.document.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS && window.document.getElementsByTagNameNS(NS_XHTML,
-            'html')[0].getAttributeNS(NS_XML, 'lang')) {
+        if (window.document.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS && window.document.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')) {
           $locutus.php.locale = window.document.getElementsByTagName(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')
         } else if (window.document.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang) {
           // XHTML 1.0 only
@@ -373,5 +375,6 @@ module.exports = function setlocale (category, locale) {
   } else {
     $locutus.php.localeCategories[category] = locale
   }
+
   return locale
 }

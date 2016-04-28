@@ -4,6 +4,7 @@ module.exports = function setrawcookie (name, value, expires, path, domain, secu
   // original by: setcookie
   // improved by: Kevin van Zonneveld (http://kvz.io)
   //    input by: Michael
+  //      note 1: This function requires access to the `window` global and is Browser-only
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   //   example 1: setrawcookie('author_name', 'Kevin van Zonneveld')
   //   returns 1: true

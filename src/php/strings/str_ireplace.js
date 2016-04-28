@@ -1,16 +1,17 @@
-module.exports = function str_ireplace (search, replace, subject, count) { // eslint-disable-line camelcase
+module.exports = function str_ireplace (search, replace, subject, countObj) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/str_ireplace/
   // original by: Glen Arason (http://CanadianDomainRegistry.ca)
   //      note 1: Case-insensitive version of str_replace()
   //      note 1: Compliant with PHP 5.0 str_ireplace() Full details at:
   //      note 1: http://ca3.php.net/manual/en/function.str-ireplace.php
-  //      note 1: The count parameter (optional) if used must be passed in as a
-  //      note 1: string. eg global var MyCount:
-  //      note 1: str_ireplace($search, $replace, $subject, 'MyCount');
-  //      format: str_ireplace($search, $replace, $subject[, 'count'])
-  //       input: str_ireplace($search, $replace, $subject[, {string}]);
+  //      note 2: The countObj parameter (optional) if used must be passed in as a
+  //      note 2: object. The count will then be written by reference into it's `value` property
   //   example 1: str_ireplace('M', 'e', 'name')
   //   returns 1: 'naee'
+  //   example 2: var $countObj = {}
+  //   example 2: str_ireplace('M', 'e', 'name', $countObj)
+  //   example 2: var $result = $countObj.value
+  //   returns 2: 1
 
   var i = 0
   var j = 0
@@ -22,12 +23,12 @@ module.exports = function str_ireplace (search, replace, subject, count) { // es
   var r = ''
   var s = ''
   var ra = ''
-  // var sa = ''
   var otemp = ''
   var oi = ''
   var ofjl = ''
   var os = subject
   var osa = Object.prototype.toString.call(os) === '[object Array]'
+  // var sa = ''
 
   if (typeof (search) === 'object') {
     temp = search
@@ -66,8 +67,8 @@ module.exports = function str_ireplace (search, replace, subject, count) { // es
   s = [].concat(s)
   os = [].concat(os)
 
-  if (count) {
-    this.window[count] = 0
+  if (countObj) {
+    countObj.value = 0
   }
 
   for (i = 0, sl = s.length; i < sl; i++) {
@@ -85,8 +86,8 @@ module.exports = function str_ireplace (search, replace, subject, count) { // es
         os[i] = (otemp).split(otemp.substr(oi, ofjl)).join(repl)
       }
 
-      if (count) {
-        this.window[count] += ((temp.split(f[j])).length - 1)
+      if (countObj) {
+        countObj.value += ((temp.split(f[j])).length - 1)
       }
     }
   }
