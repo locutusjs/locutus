@@ -3,7 +3,7 @@ module.exports = function bcdiv (leftOperand, rightOperand, scale) {
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcdiv(1, 2)
   //   returns 1: '0'
-  //        todo: implement these testcases
+  // @todo: implement these testcases
 
   var _bc = require('../_locutus_shared/_locutus_shared_bc')
   var libbcmath = _bc()

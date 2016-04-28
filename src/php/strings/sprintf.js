@@ -171,7 +171,7 @@ module.exports = function sprintf () {
         return justify(value, prefix, leftJustify, minWidth, zeroPad)
       case 'e':
       case 'E':
-      case 'f': // @todo Should handle locales (as per setlocale)
+      case 'f': // @todo: Should handle locales (as per setlocale)
       case 'F':
       case 'g':
       case 'G':

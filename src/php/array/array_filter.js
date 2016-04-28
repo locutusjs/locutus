@@ -20,7 +20,7 @@ module.exports = function array_filter (arr, func) { // eslint-disable-line came
     return v
   }
 
-  // Fix: Issue #73
+  // @todo: Issue #73
   if (Object.prototype.toString.call(arr) === '[object Array]') {
     retObj = []
   }

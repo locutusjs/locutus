@@ -167,7 +167,7 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
       '': value
     })
   } catch (err) {
-    // Todo: ensure error handling above throws a SyntaxError in all cases where it could
+    // @todo: ensure error handling above throws a SyntaxError in all cases where it could
     // (i.e., when the JSON global is not available and there is an error)
     if (!(err instanceof SyntaxError)) {
       throw new Error('Unexpected error type in json_encode()')

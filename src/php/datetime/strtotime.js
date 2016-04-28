@@ -199,7 +199,7 @@ module.exports = function strtotime (text, now) {
   ].join(''))
   match = text.match(pattern)
   if (match) {
-    // fix time zone information
+    // @todo: time zone information
     if (match[4] === 'z') {
       match[4] = 'Z'
     } else if (match[4].match(/^([\+-][0-9]{2})$/)) {
@@ -250,7 +250,7 @@ module.exports = function strtotime (text, now) {
   }
 
   function process (val) {
-    // @Todo: Reconcile this with regex using \s, taking into account
+    // @todo: Reconcile this with regex using \s, taking into account
     // browser issues with split and regexes
     var splt = val.split(' ')
     var type = splt[0]

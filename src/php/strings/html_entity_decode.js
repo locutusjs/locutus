@@ -27,7 +27,7 @@ module.exports = function html_entity_decode (string, quoteStyle) { // eslint-di
     return false
   }
 
-  // fix &amp; problem
+  // @todo: &amp; problem
   // http://locutusjs.io/php/get_html_translation_table:416#comment_97660
   delete (hashMap['&'])
   hashMap['&'] = '&amp;'

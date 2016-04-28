@@ -82,7 +82,7 @@ module.exports = function str_word_count (str, format, charlist) { // eslint-dis
     }
     // No hyphen at beginning or end unless allowed in charlist (or locale)
     // No apostrophe at beginning unless allowed in charlist (or locale)
-    // @todo Make this more readable
+    // @todo: Make this more readable
     match = ctypeAlpha(c) ||
       (reg && c.search(reg) !== -1) ||
       ((i !== 0 && i !== len - 1) && c === '-') ||

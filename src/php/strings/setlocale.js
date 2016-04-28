@@ -76,7 +76,7 @@ module.exports = function setlocale (category, locale) {
 
     $locutus.php.locales.en = {
       'LC_COLLATE': function (str1, str2) {
-        // Fix: This one taken from strcmp, but need for other locales; we don't use localeCompare
+        // @todo: This one taken from strcmp, but need for other locales; we don't use localeCompare
         // since its locale is not settable
         return (str1 === str2) ? 0 : ((str1 > str2) ? 1 : -1)
       },
@@ -277,7 +277,7 @@ module.exports = function setlocale (category, locale) {
   }
   // PHP-style
   $locutus.php.locale = $locutus.php.locale.replace('-', '_')
-  // Fix locale if declared locale hasn't been defined
+  // @todo: locale if declared locale hasn't been defined
   if (!($locutus.php.locale in $locutus.php.locales)) {
     if ($locutus.php.locale.replace(/_[a-zA-Z]+$/, '') in $locutus.php.locales) {
       $locutus.php.locale = $locutus.php.locale.replace(/_[a-zA-Z]+$/, '')

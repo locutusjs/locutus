@@ -32,7 +32,7 @@ module.exports = function similar_text (first, second, percent) { // eslint-disa
   for (p = 0; p < firstLength; p++) {
     for (q = 0; q < secondLength; q++) {
       for (l = 0; (p + l < firstLength) && (q + l < secondLength) && (first.charAt(p + l) === second.charAt(q + l)); l++) { // eslint-disable-line max-len
-        // @todo ^-- break up this crazy for loop and put the logic in its body
+        // @todo: ^-- break up this crazy for loop and put the logic in its body
       }
       if (l > max) {
         max = l

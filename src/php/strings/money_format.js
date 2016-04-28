@@ -179,7 +179,7 @@ module.exports = function money_format (format, number) { // eslint-disable-line
     // Assemble symbol/value/sign and possible space as appropriate
     if (flags.indexOf('(') !== -1) {
       // flag: parenth. for negative
-      // Fix: unclear on whether and how sepBySpace, signPosn, or csPrecedes have
+      // @todo: unclear on whether and how sepBySpace, signPosn, or csPrecedes have
       // an impact here (as they do below), but assuming for now behaves as signPosn 0 as
       // far as localized sepBySpace and signPosn behavior
       repl = (csPrecedes ? symbol + (sepBySpace === 1 ? ' ' : '') : '') + value + (!csPrecedes ? (
@@ -248,7 +248,7 @@ module.exports = function money_format (format, number) { // eslint-disable-line
     var padding = width - repl.length
     if (padding > 0) {
       padding = new Array(padding + 1).join(' ')
-      // @todo How does p_sep_by_space affect the count if there is a space?
+      // @todo: How does p_sep_by_space affect the count if there is a space?
       // Included in count presumably?
       if (flags.indexOf('-') !== -1) {
         // left-justified (pad to right)

@@ -3,7 +3,7 @@ module.exports = function bcadd (leftOperand, rightOperand, scale) {
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcadd(1, 2)
   //   returns 1: '3'
-  //        todo: implement these testcases
+  // @todo: implement these testcases
 
   var bc = require('../_locutus_shared/_locutus_shared_bc')
   var libbcmath = bc()

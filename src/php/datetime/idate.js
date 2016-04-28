@@ -16,7 +16,7 @@ module.exports = function idate (format, timestamp) {
     throw new Error('idate format is one char')
   }
 
-  // Fix: Need to allow date_default_timezone_set() (check for $locutus.default_timezone and use)
+  // @todo: Need to allow date_default_timezone_set() (check for $locutus.default_timezone and use)
   var _date = (typeof timestamp === 'undefined')
     ? new Date()
     : (timestamp instanceof Date)

@@ -29,7 +29,7 @@ module.exports = function wordwrap (str, intWidth, strBreak, cut) {
   }
 
   for (i = -1, l = (r = str.split(/\r\n|\n|\r/)).length; ++i < l; r[i] += s) {
-    // @todo Split this up over many more lines and more semantic variable names
+    // @todo: Split this up over many more lines and more semantic variable names
     // so it becomes readable
     for (s = r[i], r[i] = '';
       s.length > m;

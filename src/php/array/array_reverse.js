@@ -22,7 +22,7 @@ module.exports = function array_reverse (array, preserveKeys) { // eslint-disabl
     var i = keys.length
     while (i--) {
       key = keys[i]
-      // FIXME: don't rely on browsers keeping keys in insertion order
+      // @todo: don't rely on browsers keeping keys in insertion order
       // it's implementation specific
       // eg. the result will differ from expected in Google Chrome
       tmpArr[key] = array[key]

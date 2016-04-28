@@ -51,7 +51,7 @@ module.exports = function sscanf (str, format) {
       var remaining = str.slice(j)
       var check = width ? remaining.substr(0, width) : remaining
       var match = regex.exec(check)
-      // @todo Make this more readable
+      // @todo: Make this more readable
       var key = digit !== undefined
         ? digit
         : retArr.length
@@ -110,7 +110,7 @@ module.exports = function sscanf (str, format) {
       var sizeCode = preConvs[4]
       i += prePattern.lastIndex
 
-      // Fix: Does PHP do anything with these? Seems not to matter
+      // @todo: Does PHP do anything with these? Seems not to matter
       if (sizeCode) {
         // This would need to be processed later
         switch (sizeCode) {
@@ -217,7 +217,7 @@ module.exports = function sscanf (str, format) {
             })
             break
           case 'o':
-              // Octal integer // Fix: add overflows as above?
+              // Octal integer // @todo: add overflows as above?
             j = _addNext(j, /([+-])?(?:0([0-7]+))/, function (num, sign, oct) {
               return parseInt(num, 8)
             })
@@ -229,7 +229,7 @@ module.exports = function sscanf (str, format) {
           case 'X':
           case 'x':
           // Same as 'x'?
-            // Fix: add overflows as above?
+            // @todo: add overflows as above?
             // Initial 0x not necessary here
             j = _addNext(j, /([+-])?(?:(?:0x)?([\da-fA-F]+))/, function (num, sign, hex) {
               return parseInt(num, 16)
@@ -250,7 +250,7 @@ module.exports = function sscanf (str, format) {
       }
       ++i
     } else if (format.charAt(i) !== str.charAt(j)) {
-        // Fix: Double-check i whitespace ignored in string and/or formats
+        // @todo: Double-check i whitespace ignored in string and/or formats
       _NWS.lastIndex = 0
       if ((_NWS)
         .test(str.charAt(j)) || str.charAt(j) === '') {
