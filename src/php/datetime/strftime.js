@@ -153,12 +153,11 @@ module.exports = function strftime (fmt, timestamp) {
   }
   // END STATIC
 
-  var _date = ((typeof timestamp === 'undefined')
+  var _date = (typeof timestamp === 'undefined')
     ? new Date()
     : (timestamp instanceof Date)
       ? new Date(timestamp)
       : new Date(timestamp * 1000)
-  )
 
   var _aggregates = {
     c: 'locale',

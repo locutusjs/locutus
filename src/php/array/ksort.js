@@ -45,29 +45,29 @@ module.exports = function ksort (inputArr, sortFlags) {
 
   switch (sortFlags) {
     case 'SORT_STRING':
-    // compare items as strings
+      // compare items as strings
       sorter = function (a, b) {
         return strnatcmp(b, a)
       }
       break
     case 'SORT_LOCALE_STRING':
-    // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
+      // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
       var loc = i18nlgd()
       sorter = $locutus.locales[loc].sorting
       break
     case 'SORT_NUMERIC':
-    // compare items numerically
+      // compare items numerically
       sorter = function (a, b) {
         return ((a + 0) - (b + 0))
       }
       break
-    // case 'SORT_REGULAR': // compare items normally (don't change types)
     default:
+      // case 'SORT_REGULAR': // compare items normally (don't change types)
       sorter = function (a, b) {
-        var aFloat = parseFloat(a),
-          bFloat = parseFloat(b),
-          aNumeric = aFloat + '' === a,
-          bNumeric = bFloat + '' === b
+        var aFloat = parseFloat(a)
+        var bFloat = parseFloat(b)
+        var aNumeric = aFloat + '' === a
+        var bNumeric = bFloat + '' === b
         if (aNumeric && bNumeric) {
           return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0
         } else if (aNumeric && !bNumeric) {

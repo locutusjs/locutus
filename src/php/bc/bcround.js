@@ -4,11 +4,11 @@ module.exports = function bcround (val, precision) {
   //   example 1: bcround(1, 2)
   //   returns 1: '1.00'
 
-  var _locutus_shared_bc = require('../_locutus_shared/_locutus_shared_bc')
-  var libbcmath = _locutus_shared_bc()
+  var _bc = require('../_locutus_shared/_locutus_shared_bc')
+  var libbcmath = _bc()
 
   var temp, result, digit
-  var right_operand
+  var rightOperand
 
   // create number
   temp = libbcmath.bc_init_num()
@@ -28,17 +28,17 @@ module.exports = function bcround (val, precision) {
   // loop through digits after the precision marker
   digit = temp.n_value[temp.n_len + precision]
 
-  right_operand = libbcmath.bc_init_num()
-  right_operand = libbcmath.bc_new_num(1, precision)
+  rightOperand = libbcmath.bc_init_num()
+  rightOperand = libbcmath.bc_new_num(1, precision)
 
   if (digit >= 5) {
     // round away from zero by adding 1 (or -1) at the "precision".. ie 1.44999 @ 3dp = (1.44999 + 0.001).toString().substr(0,5)
-    right_operand.n_value[right_operand.n_len + right_operand.n_scale - 1] = 1
+    rightOperand.n_value[rightOperand.n_len + rightOperand.n_scale - 1] = 1
     if (temp.n_sign === libbcmath.MINUS) {
       // round down
-      right_operand.n_sign = libbcmath.MINUS
+      rightOperand.n_sign = libbcmath.MINUS
     }
-    result = libbcmath.bc_add(temp, right_operand, precision)
+    result = libbcmath.bc_add(temp, rightOperand, precision)
   } else {
     // leave-as-is.. just truncate it.
     result = temp
@@ -47,5 +47,6 @@ module.exports = function bcround (val, precision) {
   if (result.n_scale > precision) {
     result.n_scale = precision
   }
+
   return result.toString()
 }

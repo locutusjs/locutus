@@ -4,8 +4,8 @@ module.exports = function bcscale (scale) {
   //   example 1: bcscale(1)
   //   returns 1: true
 
-  var _locutus_shared_bc = require('../_locutus_shared/_locutus_shared_bc')
-  var libbcmath = _locutus_shared_bc()
+  var _bc = require('../_locutus_shared/_locutus_shared_bc')
+  var libbcmath = _bc()
 
   scale = parseInt(scale, 10)
   if (isNaN(scale)) {
@@ -15,5 +15,6 @@ module.exports = function bcscale (scale) {
     return false
   }
   libbcmath.scale = scale
+
   return true
 }

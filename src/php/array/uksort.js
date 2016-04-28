@@ -17,12 +17,12 @@ module.exports = function uksort (inputArr, sorter) {
   //   example 1: var $result = $data
   //   returns 1: {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
 
-  var tmp_arr = {},
-    keys = [],
-    i = 0,
-    k = '',
-    strictForIn = false,
-    populateArr = {}
+  var tmpArr = {}
+  var keys = []
+  var i = 0
+  var k = ''
+  var strictForIn = false
+  var populateArr = {}
 
   if (typeof sorter === 'string') {
     sorter = this.window[sorter]
@@ -53,15 +53,16 @@ module.exports = function uksort (inputArr, sorter) {
   // Rebuild array with sorted key names
   for (i = 0; i < keys.length; i++) {
     k = keys[i]
-    tmp_arr[k] = inputArr[k]
+    tmpArr[k] = inputArr[k]
     if (strictForIn) {
       delete inputArr[k]
     }
   }
-  for (i in tmp_arr) {
-    if (tmp_arr.hasOwnProperty(i)) {
-      populateArr[i] = tmp_arr[i]
+  for (i in tmpArr) {
+    if (tmpArr.hasOwnProperty(i)) {
+      populateArr[i] = tmpArr[i]
     }
   }
+
   return strictForIn || populateArr
 }

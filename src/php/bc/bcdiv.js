@@ -1,12 +1,12 @@
-module.exports = function bcdiv (left_operand, right_operand, scale) {
+module.exports = function bcdiv (leftOperand, rightOperand, scale) {
   //  discuss at: http://locutusjs.io/php/bcdiv/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcdiv(1, 2)
   //   returns 1: '0'
   //        todo: implement these testcases
 
-  var bc = require('../_locutus_shared/_locutus_shared_bc')
-  var libbcmath = bc()
+  var _bc = require('../_locutus_shared/_locutus_shared_bc')
+  var libbcmath = _bc()
 
   var first, second, result
 
@@ -20,8 +20,8 @@ module.exports = function bcdiv (left_operand, right_operand, scale) {
   second = libbcmath.bc_init_num()
   result = libbcmath.bc_init_num()
 
-  first = libbcmath.php_str2num(left_operand.toString())
-  second = libbcmath.php_str2num(right_operand.toString())
+  first = libbcmath.php_str2num(leftOperand.toString())
+  second = libbcmath.php_str2num(rightOperand.toString())
 
   result = libbcmath.bc_divide(first, second, scale)
   if (result === -1) {
@@ -31,5 +31,6 @@ module.exports = function bcdiv (left_operand, right_operand, scale) {
   if (result.n_scale > scale) {
     result.n_scale = scale
   }
+
   return result.toString()
 }

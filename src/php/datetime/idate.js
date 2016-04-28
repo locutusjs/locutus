@@ -17,12 +17,11 @@ module.exports = function idate (format, timestamp) {
   }
 
   // Fix: Need to allow date_default_timezone_set() (check for $locutus.default_timezone and use)
-  var _date = ((typeof timestamp === 'undefined')
+  var _date = (typeof timestamp === 'undefined')
     ? new Date()
     : (timestamp instanceof Date)
       ? new Date(timestamp)
       : new Date(timestamp * 1000)
-  )
   var a
 
   switch (format) {

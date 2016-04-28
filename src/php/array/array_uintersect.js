@@ -7,20 +7,26 @@ module.exports = function array_uintersect (arr1) { // eslint-disable-line camel
   //   example 1: array_uintersect($array1, $array2, function( f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 === string2) return 0; return -1;})
   //   returns 1: {a: 'green', b: 'brown', 0: 'red'}
 
-  var retArr = {},
-    arglm1 = arguments.length - 1,
-    arglm2 = arglm1 - 1,
-    cb = arguments[arglm1],
-    k1 = '',
-    i = 1,
-    arr = {},
-    k = ''
+  var retArr = {}
+  var arglm1 = arguments.length - 1
+  var arglm2 = arglm1 - 1
+  var cb = arguments[arglm1]
+  var k1 = ''
+  var i = 1
+  var arr = {}
+  var k = ''
 
-  cb = (typeof cb === 'string') ? this.window[cb] : (Object.prototype.toString.call(cb) === '[object Array]') ? this.window[
-    cb[0]][cb[1]] : cb
+  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  $global.$locutus = $global.$locutus || {}
 
-  arr1keys: for (k1 in arr1) {
-    arrs: for (i = 1; i < arglm1; i++) {
+  cb = (typeof cb === 'string')
+    ? $global[cb]
+    : (Object.prototype.toString.call(cb) === '[object Array]')
+      ? $global[cb[0]][cb[1]]
+      : cb
+
+  arr1keys: for (k1 in arr1) { // eslint-disable-line no-labels
+    arrs: for (i = 1; i < arglm1; i++) { // eslint-disable-line no-labels
       arr = arguments[i]
       for (k in arr) {
         if (cb(arr[k], arr1[k1]) === 0) {
@@ -28,11 +34,11 @@ module.exports = function array_uintersect (arr1) { // eslint-disable-line camel
             retArr[k1] = arr1[k1]
           }
           // If the innermost loop always leads at least once to an equal value, continue the loop until done
-          continue arrs
+          continue arrs // eslint-disable-line no-labels
         }
       }
       // If it reaches here, it wasn't found in at least one array, so try next value
-      continue arr1keys
+      continue arr1keys // eslint-disable-line no-labels
     }
   }
 

@@ -20,10 +20,11 @@ module.exports = function natcasesort (inputArr) {
   //   returns 1: {a: 'IMG0.png', e: 'img1.png', d: 'img2.png', f: 'IMG3.png', c: 'img10.png', b: 'img12.png'}
 
   var strnatcasecmp = require('../strings/strnatcasecmp')
-  var valArr = [],
-    k, i, ret, that = this,
-    strictForIn = false,
-    populateArr = {}
+  var valArr = []
+  var k
+  var i
+  var strictForIn = false
+  var populateArr = {}
 
   var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.strictForIn') : undefined)
   strictForIn = iniVal !== 'off'

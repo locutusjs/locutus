@@ -47,25 +47,25 @@ module.exports = function rsort (inputArr, sortFlags) {
 
   switch (sortFlags) {
     case 'SORT_STRING':
-    // compare items as strings
+      // compare items as strings
       sorter = function (a, b) {
         return strnatcmp(b, a)
       }
       break
     case 'SORT_LOCALE_STRING':
-    // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
+      // compare items as strings, based on the current locale (set with  i18n_loc_set_default() as of PHP6)
       var loc = i18nlgd()
       sorter = $locutus.locales[loc].sorting
       break
     case 'SORT_NUMERIC':
-    // compare items numerically
+      // compare items numerically
       sorter = function (a, b) {
         return (b - a)
       }
       break
     case 'SORT_REGULAR':
-    // compare items normally (don't change types)
     default:
+      // compare items normally (don't change types)
       sorter = function (b, a) {
         var aFloat = parseFloat(a),
           bFloat = parseFloat(b),
@@ -104,5 +104,6 @@ module.exports = function rsort (inputArr, sortFlags) {
     // Repopulate the old array
     populateArr[i] = valArr[i]
   }
+
   return strictForIn || populateArr
 }

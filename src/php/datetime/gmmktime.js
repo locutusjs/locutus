@@ -7,10 +7,10 @@ module.exports = function gmmktime () {
   //   example 2: gmmktime(0, 0, -1, 1, 1, 1970)
   //   returns 2: -1
 
-  var d = new Date(),
-    r = arguments,
-    i = 0,
-    e = ['Hours', 'Minutes', 'Seconds', 'Month', 'Date', 'FullYear']
+  var d = new Date()
+  var r = arguments
+  var i = 0
+  var e = ['Hours', 'Minutes', 'Seconds', 'Month', 'Date', 'FullYear']
 
   for (i = 0; i < e.length; i++) {
     if (typeof r[i] === 'undefined') {

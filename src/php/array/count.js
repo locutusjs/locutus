@@ -11,7 +11,8 @@ module.exports = function count (mixedVar, mode) {
   //   example 2: count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE')
   //   returns 2: 6
 
-  var key, cnt = 0
+  var key
+  var cnt = 0
 
   if (mixedVar === null || typeof mixedVar === 'undefined') {
     return 0

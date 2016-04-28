@@ -105,10 +105,12 @@ Typing `npm run website:deploy` in the root of the project takes care of all the
 - [ ] Port a few more tricky/interdepending Ruby functions
 - [ ] Port a few more tricky/interdepending Python functions
 - [ ] Port a few more tricky/interdepending Go functions
+- [ ] Index all `note`s
 - [ ] Add eslint warnings to website function
 - [ ] Parse requires with ast like browserify. Then we can add dependencies back to website
 - [ ] Compare test cases against `php -r`
 - [ ] Auto-deploys via Travis CI
+- [ ] Either deprecate or document all functions using `eval` or  `new Function`
 - [x] Adopt better global detection, use $locutus.golang.<specifics>
 - [-] Maybe move `module.exports = acos` to bottom line, then function signature can stay BC
 - [x] Add more 'social' buttons to website (twitter, github)

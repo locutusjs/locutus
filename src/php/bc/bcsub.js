@@ -1,11 +1,11 @@
-module.exports = function bcsub (left_operand, right_operand, scale) {
+module.exports = function bcsub (leftOperand, rightOperand, scale) {
   //  discuss at: http://locutusjs.io/php/bcsub/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcsub(1, 2)
   //   returns 1: '-1'
 
-  var _locutus_shared_bc = require('../_locutus_shared/_locutus_shared_bc')
-  var libbcmath = _locutus_shared_bc()
+  var _bc = require('../_locutus_shared/_locutus_shared_bc')
+  var libbcmath = _bc()
 
   var first, second, result
 
@@ -19,8 +19,8 @@ module.exports = function bcsub (left_operand, right_operand, scale) {
   second = libbcmath.bc_init_num()
   result = libbcmath.bc_init_num()
 
-  first = libbcmath.php_str2num(left_operand.toString())
-  second = libbcmath.php_str2num(right_operand.toString())
+  first = libbcmath.php_str2num(leftOperand.toString())
+  second = libbcmath.php_str2num(rightOperand.toString())
 
   result = libbcmath.bc_sub(first, second, scale)
 
