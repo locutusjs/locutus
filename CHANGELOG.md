@@ -7,12 +7,11 @@ respective Git histories.
 
 Unreleased and unplanned todos
 
-- [ ] Read up on `i18n_loc_set_default` and `setlocale` in php manual, see if new behavior is warranted
-- [ ] Have _one_ way of checking pure Arrays vs PHP arrays (vs: `Object.prototype.toString.call(arr1) === '[object Array]'`, `typeof retObj[p] === 'object'`, `var asString = Object.prototype.toString.call(mixedVar) var asFunc = _getFuncName(mixedVar.constructor) if (asString === '[object Object]' && asFunc === 'Object') {` )
+- [ ] Have _one_ way of checking pure JS arrays vs PHP arrays (vs: `Object.prototype.toString.call(arr1) === '[object Array]'`, `typeof retObj[p] === 'object'`, `var asString = Object.prototype.toString.call(mixedVar) var asFunc = _getFuncName(mixedVar.constructor) if (asString === '[object Object]' && asFunc === 'Object') {` )
 - [ ] Auto-deploys of `master` to http://locutusjs.io via Travis CI
 - [ ] Compare example test cases for PHP against `php -r` to make sure they are correctly mimicking the most recent stable behavior
-- [ ] Investigate if we can merge `array_*diff*` and `array_*sort*` functions into one helper function and `require` that. Refrain from using `labels`
-- [ ] Investigate if we can merge array `sort` functions into one helper function and `require` that. Use `arsort` as an example
+- [ ] Investigate if we can have one helper function for intersecting, and use that in all `array_*diff*` and `array_*sort*` functions. Refrain from using `labels`, as those functions currently still rely on
+- [ ] Investigate if we can have one helper function for sorting, and use that in all `*sort*` functions
 - [ ] Investigate if we can have one helper function to resolve `Function/'function'/'Class::function'/[$object, 'function']`, and use that in `is_callable`, `array_walk`, `call_user_func_array` etc.
 - [ ] Address remaining test failures that are now skipped (find out via `npm run test:languages:noskip`)
 - [ ] Port a few more tricky/inter-depending Ruby functions
