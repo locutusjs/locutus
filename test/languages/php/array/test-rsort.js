@@ -6,7 +6,7 @@ var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line
 var rsort = require('../../../../src/php/array/rsort.js') // eslint-disable-line no-unused-vars,camelcase
 
 describe('src/php/array/rsort.js (tested in test/languages/php/array/test-rsort.js)', function () {
-  it('should pass example 1', function (done) {
+  it.skip('should pass example 1', function (done) {
     var expected = ['van', 'Zonneveld', 'Kevin']
     var $arr = ['Kevin', 'van', 'Zonneveld']
     rsort($arr)

@@ -6,7 +6,7 @@ var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line
 var sort = require('../../../../src/php/array/sort.js') // eslint-disable-line no-unused-vars,camelcase
 
 describe('src/php/array/sort.js (tested in test/languages/php/array/test-sort.js)', function () {
-  it('should pass example 1', function (done) {
+  it.skip('should pass example 1', function (done) {
     var expected = ['Kevin', 'Zonneveld', 'van']
     var $arr = ['Kevin', 'van', 'Zonneveld']
     sort($arr)

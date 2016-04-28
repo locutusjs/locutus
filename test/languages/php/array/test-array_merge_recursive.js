@@ -6,7 +6,7 @@ var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line
 var array_merge_recursive = require('../../../../src/php/array/array_merge_recursive.js') // eslint-disable-line no-unused-vars,camelcase
 
 describe('src/php/array/array_merge_recursive.js (tested in test/languages/php/array/test-array_merge_recursive.js)', function () {
-  it('should pass example 1', function (done) {
+  it.skip('should pass example 1', function (done) {
     var expected = {'color': {'favorite': {0: 'red', 1: 'green'}, 0: 'blue'}, 1: 5, 1: 10}
     var $arr1 = {'color': {'favorite': 'red'}, 0: 5}
     var $arr2 = {0: 10, 'color': {'favorite': 'green', 0: 'blue'}}

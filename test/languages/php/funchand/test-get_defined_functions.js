@@ -6,7 +6,7 @@ var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line
 var get_defined_functions = require('../../../../src/php/funchand/get_defined_functions.js') // eslint-disable-line no-unused-vars,camelcase
 
 describe('src/php/funchand/get_defined_functions.js (tested in test/languages/php/funchand/test-get_defined_functions.js)', function () {
-  it('should pass example 1', function (done) {
+  it.skip('should pass example 1', function (done) {
     var expected = true
     function test_in_array (array, p_val) {for(var i = 0, l = array.length; i < l; i++) {if(array[i] === p_val) return true;} return false;}
     var $funcs = get_defined_functions()

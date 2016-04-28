@@ -5,7 +5,7 @@ var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
 var var_dump = require('../../../../src/php/var/var_dump.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/var/var_dump.js (tested in test/languages/php/var/test-var_dump.js)', function () {
+describe.skip('src/php/var/var_dump.js (tested in test/languages/php/var/test-var_dump.js)', function () {
   it('should pass example 1', function (done) {
     var expected = 'int(1)'
     var result = var_dump(1)

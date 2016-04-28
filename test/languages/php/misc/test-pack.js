@@ -6,7 +6,7 @@ var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line
 var pack = require('../../../../src/php/misc/pack.js') // eslint-disable-line no-unused-vars,camelcase
 
 describe('src/php/misc/pack.js (tested in test/languages/php/misc/test-pack.js)', function () {
-  it('should pass example 1', function (done) {
+  it.skip('should pass example 1', function (done) {
     var expected = '\u00124xVAB'
     var result = pack('nvc*', 0x1234, 0x5678, 65, 66)
     expect(result).to.deep.equal(expected)

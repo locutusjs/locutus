@@ -18,35 +18,35 @@ describe('src/php/strings/substr.js (tested in test/languages/php/strings/test-s
     expect(result).to.deep.equal(expected)
     done()
   })
-  it('should pass example 3', function (done) {
+  it.skip('should pass example 3', function (done) {
     var expected = 'a'
     ini_set('unicode.semantics', 'on')
     var result = substr('a\uD801\uDC00', 0, -1)
     expect(result).to.deep.equal(expected)
     done()
   })
-  it('should pass example 4', function (done) {
+  it.skip('should pass example 4', function (done) {
     var expected = 'a\uD801\uDC00'
     ini_set('unicode.semantics', 'on')
     var result = substr('a\uD801\uDC00', 0, 2)
     expect(result).to.deep.equal(expected)
     done()
   })
-  it('should pass example 5', function (done) {
+  it.skip('should pass example 5', function (done) {
     var expected = '\uD801\uDC00'
     ini_set('unicode.semantics', 'on')
     var result = substr('a\uD801\uDC00', -1, 1)
     expect(result).to.deep.equal(expected)
     done()
   })
-  it('should pass example 6', function (done) {
+  it.skip('should pass example 6', function (done) {
     var expected = '\uD801\uDC00z'
     ini_set('unicode.semantics', 'on')
     var result = substr('a\uD801\uDC00z\uD801\uDC00', -3, 2)
     expect(result).to.deep.equal(expected)
     done()
   })
-  it('should pass example 7', function (done) {
+  it.skip('should pass example 7', function (done) {
     var expected = '\uD801\uDC00z'
     ini_set('unicode.semantics', 'on')
     var result = substr('a\uD801\uDC00z\uD801\uDC00', -3, -1)

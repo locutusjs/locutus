@@ -6,7 +6,7 @@ var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line
 var array_diff_uassoc = require('../../../../src/php/array/array_diff_uassoc.js') // eslint-disable-line no-unused-vars,camelcase
 
 describe('src/php/array/array_diff_uassoc.js (tested in test/languages/php/array/test-array_diff_uassoc.js)', function () {
-  it('should pass example 1', function (done) {
+  it.skip('should pass example 1', function (done) {
     var expected = {b: 'brown', c: 'blue', 0: 'red'}
     var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
     var $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
