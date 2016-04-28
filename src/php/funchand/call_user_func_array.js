@@ -5,6 +5,10 @@ module.exports = function call_user_func_array (cb, parameters) { // eslint-disa
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Diplom@t (http://difane.com/)
   // improved by: Brett Zamir (http://brett-zamir.me)
+  //        note: Depending on the `cb` that is passed, this function can use `eval` and/or `new Function`.
+  //        note: The `eval` input is however checked to only allow valid function names,
+  //        note: So it should not be unsafer than uses without eval (seeing as you can)
+  //        note: already pass any function to be executed here.
   //   example 1: call_user_func_array('isNaN', ['a'])
   //   returns 1: true
   //   example 2: call_user_func_array('isNaN', [1])
@@ -14,15 +18,19 @@ module.exports = function call_user_func_array (cb, parameters) { // eslint-disa
   var func
   var scope = null
 
+  var validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
+
   if (typeof cb === 'string') {
     if (typeof $global[cb] === 'function') {
       func = $global[cb]
-    } else {
+    } else if (cb.match(validJSFunctionNamePattern)) {
       func = (new Function(null, 'return ' + cb)()) // eslint-disable-line no-new-func
     }
   } else if (Object.prototype.toString.call(cb) === '[object Array]') {
     if (typeof cb[0] === 'string') {
-      func = eval(cb[0] + "['" + cb[1] + "']") // eslint-disable-line no-eval
+      if (cb[0].match(validJSFunctionNamePattern)) {
+        func = eval(cb[0] + "['" + cb[1] + "']") // eslint-disable-line no-eval
+      }
     } else {
       func = cb[0][cb[1]]
     }
@@ -30,7 +38,7 @@ module.exports = function call_user_func_array (cb, parameters) { // eslint-disa
     if (typeof cb[0] === 'string') {
       if (typeof $global[cb[0]] === 'function') {
         scope = $global[cb[0]]
-      } else {
+      } else if (cb[0].match(validJSFunctionNamePattern)) {
         scope = eval(cb[0]) // eslint-disable-line no-eval
       }
     } else if (typeof cb[0] === 'object') {

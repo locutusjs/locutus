@@ -3,8 +3,14 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: François
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //        note: The variable callableName cannot work as a string variable passed by reference as in PHP (since JavaScript does not support passing strings by reference), but instead will take the name of a global variable and set that instead
-  //        note: When used on an object, depends on a constructor property being kept on the object prototype
+  //      note 1: The variable callableName cannot work as a string variable passed by
+  //      note 1: reference as in PHP (since JavaScript does not support passing
+  //      note 1: strings by reference), but instead will take the name of a global variable and set that instead.
+  //      note 1: When used on an object, depends on a constructor property being kept on the object prototype
+  //      note 2: Depending on the `callableName` that is passed, this function can use eval.
+  //      note 2: The eval input is however checked to only allow valid function names,
+  //      note 2: So it should not be unsafer than uses without eval (seeing as you can)
+  //      note 2: already pass any function to be executed here.
   //   example 1: is_callable('is_callable')
   //   returns 1: true
   //   example 2: is_callable('bogusFunction', true)

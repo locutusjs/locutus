@@ -13,6 +13,7 @@ Unreleased and unplanned todos
 - [ ] Compare example test cases for PHP against `php -r` to make sure they are correctly mimicking the most recent stable behavior
 - [ ] Investigate if we can merge `array_*diff*` and `array_*sort*` functions into one helper function and `require` that. Refrain from using `labels`
 - [ ] Investigate if we can merge array `sort` functions into one helper function and `require` that. Use `arsort` as an example
+- [ ] Investigate if we can have one helper function to resolve `Function/'function'/'Class::function'/[$object, 'function']`, and use that in `is_callable`, `array_walk`, `call_user_func_array` etc.
 - [ ] Address remaining test failures that are now skipped (find out via `npm run test:languages:noskip`)
 - [ ] Port a few more tricky/inter-depending Ruby functions
 - [ ] Port a few more tricky/inter-depending Python functions
@@ -30,7 +31,7 @@ Unreleased and unplanned todos
 - [ ] Rename `strictForIn` to `sortByReference`
 - [ ] Remove `// (BEGIN|END) (STATIC|REDUNDANT)`
 - [ ] Index all `note`s
-- [ ] Either deprecate or document all functions using `eval` or `new Function`
+- [x] Either deprecate or document all functions using `eval` or `new Function`
 - [x] Port Util to ES6 class
 - [x] Write one function (`ip2long`) in ES6 and make it pass tests & linting
 - [x] Deprecate support for node_js: 0.8

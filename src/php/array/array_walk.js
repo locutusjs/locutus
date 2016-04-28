@@ -3,8 +3,7 @@ module.exports = function array_walk (array, funcname, userdata) { // eslint-dis
   // original by: Johnny Mast (http://www.phpvrouwen.nl)
   // bugfixed by: David
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //        note: Using ini_set('locutus.no-eval', true) will only work with
-  //        note: user-defined string functions, not built-in functions like void()
+  //        note: Only works with user-defined functions, not built-in functions like void()
   //   example 1: array_walk ([3, 4], function () {}, 'userdata')
   //   returns 1: true
 
