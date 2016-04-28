@@ -32,6 +32,7 @@ Unreleased and unplanned todos
 - [ ] Index all `note`s
 - [ ] Either deprecate or document all functions using `eval` or `new Function`
 - [ ] Write one function (`ip2long`) in ES6 and make it pass tests & linting
+- [x] Deprecate support for node_js: 0.8
 - [x] Make Travis fail on eslint issues
 - [x] Move CHANGELOG to own file
 - [x] Make all functions pass eslint with JavaScript Standard Style
