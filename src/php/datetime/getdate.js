@@ -11,7 +11,7 @@ module.exports = function getdate (timestamp) {
     'November', 'December'
   ]
   var d = ((typeof timestamp === 'undefined') ? new Date()
-    : (typeof timestamp === 'object') ? new Date(timestamp)  // Not provided
+    : (timestamp instanceof Date) ? new Date(timestamp)  // Not provided
     : new Date(timestamp * 1000) // Javascript Date() // UNIX timestamp (auto-convert to int)
   )
   var w = d.getDay()

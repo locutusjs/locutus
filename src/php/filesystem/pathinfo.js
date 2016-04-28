@@ -30,16 +30,16 @@ module.exports = function pathinfo (path, options) {
   //   returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
 
   var basename = require('../filesystem/basename')
-  var opt = '',
-    real_opt = '',
-    optName = '',
-    optTemp = 0,
-    tmp_arr = {},
-    cnt = 0,
-    i = 0
-  var have_basename = false,
-    have_extension = false,
-    have_filename = false
+  var opt = ''
+  var realOpt = ''
+  var optName = ''
+  var optTemp = 0
+  var tmpArr = {}
+  var cnt = 0
+  var i = 0
+  var haveBasename = false
+  var haveExtension = false
+  var haveFilename = false
 
   // Input defaulting & sanitation
   if (!path) {
@@ -77,7 +77,7 @@ module.exports = function pathinfo (path, options) {
   }
 
   // Internal Functions
-  var __getExt = function (path) {
+  var _getExt = function (path) {
     var str = path + ''
     var dotP = str.lastIndexOf('.') + 1
     return !dotP ? false : dotP !== str.length ? str.substr(dotP) : ''
@@ -85,57 +85,63 @@ module.exports = function pathinfo (path, options) {
 
   // Gather path infos
   if (options & OPTS.PATHINFO_DIRNAME) {
-    var dirName = path.replace(/\\/g, '/')
+    var dirName = path
+      .replace(/\\/g, '/')
       .replace(/\/[^\/]*\/?$/, '') // dirname
-    tmp_arr.dirname = dirName === path ? '.' : dirName
+    tmpArr.dirname = dirName === path ? '.' : dirName
   }
 
   if (options & OPTS.PATHINFO_BASENAME) {
-    if (false === have_basename) {
-      have_basename = basename(path)
+    if (haveBasename === false) {
+      haveBasename = basename(path)
     }
-    tmp_arr.basename = have_basename
+    tmpArr.basename = haveBasename
   }
 
   if (options & OPTS.PATHINFO_EXTENSION) {
-    if (false === have_basename) {
-      have_basename = basename(path)
+    if (haveBasename === false) {
+      haveBasename = basename(path)
     }
-    if (false === have_extension) {
-      have_extension = __getExt(have_basename)
+    if (haveExtension === false) {
+      haveExtension = _getExt(haveBasename)
     }
-    if (false !== have_extension) {
-      tmp_arr.extension = have_extension
+    if (haveExtension !== false) {
+      tmpArr.extension = haveExtension
     }
   }
 
   if (options & OPTS.PATHINFO_FILENAME) {
-    if (false === have_basename) {
-      have_basename = basename(path)
+    if (haveBasename === false) {
+      haveBasename = basename(path)
     }
-    if (false === have_extension) {
-      have_extension = __getExt(have_basename)
+    if (haveExtension === false) {
+      haveExtension = _getExt(haveBasename)
     }
-    if (false === have_filename) {
-      have_filename = have_basename.slice(0, have_basename.length - (have_extension ? have_extension.length + 1 :
-        have_extension === false ? 0 : 1))
+    if (haveFilename === false) {
+      haveFilename = haveBasename.slice(0, haveBasename.length - (haveExtension
+        ? haveExtension.length + 1
+        : haveExtension === false
+          ? 0
+          : 1
+        )
+      )
     }
 
-    tmp_arr.filename = have_filename
+    tmpArr.filename = haveFilename
   }
 
   // If array contains only 1 element: return string
   cnt = 0
-  for (opt in tmp_arr) {
-    if (tmp_arr.hasOwnProperty(opt)) {
+  for (opt in tmpArr) {
+    if (tmpArr.hasOwnProperty(opt)) {
       cnt++
-      real_opt = opt
+      realOpt = opt
     }
   }
   if (cnt === 1) {
-    return tmp_arr[real_opt]
+    return tmpArr[realOpt]
   }
 
   // Return full-blown array
-  return tmp_arr
+  return tmpArr
 }

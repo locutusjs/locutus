@@ -6,5 +6,7 @@ module.exports = function expm1 (x) {
   //   example 1: expm1(1e-15)
   //   returns 1: 1.0000000000000007e-15
 
-  return (x < 1e-5 && -1e-5 < x) ? x + 0.5 * x * x : Math.exp(x) - 1
+  return (x < 1e-5 && x > -1e-5)
+    ? x + 0.5 * x * x
+    : Math.exp(x) - 1
 }

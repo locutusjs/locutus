@@ -16,28 +16,27 @@ module.exports = function addcslashes (str, charlist) {
   //   _example 6: addcslashes("\r\u0007\n", '\0'); // Do not recognize C escape sequences if not specified
   //   _returns 6: "\r\u0007\n"
 
-  var target = '',
-    chrs = [],
-    i = 0,
-    j = 0,
-    c = '',
-    next = '',
-    rangeBegin = '',
-    rangeEnd = '',
-    chr = '',
-    begin = 0,
-    end = 0,
-    octalLength = 0,
-    postOctalPos = 0,
-    cca = 0,
-    escHexGrp = [],
-    encoded = '',
-    percentHex = /%([\dA-Fa-f]+)/g
+  var target = ''
+  var chrs = []
+  var i = 0
+  var j = 0
+  var c = ''
+  var next = ''
+  var rangeBegin = ''
+  var rangeEnd = ''
+  var chr = ''
+  var begin = 0
+  var end = 0
+  var octalLength = 0
+  var postOctalPos = 0
+  var cca = 0
+  var escHexGrp = []
+  var encoded = ''
+  var percentHex = /%([\dA-Fa-f]+)/g
+
   var _pad = function (n, c) {
-    if ((n = n + '')
-      .length < c) {
-      return new Array(++c - n.length)
-        .join('0') + n
+    if ((n = n + '').length < c) {
+      return new Array(++c - n.length).join('0') + n
     }
     return n
   }
@@ -45,21 +44,17 @@ module.exports = function addcslashes (str, charlist) {
   for (i = 0; i < charlist.length; i++) {
     c = charlist.charAt(i)
     next = charlist.charAt(i + 1)
-    if (c === '\\' && next && (/\d/)
-      .test(next)) {
+    if (c === '\\' && next && (/\d/).test(next)) {
       // Octal
-      rangeBegin = charlist.slice(i + 1)
-        .match(/^\d+/)[0]
+      rangeBegin = charlist.slice(i + 1).match(/^\d+/)[0]
       octalLength = rangeBegin.length
       postOctalPos = i + octalLength + 1
       if (charlist.charAt(postOctalPos) + charlist.charAt(postOctalPos + 1) === '..') {
         // Octal begins range
         begin = rangeBegin.charCodeAt(0)
-        if ((/\\\d/)
-          .test(charlist.charAt(postOctalPos + 2) + charlist.charAt(postOctalPos + 3))) {
+        if ((/\\\d/).test(charlist.charAt(postOctalPos + 2) + charlist.charAt(postOctalPos + 3))) {
           // Range ends with octal
-          rangeEnd = charlist.slice(postOctalPos + 3)
-            .match(/^\d+/)[0]
+          rangeEnd = charlist.slice(postOctalPos + 3).match(/^\d+/)[0]
           // Skip range end backslash
           i += 1
         } else if (charlist.charAt(postOctalPos + 2)) {
@@ -91,11 +86,9 @@ module.exports = function addcslashes (str, charlist) {
       // Character begins range
       rangeBegin = c
       begin = rangeBegin.charCodeAt(0)
-      if ((/\\\d/)
-        .test(charlist.charAt(i + 3) + charlist.charAt(i + 4))) {
+      if ((/\\\d/).test(charlist.charAt(i + 3) + charlist.charAt(i + 4))) {
         // Range ends with octal
-        rangeEnd = charlist.slice(i + 4)
-          .match(/^\d+/)[0]
+        rangeEnd = charlist.slice(i + 4).match(/^\d+/)[0]
         // Skip range end backslash
         i += 1
       } else if (charlist.charAt(i + 3)) {
@@ -152,17 +145,15 @@ module.exports = function addcslashes (str, charlist) {
             target += 'f'
             break
           default:
-          // target += _pad(cca.toString(8), 3);break; // Sufficient for UTF-16
+            // target += _pad(cca.toString(8), 3);break; // Sufficient for UTF-16
             encoded = encodeURIComponent(c)
 
-          // 3-length-padded UTF-8 octets
+            // 3-length-padded UTF-8 octets
             if ((escHexGrp = percentHex.exec(encoded)) !== null) {
-              target += _pad(parseInt(escHexGrp[1], 16)
-              .toString(8), 3) // already added a slash above
+              target += _pad(parseInt(escHexGrp[1], 16).toString(8), 3) // already added a slash above
             }
             while ((escHexGrp = percentHex.exec(encoded)) !== null) {
-              target += '\\' + _pad(parseInt(escHexGrp[1], 16)
-              .toString(8), 3)
+              target += '\\' + _pad(parseInt(escHexGrp[1], 16).toString(8), 3)
             }
             break
         }
@@ -175,5 +166,6 @@ module.exports = function addcslashes (str, charlist) {
       target += c
     }
   }
+
   return target
 }

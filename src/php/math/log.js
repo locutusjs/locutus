@@ -5,7 +5,7 @@ module.exports = function log (arg, base) {
   //   example 1: log(8723321.4, 7)
   //   returns 1: 8.212871815082147
 
-  return (typeof base === 'undefined') ?
-    Math.log(arg) :
-    Math.log(arg) / Math.log(base)
+  return (typeof base === 'undefined')
+    ? Math.log(arg)
+    : Math.log(arg) / Math.log(base)
 }

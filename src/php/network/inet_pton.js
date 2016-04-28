@@ -6,7 +6,13 @@ module.exports = function inet_pton (a) { // eslint-disable-line camelcase
   //   example 2: inet_pton('127.0.0.1')
   //   returns 2: '\x7F\x00\x00\x01'
 
-  var r, m, x, i, j, f = String.fromCharCode
+  var r
+  var m
+  var x
+  var i
+  var j
+  var f = String.fromCharCode
+
   // IPv4
   m = a.match(/^(?:\d{1,3}(?:\.|$)){4}/)
   if (m) {
@@ -16,6 +22,7 @@ module.exports = function inet_pton (a) { // eslint-disable-line camelcase
     return m.length === 4 ? m : false
   }
   r = /^((?:[\da-f]{1,4}(?::|)){0,8})(::)?((?:[\da-f]{1,4}(?::|)){0,8})$/
+
   // IPv6
   m = a.match(r)
   if (m) {
@@ -45,6 +52,7 @@ module.exports = function inet_pton (a) { // eslint-disable-line camelcase
         .join('\x00') + m[3]
     }
   }
-  // Invalid IP.
+
+  // Invalid IP
   return false
 }

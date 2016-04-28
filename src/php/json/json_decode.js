@@ -4,6 +4,8 @@ module.exports = function json_decode (strJson) { // eslint-disable-line camelca
   // reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
   //      improved by: T.J. Leahy
   //      improved by: Michael White
+  //           note 1: If node or the browser does not offer JSON.parse, this function falls backslash
+  //           note 1: to its own implementation using eval, and hence should be considered unsafe
   //        example 1: json_decode('[ 1 ]')
   //        returns 1: [1]
 
@@ -46,7 +48,7 @@ module.exports = function json_decode (strJson) { // eslint-disable-line camelca
   if (cx.test(text)) {
     text = text.replace(cx, function (a) {
       return '\\u' + ('0000' + a.charCodeAt(0)
-          .toString(16))
+        .toString(16))
         .slice(-4)
     })
   }
@@ -62,16 +64,18 @@ module.exports = function json_decode (strJson) { // eslint-disable-line camelca
   // open brackets that follow a colon or comma or that begin the text. Finally,
   // we look to see that the remaining characters are only whitespace or ']' or
   // ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
-  if ((/^[\],:{}\s]*$/)
+
+  var m = (/^[\],:{}\s]*$/)
     .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
-      .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
-      .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+    .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
+    .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))
+
+  if (m) {
     // In the third stage we use the eval function to compile the text into a
     // JavaScript structure. The '{' operator is subject to a syntactic ambiguity
     // in JavaScript: it can begin a block or an object literal. We wrap the text
     // in parens to eliminate the ambiguity.
-    j = eval('(' + text + ')')
-
+    j = eval('(' + text + ')') // eslint-disable-line no-eval
     return j
   }
 

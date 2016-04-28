@@ -27,7 +27,6 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
     if (typeof json === 'object' && typeof json.stringify === 'function') {
       // Errors will not be caught here if our own equivalent to resource
       retVal = json.stringify(mixedVal)
-      //  (an instance of PHPJS_Resource) is used
       if (retVal === undefined) {
         throw new SyntaxError('json_encode')
       }
@@ -54,12 +53,12 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
       return escapable.test(string) ? '"' + string.replace(escapable, function (a) {
         var c = meta[a]
         return typeof c === 'string' ? c : '\\u' + ('0000' + a.charCodeAt(0)
-            .toString(16))
+          .toString(16))
           .slice(-4)
       }) + '"' : '"' + string + '"'
     }
 
-    var str = function (key, holder) {
+    var _str = function (key, holder) {
       var gap = ''
       var indent = '    '
       // The loop counter.
@@ -84,64 +83,62 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
           return quote(value)
 
         case 'number':
-        // JSON numbers must be finite. Encode non-finite numbers as null.
+          // JSON numbers must be finite. Encode non-finite numbers as null.
           return isFinite(value) ? String(value) : 'null'
 
         case 'boolean':
         case 'null':
-        // If the value is a boolean or null, convert it to a string. Note:
-        // typeof null does not produce 'null'. The case is included here in
-        // the remote chance that this gets fixed someday.
+          // If the value is a boolean or null, convert it to a string. Note:
+          // typeof null does not produce 'null'. The case is included here in
+          // the remote chance that this gets fixed someday.
           return String(value)
 
         case 'object':
-        // If the type is 'object', we might be dealing with an object or an array or
-        // null.
-        // Due to a specification blunder in ECMAScript, typeof null is 'object',
-        // so watch out for that case.
+          // If the type is 'object', we might be dealing with an object or an array or
+          // null.
+          // Due to a specification blunder in ECMAScript, typeof null is 'object',
+          // so watch out for that case.
           if (!value) {
             return 'null'
           }
-          if ((this.PHPJS_Resource && value instanceof this.PHPJS_Resource) || (window.PHPJS_Resource &&
-            value instanceof window.PHPJS_Resource)) {
-            throw new SyntaxError('json_encode')
-          }
 
-        // Make an array to hold the partial results of stringifying this object value.
+          // Make an array to hold the partial results of stringifying this object value.
           gap += indent
           partial = []
 
-        // Is the value an array?
+          // Is the value an array?
           if (Object.prototype.toString.apply(value) === '[object Array]') {
-          // The value is an array. Stringify every element. Use null as a placeholder
-          // for non-JSON values.
+            // The value is an array. Stringify every element. Use null as a placeholder
+            // for non-JSON values.
             length = value.length
             for (i = 0; i < length; i += 1) {
-              partial[i] = str(i, value) || 'null'
+              partial[i] = _str(i, value) || 'null'
             }
 
-          // Join all of the elements together, separated with commas, and wrap them in
-          // brackets.
-            v = partial.length === 0 ? '[]' : gap ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind +
-            ']' : '[' + partial.join(',') + ']'
+            // Join all of the elements together, separated with commas, and wrap them in
+            // brackets.
+            v = partial.length === 0 ? '[]' : gap
+              ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']'
+              : '[' + partial.join(',') + ']'
             gap = mind
             return v
           }
 
-        // Iterate through all of the keys in the object.
+          // Iterate through all of the keys in the object.
           for (k in value) {
             if (Object.hasOwnProperty.call(value, k)) {
-              v = str(k, value)
+              v = _str(k, value)
               if (v) {
                 partial.push(quote(k) + (gap ? ': ' : ':') + v)
               }
             }
           }
 
-        // Join all of the member texts together, separated with commas,
-        // and wrap them in braces.
-          v = partial.length === 0 ? '{}' : gap ? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}' :
-          '{' + partial.join(',') + '}'
+          // Join all of the member texts together, separated with commas,
+          // and wrap them in braces.
+          v = partial.length === 0 ? '{}' : gap
+            ? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}'
+            : '{' + partial.join(',') + '}'
           gap = mind
           return v
         case 'undefined':
@@ -153,7 +150,7 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
 
     // Make a fake root object containing our value under the key of ''.
     // Return the result of stringifying the value.
-    return str('', {
+    return _str('', {
       '': value
     })
   } catch (err) {

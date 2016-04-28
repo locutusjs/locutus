@@ -1,10 +1,9 @@
-module.exports = function octdec (oct_string) {
+module.exports = function octdec (octString) {
   //  discuss at: http://locutusjs.io/php/octdec/
   // original by: Philippe Baumann
   //   example 1: octdec('77')
   //   returns 1: 63
 
-  oct_string = (oct_string + '')
-    .replace(/[^0-7]/gi, '')
-  return parseInt(oct_string, 8)
+  octString = (octString + '').replace(/[^0-7]/gi, '')
+  return parseInt(octString, 8)
 }

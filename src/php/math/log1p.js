@@ -6,9 +6,10 @@ module.exports = function log1p (x) {
   //   example 1: log1p(1e-15)
   //   returns 1: 9.999999999999995e-16
 
-  var ret = 0,
-    // degree of precision
-    n = 50
+  var ret = 0
+  // degree of precision
+  var n = 50
+
   if (x <= -1) {
     // JavaScript style would be to return Number.NEGATIVE_INFINITY
     return '-INF'
@@ -19,5 +20,6 @@ module.exports = function log1p (x) {
   for (var i = 1; i < n; i++) {
     ret += Math.pow(-x, i) / i
   }
+
   return -ret
 }

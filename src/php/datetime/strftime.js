@@ -113,16 +113,14 @@ module.exports = function strftime (fmt, timestamp) {
     },
     V: function (d) {
       var woy = parseInt(_formats.W(d), 10)
-      var dow1_1 = (new Date('' + d.getFullYear() + '/1/1'))
-        .getDay()
+      var dow11 = (new Date('' + d.getFullYear() + '/1/1')).getDay()
       // First week is 01 and not 00 as in the case of %U and %W,
       // so we add 1 to the final result except if day 1 of the year
       // is a Monday (then %W returns 01).
       // We also need to subtract 1 if the day 1 of the year is
       // Friday-Sunday, so the resulting equation becomes:
-      var idow = woy + (dow1_1 > 4 || dow1_1 <= 1 ? 0 : 1)
-      if (idow === 53 && (new Date('' + d.getFullYear() + '/12/31'))
-        .getDay() < 4) {
+      var idow = woy + (dow11 > 4 || dow11 <= 1 ? 0 : 1)
+      if (idow === 53 && (new Date('' + d.getFullYear() + '/12/31')).getDay() < 4) {
         idow = 1
       } else if (idow === 0) {
         idow = _formats.V(new Date('' + (d.getFullYear() - 1) + '/12/31'))
@@ -147,44 +145,19 @@ module.exports = function strftime (fmt, timestamp) {
       return (o > 0 ? '-' : '+') + H + M
     },
     Z: function (d) {
-      return d.toString()
-        .replace(/^.*\(([^)]+)\)$/, '$1')
-      /*
-      // Yahoo's: Better?
-      var tz = d.toString().replace(/^.*:\d\d( GMT[+-]\d+)? \(?([A-Za-z ]+)\)?\d*$/, '$2').replace(/[a-z ]/g, '');
-      if(tz.length > 4) {
-        tz = Dt.formats.z(d);
-      }
-      return tz;
-      */
+      return d.toString().replace(/^.*\(([^)]+)\)$/, '$1')
     },
     '%': function (d) {
       return '%'
     }
   }
   // END STATIC
-  /* Fix: Locale alternatives are supported though not documented in PHP; see http://linux.die.net/man/3/strptime
-Ec
-EC
-Ex
-EX
-Ey
-EY
-Od or Oe
-OH
-OI
-Om
-OM
-OS
-OU
-Ow
-OW
-Oy
-  */
 
-  var _date = ((typeof timestamp === 'undefined') ? new Date() : // Not provided
-    (typeof timestamp === 'object') ? new Date(timestamp) : // Javascript Date()
-    new Date(timestamp * 1000) // PHP API expects UNIX timestamp (auto-convert to int)
+  var _date = ((typeof timestamp === 'undefined')
+    ? new Date()
+    : (timestamp instanceof Date)
+      ? new Date(timestamp)
+      : new Date(timestamp * 1000)
   )
 
   var _aggregates = {
@@ -223,5 +196,6 @@ Oy
       return m1
     }
   })
+
   return str
 }

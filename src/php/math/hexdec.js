@@ -1,4 +1,4 @@
-module.exports = function hexdec (hex_string) {
+module.exports = function hexdec (hexString) {
   //  discuss at: http://locutusjs.io/php/hexdec/
   // original by: Philippe Baumann
   //   example 1: hexdec('that')
@@ -6,7 +6,6 @@ module.exports = function hexdec (hex_string) {
   //   example 2: hexdec('a0')
   //   returns 2: 160
 
-  hex_string = (hex_string + '')
-    .replace(/[^a-f0-9]/gi, '')
-  return parseInt(hex_string, 16)
+  hexString = (hexString + '').replace(/[^a-f0-9]/gi, '')
+  return parseInt(hexString, 16)
 }
