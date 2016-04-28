@@ -38,11 +38,11 @@ module.exports = function nl_langinfo (item) { // eslint-disable-line camelcase
       case 'T_FMT_AMPM':
         return loc.LC_TIME.r
       case 'ERA':
-      // all fall-throughs
       case 'ERA_YEAR':
       case 'ERA_D_T_FMT':
       case 'ERA_D_FMT':
       case 'ERA_T_FMT':
+        // all fall-throughs
         return loc.LC_TIME[item]
     }
     loc = $locutus.php.locales[$locutus.php.localeCategories.LC_MONETARY]
@@ -52,7 +52,6 @@ module.exports = function nl_langinfo (item) { // eslint-disable-line camelcase
     }
     switch (item) {
       case 'INT_CURR_SYMBOL':
-      // all fall-throughs
       case 'CURRENCY_SYMBOL':
       case 'MON_DECIMAL_POINT':
       case 'MON_THOUSANDS_SEP':
@@ -66,38 +65,40 @@ module.exports = function nl_langinfo (item) { // eslint-disable-line camelcase
       case 'N_SEP_BY_SPACE':
       case 'P_SIGN_POSN':
       case 'N_SIGN_POSN':
+        // all fall-throughs
         return loc.LC_MONETARY[item.toLowerCase()]
       case 'MON_GROUPING':
-      // Same as above, or return something different since this returns an array?
+        // Same as above, or return something different since this returns an array?
         return loc.LC_MONETARY[item.toLowerCase()]
     }
     loc = $locutus.php.locales[$locutus.php.localeCategories.LC_NUMERIC]
     switch (item) {
       case 'RADIXCHAR':
-      // Fall-through
       case 'DECIMAL_POINT':
+        // Fall-through
         return loc.LC_NUMERIC[item.toLowerCase()]
       case 'THOUSEP':
-      // Fall-through
       case 'THOUSANDS_SEP':
+        // Fall-through
         return loc.LC_NUMERIC[item.toLowerCase()]
       case 'GROUPING':
-      // Same as above, or return something different since this returns an array?
+        // Same as above, or return something different since this returns an array?
         return loc.LC_NUMERIC[item.toLowerCase()]
     }
     loc = $locutus.php.locales[$locutus.php.localeCategories.LC_MESSAGES]
     switch (item) {
       case 'YESEXPR':
-      // all fall-throughs
       case 'NOEXPR':
       case 'YESSTR':
       case 'NOSTR':
+        // all fall-throughs
         return loc.LC_MESSAGES[item]
     }
     loc = $locutus.php.locales[$locutus.php.localeCategories.LC_CTYPE]
     if (item === 'CODESET') {
       return loc.LC_CTYPE[item]
     }
+
     return false
   }
 }

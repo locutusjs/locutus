@@ -13,10 +13,8 @@ module.exports = function strnatcasecmp (str1, str2) {
   //        returns 2: -1
   //        test: skip-all
 
-  var a = (str1 + '')
-    .toLowerCase()
-  var b = (str2 + '')
-    .toLowerCase()
+  var a = (str1 + '').toLowerCase()
+  var b = (str2 + '').toLowerCase()
 
   var isWhitespaceChar = function (a) {
     return a.charCodeAt(0) <= 32
@@ -39,7 +37,7 @@ module.exports = function strnatcasecmp (str1, str2) {
     // value wins, but we can't know that it will until we've scanned
     // both numbers to know that they have the same magnitude, so we
     // remember it in BIAS.
-    for (var cnt = 0; true; ia++, ib++) {
+    for (; true; ia++, ib++) {
       ca = a.charAt(ia)
       cb = b.charAt(ib)
 
@@ -63,11 +61,12 @@ module.exports = function strnatcasecmp (str1, str2) {
     }
   }
 
-  var ia = 0,
-    ib = 0
-  var nza = 0,
-    nzb = 0
-  var ca, cb
+  var ia = 0
+  var ib = 0
+  var nza = 0
+  var nzb = 0
+  var ca
+  var cb
   var result
 
   while (true) {
