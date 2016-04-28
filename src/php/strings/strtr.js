@@ -1,4 +1,4 @@
-module.exports = function strtr (str, from, to) {
+module.exports = function strtr (str, trFrom, trTo) {
   //  discuss at: http://locutusjs.io/php/strtr/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: uestla
@@ -31,7 +31,7 @@ module.exports = function strtr (str, from, to) {
   var j = 0
   var lenStr = 0
   var lenFrom = 0
-  var tmpStrictForIn = false
+  var strictForIn = false
   var fromTypeStr = ''
   var toTypeStr = ''
   var istr = ''
@@ -41,53 +41,53 @@ module.exports = function strtr (str, from, to) {
   var match = false
 
   // Received replace_pairs?
-  // Convert to normal from->to chars
-  if (typeof from === 'object') {
+  // Convert to normal trFrom->trTo chars
+  if (typeof trFrom === 'object') {
     // Not thread-safe; temporarily set to true
     // @todo: Don't rely on ini here, use internal krsort instead
-    tmpStrictForIn = iniSet('locutus.strictForIn', false)
-    from = krsort(from)
-    iniSet('locutus.strictForIn', tmpStrictForIn)
+    strictForIn = iniSet('locutus.strictForIn', false)
+    trFrom = krsort(trFrom)
+    iniSet('locutus.strictForIn', strictForIn)
 
-    for (fr in from) {
-      if (from.hasOwnProperty(fr)) {
+    for (fr in trFrom) {
+      if (trFrom.hasOwnProperty(fr)) {
         tmpFrom.push(fr)
-        tmpTo.push(from[fr])
+        tmpTo.push(trFrom[fr])
       }
     }
 
-    from = tmpFrom
-    to = tmpTo
+    trFrom = tmpFrom
+    trTo = tmpTo
   }
 
   // Walk through subject and replace chars when needed
   lenStr = str.length
-  lenFrom = from.length
-  fromTypeStr = typeof from === 'string'
-  toTypeStr = typeof to === 'string'
+  lenFrom = trFrom.length
+  fromTypeStr = typeof trFrom === 'string'
+  toTypeStr = typeof trTo === 'string'
 
   for (i = 0; i < lenStr; i++) {
     match = false
     if (fromTypeStr) {
       istr = str.charAt(i)
       for (j = 0; j < lenFrom; j++) {
-        if (istr === from.charAt(j)) {
+        if (istr === trFrom.charAt(j)) {
           match = true
           break
         }
       }
     } else {
       for (j = 0; j < lenFrom; j++) {
-        if (str.substr(i, from[j].length) === from[j]) {
+        if (str.substr(i, trFrom[j].length) === trFrom[j]) {
           match = true
           // Fast forward
-          i = (i + from[j].length) - 1
+          i = (i + trFrom[j].length) - 1
           break
         }
       }
     }
     if (match) {
-      ret += toTypeStr ? to.charAt(j) : to[j]
+      ret += toTypeStr ? trTo.charAt(j) : trTo[j]
     } else {
       ret += str.charAt(i)
     }
