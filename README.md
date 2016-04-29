@@ -71,18 +71,23 @@ We keep the website in `./website` for so it's easy to keep docs & code in sync.
 
 Our website is [built with Jekyll](/blog/2016/04/02/jekyll/).
 
+To install the prerequisites type `npm run website:start`.
+
 Here's the flow that takes written functions to the website:
 
  - `npm run website:inject` runs `src/_util/util.js`'s `injectweb` method
- - `injectweb` iterates over `./functions` and uses `src/_util/util.js` to parse them, most significantly: the header comments that declare authors, tests, and dependencies
- - `injectweb` then writes each function to `website/_functions`. This is a [Jekyll Collection](https://jekyllrb.com/docs/collections/). The code is written as the content, and all the other properties are added as [YAML front matter](https://jekyllrb.com/docs/frontmatter/)
+ - `injectweb` iterates over functions and parses them via the `_load` and `_parse` methods, specifically: the header comments that declare authors, tests, and dependencies
+ - `injectweb` then writes each function to `website/_functions`. This is a [Jekyll Collection](https://jekyllrb.com/docs/collections/). The code is written as the content. The other parsed properties are prepended as [YAML front matter](https://jekyllrb.com/docs/frontmatter/)
  - Jekyll uses `website/_layouts/function.html` as the layout template for the function collection, this determines how all the properties are rendered.
  
 Blog posts can be found in `website/_posts`.
  
-At the time of writing, the Jekyll Asset pipeline is in a bad place, and so SASS / ES6 asset transpiling is handled separately via npm scripts. Unfortunately we don't have the theme of the website in SASS, so it's included in `app.scss` as plain CSS for now. You can find all the transpiling options in `website/package.json`.
+At the time of writing, the Jekyll Asset pipeline is in a bad place, and so SASS / ES6 asset transpiling is handled separately via npm scripts. Unfortunately we don't have the theme of the website in SASS, so it's included in `app.scss` as a plain CSS `_screen.scss` file for now. You can find all the transpiling options in `website/package.json`.
 
-Typing `npm run website:deploy` in the root of the project takes care of all the building steps above, and then force pushes the generated HTML to the `gh-pages` branch of this repo.
+If you want to preview locally use `npm run website:start`.
+
+Typing `npm run website:deploy` in the root of the project takes care of all the building steps, and then force pushes the generated HTML to the `gh-pages` branch of this repo.
+
 
 ## Sponsor development
 
