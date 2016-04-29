@@ -5,6 +5,7 @@ examples:
   - abs(-4.2)
   - abs(-5)
   - abs('_argos')
+estarget: es5
 returns:
   - '4.2'
   - '4.2'
@@ -20,6 +21,7 @@ authors:
     - 'Jonas Raoni Soares Silva (http://www.jsfromhell.com)'
 notes: []
 layout: function
+title: abs in JavaScript
 function: abs
 category: math
 language: php
@@ -30,7 +32,7 @@ redirect_from:
   - /php/abs/
   - /functions/abs/
 ---
-module.exports = function abs (mixed_number) {
+module.exports = function abs (mixedNumber) {
   //  discuss at: http://locutusjs.io/php/abs/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Karol Kowalski
@@ -45,5 +47,5 @@ module.exports = function abs (mixed_number) {
   //   example 4: abs('_argos')
   //   returns 4: 0
 
-  return Math.abs(mixed_number) || 0
+  return Math.abs(mixedNumber) || 0
 }

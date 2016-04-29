@@ -10,6 +10,7 @@ examples:
   - >-
     array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'',
     "g":undefined})
+estarget: es5
 returns:
   - '{"a": 1, "c": 3, "e": 5}'
   - '[ 6, , 8, , 10, , 12 ]'
@@ -25,6 +26,7 @@ authors:
 notes:
   - 'Takes a function as an argument, not a function''s name'
 layout: function
+title: array_filter in JavaScript
 function: array_filter
 category: array
 language: php
@@ -35,12 +37,12 @@ redirect_from:
   - /php/array_filter/
   - /functions/array_filter/
 ---
-module.exports = function array_filter (arr, func) {
+module.exports = function array_filter (arr, func) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_filter/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: max4ever
   // improved by: Brett Zamir (http://brett-zamir.me)
-  //        note: Takes a function as an argument, not a function's name
+  //      note 1: Takes a function as an argument, not a function's name
   //   example 1: var odd = function (num) {return (num & 1);}
   //   example 1: array_filter({"a": 1, "b": 2, "c": 3, "d": 4, "e": 5}, odd)
   //   returns 1: {"a": 1, "c": 3, "e": 5}
@@ -49,14 +51,15 @@ module.exports = function array_filter (arr, func) {
   //   returns 2: [ 6, , 8, , 10, , 12 ]
   //   example 3: array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined})
   //   returns 3: {"a":1, "c":-1}
-  var retObj = {},
-    k
+
+  var retObj = {}
+  var k
 
   func = func || function (v) {
     return v
   }
 
-  // Fix: Issue #73
+  // @todo: Issue #73
   if (Object.prototype.toString.call(arr) === '[object Array]') {
     retObj = []
   }

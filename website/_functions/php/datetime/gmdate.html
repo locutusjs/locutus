@@ -4,6 +4,7 @@ examples:
   - >-
     gmdate('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400); // Return will
     depend on your timezone
+estarget: es5
 returns:
   - '''07:09:40 m is month'''
 dependencies: []
@@ -16,6 +17,7 @@ authors:
     - Alex
 notes: []
 layout: function
+title: gmdate in JavaScript
 function: gmdate
 category: datetime
 language: php
@@ -36,12 +38,11 @@ module.exports = function gmdate (format, timestamp) {
 
   var date = require('../datetime/date')
 
-  var dt = typeof timestamp === 'undefined' ? new Date() : // Not provided
-    typeof timestamp === 'object' ? new Date(timestamp) : // Javascript Date()
-    // UNIX timestamp (auto-convert to int)
-    new Date(timestamp * 1000)
-  timestamp = Date.parse(dt.toUTCString()
-    .slice(0, -4)) / 1000
+  var dt = typeof timestamp === 'undefined' ? new Date() // Not provided
+    : timestamp instanceof Date ? new Date(timestamp) // Javascript Date()
+    : new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
+
+  timestamp = Date.parse(dt.toUTCString().slice(0, -4)) / 1000
 
   return date(format, timestamp)
 }

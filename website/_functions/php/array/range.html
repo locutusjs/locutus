@@ -5,6 +5,7 @@ examples:
   - 'range( 0, 100, 10 )'
   - 'range( ''a'', ''i'' )'
   - 'range( ''c'', ''a'' )'
+estarget: es5
 returns:
   - '[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]'
   - '[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]'
@@ -16,6 +17,7 @@ authors:
     - 'Waldo Malqui Silva (http://waldo.malqui.info)'
 notes: []
 layout: function
+title: range in JavaScript
 function: range
 category: array
 language: php
@@ -39,32 +41,34 @@ module.exports = function range (low, high, step) {
   //   returns 4: ['c', 'b', 'a']
 
   var matrix = []
-  var inival, endval, plus
+  var iVal
+  var endval
+  var plus
   var walker = step || 1
   var chars = false
 
   if (!isNaN(low) && !isNaN(high)) {
-    inival = low
+    iVal = low
     endval = high
   } else if (isNaN(low) && isNaN(high)) {
     chars = true
-    inival = low.charCodeAt(0)
+    iVal = low.charCodeAt(0)
     endval = high.charCodeAt(0)
   } else {
-    inival = (isNaN(low) ? 0 : low)
+    iVal = (isNaN(low) ? 0 : low)
     endval = (isNaN(high) ? 0 : high)
   }
 
-  plus = ((inival > endval) ? false : true)
+  plus = !(iVal > endval)
   if (plus) {
-    while (inival <= endval) {
-      matrix.push(((chars) ? String.fromCharCode(inival) : inival))
-      inival += walker
+    while (iVal <= endval) {
+      matrix.push(((chars) ? String.fromCharCode(iVal) : iVal))
+      iVal += walker
     }
   } else {
-    while (inival >= endval) {
-      matrix.push(((chars) ? String.fromCharCode(inival) : inival))
-      inival -= walker
+    while (iVal >= endval) {
+      matrix.push(((chars) ? String.fromCharCode(iVal) : iVal))
+      iVal -= walker
     }
   }
 

@@ -21,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <link rel="canonical" href="http://locutusjs.io/about/">
+  <link rel="canonical" href="http://locutusjs.io/{{page.url}}">
   <link href="/favicon.png" rel="shortcut icon">
   <link href="//kvz.github.io/on-the-githubs/css/on-the-githubs.min.css" rel="stylesheet" />
   <link data-meta="css.app" href="/assets/build/{{site.css.app}}" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -67,8 +67,8 @@
       {% for language in sortedLanguages %}
         <li><a href="/{{language.name}}/">{{language.human}}</a></li>
       {% endfor %}
-      <li><a href="/about/">About</a></li>
-      <li><a href="/blog/archives/">Blog</a></li>
+      <li><a href="/">About</a></li>
+      <li><a href="/blog/">Blog</a></li>
       <li><a href="/authors/">Authors</a></li>
       <li><a href="https://github.com/kvz/locutus">GitHub</a></li>
     </ul>

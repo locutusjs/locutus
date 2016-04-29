@@ -4,6 +4,7 @@ examples:
   - str_rot13('Kevin van Zonneveld')
   - str_rot13('Xriva ina Mbaariryq')
   - str_rot13(33)
+estarget: es5
 returns:
   - '''Xriva ina Mbaariryq'''
   - '''Kevin van Zonneveld'''
@@ -19,6 +20,7 @@ authors:
     - 'Onno Marsman (https://twitter.com/onnomarsman)'
 notes: []
 layout: function
+title: str_rot13 in JavaScript
 function: str_rot13
 category: strings
 language: php
@@ -29,7 +31,7 @@ redirect_from:
   - /php/str_rot13/
   - /functions/str_rot13/
 ---
-module.exports = function str_rot13 (str) {
+module.exports = function str_rot13 (str) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/str_rot13/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // improved by: Ates Goral (http://magnetiq.com)

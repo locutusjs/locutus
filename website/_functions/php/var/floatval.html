@@ -5,6 +5,7 @@ examples:
   - |-
     floatval('page: 3')
     floatval('-50 + 8')
+estarget: es5
 returns:
   - '150.03'
   - |-
@@ -15,10 +16,11 @@ authors:
   original by:
     - 'Michael White (http://getsprink.com)'
 notes:
-  - >-
-    The native parseFloat() method of JavaScript returns NaN when it encounters
-    a string before an int or float value.
+  - |-
+    The native parseFloat() method of JavaScript returns NaN
+    when it encounters a string before an int or float value.
 layout: function
+title: floatval in JavaScript
 function: floatval
 category: var
 language: php
@@ -29,10 +31,11 @@ redirect_from:
   - /php/floatval/
   - /functions/floatval/
 ---
-module.exports = function floatval (mixed_var) {
+module.exports = function floatval (mixedVar) {
   //  discuss at: http://locutusjs.io/php/floatval/
   // original by: Michael White (http://getsprink.com)
-  //        note: The native parseFloat() method of JavaScript returns NaN when it encounters a string before an int or float value.
+  //      note 1: The native parseFloat() method of JavaScript returns NaN
+  //      note 1: when it encounters a string before an int or float value.
   //   example 1: floatval('150.03_page-section')
   //   returns 1: 150.03
   //   example 2: floatval('page: 3')
@@ -40,5 +43,5 @@ module.exports = function floatval (mixed_var) {
   //   returns 2: 0
   //   returns 2: -50
 
-  return (parseFloat(mixed_var) || 0)
+  return (parseFloat(mixedVar) || 0)
 }

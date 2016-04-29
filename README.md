@@ -5,7 +5,7 @@
 [![Build Status](https://secure.travis-ci.org/kvz/locutus.svg?branch=master)](http://travis-ci.org/kvz/locutus "Check this project's build status on TravisCI")
 <!-- /badges -->
 
-Locutus assimilates functions from other languages' standard libraries to JavaScript for fun and educational purposes
+Locutus other languages' stadard libraries to JavaScript for fun and educational purposes
 
 More info at: http://locutusjs.io/about
 
@@ -69,7 +69,7 @@ test/languages/php/array/test-natsort.js
 
 We keep the website in `./website` for so it's easy to keep docs & code in sync. For those reading this screaming murder, [HashiCorp does this](https://github.com/hashicorp/terraform/tree/master/website) for all their projects, and it's working pretty well for them on a scale more impressive than ours.
 
-Our website is [built with Jekyll](/blog/2016/04/02/jekyll/).
+Our website is [built with Jekyll](/blog/2016/04/jekyll/).
 
 To install the prerequisites type `npm run website:start`.
 

@@ -6,6 +6,7 @@ examples:
     site.\t/allabout.txt\tgopher.example.com\t70\u000d\u000a')
 
     entry.title
+estarget: es5
 returns:
   - '''All about my gopher site.'''
 dependencies: []
@@ -14,6 +15,7 @@ authors:
     - 'Brett Zamir (http://brett-zamir.me)'
 notes: []
 layout: function
+title: gopher_parsedir in JavaScript
 function: gopher_parsedir
 category: net-gopher
 language: php
@@ -24,7 +26,7 @@ redirect_from:
   - /php/gopher_parsedir/
   - /functions/gopher_parsedir/
 ---
-module.exports = function gopher_parsedir (dirent) {
+module.exports = function gopher_parsedir (dirent) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/gopher_parsedir/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: var entry = gopher_parsedir('0All about my gopher site.\t/allabout.txt\tgopher.example.com\t70\u000d\u000a')

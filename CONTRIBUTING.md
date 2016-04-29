@@ -7,7 +7,7 @@ merging it in.
 Here are a few pointers that could save us from disappointment, we'll keep it brief:
 
 1. By submitting a Pull Request you are giving Locutus permission to distribute your code under the MIT License.
-1. Please adhere to our [updated coding standards](/blog/2016/04/01/standard-coding-style/). Use `npm run lint` to check. Code should:
+1. Please adhere to our [updated coding standards](/blog/2016/04/standard-coding-style/). Use `npm run lint` to check. Code should:
   - Follow the [JavaScript Standard Style](http://standardjs.com/)
   - Not have lines longer than 100 chars
   - Use `//` for comments instead of `/*`

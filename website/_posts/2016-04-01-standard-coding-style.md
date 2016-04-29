@@ -7,7 +7,7 @@ redirect_from: /blog/2016/04/01/standard-coding-style/
 ---
 
 Three years ago we switched from our own home-brown coding style convention to Felix’ Node.js Style Guide, 
-for reasons outlined in the introductory post: [Coding Style](/blog/2013/05/04/coding-style/).
+for reasons outlined in the introductory post: [Coding Style](/blog/2013/05/coding-style/).
 
 The reasoning behind adopting such a widely supported coding style, has not changed. Locutus should be
 focused on its added value, and less so arguing about, and inventing custom conventions around coding style.

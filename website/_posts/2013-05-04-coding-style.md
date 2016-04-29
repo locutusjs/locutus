@@ -6,7 +6,7 @@ categories: [ coding style, convention ]
 redirect_from: /blog/2013/05/04/coding-style/ 
 ---
 
-Given [the focus of Locutus](/blog/2013/05/03/a-word-on-the-focus-of-php-dot-js/) I think
+Given [the focus of Locutus](/blog/2013/05/a-word-on-the-focus-of-php-dot-js/) I think
 we should re-invent as few wheels as possible and make use of sensible tools
 and standards that are other people have already invested a great deal of time
 in to get right.

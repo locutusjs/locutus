@@ -4,6 +4,7 @@ examples:
   - preg_quote("$40")
   - preg_quote("*RRRING* Hello?")
   - 'preg_quote("\\.+*?[^]$(){}=!<>|:")'
+estarget: es5
 returns:
   - '''\\$40'''
   - '''\\*RRRING\\* Hello\\?'''
@@ -20,6 +21,7 @@ authors:
     - 'Onno Marsman (https://twitter.com/onnomarsman)'
 notes: []
 layout: function
+title: preg_quote in JavaScript
 function: preg_quote
 category: pcre
 language: php
@@ -30,7 +32,7 @@ redirect_from:
   - /php/preg_quote/
   - /functions/preg_quote/
 ---
-module.exports = function preg_quote (str, delimiter) {
+module.exports = function preg_quote (str, delimiter) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/preg_quote/
   // original by: booeyOH
   // improved by: Ates Goral (http://magnetiq.com)
@@ -44,6 +46,6 @@ module.exports = function preg_quote (str, delimiter) {
   //   example 3: preg_quote("\\.+*?[^]$(){}=!<>|:")
   //   returns 3: '\\\\\\.\\+\\*\\?\\[\\^\\]\\$\\(\\)\\{\\}\\=\\!\\<\\>\\|\\:'
 
-  return String(str)
+  return (str + '')
     .replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\' + (delimiter || '') + '-]', 'g'), '\\$&')
 }

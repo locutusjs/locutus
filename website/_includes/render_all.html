@@ -1,7 +1,9 @@
 {% assign sortedLanguages = site.languages | sort: 'order' %}
 {% for language in sortedLanguages %}
   {% if include.only_languages == "*" or include.only_languages == language.name %}
-    <h2 id="{{language.name}}">{{language.human}} functions in JS</h2>
+    {% if include.with_functions == false %}
+      <h2 id="{{language.name}}">{{language.title}}</h2>
+    {% endif %}
 
     {% assign categories = site.functions |where: "language", language.name |group_by site.functions, "category" %}
 

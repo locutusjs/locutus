@@ -4,6 +4,7 @@ examples:
   - trim('    Kevin van Zonneveld    ')
   - 'trim(''Hello World'', ''Hdle'')'
   - 'trim(16, 1)'
+estarget: es5
 returns:
   - '''Kevin van Zonneveld'''
   - '''o Wor'''
@@ -25,6 +26,7 @@ authors:
     - DxGx
 notes: []
 layout: function
+title: trim in JavaScript
 function: trim
 category: strings
 language: php
@@ -53,18 +55,36 @@ module.exports = function trim (str, charlist) {
   //   example 3: trim(16, 1)
   //   returns 3: '6'
 
-  var whitespace, l = 0,
-    i = 0
+  var whitespace = [
+    ' ',
+    '\n',
+    '\r',
+    '\t',
+    '\f',
+    '\x0b',
+    '\xa0',
+    '\u2000',
+    '\u2001',
+    '\u2002',
+    '\u2003',
+    '\u2004',
+    '\u2005',
+    '\u2006',
+    '\u2007',
+    '\u2008',
+    '\u2009',
+    '\u200a',
+    '\u200b',
+    '\u2028',
+    '\u2029',
+    '\u3000'
+  ].join('')
+  var l = 0
+  var i = 0
   str += ''
 
-  if (!charlist) {
-    // default list
-    whitespace =
-      ' \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000'
-  } else {
-    // preg_quote custom list
-    charlist += ''
-    whitespace = charlist.replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g, '$1')
+  if (charlist) {
+    whitespace = (charlist + '').replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^:])/g, '$1')
   }
 
   l = str.length

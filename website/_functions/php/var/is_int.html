@@ -5,6 +5,7 @@ examples:
   - is_int('23')
   - is_int(23.5)
   - is_int(true)
+estarget: es5
 returns:
   - 'true'
   - 'false'
@@ -27,6 +28,7 @@ notes:
     1.0 is simplified to 1 before it can be accessed by the function, this makes
     it different from the PHP implementation. We can't fix this unfortunately.
 layout: function
+title: is_int in JavaScript
 function: is_int
 category: var
 language: php
@@ -37,7 +39,7 @@ redirect_from:
   - /php/is_int/
   - /functions/is_int/
 ---
-module.exports = function is_int (mixed_var) {
+module.exports = function is_int (mixedVar) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/is_int/
   // original by: Alex
   // improved by: Kevin van Zonneveld (http://kvz.io)
@@ -45,8 +47,8 @@ module.exports = function is_int (mixed_var) {
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)
   //  revised by: Matt Bradley
   // bugfixed by: Kevin van Zonneveld (http://kvz.io)
-  //        note: 1.0 is simplified to 1 before it can be accessed by the function, this makes
-  //        note: it different from the PHP implementation. We can't fix this unfortunately.
+  //      note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //      note 1: it different from the PHP implementation. We can't fix this unfortunately.
   //   example 1: is_int(23)
   //   returns 1: true
   //   example 2: is_int('23')
@@ -56,5 +58,5 @@ module.exports = function is_int (mixed_var) {
   //   example 4: is_int(true)
   //   returns 4: false
 
-  return mixed_var === +mixed_var && isFinite(mixed_var) && !(mixed_var % 1)
+  return mixedVar === +mixedVar && isFinite(mixedVar) && !(mixedVar % 1)
 }

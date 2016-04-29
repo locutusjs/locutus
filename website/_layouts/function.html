@@ -29,11 +29,24 @@ layout: page
 
 <h2>How to use</h2>
 <p>
-  NPM is the recommended installation method. It pairs nicely with a CommonJS
+  npm is the recommended installation method. It pairs nicely with a CommonJS
   module bundler such as
   <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>,
   <a href="http://webpack.github.io/" target="_blank" rel="external">webpack</a> or
   <a href="http://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+</p>
+<p>
+  {% if page.estarget == "es2015" %}
+    Even though the function you see here is written for ES6, we transpile all functions
+    down to ES5 before we publish to npm, meaning you don't have to transpile yourself
+    when you require Locutus that way.
+  {% elsif page.estarget == "es5" %}
+    This function targets ES5, but as of Locutus 2.0.0 we also support
+    ES6 functions. Locutus transpiles to ES5 before publishing to npm.
+  {% else %}
+    This function has an unrecognized estarget: '{{page.estarget}}'. Someone
+    please investigate as this should not happen.
+  {% endif %}
 </p>
 
 {% highlight bash %}

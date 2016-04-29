@@ -7,6 +7,7 @@ examples:
     in_array(1, ['1', '2', '3'])
     in_array(1, ['1', '2', '3'], false)
   - 'in_array(1, [''1'', ''2'', ''3''], true)'
+estarget: es5
 returns:
   - 'true'
   - 'false'
@@ -27,6 +28,7 @@ authors:
     - Billy
 notes: []
 layout: function
+title: in_array in JavaScript
 function: in_array
 category: array
 language: php
@@ -37,7 +39,7 @@ redirect_from:
   - /php/in_array/
   - /functions/in_array/
 ---
-module.exports = function in_array (needle, haystack, argStrict) {
+module.exports = function in_array (needle, haystack, argStrict) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/in_array/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: vlado houba
@@ -55,8 +57,8 @@ module.exports = function in_array (needle, haystack, argStrict) {
   //   example 4: in_array(1, ['1', '2', '3'], true)
   //   returns 4: false
 
-  var key = '',
-    strict = !!argStrict
+  var key = ''
+  var strict = !!argStrict
 
   // we prevent the double check (strict && arr[key] === ndl) || (!strict && arr[key] === ndl)
   // in just one for, in order to improve the performance

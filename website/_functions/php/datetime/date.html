@@ -5,20 +5,21 @@ examples:
   - 'date(''F j, Y, g:i a'', 1062462400)'
   - 'date(''Y W o'', 1062462400)'
   - |-
-    var x = date('Y m d', (new Date()).getTime() / 1000)
-    x = x + ''
-    $result = x.length // 2009 01 09
+    var $x = date('Y m d', (new Date()).getTime() / 1000)
+    $x = $x + ''
+    var $result = $x.length // 2009 01 09
   - 'date(''W'', 1104534000)'
   - 'date(''B t'', 1104534000)'
   - 'date(''W U'', 1293750000.82); // 2010-12-31'
   - 'date(''W'', 1293836400); // 2011-01-01'
   - 'date(''W Y-m-d'', 1293974054); // 2011-01-02'
+estarget: es5
 returns:
-  - '''09:09:40 m is month'''
-  - '''September 2, 2003, 2:26 am'''
+  - '''07:09:40 m is month'''
+  - '''September 2, 2003, 12:26 am'''
   - '''2003 36 2003'''
   - '10'
-  - '''53'''
+  - '''52'''
   - '''999 31'''
   - '''52 1293750000'''
   - '''52'''
@@ -44,6 +45,8 @@ authors:
     - 'Theriault (https://github.com/Theriault)'
     - 'Rafał Kukawski (http://blog.kukawski.pl)'
     - 'Theriault (https://github.com/Theriault)'
+  parts by:
+    - 'Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)'
   bugfixed by:
     - 'Kevin van Zonneveld (http://kvz.io)'
     - majak
@@ -62,18 +65,22 @@ notes:
   - >-
     Uses global: locutus to store the default timezone
 
-    Although the function potentially allows timezone info (see notes), it
-    currently does not set
+    Although the function potentially allows timezone info
+
+    (see notes), it currently does not set
 
     per a timezone specified by date_default_timezone_set(). Implementers might
     use
 
-    this.locutus.currentTimezoneOffset and this.locutus.currentTimezoneDST set
-    by that function
+    $locutus.currentTimezoneOffset and
 
-    in order to adjust the dates in this function (or our other date functions!)
-    accordingly
+    $locutus.currentTimezoneDST set by that function
+
+    in order to adjust the dates in this function
+
+    (or our other date functions!) accordingly
 layout: function
+title: date in JavaScript
 function: date
 category: datetime
 language: php
@@ -116,23 +123,26 @@ module.exports = function date (format, timestamp) {
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: omid (http://locutusjs.io/php/380:380#comment_137122)
   // bugfixed by: Chris (http://www.devotis.nl/)
-  //        note: Uses global: locutus to store the default timezone
-  //        note: Although the function potentially allows timezone info (see notes), it currently does not set
-  //        note: per a timezone specified by date_default_timezone_set(). Implementers might use
-  //        note: this.locutus.currentTimezoneOffset and this.locutus.currentTimezoneDST set by that function
-  //        note: in order to adjust the dates in this function (or our other date functions!) accordingly
+  //      note 1: Uses global: locutus to store the default timezone
+  //      note 1: Although the function potentially allows timezone info
+  //      note 1: (see notes), it currently does not set
+  //      note 1: per a timezone specified by date_default_timezone_set(). Implementers might use
+  //      note 1: $locutus.currentTimezoneOffset and
+  //      note 1: $locutus.currentTimezoneDST set by that function
+  //      note 1: in order to adjust the dates in this function
+  //      note 1: (or our other date functions!) accordingly
   //   example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400)
-  //   returns 1: '09:09:40 m is month'
+  //   returns 1: '07:09:40 m is month'
   //   example 2: date('F j, Y, g:i a', 1062462400)
-  //   returns 2: 'September 2, 2003, 2:26 am'
+  //   returns 2: 'September 2, 2003, 12:26 am'
   //   example 3: date('Y W o', 1062462400)
   //   returns 3: '2003 36 2003'
-  //   example 4: var x = date('Y m d', (new Date()).getTime() / 1000)
-  //   example 4: x = x + ''
-  //   example 4: $result = x.length // 2009 01 09
+  //   example 4: var $x = date('Y m d', (new Date()).getTime() / 1000)
+  //   example 4: $x = $x + ''
+  //   example 4: var $result = $x.length // 2009 01 09
   //   returns 4: 10
   //   example 5: date('W', 1104534000)
-  //   returns 5: '53'
+  //   returns 5: '52'
   //   example 6: date('B t', 1104534000)
   //   returns 6: '999 31'
   //   example 7: date('W U', 1293750000.82); // 2010-12-31
@@ -143,11 +153,10 @@ module.exports = function date (format, timestamp) {
   //   returns 9: '52 2011-01-02'
   //        test: skip-1 skip-2 skip-5
 
-  var that = this
   var jsdate, f
   // Keep this here (works, but for code commented-out below for file size reasons)
   // var tal= [];
-  var txt_words = [
+  var txtWords = [
     'Sun', 'Mon', 'Tues', 'Wednes', 'Thurs', 'Fri', 'Satur',
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
@@ -183,7 +192,7 @@ module.exports = function date (format, timestamp) {
     },
     l: function () {
       // Full day name; Monday...Sunday
-      return txt_words[f.w()] + 'day'
+      return txtWords[f.w()] + 'day'
     },
     N: function () {
       // ISO-8601 day of week; 1[Mon]..7[Sun]
@@ -220,7 +229,7 @@ module.exports = function date (format, timestamp) {
     // Month
     F: function () {
       // Full month name; January...December
-      return txt_words[6 + f.n()]
+      return txtWords[6 + f.n()]
     },
     m: function () {
       // Month w/leading 0; 01...12
@@ -321,7 +330,8 @@ module.exports = function date (format, timestamp) {
       // timezone_abbreviations_list() function.
       /*              return that.date_default_timezone_get();
        */
-      throw new Error('Not supported (see source code of date() for timezone on how to add support)')
+      var msg = 'Not supported (see source code of date() for timezone on how to add support)'
+      throw new Error(msg)
     },
     I: function () {
       // DST observed?; 0 or 1
@@ -349,15 +359,14 @@ module.exports = function date (format, timestamp) {
       return (O.substr(0, 3) + ':' + O.substr(3, 2))
     },
     T: function () {
-      // Timezone abbreviation; e.g. EST, MDT, ...
       // The following works, but requires inclusion of the very
       // large timezone_abbreviations_list() function.
       /*              var abbr, i, os, _default;
       if (!tal.length) {
         tal = that.timezone_abbreviations_list();
       }
-      if (that.locutus && that.locutus.default_timezone) {
-        _default = that.locutus.default_timezone;
+      if ($locutus && $locutus.default_timezone) {
+        _default = $locutus.default_timezone;
         for (abbr in tal) {
           for (i = 0; i < tal[abbr].length; i++) {
             if (tal[abbr][i].timezone_id === _default) {
@@ -396,13 +405,14 @@ module.exports = function date (format, timestamp) {
       return jsdate / 1000 | 0
     }
   }
-  this.date = function (format, timestamp) {
-    that = this
-    jsdate = (timestamp === undefined ? new Date() : // Not provided
-      (timestamp instanceof Date) ? new Date(timestamp) : // JS Date()
-      new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
+
+  var _date = function (format, timestamp) {
+    jsdate = (timestamp === undefined ? new Date() // Not provided
+      : (timestamp instanceof Date) ? new Date(timestamp) // JS Date()
+      : new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
     )
     return format.replace(formatChr, formatChrCb)
   }
-  return this.date(format, timestamp)
+
+  return _date(format, timestamp)
 }

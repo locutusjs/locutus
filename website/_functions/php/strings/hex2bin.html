@@ -4,6 +4,7 @@ examples:
   - hex2bin('44696d61')
   - hex2bin('00')
   - hex2bin('2f1q')
+estarget: es5
 returns:
   - '''Dima'''
   - '''\x00'''
@@ -14,6 +15,7 @@ authors:
     - 'Dumitru Uzun (http://duzun.me)'
 notes: []
 layout: function
+title: hex2bin in JavaScript
 function: hex2bin
 category: strings
 language: php
@@ -34,9 +36,9 @@ module.exports = function hex2bin (s) {
   //   example 3: hex2bin('2f1q')
   //   returns 3: false
 
-  var ret = [],
-    i = 0,
-    l
+  var ret = []
+  var i = 0
+  var l
 
   s += ''
 

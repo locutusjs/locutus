@@ -5,6 +5,7 @@ examples:
   - 'array_pad([ 7, 8, 9 ], 5, ''a'')'
   - 'array_pad([ 7, 8, 9 ], 5, 2)'
   - 'array_pad([ 7, 8, 9 ], -5, ''a'')'
+estarget: es5
 returns:
   - '[ 7, 8, 9]'
   - '[ 7, 8, 9, ''a'', ''a'']'
@@ -16,6 +17,7 @@ authors:
     - 'Waldo Malqui Silva (http://waldo.malqui.info)'
 notes: []
 layout: function
+title: array_pad in JavaScript
 function: array_pad
 category: array
 language: php
@@ -26,7 +28,7 @@ redirect_from:
   - /php/array_pad/
   - /functions/array_pad/
 ---
-module.exports = function array_pad (input, pad_size, pad_value) {
+module.exports = function array_pad (input, padSize, padValue) { // eslint-disable-line camelcase
   //  discuss at: http://locutusjs.io/php/array_pad/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //   example 1: array_pad([ 7, 8, 9 ], 2, 'a')
@@ -38,21 +40,21 @@ module.exports = function array_pad (input, pad_size, pad_value) {
   //   example 4: array_pad([ 7, 8, 9 ], -5, 'a')
   //   returns 4: [ 'a', 'a', 7, 8, 9 ]
 
-  var pad = [],
-    newArray = [],
-    newLength,
-    diff = 0,
-    i = 0
+  var pad = []
+  var newArray = []
+  var newLength
+  var diff = 0
+  var i = 0
 
-  if (Object.prototype.toString.call(input) === '[object Array]' && !isNaN(pad_size)) {
-    newLength = ((pad_size < 0) ? (pad_size * -1) : pad_size)
+  if (Object.prototype.toString.call(input) === '[object Array]' && !isNaN(padSize)) {
+    newLength = ((padSize < 0) ? (padSize * -1) : padSize)
     diff = newLength - input.length
 
     if (diff > 0) {
       for (i = 0; i < diff; i++) {
-        newArray[i] = pad_value
+        newArray[i] = padValue
       }
-      pad = ((pad_size < 0) ? newArray.concat(input) : input.concat(newArray))
+      pad = ((padSize < 0) ? newArray.concat(input) : input.concat(newArray))
     } else {
       pad = input
     }

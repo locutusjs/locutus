@@ -20,7 +20,7 @@ module.exports = {
     }
   },
   'files': [
-    '_site/**',
+    './**',
     '!_site/blog.atom',
     '!_site/blog.rss',
     '!_site/npm-debug.*',
