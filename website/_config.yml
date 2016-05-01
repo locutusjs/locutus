@@ -7,13 +7,16 @@ title: Locutus
 subtitle: We're assimilating other languages's standard libraries to JavaScript for fun and educational purposes
 description: We're assimilating other languages's standard libraries to JavaScript for fun and educational purposes
 author: Kevin van Zonneveld
-language: EN
+language: en
 timezone: UTC
 
 feed:
   type: atom
   path: /atom.xml
   limit: 0
+
+browsersync:
+  open: true
 
 # Markdown
 ## https://github.com/chjj/marked

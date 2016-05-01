@@ -7,8 +7,12 @@
             </a>
             <nav id="main-nav">
                 <% for (var i in theme.menu) { %>
-                    <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
+                  <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
                 <% } %>
+
+                <% site.pages.find({ type: 'language' }).each(function (lang) { %>
+                  <a class="main-nav-link" href="<%- url_for(lang.title) %>"><%= lang.title %></a>
+                <% }) %>
             </nav>
             <% if(theme.customize.profile && theme.customize.profile.enabled) { %>
                 <% var profile = theme.customize.profile; %>

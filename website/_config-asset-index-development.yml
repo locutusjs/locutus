@@ -1,7 +1,0 @@
-js:
-  head: head.js
-  app: app.js
-css:
-  _screen: _screen.css
-  app: app.css
-

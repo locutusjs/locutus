@@ -76,10 +76,10 @@
     "test:module": "babel-node test/module/module.js",
     "test:util": "mocha --compilers js:babel-register --reporter spec test/util/",
     "test": "npm-run-all test:*",
-    "website:deploy": "npm run website:inject && cd website && npm run build && npm run deploy",
-    "website:inject": "rimraf website/_functions/* && babel-node src/_util/cli.js injectweb",
+    "website:deploy": "npm run website:inject && cd website && npm run build && website/_scripts/deploy.sh",
+    "website:inject": "rimraf website/source/{c,golang,php,python,ruby} && babel-node src/_util/cli.js injectweb",
     "website:install": "cd website && npm install",
-    "website:start": "cd website && npm run start"
+    "website:start": "cd website && hexo server"
   },
   "bin": {
     "babel-node src/_util/cli.js": "src/_util/cli.js"

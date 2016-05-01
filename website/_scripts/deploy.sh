@@ -26,7 +26,7 @@ rsync \
   --no-group \
   --no-motd \
   --no-owner \
-"${__webroot}/_site/" /tmp/deploy-${ghpages_repo} > /dev/null
+"${__webroot}/public/" /tmp/deploy-${ghpages_repo} > /dev/null
 
 echo 'This branch is just a deploy target. Do not edit. You changes will be lost.' \
   |tee /tmp/deploy-${ghpages_repo}/README.md

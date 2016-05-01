@@ -134,6 +134,7 @@ class Util {
     if (!this._injectwebBuffer[langIndexPath]) {
       this._injectwebBuffer[langIndexPath] = `---
 type: language
+layout: ports
 language: ${params.language}
 title: ${humanLanguages[params.language]}
 ---`
@@ -142,6 +143,7 @@ title: ${humanLanguages[params.language]}
     if (!this._injectwebBuffer[catIndexPath]) {
       this._injectwebBuffer[catIndexPath] = `---
 type: category
+layout: ports
 language: ${params.language}
 category: ${params.category}
 title: ${params.category}
@@ -173,6 +175,7 @@ title: ${params.category}
         return lines.join('\n')
       }),
       type: 'function',
+      layout: 'ports',
       title: title,
       function: params.func_name,
       category: params.category,
