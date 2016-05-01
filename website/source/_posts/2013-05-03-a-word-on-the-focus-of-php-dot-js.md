@@ -2,8 +2,8 @@
 layout: post
 title: "A Word on the Focus of php.js"
 comments: true
-categories: [ focus ]
-redirect_from: /blog/2013/05/03/a-word-on-the-focus-of-php-dot-js/
+tags: [ focus ]
+alias: /blog/2013/05/03/a-word-on-the-focus-of-php-dot-js/
 ---
 
 Hi everybody,

@@ -2,7 +2,7 @@
 layout: post
 title: "php.js is Dead - Long Live Locutus"
 comments: true
-categories: [ future, js, golang, python, ruby, php, c ]
+tags: [ future, js, golang, python, ruby, php, c ]
 ---
 
 As briefly spoiled in [Breaking Backwards Compatibility](/blog/2016/04/20/breaking-bc/), 

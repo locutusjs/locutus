@@ -2,8 +2,8 @@
 layout: post
 title: "Standard Coding Style"
 comments: true
-categories: [ coding style, convention ]
-redirect_from: /blog/2016/04/01/standard-coding-style/
+tags: [ coding style, convention ]
+alias: /blog/2016/04/01/standard-coding-style/
 ---
 
 Three years ago we switched from our own home-brown coding style convention to Felix’ Node.js Style Guide, 

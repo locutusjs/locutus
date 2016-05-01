@@ -3,18 +3,34 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
-author: John Doe
-language:
-timezone:
+title: Locutus
+subtitle: We're assimilating other languages's standard libraries to JavaScript for fun and educational purposes
+description: We're assimilating other languages's standard libraries to JavaScript for fun and educational purposes
+author: Kevin van Zonneveld
+language: EN
+timezone: UTC
+
+feed:
+  type: atom
+  path: /atom.xml
+  limit: 0
+
+# Markdown
+## https://github.com/chjj/marked
+markdown:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: true
+  smartLists: true
+  smartypants: true
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://locutusjs.io
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :year/:month/:title/
 permalink_defaults:
 
 # Directory
@@ -27,9 +43,11 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
 
+categories: 0
+
 # Writing
 new_post_name: :year-:month-:day-:title.md
-default_layout: post
+default_layout: page
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0

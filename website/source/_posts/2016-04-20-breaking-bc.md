@@ -2,8 +2,8 @@
 layout: post
 title: "Breaking Backwards Compatibility"
 comments: true
-categories: [ future ]
-redirect_from: /blog/2016/04/20/breaking-bc/
+tags: [ future ]
+alias: /blog/2016/04/20/breaking-bc/
 ---
 
 Hi all,

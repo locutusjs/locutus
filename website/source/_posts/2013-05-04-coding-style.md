@@ -2,8 +2,8 @@
 layout: post
 title: "Coding Style"
 comments: true
-categories: [ coding style, convention ]
-redirect_from: /blog/2013/05/04/coding-style/ 
+tags: [ coding style, convention ]
+alias: /blog/2013/05/04/coding-style/ 
 ---
 
 Given [the focus of Locutus](/blog/2013/05/a-word-on-the-focus-of-php-dot-js/) I think

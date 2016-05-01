@@ -4,7 +4,7 @@ title: "About Locutus"
 date: 2012-09-26 17:18
 comments: true
 permalink: /
-redirect_from:
+alias:
 - /pages/contact/
 - /about/
 ---
@@ -51,8 +51,7 @@ As mentioned we're sticking to raw functions and steering clear of global enviro
 
 ## A community effort
 
-Not unlike Wikipedia, Locutus is an ongoing community effort and so far we have ported 
-[{{ site.functions |size }} functions](/functions). We're going however by [The McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d), meaning that many of these functions are a first iteration, or otherwise have issues still.
+Not unlike Wikipedia, Locutus is an ongoing community effort. We're going however by [The McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d), meaning that many of these functions are a first iteration, or otherwise have issues still.
 
 If you know a better way, we'd love to see your improvements.
 
