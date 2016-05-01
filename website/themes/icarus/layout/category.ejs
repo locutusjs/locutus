@@ -27,6 +27,12 @@
       if (cnt < 50) { %>
         <%- partial('locutus/add_more', {curLang: curLang, header: header}) %>
       <% } %>
+
+      <hr />
+      <p>
+        <a href="/<%= page.language %>/">&laquo; More <%= curLang.human %> functions</a>
+      </p>
+
     </div>
   </div>
 </article>

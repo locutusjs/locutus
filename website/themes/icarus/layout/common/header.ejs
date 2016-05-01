@@ -11,7 +11,7 @@
                 <% } %>
 
                 <% site.pages.find({ type: 'language' }).sort('order').each(function (lang) { %>
-                  <a class="main-nav-link" href="<%- url_for(lang.language) %>"><%= lang.title %></a>
+                  <a class="main-nav-link" href="<%- url_for(lang.language) %>"><%= lang.human %></a>
                 <% }) %>
             </nav>
             <% if(theme.customize.profile && theme.customize.profile.enabled) { %>

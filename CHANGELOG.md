@@ -38,6 +38,10 @@ Released: Not yet
 
 Released: Not yet
 
+- [ ] website: Add social buttons
+- [ ] website: Fix jumpy scrolling due to on the githubs
+- [ ] website: DRY up add_more code
+- [ ] website: About as homepage
 - [ ] Rename `_locutus_shared` to `_helpers`. Rename `_locutus_shared_bc` to `bc`
 - [x] Transpile to ES5 before publishing to npm
 - [x] Add `estarget` option to all functions, set `ip2long` to `es2015`

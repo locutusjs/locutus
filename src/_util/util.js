@@ -127,6 +127,7 @@ class Util {
       c: {
         order: 1,
         human: 'C',
+        packageType: 'include',
         inspiration_urls: [
           '<a href="http://en.cppreference.com/w/c/numeric/math">the C math.h documentation</a>',
           '<a href="https://sourceware.org/git/?p=glibc.git;a=tree;f=math;hb=HEAD">the C math.h source</a>'
@@ -136,6 +137,7 @@ class Util {
       golang: {
         order: 2,
         human: 'Go',
+        packageType: 'package',
         inspiration_urls: [
           '<a href="https://golang.org/pkg/strings/">Go strings documentation</a>',
           '<a href="https://golang.org/src/strings/strings.go">Go strings source</a>',
@@ -147,6 +149,7 @@ class Util {
       php: {
         order: 5,
         human: 'PHP',
+        packageType: 'extension',
         inspiration_urls: [
           '<a href="http://php.net/manual/en/book.strings.php">the PHP string documentation</a>',
           '<a href="https://github.com/php/php-src/blob/master/ext/standard/string.c#L5338">the PHP string source</a>',
@@ -185,6 +188,7 @@ class Util {
       python: {
         order: 3,
         human: 'Python',
+        packageType: 'module',
         inspiration_urls: [
           '<a href="https://docs.python.org/3/library/string.html">the Python 3 standard library string page</a>'
         ],
@@ -193,6 +197,7 @@ class Util {
       ruby: {
         order: 4,
         human: 'Ruby',
+        packageType: 'module',
         inspiration_urls: [
           '<a href="http://ruby-doc.org/core-2.2.2/Math.html">the Ruby core documentation</a>'
         ],
@@ -202,7 +207,9 @@ class Util {
 
     if (!this._injectwebBuffer[langIndexPath]) {
       var langTitle = ''
-      langTitle += langDefaults[params.language].human
+      langTitle += langDefaults[params.language].human + ' '
+      langTitle += langDefaults[params.language].packageType + 's '
+      langTitle += ' in JavaScript'
 
       var langData = Object.assign({}, langDefaults[params.language], {
         type: 'language',
@@ -217,11 +224,7 @@ class Util {
       var catTitle = ''
       catTitle += langDefaults[params.language].human + '\'s '
       catTitle += params.category + ' '
-      if (params.category === 'php') {
-        catTitle += 'extension '
-      } else {
-        catTitle += 'module '
-      }
+      catTitle += langDefaults[params.language].packageType + ' '
       catTitle += ' in JavaScript'
 
       var catData = Object.assign({}, {}, {

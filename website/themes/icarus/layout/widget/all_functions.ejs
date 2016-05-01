@@ -4,8 +4,8 @@
       <ul>
       <% site.pages.find({ type: 'language' }).sort('order').each(function (lang) { %>
         <li><a href="<%- url_for(lang.path).replace('index.html', '') %>">
-          <%- lang.title %>
-          (<%- site.pages.find({ language: lang.language, type: 'category' }).length %>)
+          <%- lang.human %>
+          (<%- site.pages.find({ language: lang.language, type: 'function' }).length %>)
         </a></li>
         <% site.pages.find({ language: lang.language, type: 'category' }).each(function (cat) { %>
         <ul>

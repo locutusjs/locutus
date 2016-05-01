@@ -6,6 +6,9 @@ tags: [ future, js, golang, python, ruby, php, c ]
 thumbnail: /css/images/locutus-alpha.png
 ---
 
+- Add note about issues & PRs
+- Add note about website
+
 As briefly spoiled in [Breaking Backwards Compatibility](/blog/2016/04/20/breaking-bc/), 
 today I'm launching a big iteration of php.js. It includes so
 [many](https://github.com/kvz/locutus/pull/290) breaking 

@@ -16,7 +16,7 @@
         </ul>
       <% }) %>
 
-      <hr />
+
       <%
       var cnt = site.pages.find({ language: curLang.language, type: 'function' }).length
       var header = 'What?! Only ' + cnt + ' ' + curLang.human + ' function'
@@ -25,6 +25,7 @@
       }
       header += ' in all of Locutus?'
       if (cnt < 50) { %>
+        <hr />
         <%- partial('locutus/add_more', {curLang: curLang, header: header}) %>
       <% } %>
     </div>
