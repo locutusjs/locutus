@@ -1,0 +1,37 @@
+index:
+    home: '主页'
+    search: '搜索'
+    archive: '归档'
+    category: '分类'
+    uncategorized: '未分类'
+    tag: '标签'
+nav:
+    next: '下一页'
+    prev: '上一页'
+    older: '下一篇'
+    newer: '上一篇'
+widget:
+    recents: '最新文章'
+    archives: '归档'
+    categories: '分类'
+    links: '链接'
+    tags: '标签'
+    tag_cloud: '标签云'
+article:
+    more: '查看更多'
+    comments: '评论'
+    share: '分享到'
+    catalogue: '文章目录'
+profile:
+    follow: '关注我'
+    post: '文章'
+    tag: '标签'
+    posts: '文章'
+    tags: '标签'
+insight:
+    hint: '想要查找什么...'
+    posts: '文章'
+    pages: '页面'
+    categories: '分类'
+    tags: '标签'
+    untitled: '(未命名)'

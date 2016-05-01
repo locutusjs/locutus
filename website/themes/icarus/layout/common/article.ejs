@@ -1,0 +1,45 @@
+<article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        <% if (post.banner) { %>
+            <%- partial('post/banner') %>
+        <% } %>
+        <%- partial('post/gallery') %>
+        <% if (post.link || post.title) { %>
+            <header class="article-header">
+                <%- partial('post/title', { class_name: 'article-title' }) %>
+                <div class="article-meta">
+                    <%- partial('post/date', { class_name: 'article-date', date_format: null }) %>
+                    <%- partial('post/category') %>
+                    <%- partial('post/tag') %>
+                </div>
+            </header>
+        <% } %>
+        <div class="article-entry" itemprop="articleBody">
+        <% if (index && post.excerpt) { %>
+            <p><%- post.excerpt %></p>
+            <p class="article-more-link">
+                <a href="<%- url_for(post.path) %>#more"><%= __('article.more') %></a>
+            </p>
+        <% } else { %>
+            <% if (!index && post.toc) { %>
+                <div id="toc" class="toc-article">
+                <strong class="toc-title"><%= __('article.catalogue') %></strong>
+                    <%- toc(post.content) %>
+                </div>
+            <% } %>
+            <%- post.content %>
+        <% } %>
+        </div>
+        <footer class="article-footer">
+            <%- partial('share/index', { post: post }) %>
+            <%- partial('comment/counter', { post: post }) %>
+        </footer>
+    </div>
+    <% if (!index) { %>
+        <%- partial('post/nav') %>
+    <% } %>
+</article>
+
+<% if (!index) { %>
+    <%- partial('comment/index') %>
+<% } %>

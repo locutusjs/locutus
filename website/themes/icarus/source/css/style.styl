@@ -1,0 +1,93 @@
+@import "nib"
+@import "_variables"
+@import "_util/mixin"
+@import "_util/grid"
+
+global-reset()
+
+input, button
+    margin: 0
+    padding: 0
+    &::-moz-focus-inner
+        border: 0
+        padding: 0
+
+html, body, #container
+    height: 100%
+
+body
+    color: color-default
+    background: color-background
+    font: font-size font-sans
+    -webkit-text-size-adjust: 100%
+
+a
+    color: color-link
+    text-decoration: none
+    &:visited
+        color: color-link
+
+code
+    margin: 0 2px
+    color: #e96900
+    padding: 3px 5px
+    font-size: 0.8em
+    border-radius: 2px
+    font-family: font-mono
+    background-color: #f8f8f8
+
+.outer
+    clearfix()
+    max-width: (column-width + gutter-width) * columns + gutter-width
+    margin: 0 auto
+    padding: 0 gutter-width
+    @media mq-mini
+        padding: 0
+
+.left, .alignleft
+    float: left
+
+.right, .alignright
+    float: right
+
+.clear
+    clear: both
+
+.logo
+    width: logo-width
+    height: logo-height
+    background-repeat: no-repeat
+    background-image: url(logo-url)
+    background-size: logo-width logo-height
+
+#container
+    position: relative
+    & > .outer
+        margin-bottom: 30px
+
+#main
+    @media mq-normal
+        column(main-column)
+    @media mq-tablet
+        if sidebar
+            column(main-column-tablet)
+        else
+            width: 100%
+
+@import "_extend"
+@import "_partial/header"
+@import "_partial/profile"
+@import "_partial/article"
+@import "_partial/comment"
+@import "_partial/archive"
+@import "_partial/timeline"
+@import "_partial/footer"
+@import "_partial/sidebar"
+@import "_partial/insight"
+@import "_highlight/index"
+
+if sidebar is left
+    #main
+        float: right
+    #profile
+        float: right
