@@ -4,6 +4,7 @@ title: "A Word on the Focus of php.js"
 comments: true
 tags: [ focus ]
 alias: /blog/2013/05/03/a-word-on-the-focus-of-php-dot-js/
+thumbnail: http://mobilemarketingwatch.com/wp-content/uploads/2016/03/Focus.jpg
 ---
 
 Hi everybody,

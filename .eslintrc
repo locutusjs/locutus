@@ -1,7 +1,7 @@
 {
   "extends": "standard",
   "rules": {
-    "max-len": ["error", {"code": 100, "ignoreUrls": true, "ignorePattern": "(^module\\.exports|.+\\.\\./info/ini_get.+|^  //\\s+_?(returns|example))" }]
+    # "max-len": ["error", {"code": 100, "ignoreUrls": true, "ignorePattern": "(^module\\.exports|.+\\.\\./info/ini_get.+|^  //\\s+_?(returns|example))" }]
   },
   "env": {
     "mocha": true,

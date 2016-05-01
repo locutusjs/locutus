@@ -1,0 +1,21 @@
+<article class="article article-type-<%= page.layout %>" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title"><%= page.title %></h1>
+    </header>
+
+    <div class="article-entry">
+      <p>
+        Here’s what our current JavaScript equivalent to
+        <% site.pages.find({ type: 'language', language: page.language }).each(function (lang) { %>
+          <%= lang.title %>'s
+        <% }) %>
+
+        <%= page.function %>
+        looks like.
+      </p>
+
+      <%- page.content %>
+    </div>
+  </div>
+</article>

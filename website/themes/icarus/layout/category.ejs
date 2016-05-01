@@ -1,1 +1,15 @@
-<%- partial('common/timeline', { type: 'category' }) %>
+<article class="article article-type-<%= page.layout %>" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title"><%= page.title %></h1>
+    </header>
+
+    <div class="article-entry">
+      <ul>
+        <% site.pages.find({ language: page.language, category: page.category, type: 'function' }).each(function (func) { %>
+          <li><a href="<%- url_for(func.path) %>"><%- func.function %></a></li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+</article>

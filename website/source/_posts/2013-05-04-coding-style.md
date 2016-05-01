@@ -3,7 +3,8 @@ layout: post
 title: "Coding Style"
 comments: true
 tags: [ coding style, convention ]
-alias: /blog/2013/05/04/coding-style/ 
+alias: /blog/2013/05/04/coding-style/
+thumbnail: http://cdn.vnykmshr.com/images/articles/dev-manuals-node-js-code-and-style-guide/awesome-nodejs.png
 ---
 
 Given [the focus of Locutus](/blog/2013/05/a-word-on-the-focus-of-php-dot-js/) I think

@@ -4,6 +4,7 @@ title: "Standard Coding Style"
 comments: true
 tags: [ coding style, convention ]
 alias: /blog/2016/04/01/standard-coding-style/
+thumbnail: https://cdn.rawgit.com/feross/standard/master/sticker.svg
 ---
 
 Three years ago we switched from our own home-brown coding style convention to Felix’ Node.js Style Guide, 

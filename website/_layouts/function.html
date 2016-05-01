@@ -1,21 +1,3 @@
----
-layout: page
----
-
-{% assign language = "notfound" %}
-
-{% for lang in site.languages %}
-  {% if lang.name == page.language %}
-    {% assign language = lang %}
-    {% break %}
-  {% endif %}
-{% endfor %}
-
-<p>
-  Here’s what our current JavaScript equivalent to
-  {{ language.origin_template |replace: '[human]', language.human  |replace: '[category]', page.category |replace: '[function]', page.function }}
-  looks like.
-</p>
 
 {% highlight javascript %}
 {{content|replace: 'module.exports = ', ''}}

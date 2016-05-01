@@ -11,12 +11,14 @@ nav:
     older: 'Older'
     newer: 'Newer'
 widget:
-    recents: 'recent'
+    recents: 'recent posts'
     archives: 'archives'
     categories: 'categories'
     links: 'links'
     tags: 'tags'
     tag_cloud: 'tag cloud'
+    all_functions: 'all functions'
+    on_the_githubs: 'on the githubs'
 article:
     more: 'Read More'
     comments: 'Comments'
@@ -35,4 +37,3 @@ insight:
     categories: 'Categories'
     tags: 'Tags'
     untitled: '(Untitled)'
-

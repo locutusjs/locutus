@@ -1,0 +1,31 @@
+<section class="layout-wrap">
+    <div class="layout-title">
+        <span><%= page.title %></span>
+    </div>
+    <div class="layout-wrap-inner list-categories">
+      <%- page.content %>
+
+      <% if (page.type === 'authors') { %>
+        <p>
+          You can find a list of core contributors on
+          <a href="https://github.com/kvz/locutus/graphs/contributor">GitHub</a>,
+          as well as a more finegrained achievement record below:
+        </p>
+
+        <% site.pages.find({ type: 'language' }).each(function (lang) { %>
+          <h2><a href="<%- url_for(lang.path) %>"><%- lang.title %></a></h2>
+          <section class="authors" data-language="<%= lang.language %>">
+            <% site.pages.find({ language: lang.language, type: 'function' }).each(function (func) { %>
+              <% for (var typeKey in func.authors) { %>
+                <% func.authors[typeKey].forEach(function(author) { %>
+                  <entry data-function="<%= func.function %>" data-type="<%= typeKey %>"><%- markdown(trim(author)) %></entry>
+                <% }) %>
+              <% } %>
+            <% }) %>
+            <div class="draw"></div>
+          </section>
+        <% }) %>
+      <% } %>
+
+    </div>
+</section>
