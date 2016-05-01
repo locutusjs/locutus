@@ -29,15 +29,14 @@ class Util {
   }
 
   injectweb (cb) {
+    var self = this
     this._runFunctionOnAll(this._injectwebOne, function (err) {
       if (err) {
         return cb(err)
       }
       for (var indexHtml in self._injectwebBuffer) {
-        var requires = self._injectwebBuffer[indexHtml]
-        requires.sort()
         debug('writing: ' + indexHtml)
-        fs.writeFileSync(indexHtml, requires.join('\n') + '\n', 'utf-8')
+        fs.writeFileSync(indexHtml, self._injectwebBuffer[indexHtml], 'utf-8')
       }
     })
   }
@@ -124,11 +123,19 @@ class Util {
     var catIndexPath = catPath + '/' + 'index.html'
     var funcPath = catPath + '/' + params.func_name + '.html'
 
+    var humanLanguages = {
+      c: 'C',
+      golang: 'Go',
+      php: 'PHP',
+      python: 'Python',
+      ruby: 'Ruby'
+    }
+
     if (!this._injectwebBuffer[langIndexPath]) {
       this._injectwebBuffer[langIndexPath] = `---
 type: language
 language: ${params.language}
-title: ${params.language}
+title: ${humanLanguages[params.language]}
 ---`
     }
 
@@ -142,7 +149,7 @@ title: ${params.category}
     }
 
     var title = ''
-    title += params.language + '\'s'
+    title += humanLanguages[params.language] + '\'s '
     if (params.language !== 'php') {
       title += params.category + '.'
     }
@@ -165,7 +172,7 @@ title: ${params.category}
       notes: (params.headKeys.note || []).map(function (lines, i) {
         return lines.join('\n')
       }),
-      layout: 'function',
+      type: 'function',
       title: title,
       function: params.func_name,
       category: params.category,
@@ -190,7 +197,7 @@ title: ${params.category}
     }
     var buf = '---' + '\n' + yml + '\n' + '---' + '\n'
 
-    buf += params.code
+    buf += `{% codeblock lang:javascript %}${params.code}{% endcodeblock %}`
 
     mkdirp(path.dirname(funcPath), function (err) {
       if (err) {
