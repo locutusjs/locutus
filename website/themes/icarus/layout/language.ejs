@@ -1,4 +1,6 @@
-<article class="article article-type-<%= page.layout %>" >
+<% var curLang = page %>
+
+<article class="article article-type-<%= curLang.layout %>" >
   <div class="article-inner">
     <header class="article-header">
       <h1 class="article-title"><%= page.title %></h1>
@@ -13,6 +15,18 @@
           <% }) %>
         </ul>
       <% }) %>
+
+      <hr />
+      <%
+      var cnt = site.pages.find({ language: curLang.language, type: 'function' }).length
+      var header = 'What?! Only ' + cnt + ' ' + curLang.human + ' function'
+      if (cnt !== 1) {
+        header += 's'
+      }
+      header += ' in all of Locutus?'
+      if (cnt < 50) { %>
+        <%- partial('locutus/add_more', {curLang: curLang, header: header}) %>
+      <% } %>
     </div>
   </div>
 </article>

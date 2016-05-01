@@ -119,30 +119,27 @@
         </ul>
       <% } %>
 
-
       <% if (page.examples.length > 0 ) { %>
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
         <%
         var cnt = 0;
         page.examples.forEach(function(example) {
           cnt++
           var ret = page.returns[(cnt - 1)]
           %>
-          <h2>Example <%= cnt %></h2>
-
-          The following code: <br />
-          <code><%= example %></code><br />
-
-          Should return:
-          <code><%= ret %></code><br />
+          <tr><td><%= cnt %></td><td><code><%= example %></code></td><td><code><%= ret %></code></td></tr>
         <% }) %>
-
-        <blockquote>
-          Please not that these examples are distilled from test cases that automatically verify
-          our functions still work correctly. This could explain some quirky ones.
-        </blockquote>
-
+        </table>
       <% } %>
 
+      <%- partial('locutus/add_more', {curLang: curLang, header: 'Welcoming your addition'}) %>
 
       <hr />
       <p>

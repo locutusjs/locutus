@@ -1,3 +1,8 @@
+<% var curLang = '' %>
+<% site.pages.find({ type: 'language', language: page.language }).each(function (lang) { %>
+  <% curLang = lang %>
+<% }) %>
+
 <article class="article article-type-<%= page.layout %>" >
   <div class="article-inner">
     <header class="article-header">
@@ -10,6 +15,18 @@
           <li><a href="<%- url_for(func.path).replace('index.html', '') %>"><%- func.function %></a></li>
         <% }) %>
       </ul>
+
+      <hr />
+      <%
+      var cnt = site.pages.find({ language: curLang.language, type: 'function' }).length
+      var header = 'What?! Only ' + cnt + ' ' + curLang.human + ' function'
+      if (cnt !== 1) {
+        header += 's'
+      }
+      header += ' in all of Locutus?'
+      if (cnt < 50) { %>
+        <%- partial('locutus/add_more', {curLang: curLang, header: header}) %>
+      <% } %>
     </div>
   </div>
 </article>

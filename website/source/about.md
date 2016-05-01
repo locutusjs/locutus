@@ -1,11 +1,12 @@
 ---
-layout: post
+layout: page
 title: "About Locutus"
 date: false
 comments: true
-permalink: /about/
+permalink: /
 alias:
 - /pages/contact/
+- /about/
 ---
 
 {{site.description}}
