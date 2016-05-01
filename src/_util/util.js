@@ -25,10 +25,21 @@ class Util {
     this.allowSkip = (argv.indexOf('--noskip') === -1)
 
     this._reindexBuffer = {}
+    this._injectwebBuffer = {}
   }
 
   injectweb (cb) {
-    this._runFunctionOnAll(this._injectwebOne, cb)
+    this._runFunctionOnAll(this._injectwebOne, function (err) {
+      if (err) {
+        return cb(err)
+      }
+      for (var indexHtml in self._injectwebBuffer) {
+        var requires = self._injectwebBuffer[indexHtml]
+        requires.sort()
+        debug('writing: ' + indexHtml)
+        fs.writeFileSync(indexHtml, requires.join('\n') + '\n', 'utf-8')
+      }
+    })
   }
 
   reindex (cb) {
@@ -103,16 +114,32 @@ class Util {
       }
     })
 
-    var webfuncPath = [
+    var langPath = [
       this.__root,
-      '/website/source/_functions/',
-      params.language,
-      '/',
-      params.category,
-      '/',
-      params.func_name,
-      '.html'
+      '/website/source/',
+      params.language
     ].join('')
+    var langIndexPath = langPath + '/index.html'
+    var catPath = langPath + '/' + params.category
+    var catIndexPath = catPath + '/' + 'index.html'
+    var funcPath = catPath + '/' + params.func_name + '.html'
+
+    if (!this._injectwebBuffer[langIndexPath]) {
+      this._injectwebBuffer[langIndexPath] = `---
+type: language
+language: ${params.language}
+title: ${params.language}
+---`
+    }
+
+    if (!this._injectwebBuffer[catIndexPath]) {
+      this._injectwebBuffer[catIndexPath] = `---
+type: category
+language: ${params.language}
+category: ${params.category}
+title: ${params.category}
+---`
+    }
 
     var title = ''
     title += params.language + '\'s'
@@ -144,7 +171,7 @@ class Util {
       category: params.category,
       language: params.language,
       permalink: params.language + '/' + params.category + '/' + params.func_name + '/',
-      redirect_from: [
+      alias: [
         '/functions/' + params.language + '/' + params.func_name + '/',
         '/functions/' + params.category + '/' + params.func_name + '/',
         '/' + params.language + '/' + params.func_name + '/'
@@ -152,7 +179,7 @@ class Util {
     }
 
     if (params.language === 'php') {
-      data.redirect_from.push('/functions/' + params.func_name + '/')
+      data.alias.push('/functions/' + params.func_name + '/')
     }
 
     try {
@@ -165,11 +192,11 @@ class Util {
 
     buf += params.code
 
-    mkdirp(path.dirname(webfuncPath), function (err) {
+    mkdirp(path.dirname(funcPath), function (err) {
       if (err) {
-        throw new Error('Could not mkdir  for ' + webfuncPath + '. ' + err)
+        throw new Error('Could not mkdir  for ' + funcPath + '. ' + err)
       }
-      fs.writeFile(webfuncPath, buf, 'utf-8', cb)
+      fs.writeFile(funcPath, buf, 'utf-8', cb)
     })
   }
 
