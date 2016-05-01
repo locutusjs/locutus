@@ -9,7 +9,7 @@
         <strong><%- cat.category %></strong>
         <ul>
           <% site.pages.find({ language: cat.language, category: cat.category, type: 'function' }).each(function (func) { %>
-            <li><a href="<%- url_for(func.path) %>"><%- func.function %></a></li>
+            <li><a href="<%- url_for(func.path).replace('index.html', '') %>"><%- func.function %></a></li>
           <% }) %>
         </ul>
       <% }) %>

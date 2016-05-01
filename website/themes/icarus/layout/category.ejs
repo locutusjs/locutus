@@ -7,7 +7,7 @@
     <div class="article-entry">
       <ul>
         <% site.pages.find({ language: page.language, category: page.category, type: 'function' }).each(function (func) { %>
-          <li><a href="<%- url_for(func.path) %>"><%- func.function %></a></li>
+          <li><a href="<%- url_for(func.path).replace('index.html', '') %>"><%- func.function %></a></li>
         <% }) %>
       </ul>
     </div>
