@@ -3,10 +3,9 @@ layout: page
 title: "About Locutus"
 date: 2012-09-26 17:18
 comments: true
-permalink: /
+permalink: /about
 alias:
 - /pages/contact/
-- /about/
 ---
 
 {{site.description}}

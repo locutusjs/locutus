@@ -105,7 +105,7 @@ class Util {
 
     var webfuncPath = [
       this.__root,
-      '/website/_functions/',
+      '/website/source/_functions/',
       params.language,
       '/',
       params.category,
