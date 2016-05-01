@@ -10,7 +10,7 @@
                   <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
                 <% } %>
 
-                <% site.pages.find({ type: 'language' }).each(function (lang) { %>
+                <% site.pages.find({ type: 'language' }).sort('order').each(function (lang) { %>
                   <a class="main-nav-link" href="<%- url_for(lang.language) %>"><%= lang.title %></a>
                 <% }) %>
             </nav>

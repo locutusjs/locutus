@@ -123,8 +123,9 @@ class Util {
     var catIndexPath = catPath + '/' + 'index.html'
     var funcPath = catPath + '/' + params.func_name + '.html'
 
-    var languageMap = {
+    var langDefaults = {
       c: {
+        order: 1,
         human: 'C',
         inspiration_urls: [
           '<a href="http://en.cppreference.com/w/c/numeric/math">the C math.h documentation</a>',
@@ -133,81 +134,115 @@ class Util {
         origin_template: '<a href="http://en.cppreference.com/w/c/numeric/[category]/[function]">[human]\'s [category].h\'s [function]</a>'
       },
       golang: {
+        order: 2,
         human: 'Go',
         inspiration_urls: [
-          '',
-          ''
+          '<a href="https://golang.org/pkg/strings/">Go strings documentation</a>',
+          '<a href="https://golang.org/src/strings/strings.go">Go strings source</a>',
+          '<a href="https://golang.org/src/strings/example_test.go">Go strings examples source</a>',
+          '<a href=http://gophersjs.com"">GopherJS</a>'
         ],
-        origin_template: ''
+        origin_template: '<a href="https://golang.org/pkg/[category]/#[function]">[human]\'s [category].[function]</a>'
       },
       php: {
+        order: 5,
         human: 'PHP',
         inspiration_urls: [
-          '',
-          ''
+          '<a href="http://php.net/manual/en/book.strings.php">the PHP string documentation</a>',
+          '<a href="https://github.com/php/php-src/blob/master/ext/standard/string.c#L5338">the PHP string source</a>',
+          '<a href="https://github.com/php/php-src/blob/master/ext/standard/tests/strings/str_pad_variation1.phpt">a PHP str_pad test</a>'
         ],
-        origin_template: ''
+        origin_template: '<a href="http://php.net/manual/en/function.[function].php">[human]\'s [function]</a>',
+        alias: [
+          '/categories/',
+          '/categories/array/',
+          '/categories/bc/',
+          '/categories/ctype/',
+          '/categories/datetime/',
+          '/categories/exec/',
+          '/categories/filesystem/',
+          '/categories/funchand/',
+          '/categories/i18n/',
+          '/categories/index/',
+          '/categories/info/',
+          '/categories/json/',
+          '/categories/math/',
+          '/categories/misc/',
+          '/categories/net/',
+          '/categories/network/',
+          '/categories/pcre/',
+          '/categories/strings/',
+          '/categories/url/',
+          '/categories/var/',
+          '/categories/xdiff/',
+          '/categories/xml/',
+          '/functions/index/',
+          '/functions/',
+          '/packages/',
+          '/packages/index/'
+        ]
       },
       python: {
+        order: 3,
         human: 'Python',
         inspiration_urls: [
-          '',
-          ''
+          '<a href="https://docs.python.org/3/library/string.html">the Python 3 standard library string page</a>'
         ],
-        origin_template: ''
+        origin_template: '<a href="https://docs.python.org/3/library/[category].html#[category].[function]">[human]\'s [category].[function]</a>'
       },
       ruby: {
+        order: 4,
         human: 'Ruby',
         inspiration_urls: [
-          '',
-          ''
+          '<a href="http://ruby-doc.org/core-2.2.2/Math.html">the Ruby core documentation</a>'
         ],
-        origin_template: ''
+        origin_template: '<a href="http://ruby-doc.org/core-2.2.2/[category].html#method-c-[function]">[human]\'s [category].[function]</a>'
       }
     }
 
-    var langTitle = ''
-    langTitle += languageMap[params.language].human
-    // langTitle += ' in JavaScript'
-
     if (!this._injectwebBuffer[langIndexPath]) {
-      this._injectwebBuffer[langIndexPath] = `---
-type: language
-layout: language
-language: ${params.language}
-title: ${langTitle}
----`
-    }
+      var langTitle = ''
+      langTitle += langDefaults[params.language].human
 
-    var catTitle = ''
-    catTitle += languageMap[params.language].human + '\'s '
-    catTitle += params.category
-    if (params.category === 'php') {
-      catTitle += 'extension '
-    } else {
-      catTitle += 'module '
+      var langData = Object.assign({}, langDefaults[params.language], {
+        type: 'language',
+        layout: 'language',
+        language: params.language,
+        title: langTitle
+      })
+      this._injectwebBuffer[langIndexPath] = '---' + '\n' + YAML.safeDump(langData).trim() + '\n' + '---' + '\n'
     }
-    catTitle += ' in JavaScript'
 
     if (!this._injectwebBuffer[catIndexPath]) {
-      this._injectwebBuffer[catIndexPath] = `---
-type: category
-layout: category
-language: ${params.language}
-category: ${params.category}
-title: ${catTitle}
----`
+      var catTitle = ''
+      catTitle += langDefaults[params.language].human + '\'s '
+      catTitle += params.category + ' '
+      if (params.category === 'php') {
+        catTitle += 'extension '
+      } else {
+        catTitle += 'module '
+      }
+      catTitle += ' in JavaScript'
+
+      var catData = Object.assign({}, {}, {
+        type: 'category',
+        layout: 'category',
+        language: params.language,
+        category: params.category,
+        title: catTitle
+      })
+      this._injectwebBuffer[catIndexPath] = '---' + '\n' + YAML.safeDump(catData).trim() + '\n' + '---' + '\n'
     }
 
     var functionTitle = ''
-    functionTitle += languageMap[params.language].human + '\'s '
+    functionTitle += langDefaults[params.language].human + '\'s '
     if (params.language !== 'php') {
       functionTitle += params.category + '.'
     }
     functionTitle += params.func_name
     functionTitle += ' in JavaScript'
 
-    var data = {
+    var funcData = {
       warning: 'This file is auto generated by `npm run web:inject`, do not edit by hand',
       examples: (params.headKeys.example || []).map(function (lines, i) {
         return lines.join('\n')
@@ -238,16 +273,10 @@ title: ${catTitle}
     }
 
     if (params.language === 'php') {
-      data.alias.push('/functions/' + params.func_name + '/')
+      funcData.alias.push('/functions/' + params.func_name + '/')
     }
 
-    try {
-      var yml = YAML.safeDump(data).trim()
-    } catch (e) {
-      console.log(data)
-      throw new Error('Unable to form valid YAML of above data. ' + e)
-    }
-    var buf = '---' + '\n' + yml + '\n' + '---' + '\n'
+    var buf = '---' + '\n' + YAML.safeDump(funcData).trim() + '\n' + '---' + '\n'
 
     buf += `{% codeblock lang:javascript %}${params.code}{% endcodeblock %}`
 
