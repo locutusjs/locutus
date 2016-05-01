@@ -127,7 +127,7 @@ class Util {
       c: {
         order: 1,
         human: 'C',
-        packageType: 'include',
+        packageType: 'header file',
         inspiration_urls: [
           '<a href="http://en.cppreference.com/w/c/numeric/math">the C math.h documentation</a>',
           '<a href="https://sourceware.org/git/?p=glibc.git;a=tree;f=math;hb=HEAD">the C math.h source</a>'

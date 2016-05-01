@@ -11,6 +11,7 @@ nav:
     older: 'Older'
     newer: 'Newer'
 widget:
+    locutus_profile: 'about locutus'
     recents: 'recent posts'
     archives: 'archives'
     categories: 'categories'

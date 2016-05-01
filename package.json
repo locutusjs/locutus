@@ -79,7 +79,8 @@
     "website:deploy": "npm run website:inject && cd website && npm run build && website/_scripts/deploy.sh",
     "website:inject": "rimraf website/source/{c,golang,php,python,ruby} && babel-node src/_util/cli.js injectweb",
     "website:install": "cd website && npm install",
-    "website:start": "cd website && hexo server"
+    "website:start": "cd website && hexo server",
+    "website:clean": "cd website && hexo clean"
   },
   "bin": {
     "babel-node src/_util/cli.js": "src/_util/cli.js"
