@@ -10,7 +10,7 @@ __file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
 __base="$(basename ${__file} .sh)"
 __webroot="$(cd "$(dirname "${__dir}")" && pwd)"
 
-ghpages_repo=${GHPAGES_REPO:-"kvz/phpjs"}
+ghpages_repo=${GHPAGES_REPO:-"kvz/locutus"}
 ghpages_branch=${GHPAGES_BRANCH:-"gh-pages"}
 ghpages_url=${GHPAGES_URL:-"git@github.com:${ghpages_repo}.git"}
 
@@ -26,7 +26,7 @@ rsync \
   --no-group \
   --no-motd \
   --no-owner \
-"${__webroot}/_site/" /tmp/deploy-${ghpages_repo} > /dev/null
+"${__webroot}/public/" /tmp/deploy-${ghpages_repo} > /dev/null
 
 echo 'This branch is just a deploy target. Do not edit. You changes will be lost.' \
   |tee /tmp/deploy-${ghpages_repo}/README.md

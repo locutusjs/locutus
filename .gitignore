@@ -1,5 +1,5 @@
 tools/_temp/*
-build/
+dist/
 nbproject
 .project
 .gitup.dat
@@ -18,3 +18,7 @@ website/assets/bower/
 website/assets/build/
 website/vendor/cache/
 website/.jekyll-metadata
+scripts/main.js
+scripts/split-*.js
+scripts/main.js.map
+website/public

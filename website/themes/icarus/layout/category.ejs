@@ -1,0 +1,28 @@
+<% var curLang = '' %>
+<% site.pages.find({ type: 'language', language: page.language }).each(function (lang) { %>
+  <% curLang = lang %>
+<% }) %>
+
+<article class="article article-type-<%= page.layout %>" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title"><%= page.title %></h1>
+    </header>
+
+    <div class="article-entry">
+      <ul>
+        <% site.pages.find({ language: page.language, category: page.category, type: 'function' }).each(function (func) { %>
+          <li><a href="<%- url_for(func.path).replace('index.html', '') %>"><%- func.function %></a></li>
+        <% }) %>
+      </ul>
+
+      <hr />
+      <%- partial('locutus/add_more', {curLang: curLang}) %>
+
+      <hr />
+      <p>
+        <a href="/<%= page.language %>/">&laquo; More <%= curLang.human %> functions</a>
+      </p>
+    </div>
+  </div>
+</article>
