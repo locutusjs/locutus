@@ -25,7 +25,7 @@ I certainly hope you are not using this project like so:
 
 as that is asking for BC breakage as well as impolite towards GitHub, but if you are, you should change your links to
 
-<https://raw.githubusercontent.com/kvz/phpjs/v1.3.2/functions/strings/sprintf.js>
+<https://raw.githubusercontent.com/kvz/locutus/v1.3.2/functions/strings/sprintf.js>
 
 until you can figure out how to vendor in that function and host it yourself.
 

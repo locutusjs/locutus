@@ -89,4 +89,4 @@ Released: Not yet
 
 Released: April 4, 2016
 
-- [x] Start using a CHANGELOG https://github.com/kvz/phpjs/releases/tag/v1.3.2
+- [x] Start using a CHANGELOG https://github.com/kvz/locutus/releases/tag/v1.3.2
