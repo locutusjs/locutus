@@ -22,3 +22,4 @@ scripts/main.js
 scripts/split-*.js
 scripts/main.js.map
 website/public
+website/db.json
