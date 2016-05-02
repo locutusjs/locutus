@@ -1,0 +1,25 @@
+<div class="widget-wrap widget-wrap-locutus_profile widget-list">
+  <!-- <h3 class="widget-title"><%= __('widget.locutus_profile') %></h3> -->
+  <div class="widget">
+
+    <% var profile = theme.customize.profile; %>
+    <img class="avatar" src="<%= ( profile.gravatar ? gravatar(profile.gravatar, 128) : url_for(profile.avatar)) %>" />
+    <br />
+
+    <p class="mission">
+      <%= config.description %>
+    </p>
+
+
+    <hr />
+
+    <a href="https://twitter.com/loctutus_io" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @loctutus_io</a>
+    <br />
+    <iframe src="http://ghbtns.com/github-btn.html?user=kvz&repo=loctutus&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
+    <br />
+    <a href="https://travis-ci.org/kvz/loctutus"><img src="https://travis-ci.org/kvz/loctutus.svg" alt="Build Status"></a>
+    <br />
+
+
+  </div>
+</div>

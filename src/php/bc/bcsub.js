@@ -4,7 +4,7 @@ module.exports = function bcsub (leftOperand, rightOperand, scale) {
   //   example 1: bcsub(1, 2)
   //   returns 1: '-1'
 
-  var _bc = require('../_locutus_shared/_locutus_shared_bc')
+  var _bc = require('../_helpers/_bc')
   var libbcmath = _bc()
 
   var first, second, result

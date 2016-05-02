@@ -58,7 +58,6 @@
     "browser:bundle": "browserify test/browser/app.js --outfile test/browser/bundle.js",
     "browser:watch": "budo test/browser/app.js --live --serve test/browser/bundle.js",
     "build:dist": "babel src --out-dir dist --source-maps",
-    "prepublish": "build:dist",
     "build:indices": "babel-node src/_util/cli.js reindex",
     "build:tests:noskip": "rimraf test/languages && babel-node src/_util/cli.js writetests --noskip",
     "build:tests": "rimraf test/languages && babel-node src/_util/cli.js writetests",
@@ -76,10 +75,12 @@
     "test:module": "babel-node test/module/module.js",
     "test:util": "mocha --compilers js:babel-register --reporter spec test/util/",
     "test": "npm-run-all test:*",
-    "website:deploy": "npm run website:inject && cd website && npm run build && npm run deploy",
-    "website:inject": "rimraf website/_functions/* && babel-node src/_util/cli.js injectweb",
+    "website:deploy": "npm run website:inject && cd website && npm run build && website/_scripts/deploy.sh",
+    "website:inject": "rimraf website/source/{c,golang,php,python,ruby} && babel-node src/_util/cli.js injectweb",
     "website:install": "cd website && npm install",
-    "website:start": "cd website && npm run start"
+    "website:start": "cd website && hexo server",
+    "website:build": "cd website && hexo generate",
+    "website:clean": "cd website && hexo clean"
   },
   "bin": {
     "babel-node src/_util/cli.js": "src/_util/cli.js"

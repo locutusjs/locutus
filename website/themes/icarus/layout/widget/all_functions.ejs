@@ -1,0 +1,21 @@
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title"><%= __('widget.all_functions') %></h3>
+    <div class="widget">
+      <ul>
+      <% site.pages.find({ type: 'language' }).sort('order').each(function (lang) { %>
+        <li><a href="<%- url_for(lang.path).replace('index.html', '') %>">
+          <%- lang.human %>
+          (<%- site.pages.find({ language: lang.language, type: 'function' }).length %>)
+        </a></li>
+        <% site.pages.find({ language: lang.language, type: 'category' }).each(function (cat) { %>
+        <ul>
+          <li><a href="<%- url_for(cat.path).replace('index.html', '') %>">
+            <%- cat.category %>
+            (<%- site.pages.find({ language: lang.language, type: 'function', category: cat.category }).length %>)
+          </a></li>
+        </ul>
+        <% }) %>
+      <% }) %>
+      </ul>
+    </div>
+</div>

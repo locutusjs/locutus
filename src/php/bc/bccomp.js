@@ -4,7 +4,7 @@ module.exports = function bccomp (leftOperand, rightOperand, scale) {
   //   example 1: bccomp(1, 2)
   //   returns 1: -1
 
-  var bc = require('../_locutus_shared/_locutus_shared_bc')
+  var bc = require('../_helpers/_bc')
   var libbcmath = bc()
 
   // bc_num

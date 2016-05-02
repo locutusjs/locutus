@@ -1,0 +1,148 @@
+<% var curLang = '' %>
+<% site.pages.find({ type: 'language', language: page.language }).each(function (lang) { %>
+  <% curLang = lang %>
+<% }) %>
+
+<article class="article article-type-<%= page.layout %>" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title"><%= page.title %></h1>
+    </header>
+
+    <div class="article-entry">
+      <p>
+        Here’s what our current JavaScript equivalent to
+        <%-
+          curLang.origin_template
+            .replace(/\[human\]/g, curLang.human)
+            .replace(/\[category\]/g, page.category)
+            .replace(/\[function\]/g, page.function)
+        %>
+
+        <%= curLang.human %>'s
+
+        <%= page.function %>
+        looks like.
+      </p>
+
+      <!-- Code -->
+      <%- page.content %>
+
+      [
+      <a href="https://github.com/kvz/locutus/blob/master/functions/<%= page.category %>/<%= page.function %>.js">View on GitHub</a>
+      |
+      <a href="https://github.com/kvz/locutus/edit/master/functions/<%= page.category %>/<%= page.function %>.js">Edit on GitHub</a>
+      |
+      <a href="https://raw.githubusercontent.com/kvz/locutus/master/functions/<%= page.category %>/<%= page.function %>.js">Source on GitHub</a>
+      ]
+
+      <div class="clearfix"></div>
+
+      <h2>How to use</h2>
+      <p>
+        You you can install via <code>npm install --save --save-exact locutus</code> and
+        require it via <code>require('locutus/<%= page.language %>/<%= page.category %>/<%= page.function %>')</code>.
+        You could also require the <code><%= page.category %></code> module in full
+        so that you could access <code><%= page.category %>.<%= page.function %></code> instead.
+      </p>
+      <p>
+        If you intend to target the browser, you can then use a module bundler such as
+        <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>,
+        <a href="http://webpack.github.io/" target="_blank" rel="external">webpack</a> or
+        <a href="http://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+      </p>
+
+      <h2>ES5/ES6</h2>
+      <p>
+        <% if (page.estarget == 'es2015') { %>
+          Even though the function you see here is written for ES6, we transpile all functions
+          down to ES5 before we publish to npm, meaning you don't have to transpile yourself
+          when you require Locutus that way.
+        <% } else if (page.estarget === 'es5') { %>
+          This function targets ES5, but as of Locutus 2.0.0 we also support
+          ES6 functions. Locutus transpiles to ES5 before publishing to npm.
+        <% } else { %>
+          This function has an unrecognized estarget: '<%= page.estarget %>'. Someone
+          please investigate as this should not happen.
+        <% } %>
+      </p>
+
+      <% if (page.language === 'php' && page.category === 'array') { %>
+        <h2>PHP arrays and JavaScript</h2>
+        <p>
+          Please note that Locutus uses JavaScript objects as substitutes for PHP arrays,
+          they are the closest we can get to this hashtable-like data structure without
+          rolling our own. While many JavaScript implementations preserve the order of object properties, the
+          <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-8.6">ECMAScript Language Specification</a>
+          explicitly states that:
+        </p>
+
+        <blockquote>The mechanics and order of enumerating the properties is not specified.</blockquote>
+
+        <p>
+          So don't use this for anything serious if you rely on the order to be consistent accross platforms.
+        </p>
+      <% } %>
+
+      <h2>A community effort</h2>
+      <p>
+        Locutus offers community built functions and goes by the
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">McDonald’s Theory</a>.
+        We’ll put online functions that aren't perfect, in the hopes to spark better contributions.
+        Do you have one? You can directly edit this file on GitHub, this will create a Pull Request that
+        the core team can review, and merge into our codebase.
+      </p>
+      <p>
+        This way of working also means that we don't offer any
+        production guarantees, and recommend to use Locutus inspiration
+        and learning purposes only.
+      </p>
+      <% if (page.notes.length > 0) { %>
+        <h2>Notes</h2>
+        <ul>
+        <% page.notes.forEach(function(note) { %>
+          <li><%- markdown(note) %></li>
+        <% }) %>
+        </ul>
+      <% } %>
+
+      <% if (page.dependencies.length > 0) { %><code><%= page.category %></code>
+        <h2>Dependencies</h2>
+
+        <ul>
+        <% page.dependencies.forEach(function(dependency) { %>
+          <li><a href="/functions/<%= dependency %>"><%= dependency %></a></li>
+        <% }) %>
+        </ul>
+      <% } %>
+
+      <% if (page.examples.length > 0 ) { %>
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        <%
+        var cnt = 0;
+        page.examples.forEach(function(example) {
+          cnt++
+          var ret = page.returns[(cnt - 1)]
+          %>
+          <tr><td><%= cnt %></td><td><code><%= example %></code></td><td><code><%= ret %></code></td></tr>
+        <% }) %>
+        </table>
+      <% } %>
+
+      <hr />
+      <%- partial('locutus/add_more', {curLang: curLang}) %>
+
+      <hr />
+      <p>
+        <a href="/<%= page.language %>/<%= page.category %>/">&laquo; More <%= curLang.human %> <%= page.category %> functions</a>
+      </p>
+    </div>
+  </div>
+</article>

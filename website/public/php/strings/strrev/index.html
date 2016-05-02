@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Categoria: strings | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP's strrev in JavaScript">
+<meta property="og:url" content="http://locutusjs.io/php/strings/strrev/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:updated_time" content="2016-05-01T21:22:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP's strrev in JavaScript">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/locutus.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <nav id="main-nav">
+                
+                  <a class="main-nav-link" href="/archives">Blog</a>
+                
+                  <a class="main-nav-link" href="/authors">Authors</a>
+                
+
+                
+                  <a class="main-nav-link" href="/c">C</a>
+                
+                  <a class="main-nav-link" href="/golang">Go</a>
+                
+                  <a class="main-nav-link" href="/python">Python</a>
+                
+                  <a class="main-nav-link" href="/ruby">Ruby</a>
+                
+                  <a class="main-nav-link" href="/php">PHP</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Entradas',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categorias',
+            TAGS: 'Etiquetas',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/archives">Blog</a></td>
+                
+                    <td><a class="main-nav-link" href="/authors">Authors</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">PHP&#39;s strrev in JavaScript</h1>
+    </header>
+
+    <div class="article-entry">
+      <p>
+        Here’s what our current JavaScript equivalent to
+        <a href="http://php.net/manual/en/function.strrev.php">PHP's strrev</a>
+
+        PHP's
+
+        strrev
+        looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">strrev</span> (<span class="params">string</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//       discuss at: http://locutusjs.io/php/strrev/</span></span><br><span class="line">  <span class="comment">//      original by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">//      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)</span></span><br><span class="line">  <span class="comment">// reimplemented by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//        example 1: strrev('Kevin van Zonneveld')</span></span><br><span class="line">  <span class="comment">//        returns 1: 'dlevennoZ nav niveK'</span></span><br><span class="line">  <span class="comment">//        example 2: strrev('a\u0301haB')</span></span><br><span class="line">  <span class="comment">//        returns 2: 'Baha\u0301' // combining</span></span><br><span class="line">  <span class="comment">//        example 3: strrev('A\uD87E\uDC04Z')</span></span><br><span class="line">  <span class="comment">//        returns 3: 'Z\uD87E\uDC04A' // surrogates</span></span><br><span class="line">  <span class="comment">//             test: 'skip-3'</span></span><br><span class="line"></span><br><span class="line">  string = string + <span class="string">''</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Performance will be enhanced with the next two lines of code commented</span></span><br><span class="line">  <span class="comment">// out if you don't care about combining characters</span></span><br><span class="line">  <span class="comment">// Keep Unicode combining characters together with the character preceding</span></span><br><span class="line">  <span class="comment">// them and which they are modifying (as in PHP 6)</span></span><br><span class="line">  <span class="comment">// See http://unicode.org/reports/tr44/#Property_Table (Me+Mn)</span></span><br><span class="line">  <span class="comment">// We also add the low surrogate range at the beginning here so it will be</span></span><br><span class="line">  <span class="comment">// maintained with its preceding high surrogate</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> chars = [</span><br><span class="line">    <span class="string">'\uDC00-\uDFFF'</span>,</span><br><span class="line">    <span class="string">'\u0300-\u036F'</span>,</span><br><span class="line">    <span class="string">'\u0483-\u0489'</span>,</span><br><span class="line">    <span class="string">'\u0591-\u05BD'</span>,</span><br><span class="line">    <span class="string">'\u05BF'</span>,</span><br><span class="line">    <span class="string">'\u05C1'</span>,</span><br><span class="line">    <span class="string">'\u05C2'</span>,</span><br><span class="line">    <span class="string">'\u05C4'</span>,</span><br><span class="line">    <span class="string">'\u05C5'</span>,</span><br><span class="line">    <span class="string">'\u05C7'</span>,</span><br><span class="line">    <span class="string">'\u0610-\u061A'</span>,</span><br><span class="line">    <span class="string">'\u064B-\u065E'</span>,</span><br><span class="line">    <span class="string">'\u0670'</span>,</span><br><span class="line">    <span class="string">'\u06D6-\u06DC'</span>,</span><br><span class="line">    <span class="string">'\u06DE-\u06E4'</span>,</span><br><span class="line">    <span class="string">'\u06E7\u06E8'</span>,</span><br><span class="line">    <span class="string">'\u06EA-\u06ED'</span>,</span><br><span class="line">    <span class="string">'\u0711'</span>,</span><br><span class="line">    <span class="string">'\u0730-\u074A'</span>,</span><br><span class="line">    <span class="string">'\u07A6-\u07B0'</span>,</span><br><span class="line">    <span class="string">'\u07EB-\u07F3'</span>,</span><br><span class="line">    <span class="string">'\u0901-\u0903'</span>,</span><br><span class="line">    <span class="string">'\u093C'</span>,</span><br><span class="line">    <span class="string">'\u093E-\u094D'</span>,</span><br><span class="line">    <span class="string">'\u0951-\u0954'</span>,</span><br><span class="line">    <span class="string">'\u0962'</span>,</span><br><span class="line">    <span class="string">'\u0963'</span>,</span><br><span class="line">    <span class="string">'\u0981-\u0983'</span>,</span><br><span class="line">    <span class="string">'\u09BC'</span>,</span><br><span class="line">    <span class="string">'\u09BE-\u09C4'</span>,</span><br><span class="line">    <span class="string">'\u09C7'</span>,</span><br><span class="line">    <span class="string">'\u09C8'</span>,</span><br><span class="line">    <span class="string">'\u09CB-\u09CD'</span>,</span><br><span class="line">    <span class="string">'\u09D7'</span>,</span><br><span class="line">    <span class="string">'\u09E2'</span>,</span><br><span class="line">    <span class="string">'\u09E3'</span>,</span><br><span class="line">    <span class="string">'\u0A01-\u0A03'</span>,</span><br><span class="line">    <span class="string">'\u0A3C'</span>,</span><br><span class="line">    <span class="string">'\u0A3E-\u0A42'</span>,</span><br><span class="line">    <span class="string">'\u0A47'</span>,</span><br><span class="line">    <span class="string">'\u0A48'</span>,</span><br><span class="line">    <span class="string">'\u0A4B-\u0A4D'</span>,</span><br><span class="line">    <span class="string">'\u0A51'</span>,</span><br><span class="line">    <span class="string">'\u0A70'</span>,</span><br><span class="line">    <span class="string">'\u0A71'</span>,</span><br><span class="line">    <span class="string">'\u0A75'</span>,</span><br><span class="line">    <span class="string">'\u0A81-\u0A83'</span>,</span><br><span class="line">    <span class="string">'\u0ABC'</span>,</span><br><span class="line">    <span class="string">'\u0ABE-\u0AC5'</span>,</span><br><span class="line">    <span class="string">'\u0AC7-\u0AC9'</span>,</span><br><span class="line">    <span class="string">'\u0ACB-\u0ACD'</span>,</span><br><span class="line">    <span class="string">'\u0AE2'</span>,</span><br><span class="line">    <span class="string">'\u0AE3'</span>,</span><br><span class="line">    <span class="string">'\u0B01-\u0B03'</span>,</span><br><span class="line">    <span class="string">'\u0B3C'</span>,</span><br><span class="line">    <span class="string">'\u0B3E-\u0B44'</span>,</span><br><span class="line">    <span class="string">'\u0B47'</span>,</span><br><span class="line">    <span class="string">'\u0B48'</span>,</span><br><span class="line">    <span class="string">'\u0B4B-\u0B4D'</span>,</span><br><span class="line">    <span class="string">'\u0B56'</span>,</span><br><span class="line">    <span class="string">'\u0B57'</span>,</span><br><span class="line">    <span class="string">'\u0B62'</span>,</span><br><span class="line">    <span class="string">'\u0B63'</span>,</span><br><span class="line">    <span class="string">'\u0B82'</span>,</span><br><span class="line">    <span class="string">'\u0BBE-\u0BC2'</span>,</span><br><span class="line">    <span class="string">'\u0BC6-\u0BC8'</span>,</span><br><span class="line">    <span class="string">'\u0BCA-\u0BCD'</span>,</span><br><span class="line">    <span class="string">'\u0BD7'</span>,</span><br><span class="line">    <span class="string">'\u0C01-\u0C03'</span>,</span><br><span class="line">    <span class="string">'\u0C3E-\u0C44'</span>,</span><br><span class="line">    <span class="string">'\u0C46-\u0C48'</span>,</span><br><span class="line">    <span class="string">'\u0C4A-\u0C4D'</span>,</span><br><span class="line">    <span class="string">'\u0C55'</span>,</span><br><span class="line">    <span class="string">'\u0C56'</span>,</span><br><span class="line">    <span class="string">'\u0C62'</span>,</span><br><span class="line">    <span class="string">'\u0C63'</span>,</span><br><span class="line">    <span class="string">'\u0C82'</span>,</span><br><span class="line">    <span class="string">'\u0C83'</span>,</span><br><span class="line">    <span class="string">'\u0CBC'</span>,</span><br><span class="line">    <span class="string">'\u0CBE-\u0CC4'</span>,</span><br><span class="line">    <span class="string">'\u0CC6-\u0CC8'</span>,</span><br><span class="line">    <span class="string">'\u0CCA-\u0CCD'</span>,</span><br><span class="line">    <span class="string">'\u0CD5'</span>,</span><br><span class="line">    <span class="string">'\u0CD6'</span>,</span><br><span class="line">    <span class="string">'\u0CE2'</span>,</span><br><span class="line">    <span class="string">'\u0CE3'</span>,</span><br><span class="line">    <span class="string">'\u0D02'</span>,</span><br><span class="line">    <span class="string">'\u0D03'</span>,</span><br><span class="line">    <span class="string">'\u0D3E-\u0D44'</span>,</span><br><span class="line">    <span class="string">'\u0D46-\u0D48'</span>,</span><br><span class="line">    <span class="string">'\u0D4A-\u0D4D'</span>,</span><br><span class="line">    <span class="string">'\u0D57'</span>,</span><br><span class="line">    <span class="string">'\u0D62'</span>,</span><br><span class="line">    <span class="string">'\u0D63'</span>,</span><br><span class="line">    <span class="string">'\u0D82'</span>,</span><br><span class="line">    <span class="string">'\u0D83'</span>,</span><br><span class="line">    <span class="string">'\u0DCA'</span>,</span><br><span class="line">    <span class="string">'\u0DCF-\u0DD4'</span>,</span><br><span class="line">    <span class="string">'\u0DD6'</span>,</span><br><span class="line">    <span class="string">'\u0DD8-\u0DDF'</span>,</span><br><span class="line">    <span class="string">'\u0DF2'</span>,</span><br><span class="line">    <span class="string">'\u0DF3'</span>,</span><br><span class="line">    <span class="string">'\u0E31'</span>,</span><br><span class="line">    <span class="string">'\u0E34-\u0E3A'</span>,</span><br><span class="line">    <span class="string">'\u0E47-\u0E4E'</span>,</span><br><span class="line">    <span class="string">'\u0EB1'</span>,</span><br><span class="line">    <span class="string">'\u0EB4-\u0EB9'</span>,</span><br><span class="line">    <span class="string">'\u0EBB'</span>,</span><br><span class="line">    <span class="string">'\u0EBC'</span>,</span><br><span class="line">    <span class="string">'\u0EC8-\u0ECD'</span>,</span><br><span class="line">    <span class="string">'\u0F18'</span>,</span><br><span class="line">    <span class="string">'\u0F19'</span>,</span><br><span class="line">    <span class="string">'\u0F35'</span>,</span><br><span class="line">    <span class="string">'\u0F37'</span>,</span><br><span class="line">    <span class="string">'\u0F39'</span>,</span><br><span class="line">    <span class="string">'\u0F3E'</span>,</span><br><span class="line">    <span class="string">'\u0F3F'</span>,</span><br><span class="line">    <span class="string">'\u0F71-\u0F84'</span>,</span><br><span class="line">    <span class="string">'\u0F86'</span>,</span><br><span class="line">    <span class="string">'\u0F87'</span>,</span><br><span class="line">    <span class="string">'\u0F90-\u0F97'</span>,</span><br><span class="line">    <span class="string">'\u0F99-\u0FBC'</span>,</span><br><span class="line">    <span class="string">'\u0FC6'</span>,</span><br><span class="line">    <span class="string">'\u102B-\u103E'</span>,</span><br><span class="line">    <span class="string">'\u1056-\u1059'</span>,</span><br><span class="line">    <span class="string">'\u105E-\u1060'</span>,</span><br><span class="line">    <span class="string">'\u1062-\u1064'</span>,</span><br><span class="line">    <span class="string">'\u1067-\u106D'</span>,</span><br><span class="line">    <span class="string">'\u1071-\u1074'</span>,</span><br><span class="line">    <span class="string">'\u1082-\u108D'</span>,</span><br><span class="line">    <span class="string">'\u108F'</span>,</span><br><span class="line">    <span class="string">'\u135F'</span>,</span><br><span class="line">    <span class="string">'\u1712-\u1714'</span>,</span><br><span class="line">    <span class="string">'\u1732-\u1734'</span>,</span><br><span class="line">    <span class="string">'\u1752'</span>,</span><br><span class="line">    <span class="string">'\u1753'</span>,</span><br><span class="line">    <span class="string">'\u1772'</span>,</span><br><span class="line">    <span class="string">'\u1773'</span>,</span><br><span class="line">    <span class="string">'\u17B6-\u17D3'</span>,</span><br><span class="line">    <span class="string">'\u17DD'</span>,</span><br><span class="line">    <span class="string">'\u180B-\u180D'</span>,</span><br><span class="line">    <span class="string">'\u18A9'</span>,</span><br><span class="line">    <span class="string">'\u1920-\u192B'</span>,</span><br><span class="line">    <span class="string">'\u1930-\u193B'</span>,</span><br><span class="line">    <span class="string">'\u19B0-\u19C0'</span>,</span><br><span class="line">    <span class="string">'\u19C8'</span>,</span><br><span class="line">    <span class="string">'\u19C9'</span>,</span><br><span class="line">    <span class="string">'\u1A17-\u1A1B'</span>,</span><br><span class="line">    <span class="string">'\u1B00-\u1B04'</span>,</span><br><span class="line">    <span class="string">'\u1B34-\u1B44'</span>,</span><br><span class="line">    <span class="string">'\u1B6B-\u1B73'</span>,</span><br><span class="line">    <span class="string">'\u1B80-\u1B82'</span>,</span><br><span class="line">    <span class="string">'\u1BA1-\u1BAA'</span>,</span><br><span class="line">    <span class="string">'\u1C24-\u1C37'</span>,</span><br><span class="line">    <span class="string">'\u1DC0-\u1DE6'</span>,</span><br><span class="line">    <span class="string">'\u1DFE'</span>,</span><br><span class="line">    <span class="string">'\u1DFF'</span>,</span><br><span class="line">    <span class="string">'\u20D0-\u20F0'</span>,</span><br><span class="line">    <span class="string">'\u2DE0-\u2DFF'</span>,</span><br><span class="line">    <span class="string">'\u302A-\u302F'</span>,</span><br><span class="line">    <span class="string">'\u3099'</span>,</span><br><span class="line">    <span class="string">'\u309A'</span>,</span><br><span class="line">    <span class="string">'\uA66F-\uA672'</span>,</span><br><span class="line">    <span class="string">'\uA67C'</span>,</span><br><span class="line">    <span class="string">'\uA67D'</span>,</span><br><span class="line">    <span class="string">'\uA802'</span>,</span><br><span class="line">    <span class="string">'\uA806'</span>,</span><br><span class="line">    <span class="string">'\uA80B'</span>,</span><br><span class="line">    <span class="string">'\uA823-\uA827'</span>,</span><br><span class="line">    <span class="string">'\uA880'</span>,</span><br><span class="line">    <span class="string">'\uA881'</span>,</span><br><span class="line">    <span class="string">'\uA8B4-\uA8C4'</span>,</span><br><span class="line">    <span class="string">'\uA926-\uA92D'</span>,</span><br><span class="line">    <span class="string">'\uA947-\uA953'</span>,</span><br><span class="line">    <span class="string">'\uAA29-\uAA36'</span>,</span><br><span class="line">    <span class="string">'\uAA43'</span>,</span><br><span class="line">    <span class="string">'\uAA4C'</span>,</span><br><span class="line">    <span class="string">'\uAA4D'</span>,</span><br><span class="line">    <span class="string">'\uFB1E'</span>,</span><br><span class="line">    <span class="string">'\uFE00-\uFE0F'</span>,</span><br><span class="line">    <span class="string">'\uFE20-\uFE26'</span></span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> graphemeExtend = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'(.)(['</span> + chars.join(<span class="string">''</span>) + <span class="string">']+)'</span>, <span class="string">'g'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Temporarily reverse</span></span><br><span class="line">  string = string.replace(graphemeExtend, <span class="string">'$2$1'</span>)</span><br><span class="line">  <span class="keyword">return</span> string.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      [
+      <a href="https://github.com/kvz/locutus/blob/master/functions/strings/strrev.js">View on GitHub</a>
+      |
+      <a href="https://github.com/kvz/locutus/edit/master/functions/strings/strrev.js">Edit on GitHub</a>
+      |
+      <a href="https://raw.githubusercontent.com/kvz/locutus/master/functions/strings/strrev.js">Source on GitHub</a>
+      ]
+
+      <div class="clearfix"></div>
+
+      <h2>How to use</h2>
+      <p>
+        npm is the recommended installation method. It pairs nicely with a CommonJS
+        module bundler such as
+        <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>,
+        <a href="http://webpack.github.io/" target="_blank" rel="external">webpack</a> or
+        <a href="http://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+      </p>
+      <p>
+        You you can install via <code>npm install --save --save-exact locutus</code> and
+        require it like so:
+
+        <code>var strrev = require('locutus/php/strings/strrev')</code>
+        and start using <code>strrev</code>. You could also require the <code>strings</code> module
+        in full.
+      </p>
+
+      <h2>ES5/ES6</h2>
+      <p>
+        
+          This function targets ES5, but as of Locutus 2.0.0 we also support
+          ES6 functions. Locutus transpiles to ES5 before publishing to npm.
+        
+      </p>
+
+      
+
+      <h2>A community initiative</h2>
+      <p>
+        Locutus offers community built functions and goes by the
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">McDonald’s Theory</a>.
+        We’ll put online functions that aren't perfect, in the hopes to spark better contributions.
+        Do you have one? You can directly edit this file on GitHub, this will create a Pull Request that
+        the core team can review, and merge into our codebase.
+      </p>
+      <p>
+        This way of working also means that we don't offer any
+        production guarantees, and recommend to use Locutus inspiration
+        and learning purposes only.
+      </p>
+      
+
+      
+
+      
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>strrev(&#39;Kevin van Zonneveld&#39;)</code></td><td><code>&#39;dlevennoZ nav niveK&#39;</code></td></tr>
+        
+          <tr><td>2</td><td><code>strrev(&#39;a\u0301haB&#39;)</code></td><td><code>&#39;Baha\u0301&#39; // combining</code></td></tr>
+        
+          <tr><td>3</td><td><code>strrev(&#39;A\uD87E\uDC04Z&#39;)</code></td><td><code>&#39;Z\uD87E\uDC04A&#39; // surrogates</code></td></tr>
+        
+        </table>
+      
+
+      
+
+
+      <hr />
+      <p>
+        <a href="/php/strings/">&laquo; More PHP strings functions</a>
+      </p>
+
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">about locutus</h3>
+  <div class="widget">
+    About locutus
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget">
+    <div class="on-the-githubs" data-event-source="repos/kvz/phpjs">Loading...</div>
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (3)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strings/Index.html">
+            strings
+            (3)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (315)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (71)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (29)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-04-21T00:00:00.000Z" itemprop="datePublished">2016-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/breaking-bc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/jekyll/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
+                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/standard-coding-style/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://cdn.rawgit.com/feross/standard/master/sticker.svg)" alt="Standard Coding Style" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/standard-coding-style/" class="title">Standard Coding Style</a></p>
+                            <p class="item-date"><time datetime="2016-04-01T00:00:00.000Z" itemprop="datePublished">2016-04-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2013/05/coding-style/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://cdn.vnykmshr.com/images/articles/dev-manuals-node-js-code-and-style-guide/awesome-nodejs.png)" alt="Coding Style" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2013/05/coding-style/" class="title">Coding Style</a></p>
+                            <p class="item-date"><time datetime="2013-05-04T00:00:00.000Z" itemprop="datePublished">2013-05-04</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2016 Kevin van Zonneveld<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+<script src="/js/locutus.js"></script>
+
+    </div>
+</body>
+</html>

@@ -38,7 +38,13 @@ Released: Not yet
 
 Released: Not yet
 
-- [ ] Rename `_locutus_shared` to `_helpers`. Rename `_locutus_shared_bc` to `bc`
+- [ ] website: Add profile to sidebar
+- [ ] website: Add social buttons
+- [ ] website: Render authors server-side
+- [x] Rename `_locutus_shared` to `_helpers`. Rename `_locutus_shared_bc` to `_bc`
+- [x] website: Fix jumpy scrolling due to on the githubs
+- [x] website: DRY up add_more code
+- [x] website: About as homepage
 - [x] Transpile to ES5 before publishing to npm
 - [x] Add `estarget` option to all functions, set `ip2long` to `es2015`
 - [x] Change `fix(me)?` and `Todo` to `@todo`

@@ -25,10 +25,20 @@ class Util {
     this.allowSkip = (argv.indexOf('--noskip') === -1)
 
     this._reindexBuffer = {}
+    this._injectwebBuffer = {}
   }
 
   injectweb (cb) {
-    this._runFunctionOnAll(this._injectwebOne, cb)
+    var self = this
+    this._runFunctionOnAll(this._injectwebOne, function (err) {
+      if (err) {
+        return cb(err)
+      }
+      for (var indexHtml in self._injectwebBuffer) {
+        debug('writing: ' + indexHtml)
+        fs.writeFileSync(indexHtml, self._injectwebBuffer[indexHtml], 'utf-8')
+      }
+    })
   }
 
   reindex (cb) {
@@ -103,26 +113,141 @@ class Util {
       }
     })
 
-    var webfuncPath = [
+    var langPath = [
       this.__root,
-      '/website/_functions/',
-      params.language,
-      '/',
-      params.category,
-      '/',
-      params.func_name,
-      '.html'
+      '/website/source/',
+      params.language
     ].join('')
+    var langIndexPath = langPath + '/index.html'
+    var catPath = langPath + '/' + params.category
+    var catIndexPath = catPath + '/' + 'index.html'
+    var funcPath = catPath + '/' + params.func_name + '.html'
 
-    var title = ''
-    title += params.language + '\'s'
-    if (params.language !== 'php') {
-      title += params.category + '.'
+    var langDefaults = {
+      c: {
+        order: 1,
+        human: 'C',
+        packageType: 'header file',
+        inspiration_urls: [
+          '<a href="http://en.cppreference.com/w/c/numeric/math">the C math.h documentation</a>',
+          '<a href="https://sourceware.org/git/?p=glibc.git;a=tree;f=math;hb=HEAD">the C math.h source</a>'
+        ],
+        origin_template: '<a href="http://en.cppreference.com/w/c/numeric/[category]/[function]">[human]\'s [category].h\'s [function]</a>'
+      },
+      golang: {
+        order: 2,
+        human: 'Go',
+        packageType: 'package',
+        inspiration_urls: [
+          '<a href="https://golang.org/pkg/strings/">Go strings documentation</a>',
+          '<a href="https://golang.org/src/strings/strings.go">Go strings source</a>',
+          '<a href="https://golang.org/src/strings/example_test.go">Go strings examples source</a>',
+          '<a href=http://gophersjs.com"">GopherJS</a>'
+        ],
+        origin_template: '<a href="https://golang.org/pkg/[category]/#[function]">[human]\'s [category].[function]</a>'
+      },
+      php: {
+        order: 5,
+        human: 'PHP',
+        packageType: 'extension',
+        inspiration_urls: [
+          '<a href="http://php.net/manual/en/book.strings.php">the PHP string documentation</a>',
+          '<a href="https://github.com/php/php-src/blob/master/ext/standard/string.c#L5338">the PHP string source</a>',
+          '<a href="https://github.com/php/php-src/blob/master/ext/standard/tests/strings/str_pad_variation1.phpt">a PHP str_pad test</a>'
+        ],
+        origin_template: '<a href="http://php.net/manual/en/function.[function].php">[human]\'s [function]</a>',
+        alias: [
+          '/categories/',
+          '/categories/array/',
+          '/categories/bc/',
+          '/categories/ctype/',
+          '/categories/datetime/',
+          '/categories/exec/',
+          '/categories/filesystem/',
+          '/categories/funchand/',
+          '/categories/i18n/',
+          '/categories/index/',
+          '/categories/info/',
+          '/categories/json/',
+          '/categories/math/',
+          '/categories/misc/',
+          '/categories/net/',
+          '/categories/network/',
+          '/categories/pcre/',
+          '/categories/strings/',
+          '/categories/url/',
+          '/categories/var/',
+          '/categories/xdiff/',
+          '/categories/xml/',
+          '/functions/index/',
+          '/functions/',
+          '/packages/',
+          '/packages/index/'
+        ]
+      },
+      python: {
+        order: 3,
+        human: 'Python',
+        packageType: 'module',
+        inspiration_urls: [
+          '<a href="https://docs.python.org/3/library/string.html">the Python 3 standard library string page</a>'
+        ],
+        origin_template: '<a href="https://docs.python.org/3/library/[category].html#[category].[function]">[human]\'s [category].[function]</a>'
+      },
+      ruby: {
+        order: 4,
+        human: 'Ruby',
+        packageType: 'module',
+        inspiration_urls: [
+          '<a href="http://ruby-doc.org/core-2.2.2/Math.html">the Ruby core documentation</a>'
+        ],
+        origin_template: '<a href="http://ruby-doc.org/core-2.2.2/[category].html#method-c-[function]">[human]\'s [category].[function]</a>'
+      }
     }
-    title += params.func_name
-    title += ' in JavaScript'
 
-    var data = {
+    if (!this._injectwebBuffer[langIndexPath]) {
+      var langTitle = ''
+      langTitle += langDefaults[params.language].human + ' '
+      langTitle += langDefaults[params.language].packageType + 's '
+      langTitle += ' in JavaScript'
+
+      var langData = Object.assign({}, langDefaults[params.language], {
+        warning: 'This file is auto generated by `npm run web:inject`, do not edit by hand',
+        type: 'language',
+        layout: 'language',
+        language: params.language,
+        title: langTitle
+      })
+      this._injectwebBuffer[langIndexPath] = '---' + '\n' + YAML.safeDump(langData).trim() + '\n' + '---' + '\n'
+    }
+
+    if (!this._injectwebBuffer[catIndexPath]) {
+      var catTitle = ''
+      catTitle += langDefaults[params.language].human + '\'s '
+      catTitle += params.category + ' '
+      catTitle += langDefaults[params.language].packageType + ' '
+      catTitle += ' in JavaScript'
+
+      var catData = {
+        warning: 'This file is auto generated by `npm run web:inject`, do not edit by hand',
+        type: 'category',
+        layout: 'category',
+        language: params.language,
+        category: params.category,
+        title: catTitle
+      }
+      this._injectwebBuffer[catIndexPath] = '---' + '\n' + YAML.safeDump(catData).trim() + '\n' + '---' + '\n'
+    }
+
+    var functionTitle = ''
+    functionTitle += langDefaults[params.language].human + '\'s '
+    if (params.language !== 'php') {
+      functionTitle += params.category + '.'
+    }
+    functionTitle += params.func_name
+    functionTitle += ' in JavaScript'
+
+    var funcData = {
       warning: 'This file is auto generated by `npm run web:inject`, do not edit by hand',
       examples: (params.headKeys.example || []).map(function (lines, i) {
         return lines.join('\n')
@@ -138,13 +263,14 @@ class Util {
       notes: (params.headKeys.note || []).map(function (lines, i) {
         return lines.join('\n')
       }),
+      type: 'function',
       layout: 'function',
-      title: title,
+      title: functionTitle,
       function: params.func_name,
       category: params.category,
       language: params.language,
       permalink: params.language + '/' + params.category + '/' + params.func_name + '/',
-      redirect_from: [
+      alias: [
         '/functions/' + params.language + '/' + params.func_name + '/',
         '/functions/' + params.category + '/' + params.func_name + '/',
         '/' + params.language + '/' + params.func_name + '/'
@@ -152,24 +278,18 @@ class Util {
     }
 
     if (params.language === 'php') {
-      data.redirect_from.push('/functions/' + params.func_name + '/')
+      funcData.alias.push('/functions/' + params.func_name + '/')
     }
 
-    try {
-      var yml = YAML.safeDump(data).trim()
-    } catch (e) {
-      console.log(data)
-      throw new Error('Unable to form valid YAML of above data. ' + e)
-    }
-    var buf = '---' + '\n' + yml + '\n' + '---' + '\n'
+    var buf = '---' + '\n' + YAML.safeDump(funcData).trim() + '\n' + '---' + '\n'
 
-    buf += params.code
+    buf += `{% codeblock lang:javascript %}${params.code}{% endcodeblock %}`
 
-    mkdirp(path.dirname(webfuncPath), function (err) {
+    mkdirp(path.dirname(funcPath), function (err) {
       if (err) {
-        throw new Error('Could not mkdir  for ' + webfuncPath + '. ' + err)
+        throw new Error('Could not mkdir  for ' + funcPath + '. ' + err)
       }
-      fs.writeFile(webfuncPath, buf, 'utf-8', cb)
+      fs.writeFile(funcPath, buf, 'utf-8', cb)
     })
   }
 

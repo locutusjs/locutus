@@ -1,0 +1,23 @@
+<% var curLang = page %>
+
+<article class="article article-type-<%= curLang.layout %>" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title"><%= page.title %></h1>
+    </header>
+
+    <div class="article-entry">
+      <% site.pages.find({ language: page.language, type: 'category' }).each(function (cat) { %>
+        <strong><%- cat.category %></strong>
+        <ul>
+          <% site.pages.find({ language: cat.language, category: cat.category, type: 'function' }).each(function (func) { %>
+            <li><a href="<%- url_for(func.path).replace('index.html', '') %>"><%- func.function %></a></li>
+          <% }) %>
+        </ul>
+      <% }) %>
+
+      <hr />
+      <%- partial('locutus/add_more', {curLang: curLang}) %>
+    </div>
+  </div>
+</article>

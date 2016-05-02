@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Categoria: strings | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP's money_format in JavaScript">
+<meta property="og:url" content="http://locutusjs.io/php/strings/money_format/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:updated_time" content="2016-05-01T21:22:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP's money_format in JavaScript">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/locutus.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <nav id="main-nav">
+                
+                  <a class="main-nav-link" href="/archives">Blog</a>
+                
+                  <a class="main-nav-link" href="/authors">Authors</a>
+                
+
+                
+                  <a class="main-nav-link" href="/c">C</a>
+                
+                  <a class="main-nav-link" href="/golang">Go</a>
+                
+                  <a class="main-nav-link" href="/python">Python</a>
+                
+                  <a class="main-nav-link" href="/ruby">Ruby</a>
+                
+                  <a class="main-nav-link" href="/php">PHP</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Entradas',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categorias',
+            TAGS: 'Etiquetas',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/archives">Blog</a></td>
+                
+                    <td><a class="main-nav-link" href="/authors">Authors</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">PHP&#39;s money_format in JavaScript</h1>
+    </header>
+
+    <div class="article-entry">
+      <p>
+        Here’s what our current JavaScript equivalent to
+        <a href="http://php.net/manual/en/function.money_format.php">PHP's money_format</a>
+
+        PHP's
+
+        money_format
+        looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">money_format</span> (<span class="params">format, number</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></span><br><span class="line">  <span class="comment">//  discuss at: http://locutusjs.io/php/money_format/</span></span><br><span class="line">  <span class="comment">// original by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: daniel airton wermann (http://wermann.com.br)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//      note 1: This depends on setlocale having the appropriate</span></span><br><span class="line">  <span class="comment">//      note 1: locale (these examples use 'en_US')</span></span><br><span class="line">  <span class="comment">//   example 1: money_format('%i', 1234.56)</span></span><br><span class="line">  <span class="comment">//   returns 1: ' USD 1,234.56'</span></span><br><span class="line">  <span class="comment">//   example 2: money_format('%14#8.2n', 1234.5678)</span></span><br><span class="line">  <span class="comment">//   returns 2: ' $     1,234.57'</span></span><br><span class="line">  <span class="comment">//   example 3: money_format('%14#8.2n', -1234.5678)</span></span><br><span class="line">  <span class="comment">//   returns 3: '-$     1,234.57'</span></span><br><span class="line">  <span class="comment">//   example 4: money_format('%(14#8.2n', 1234.5678)</span></span><br><span class="line">  <span class="comment">//   returns 4: ' $     1,234.57 '</span></span><br><span class="line">  <span class="comment">//   example 5: money_format('%(14#8.2n', -1234.5678)</span></span><br><span class="line">  <span class="comment">//   returns 5: '($     1,234.57)'</span></span><br><span class="line">  <span class="comment">//   example 6: money_format('%=014#8.2n', 1234.5678)</span></span><br><span class="line">  <span class="comment">//   returns 6: ' $000001,234.57'</span></span><br><span class="line">  <span class="comment">//   example 7: money_format('%=014#8.2n', -1234.5678)</span></span><br><span class="line">  <span class="comment">//   returns 7: '-$000001,234.57'</span></span><br><span class="line">  <span class="comment">//   example 8: money_format('%=*14#8.2n', 1234.5678)</span></span><br><span class="line">  <span class="comment">//   returns 8: ' $*****1,234.57'</span></span><br><span class="line">  <span class="comment">//   example 9: money_format('%=*14#8.2n', -1234.5678)</span></span><br><span class="line">  <span class="comment">//   returns 9: '-$*****1,234.57'</span></span><br><span class="line">  <span class="comment">//  example 10: money_format('%=*^14#8.2n', 1234.5678)</span></span><br><span class="line">  <span class="comment">//  returns 10: '  $****1234.57'</span></span><br><span class="line">  <span class="comment">//  example 11: money_format('%=*^14#8.2n', -1234.5678)</span></span><br><span class="line">  <span class="comment">//  returns 11: ' -$****1234.57'</span></span><br><span class="line">  <span class="comment">//  example 12: money_format('%=*!14#8.2n', 1234.5678)</span></span><br><span class="line">  <span class="comment">//  returns 12: ' *****1,234.57'</span></span><br><span class="line">  <span class="comment">//  example 13: money_format('%=*!14#8.2n', -1234.5678)</span></span><br><span class="line">  <span class="comment">//  returns 13: '-*****1,234.57'</span></span><br><span class="line">  <span class="comment">//  example 14: money_format('%i', 3590)</span></span><br><span class="line">  <span class="comment">//  returns 14: ' USD 3,590.00'</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> setlocale = <span class="built_in">require</span>(<span class="string">'../strings/setlocale'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Per PHP behavior, there seems to be no extra padding</span></span><br><span class="line">  <span class="comment">// for sign when there is a positive number, though my</span></span><br><span class="line">  <span class="comment">// understanding of the description is that there should be padding;</span></span><br><span class="line">  <span class="comment">// need to revisit examples</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Helpful info at http://ftp.gnu.org/pub/pub/old-gnu/Manuals/glibc-2.2.3/html_chapter/libc_7.html</span></span><br><span class="line">  <span class="comment">// and http://publib.boulder.ibm.com/infocenter/zos/v1r10/index.jsp?topic=/com.ibm.zos.r10.bpxbd00/strfmp.htm</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> number !== <span class="string">'number'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 1: flags, 3: width, 5: left, 7: right, 8: conversion</span></span><br><span class="line">  <span class="keyword">var</span> regex = <span class="regexp">/%((=.|[+^(!-])*?)(\d*?)(#(\d+))?(\.(\d+))?([in%])/g</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Ensure the locale data we need is set up</span></span><br><span class="line">  setlocale(<span class="string">'LC_ALL'</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> $global = (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : GLOBAL)</span><br><span class="line">  $global.$locutus = $global.$locutus || &#123;&#125;</span><br><span class="line">  <span class="keyword">var</span> $locutus = $global.$locutus</span><br><span class="line">  $locutus.php = $locutus.php || &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> monetary = $locutus.php.locales[$locutus.php.localeCategories.LC_MONETARY].LC_MONETARY</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> doReplace = <span class="function"><span class="keyword">function</span> (<span class="params">n0, flags, n2, width, n4, left, n6, right, conversion</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> value = <span class="string">''</span></span><br><span class="line">    <span class="keyword">var</span> repl = <span class="string">''</span></span><br><span class="line">    <span class="keyword">if</span> (conversion === <span class="string">'%'</span>) &#123;</span><br><span class="line">      <span class="comment">// Percent does not seem to be allowed with intervening content</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">'%'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> fill = flags &amp;&amp; (<span class="regexp">/=./</span>).test(flags) ? flags.match(<span class="regexp">/=(.)/</span>)[<span class="number">1</span>] : <span class="string">' '</span> <span class="comment">// flag: =f (numeric fill)</span></span><br><span class="line">    <span class="comment">// flag: ! (suppress currency symbol)</span></span><br><span class="line">    <span class="keyword">var</span> showCurrSymbol = !flags || flags.indexOf(<span class="string">'!'</span>) === <span class="number">-1</span></span><br><span class="line">    <span class="comment">// field width: w (minimum field width)</span></span><br><span class="line">    width = <span class="built_in">parseInt</span>(width, <span class="number">10</span>) || <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> neg = number &lt; <span class="number">0</span></span><br><span class="line">    <span class="comment">// Convert to string</span></span><br><span class="line">    number = number + <span class="string">''</span></span><br><span class="line">    <span class="comment">// We don't want negative symbol represented here yet</span></span><br><span class="line">    number = neg ? number.slice(<span class="number">1</span>) : number</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> decpos = number.indexOf(<span class="string">'.'</span>)</span><br><span class="line">    <span class="comment">// Get integer portion</span></span><br><span class="line">    <span class="keyword">var</span> integer = decpos !== <span class="number">-1</span> ? number.slice(<span class="number">0</span>, decpos) : number</span><br><span class="line">    <span class="comment">// Get decimal portion</span></span><br><span class="line">    <span class="keyword">var</span> fraction = decpos !== <span class="number">-1</span> ? number.slice(decpos + <span class="number">1</span>) : <span class="string">''</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> _strSplice = <span class="function"><span class="keyword">function</span> (<span class="params">integerStr, idx, thouSep</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> integerArr = integerStr.split(<span class="string">''</span>)</span><br><span class="line">      integerArr.splice(idx, <span class="number">0</span>, thouSep)</span><br><span class="line">      <span class="keyword">return</span> integerArr.join(<span class="string">''</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> intLen = integer.length</span><br><span class="line">    left = <span class="built_in">parseInt</span>(left, <span class="number">10</span>)</span><br><span class="line">    <span class="keyword">var</span> filler = intLen &lt; left</span><br><span class="line">    <span class="keyword">if</span> (filler) &#123;</span><br><span class="line">      <span class="keyword">var</span> fillnum = left - intLen</span><br><span class="line">      integer = <span class="keyword">new</span> <span class="built_in">Array</span>(fillnum + <span class="number">1</span>).join(fill) + integer</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (flags.indexOf(<span class="string">'^'</span>) === <span class="number">-1</span>) &#123;</span><br><span class="line">      <span class="comment">// flag: ^ (disable grouping characters (of locale))</span></span><br><span class="line">      <span class="comment">// use grouping characters</span></span><br><span class="line">      <span class="comment">// ','</span></span><br><span class="line">      <span class="keyword">var</span> thouSep = monetary.mon_thousands_sep</span><br><span class="line">      <span class="comment">// [3] (every 3 digits in U.S.A. locale)</span></span><br><span class="line">      <span class="keyword">var</span> monGrouping = monetary.mon_grouping</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (monGrouping[<span class="number">0</span>] &lt; integer.length) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, idx = integer.length; i &lt; monGrouping.length; i++) &#123;</span><br><span class="line">          <span class="comment">// e.g., 3</span></span><br><span class="line">          idx -= monGrouping[i]</span><br><span class="line">          <span class="keyword">if</span> (idx &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">if</span> (filler &amp;&amp; idx &lt; fillnum) &#123;</span><br><span class="line">            thouSep = fill</span><br><span class="line">          &#125;</span><br><span class="line">          integer = _strSplice(integer, idx, thouSep)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (monGrouping[i - <span class="number">1</span>] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// Repeating last grouping (may only be one) until highest portion of integer reached</span></span><br><span class="line">        <span class="keyword">while</span> (idx &gt; monGrouping[i - <span class="number">1</span>]) &#123;</span><br><span class="line">          idx -= monGrouping[i - <span class="number">1</span>]</span><br><span class="line">          <span class="keyword">if</span> (filler &amp;&amp; idx &lt; fillnum) &#123;</span><br><span class="line">            thouSep = fill</span><br><span class="line">          &#125;</span><br><span class="line">          integer = _strSplice(integer, idx, thouSep)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// left, right</span></span><br><span class="line">    <span class="keyword">if</span> (right === <span class="string">'0'</span>) &#123;</span><br><span class="line">      <span class="comment">// No decimal or fractional digits</span></span><br><span class="line">      value = integer</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// '.'</span></span><br><span class="line">      <span class="keyword">var</span> decPt = monetary.mon_decimal_point</span><br><span class="line">      <span class="keyword">if</span> (right === <span class="string">''</span> || right === <span class="literal">undefined</span>) &#123;</span><br><span class="line">        right = conversion === <span class="string">'i'</span> ? monetary.int_frac_digits : monetary.frac_digits</span><br><span class="line">      &#125;</span><br><span class="line">      right = <span class="built_in">parseInt</span>(right, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (right === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// Only remove fractional portion if explicitly set to zero digits</span></span><br><span class="line">        fraction = <span class="string">''</span></span><br><span class="line">        decPt = <span class="string">''</span></span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (right &lt; fraction.length) &#123;</span><br><span class="line">        fraction = <span class="built_in">Math</span>.round(<span class="built_in">parseFloat</span>(</span><br><span class="line">          fraction.slice(<span class="number">0</span>, right) + <span class="string">'.'</span> + fraction.substr(right, <span class="number">1</span>)</span><br><span class="line">        ))</span><br><span class="line">        <span class="keyword">if</span> (right &gt; fraction.length) &#123;</span><br><span class="line">          fraction = <span class="keyword">new</span> <span class="built_in">Array</span>(right - fraction.length + <span class="number">1</span>).join(<span class="string">'0'</span>) + fraction <span class="comment">// prepend with 0's</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (right &gt; fraction.length) &#123;</span><br><span class="line">        fraction += <span class="keyword">new</span> <span class="built_in">Array</span>(right - fraction.length + <span class="number">1</span>).join(<span class="string">'0'</span>) <span class="comment">// pad with 0's</span></span><br><span class="line">      &#125;</span><br><span class="line">      value = integer + decPt + fraction</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> symbol = <span class="string">''</span></span><br><span class="line">    <span class="keyword">if</span> (showCurrSymbol) &#123;</span><br><span class="line">      <span class="comment">// 'i' vs. 'n' ('USD' vs. '$')</span></span><br><span class="line">      symbol = conversion === <span class="string">'i'</span> ? monetary.int_curr_symbol : monetary.currency_symbol</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> signPosn = neg ? monetary.n_sign_posn : monetary.p_sign_posn</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 0: no space between curr. symbol and value</span></span><br><span class="line">    <span class="comment">// 1: space sep. them unless symb. and sign are adjacent then space sep. them from value</span></span><br><span class="line">    <span class="comment">// 2: space sep. sign and value unless symb. and sign are adjacent then space separates</span></span><br><span class="line">    <span class="keyword">var</span> sepBySpace = neg ? monetary.n_sep_by_space : monetary.p_sep_by_space</span><br><span class="line"></span><br><span class="line">    <span class="comment">// p_cs_precedes, n_cs_precedes</span></span><br><span class="line">    <span class="comment">// positive currency symbol follows value = 0; precedes value = 1</span></span><br><span class="line">    <span class="keyword">var</span> csPrecedes = neg ? monetary.n_cs_precedes : monetary.p_cs_precedes</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Assemble symbol/value/sign and possible space as appropriate</span></span><br><span class="line">    <span class="keyword">if</span> (flags.indexOf(<span class="string">'('</span>) !== <span class="number">-1</span>) &#123;</span><br><span class="line">      <span class="comment">// flag: parenth. for negative</span></span><br><span class="line">      <span class="comment">// @todo: unclear on whether and how sepBySpace, signPosn, or csPrecedes have</span></span><br><span class="line">      <span class="comment">// an impact here (as they do below), but assuming for now behaves as signPosn 0 as</span></span><br><span class="line">      <span class="comment">// far as localized sepBySpace and signPosn behavior</span></span><br><span class="line">      repl = (csPrecedes ? symbol + (sepBySpace === <span class="number">1</span> ? <span class="string">' '</span> : <span class="string">''</span>) : <span class="string">''</span>) + value + (!csPrecedes ? (</span><br><span class="line">        sepBySpace === <span class="number">1</span> ? <span class="string">' '</span> : <span class="string">''</span>) + symbol : <span class="string">''</span>)</span><br><span class="line">      <span class="keyword">if</span> (neg) &#123;</span><br><span class="line">        repl = <span class="string">'('</span> + repl + <span class="string">')'</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        repl = <span class="string">' '</span> + repl + <span class="string">' '</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// '+' is default</span></span><br><span class="line">      <span class="comment">// ''</span></span><br><span class="line">      <span class="keyword">var</span> posSign = monetary.positive_sign</span><br><span class="line">      <span class="comment">// '-'</span></span><br><span class="line">      <span class="keyword">var</span> negSign = monetary.negative_sign</span><br><span class="line">      <span class="keyword">var</span> sign = neg ? (negSign) : (posSign)</span><br><span class="line">      <span class="keyword">var</span> otherSign = neg ? (posSign) : (negSign)</span><br><span class="line">      <span class="keyword">var</span> signPadding = <span class="string">''</span></span><br><span class="line">      <span class="keyword">if</span> (signPosn) &#123;</span><br><span class="line">        <span class="comment">// has a sign</span></span><br><span class="line">        signPadding = <span class="keyword">new</span> <span class="built_in">Array</span>(otherSign.length - sign.length + <span class="number">1</span>).join(<span class="string">' '</span>)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">var</span> valueAndCS = <span class="string">''</span></span><br><span class="line">      <span class="keyword">switch</span> (signPosn) &#123;</span><br><span class="line">        <span class="comment">// 0: parentheses surround value and curr. symbol;</span></span><br><span class="line">        <span class="comment">// 1: sign precedes them;</span></span><br><span class="line">        <span class="comment">// 2: sign follows them;</span></span><br><span class="line">        <span class="comment">// 3: sign immed. precedes curr. symbol; (but may be space between)</span></span><br><span class="line">        <span class="comment">// 4: sign immed. succeeds curr. symbol; (but may be space between)</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">          valueAndCS = csPrecedes</span><br><span class="line">            ? symbol + (sepBySpace === <span class="number">1</span> ? <span class="string">' '</span> : <span class="string">''</span>) + value</span><br><span class="line">            : value + (sepBySpace === <span class="number">1</span> ? <span class="string">' '</span> : <span class="string">''</span>) + symbol</span><br><span class="line">          repl = <span class="string">'('</span> + valueAndCS + <span class="string">')'</span></span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">          valueAndCS = csPrecedes</span><br><span class="line">            ? symbol + (sepBySpace === <span class="number">1</span> ? <span class="string">' '</span> : <span class="string">''</span>) + value</span><br><span class="line">            : value + (sepBySpace === <span class="number">1</span> ? <span class="string">' '</span> : <span class="string">''</span>) + symbol</span><br><span class="line">          repl = signPadding + sign + (sepBySpace === <span class="number">2</span> ? <span class="string">' '</span> : <span class="string">''</span>) + valueAndCS</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">          valueAndCS = csPrecedes</span><br><span class="line">            ? symbol + (sepBySpace === <span class="number">1</span> ? <span class="string">' '</span> : <span class="string">''</span>) + value</span><br><span class="line">            : value + (sepBySpace === <span class="number">1</span> ? <span class="string">' '</span> : <span class="string">''</span>) + symbol</span><br><span class="line">          repl = valueAndCS + (sepBySpace === <span class="number">2</span> ? <span class="string">' '</span> : <span class="string">''</span>) + sign + signPadding</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">          repl = csPrecedes</span><br><span class="line">            ? signPadding + sign + (sepBySpace === <span class="number">2</span> ? <span class="string">' '</span> : <span class="string">''</span>) + symbol +</span><br><span class="line">              (sepBySpace === <span class="number">1</span> ? <span class="string">' '</span> : <span class="string">''</span>) + value</span><br><span class="line">            : value + (sepBySpace === <span class="number">1</span> ? <span class="string">' '</span> : <span class="string">''</span>) + sign + signPadding +</span><br><span class="line">              (sepBySpace === <span class="number">2</span> ? <span class="string">' '</span> : <span class="string">''</span>) + symbol</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">          repl = csPrecedes</span><br><span class="line">            ? symbol + (sepBySpace === <span class="number">2</span> ? <span class="string">' '</span> : <span class="string">''</span>) + signPadding + sign +</span><br><span class="line">              (sepBySpace === <span class="number">1</span> ? <span class="string">' '</span> : <span class="string">''</span>) + value</span><br><span class="line">            : value + (sepBySpace === <span class="number">1</span> ? <span class="string">' '</span> : <span class="string">''</span>) + symbol +</span><br><span class="line">              (sepBySpace === <span class="number">2</span> ? <span class="string">' '</span> : <span class="string">''</span>) + sign + signPadding</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> padding = width - repl.length</span><br><span class="line">    <span class="keyword">if</span> (padding &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      padding = <span class="keyword">new</span> <span class="built_in">Array</span>(padding + <span class="number">1</span>).join(<span class="string">' '</span>)</span><br><span class="line">      <span class="comment">// @todo: How does p_sep_by_space affect the count if there is a space?</span></span><br><span class="line">      <span class="comment">// Included in count presumably?</span></span><br><span class="line">      <span class="keyword">if</span> (flags.indexOf(<span class="string">'-'</span>) !== <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="comment">// left-justified (pad to right)</span></span><br><span class="line">        repl += padding</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// right-justified (pad to left)</span></span><br><span class="line">        repl = padding + repl</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> repl</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> format.replace(regex, doReplace)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      [
+      <a href="https://github.com/kvz/locutus/blob/master/functions/strings/money_format.js">View on GitHub</a>
+      |
+      <a href="https://github.com/kvz/locutus/edit/master/functions/strings/money_format.js">Edit on GitHub</a>
+      |
+      <a href="https://raw.githubusercontent.com/kvz/locutus/master/functions/strings/money_format.js">Source on GitHub</a>
+      ]
+
+      <div class="clearfix"></div>
+
+      <h2>How to use</h2>
+      <p>
+        npm is the recommended installation method. It pairs nicely with a CommonJS
+        module bundler such as
+        <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>,
+        <a href="http://webpack.github.io/" target="_blank" rel="external">webpack</a> or
+        <a href="http://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+      </p>
+      <p>
+        You you can install via <code>npm install --save --save-exact locutus</code> and
+        require it like so:
+
+        <code>var money_format = require('locutus/php/strings/money_format')</code>
+        and start using <code>money_format</code>. You could also require the <code>strings</code> module
+        in full.
+      </p>
+
+      <h2>ES5/ES6</h2>
+      <p>
+        
+          This function targets ES5, but as of Locutus 2.0.0 we also support
+          ES6 functions. Locutus transpiles to ES5 before publishing to npm.
+        
+      </p>
+
+      
+
+      <h2>A community initiative</h2>
+      <p>
+        Locutus offers community built functions and goes by the
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">McDonald’s Theory</a>.
+        We’ll put online functions that aren't perfect, in the hopes to spark better contributions.
+        Do you have one? You can directly edit this file on GitHub, this will create a Pull Request that
+        the core team can review, and merge into our codebase.
+      </p>
+      <p>
+        This way of working also means that we don't offer any
+        production guarantees, and recommend to use Locutus inspiration
+        and learning purposes only.
+      </p>
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>This depends on setlocale having the appropriate<br>locale (these examples use ‘en_US’)</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>money_format(&#39;%i&#39;, 1234.56)</code></td><td><code>&#39; USD 1,234.56&#39;</code></td></tr>
+        
+          <tr><td>2</td><td><code>money_format(&#39;%14#8.2n&#39;, 1234.5678)</code></td><td><code>&#39; $     1,234.57&#39;</code></td></tr>
+        
+          <tr><td>3</td><td><code>money_format(&#39;%14#8.2n&#39;, -1234.5678)</code></td><td><code>&#39;-$     1,234.57&#39;</code></td></tr>
+        
+          <tr><td>4</td><td><code>money_format(&#39;%(14#8.2n&#39;, 1234.5678)</code></td><td><code>&#39; $     1,234.57 &#39;</code></td></tr>
+        
+          <tr><td>5</td><td><code>money_format(&#39;%(14#8.2n&#39;, -1234.5678)</code></td><td><code>&#39;($     1,234.57)&#39;</code></td></tr>
+        
+          <tr><td>6</td><td><code>money_format(&#39;%=014#8.2n&#39;, 1234.5678)</code></td><td><code>&#39; $000001,234.57&#39;</code></td></tr>
+        
+          <tr><td>7</td><td><code>money_format(&#39;%=014#8.2n&#39;, -1234.5678)</code></td><td><code>&#39;-$000001,234.57&#39;</code></td></tr>
+        
+          <tr><td>8</td><td><code>money_format(&#39;%=*14#8.2n&#39;, 1234.5678)</code></td><td><code>&#39; $*****1,234.57&#39;</code></td></tr>
+        
+          <tr><td>9</td><td><code>money_format(&#39;%=*14#8.2n&#39;, -1234.5678)</code></td><td><code>&#39;-$*****1,234.57&#39;</code></td></tr>
+        
+          <tr><td>10</td><td><code>money_format(&#39;%=*^14#8.2n&#39;, 1234.5678)</code></td><td><code>&#39;  $****1234.57&#39;</code></td></tr>
+        
+          <tr><td>11</td><td><code>money_format(&#39;%=*^14#8.2n&#39;, -1234.5678)</code></td><td><code>&#39; -$****1234.57&#39;</code></td></tr>
+        
+          <tr><td>12</td><td><code>money_format(&#39;%=*!14#8.2n&#39;, 1234.5678)</code></td><td><code>&#39; *****1,234.57&#39;</code></td></tr>
+        
+          <tr><td>13</td><td><code>money_format(&#39;%=*!14#8.2n&#39;, -1234.5678)</code></td><td><code>&#39;-*****1,234.57&#39;</code></td></tr>
+        
+          <tr><td>14</td><td><code>money_format(&#39;%i&#39;, 3590)</code></td><td><code>&#39; USD 3,590.00&#39;</code></td></tr>
+        
+        </table>
+      
+
+      
+
+
+      <hr />
+      <p>
+        <a href="/php/strings/">&laquo; More PHP strings functions</a>
+      </p>
+
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">about locutus</h3>
+  <div class="widget">
+    About locutus
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget">
+    <div class="on-the-githubs" data-event-source="repos/kvz/phpjs">Loading...</div>
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (3)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strings/Index.html">
+            strings
+            (3)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (315)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (71)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (29)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-04-21T00:00:00.000Z" itemprop="datePublished">2016-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/breaking-bc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/jekyll/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
+                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/standard-coding-style/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://cdn.rawgit.com/feross/standard/master/sticker.svg)" alt="Standard Coding Style" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/standard-coding-style/" class="title">Standard Coding Style</a></p>
+                            <p class="item-date"><time datetime="2016-04-01T00:00:00.000Z" itemprop="datePublished">2016-04-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2013/05/coding-style/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://cdn.vnykmshr.com/images/articles/dev-manuals-node-js-code-and-style-guide/awesome-nodejs.png)" alt="Coding Style" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2013/05/coding-style/" class="title">Coding Style</a></p>
+                            <p class="item-date"><time datetime="2013-05-04T00:00:00.000Z" itemprop="datePublished">2013-05-04</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2016 Kevin van Zonneveld<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+<script src="/js/locutus.js"></script>
+
+    </div>
+</body>
+</html>

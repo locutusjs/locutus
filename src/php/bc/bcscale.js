@@ -4,7 +4,7 @@ module.exports = function bcscale (scale) {
   //   example 1: bcscale(1)
   //   returns 1: true
 
-  var _bc = require('../_locutus_shared/_locutus_shared_bc')
+  var _bc = require('../_helpers/_bc')
   var libbcmath = _bc()
 
   scale = parseInt(scale, 10)

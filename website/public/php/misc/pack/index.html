@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Categoria: misc | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP's pack in JavaScript">
+<meta property="og:url" content="http://locutusjs.io/php/misc/pack/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:updated_time" content="2016-05-01T21:22:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP's pack in JavaScript">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/locutus.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <nav id="main-nav">
+                
+                  <a class="main-nav-link" href="/archives">Blog</a>
+                
+                  <a class="main-nav-link" href="/authors">Authors</a>
+                
+
+                
+                  <a class="main-nav-link" href="/c">C</a>
+                
+                  <a class="main-nav-link" href="/golang">Go</a>
+                
+                  <a class="main-nav-link" href="/python">Python</a>
+                
+                  <a class="main-nav-link" href="/ruby">Ruby</a>
+                
+                  <a class="main-nav-link" href="/php">PHP</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Entradas',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categorias',
+            TAGS: 'Etiquetas',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/archives">Blog</a></td>
+                
+                    <td><a class="main-nav-link" href="/authors">Authors</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">PHP&#39;s pack in JavaScript</h1>
+    </header>
+
+    <div class="article-entry">
+      <p>
+        Here’s what our current JavaScript equivalent to
+        <a href="http://php.net/manual/en/function.pack.php">PHP's pack</a>
+
+        PHP's
+
+        pack
+        looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">pack</span> (<span class="params">format</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//  discuss at: http://locutusjs.io/php/pack/</span></span><br><span class="line">  <span class="comment">// original by: Tim de Koning (http://www.kingsquare.nl)</span></span><br><span class="line">  <span class="comment">//    parts by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Tim de Koning (http://www.kingsquare.nl)</span></span><br><span class="line">  <span class="comment">//      note 1: Float encoding by: Jonas Raoni Soares Silva</span></span><br><span class="line">  <span class="comment">//      note 1: Home: http://www.kingsquare.nl/blog/12-12-2009/13507444</span></span><br><span class="line">  <span class="comment">//      note 1: Feedback: phpjs-pack@kingsquare.nl</span></span><br><span class="line">  <span class="comment">//      note 1: "machine dependent byte order and size" aren't</span></span><br><span class="line">  <span class="comment">//      note 1: applicable for JavaScript; pack works as on a 32bit,</span></span><br><span class="line">  <span class="comment">//      note 1: little endian machine.</span></span><br><span class="line">  <span class="comment">//   example 1: pack('nvc*', 0x1234, 0x5678, 65, 66)</span></span><br><span class="line">  <span class="comment">//   returns 1: '\u00124xVAB'</span></span><br><span class="line">  <span class="comment">//   example 2: pack('H4', '2345')</span></span><br><span class="line">  <span class="comment">//   returns 2: '#E'</span></span><br><span class="line">  <span class="comment">//   example 3: pack('H*', 'D5')</span></span><br><span class="line">  <span class="comment">//   returns 3: 'Õ'</span></span><br><span class="line">  <span class="comment">//   example 4: pack('d', -100.876)</span></span><br><span class="line">  <span class="comment">//   returns 4: "\u0000\u0000\u0000\u0000\u00008YÀ"</span></span><br><span class="line">  <span class="comment">//        test: skip-1</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> formatPointer = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> argumentPointer = <span class="number">1</span></span><br><span class="line">  <span class="keyword">var</span> result = <span class="string">''</span></span><br><span class="line">  <span class="keyword">var</span> argument = <span class="string">''</span></span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> r = []</span><br><span class="line">  <span class="keyword">var</span> instruction, quantifier, word, precisionBits, exponentBits, extraNullCount</span><br><span class="line"></span><br><span class="line">  <span class="comment">// vars used by float encoding</span></span><br><span class="line">  <span class="keyword">var</span> bias</span><br><span class="line">  <span class="keyword">var</span> minExp</span><br><span class="line">  <span class="keyword">var</span> maxExp</span><br><span class="line">  <span class="keyword">var</span> minUnnormExp</span><br><span class="line">  <span class="keyword">var</span> status</span><br><span class="line">  <span class="keyword">var</span> exp</span><br><span class="line">  <span class="keyword">var</span> len</span><br><span class="line">  <span class="keyword">var</span> bin</span><br><span class="line">  <span class="keyword">var</span> signal</span><br><span class="line">  <span class="keyword">var</span> n</span><br><span class="line">  <span class="keyword">var</span> intPart</span><br><span class="line">  <span class="keyword">var</span> floatPart</span><br><span class="line">  <span class="keyword">var</span> lastBit</span><br><span class="line">  <span class="keyword">var</span> rounded</span><br><span class="line">  <span class="keyword">var</span> j</span><br><span class="line">  <span class="keyword">var</span> k</span><br><span class="line">  <span class="keyword">var</span> tmpResult</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (formatPointer &lt; format.length) &#123;</span><br><span class="line">    instruction = format.charAt(formatPointer)</span><br><span class="line">    quantifier = <span class="string">''</span></span><br><span class="line">    formatPointer++</span><br><span class="line">    <span class="keyword">while</span> ((formatPointer &lt; format.length) &amp;&amp; (format.charAt(formatPointer)</span><br><span class="line">        .match(<span class="regexp">/[\d\*]/</span>) !== <span class="literal">null</span>)) &#123;</span><br><span class="line">      quantifier += format.charAt(formatPointer)</span><br><span class="line">      formatPointer++</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (quantifier === <span class="string">''</span>) &#123;</span><br><span class="line">      quantifier = <span class="string">'1'</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Now pack variables: 'quantifier' times 'instruction'</span></span><br><span class="line">    <span class="keyword">switch</span> (instruction) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'a'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'A'</span>:</span><br><span class="line">        <span class="comment">// NUL-padded string</span></span><br><span class="line">        <span class="comment">// SPACE-padded string</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">arguments</span>[argumentPointer] === <span class="string">'undefined'</span>) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Warning:  pack() Type '</span> + instruction + <span class="string">': not enough arguments'</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          argument = <span class="built_in">String</span>(<span class="built_in">arguments</span>[argumentPointer])</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (quantifier === <span class="string">'*'</span>) &#123;</span><br><span class="line">          quantifier = argument.length</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; quantifier; i++) &#123;</span><br><span class="line">          <span class="keyword">if</span> (<span class="keyword">typeof</span> argument[i] === <span class="string">'undefined'</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (instruction === <span class="string">'a'</span>) &#123;</span><br><span class="line">              result += <span class="built_in">String</span>.fromCharCode(<span class="number">0</span>)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              result += <span class="string">' '</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            result += argument[i]</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        argumentPointer++</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'h'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'H'</span>:</span><br><span class="line">        <span class="comment">// Hex string, low nibble first</span></span><br><span class="line">        <span class="comment">// Hex string, high nibble first</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">arguments</span>[argumentPointer] === <span class="string">'undefined'</span>) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Warning: pack() Type '</span> + instruction + <span class="string">': not enough arguments'</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          argument = <span class="built_in">arguments</span>[argumentPointer]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (quantifier === <span class="string">'*'</span>) &#123;</span><br><span class="line">          quantifier = argument.length</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (quantifier &gt; argument.length) &#123;</span><br><span class="line">          <span class="keyword">var</span> msg = <span class="string">'Warning: pack() Type '</span> + instruction + <span class="string">': not enough characters in string'</span></span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(msg)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; quantifier; i += <span class="number">2</span>) &#123;</span><br><span class="line">          <span class="comment">// Always get per 2 bytes...</span></span><br><span class="line">          word = argument[i]</span><br><span class="line">          <span class="keyword">if</span> (((i + <span class="number">1</span>) &gt;= quantifier) || <span class="keyword">typeof</span> argument[i + <span class="number">1</span>] === <span class="string">'undefined'</span>) &#123;</span><br><span class="line">            word += <span class="string">'0'</span></span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            word += argument[i + <span class="number">1</span>]</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">// The fastest way to reverse?</span></span><br><span class="line">          <span class="keyword">if</span> (instruction === <span class="string">'h'</span>) &#123;</span><br><span class="line">            word = word[<span class="number">1</span>] + word[<span class="number">0</span>]</span><br><span class="line">          &#125;</span><br><span class="line">          result += <span class="built_in">String</span>.fromCharCode(<span class="built_in">parseInt</span>(word, <span class="number">16</span>))</span><br><span class="line">        &#125;</span><br><span class="line">        argumentPointer++</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'c'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'C'</span>:</span><br><span class="line">        <span class="comment">// signed char</span></span><br><span class="line">        <span class="comment">// unsigned char</span></span><br><span class="line">        <span class="comment">// c and C is the same in pack</span></span><br><span class="line">        <span class="keyword">if</span> (quantifier === <span class="string">'*'</span>) &#123;</span><br><span class="line">          quantifier = <span class="built_in">arguments</span>.length - argumentPointer</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (quantifier &gt; (<span class="built_in">arguments</span>.length - argumentPointer)) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Warning:  pack() Type '</span> + instruction + <span class="string">': too few arguments'</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; quantifier; i++) &#123;</span><br><span class="line">          result += <span class="built_in">String</span>.fromCharCode(<span class="built_in">arguments</span>[argumentPointer])</span><br><span class="line">          argumentPointer++</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'s'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'S'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'v'</span>:</span><br><span class="line">        <span class="comment">// signed short (always 16 bit, machine byte order)</span></span><br><span class="line">        <span class="comment">// unsigned short (always 16 bit, machine byte order)</span></span><br><span class="line">        <span class="comment">// s and S is the same in pack</span></span><br><span class="line">        <span class="keyword">if</span> (quantifier === <span class="string">'*'</span>) &#123;</span><br><span class="line">          quantifier = <span class="built_in">arguments</span>.length - argumentPointer</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (quantifier &gt; (<span class="built_in">arguments</span>.length - argumentPointer)) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Warning:  pack() Type '</span> + instruction + <span class="string">': too few arguments'</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; quantifier; i++) &#123;</span><br><span class="line">          result += <span class="built_in">String</span>.fromCharCode(<span class="built_in">arguments</span>[argumentPointer] &amp; <span class="number">0xFF</span>)</span><br><span class="line">          result += <span class="built_in">String</span>.fromCharCode(<span class="built_in">arguments</span>[argumentPointer] &gt;&gt; <span class="number">8</span> &amp; <span class="number">0xFF</span>)</span><br><span class="line">          argumentPointer++</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'n'</span>:</span><br><span class="line">        <span class="comment">// unsigned short (always 16 bit, big endian byte order)</span></span><br><span class="line">        <span class="keyword">if</span> (quantifier === <span class="string">'*'</span>) &#123;</span><br><span class="line">          quantifier = <span class="built_in">arguments</span>.length - argumentPointer</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (quantifier &gt; (<span class="built_in">arguments</span>.length - argumentPointer)) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Warning: pack() Type '</span> + instruction + <span class="string">': too few arguments'</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; quantifier; i++) &#123;</span><br><span class="line">          result += <span class="built_in">String</span>.fromCharCode(<span class="built_in">arguments</span>[argumentPointer] &gt;&gt; <span class="number">8</span> &amp; <span class="number">0xFF</span>)</span><br><span class="line">          result += <span class="built_in">String</span>.fromCharCode(<span class="built_in">arguments</span>[argumentPointer] &amp; <span class="number">0xFF</span>)</span><br><span class="line">          argumentPointer++</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'i'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'I'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'l'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'L'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'V'</span>:</span><br><span class="line">        <span class="comment">// signed integer (machine dependent size and byte order)</span></span><br><span class="line">        <span class="comment">// unsigned integer (machine dependent size and byte order)</span></span><br><span class="line">        <span class="comment">// signed long (always 32 bit, machine byte order)</span></span><br><span class="line">        <span class="comment">// unsigned long (always 32 bit, machine byte order)</span></span><br><span class="line">        <span class="comment">// unsigned long (always 32 bit, little endian byte order)</span></span><br><span class="line">        <span class="keyword">if</span> (quantifier === <span class="string">'*'</span>) &#123;</span><br><span class="line">          quantifier = <span class="built_in">arguments</span>.length - argumentPointer</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (quantifier &gt; (<span class="built_in">arguments</span>.length - argumentPointer)) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Warning:  pack() Type '</span> + instruction + <span class="string">': too few arguments'</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; quantifier; i++) &#123;</span><br><span class="line">          result += <span class="built_in">String</span>.fromCharCode(<span class="built_in">arguments</span>[argumentPointer] &amp; <span class="number">0xFF</span>)</span><br><span class="line">          result += <span class="built_in">String</span>.fromCharCode(<span class="built_in">arguments</span>[argumentPointer] &gt;&gt; <span class="number">8</span> &amp; <span class="number">0xFF</span>)</span><br><span class="line">          result += <span class="built_in">String</span>.fromCharCode(<span class="built_in">arguments</span>[argumentPointer] &gt;&gt; <span class="number">16</span> &amp; <span class="number">0xFF</span>)</span><br><span class="line">          result += <span class="built_in">String</span>.fromCharCode(<span class="built_in">arguments</span>[argumentPointer] &gt;&gt; <span class="number">24</span> &amp; <span class="number">0xFF</span>)</span><br><span class="line">          argumentPointer++</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'N'</span>:</span><br><span class="line">        <span class="comment">// unsigned long (always 32 bit, big endian byte order)</span></span><br><span class="line">        <span class="keyword">if</span> (quantifier === <span class="string">'*'</span>) &#123;</span><br><span class="line">          quantifier = <span class="built_in">arguments</span>.length - argumentPointer</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (quantifier &gt; (<span class="built_in">arguments</span>.length - argumentPointer)) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Warning:  pack() Type '</span> + instruction + <span class="string">': too few arguments'</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; quantifier; i++) &#123;</span><br><span class="line">          result += <span class="built_in">String</span>.fromCharCode(<span class="built_in">arguments</span>[argumentPointer] &gt;&gt; <span class="number">24</span> &amp; <span class="number">0xFF</span>)</span><br><span class="line">          result += <span class="built_in">String</span>.fromCharCode(<span class="built_in">arguments</span>[argumentPointer] &gt;&gt; <span class="number">16</span> &amp; <span class="number">0xFF</span>)</span><br><span class="line">          result += <span class="built_in">String</span>.fromCharCode(<span class="built_in">arguments</span>[argumentPointer] &gt;&gt; <span class="number">8</span> &amp; <span class="number">0xFF</span>)</span><br><span class="line">          result += <span class="built_in">String</span>.fromCharCode(<span class="built_in">arguments</span>[argumentPointer] &amp; <span class="number">0xFF</span>)</span><br><span class="line">          argumentPointer++</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'f'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'d'</span>:</span><br><span class="line">        <span class="comment">// float (machine dependent size and representation)</span></span><br><span class="line">        <span class="comment">// double (machine dependent size and representation)</span></span><br><span class="line">        <span class="comment">// version based on IEEE754</span></span><br><span class="line">        precisionBits = <span class="number">23</span></span><br><span class="line">        exponentBits = <span class="number">8</span></span><br><span class="line">        <span class="keyword">if</span> (instruction === <span class="string">'d'</span>) &#123;</span><br><span class="line">          precisionBits = <span class="number">52</span></span><br><span class="line">          exponentBits = <span class="number">11</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (quantifier === <span class="string">'*'</span>) &#123;</span><br><span class="line">          quantifier = <span class="built_in">arguments</span>.length - argumentPointer</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (quantifier &gt; (<span class="built_in">arguments</span>.length - argumentPointer)) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Warning:  pack() Type '</span> + instruction + <span class="string">': too few arguments'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; quantifier; i++) &#123;</span><br><span class="line">          argument = <span class="built_in">arguments</span>[argumentPointer]</span><br><span class="line">          bias = <span class="built_in">Math</span>.pow(<span class="number">2</span>, exponentBits - <span class="number">1</span>) - <span class="number">1</span></span><br><span class="line">          minExp = -bias + <span class="number">1</span></span><br><span class="line">          maxExp = bias</span><br><span class="line">          minUnnormExp = minExp - precisionBits</span><br><span class="line">          status = <span class="built_in">isNaN</span>(n = <span class="built_in">parseFloat</span>(argument)) || n === -<span class="literal">Infinity</span> || n === +<span class="literal">Infinity</span> ? n : <span class="number">0</span></span><br><span class="line">          exp = <span class="number">0</span></span><br><span class="line">          len = <span class="number">2</span> * bias + <span class="number">1</span> + precisionBits + <span class="number">3</span></span><br><span class="line">          bin = <span class="keyword">new</span> <span class="built_in">Array</span>(len)</span><br><span class="line">          signal = (n = status !== <span class="number">0</span> ? <span class="number">0</span> : n) &lt; <span class="number">0</span></span><br><span class="line">          n = <span class="built_in">Math</span>.abs(n)</span><br><span class="line">          intPart = <span class="built_in">Math</span>.floor(n)</span><br><span class="line">          floatPart = n - intPart</span><br><span class="line"></span><br><span class="line">          <span class="keyword">for</span> (k = len; k;) &#123;</span><br><span class="line">            bin[--k] = <span class="number">0</span></span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">for</span> (k = bias + <span class="number">2</span>; intPart &amp;&amp; k;) &#123;</span><br><span class="line">            bin[--k] = intPart % <span class="number">2</span></span><br><span class="line">            intPart = <span class="built_in">Math</span>.floor(intPart / <span class="number">2</span>)</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">for</span> (k = bias + <span class="number">1</span>; floatPart &gt; <span class="number">0</span> &amp;&amp; k; --floatPart) &#123;</span><br><span class="line">            (bin[++k] = ((floatPart *= <span class="number">2</span>) &gt;= <span class="number">1</span>) - <span class="number">0</span>)</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">for</span> (k = <span class="number">-1</span>; ++k &lt; len &amp;&amp; !bin[k];) &#123;&#125;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// @todo: Make this more readable:</span></span><br><span class="line">          <span class="keyword">var</span> key = (lastBit = precisionBits - <span class="number">1</span> +</span><br><span class="line">            (k =</span><br><span class="line">              (exp = bias + <span class="number">1</span> - k) &gt;= minExp &amp;&amp;</span><br><span class="line">              exp &lt;= maxExp ? k + <span class="number">1</span> : bias + <span class="number">1</span> - (exp = minExp - <span class="number">1</span>))) + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">          <span class="keyword">if</span> (bin[key]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!(rounded = bin[lastBit])) &#123;</span><br><span class="line">              <span class="keyword">for</span> (j = lastBit + <span class="number">2</span>; !rounded &amp;&amp; j &lt; len; rounded = bin[j++]) &#123;&#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (j = lastBit + <span class="number">1</span>; rounded &amp;&amp; --j &gt;= <span class="number">0</span>;</span><br><span class="line">            (bin[j] = !bin[j] - <span class="number">0</span>) &amp;&amp; (rounded = <span class="number">0</span>)) &#123;&#125;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">for</span> (k = k - <span class="number">2</span> &lt; <span class="number">0</span> ? <span class="number">-1</span> : k - <span class="number">3</span>; ++k &lt; len &amp;&amp; !bin[k];) &#123;&#125;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">if</span> ((exp = bias + <span class="number">1</span> - k) &gt;= minExp &amp;&amp; exp &lt;= maxExp) &#123;</span><br><span class="line">            ++k</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (exp &lt; minExp) &#123;</span><br><span class="line">              <span class="keyword">if</span> (exp !== bias + <span class="number">1</span> - len &amp;&amp; exp &lt; minUnnormExp) &#123;</span><br><span class="line">                <span class="comment">// "encodeFloat::float underflow"</span></span><br><span class="line">              &#125;</span><br><span class="line">              k = bias + <span class="number">1</span> - (exp = minExp - <span class="number">1</span>)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">if</span> (intPart || status !== <span class="number">0</span>) &#123;</span><br><span class="line">            exp = maxExp + <span class="number">1</span></span><br><span class="line">            k = bias + <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> (status === -<span class="literal">Infinity</span>) &#123;</span><br><span class="line">              signal = <span class="number">1</span></span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">isNaN</span>(status)) &#123;</span><br><span class="line">              bin[k] = <span class="number">1</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          n = <span class="built_in">Math</span>.abs(exp + bias)</span><br><span class="line">          tmpResult = <span class="string">''</span></span><br><span class="line"></span><br><span class="line">          <span class="keyword">for</span> (j = exponentBits + <span class="number">1</span>; --j;) &#123;</span><br><span class="line">            tmpResult = (n % <span class="number">2</span>) + tmpResult</span><br><span class="line">            n = n &gt;&gt;= <span class="number">1</span></span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          n = <span class="number">0</span></span><br><span class="line">          j = <span class="number">0</span></span><br><span class="line">          k = (tmpResult = (signal ? <span class="string">'1'</span> : <span class="string">'0'</span>) + tmpResult + (bin</span><br><span class="line">            .slice(k, k + precisionBits)</span><br><span class="line">            .join(<span class="string">''</span>))</span><br><span class="line">          ).length</span><br><span class="line">          r = []</span><br><span class="line"></span><br><span class="line">          <span class="keyword">for</span> (; k;) &#123;</span><br><span class="line">            n += (<span class="number">1</span> &lt;&lt; j) * tmpResult.charAt(--k)</span><br><span class="line">            <span class="keyword">if</span> (j === <span class="number">7</span>) &#123;</span><br><span class="line">              r[r.length] = <span class="built_in">String</span>.fromCharCode(n)</span><br><span class="line">              n = <span class="number">0</span></span><br><span class="line">            &#125;</span><br><span class="line">            j = (j + <span class="number">1</span>) % <span class="number">8</span></span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          r[r.length] = n ? <span class="built_in">String</span>.fromCharCode(n) : <span class="string">''</span></span><br><span class="line">          result += r.join(<span class="string">''</span>)</span><br><span class="line">          argumentPointer++</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'x'</span>:</span><br><span class="line">        <span class="comment">// NUL byte</span></span><br><span class="line">        <span class="keyword">if</span> (quantifier === <span class="string">'*'</span>) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Warning: pack(): Type x: \'*\' ignored'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; quantifier; i++) &#123;</span><br><span class="line">          result += <span class="built_in">String</span>.fromCharCode(<span class="number">0</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'X'</span>:</span><br><span class="line">        <span class="comment">// Back up one byte</span></span><br><span class="line">        <span class="keyword">if</span> (quantifier === <span class="string">'*'</span>) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Warning: pack(): Type X: \'*\' ignored'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; quantifier; i++) &#123;</span><br><span class="line">          <span class="keyword">if</span> (result.length === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Warning: pack(): Type X:'</span> + <span class="string">' outside of string'</span>)</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            result = result.substring(<span class="number">0</span>, result.length - <span class="number">1</span>)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'@'</span>:</span><br><span class="line">        <span class="comment">// NUL-fill to absolute position</span></span><br><span class="line">        <span class="keyword">if</span> (quantifier === <span class="string">'*'</span>) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Warning: pack(): Type X: \'*\' ignored'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (quantifier &gt; result.length) &#123;</span><br><span class="line">          extraNullCount = quantifier - result.length</span><br><span class="line">          <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; extraNullCount; i++) &#123;</span><br><span class="line">            result += <span class="built_in">String</span>.fromCharCode(<span class="number">0</span>)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (quantifier &lt; result.length) &#123;</span><br><span class="line">          result = result.substring(<span class="number">0</span>, quantifier)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Warning: pack() Type '</span> + instruction + <span class="string">': unknown format code'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (argumentPointer &lt; <span class="built_in">arguments</span>.length) &#123;</span><br><span class="line">    <span class="keyword">var</span> msg2 = <span class="string">'Warning: pack(): '</span> + (<span class="built_in">arguments</span>.length - argumentPointer) + <span class="string">' arguments unused'</span></span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(msg2)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      [
+      <a href="https://github.com/kvz/locutus/blob/master/functions/misc/pack.js">View on GitHub</a>
+      |
+      <a href="https://github.com/kvz/locutus/edit/master/functions/misc/pack.js">Edit on GitHub</a>
+      |
+      <a href="https://raw.githubusercontent.com/kvz/locutus/master/functions/misc/pack.js">Source on GitHub</a>
+      ]
+
+      <div class="clearfix"></div>
+
+      <h2>How to use</h2>
+      <p>
+        npm is the recommended installation method. It pairs nicely with a CommonJS
+        module bundler such as
+        <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>,
+        <a href="http://webpack.github.io/" target="_blank" rel="external">webpack</a> or
+        <a href="http://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+      </p>
+      <p>
+        You you can install via <code>npm install --save --save-exact locutus</code> and
+        require it like so:
+
+        <code>var pack = require('locutus/php/misc/pack')</code>
+        and start using <code>pack</code>. You could also require the <code>misc</code> module
+        in full.
+      </p>
+
+      <h2>ES5/ES6</h2>
+      <p>
+        
+          This function targets ES5, but as of Locutus 2.0.0 we also support
+          ES6 functions. Locutus transpiles to ES5 before publishing to npm.
+        
+      </p>
+
+      
+
+      <h2>A community initiative</h2>
+      <p>
+        Locutus offers community built functions and goes by the
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">McDonald’s Theory</a>.
+        We’ll put online functions that aren't perfect, in the hopes to spark better contributions.
+        Do you have one? You can directly edit this file on GitHub, this will create a Pull Request that
+        the core team can review, and merge into our codebase.
+      </p>
+      <p>
+        This way of working also means that we don't offer any
+        production guarantees, and recommend to use Locutus inspiration
+        and learning purposes only.
+      </p>
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>Float encoding by: Jonas Raoni Soares Silva<br>Home: <a href="http://www.kingsquare.nl/blog/12-12-2009/13507444">http://www.kingsquare.nl/blog/12-12-2009/13507444</a><br>Feedback: phpjs-pack@kingsquare.nl<br>“machine dependent byte order and size” aren’t<br>applicable for JavaScript; pack works as on a 32bit,<br>little endian machine.</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>pack(&#39;nvc*&#39;, 0x1234, 0x5678, 65, 66)</code></td><td><code>&#39;\u00124xVAB&#39;</code></td></tr>
+        
+          <tr><td>2</td><td><code>pack(&#39;H4&#39;, &#39;2345&#39;)</code></td><td><code>&#39;#E&#39;</code></td></tr>
+        
+          <tr><td>3</td><td><code>pack(&#39;H*&#39;, &#39;D5&#39;)</code></td><td><code>&#39;Õ&#39;</code></td></tr>
+        
+          <tr><td>4</td><td><code>pack(&#39;d&#39;, -100.876)</code></td><td><code>&quot;\u0000\u0000\u0000\u0000\u00008YÀ&quot;</code></td></tr>
+        
+        </table>
+      
+
+      
+
+
+      <hr />
+      <p>
+        <a href="/php/misc/">&laquo; More PHP misc functions</a>
+      </p>
+
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">about locutus</h3>
+  <div class="widget">
+    About locutus
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget">
+    <div class="on-the-githubs" data-event-source="repos/kvz/phpjs">Loading...</div>
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (3)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strings/Index.html">
+            strings
+            (3)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (315)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (71)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (29)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-04-21T00:00:00.000Z" itemprop="datePublished">2016-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/breaking-bc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/jekyll/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
+                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/standard-coding-style/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://cdn.rawgit.com/feross/standard/master/sticker.svg)" alt="Standard Coding Style" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/standard-coding-style/" class="title">Standard Coding Style</a></p>
+                            <p class="item-date"><time datetime="2016-04-01T00:00:00.000Z" itemprop="datePublished">2016-04-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2013/05/coding-style/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://cdn.vnykmshr.com/images/articles/dev-manuals-node-js-code-and-style-guide/awesome-nodejs.png)" alt="Coding Style" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2013/05/coding-style/" class="title">Coding Style</a></p>
+                            <p class="item-date"><time datetime="2013-05-04T00:00:00.000Z" itemprop="datePublished">2013-05-04</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2016 Kevin van Zonneveld<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+<script src="/js/locutus.js"></script>
+
+    </div>
+</body>
+</html>

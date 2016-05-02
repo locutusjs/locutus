@@ -1,0 +1,37 @@
+index:
+    home: 'Главная'
+    search: 'Поиск'
+    archive: 'архив'
+    category: 'категории'
+    uncategorized: 'без категории'
+    tag: 'тег'
+nav:
+    next: 'Далее'
+    prev: 'Назад'
+    older: 'Старые'
+    newer: 'Новые'
+widget:
+    recents: 'недавние'
+    archives: 'архивы'
+    categories: 'категории'
+    links: 'ссылки'
+    tags: 'теги'
+    tag_cloud: 'облако тегов'
+article:
+    more: 'Читать дальше'
+    comments: 'Комментарии'
+    share: 'Поделиться'
+    catalogue: 'Каталог'
+profile:
+    follow: 'Подписаться'
+    post: 'пост'
+    tag: 'тег'
+    posts: 'посты'
+    tags: 'теги'
+insight:
+    hint: 'Введите что-нибудь...'
+    posts: 'посты'
+    pages: 'страницы'
+    categories: 'категории'
+    tags: 'теги'
+    untitled: '(Без названия)'
