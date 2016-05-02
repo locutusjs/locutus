@@ -21,3 +21,4 @@ website/.jekyll-metadata
 scripts/main.js
 scripts/split-*.js
 scripts/main.js.map
+website/public

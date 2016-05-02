@@ -9,7 +9,9 @@ alias:
 - /about/
 ---
 
-Locutus is assimilating other languages' standard libraries to JavaScript for fun and educational purposes. For three reasons
+Locutus is assimilating other languages' standard libraries into JavaScript for fun and educational purposes. 
+
+We're doing this for three reasons
 
 1. to see if we can
 1. as a rainy Sunday afternoon pastime, porting a function can be rewarding and deepen your understanding of languages, not unlike solving a crossword puzzle : )

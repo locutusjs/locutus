@@ -5,9 +5,9 @@
 [![Build Status](https://secure.travis-ci.org/kvz/locutus.svg?branch=master)](http://travis-ci.org/kvz/locutus "Check this project's build status on TravisCI")
 <!-- /badges -->
 
-Locutus other languages' stadard libraries to JavaScript for fun and educational purposes
+All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.
 
-More info at: http://locutusjs.io/about
+More info at: http://locutusjs.io/
 
 ## Install
 
