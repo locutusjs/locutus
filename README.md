@@ -18,7 +18,7 @@ npm install --save --save-exact locutus
 For ease of development, we recommend these global installs:
 
 ```bash
-npm install --global mocha babel-cli
+npm install --global mocha babel-cli hexo
 ```
 
 ## Use
