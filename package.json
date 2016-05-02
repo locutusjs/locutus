@@ -42,9 +42,6 @@
     "js",
     "locutus"
   ],
-  "files": [
-    "functions"
-  ],
   "bugs": {
     "url": "https://github.com/kvz/locutus/issues"
   },
