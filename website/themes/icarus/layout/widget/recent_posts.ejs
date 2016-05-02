@@ -3,7 +3,7 @@
         <h3 class="widget-title"><%= __('widget.recents') %></h3>
         <div class="widget">
             <ul id="recent-post" class="<%= (theme.customize.thumbnail?'':'no-thumbnail') %>">
-                <% site.posts.sort('date', -1).limit(5).each(function(post) { %>
+                <% site.posts.sort('date', -1).limit(3).each(function(post) { %>
                     <li>
                         <% if(theme.customize.thumbnail == true) { %>
                         <div class="item-thumbnail">

@@ -33,14 +33,14 @@ Released: Not yet
 - [ ] Triage all open issues and PRs via waffle.io
 - [ ] Auto-deploys of `master` to http://locutusjs.io via Travis CI
 - [ ] Address the 25 remaining test failures that are currently skipped (find out which ones via `npm run test:languages:noskip`)
+- [ ] website: Add social buttons
+- [ ] website: Render authors server-side
 
 ## v2.0.0
 
 Released: Not yet
 
-- [ ] website: Add profile to sidebar
-- [ ] website: Add social buttons
-- [ ] website: Render authors server-side
+- [x] website: Add profile to sidebar
 - [x] Rename `_locutus_shared` to `_helpers`. Rename `_locutus_shared_bc` to `_bc`
 - [x] website: Fix jumpy scrolling due to on the githubs
 - [x] website: DRY up add_more code
