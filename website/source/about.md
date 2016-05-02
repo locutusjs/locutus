@@ -9,47 +9,41 @@ alias:
 - /about/
 ---
 
-Locutus is assimilating other languages' standard libraries into JavaScript for fun and educational purposes. 
+Locutus is a project that seeks to assimilate other languages' standard libraries to JavaScript. Why, you ask? Well, firstly because we can of course! Apart from that, it can also serve as a nice pastime for a rainy Sunday afternoon. Not only can porting a function be quite rewarding, but it also deepens your understanding of different languages. In that sense, it is not unlike doing a crossword puzzle. Lastly, and perhaps most importantly, it will hopefully allow us to profit from interoperable functions (for instance when apps involve more than one programming language) as well as from higher level functions such as: [number_format](/php/number_format/), [sprintf](/php/sprintf/), and [strtotime](/php/strtotime/), which do not exist in JavaScript's standard library.
 
-We're doing this for three reasons
+JavaScript is the most commonly used programming language, but it lacks an exhaustive 
+standard library. This means that developers coming from other languages are often left wondering how to achieve common tasks, such as [formatting dates](/php/strftime/) or [generating a hashes](/php/sha1/).
 
-1. to see if we can
-1. as a rainy Sunday afternoon pastime, porting a function can be rewarding and deepen your understanding of languages, not unlike solving a crossword puzzle : )
-1. to profit from interoperable functions (when apps involve more than one programming language) as well as higher level functions such as: [number_format](/php/number_format/), [sprintf](/php/sprintf/), and [strtotime](/php/strtotime/), that do not exist in JavaScript's standard library.
+Locutus aims to show developers who are proficient in other programming languages how these high-level tasks can be achieved in JavaScript. 
 
-JavaScript is wide-spread but lacking an exhaustive 
-standard library, developers coming from other languages are often wondering how to achieve common tasks, like [formatting dates](/php/strftime/), or [generating a hashes](/php/sha1/).
+Apart from the things that are missing in JavaScript, we are also porting functions like Go's [string.Index](/golang/strings/Index/), even though JavaScript offers a perfectly good native equivalent in the form of [String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf). We are going this extra mile to show newcomers an example of how behavior might differ between various languages.
 
-Locutus aims to show developers coming from other programming languages how these high-level things could be achieved in JavaScript. 
+At an earlier stage, we also had the idea that when enough parts of a language were ported, you might even be able to run programs in JavaScript that were entirely written in other languages. While this certainly was fun to try and we had some degree of success in doing this for PHP, we have since abandoned this goal. Mainly because it drove us to write many hacks, while we were never really able to get anything to work flawlessly. Moreover, projects like [GopherJS](https://github.com/gopherjs/gopherjs) and [Emscripten](http://kripken.github.io/emscripten-site/) offer better means to that end, anyway.
 
-Besides what's missing in JavaScript, we're also porting functions like Go's [string.Index](/golang/strings/Index/) even though it has a perfectly good native JavaScript equivalent by means of [String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf). We're going this extra mile to show newcomers by example how behavior differs (or not) across languages.
+## What we are not
 
-Before, we also had the idea that if enough parts of a language were ported, you might even be able to run entire programs written in other languages in JavaScript. While it was fun to try and we had some success in doing this for PHP, we abandoned this goal go as it drove us to write many hacks while we would never have been to get it to work well, anyway. Projects like [GopherJS](https://github.com/gopherjs/gopherjs) or [Emscripten](http://kripken.github.io/emscripten-site/) offer better routes to that end.
+Even though Locutus is porting standard libraries from other languages, this is for reference only. We are **not a drop-in standard library for JavaScript**. 
 
-## What we're not
+If that is something you are interested in, we recommend you to take a look at [lodash](https://lodash.com/), which is more lightweight, focused and mature. It does a great job of complementing JavaScript's bare bones nature. 
 
-Even though Locutus is porting standard libraries from other languages, this is for reference. We are not a drop-in standard library for JavaScript. 
+That being said, there is still a fair amount of useful things to be found in this repository, and Locutus makes it easy to require and bundle just a single function that you deem worthy of your project. Our Notes should be helpful in evaluating the issues and maturity of a particular function.
 
-If you're interested in something like that, we recommend taking a look at [lodash](https://lodash.com/), which in comparison is more lightweight, focussed, mature. It goes a long way in complementing JavaScript's bare bones nature. 
+## What we are not porting
 
-That being said, there are a few good bits to be found in this repository, and Locutus makes it easy to require and bundle just a single function that you deem worthy of your project. Our Notes should be helpful in evaluating a particular function's issues and maturity.
-
-## What we're not porting
-
-As mentioned we're sticking to raw functions and steer clear of things touching global environment, language constructs or data-types as well as extending builtin natives. While this would aid in assimilating more of a language, past mistakes made us decided these are outside of Locutus' scope and welcome other projects to take a stab at this.
+As we have mentioned before, we are sticking to raw functions and steering clear of things that touch global environment, language constructs or data-types. We are not extending built-in natives either. While this would aid in assimilating a larger part of a language, past mistakes have led us to decide that these fall outside of Locutus' scope and we encourage other projects to take a stab at it.
 
 ## A community effort
 
-Not unlike Wikipedia, Locutus is an ongoing community effort. We're going by [The McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d), meaning many of our functions are a first iteration, or otherwise have issues still.
+Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows [The McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). This means that we don't consider it to be a bad thing that many of our functions are first iterations, which may still have their fair share of issues. We believe that these flaws will inspire others to come up with better ideas.
 
-If you know a better way, we'd love to see your improvements.
+So, if you know a better way to do something, we would love to see your improvements!
 
 ## Contributing
 
-We use [GitHub](http://github.com/kvz/locutus) for collaboration. There are a few guidelines in our [CONTRIBUTING.md](http://github.com/kvz/locutus/CONTRIBUTING.md) document. It would be helpful to glance over them before submitting your work, as to avoid unnecessary back and forth, and avoid potential disappointment.
+We use [GitHub](http://github.com/kvz/locutus) for collaboration. There are a few guidelines in our [CONTRIBUTING.md](http://github.com/kvz/locutus/CONTRIBUTING.md) document. It would be helpful to glance over them before submitting your work, to avoid unnecessary back and forth, as well as potential disappointment.
 
 ## Licensing
 
 Locutus is licensed under the MIT licenses.
 
-[The MIT license](https://github.com/kvz/locutus/blob/master/LICENSE) allows you to use the library as you see fit (even in commercial projects) as long as you redistribute original the license with it. You're not obligated to share your improvements, but obviously that would be greatly appreciated and also ensure you won't lose your changes after you upgrade.
+[The MIT license](https://github.com/kvz/locutus/blob/master/LICENSE) allows you to use the library as you see fit (even in commercial projects) as long as you redistribute the original license along with it. You are not obligated to share your improvements, even though that would obviously be greatly appreciated and would also ensure that you won't lose your changes after you upgrade.
