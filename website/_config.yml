@@ -4,8 +4,8 @@
 
 # Site
 title: Locutus
-subtitle: We're assimilating other languages' standard libraries to JavaScript for fun and educational purposes
-description: We're assimilating other languages' standard libraries to JavaScript for fun and educational purposes
+subtitle:
+description: We are assimilating other languages' standard libraries to JavaScript for fun and educational purposes
 author: Kevin van Zonneveld
 language: en
 timezone: UTC
@@ -20,12 +20,12 @@ browsersync:
 
 # Markdown
 ## https://github.com/chjj/marked
-markdown:
+marked:
   gfm: true
   pedantic: false
   sanitize: false
   tables: true
-  breaks: true
+  breaks: false
   smartLists: true
   smartypants: true
 

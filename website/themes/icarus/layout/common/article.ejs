@@ -8,7 +8,9 @@
             <header class="article-header">
                 <%- partial('post/title', { class_name: 'article-title' }) %>
                 <div class="article-meta">
+                  <% if (typeof date !== 'undefined' && date === false) { %>
                     <%- partial('post/date', { class_name: 'article-date', date_format: null }) %>
+                  <% } %>
                     <%- partial('post/category') %>
                     <%- partial('post/tag') %>
                 </div>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Categoria: datetime | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP's strftime in JavaScript">
+<meta property="og:url" content="http://locutusjs.io/php/datetime/strftime/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:updated_time" content="2016-05-01T21:22:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP's strftime in JavaScript">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/locutus.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <nav id="main-nav">
+                
+                  <a class="main-nav-link" href="/archives">Blog</a>
+                
+                  <a class="main-nav-link" href="/authors">Authors</a>
+                
+
+                
+                  <a class="main-nav-link" href="/c">C</a>
+                
+                  <a class="main-nav-link" href="/golang">Go</a>
+                
+                  <a class="main-nav-link" href="/python">Python</a>
+                
+                  <a class="main-nav-link" href="/ruby">Ruby</a>
+                
+                  <a class="main-nav-link" href="/php">PHP</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Entradas',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categorias',
+            TAGS: 'Etiquetas',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/archives">Blog</a></td>
+                
+                    <td><a class="main-nav-link" href="/authors">Authors</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">PHP&#39;s strftime in JavaScript</h1>
+    </header>
+
+    <div class="article-entry">
+      <p>
+        Here’s what our current JavaScript equivalent to
+        <a href="http://php.net/manual/en/function.strftime.php">PHP's strftime</a>
+
+        PHP's
+
+        strftime
+        looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">strftime</span> (<span class="params">fmt, timestamp</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//       discuss at: http://locutusjs.io/php/strftime/</span></span><br><span class="line">  <span class="comment">//      original by: Blues (http://tech.bluesmoon.info/)</span></span><br><span class="line">  <span class="comment">// reimplemented by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//         input by: Alex</span></span><br><span class="line">  <span class="comment">//      bugfixed by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//      improved by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//           note 1: Uses global: locutus to store locale info</span></span><br><span class="line">  <span class="comment">//        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale</span></span><br><span class="line">  <span class="comment">//        returns 1: 'Tuesday'</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> setlocale = <span class="built_in">require</span>(<span class="string">'../strings/setlocale'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> $global = (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : GLOBAL)</span><br><span class="line">  $global.$locutus = $global.$locutus || &#123;&#125;</span><br><span class="line">  <span class="keyword">var</span> $locutus = $global.$locutus</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ensure setup of localization variables takes place</span></span><br><span class="line">  setlocale(<span class="string">'LC_ALL'</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _xPad = <span class="function"><span class="keyword">function</span> (<span class="params">x, pad, r</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> r === <span class="string">'undefined'</span>) &#123;</span><br><span class="line">      r = <span class="number">10</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (; <span class="built_in">parseInt</span>(x, <span class="number">10</span>) &lt; r &amp;&amp; r &gt; <span class="number">1</span>; r /= <span class="number">10</span>) &#123;</span><br><span class="line">      x = pad.toString() + x</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x.toString()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> locale = $locutus.php.localeCategories.LC_TIME</span><br><span class="line">  <span class="keyword">var</span> lcTime = $locutus.php.locales[locale].LC_TIME</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _formats = &#123;</span><br><span class="line">    a: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> lcTime.a[d.getDay()]</span><br><span class="line">    &#125;,</span><br><span class="line">    A: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> lcTime.A[d.getDay()]</span><br><span class="line">    &#125;,</span><br><span class="line">    b: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> lcTime.b[d.getMonth()]</span><br><span class="line">    &#125;,</span><br><span class="line">    B: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> lcTime.B[d.getMonth()]</span><br><span class="line">    &#125;,</span><br><span class="line">    C: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> _xPad(<span class="built_in">parseInt</span>(d.getFullYear() / <span class="number">100</span>, <span class="number">10</span>), <span class="number">0</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    d: [<span class="string">'getDate'</span>, <span class="string">'0'</span>],</span><br><span class="line">    e: [<span class="string">'getDate'</span>, <span class="string">' '</span>],</span><br><span class="line">    g: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> _xPad(<span class="built_in">parseInt</span>(<span class="keyword">this</span>.G(d) / <span class="number">100</span>, <span class="number">10</span>), <span class="number">0</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    G: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> y = d.getFullYear()</span><br><span class="line">      <span class="keyword">var</span> V = <span class="built_in">parseInt</span>(_formats.V(d), <span class="number">10</span>)</span><br><span class="line">      <span class="keyword">var</span> W = <span class="built_in">parseInt</span>(_formats.W(d), <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (W &gt; V) &#123;</span><br><span class="line">        y++</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (W === <span class="number">0</span> &amp;&amp; V &gt;= <span class="number">52</span>) &#123;</span><br><span class="line">        y--</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> y</span><br><span class="line">    &#125;,</span><br><span class="line">    H: [<span class="string">'getHours'</span>, <span class="string">'0'</span>],</span><br><span class="line">    I: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> I = d.getHours() % <span class="number">12</span></span><br><span class="line">      <span class="keyword">return</span> _xPad(I === <span class="number">0</span> ? <span class="number">12</span> : I, <span class="number">0</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    j: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> ms = d - <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">''</span> + d.getFullYear() + <span class="string">'/1/1 GMT'</span>)</span><br><span class="line">      <span class="comment">// Line differs from Yahoo implementation which would be</span></span><br><span class="line">      <span class="comment">// equivalent to replacing it here with:</span></span><br><span class="line">      ms += d.getTimezoneOffset() * <span class="number">60000</span></span><br><span class="line">      <span class="keyword">var</span> doy = <span class="built_in">parseInt</span>(ms / <span class="number">60000</span> / <span class="number">60</span> / <span class="number">24</span>, <span class="number">10</span>) + <span class="number">1</span></span><br><span class="line">      <span class="keyword">return</span> _xPad(doy, <span class="number">0</span>, <span class="number">100</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    k: [<span class="string">'getHours'</span>, <span class="string">'0'</span>],</span><br><span class="line">    <span class="comment">// not in PHP, but implemented here (as in Yahoo)</span></span><br><span class="line">    l: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> l = d.getHours() % <span class="number">12</span></span><br><span class="line">      <span class="keyword">return</span> _xPad(l === <span class="number">0</span> ? <span class="number">12</span> : l, <span class="string">' '</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    m: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> _xPad(d.getMonth() + <span class="number">1</span>, <span class="number">0</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    M: [<span class="string">'getMinutes'</span>, <span class="string">'0'</span>],</span><br><span class="line">    p: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> lcTime.p[d.getHours() &gt;= <span class="number">12</span> ? <span class="number">1</span> : <span class="number">0</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    P: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> lcTime.P[d.getHours() &gt;= <span class="number">12</span> ? <span class="number">1</span> : <span class="number">0</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    s: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// Yahoo uses return parseInt(d.getTime()/1000, 10);</span></span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Date</span>.parse(d) / <span class="number">1000</span></span><br><span class="line">    &#125;,</span><br><span class="line">    S: [<span class="string">'getSeconds'</span>, <span class="string">'0'</span>],</span><br><span class="line">    u: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> dow = d.getDay()</span><br><span class="line">      <span class="keyword">return</span> ((dow === <span class="number">0</span>) ? <span class="number">7</span> : dow)</span><br><span class="line">    &#125;,</span><br><span class="line">    U: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> doy = <span class="built_in">parseInt</span>(_formats.j(d), <span class="number">10</span>)</span><br><span class="line">      <span class="keyword">var</span> rdow = <span class="number">6</span> - d.getDay()</span><br><span class="line">      <span class="keyword">var</span> woy = <span class="built_in">parseInt</span>((doy + rdow) / <span class="number">7</span>, <span class="number">10</span>)</span><br><span class="line">      <span class="keyword">return</span> _xPad(woy, <span class="number">0</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    V: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> woy = <span class="built_in">parseInt</span>(_formats.W(d), <span class="number">10</span>)</span><br><span class="line">      <span class="keyword">var</span> dow11 = (<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">''</span> + d.getFullYear() + <span class="string">'/1/1'</span>)).getDay()</span><br><span class="line">      <span class="comment">// First week is 01 and not 00 as in the case of %U and %W,</span></span><br><span class="line">      <span class="comment">// so we add 1 to the final result except if day 1 of the year</span></span><br><span class="line">      <span class="comment">// is a Monday (then %W returns 01).</span></span><br><span class="line">      <span class="comment">// We also need to subtract 1 if the day 1 of the year is</span></span><br><span class="line">      <span class="comment">// Friday-Sunday, so the resulting equation becomes:</span></span><br><span class="line">      <span class="keyword">var</span> idow = woy + (dow11 &gt; <span class="number">4</span> || dow11 &lt;= <span class="number">1</span> ? <span class="number">0</span> : <span class="number">1</span>)</span><br><span class="line">      <span class="keyword">if</span> (idow === <span class="number">53</span> &amp;&amp; (<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">''</span> + d.getFullYear() + <span class="string">'/12/31'</span>)).getDay() &lt; <span class="number">4</span>) &#123;</span><br><span class="line">        idow = <span class="number">1</span></span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (idow === <span class="number">0</span>) &#123;</span><br><span class="line">        idow = _formats.V(<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">''</span> + (d.getFullYear() - <span class="number">1</span>) + <span class="string">'/12/31'</span>))</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> _xPad(idow, <span class="number">0</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    w: <span class="string">'getDay'</span>,</span><br><span class="line">    W: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> doy = <span class="built_in">parseInt</span>(_formats.j(d), <span class="number">10</span>)</span><br><span class="line">      <span class="keyword">var</span> rdow = <span class="number">7</span> - _formats.u(d)</span><br><span class="line">      <span class="keyword">var</span> woy = <span class="built_in">parseInt</span>((doy + rdow) / <span class="number">7</span>, <span class="number">10</span>)</span><br><span class="line">      <span class="keyword">return</span> _xPad(woy, <span class="number">0</span>, <span class="number">10</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    y: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> _xPad(d.getFullYear() % <span class="number">100</span>, <span class="number">0</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    Y: <span class="string">'getFullYear'</span>,</span><br><span class="line">    z: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> o = d.getTimezoneOffset()</span><br><span class="line">      <span class="keyword">var</span> H = _xPad(<span class="built_in">parseInt</span>(<span class="built_in">Math</span>.abs(o / <span class="number">60</span>), <span class="number">10</span>), <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">var</span> M = _xPad(o % <span class="number">60</span>, <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> (o &gt; <span class="number">0</span> ? <span class="string">'-'</span> : <span class="string">'+'</span>) + H + M</span><br><span class="line">    &#125;,</span><br><span class="line">    Z: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> d.toString().replace(<span class="regexp">/^.*\(([^)]+)\)$/</span>, <span class="string">'$1'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'%'</span>: <span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'%'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _date = (<span class="keyword">typeof</span> timestamp === <span class="string">'undefined'</span>)</span><br><span class="line">    ? <span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line">    : (timestamp <span class="keyword">instanceof</span> <span class="built_in">Date</span>)</span><br><span class="line">      ? <span class="keyword">new</span> <span class="built_in">Date</span>(timestamp)</span><br><span class="line">      : <span class="keyword">new</span> <span class="built_in">Date</span>(timestamp * <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _aggregates = &#123;</span><br><span class="line">    c: <span class="string">'locale'</span>,</span><br><span class="line">    D: <span class="string">'%m/%d/%y'</span>,</span><br><span class="line">    F: <span class="string">'%y-%m-%d'</span>,</span><br><span class="line">    h: <span class="string">'%b'</span>,</span><br><span class="line">    n: <span class="string">'\n'</span>,</span><br><span class="line">    r: <span class="string">'locale'</span>,</span><br><span class="line">    R: <span class="string">'%H:%M'</span>,</span><br><span class="line">    t: <span class="string">'\t'</span>,</span><br><span class="line">    T: <span class="string">'%H:%M:%S'</span>,</span><br><span class="line">    x: <span class="string">'locale'</span>,</span><br><span class="line">    X: <span class="string">'locale'</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// First replace aggregates (run in a loop because an agg may be made up of other aggs)</span></span><br><span class="line">  <span class="keyword">while</span> (fmt.match(<span class="regexp">/%[cDFhnrRtTxX]/</span>)) &#123;</span><br><span class="line">    fmt = fmt.replace(<span class="regexp">/%([cDFhnrRtTxX])/g</span>, <span class="function"><span class="keyword">function</span> (<span class="params">m0, m1</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> f = _aggregates[m1]</span><br><span class="line">      <span class="keyword">return</span> (f === <span class="string">'locale'</span> ? lcTime[m1] : f)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Now replace formats - we need a closure so that the date object gets passed through</span></span><br><span class="line">  <span class="keyword">var</span> str = fmt.replace(<span class="regexp">/%([aAbBCdegGHIjklmMpPsSuUVwWyYzZ%])/g</span>, <span class="function"><span class="keyword">function</span> (<span class="params">m0, m1</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> f = _formats[m1]</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> f === <span class="string">'string'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> _date[f]()</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> f === <span class="string">'function'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> f(_date)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> f === <span class="string">'object'</span> &amp;&amp; <span class="keyword">typeof</span> f[<span class="number">0</span>] === <span class="string">'string'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> _xPad(_date[f[<span class="number">0</span>]](), f[<span class="number">1</span>])</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// Shouldn't reach here</span></span><br><span class="line">      <span class="keyword">return</span> m1</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> str</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      [
+      <a href="https://github.com/kvz/locutus/blob/master/functions/datetime/strftime.js">View on GitHub</a>
+      |
+      <a href="https://github.com/kvz/locutus/edit/master/functions/datetime/strftime.js">Edit on GitHub</a>
+      |
+      <a href="https://raw.githubusercontent.com/kvz/locutus/master/functions/datetime/strftime.js">Source on GitHub</a>
+      ]
+
+      <div class="clearfix"></div>
+
+      <h2>How to use</h2>
+      <p>
+        npm is the recommended installation method. It pairs nicely with a CommonJS
+        module bundler such as
+        <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>,
+        <a href="http://webpack.github.io/" target="_blank" rel="external">webpack</a> or
+        <a href="http://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+      </p>
+      <p>
+        You you can install via <code>npm install --save --save-exact locutus</code> and
+        require it like so:
+
+        <code>var strftime = require('locutus/php/datetime/strftime')</code>
+        and start using <code>strftime</code>. You could also require the <code>datetime</code> module
+        in full.
+      </p>
+
+      <h2>ES5/ES6</h2>
+      <p>
+        
+          This function targets ES5, but as of Locutus 2.0.0 we also support
+          ES6 functions. Locutus transpiles to ES5 before publishing to npm.
+        
+      </p>
+
+      
+
+      <h2>A community initiative</h2>
+      <p>
+        Locutus offers community built functions and goes by the
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">McDonald’s Theory</a>.
+        We’ll put online functions that aren't perfect, in the hopes to spark better contributions.
+        Do you have one? You can directly edit this file on GitHub, this will create a Pull Request that
+        the core team can review, and merge into our codebase.
+      </p>
+      <p>
+        This way of working also means that we don't offer any
+        production guarantees, and recommend to use Locutus inspiration
+        and learning purposes only.
+      </p>
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>Uses global: locutus to store locale info</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>strftime(&quot;%A&quot;, 1062462400); // Return value will depend on date and locale</code></td><td><code>&#39;Tuesday&#39;</code></td></tr>
+        
+        </table>
+      
+
+      
+
+
+      <hr />
+      <p>
+        <a href="/php/datetime/">&laquo; More PHP datetime functions</a>
+      </p>
+
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">about locutus</h3>
+  <div class="widget">
+    About locutus
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget">
+    <div class="on-the-githubs" data-event-source="repos/kvz/phpjs">Loading...</div>
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (3)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strings/Index.html">
+            strings
+            (3)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (315)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (71)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (29)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-04-21T00:00:00.000Z" itemprop="datePublished">2016-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/breaking-bc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/jekyll/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
+                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/standard-coding-style/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://cdn.rawgit.com/feross/standard/master/sticker.svg)" alt="Standard Coding Style" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/standard-coding-style/" class="title">Standard Coding Style</a></p>
+                            <p class="item-date"><time datetime="2016-04-01T00:00:00.000Z" itemprop="datePublished">2016-04-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2013/05/coding-style/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://cdn.vnykmshr.com/images/articles/dev-manuals-node-js-code-and-style-guide/awesome-nodejs.png)" alt="Coding Style" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2013/05/coding-style/" class="title">Coding Style</a></p>
+                            <p class="item-date"><time datetime="2013-05-04T00:00:00.000Z" itemprop="datePublished">2013-05-04</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2016 Kevin van Zonneveld<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+<script src="/js/locutus.js"></script>
+
+    </div>
+</body>
+</html>

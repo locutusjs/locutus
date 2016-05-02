@@ -1,15 +1,45 @@
 <% if (curLang.language !== 'php') { %>
+  <%
+  var cnt = site.pages.find({ language: curLang.language, type: 'function' }).length
+  var header = 'What?! Only ' + cnt + ' ' + curLang.human + ' function'
+  if (cnt !== 1) {
+    header += 's'
+  }
+  header += ' in all of Locutus?'
+  if (cnt > 50) {
+    header = 'Welcoming your addition'
+  }
+  %>
+
   <h2><%= header %></h2>
   <p>
     We could still assimilate many more functions to this language.
-    Get inspiration from
-    <%- curLang.inspiration_urls.join(', ') %>.
-    Afterwards you can click "New file" in the appropriate folder
-    <a href="https://github.com/kvz/locutus/tree/master/src/<%= curLang.language %>/">on GitHub</a>.
-    This will fork the project to your account, directly add the file to it, and send a
-    Pull Request to us. We will then review it. If it's useful to the project and in line with our
+
+    We only just <a href="/2016/05/announcing-locutus/">rolled out multi-lignual support to Locutus</a>.
+    If you fancy a challenge, we'd love your help
+    expanding that.
+
+    For instance, you could:
+  </p>
+  <ul>
+    <li>
+      Get inspiration from
+      <%- curLang.inspiration_urls.join(', ') %>.
+    </li>
+    <li>
+      Click "New file" in the appropriate folder
+      <a href="https://github.com/kvz/locutus/tree/master/src/<%= curLang.language %>/">on GitHub</a>.
+      This will fork the project to your account, directly add the file to it, and send a
+      Pull Request to us.
+    </li>
+  </ul>
+
+  <p>
+    We will then review it. If it's useful to the project and in line with our
     <a href="https://github.com/kvz/locutus/CONTRIBUTING.md">contributing guidelines</a>
-    your work will become part of Locutus and you'll be credited in the <a href="/authors">authors</a>
+    your work will become part of Locutus and you'll be automatically credited
+    in the <a href="/authors">authors</a>
     section accordingly.
   </p>
+
 <% } %>

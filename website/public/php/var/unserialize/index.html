@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Categoria: var | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP's unserialize in JavaScript">
+<meta property="og:url" content="http://locutusjs.io/php/var/unserialize/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:updated_time" content="2016-05-01T21:22:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP's unserialize in JavaScript">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/locutus.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <nav id="main-nav">
+                
+                  <a class="main-nav-link" href="/archives">Blog</a>
+                
+                  <a class="main-nav-link" href="/authors">Authors</a>
+                
+
+                
+                  <a class="main-nav-link" href="/c">C</a>
+                
+                  <a class="main-nav-link" href="/golang">Go</a>
+                
+                  <a class="main-nav-link" href="/python">Python</a>
+                
+                  <a class="main-nav-link" href="/ruby">Ruby</a>
+                
+                  <a class="main-nav-link" href="/php">PHP</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Entradas',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categorias',
+            TAGS: 'Etiquetas',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/archives">Blog</a></td>
+                
+                    <td><a class="main-nav-link" href="/authors">Authors</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">PHP&#39;s unserialize in JavaScript</h1>
+    </header>
+
+    <div class="article-entry">
+      <p>
+        Here’s what our current JavaScript equivalent to
+        <a href="http://php.net/manual/en/function.unserialize.php">PHP's unserialize</a>
+
+        PHP's
+
+        unserialize
+        looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">unserialize</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//  discuss at: http://locutusjs.io/php/unserialize/</span></span><br><span class="line">  <span class="comment">// original by: Arpad Ray (mailto:arpad@php.net)</span></span><br><span class="line">  <span class="comment">// improved by: Pedro Tainha (http://www.pedrotainha.com)</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Chris</span></span><br><span class="line">  <span class="comment">// improved by: James</span></span><br><span class="line">  <span class="comment">// improved by: Le Torbi</span></span><br><span class="line">  <span class="comment">// improved by: Eli Skeggs</span></span><br><span class="line">  <span class="comment">// bugfixed by: dptr1988</span></span><br><span class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//  revised by: d3x</span></span><br><span class="line">  <span class="comment">//    input by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Martin (http://www.erlenwiese.de/)</span></span><br><span class="line">  <span class="comment">//    input by: kilops</span></span><br><span class="line">  <span class="comment">//    input by: Jaroslaw Czarniak</span></span><br><span class="line">  <span class="comment">//      note 1: We feel the main purpose of this function should be</span></span><br><span class="line">  <span class="comment">//      note 1: to ease the transport of data between php &amp; js</span></span><br><span class="line">  <span class="comment">//      note 1: Aiming for PHP-compatibility, we have to translate objects to arrays</span></span><br><span class="line">  <span class="comment">//   example 1: unserialize('a:3:&#123;i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";&#125;')</span></span><br><span class="line">  <span class="comment">//   returns 1: ['Kevin', 'van', 'Zonneveld']</span></span><br><span class="line">  <span class="comment">//   example 2: unserialize('a:2:&#123;s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";&#125;')</span></span><br><span class="line">  <span class="comment">//   returns 2: &#123;firstName: 'Kevin', midName: 'van'&#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> $global = (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : GLOBAL)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> utf8Overhead = <span class="function"><span class="keyword">function</span> (<span class="params">chr</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// http://locutusjs.io/php/unserialize:571#comment_95906</span></span><br><span class="line">    <span class="keyword">var</span> code = chr.charCodeAt(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">var</span> zeroCodes = [</span><br><span class="line">      <span class="number">338</span>,</span><br><span class="line">      <span class="number">339</span>,</span><br><span class="line">      <span class="number">352</span>,</span><br><span class="line">      <span class="number">353</span>,</span><br><span class="line">      <span class="number">376</span>,</span><br><span class="line">      <span class="number">402</span>,</span><br><span class="line">      <span class="number">8211</span>,</span><br><span class="line">      <span class="number">8212</span>,</span><br><span class="line">      <span class="number">8216</span>,</span><br><span class="line">      <span class="number">8217</span>,</span><br><span class="line">      <span class="number">8218</span>,</span><br><span class="line">      <span class="number">8220</span>,</span><br><span class="line">      <span class="number">8221</span>,</span><br><span class="line">      <span class="number">8222</span>,</span><br><span class="line">      <span class="number">8224</span>,</span><br><span class="line">      <span class="number">8225</span>,</span><br><span class="line">      <span class="number">8226</span>,</span><br><span class="line">      <span class="number">8230</span>,</span><br><span class="line">      <span class="number">8240</span>,</span><br><span class="line">      <span class="number">8364</span>,</span><br><span class="line">      <span class="number">8482</span></span><br><span class="line">    ]</span><br><span class="line">    <span class="keyword">if</span> (code &lt; <span class="number">0x0080</span> || code &gt;= <span class="number">0x00A0</span> &amp;&amp; code &lt;= <span class="number">0x00FF</span> || zeroCodes.indexOf(code) !== <span class="number">-1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (code &lt; <span class="number">0x0800</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> error = <span class="function"><span class="keyword">function</span> (<span class="params">type,</span><br><span class="line">    msg, filename, line</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> $global[type](msg, filename, line)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> readUntil = <span class="function"><span class="keyword">function</span> (<span class="params">data, offset, stopchr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">2</span></span><br><span class="line">    <span class="keyword">var</span> buf = []</span><br><span class="line">    <span class="keyword">var</span> chr = data.slice(offset, offset + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (chr !== stopchr) &#123;</span><br><span class="line">      <span class="keyword">if</span> ((i + offset) &gt; data.length) &#123;</span><br><span class="line">        error(<span class="string">'Error'</span>, <span class="string">'Invalid'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">      buf.push(chr)</span><br><span class="line">      chr = data.slice(offset + (i - <span class="number">1</span>), offset + i)</span><br><span class="line">      i += <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> [buf.length, buf.join(<span class="string">''</span>)]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> readChrs = <span class="function"><span class="keyword">function</span> (<span class="params">data, offset, length</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i, chr, buf</span><br><span class="line"></span><br><span class="line">    buf = []</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">      chr = data.slice(offset + (i - <span class="number">1</span>), offset + i)</span><br><span class="line">      buf.push(chr)</span><br><span class="line">      length -= utf8Overhead(chr)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> [buf.length, buf.join(<span class="string">''</span>)]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> _unserialize = <span class="function"><span class="keyword">function</span> (<span class="params">data, offset</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> dtype</span><br><span class="line">    <span class="keyword">var</span> dataoffset</span><br><span class="line">    <span class="keyword">var</span> keyandchrs</span><br><span class="line">    <span class="keyword">var</span> keys</span><br><span class="line">    <span class="keyword">var</span> contig</span><br><span class="line">    <span class="keyword">var</span> length</span><br><span class="line">    <span class="keyword">var</span> array</span><br><span class="line">    <span class="keyword">var</span> readdata</span><br><span class="line">    <span class="keyword">var</span> readData</span><br><span class="line">    <span class="keyword">var</span> ccount</span><br><span class="line">    <span class="keyword">var</span> stringlength</span><br><span class="line">    <span class="keyword">var</span> i</span><br><span class="line">    <span class="keyword">var</span> key</span><br><span class="line">    <span class="keyword">var</span> kprops</span><br><span class="line">    <span class="keyword">var</span> kchrs</span><br><span class="line">    <span class="keyword">var</span> vprops</span><br><span class="line">    <span class="keyword">var</span> vchrs</span><br><span class="line">    <span class="keyword">var</span> value</span><br><span class="line">    <span class="keyword">var</span> chrs = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> typeconvert = <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> x</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!offset) &#123;</span><br><span class="line">      offset = <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    dtype = (data.slice(offset, offset + <span class="number">1</span>)).toLowerCase()</span><br><span class="line"></span><br><span class="line">    dataoffset = offset + <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span> (dtype) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'i'</span>:</span><br><span class="line">        typeconvert = <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="built_in">parseInt</span>(x, <span class="number">10</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        readData = readUntil(data, dataoffset, <span class="string">';'</span>)</span><br><span class="line">        chrs = readData[<span class="number">0</span>]</span><br><span class="line">        readdata = readData[<span class="number">1</span>]</span><br><span class="line">        dataoffset += chrs + <span class="number">1</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'b'</span>:</span><br><span class="line">        typeconvert = <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="built_in">parseInt</span>(x, <span class="number">10</span>) !== <span class="number">0</span></span><br><span class="line">        &#125;</span><br><span class="line">        readData = readUntil(data, dataoffset, <span class="string">';'</span>)</span><br><span class="line">        chrs = readData[<span class="number">0</span>]</span><br><span class="line">        readdata = readData[<span class="number">1</span>]</span><br><span class="line">        dataoffset += chrs + <span class="number">1</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'d'</span>:</span><br><span class="line">        typeconvert = <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="built_in">parseFloat</span>(x)</span><br><span class="line">        &#125;</span><br><span class="line">        readData = readUntil(data, dataoffset, <span class="string">';'</span>)</span><br><span class="line">        chrs = readData[<span class="number">0</span>]</span><br><span class="line">        readdata = readData[<span class="number">1</span>]</span><br><span class="line">        dataoffset += chrs + <span class="number">1</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'n'</span>:</span><br><span class="line">        readdata = <span class="literal">null</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'s'</span>:</span><br><span class="line">        ccount = readUntil(data, dataoffset, <span class="string">':'</span>)</span><br><span class="line">        chrs = ccount[<span class="number">0</span>]</span><br><span class="line">        stringlength = ccount[<span class="number">1</span>]</span><br><span class="line">        dataoffset += chrs + <span class="number">2</span></span><br><span class="line"></span><br><span class="line">        readData = readChrs(data, dataoffset + <span class="number">1</span>, <span class="built_in">parseInt</span>(stringlength, <span class="number">10</span>))</span><br><span class="line">        chrs = readData[<span class="number">0</span>]</span><br><span class="line">        readdata = readData[<span class="number">1</span>]</span><br><span class="line">        dataoffset += chrs + <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> (chrs !== <span class="built_in">parseInt</span>(stringlength, <span class="number">10</span>) &amp;&amp; chrs !== readdata.length) &#123;</span><br><span class="line">          error(<span class="string">'SyntaxError'</span>, <span class="string">'String length mismatch'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'a'</span>:</span><br><span class="line">        readdata = &#123;&#125;</span><br><span class="line"></span><br><span class="line">        keyandchrs = readUntil(data, dataoffset, <span class="string">':'</span>)</span><br><span class="line">        chrs = keyandchrs[<span class="number">0</span>]</span><br><span class="line">        keys = keyandchrs[<span class="number">1</span>]</span><br><span class="line">        dataoffset += chrs + <span class="number">2</span></span><br><span class="line"></span><br><span class="line">        length = <span class="built_in">parseInt</span>(keys, <span class="number">10</span>)</span><br><span class="line">        contig = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">          kprops = _unserialize(data, dataoffset)</span><br><span class="line">          kchrs = kprops[<span class="number">1</span>]</span><br><span class="line">          key = kprops[<span class="number">2</span>]</span><br><span class="line">          dataoffset += kchrs</span><br><span class="line"></span><br><span class="line">          vprops = _unserialize(data, dataoffset)</span><br><span class="line">          vchrs = vprops[<span class="number">1</span>]</span><br><span class="line">          value = vprops[<span class="number">2</span>]</span><br><span class="line">          dataoffset += vchrs</span><br><span class="line"></span><br><span class="line">          <span class="keyword">if</span> (key !== i) &#123;</span><br><span class="line">            contig = <span class="literal">false</span></span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          readdata[key] = value</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (contig) &#123;</span><br><span class="line">          array = <span class="keyword">new</span> <span class="built_in">Array</span>(length)</span><br><span class="line">          <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">            array[i] = readdata[i]</span><br><span class="line">          &#125;</span><br><span class="line">          readdata = array</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        dataoffset += <span class="number">1</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">default</span>:</span><br><span class="line">        error(<span class="string">'SyntaxError'</span>, <span class="string">'Unknown / Unhandled data type(s): '</span> + dtype)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> [dtype, dataoffset - offset, typeconvert(readdata)]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> _unserialize((data + <span class="string">''</span>), <span class="number">0</span>)[<span class="number">2</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      [
+      <a href="https://github.com/kvz/locutus/blob/master/functions/var/unserialize.js">View on GitHub</a>
+      |
+      <a href="https://github.com/kvz/locutus/edit/master/functions/var/unserialize.js">Edit on GitHub</a>
+      |
+      <a href="https://raw.githubusercontent.com/kvz/locutus/master/functions/var/unserialize.js">Source on GitHub</a>
+      ]
+
+      <div class="clearfix"></div>
+
+      <h2>How to use</h2>
+      <p>
+        npm is the recommended installation method. It pairs nicely with a CommonJS
+        module bundler such as
+        <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>,
+        <a href="http://webpack.github.io/" target="_blank" rel="external">webpack</a> or
+        <a href="http://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+      </p>
+      <p>
+        You you can install via <code>npm install --save --save-exact locutus</code> and
+        require it like so:
+
+        <code>var unserialize = require('locutus/php/var/unserialize')</code>
+        and start using <code>unserialize</code>. You could also require the <code>var</code> module
+        in full.
+      </p>
+
+      <h2>ES5/ES6</h2>
+      <p>
+        
+          This function targets ES5, but as of Locutus 2.0.0 we also support
+          ES6 functions. Locutus transpiles to ES5 before publishing to npm.
+        
+      </p>
+
+      
+
+      <h2>A community initiative</h2>
+      <p>
+        Locutus offers community built functions and goes by the
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">McDonald’s Theory</a>.
+        We’ll put online functions that aren't perfect, in the hopes to spark better contributions.
+        Do you have one? You can directly edit this file on GitHub, this will create a Pull Request that
+        the core team can review, and merge into our codebase.
+      </p>
+      <p>
+        This way of working also means that we don't offer any
+        production guarantees, and recommend to use Locutus inspiration
+        and learning purposes only.
+      </p>
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>We feel the main purpose of this function should be<br>to ease the transport of data between php &amp; js<br>Aiming for PHP-compatibility, we have to translate objects to arrays</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>unserialize(&#39;a:3:{i:0;s:5:&quot;Kevin&quot;;i:1;s:3:&quot;van&quot;;i:2;s:9:&quot;Zonneveld&quot;;}&#39;)</code></td><td><code>[&#39;Kevin&#39;, &#39;van&#39;, &#39;Zonneveld&#39;]</code></td></tr>
+        
+          <tr><td>2</td><td><code>unserialize(&#39;a:2:{s:9:&quot;firstName&quot;;s:5:&quot;Kevin&quot;;s:7:&quot;midName&quot;;s:3:&quot;van&quot;;}&#39;)</code></td><td><code>{firstName: &#39;Kevin&#39;, midName: &#39;van&#39;}</code></td></tr>
+        
+        </table>
+      
+
+      
+
+
+      <hr />
+      <p>
+        <a href="/php/var/">&laquo; More PHP var functions</a>
+      </p>
+
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">about locutus</h3>
+  <div class="widget">
+    About locutus
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget">
+    <div class="on-the-githubs" data-event-source="repos/kvz/phpjs">Loading...</div>
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (3)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strings/Index.html">
+            strings
+            (3)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (315)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (71)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (29)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-04-21T00:00:00.000Z" itemprop="datePublished">2016-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/breaking-bc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/jekyll/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
+                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/standard-coding-style/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://cdn.rawgit.com/feross/standard/master/sticker.svg)" alt="Standard Coding Style" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/standard-coding-style/" class="title">Standard Coding Style</a></p>
+                            <p class="item-date"><time datetime="2016-04-01T00:00:00.000Z" itemprop="datePublished">2016-04-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2013/05/coding-style/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://cdn.vnykmshr.com/images/articles/dev-manuals-node-js-code-and-style-guide/awesome-nodejs.png)" alt="Coding Style" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2013/05/coding-style/" class="title">Coding Style</a></p>
+                            <p class="item-date"><time datetime="2013-05-04T00:00:00.000Z" itemprop="datePublished">2013-05-04</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2016 Kevin van Zonneveld<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+<script src="/js/locutus.js"></script>
+
+    </div>
+</body>
+</html>

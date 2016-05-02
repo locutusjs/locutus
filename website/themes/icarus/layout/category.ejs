@@ -17,22 +17,12 @@
       </ul>
 
       <hr />
-      <%
-      var cnt = site.pages.find({ language: curLang.language, type: 'function' }).length
-      var header = 'What?! Only ' + cnt + ' ' + curLang.human + ' function'
-      if (cnt !== 1) {
-        header += 's'
-      }
-      header += ' in all of Locutus?'
-      if (cnt < 50) { %>
-        <%- partial('locutus/add_more', {curLang: curLang, header: header}) %>
-      <% } %>
+      <%- partial('locutus/add_more', {curLang: curLang}) %>
 
       <hr />
       <p>
         <a href="/<%= page.language %>/">&laquo; More <%= curLang.human %> functions</a>
       </p>
-
     </div>
   </div>
 </article>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Categoria: strings | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP's md5 in JavaScript">
+<meta property="og:url" content="http://locutusjs.io/php/strings/md5/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:updated_time" content="2016-05-01T21:22:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP's md5 in JavaScript">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/locutus.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <nav id="main-nav">
+                
+                  <a class="main-nav-link" href="/archives">Blog</a>
+                
+                  <a class="main-nav-link" href="/authors">Authors</a>
+                
+
+                
+                  <a class="main-nav-link" href="/c">C</a>
+                
+                  <a class="main-nav-link" href="/golang">Go</a>
+                
+                  <a class="main-nav-link" href="/python">Python</a>
+                
+                  <a class="main-nav-link" href="/ruby">Ruby</a>
+                
+                  <a class="main-nav-link" href="/php">PHP</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Entradas',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categorias',
+            TAGS: 'Etiquetas',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/archives">Blog</a></td>
+                
+                    <td><a class="main-nav-link" href="/authors">Authors</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">PHP&#39;s md5 in JavaScript</h1>
+    </header>
+
+    <div class="article-entry">
+      <p>
+        Here’s what our current JavaScript equivalent to
+        <a href="http://php.net/manual/en/function.md5.php">PHP's md5</a>
+
+        PHP's
+
+        md5
+        looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">md5</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//  discuss at: http://locutusjs.io/php/md5/</span></span><br><span class="line">  <span class="comment">// original by: Webtoolkit.info (http://www.webtoolkit.info/)</span></span><br><span class="line">  <span class="comment">// improved by: Michael White (http://getsprink.com)</span></span><br><span class="line">  <span class="comment">// improved by: Jack</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">//    input by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">//      note 1: Keep in mind that in accordance with PHP, the whole string is buffered and then</span></span><br><span class="line">  <span class="comment">//      note 1: hashed. If available, we'd recommend using Node's native crypto modules directly</span></span><br><span class="line">  <span class="comment">//      note 1: in a steaming fashion for faster and more efficient hashing</span></span><br><span class="line">  <span class="comment">//   example 1: md5('Kevin van Zonneveld')</span></span><br><span class="line">  <span class="comment">//   returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> hash</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto'</span>)</span><br><span class="line">    <span class="keyword">var</span> md5sum = crypto.createHash(<span class="string">'md5'</span>)</span><br><span class="line">    md5sum.update(str)</span><br><span class="line">    hash = md5sum.digest(<span class="string">'hex'</span>)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    hash = <span class="literal">undefined</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (hash !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> hash</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> utf8Encode = <span class="built_in">require</span>(<span class="string">'../xml/utf8_encode'</span>)</span><br><span class="line">  <span class="keyword">var</span> xl</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _rotateLeft = <span class="function"><span class="keyword">function</span> (<span class="params">lValue, iShiftBits</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (lValue &lt;&lt; iShiftBits) | (lValue &gt;&gt;&gt; (<span class="number">32</span> - iShiftBits))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _addUnsigned = <span class="function"><span class="keyword">function</span> (<span class="params">lX, lY</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> lX4, lY4, lX8, lY8, lResult</span><br><span class="line">    lX8 = (lX &amp; <span class="number">0x80000000</span>)</span><br><span class="line">    lY8 = (lY &amp; <span class="number">0x80000000</span>)</span><br><span class="line">    lX4 = (lX &amp; <span class="number">0x40000000</span>)</span><br><span class="line">    lY4 = (lY &amp; <span class="number">0x40000000</span>)</span><br><span class="line">    lResult = (lX &amp; <span class="number">0x3FFFFFFF</span>) + (lY &amp; <span class="number">0x3FFFFFFF</span>)</span><br><span class="line">    <span class="keyword">if</span> (lX4 &amp; lY4) &#123;</span><br><span class="line">      <span class="keyword">return</span> (lResult ^ <span class="number">0x80000000</span> ^ lX8 ^ lY8)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (lX4 | lY4) &#123;</span><br><span class="line">      <span class="keyword">if</span> (lResult &amp; <span class="number">0x40000000</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> (lResult ^ <span class="number">0xC0000000</span> ^ lX8 ^ lY8)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (lResult ^ <span class="number">0x40000000</span> ^ lX8 ^ lY8)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> (lResult ^ lX8 ^ lY8)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _F = <span class="function"><span class="keyword">function</span> (<span class="params">x, y, z</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (x &amp; y) | ((~x) &amp; z)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> _G = <span class="function"><span class="keyword">function</span> (<span class="params">x, y, z</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (x &amp; z) | (y &amp; (~z))</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> _H = <span class="function"><span class="keyword">function</span> (<span class="params">x, y, z</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (x ^ y ^ z)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> _I = <span class="function"><span class="keyword">function</span> (<span class="params">x, y, z</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (y ^ (x | (~z)))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _FF = <span class="function"><span class="keyword">function</span> (<span class="params">a, b, c, d, x, s, ac</span>) </span>&#123;</span><br><span class="line">    a = _addUnsigned(a, _addUnsigned(_addUnsigned(_F(b, c, d), x), ac))</span><br><span class="line">    <span class="keyword">return</span> _addUnsigned(_rotateLeft(a, s), b)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _GG = <span class="function"><span class="keyword">function</span> (<span class="params">a, b, c, d, x, s, ac</span>) </span>&#123;</span><br><span class="line">    a = _addUnsigned(a, _addUnsigned(_addUnsigned(_G(b, c, d), x), ac))</span><br><span class="line">    <span class="keyword">return</span> _addUnsigned(_rotateLeft(a, s), b)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _HH = <span class="function"><span class="keyword">function</span> (<span class="params">a, b, c, d, x, s, ac</span>) </span>&#123;</span><br><span class="line">    a = _addUnsigned(a, _addUnsigned(_addUnsigned(_H(b, c, d), x), ac))</span><br><span class="line">    <span class="keyword">return</span> _addUnsigned(_rotateLeft(a, s), b)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _II = <span class="function"><span class="keyword">function</span> (<span class="params">a, b, c, d, x, s, ac</span>) </span>&#123;</span><br><span class="line">    a = _addUnsigned(a, _addUnsigned(_addUnsigned(_I(b, c, d), x), ac))</span><br><span class="line">    <span class="keyword">return</span> _addUnsigned(_rotateLeft(a, s), b)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _convertToWordArray = <span class="function"><span class="keyword">function</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> lWordCount</span><br><span class="line">    <span class="keyword">var</span> lMessageLength = str.length</span><br><span class="line">    <span class="keyword">var</span> lNumberOfWordsTemp1 = lMessageLength + <span class="number">8</span></span><br><span class="line">    <span class="keyword">var</span> lNumberOfWordsTemp2 = (lNumberOfWordsTemp1 - (lNumberOfWordsTemp1 % <span class="number">64</span>)) / <span class="number">64</span></span><br><span class="line">    <span class="keyword">var</span> lNumberOfWords = (lNumberOfWordsTemp2 + <span class="number">1</span>) * <span class="number">16</span></span><br><span class="line">    <span class="keyword">var</span> lWordArray = <span class="keyword">new</span> <span class="built_in">Array</span>(lNumberOfWords - <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">var</span> lBytePosition = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> lByteCount = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> (lByteCount &lt; lMessageLength) &#123;</span><br><span class="line">      lWordCount = (lByteCount - (lByteCount % <span class="number">4</span>)) / <span class="number">4</span></span><br><span class="line">      lBytePosition = (lByteCount % <span class="number">4</span>) * <span class="number">8</span></span><br><span class="line">      lWordArray[lWordCount] = (lWordArray[lWordCount] |</span><br><span class="line">        (str.charCodeAt(lByteCount) &lt;&lt; lBytePosition))</span><br><span class="line">      lByteCount++</span><br><span class="line">    &#125;</span><br><span class="line">    lWordCount = (lByteCount - (lByteCount % <span class="number">4</span>)) / <span class="number">4</span></span><br><span class="line">    lBytePosition = (lByteCount % <span class="number">4</span>) * <span class="number">8</span></span><br><span class="line">    lWordArray[lWordCount] = lWordArray[lWordCount] | (<span class="number">0x80</span> &lt;&lt; lBytePosition)</span><br><span class="line">    lWordArray[lNumberOfWords - <span class="number">2</span>] = lMessageLength &lt;&lt; <span class="number">3</span></span><br><span class="line">    lWordArray[lNumberOfWords - <span class="number">1</span>] = lMessageLength &gt;&gt;&gt; <span class="number">29</span></span><br><span class="line">    <span class="keyword">return</span> lWordArray</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _wordToHex = <span class="function"><span class="keyword">function</span> (<span class="params">lValue</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> wordToHexValue = <span class="string">''</span></span><br><span class="line">    <span class="keyword">var</span> wordToHexValueTemp = <span class="string">''</span></span><br><span class="line">    <span class="keyword">var</span> lByte</span><br><span class="line">    <span class="keyword">var</span> lCount</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (lCount = <span class="number">0</span>; lCount &lt;= <span class="number">3</span>; lCount++) &#123;</span><br><span class="line">      lByte = (lValue &gt;&gt;&gt; (lCount * <span class="number">8</span>)) &amp; <span class="number">255</span></span><br><span class="line">      wordToHexValueTemp = <span class="string">'0'</span> + lByte.toString(<span class="number">16</span>)</span><br><span class="line">      wordToHexValue = wordToHexValue + wordToHexValueTemp.substr(wordToHexValueTemp.length - <span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> wordToHexValue</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> x = []</span><br><span class="line">  <span class="keyword">var</span> k</span><br><span class="line">  <span class="keyword">var</span> AA</span><br><span class="line">  <span class="keyword">var</span> BB</span><br><span class="line">  <span class="keyword">var</span> CC</span><br><span class="line">  <span class="keyword">var</span> DD</span><br><span class="line">  <span class="keyword">var</span> a</span><br><span class="line">  <span class="keyword">var</span> b</span><br><span class="line">  <span class="keyword">var</span> c</span><br><span class="line">  <span class="keyword">var</span> d</span><br><span class="line">  <span class="keyword">var</span> S11 = <span class="number">7</span></span><br><span class="line">  <span class="keyword">var</span> S12 = <span class="number">12</span></span><br><span class="line">  <span class="keyword">var</span> S13 = <span class="number">17</span></span><br><span class="line">  <span class="keyword">var</span> S14 = <span class="number">22</span></span><br><span class="line">  <span class="keyword">var</span> S21 = <span class="number">5</span></span><br><span class="line">  <span class="keyword">var</span> S22 = <span class="number">9</span></span><br><span class="line">  <span class="keyword">var</span> S23 = <span class="number">14</span></span><br><span class="line">  <span class="keyword">var</span> S24 = <span class="number">20</span></span><br><span class="line">  <span class="keyword">var</span> S31 = <span class="number">4</span></span><br><span class="line">  <span class="keyword">var</span> S32 = <span class="number">11</span></span><br><span class="line">  <span class="keyword">var</span> S33 = <span class="number">16</span></span><br><span class="line">  <span class="keyword">var</span> S34 = <span class="number">23</span></span><br><span class="line">  <span class="keyword">var</span> S41 = <span class="number">6</span></span><br><span class="line">  <span class="keyword">var</span> S42 = <span class="number">10</span></span><br><span class="line">  <span class="keyword">var</span> S43 = <span class="number">15</span></span><br><span class="line">  <span class="keyword">var</span> S44 = <span class="number">21</span></span><br><span class="line"></span><br><span class="line">  str = utf8Encode(str)</span><br><span class="line">  x = _convertToWordArray(str)</span><br><span class="line">  a = <span class="number">0x67452301</span></span><br><span class="line">  b = <span class="number">0xEFCDAB89</span></span><br><span class="line">  c = <span class="number">0x98BADCFE</span></span><br><span class="line">  d = <span class="number">0x10325476</span></span><br><span class="line"></span><br><span class="line">  xl = x.length</span><br><span class="line">  <span class="keyword">for</span> (k = <span class="number">0</span>; k &lt; xl; k += <span class="number">16</span>) &#123;</span><br><span class="line">    AA = a</span><br><span class="line">    BB = b</span><br><span class="line">    CC = c</span><br><span class="line">    DD = d</span><br><span class="line">    a = _FF(a, b, c, d, x[k + <span class="number">0</span>], S11, <span class="number">0xD76AA478</span>)</span><br><span class="line">    d = _FF(d, a, b, c, x[k + <span class="number">1</span>], S12, <span class="number">0xE8C7B756</span>)</span><br><span class="line">    c = _FF(c, d, a, b, x[k + <span class="number">2</span>], S13, <span class="number">0x242070DB</span>)</span><br><span class="line">    b = _FF(b, c, d, a, x[k + <span class="number">3</span>], S14, <span class="number">0xC1BDCEEE</span>)</span><br><span class="line">    a = _FF(a, b, c, d, x[k + <span class="number">4</span>], S11, <span class="number">0xF57C0FAF</span>)</span><br><span class="line">    d = _FF(d, a, b, c, x[k + <span class="number">5</span>], S12, <span class="number">0x4787C62A</span>)</span><br><span class="line">    c = _FF(c, d, a, b, x[k + <span class="number">6</span>], S13, <span class="number">0xA8304613</span>)</span><br><span class="line">    b = _FF(b, c, d, a, x[k + <span class="number">7</span>], S14, <span class="number">0xFD469501</span>)</span><br><span class="line">    a = _FF(a, b, c, d, x[k + <span class="number">8</span>], S11, <span class="number">0x698098D8</span>)</span><br><span class="line">    d = _FF(d, a, b, c, x[k + <span class="number">9</span>], S12, <span class="number">0x8B44F7AF</span>)</span><br><span class="line">    c = _FF(c, d, a, b, x[k + <span class="number">10</span>], S13, <span class="number">0xFFFF5BB1</span>)</span><br><span class="line">    b = _FF(b, c, d, a, x[k + <span class="number">11</span>], S14, <span class="number">0x895CD7BE</span>)</span><br><span class="line">    a = _FF(a, b, c, d, x[k + <span class="number">12</span>], S11, <span class="number">0x6B901122</span>)</span><br><span class="line">    d = _FF(d, a, b, c, x[k + <span class="number">13</span>], S12, <span class="number">0xFD987193</span>)</span><br><span class="line">    c = _FF(c, d, a, b, x[k + <span class="number">14</span>], S13, <span class="number">0xA679438E</span>)</span><br><span class="line">    b = _FF(b, c, d, a, x[k + <span class="number">15</span>], S14, <span class="number">0x49B40821</span>)</span><br><span class="line">    a = _GG(a, b, c, d, x[k + <span class="number">1</span>], S21, <span class="number">0xF61E2562</span>)</span><br><span class="line">    d = _GG(d, a, b, c, x[k + <span class="number">6</span>], S22, <span class="number">0xC040B340</span>)</span><br><span class="line">    c = _GG(c, d, a, b, x[k + <span class="number">11</span>], S23, <span class="number">0x265E5A51</span>)</span><br><span class="line">    b = _GG(b, c, d, a, x[k + <span class="number">0</span>], S24, <span class="number">0xE9B6C7AA</span>)</span><br><span class="line">    a = _GG(a, b, c, d, x[k + <span class="number">5</span>], S21, <span class="number">0xD62F105D</span>)</span><br><span class="line">    d = _GG(d, a, b, c, x[k + <span class="number">10</span>], S22, <span class="number">0x2441453</span>)</span><br><span class="line">    c = _GG(c, d, a, b, x[k + <span class="number">15</span>], S23, <span class="number">0xD8A1E681</span>)</span><br><span class="line">    b = _GG(b, c, d, a, x[k + <span class="number">4</span>], S24, <span class="number">0xE7D3FBC8</span>)</span><br><span class="line">    a = _GG(a, b, c, d, x[k + <span class="number">9</span>], S21, <span class="number">0x21E1CDE6</span>)</span><br><span class="line">    d = _GG(d, a, b, c, x[k + <span class="number">14</span>], S22, <span class="number">0xC33707D6</span>)</span><br><span class="line">    c = _GG(c, d, a, b, x[k + <span class="number">3</span>], S23, <span class="number">0xF4D50D87</span>)</span><br><span class="line">    b = _GG(b, c, d, a, x[k + <span class="number">8</span>], S24, <span class="number">0x455A14ED</span>)</span><br><span class="line">    a = _GG(a, b, c, d, x[k + <span class="number">13</span>], S21, <span class="number">0xA9E3E905</span>)</span><br><span class="line">    d = _GG(d, a, b, c, x[k + <span class="number">2</span>], S22, <span class="number">0xFCEFA3F8</span>)</span><br><span class="line">    c = _GG(c, d, a, b, x[k + <span class="number">7</span>], S23, <span class="number">0x676F02D9</span>)</span><br><span class="line">    b = _GG(b, c, d, a, x[k + <span class="number">12</span>], S24, <span class="number">0x8D2A4C8A</span>)</span><br><span class="line">    a = _HH(a, b, c, d, x[k + <span class="number">5</span>], S31, <span class="number">0xFFFA3942</span>)</span><br><span class="line">    d = _HH(d, a, b, c, x[k + <span class="number">8</span>], S32, <span class="number">0x8771F681</span>)</span><br><span class="line">    c = _HH(c, d, a, b, x[k + <span class="number">11</span>], S33, <span class="number">0x6D9D6122</span>)</span><br><span class="line">    b = _HH(b, c, d, a, x[k + <span class="number">14</span>], S34, <span class="number">0xFDE5380C</span>)</span><br><span class="line">    a = _HH(a, b, c, d, x[k + <span class="number">1</span>], S31, <span class="number">0xA4BEEA44</span>)</span><br><span class="line">    d = _HH(d, a, b, c, x[k + <span class="number">4</span>], S32, <span class="number">0x4BDECFA9</span>)</span><br><span class="line">    c = _HH(c, d, a, b, x[k + <span class="number">7</span>], S33, <span class="number">0xF6BB4B60</span>)</span><br><span class="line">    b = _HH(b, c, d, a, x[k + <span class="number">10</span>], S34, <span class="number">0xBEBFBC70</span>)</span><br><span class="line">    a = _HH(a, b, c, d, x[k + <span class="number">13</span>], S31, <span class="number">0x289B7EC6</span>)</span><br><span class="line">    d = _HH(d, a, b, c, x[k + <span class="number">0</span>], S32, <span class="number">0xEAA127FA</span>)</span><br><span class="line">    c = _HH(c, d, a, b, x[k + <span class="number">3</span>], S33, <span class="number">0xD4EF3085</span>)</span><br><span class="line">    b = _HH(b, c, d, a, x[k + <span class="number">6</span>], S34, <span class="number">0x4881D05</span>)</span><br><span class="line">    a = _HH(a, b, c, d, x[k + <span class="number">9</span>], S31, <span class="number">0xD9D4D039</span>)</span><br><span class="line">    d = _HH(d, a, b, c, x[k + <span class="number">12</span>], S32, <span class="number">0xE6DB99E5</span>)</span><br><span class="line">    c = _HH(c, d, a, b, x[k + <span class="number">15</span>], S33, <span class="number">0x1FA27CF8</span>)</span><br><span class="line">    b = _HH(b, c, d, a, x[k + <span class="number">2</span>], S34, <span class="number">0xC4AC5665</span>)</span><br><span class="line">    a = _II(a, b, c, d, x[k + <span class="number">0</span>], S41, <span class="number">0xF4292244</span>)</span><br><span class="line">    d = _II(d, a, b, c, x[k + <span class="number">7</span>], S42, <span class="number">0x432AFF97</span>)</span><br><span class="line">    c = _II(c, d, a, b, x[k + <span class="number">14</span>], S43, <span class="number">0xAB9423A7</span>)</span><br><span class="line">    b = _II(b, c, d, a, x[k + <span class="number">5</span>], S44, <span class="number">0xFC93A039</span>)</span><br><span class="line">    a = _II(a, b, c, d, x[k + <span class="number">12</span>], S41, <span class="number">0x655B59C3</span>)</span><br><span class="line">    d = _II(d, a, b, c, x[k + <span class="number">3</span>], S42, <span class="number">0x8F0CCC92</span>)</span><br><span class="line">    c = _II(c, d, a, b, x[k + <span class="number">10</span>], S43, <span class="number">0xFFEFF47D</span>)</span><br><span class="line">    b = _II(b, c, d, a, x[k + <span class="number">1</span>], S44, <span class="number">0x85845DD1</span>)</span><br><span class="line">    a = _II(a, b, c, d, x[k + <span class="number">8</span>], S41, <span class="number">0x6FA87E4F</span>)</span><br><span class="line">    d = _II(d, a, b, c, x[k + <span class="number">15</span>], S42, <span class="number">0xFE2CE6E0</span>)</span><br><span class="line">    c = _II(c, d, a, b, x[k + <span class="number">6</span>], S43, <span class="number">0xA3014314</span>)</span><br><span class="line">    b = _II(b, c, d, a, x[k + <span class="number">13</span>], S44, <span class="number">0x4E0811A1</span>)</span><br><span class="line">    a = _II(a, b, c, d, x[k + <span class="number">4</span>], S41, <span class="number">0xF7537E82</span>)</span><br><span class="line">    d = _II(d, a, b, c, x[k + <span class="number">11</span>], S42, <span class="number">0xBD3AF235</span>)</span><br><span class="line">    c = _II(c, d, a, b, x[k + <span class="number">2</span>], S43, <span class="number">0x2AD7D2BB</span>)</span><br><span class="line">    b = _II(b, c, d, a, x[k + <span class="number">9</span>], S44, <span class="number">0xEB86D391</span>)</span><br><span class="line">    a = _addUnsigned(a, AA)</span><br><span class="line">    b = _addUnsigned(b, BB)</span><br><span class="line">    c = _addUnsigned(c, CC)</span><br><span class="line">    d = _addUnsigned(d, DD)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> temp = _wordToHex(a) + _wordToHex(b) + _wordToHex(c) + _wordToHex(d)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> temp.toLowerCase()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      [
+      <a href="https://github.com/kvz/locutus/blob/master/functions/strings/md5.js">View on GitHub</a>
+      |
+      <a href="https://github.com/kvz/locutus/edit/master/functions/strings/md5.js">Edit on GitHub</a>
+      |
+      <a href="https://raw.githubusercontent.com/kvz/locutus/master/functions/strings/md5.js">Source on GitHub</a>
+      ]
+
+      <div class="clearfix"></div>
+
+      <h2>How to use</h2>
+      <p>
+        npm is the recommended installation method. It pairs nicely with a CommonJS
+        module bundler such as
+        <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>,
+        <a href="http://webpack.github.io/" target="_blank" rel="external">webpack</a> or
+        <a href="http://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+      </p>
+      <p>
+        You you can install via <code>npm install --save --save-exact locutus</code> and
+        require it like so:
+
+        <code>var md5 = require('locutus/php/strings/md5')</code>
+        and start using <code>md5</code>. You could also require the <code>strings</code> module
+        in full.
+      </p>
+
+      <h2>ES5/ES6</h2>
+      <p>
+        
+          This function targets ES5, but as of Locutus 2.0.0 we also support
+          ES6 functions. Locutus transpiles to ES5 before publishing to npm.
+        
+      </p>
+
+      
+
+      <h2>A community initiative</h2>
+      <p>
+        Locutus offers community built functions and goes by the
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">McDonald’s Theory</a>.
+        We’ll put online functions that aren't perfect, in the hopes to spark better contributions.
+        Do you have one? You can directly edit this file on GitHub, this will create a Pull Request that
+        the core team can review, and merge into our codebase.
+      </p>
+      <p>
+        This way of working also means that we don't offer any
+        production guarantees, and recommend to use Locutus inspiration
+        and learning purposes only.
+      </p>
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>Keep in mind that in accordance with PHP, the whole string is buffered and then<br>hashed. If available, we’d recommend using Node’s native crypto modules directly<br>in a steaming fashion for faster and more efficient hashing</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>md5(&#39;Kevin van Zonneveld&#39;)</code></td><td><code>&#39;6e658d4bfcb59cc13f96c14450ac40b9&#39;</code></td></tr>
+        
+        </table>
+      
+
+      
+
+
+      <hr />
+      <p>
+        <a href="/php/strings/">&laquo; More PHP strings functions</a>
+      </p>
+
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">about locutus</h3>
+  <div class="widget">
+    About locutus
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget">
+    <div class="on-the-githubs" data-event-source="repos/kvz/phpjs">Loading...</div>
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (3)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strings/Index.html">
+            strings
+            (3)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (315)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (71)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (29)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-04-21T00:00:00.000Z" itemprop="datePublished">2016-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/breaking-bc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/jekyll/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
+                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/standard-coding-style/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://cdn.rawgit.com/feross/standard/master/sticker.svg)" alt="Standard Coding Style" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/standard-coding-style/" class="title">Standard Coding Style</a></p>
+                            <p class="item-date"><time datetime="2016-04-01T00:00:00.000Z" itemprop="datePublished">2016-04-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2013/05/coding-style/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://cdn.vnykmshr.com/images/articles/dev-manuals-node-js-code-and-style-guide/awesome-nodejs.png)" alt="Coding Style" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2013/05/coding-style/" class="title">Coding Style</a></p>
+                            <p class="item-date"><time datetime="2013-05-04T00:00:00.000Z" itemprop="datePublished">2013-05-04</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2016 Kevin van Zonneveld<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+<script src="/js/locutus.js"></script>
+
+    </div>
+</body>
+</html>

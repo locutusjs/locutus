@@ -12,7 +12,7 @@
       </p>
 
       <% site.pages.find({ type: 'language' }).sort('order').each(function (lang) { %>
-        <h2><a href="<%- url_for(lang.path).replace('index.html', '') %>"><%- lang.title %></a></h2>
+        <h2>Authors of <a href="<%- url_for(lang.path).replace('index.html', '') %>"><%- lang.title %></a></h2>
         <section class="authors" data-language="<%= lang.language %>">
           <% site.pages.find({ language: lang.language, type: 'function' }).each(function (func) { %>
             <% for (var typeKey in func.authors) { %>

@@ -22,8 +22,7 @@ To move forward, sometimes you have to cut features.
 In this case I had to lose our compiler, a webtool that relied on server-side code
 to generate minified packages from php.js functions.
 
-Understandibly this has [raised](https://github.com/kvz/locutus/issues/75)
-[questions](http://locutusjs.io/about/index.html#comment-861825612).
+Understandibly this has [raised](https://github.com/kvz/locutus/issues/75) [questions](http://locutusjs.io/about/index.html#comment-861825612).
 It is still possible to bundle 4 useful functions:
 
 ```bash

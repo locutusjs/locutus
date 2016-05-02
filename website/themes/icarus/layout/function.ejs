@@ -40,19 +40,16 @@
 
       <h2>How to use</h2>
       <p>
-        npm is the recommended installation method. It pairs nicely with a CommonJS
-        module bundler such as
+        You you can install via <code>npm install --save --save-exact locutus</code> and
+        require it via <code>require('locutus/<%= page.language %>/<%= page.category %>/<%= page.function %>')</code>.
+        You could also require the <code><%= page.category %></code> module in full
+        so that you could access <code><%= page.category %>.<%= page.function %></code> instead.
+      </p>
+      <p>
+        If you intend to target the browser, you can then use a module bundler such as
         <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>,
         <a href="http://webpack.github.io/" target="_blank" rel="external">webpack</a> or
         <a href="http://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
-      </p>
-      <p>
-        You you can install via <code>npm install --save --save-exact locutus</code> and
-        require it like so:
-
-        <code>var <%= page.function %> = require('locutus/<%= page.language %>/<%= page.category %>/<%= page.function %>')</code>
-        and start using <code><%= page.function %></code>. You could also require the <code><%= page.category %></code> module
-        in full.
       </p>
 
       <h2>ES5/ES6</h2>
@@ -87,7 +84,7 @@
         </p>
       <% } %>
 
-      <h2>A community initiative</h2>
+      <h2>A community effort</h2>
       <p>
         Locutus offers community built functions and goes by the
         <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">McDonald’s Theory</a>.
@@ -139,13 +136,13 @@
         </table>
       <% } %>
 
-      <%- partial('locutus/add_more', {curLang: curLang, header: 'Welcoming your addition'}) %>
+      <hr />
+      <%- partial('locutus/add_more', {curLang: curLang}) %>
 
       <hr />
       <p>
         <a href="/<%= page.language %>/<%= page.category %>/">&laquo; More <%= curLang.human %> <%= page.category %> functions</a>
       </p>
-
     </div>
   </div>
 </article>

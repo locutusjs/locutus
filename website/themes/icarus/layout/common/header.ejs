@@ -1,18 +1,18 @@
 <header id="header">
     <div id="header-main" class="header-inner">
         <div class="outer">
-            <a href="<%- url_for() %>" id="logo">
+            <a href="/" id="logo">
                 <%- (theme.customize.logo && theme.customize.logo.enabled ? '<i class="logo"></i>':'') %>
                 <span class="site-title"><%= config.title %></span>
             </a>
             <nav id="main-nav">
-                <% for (var i in theme.menu) { %>
-                  <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
-                <% } %>
-
                 <% site.pages.find({ type: 'language' }).sort('order').each(function (lang) { %>
                   <a class="main-nav-link" href="<%- url_for(lang.language) %>"><%= lang.human %></a>
                 <% }) %>
+                <span class="main-nav-link">|</span>
+                <% for (var i in theme.menu) { %>
+                  <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
+                <% } %>
             </nav>
             <% if(theme.customize.profile && theme.customize.profile.enabled) { %>
                 <% var profile = theme.customize.profile; %>
@@ -31,6 +31,10 @@
     <div id="main-nav-mobile" class="header-sub header-inner">
         <table class="menu outer">
             <tr>
+                <% site.pages.find({ type: 'language' }).sort('order').each(function (lang) { %>
+                  <td><a class="main-nav-link" href="<%- url_for(lang.language) %>"><%= lang.human %></a></td>
+                <% }) %>
+                <td><span class="main-nav-link">|</span></td>
                 <% for (var i in theme.menu) { %>
                     <td><a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a></td>
                 <% } %>

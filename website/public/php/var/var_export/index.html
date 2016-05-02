@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Categoria: var | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP's var_export in JavaScript">
+<meta property="og:url" content="http://locutusjs.io/php/var/var_export/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:updated_time" content="2016-05-01T21:22:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP's var_export in JavaScript">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/locutus.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <nav id="main-nav">
+                
+                  <a class="main-nav-link" href="/archives">Blog</a>
+                
+                  <a class="main-nav-link" href="/authors">Authors</a>
+                
+
+                
+                  <a class="main-nav-link" href="/c">C</a>
+                
+                  <a class="main-nav-link" href="/golang">Go</a>
+                
+                  <a class="main-nav-link" href="/python">Python</a>
+                
+                  <a class="main-nav-link" href="/ruby">Ruby</a>
+                
+                  <a class="main-nav-link" href="/php">PHP</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Entradas',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categorias',
+            TAGS: 'Etiquetas',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/archives">Blog</a></td>
+                
+                    <td><a class="main-nav-link" href="/authors">Authors</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">PHP&#39;s var_export in JavaScript</h1>
+    </header>
+
+    <div class="article-entry">
+      <p>
+        Here’s what our current JavaScript equivalent to
+        <a href="http://php.net/manual/en/function.var_export.php">PHP's var_export</a>
+
+        PHP's
+
+        var_export
+        looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">var_export</span> (<span class="params">mixedExpression, boolReturn</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></span><br><span class="line">  <span class="comment">//  discuss at: http://locutusjs.io/php/var_export/</span></span><br><span class="line">  <span class="comment">// original by: Philip Peterson</span></span><br><span class="line">  <span class="comment">// improved by: johnrembo</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Brian Tafoya (http://www.premasolutions.com/)</span></span><br><span class="line">  <span class="comment">//    input by: Hans Henrik (http://hanshenrik.tk/)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//   example 1: var_export(null)</span></span><br><span class="line">  <span class="comment">//   returns 1: null</span></span><br><span class="line">  <span class="comment">//   example 2: var_export(&#123;0: 'Kevin', 1: 'van', 2: 'Zonneveld'&#125;, true)</span></span><br><span class="line">  <span class="comment">//   returns 2: "array (\n  0 =&gt; 'Kevin',\n  1 =&gt; 'van',\n  2 =&gt; 'Zonneveld'\n)"</span></span><br><span class="line">  <span class="comment">//   example 3: var data = 'Kevin'</span></span><br><span class="line">  <span class="comment">//   example 3: var_export(data, true)</span></span><br><span class="line">  <span class="comment">//   returns 3: "'Kevin'"</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> echo = <span class="built_in">require</span>(<span class="string">'../strings/echo'</span>)</span><br><span class="line">  <span class="keyword">var</span> retstr = <span class="string">''</span></span><br><span class="line">  <span class="keyword">var</span> iret = <span class="string">''</span></span><br><span class="line">  <span class="keyword">var</span> value</span><br><span class="line">  <span class="keyword">var</span> cnt = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> x = []</span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> funcParts = []</span><br><span class="line">  <span class="comment">// We use the last argument (not part of PHP) to pass in</span></span><br><span class="line">  <span class="comment">// our indentation level</span></span><br><span class="line">  <span class="keyword">var</span> idtLevel = <span class="built_in">arguments</span>[<span class="number">2</span>] || <span class="number">2</span></span><br><span class="line">  <span class="keyword">var</span> innerIndent = <span class="string">''</span></span><br><span class="line">  <span class="keyword">var</span> outerIndent = <span class="string">''</span></span><br><span class="line">  <span class="keyword">var</span> getFuncName = <span class="function"><span class="keyword">function</span> (<span class="params">fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name = (<span class="regexp">/\W*function\s+([\w\$]+)\s*\(/</span>).exec(fn)</span><br><span class="line">    <span class="keyword">if</span> (!name) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'(Anonymous)'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> name[<span class="number">1</span>]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _makeIndent = <span class="function"><span class="keyword">function</span> (<span class="params">idtLevel</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Array</span>(idtLevel + <span class="number">1</span>))</span><br><span class="line">      .join(<span class="string">' '</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> __getType = <span class="function"><span class="keyword">function</span> (<span class="params">inp</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> match</span><br><span class="line">    <span class="keyword">var</span> types</span><br><span class="line">    <span class="keyword">var</span> cons</span><br><span class="line">    <span class="keyword">var</span> type = <span class="keyword">typeof</span> inp</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">'object'</span> &amp;&amp; (inp &amp;&amp; inp.constructor) &amp;&amp;</span><br><span class="line">      getFuncName(inp.constructor) === <span class="string">'LOCUTUS_Resource'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'resource'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">'function'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'function'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">'object'</span> &amp;&amp; !inp) &#123;</span><br><span class="line">      <span class="comment">// Should this be just null?</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">'null'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">'object'</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!inp.constructor) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'object'</span></span><br><span class="line">      &#125;</span><br><span class="line">      cons = inp.constructor.toString()</span><br><span class="line">      match = cons.match(<span class="regexp">/(\w+)\(/</span>)</span><br><span class="line">      <span class="keyword">if</span> (match) &#123;</span><br><span class="line">        cons = match[<span class="number">1</span>].toLowerCase()</span><br><span class="line">      &#125;</span><br><span class="line">      types = [<span class="string">'boolean'</span>, <span class="string">'number'</span>, <span class="string">'string'</span>, <span class="string">'array'</span>]</span><br><span class="line">      <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; types.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cons === types[i]) &#123;</span><br><span class="line">          type = types[i]</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> type</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> type = __getType(mixedExpression)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (type === <span class="literal">null</span>) &#123;</span><br><span class="line">    retstr = <span class="string">'NULL'</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'array'</span> || type === <span class="string">'object'</span>) &#123;</span><br><span class="line">    outerIndent = _makeIndent(idtLevel - <span class="number">2</span>)</span><br><span class="line">    innerIndent = _makeIndent(idtLevel)</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> mixedExpression) &#123;</span><br><span class="line">      value = var_export(mixedExpression[i], <span class="number">1</span>, idtLevel + <span class="number">2</span>)</span><br><span class="line">      value = <span class="keyword">typeof</span> value === <span class="string">'string'</span> ? value.replace(<span class="regexp">/&lt;/g</span>, <span class="string">'&amp;lt;'</span>)</span><br><span class="line">        .replace(<span class="regexp">/&gt;/g</span>, <span class="string">'&amp;gt;'</span>) : value</span><br><span class="line">      x[cnt++] = innerIndent + i + <span class="string">' =&gt; '</span> +</span><br><span class="line">        (__getType(mixedExpression[i]) === <span class="string">'array'</span> ? <span class="string">'\n'</span> : <span class="string">''</span>) + value</span><br><span class="line">    &#125;</span><br><span class="line">    iret = x.join(<span class="string">',\n'</span>)</span><br><span class="line">    retstr = outerIndent + <span class="string">'array (\n'</span> + iret + <span class="string">'\n'</span> + outerIndent + <span class="string">')'</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'function'</span>) &#123;</span><br><span class="line">    funcParts = mixedExpression.toString().match(<span class="regexp">/function .*?\((.*?)\) \&#123;([\s\S]*)\&#125;/</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// For lambda functions, var_export() outputs such as the following:</span></span><br><span class="line">    <span class="comment">// '\000lambda_1'. Since it will probably not be a common use to</span></span><br><span class="line">    <span class="comment">// expect this (unhelpful) form, we'll use another PHP-exportable</span></span><br><span class="line">    <span class="comment">// construct, create_function() (though dollar signs must be on the</span></span><br><span class="line">    <span class="comment">// variables in JavaScript); if using instead in JavaScript and you</span></span><br><span class="line">    <span class="comment">// are using the namespaced version, note that create_function() will</span></span><br><span class="line">    <span class="comment">// not be available as a global</span></span><br><span class="line">    retstr = <span class="string">"create_function ('"</span> + funcParts[<span class="number">1</span>] + <span class="string">"', '"</span> +</span><br><span class="line">      funcParts[<span class="number">2</span>].replace(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"'"</span>, <span class="string">'g'</span>), <span class="string">"\\'"</span>) + <span class="string">"')"</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'resource'</span>) &#123;</span><br><span class="line">    <span class="comment">// Resources treated as null for var_export</span></span><br><span class="line">    retstr = <span class="string">'NULL'</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    retstr = <span class="keyword">typeof</span> mixedExpression !== <span class="string">'string'</span> ? mixedExpression</span><br><span class="line">      : <span class="string">"'"</span> + mixedExpression.replace(<span class="regexp">/(["'])/g</span>, <span class="string">'\\$1'</span>).replace(<span class="regexp">/\0/g</span>, <span class="string">'\\0'</span>) + <span class="string">"'"</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!boolReturn) &#123;</span><br><span class="line">    echo(retstr)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> retstr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      [
+      <a href="https://github.com/kvz/locutus/blob/master/functions/var/var_export.js">View on GitHub</a>
+      |
+      <a href="https://github.com/kvz/locutus/edit/master/functions/var/var_export.js">Edit on GitHub</a>
+      |
+      <a href="https://raw.githubusercontent.com/kvz/locutus/master/functions/var/var_export.js">Source on GitHub</a>
+      ]
+
+      <div class="clearfix"></div>
+
+      <h2>How to use</h2>
+      <p>
+        npm is the recommended installation method. It pairs nicely with a CommonJS
+        module bundler such as
+        <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>,
+        <a href="http://webpack.github.io/" target="_blank" rel="external">webpack</a> or
+        <a href="http://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+      </p>
+      <p>
+        You you can install via <code>npm install --save --save-exact locutus</code> and
+        require it like so:
+
+        <code>var var_export = require('locutus/php/var/var_export')</code>
+        and start using <code>var_export</code>. You could also require the <code>var</code> module
+        in full.
+      </p>
+
+      <h2>ES5/ES6</h2>
+      <p>
+        
+          This function targets ES5, but as of Locutus 2.0.0 we also support
+          ES6 functions. Locutus transpiles to ES5 before publishing to npm.
+        
+      </p>
+
+      
+
+      <h2>A community initiative</h2>
+      <p>
+        Locutus offers community built functions and goes by the
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">McDonald’s Theory</a>.
+        We’ll put online functions that aren't perfect, in the hopes to spark better contributions.
+        Do you have one? You can directly edit this file on GitHub, this will create a Pull Request that
+        the core team can review, and merge into our codebase.
+      </p>
+      <p>
+        This way of working also means that we don't offer any
+        production guarantees, and recommend to use Locutus inspiration
+        and learning purposes only.
+      </p>
+      
+
+      
+
+      
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>var_export(null)</code></td><td><code>null</code></td></tr>
+        
+          <tr><td>2</td><td><code>var_export({0: &#39;Kevin&#39;, 1: &#39;van&#39;, 2: &#39;Zonneveld&#39;}, true)</code></td><td><code>&quot;array (\n  0 =&gt; &#39;Kevin&#39;,\n  1 =&gt; &#39;van&#39;,\n  2 =&gt; &#39;Zonneveld&#39;\n)&quot;</code></td></tr>
+        
+          <tr><td>3</td><td><code>var data = &#39;Kevin&#39;
+var_export(data, true)</code></td><td><code>&quot;&#39;Kevin&#39;&quot;</code></td></tr>
+        
+        </table>
+      
+
+      
+
+
+      <hr />
+      <p>
+        <a href="/php/var/">&laquo; More PHP var functions</a>
+      </p>
+
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">about locutus</h3>
+  <div class="widget">
+    About locutus
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget">
+    <div class="on-the-githubs" data-event-source="repos/kvz/phpjs">Loading...</div>
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (3)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strings/Index.html">
+            strings
+            (3)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (315)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (71)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (29)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-04-21T00:00:00.000Z" itemprop="datePublished">2016-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/breaking-bc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/jekyll/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
+                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/standard-coding-style/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://cdn.rawgit.com/feross/standard/master/sticker.svg)" alt="Standard Coding Style" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/standard-coding-style/" class="title">Standard Coding Style</a></p>
+                            <p class="item-date"><time datetime="2016-04-01T00:00:00.000Z" itemprop="datePublished">2016-04-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2013/05/coding-style/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://cdn.vnykmshr.com/images/articles/dev-manuals-node-js-code-and-style-guide/awesome-nodejs.png)" alt="Coding Style" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2013/05/coding-style/" class="title">Coding Style</a></p>
+                            <p class="item-date"><time datetime="2013-05-04T00:00:00.000Z" itemprop="datePublished">2013-05-04</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2016 Kevin van Zonneveld<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+<script src="/js/locutus.js"></script>
+
+    </div>
+</body>
+</html>
