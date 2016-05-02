@@ -41,7 +41,7 @@ Released: Not yet
 - [ ] website: Add profile to sidebar
 - [ ] website: Add social buttons
 - [ ] website: Render authors server-side
-- [ ] Rename `_locutus_shared` to `_helpers`. Rename `_locutus_shared_bc` to `bc`
+- [x] Rename `_locutus_shared` to `_helpers`. Rename `_locutus_shared_bc` to `_bc`
 - [x] website: Fix jumpy scrolling due to on the githubs
 - [x] website: DRY up add_more code
 - [x] website: About as homepage

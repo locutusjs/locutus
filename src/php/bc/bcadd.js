@@ -5,7 +5,7 @@ module.exports = function bcadd (leftOperand, rightOperand, scale) {
   //   returns 1: '3'
   // @todo: implement these testcases
 
-  var bc = require('../_locutus_shared/_locutus_shared_bc')
+  var bc = require('../_helpers/_bc')
   var libbcmath = bc()
 
   var first, second, result

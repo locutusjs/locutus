@@ -4,12 +4,12 @@ process.env.TZ = 'UTC'
 var expect = require('chai').expect
 var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var _locutus_shared_bc = require('../../../../src/php/_locutus_shared/_locutus_shared_bc.js') // eslint-disable-line no-unused-vars,camelcase
+var _bc = require('../../../../src/php/_helpers/_bc.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/_locutus_shared/_locutus_shared_bc.js (tested in test/languages/php/_locutus_shared/test-_locutus_shared_bc.js)', function () {
+describe('src/php/_helpers/_bc.js (tested in test/languages/php/_helpers/test-_bc.js)', function () {
   it('should pass example 1', function (done) {
     var expected = '+'
-    var $bc = _locutus_shared_bc()
+    var $bc = _bc()
     var result = $bc.PLUS
     expect(result).to.deep.equal(expected)
     done()
