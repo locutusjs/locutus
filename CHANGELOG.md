@@ -36,6 +36,12 @@ Released: Not yet
 - [ ] website: Add social buttons
 - [ ] website: Render authors server-side
 
+## v2.0.2
+
+Released: 2016-05-02
+
+- [x] Don't use `files` in package.json as we don't ship all of `dist` now
+
 ## v2.0.1
 
 Released: 2016-05-02
