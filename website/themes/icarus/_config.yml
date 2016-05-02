@@ -1,0 +1,74 @@
+# Menus
+menu:
+  Blog: archives
+  Authors: authors
+
+# Customize
+customize:
+  logo:
+    enabled: true
+    width: 40
+    height: 40
+    url: images/locutus-alpha.png
+  profile:
+    enabled: false # Whether to show profile bar
+    avatar: css/images/locutus-alpha.png
+    gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
+    author: Locutus
+    author_title: All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.
+    location: GitHub
+    follow: https://github.com/kvz/locutus/stargazers
+  highlight: monokai
+  sidebar: right # sidebar position, options: left, right
+  thumbnail: true # enable posts thumbnail, options: true, false
+  favicon: # path to favicon
+  social_links:
+    github: https://github.com/kvz/locutus
+    twitter: https://twitter.com/locutus_io
+    # facebook: /
+    # dribbble: /
+    rss: /atom.xml
+
+# Widgets
+widgets:
+  - locutus_profile
+  - on_the_githubs
+  - all_functions
+  - recent_posts
+  # - links
+  # - category
+  # - archive
+  # - tag
+  # - tagcloud
+
+# Search
+search:
+  insight: true # you need to install `hexo-generator-json-content` before using Insight Search
+  swiftype: # enter swiftype install key here
+  baidu: false # you need to disable other search engines to use Baidu search, options: true, false
+
+# Comment
+comment:
+  disqus: #  locutus # enter disqus shortname here
+  duoshuo: # enter duoshuo shortname here
+  youyan: # enter youyan uid here
+
+# Share
+share: default # options: jiathis, bdshare, addtoany, default
+
+# Plugins
+plugins:
+  fancybox: true # options: true, false
+  google_analytics: 'UA-63083-7' # enter the tracking ID for your Google Analytics
+  google_site_verification: # enter Google site verification code
+  baidu_analytics: # enter Baidu Analytics hash key
+
+# Miscellaneous
+miscellaneous:
+  open_graph: # see http://ogp.me
+    fb_app_id:
+    fb_admins:
+    twitter_id:
+    google_plus:
+  links:
+      kvz: http://kvz.io
