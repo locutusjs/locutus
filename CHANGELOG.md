@@ -40,7 +40,7 @@ Released: Not yet
 
 Released: 2016-05-02
 
-- [x] Don't use `bin` in package.json
+- [x] Don't use `bin` in package.json as we don't ship `cli.js`
 
 ## v2.0.0
 
