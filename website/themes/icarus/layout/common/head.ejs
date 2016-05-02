@@ -12,8 +12,6 @@
             } else if (is_year()) {
                 title += ': ' + page.year;
             }
-        } else if (is_category()) {
-            title = capitalize(__('index.category')) + ': ' + page.category;
         } else if (is_tag()) {
             title = capitalize(__('index.tag')) + ': ' + page.tag;
         }
