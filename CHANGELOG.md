@@ -26,7 +26,7 @@ Ideas that will be planned and find their way into a release at one point
 - [ ] Port a few more tricky/inter-depending Go functions
 - [ ] Parse `require`s with AST just like Browserify does. Then we can add dependencies back to website
 
-## v2.0.1
+## v2.0.2
 
 Released: Not yet
 
@@ -36,9 +36,15 @@ Released: Not yet
 - [ ] website: Add social buttons
 - [ ] website: Render authors server-side
 
+## v2.0.1
+
+Released: 2016-05-02
+
+- [x] Don't use `bin` in package.json
+
 ## v2.0.0
 
-Released: Not yet
+Released: 2016-05-02
 
 - [x] website: Add profile to sidebar
 - [x] Rename `_locutus_shared` to `_helpers`. Rename `_locutus_shared_bc` to `_bc`
