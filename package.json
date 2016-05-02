@@ -58,7 +58,6 @@
     "browser:bundle": "browserify test/browser/app.js --outfile test/browser/bundle.js",
     "browser:watch": "budo test/browser/app.js --live --serve test/browser/bundle.js",
     "build:dist": "babel src --out-dir dist --source-maps",
-    "prepublish": "build:dist",
     "build:indices": "babel-node src/_util/cli.js reindex",
     "build:tests:noskip": "rimraf test/languages && babel-node src/_util/cli.js writetests --noskip",
     "build:tests": "rimraf test/languages && babel-node src/_util/cli.js writetests",
