@@ -9,7 +9,7 @@ alias:
 - /about/
 ---
 
-Locutus is a project that seeks to assimilate other languages' standard libraries to JavaScript. Why, you ask? Well, firstly because we can of course! Apart from that, it can also serve as a nice pastime for a rainy Sunday afternoon. Not only can porting a function be quite rewarding, but it also deepens your understanding of different languages. In that sense, it is not unlike doing a crossword puzzle. Lastly, and perhaps most importantly, it will hopefully allow us to profit from interoperable functions (for instance when apps involve more than one programming language) as well as from higher level functions such as: [number_format](/php/number_format/), [sprintf](/php/sprintf/), and [strtotime](/php/strtotime/), which do not exist in JavaScript's standard library.
+Locutus is a project that seeks to assimilate other languages' standard libraries to JavaScript. Why, you ask? Well, firstly because we can of course! Apart from that, it can also serve as a nice pastime for a rainy Sunday afternoon. Not only can porting a function be quite rewarding, but it also deepens your understanding of different languages. In that sense, it is not unlike doing a crossword puzzle. Lastly it will hopefully allow us to profit from interoperable functions (for instance when apps involve more than one programming language) as well as from higher level functions such as: [number_format](/php/number_format/), [sprintf](/php/sprintf/), and [strtotime](/php/strtotime/), which do not exist in JavaScript's standard library.
 
 JavaScript is the most commonly used programming language, but it lacks an exhaustive 
 standard library. This means that developers coming from other languages are often left wondering how to achieve common tasks, such as [formatting dates](/php/strftime/) or [generating a hashes](/php/sha1/).
@@ -30,11 +30,11 @@ That being said, there is still a fair amount of useful things to be found in th
 
 ## What we are not porting
 
-As we have mentioned before, we are sticking to raw functions and steering clear of things that touch global environment, language constructs or data-types. We are not extending built-in natives either. While this would aid in assimilating a larger part of a language, past mistakes have led us to decide that these fall outside of Locutus' scope and we encourage other projects to take a stab at it.
+As we have mentioned before, we are sticking to raw functions and steering clear of things that touch global environment, language constructs or data-types. We are not extending built-in natives either. While this would aid in assimilating a larger part of a language, past mistakes have led us to decide that these fall outside of Locutus' scope. Other projects are of course welcome to take a stab at it.
 
 ## A community effort
 
-Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows [The McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). This means that we don't consider it to be a bad thing that many of our functions are first iterations, which may still have their fair share of issues. We believe that these flaws will inspire others to come up with better ideas.
+Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows [The McDonald's Theory](https://medium.com/what-i-learned-building/9216e1c9da7d). This means that we don't consider it to be a bad thing that many of our functions are first iterations, which may still have their fair share of issues. We hope that these flaws will inspire others to come up with better ideas.
 
 So, if you know a better way to do something, we would love to see your improvements!
 
