@@ -24,7 +24,7 @@ customize:
   favicon: # path to favicon
   social_links:
     github: https://github.com/kvz/locutus
-    twitter: https://twitter.com/locutus_io
+    twitter: https://twitter.com/locutusjs_io
     # facebook: /
     # dribbble: /
     rss: /atom.xml
