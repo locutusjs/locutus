@@ -1,7 +1,7 @@
 <% if (curLang.language !== 'php') { %>
   <%
   var cnt = site.pages.find({ language: curLang.language, type: 'function' }).length
-  var header = 'What?! Only ' + cnt + ' ' + curLang.human + ' function'
+  var header = 'Ehm.. There are only ' + cnt + ' ' + curLang.human + ' function'
   if (cnt !== 1) {
     header += 's'
   }
