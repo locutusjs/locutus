@@ -8,7 +8,8 @@ set -o nounset
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 __file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
 __base="$(basename ${__file} .sh)"
-__webroot="$(cd "$(dirname "${__dir}")" && pwd)"
+__root="$(cd "$(dirname "${__dir}")" && pwd)"
+__webroot="${__root}/website"
 
 ghpages_repo=${GHPAGES_REPO:-"kvz/locutus"}
 ghpages_branch=${GHPAGES_BRANCH:-"gh-pages"}
