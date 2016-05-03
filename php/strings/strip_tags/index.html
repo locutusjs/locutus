@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://locutusjs.io/php/strings/strip_tags/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344module.exports = function strip_tags (input, allowed) &amp;#123; // eslint-disable-line camelcase  //  discuss at: http://loc">
-<meta property="og:updated_time" content="2016-05-03T06:47:04.000Z">
+<meta property="og:updated_time" content="2016-05-03T07:19:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's strip_tags in JavaScript">
 <meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344module.exports = function strip_tags (input, allowed) &amp;#123; // eslint-disable-line camelcase  //  discuss at: http://loc">
@@ -21,19 +21,19 @@
 
     
 
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
 
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/locutus.css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/locutus.css" type="text/css">
 
-    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/vendor/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
     <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
 
     
     
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
     
     
         <script type="text/javascript">
@@ -84,7 +84,7 @@ ga('send', 'pageview');
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -103,10 +103,10 @@ ga('send', 'pageview');
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
+            POSTS: '文章',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            CATEGORIES: '分類',
+            TAGS: '標籤',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -115,7 +115,7 @@ ga('send', 'pageview');
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
-<script src="/js/insight.js"></script>
+<script src="/js/insight.js" type="text/javascript"></script>
 
 </div>
         </div>
@@ -143,7 +143,7 @@ ga('send', 'pageview');
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
     </div>
 
                 </td>
@@ -177,7 +177,7 @@ ga('send', 'pageview');
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">strip_tags</span> (<span class="params">input, allowed</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></span><br><span class="line">  <span class="comment">//  discuss at: http://locutusjs.io/php/strip_tags/</span></span><br><span class="line">  <span class="comment">// original by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Luke Godfrey</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">//    input by: Pul</span></span><br><span class="line">  <span class="comment">//    input by: Alex</span></span><br><span class="line">  <span class="comment">//    input by: Marc Palau</span></span><br><span class="line">  <span class="comment">//    input by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Bobby Drake</span></span><br><span class="line">  <span class="comment">//    input by: Evertjan Garretsen</span></span><br><span class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Eric Nagel</span></span><br><span class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Tomasz Wesolowski</span></span><br><span class="line">  <span class="comment">//  revised by: Rafał Kukawski (http://blog.kukawski.pl)</span></span><br><span class="line">  <span class="comment">//   example 1: strip_tags('&lt;p&gt;Kevin&lt;/p&gt; &lt;br /&gt;&lt;b&gt;van&lt;/b&gt; &lt;i&gt;Zonneveld&lt;/i&gt;', '&lt;i&gt;&lt;b&gt;')</span></span><br><span class="line">  <span class="comment">//   returns 1: 'Kevin &lt;b&gt;van&lt;/b&gt; &lt;i&gt;Zonneveld&lt;/i&gt;'</span></span><br><span class="line">  <span class="comment">//   example 2: strip_tags('&lt;p&gt;Kevin &lt;img src="someimage.png" onmouseover="someFunction()"&gt;van &lt;i&gt;Zonneveld&lt;/i&gt;&lt;/p&gt;', '&lt;p&gt;')</span></span><br><span class="line">  <span class="comment">//   returns 2: '&lt;p&gt;Kevin van Zonneveld&lt;/p&gt;'</span></span><br><span class="line">  <span class="comment">//   example 3: strip_tags("&lt;a href='http://kvz.io'&gt;Kevin van Zonneveld&lt;/a&gt;", "&lt;a&gt;")</span></span><br><span class="line">  <span class="comment">//   returns 3: "&lt;a href='http://kvz.io'&gt;Kevin van Zonneveld&lt;/a&gt;"</span></span><br><span class="line">  <span class="comment">//   example 4: strip_tags('1 &lt; 5 5 &gt; 1')</span></span><br><span class="line">  <span class="comment">//   returns 4: '1 &lt; 5 5 &gt; 1'</span></span><br><span class="line">  <span class="comment">//   example 5: strip_tags('1 &lt;br/&gt; 1')</span></span><br><span class="line">  <span class="comment">//   returns 5: '1  1'</span></span><br><span class="line">  <span class="comment">//   example 6: strip_tags('1 &lt;br/&gt; 1', '&lt;br&gt;')</span></span><br><span class="line">  <span class="comment">//   returns 6: '1 &lt;br/&gt; 1'</span></span><br><span class="line">  <span class="comment">//   example 7: strip_tags('1 &lt;br/&gt; 1', '&lt;br&gt;&lt;br/&gt;')</span></span><br><span class="line">  <span class="comment">//   returns 7: '1 &lt;br/&gt; 1'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// making sure the allowed arg is a string containing only tags in lowercase (&lt;a&gt;&lt;b&gt;&lt;c&gt;)</span></span><br><span class="line">  allowed = (((allowed || <span class="string">''</span>) + <span class="string">''</span>).toLowerCase().match(<span class="regexp">/&lt;[a-z][a-z0-9]*&gt;/g</span>) || []).join(<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> tags = <span class="regexp">/&lt;\/?([a-z][a-z0-9]*)\b[^&gt;]*&gt;/gi</span></span><br><span class="line">  <span class="keyword">var</span> commentsAndPhpTags = <span class="regexp">/&lt;!--[\s\S]*?--&gt;|&lt;\?(?:php)?[\s\S]*?\?&gt;/gi</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> input.replace(commentsAndPhpTags, <span class="string">''</span>).replace(tags, <span class="function"><span class="keyword">function</span> (<span class="params">$0, $1</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> allowed.indexOf(<span class="string">'&lt;'</span> + $<span class="number">1.</span>toLowerCase() + <span class="string">'&gt;'</span>) &gt; <span class="number">-1</span> ? $<span class="number">0</span> : <span class="string">''</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">strip_tags</span> (<span class="params">input, allowed</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></span><br><span class="line">  <span class="comment">//  discuss at: http://locutusjs.io/php/strip_tags/</span></span><br><span class="line">  <span class="comment">// original by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Luke Godfrey</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">//    input by: Pul</span></span><br><span class="line">  <span class="comment">//    input by: Alex</span></span><br><span class="line">  <span class="comment">//    input by: Marc Palau</span></span><br><span class="line">  <span class="comment">//    input by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Bobby Drake</span></span><br><span class="line">  <span class="comment">//    input by: Evertjan Garretsen</span></span><br><span class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Eric Nagel</span></span><br><span class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Tomasz Wesolowski</span></span><br><span class="line">  <span class="comment">//  revised by: Rafał Kukawski (http://blog.kukawski.pl)</span></span><br><span class="line">  <span class="comment">//   example 1: strip_tags('&lt;p&gt;Kevin&lt;/p&gt; &lt;br /&gt;&lt;b&gt;van&lt;/b&gt; &lt;i&gt;Zonneveld&lt;/i&gt;', '&lt;i&gt;&lt;b&gt;')</span></span><br><span class="line">  <span class="comment">//   returns 1: 'Kevin &lt;b&gt;van&lt;/b&gt; &lt;i&gt;Zonneveld&lt;/i&gt;'</span></span><br><span class="line">  <span class="comment">//   example 2: strip_tags('&lt;p&gt;Kevin &lt;img src="someimage.png" onmouseover="someFunction()"&gt;van &lt;i&gt;Zonneveld&lt;/i&gt;&lt;/p&gt;', '&lt;p&gt;')</span></span><br><span class="line">  <span class="comment">//   returns 2: '&lt;p&gt;Kevin van Zonneveld&lt;/p&gt;'</span></span><br><span class="line">  <span class="comment">//   example 3: strip_tags("&lt;a href='http://kvz.io'&gt;Kevin van Zonneveld&lt;/a&gt;", "&lt;a&gt;")</span></span><br><span class="line">  <span class="comment">//   returns 3: "&lt;a href='http://kvz.io'&gt;Kevin van Zonneveld&lt;/a&gt;"</span></span><br><span class="line">  <span class="comment">//   example 4: strip_tags('1 &lt; 5 5 &gt; 1')</span></span><br><span class="line">  <span class="comment">//   returns 4: '1 &lt; 5 5 &gt; 1'</span></span><br><span class="line">  <span class="comment">//   example 5: strip_tags('1 &lt;br/&gt; 1')</span></span><br><span class="line">  <span class="comment">//   returns 5: '1  1'</span></span><br><span class="line">  <span class="comment">//   example 6: strip_tags('1 &lt;br/&gt; 1', '&lt;br&gt;')</span></span><br><span class="line">  <span class="comment">//   returns 6: '1 &lt;br/&gt; 1'</span></span><br><span class="line">  <span class="comment">//   example 7: strip_tags('1 &lt;br/&gt; 1', '&lt;br&gt;&lt;br/&gt;')</span></span><br><span class="line">  <span class="comment">//   returns 7: '1 &lt;br/&gt; 1'</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// making sure the allowed arg is a string containing only tags in lowercase (&lt;a&gt;&lt;b&gt;&lt;c&gt;)</span></span><br><span class="line">  allowed = (((allowed || <span class="string">''</span>) + <span class="string">''</span>).toLowerCase().match(<span class="regexp">/&lt;[a-z][a-z0-9]*&gt;/g</span>) || []).join(<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> tags = <span class="regexp">/&lt;\/?([a-z][a-z0-9]*)\b[^&gt;]*&gt;/gi</span></span><br><span class="line">  <span class="keyword">var</span> commentsAndPhpTags = <span class="regexp">/&lt;!--[\s\S]*?--&gt;|&lt;\?(?:php)?[\s\S]*?\?&gt;/gi</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> input.replace(commentsAndPhpTags, <span class="string">''</span>).replace(tags, <span class="function"><span class="keyword">function</span> (<span class="params">$0, $1</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> allowed.indexOf(<span class="string">'&lt;'</span> + $<span class="number">1.</span>toLowerCase() + <span class="string">'&gt;'</span>) &gt; -<span class="number">1</span> ? $<span class="number">0</span> : <span class="string">''</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       [
       <a href="https://github.com/kvz/locutus/blob/master/functions/strings/strip_tags.js">View on GitHub</a>
@@ -385,128 +385,9 @@ ga('send', 'pageview');
         </a></li>
         
         <ul>
-          <li><a href="/php/bc/">
-            bc
-            (7)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/ctype/">
-            ctype
-            (11)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/array/">
-            array
-            (71)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/datetime/">
-            datetime
-            (15)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/exec/">
-            exec
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/filesystem/">
-            filesystem
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/funchand/">
-            funchand
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/i18n/">
-            i18n
+          <li><a href="/php/xml/">
+            xml
             (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/info/">
-            info
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/json/">
-            json
-            (3)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/math/">
-            math
-            (46)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/misc/">
-            misc
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/net-gopher/">
-            net-gopher
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/network/">
-            network
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/pcre/">
-            pcre
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/strings/">
-            strings
-            (91)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/url/">
-            url
-            (8)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/var/">
-            var
-            (29)
           </a></li>
         </ul>
         
@@ -518,9 +399,128 @@ ga('send', 'pageview');
         </ul>
         
         <ul>
-          <li><a href="/php/xml/">
-            xml
+          <li><a href="/php/var/">
+            var
+            (29)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
             (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (71)
           </a></li>
         </ul>
         
@@ -618,13 +618,13 @@ ga('send', 'pageview');
         
 
     
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
     
 
 
 <!-- Custom Scripts -->
-<script src="/js/main.js"></script>
-<script src="/js/locutus.js"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+<script src="/js/locutus.js" type="text/javascript"></script>
 
 <!-- Twitter follow button script -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

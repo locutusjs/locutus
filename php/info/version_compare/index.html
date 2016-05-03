@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://locutusjs.io/php/info/version_compare/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
-<meta property="og:updated_time" content="2016-05-03T06:47:04.000Z">
+<meta property="og:updated_time" content="2016-05-03T07:19:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's version_compare in JavaScript">
 <meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
@@ -21,19 +21,19 @@
 
     
 
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
 
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/locutus.css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/locutus.css" type="text/css">
 
-    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/vendor/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
     <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
 
     
     
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
     
     
         <script type="text/javascript">
@@ -84,7 +84,7 @@ ga('send', 'pageview');
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -103,10 +103,10 @@ ga('send', 'pageview');
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
+            POSTS: '文章',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            CATEGORIES: '分類',
+            TAGS: '標籤',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -115,7 +115,7 @@ ga('send', 'pageview');
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
-<script src="/js/insight.js"></script>
+<script src="/js/insight.js" type="text/javascript"></script>
 
 </div>
         </div>
@@ -143,7 +143,7 @@ ga('send', 'pageview');
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
     </div>
 
                 </td>
@@ -177,7 +177,7 @@ ga('send', 'pageview');
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">version_compare</span> (<span class="params">v1, v2, operator</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></span><br><span class="line">  <span class="comment">//       discuss at: http://locutusjs.io/php/version_compare/</span></span><br><span class="line">  <span class="comment">//      original by: Philippe Jausions (http://pear.php.net/user/jausions)</span></span><br><span class="line">  <span class="comment">//      original by: Aidan Lister (http://aidanlister.com/)</span></span><br><span class="line">  <span class="comment">// reimplemented by: Kankrelune (http://www.webfaktory.info/)</span></span><br><span class="line">  <span class="comment">//      improved by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//      improved by: Scott Baker</span></span><br><span class="line">  <span class="comment">//      improved by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">//        example 1: version_compare('8.2.5rc', '8.2.5a')</span></span><br><span class="line">  <span class="comment">//        returns 1: 1</span></span><br><span class="line">  <span class="comment">//        example 2: version_compare('8.2.50', '8.2.52', '&lt;')</span></span><br><span class="line">  <span class="comment">//        returns 2: true</span></span><br><span class="line">  <span class="comment">//        example 3: version_compare('5.3.0-dev', '5.3.0')</span></span><br><span class="line">  <span class="comment">//        returns 3: -1</span></span><br><span class="line">  <span class="comment">//        example 4: version_compare('4.1.0.52','4.01.0.51')</span></span><br><span class="line">  <span class="comment">//        returns 4: 1</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Important: compare must be initialized at 0.</span></span><br><span class="line">  <span class="keyword">var</span> i</span><br><span class="line">  <span class="keyword">var</span> x</span><br><span class="line">  <span class="keyword">var</span> compare = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// vm maps textual PHP versions to negatives so they're less than 0.</span></span><br><span class="line">  <span class="comment">// PHP currently defines these as CASE-SENSITIVE. It is important to</span></span><br><span class="line">  <span class="comment">// leave these as negatives so that they can come before numerical versions</span></span><br><span class="line">  <span class="comment">// and as if no letters were there to begin with.</span></span><br><span class="line">  <span class="comment">// (1alpha is &lt; 1 and &lt; 1.1 but &gt; 1dev1)</span></span><br><span class="line">  <span class="comment">// If a non-numerical value can't be mapped to this table, it receives</span></span><br><span class="line">  <span class="comment">// -7 as its value.</span></span><br><span class="line">  <span class="keyword">var</span> vm = &#123;</span><br><span class="line">    <span class="string">'dev'</span>: <span class="number">-6</span>,</span><br><span class="line">    <span class="string">'alpha'</span>: <span class="number">-5</span>,</span><br><span class="line">    <span class="string">'a'</span>: <span class="number">-5</span>,</span><br><span class="line">    <span class="string">'beta'</span>: <span class="number">-4</span>,</span><br><span class="line">    <span class="string">'b'</span>: <span class="number">-4</span>,</span><br><span class="line">    <span class="string">'RC'</span>: <span class="number">-3</span>,</span><br><span class="line">    <span class="string">'rc'</span>: <span class="number">-3</span>,</span><br><span class="line">    <span class="string">'#'</span>: <span class="number">-2</span>,</span><br><span class="line">    <span class="string">'p'</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">'pl'</span>: <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// This function will be called to prepare each version argument.</span></span><br><span class="line">  <span class="comment">// It replaces every _, -, and + with a dot.</span></span><br><span class="line">  <span class="comment">// It surrounds any nonsequence of numbers/dots with dots.</span></span><br><span class="line">  <span class="comment">// It replaces sequences of dots with a single dot.</span></span><br><span class="line">  <span class="comment">//    version_compare('4..0', '4.0') === 0</span></span><br><span class="line">  <span class="comment">// Important: A string of 0 length needs to be converted into a value</span></span><br><span class="line">  <span class="comment">// even less than an unexisting value in vm (-7), hence [-8].</span></span><br><span class="line">  <span class="comment">// It's also important to not strip spaces because of this.</span></span><br><span class="line">  <span class="comment">//   version_compare('', ' ') === 1</span></span><br><span class="line">  <span class="keyword">var</span> _prepVersion = <span class="function"><span class="keyword">function</span> (<span class="params">v</span>) </span>&#123;</span><br><span class="line">    v = (<span class="string">''</span> + v).replace(<span class="regexp">/[_\-+]/g</span>, <span class="string">'.'</span>)</span><br><span class="line">    v = v.replace(<span class="regexp">/([^.\d]+)/g</span>, <span class="string">'.$1.'</span>).replace(<span class="regexp">/\.&#123;2,&#125;/g</span>, <span class="string">'.'</span>)</span><br><span class="line">    <span class="keyword">return</span> (!v.length ? [<span class="number">-8</span>] : v.split(<span class="string">'.'</span>))</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// This converts a version component to a number.</span></span><br><span class="line">  <span class="comment">// Empty component becomes 0.</span></span><br><span class="line">  <span class="comment">// Non-numerical component becomes a negative number.</span></span><br><span class="line">  <span class="comment">// Numerical component becomes itself as an integer.</span></span><br><span class="line">  <span class="keyword">var</span> _numVersion = <span class="function"><span class="keyword">function</span> (<span class="params">v</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !v ? <span class="number">0</span> : (<span class="built_in">isNaN</span>(v) ? vm[v] || <span class="number">-7</span> : <span class="built_in">parseInt</span>(v, <span class="number">10</span>))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  v1 = _prepVersion(v1)</span><br><span class="line">  v2 = _prepVersion(v2)</span><br><span class="line">  x = <span class="built_in">Math</span>.max(v1.length, v2.length)</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; x; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (v1[i] === v2[i]) &#123;</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line">    v1[i] = _numVersion(v1[i])</span><br><span class="line">    v2[i] = _numVersion(v2[i])</span><br><span class="line">    <span class="keyword">if</span> (v1[i] &lt; v2[i]) &#123;</span><br><span class="line">      compare = <span class="number">-1</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (v1[i] &gt; v2[i]) &#123;</span><br><span class="line">      compare = <span class="number">1</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!operator) &#123;</span><br><span class="line">    <span class="keyword">return</span> compare</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Important: operator is CASE-SENSITIVE.</span></span><br><span class="line">  <span class="comment">// "No operator" seems to be treated as "&lt;."</span></span><br><span class="line">  <span class="comment">// Any other values seem to make the function return null.</span></span><br><span class="line">  <span class="keyword">switch</span> (operator) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'&gt;'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'gt'</span>:</span><br><span class="line">      <span class="keyword">return</span> (compare &gt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'&gt;='</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'ge'</span>:</span><br><span class="line">      <span class="keyword">return</span> (compare &gt;= <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'&lt;='</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'le'</span>:</span><br><span class="line">      <span class="keyword">return</span> (compare &lt;= <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'==='</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'='</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'eq'</span>:</span><br><span class="line">      <span class="keyword">return</span> (compare === <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'&lt;&gt;'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'!=='</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'ne'</span>:</span><br><span class="line">      <span class="keyword">return</span> (compare !== <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">''</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'&lt;'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'lt'</span>:</span><br><span class="line">      <span class="keyword">return</span> (compare &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">version_compare</span> (<span class="params">v1, v2, operator</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></span><br><span class="line">  <span class="comment">//       discuss at: http://locutusjs.io/php/version_compare/</span></span><br><span class="line">  <span class="comment">//      original by: Philippe Jausions (http://pear.php.net/user/jausions)</span></span><br><span class="line">  <span class="comment">//      original by: Aidan Lister (http://aidanlister.com/)</span></span><br><span class="line">  <span class="comment">// reimplemented by: Kankrelune (http://www.webfaktory.info/)</span></span><br><span class="line">  <span class="comment">//      improved by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//      improved by: Scott Baker</span></span><br><span class="line">  <span class="comment">//      improved by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">//        example 1: version_compare('8.2.5rc', '8.2.5a')</span></span><br><span class="line">  <span class="comment">//        returns 1: 1</span></span><br><span class="line">  <span class="comment">//        example 2: version_compare('8.2.50', '8.2.52', '&lt;')</span></span><br><span class="line">  <span class="comment">//        returns 2: true</span></span><br><span class="line">  <span class="comment">//        example 3: version_compare('5.3.0-dev', '5.3.0')</span></span><br><span class="line">  <span class="comment">//        returns 3: -1</span></span><br><span class="line">  <span class="comment">//        example 4: version_compare('4.1.0.52','4.01.0.51')</span></span><br><span class="line">  <span class="comment">//        returns 4: 1</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Important: compare must be initialized at 0.</span></span><br><span class="line">  <span class="keyword">var</span> i</span><br><span class="line">  <span class="keyword">var</span> x</span><br><span class="line">  <span class="keyword">var</span> compare = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// vm maps textual PHP versions to negatives so they're less than 0.</span></span><br><span class="line">  <span class="comment">// PHP currently defines these as CASE-SENSITIVE. It is important to</span></span><br><span class="line">  <span class="comment">// leave these as negatives so that they can come before numerical versions</span></span><br><span class="line">  <span class="comment">// and as if no letters were there to begin with.</span></span><br><span class="line">  <span class="comment">// (1alpha is &lt; 1 and &lt; 1.1 but &gt; 1dev1)</span></span><br><span class="line">  <span class="comment">// If a non-numerical value can't be mapped to this table, it receives</span></span><br><span class="line">  <span class="comment">// -7 as its value.</span></span><br><span class="line">  <span class="keyword">var</span> vm = &#123;</span><br><span class="line">    <span class="string">'dev'</span>: -<span class="number">6</span>,</span><br><span class="line">    <span class="string">'alpha'</span>: -<span class="number">5</span>,</span><br><span class="line">    <span class="string">'a'</span>: -<span class="number">5</span>,</span><br><span class="line">    <span class="string">'beta'</span>: -<span class="number">4</span>,</span><br><span class="line">    <span class="string">'b'</span>: -<span class="number">4</span>,</span><br><span class="line">    <span class="string">'RC'</span>: -<span class="number">3</span>,</span><br><span class="line">    <span class="string">'rc'</span>: -<span class="number">3</span>,</span><br><span class="line">    <span class="string">'#'</span>: -<span class="number">2</span>,</span><br><span class="line">    <span class="string">'p'</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">'pl'</span>: <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// This function will be called to prepare each version argument.</span></span><br><span class="line">  <span class="comment">// It replaces every _, -, and + with a dot.</span></span><br><span class="line">  <span class="comment">// It surrounds any nonsequence of numbers/dots with dots.</span></span><br><span class="line">  <span class="comment">// It replaces sequences of dots with a single dot.</span></span><br><span class="line">  <span class="comment">//    version_compare('4..0', '4.0') === 0</span></span><br><span class="line">  <span class="comment">// Important: A string of 0 length needs to be converted into a value</span></span><br><span class="line">  <span class="comment">// even less than an unexisting value in vm (-7), hence [-8].</span></span><br><span class="line">  <span class="comment">// It's also important to not strip spaces because of this.</span></span><br><span class="line">  <span class="comment">//   version_compare('', ' ') === 1</span></span><br><span class="line">  <span class="keyword">var</span> _prepVersion = <span class="function"><span class="keyword">function</span> (<span class="params">v</span>) </span>&#123;</span><br><span class="line">    v = (<span class="string">''</span> + v).replace(<span class="regexp">/[_\-+]/g</span>, <span class="string">'.'</span>)</span><br><span class="line">    v = v.replace(<span class="regexp">/([^.\d]+)/g</span>, <span class="string">'.$1.'</span>).replace(<span class="regexp">/\.&#123;2,&#125;/g</span>, <span class="string">'.'</span>)</span><br><span class="line">    <span class="keyword">return</span> (!v.length ? [-<span class="number">8</span>] : v.split(<span class="string">'.'</span>))</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// This converts a version component to a number.</span></span><br><span class="line">  <span class="comment">// Empty component becomes 0.</span></span><br><span class="line">  <span class="comment">// Non-numerical component becomes a negative number.</span></span><br><span class="line">  <span class="comment">// Numerical component becomes itself as an integer.</span></span><br><span class="line">  <span class="keyword">var</span> _numVersion = <span class="function"><span class="keyword">function</span> (<span class="params">v</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !v ? <span class="number">0</span> : (<span class="built_in">isNaN</span>(v) ? vm[v] || -<span class="number">7</span> : <span class="built_in">parseInt</span>(v, <span class="number">10</span>))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  v1 = _prepVersion(v1)</span><br><span class="line">  v2 = _prepVersion(v2)</span><br><span class="line">  x = <span class="built_in">Math</span>.max(v1.length, v2.length)</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; x; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (v1[i] === v2[i]) &#123;</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line">    v1[i] = _numVersion(v1[i])</span><br><span class="line">    v2[i] = _numVersion(v2[i])</span><br><span class="line">    <span class="keyword">if</span> (v1[i] &lt; v2[i]) &#123;</span><br><span class="line">      compare = -<span class="number">1</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (v1[i] &gt; v2[i]) &#123;</span><br><span class="line">      compare = <span class="number">1</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!operator) &#123;</span><br><span class="line">    <span class="keyword">return</span> compare</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Important: operator is CASE-SENSITIVE.</span></span><br><span class="line">  <span class="comment">// "No operator" seems to be treated as "&lt;."</span></span><br><span class="line">  <span class="comment">// Any other values seem to make the function return null.</span></span><br><span class="line">  <span class="keyword">switch</span> (operator) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'&gt;'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'gt'</span>:</span><br><span class="line">      <span class="keyword">return</span> (compare &gt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'&gt;='</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'ge'</span>:</span><br><span class="line">      <span class="keyword">return</span> (compare &gt;= <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'&lt;='</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'le'</span>:</span><br><span class="line">      <span class="keyword">return</span> (compare &lt;= <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'==='</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'='</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'eq'</span>:</span><br><span class="line">      <span class="keyword">return</span> (compare === <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'&lt;&gt;'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'!=='</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'ne'</span>:</span><br><span class="line">      <span class="keyword">return</span> (compare !== <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">''</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'&lt;'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'lt'</span>:</span><br><span class="line">      <span class="keyword">return</span> (compare &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       [
       <a href="https://github.com/kvz/locutus/blob/master/functions/info/version_compare.js">View on GitHub</a>
@@ -379,128 +379,9 @@ ga('send', 'pageview');
         </a></li>
         
         <ul>
-          <li><a href="/php/bc/">
-            bc
-            (7)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/ctype/">
-            ctype
-            (11)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/array/">
-            array
-            (71)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/datetime/">
-            datetime
-            (15)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/exec/">
-            exec
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/filesystem/">
-            filesystem
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/funchand/">
-            funchand
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/i18n/">
-            i18n
+          <li><a href="/php/xml/">
+            xml
             (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/info/">
-            info
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/json/">
-            json
-            (3)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/math/">
-            math
-            (46)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/misc/">
-            misc
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/net-gopher/">
-            net-gopher
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/network/">
-            network
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/pcre/">
-            pcre
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/strings/">
-            strings
-            (91)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/url/">
-            url
-            (8)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/var/">
-            var
-            (29)
           </a></li>
         </ul>
         
@@ -512,9 +393,128 @@ ga('send', 'pageview');
         </ul>
         
         <ul>
-          <li><a href="/php/xml/">
-            xml
+          <li><a href="/php/var/">
+            var
+            (29)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
             (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (71)
           </a></li>
         </ul>
         
@@ -612,13 +612,13 @@ ga('send', 'pageview');
         
 
     
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
     
 
 
 <!-- Custom Scripts -->
-<script src="/js/main.js"></script>
-<script src="/js/locutus.js"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+<script src="/js/locutus.js" type="text/javascript"></script>
 
 <!-- Twitter follow button script -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

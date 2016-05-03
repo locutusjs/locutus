@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://locutusjs.io/php/array/array_splice/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
-<meta property="og:updated_time" content="2016-05-03T06:47:04.000Z">
+<meta property="og:updated_time" content="2016-05-03T07:19:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's array_splice in JavaScript">
 <meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
@@ -21,19 +21,19 @@
 
     
 
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
 
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/locutus.css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/locutus.css" type="text/css">
 
-    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/vendor/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
     <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
 
     
     
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
     
     
         <script type="text/javascript">
@@ -84,7 +84,7 @@ ga('send', 'pageview');
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -103,10 +103,10 @@ ga('send', 'pageview');
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
+            POSTS: '文章',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            CATEGORIES: '分類',
+            TAGS: '標籤',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -115,7 +115,7 @@ ga('send', 'pageview');
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
-<script src="/js/insight.js"></script>
+<script src="/js/insight.js" type="text/javascript"></script>
 
 </div>
         </div>
@@ -143,7 +143,7 @@ ga('send', 'pageview');
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
     </div>
 
                 </td>
@@ -177,7 +177,7 @@ ga('send', 'pageview');
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">array_splice</span> (<span class="params">arr, offst, lgth, replacement</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></span><br><span class="line">  <span class="comment">//  discuss at: http://locutusjs.io/php/array_splice/</span></span><br><span class="line">  <span class="comment">// original by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">//      note 1: Order does get shifted in associative array input with numeric indices,</span></span><br><span class="line">  <span class="comment">//      note 1: since PHP behavior doesn't preserve keys, but I understand order is</span></span><br><span class="line">  <span class="comment">//      note 1: not reliable anyways</span></span><br><span class="line">  <span class="comment">//      note 1: Note also that IE retains information about property position even</span></span><br><span class="line">  <span class="comment">//      note 1: after being supposedly deleted, so use of this function may produce</span></span><br><span class="line">  <span class="comment">//      note 1: unexpected results in IE if you later attempt to add back properties</span></span><br><span class="line">  <span class="comment">//      note 1: with the same keys that had been deleted</span></span><br><span class="line">  <span class="comment">//   example 1: var $input = &#123;4: "red", 'abc': "green", 2: "blue", 'dud': "yellow"&#125;</span></span><br><span class="line">  <span class="comment">//   example 1: array_splice($input, 2)</span></span><br><span class="line">  <span class="comment">//   returns 1: &#123;4: "red", 'abc': "green"&#125;</span></span><br><span class="line">  <span class="comment">//   example 2: var $input = ["red", "green", "blue", "yellow"]</span></span><br><span class="line">  <span class="comment">//   example 2: array_splice($input, 3, 0, "purple")</span></span><br><span class="line">  <span class="comment">//   returns 2: []</span></span><br><span class="line">  <span class="comment">//   example 3: var $input = ["red", "green", "blue", "yellow"]</span></span><br><span class="line">  <span class="comment">//   example 3: array_splice($input, -1, 1, ["black", "maroon"])</span></span><br><span class="line">  <span class="comment">//   returns 3: ["yellow"]</span></span><br><span class="line">  <span class="comment">//        test: skip-1</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> isInt = <span class="built_in">require</span>(<span class="string">'../var/is_int'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _checkToUpIndices = <span class="function"><span class="keyword">function</span> (<span class="params">arr, ct, key</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Deal with situation, e.g., if encounter index 4 and try</span></span><br><span class="line">    <span class="comment">// to set it to 0, but 0 exists later in loop (need to</span></span><br><span class="line">    <span class="comment">// increment all subsequent (skipping current key,</span></span><br><span class="line">    <span class="comment">// since we need its value below) until find unused)</span></span><br><span class="line">    <span class="keyword">if</span> (arr[ct] !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> tmp = ct</span><br><span class="line">      ct += <span class="number">1</span></span><br><span class="line">      <span class="keyword">if</span> (ct === key) &#123;</span><br><span class="line">        ct += <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">      ct = _checkToUpIndices(arr, ct, key)</span><br><span class="line">      arr[ct] = arr[tmp]</span><br><span class="line">      <span class="keyword">delete</span> arr[tmp]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ct</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (replacement &amp;&amp; <span class="keyword">typeof</span> replacement !== <span class="string">'object'</span>) &#123;</span><br><span class="line">    replacement = [replacement]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (lgth === <span class="literal">undefined</span>) &#123;</span><br><span class="line">    lgth = offst &gt;= <span class="number">0</span> ? arr.length - offst : -offst</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (lgth &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    lgth = (offst &gt;= <span class="number">0</span> ? arr.length - offst : -offst) + lgth</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(arr) !== <span class="string">'[object Array]'</span>) &#123;</span><br><span class="line">    <span class="comment">/* if (arr.length !== undefined) &#123;</span><br><span class="line">     // Deal with array-like objects as input</span><br><span class="line">    delete arr.length;</span><br><span class="line">    &#125;*/</span></span><br><span class="line">    <span class="keyword">var</span> lgt = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> ct = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">var</span> rmvd = []</span><br><span class="line">    <span class="keyword">var</span> rmvdObj = &#123;&#125;</span><br><span class="line">    <span class="keyword">var</span> replCt = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">var</span> intCt = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">var</span> returnArr = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">var</span> rmvdCt = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> rmvdLngth = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> key = <span class="string">''</span></span><br><span class="line">    <span class="comment">// rmvdObj.length = 0;</span></span><br><span class="line">    <span class="keyword">for</span> (key <span class="keyword">in</span> arr) &#123;</span><br><span class="line">      <span class="comment">// Can do arr.__count__ in some browsers</span></span><br><span class="line">      lgt += <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    offst = (offst &gt;= <span class="number">0</span>) ? offst : lgt + offst</span><br><span class="line">    <span class="keyword">for</span> (key <span class="keyword">in</span> arr) &#123;</span><br><span class="line">      ct += <span class="number">1</span></span><br><span class="line">      <span class="keyword">if</span> (ct &lt; offst) &#123;</span><br><span class="line">        <span class="keyword">if</span> (isInt(key)) &#123;</span><br><span class="line">          intCt += <span class="number">1</span></span><br><span class="line">          <span class="keyword">if</span> (<span class="built_in">parseInt</span>(key, <span class="number">10</span>) === intCt) &#123;</span><br><span class="line">            <span class="comment">// Key is already numbered ok, so don't need to change key for value</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">// Deal with situation, e.g.,</span></span><br><span class="line">          _checkToUpIndices(arr, intCt, key)</span><br><span class="line">          <span class="comment">// if encounter index 4 and try to set it to 0, but 0 exists later in loop</span></span><br><span class="line">          arr[intCt] = arr[key]</span><br><span class="line">          <span class="keyword">delete</span> arr[key]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (returnArr &amp;&amp; isInt(key)) &#123;</span><br><span class="line">        rmvd.push(arr[key])</span><br><span class="line">        <span class="comment">// PHP starts over here too</span></span><br><span class="line">        rmvdObj[rmvdCt++] = arr[key]</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        rmvdObj[key] = arr[key]</span><br><span class="line">        returnArr = <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">      rmvdLngth += <span class="number">1</span></span><br><span class="line">      <span class="comment">// rmvdObj.length += 1;</span></span><br><span class="line">      <span class="keyword">if</span> (replacement &amp;&amp; replacement[++replCt]) &#123;</span><br><span class="line">        arr[key] = replacement[replCt]</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">delete</span> arr[key]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Make (back) into an array-like object</span></span><br><span class="line">    <span class="comment">// arr.length = lgt - rmvdLngth + (replacement ? replacement.length : 0);</span></span><br><span class="line">    <span class="keyword">return</span> returnArr ? rmvd : rmvdObj</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (replacement) &#123;</span><br><span class="line">    replacement.unshift(offst, lgth)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.splice.apply(arr, replacement)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> arr.splice(offst, lgth)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">array_splice</span> (<span class="params">arr, offst, lgth, replacement</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></span><br><span class="line">  <span class="comment">//  discuss at: http://locutusjs.io/php/array_splice/</span></span><br><span class="line">  <span class="comment">// original by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">//      note 1: Order does get shifted in associative array input with numeric indices,</span></span><br><span class="line">  <span class="comment">//      note 1: since PHP behavior doesn't preserve keys, but I understand order is</span></span><br><span class="line">  <span class="comment">//      note 1: not reliable anyways</span></span><br><span class="line">  <span class="comment">//      note 1: Note also that IE retains information about property position even</span></span><br><span class="line">  <span class="comment">//      note 1: after being supposedly deleted, so use of this function may produce</span></span><br><span class="line">  <span class="comment">//      note 1: unexpected results in IE if you later attempt to add back properties</span></span><br><span class="line">  <span class="comment">//      note 1: with the same keys that had been deleted</span></span><br><span class="line">  <span class="comment">//   example 1: var $input = &#123;4: "red", 'abc': "green", 2: "blue", 'dud': "yellow"&#125;</span></span><br><span class="line">  <span class="comment">//   example 1: array_splice($input, 2)</span></span><br><span class="line">  <span class="comment">//   returns 1: &#123;4: "red", 'abc': "green"&#125;</span></span><br><span class="line">  <span class="comment">//   example 2: var $input = ["red", "green", "blue", "yellow"]</span></span><br><span class="line">  <span class="comment">//   example 2: array_splice($input, 3, 0, "purple")</span></span><br><span class="line">  <span class="comment">//   returns 2: []</span></span><br><span class="line">  <span class="comment">//   example 3: var $input = ["red", "green", "blue", "yellow"]</span></span><br><span class="line">  <span class="comment">//   example 3: array_splice($input, -1, 1, ["black", "maroon"])</span></span><br><span class="line">  <span class="comment">//   returns 3: ["yellow"]</span></span><br><span class="line">  <span class="comment">//        test: skip-1</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> isInt = <span class="built_in">require</span>(<span class="string">'../var/is_int'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _checkToUpIndices = <span class="function"><span class="keyword">function</span> (<span class="params">arr, ct, key</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Deal with situation, e.g., if encounter index 4 and try</span></span><br><span class="line">    <span class="comment">// to set it to 0, but 0 exists later in loop (need to</span></span><br><span class="line">    <span class="comment">// increment all subsequent (skipping current key,</span></span><br><span class="line">    <span class="comment">// since we need its value below) until find unused)</span></span><br><span class="line">    <span class="keyword">if</span> (arr[ct] !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> tmp = ct</span><br><span class="line">      ct += <span class="number">1</span></span><br><span class="line">      <span class="keyword">if</span> (ct === key) &#123;</span><br><span class="line">        ct += <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">      ct = _checkToUpIndices(arr, ct, key)</span><br><span class="line">      arr[ct] = arr[tmp]</span><br><span class="line">      <span class="keyword">delete</span> arr[tmp]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ct</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (replacement &amp;&amp; <span class="keyword">typeof</span> replacement !== <span class="string">'object'</span>) &#123;</span><br><span class="line">    replacement = [replacement]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (lgth === <span class="literal">undefined</span>) &#123;</span><br><span class="line">    lgth = offst &gt;= <span class="number">0</span> ? arr.length - offst : -offst</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (lgth &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    lgth = (offst &gt;= <span class="number">0</span> ? arr.length - offst : -offst) + lgth</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(arr) !== <span class="string">'[object Array]'</span>) &#123;</span><br><span class="line">    <span class="comment">/* if (arr.length !== undefined) &#123;</span><br><span class="line">     // Deal with array-like objects as input</span><br><span class="line">    delete arr.length;</span><br><span class="line">    &#125;*/</span></span><br><span class="line">    <span class="keyword">var</span> lgt = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> ct = -<span class="number">1</span></span><br><span class="line">    <span class="keyword">var</span> rmvd = []</span><br><span class="line">    <span class="keyword">var</span> rmvdObj = &#123;&#125;</span><br><span class="line">    <span class="keyword">var</span> replCt = -<span class="number">1</span></span><br><span class="line">    <span class="keyword">var</span> intCt = -<span class="number">1</span></span><br><span class="line">    <span class="keyword">var</span> returnArr = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">var</span> rmvdCt = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> rmvdLngth = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> key = <span class="string">''</span></span><br><span class="line">    <span class="comment">// rmvdObj.length = 0;</span></span><br><span class="line">    <span class="keyword">for</span> (key <span class="keyword">in</span> arr) &#123;</span><br><span class="line">      <span class="comment">// Can do arr.__count__ in some browsers</span></span><br><span class="line">      lgt += <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    offst = (offst &gt;= <span class="number">0</span>) ? offst : lgt + offst</span><br><span class="line">    <span class="keyword">for</span> (key <span class="keyword">in</span> arr) &#123;</span><br><span class="line">      ct += <span class="number">1</span></span><br><span class="line">      <span class="keyword">if</span> (ct &lt; offst) &#123;</span><br><span class="line">        <span class="keyword">if</span> (isInt(key)) &#123;</span><br><span class="line">          intCt += <span class="number">1</span></span><br><span class="line">          <span class="keyword">if</span> (<span class="built_in">parseInt</span>(key, <span class="number">10</span>) === intCt) &#123;</span><br><span class="line">            <span class="comment">// Key is already numbered ok, so don't need to change key for value</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">// Deal with situation, e.g.,</span></span><br><span class="line">          _checkToUpIndices(arr, intCt, key)</span><br><span class="line">          <span class="comment">// if encounter index 4 and try to set it to 0, but 0 exists later in loop</span></span><br><span class="line">          arr[intCt] = arr[key]</span><br><span class="line">          <span class="keyword">delete</span> arr[key]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (returnArr &amp;&amp; isInt(key)) &#123;</span><br><span class="line">        rmvd.push(arr[key])</span><br><span class="line">        <span class="comment">// PHP starts over here too</span></span><br><span class="line">        rmvdObj[rmvdCt++] = arr[key]</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        rmvdObj[key] = arr[key]</span><br><span class="line">        returnArr = <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">      rmvdLngth += <span class="number">1</span></span><br><span class="line">      <span class="comment">// rmvdObj.length += 1;</span></span><br><span class="line">      <span class="keyword">if</span> (replacement &amp;&amp; replacement[++replCt]) &#123;</span><br><span class="line">        arr[key] = replacement[replCt]</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">delete</span> arr[key]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Make (back) into an array-like object</span></span><br><span class="line">    <span class="comment">// arr.length = lgt - rmvdLngth + (replacement ? replacement.length : 0);</span></span><br><span class="line">    <span class="keyword">return</span> returnArr ? rmvd : rmvdObj</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (replacement) &#123;</span><br><span class="line">    replacement.unshift(offst, lgth)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.splice.apply(arr, replacement)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> arr.splice(offst, lgth)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       [
       <a href="https://github.com/kvz/locutus/blob/master/functions/array/array_splice.js">View on GitHub</a>
@@ -409,128 +409,9 @@ array_splice($input, -1, 1, [&quot;black&quot;, &quot;maroon&quot;])</code></td>
         </a></li>
         
         <ul>
-          <li><a href="/php/bc/">
-            bc
-            (7)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/ctype/">
-            ctype
-            (11)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/array/">
-            array
-            (71)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/datetime/">
-            datetime
-            (15)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/exec/">
-            exec
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/filesystem/">
-            filesystem
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/funchand/">
-            funchand
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/i18n/">
-            i18n
+          <li><a href="/php/xml/">
+            xml
             (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/info/">
-            info
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/json/">
-            json
-            (3)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/math/">
-            math
-            (46)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/misc/">
-            misc
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/net-gopher/">
-            net-gopher
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/network/">
-            network
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/pcre/">
-            pcre
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/strings/">
-            strings
-            (91)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/url/">
-            url
-            (8)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/var/">
-            var
-            (29)
           </a></li>
         </ul>
         
@@ -542,9 +423,128 @@ array_splice($input, -1, 1, [&quot;black&quot;, &quot;maroon&quot;])</code></td>
         </ul>
         
         <ul>
-          <li><a href="/php/xml/">
-            xml
+          <li><a href="/php/var/">
+            var
+            (29)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
             (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (71)
           </a></li>
         </ul>
         
@@ -642,13 +642,13 @@ array_splice($input, -1, 1, [&quot;black&quot;, &quot;maroon&quot;])</code></td>
         
 
     
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
     
 
 
 <!-- Custom Scripts -->
-<script src="/js/main.js"></script>
-<script src="/js/locutus.js"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+<script src="/js/locutus.js" type="text/javascript"></script>
 
 <!-- Twitter follow button script -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

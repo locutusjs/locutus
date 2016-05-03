@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://locutusjs.io/php/array/ksort/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
-<meta property="og:updated_time" content="2016-05-03T06:47:04.000Z">
+<meta property="og:updated_time" content="2016-05-03T07:19:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's ksort in JavaScript">
 <meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
@@ -21,19 +21,19 @@
 
     
 
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
 
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/locutus.css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/locutus.css" type="text/css">
 
-    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/vendor/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
     <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
 
     
     
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
     
     
         <script type="text/javascript">
@@ -84,7 +84,7 @@ ga('send', 'pageview');
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -103,10 +103,10 @@ ga('send', 'pageview');
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
+            POSTS: '文章',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            CATEGORIES: '分類',
+            TAGS: '標籤',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -115,7 +115,7 @@ ga('send', 'pageview');
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
-<script src="/js/insight.js"></script>
+<script src="/js/insight.js" type="text/javascript"></script>
 
 </div>
         </div>
@@ -143,7 +143,7 @@ ga('send', 'pageview');
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
     </div>
 
                 </td>
@@ -177,7 +177,7 @@ ga('send', 'pageview');
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">ksort</span> (<span class="params">inputArr, sortFlags</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//  discuss at: http://locutusjs.io/php/ksort/</span></span><br><span class="line">  <span class="comment">// original by: GeekFG (http://geekfg.blogspot.com)</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//      note 1: This function deviates from PHP in returning a copy of the array instead</span></span><br><span class="line">  <span class="comment">//      note 1: of acting by reference and returning true; this was necessary because</span></span><br><span class="line">  <span class="comment">//      note 1: IE does not allow deleting and re-adding of properties without caching</span></span><br><span class="line">  <span class="comment">//      note 1: of property position; you can set the ini of "locutus.sortByReference" to true to</span></span><br><span class="line">  <span class="comment">//      note 1: get the PHP behavior, but use this only if you are in an environment</span></span><br><span class="line">  <span class="comment">//      note 1: such as Firefox extensions where for-in iteration order is fixed and true</span></span><br><span class="line">  <span class="comment">//      note 1: property deletion is supported. Note that we intend to implement the PHP</span></span><br><span class="line">  <span class="comment">//      note 1: behavior by default if IE ever does allow it; only gives shallow copy since</span></span><br><span class="line">  <span class="comment">//      note 1: is by reference in PHP anyways</span></span><br><span class="line">  <span class="comment">//      note 1: Since JS objects' keys are always strings, and (the</span></span><br><span class="line">  <span class="comment">//      note 1: default) SORT_REGULAR flag distinguishes by key type,</span></span><br><span class="line">  <span class="comment">//      note 1: if the content is a numeric string, we treat the</span></span><br><span class="line">  <span class="comment">//      note 1: "original type" as numeric.</span></span><br><span class="line">  <span class="comment">//   example 1: var $data = &#123;d: 'lemon', a: 'orange', b: 'banana', c: 'apple'&#125;</span></span><br><span class="line">  <span class="comment">//   example 1: ksort($data)</span></span><br><span class="line">  <span class="comment">//   example 1: var $result = $data</span></span><br><span class="line">  <span class="comment">//   returns 1: &#123;a: 'orange', b: 'banana', c: 'apple', d: 'lemon'&#125;</span></span><br><span class="line">  <span class="comment">//   example 2: ini_set('locutus.sortByReference', true)</span></span><br><span class="line">  <span class="comment">//   example 2: var $data = &#123;2: 'van', 3: 'Zonneveld', 1: 'Kevin'&#125;</span></span><br><span class="line">  <span class="comment">//   example 2: ksort($data)</span></span><br><span class="line">  <span class="comment">//   example 2: var $result = $data</span></span><br><span class="line">  <span class="comment">//   returns 2: &#123;1: 'Kevin', 2: 'van', 3: 'Zonneveld'&#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> i18nlgd = <span class="built_in">require</span>(<span class="string">'../i18n/i18n_loc_get_default'</span>)</span><br><span class="line">  <span class="keyword">var</span> strnatcmp = <span class="built_in">require</span>(<span class="string">'../strings/strnatcmp'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> tmpArr = &#123;&#125;</span><br><span class="line">  <span class="keyword">var</span> keys = []</span><br><span class="line">  <span class="keyword">var</span> sorter</span><br><span class="line">  <span class="keyword">var</span> i</span><br><span class="line">  <span class="keyword">var</span> k</span><br><span class="line">  <span class="keyword">var</span> sortByReference = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">var</span> populateArr = &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> $global = (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : GLOBAL)</span><br><span class="line">  $global.$locutus = $global.$locutus || &#123;&#125;</span><br><span class="line">  <span class="keyword">var</span> $locutus = $global.$locutus</span><br><span class="line">  $locutus.php = $locutus.php || &#123;&#125;</span><br><span class="line">  $locutus.php.locales = $locutus.php.locales || &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (sortFlags) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'SORT_STRING'</span>:</span><br><span class="line">      <span class="comment">// compare items as strings</span></span><br><span class="line">      sorter = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> strnatcmp(b, a)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'SORT_LOCALE_STRING'</span>:</span><br><span class="line">      <span class="comment">// compare items as strings, based on the current locale</span></span><br><span class="line">      <span class="comment">// (set with i18n_loc_set_default() as of PHP6)</span></span><br><span class="line">      <span class="keyword">var</span> loc = i18nlgd()</span><br><span class="line">      sorter = $locutus.locales[loc].sorting</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'SORT_NUMERIC'</span>:</span><br><span class="line">      <span class="comment">// compare items numerically</span></span><br><span class="line">      sorter = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ((a + <span class="number">0</span>) - (b + <span class="number">0</span>))</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="comment">// case 'SORT_REGULAR': // compare items normally (don't change types)</span></span><br><span class="line">      sorter = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> aFloat = <span class="built_in">parseFloat</span>(a)</span><br><span class="line">        <span class="keyword">var</span> bFloat = <span class="built_in">parseFloat</span>(b)</span><br><span class="line">        <span class="keyword">var</span> aNumeric = aFloat + <span class="string">''</span> === a</span><br><span class="line">        <span class="keyword">var</span> bNumeric = bFloat + <span class="string">''</span> === b</span><br><span class="line">        <span class="keyword">if</span> (aNumeric &amp;&amp; bNumeric) &#123;</span><br><span class="line">          <span class="keyword">return</span> aFloat &gt; bFloat ? <span class="number">1</span> : aFloat &lt; bFloat ? <span class="number">-1</span> : <span class="number">0</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (aNumeric &amp;&amp; !bNumeric) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!aNumeric &amp;&amp; bNumeric) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a &gt; b ? <span class="number">1</span> : a &lt; b ? <span class="number">-1</span> : <span class="number">0</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Make a list of key names</span></span><br><span class="line">  <span class="keyword">for</span> (k <span class="keyword">in</span> inputArr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (inputArr.hasOwnProperty(k)) &#123;</span><br><span class="line">      keys.push(k)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  keys.sort(sorter)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> iniVal = (<span class="keyword">typeof</span> <span class="built_in">require</span> !== <span class="string">'undefined'</span> ? <span class="built_in">require</span>(<span class="string">'../info/ini_get'</span>)(<span class="string">'locutus.sortByReference'</span>) : <span class="literal">undefined</span>) || <span class="string">'on'</span></span><br><span class="line">  sortByReference = iniVal === <span class="string">'on'</span></span><br><span class="line">  populateArr = sortByReference ? inputArr : populateArr</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Rebuild array with sorted key names</span></span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; keys.length; i++) &#123;</span><br><span class="line">    k = keys[i]</span><br><span class="line">    tmpArr[k] = inputArr[k]</span><br><span class="line">    <span class="keyword">if</span> (sortByReference) &#123;</span><br><span class="line">      <span class="keyword">delete</span> inputArr[k]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (i <span class="keyword">in</span> tmpArr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (tmpArr.hasOwnProperty(i)) &#123;</span><br><span class="line">      populateArr[i] = tmpArr[i]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> sortByReference || populateArr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">ksort</span> (<span class="params">inputArr, sortFlags</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//  discuss at: http://locutusjs.io/php/ksort/</span></span><br><span class="line">  <span class="comment">// original by: GeekFG (http://geekfg.blogspot.com)</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//      note 1: This function deviates from PHP in returning a copy of the array instead</span></span><br><span class="line">  <span class="comment">//      note 1: of acting by reference and returning true; this was necessary because</span></span><br><span class="line">  <span class="comment">//      note 1: IE does not allow deleting and re-adding of properties without caching</span></span><br><span class="line">  <span class="comment">//      note 1: of property position; you can set the ini of "locutus.sortByReference" to true to</span></span><br><span class="line">  <span class="comment">//      note 1: get the PHP behavior, but use this only if you are in an environment</span></span><br><span class="line">  <span class="comment">//      note 1: such as Firefox extensions where for-in iteration order is fixed and true</span></span><br><span class="line">  <span class="comment">//      note 1: property deletion is supported. Note that we intend to implement the PHP</span></span><br><span class="line">  <span class="comment">//      note 1: behavior by default if IE ever does allow it; only gives shallow copy since</span></span><br><span class="line">  <span class="comment">//      note 1: is by reference in PHP anyways</span></span><br><span class="line">  <span class="comment">//      note 1: Since JS objects' keys are always strings, and (the</span></span><br><span class="line">  <span class="comment">//      note 1: default) SORT_REGULAR flag distinguishes by key type,</span></span><br><span class="line">  <span class="comment">//      note 1: if the content is a numeric string, we treat the</span></span><br><span class="line">  <span class="comment">//      note 1: "original type" as numeric.</span></span><br><span class="line">  <span class="comment">//   example 1: var $data = &#123;d: 'lemon', a: 'orange', b: 'banana', c: 'apple'&#125;</span></span><br><span class="line">  <span class="comment">//   example 1: ksort($data)</span></span><br><span class="line">  <span class="comment">//   example 1: var $result = $data</span></span><br><span class="line">  <span class="comment">//   returns 1: &#123;a: 'orange', b: 'banana', c: 'apple', d: 'lemon'&#125;</span></span><br><span class="line">  <span class="comment">//   example 2: ini_set('locutus.sortByReference', true)</span></span><br><span class="line">  <span class="comment">//   example 2: var $data = &#123;2: 'van', 3: 'Zonneveld', 1: 'Kevin'&#125;</span></span><br><span class="line">  <span class="comment">//   example 2: ksort($data)</span></span><br><span class="line">  <span class="comment">//   example 2: var $result = $data</span></span><br><span class="line">  <span class="comment">//   returns 2: &#123;1: 'Kevin', 2: 'van', 3: 'Zonneveld'&#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> i18nlgd = <span class="built_in">require</span>(<span class="string">'../i18n/i18n_loc_get_default'</span>)</span><br><span class="line">  <span class="keyword">var</span> strnatcmp = <span class="built_in">require</span>(<span class="string">'../strings/strnatcmp'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> tmpArr = &#123;&#125;</span><br><span class="line">  <span class="keyword">var</span> keys = []</span><br><span class="line">  <span class="keyword">var</span> sorter</span><br><span class="line">  <span class="keyword">var</span> i</span><br><span class="line">  <span class="keyword">var</span> k</span><br><span class="line">  <span class="keyword">var</span> sortByReference = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">var</span> populateArr = &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> $global = (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : GLOBAL)</span><br><span class="line">  $global.$locutus = $global.$locutus || &#123;&#125;</span><br><span class="line">  <span class="keyword">var</span> $locutus = $global.$locutus</span><br><span class="line">  $locutus.php = $locutus.php || &#123;&#125;</span><br><span class="line">  $locutus.php.locales = $locutus.php.locales || &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (sortFlags) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'SORT_STRING'</span>:</span><br><span class="line">      <span class="comment">// compare items as strings</span></span><br><span class="line">      sorter = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> strnatcmp(b, a)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'SORT_LOCALE_STRING'</span>:</span><br><span class="line">      <span class="comment">// compare items as strings, based on the current locale</span></span><br><span class="line">      <span class="comment">// (set with i18n_loc_set_default() as of PHP6)</span></span><br><span class="line">      <span class="keyword">var</span> loc = i18nlgd()</span><br><span class="line">      sorter = $locutus.locales[loc].sorting</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'SORT_NUMERIC'</span>:</span><br><span class="line">      <span class="comment">// compare items numerically</span></span><br><span class="line">      sorter = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ((a + <span class="number">0</span>) - (b + <span class="number">0</span>))</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="comment">// case 'SORT_REGULAR': // compare items normally (don't change types)</span></span><br><span class="line">      sorter = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> aFloat = <span class="built_in">parseFloat</span>(a)</span><br><span class="line">        <span class="keyword">var</span> bFloat = <span class="built_in">parseFloat</span>(b)</span><br><span class="line">        <span class="keyword">var</span> aNumeric = aFloat + <span class="string">''</span> === a</span><br><span class="line">        <span class="keyword">var</span> bNumeric = bFloat + <span class="string">''</span> === b</span><br><span class="line">        <span class="keyword">if</span> (aNumeric &amp;&amp; bNumeric) &#123;</span><br><span class="line">          <span class="keyword">return</span> aFloat &gt; bFloat ? <span class="number">1</span> : aFloat &lt; bFloat ? -<span class="number">1</span> : <span class="number">0</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (aNumeric &amp;&amp; !bNumeric) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!aNumeric &amp;&amp; bNumeric) &#123;</span><br><span class="line">          <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a &gt; b ? <span class="number">1</span> : a &lt; b ? -<span class="number">1</span> : <span class="number">0</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Make a list of key names</span></span><br><span class="line">  <span class="keyword">for</span> (k <span class="keyword">in</span> inputArr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (inputArr.hasOwnProperty(k)) &#123;</span><br><span class="line">      keys.push(k)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  keys.sort(sorter)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> iniVal = (<span class="keyword">typeof</span> <span class="built_in">require</span> !== <span class="string">'undefined'</span> ? <span class="built_in">require</span>(<span class="string">'../info/ini_get'</span>)(<span class="string">'locutus.sortByReference'</span>) : <span class="literal">undefined</span>) || <span class="string">'on'</span></span><br><span class="line">  sortByReference = iniVal === <span class="string">'on'</span></span><br><span class="line">  populateArr = sortByReference ? inputArr : populateArr</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Rebuild array with sorted key names</span></span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; keys.length; i++) &#123;</span><br><span class="line">    k = keys[i]</span><br><span class="line">    tmpArr[k] = inputArr[k]</span><br><span class="line">    <span class="keyword">if</span> (sortByReference) &#123;</span><br><span class="line">      <span class="keyword">delete</span> inputArr[k]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (i <span class="keyword">in</span> tmpArr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (tmpArr.hasOwnProperty(i)) &#123;</span><br><span class="line">      populateArr[i] = tmpArr[i]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> sortByReference || populateArr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       [
       <a href="https://github.com/kvz/locutus/blob/master/functions/array/ksort.js">View on GitHub</a>
@@ -415,128 +415,9 @@ var $result = $data</code></td><td><code>{1: &#39;Kevin&#39;, 2: &#39;van&#39;, 
         </a></li>
         
         <ul>
-          <li><a href="/php/bc/">
-            bc
-            (7)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/ctype/">
-            ctype
-            (11)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/array/">
-            array
-            (71)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/datetime/">
-            datetime
-            (15)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/exec/">
-            exec
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/filesystem/">
-            filesystem
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/funchand/">
-            funchand
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/i18n/">
-            i18n
+          <li><a href="/php/xml/">
+            xml
             (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/info/">
-            info
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/json/">
-            json
-            (3)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/math/">
-            math
-            (46)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/misc/">
-            misc
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/net-gopher/">
-            net-gopher
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/network/">
-            network
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/pcre/">
-            pcre
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/strings/">
-            strings
-            (91)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/url/">
-            url
-            (8)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/var/">
-            var
-            (29)
           </a></li>
         </ul>
         
@@ -548,9 +429,128 @@ var $result = $data</code></td><td><code>{1: &#39;Kevin&#39;, 2: &#39;van&#39;, 
         </ul>
         
         <ul>
-          <li><a href="/php/xml/">
-            xml
+          <li><a href="/php/var/">
+            var
+            (29)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
             (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (71)
           </a></li>
         </ul>
         
@@ -648,13 +648,13 @@ var $result = $data</code></td><td><code>{1: &#39;Kevin&#39;, 2: &#39;van&#39;, 
         
 
     
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
     
 
 
 <!-- Custom Scripts -->
-<script src="/js/main.js"></script>
-<script src="/js/locutus.js"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+<script src="/js/locutus.js" type="text/javascript"></script>
 
 <!-- Twitter follow button script -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

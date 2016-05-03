@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://locutusjs.io/php/strings/metaphone/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
-<meta property="og:updated_time" content="2016-05-03T06:47:04.000Z">
+<meta property="og:updated_time" content="2016-05-03T07:19:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's metaphone in JavaScript">
 <meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
@@ -21,19 +21,19 @@
 
     
 
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
 
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/locutus.css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/locutus.css" type="text/css">
 
-    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/vendor/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
     <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
 
     
     
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
     
     
         <script type="text/javascript">
@@ -84,7 +84,7 @@ ga('send', 'pageview');
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -103,10 +103,10 @@ ga('send', 'pageview');
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
+            POSTS: '文章',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            CATEGORIES: '分類',
+            TAGS: '標籤',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -115,7 +115,7 @@ ga('send', 'pageview');
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
-<script src="/js/insight.js"></script>
+<script src="/js/insight.js" type="text/javascript"></script>
 
 </div>
         </div>
@@ -143,7 +143,7 @@ ga('send', 'pageview');
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
     </div>
 
                 </td>
@@ -177,7 +177,7 @@ ga('send', 'pageview');
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">metaphone</span> (<span class="params">word, maxPhonemes</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//  discuss at: http://locutusjs.io/php/metaphone/</span></span><br><span class="line">  <span class="comment">// original by: Greg Frazier</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// improved by: Rafał Kukawski (http://blog.kukawski.pl)</span></span><br><span class="line">  <span class="comment">//   example 1: metaphone('Gnu')</span></span><br><span class="line">  <span class="comment">//   returns 1: 'N'</span></span><br><span class="line">  <span class="comment">//   example 2: metaphone('bigger')</span></span><br><span class="line">  <span class="comment">//   returns 2: 'BKR'</span></span><br><span class="line">  <span class="comment">//   example 3: metaphone('accuracy')</span></span><br><span class="line">  <span class="comment">//   returns 3: 'AKKRS'</span></span><br><span class="line">  <span class="comment">//   example 4: metaphone('batch batcher')</span></span><br><span class="line">  <span class="comment">//   returns 4: 'BXBXR'</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> type = <span class="keyword">typeof</span> word</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (type === <span class="string">'undefined'</span> || type === <span class="string">'object'</span> &amp;&amp; word !== <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="comment">// weird!</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// infinity and NaN values are treated as strings</span></span><br><span class="line">  <span class="keyword">if</span> (type === <span class="string">'number'</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isNaN</span>(word)) &#123;</span><br><span class="line">      word = <span class="string">'NAN'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="built_in">isFinite</span>(word)) &#123;</span><br><span class="line">      word = <span class="string">'INF'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (maxPhonemes &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  maxPhonemes = <span class="built_in">Math</span>.floor(+maxPhonemes) || <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// alpha depends on locale, so this var might need an update</span></span><br><span class="line">  <span class="comment">// or should be turned into a regex</span></span><br><span class="line">  <span class="comment">// for now assuming pure a-z</span></span><br><span class="line">  <span class="keyword">var</span> alpha = <span class="string">'ABCDEFGHIJKLMNOPQRSTUVWXYZ'</span></span><br><span class="line">  <span class="keyword">var</span> vowel = <span class="string">'AEIOU'</span></span><br><span class="line">  <span class="keyword">var</span> soft = <span class="string">'EIY'</span></span><br><span class="line">  <span class="keyword">var</span> leadingNonAlpha = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'^[^'</span> + alpha + <span class="string">']+'</span>)</span><br><span class="line"></span><br><span class="line">  word = <span class="keyword">typeof</span> word === <span class="string">'string'</span> ? word : <span class="string">''</span></span><br><span class="line">  word = word.toUpperCase().replace(leadingNonAlpha, <span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!word) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> is = <span class="function"><span class="keyword">function</span> (<span class="params">p, c</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> c !== <span class="string">''</span> &amp;&amp; p.indexOf(c) !== <span class="number">-1</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> cc = word.charAt(<span class="number">0</span>) <span class="comment">// current char. Short name because it's used all over the function</span></span><br><span class="line">  <span class="keyword">var</span> nc = word.charAt(<span class="number">1</span>)  <span class="comment">// next char</span></span><br><span class="line">  <span class="keyword">var</span> nnc <span class="comment">// after next char</span></span><br><span class="line">  <span class="keyword">var</span> pc <span class="comment">// previous char</span></span><br><span class="line">  <span class="keyword">var</span> l = word.length</span><br><span class="line">  <span class="keyword">var</span> meta = <span class="string">''</span></span><br><span class="line">  <span class="comment">// traditional is an internal param that could be exposed for now let it be a local var</span></span><br><span class="line">  <span class="keyword">var</span> traditional = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (cc) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'A'</span>:</span><br><span class="line">      meta += nc === <span class="string">'E'</span> ? nc : cc</span><br><span class="line">      i += <span class="number">1</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'G'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'K'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'P'</span>:</span><br><span class="line">      <span class="keyword">if</span> (nc === <span class="string">'N'</span>) &#123;</span><br><span class="line">        meta += nc</span><br><span class="line">        i += <span class="number">2</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'W'</span>:</span><br><span class="line">      <span class="keyword">if</span> (nc === <span class="string">'R'</span>) &#123;</span><br><span class="line">        meta += nc</span><br><span class="line">        i += <span class="number">2</span></span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nc === <span class="string">'H'</span> || is(vowel, nc)) &#123;</span><br><span class="line">        meta += <span class="string">'W'</span></span><br><span class="line">        i += <span class="number">2</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'X'</span>:</span><br><span class="line">      meta += <span class="string">'S'</span></span><br><span class="line">      i += <span class="number">1</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'E'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'I'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'O'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'U'</span>:</span><br><span class="line">      meta += cc</span><br><span class="line">      i++</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (; i &lt; l &amp;&amp; (maxPhonemes === <span class="number">0</span> || meta.length &lt; maxPhonemes); i += <span class="number">1</span>) &#123; <span class="comment">// eslint-disable-line no-unmodified-loop-condition,max-len</span></span><br><span class="line">    cc = word.charAt(i)</span><br><span class="line">    nc = word.charAt(i + <span class="number">1</span>)</span><br><span class="line">    pc = word.charAt(i - <span class="number">1</span>)</span><br><span class="line">    nnc = word.charAt(i + <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (cc === pc &amp;&amp; cc !== <span class="string">'C'</span>) &#123;</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span> (cc) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'B'</span>:</span><br><span class="line">        <span class="keyword">if</span> (pc !== <span class="string">'M'</span>) &#123;</span><br><span class="line">          meta += cc</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'C'</span>:</span><br><span class="line">        <span class="keyword">if</span> (is(soft, nc)) &#123;</span><br><span class="line">          <span class="keyword">if</span> (nc === <span class="string">'I'</span> &amp;&amp; nnc === <span class="string">'A'</span>) &#123;</span><br><span class="line">            meta += <span class="string">'X'</span></span><br><span class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pc !== <span class="string">'S'</span>) &#123;</span><br><span class="line">            meta += <span class="string">'S'</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nc === <span class="string">'H'</span>) &#123;</span><br><span class="line">          meta += !traditional &amp;&amp; (nnc === <span class="string">'R'</span> || pc === <span class="string">'S'</span>) ? <span class="string">'K'</span> : <span class="string">'X'</span></span><br><span class="line">          i += <span class="number">1</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          meta += <span class="string">'K'</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'D'</span>:</span><br><span class="line">        <span class="keyword">if</span> (nc === <span class="string">'G'</span> &amp;&amp; is(soft, nnc)) &#123;</span><br><span class="line">          meta += <span class="string">'J'</span></span><br><span class="line">          i += <span class="number">1</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          meta += <span class="string">'T'</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'G'</span>:</span><br><span class="line">        <span class="keyword">if</span> (nc === <span class="string">'H'</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span> (!(is(<span class="string">'BDH'</span>, word.charAt(i - <span class="number">3</span>)) || word.charAt(i - <span class="number">4</span>) === <span class="string">'H'</span>)) &#123;</span><br><span class="line">            meta += <span class="string">'F'</span></span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nc === <span class="string">'N'</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span> (is(alpha, nnc) &amp;&amp; word.substr(i + <span class="number">1</span>, <span class="number">3</span>) !== <span class="string">'NED'</span>) &#123;</span><br><span class="line">            meta += <span class="string">'K'</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (is(soft, nc) &amp;&amp; pc !== <span class="string">'G'</span>) &#123;</span><br><span class="line">          meta += <span class="string">'J'</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          meta += <span class="string">'K'</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'H'</span>:</span><br><span class="line">        <span class="keyword">if</span> (is(vowel, nc) &amp;&amp; !is(<span class="string">'CGPST'</span>, pc)) &#123;</span><br><span class="line">          meta += cc</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'K'</span>:</span><br><span class="line">        <span class="keyword">if</span> (pc !== <span class="string">'C'</span>) &#123;</span><br><span class="line">          meta += <span class="string">'K'</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'P'</span>:</span><br><span class="line">        meta += nc === <span class="string">'H'</span> ? <span class="string">'F'</span> : cc</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'Q'</span>:</span><br><span class="line">        meta += <span class="string">'K'</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'S'</span>:</span><br><span class="line">        <span class="keyword">if</span> (nc === <span class="string">'I'</span> &amp;&amp; is(<span class="string">'AO'</span>, nnc)) &#123;</span><br><span class="line">          meta += <span class="string">'X'</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nc === <span class="string">'H'</span>) &#123;</span><br><span class="line">          meta += <span class="string">'X'</span></span><br><span class="line">          i += <span class="number">1</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!traditional &amp;&amp; word.substr(i + <span class="number">1</span>, <span class="number">3</span>) === <span class="string">'CHW'</span>) &#123;</span><br><span class="line">          meta += <span class="string">'X'</span></span><br><span class="line">          i += <span class="number">2</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          meta += <span class="string">'S'</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'T'</span>:</span><br><span class="line">        <span class="keyword">if</span> (nc === <span class="string">'I'</span> &amp;&amp; is(<span class="string">'AO'</span>, nnc)) &#123;</span><br><span class="line">          meta += <span class="string">'X'</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nc === <span class="string">'H'</span>) &#123;</span><br><span class="line">          meta += <span class="string">'0'</span></span><br><span class="line">          i += <span class="number">1</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (word.substr(i + <span class="number">1</span>, <span class="number">2</span>) !== <span class="string">'CH'</span>) &#123;</span><br><span class="line">          meta += <span class="string">'T'</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'V'</span>:</span><br><span class="line">        meta += <span class="string">'F'</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'W'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'Y'</span>:</span><br><span class="line">        <span class="keyword">if</span> (is(vowel, nc)) &#123;</span><br><span class="line">          meta += cc</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'X'</span>:</span><br><span class="line">        meta += <span class="string">'KS'</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'Z'</span>:</span><br><span class="line">        meta += <span class="string">'S'</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'F'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'J'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'L'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'M'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'N'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'R'</span>:</span><br><span class="line">        meta += cc</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> meta</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">metaphone</span> (<span class="params">word, maxPhonemes</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//  discuss at: http://locutusjs.io/php/metaphone/</span></span><br><span class="line">  <span class="comment">// original by: Greg Frazier</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// improved by: Rafał Kukawski (http://blog.kukawski.pl)</span></span><br><span class="line">  <span class="comment">//   example 1: metaphone('Gnu')</span></span><br><span class="line">  <span class="comment">//   returns 1: 'N'</span></span><br><span class="line">  <span class="comment">//   example 2: metaphone('bigger')</span></span><br><span class="line">  <span class="comment">//   returns 2: 'BKR'</span></span><br><span class="line">  <span class="comment">//   example 3: metaphone('accuracy')</span></span><br><span class="line">  <span class="comment">//   returns 3: 'AKKRS'</span></span><br><span class="line">  <span class="comment">//   example 4: metaphone('batch batcher')</span></span><br><span class="line">  <span class="comment">//   returns 4: 'BXBXR'</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> type = <span class="keyword">typeof</span> word</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (type === <span class="string">'undefined'</span> || type === <span class="string">'object'</span> &amp;&amp; word !== <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="comment">// weird!</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// infinity and NaN values are treated as strings</span></span><br><span class="line">  <span class="keyword">if</span> (type === <span class="string">'number'</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isNaN</span>(word)) &#123;</span><br><span class="line">      word = <span class="string">'NAN'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="built_in">isFinite</span>(word)) &#123;</span><br><span class="line">      word = <span class="string">'INF'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (maxPhonemes &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  maxPhonemes = <span class="built_in">Math</span>.floor(+maxPhonemes) || <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// alpha depends on locale, so this var might need an update</span></span><br><span class="line">  <span class="comment">// or should be turned into a regex</span></span><br><span class="line">  <span class="comment">// for now assuming pure a-z</span></span><br><span class="line">  <span class="keyword">var</span> alpha = <span class="string">'ABCDEFGHIJKLMNOPQRSTUVWXYZ'</span></span><br><span class="line">  <span class="keyword">var</span> vowel = <span class="string">'AEIOU'</span></span><br><span class="line">  <span class="keyword">var</span> soft = <span class="string">'EIY'</span></span><br><span class="line">  <span class="keyword">var</span> leadingNonAlpha = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'^[^'</span> + alpha + <span class="string">']+'</span>)</span><br><span class="line"></span><br><span class="line">  word = <span class="keyword">typeof</span> word === <span class="string">'string'</span> ? word : <span class="string">''</span></span><br><span class="line">  word = word.toUpperCase().replace(leadingNonAlpha, <span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!word) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> is = <span class="function"><span class="keyword">function</span> (<span class="params">p, c</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> c !== <span class="string">''</span> &amp;&amp; p.indexOf(c) !== -<span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> cc = word.charAt(<span class="number">0</span>) <span class="comment">// current char. Short name because it's used all over the function</span></span><br><span class="line">  <span class="keyword">var</span> nc = word.charAt(<span class="number">1</span>)  <span class="comment">// next char</span></span><br><span class="line">  <span class="keyword">var</span> nnc <span class="comment">// after next char</span></span><br><span class="line">  <span class="keyword">var</span> pc <span class="comment">// previous char</span></span><br><span class="line">  <span class="keyword">var</span> l = word.length</span><br><span class="line">  <span class="keyword">var</span> meta = <span class="string">''</span></span><br><span class="line">  <span class="comment">// traditional is an internal param that could be exposed for now let it be a local var</span></span><br><span class="line">  <span class="keyword">var</span> traditional = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (cc) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'A'</span>:</span><br><span class="line">      meta += nc === <span class="string">'E'</span> ? nc : cc</span><br><span class="line">      i += <span class="number">1</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'G'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'K'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'P'</span>:</span><br><span class="line">      <span class="keyword">if</span> (nc === <span class="string">'N'</span>) &#123;</span><br><span class="line">        meta += nc</span><br><span class="line">        i += <span class="number">2</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'W'</span>:</span><br><span class="line">      <span class="keyword">if</span> (nc === <span class="string">'R'</span>) &#123;</span><br><span class="line">        meta += nc</span><br><span class="line">        i += <span class="number">2</span></span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nc === <span class="string">'H'</span> || is(vowel, nc)) &#123;</span><br><span class="line">        meta += <span class="string">'W'</span></span><br><span class="line">        i += <span class="number">2</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'X'</span>:</span><br><span class="line">      meta += <span class="string">'S'</span></span><br><span class="line">      i += <span class="number">1</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'E'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'I'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'O'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'U'</span>:</span><br><span class="line">      meta += cc</span><br><span class="line">      i++</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (; i &lt; l &amp;&amp; (maxPhonemes === <span class="number">0</span> || meta.length &lt; maxPhonemes); i += <span class="number">1</span>) &#123; <span class="comment">// eslint-disable-line no-unmodified-loop-condition,max-len</span></span><br><span class="line">    cc = word.charAt(i)</span><br><span class="line">    nc = word.charAt(i + <span class="number">1</span>)</span><br><span class="line">    pc = word.charAt(i - <span class="number">1</span>)</span><br><span class="line">    nnc = word.charAt(i + <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (cc === pc &amp;&amp; cc !== <span class="string">'C'</span>) &#123;</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span> (cc) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'B'</span>:</span><br><span class="line">        <span class="keyword">if</span> (pc !== <span class="string">'M'</span>) &#123;</span><br><span class="line">          meta += cc</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'C'</span>:</span><br><span class="line">        <span class="keyword">if</span> (is(soft, nc)) &#123;</span><br><span class="line">          <span class="keyword">if</span> (nc === <span class="string">'I'</span> &amp;&amp; nnc === <span class="string">'A'</span>) &#123;</span><br><span class="line">            meta += <span class="string">'X'</span></span><br><span class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pc !== <span class="string">'S'</span>) &#123;</span><br><span class="line">            meta += <span class="string">'S'</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nc === <span class="string">'H'</span>) &#123;</span><br><span class="line">          meta += !traditional &amp;&amp; (nnc === <span class="string">'R'</span> || pc === <span class="string">'S'</span>) ? <span class="string">'K'</span> : <span class="string">'X'</span></span><br><span class="line">          i += <span class="number">1</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          meta += <span class="string">'K'</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'D'</span>:</span><br><span class="line">        <span class="keyword">if</span> (nc === <span class="string">'G'</span> &amp;&amp; is(soft, nnc)) &#123;</span><br><span class="line">          meta += <span class="string">'J'</span></span><br><span class="line">          i += <span class="number">1</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          meta += <span class="string">'T'</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'G'</span>:</span><br><span class="line">        <span class="keyword">if</span> (nc === <span class="string">'H'</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span> (!(is(<span class="string">'BDH'</span>, word.charAt(i - <span class="number">3</span>)) || word.charAt(i - <span class="number">4</span>) === <span class="string">'H'</span>)) &#123;</span><br><span class="line">            meta += <span class="string">'F'</span></span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nc === <span class="string">'N'</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span> (is(alpha, nnc) &amp;&amp; word.substr(i + <span class="number">1</span>, <span class="number">3</span>) !== <span class="string">'NED'</span>) &#123;</span><br><span class="line">            meta += <span class="string">'K'</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (is(soft, nc) &amp;&amp; pc !== <span class="string">'G'</span>) &#123;</span><br><span class="line">          meta += <span class="string">'J'</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          meta += <span class="string">'K'</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'H'</span>:</span><br><span class="line">        <span class="keyword">if</span> (is(vowel, nc) &amp;&amp; !is(<span class="string">'CGPST'</span>, pc)) &#123;</span><br><span class="line">          meta += cc</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'K'</span>:</span><br><span class="line">        <span class="keyword">if</span> (pc !== <span class="string">'C'</span>) &#123;</span><br><span class="line">          meta += <span class="string">'K'</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'P'</span>:</span><br><span class="line">        meta += nc === <span class="string">'H'</span> ? <span class="string">'F'</span> : cc</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'Q'</span>:</span><br><span class="line">        meta += <span class="string">'K'</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'S'</span>:</span><br><span class="line">        <span class="keyword">if</span> (nc === <span class="string">'I'</span> &amp;&amp; is(<span class="string">'AO'</span>, nnc)) &#123;</span><br><span class="line">          meta += <span class="string">'X'</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nc === <span class="string">'H'</span>) &#123;</span><br><span class="line">          meta += <span class="string">'X'</span></span><br><span class="line">          i += <span class="number">1</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!traditional &amp;&amp; word.substr(i + <span class="number">1</span>, <span class="number">3</span>) === <span class="string">'CHW'</span>) &#123;</span><br><span class="line">          meta += <span class="string">'X'</span></span><br><span class="line">          i += <span class="number">2</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          meta += <span class="string">'S'</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'T'</span>:</span><br><span class="line">        <span class="keyword">if</span> (nc === <span class="string">'I'</span> &amp;&amp; is(<span class="string">'AO'</span>, nnc)) &#123;</span><br><span class="line">          meta += <span class="string">'X'</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nc === <span class="string">'H'</span>) &#123;</span><br><span class="line">          meta += <span class="string">'0'</span></span><br><span class="line">          i += <span class="number">1</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (word.substr(i + <span class="number">1</span>, <span class="number">2</span>) !== <span class="string">'CH'</span>) &#123;</span><br><span class="line">          meta += <span class="string">'T'</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'V'</span>:</span><br><span class="line">        meta += <span class="string">'F'</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'W'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'Y'</span>:</span><br><span class="line">        <span class="keyword">if</span> (is(vowel, nc)) &#123;</span><br><span class="line">          meta += cc</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'X'</span>:</span><br><span class="line">        meta += <span class="string">'KS'</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'Z'</span>:</span><br><span class="line">        meta += <span class="string">'S'</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'F'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'J'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'L'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'M'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'N'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'R'</span>:</span><br><span class="line">        meta += cc</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> meta</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       [
       <a href="https://github.com/kvz/locutus/blob/master/functions/strings/metaphone.js">View on GitHub</a>
@@ -379,128 +379,9 @@ ga('send', 'pageview');
         </a></li>
         
         <ul>
-          <li><a href="/php/bc/">
-            bc
-            (7)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/ctype/">
-            ctype
-            (11)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/array/">
-            array
-            (71)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/datetime/">
-            datetime
-            (15)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/exec/">
-            exec
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/filesystem/">
-            filesystem
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/funchand/">
-            funchand
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/i18n/">
-            i18n
+          <li><a href="/php/xml/">
+            xml
             (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/info/">
-            info
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/json/">
-            json
-            (3)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/math/">
-            math
-            (46)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/misc/">
-            misc
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/net-gopher/">
-            net-gopher
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/network/">
-            network
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/pcre/">
-            pcre
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/strings/">
-            strings
-            (91)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/url/">
-            url
-            (8)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/var/">
-            var
-            (29)
           </a></li>
         </ul>
         
@@ -512,9 +393,128 @@ ga('send', 'pageview');
         </ul>
         
         <ul>
-          <li><a href="/php/xml/">
-            xml
+          <li><a href="/php/var/">
+            var
+            (29)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
             (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (71)
           </a></li>
         </ul>
         
@@ -612,13 +612,13 @@ ga('send', 'pageview');
         
 
     
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
     
 
 
 <!-- Custom Scripts -->
-<script src="/js/main.js"></script>
-<script src="/js/locutus.js"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+<script src="/js/locutus.js" type="text/javascript"></script>
 
 <!-- Twitter follow button script -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

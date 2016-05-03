@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://locutusjs.io/php/json/json_decode/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899module.expo">
-<meta property="og:updated_time" content="2016-05-03T06:47:04.000Z">
+<meta property="og:updated_time" content="2016-05-03T07:19:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's json_decode in JavaScript">
 <meta name="twitter:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899module.expo">
@@ -21,19 +21,19 @@
 
     
 
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
 
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/locutus.css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/locutus.css" type="text/css">
 
-    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/vendor/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
     <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
 
     
     
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
     
     
         <script type="text/javascript">
@@ -84,7 +84,7 @@ ga('send', 'pageview');
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -103,10 +103,10 @@ ga('send', 'pageview');
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
+            POSTS: '文章',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            CATEGORIES: '分類',
+            TAGS: '標籤',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -115,7 +115,7 @@ ga('send', 'pageview');
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
-<script src="/js/insight.js"></script>
+<script src="/js/insight.js" type="text/javascript"></script>
 
 </div>
         </div>
@@ -143,7 +143,7 @@ ga('send', 'pageview');
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
     </div>
 
                 </td>
@@ -177,7 +177,7 @@ ga('send', 'pageview');
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">json_decode</span> (<span class="params">strJson</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></span><br><span class="line">  <span class="comment">//       discuss at: http://phpjs.org/functions/json_decode/</span></span><br><span class="line">  <span class="comment">//      original by: Public Domain (http://www.json.org/json2.js)</span></span><br><span class="line">  <span class="comment">// reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)</span></span><br><span class="line">  <span class="comment">//      improved by: T.J. Leahy</span></span><br><span class="line">  <span class="comment">//      improved by: Michael White</span></span><br><span class="line">  <span class="comment">//           note 1: If node or the browser does not offer JSON.parse,</span></span><br><span class="line">  <span class="comment">//           note 1: this function falls backslash</span></span><br><span class="line">  <span class="comment">//           note 1: to its own implementation using eval, and hence should be considered unsafe</span></span><br><span class="line">  <span class="comment">//        example 1: json_decode('[ 1 ]')</span></span><br><span class="line">  <span class="comment">//        returns 1: [1]</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/*</span><br><span class="line">    http://www.JSON.org/json2.js</span><br><span class="line">    2008-11-19</span><br><span class="line">    Public Domain.</span><br><span class="line">    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.</span><br><span class="line">    See http://www.JSON.org/js.html</span><br><span class="line">  */</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> $global = (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : GLOBAL)</span><br><span class="line">  $global.$locutus = $global.$locutus || &#123;&#125;</span><br><span class="line">  <span class="keyword">var</span> $locutus = $global.$locutus</span><br><span class="line">  $locutus.php = $locutus.php || &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> json = $global.JSON</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> json === <span class="string">'object'</span> &amp;&amp; <span class="keyword">typeof</span> json.parse === <span class="string">'function'</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> json.parse(strJson)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!(err <span class="keyword">instanceof</span> <span class="built_in">SyntaxError</span>)) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Unexpected error type in json_decode()'</span>)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// usable by json_last_error()</span></span><br><span class="line">      $locutus.php.last_error_json = <span class="number">4</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> chars = [</span><br><span class="line">    <span class="string">'\u0000'</span>,</span><br><span class="line">    <span class="string">'\u00ad'</span>,</span><br><span class="line">    <span class="string">'\u0600-\u0604'</span>,</span><br><span class="line">    <span class="string">'\u070f'</span>,</span><br><span class="line">    <span class="string">'\u17b4'</span>,</span><br><span class="line">    <span class="string">'\u17b5'</span>,</span><br><span class="line">    <span class="string">'\u200c-\u200f'</span>,</span><br><span class="line">    <span class="string">'\u2028-\u202f'</span>,</span><br><span class="line">    <span class="string">'\u2060-\u206f'</span>,</span><br><span class="line">    <span class="string">'\ufeff'</span>,</span><br><span class="line">    <span class="string">'\ufff0-\uffff'</span></span><br><span class="line">  ].join(<span class="string">''</span>)</span><br><span class="line">  <span class="keyword">var</span> cx = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'['</span> + chars + <span class="string">']'</span>, <span class="string">'g'</span>)</span><br><span class="line">  <span class="keyword">var</span> j</span><br><span class="line">  <span class="keyword">var</span> text = strJson</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Parsing happens in four stages. In the first stage, we replace certain</span></span><br><span class="line">  <span class="comment">// Unicode characters with escape sequences. JavaScript handles many characters</span></span><br><span class="line">  <span class="comment">// incorrectly, either silently deleting them, or treating them as line endings.</span></span><br><span class="line">  cx.lastIndex = <span class="number">0</span></span><br><span class="line">  <span class="keyword">if</span> (cx.test(text)) &#123;</span><br><span class="line">    text = text.replace(cx, <span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'\\u'</span> + (<span class="string">'0000'</span> + a.charCodeAt(<span class="number">0</span>)</span><br><span class="line">        .toString(<span class="number">16</span>))</span><br><span class="line">        .slice(<span class="number">-4</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// In the second stage, we run the text against regular expressions that look</span></span><br><span class="line">  <span class="comment">// for non-JSON patterns. We are especially concerned with '()' and 'new'</span></span><br><span class="line">  <span class="comment">// because they can cause invocation, and '=' because it can cause mutation.</span></span><br><span class="line">  <span class="comment">// But just to be safe, we want to reject all unexpected forms.</span></span><br><span class="line">  <span class="comment">// We split the second stage into 4 regexp operations in order to work around</span></span><br><span class="line">  <span class="comment">// crippling inefficiencies in IE's and Safari's regexp engines. First we</span></span><br><span class="line">  <span class="comment">// replace the JSON backslash pairs with '@' (a non-JSON character). Second, we</span></span><br><span class="line">  <span class="comment">// replace all simple value tokens with ']' characters. Third, we delete all</span></span><br><span class="line">  <span class="comment">// open brackets that follow a colon or comma or that begin the text. Finally,</span></span><br><span class="line">  <span class="comment">// we look to see that the remaining characters are only whitespace or ']' or</span></span><br><span class="line">  <span class="comment">// ',' or ':' or '&#123;' or '&#125;'. If that is so, then the text is safe for eval.</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> m = (<span class="regexp">/^[\],:&#123;&#125;\s]*$/</span>)</span><br><span class="line">    .test(text.replace(<span class="regexp">/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]&#123;4&#125;)/g</span>, <span class="string">'@'</span>)</span><br><span class="line">    .replace(<span class="regexp">/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g</span>, <span class="string">']'</span>)</span><br><span class="line">    .replace(<span class="regexp">/(?:^|:|,)(?:\s*\[)+/g</span>, <span class="string">''</span>))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (m) &#123;</span><br><span class="line">    <span class="comment">// In the third stage we use the eval function to compile the text into a</span></span><br><span class="line">    <span class="comment">// JavaScript structure. The '&#123;' operator is subject to a syntactic ambiguity</span></span><br><span class="line">    <span class="comment">// in JavaScript: it can begin a block or an object literal. We wrap the text</span></span><br><span class="line">    <span class="comment">// in parens to eliminate the ambiguity.</span></span><br><span class="line">    j = <span class="built_in">eval</span>(<span class="string">'('</span> + text + <span class="string">')'</span>) <span class="comment">// eslint-disable-line no-eval</span></span><br><span class="line">    <span class="keyword">return</span> j</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// usable by json_last_error()</span></span><br><span class="line">  $locutus.php.last_error_json = <span class="number">4</span></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">json_decode</span> (<span class="params">strJson</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></span><br><span class="line">  <span class="comment">//       discuss at: http://phpjs.org/functions/json_decode/</span></span><br><span class="line">  <span class="comment">//      original by: Public Domain (http://www.json.org/json2.js)</span></span><br><span class="line">  <span class="comment">// reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)</span></span><br><span class="line">  <span class="comment">//      improved by: T.J. Leahy</span></span><br><span class="line">  <span class="comment">//      improved by: Michael White</span></span><br><span class="line">  <span class="comment">//           note 1: If node or the browser does not offer JSON.parse,</span></span><br><span class="line">  <span class="comment">//           note 1: this function falls backslash</span></span><br><span class="line">  <span class="comment">//           note 1: to its own implementation using eval, and hence should be considered unsafe</span></span><br><span class="line">  <span class="comment">//        example 1: json_decode('[ 1 ]')</span></span><br><span class="line">  <span class="comment">//        returns 1: [1]</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/*</span><br><span class="line">    http://www.JSON.org/json2.js</span><br><span class="line">    2008-11-19</span><br><span class="line">    Public Domain.</span><br><span class="line">    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.</span><br><span class="line">    See http://www.JSON.org/js.html</span><br><span class="line">  */</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> $global = (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : GLOBAL)</span><br><span class="line">  $global.$locutus = $global.$locutus || &#123;&#125;</span><br><span class="line">  <span class="keyword">var</span> $locutus = $global.$locutus</span><br><span class="line">  $locutus.php = $locutus.php || &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> json = $global.JSON</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> json === <span class="string">'object'</span> &amp;&amp; <span class="keyword">typeof</span> json.parse === <span class="string">'function'</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> json.parse(strJson)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!(err <span class="keyword">instanceof</span> <span class="built_in">SyntaxError</span>)) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Unexpected error type in json_decode()'</span>)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// usable by json_last_error()</span></span><br><span class="line">      $locutus.php.last_error_json = <span class="number">4</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> chars = [</span><br><span class="line">    <span class="string">'\u0000'</span>,</span><br><span class="line">    <span class="string">'\u00ad'</span>,</span><br><span class="line">    <span class="string">'\u0600-\u0604'</span>,</span><br><span class="line">    <span class="string">'\u070f'</span>,</span><br><span class="line">    <span class="string">'\u17b4'</span>,</span><br><span class="line">    <span class="string">'\u17b5'</span>,</span><br><span class="line">    <span class="string">'\u200c-\u200f'</span>,</span><br><span class="line">    <span class="string">'\u2028-\u202f'</span>,</span><br><span class="line">    <span class="string">'\u2060-\u206f'</span>,</span><br><span class="line">    <span class="string">'\ufeff'</span>,</span><br><span class="line">    <span class="string">'\ufff0-\uffff'</span></span><br><span class="line">  ].join(<span class="string">''</span>)</span><br><span class="line">  <span class="keyword">var</span> cx = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'['</span> + chars + <span class="string">']'</span>, <span class="string">'g'</span>)</span><br><span class="line">  <span class="keyword">var</span> j</span><br><span class="line">  <span class="keyword">var</span> text = strJson</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Parsing happens in four stages. In the first stage, we replace certain</span></span><br><span class="line">  <span class="comment">// Unicode characters with escape sequences. JavaScript handles many characters</span></span><br><span class="line">  <span class="comment">// incorrectly, either silently deleting them, or treating them as line endings.</span></span><br><span class="line">  cx.lastIndex = <span class="number">0</span></span><br><span class="line">  <span class="keyword">if</span> (cx.test(text)) &#123;</span><br><span class="line">    text = text.replace(cx, <span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'\\u'</span> + (<span class="string">'0000'</span> + a.charCodeAt(<span class="number">0</span>)</span><br><span class="line">        .toString(<span class="number">16</span>))</span><br><span class="line">        .slice(-<span class="number">4</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// In the second stage, we run the text against regular expressions that look</span></span><br><span class="line">  <span class="comment">// for non-JSON patterns. We are especially concerned with '()' and 'new'</span></span><br><span class="line">  <span class="comment">// because they can cause invocation, and '=' because it can cause mutation.</span></span><br><span class="line">  <span class="comment">// But just to be safe, we want to reject all unexpected forms.</span></span><br><span class="line">  <span class="comment">// We split the second stage into 4 regexp operations in order to work around</span></span><br><span class="line">  <span class="comment">// crippling inefficiencies in IE's and Safari's regexp engines. First we</span></span><br><span class="line">  <span class="comment">// replace the JSON backslash pairs with '@' (a non-JSON character). Second, we</span></span><br><span class="line">  <span class="comment">// replace all simple value tokens with ']' characters. Third, we delete all</span></span><br><span class="line">  <span class="comment">// open brackets that follow a colon or comma or that begin the text. Finally,</span></span><br><span class="line">  <span class="comment">// we look to see that the remaining characters are only whitespace or ']' or</span></span><br><span class="line">  <span class="comment">// ',' or ':' or '&#123;' or '&#125;'. If that is so, then the text is safe for eval.</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> m = (<span class="regexp">/^[\],:&#123;&#125;\s]*$/</span>)</span><br><span class="line">    .test(text.replace(<span class="regexp">/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]&#123;4&#125;)/g</span>, <span class="string">'@'</span>)</span><br><span class="line">    .replace(<span class="regexp">/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g</span>, <span class="string">']'</span>)</span><br><span class="line">    .replace(<span class="regexp">/(?:^|:|,)(?:\s*\[)+/g</span>, <span class="string">''</span>))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (m) &#123;</span><br><span class="line">    <span class="comment">// In the third stage we use the eval function to compile the text into a</span></span><br><span class="line">    <span class="comment">// JavaScript structure. The '&#123;' operator is subject to a syntactic ambiguity</span></span><br><span class="line">    <span class="comment">// in JavaScript: it can begin a block or an object literal. We wrap the text</span></span><br><span class="line">    <span class="comment">// in parens to eliminate the ambiguity.</span></span><br><span class="line">    j = <span class="built_in">eval</span>(<span class="string">'('</span> + text + <span class="string">')'</span>) <span class="comment">// eslint-disable-line no-eval</span></span><br><span class="line">    <span class="keyword">return</span> j</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// usable by json_last_error()</span></span><br><span class="line">  $locutus.php.last_error_json = <span class="number">4</span></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       [
       <a href="https://github.com/kvz/locutus/blob/master/functions/json/json_decode.js">View on GitHub</a>
@@ -383,128 +383,9 @@ to its own implementation using eval, and hence should be considered unsafe</p>
         </a></li>
         
         <ul>
-          <li><a href="/php/bc/">
-            bc
-            (7)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/ctype/">
-            ctype
-            (11)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/array/">
-            array
-            (71)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/datetime/">
-            datetime
-            (15)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/exec/">
-            exec
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/filesystem/">
-            filesystem
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/funchand/">
-            funchand
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/i18n/">
-            i18n
+          <li><a href="/php/xml/">
+            xml
             (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/info/">
-            info
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/json/">
-            json
-            (3)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/math/">
-            math
-            (46)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/misc/">
-            misc
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/net-gopher/">
-            net-gopher
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/network/">
-            network
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/pcre/">
-            pcre
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/strings/">
-            strings
-            (91)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/url/">
-            url
-            (8)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/var/">
-            var
-            (29)
           </a></li>
         </ul>
         
@@ -516,9 +397,128 @@ to its own implementation using eval, and hence should be considered unsafe</p>
         </ul>
         
         <ul>
-          <li><a href="/php/xml/">
-            xml
+          <li><a href="/php/var/">
+            var
+            (29)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
             (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (71)
           </a></li>
         </ul>
         
@@ -616,13 +616,13 @@ to its own implementation using eval, and hence should be considered unsafe</p>
         
 
     
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
     
 
 
 <!-- Custom Scripts -->
-<script src="/js/main.js"></script>
-<script src="/js/locutus.js"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+<script src="/js/locutus.js" type="text/javascript"></script>
 
 <!-- Twitter follow button script -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
