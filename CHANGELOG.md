@@ -26,15 +26,16 @@ Ideas that will be planned and find their way into a release at one point
 - [ ] Port a few more tricky/inter-depending Go functions
 - [ ] Parse `require`s with AST just like Browserify does. Then we can add dependencies back to website
 
-## v2.0.2
+## v2.0.3
 
 Released: Not yet
 
 - [ ] Triage all open issues and PRs via waffle.io
-- [ ] Auto-deploys of `master` to http://locutusjs.io via Travis CI
 - [ ] Address the 25 remaining test failures that are currently skipped (find out which ones via `npm run test:languages:noskip`)
 - [ ] website: Add social buttons
 - [ ] website: Render authors server-side
+- [ ] website: Auto-deploys of `master` to http://locutusjs.io via Travis CI
+- [x] website: Use Hexo deploy vs bash script
 
 ## v2.0.2
 
