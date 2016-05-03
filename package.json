@@ -73,10 +73,10 @@
     "test:module": "babel-node test/module/module.js",
     "test:util": "mocha --compilers js:babel-register --reporter spec test/util/",
     "test": "npm-run-all test:languages test:util test:module",
-    "website:deploy": "cd website && npm run deploy",
-    "website:build": "cd website && npm run build",
-    "website:clean": "cd website && npm run clean",
     "website:install": "cd website && npm install",
-    "website:start": "cd website && npm run server"
+    "website:deploy": "cd website && hexo deploy",
+    "website:start": "cd website && hexo server",
+    "website:build": "cd website && hexo generate",
+    "website:clean": "cd website && hexo clean"
   }
 }

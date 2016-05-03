@@ -5,12 +5,6 @@
   "hexo": {
     "version": "3.1.1"
   },
-  "scripts": {
-    "deploy": "hexo deploy --silent",
-    "start": "hexo server",
-    "build": "hexo generate",
-    "clean": "hexo clean"
-  },
   "dependencies": {
     "hexo": "3.1.1",
     "hexo-browsersync": "0.2.0",
