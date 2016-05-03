@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>PHP&#39;s sha1 in JavaScript | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP's sha1 in JavaScript">
+<meta property="og:url" content="http://locutusjs.io/php/strings/sha1/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:updated_time" content="2016-05-03T06:47:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP's sha1 in JavaScript">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/locutus.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <nav id="main-nav">
+                
+                  <a class="main-nav-link" href="/c">C</a>
+                
+                  <a class="main-nav-link" href="/golang">Go</a>
+                
+                  <a class="main-nav-link" href="/python">Python</a>
+                
+                  <a class="main-nav-link" href="/ruby">Ruby</a>
+                
+                  <a class="main-nav-link" href="/php">PHP</a>
+                
+                <span class="main-nav-link">|</span>
+                
+                  <a class="main-nav-link" href="/archives">Blog</a>
+                
+                  <a class="main-nav-link" href="/authors">Authors</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                  <td><a class="main-nav-link" href="/c">C</a></td>
+                
+                  <td><a class="main-nav-link" href="/golang">Go</a></td>
+                
+                  <td><a class="main-nav-link" href="/python">Python</a></td>
+                
+                  <td><a class="main-nav-link" href="/ruby">Ruby</a></td>
+                
+                  <td><a class="main-nav-link" href="/php">PHP</a></td>
+                
+                <td><span class="main-nav-link">|</span></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Blog</a></td>
+                
+                    <td><a class="main-nav-link" href="/authors">Authors</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">PHP&#39;s sha1 in JavaScript</h1>
+    </header>
+
+    <div class="article-entry">
+      <p>
+        Here’s what our current JavaScript equivalent to
+        <a href="http://php.net/manual/en/function.sha1.php">PHP's sha1</a>
+
+        PHP's
+
+        sha1
+        looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">sha1</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//  discuss at: http://locutusjs.io/php/sha1/</span></span><br><span class="line">  <span class="comment">// original by: Webtoolkit.info (http://www.webtoolkit.info/)</span></span><br><span class="line">  <span class="comment">// improved by: Michael White (http://getsprink.com)</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">//    input by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//      note 1: Keep in mind that in accordance with PHP, the whole string is buffered and then</span></span><br><span class="line">  <span class="comment">//      note 1: hashed. If available, we'd recommend using Node's native crypto modules directly</span></span><br><span class="line">  <span class="comment">//      note 1: in a steaming fashion for faster and more efficient hashing</span></span><br><span class="line">  <span class="comment">//   example 1: sha1('Kevin van Zonneveld')</span></span><br><span class="line">  <span class="comment">//   returns 1: '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> hash</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto'</span>)</span><br><span class="line">    <span class="keyword">var</span> sha1sum = crypto.createHash(<span class="string">'sha1'</span>)</span><br><span class="line">    sha1sum.update(str)</span><br><span class="line">    hash = sha1sum.digest(<span class="string">'hex'</span>)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    hash = <span class="literal">undefined</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (hash !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> hash</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _rotLeft = <span class="function"><span class="keyword">function</span> (<span class="params">n, s</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> t4 = (n &lt;&lt; s) | (n &gt;&gt;&gt; (<span class="number">32</span> - s))</span><br><span class="line">    <span class="keyword">return</span> t4</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _cvtHex = <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> str = <span class="string">''</span></span><br><span class="line">    <span class="keyword">var</span> i</span><br><span class="line">    <span class="keyword">var</span> v</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">7</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">      v = (val &gt;&gt;&gt; (i * <span class="number">4</span>)) &amp; <span class="number">0x0f</span></span><br><span class="line">      str += v.toString(<span class="number">16</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> str</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> blockstart</span><br><span class="line">  <span class="keyword">var</span> i, j</span><br><span class="line">  <span class="keyword">var</span> W = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">80</span>)</span><br><span class="line">  <span class="keyword">var</span> H0 = <span class="number">0x67452301</span></span><br><span class="line">  <span class="keyword">var</span> H1 = <span class="number">0xEFCDAB89</span></span><br><span class="line">  <span class="keyword">var</span> H2 = <span class="number">0x98BADCFE</span></span><br><span class="line">  <span class="keyword">var</span> H3 = <span class="number">0x10325476</span></span><br><span class="line">  <span class="keyword">var</span> H4 = <span class="number">0xC3D2E1F0</span></span><br><span class="line">  <span class="keyword">var</span> A, B, C, D, E</span><br><span class="line">  <span class="keyword">var</span> temp</span><br><span class="line"></span><br><span class="line">  <span class="comment">// utf8_encode</span></span><br><span class="line">  str = <span class="built_in">unescape</span>(<span class="built_in">encodeURIComponent</span>(str))</span><br><span class="line">  <span class="keyword">var</span> strLen = str.length</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> wordArray = []</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; strLen - <span class="number">3</span>; i += <span class="number">4</span>) &#123;</span><br><span class="line">    j = str.charCodeAt(i) &lt;&lt; <span class="number">24</span> |</span><br><span class="line">      str.charCodeAt(i + <span class="number">1</span>) &lt;&lt; <span class="number">16</span> |</span><br><span class="line">      str.charCodeAt(i + <span class="number">2</span>) &lt;&lt; <span class="number">8</span> |</span><br><span class="line">      str.charCodeAt(i + <span class="number">3</span>)</span><br><span class="line">    wordArray.push(j)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (strLen % <span class="number">4</span>) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">      i = <span class="number">0x080000000</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">      i = str.charCodeAt(strLen - <span class="number">1</span>) &lt;&lt; <span class="number">24</span> | <span class="number">0x0800000</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">      i = str.charCodeAt(strLen - <span class="number">2</span>) &lt;&lt; <span class="number">24</span> | str.charCodeAt(strLen - <span class="number">1</span>) &lt;&lt; <span class="number">16</span> | <span class="number">0x08000</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">      i = str.charCodeAt(strLen - <span class="number">3</span>) &lt;&lt; <span class="number">24</span> |</span><br><span class="line">        str.charCodeAt(strLen - <span class="number">2</span>) &lt;&lt; <span class="number">16</span> |</span><br><span class="line">        str.charCodeAt(strLen - <span class="number">1</span>) &lt;&lt;</span><br><span class="line">      <span class="number">8</span> | <span class="number">0x80</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  wordArray.push(i)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> ((wordArray.length % <span class="number">16</span>) !== <span class="number">14</span>) &#123;</span><br><span class="line">    wordArray.push(<span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  wordArray.push(strLen &gt;&gt;&gt; <span class="number">29</span>)</span><br><span class="line">  wordArray.push((strLen &lt;&lt; <span class="number">3</span>) &amp; <span class="number">0x0ffffffff</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (blockstart = <span class="number">0</span>; blockstart &lt; wordArray.length; blockstart += <span class="number">16</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">16</span>; i++) &#123;</span><br><span class="line">      W[i] = wordArray[blockstart + i]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">16</span>; i &lt;= <span class="number">79</span>; i++) &#123;</span><br><span class="line">      W[i] = _rotLeft(W[i - <span class="number">3</span>] ^ W[i - <span class="number">8</span>] ^ W[i - <span class="number">14</span>] ^ W[i - <span class="number">16</span>], <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    A = H0</span><br><span class="line">    B = H1</span><br><span class="line">    C = H2</span><br><span class="line">    D = H3</span><br><span class="line">    E = H4</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt;= <span class="number">19</span>; i++) &#123;</span><br><span class="line">      temp = (_rotLeft(A, <span class="number">5</span>) + ((B &amp; C) | (~B &amp; D)) + E + W[i] + <span class="number">0x5A827999</span>) &amp; <span class="number">0x0ffffffff</span></span><br><span class="line">      E = D</span><br><span class="line">      D = C</span><br><span class="line">      C = _rotLeft(B, <span class="number">30</span>)</span><br><span class="line">      B = A</span><br><span class="line">      A = temp</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">20</span>; i &lt;= <span class="number">39</span>; i++) &#123;</span><br><span class="line">      temp = (_rotLeft(A, <span class="number">5</span>) + (B ^ C ^ D) + E + W[i] + <span class="number">0x6ED9EBA1</span>) &amp; <span class="number">0x0ffffffff</span></span><br><span class="line">      E = D</span><br><span class="line">      D = C</span><br><span class="line">      C = _rotLeft(B, <span class="number">30</span>)</span><br><span class="line">      B = A</span><br><span class="line">      A = temp</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">40</span>; i &lt;= <span class="number">59</span>; i++) &#123;</span><br><span class="line">      temp = (_rotLeft(A, <span class="number">5</span>) + ((B &amp; C) | (B &amp; D) | (C &amp; D)) + E + W[i] + <span class="number">0x8F1BBCDC</span>) &amp; <span class="number">0x0ffffffff</span></span><br><span class="line">      E = D</span><br><span class="line">      D = C</span><br><span class="line">      C = _rotLeft(B, <span class="number">30</span>)</span><br><span class="line">      B = A</span><br><span class="line">      A = temp</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">60</span>; i &lt;= <span class="number">79</span>; i++) &#123;</span><br><span class="line">      temp = (_rotLeft(A, <span class="number">5</span>) + (B ^ C ^ D) + E + W[i] + <span class="number">0xCA62C1D6</span>) &amp; <span class="number">0x0ffffffff</span></span><br><span class="line">      E = D</span><br><span class="line">      D = C</span><br><span class="line">      C = _rotLeft(B, <span class="number">30</span>)</span><br><span class="line">      B = A</span><br><span class="line">      A = temp</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    H0 = (H0 + A) &amp; <span class="number">0x0ffffffff</span></span><br><span class="line">    H1 = (H1 + B) &amp; <span class="number">0x0ffffffff</span></span><br><span class="line">    H2 = (H2 + C) &amp; <span class="number">0x0ffffffff</span></span><br><span class="line">    H3 = (H3 + D) &amp; <span class="number">0x0ffffffff</span></span><br><span class="line">    H4 = (H4 + E) &amp; <span class="number">0x0ffffffff</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  temp = _cvtHex(H0) + _cvtHex(H1) + _cvtHex(H2) + _cvtHex(H3) + _cvtHex(H4)</span><br><span class="line">  <span class="keyword">return</span> temp.toLowerCase()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      [
+      <a href="https://github.com/kvz/locutus/blob/master/functions/strings/sha1.js">View on GitHub</a>
+      |
+      <a href="https://github.com/kvz/locutus/edit/master/functions/strings/sha1.js">Edit on GitHub</a>
+      |
+      <a href="https://raw.githubusercontent.com/kvz/locutus/master/functions/strings/sha1.js">Source on GitHub</a>
+      ]
+
+      <div class="clearfix"></div>
+
+      <h2>How to use</h2>
+      <p>
+        You you can install via <code>npm install --save --save-exact locutus</code> and
+        require it via <code>require('locutus/php/strings/sha1')</code>.
+        You could also require the <code>strings</code> module in full
+        so that you could access <code>strings.sha1</code> instead.
+      </p>
+      <p>
+        If you intend to target the browser, you can then use a module bundler such as
+        <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>,
+        <a href="http://webpack.github.io/" target="_blank" rel="external">webpack</a> or
+        <a href="http://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+      </p>
+
+      <h2>ES5/ES6</h2>
+      <p>
+        
+          This function targets ES5, but as of Locutus 2.0.2 we also support
+          ES6 functions. Locutus transpiles to ES5 before publishing to npm.
+        
+      </p>
+
+      
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we don't consider it to be a bad thing that many of
+        our functions are first iterations, which may still have their
+        fair share of issues. We hope that these flaws will inspire others to come up with better ideas.
+      </p>
+      <p>
+        This way of working also means that we don't offer any
+        production guarantees, and recommend to use Locutus inspiration
+        and learning purposes only.
+      </p>
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>Keep in mind that in accordance with PHP, the whole string is buffered and then
+hashed. If available, we’d recommend using Node’s native crypto modules directly
+in a steaming fashion for faster and more efficient hashing</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>sha1(&#39;Kevin van Zonneveld&#39;)</code></td><td><code>&#39;54916d2e62f65b3afa6e192e6a601cdbe5cb5897&#39;</code></td></tr>
+        
+        </table>
+      
+
+      <hr />
+      
+
+
+      <hr />
+      <p>
+        <a href="/php/strings/">&laquo; More PHP strings functions</a>
+      </p>
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/locutus-alpha.png" />
+            <h2 id="name">Locutus</h2>
+            <h3 id="title">All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>GitHub</span>
+            <a id="follow" target="_blank" href="https://github.com/kvz/locutus/stargazers">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                7
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                13
+                <span>tags</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="https://github.com/kvz/locutus" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://twitter.com/locutusjs_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    
+                    <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+<div class="clear"></div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget widget-on_the_githubs">
+    <div class="on-the-githubs" data-event-source="repos/kvz/locutus">Loading...</div>
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (3)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strings/Index.html">
+            strings
+            (3)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (315)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (71)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (29)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-05-02T00:00:00.000Z" itemprop="datePublished">2016-05-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/breaking-bc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/jekyll/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
+                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2016 Kevin van Zonneveld<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
+            Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
+            Arwork by <a href="http://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>
+
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+<script src="/js/locutus.js"></script>
+
+<!-- Twitter follow button script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    </div>
+</body>
+</html>

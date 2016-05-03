@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>PHP&#39;s pathinfo in JavaScript | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP's pathinfo in JavaScript">
+<meta property="og:url" content="http://locutusjs.io/php/filesystem/pathinfo/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:updated_time" content="2016-05-03T06:47:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP's pathinfo in JavaScript">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/locutus.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <nav id="main-nav">
+                
+                  <a class="main-nav-link" href="/c">C</a>
+                
+                  <a class="main-nav-link" href="/golang">Go</a>
+                
+                  <a class="main-nav-link" href="/python">Python</a>
+                
+                  <a class="main-nav-link" href="/ruby">Ruby</a>
+                
+                  <a class="main-nav-link" href="/php">PHP</a>
+                
+                <span class="main-nav-link">|</span>
+                
+                  <a class="main-nav-link" href="/archives">Blog</a>
+                
+                  <a class="main-nav-link" href="/authors">Authors</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                  <td><a class="main-nav-link" href="/c">C</a></td>
+                
+                  <td><a class="main-nav-link" href="/golang">Go</a></td>
+                
+                  <td><a class="main-nav-link" href="/python">Python</a></td>
+                
+                  <td><a class="main-nav-link" href="/ruby">Ruby</a></td>
+                
+                  <td><a class="main-nav-link" href="/php">PHP</a></td>
+                
+                <td><span class="main-nav-link">|</span></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Blog</a></td>
+                
+                    <td><a class="main-nav-link" href="/authors">Authors</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">PHP&#39;s pathinfo in JavaScript</h1>
+    </header>
+
+    <div class="article-entry">
+      <p>
+        Here’s what our current JavaScript equivalent to
+        <a href="http://php.net/manual/en/function.pathinfo.php">PHP's pathinfo</a>
+
+        PHP's
+
+        pathinfo
+        looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">pathinfo</span> (<span class="params">path, options</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//  discuss at: http://locutusjs.io/php/pathinfo/</span></span><br><span class="line">  <span class="comment">// original by: Nate</span></span><br><span class="line">  <span class="comment">//  revised by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// improved by: Dmitry Gorelenkov</span></span><br><span class="line">  <span class="comment">//    input by: Timo</span></span><br><span class="line">  <span class="comment">//      note 1: Inspired by actual PHP source: php5-5.2.6/ext/standard/string.c line #1559</span></span><br><span class="line">  <span class="comment">//      note 1: The way the bitwise arguments are handled allows for greater flexibility</span></span><br><span class="line">  <span class="comment">//      note 1: &amp; compatability. We might even standardize this</span></span><br><span class="line">  <span class="comment">//      note 1: code and use a similar approach for</span></span><br><span class="line">  <span class="comment">//      note 1: other bitwise PHP functions</span></span><br><span class="line">  <span class="comment">//      note 1: Locutus tries very hard to stay away from a core.js</span></span><br><span class="line">  <span class="comment">//      note 1: file with global dependencies, because we like</span></span><br><span class="line">  <span class="comment">//      note 1: that you can just take a couple of functions and be on your way.</span></span><br><span class="line">  <span class="comment">//      note 1: But by way we implemented this function,</span></span><br><span class="line">  <span class="comment">//      note 1: if you want you can still declare the PATHINFO_*</span></span><br><span class="line">  <span class="comment">//      note 1: yourself, and then you can use:</span></span><br><span class="line">  <span class="comment">//      note 1: pathinfo('/www/index.html', PATHINFO_BASENAME | PATHINFO_EXTENSION);</span></span><br><span class="line">  <span class="comment">//      note 1: which makes it fully compliant with PHP syntax.</span></span><br><span class="line">  <span class="comment">//   example 1: pathinfo('/www/htdocs/index.html', 1)</span></span><br><span class="line">  <span class="comment">//   returns 1: '/www/htdocs'</span></span><br><span class="line">  <span class="comment">//   example 2: pathinfo('/www/htdocs/index.html', 'PATHINFO_BASENAME')</span></span><br><span class="line">  <span class="comment">//   returns 2: 'index.html'</span></span><br><span class="line">  <span class="comment">//   example 3: pathinfo('/www/htdocs/index.html', 'PATHINFO_EXTENSION')</span></span><br><span class="line">  <span class="comment">//   returns 3: 'html'</span></span><br><span class="line">  <span class="comment">//   example 4: pathinfo('/www/htdocs/index.html', 'PATHINFO_FILENAME')</span></span><br><span class="line">  <span class="comment">//   returns 4: 'index'</span></span><br><span class="line">  <span class="comment">//   example 5: pathinfo('/www/htdocs/index.html', 2 | 4)</span></span><br><span class="line">  <span class="comment">//   returns 5: &#123;basename: 'index.html', extension: 'html'&#125;</span></span><br><span class="line">  <span class="comment">//   example 6: pathinfo('/www/htdocs/index.html', 'PATHINFO_ALL')</span></span><br><span class="line">  <span class="comment">//   returns 6: &#123;dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'&#125;</span></span><br><span class="line">  <span class="comment">//   example 7: pathinfo('/www/htdocs/index.html')</span></span><br><span class="line">  <span class="comment">//   returns 7: &#123;dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'&#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> basename = <span class="built_in">require</span>(<span class="string">'../filesystem/basename'</span>)</span><br><span class="line">  <span class="keyword">var</span> opt = <span class="string">''</span></span><br><span class="line">  <span class="keyword">var</span> realOpt = <span class="string">''</span></span><br><span class="line">  <span class="keyword">var</span> optName = <span class="string">''</span></span><br><span class="line">  <span class="keyword">var</span> optTemp = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> tmpArr = &#123;&#125;</span><br><span class="line">  <span class="keyword">var</span> cnt = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> haveBasename = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">var</span> haveExtension = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">var</span> haveFilename = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Input defaulting &amp; sanitation</span></span><br><span class="line">  <span class="keyword">if</span> (!path) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!options) &#123;</span><br><span class="line">    options = <span class="string">'PATHINFO_ALL'</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Initialize binary arguments. Both the string &amp; integer (constant) input is</span></span><br><span class="line">  <span class="comment">// allowed</span></span><br><span class="line">  <span class="keyword">var</span> OPTS = &#123;</span><br><span class="line">    <span class="string">'PATHINFO_DIRNAME'</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">'PATHINFO_BASENAME'</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="string">'PATHINFO_EXTENSION'</span>: <span class="number">4</span>,</span><br><span class="line">    <span class="string">'PATHINFO_FILENAME'</span>: <span class="number">8</span>,</span><br><span class="line">    <span class="string">'PATHINFO_ALL'</span>: <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// PATHINFO_ALL sums up all previously defined PATHINFOs (could just pre-calculate)</span></span><br><span class="line">  <span class="keyword">for</span> (optName <span class="keyword">in</span> OPTS) &#123;</span><br><span class="line">    <span class="keyword">if</span> (OPTS.hasOwnProperty(optName)) &#123;</span><br><span class="line">      OPTS.PATHINFO_ALL = OPTS.PATHINFO_ALL | OPTS[optName]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> options !== <span class="string">'number'</span>) &#123;</span><br><span class="line">    <span class="comment">// Allow for a single string or an array of string flags</span></span><br><span class="line">    options = [].concat(options)</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; options.length; i++) &#123;</span><br><span class="line">      <span class="comment">// Resolve string input to bitwise e.g. 'PATHINFO_EXTENSION' becomes 4</span></span><br><span class="line">      <span class="keyword">if</span> (OPTS[options[i]]) &#123;</span><br><span class="line">        optTemp = optTemp | OPTS[options[i]]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    options = optTemp</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Internal Functions</span></span><br><span class="line">  <span class="keyword">var</span> _getExt = <span class="function"><span class="keyword">function</span> (<span class="params">path</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> str = path + <span class="string">''</span></span><br><span class="line">    <span class="keyword">var</span> dotP = str.lastIndexOf(<span class="string">'.'</span>) + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> !dotP ? <span class="literal">false</span> : dotP !== str.length ? str.substr(dotP) : <span class="string">''</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Gather path infos</span></span><br><span class="line">  <span class="keyword">if</span> (options &amp; OPTS.PATHINFO_DIRNAME) &#123;</span><br><span class="line">    <span class="keyword">var</span> dirName = path</span><br><span class="line">      .replace(<span class="regexp">/\\/g</span>, <span class="string">'/'</span>)</span><br><span class="line">      .replace(<span class="regexp">/\/[^\/]*\/?$/</span>, <span class="string">''</span>) <span class="comment">// dirname</span></span><br><span class="line">    tmpArr.dirname = dirName === path ? <span class="string">'.'</span> : dirName</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (options &amp; OPTS.PATHINFO_BASENAME) &#123;</span><br><span class="line">    <span class="keyword">if</span> (haveBasename === <span class="literal">false</span>) &#123;</span><br><span class="line">      haveBasename = basename(path)</span><br><span class="line">    &#125;</span><br><span class="line">    tmpArr.basename = haveBasename</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (options &amp; OPTS.PATHINFO_EXTENSION) &#123;</span><br><span class="line">    <span class="keyword">if</span> (haveBasename === <span class="literal">false</span>) &#123;</span><br><span class="line">      haveBasename = basename(path)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (haveExtension === <span class="literal">false</span>) &#123;</span><br><span class="line">      haveExtension = _getExt(haveBasename)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (haveExtension !== <span class="literal">false</span>) &#123;</span><br><span class="line">      tmpArr.extension = haveExtension</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (options &amp; OPTS.PATHINFO_FILENAME) &#123;</span><br><span class="line">    <span class="keyword">if</span> (haveBasename === <span class="literal">false</span>) &#123;</span><br><span class="line">      haveBasename = basename(path)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (haveExtension === <span class="literal">false</span>) &#123;</span><br><span class="line">      haveExtension = _getExt(haveBasename)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (haveFilename === <span class="literal">false</span>) &#123;</span><br><span class="line">      haveFilename = haveBasename.slice(<span class="number">0</span>, haveBasename.length - (haveExtension</span><br><span class="line">        ? haveExtension.length + <span class="number">1</span></span><br><span class="line">        : haveExtension === <span class="literal">false</span></span><br><span class="line">          ? <span class="number">0</span></span><br><span class="line">          : <span class="number">1</span></span><br><span class="line">        )</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    tmpArr.filename = haveFilename</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// If array contains only 1 element: return string</span></span><br><span class="line">  cnt = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> (opt <span class="keyword">in</span> tmpArr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (tmpArr.hasOwnProperty(opt)) &#123;</span><br><span class="line">      cnt++</span><br><span class="line">      realOpt = opt</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (cnt === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> tmpArr[realOpt]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Return full-blown array</span></span><br><span class="line">  <span class="keyword">return</span> tmpArr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      [
+      <a href="https://github.com/kvz/locutus/blob/master/functions/filesystem/pathinfo.js">View on GitHub</a>
+      |
+      <a href="https://github.com/kvz/locutus/edit/master/functions/filesystem/pathinfo.js">Edit on GitHub</a>
+      |
+      <a href="https://raw.githubusercontent.com/kvz/locutus/master/functions/filesystem/pathinfo.js">Source on GitHub</a>
+      ]
+
+      <div class="clearfix"></div>
+
+      <h2>How to use</h2>
+      <p>
+        You you can install via <code>npm install --save --save-exact locutus</code> and
+        require it via <code>require('locutus/php/filesystem/pathinfo')</code>.
+        You could also require the <code>filesystem</code> module in full
+        so that you could access <code>filesystem.pathinfo</code> instead.
+      </p>
+      <p>
+        If you intend to target the browser, you can then use a module bundler such as
+        <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>,
+        <a href="http://webpack.github.io/" target="_blank" rel="external">webpack</a> or
+        <a href="http://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+      </p>
+
+      <h2>ES5/ES6</h2>
+      <p>
+        
+          This function targets ES5, but as of Locutus 2.0.2 we also support
+          ES6 functions. Locutus transpiles to ES5 before publishing to npm.
+        
+      </p>
+
+      
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we don't consider it to be a bad thing that many of
+        our functions are first iterations, which may still have their
+        fair share of issues. We hope that these flaws will inspire others to come up with better ideas.
+      </p>
+      <p>
+        This way of working also means that we don't offer any
+        production guarantees, and recommend to use Locutus inspiration
+        and learning purposes only.
+      </p>
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>Inspired by actual PHP source: php5-5.2.6/ext/standard/string.c line #1559
+The way the bitwise arguments are handled allows for greater flexibility
+&amp; compatability. We might even standardize this
+code and use a similar approach for
+other bitwise PHP functions
+Locutus tries very hard to stay away from a core.js
+file with global dependencies, because we like
+that you can just take a couple of functions and be on your way.
+But by way we implemented this function,
+if you want you can still declare the PATHINFO_*
+yourself, and then you can use:
+pathinfo(‘/www/index.html’, PATHINFO_BASENAME | PATHINFO_EXTENSION);
+which makes it fully compliant with PHP syntax.</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>pathinfo(&#39;/www/htdocs/index.html&#39;, 1)</code></td><td><code>&#39;/www/htdocs&#39;</code></td></tr>
+        
+          <tr><td>2</td><td><code>pathinfo(&#39;/www/htdocs/index.html&#39;, &#39;PATHINFO_BASENAME&#39;)</code></td><td><code>&#39;index.html&#39;</code></td></tr>
+        
+          <tr><td>3</td><td><code>pathinfo(&#39;/www/htdocs/index.html&#39;, &#39;PATHINFO_EXTENSION&#39;)</code></td><td><code>&#39;html&#39;</code></td></tr>
+        
+          <tr><td>4</td><td><code>pathinfo(&#39;/www/htdocs/index.html&#39;, &#39;PATHINFO_FILENAME&#39;)</code></td><td><code>&#39;index&#39;</code></td></tr>
+        
+          <tr><td>5</td><td><code>pathinfo(&#39;/www/htdocs/index.html&#39;, 2 | 4)</code></td><td><code>{basename: &#39;index.html&#39;, extension: &#39;html&#39;}</code></td></tr>
+        
+          <tr><td>6</td><td><code>pathinfo(&#39;/www/htdocs/index.html&#39;, &#39;PATHINFO_ALL&#39;)</code></td><td><code>{dirname: &#39;/www/htdocs&#39;, basename: &#39;index.html&#39;, extension: &#39;html&#39;, filename: &#39;index&#39;}</code></td></tr>
+        
+          <tr><td>7</td><td><code>pathinfo(&#39;/www/htdocs/index.html&#39;)</code></td><td><code>{dirname: &#39;/www/htdocs&#39;, basename: &#39;index.html&#39;, extension: &#39;html&#39;, filename: &#39;index&#39;}</code></td></tr>
+        
+        </table>
+      
+
+      <hr />
+      
+
+
+      <hr />
+      <p>
+        <a href="/php/filesystem/">&laquo; More PHP filesystem functions</a>
+      </p>
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/locutus-alpha.png" />
+            <h2 id="name">Locutus</h2>
+            <h3 id="title">All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>GitHub</span>
+            <a id="follow" target="_blank" href="https://github.com/kvz/locutus/stargazers">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                7
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                13
+                <span>tags</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="https://github.com/kvz/locutus" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://twitter.com/locutusjs_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    
+                    <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+<div class="clear"></div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget widget-on_the_githubs">
+    <div class="on-the-githubs" data-event-source="repos/kvz/locutus">Loading...</div>
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (3)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strings/Index.html">
+            strings
+            (3)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (315)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (71)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (29)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-05-02T00:00:00.000Z" itemprop="datePublished">2016-05-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/breaking-bc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/jekyll/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
+                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2016 Kevin van Zonneveld<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
+            Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
+            Arwork by <a href="http://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>
+
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+<script src="/js/locutus.js"></script>
+
+<!-- Twitter follow button script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    </div>
+</body>
+</html>

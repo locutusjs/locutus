@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>PHP extensions  in JavaScript | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP extensions  in JavaScript">
+<meta property="og:url" content="http://locutusjs.io/php/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.">
+<meta property="og:updated_time" content="2016-05-03T06:47:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP extensions  in JavaScript">
+<meta name="twitter:description" content="All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/locutus.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <nav id="main-nav">
+                
+                  <a class="main-nav-link" href="/c">C</a>
+                
+                  <a class="main-nav-link" href="/golang">Go</a>
+                
+                  <a class="main-nav-link" href="/python">Python</a>
+                
+                  <a class="main-nav-link" href="/ruby">Ruby</a>
+                
+                  <a class="main-nav-link" href="/php">PHP</a>
+                
+                <span class="main-nav-link">|</span>
+                
+                  <a class="main-nav-link" href="/archives">Blog</a>
+                
+                  <a class="main-nav-link" href="/authors">Authors</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                  <td><a class="main-nav-link" href="/c">C</a></td>
+                
+                  <td><a class="main-nav-link" href="/golang">Go</a></td>
+                
+                  <td><a class="main-nav-link" href="/python">Python</a></td>
+                
+                  <td><a class="main-nav-link" href="/ruby">Ruby</a></td>
+                
+                  <td><a class="main-nav-link" href="/php">PHP</a></td>
+                
+                <td><span class="main-nav-link">|</span></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Blog</a></td>
+                
+                    <td><a class="main-nav-link" href="/authors">Authors</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+<article class="article article-type-language" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">PHP extensions  in JavaScript</h1>
+    </header>
+
+    <div class="article-entry">
+      
+        <strong>bc</strong>
+        <ul>
+          
+            <li><a href="/php/bc/bcadd/">bcadd</a></li>
+          
+            <li><a href="/php/bc/bccomp/">bccomp</a></li>
+          
+            <li><a href="/php/bc/bcdiv/">bcdiv</a></li>
+          
+            <li><a href="/php/bc/bcmul/">bcmul</a></li>
+          
+            <li><a href="/php/bc/bcscale/">bcscale</a></li>
+          
+            <li><a href="/php/bc/bcround/">bcround</a></li>
+          
+            <li><a href="/php/bc/bcsub/">bcsub</a></li>
+          
+        </ul>
+      
+        <strong>ctype</strong>
+        <ul>
+          
+            <li><a href="/php/ctype/ctype_alnum/">ctype_alnum</a></li>
+          
+            <li><a href="/php/ctype/ctype_alpha/">ctype_alpha</a></li>
+          
+            <li><a href="/php/ctype/ctype_cntrl/">ctype_cntrl</a></li>
+          
+            <li><a href="/php/ctype/ctype_digit/">ctype_digit</a></li>
+          
+            <li><a href="/php/ctype/ctype_graph/">ctype_graph</a></li>
+          
+            <li><a href="/php/ctype/ctype_lower/">ctype_lower</a></li>
+          
+            <li><a href="/php/ctype/ctype_print/">ctype_print</a></li>
+          
+            <li><a href="/php/ctype/ctype_punct/">ctype_punct</a></li>
+          
+            <li><a href="/php/ctype/ctype_space/">ctype_space</a></li>
+          
+            <li><a href="/php/ctype/ctype_upper/">ctype_upper</a></li>
+          
+            <li><a href="/php/ctype/ctype_xdigit/">ctype_xdigit</a></li>
+          
+        </ul>
+      
+        <strong>array</strong>
+        <ul>
+          
+            <li><a href="/php/array/array_change_key_case/">array_change_key_case</a></li>
+          
+            <li><a href="/php/array/array_chunk/">array_chunk</a></li>
+          
+            <li><a href="/php/array/array_combine/">array_combine</a></li>
+          
+            <li><a href="/php/array/array_count_values/">array_count_values</a></li>
+          
+            <li><a href="/php/array/array_diff/">array_diff</a></li>
+          
+            <li><a href="/php/array/array_diff_assoc/">array_diff_assoc</a></li>
+          
+            <li><a href="/php/array/array_diff_key/">array_diff_key</a></li>
+          
+            <li><a href="/php/array/array_diff_uassoc/">array_diff_uassoc</a></li>
+          
+            <li><a href="/php/array/array_diff_ukey/">array_diff_ukey</a></li>
+          
+            <li><a href="/php/array/array_fill/">array_fill</a></li>
+          
+            <li><a href="/php/array/array_fill_keys/">array_fill_keys</a></li>
+          
+            <li><a href="/php/array/array_filter/">array_filter</a></li>
+          
+            <li><a href="/php/array/array_flip/">array_flip</a></li>
+          
+            <li><a href="/php/array/array_intersect/">array_intersect</a></li>
+          
+            <li><a href="/php/array/array_intersect_assoc/">array_intersect_assoc</a></li>
+          
+            <li><a href="/php/array/array_intersect_key/">array_intersect_key</a></li>
+          
+            <li><a href="/php/array/array_intersect_uassoc/">array_intersect_uassoc</a></li>
+          
+            <li><a href="/php/array/array_intersect_ukey/">array_intersect_ukey</a></li>
+          
+            <li><a href="/php/array/array_key_exists/">array_key_exists</a></li>
+          
+            <li><a href="/php/array/array_keys/">array_keys</a></li>
+          
+            <li><a href="/php/array/array_map/">array_map</a></li>
+          
+            <li><a href="/php/array/array_merge/">array_merge</a></li>
+          
+            <li><a href="/php/array/array_merge_recursive/">array_merge_recursive</a></li>
+          
+            <li><a href="/php/array/array_multisort/">array_multisort</a></li>
+          
+            <li><a href="/php/array/array_pad/">array_pad</a></li>
+          
+            <li><a href="/php/array/array_pop/">array_pop</a></li>
+          
+            <li><a href="/php/array/array_product/">array_product</a></li>
+          
+            <li><a href="/php/array/array_push/">array_push</a></li>
+          
+            <li><a href="/php/array/array_rand/">array_rand</a></li>
+          
+            <li><a href="/php/array/array_reduce/">array_reduce</a></li>
+          
+            <li><a href="/php/array/array_replace/">array_replace</a></li>
+          
+            <li><a href="/php/array/array_replace_recursive/">array_replace_recursive</a></li>
+          
+            <li><a href="/php/array/array_reverse/">array_reverse</a></li>
+          
+            <li><a href="/php/array/array_search/">array_search</a></li>
+          
+            <li><a href="/php/array/array_shift/">array_shift</a></li>
+          
+            <li><a href="/php/array/array_slice/">array_slice</a></li>
+          
+            <li><a href="/php/array/array_splice/">array_splice</a></li>
+          
+            <li><a href="/php/array/array_sum/">array_sum</a></li>
+          
+            <li><a href="/php/array/array_udiff/">array_udiff</a></li>
+          
+            <li><a href="/php/array/array_udiff_assoc/">array_udiff_assoc</a></li>
+          
+            <li><a href="/php/array/array_udiff_uassoc/">array_udiff_uassoc</a></li>
+          
+            <li><a href="/php/array/array_uintersect/">array_uintersect</a></li>
+          
+            <li><a href="/php/array/array_uintersect_uassoc/">array_uintersect_uassoc</a></li>
+          
+            <li><a href="/php/array/array_unique/">array_unique</a></li>
+          
+            <li><a href="/php/array/array_unshift/">array_unshift</a></li>
+          
+            <li><a href="/php/array/array_values/">array_values</a></li>
+          
+            <li><a href="/php/array/array_walk/">array_walk</a></li>
+          
+            <li><a href="/php/array/arsort/">arsort</a></li>
+          
+            <li><a href="/php/array/asort/">asort</a></li>
+          
+            <li><a href="/php/array/count/">count</a></li>
+          
+            <li><a href="/php/array/current/">current</a></li>
+          
+            <li><a href="/php/array/each/">each</a></li>
+          
+            <li><a href="/php/array/end/">end</a></li>
+          
+            <li><a href="/php/array/in_array/">in_array</a></li>
+          
+            <li><a href="/php/array/key/">key</a></li>
+          
+            <li><a href="/php/array/krsort/">krsort</a></li>
+          
+            <li><a href="/php/array/natcasesort/">natcasesort</a></li>
+          
+            <li><a href="/php/array/ksort/">ksort</a></li>
+          
+            <li><a href="/php/array/natsort/">natsort</a></li>
+          
+            <li><a href="/php/array/next/">next</a></li>
+          
+            <li><a href="/php/array/pos/">pos</a></li>
+          
+            <li><a href="/php/array/prev/">prev</a></li>
+          
+            <li><a href="/php/array/range/">range</a></li>
+          
+            <li><a href="/php/array/reset/">reset</a></li>
+          
+            <li><a href="/php/array/rsort/">rsort</a></li>
+          
+            <li><a href="/php/array/shuffle/">shuffle</a></li>
+          
+            <li><a href="/php/array/sizeof/">sizeof</a></li>
+          
+            <li><a href="/php/array/sort/">sort</a></li>
+          
+            <li><a href="/php/array/uasort/">uasort</a></li>
+          
+            <li><a href="/php/array/uksort/">uksort</a></li>
+          
+            <li><a href="/php/array/usort/">usort</a></li>
+          
+        </ul>
+      
+        <strong>datetime</strong>
+        <ul>
+          
+            <li><a href="/php/datetime/checkdate/">checkdate</a></li>
+          
+            <li><a href="/php/datetime/date/">date</a></li>
+          
+            <li><a href="/php/datetime/date_parse/">date_parse</a></li>
+          
+            <li><a href="/php/datetime/getdate/">getdate</a></li>
+          
+            <li><a href="/php/datetime/gettimeofday/">gettimeofday</a></li>
+          
+            <li><a href="/php/datetime/gmdate/">gmdate</a></li>
+          
+            <li><a href="/php/datetime/gmmktime/">gmmktime</a></li>
+          
+            <li><a href="/php/datetime/gmstrftime/">gmstrftime</a></li>
+          
+            <li><a href="/php/datetime/idate/">idate</a></li>
+          
+            <li><a href="/php/datetime/microtime/">microtime</a></li>
+          
+            <li><a href="/php/datetime/mktime/">mktime</a></li>
+          
+            <li><a href="/php/datetime/strftime/">strftime</a></li>
+          
+            <li><a href="/php/datetime/strptime/">strptime</a></li>
+          
+            <li><a href="/php/datetime/strtotime/">strtotime</a></li>
+          
+            <li><a href="/php/datetime/time/">time</a></li>
+          
+        </ul>
+      
+        <strong>exec</strong>
+        <ul>
+          
+            <li><a href="/php/exec/escapeshellarg/">escapeshellarg</a></li>
+          
+        </ul>
+      
+        <strong>filesystem</strong>
+        <ul>
+          
+            <li><a href="/php/filesystem/basename/">basename</a></li>
+          
+            <li><a href="/php/filesystem/dirname/">dirname</a></li>
+          
+            <li><a href="/php/filesystem/file_get_contents/">file_get_contents</a></li>
+          
+            <li><a href="/php/filesystem/pathinfo/">pathinfo</a></li>
+          
+            <li><a href="/php/filesystem/realpath/">realpath</a></li>
+          
+        </ul>
+      
+        <strong>funchand</strong>
+        <ul>
+          
+            <li><a href="/php/funchand/call_user_func/">call_user_func</a></li>
+          
+            <li><a href="/php/funchand/call_user_func_array/">call_user_func_array</a></li>
+          
+            <li><a href="/php/funchand/get_defined_functions/">get_defined_functions</a></li>
+          
+            <li><a href="/php/funchand/create_function/">create_function</a></li>
+          
+            <li><a href="/php/funchand/function_exists/">function_exists</a></li>
+          
+        </ul>
+      
+        <strong>i18n</strong>
+        <ul>
+          
+            <li><a href="/php/i18n/i18n_loc_get_default/">i18n_loc_get_default</a></li>
+          
+            <li><a href="/php/i18n/i18n_loc_set_default/">i18n_loc_set_default</a></li>
+          
+        </ul>
+      
+        <strong>info</strong>
+        <ul>
+          
+            <li><a href="/php/info/assert_options/">assert_options</a></li>
+          
+            <li><a href="/php/info/getenv/">getenv</a></li>
+          
+            <li><a href="/php/info/ini_get/">ini_get</a></li>
+          
+            <li><a href="/php/info/ini_set/">ini_set</a></li>
+          
+            <li><a href="/php/info/set_time_limit/">set_time_limit</a></li>
+          
+            <li><a href="/php/info/version_compare/">version_compare</a></li>
+          
+        </ul>
+      
+        <strong>json</strong>
+        <ul>
+          
+            <li><a href="/php/json/json_decode/">json_decode</a></li>
+          
+            <li><a href="/php/json/json_encode/">json_encode</a></li>
+          
+            <li><a href="/php/json/json_last_error/">json_last_error</a></li>
+          
+        </ul>
+      
+        <strong>math</strong>
+        <ul>
+          
+            <li><a href="/php/math/abs/">abs</a></li>
+          
+            <li><a href="/php/math/acos/">acos</a></li>
+          
+            <li><a href="/php/math/acosh/">acosh</a></li>
+          
+            <li><a href="/php/math/asin/">asin</a></li>
+          
+            <li><a href="/php/math/asinh/">asinh</a></li>
+          
+            <li><a href="/php/math/atan/">atan</a></li>
+          
+            <li><a href="/php/math/atan2/">atan2</a></li>
+          
+            <li><a href="/php/math/atanh/">atanh</a></li>
+          
+            <li><a href="/php/math/bindec/">bindec</a></li>
+          
+            <li><a href="/php/math/base_convert/">base_convert</a></li>
+          
+            <li><a href="/php/math/ceil/">ceil</a></li>
+          
+            <li><a href="/php/math/cos/">cos</a></li>
+          
+            <li><a href="/php/math/cosh/">cosh</a></li>
+          
+            <li><a href="/php/math/decbin/">decbin</a></li>
+          
+            <li><a href="/php/math/dechex/">dechex</a></li>
+          
+            <li><a href="/php/math/decoct/">decoct</a></li>
+          
+            <li><a href="/php/math/deg2rad/">deg2rad</a></li>
+          
+            <li><a href="/php/math/exp/">exp</a></li>
+          
+            <li><a href="/php/math/expm1/">expm1</a></li>
+          
+            <li><a href="/php/math/floor/">floor</a></li>
+          
+            <li><a href="/php/math/fmod/">fmod</a></li>
+          
+            <li><a href="/php/math/getrandmax/">getrandmax</a></li>
+          
+            <li><a href="/php/math/hexdec/">hexdec</a></li>
+          
+            <li><a href="/php/math/hypot/">hypot</a></li>
+          
+            <li><a href="/php/math/is_finite/">is_finite</a></li>
+          
+            <li><a href="/php/math/is_infinite/">is_infinite</a></li>
+          
+            <li><a href="/php/math/is_nan/">is_nan</a></li>
+          
+            <li><a href="/php/math/lcg_value/">lcg_value</a></li>
+          
+            <li><a href="/php/math/log/">log</a></li>
+          
+            <li><a href="/php/math/log10/">log10</a></li>
+          
+            <li><a href="/php/math/log1p/">log1p</a></li>
+          
+            <li><a href="/php/math/max/">max</a></li>
+          
+            <li><a href="/php/math/min/">min</a></li>
+          
+            <li><a href="/php/math/mt_getrandmax/">mt_getrandmax</a></li>
+          
+            <li><a href="/php/math/mt_rand/">mt_rand</a></li>
+          
+            <li><a href="/php/math/octdec/">octdec</a></li>
+          
+            <li><a href="/php/math/pi/">pi</a></li>
+          
+            <li><a href="/php/math/pow/">pow</a></li>
+          
+            <li><a href="/php/math/rad2deg/">rad2deg</a></li>
+          
+            <li><a href="/php/math/rand/">rand</a></li>
+          
+            <li><a href="/php/math/round/">round</a></li>
+          
+            <li><a href="/php/math/sin/">sin</a></li>
+          
+            <li><a href="/php/math/sinh/">sinh</a></li>
+          
+            <li><a href="/php/math/sqrt/">sqrt</a></li>
+          
+            <li><a href="/php/math/tan/">tan</a></li>
+          
+            <li><a href="/php/math/tanh/">tanh</a></li>
+          
+        </ul>
+      
+        <strong>misc</strong>
+        <ul>
+          
+            <li><a href="/php/misc/uniqid/">uniqid</a></li>
+          
+            <li><a href="/php/misc/pack/">pack</a></li>
+          
+        </ul>
+      
+        <strong>net-gopher</strong>
+        <ul>
+          
+            <li><a href="/php/net-gopher/gopher_parsedir/">gopher_parsedir</a></li>
+          
+        </ul>
+      
+        <strong>network</strong>
+        <ul>
+          
+            <li><a href="/php/network/inet_ntop/">inet_ntop</a></li>
+          
+            <li><a href="/php/network/inet_pton/">inet_pton</a></li>
+          
+            <li><a href="/php/network/ip2long/">ip2long</a></li>
+          
+            <li><a href="/php/network/long2ip/">long2ip</a></li>
+          
+            <li><a href="/php/network/setcookie/">setcookie</a></li>
+          
+            <li><a href="/php/network/setrawcookie/">setrawcookie</a></li>
+          
+        </ul>
+      
+        <strong>pcre</strong>
+        <ul>
+          
+            <li><a href="/php/pcre/preg_quote/">preg_quote</a></li>
+          
+            <li><a href="/php/pcre/sql_regcase/">sql_regcase</a></li>
+          
+        </ul>
+      
+        <strong>strings</strong>
+        <ul>
+          
+            <li><a href="/php/strings/addcslashes/">addcslashes</a></li>
+          
+            <li><a href="/php/strings/addslashes/">addslashes</a></li>
+          
+            <li><a href="/php/strings/bin2hex/">bin2hex</a></li>
+          
+            <li><a href="/php/strings/chop/">chop</a></li>
+          
+            <li><a href="/php/strings/chr/">chr</a></li>
+          
+            <li><a href="/php/strings/chunk_split/">chunk_split</a></li>
+          
+            <li><a href="/php/strings/convert_cyr_string/">convert_cyr_string</a></li>
+          
+            <li><a href="/php/strings/convert_uuencode/">convert_uuencode</a></li>
+          
+            <li><a href="/php/strings/count_chars/">count_chars</a></li>
+          
+            <li><a href="/php/strings/crc32/">crc32</a></li>
+          
+            <li><a href="/php/strings/echo/">echo</a></li>
+          
+            <li><a href="/php/strings/explode/">explode</a></li>
+          
+            <li><a href="/php/strings/get_html_translation_table/">get_html_translation_table</a></li>
+          
+            <li><a href="/php/strings/hex2bin/">hex2bin</a></li>
+          
+            <li><a href="/php/strings/html_entity_decode/">html_entity_decode</a></li>
+          
+            <li><a href="/php/strings/htmlentities/">htmlentities</a></li>
+          
+            <li><a href="/php/strings/htmlspecialchars/">htmlspecialchars</a></li>
+          
+            <li><a href="/php/strings/htmlspecialchars_decode/">htmlspecialchars_decode</a></li>
+          
+            <li><a href="/php/strings/implode/">implode</a></li>
+          
+            <li><a href="/php/strings/join/">join</a></li>
+          
+            <li><a href="/php/strings/lcfirst/">lcfirst</a></li>
+          
+            <li><a href="/php/strings/levenshtein/">levenshtein</a></li>
+          
+            <li><a href="/php/strings/localeconv/">localeconv</a></li>
+          
+            <li><a href="/php/strings/ltrim/">ltrim</a></li>
+          
+            <li><a href="/php/strings/md5/">md5</a></li>
+          
+            <li><a href="/php/strings/md5_file/">md5_file</a></li>
+          
+            <li><a href="/php/strings/metaphone/">metaphone</a></li>
+          
+            <li><a href="/php/strings/nl2br/">nl2br</a></li>
+          
+            <li><a href="/php/strings/money_format/">money_format</a></li>
+          
+            <li><a href="/php/strings/nl_langinfo/">nl_langinfo</a></li>
+          
+            <li><a href="/php/strings/number_format/">number_format</a></li>
+          
+            <li><a href="/php/strings/ord/">ord</a></li>
+          
+            <li><a href="/php/strings/parse_str/">parse_str</a></li>
+          
+            <li><a href="/php/strings/printf/">printf</a></li>
+          
+            <li><a href="/php/strings/quoted_printable_decode/">quoted_printable_decode</a></li>
+          
+            <li><a href="/php/strings/quoted_printable_encode/">quoted_printable_encode</a></li>
+          
+            <li><a href="/php/strings/quotemeta/">quotemeta</a></li>
+          
+            <li><a href="/php/strings/rtrim/">rtrim</a></li>
+          
+            <li><a href="/php/strings/setlocale/">setlocale</a></li>
+          
+            <li><a href="/php/strings/sha1/">sha1</a></li>
+          
+            <li><a href="/php/strings/sha1_file/">sha1_file</a></li>
+          
+            <li><a href="/php/strings/similar_text/">similar_text</a></li>
+          
+            <li><a href="/php/strings/soundex/">soundex</a></li>
+          
+            <li><a href="/php/strings/split/">split</a></li>
+          
+            <li><a href="/php/strings/sprintf/">sprintf</a></li>
+          
+            <li><a href="/php/strings/sscanf/">sscanf</a></li>
+          
+            <li><a href="/php/strings/str_getcsv/">str_getcsv</a></li>
+          
+            <li><a href="/php/strings/str_ireplace/">str_ireplace</a></li>
+          
+            <li><a href="/php/strings/str_pad/">str_pad</a></li>
+          
+            <li><a href="/php/strings/str_repeat/">str_repeat</a></li>
+          
+            <li><a href="/php/strings/str_replace/">str_replace</a></li>
+          
+            <li><a href="/php/strings/str_rot13/">str_rot13</a></li>
+          
+            <li><a href="/php/strings/str_shuffle/">str_shuffle</a></li>
+          
+            <li><a href="/php/strings/str_split/">str_split</a></li>
+          
+            <li><a href="/php/strings/str_word_count/">str_word_count</a></li>
+          
+            <li><a href="/php/strings/strcasecmp/">strcasecmp</a></li>
+          
+            <li><a href="/php/strings/strchr/">strchr</a></li>
+          
+            <li><a href="/php/strings/strcmp/">strcmp</a></li>
+          
+            <li><a href="/php/strings/strcoll/">strcoll</a></li>
+          
+            <li><a href="/php/strings/strcspn/">strcspn</a></li>
+          
+            <li><a href="/php/strings/strip_tags/">strip_tags</a></li>
+          
+            <li><a href="/php/strings/stripos/">stripos</a></li>
+          
+            <li><a href="/php/strings/stripslashes/">stripslashes</a></li>
+          
+            <li><a href="/php/strings/stristr/">stristr</a></li>
+          
+            <li><a href="/php/strings/strlen/">strlen</a></li>
+          
+            <li><a href="/php/strings/strnatcasecmp/">strnatcasecmp</a></li>
+          
+            <li><a href="/php/strings/strnatcmp/">strnatcmp</a></li>
+          
+            <li><a href="/php/strings/strncasecmp/">strncasecmp</a></li>
+          
+            <li><a href="/php/strings/strncmp/">strncmp</a></li>
+          
+            <li><a href="/php/strings/strpbrk/">strpbrk</a></li>
+          
+            <li><a href="/php/strings/strpos/">strpos</a></li>
+          
+            <li><a href="/php/strings/strrchr/">strrchr</a></li>
+          
+            <li><a href="/php/strings/strrev/">strrev</a></li>
+          
+            <li><a href="/php/strings/strripos/">strripos</a></li>
+          
+            <li><a href="/php/strings/strrpos/">strrpos</a></li>
+          
+            <li><a href="/php/strings/strspn/">strspn</a></li>
+          
+            <li><a href="/php/strings/strstr/">strstr</a></li>
+          
+            <li><a href="/php/strings/strtok/">strtok</a></li>
+          
+            <li><a href="/php/strings/strtolower/">strtolower</a></li>
+          
+            <li><a href="/php/strings/strtoupper/">strtoupper</a></li>
+          
+            <li><a href="/php/strings/strtr/">strtr</a></li>
+          
+            <li><a href="/php/strings/substr/">substr</a></li>
+          
+            <li><a href="/php/strings/substr_compare/">substr_compare</a></li>
+          
+            <li><a href="/php/strings/substr_count/">substr_count</a></li>
+          
+            <li><a href="/php/strings/substr_replace/">substr_replace</a></li>
+          
+            <li><a href="/php/strings/trim/">trim</a></li>
+          
+            <li><a href="/php/strings/ucfirst/">ucfirst</a></li>
+          
+            <li><a href="/php/strings/ucwords/">ucwords</a></li>
+          
+            <li><a href="/php/strings/vprintf/">vprintf</a></li>
+          
+            <li><a href="/php/strings/vsprintf/">vsprintf</a></li>
+          
+            <li><a href="/php/strings/wordwrap/">wordwrap</a></li>
+          
+        </ul>
+      
+        <strong>url</strong>
+        <ul>
+          
+            <li><a href="/php/url/base64_decode/">base64_decode</a></li>
+          
+            <li><a href="/php/url/base64_encode/">base64_encode</a></li>
+          
+            <li><a href="/php/url/http_build_query/">http_build_query</a></li>
+          
+            <li><a href="/php/url/parse_url/">parse_url</a></li>
+          
+            <li><a href="/php/url/rawurldecode/">rawurldecode</a></li>
+          
+            <li><a href="/php/url/rawurlencode/">rawurlencode</a></li>
+          
+            <li><a href="/php/url/urldecode/">urldecode</a></li>
+          
+            <li><a href="/php/url/urlencode/">urlencode</a></li>
+          
+        </ul>
+      
+        <strong>var</strong>
+        <ul>
+          
+            <li><a href="/php/var/doubleval/">doubleval</a></li>
+          
+            <li><a href="/php/var/empty/">empty</a></li>
+          
+            <li><a href="/php/var/floatval/">floatval</a></li>
+          
+            <li><a href="/php/var/gettype/">gettype</a></li>
+          
+            <li><a href="/php/var/intval/">intval</a></li>
+          
+            <li><a href="/php/var/is_array/">is_array</a></li>
+          
+            <li><a href="/php/var/is_binary/">is_binary</a></li>
+          
+            <li><a href="/php/var/is_bool/">is_bool</a></li>
+          
+            <li><a href="/php/var/is_buffer/">is_buffer</a></li>
+          
+            <li><a href="/php/var/is_callable/">is_callable</a></li>
+          
+            <li><a href="/php/var/is_double/">is_double</a></li>
+          
+            <li><a href="/php/var/is_float/">is_float</a></li>
+          
+            <li><a href="/php/var/is_int/">is_int</a></li>
+          
+            <li><a href="/php/var/is_integer/">is_integer</a></li>
+          
+            <li><a href="/php/var/is_long/">is_long</a></li>
+          
+            <li><a href="/php/var/is_null/">is_null</a></li>
+          
+            <li><a href="/php/var/is_numeric/">is_numeric</a></li>
+          
+            <li><a href="/php/var/is_object/">is_object</a></li>
+          
+            <li><a href="/php/var/is_real/">is_real</a></li>
+          
+            <li><a href="/php/var/is_scalar/">is_scalar</a></li>
+          
+            <li><a href="/php/var/is_string/">is_string</a></li>
+          
+            <li><a href="/php/var/is_unicode/">is_unicode</a></li>
+          
+            <li><a href="/php/var/isset/">isset</a></li>
+          
+            <li><a href="/php/var/print_r/">print_r</a></li>
+          
+            <li><a href="/php/var/serialize/">serialize</a></li>
+          
+            <li><a href="/php/var/strval/">strval</a></li>
+          
+            <li><a href="/php/var/unserialize/">unserialize</a></li>
+          
+            <li><a href="/php/var/var_dump/">var_dump</a></li>
+          
+            <li><a href="/php/var/var_export/">var_export</a></li>
+          
+        </ul>
+      
+        <strong>xdiff</strong>
+        <ul>
+          
+            <li><a href="/php/xdiff/xdiff_string_diff/">xdiff_string_diff</a></li>
+          
+            <li><a href="/php/xdiff/xdiff_string_patch/">xdiff_string_patch</a></li>
+          
+        </ul>
+      
+        <strong>xml</strong>
+        <ul>
+          
+            <li><a href="/php/xml/utf8_decode/">utf8_decode</a></li>
+          
+            <li><a href="/php/xml/utf8_encode/">utf8_encode</a></li>
+          
+        </ul>
+      
+
+      <hr />
+      
+
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/locutus-alpha.png" />
+            <h2 id="name">Locutus</h2>
+            <h3 id="title">All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>GitHub</span>
+            <a id="follow" target="_blank" href="https://github.com/kvz/locutus/stargazers">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                7
+                <span>posts</span>
+            </div>
+            <div class="article-info-block">
+                13
+                <span>tags</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="https://github.com/kvz/locutus" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://twitter.com/locutusjs_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    
+                    <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+<div class="clear"></div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget widget-on_the_githubs">
+    <div class="on-the-githubs" data-event-source="repos/kvz/locutus">Loading...</div>
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (3)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strings/Index.html">
+            strings
+            (3)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (315)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (71)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (29)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-05-02T00:00:00.000Z" itemprop="datePublished">2016-05-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/breaking-bc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/jekyll/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
+                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2016 Kevin van Zonneveld<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
+            Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
+            Arwork by <a href="http://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>
+
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+<script src="/js/locutus.js"></script>
+
+<!-- Twitter follow button script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    </div>
+</body>
+</html>
