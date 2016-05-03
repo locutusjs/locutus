@@ -12,6 +12,7 @@ script:
 - npm run lint
 - npm run build
 - npm run test
+- npm run website:install
 - git config --global user.name 'Locutus Bot'
 - git config --global user.email 'bot@locutusjs.io'
 - sed -i.bak -e "s~git@github.com:kvz/locutus.git~${GHPAGES_URL}~" website/_config.yml && rm -f website/_config.yml.bak
