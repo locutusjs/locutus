@@ -59,8 +59,9 @@
     "build:tests:noskip": "rimraf test/languages && babel-node src/_util/cli.js writetests --noskip",
     "build:tests": "rimraf test/languages && babel-node src/_util/cli.js writetests",
     "build": "npm-run-all build:*",
-    "deploy": "npm run website:deploy",
+    "deploy": "npm-run-all injectweb website:build website:deploy",
     "fix": "eslint src test,!languages --fix",
+    "injectweb": "rimraf website/source/{c,golang,php,python,ruby} && babel-node src/_util/cli.js injectweb",
     "lint": "eslint src",
     "playground:start": "cd test/browser && babel-node server.js",
     "release:major": "env SEMANTIC=major npm run release",
@@ -72,11 +73,10 @@
     "test:module": "babel-node test/module/module.js",
     "test:util": "mocha --compilers js:babel-register --reporter spec test/util/",
     "test": "npm-run-all test:*",
-    "website:deploy": "npm run website:inject && npm run website:build && cd website && hexo deploy --silent",
-    "website:inject": "rimraf website/source/{c,golang,php,python,ruby} && babel-node src/_util/cli.js injectweb",
+    "website:deploy": "cd website && npm run deploy",
+    "website:build": "cd website && npm run build",
+    "website:clean": "cd website && npm run clean",
     "website:install": "cd website && npm install",
-    "website:start": "cd website && hexo server",
-    "website:build": "cd website && hexo generate",
-    "website:clean": "cd website && hexo clean"
+    "website:start": "cd website && npm run server"
   }
 }
