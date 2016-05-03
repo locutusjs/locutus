@@ -72,7 +72,7 @@
     "test:languages": "npm run build:tests && cross-env DEBUG=locutus:* mocha --compilers js:babel-register --reporter spec --recursive test/languages --grep \"${TEST_GREP:-}\"",
     "test:module": "babel-node test/module/module.js",
     "test:util": "mocha --compilers js:babel-register --reporter spec test/util/",
-    "test": "npm-run-all test:*",
+    "test": "npm-run-all test:languages test:util test:module",
     "website:deploy": "cd website && npm run deploy",
     "website:build": "cd website && npm run build",
     "website:clean": "cd website && npm run clean",
