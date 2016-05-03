@@ -85,4 +85,6 @@ Blog posts can be found in `website/source/_posts`.
  
 If you want to preview locally type `npm run website:start`.
 
+Any change to `master` is deployed automatically onto GitHub pages by Travis CI via the `travis-deploy.sh` script.
+
 Typing `npm run deploy` in the root of the project takes care of all the building steps, and then force pushes the generated HTML to the `gh-pages` branch of this repo.
