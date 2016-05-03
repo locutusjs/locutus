@@ -18,11 +18,10 @@ __webroot="${__root}/website"
 git config --global user.name 'Locutus Bot'
 git config --global user.email 'bot@locutusjs.io'
 
-pushd "${__webroot}"
-  sed -i.bak -e "s~git@github.com:kvz/locutus.git~${GHPAGES_URL}~" _config.yml && rm -f _config.yml.bak
-  if [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
-    npm run deploy
-  else
-    echo "Skipping for non-PRs"
-  fi
-popd
+sed -i.bak -e "s~git@github.com:kvz/locutus.git~${GHPAGES_URL}~" ${__webroot}_config.yml
+rm -f ${__webroot}_config.yml.bak # This .bak dance makes sed portable accross gnu/bsd
+if [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
+  npm run deploy
+else
+  echo "Skipping for non-PRs"
+fi
