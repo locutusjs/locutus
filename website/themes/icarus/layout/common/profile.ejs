@@ -6,17 +6,26 @@
             <img id="avatar" src="<%= ( profile.gravatar ? gravatar(profile.gravatar, 128) : url_for(profile.avatar)) %>" />
             <h2 id="name"><%= profile.author %></h2>
             <h3 id="title"><%- profile.author_title %></h3>
-            <span id="location"><i class="fa fa-map-marker"></i><%= profile.location %></span>
-            <a id="follow" target="_blank" href="<%= profile.follow %>"><%= __('profile.follow') %></a>
+            <!-- <span id="location"><i class="fa fa-map-marker"></i><%= profile.location %></span> -->
+            <!-- <a id="follow" target="_blank" href="<%= profile.follow %>"><%= __('profile.follow') %></a> -->
+
+            <br />
+            <div class="Social">
+              <a href="https://twitter.com/locutusjs_io" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @locutusjs_io</a><br />
+              <iframe src="http://ghbtns.com/github-btn.html?user=kvz&repo=locutus&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe><br />
+              <a href="https://travis-ci.org/kvz/locutus"><img src="https://travis-ci.org/kvz/locutus.svg" alt="Build Status"></a><br />
+            </div>
+
+
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                <%= site.posts.length %>
-                <span><%= (site.posts.length > 1 ? __('profile.posts') : __('profile.post')) %></span>
+              <%= site.pages.find({ type: 'language' }).length %>
+              <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                <%= tagCount %>
-                <span><%= (tagCount > 1 ? __('profile.tags') : __('profile.tag')) %></span>
+                <%= site.pages.find({ type: 'function' }).length %>
+                <span>functions assimilated</span>
             </div>
         </div>
         <% if(theme.customize.social_links) { %>

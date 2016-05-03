@@ -25,15 +25,16 @@ Ideas that will be planned and find their way into a release at one point
 - [ ] Port a few more tricky/inter-depending Python functions
 - [ ] Port a few more tricky/inter-depending Go functions
 - [ ] Parse `require`s with AST just like Browserify does. Then we can add dependencies back to website
+- [ ] website: Render authors server-side
 
 ## v2.0.3
 
 Released: Not yet
 
-- [ ] Triage all open issues and PRs via waffle.io
+- [ ] Triage all open issues and PRs
 - [ ] Address the 25 remaining test failures that are currently skipped (find out which ones via `npm run test:languages:noskip`)
-- [ ] website: Add social buttons
-- [ ] website: Render authors server-side
+- [x] website: Show languages & functions in profile sidebar
+- [x] website: Add social buttons
 - [x] website: Let Travis auto-deploy to gh-pages on master changes
 - [x] website: Use Hexo deploy vs bash script
 
