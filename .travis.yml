@@ -23,8 +23,4 @@ deploy:
   provider: script
   on:
     branch: master
-  script:
-    - git config --global user.name 'Locutus Bot'
-    - git config --global user.email 'bot@locutusjs.io'
-    - sed -i.bak -e "s~git@github.com:kvz/locutus.git~${GHPAGES_URL}~" website/_config.yml && rm -f website/_config.yml.bak
-    - if [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then npm run deploy; else echo "Skipping for non-PRs"; fi
+  script: scripts/travis-deploy.sh
