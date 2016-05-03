@@ -7,7 +7,7 @@ thumbnail: /css/images/locutus-alpha.png
 ---
 
 As was briefly mentioned in [Breaking Backwards Compatibility](/blog/2016/04/20/breaking-bc/), 
-I am launching a big iteration of php.js today. It includes so [many](https://github.com/kvz/locutus/pull/290) breaking [changes](https://github.com/kvz/locutus/blob/master/CHANGELOG.md#v200) that it is safe to say that, after 
+I am launching a big iteration of php.js today. It includes so [many](https://github.com/kvz/locutus/pull/291) breaking [changes](https://github.com/kvz/locutus/blob/master/CHANGELOG.md#v200) that it is safe to say that, after 
 9 years, php.js is dead. And, like a phoenix, **Locutus** has risen from its ashes.
 
 Locutus will largely have the same mission: 
