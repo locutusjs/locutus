@@ -34,7 +34,7 @@ Released: Not yet
 - [ ] Address the 25 remaining test failures that are currently skipped (find out which ones via `npm run test:languages:noskip`)
 - [ ] website: Add social buttons
 - [ ] website: Render authors server-side
-- [ ] website: Auto-deploys of `master` to http://locutusjs.io via Travis CI
+- [x] website: Let Travis auto-deploy to gh-pages on master changes
 - [x] website: Use Hexo deploy vs bash script
 
 ## v2.0.2

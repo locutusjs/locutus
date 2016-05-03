@@ -1,22 +1,21 @@
 language: node_js
 node_js:
-  - 4.4.2
-  - 0.12
-  - 0.10
+- 4.4.2
+- 0.12
+- 0.1
 sudo: false
 matrix:
   allow_failures:
-  - node_js: 4.4.2
+  - node_js: 0.1
   - node_js: 0.12
-# addons:
-#  apt:
-#    sources:
-#    - ubuntu-toolchain-r-test
-#    packages:
-#    - gcc-4.8
-#    - g++-4.8
-#    - php5-cli
 script:
-  - npm run lint
-  - npm run build
-  - npm run test
+- npm run lint
+- npm run build
+- npm run test
+- git config --global user.name 'Locutus Bot'
+- git config --global user.email 'bot@locutusjs.io'
+- sed -i.bak -e "s~git@github.com:kvz/locutus.git~${GHPAGES_URL}~" website/_config.yml && rm -f website/_config.yml.bak
+- if [ "${TRAVIS_PULL_REQUEST}" == "false" ] && [ "${TRAVIS_BRANCH}" == "master" ]; then npm run deploy; else echo "Skipping for non-master/prs"; fi
+env:
+  global:
+     - secure: "c4unKozz+OKffwUmypDb+E8qcR9JM7tb7fQ75jidOiz57HM5hmLVJokj017GrUeoPAw3nSE6l0O9Yvyf5K4QNguZ4IXlrtTO1repPLHyUCX3Hoo3PhXDo6g6ySpt8tMpP3dX6r7JUn5YHjxASfOI8VJTmcnxyNkVH66H6VMOA2I="
