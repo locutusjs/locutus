@@ -20,6 +20,7 @@ script:
 - npm run website:install
 
 deploy:
+  skip_cleanup: true
   provider: script
   on:
     branch: master
