@@ -14,6 +14,7 @@
   "dependencies": {
     "hexo": "3.1.1",
     "hexo-browsersync": "0.2.0",
+    "hexo-cli": "1.0.1",
     "hexo-deployer-git": "0.1.0",
     "hexo-front-matter-excerpt": "0.2.0",
     "hexo-generator-alias": "0.1.3",
