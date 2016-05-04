@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-- 4.4.2 # When you update this, also update TRAVIS_NODE_VERSION in travis-deploy to tell who is the deployer build
-- 0.12
-- 0.1
+- '4.4.2' # When you update this, also update deploy.on.node further down, to tell who is the deployer build
+- '0.12'
+- '0.10' # this should be quoted; otherwise, 0.10 would not work
 sudo: false
 matrix:
   allow_failures:
@@ -24,4 +24,6 @@ deploy:
   provider: script
   on:
     branch: master
+    node: '4.4.2'
+
   script: scripts/travis-deploy.sh

@@ -15,11 +15,6 @@ __base="$(basename ${__file})"
 __root="$(cd "$(dirname "${__dir}")" && pwd)"
 __webroot="${__root}/website"
 
-if [ "${TRAVIS_NODE_VERSION:-}" != "4.4.2" ]; then
-  echo "Node version is '${TRAVIS_NODE_VERSION:-}'. Skipping deploy. "
-  exit 0
-fi
-
 # Only set git user until we verified we're on Travis
 # We don't want to change this during local experiments
 git config --global user.name 'Locutus Bot'
