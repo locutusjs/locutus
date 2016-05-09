@@ -23,9 +23,7 @@ git config --global user.email 'bot@locutusjs.io'
 pushd "${__root}"
   sed -i.bak -e "s~git@github.com:kvz/locutus.git~${GHPAGES_URL}~" "${__webroot}/_config.yml"
   rm -f "${__webroot}/_config.yml.bak" # This .bak dance makes sed portable accross gnu/bsd
-  if [ "${TRAVIS_PULL_REQUEST:-}" = "false" ]; then
-    npm run deploy
-  else
-    echo "Skipping deploy for non-PRs"
-  fi
+  # Travis docs: Note that pull request builds skip deployment step altogether.
+  # https://docs.travis-ci.com/user/deployment/#Conditional-Releases-with-on
+  npm run deploy
 popd
