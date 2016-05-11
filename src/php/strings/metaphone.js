@@ -1,5 +1,5 @@
 module.exports = function metaphone (word, maxPhonemes) {
-  //  discuss at: http://locutusjs.io/php/metaphone/
+  //  discuss at: http://locutus.io/php/metaphone/
   // original by: Greg Frazier
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)

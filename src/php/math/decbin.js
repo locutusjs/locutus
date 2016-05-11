@@ -1,5 +1,5 @@
 module.exports = function decbin (number) {
-  //  discuss at: http://locutusjs.io/php/decbin/
+  //  discuss at: http://locutus.io/php/decbin/
   // original by: Enrique Gonzalez
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript

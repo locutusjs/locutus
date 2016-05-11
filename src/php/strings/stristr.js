@@ -1,5 +1,5 @@
 module.exports = function stristr (haystack, needle, bool) {
-  //  discuss at: http://locutusjs.io/php/stristr/
+  //  discuss at: http://locutus.io/php/stristr/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: stristr('Kevin van Zonneveld', 'Van')

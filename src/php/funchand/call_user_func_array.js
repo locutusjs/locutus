@@ -1,5 +1,5 @@
 module.exports = function call_user_func_array (cb, parameters) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/call_user_func_array/
+  //  discuss at: http://locutus.io/php/call_user_func_array/
   // original by: Thiago Mata (http://thiagomata.blog.com)
   //  revised by: Jon Hohle
   // improved by: Brett Zamir (http://brett-zamir.me)

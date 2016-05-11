@@ -1,5 +1,5 @@
 module.exports = function sha1 (str) {
-  //  discuss at: http://locutusjs.io/php/sha1/
+  //  discuss at: http://locutus.io/php/sha1/
   // original by: Webtoolkit.info (http://www.webtoolkit.info/)
   // improved by: Michael White (http://getsprink.com)
   // improved by: Kevin van Zonneveld (http://kvz.io)

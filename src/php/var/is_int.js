@@ -1,5 +1,5 @@
 module.exports = function is_int (mixedVar) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/is_int/
+  //  discuss at: http://locutus.io/php/is_int/
   // original by: Alex
   // improved by: Kevin van Zonneveld (http://kvz.io)
   // improved by: WebDevHobo (http://webdevhobo.blogspot.com/)

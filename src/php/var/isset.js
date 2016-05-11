@@ -1,5 +1,5 @@
 module.exports = function isset () {
-  //  discuss at: http://locutusjs.io/php/isset/
+  //  discuss at: http://locutus.io/php/isset/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: FremyCompany
   // improved by: Onno Marsman (https://twitter.com/onnomarsman)

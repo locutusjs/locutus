@@ -1,5 +1,5 @@
 module.exports = function array_diff (arr1) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/array_diff/
+  //  discuss at: http://locutus.io/php/array_diff/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Sanjoy Roy
   //  revised by: Brett Zamir (http://brett-zamir.me)

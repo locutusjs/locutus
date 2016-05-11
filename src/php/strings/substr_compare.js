@@ -1,5 +1,5 @@
 module.exports = function substr_compare (mainStr, str, offset, length, caseInsensitivity) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/substr_compare/
+  //  discuss at: http://locutus.io/php/substr_compare/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: strcasecmp, strcmp
   //   example 1: substr_compare("abcde", "bc", 1, 2)

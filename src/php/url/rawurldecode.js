@@ -1,5 +1,5 @@
 module.exports = function rawurldecode (str) {
-  //       discuss at: http://locutusjs.io/php/rawurldecode/
+  //       discuss at: http://locutus.io/php/rawurldecode/
   //      original by: Brett Zamir (http://brett-zamir.me)
   //         input by: travc
   //         input by: Brett Zamir (http://brett-zamir.me)

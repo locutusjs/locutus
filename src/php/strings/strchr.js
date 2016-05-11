@@ -1,5 +1,5 @@
 module.exports = function strchr (haystack, needle, bool) {
-  //  discuss at: http://locutusjs.io/php/strchr/
+  //  discuss at: http://locutus.io/php/strchr/
   // original by: Philip Peterson
   //   example 1: strchr('Kevin van Zonneveld', 'van')
   //   returns 1: 'van Zonneveld'

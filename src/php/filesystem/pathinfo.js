@@ -1,5 +1,5 @@
 module.exports = function pathinfo (path, options) {
-  //  discuss at: http://locutusjs.io/php/pathinfo/
+  //  discuss at: http://locutus.io/php/pathinfo/
   // original by: Nate
   //  revised by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Brett Zamir (http://brett-zamir.me)

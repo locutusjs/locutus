@@ -1,5 +1,5 @@
 module.exports = function gmmktime () {
-  //  discuss at: http://locutusjs.io/php/gmmktime/
+  //  discuss at: http://locutus.io/php/gmmktime/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: mktime
   //   example 1: gmmktime(14, 10, 2, 2, 1, 2008)

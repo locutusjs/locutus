@@ -1,5 +1,5 @@
 module.exports = function gmdate (format, timestamp) {
-  //  discuss at: http://locutusjs.io/php/gmdate/
+  //  discuss at: http://locutus.io/php/gmdate/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: Alex
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

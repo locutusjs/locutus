@@ -1,5 +1,5 @@
 module.exports = function is_nan (val) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/is_nan/
+  //  discuss at: http://locutus.io/php/is_nan/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //    input by: Robin
   //   example 1: is_nan(NaN)

@@ -1,5 +1,5 @@
 module.exports = function is_string (mixedVar) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/is_string/
+  //  discuss at: http://locutus.io/php/is_string/
   // original by: Kevin van Zonneveld (http://kvz.io)
   //   example 1: is_string('23')
   //   returns 1: true

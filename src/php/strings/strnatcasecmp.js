@@ -1,5 +1,5 @@
 module.exports = function strnatcasecmp (str1, str2) {
-  //       discuss at: http://locutusjs.io/php/strnatcasecmp/
+  //       discuss at: http://locutus.io/php/strnatcasecmp/
   //      original by: Martin Pool
   // reimplemented by: Pierre-Luc Paour
   // reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))

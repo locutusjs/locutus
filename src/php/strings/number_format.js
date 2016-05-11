@@ -1,5 +1,5 @@
 module.exports = function number_format (number, decimals, decPoint, thousandsSep) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/number_format/
+  //  discuss at: http://locutus.io/php/number_format/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // improved by: Kevin van Zonneveld (http://kvz.io)
   // improved by: davook

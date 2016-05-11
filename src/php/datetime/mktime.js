@@ -1,5 +1,5 @@
 module.exports = function mktime () {
-  //  discuss at: http://locutusjs.io/php/mktime/
+  //  discuss at: http://locutus.io/php/mktime/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: baris ozdil
   // improved by: Kevin van Zonneveld (http://kvz.io)

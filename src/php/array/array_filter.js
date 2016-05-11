@@ -1,5 +1,5 @@
 module.exports = function array_filter (arr, func) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/array_filter/
+  //  discuss at: http://locutus.io/php/array_filter/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: max4ever
   // improved by: Brett Zamir (http://brett-zamir.me)

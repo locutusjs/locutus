@@ -1,5 +1,5 @@
 module.exports = function date (format, timestamp) {
-  //  discuss at: http://locutusjs.io/php/date/
+  //  discuss at: http://locutus.io/php/date/
   // original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
   // original by: gettimeofday
   //    parts by: Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)
@@ -28,7 +28,7 @@ module.exports = function date (format, timestamp) {
   // bugfixed by: majak
   // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: omid (http://locutusjs.io/php/380:380#comment_137122)
+  // bugfixed by: omid (http://locutus.io/php/380:380#comment_137122)
   // bugfixed by: Chris (http://www.devotis.nl/)
   //      note 1: Uses global: locutus to store the default timezone
   //      note 1: Although the function potentially allows timezone info

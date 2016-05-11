@@ -1,5 +1,5 @@
 module.exports = function http_build_query (formdata, numericPrefix, argSeparator) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/http_build_query/
+  //  discuss at: http://locutus.io/php/http_build_query/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Legaev Andrey
   // improved by: Michael White (http://getsprink.com)

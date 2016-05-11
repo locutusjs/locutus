@@ -1,5 +1,5 @@
 module.exports = function preg_quote (str, delimiter) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/preg_quote/
+  //  discuss at: http://locutus.io/php/preg_quote/
   // original by: booeyOH
   // improved by: Ates Goral (http://magnetiq.com)
   // improved by: Kevin van Zonneveld (http://kvz.io)

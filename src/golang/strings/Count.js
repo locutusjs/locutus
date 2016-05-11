@@ -1,5 +1,5 @@
 module.exports = function Count (s, sep) {
-  //  discuss at: http://locutusjs.io/php/printf/
+  //  discuss at: http://locutus.io/php/printf/
   // original by: Kevin van Zonneveld (http://kvz.io)
   //    input by: GopherJS (http://www.gopherjs.org/)
   //   example 1: Count("cheese", "e")

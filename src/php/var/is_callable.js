@@ -1,5 +1,5 @@
 module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/is_callable/
+  //  discuss at: http://locutus.io/php/is_callable/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: François
   // improved by: Brett Zamir (http://brett-zamir.me)

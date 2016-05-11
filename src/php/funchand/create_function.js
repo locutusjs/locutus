@@ -1,5 +1,5 @@
 module.exports = function create_function (args, code) { // eslint-disable-line camelcase
-  //       discuss at: http://locutusjs.io/php/create_function/
+  //       discuss at: http://locutus.io/php/create_function/
   //      original by: Johnny Mast (http://www.phpvrouwen.nl)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
   //        example 1: var $f = create_function('a, b', 'return (a + b)')

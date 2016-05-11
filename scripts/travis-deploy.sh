@@ -18,7 +18,7 @@ __webroot="${__root}/website"
 # Only set git user until we verified we're on Travis
 # We don't want to change this during local experiments
 git config --global user.name 'Locutus Bot'
-git config --global user.email 'bot@locutusjs.io'
+git config --global user.email 'bot@locutus.io'
 
 pushd "${__root}"
   sed -i.bak -e "s~git@github.com:kvz/locutus.git~${GHPAGES_URL}~" "${__webroot}/_config.yml"

@@ -1,5 +1,5 @@
 module.exports = function array_combine (keys, values) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/array_combine/
+  //  discuss at: http://locutus.io/php/array_combine/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //   example 1: array_combine([0,1,2], ['kevin','van','zonneveld'])

@@ -1,5 +1,5 @@
 module.exports = function next (arr) {
-  //  discuss at: http://locutusjs.io/php/next/
+  //  discuss at: http://locutus.io/php/next/
   // original by: Brett Zamir (http://brett-zamir.me)
   //      note 1: Uses global: locutus to store the array pointer
   //   example 1: var $transport = ['foot', 'bike', 'car', 'plane']

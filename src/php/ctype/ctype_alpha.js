@@ -1,5 +1,5 @@
 module.exports = function ctype_alpha (text) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/ctype_alpha/
+  //  discuss at: http://locutus.io/php/ctype_alpha/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: ctype_alpha('Az')
   //   returns 1: true

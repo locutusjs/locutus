@@ -1,5 +1,5 @@
 module.exports = function asort (inputArr, sortFlags) {
-  //  discuss at: http://locutusjs.io/php/asort/
+  //  discuss at: http://locutus.io/php/asort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)

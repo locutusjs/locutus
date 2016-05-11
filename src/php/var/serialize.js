@@ -1,5 +1,5 @@
 module.exports = function serialize (mixedValue) {
-  //  discuss at: http://locutusjs.io/php/serialize/
+  //  discuss at: http://locutus.io/php/serialize/
   // original by: Arpad Ray (mailto:arpad@php.net)
   // improved by: Dino
   // improved by: Le Torbi (http://www.letorbi.de/)

@@ -1,5 +1,5 @@
 module.exports = function array_merge () { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/array_merge/
+  //  discuss at: http://locutus.io/php/array_merge/
   // original by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Nate
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

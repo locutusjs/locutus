@@ -1,5 +1,5 @@
 module.exports = function doubleval (mixedVar) {
-  //  discuss at: http://locutusjs.io/php/doubleval/
+  //  discuss at: http://locutus.io/php/doubleval/
   // original by: Brett Zamir (http://brett-zamir.me)
   //      note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
   //      note 1: it different from the PHP implementation. We can't fix this unfortunately.

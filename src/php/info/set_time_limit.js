@@ -1,5 +1,5 @@
 module.exports = function set_time_limit (seconds) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/set_time_limit/
+  //  discuss at: http://locutus.io/php/set_time_limit/
   // original by: Brett Zamir (http://brett-zamir.me)
   //        test: skip-all
   //   example 1: set_time_limit(4)

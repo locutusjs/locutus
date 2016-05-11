@@ -1,5 +1,5 @@
 module.exports = function localeconv () {
-  //  discuss at: http://locutusjs.io/php/localeconv/
+  //  discuss at: http://locutus.io/php/localeconv/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: setlocale('LC_ALL', 'en_US')
   //   example 1: localeconv()

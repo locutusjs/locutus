@@ -1,5 +1,5 @@
 module.exports = function urldecode (str) {
-  //       discuss at: http://locutusjs.io/php/urldecode/
+  //       discuss at: http://locutus.io/php/urldecode/
   //      original by: Philip Peterson
   //      improved by: Kevin van Zonneveld (http://kvz.io)
   //      improved by: Kevin van Zonneveld (http://kvz.io)

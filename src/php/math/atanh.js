@@ -1,5 +1,5 @@
 module.exports = function atanh (arg) {
-  //  discuss at: http://locutusjs.io/php/atanh/
+  //  discuss at: http://locutus.io/php/atanh/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: atanh(0.3)
   //   returns 1: 0.3095196042031118

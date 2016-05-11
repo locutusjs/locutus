@@ -1,5 +1,5 @@
 module.exports = function str_replace (search, replace, subject, countObj) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/str_replace/
+  //  discuss at: http://locutus.io/php/str_replace/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Gabriel Paderni
   // improved by: Philip Peterson

@@ -1,5 +1,5 @@
 module.exports = function abs (mixedNumber) {
-  //  discuss at: http://locutusjs.io/php/abs/
+  //  discuss at: http://locutus.io/php/abs/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Karol Kowalski
   // improved by: Kevin van Zonneveld (http://kvz.io)

@@ -1,5 +1,5 @@
 module.exports = function acos (arg) {
-  //  discuss at: http://locutusjs.io/ruby/Math/acos/
+  //  discuss at: http://locutus.io/ruby/Math/acos/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //      note 1: Sorry about the crippled test.
   //      note 1: Needed because precision differs accross platforms.

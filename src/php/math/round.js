@@ -1,5 +1,5 @@
 module.exports = function round (value, precision, mode) {
-  //  discuss at: http://locutusjs.io/php/round/
+  //  discuss at: http://locutus.io/php/round/
   // original by: Philip Peterson
   //  revised by: Onno Marsman (https://twitter.com/onnomarsman)
   //  revised by: T.Wild

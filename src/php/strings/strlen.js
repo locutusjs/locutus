@@ -1,5 +1,5 @@
 module.exports = function strlen (string) {
-  //  discuss at: http://locutusjs.io/php/strlen/
+  //  discuss at: http://locutus.io/php/strlen/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Sakimori
   // improved by: Kevin van Zonneveld (http://kvz.io)

@@ -1,5 +1,5 @@
 module.exports = function tanh (arg) {
-  //  discuss at: http://locutusjs.io/php/tanh/
+  //  discuss at: http://locutus.io/php/tanh/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   // imprived by: Robert Eisele (http://www.xarg.org/)
   //   example 1: tanh(5.4251848798444815)

@@ -1,5 +1,5 @@
 module.exports = function urlencode (str) {
-  //       discuss at: http://locutusjs.io/php/urlencode/
+  //       discuss at: http://locutus.io/php/urlencode/
   //      original by: Philip Peterson
   //      improved by: Kevin van Zonneveld (http://kvz.io)
   //      improved by: Kevin van Zonneveld (http://kvz.io)

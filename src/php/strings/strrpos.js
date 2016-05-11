@@ -1,5 +1,5 @@
 module.exports = function strrpos (haystack, needle, offset) {
-  //  discuss at: http://locutusjs.io/php/strrpos/
+  //  discuss at: http://locutus.io/php/strrpos/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

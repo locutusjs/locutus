@@ -1,5 +1,5 @@
 module.exports = function capwords (str) {
-  //  discuss at: http://locutusjs.io/python/capwords/
+  //  discuss at: http://locutus.io/python/capwords/
   // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
   // improved by: Waldo Malqui Silva (http://waldo.malqui.info)
   // improved by: Robin

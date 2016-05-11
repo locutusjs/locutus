@@ -1,5 +1,5 @@
 module.exports = function unserialize (data) {
-  //  discuss at: http://locutusjs.io/php/unserialize/
+  //  discuss at: http://locutus.io/php/unserialize/
   // original by: Arpad Ray (mailto:arpad@php.net)
   // improved by: Pedro Tainha (http://www.pedrotainha.com)
   // improved by: Kevin van Zonneveld (http://kvz.io)
@@ -27,7 +27,7 @@ module.exports = function unserialize (data) {
   var $global = (typeof window !== 'undefined' ? window : GLOBAL)
 
   var utf8Overhead = function (chr) {
-    // http://locutusjs.io/php/unserialize:571#comment_95906
+    // http://locutus.io/php/unserialize:571#comment_95906
     var code = chr.charCodeAt(0)
     var zeroCodes = [
       338,

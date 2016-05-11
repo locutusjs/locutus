@@ -1,5 +1,5 @@
 module.exports = function array_sum (array) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/array_sum/
+  //  discuss at: http://locutus.io/php/array_sum/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Nate
   // bugfixed by: Gilbert

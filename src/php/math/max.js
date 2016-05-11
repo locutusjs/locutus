@@ -1,5 +1,5 @@
 module.exports = function max () {
-  //  discuss at: http://locutusjs.io/php/max/
+  //  discuss at: http://locutus.io/php/max/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //  revised by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Jack

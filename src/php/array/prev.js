@@ -1,5 +1,5 @@
 module.exports = function prev (arr) {
-  //  discuss at: http://locutusjs.io/php/prev/
+  //  discuss at: http://locutus.io/php/prev/
   // original by: Brett Zamir (http://brett-zamir.me)
   //      note 1: Uses global: locutus to store the array pointer
   //   example 1: var $transport = ['foot', 'bike', 'car', 'plane']

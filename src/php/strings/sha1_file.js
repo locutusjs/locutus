@@ -1,5 +1,5 @@
 module.exports = function sha1_file (str_filename) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/sha1_file/
+  //  discuss at: http://locutus.io/php/sha1_file/
   // original by: Kevin van Zonneveld (http://kvz.io)
   //      note 1: Relies on file_get_contents which does not work in the browser, so Node only.
   //      note 2: Keep in mind that in accordance with PHP, the whole file is buffered and then

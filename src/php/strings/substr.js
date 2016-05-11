@@ -1,5 +1,5 @@
 module.exports = function substr (str, start, len) {
-  //  discuss at: http://locutusjs.io/php/substr/
+  //  discuss at: http://locutus.io/php/substr/
   // original by: Martijn Wieringa
   // bugfixed by: T.Wild
   // improved by: Onno Marsman (https://twitter.com/onnomarsman)

@@ -1,5 +1,5 @@
 module.exports = function strstr (haystack, needle, bool) {
-  //  discuss at: http://locutusjs.io/php/strstr/
+  //  discuss at: http://locutus.io/php/strstr/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Kevin van Zonneveld (http://kvz.io)

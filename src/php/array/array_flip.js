@@ -1,5 +1,5 @@
 module.exports = function array_flip (trans) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/array_flip/
+  //  discuss at: http://locutus.io/php/array_flip/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Pier Paolo Ramon (http://www.mastersoup.com/)
   // improved by: Brett Zamir (http://brett-zamir.me)

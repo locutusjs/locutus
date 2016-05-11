@@ -1,5 +1,5 @@
 module.exports = function end (arr) {
-  //  discuss at: http://locutusjs.io/php/end/
+  //  discuss at: http://locutus.io/php/end/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Legaev Andrey
   //  revised by: J A R

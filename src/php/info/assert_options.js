@@ -1,5 +1,5 @@
 module.exports = function assert_options (what, value) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/assert_options/
+  //  discuss at: http://locutus.io/php/assert_options/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: assert_options('ASSERT_CALLBACK')
   //   returns 1: null

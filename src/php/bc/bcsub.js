@@ -1,5 +1,5 @@
 module.exports = function bcsub (leftOperand, rightOperand, scale) {
-  //  discuss at: http://locutusjs.io/php/bcsub/
+  //  discuss at: http://locutus.io/php/bcsub/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcsub(1, 2)
   //   returns 1: '-1'

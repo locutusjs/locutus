@@ -1,5 +1,5 @@
 module.exports = function microtime (getAsFloat) {
-  //  discuss at: http://locutusjs.io/php/microtime/
+  //  discuss at: http://locutus.io/php/microtime/
   // original by: Paulo Freitas
   // improved by: Dumitru Uzun (http://duzun.me)
   //   example 1: var $timeStamp = microtime(true)

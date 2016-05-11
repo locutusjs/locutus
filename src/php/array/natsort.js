@@ -1,5 +1,5 @@
 module.exports = function natsort (inputArr) {
-  //  discuss at: http://locutusjs.io/php/natsort/
+  //  discuss at: http://locutus.io/php/natsort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Theriault (https://github.com/Theriault)

@@ -1,5 +1,5 @@
 module.exports = function quotemeta (str) {
-  //  discuss at: http://locutusjs.io/php/quotemeta/
+  //  discuss at: http://locutus.io/php/quotemeta/
   // original by: Paulo Freitas
   //   example 1: quotemeta(". + * ? ^ ( $ )")
   //   returns 1: '\\. \\+ \\* \\? \\^ \\( \\$ \\)'

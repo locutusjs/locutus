@@ -1,5 +1,5 @@
 module.exports = function floatval (mixedVar) {
-  //  discuss at: http://locutusjs.io/php/floatval/
+  //  discuss at: http://locutus.io/php/floatval/
   // original by: Michael White (http://getsprink.com)
   //      note 1: The native parseFloat() method of JavaScript returns NaN
   //      note 1: when it encounters a string before an int or float value.

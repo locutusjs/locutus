@@ -1,5 +1,5 @@
 module.exports = function strtr (str, trFrom, trTo) {
-  //  discuss at: http://locutusjs.io/php/strtr/
+  //  discuss at: http://locutus.io/php/strtr/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: uestla
   //    input by: Alan C

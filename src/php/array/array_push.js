@@ -1,5 +1,5 @@
 module.exports = function array_push (inputArr) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/array_push/
+  //  discuss at: http://locutus.io/php/array_push/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Brett Zamir (http://brett-zamir.me)
   //      note 1: Note also that IE retains information about property position even

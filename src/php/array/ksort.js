@@ -1,5 +1,5 @@
 module.exports = function ksort (inputArr, sortFlags) {
-  //  discuss at: http://locutusjs.io/php/ksort/
+  //  discuss at: http://locutus.io/php/ksort/
   // original by: GeekFG (http://geekfg.blogspot.com)
   // improved by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Brett Zamir (http://brett-zamir.me)

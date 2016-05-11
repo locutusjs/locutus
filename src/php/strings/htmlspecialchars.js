@@ -1,5 +1,5 @@
 module.exports = function htmlspecialchars (string, quoteStyle, charset, doubleEncode) {
-  //       discuss at: http://locutusjs.io/php/htmlspecialchars/
+  //       discuss at: http://locutus.io/php/htmlspecialchars/
   //      original by: Mirek Slugen
   //      improved by: Kevin van Zonneveld (http://kvz.io)
   //      bugfixed by: Nathan

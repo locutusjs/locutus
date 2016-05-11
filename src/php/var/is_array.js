@@ -1,5 +1,5 @@
 module.exports = function is_array (mixedVar) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/is_array/
+  //  discuss at: http://locutus.io/php/is_array/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Legaev Andrey
   // improved by: Onno Marsman (https://twitter.com/onnomarsman)

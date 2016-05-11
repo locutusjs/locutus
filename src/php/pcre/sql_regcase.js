@@ -1,5 +1,5 @@
 module.exports = function sql_regcase (str) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/sql_regcase/
+  //  discuss at: http://locutus.io/php/sql_regcase/
   // original by: Brett Zamir (http://brett-zamir.me)
   //   example 1: sql_regcase('Foo - bar.')
   //   returns 1: '[Ff][Oo][Oo] - [Bb][Aa][Rr].'

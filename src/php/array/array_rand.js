@@ -1,5 +1,5 @@
 module.exports = function array_rand (input, numReq) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/array_rand/
+  //  discuss at: http://locutus.io/php/array_rand/
   // original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //   example 1: array_rand( ['Kevin'], 1 )
   //   returns 1: 0

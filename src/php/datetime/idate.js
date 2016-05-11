@@ -1,5 +1,5 @@
 module.exports = function idate (format, timestamp) {
-  //  discuss at: http://locutusjs.io/php/idate/
+  //  discuss at: http://locutus.io/php/idate/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: date
   // original by: gettimeofday

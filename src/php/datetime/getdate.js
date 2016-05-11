@@ -1,5 +1,5 @@
 module.exports = function getdate (timestamp) {
-  //  discuss at: http://locutusjs.io/php/getdate/
+  //  discuss at: http://locutus.io/php/getdate/
   // original by: Paulo Freitas
   //    input by: Alex
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

@@ -1,5 +1,5 @@
 module.exports = function gmstrftime (format, timestamp) {
-  //  discuss at: http://locutusjs.io/php/gmstrftime/
+  //  discuss at: http://locutus.io/php/gmstrftime/
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: Alex
   // bugfixed by: Brett Zamir (http://brett-zamir.me)

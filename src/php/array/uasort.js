@@ -1,5 +1,5 @@
 module.exports = function uasort (inputArr, sorter) {
-  //  discuss at: http://locutusjs.io/php/uasort/
+  //  discuss at: http://locutus.io/php/uasort/
   // original by: Brett Zamir (http://brett-zamir.me)
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: Theriault (https://github.com/Theriault)

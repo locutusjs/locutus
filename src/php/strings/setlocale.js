@@ -1,5 +1,5 @@
 module.exports = function setlocale (category, locale) {
-  //  discuss at: http://locutusjs.io/php/setlocale/
+  //  discuss at: http://locutus.io/php/setlocale/
   // original by: Brett Zamir (http://brett-zamir.me)
   // original by: Blues (http://hacks.bluesmoon.info/strftime/strftime.js)
   // original by: YUI Library (http://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html)

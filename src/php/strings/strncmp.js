@@ -1,5 +1,5 @@
 module.exports = function strncmp (str1, str2, lgth) {
-  //       discuss at: http://locutusjs.io/php/strncmp/
+  //       discuss at: http://locutus.io/php/strncmp/
   //      original by: Waldo Malqui Silva (http://waldo.malqui.info)
   //         input by: Steve Hilder
   //      improved by: Kevin van Zonneveld (http://kvz.io)

@@ -1,5 +1,5 @@
 module.exports = function nl2br (str, isXhtml) {
-  //  discuss at: http://locutusjs.io/php/nl2br/
+  //  discuss at: http://locutus.io/php/nl2br/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Philip Peterson
   // improved by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -16,7 +16,7 @@ module.exports = function nl2br (str, isXhtml) {
   //   example 3: nl2br("\nOne\nTwo\n\nThree\n", true)
   //   returns 3: '<br />\nOne<br />\nTwo<br />\n<br />\nThree<br />\n'
 
-  // Adjust comment to avoid issue on locutusjs.io display
+  // Adjust comment to avoid issue on locutus.io display
   var breakTag = (isXhtml || typeof isXhtml === 'undefined') ? '<br ' + '/>' : '<br>'
 
   return (str + '')

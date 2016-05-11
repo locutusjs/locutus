@@ -1,5 +1,5 @@
 module.exports = function xdiff_string_diff (oldData, newData, contextLines, minimal) { // eslint-disable-line camelcase
-  //  discuss at: http://locutusjs.io/php/xdiff_string_diff
+  //  discuss at: http://locutus.io/php/xdiff_string_diff
   // original by: Brett Zamir (http://brett-zamir.me)
   //    based on: Imgen Tata (http://www.myipdf.com/)
   // bugfixed by: Imgen Tata (http://www.myipdf.com/)

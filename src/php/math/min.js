@@ -1,5 +1,5 @@
 module.exports = function min () {
-  //  discuss at: http://locutusjs.io/php/min/
+  //  discuss at: http://locutus.io/php/min/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //  revised by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Jack

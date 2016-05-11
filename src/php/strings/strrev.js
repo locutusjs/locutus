@@ -1,5 +1,5 @@
 module.exports = function strrev (string) {
-  //       discuss at: http://locutusjs.io/php/strrev/
+  //       discuss at: http://locutus.io/php/strrev/
   //      original by: Kevin van Zonneveld (http://kvz.io)
   //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)

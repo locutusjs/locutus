@@ -1,5 +1,5 @@
 module.exports = function vprintf (format, args) {
-  //       discuss at: http://locutusjs.io/php/vprintf/
+  //       discuss at: http://locutus.io/php/vprintf/
   //      original by: Ash Searle (http://hexmen.com/blog/)
   //      improved by: Michael White (http://getsprink.com)
   // reimplemented by: Brett Zamir (http://brett-zamir.me)
