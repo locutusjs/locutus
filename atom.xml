@@ -5,7 +5,7 @@
   <link href="//atom.xml" rel="self"/>
   
   <link href="http://locutusjs.io/"/>
-  <updated>2016-05-02T19:54:13.000Z</updated>
+  <updated>2016-05-03T11:11:50.000Z</updated>
   <id>http://locutusjs.io/</id>
   
   <author>
@@ -20,10 +20,10 @@
     <link href="http://locutusjs.io/2016/05/announcing-locutus/"/>
     <id>http://locutusjs.io/2016/05/announcing-locutus/</id>
     <published>2016-05-02T00:00:00.000Z</published>
-    <updated>2016-05-02T19:54:13.000Z</updated>
+    <updated>2016-05-03T11:11:50.000Z</updated>
     
     <content type="html">&lt;p&gt;As was briefly mentioned in &lt;a href=&quot;/blog/2016/04/20/breaking-bc/&quot;&gt;Breaking Backwards Compatibility&lt;/a&gt;, 
-I am launching a big iteration of php.js today. It includes so &lt;a href=&quot;https://github.com/kvz/locutus/pull/290&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;many&lt;/a&gt; breaking &lt;a href=&quot;https://github.com/kvz/locutus/blob/master/CHANGELOG.md#v200&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;changes&lt;/a&gt; that it is safe to say that, after 
+I am launching a big iteration of php.js today. It includes so &lt;a href=&quot;https://github.com/kvz/locutus/pull/291&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;many&lt;/a&gt; breaking &lt;a href=&quot;https://github.com/kvz/locutus/blob/master/CHANGELOG.md#v200&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;changes&lt;/a&gt; that it is safe to say that, after 
 9 years, php.js is dead. And, like a phoenix, &lt;strong&gt;Locutus&lt;/strong&gt; has risen from its ashes.&lt;/p&gt;
 &lt;p&gt;Locutus will largely have the same mission: &lt;/p&gt;
 &lt;blockquote&gt;
