@@ -7,7 +7,7 @@
           <%- lang.human %>
           (<%- site.pages.find({ language: lang.language, type: 'function' }).length %>)
         </a></li>
-        <% site.pages.find({ language: lang.language, type: 'category' }).each(function (cat) { %>
+        <% site.pages.find({ language: lang.language, type: 'category' }).sort('category').each(function (cat) { %>
         <ul>
           <li><a href="<%- url_for(cat.path).replace('index.html', '') %>">
             <%- cat.category %>

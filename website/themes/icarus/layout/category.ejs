@@ -11,15 +11,13 @@
 
     <div class="article-entry">
       <ul>
-        <% site.pages.find({ language: page.language, category: page.category, type: 'function' }).each(function (func) { %>
+        <% site.pages.find({ language: page.language, category: page.category, type: 'function' }).sort('function').each(function (func) { %>
           <li><a href="<%- url_for(func.path).replace('index.html', '') %>"><%- func.function %></a></li>
         <% }) %>
       </ul>
 
       <hr />
       <%- partial('locutus/add_more', {curLang: curLang}) %>
-
-      <hr />
       <p>
         <a href="/<%= page.language %>/">&laquo; More <%= curLang.human %> functions</a>
       </p>

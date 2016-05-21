@@ -7,10 +7,10 @@
     </header>
 
     <div class="article-entry">
-      <% site.pages.find({ language: page.language, type: 'category' }).each(function (cat) { %>
+      <% site.pages.find({ language: page.language, type: 'category'}).sort('category').each(function (cat) { %>
         <strong><%- cat.category %></strong>
         <ul>
-          <% site.pages.find({ language: cat.language, category: cat.category, type: 'function' }).each(function (func) { %>
+          <% site.pages.find({ language: cat.language, category: cat.category, type: 'function' }).sort('function').each(function (func) { %>
             <li><a href="<%- url_for(func.path).replace('index.html', '') %>"><%- func.function %></a></li>
           <% }) %>
         </ul>

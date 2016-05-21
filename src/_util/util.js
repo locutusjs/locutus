@@ -106,7 +106,15 @@ class Util {
 
   _injectwebOne (params, cb) {
     var authors = {}
-    var keys = ['original by', 'improved by', 'parts by', 'bugfixed by', 'revised by', 'input by']
+    var keys = [
+      'original by',
+      'improved by',
+      'reimplemented by',
+      'parts by',
+      'bugfixed by',
+      'revised by',
+      'input by'
+    ]
     keys.forEach(function (key) {
       if (params.headKeys[key]) {
         authors[key] = _.flattenDeep(params.headKeys[key])
@@ -142,7 +150,7 @@ class Util {
           '<a href="https://golang.org/pkg/strings/">Go strings documentation</a>',
           '<a href="https://golang.org/src/strings/strings.go">Go strings source</a>',
           '<a href="https://golang.org/src/strings/example_test.go">Go strings examples source</a>',
-          '<a href=http://gophersjs.com"">GopherJS</a>'
+          '<a href="http://gophersjs.com">GopherJS</a>'
         ],
         origin_template: '<a href="https://golang.org/pkg/[category]/#[function]">[human]\'s [category].[function]</a>'
       },
