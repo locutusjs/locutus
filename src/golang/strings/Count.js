@@ -7,8 +7,6 @@ module.exports = function Count (s, sep) {
   //   example 2: Count("five", "") // before & after each rune
   //   returns 2: 5
 
-  var Index = require('../strings/Index2')
-
   var pos
   var n = 0
 
@@ -23,7 +21,7 @@ module.exports = function Count (s, sep) {
     return 0
   }
   while (true) {
-    pos = Index(s, sep)
+    pos = (s + '').indexOf(sep)
     if (pos === -1) {
       break
     }
