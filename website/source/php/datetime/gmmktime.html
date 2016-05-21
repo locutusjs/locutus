@@ -15,7 +15,11 @@ authors:
 notes: []
 type: function
 layout: function
-title: PHP's gmmktime in JavaScript
+title: PHP's datetime.gmmktime in JavaScript
+description: >-
+  Here’s what our current JavaScript equivalent to <a
+  href="http://php.net/manual/en/function.gmmktime.php">PHP's gmmktime</a> looks
+  like.
 function: gmmktime
 category: datetime
 language: php
@@ -63,8 +67,10 @@ alias:
   // Set hours, minutes, and seconds.
   d.setUTCHours(r[0], r[1], r[2])
 
+  var time = d.getTime()
+
   // Divide milliseconds by 1000 to return seconds and drop decimal.
   // Add 1 second if negative or it'll be off from PHP by 1 second.
-  return (d.getTime() / 1e3 >> 0) - (d.getTime() < 0)
+  return (time / 1e3 >> 0) - (time < 0)
 }
 {% endcodeblock %}

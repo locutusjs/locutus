@@ -12,6 +12,8 @@ authors:
   improved by:
     - T.J. Leahy
     - Michael White
+  reimplemented by:
+    - 'Kevin van Zonneveld (http://kevin.vanzonneveld.net)'
 notes:
   - |-
     If node or the browser does not offer JSON.parse,
@@ -19,7 +21,11 @@ notes:
     to its own implementation using eval, and hence should be considered unsafe
 type: function
 layout: function
-title: PHP's json_decode in JavaScript
+title: PHP's json.json_decode in JavaScript
+description: >-
+  Here’s what our current JavaScript equivalent to <a
+  href="http://php.net/manual/en/function.json_decode.php">PHP's json_decode</a>
+  looks like.
 function: json_decode
 category: json
 language: php
