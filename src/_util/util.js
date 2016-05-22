@@ -21,6 +21,102 @@ class Util {
 
     this.pattern = [this.__src + '/**/**/*.js', '!**/index.js', '!**/_util/**']
     this.concurrency = 8
+    this.authorKeys = [
+      'original by',
+      'improved by',
+      'reimplemented by',
+      'parts by',
+      'bugfixed by',
+      'revised by',
+      'input by'
+    ]
+
+    this.langDefaults = {
+      c: {
+        order: 1,
+        function_title_template: '[language]\'s [category].[function] in JavaScript',
+        human: 'C',
+        packageType: 'header file',
+        inspiration_urls: [
+          '<a href="http://en.cppreference.com/w/c/numeric/math">the C math.h documentation</a>',
+          '<a href="https://sourceware.org/git/?p=glibc.git;a=tree;f=math;hb=HEAD">the C math.h source</a>'
+        ],
+        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="http://en.cppreference.com/w/c/numeric/[category]/[function]">[language]\'s [function] found in the [category].h header file</a> looks like.'
+      },
+      golang: {
+        order: 2,
+        function_title_template: '[language]\'s [category].[function] in JavaScript',
+        human: 'Go',
+        packageType: 'package',
+        inspiration_urls: [
+          '<a href="https://golang.org/pkg/strings/">Go strings documentation</a>',
+          '<a href="https://golang.org/src/strings/strings.go">Go strings source</a>',
+          '<a href="https://golang.org/src/strings/example_test.go">Go strings examples source</a>',
+          '<a href="http://gophersjs.com">GopherJS</a>'
+        ],
+        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="https://golang.org/pkg/[category]/#[function]">[language]\'s [category].[function]</a> looks like.'
+      },
+      python: {
+        order: 3,
+        function_title_template: '[language]\'s [category].[function] in JavaScript',
+        human: 'Python',
+        packageType: 'module',
+        inspiration_urls: [
+          '<a href="https://docs.python.org/3/library/string.html">the Python 3 standard library string page</a>'
+        ],
+        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="https://docs.python.org/3/library/[category].html#[category].[function]">[language]\'s [category].[function]</a> looks like.'
+      },
+      ruby: {
+        order: 4,
+        function_title_template: '[language]\'s [category].[function] in JavaScript',
+        human: 'Ruby',
+        packageType: 'module',
+        inspiration_urls: [
+          '<a href="http://ruby-doc.org/core-2.2.2/Math.html">the Ruby core documentation</a>'
+        ],
+        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="http://ruby-doc.org/core-2.2.2/[category].html#method-c-[function]">[language]\'s [category].[function]</a> looks like.'
+      },
+      php: {
+        order: 5,
+        function_title_template: '[language]\'s [function] in JavaScript',
+        human: 'PHP',
+        packageType: 'extension',
+        inspiration_urls: [
+          '<a href="http://php.net/manual/en/book.strings.php">the PHP string documentation</a>',
+          '<a href="https://github.com/php/php-src/blob/master/ext/standard/string.c#L5338">the PHP string source</a>',
+          '<a href="https://github.com/php/php-src/blob/master/ext/standard/tests/strings/str_pad_variation1.phpt">a PHP str_pad test</a>'
+        ],
+        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="http://php.net/manual/en/function.[function].php">[language]\'s [function]</a> looks like.',
+        alias: [
+          '/categories/',
+          '/categories/array/',
+          '/categories/bc/',
+          '/categories/ctype/',
+          '/categories/datetime/',
+          '/categories/exec/',
+          '/categories/filesystem/',
+          '/categories/funchand/',
+          '/categories/i18n/',
+          '/categories/index/',
+          '/categories/info/',
+          '/categories/json/',
+          '/categories/math/',
+          '/categories/misc/',
+          '/categories/net/',
+          '/categories/network/',
+          '/categories/pcre/',
+          '/categories/strings/',
+          '/categories/url/',
+          '/categories/var/',
+          '/categories/xdiff/',
+          '/categories/xml/',
+          '/functions/index/',
+          '/functions/',
+          '/packages/',
+          '/packages/index/'
+        ]
+      }
+    }
 
     this.allowSkip = (argv.indexOf('--noskip') === -1)
 
@@ -106,16 +202,7 @@ class Util {
 
   _injectwebOne (params, cb) {
     var authors = {}
-    var keys = [
-      'original by',
-      'improved by',
-      'reimplemented by',
-      'parts by',
-      'bugfixed by',
-      'revised by',
-      'input by'
-    ]
-    keys.forEach(function (key) {
+    this.authorKeys.forEach(function (key) {
       if (params.headKeys[key]) {
         authors[key] = _.flattenDeep(params.headKeys[key])
       }
@@ -126,105 +213,19 @@ class Util {
       '/website/source/',
       params.language
     ].join('')
+
     var langIndexPath = langPath + '/index.html'
     var catPath = langPath + '/' + params.category
     var catIndexPath = catPath + '/' + 'index.html'
     var funcPath = catPath + '/' + params.func_name + '.html'
 
-    var langDefaults = {
-      c: {
-        order: 1,
-        function_title_template: '[language]\'s [category].[function] in JavaScript',
-        human: 'C',
-        packageType: 'header file',
-        inspiration_urls: [
-          '<a href="http://en.cppreference.com/w/c/numeric/math">the C math.h documentation</a>',
-          '<a href="https://sourceware.org/git/?p=glibc.git;a=tree;f=math;hb=HEAD">the C math.h source</a>'
-        ],
-        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="http://en.cppreference.com/w/c/numeric/[category]/[function]">[language]\'s [function] found in the [category].h header file</a> looks like.'
-      },
-      golang: {
-        order: 2,
-        function_title_template: '[language]\'s [category].[function] in JavaScript',
-        human: 'Go',
-        packageType: 'package',
-        inspiration_urls: [
-          '<a href="https://golang.org/pkg/strings/">Go strings documentation</a>',
-          '<a href="https://golang.org/src/strings/strings.go">Go strings source</a>',
-          '<a href="https://golang.org/src/strings/example_test.go">Go strings examples source</a>',
-          '<a href="http://gophersjs.com">GopherJS</a>'
-        ],
-        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="https://golang.org/pkg/[category]/#[function]">[language]\'s [category].[function]</a> looks like.'
-      },
-      php: {
-        order: 5,
-        function_title_template: '[language]\'s [function] in JavaScript',
-        human: 'PHP',
-        packageType: 'extension',
-        inspiration_urls: [
-          '<a href="http://php.net/manual/en/book.strings.php">the PHP string documentation</a>',
-          '<a href="https://github.com/php/php-src/blob/master/ext/standard/string.c#L5338">the PHP string source</a>',
-          '<a href="https://github.com/php/php-src/blob/master/ext/standard/tests/strings/str_pad_variation1.phpt">a PHP str_pad test</a>'
-        ],
-        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="http://php.net/manual/en/function.[function].php">[language]\'s [function]</a> looks like.',
-        alias: [
-          '/categories/',
-          '/categories/array/',
-          '/categories/bc/',
-          '/categories/ctype/',
-          '/categories/datetime/',
-          '/categories/exec/',
-          '/categories/filesystem/',
-          '/categories/funchand/',
-          '/categories/i18n/',
-          '/categories/index/',
-          '/categories/info/',
-          '/categories/json/',
-          '/categories/math/',
-          '/categories/misc/',
-          '/categories/net/',
-          '/categories/network/',
-          '/categories/pcre/',
-          '/categories/strings/',
-          '/categories/url/',
-          '/categories/var/',
-          '/categories/xdiff/',
-          '/categories/xml/',
-          '/functions/index/',
-          '/functions/',
-          '/packages/',
-          '/packages/index/'
-        ]
-      },
-      python: {
-        order: 3,
-        function_title_template: '[language]\'s [category].[function] in JavaScript',
-        human: 'Python',
-        packageType: 'module',
-        inspiration_urls: [
-          '<a href="https://docs.python.org/3/library/string.html">the Python 3 standard library string page</a>'
-        ],
-        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="https://docs.python.org/3/library/[category].html#[category].[function]">[language]\'s [category].[function]</a> looks like.'
-      },
-      ruby: {
-        order: 4,
-        function_title_template: '[language]\'s [category].[function] in JavaScript',
-        human: 'Ruby',
-        packageType: 'module',
-        inspiration_urls: [
-          '<a href="http://ruby-doc.org/core-2.2.2/Math.html">the Ruby core documentation</a>'
-        ],
-        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="http://ruby-doc.org/core-2.2.2/[category].html#method-c-[function]">[language]\'s [category].[function]</a> looks like.'
-      }
-    }
-
     if (!this._injectwebBuffer[langIndexPath]) {
       var langTitle = ''
-      langTitle += langDefaults[params.language].human + ' '
-      langTitle += langDefaults[params.language].packageType + 's '
+      langTitle += this.langDefaults[params.language].human + ' '
+      langTitle += this.langDefaults[params.language].packageType + 's '
       langTitle += ' in JavaScript'
 
-      var langData = Object.assign({}, langDefaults[params.language], {
+      var langData = Object.assign({}, this.langDefaults[params.language], {
         warning: 'This file is auto generated by `npm run web:inject`, do not edit by hand',
         type: 'language',
         layout: 'language',
@@ -236,9 +237,9 @@ class Util {
 
     if (!this._injectwebBuffer[catIndexPath]) {
       var catTitle = ''
-      catTitle += langDefaults[params.language].human + '\'s '
+      catTitle += this.langDefaults[params.language].human + '\'s '
       catTitle += params.category + ' '
-      catTitle += langDefaults[params.language].packageType + ' '
+      catTitle += this.langDefaults[params.language].packageType + ' '
       catTitle += ' in JavaScript'
 
       var catData = {
@@ -252,13 +253,13 @@ class Util {
       this._injectwebBuffer[catIndexPath] = '---' + '\n' + YAML.safeDump(catData).trim() + '\n' + '---' + '\n'
     }
 
-    var functionTitle = langDefaults[params.language].function_title_template
-      .replace(/\[language\]/g, langDefaults[params.language].human)
+    var functionTitle = this.langDefaults[params.language].function_title_template
+      .replace(/\[language\]/g, this.langDefaults[params.language].human)
       .replace(/\[category\]/g, params.category)
       .replace(/\[function\]/g, params.func_name)
 
-    var functionDescription = langDefaults[params.language].function_description_template
-      .replace(/\[language\]/g, langDefaults[params.language].human)
+    var functionDescription = this.langDefaults[params.language].function_description_template
+      .replace(/\[language\]/g, this.langDefaults[params.language].human)
       .replace(/\[category\]/g, params.category)
       .replace(/\[function\]/g, params.func_name)
 
