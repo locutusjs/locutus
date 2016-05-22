@@ -158,7 +158,7 @@ class Util {
       },
       php: {
         order: 5,
-        function_title_template: '[language]\'s [category].[function] in JavaScript',
+        function_title_template: '[language]\'s [function] in JavaScript',
         human: 'PHP',
         packageType: 'extension',
         inspiration_urls: [
