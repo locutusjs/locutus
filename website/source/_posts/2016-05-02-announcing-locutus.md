@@ -75,7 +75,7 @@ you can try Locutus right now if you want:
 
 ```bash
 $ npm init
-$ npm install --save --save-exact locutus
+$ npm install locutus
 $ vim index.js
 ```
 
