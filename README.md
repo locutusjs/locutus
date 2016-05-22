@@ -18,7 +18,7 @@ npm install locutus
 ## Use
 
 ```bash
-${EDITOR} try.js
+vim index.js
 ```
 
 ```javascript
@@ -34,7 +34,7 @@ console.log(strings.Contains('Locutus', 'cut'))
 ```
 
 ```bash
-$ node try.js
+$ node index.js
 Resistance is futile
 true
 ```
