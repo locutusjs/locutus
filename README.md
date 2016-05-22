@@ -12,7 +12,7 @@ More info at: http://locutus.io/
 ## Install
 
 ```bash
-npm install --save --save-exact locutus
+npm install locutus
 ```
 
 ## Use
