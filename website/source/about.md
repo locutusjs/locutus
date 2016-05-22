@@ -40,7 +40,7 @@ So, if you know a better way to do something, we would love to see your improvem
 
 ## Contributing
 
-We use [GitHub](http://github.com/kvz/locutus) for collaboration. There are a few guidelines in our [CONTRIBUTING.md](http://github.com/kvz/locutus/CONTRIBUTING.md) document. It would be helpful to glance over them before submitting your work, to avoid unnecessary back and forth, as well as potential disappointment.
+We use [GitHub](http://github.com/kvz/locutus) for collaboration. There are a few guidelines in our [CONTRIBUTING.md](https://github.com/kvz/locutus/blob/master/CONTRIBUTING.md) document. It would be helpful to glance over them before submitting your work, to avoid unnecessary back and forth, as well as potential disappointment.
 
 ## Licensing
 
