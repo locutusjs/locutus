@@ -32,6 +32,7 @@ Ideas that will be planned and find their way into a release at one point
 Released: Not yet
 
 - [ ] Address the 25 remaining test failures that are currently skipped (find out which ones via `npm run test:languages:noskip`)
+- [x] Cache node modules on Travis so we'll be less dependent on npm connectivity
 
 ## v2.0.3
 

@@ -9,6 +9,11 @@ matrix:
   - node_js: 0.1
   - node_js: 0.12
 
+cache:
+  directories:
+  - node_modules
+  - website/node_modules
+
 env:
   global:
     - secure: "c4unKozz+OKffwUmypDb+E8qcR9JM7tb7fQ75jidOiz57HM5hmLVJokj017GrUeoPAw3nSE6l0O9Yvyf5K4QNguZ4IXlrtTO1repPLHyUCX3Hoo3PhXDo6g6ySpt8tMpP3dX6r7JUn5YHjxASfOI8VJTmcnxyNkVH66H6VMOA2I="
