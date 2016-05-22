@@ -1,7 +1,7 @@
-Thank you so much for becoming a Locutus contributor!
+Thank you so much for being or becoming a Locutus contributor!
 
-Even if you have write access, all code changes should be done via a Pull Request. This way
-we can peer-review, and also Travis CI can check if the code adheres to our policies before
+Even if you have write access already, all code changes should be done via a Pull Request. This way
+we can peer-review, and also Travis CI can check if the code adheres to our policies already before
 merging it into `master`.
 
 ## Contributing Checklist
@@ -16,15 +16,30 @@ Here are a few pointers that could save us from disappointment, we'll try to kee
   - Avoid using lengthy (3+ word) comments on the same line as code
 1. Please credit yourself in the function's header-comment: `(original by|reimplemented by|improved by|parts by|bugfixed by|revised by|input by): Your Name (http://your.url)`
 1. If you are fixing bad behavior, or introducing new ones, please add an `example` that would fail before your patch, and a `result` that passes after your patch, to the function's header-comment. We use these for website documentation, as well as to generate test cases that avoid regression going forward. There should already be a few ones there if you want to see how it's done.
-1. If you are contributing performance upgrades, please provide proof via e.g. <jsperf.com>
+1. If you are contributing performance upgrades, please provide proof via e.g. <http://jsperf.com>
 1. Please keep in mind that some obvious readability improvements are sometimes unwanted for performance reasons. For example, we sometimes place similar `for` loops inside `if` and `else` conditions for performance reasons, even though the code could be half the size if we put the conditions inside a single loop.
 
-## Developing Locutus
+## Locutus Development
 
 For ease of development, we recommend these global installs:
 
 ```bash
 npm install --global mocha babel-cli hexo
+```
+
+## Clone
+
+```bash
+cd ~/code
+git clone git@github.com:kvz/locutus.git
+cd locutus
+```
+
+## Install
+
+```bash
+npm install 
+npm run website:install
 ```
 
 ## Test
@@ -50,7 +65,7 @@ env DEBUG=locutus:* mocha \
 test/languages/php/array/test-natsort.js
 ```
 
-## Website 
+## Website Development
 
 We keep the website in `./website` so it's easy to keep code and website in sync as we iterate. For those reading this screaming murder, [HashiCorp does this](https://github.com/hashicorp/terraform/tree/master/website) for all their projects, and it's working well for them on a scale more impressive than ours.
 
