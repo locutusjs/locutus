@@ -3,30 +3,30 @@ module.exports = function array_rand (array, num) { // eslint-disable-line camel
   //      original by: Waldo Malqui Silva (http://waldo.malqui.info)
   // reimplemented by: Rafał Kukawski
   //        example 1: array_rand( ['Kevin'], 1 )
-  //        returns 1: 0
+  //        returns 1: '0'
 
   // By using Object.keys we support both, arrays and objects
   // which phpjs wants to support
-  var keys = Object.keys(array);
+  var keys = Object.keys(array)
 
   if (typeof num === 'undefined' || num === null) {
-    num = 1;
+    num = 1
   } else {
-    num = +num;
+    num = +num
   }
 
   if (isNaN(num) || num < 1 || num > keys.length) {
-    return null;
+    return null
   }
 
   // shuffle the array of keys
   for (var i = keys.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1)); // 0 ≤ j ≤ i
+    var j = Math.floor(Math.random() * (i + 1)) // 0 ≤ j ≤ i
 
-    var tmp = keys[j];
-    keys[j] = keys[i];
-    keys[i] = tmp;
+    var tmp = keys[j]
+    keys[j] = keys[i]
+    keys[i] = tmp
   }
 
-  return num === 1 ? keys[0] : keys.slice(0, num);
+  return num === 1 ? keys[0] : keys.slice(0, num)
 }

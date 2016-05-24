@@ -8,7 +8,7 @@ var array_rand = require('../../../../src/php/array/array_rand.js') // eslint-di
 
 describe('src/php/array/array_rand.js (tested in test/languages/php/array/test-array_rand.js)', function () {
   it('should pass example 1', function (done) {
-    var expected = 0
+    var expected = '0'
     var result = array_rand( ['Kevin'], 1 )
     expect(result).to.deep.equal(expected)
     done()
