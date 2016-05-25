@@ -1,3 +1,4 @@
+var $ = $ || window.jQuery
 $('section.authors').each(function () {
   var uniqueAuthors = {}
   var language = $(this).data('language')
@@ -10,7 +11,7 @@ $('section.authors').each(function () {
       return
     } else if ((m = author.match(/^\s*(.+)\s*\(([^\)]+)\)\s*$/))) {
       author = '<a href="' + m[2] + '">' + m[1] + '</a>'
-    } else if ((m = author.match(/^\s*(https?\:\/\/.+)\s*$/i))) {
+    } else if ((m = author.match(/^\s*(https?:\/\/.+)\s*$/i))) {
       author = '<a href="' + m[1] + '">' + m[1].split('/')[2] + '</a>'
     }
 
