@@ -27,12 +27,22 @@ Ideas that will be planned and find their way into a release at one point
 - [ ] Parse `require`s with AST just like Browserify does. Then we can add dependencies back to website
 - [ ] website: Render authors server-side
 
-## v2.0.4
+## v2.0.5
 
 Released: Not yet
 
 - [ ] Address the 25 remaining test failures that are currently skipped (find out which ones via `npm run test:languages:noskip`)
 - [x] Cache node modules on Travis so we'll be less dependent on npm connectivity
+
+## v2.0.4
+
+Released: 2016-05-25
+
+- [x] Upgrade depurar to 0.2.2, fixing an issue with the testwriter (@kukawski)
+- [x] Add the 'reimplemented by' and 'parts by' contributionKeys to the /authors website page
+- [x] Fix linting warnings when hacking on website by adding eslint dependencies locally
+- [x] Improve array_rand: Fix coding style, hangs when selected huge number of keys from huge array, function signature (@kukawski)
+
 
 ## v2.0.3
 
