@@ -61,7 +61,16 @@ $('section.authors').each(function () {
       // buf += '</strong>'
     }
 
-    var contributionKeys = ['original by', 'improved by', 'bugfixed by', 'revised by', 'input by']
+    var contributionKeys = [
+      'original by',
+      'improved by',
+      'reimplemented by',
+      'parts by',
+      'bugfixed by',
+      'revised by',
+      'input by'
+    ]
+
     var contributions = []
     contributionKeys.forEach(function (key) {
       if (author[key]) {
