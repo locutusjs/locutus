@@ -5,16 +5,16 @@
     
     <title>PHP&#39;s isset in JavaScript | Locutus</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="1234567891011121314151617181920212223242526272829module.exports = function isset () &amp;#123;  //  discuss at: http://locutusjs.io/php/isset/  // original by: Kevin van Zonneveld (http://kvz.io)  // impr">
+    <meta name="description" content="Here’s what our current JavaScript equivalent to PHP&apos;s isset looks like.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="PHP's isset in JavaScript">
-<meta property="og:url" content="http://locutusjs.io/php/var/isset/index.html">
+<meta property="og:url" content="http://locutus.io/php/var/isset/index.html">
 <meta property="og:site_name" content="Locutus">
-<meta property="og:description" content="1234567891011121314151617181920212223242526272829module.exports = function isset () &amp;#123;  //  discuss at: http://locutusjs.io/php/isset/  // original by: Kevin van Zonneveld (http://kvz.io)  // impr">
-<meta property="og:updated_time" content="2016-05-03T10:41:06.000Z">
+<meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s isset looks like.">
+<meta property="og:updated_time" content="2016-06-03T12:06:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's isset in JavaScript">
-<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829module.exports = function isset () &amp;#123;  //  discuss at: http://locutusjs.io/php/isset/  // original by: Kevin van Zonneveld (http://kvz.io)  // impr">
+<meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s isset looks like.">
     
 
     
@@ -84,7 +84,7 @@ ga('send', 'pageview');
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -103,19 +103,22 @@ ga('send', 'pageview');
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: '文章',
+            POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: '分類',
-            TAGS: '標籤',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',
+        x: 'en',
     };
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    console.log(INSIGHT_CONFIG)
 })(window);
 </script>
 <script src="/js/insight.js" type="text/javascript"></script>
+
 
 </div>
         </div>
@@ -143,7 +146,7 @@ ga('send', 'pageview');
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
     </div>
 
                 </td>
@@ -167,31 +170,25 @@ ga('send', 'pageview');
 
     <div class="article-entry">
       <p>
-        Here’s what our current JavaScript equivalent to
-        <a href="http://php.net/manual/en/function.isset.php">PHP's isset</a>
-
-        PHP's
-
-        isset
-        looks like.
+        Here’s what our current JavaScript equivalent to <a href="http://php.net/manual/en/function.isset.php">PHP's isset</a> looks like.
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">isset</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//  discuss at: http://locutusjs.io/php/isset/</span></span><br><span class="line">  <span class="comment">// original by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: FremyCompany</span></span><br><span class="line">  <span class="comment">// improved by: Onno Marsman (https://twitter.com/onnomarsman)</span></span><br><span class="line">  <span class="comment">// improved by: Rafał Kukawski (http://blog.kukawski.pl)</span></span><br><span class="line">  <span class="comment">//   example 1: isset( undefined, true)</span></span><br><span class="line">  <span class="comment">//   returns 1: false</span></span><br><span class="line">  <span class="comment">//   example 2: isset( 'Kevin van Zonneveld' )</span></span><br><span class="line">  <span class="comment">//   returns 2: true</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> a = <span class="built_in">arguments</span></span><br><span class="line">  <span class="keyword">var</span> l = a.length</span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> undef</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (l === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Empty isset'</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (i !== l) &#123;</span><br><span class="line">    <span class="keyword">if</span> (a[i] === undef || a[i] === <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    i++</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">isset</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//  discuss at: http://locutus.io/php/isset/</span></span><br><span class="line">  <span class="comment">// original by: Kevin van Zonneveld (http://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: FremyCompany</span></span><br><span class="line">  <span class="comment">// improved by: Onno Marsman (https://twitter.com/onnomarsman)</span></span><br><span class="line">  <span class="comment">// improved by: Rafał Kukawski (http://blog.kukawski.pl)</span></span><br><span class="line">  <span class="comment">//   example 1: isset( undefined, true)</span></span><br><span class="line">  <span class="comment">//   returns 1: false</span></span><br><span class="line">  <span class="comment">//   example 2: isset( 'Kevin van Zonneveld' )</span></span><br><span class="line">  <span class="comment">//   returns 2: true</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> a = <span class="built_in">arguments</span></span><br><span class="line">  <span class="keyword">var</span> l = a.length</span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> undef</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (l === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Empty isset'</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (i !== l) &#123;</span><br><span class="line">    <span class="keyword">if</span> (a[i] === undef || a[i] === <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    i++</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/kvz/locutus/blob/master/functions/var/isset.js">View on GitHub</a>
+      <a href="https://github.com/kvz/locutus/blob/master/src/php/var/isset.js">View on GitHub</a>
       |
-      <a href="https://github.com/kvz/locutus/edit/master/functions/var/isset.js">Edit on GitHub</a>
+      <a href="https://github.com/kvz/locutus/edit/master/src/php/var/isset.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/kvz/locutus/master/functions/var/isset.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/kvz/locutus/master/src/php/var/isset.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
 
       <h2>How to use</h2>
       <p>
-        You you can install via <code>npm install --save --save-exact locutus</code> and
+        You you can install via <code>npm install locutus</code> and
         require it via <code>require('locutus/php/var/isset')</code>.
         You could also require the <code>var</code> module in full
         so that you could access <code>var.isset</code> instead.
@@ -250,8 +247,6 @@ ga('send', 'pageview');
       <hr />
       
 
-
-      <hr />
       <p>
         <a href="/php/var/">&laquo; More PHP var functions</a>
       </p>
@@ -275,7 +270,7 @@ ga('send', 'pageview');
 
             <br />
             <div class="Social">
-              <a href="https://twitter.com/locutusjs_io" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @locutusjs_io</a><br />
+              <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @locutus_io</a><br />
               <iframe src="http://ghbtns.com/github-btn.html?user=kvz&repo=locutus&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe><br />
               <a href="https://travis-ci.org/kvz/locutus"><img src="https://travis-ci.org/kvz/locutus.svg" alt="Build Status"></a><br />
             </div>
@@ -288,7 +283,7 @@ ga('send', 'pageview');
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                321
+                322
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -299,7 +294,7 @@ ga('send', 'pageview');
                     
                     <td><a href="https://github.com/kvz/locutus" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
                     
-                    <td><a href="https://twitter.com/locutusjs_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    <td><a href="https://twitter.com/locutus_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
                     
                     <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
                     
@@ -380,132 +375,13 @@ ga('send', 'pageview');
       
         <li><a href="/php/">
           PHP
-          (315)
+          (316)
         </a></li>
         
         <ul>
-          <li><a href="/php/xml/">
-            xml
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/xdiff/">
-            xdiff
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/var/">
-            var
-            (29)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/url/">
-            url
-            (8)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/strings/">
-            strings
-            (91)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/pcre/">
-            pcre
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/network/">
-            network
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/net-gopher/">
-            net-gopher
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/misc/">
-            misc
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/math/">
-            math
-            (46)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/json/">
-            json
-            (3)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/info/">
-            info
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/i18n/">
-            i18n
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/funchand/">
-            funchand
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/filesystem/">
-            filesystem
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/exec/">
-            exec
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/datetime/">
-            datetime
-            (15)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/ctype/">
-            ctype
-            (11)
+          <li><a href="/php/array/">
+            array
+            (71)
           </a></li>
         </ul>
         
@@ -517,9 +393,128 @@ ga('send', 'pageview');
         </ul>
         
         <ul>
-          <li><a href="/php/array/">
-            array
-            (71)
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (30)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
           </a></li>
         </ul>
         
@@ -605,10 +600,10 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2016 Kevin van Zonneveld<br>
+            &copy; 2007-2016 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
-            Arwork by <a href="http://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>
+            Arwork by <a href="http://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>
     </div>

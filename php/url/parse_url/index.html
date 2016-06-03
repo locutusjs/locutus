@@ -5,16 +5,16 @@
     
     <title>PHP&#39;s parse_url in JavaScript | Locutus</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697module.exports">
+    <meta name="description" content="Here’s what our current JavaScript equivalent to PHP&apos;s parse_url looks like.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="PHP's parse_url in JavaScript">
-<meta property="og:url" content="http://locutusjs.io/php/url/parse_url/index.html">
+<meta property="og:url" content="http://locutus.io/php/url/parse_url/index.html">
 <meta property="og:site_name" content="Locutus">
-<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697module.exports">
-<meta property="og:updated_time" content="2016-05-03T10:41:06.000Z">
+<meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s parse_url looks like.">
+<meta property="og:updated_time" content="2016-06-03T12:06:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's parse_url in JavaScript">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697module.exports">
+<meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s parse_url looks like.">
     
 
     
@@ -84,7 +84,7 @@ ga('send', 'pageview');
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -103,19 +103,22 @@ ga('send', 'pageview');
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: '文章',
+            POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: '分類',
-            TAGS: '標籤',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',
+        x: 'en',
     };
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    console.log(INSIGHT_CONFIG)
 })(window);
 </script>
 <script src="/js/insight.js" type="text/javascript"></script>
+
 
 </div>
         </div>
@@ -143,7 +146,7 @@ ga('send', 'pageview');
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
     </div>
 
                 </td>
@@ -167,31 +170,25 @@ ga('send', 'pageview');
 
     <div class="article-entry">
       <p>
-        Here’s what our current JavaScript equivalent to
-        <a href="http://php.net/manual/en/function.parse_url.php">PHP's parse_url</a>
-
-        PHP's
-
-        parse_url
-        looks like.
+        Here’s what our current JavaScript equivalent to <a href="http://php.net/manual/en/function.parse_url.php">PHP's parse_url</a> looks like.
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">parse_url</span> (<span class="params">str, component</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></span><br><span class="line">  <span class="comment">//       discuss at: http://locutusjs.io/php/parse_url/</span></span><br><span class="line">  <span class="comment">//      original by: Steven Levithan (http://blog.stevenlevithan.com)</span></span><br><span class="line">  <span class="comment">// reimplemented by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//         input by: Lorenzo Pisani</span></span><br><span class="line">  <span class="comment">//         input by: Tony</span></span><br><span class="line">  <span class="comment">//      improved by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//           note 1: original by http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js</span></span><br><span class="line">  <span class="comment">//           note 1: blog post at http://blog.stevenlevithan.com/archives/parseuri</span></span><br><span class="line">  <span class="comment">//           note 1: demo at http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js</span></span><br><span class="line">  <span class="comment">//           note 1: Does not replace invalid characters with '_' as in PHP,</span></span><br><span class="line">  <span class="comment">//           note 1: nor does it return false with</span></span><br><span class="line">  <span class="comment">//           note 1: a seriously malformed URL.</span></span><br><span class="line">  <span class="comment">//           note 1: Besides function name, is essentially the same as parseUri as</span></span><br><span class="line">  <span class="comment">//           note 1: well as our allowing</span></span><br><span class="line">  <span class="comment">//           note 1: an extra slash after the scheme/protocol (to allow file:/// as in PHP)</span></span><br><span class="line">  <span class="comment">//        example 1: parse_url('http://user:pass@host/path?a=v#a')</span></span><br><span class="line">  <span class="comment">//        returns 1: &#123;scheme: 'http', host: 'host', user: 'user', pass: 'pass', path: '/path', query: 'a=v', fragment: 'a'&#125;</span></span><br><span class="line">  <span class="comment">//        example 2: parse_url('http://en.wikipedia.org/wiki/%22@%22_%28album%29')</span></span><br><span class="line">  <span class="comment">//        returns 2: &#123;scheme: 'http', host: 'en.wikipedia.org', path: '/wiki/%22@%22_%28album%29'&#125;</span></span><br><span class="line">  <span class="comment">//        example 3: parse_url('https://host.domain.tld/a@b.c/folder')</span></span><br><span class="line">  <span class="comment">//        returns 3: &#123;scheme: 'https', host: 'host.domain.tld', path: '/a@b.c/folder'&#125;</span></span><br><span class="line">  <span class="comment">//        example 4: parse_url('https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar')</span></span><br><span class="line">  <span class="comment">//        returns 4: &#123; scheme: 'https', host: 'www.example.com', path: '/a@b.c/folder', query: 'foo=bar', user: 'gooduser', pass: 'secretpassword' &#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> query</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> mode = (<span class="keyword">typeof</span> <span class="built_in">require</span> !== <span class="string">'undefined'</span> ? <span class="built_in">require</span>(<span class="string">'../info/ini_get'</span>)(<span class="string">'locutus.parse_url.mode'</span>) : <span class="literal">undefined</span>) || <span class="string">'php'</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> key = [</span><br><span class="line">    <span class="string">'source'</span>,</span><br><span class="line">    <span class="string">'scheme'</span>,</span><br><span class="line">    <span class="string">'authority'</span>,</span><br><span class="line">    <span class="string">'userInfo'</span>,</span><br><span class="line">    <span class="string">'user'</span>,</span><br><span class="line">    <span class="string">'pass'</span>,</span><br><span class="line">    <span class="string">'host'</span>,</span><br><span class="line">    <span class="string">'port'</span>,</span><br><span class="line">    <span class="string">'relative'</span>,</span><br><span class="line">    <span class="string">'path'</span>,</span><br><span class="line">    <span class="string">'directory'</span>,</span><br><span class="line">    <span class="string">'file'</span>,</span><br><span class="line">    <span class="string">'query'</span>,</span><br><span class="line">    <span class="string">'fragment'</span></span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line">  <span class="comment">// For loose we added one optional slash to post-scheme to catch file:/// (should restrict this)</span></span><br><span class="line">  <span class="keyword">var</span> parser = &#123;</span><br><span class="line">    php: <span class="keyword">new</span> <span class="built_in">RegExp</span>([</span><br><span class="line">      <span class="string">'(?:([^:\\/?#]+):)?'</span>,</span><br><span class="line">      <span class="string">'(?:\\/\\/()(?:(?:()(?:([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?'</span>,</span><br><span class="line">      <span class="string">'()'</span>,</span><br><span class="line">      <span class="string">'(?:(()(?:(?:[^?#\\/]*\\/)*)()(?:[^?#]*))(?:\\?([^#]*))?(?:#(.*))?)'</span></span><br><span class="line">    ].join(<span class="string">''</span>)),</span><br><span class="line">    strict: <span class="keyword">new</span> <span class="built_in">RegExp</span>([</span><br><span class="line">      <span class="string">'(?:([^:\\/?#]+):)?'</span>,</span><br><span class="line">      <span class="string">'(?:\\/\\/((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?'</span>,</span><br><span class="line">      <span class="string">'((((?:[^?#\\/]*\\/)*)([^?#]*))(?:\\?([^#]*))?(?:#(.*))?)'</span></span><br><span class="line">    ].join(<span class="string">''</span>)),</span><br><span class="line">    loose: <span class="keyword">new</span> <span class="built_in">RegExp</span>([</span><br><span class="line">      <span class="string">'(?:(?![^:@]+:[^:@\\/]*@)([^:\\/?#.]+):)?'</span>,</span><br><span class="line">      <span class="string">'(?:\\/\\/\\/?)?'</span>,</span><br><span class="line">      <span class="string">'((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?)'</span>,</span><br><span class="line">      <span class="string">'(((\\/(?:[^?#](?![^?#\\/]*\\.[^?#\\/.]+(?:[?#]|$)))*\\/?)?([^?#\\/]*))'</span>,</span><br><span class="line">      <span class="string">'(?:\\?([^#]*))?(?:#(.*))?)'</span></span><br><span class="line">    ].join(<span class="string">''</span>))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> m = parser[mode].exec(str)</span><br><span class="line">  <span class="keyword">var</span> uri = &#123;&#125;</span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">14</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (i--) &#123;</span><br><span class="line">    <span class="keyword">if</span> (m[i]) &#123;</span><br><span class="line">      uri[key[i]] = m[i]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (component) &#123;</span><br><span class="line">    <span class="keyword">return</span> uri[component.replace(<span class="string">'PHP_URL_'</span>, <span class="string">''</span>).toLowerCase()]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (mode !== <span class="string">'php'</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> name = (<span class="keyword">typeof</span> <span class="built_in">require</span> !== <span class="string">'undefined'</span> ? <span class="built_in">require</span>(<span class="string">'../info/ini_get'</span>)(<span class="string">'locutus.parse_url.queryKey'</span>) : <span class="literal">undefined</span>) || <span class="string">'queryKey'</span></span><br><span class="line">    parser = <span class="regexp">/(?:^|&amp;)([^&amp;=]*)=?([^&amp;]*)/g</span></span><br><span class="line">    uri[name] = &#123;&#125;</span><br><span class="line">    query = uri[key[<span class="number">12</span>]] || <span class="string">''</span></span><br><span class="line">    query.replace(parser, <span class="function"><span class="keyword">function</span> (<span class="params">$0, $1, $2</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> ($<span class="number">1</span>) &#123;</span><br><span class="line">        uri[name][$<span class="number">1</span>] = $<span class="number">2</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">delete</span> uri.source</span><br><span class="line">  <span class="keyword">return</span> uri</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">parse_url</span> (<span class="params">str, component</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></span><br><span class="line">  <span class="comment">//       discuss at: http://locutus.io/php/parse_url/</span></span><br><span class="line">  <span class="comment">//      original by: Steven Levithan (http://blog.stevenlevithan.com)</span></span><br><span class="line">  <span class="comment">// reimplemented by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//         input by: Lorenzo Pisani</span></span><br><span class="line">  <span class="comment">//         input by: Tony</span></span><br><span class="line">  <span class="comment">//      improved by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//           note 1: original by http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js</span></span><br><span class="line">  <span class="comment">//           note 1: blog post at http://blog.stevenlevithan.com/archives/parseuri</span></span><br><span class="line">  <span class="comment">//           note 1: demo at http://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js</span></span><br><span class="line">  <span class="comment">//           note 1: Does not replace invalid characters with '_' as in PHP,</span></span><br><span class="line">  <span class="comment">//           note 1: nor does it return false with</span></span><br><span class="line">  <span class="comment">//           note 1: a seriously malformed URL.</span></span><br><span class="line">  <span class="comment">//           note 1: Besides function name, is essentially the same as parseUri as</span></span><br><span class="line">  <span class="comment">//           note 1: well as our allowing</span></span><br><span class="line">  <span class="comment">//           note 1: an extra slash after the scheme/protocol (to allow file:/// as in PHP)</span></span><br><span class="line">  <span class="comment">//        example 1: parse_url('http://user:pass@host/path?a=v#a')</span></span><br><span class="line">  <span class="comment">//        returns 1: &#123;scheme: 'http', host: 'host', user: 'user', pass: 'pass', path: '/path', query: 'a=v', fragment: 'a'&#125;</span></span><br><span class="line">  <span class="comment">//        example 2: parse_url('http://en.wikipedia.org/wiki/%22@%22_%28album%29')</span></span><br><span class="line">  <span class="comment">//        returns 2: &#123;scheme: 'http', host: 'en.wikipedia.org', path: '/wiki/%22@%22_%28album%29'&#125;</span></span><br><span class="line">  <span class="comment">//        example 3: parse_url('https://host.domain.tld/a@b.c/folder')</span></span><br><span class="line">  <span class="comment">//        returns 3: &#123;scheme: 'https', host: 'host.domain.tld', path: '/a@b.c/folder'&#125;</span></span><br><span class="line">  <span class="comment">//        example 4: parse_url('https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar')</span></span><br><span class="line">  <span class="comment">//        returns 4: &#123; scheme: 'https', host: 'www.example.com', path: '/a@b.c/folder', query: 'foo=bar', user: 'gooduser', pass: 'secretpassword' &#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> query</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> mode = (<span class="keyword">typeof</span> <span class="built_in">require</span> !== <span class="string">'undefined'</span> ? <span class="built_in">require</span>(<span class="string">'../info/ini_get'</span>)(<span class="string">'locutus.parse_url.mode'</span>) : <span class="literal">undefined</span>) || <span class="string">'php'</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> key = [</span><br><span class="line">    <span class="string">'source'</span>,</span><br><span class="line">    <span class="string">'scheme'</span>,</span><br><span class="line">    <span class="string">'authority'</span>,</span><br><span class="line">    <span class="string">'userInfo'</span>,</span><br><span class="line">    <span class="string">'user'</span>,</span><br><span class="line">    <span class="string">'pass'</span>,</span><br><span class="line">    <span class="string">'host'</span>,</span><br><span class="line">    <span class="string">'port'</span>,</span><br><span class="line">    <span class="string">'relative'</span>,</span><br><span class="line">    <span class="string">'path'</span>,</span><br><span class="line">    <span class="string">'directory'</span>,</span><br><span class="line">    <span class="string">'file'</span>,</span><br><span class="line">    <span class="string">'query'</span>,</span><br><span class="line">    <span class="string">'fragment'</span></span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line">  <span class="comment">// For loose we added one optional slash to post-scheme to catch file:/// (should restrict this)</span></span><br><span class="line">  <span class="keyword">var</span> parser = &#123;</span><br><span class="line">    php: <span class="keyword">new</span> <span class="built_in">RegExp</span>([</span><br><span class="line">      <span class="string">'(?:([^:\\/?#]+):)?'</span>,</span><br><span class="line">      <span class="string">'(?:\\/\\/()(?:(?:()(?:([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?'</span>,</span><br><span class="line">      <span class="string">'()'</span>,</span><br><span class="line">      <span class="string">'(?:(()(?:(?:[^?#\\/]*\\/)*)()(?:[^?#]*))(?:\\?([^#]*))?(?:#(.*))?)'</span></span><br><span class="line">    ].join(<span class="string">''</span>)),</span><br><span class="line">    strict: <span class="keyword">new</span> <span class="built_in">RegExp</span>([</span><br><span class="line">      <span class="string">'(?:([^:\\/?#]+):)?'</span>,</span><br><span class="line">      <span class="string">'(?:\\/\\/((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?'</span>,</span><br><span class="line">      <span class="string">'((((?:[^?#\\/]*\\/)*)([^?#]*))(?:\\?([^#]*))?(?:#(.*))?)'</span></span><br><span class="line">    ].join(<span class="string">''</span>)),</span><br><span class="line">    loose: <span class="keyword">new</span> <span class="built_in">RegExp</span>([</span><br><span class="line">      <span class="string">'(?:(?![^:@]+:[^:@\\/]*@)([^:\\/?#.]+):)?'</span>,</span><br><span class="line">      <span class="string">'(?:\\/\\/\\/?)?'</span>,</span><br><span class="line">      <span class="string">'((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?)'</span>,</span><br><span class="line">      <span class="string">'(((\\/(?:[^?#](?![^?#\\/]*\\.[^?#\\/.]+(?:[?#]|$)))*\\/?)?([^?#\\/]*))'</span>,</span><br><span class="line">      <span class="string">'(?:\\?([^#]*))?(?:#(.*))?)'</span></span><br><span class="line">    ].join(<span class="string">''</span>))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> m = parser[mode].exec(str)</span><br><span class="line">  <span class="keyword">var</span> uri = &#123;&#125;</span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">14</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (i--) &#123;</span><br><span class="line">    <span class="keyword">if</span> (m[i]) &#123;</span><br><span class="line">      uri[key[i]] = m[i]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (component) &#123;</span><br><span class="line">    <span class="keyword">return</span> uri[component.replace(<span class="string">'PHP_URL_'</span>, <span class="string">''</span>).toLowerCase()]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (mode !== <span class="string">'php'</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> name = (<span class="keyword">typeof</span> <span class="built_in">require</span> !== <span class="string">'undefined'</span> ? <span class="built_in">require</span>(<span class="string">'../info/ini_get'</span>)(<span class="string">'locutus.parse_url.queryKey'</span>) : <span class="literal">undefined</span>) || <span class="string">'queryKey'</span></span><br><span class="line">    parser = <span class="regexp">/(?:^|&amp;)([^&amp;=]*)=?([^&amp;]*)/g</span></span><br><span class="line">    uri[name] = &#123;&#125;</span><br><span class="line">    query = uri[key[<span class="number">12</span>]] || <span class="string">''</span></span><br><span class="line">    query.replace(parser, <span class="function"><span class="keyword">function</span> (<span class="params">$0, $1, $2</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> ($<span class="number">1</span>) &#123;</span><br><span class="line">        uri[name][$<span class="number">1</span>] = $<span class="number">2</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">delete</span> uri.source</span><br><span class="line">  <span class="keyword">return</span> uri</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/kvz/locutus/blob/master/functions/url/parse_url.js">View on GitHub</a>
+      <a href="https://github.com/kvz/locutus/blob/master/src/php/url/parse_url.js">View on GitHub</a>
       |
-      <a href="https://github.com/kvz/locutus/edit/master/functions/url/parse_url.js">Edit on GitHub</a>
+      <a href="https://github.com/kvz/locutus/edit/master/src/php/url/parse_url.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/kvz/locutus/master/functions/url/parse_url.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/kvz/locutus/master/src/php/url/parse_url.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
 
       <h2>How to use</h2>
       <p>
-        You you can install via <code>npm install --save --save-exact locutus</code> and
+        You you can install via <code>npm install locutus</code> and
         require it via <code>require('locutus/php/url/parse_url')</code>.
         You could also require the <code>url</code> module in full
         so that you could access <code>url.parse_url</code> instead.
@@ -270,8 +267,6 @@ an extra slash after the scheme/protocol (to allow file:/// as in PHP)</p>
       <hr />
       
 
-
-      <hr />
       <p>
         <a href="/php/url/">&laquo; More PHP url functions</a>
       </p>
@@ -295,7 +290,7 @@ an extra slash after the scheme/protocol (to allow file:/// as in PHP)</p>
 
             <br />
             <div class="Social">
-              <a href="https://twitter.com/locutusjs_io" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @locutusjs_io</a><br />
+              <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @locutus_io</a><br />
               <iframe src="http://ghbtns.com/github-btn.html?user=kvz&repo=locutus&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe><br />
               <a href="https://travis-ci.org/kvz/locutus"><img src="https://travis-ci.org/kvz/locutus.svg" alt="Build Status"></a><br />
             </div>
@@ -308,7 +303,7 @@ an extra slash after the scheme/protocol (to allow file:/// as in PHP)</p>
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                321
+                322
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -319,7 +314,7 @@ an extra slash after the scheme/protocol (to allow file:/// as in PHP)</p>
                     
                     <td><a href="https://github.com/kvz/locutus" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
                     
-                    <td><a href="https://twitter.com/locutusjs_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    <td><a href="https://twitter.com/locutus_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
                     
                     <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
                     
@@ -400,132 +395,13 @@ an extra slash after the scheme/protocol (to allow file:/// as in PHP)</p>
       
         <li><a href="/php/">
           PHP
-          (315)
+          (316)
         </a></li>
         
         <ul>
-          <li><a href="/php/xml/">
-            xml
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/xdiff/">
-            xdiff
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/var/">
-            var
-            (29)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/url/">
-            url
-            (8)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/strings/">
-            strings
-            (91)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/pcre/">
-            pcre
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/network/">
-            network
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/net-gopher/">
-            net-gopher
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/misc/">
-            misc
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/math/">
-            math
-            (46)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/json/">
-            json
-            (3)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/info/">
-            info
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/i18n/">
-            i18n
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/funchand/">
-            funchand
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/filesystem/">
-            filesystem
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/exec/">
-            exec
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/datetime/">
-            datetime
-            (15)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/ctype/">
-            ctype
-            (11)
+          <li><a href="/php/array/">
+            array
+            (71)
           </a></li>
         </ul>
         
@@ -537,9 +413,128 @@ an extra slash after the scheme/protocol (to allow file:/// as in PHP)</p>
         </ul>
         
         <ul>
-          <li><a href="/php/array/">
-            array
-            (71)
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (30)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
           </a></li>
         </ul>
         
@@ -625,10 +620,10 @@ an extra slash after the scheme/protocol (to allow file:/// as in PHP)</p>
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2016 Kevin van Zonneveld<br>
+            &copy; 2007-2016 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
-            Arwork by <a href="http://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>
+            Arwork by <a href="http://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>
     </div>

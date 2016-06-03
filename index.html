@@ -8,10 +8,10 @@
     <meta name="description" content="Locutus is a project that seeks to assimilate other languages’ standard libraries to JavaScript. Why, you ask? Well, firstly because we can of course! Apart from that, it can also serve as a nice past">
 <meta property="og:type" content="website">
 <meta property="og:title" content="About Locutus">
-<meta property="og:url" content="http://locutusjs.io/index.html">
+<meta property="og:url" content="http://locutus.io/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Locutus is a project that seeks to assimilate other languages’ standard libraries to JavaScript. Why, you ask? Well, firstly because we can of course! Apart from that, it can also serve as a nice past">
-<meta property="og:updated_time" content="2016-05-03T06:47:43.000Z">
+<meta property="og:updated_time" content="2016-05-22T12:02:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="About Locutus">
 <meta name="twitter:description" content="Locutus is a project that seeks to assimilate other languages’ standard libraries to JavaScript. Why, you ask? Well, firstly because we can of course! Apart from that, it can also serve as a nice past">
@@ -111,11 +111,14 @@ ga('send', 'pageview');
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',
+        x: 'en',
     };
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    console.log(INSIGHT_CONFIG)
 })(window);
 </script>
 <script src="/js/insight.js" type="text/javascript"></script>
+
 
 </div>
         </div>
@@ -181,7 +184,7 @@ ga('send', 'pageview');
 <p>JavaScript is the most commonly used programming language, but it lacks an exhaustive 
 standard library. This means that developers coming from other languages are often left wondering how to achieve common tasks, such as <a href="/php/strftime/">formatting dates</a> or <a href="/php/sha1/">generating a hashes</a>.</p>
 <p>Locutus aims to show developers who are proficient in other programming languages how these high-level tasks can be achieved in JavaScript. </p>
-<p>Apart from the things that are missing in JavaScript, we are also porting functions like Go’s <a href="/golang/strings/Index/">string.Index</a>, even though JavaScript offers a perfectly good native equivalent in the form of <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf" target="_blank" rel="external">String.indexOf</a>. We are going this extra mile to show newcomers an example of how behavior might differ between various languages.</p>
+<p>Apart from the things that are missing in JavaScript, we are also porting functions like Go’s <a href="/golang/strings/Index/">strings.Index</a>, even though JavaScript offers a perfectly good native equivalent in the form of <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf" target="_blank" rel="external">String.indexOf</a>. We are going this extra mile to show newcomers an example of how behavior might differ between various languages.</p>
 <p>At an earlier stage, we also had the idea that when enough parts of a language were ported, you might even be able to run programs in JavaScript that were entirely written in other languages. While this certainly was fun to try and we had some degree of success in doing this for PHP, we have since abandoned this goal. Mainly because it drove us to write many hacks, while we were never really able to get anything to work flawlessly. Moreover, projects like <a href="https://github.com/gopherjs/gopherjs" target="_blank" rel="external">GopherJS</a> and <a href="http://kripken.github.io/emscripten-site/" target="_blank" rel="external">Emscripten</a> offer better means to that end, anyway.</p>
 <h2 id="What-we-are-not"><a href="#What-we-are-not" class="headerlink" title="What we are not"></a>What we are not</h2><p>Even though Locutus is porting standard libraries from other languages, this is for reference only. We are <strong>not a drop-in standard library for JavaScript</strong>. </p>
 <p>If that is something you are interested in, we recommend you to take a look at <a href="https://lodash.com/" target="_blank" rel="external">lodash</a>, which is more lightweight, focused and mature. It does a great job of complementing JavaScript’s bare bones nature. </p>
@@ -189,7 +192,7 @@ standard library. This means that developers coming from other languages are oft
 <h2 id="What-we-are-not-porting"><a href="#What-we-are-not-porting" class="headerlink" title="What we are not porting"></a>What we are not porting</h2><p>As we have mentioned before, we are sticking to raw functions and steering clear of things that touch global environment, language constructs or data-types. We are not extending built-in natives either. While this would aid in assimilating a larger part of a language, past mistakes have led us to decide that these fall outside of Locutus’ scope. Other projects are of course welcome to take a stab at it.</p>
 <h2 id="A-community-effort"><a href="#A-community-effort" class="headerlink" title="A community effort"></a>A community effort</h2><p>Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows <a href="https://medium.com/what-i-learned-building/9216e1c9da7d" target="_blank" rel="external">The McDonald’s Theory</a>. This means that we don’t consider it to be a bad thing that many of our functions are first iterations, which may still have their fair share of issues. We hope that these flaws will inspire others to come up with better ideas.</p>
 <p>So, if you know a better way to do something, we would love to see your improvements!</p>
-<h2 id="Contributing"><a href="#Contributing" class="headerlink" title="Contributing"></a>Contributing</h2><p>We use <a href="http://github.com/kvz/locutus" target="_blank" rel="external">GitHub</a> for collaboration. There are a few guidelines in our <a href="http://github.com/kvz/locutus/CONTRIBUTING.md" target="_blank" rel="external">CONTRIBUTING.md</a> document. It would be helpful to glance over them before submitting your work, to avoid unnecessary back and forth, as well as potential disappointment.</p>
+<h2 id="Contributing"><a href="#Contributing" class="headerlink" title="Contributing"></a>Contributing</h2><p>We use <a href="http://github.com/kvz/locutus" target="_blank" rel="external">GitHub</a> for collaboration. There are a few guidelines in our <a href="https://github.com/kvz/locutus/blob/master/CONTRIBUTING.md" target="_blank" rel="external">CONTRIBUTING.md</a> document. It would be helpful to glance over them before submitting your work, to avoid unnecessary back and forth, as well as potential disappointment.</p>
 <h2 id="Licensing"><a href="#Licensing" class="headerlink" title="Licensing"></a>Licensing</h2><p>Locutus is licensed under the MIT licenses.</p>
 <p><a href="https://github.com/kvz/locutus/blob/master/LICENSE" target="_blank" rel="external">The MIT license</a> allows you to use the library as you see fit (even in commercial projects) as long as you redistribute the original license along with it. You are not obligated to share your improvements, even though that would obviously be greatly appreciated and would also ensure that you won’t lose your changes after you upgrade.</p>
 
@@ -202,7 +205,7 @@ standard library. This means that developers coming from other languages are oft
 
 </div>
 
-    <a data-url="http://locutusjs.io//index.html" data-id="cinrr6cfz009s2k9yoq0g29gz" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://locutus.io//index.html" data-id="cioh627ec009s3v9y9yd2j7zo" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -304,7 +307,7 @@ standard library. This means that developers coming from other languages are oft
 
             <br />
             <div class="Social">
-              <a href="https://twitter.com/locutusjs_io" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @locutusjs_io</a><br />
+              <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @locutus_io</a><br />
               <iframe src="http://ghbtns.com/github-btn.html?user=kvz&repo=locutus&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe><br />
               <a href="https://travis-ci.org/kvz/locutus"><img src="https://travis-ci.org/kvz/locutus.svg" alt="Build Status"></a><br />
             </div>
@@ -317,7 +320,7 @@ standard library. This means that developers coming from other languages are oft
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                321
+                322
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -328,7 +331,7 @@ standard library. This means that developers coming from other languages are oft
                     
                     <td><a href="https://github.com/kvz/locutus" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
                     
-                    <td><a href="https://twitter.com/locutusjs_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    <td><a href="https://twitter.com/locutus_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
                     
                     <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
                     
@@ -409,132 +412,13 @@ standard library. This means that developers coming from other languages are oft
       
         <li><a href="/php/">
           PHP
-          (315)
+          (316)
         </a></li>
         
         <ul>
-          <li><a href="/php/xml/">
-            xml
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/xdiff/">
-            xdiff
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/var/">
-            var
-            (29)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/url/">
-            url
-            (8)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/strings/">
-            strings
-            (91)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/pcre/">
-            pcre
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/network/">
-            network
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/net-gopher/">
-            net-gopher
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/misc/">
-            misc
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/math/">
-            math
-            (46)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/json/">
-            json
-            (3)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/info/">
-            info
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/i18n/">
-            i18n
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/funchand/">
-            funchand
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/filesystem/">
-            filesystem
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/exec/">
-            exec
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/datetime/">
-            datetime
-            (15)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/ctype/">
-            ctype
-            (11)
+          <li><a href="/php/array/">
+            array
+            (71)
           </a></li>
         </ul>
         
@@ -546,9 +430,128 @@ standard library. This means that developers coming from other languages are oft
         </ul>
         
         <ul>
-          <li><a href="/php/array/">
-            array
-            (71)
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (30)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
           </a></li>
         </ul>
         
@@ -634,10 +637,10 @@ standard library. This means that developers coming from other languages are oft
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2016 Kevin van Zonneveld<br>
+            &copy; 2007-2016 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
-            Arwork by <a href="http://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>
+            Arwork by <a href="http://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>
     </div>

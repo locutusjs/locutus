@@ -5,16 +5,16 @@
     
     <title>PHP&#39;s var_export in JavaScript | Locutus</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+    <meta name="description" content="Here’s what our current JavaScript equivalent to PHP&apos;s var_export looks like.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="PHP's var_export in JavaScript">
-<meta property="og:url" content="http://locutusjs.io/php/var/var_export/index.html">
+<meta property="og:url" content="http://locutus.io/php/var/var_export/index.html">
 <meta property="og:site_name" content="Locutus">
-<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
-<meta property="og:updated_time" content="2016-05-03T10:41:06.000Z">
+<meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s var_export looks like.">
+<meta property="og:updated_time" content="2016-06-03T12:06:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's var_export in JavaScript">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s var_export looks like.">
     
 
     
@@ -84,7 +84,7 @@ ga('send', 'pageview');
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -103,19 +103,22 @@ ga('send', 'pageview');
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: '文章',
+            POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: '分類',
-            TAGS: '標籤',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',
+        x: 'en',
     };
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    console.log(INSIGHT_CONFIG)
 })(window);
 </script>
 <script src="/js/insight.js" type="text/javascript"></script>
+
 
 </div>
         </div>
@@ -143,7 +146,7 @@ ga('send', 'pageview');
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜尋" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
     </div>
 
                 </td>
@@ -167,31 +170,25 @@ ga('send', 'pageview');
 
     <div class="article-entry">
       <p>
-        Here’s what our current JavaScript equivalent to
-        <a href="http://php.net/manual/en/function.var_export.php">PHP's var_export</a>
-
-        PHP's
-
-        var_export
-        looks like.
+        Here’s what our current JavaScript equivalent to <a href="http://php.net/manual/en/function.var_export.php">PHP's var_export</a> looks like.
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">var_export</span> (<span class="params">mixedExpression, boolReturn</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></span><br><span class="line">  <span class="comment">//  discuss at: http://locutusjs.io/php/var_export/</span></span><br><span class="line">  <span class="comment">// original by: Philip Peterson</span></span><br><span class="line">  <span class="comment">// improved by: johnrembo</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Brian Tafoya (http://www.premasolutions.com/)</span></span><br><span class="line">  <span class="comment">//    input by: Hans Henrik (http://hanshenrik.tk/)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//   example 1: var_export(null)</span></span><br><span class="line">  <span class="comment">//   returns 1: null</span></span><br><span class="line">  <span class="comment">//   example 2: var_export(&#123;0: 'Kevin', 1: 'van', 2: 'Zonneveld'&#125;, true)</span></span><br><span class="line">  <span class="comment">//   returns 2: "array (\n  0 =&gt; 'Kevin',\n  1 =&gt; 'van',\n  2 =&gt; 'Zonneveld'\n)"</span></span><br><span class="line">  <span class="comment">//   example 3: var data = 'Kevin'</span></span><br><span class="line">  <span class="comment">//   example 3: var_export(data, true)</span></span><br><span class="line">  <span class="comment">//   returns 3: "'Kevin'"</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> echo = <span class="built_in">require</span>(<span class="string">'../strings/echo'</span>)</span><br><span class="line">  <span class="keyword">var</span> retstr = <span class="string">''</span></span><br><span class="line">  <span class="keyword">var</span> iret = <span class="string">''</span></span><br><span class="line">  <span class="keyword">var</span> value</span><br><span class="line">  <span class="keyword">var</span> cnt = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> x = []</span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> funcParts = []</span><br><span class="line">  <span class="comment">// We use the last argument (not part of PHP) to pass in</span></span><br><span class="line">  <span class="comment">// our indentation level</span></span><br><span class="line">  <span class="keyword">var</span> idtLevel = <span class="built_in">arguments</span>[<span class="number">2</span>] || <span class="number">2</span></span><br><span class="line">  <span class="keyword">var</span> innerIndent = <span class="string">''</span></span><br><span class="line">  <span class="keyword">var</span> outerIndent = <span class="string">''</span></span><br><span class="line">  <span class="keyword">var</span> getFuncName = <span class="function"><span class="keyword">function</span> (<span class="params">fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name = (<span class="regexp">/\W*function\s+([\w\$]+)\s*\(/</span>).exec(fn)</span><br><span class="line">    <span class="keyword">if</span> (!name) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'(Anonymous)'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> name[<span class="number">1</span>]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _makeIndent = <span class="function"><span class="keyword">function</span> (<span class="params">idtLevel</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Array</span>(idtLevel + <span class="number">1</span>))</span><br><span class="line">      .join(<span class="string">' '</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> __getType = <span class="function"><span class="keyword">function</span> (<span class="params">inp</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> match</span><br><span class="line">    <span class="keyword">var</span> types</span><br><span class="line">    <span class="keyword">var</span> cons</span><br><span class="line">    <span class="keyword">var</span> type = <span class="keyword">typeof</span> inp</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">'object'</span> &amp;&amp; (inp &amp;&amp; inp.constructor) &amp;&amp;</span><br><span class="line">      getFuncName(inp.constructor) === <span class="string">'LOCUTUS_Resource'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'resource'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">'function'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'function'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">'object'</span> &amp;&amp; !inp) &#123;</span><br><span class="line">      <span class="comment">// Should this be just null?</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">'null'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">'object'</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!inp.constructor) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'object'</span></span><br><span class="line">      &#125;</span><br><span class="line">      cons = inp.constructor.toString()</span><br><span class="line">      match = cons.match(<span class="regexp">/(\w+)\(/</span>)</span><br><span class="line">      <span class="keyword">if</span> (match) &#123;</span><br><span class="line">        cons = match[<span class="number">1</span>].toLowerCase()</span><br><span class="line">      &#125;</span><br><span class="line">      types = [<span class="string">'boolean'</span>, <span class="string">'number'</span>, <span class="string">'string'</span>, <span class="string">'array'</span>]</span><br><span class="line">      <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; types.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cons === types[i]) &#123;</span><br><span class="line">          type = types[i]</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> type</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> type = __getType(mixedExpression)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (type === <span class="literal">null</span>) &#123;</span><br><span class="line">    retstr = <span class="string">'NULL'</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'array'</span> || type === <span class="string">'object'</span>) &#123;</span><br><span class="line">    outerIndent = _makeIndent(idtLevel - <span class="number">2</span>)</span><br><span class="line">    innerIndent = _makeIndent(idtLevel)</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> mixedExpression) &#123;</span><br><span class="line">      value = var_export(mixedExpression[i], <span class="number">1</span>, idtLevel + <span class="number">2</span>)</span><br><span class="line">      value = <span class="keyword">typeof</span> value === <span class="string">'string'</span> ? value.replace(<span class="regexp">/&lt;/g</span>, <span class="string">'&amp;lt;'</span>)</span><br><span class="line">        .replace(<span class="regexp">/&gt;/g</span>, <span class="string">'&amp;gt;'</span>) : value</span><br><span class="line">      x[cnt++] = innerIndent + i + <span class="string">' =&gt; '</span> +</span><br><span class="line">        (__getType(mixedExpression[i]) === <span class="string">'array'</span> ? <span class="string">'\n'</span> : <span class="string">''</span>) + value</span><br><span class="line">    &#125;</span><br><span class="line">    iret = x.join(<span class="string">',\n'</span>)</span><br><span class="line">    retstr = outerIndent + <span class="string">'array (\n'</span> + iret + <span class="string">'\n'</span> + outerIndent + <span class="string">')'</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'function'</span>) &#123;</span><br><span class="line">    funcParts = mixedExpression.toString().match(<span class="regexp">/function .*?\((.*?)\) \&#123;([\s\S]*)\&#125;/</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// For lambda functions, var_export() outputs such as the following:</span></span><br><span class="line">    <span class="comment">// '\000lambda_1'. Since it will probably not be a common use to</span></span><br><span class="line">    <span class="comment">// expect this (unhelpful) form, we'll use another PHP-exportable</span></span><br><span class="line">    <span class="comment">// construct, create_function() (though dollar signs must be on the</span></span><br><span class="line">    <span class="comment">// variables in JavaScript); if using instead in JavaScript and you</span></span><br><span class="line">    <span class="comment">// are using the namespaced version, note that create_function() will</span></span><br><span class="line">    <span class="comment">// not be available as a global</span></span><br><span class="line">    retstr = <span class="string">"create_function ('"</span> + funcParts[<span class="number">1</span>] + <span class="string">"', '"</span> +</span><br><span class="line">      funcParts[<span class="number">2</span>].replace(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"'"</span>, <span class="string">'g'</span>), <span class="string">"\\'"</span>) + <span class="string">"')"</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'resource'</span>) &#123;</span><br><span class="line">    <span class="comment">// Resources treated as null for var_export</span></span><br><span class="line">    retstr = <span class="string">'NULL'</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    retstr = <span class="keyword">typeof</span> mixedExpression !== <span class="string">'string'</span> ? mixedExpression</span><br><span class="line">      : <span class="string">"'"</span> + mixedExpression.replace(<span class="regexp">/(["'])/g</span>, <span class="string">'\\$1'</span>).replace(<span class="regexp">/\0/g</span>, <span class="string">'\\0'</span>) + <span class="string">"'"</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!boolReturn) &#123;</span><br><span class="line">    echo(retstr)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> retstr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">var_export</span> (<span class="params">mixedExpression, boolReturn</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></span><br><span class="line">  <span class="comment">//  discuss at: http://locutus.io/php/var_export/</span></span><br><span class="line">  <span class="comment">// original by: Philip Peterson</span></span><br><span class="line">  <span class="comment">// improved by: johnrembo</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Brian Tafoya (http://www.premasolutions.com/)</span></span><br><span class="line">  <span class="comment">//    input by: Hans Henrik (http://hanshenrik.tk/)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (http://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//   example 1: var_export(null)</span></span><br><span class="line">  <span class="comment">//   returns 1: null</span></span><br><span class="line">  <span class="comment">//   example 2: var_export(&#123;0: 'Kevin', 1: 'van', 2: 'Zonneveld'&#125;, true)</span></span><br><span class="line">  <span class="comment">//   returns 2: "array (\n  0 =&gt; 'Kevin',\n  1 =&gt; 'van',\n  2 =&gt; 'Zonneveld'\n)"</span></span><br><span class="line">  <span class="comment">//   example 3: var data = 'Kevin'</span></span><br><span class="line">  <span class="comment">//   example 3: var_export(data, true)</span></span><br><span class="line">  <span class="comment">//   returns 3: "'Kevin'"</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> echo = <span class="built_in">require</span>(<span class="string">'../strings/echo'</span>)</span><br><span class="line">  <span class="keyword">var</span> retstr = <span class="string">''</span></span><br><span class="line">  <span class="keyword">var</span> iret = <span class="string">''</span></span><br><span class="line">  <span class="keyword">var</span> value</span><br><span class="line">  <span class="keyword">var</span> cnt = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> x = []</span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">var</span> funcParts = []</span><br><span class="line">  <span class="comment">// We use the last argument (not part of PHP) to pass in</span></span><br><span class="line">  <span class="comment">// our indentation level</span></span><br><span class="line">  <span class="keyword">var</span> idtLevel = <span class="built_in">arguments</span>[<span class="number">2</span>] || <span class="number">2</span></span><br><span class="line">  <span class="keyword">var</span> innerIndent = <span class="string">''</span></span><br><span class="line">  <span class="keyword">var</span> outerIndent = <span class="string">''</span></span><br><span class="line">  <span class="keyword">var</span> getFuncName = <span class="function"><span class="keyword">function</span> (<span class="params">fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name = (<span class="regexp">/\W*function\s+([\w\$]+)\s*\(/</span>).exec(fn)</span><br><span class="line">    <span class="keyword">if</span> (!name) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'(Anonymous)'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> name[<span class="number">1</span>]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _makeIndent = <span class="function"><span class="keyword">function</span> (<span class="params">idtLevel</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Array</span>(idtLevel + <span class="number">1</span>))</span><br><span class="line">      .join(<span class="string">' '</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> __getType = <span class="function"><span class="keyword">function</span> (<span class="params">inp</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> match</span><br><span class="line">    <span class="keyword">var</span> types</span><br><span class="line">    <span class="keyword">var</span> cons</span><br><span class="line">    <span class="keyword">var</span> type = <span class="keyword">typeof</span> inp</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">'object'</span> &amp;&amp; (inp &amp;&amp; inp.constructor) &amp;&amp;</span><br><span class="line">      getFuncName(inp.constructor) === <span class="string">'LOCUTUS_Resource'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'resource'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">'function'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'function'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">'object'</span> &amp;&amp; !inp) &#123;</span><br><span class="line">      <span class="comment">// Should this be just null?</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">'null'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">'object'</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!inp.constructor) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'object'</span></span><br><span class="line">      &#125;</span><br><span class="line">      cons = inp.constructor.toString()</span><br><span class="line">      match = cons.match(<span class="regexp">/(\w+)\(/</span>)</span><br><span class="line">      <span class="keyword">if</span> (match) &#123;</span><br><span class="line">        cons = match[<span class="number">1</span>].toLowerCase()</span><br><span class="line">      &#125;</span><br><span class="line">      types = [<span class="string">'boolean'</span>, <span class="string">'number'</span>, <span class="string">'string'</span>, <span class="string">'array'</span>]</span><br><span class="line">      <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; types.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cons === types[i]) &#123;</span><br><span class="line">          type = types[i]</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> type</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> type = __getType(mixedExpression)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (type === <span class="literal">null</span>) &#123;</span><br><span class="line">    retstr = <span class="string">'NULL'</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'array'</span> || type === <span class="string">'object'</span>) &#123;</span><br><span class="line">    outerIndent = _makeIndent(idtLevel - <span class="number">2</span>)</span><br><span class="line">    innerIndent = _makeIndent(idtLevel)</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> mixedExpression) &#123;</span><br><span class="line">      value = var_export(mixedExpression[i], <span class="number">1</span>, idtLevel + <span class="number">2</span>)</span><br><span class="line">      value = <span class="keyword">typeof</span> value === <span class="string">'string'</span> ? value.replace(<span class="regexp">/&lt;/g</span>, <span class="string">'&amp;lt;'</span>)</span><br><span class="line">        .replace(<span class="regexp">/&gt;/g</span>, <span class="string">'&amp;gt;'</span>) : value</span><br><span class="line">      x[cnt++] = innerIndent + i + <span class="string">' =&gt; '</span> +</span><br><span class="line">        (__getType(mixedExpression[i]) === <span class="string">'array'</span> ? <span class="string">'\n'</span> : <span class="string">''</span>) + value</span><br><span class="line">    &#125;</span><br><span class="line">    iret = x.join(<span class="string">',\n'</span>)</span><br><span class="line">    retstr = outerIndent + <span class="string">'array (\n'</span> + iret + <span class="string">'\n'</span> + outerIndent + <span class="string">')'</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'function'</span>) &#123;</span><br><span class="line">    funcParts = mixedExpression.toString().match(<span class="regexp">/function .*?\((.*?)\) \&#123;([\s\S]*)\&#125;/</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// For lambda functions, var_export() outputs such as the following:</span></span><br><span class="line">    <span class="comment">// '\000lambda_1'. Since it will probably not be a common use to</span></span><br><span class="line">    <span class="comment">// expect this (unhelpful) form, we'll use another PHP-exportable</span></span><br><span class="line">    <span class="comment">// construct, create_function() (though dollar signs must be on the</span></span><br><span class="line">    <span class="comment">// variables in JavaScript); if using instead in JavaScript and you</span></span><br><span class="line">    <span class="comment">// are using the namespaced version, note that create_function() will</span></span><br><span class="line">    <span class="comment">// not be available as a global</span></span><br><span class="line">    retstr = <span class="string">"create_function ('"</span> + funcParts[<span class="number">1</span>] + <span class="string">"', '"</span> +</span><br><span class="line">      funcParts[<span class="number">2</span>].replace(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"'"</span>, <span class="string">'g'</span>), <span class="string">"\\'"</span>) + <span class="string">"')"</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'resource'</span>) &#123;</span><br><span class="line">    <span class="comment">// Resources treated as null for var_export</span></span><br><span class="line">    retstr = <span class="string">'NULL'</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    retstr = <span class="keyword">typeof</span> mixedExpression !== <span class="string">'string'</span> ? mixedExpression</span><br><span class="line">      : <span class="string">"'"</span> + mixedExpression.replace(<span class="regexp">/(["'])/g</span>, <span class="string">'\\$1'</span>).replace(<span class="regexp">/\0/g</span>, <span class="string">'\\0'</span>) + <span class="string">"'"</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!boolReturn) &#123;</span><br><span class="line">    echo(retstr)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> retstr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/kvz/locutus/blob/master/functions/var/var_export.js">View on GitHub</a>
+      <a href="https://github.com/kvz/locutus/blob/master/src/php/var/var_export.js">View on GitHub</a>
       |
-      <a href="https://github.com/kvz/locutus/edit/master/functions/var/var_export.js">Edit on GitHub</a>
+      <a href="https://github.com/kvz/locutus/edit/master/src/php/var/var_export.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/kvz/locutus/master/functions/var/var_export.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/kvz/locutus/master/src/php/var/var_export.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
 
       <h2>How to use</h2>
       <p>
-        You you can install via <code>npm install --save --save-exact locutus</code> and
+        You you can install via <code>npm install locutus</code> and
         require it via <code>require('locutus/php/var/var_export')</code>.
         You could also require the <code>var</code> module in full
         so that you could access <code>var.var_export</code> instead.
@@ -253,8 +250,6 @@ var_export(data, true)</code></td><td><code>&quot;&#39;Kevin&#39;&quot;</code></
       <hr />
       
 
-
-      <hr />
       <p>
         <a href="/php/var/">&laquo; More PHP var functions</a>
       </p>
@@ -278,7 +273,7 @@ var_export(data, true)</code></td><td><code>&quot;&#39;Kevin&#39;&quot;</code></
 
             <br />
             <div class="Social">
-              <a href="https://twitter.com/locutusjs_io" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @locutusjs_io</a><br />
+              <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @locutus_io</a><br />
               <iframe src="http://ghbtns.com/github-btn.html?user=kvz&repo=locutus&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe><br />
               <a href="https://travis-ci.org/kvz/locutus"><img src="https://travis-ci.org/kvz/locutus.svg" alt="Build Status"></a><br />
             </div>
@@ -291,7 +286,7 @@ var_export(data, true)</code></td><td><code>&quot;&#39;Kevin&#39;&quot;</code></
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                321
+                322
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -302,7 +297,7 @@ var_export(data, true)</code></td><td><code>&quot;&#39;Kevin&#39;&quot;</code></
                     
                     <td><a href="https://github.com/kvz/locutus" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
                     
-                    <td><a href="https://twitter.com/locutusjs_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    <td><a href="https://twitter.com/locutus_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
                     
                     <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
                     
@@ -383,132 +378,13 @@ var_export(data, true)</code></td><td><code>&quot;&#39;Kevin&#39;&quot;</code></
       
         <li><a href="/php/">
           PHP
-          (315)
+          (316)
         </a></li>
         
         <ul>
-          <li><a href="/php/xml/">
-            xml
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/xdiff/">
-            xdiff
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/var/">
-            var
-            (29)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/url/">
-            url
-            (8)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/strings/">
-            strings
-            (91)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/pcre/">
-            pcre
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/network/">
-            network
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/net-gopher/">
-            net-gopher
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/misc/">
-            misc
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/math/">
-            math
-            (46)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/json/">
-            json
-            (3)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/info/">
-            info
-            (6)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/i18n/">
-            i18n
-            (2)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/funchand/">
-            funchand
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/filesystem/">
-            filesystem
-            (5)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/exec/">
-            exec
-            (1)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/datetime/">
-            datetime
-            (15)
-          </a></li>
-        </ul>
-        
-        <ul>
-          <li><a href="/php/ctype/">
-            ctype
-            (11)
+          <li><a href="/php/array/">
+            array
+            (71)
           </a></li>
         </ul>
         
@@ -520,9 +396,128 @@ var_export(data, true)</code></td><td><code>&quot;&#39;Kevin&#39;&quot;</code></
         </ul>
         
         <ul>
-          <li><a href="/php/array/">
-            array
-            (71)
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (30)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
           </a></li>
         </ul>
         
@@ -608,10 +603,10 @@ var_export(data, true)</code></td><td><code>&quot;&#39;Kevin&#39;&quot;</code></
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2016 Kevin van Zonneveld<br>
+            &copy; 2007-2016 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
-            Arwork by <a href="http://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>
+            Arwork by <a href="http://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>
     </div>
