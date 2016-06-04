@@ -13,4 +13,16 @@ describe('src/php/array/array_walk.js (tested in test/languages/php/array/test-a
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 2', function (done) {
+    var expected = false
+    var result = array_walk ('mystring', function () {})
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 3', function (done) {
+    var expected = true
+    var result = array_walk ({"title":"my title"}, function () {})
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })
