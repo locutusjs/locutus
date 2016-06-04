@@ -1,128 +1,116 @@
-module.exports = function strnatcmp (fString1, fString2, fVersion) {
-  //  discuss at: http://locutus.io/php/strnatcmp/
-  // original by: Martijn Wieringa
-  // improved by: Michael White (http://getsprink.com)
-  // improved by: Jack
-  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  //      note 1: Added fVersion argument against code guidelines, because it's so neat
-  //   example 1: strnatcmp('Price 12.9', 'Price 12.15')
-  //   returns 1: 1
-  //   example 2: strnatcmp('Price 12.09', 'Price 12.15')
-  //   returns 2: -1
-  //   example 3: strnatcmp('Price 12.90', 'Price 12.15')
-  //   returns 3: 1
-  //   example 4: strnatcmp('Version 12.9', 'Version 12.15', true)
-  //   returns 4: -6
-  //   example 5: strnatcmp('Version 12.15', 'Version 12.9', true)
-  //   returns 5: 6
-  //        test: skip-2
+module.exports = function strnatcmp (a, b) {
+  //       discuss at: http://locutus.io/php/strnatcmp/
+  //      original by: Martijn Wieringa
+  //      improved by: Michael White (http://getsprink.com)
+  //      improved by: Jack
+  //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  // reimplemented by: Rafał Kukawski
+  //        example 1: strnatcmp('abc', 'abc')
+  //        returns 1: 0
+  //        example 2: strnatcmp('a', 'b')
+  //        returns 2: -1
+  //        example 3: strnatcmp('10', '1')
+  //        returns 3: 1
+  //        example 4: strnatcmp('0000abc', '0abc')
+  //        returns 4: 0
+  //        example 5: strnatcmp('1239', '12345')
+  //        returns 5: -1
+  //        example 6: strnatcmp('t01239', 't012345')
+  //        returns 6: 1
+  //        example 7: strnatcmp('0A', '5N')
+  //        returns 7: -1
 
-  var strcmp = require('../strings/strcmp')
-  var i = 0
+  var _php_cast_string = require('../_helpers/_php_cast_string')
 
-  if (fVersion === undefined) {
-    fVersion = false
+  var leadingZeros = /^0+(?=\d)/
+  var whitespace = /^\s/
+  var digit = /^\d/
+
+  if (arguments.length !== 2) {
+    return null
   }
 
-  var _strnatcmpSplit = function (fString) {
-    var result = []
-    var buffer = ''
-    var chr = ''
-    var i = 0
-    var fStringl = 0
+  a = _php_cast_string(a)
+  b = _php_cast_string(b)
 
-    var text = true
+  if (!a.length || !b.length) {
+    return a.length - b.length
+  }
 
-    fStringl = fString.length
-    for (i = 0; i < fStringl; i++) {
-      chr = fString.substring(i, i + 1)
-      if (chr.match(/\d/)) {
-        if (text) {
-          if (buffer.length > 0) {
-            result[result.length] = buffer
-            buffer = ''
+  var i = 0,
+      j = 0
+
+  a = a.replace(leadingZeros, '')
+  b = b.replace(leadingZeros, '')
+
+  while (i < a.length && j < b.length) {
+    // skip consecutive whitespace
+    while (whitespace.test(a.charAt(i))) i++
+    while (whitespace.test(b.charAt(j))) j++
+
+    var ac = a.charAt(i)
+    var bc = b.charAt(j)
+    var aIsDigit = digit.test(ac)
+    var bIsDigit = digit.test(bc)
+
+    if (aIsDigit && bIsDigit) {
+      var bias = 0
+      var fractional = ac === '0' || bc === '0'
+
+      do {
+        if (!aIsDigit) {
+          return -1
+        } else if (!bIsDigit) {
+          return 1
+        } else if (ac < bc) {
+          if (!bias) {
+            bias = -1
           }
 
-          text = false
-        }
-        buffer += chr
-      } else if ((text === false) &&
-        (chr === '.') &&
-        (i < (fString.length - 1)) &&
-        (fString.substring(i + 1, i + 2).match(/\d/))) {
-        // @todo: ^--- Break this up to make it more readable
-        result[result.length] = buffer
-        buffer = ''
-      } else {
-        if (text === false) {
-          if (buffer.length > 0) {
-            result[result.length] = parseInt(buffer, 10)
-            buffer = ''
+          if (fractional) {
+            return -1
           }
-          text = true
+        } else if (ac > bc) {
+          if (!bias) {
+            bias = 1
+          }
+
+          if (fractional) {
+            return 1
+          }
         }
-        buffer += chr
+
+        ac = a.charAt(++i)
+        bc = b.charAt(++j)
+
+        aIsDigit = digit.test(ac)
+        bIsDigit = digit.test(bc)
+
+      } while (aIsDigit || bIsDigit)
+
+      if (!fractional && bias) {
+        return bias
       }
+
+      continue
     }
 
-    if (buffer.length > 0) {
-      if (text) {
-        result[result.length] = buffer
-      } else {
-        result[result.length] = parseInt(buffer, 10)
-      }
+    if (!ac || !bc) {
+      continue
+    } else if (ac < bc) {
+      return -1
+    } else if (ac > bc) {
+      return 1
     }
 
-    return result
+    i++
+    j++
   }
 
-  var array1 = _strnatcmpSplit(fString1 + '')
-  var array2 = _strnatcmpSplit(fString2 + '')
+  var iBeforeStrEnd = i < a.length,
+      jBeforeStrEnd = j < b.length
 
-  var len = array1.length
-  var text = true
-
-  var result = -1
-  var r = 0
-
-  if (len > array2.length) {
-    len = array2.length
-    result = 1
-  }
-
-  for (i = 0; i < len; i++) {
-    if (isNaN(array1[i])) {
-      if (isNaN(array2[i])) {
-        text = true
-
-        if ((r = strcmp(array1[i], array2[i])) !== 0) {
-          return r
-        }
-      } else if (text) {
-        return 1
-      } else {
-        return -1
-      }
-    } else if (isNaN(array2[i])) {
-      if (text) {
-        return -1
-      } else {
-        return 1
-      }
-    } else {
-      if (text || fVersion) {
-        if ((r = (array1[i] - array2[i])) !== 0) {
-          return r
-        }
-      } else {
-        if ((r = strcmp(array1[i].toString(), array2[i].toString())) !== 0) {
-          return r
-        }
-      }
-
-      text = false
-    }
-  }
-
-  return result
+  // Check which string ended first
+  // return -1 if a, 1 if b, 0 otherwise
+  return (iBeforeStrEnd > jBeforeStrEnd) - (iBeforeStrEnd < jBeforeStrEnd)
 }
