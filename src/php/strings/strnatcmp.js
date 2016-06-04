@@ -20,7 +20,7 @@ module.exports = function strnatcmp (a, b) {
   //        example 7: strnatcmp('0A', '5N')
   //        returns 7: -1
 
-  var _php_cast_string = require('../_helpers/_php_cast_string')
+  var _phpCastString = require('../_helpers/_phpCastString')
 
   var leadingZeros = /^0+(?=\d)/
   var whitespace = /^\s/
@@ -30,15 +30,15 @@ module.exports = function strnatcmp (a, b) {
     return null
   }
 
-  a = _php_cast_string(a)
-  b = _php_cast_string(b)
+  a = _phpCastString(a)
+  b = _phpCastString(b)
 
   if (!a.length || !b.length) {
     return a.length - b.length
   }
 
-  var i = 0,
-      j = 0
+  var i = 0
+  var j = 0
 
   a = a.replace(leadingZeros, '')
   b = b.replace(leadingZeros, '')
@@ -85,7 +85,6 @@ module.exports = function strnatcmp (a, b) {
 
         aIsDigit = digit.test(ac)
         bIsDigit = digit.test(bc)
-
       } while (aIsDigit || bIsDigit)
 
       if (!fractional && bias) {
@@ -107,8 +106,8 @@ module.exports = function strnatcmp (a, b) {
     j++
   }
 
-  var iBeforeStrEnd = i < a.length,
-      jBeforeStrEnd = j < b.length
+  var iBeforeStrEnd = i < a.length
+  var jBeforeStrEnd = j < b.length
 
   // Check which string ended first
   // return -1 if a, 1 if b, 0 otherwise
