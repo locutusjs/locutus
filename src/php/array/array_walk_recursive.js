@@ -12,28 +12,28 @@ module.exports = function array_walk_recursive (array, funcname, userdata) { // 
     return false
   }
 
+  if (typeof funcname !== 'function') {
+    return false
+  }
+
   try {
-    if (typeof funcname === 'function') {
-      for (var key in array) {
-        // apply "funcname" recursively only on arrays
-        if (Object.prototype.toString.call(array[key]) === '[object Array]') {
-          var funcArgs = [array[key], funcname]
-          if (arguments.length > 2) {
-            funcArgs.push(userdata)
-          }
-          if (array_walk_recursive.apply(null, funcArgs) === false) {
-            return false
-          }
-          continue
-        }
+    for (var key in array) {
+      // apply "funcname" recursively only on arrays
+      if (Object.prototype.toString.call(array[key]) === '[object Array]') {
+        var funcArgs = [array[key], funcname]
         if (arguments.length > 2) {
-          funcname(array[key], key, userdata)
-        } else {
-          funcname(array[key], key)
+          funcArgs.push(userdata)
         }
+        if (array_walk_recursive.apply(null, funcArgs) === false) {
+          return false
+        }
+        continue
       }
-    } else {
-      return false
+      if (arguments.length > 2) {
+        funcname(array[key], key, userdata)
+      } else {
+        funcname(array[key], key)
+      }
     }
   } catch (e) {
     return false
