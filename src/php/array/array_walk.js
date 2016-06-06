@@ -6,6 +6,10 @@ module.exports = function array_walk (array, funcname, userdata) { // eslint-dis
   //      note 1: Only works with user-defined functions, not built-in functions like void()
   //   example 1: array_walk ([3, 4], function () {}, 'userdata')
   //   returns 1: true
+  //   example 2: array_walk ('mystring', function () {})
+  //   returns 2: false
+  //   example 3: array_walk ({"title":"my title"}, function () {})
+  //   returns 3: true
 
   if (!array || typeof array !== 'object') {
     return false
