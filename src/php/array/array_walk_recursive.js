@@ -15,16 +15,16 @@ module.exports = function array_walk_recursive (array, funcname, userdata) { // 
   try {
     if (typeof funcname === 'function') {
       for (var key in array) {
-        //apply "funcname" recursively only on arrays
+        // apply "funcname" recursively only on arrays
         if (Object.prototype.toString.call(array[key]) === '[object Array]') {
-          var funcArgs = [array[key], funcname];
+          var funcArgs = [array[key], funcname]
           if (arguments.length > 2) {
-            funcArgs.push(userdata);
+            funcArgs.push(userdata)
           }
-          if (false === array_walk_recursive.apply(null, funcArgs)) {
-            return false;
+          if (array_walk_recursive.apply(null, funcArgs) === false) {
+            return false
           }
-          continue;
+          continue
         }
         if (arguments.length > 2) {
           funcname(array[key], key, userdata)
