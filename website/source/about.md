@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "About Locutus"
+title: "We are Locutus"
 date: false
 comments: true
 permalink: /
