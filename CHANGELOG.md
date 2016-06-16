@@ -27,7 +27,7 @@ Ideas that will be planned and find their way into a release at one point
 - [ ] Parse `require`s with AST just like Browserify does. Then we can add dependencies back to website
 - [ ] website: Render authors server-side
 
-## v2.0.5
+## v2.0.6
 
 Released: Not yet
 
