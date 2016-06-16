@@ -32,11 +32,16 @@ Ideas that will be planned and find their way into a release at one point
 Released: Not yet
 
 - [ ] Address the 25 remaining test failures that are currently skipped (find out which ones via `npm run test:languages:noskip`)
+
+## v2.0.5
+
+Released: 2016-06-16. Commit log: https://github.com/kvz/locutus/compare/v2.0.4...v2.0.5
+
 - [x] Cache node modules on Travis so we'll be less dependent on npm connectivity
 
 ## v2.0.4
 
-Released: 2016-05-25
+Released: 2016-05-25. Commit log: https://github.com/kvz/locutus/compare/v2.0.3...v2.0.4
 
 - [x] Upgrade depurar to 0.2.2, fixing an issue with the testwriter (@kukawski)
 - [x] Add the 'reimplemented by' and 'parts by' contributionKeys to the /authors website page
@@ -46,7 +51,7 @@ Released: 2016-05-25
 
 ## v2.0.3
 
-Released: 2016-05-22
+Released: 2016-05-22. Commit log: https://github.com/kvz/locutus/compare/v2.0.2...v2.0.3
 
 - [x] Minor `util.js` refactoring
 - [x] Use hexo deploy instead of custom bash script to aid Windows compatibility
@@ -64,19 +69,19 @@ Released: 2016-05-22
 
 ## v2.0.2
 
-Released: 2016-05-02
+Released: 2016-05-02. Commit log: https://github.com/kvz/locutus/compare/v2.0.1...v2.0.2
 
 - [x] Don't use `files` in package.json as we don't ship all of `dist` now
 
 ## v2.0.1
 
-Released: 2016-05-02
+Released: 2016-05-02. Commit log: https://github.com/kvz/locutus/compare/v2.0.0...v2.0.1
 
 - [x] Don't use `bin` in package.json as we don't ship `cli.js`
 
 ## v2.0.0
 
-Released: 2016-05-02
+Released: 2016-05-02. Commit log: https://github.com/kvz/locutus/compare/v1.3.2...v2.0.0
 
 - [x] website: Add profile to sidebar
 - [x] Rename `_locutus_shared` to `_helpers`. Rename `_locutus_shared_bc` to `_bc`
