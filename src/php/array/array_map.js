@@ -20,7 +20,7 @@ module.exports = function array_map (callback) { // eslint-disable-line camelcas
   var tmp = []
   var tmpArr = []
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
 
   while (i < j) {
     while (k < argc) {

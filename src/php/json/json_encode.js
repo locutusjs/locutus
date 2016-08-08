@@ -16,7 +16,7 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
     See http://www.JSON.org/js.html
   */
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

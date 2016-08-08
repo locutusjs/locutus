@@ -7,7 +7,7 @@ module.exports = function strcoll (str1, str2) {
 
   var setlocale = require('../strings/setlocale')
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

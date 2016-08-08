@@ -7,7 +7,7 @@ module.exports = function i18n_loc_set_default (name) { // eslint-disable-line c
   //   example 1: i18n_loc_set_default('pt_PT')
   //   returns 1: true
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

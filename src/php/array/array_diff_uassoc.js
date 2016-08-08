@@ -15,7 +15,7 @@ module.exports = function array_diff_uassoc (arr1) { // eslint-disable-line came
   var k1 = ''
   var k = ''
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
 
   cb = (typeof cb === 'string')
     ? $global[cb]

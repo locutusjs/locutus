@@ -8,7 +8,7 @@ module.exports = function function_exists (funcName) { // eslint-disable-line ca
   //   returns 1: true
   //        test: skip-1
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
 
   if (typeof funcName === 'string') {
     funcName = $global[funcName]

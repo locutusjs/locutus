@@ -6,7 +6,7 @@ module.exports = function prev (arr) {
   //   example 1: prev($transport)
   //   returns 1: false
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

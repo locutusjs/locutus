@@ -13,7 +13,7 @@ module.exports = function sql_regcase (str) { // eslint-disable-line camelcase
 
   setlocale('LC_ALL', 0)
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

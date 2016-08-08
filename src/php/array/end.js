@@ -12,7 +12,7 @@ module.exports = function end (arr) {
   //   example 2: end(['Kevin', 'van', 'Zonneveld'])
   //   returns 2: 'Zonneveld'
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

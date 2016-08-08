@@ -52,7 +52,7 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
     return decodeURIComponent(str.replace(/\+/g, '%20'))
   }
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

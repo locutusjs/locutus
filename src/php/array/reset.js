@@ -7,7 +7,7 @@ module.exports = function reset (arr) {
   //   example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
   //   returns 1: 'Kevin'
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

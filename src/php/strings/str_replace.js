@@ -42,7 +42,7 @@ module.exports = function str_replace (search, replace, subject, countObj) { // 
   var sa = Object.prototype.toString.call(s) === '[object Array]'
   s = [].concat(s)
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

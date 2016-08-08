@@ -18,7 +18,7 @@ module.exports = function json_decode (strJson) { // eslint-disable-line camelca
     See http://www.JSON.org/js.html
   */
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
