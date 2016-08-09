@@ -11,7 +11,7 @@ module.exports = function i18n_loc_get_default () { // eslint-disable-line camel
   //   example 2: i18n_loc_get_default()
   //   returns 2: 'pt_PT'
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

@@ -59,7 +59,7 @@ module.exports = function setlocale (category, locale) {
     return n > 1 ? 1 : 0
   }
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

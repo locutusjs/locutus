@@ -11,7 +11,7 @@ module.exports = function ctype_punct (text) { // eslint-disable-line camelcase
   // ensure setup of localization variables takes place
   setlocale('LC_ALL', 0)
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   var p = $locutus.php

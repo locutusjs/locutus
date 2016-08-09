@@ -11,7 +11,7 @@ module.exports = function get_defined_functions () { // eslint-disable-line came
   //   returns 1: true
   //        test: skip-1
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

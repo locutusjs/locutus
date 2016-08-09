@@ -26,7 +26,7 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
   //   example 4: is_callable(function () {})
   //   returns 4: true
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
 
   var validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 

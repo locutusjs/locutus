@@ -6,7 +6,7 @@ module.exports = function current (arr) {
   //   example 1: current($transport)
   //   returns 1: 'foot'
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

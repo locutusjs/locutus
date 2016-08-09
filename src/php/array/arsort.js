@@ -42,7 +42,7 @@ module.exports = function arsort (inputArr, sortFlags) {
   var sortByReference = false
   var populateArr = {}
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

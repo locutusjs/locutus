@@ -24,7 +24,7 @@ module.exports = function unserialize (data) {
   //   example 2: unserialize('a:2:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";}')
   //   returns 2: {firstName: 'Kevin', midName: 'van'}
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
 
   var utf8Overhead = function (chr) {
     // http://locutus.io/php/unserialize:571#comment_95906

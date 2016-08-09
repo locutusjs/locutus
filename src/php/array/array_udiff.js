@@ -14,7 +14,7 @@ module.exports = function array_udiff (arr1) { // eslint-disable-line camelcase
   var k1 = ''
   var k = ''
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
 
   cb = (typeof cb === 'string')
     ? $global[cb]

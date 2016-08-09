@@ -16,7 +16,7 @@ module.exports = function array_intersect_ukey (arr1) { // eslint-disable-line c
   var k = ''
   var arr = {}
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
 
   cb = (typeof cb === 'string')
     ? $global[cb]

@@ -16,7 +16,7 @@ module.exports = function array_udiff_uassoc (arr1) { // eslint-disable-line cam
   var k = ''
   var arr = {}
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
 
   cb = (typeof cb === 'string')
     ? $global[cb]

@@ -8,7 +8,7 @@ module.exports = function key (arr) {
   //   example 1: key($array)
   //   returns 1: 'fruit1'
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

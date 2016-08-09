@@ -13,7 +13,7 @@ module.exports = function localeconv () {
   // ensure setup of localization variables takes place, if not already
   setlocale('LC_ALL', 0)
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

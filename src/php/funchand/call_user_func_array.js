@@ -15,7 +15,7 @@ module.exports = function call_user_func_array (cb, parameters) { // eslint-disa
   //   example 2: call_user_func_array('isNaN', [1])
   //   returns 2: false
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   var func
   var scope = null
 

@@ -8,7 +8,7 @@ module.exports = function nl_langinfo (item) { // eslint-disable-line camelcase
 
   setlocale('LC_ALL', 0) // Ensure locale data is available
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

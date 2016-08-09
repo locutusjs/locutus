@@ -6,7 +6,7 @@ module.exports = function each (arr) {
   //   example 1: each({a: "apple", b: "balloon"})
   //   returns 1: {0: "a", 1: "apple", key: "a", value: "apple"}
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
