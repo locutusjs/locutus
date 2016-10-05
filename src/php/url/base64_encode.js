@@ -16,7 +16,7 @@ module.exports = function base64_encode (stringToEncode) { // eslint-disable-lin
 
   if (typeof window !== 'undefined') {
     if (typeof window.btoa !== 'undefined') {
-      return window.btoa(escape(encodeURIComponent(stringToEncode)))
+      return window.btoa(unescape(encodeURIComponent(stringToEncode)))
     }
   } else {
     return new Buffer(stringToEncode).toString('base64')

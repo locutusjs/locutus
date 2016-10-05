@@ -18,7 +18,7 @@ module.exports = function base64_decode (encodedData) { // eslint-disable-line c
 
   if (typeof window !== 'undefined') {
     if (typeof window.atob !== 'undefined') {
-      return decodeURIComponent(unescape(window.atob(encodedData)))
+      return decodeURIComponent(escape(window.atob(encodedData)))
     }
   } else {
     return new Buffer(encodedData, 'base64').toString('utf-8')
