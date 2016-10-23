@@ -11,11 +11,13 @@ module.exports = function unserialize (data) {
   // bugfixed by: dptr1988
   // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: philippsimon (https://github.com/philippsimon/)
   //  revised by: d3x
   //    input by: Brett Zamir (http://brett-zamir.me)
   //    input by: Martin (http://www.erlenwiese.de/)
   //    input by: kilops
   //    input by: Jaroslaw Czarniak
+  //    input by: lovasoa (https://github.com/lovasoa/)
   //      note 1: We feel the main purpose of this function should be
   //      note 1: to ease the transport of data between php & js
   //      note 1: Aiming for PHP-compatibility, we have to translate objects to arrays
@@ -28,39 +30,21 @@ module.exports = function unserialize (data) {
 
   var $global = (typeof window !== 'undefined' ? window : global)
 
-  var utf8Overhead = function (chr) {
-    // http://locutus.io/php/unserialize:571#comment_95906
-    var code = chr.charCodeAt(0)
-    var zeroCodes = [
-      338,
-      339,
-      352,
-      353,
-      376,
-      402,
-      8211,
-      8212,
-      8216,
-      8217,
-      8218,
-      8220,
-      8221,
-      8222,
-      8224,
-      8225,
-      8226,
-      8230,
-      8240,
-      8364,
-      8482
-    ]
-    if (code < 0x0080 || code >= 0x00A0 && code <= 0x00FF || zeroCodes.indexOf(code) !== -1) {
-      return 0
+  var utf8Overhead = function (str) {
+    var s = str.length
+    for (var i = str.length - 1; i >= 0; i--) {
+      var code = str.charCodeAt(i)
+      if (code > 0x7f && code <= 0x7ff) {
+        s++
+      } else if (code > 0x7ff && code <= 0xffff) {
+        s += 2
+      }
+      // trail surrogate
+      if (code >= 0xDC00 && code <= 0xDFFF) {
+        i--
+      }
     }
-    if (code < 0x0800) {
-      return 1
-    }
-    return 2
+    return s - 1
   }
   var error = function (type,
     msg, filename, line) {

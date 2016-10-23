@@ -19,4 +19,10 @@ describe('src/php/var/unserialize.js (tested in test/languages/php/var/test-unse
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 3', function (done) {
+    var expected = {'ü': 'ü', '四': '四', '𠜎': '𠜎'}
+    var result = unserialize('a:3:{s:2:"ü";s:2:"ü";s:3:"四";s:3:"四";s:4:"𠜎";s:4:"𠜎";}')
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })
