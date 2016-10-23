@@ -23,6 +23,8 @@ module.exports = function unserialize (data) {
   //   returns 1: ['Kevin', 'van', 'Zonneveld']
   //   example 2: unserialize('a:2:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";}')
   //   returns 2: {firstName: 'Kevin', midName: 'van'}
+  //   example 3: unserialize('a:3:{s:2:"ü";s:2:"ü";s:3:"四";s:3:"四";s:4:"𠜎";s:4:"𠜎";}')
+  //   returns 3: {'ü': 'ü', '四': '四', '𠜎': '𠜎'}
 
   var $global = (typeof window !== 'undefined' ? window : global)
 
