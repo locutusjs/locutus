@@ -76,7 +76,7 @@ module.exports = function unserialize (data) {
     }
     return [buf.length, buf.join('')]
   }
-  var _unserialize = function (data, offset) {
+  function _unserialize (data, offset) {
     var dtype
     var dataoffset
     var keyandchrs
