@@ -17,7 +17,7 @@ module.exports = function nl2br (str, isXhtml) {
   //   example 3: nl2br("\nOne\nTwo\n\nThree\n", true)
   //   returns 3: '<br />\nOne<br />\nTwo<br />\n<br />\nThree<br />\n'
 
-  // Some lattest browsers when str is null return and unexpected null value
+  // Some latest browsers when str is null return and unexpected null value
   if(typeof str === 'undefined' || str === null){
     return '';
   }
