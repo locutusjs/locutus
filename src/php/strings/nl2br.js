@@ -20,8 +20,8 @@ module.exports = function nl2br (str, isXhtml) {
   //   returns 4: ''
 
   // Some latest browsers when str is null return and unexpected null value
-  if(typeof str === 'undefined' || str === null){
-    return '';
+  if (typeof str === 'undefined' || str === null) {
+    return ''
   }
   
   // Adjust comment to avoid issue on locutus.io display
