@@ -6,8 +6,8 @@ Only project-wide changes are mentioned here. For individual function changelogs
 respective Git histories.
 
 Locutus does not follow SemVer as we're a work in progress, and even though we try, 
-we cannot guarantee BC-safety for the hundreds of contributions across the many l
-anguages that Locutus is assimilating.
+we cannot guarantee BC-safety for the hundreds of contributions across the many 
+languages that Locutus is assimilating.
 
 Instead, we recommend using version pinning, and inspect changes for the few particular functions you rely on
 when you upgrade.
@@ -27,11 +27,17 @@ Ideas that will be planned and find their way into a release at one point
 - [ ] Parse `require`s with AST just like Browserify does. Then we can add dependencies back to website
 - [ ] website: Render authors server-side
 
-## v2.0.6
+## v2.0.7
 
 Released: Not yet
 
 - [ ] Address the 25 remaining test failures that are currently skipped (find out which ones via `npm run test:languages:noskip`)
+
+## v2.0.6
+
+Released: 2016-06-16. Commit log: https://github.com/kvz/locutus/compare/v2.0.5...v2.0.6
+
+- [x] Language fixes
 
 ## v2.0.5
 
