@@ -3,9 +3,12 @@ module.exports = function array_search (needle, haystack, argStrict) { // eslint
   // original by: Kevin van Zonneveld (http://kvz.io)
   //    input by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  // bugfixed by: Reynier de la Rosa (http://scriptinside.blogspot.com.es/)
   //        test: skip-all
   //   example 1: array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'})
   //   returns 1: 'surname'
+  //   example 2: array_search('3', {a: 3, b: 5, c: 7})
+  //   returns 2: 'a'
 
   var strict = !!argStrict
   var key = ''
@@ -32,7 +35,7 @@ module.exports = function array_search (needle, haystack, argStrict) { // eslint
 
   for (key in haystack) {
     if (haystack.hasOwnProperty(key)) {
-      if ((strict && haystack[key] === needle) || (!strict && haystack[key] === needle)) {
+      if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
         return key
       }
     }
