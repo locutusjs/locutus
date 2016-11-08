@@ -23,7 +23,7 @@ module.exports = function nl2br (str, isXhtml) {
   if (typeof str === 'undefined' || str === null) {
     return ''
   }
-  
+
   // Adjust comment to avoid issue on locutus.io display
   var breakTag = (isXhtml || typeof isXhtml === 'undefined') ? '<br ' + '/>' : '<br>'
 
