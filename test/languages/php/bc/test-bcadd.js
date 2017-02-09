@@ -9,7 +9,19 @@ var bcadd = require('../../../../src/php/bc/bcadd.js') // eslint-disable-line no
 describe('src/php/bc/bcadd.js (tested in test/languages/php/bc/test-bcadd.js)', function () {
   it('should pass example 1', function (done) {
     var expected = '3'
-    var result = bcadd(1, 2)
+    var result = bcadd('1', '2')
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 2', function (done) {
+    var expected = '4.0000'
+    var result = bcadd('-1', '5', 4)
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 3', function (done) {
+    var expected = '8728932003911564969352217864684.00'
+    var result = bcadd('1928372132132819737213', '8728932001983192837219398127471', 2)
     expect(result).to.deep.equal(expected)
     done()
   })

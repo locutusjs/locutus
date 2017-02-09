@@ -25,4 +25,10 @@ describe('src/php/strings/nl2br.js (tested in test/languages/php/strings/test-nl
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 4', function (done) {
+    var expected = ''
+    var result = nl2br(null)
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })

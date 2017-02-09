@@ -9,7 +9,19 @@ var bcsub = require('../../../../src/php/bc/bcsub.js') // eslint-disable-line no
 describe('src/php/bc/bcsub.js (tested in test/languages/php/bc/test-bcsub.js)', function () {
   it('should pass example 1', function (done) {
     var expected = '-1'
-    var result = bcsub(1, 2)
+    var result = bcsub('1', '2')
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 2', function (done) {
+    var expected = '-6.0000'
+    var result = bcsub('-1', '5', 4)
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 3', function (done) {
+    var expected = '8728932000054820705086578390258.00'
+    var result = bcsub('8728932001983192837219398127471', '1928372132132819737213', 2)
     expect(result).to.deep.equal(expected)
     done()
   })

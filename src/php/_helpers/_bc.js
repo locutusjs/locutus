@@ -436,7 +436,8 @@ module.exports = function _bc () { // eslint-disable-line camelcase
 
       // Assign to prod and clean up the number.
       pval.n_sign = (n1.n_sign === n2.n_sign ? Libbcmath.PLUS : Libbcmath.MINUS)
-        // pval.n_value = pval.nPtr; // @todo: pval.n_len = len2 + len1 + 1 - fullScale
+        // pval.n_value = pval.nPtr;
+      pval.n_len = len2 + len1 + 1 - fullScale
       pval.n_scale = prodScale
       Libbcmath._bc_rm_leading_zeros(pval)
       if (Libbcmath.bc_is_zero(pval)) {
