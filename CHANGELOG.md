@@ -5,7 +5,7 @@ Our combined changelog and roadmap. It contains todos as well as dones.
 Only project-wide changes are mentioned here. For individual function changelogs, please refer to their
 respective Git histories.
 
-Locutus does not follow SemVer as we're a work in progress, and even though we try, 
+Locutus does not follow SemVer as we're a work in progress - and even though we try, 
 we cannot guarantee BC-safety for the hundreds of contributions across the many 
 languages that Locutus is assimilating.
 
@@ -16,38 +16,50 @@ when you upgrade.
 
 Ideas that will be planned and find their way into a release at one point
 
-- [ ] Have _one_ way of checking pure JS arrays vs PHP arrays (vs: `Object.prototype.toString.call(arr1) === '[object Array]'`, `typeof retObj[p] === 'object'`, `var asString = Object.prototype.toString.call(mixedVar) var asFunc = _getFuncName(mixedVar.constructor) if (asString === '[object Object]' && asFunc === 'Object') {` )
+- [ ] Address the 25 remaining test failures that are currently skipped (find out which ones via `npm run test:languages:noskip`)
 - [ ] Compare example test cases for PHP against `php -r` to make sure they are correctly mimicking the most recent stable behavior
+- [ ] Have _one_ way of checking pure JS arrays vs PHP arrays (vs: `Object.prototype.toString.call(arr1) === '[object Array]'`, `typeof retObj[p] === 'object'`, `var asString = Object.prototype.toString.call(mixedVar) var asFunc = _getFuncName(mixedVar.constructor) if (asString === '[object Object]' && asFunc === 'Object') {` )
 - [ ] Investigate if we can have one helper function for intersecting, and use that in all `array_*diff*` and `array_*sort*` functions. Refrain from using `labels`, which those functions currently still rely on
 - [ ] Investigate if we can have one helper function for sorting, and use that in all `*sort*` functions
 - [ ] Investigate if we can have one helper function to resolve `Function/'function'/'Class::function'/[$object, 'function']`, and use that in `is_callable`, `array_walk`, `call_user_func_array` etc.
-- [ ] Port a few more tricky/inter-depending Ruby functions
-- [ ] Port a few more tricky/inter-depending Python functions
-- [ ] Port a few more tricky/inter-depending Go functions
 - [ ] Parse `require`s with AST just like Browserify does. Then we can add dependencies back to website
+- [ ] Port a few more tricky/inter-depending Go functions
+- [ ] Port a few more tricky/inter-depending Python functions
+- [ ] Port a few more tricky/inter-depending Ruby functions
 - [ ] website: Render authors server-side
+- [ ] website: Fix the search functionality
+
+## v2.0.8
+
+Released: TBA
+
+- [ ]
 
 ## v2.0.7
 
-Released: Not yet
+Released: 2017-02-09. 
+[Diff](https://github.com/kvz/locutus/compare/v2.0.6...v2.0.7).
 
-- [ ] Address the 25 remaining test failures that are currently skipped (find out which ones via `npm run test:languages:noskip`)
+- [x] Community-contributed function improvements, see respective functions' changelogs in the Diff.
 
 ## v2.0.6
 
-Released: 2016-06-16. Commit log: https://github.com/kvz/locutus/compare/v2.0.5...v2.0.6
+Released: 2016-06-16. 
+[Diff](https://github.com/kvz/locutus/compare/v2.0.5...v2.0.6).
 
 - [x] Language fixes
 
 ## v2.0.5
 
-Released: 2016-06-16. Commit log: https://github.com/kvz/locutus/compare/v2.0.4...v2.0.5
+Released: 2016-06-16. 
+[Diff](https://github.com/kvz/locutus/compare/v2.0.4...v2.0.5).
 
 - [x] Cache node modules on Travis so we'll be less dependent on npm connectivity
 
 ## v2.0.4
 
-Released: 2016-05-25. Commit log: https://github.com/kvz/locutus/compare/v2.0.3...v2.0.4
+Released: 2016-05-25. 
+[Diff](https://github.com/kvz/locutus/compare/v2.0.3...v2.0.4).
 
 - [x] Upgrade depurar to 0.2.2, fixing an issue with the testwriter (@kukawski)
 - [x] Add the 'reimplemented by' and 'parts by' contributionKeys to the /authors website page
@@ -57,7 +69,8 @@ Released: 2016-05-25. Commit log: https://github.com/kvz/locutus/compare/v2.0.3.
 
 ## v2.0.3
 
-Released: 2016-05-22. Commit log: https://github.com/kvz/locutus/compare/v2.0.2...v2.0.3
+Released: 2016-05-22. 
+[Diff](https://github.com/kvz/locutus/compare/v2.0.2...v2.0.3).
 
 - [x] Minor `util.js` refactoring
 - [x] Use hexo deploy instead of custom bash script to aid Windows compatibility
@@ -75,19 +88,22 @@ Released: 2016-05-22. Commit log: https://github.com/kvz/locutus/compare/v2.0.2.
 
 ## v2.0.2
 
-Released: 2016-05-02. Commit log: https://github.com/kvz/locutus/compare/v2.0.1...v2.0.2
+Released: 2016-05-02. 
+[Diff](https://github.com/kvz/locutus/compare/v2.0.1...v2.0.2).
 
 - [x] Don't use `files` in package.json as we don't ship all of `dist` now
 
 ## v2.0.1
 
-Released: 2016-05-02. Commit log: https://github.com/kvz/locutus/compare/v2.0.0...v2.0.1
+Released: 2016-05-02. 
+[Diff](https://github.com/kvz/locutus/compare/v2.0.0...v2.0.1).
 
 - [x] Don't use `bin` in package.json as we don't ship `cli.js`
 
 ## v2.0.0
 
-Released: 2016-05-02. Commit log: https://github.com/kvz/locutus/compare/v1.3.2...v2.0.0
+Released: 2016-05-02. 
+[Diff](https://github.com/kvz/locutus/compare/v1.3.2...v2.0.0).
 
 - [x] website: Add profile to sidebar
 - [x] Rename `_locutus_shared` to `_helpers`. Rename `_locutus_shared_bc` to `_bc`
