@@ -9,7 +9,25 @@ var bcmul = require('../../../../src/php/bc/bcmul.js') // eslint-disable-line no
 describe('src/php/bc/bcmul.js (tested in test/languages/php/bc/test-bcmul.js)', function () {
   it('should pass example 1', function (done) {
     var expected = '2'
-    var result = bcmul(1, 2)
+    var result = bcmul('1', '2')
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 2', function (done) {
+    var expected = '-15'
+    var result = bcmul('-3', '5')
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 3', function (done) {
+    var expected = '12193263111263526900'
+    var result = bcmul('1234567890', '9876543210')
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 4', function (done) {
+    var expected = '3.75'
+    var result = bcmul('2.5', '1.5', 2)
     expect(result).to.deep.equal(expected)
     done()
   })

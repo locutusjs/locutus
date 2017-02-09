@@ -13,4 +13,10 @@ describe.skip('src/php/array/array_search.js (tested in test/languages/php/array
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 2', function (done) {
+    var expected = 'a'
+    var result = array_search('3', {a: 3, b: 5, c: 7})
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })
