@@ -1,3 +1,10 @@
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - bc
+
 language: node_js
 node_js:
 - '4.4.2' # When you update this, also update deploy.on.node further down, to tell who is the deployer build
@@ -6,8 +13,8 @@ node_js:
 sudo: false
 matrix:
   allow_failures:
-  - node_js: 0.1
-  - node_js: 0.12
+  - node_js: '0.12'
+  - node_js: '0.10'
 
 cache:
   directories:
@@ -19,7 +26,7 @@ env:
     - secure: "c4unKozz+OKffwUmypDb+E8qcR9JM7tb7fQ75jidOiz57HM5hmLVJokj017GrUeoPAw3nSE6l0O9Yvyf5K4QNguZ4IXlrtTO1repPLHyUCX3Hoo3PhXDo6g6ySpt8tMpP3dX6r7JUn5YHjxASfOI8VJTmcnxyNkVH66H6VMOA2I="
 
 script:
-- npm run lint
+- 'if [ "$(bc <<< "${TRAVIS_NODE_VERSION} >= 4")" -eq 1 ]; then npm run lint; fi'
 - npm run build
 - npm run test
 - npm run website:install
