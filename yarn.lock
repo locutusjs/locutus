@@ -2597,9 +2597,9 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
-invig@0.0.11:
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/invig/-/invig-0.0.11.tgz#d69c74e1724a2868df574647f0c665d73ac3b9a3"
+invig@0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/invig/-/invig-0.0.12.tgz#918660531d177b00e6e5f46ec4eaccff7f6ff995"
   dependencies:
     async "2.1.4"
     babel-cli "6.23.0"
