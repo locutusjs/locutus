@@ -12,6 +12,7 @@
     "eslint-plugin-standard": "2.0.1"
   },
   "dependencies": {
+    "cross-spawn-async": "2.2.5",
     "hexo": "3.2.2",
     "hexo-browsersync": "0.2.0",
     "hexo-cli": "1.0.2",

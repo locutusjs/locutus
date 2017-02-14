@@ -1,3 +1,4 @@
+module.exports['boolval'] = require('./boolval')
 module.exports['doubleval'] = require('./doubleval')
 module.exports['empty'] = require('./empty')
 module.exports['floatval'] = require('./floatval')
