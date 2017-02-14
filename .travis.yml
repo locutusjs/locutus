@@ -7,14 +7,18 @@ addons:
 
 language: node_js
 node_js:
-- '4.4.2' # When you update this, also update deploy.on.node further down, to tell who is the deployer build
+- '0.10' # these should be quoted; otherwise, 0.10 turns into 0.1
 - '0.12'
-- '0.10' # this should be quoted; otherwise, 0.10 would not work
+- '4.4.2' # When you update this, also update deploy.on.node further down, to tell who is the deployer build
+- '6'
+- '7'
 sudo: false
 matrix:
   allow_failures:
-  - node_js: '0.12'
   - node_js: '0.10'
+  - node_js: '0.12'
+  - node_js: '6'
+  - node_js: '7'
 
 cache:
   directories:
