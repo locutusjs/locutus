@@ -16,7 +16,7 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
   var i = 0
 
   var _getFuncName = function (fn) {
-    var name = (/\W*function\s+([\w\$]+)\s*\(/)
+    var name = (/\W*function\s+([\w$]+)\s*\(/)
       .exec(fn)
     if (!name) {
       return '(Anonymous)'

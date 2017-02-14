@@ -91,7 +91,7 @@ module.exports = function pathinfo (path, options) {
   if (options & OPTS.PATHINFO_DIRNAME) {
     var dirName = path
       .replace(/\\/g, '/')
-      .replace(/\/[^\/]*\/?$/, '') // dirname
+      .replace(/\/[^/]*\/?$/, '') // dirname
     tmpArr.dirname = dirName === path ? '.' : dirName
   }
 

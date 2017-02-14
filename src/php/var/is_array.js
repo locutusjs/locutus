@@ -29,7 +29,7 @@ module.exports = function is_array (mixedVar) { // eslint-disable-line camelcase
   //   returns 5: false
 
   var _getFuncName = function (fn) {
-    var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn)
+    var name = (/\W*function\s+([\w$]+)\s*\(/).exec(fn)
     if (!name) {
       return '(Anonymous)'
     }

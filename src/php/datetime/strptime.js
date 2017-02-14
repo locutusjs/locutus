@@ -88,7 +88,7 @@ module.exports = function strptime (dateStr, format) {
     Oy
   */
   var _pregQuote = function (str) {
-    return (str + '').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}=!<>\|:])/g, '\\$1')
+    return (str + '').replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1')
   }
 
   // ensure setup of localization variables takes place
@@ -141,7 +141,7 @@ module.exports = function strptime (dateStr, format) {
       if (literalPos !== -1) {
         if (['%', '\n', '\t'].indexOf(dateStr.charAt(j)) === literalPos) {
           // a matched literal
-          ++i;
+          ++i
           // skip beyond
           ++j
           continue

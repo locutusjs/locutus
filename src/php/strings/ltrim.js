@@ -8,7 +8,7 @@ module.exports = function ltrim (str, charlist) {
   //   returns 1: 'Kevin van Zonneveld    '
 
   charlist = !charlist ? ' \\s\u00A0' : (charlist + '')
-    .replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^:])/g, '$1')
+    .replace(/([[\]().?/*{}+$^:])/g, '$1')
 
   var re = new RegExp('^[' + charlist + ']+', 'g')
 

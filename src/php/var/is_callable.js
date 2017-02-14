@@ -36,7 +36,7 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
   var validFunctionName = false
 
   var getFuncName = function (fn) {
-    var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn)
+    var name = (/\W*function\s+([\w$]+)\s*\(/).exec(fn)
     if (!name) {
       return '(Anonymous)'
     }

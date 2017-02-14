@@ -33,7 +33,7 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA
 
-- [ ]
+- [x] Upgrade eslint and fix newly found issues accordingly
 
 ## v2.0.7
 

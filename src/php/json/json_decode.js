@@ -80,8 +80,8 @@ module.exports = function json_decode (strJson) { // eslint-disable-line camelca
   // ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
 
   var m = (/^[\],:{}\s]*$/)
-    .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
-    .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
+    .test(text.replace(/\\(?:["\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
+    .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?/g, ']')
     .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))
 
   if (m) {

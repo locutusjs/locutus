@@ -30,7 +30,7 @@ module.exports = function str_word_count (str, format, charlist) { // eslint-dis
   var match = false
 
   var _pregQuote = function (str) {
-    return (str + '').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}=!<>\|:])/g, '\\$1')
+    return (str + '').replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1')
   }
   var _getWholeChar = function (str, i) {
     // Use for rare cases of non-BMP characters

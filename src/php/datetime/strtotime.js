@@ -202,7 +202,7 @@ module.exports = function strtotime (text, now) {
     // @todo: time zone information
     if (match[4] === 'z') {
       match[4] = 'Z'
-    } else if (match[4].match(/^([\+-][0-9]{2})$/)) {
+    } else if (match[4].match(/^([+-][0-9]{2})$/)) {
       match[4] = match[4] + ':00'
     }
 

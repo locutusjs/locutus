@@ -10,7 +10,7 @@ module.exports = function array_intersect_uassoc (arr1) { // eslint-disable-line
   var arglm1 = arguments.length - 1
   var arglm2 = arglm1 - 1
   var cb = arguments[arglm1]
-  var cb0 = arguments[arglm2]
+  // var cb0 = arguments[arglm2]
   var k1 = ''
   var i = 1
   var k = ''
@@ -24,11 +24,11 @@ module.exports = function array_intersect_uassoc (arr1) { // eslint-disable-line
       ? $global[cb[0]][cb[1]]
       : cb
 
-  cb0 = (typeof cb0 === 'string')
-    ? $global[cb0]
-    : (Object.prototype.toString.call(cb0) === '[object Array]')
-      ? $global[cb0[0]][cb0[1]]
-      : cb0
+  // cb0 = (typeof cb0 === 'string')
+  //   ? $global[cb0]
+  //   : (Object.prototype.toString.call(cb0) === '[object Array]')
+  //     ? $global[cb0[0]][cb0[1]]
+  //     : cb0
 
   arr1keys: for (k1 in arr1) { // eslint-disable-line no-labels
     arrs: for (i = 1; i < arglm1; i++) { // eslint-disable-line no-labels

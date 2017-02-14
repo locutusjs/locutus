@@ -35,7 +35,7 @@ module.exports = function htmlentities (string, quoteStyle, charset, doubleEncod
     Object.keys(hashMap)
     .join('')
     // replace regexp special chars
-    .replace(/([()[\]{}\-.*+?^$|\/\\])/g, '\\$1') + ']',
+    .replace(/([()[\]{}\-.*+?^$|/\\])/g, '\\$1') + ']',
     'g')
 
   return string.replace(regex, function (ent) {

@@ -9,10 +9,12 @@ module.exports = function date_parse (date) { // eslint-disable-line camelcase
 
   try {
     ts = strtotime(date)
-  } finally {
-    if (!ts) {
-      return false
-    }
+  } catch (e) {
+    ts = false
+  }
+
+  if (!ts) {
+    return false
   }
 
   var dt = new Date(ts * 1000)

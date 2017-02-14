@@ -10,5 +10,5 @@ module.exports = function dirname (path) {
   //   returns 3: '/dir'
 
   return path.replace(/\\/g, '/')
-    .replace(/\/[^\/]*\/?$/, '')
+    .replace(/\/[^/]*\/?$/, '')
 }

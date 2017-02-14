@@ -5,5 +5,5 @@ module.exports = function quotemeta (str) {
   //   returns 1: '\\. \\+ \\* \\? \\^ \\( \\$ \\)'
 
   return (str + '')
-    .replace(/([\.\\\+\*\?\[\^\]\$\(\)])/g, '\\$1')
+    .replace(/([.\\+*?[^\]$()])/g, '\\$1')
 }

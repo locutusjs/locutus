@@ -53,7 +53,7 @@ module.exports = function array_splice (arr, offst, lgth, replacement) { // esli
     /* if (arr.length !== undefined) {
      // Deal with array-like objects as input
     delete arr.length;
-    }*/
+    } */
     var lgt = 0
     var ct = -1
     var rmvd = []
@@ -62,7 +62,7 @@ module.exports = function array_splice (arr, offst, lgth, replacement) { // esli
     var intCt = -1
     var returnArr = true
     var rmvdCt = 0
-    var rmvdLngth = 0
+    // var rmvdLngth = 0
     var key = ''
     // rmvdObj.length = 0;
     for (key in arr) {
@@ -95,7 +95,7 @@ module.exports = function array_splice (arr, offst, lgth, replacement) { // esli
         rmvdObj[key] = arr[key]
         returnArr = false
       }
-      rmvdLngth += 1
+      // rmvdLngth += 1
       // rmvdObj.length += 1;
       if (replacement && replacement[++replCt]) {
         arr[key] = replacement[replCt]

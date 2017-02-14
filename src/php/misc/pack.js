@@ -51,7 +51,7 @@ module.exports = function pack (format) {
     quantifier = ''
     formatPointer++
     while ((formatPointer < format.length) && (format.charAt(formatPointer)
-        .match(/[\d\*]/) !== null)) {
+        .match(/[\d*]/) !== null)) {
       quantifier += format.charAt(formatPointer)
       formatPointer++
     }

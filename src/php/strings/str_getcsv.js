@@ -33,7 +33,7 @@ module.exports = function str_getcsv (input, delimiter, enclosure, escape) { // 
   }
   var _pq = function (str) {
     // preg_quote()
-    return String(str).replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}=!<>\|:])/g, '\\$1')
+    return String(str).replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1')
   }
 
   delimiter = delimiter || ','

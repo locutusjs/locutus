@@ -29,7 +29,7 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
   var innerIndent = ''
   var outerIndent = ''
   var getFuncName = function (fn) {
-    var name = (/\W*function\s+([\w\$]+)\s*\(/).exec(fn)
+    var name = (/\W*function\s+([\w$]+)\s*\(/).exec(fn)
     if (!name) {
       return '(Anonymous)'
     }
