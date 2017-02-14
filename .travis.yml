@@ -9,8 +9,8 @@ language: node_js
 node_js:
 - '0.10' # these should be quoted; otherwise, 0.10 turns into 0.1
 - '0.12'
-- '4.4.2' # When you update this, also update deploy.on.node further down, to tell who is the deployer build
-- '6'
+- '4'
+- '6' # When you update this, also update deploy.on.node further down, to tell who is the deployer build
 - '7'
 sudo: false
 matrix:
@@ -43,4 +43,4 @@ deploy:
   script: scripts/travis-deploy.sh
   on:
     branch: master
-    node: '4.4.2'
+    node: '6'
