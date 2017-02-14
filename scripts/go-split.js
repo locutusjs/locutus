@@ -49,7 +49,7 @@ function splitFunctions (pkgNameSlug, pkgContent) {
 function splitPackages (buf) {
   var pkgs = buf.split(/^ {2}\$packages\['/m)
   pkgs.forEach(function (pkg) {
-    var matches = pkg.match(/(.+)'\]\s*=/)
+    var matches = pkg.match(/(.+)']\s*=/)
     if (!matches) {
       return
     }
