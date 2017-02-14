@@ -6,7 +6,7 @@
   "homepage": "http://locutus.io",
   "author": "Kevin van Zonneveld <kevin@vanzonneveld.net>",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 0.12.0"
   },
   "devDependencies": {
     "async": "2.0.0-rc.3",
@@ -32,7 +32,7 @@
     "fakefile": "0.0.8",
     "globby": "4.0.0",
     "indent-string": "2.1.0",
-    "invig": "0.0.10",
+    "invig": "0.0.11",
     "js-yaml": "3.6.0",
     "lodash": "4.11.1",
     "mkdirp": "0.5.1",
@@ -59,7 +59,7 @@
   },
   "readmeFilename": "README.md",
   "scripts": {
-    "beautify": "invig --src src/*.js && invig --src src/*/*.js && invig --src src/*/*/*.js",
+    "beautify": "invig --src src",
     "browser:bundle": "browserify test/browser/app.js --outfile test/browser/bundle.js",
     "browser:watch": "budo test/browser/app.js --live --serve test/browser/bundle.js",
     "build:dist": "babel src --out-dir dist --source-maps && cp package.json dist/",
