@@ -21,7 +21,6 @@ pushd "${__dir}"
   rm -f main.js
   "${GOPATH}/bin/gopherjs" build --verbose main.go
   ls -al main.js
-  "${__root}/node_modules/.bin/js-beautify" --replace main.js
-  "${__root}/node_modules/.bin/eslint" --fix main.js
+  "${__root}/node_modules/.bin/invig" --src main.js
   node go-split.js main.js
 popd

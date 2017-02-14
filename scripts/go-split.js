@@ -8,19 +8,14 @@ var mainPackage = process.argv[3] || '*'
 var __root = path.dirname(__dirname)
 
 function cleanFile (filepath, cb) {
-  exec(__root + '/node_modules/.bin/js-beautify --replace ' + filepath, function (err, stdout) {
+  exec(__root + '/node_modules/.bin/invig --src ' + filepath, function (err, stdout) {
     if (err) {
-      throw new Error(err)
+      // throw new Error(err)
     }
-    exec(__root + '/node_modules/.bin/eslint --fix ' + filepath, function (err, stdout) {
-      if (err) {
-        // throw new Error(err)
-      }
-      console.log('Cleaned: ' + filepath)
-      if (cb) {
-        cb(null)
-      }
-    })
+    console.log('Cleaned: ' + filepath)
+    if (cb) {
+      cb(null)
+    }
   })
 }
 

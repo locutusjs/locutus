@@ -2857,14 +2857,6 @@ jodid25519@^1.0.0:
   dependencies:
     jsbn "~0.1.0"
 
-js-beautify@1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/js-beautify/-/js-beautify-1.6.2.tgz#f5c84dcf38e663cfa66e941264c0100150b5098e"
-  dependencies:
-    config-chain "~1.1.5"
-    mkdirp "~0.5.0"
-    nopt "~3.0.1"
-
 js-tokens@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.1.tgz#08e9f132484a2c45a30907e9dc4d5567b7f114d7"
