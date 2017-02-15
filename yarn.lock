@@ -1520,9 +1520,9 @@ decaffeinate-parser@^16.0.3:
     decaffeinate-coffeescript "^1.10.0-patch19"
     lines-and-columns "^1.1.6"
 
-decaffeinate@2.47.3:
-  version "2.47.3"
-  resolved "https://registry.yarnpkg.com/decaffeinate/-/decaffeinate-2.47.3.tgz#8393e3f14810e3f36cedb13b10a84591ec5c6974"
+decaffeinate@2.47.5:
+  version "2.47.5"
+  resolved "https://registry.yarnpkg.com/decaffeinate/-/decaffeinate-2.47.5.tgz#1aef0a5a40aff4a887b6fe3313f4d72a0131eba0"
   dependencies:
     add-variable-declarations "^2.0.1"
     ast-processor-babylon-config "^1.0.0"
@@ -2597,9 +2597,9 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
-invig@0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/invig/-/invig-0.0.12.tgz#918660531d177b00e6e5f46ec4eaccff7f6ff995"
+invig@0.0.13:
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/invig/-/invig-0.0.13.tgz#d0d708ad47febe3e0b2f837826c764d17ec7ffa4"
   dependencies:
     async "2.1.4"
     babel-cli "6.23.0"
@@ -2612,7 +2612,7 @@ invig@0.0.12:
     babel-plugin-transform-object-assign "6.22.0"
     babel-preset-es2015 "6.22.0"
     commander "2.9.0"
-    decaffeinate "2.47.3"
+    decaffeinate "2.47.5"
     depurar "0.3.0"
     eslint "3.15.0"
     eslint-config-standard "6.2.1"
@@ -2623,7 +2623,7 @@ invig@0.0.12:
     npm-check "5.4.0"
     os-tmpdir "1.0.2"
     pkg-up "1.0.0"
-    prettier "0.17.0"
+    prettier "0.17.1"
     scrolex "0.0.20"
     strip-ansi "3.0.1"
     untildify "3.0.2"
@@ -3685,9 +3685,9 @@ prettier-bytes@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/prettier-bytes/-/prettier-bytes-1.0.3.tgz#932b31c23efddb36fc66a82dcef362af3122982f"
 
-prettier@0.17.0:
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-0.17.0.tgz#785940a2b95bd6c7cd4d14fa11a1112bfed3cf83"
+prettier@0.17.1:
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-0.17.1.tgz#a56cdf72b6ed31cae408b8306f4aeae985570e72"
   dependencies:
     ast-types "0.9.4"
     babel-code-frame "6.22.0"
