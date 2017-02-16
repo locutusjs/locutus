@@ -16,7 +16,7 @@ module.exports = function base64_encode (stringToEncode) { // eslint-disable-lin
 
   if (typeof window !== 'undefined') {
     if (typeof window.btoa !== 'undefined') {
-      return window.btoa(unescape(encodeURIComponent(stringToEncode)))
+      return window.btoa(decodeURIComponent(encodeURIComponent(stringToEncode)))
     }
   } else {
     return new Buffer(stringToEncode).toString('base64')
@@ -40,7 +40,7 @@ module.exports = function base64_encode (stringToEncode) { // eslint-disable-lin
     return stringToEncode
   }
 
-  stringToEncode = unescape(encodeURIComponent(stringToEncode))
+  stringToEncode = decodeURIComponent(encodeURIComponent(stringToEncode))
 
   do {
     // pack three octets into four hexets
