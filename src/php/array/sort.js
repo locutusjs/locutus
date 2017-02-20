@@ -48,9 +48,7 @@ module.exports = function sort (inputArr, sortFlags) {
   switch (sortFlags) {
     case 'SORT_STRING':
       // compare items as strings
-      sorter = function (a, b) {
-        return strnatcmp(b, a)
-      }
+      // leave sorter undefined, so built-in comparison is used
       break
     case 'SORT_LOCALE_STRING':
       // compare items as strings, based on the current locale
