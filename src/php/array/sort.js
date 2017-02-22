@@ -53,8 +53,14 @@ module.exports = function sort (inputArr, sortFlags) {
     case 'SORT_LOCALE_STRING':
       // compare items as strings, based on the current locale
       // (set with i18n_loc_set_default() as of PHP6)
-      var loc = i18nlgd()
-      sorter = $locutus.locales[loc].sorting
+      var loc = $locutus.php.locales[i18nlgd()]
+      
+      if (loc && loc.sorting) {
+        // if sorting exists on locale object, use it
+        // otherwise let sorter be undefined
+        // to fallback to built-in behavior
+        sorter = loc.sorting
+      }
       break
     case 'SORT_NUMERIC':
       // compare items numerically
