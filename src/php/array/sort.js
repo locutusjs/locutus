@@ -31,7 +31,6 @@ module.exports = function sort (inputArr, sortFlags) {
   //        test: skip-1
 
   var i18nlgd = require('../i18n/i18n_loc_get_default')
-  var strnatcmp = require('../strings/strnatcmp')
 
   var sorter
   var i
@@ -54,7 +53,7 @@ module.exports = function sort (inputArr, sortFlags) {
       // compare items as strings, based on the current locale
       // (set with i18n_loc_set_default() as of PHP6)
       var loc = $locutus.php.locales[i18nlgd()]
-      
+
       if (loc && loc.sorting) {
         // if sorting exists on locale object, use it
         // otherwise let sorter be undefined
