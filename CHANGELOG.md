@@ -29,11 +29,20 @@ Ideas that will be planned and find their way into a release at one point
 - [ ] website: Render authors server-side
 - [ ] website: Fix the search functionality
 
+## master
+
+Released: TBA. 
+[Diff](https://github.com/kvz/locutus/compare/v2.0.8...master).
+
+- [ ] 
+
 ## v2.0.8
 
-Released: TBA
+Released: 2017-02-23. 
+[Diff](https://github.com/kvz/locutus/compare/v2.0.7...v2.0.8).
 
 - [x] Upgrade eslint and fix newly found issues accordingly
+- [x] Community-contributed function improvements, see respective functions' changelogs in the Diff.
 
 ## v2.0.7
 
