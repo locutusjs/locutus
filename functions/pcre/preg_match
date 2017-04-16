@@ -1,0 +1,9 @@
+function preg_match(pattern, string){
+  //  discuss at: http://phpjs.org/functions/preg_match/
+  // original by: Sameer Shemna (https://github.com/sameersemna)
+  //    input by: Sameer Shemna (https://github.com/sameersemna)
+  //   example 1: preg_match(/^([A-Z]{3})(U|J|Z)(\d{6})(\d)$/, 'TEXU3070079');
+  //   returns 1: ["TEXU3070079", "TEX", "U", "307007", "9"]
+  var regex = new RegExp(pattern);
+  return regex.exec(string);
+}
