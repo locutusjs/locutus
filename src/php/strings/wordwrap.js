@@ -37,7 +37,6 @@ module.exports = function wordwrap (str, intWidth, strBreak, cut) {
 
   // for each line of text
   for (i = 0; i < l; lines[i++] += line) {
-
     line = lines[i]
     lines[i] = ''
 
