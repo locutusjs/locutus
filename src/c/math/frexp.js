@@ -18,11 +18,11 @@ module.exports.frexp = function frexp (arg) { // -> [number x, int11 exp]
   // returns 8: [-0, 0]
   // example 9: frexp(NaN)
   // returns 9: [NaN, 0]
-  
+
   // Potential issue with this implementation:
   // the precision of Math.pow and the ** operator are undefined in the ECMAScript standard,
   // however, sane implementations should give the same results for Math.pow(2, <integer>) operations
-  
+
   // Like frexp of C and std::frexp of C++,
   // but returns an array instead of using a pointer argument for passing the exponent result.
   // Object.is(n, frexp(n)[0] * 2 ** frexp(n)[1]) for all number values of n except when Math.isFinite(n) && Math.abs(n) > 2**1023
@@ -34,7 +34,7 @@ module.exports.frexp = function frexp (arg) { // -> [number x, int11 exp]
   arg = Number(arg)
 
   let result = [arg, 0]
-  
+
   if (arg !== 0 && Number.isFinite(arg)) {
     const absArg = Math.abs(arg)
     let exp = Math.max(-1023, Math.floor(Math.log2(absArg)) + 1)
