@@ -1,5 +1,7 @@
 # Locutus
 
+[![Join the chat at https://gitter.im/kvz/phpjs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kvz/phpjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 <!-- badges/ -->
 [![Build Status](https://secure.travis-ci.org/kvz/locutus.svg?branch=master)](http://travis-ci.org/kvz/locutus "Check this project's build status on TravisCI")
 <!-- /badges -->
