@@ -1,5 +1,5 @@
 module.exports.frexp = function frexp (arg) { // -> [number x, int11 exp]
-  // original by: Oskar Larsson Högfeldt (locutus@oskar-lh.name)
+  // original by: Oskar Larsson Högfeldt (http://oskar-lh.name/)
 
   // Like frexp of C and std::frexp of C++,
   // but returns an array instead of using a pointer argument for passing the exponent result.
