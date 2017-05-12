@@ -1,4 +1,4 @@
-module.exports.frexp = function frexp (arg) {
+module.exports = function frexp (arg) {
   //  discuss at: http://locutus.io/c/frexp/
   // original by: Oskar Larsson Högfeldt (http://oskar-lh.name/)
   //      note 1: Instead of
