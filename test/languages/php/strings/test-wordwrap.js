@@ -8,19 +8,19 @@ var wordwrap = require('../../../../src/php/strings/wordwrap.js') // eslint-disa
 
 describe('src/php/strings/wordwrap.js (tested in test/languages/php/strings/test-wordwrap.js)', function () {
   it('should pass example 1', function (done) {
-    var expected = 'Kevin |van |Zonnev|eld'
+    var expected = 'Kevin|van|Zonnev|eld'
     var result = wordwrap('Kevin van Zonneveld', 6, '|', true)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    var expected = 'The quick brown fox <br />\njumped over the lazy<br />\n dog.'
+    var expected = 'The quick brown fox<br />\njumped over the lazy<br />\ndog.'
     var result = wordwrap('The quick brown fox jumped over the lazy dog.', 20, '<br />\n')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    var expected = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod \ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim \nveniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea \ncommodo consequat.'
+    var expected = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim\nveniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea\ncommodo consequat.'
     var result = wordwrap('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.')
     expect(result).to.deep.equal(expected)
     done()

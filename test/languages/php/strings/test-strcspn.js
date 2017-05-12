@@ -14,8 +14,20 @@ describe('src/php/strings/strcspn.js (tested in test/languages/php/strings/test-
     done()
   })
   it('should pass example 2', function (done) {
-    var expected = 3
+    var expected = 0
     var result = strcspn('123abc', '1234567890')
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 3', function (done) {
+    var expected = 6
+    var result = strcspn('abcdefg123', '1234567890', 1)
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 4', function (done) {
+    var expected = 1
+    var result = strcspn('abcdefg123', '1234567890', -6, -5)
     expect(result).to.deep.equal(expected)
     done()
   })
