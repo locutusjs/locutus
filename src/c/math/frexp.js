@@ -1,23 +1,30 @@
-module.exports.frexp = function frexp (arg) { // -> [number x, int11 exp]
+module.exports.frexp = function frexp (arg) {
+  //  discuss at: http://locutus.io/c/frexp/
   // original by: Oskar Larsson Högfeldt (http://oskar-lh.name/)
-  // example 1: frexp(1)
-  // returns 1: [0.5, 1]
-  // example 2: frexp(1.5)
-  // returns 2: [0.75, 1]
-  // example 3: frexp(3 * Math.pow(2, 500))
-  // returns 3: [0.75, 502]
-  // example 4: frexp(-4)
-  // returns 4: [-0.5, 3]
-  // example 5: frexp(Number.MAX_VALUE)
-  // returns 5: [0.9999999999999999, 1024]
-  // example 6: frexp(Number.MIN_VALUE)
-  // returns 6: [0.5, -1073]
-  // example 7: frexp(-Infinity)
-  // returns 7: [-Infinity, 0]
-  // example 8: frexp(-0)
-  // returns 8: [-0, 0]
-  // example 9: frexp(NaN)
-  // returns 9: [NaN, 0]
+  //      note 1: Instead of
+  //      note 1: double frexp( double arg, int* exp );
+  //      note 1: this is built as
+  //      note 1: [double, int] frexp( double arg );
+  //      note 1: due to the lack of pointers in JavaScript.
+  //      note 1: See code comments for further information.
+  //   example 1: frexp(1)
+  //   returns 1: [0.5, 1]
+  //   example 2: frexp(1.5)
+  //   returns 2: [0.75, 1]
+  //   example 3: frexp(3 * Math.pow(2, 500))
+  //   returns 3: [0.75, 502]
+  //   example 4: frexp(-4)
+  //   returns 4: [-0.5, 3]
+  //   example 5: frexp(Number.MAX_VALUE)
+  //   returns 5: [0.9999999999999999, 1024]
+  //   example 6: frexp(Number.MIN_VALUE)
+  //   returns 6: [0.5, -1073]
+  //   example 7: frexp(-Infinity)
+  //   returns 7: [-Infinity, 0]
+  //   example 8: frexp(-0)
+  //   returns 8: [-0, 0]
+  //   example 9: frexp(NaN)
+  //   returns 9: [NaN, 0]
 
   // Potential issue with this implementation:
   // the precision of Math.pow and the ** operator are undefined in the ECMAScript standard,
