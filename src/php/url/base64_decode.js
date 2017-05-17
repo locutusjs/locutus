@@ -9,6 +9,7 @@ module.exports = function base64_decode (encodedData) { // eslint-disable-line c
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Pellentesque Malesuada
   // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  // improved by: Indigo744
   //   example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==')
   //   returns 1: 'Kevin van Zonneveld'
   //   example 2: base64_decode('YQ==')
