@@ -7,6 +7,7 @@ module.exports = function base64_encode (stringToEncode) { // eslint-disable-lin
   // improved by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)
   // bugfixed by: Pellentesque Malesuada
+  // improved by: Indigo744
   //   example 1: base64_encode('Kevin van Zonneveld')
   //   returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
   //   example 2: base64_encode('a')
