@@ -60,7 +60,9 @@ module.exports = function frexp (arg) {
       exp++
     }
 
-    x *= Math.sign(arg)
+    if (arg < 0) {
+      x = -x;
+    }
     result[0] = x
     result[1] = exp
   }
