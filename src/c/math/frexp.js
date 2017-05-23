@@ -61,7 +61,7 @@ module.exports = function frexp (arg) {
     }
 
     if (arg < 0) {
-      x = -x;
+      x = -x
     }
     result[0] = x
     result[1] = exp
