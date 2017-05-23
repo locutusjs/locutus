@@ -27,7 +27,7 @@ module.exports = function frexp (arg) {
   //   returns 9: [NaN, 0]
 
   // Potential issue with this implementation:
-  // the precision of Math.pow and the ** operator are undefined in the ECMAScript standard,
+  // the precisions of Math.pow and the ** operator are undefined in the ECMAScript standard,
   // however, sane implementations should give the same results for Math.pow(2, <integer>) operations
 
   // Like frexp of C and std::frexp of C++,
@@ -36,7 +36,7 @@ module.exports = function frexp (arg) {
   // Object.is(n, (2 * frexp(n)[0]) * 2 ** (frexp(n)[1] - 1)) for all number values of n
   // Object.is(n, frexp(n)[0]) for these values of n: 0, -0, NaN, Infinity, -Infinity
   // Math.abs(frexp(n)[0]) is >= 0.5 and < 1.0 for any other number-type value of n
-  // See http://en.cppreference.com/w/cpp/numeric/math/frexp for a more detailed description
+  // See http://en.cppreference.com/w/c/numeric/math/frexp for a more detailed description
 
   arg = Number(arg)
 
@@ -45,10 +45,10 @@ module.exports = function frexp (arg) {
   if (arg !== 0 && Number.isFinite(arg)) {
     const absArg = Math.abs(arg)
     let exp = Math.max(-1023, Math.floor(Math.log2(absArg)) + 1)
-    let x = absArg * 2 ** -exp
+    let x = absArg * Math.pow(2, -exp)
 
     // These while loops compensate for rounding errors that sometimes occur because of ECMAScript's Math.log2's undefined precision
-    // and also works around the issue of 2 ** exp === Infinity when exp >= 1024
+    // and also works around the issue of Math.pow(2, -exp) === Infinity when exp <= -1024
     while (x < 0.5) {
       x *= 2
       exp--
