@@ -7,6 +7,7 @@ module.exports = function base64_encode (stringToEncode) { // eslint-disable-lin
   // improved by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Rafał Kukawski (http://blog.kukawski.pl)
   // bugfixed by: Pellentesque Malesuada
+  // improved by: Indigo744
   //   example 1: base64_encode('Kevin van Zonneveld')
   //   returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
   //   example 2: base64_encode('a')
@@ -14,9 +15,22 @@ module.exports = function base64_encode (stringToEncode) { // eslint-disable-lin
   //   example 3: base64_encode('✓ à la mode')
   //   returns 3: '4pyTIMOgIGxhIG1vZGU='
 
+  // encodeUTF8string()
+  // Internal function to encode properly UTF8 string
+  // Adapted from Solution #1 at https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
+  var encodeUTF8string = function (str) {
+    // first we use encodeURIComponent to get percent-encoded UTF-8,
+    // then we convert the percent encodings into raw bytes which
+    // can be fed into the base64 encoding algorithm.
+    return encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+      function toSolidBytes (match, p1) {
+        return String.fromCharCode('0x' + p1)
+      })
+  }
+
   if (typeof window !== 'undefined') {
     if (typeof window.btoa !== 'undefined') {
-      return window.btoa(decodeURIComponent(encodeURIComponent(stringToEncode)))
+      return window.btoa(encodeUTF8string(stringToEncode))
     }
   } else {
     return new Buffer(stringToEncode).toString('base64')
@@ -40,7 +54,7 @@ module.exports = function base64_encode (stringToEncode) { // eslint-disable-lin
     return stringToEncode
   }
 
-  stringToEncode = decodeURIComponent(encodeURIComponent(stringToEncode))
+  stringToEncode = encodeUTF8string(stringToEncode)
 
   do {
     // pack three octets into four hexets

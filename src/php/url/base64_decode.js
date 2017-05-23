@@ -9,6 +9,7 @@ module.exports = function base64_decode (encodedData) { // eslint-disable-line c
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Pellentesque Malesuada
   // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  // improved by: Indigo744
   //   example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==')
   //   returns 1: 'Kevin van Zonneveld'
   //   example 2: base64_decode('YQ==')
@@ -16,9 +17,19 @@ module.exports = function base64_decode (encodedData) { // eslint-disable-line c
   //   example 3: base64_decode('4pyTIMOgIGxhIG1vZGU=')
   //   returns 3: '✓ à la mode'
 
+  // decodeUTF8string()
+  // Internal function to decode properly UTF8 string
+  // Adapted from Solution #1 at https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
+  var decodeUTF8string = function (str) {
+    // Going backwards: from bytestream, to percent-encoding, to original string.
+    return decodeURIComponent(str.split('').map(function (c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+    }).join(''))
+  }
+
   if (typeof window !== 'undefined') {
     if (typeof window.atob !== 'undefined') {
-      return decodeURIComponent(encodeURIComponent(window.atob(encodedData)))
+      return decodeUTF8string(window.atob(encodedData))
     }
   } else {
     return new Buffer(encodedData, 'base64').toString('utf-8')
@@ -68,5 +79,5 @@ module.exports = function base64_decode (encodedData) { // eslint-disable-line c
 
   dec = tmpArr.join('')
 
-  return decodeURIComponent(encodeURIComponent(dec.replace(/\0+$/, '')))
+  return decodeUTF8string(dec.replace(/\0+$/, ''))
 }
