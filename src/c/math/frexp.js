@@ -44,7 +44,9 @@ module.exports = function frexp (arg) {
 
   if (arg !== 0 && Number.isFinite(arg)) {
     const absArg = Math.abs(arg)
-    let exp = Math.max(-1023, Math.floor(Math.log2(absArg)) + 1)
+    // Math.log2 was introduced in ES2015, use it when available
+    const log2 = Math.log2 || function log2 (n) { return Math.log(n) * Math.LOG2E }
+    let exp = Math.max(-1023, Math.floor(log2(absArg)) + 1)
     let x = absArg * Math.pow(2, -exp)
 
     // These while loops compensate for rounding errors that sometimes occur because of ECMAScript's Math.log2's undefined precision
@@ -58,7 +60,9 @@ module.exports = function frexp (arg) {
       exp++
     }
 
-    x *= Math.sign(arg)
+    if (arg < 0) {
+      x = -x
+    }
     result[0] = x
     result[1] = exp
   }
