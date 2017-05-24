@@ -10,9 +10,13 @@ module.exports = function ucwords (str) {
   //   returns 1: 'Kevin Van  Zonneveld'
   //   example 2: ucwords('HELLO WORLD')
   //   returns 2: 'HELLO WORLD'
+  //   example 3: ucwords('у мэри был маленький ягненок и она его очень любила')
+  //   returns 3: 'У Мэри Был Маленький Ягненок И Она Его Очень Любила'
+  //   example 4: ucwords('τάχιστη αλώπηξ βαφής ψημένη γη, δρασκελίζει υπέρ νωθρού κυνός')
+  //   returns 4: 'Τάχιστη Αλώπηξ Βαφής Ψημένη Γη, Δρασκελίζει Υπέρ Νωθρού Κυνός'
 
   return (str + '')
-    .replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function ($1) {
+    .replace(/^(.)|\s+(.)/g, function ($1) {
       return $1.toUpperCase()
     })
 }

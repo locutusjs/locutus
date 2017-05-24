@@ -19,4 +19,16 @@ describe('src/php/strings/ucwords.js (tested in test/languages/php/strings/test-
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 3', function (done) {
+    var expected = 'У Мэри Был Маленький Ягненок И Она Его Очень Любила'
+    var result = ucwords('у мэри был маленький ягненок и она его очень любила')
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 4', function (done) {
+    var expected = 'Τάχιστη Αλώπηξ Βαφής Ψημένη Γη, Δρασκελίζει Υπέρ Νωθρού Κυνός'
+    var result = ucwords('τάχιστη αλώπηξ βαφής ψημένη γη, δρασκελίζει υπέρ νωθρού κυνός')
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })
