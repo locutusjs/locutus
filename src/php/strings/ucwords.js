@@ -5,6 +5,7 @@ module.exports = function ucwords (str) {
   // improved by: Robin
   // improved by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  // bugfixed by: Cetvertacov Alexandr (https://github.com/cetver)
   //    input by: James (http://www.james-bell.co.uk/)
   //   example 1: ucwords('kevin van  zonneveld')
   //   returns 1: 'Kevin Van  Zonneveld'
