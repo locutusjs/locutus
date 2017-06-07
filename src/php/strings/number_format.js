@@ -56,14 +56,21 @@ module.exports = function number_format (number, decimals, decPoint, thousandsSe
   var dec = (typeof decPoint === 'undefined') ? '.' : decPoint
   var s = ''
 
-  var toFixedFix = function (n, prec) {
-    var k = Math.pow(10, prec)
-    return '' + (Math.round(n * k) / k)
-      .toFixed(prec)
+  var toFixedFix = function (n,prec) {
+    if (!("" + n).includes("e")) {
+        return +(Math.round(n + "e+" + prec) + "e-" + prec);
+    } else {
+      var arr = ("" + n).split("e");
+      var sig = ""
+      if (+arr[1] + prec > 0) {
+          sig = "+";
+      }
+      return +(Math.round(+arr[0] + "e" + sig + (+arr[1] + prec)) + "e-" + prec);
+    }
   }
 
   // @todo: for IE parseFloat(0.55).toFixed(0) = 0;
-  s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.')
+  s = (prec ? toFixedFix(n, prec).toString() : '' + Math.round(n)).split('.')
   if (s[0].length > 3) {
     s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep)
   }
