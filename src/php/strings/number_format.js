@@ -56,16 +56,16 @@ module.exports = function number_format (number, decimals, decPoint, thousandsSe
   var dec = (typeof decPoint === 'undefined') ? '.' : decPoint
   var s = ''
 
-  var toFixedFix = function (n,prec) {
-    if (!("" + n).includes("e")) {
-        return +(Math.round(n + "e+" + prec) + "e-" + prec);
+  var toFixedFix = function (n, prec) {
+    if (('' + n).indexOf('e') == -1) {
+      return +(Math.round(n + 'e+' + prec) + 'e-' + prec)
     } else {
-      var arr = ("" + n).split("e");
-      var sig = ""
+      var arr = ('' + n).split('e')
+      var sig = ''
       if (+arr[1] + prec > 0) {
-          sig = "+";
+        sig = '+'
       }
-      return +(Math.round(+arr[0] + "e" + sig + (+arr[1] + prec)) + "e-" + prec);
+      return +(Math.round(+arr[0] + 'e' + sig + (+arr[1] + prec)) + 'e-' + prec)
     }
   }
 
