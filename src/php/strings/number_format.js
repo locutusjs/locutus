@@ -65,7 +65,7 @@ module.exports = function number_format (number, decimals, decPoint, thousandsSe
       if (+arr[1] + prec > 0) {
         sig = '+'
       }
-      return +(Math.round(+arr[0] + 'e' + sig + (+arr[1] + prec)) + 'e-' + prec)
+      return (+(Math.round(+arr[0] + 'e' + sig + (+arr[1] + prec)) + 'e-' + prec)).toFixed(prec)
     }
   }
 
