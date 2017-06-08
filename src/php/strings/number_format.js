@@ -57,7 +57,7 @@ module.exports = function number_format (number, decimals, decPoint, thousandsSe
   var s = ''
 
   var toFixedFix = function (n, prec) {
-    if (('' + n).indexOf('e') == -1) {
+    if (('' + n).indexOf('e') === -1) {
       return +(Math.round(n + 'e+' + prec) + 'e-' + prec)
     } else {
       var arr = ('' + n).split('e')
