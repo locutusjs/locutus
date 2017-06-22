@@ -40,7 +40,7 @@ module.exports = function frexp (arg) {
 
   arg = Number(arg)
 
-  let result = [arg, 0]
+  const result = [arg, 0]
 
   if (arg !== 0 && Number.isFinite(arg)) {
     const absArg = Math.abs(arg)
