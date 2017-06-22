@@ -32,9 +32,16 @@ Ideas that will be planned and find their way into a release at one point
 ## master
 
 Released: TBA. 
-[Diff](https://github.com/kvz/locutus/compare/v2.0.8...master).
+[Diff](https://github.com/kvz/locutus/compare/v2.0.9...master).
 
 - [ ] 
+
+## v2.0.9
+
+Released: 2017-06-22. 
+[Diff](https://github.com/kvz/locutus/compare/v2.0.8...v2.0.9).
+
+- [x] Community-contributed function improvements, see respective functions' changelogs in the Diff.
 
 ## v2.0.8
 
