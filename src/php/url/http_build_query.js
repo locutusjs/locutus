@@ -1,4 +1,4 @@
-module.exports = function http_build_query (formdata, numericPrefix, argSeparator) { // eslint-disable-line camelcase
+module.exports = http_build_query (formdata, numericPrefix, argSeparator = '&') => { // eslint-disable-line camelcase
   //  discuss at: http://locutus.io/php/http_build_query/
   // original by: Kevin van Zonneveld (http://kvz.io)
   // improved by: Legaev Andrey
@@ -16,51 +16,49 @@ module.exports = function http_build_query (formdata, numericPrefix, argSeparato
   //   example 2: http_build_query({'php': 'hypertext processor', 0: 'foo', 1: 'bar', 2: 'baz', 3: 'boom', 'cow': 'milk'}, 'myvar_')
   //   returns 2: 'myvar_0=foo&myvar_1=bar&myvar_2=baz&myvar_3=boom&php=hypertext+processor&cow=milk'
 
-  var urlencode = require('../url/urlencode')
+  let urlencode = require('../url/urlencode');
 
-  var value
-  var key
-  var tmp = []
-
-  var _httpBuildQueryHelper = function (key, val, argSeparator) {
-    var k
-    var tmp = []
+  let tmp = [];
+  
+  let _httpBuildQueryHelper = (key, val, argSeparator = '&') => {    
     if (val === true) {
-      val = '1'
+      val = '1';
     } else if (val === false) {
-      val = '0'
+      val = '0';
+    } else if (val === null) {
+      return '';
     }
-    if (val !== null) {
-      if (typeof val === 'object') {
-        for (k in val) {
-          if (val[k] !== null) {
-            tmp.push(_httpBuildQueryHelper(key + '[' + k + ']', val[k], argSeparator))
-          }
+    
+    if (typeof val === 'object') {
+      for (let k in val) {
+        if (val[k] !== null) {
+          tmp.push(_httpBuildQueryHelper(`${key}[${k}]`, val[k], argSeparator));
         }
-        return tmp.join(argSeparator)
-      } else if (typeof val !== 'function') {
-        return urlencode(key) + '=' + urlencode(val)
-      } else {
-        throw new Error('There was an error processing for http_build_query().')
       }
+      return tmp.join(argSeparator);
+    } else if (typeof val !== 'function') {
+      return urlencode(key) + '=' + urlencode(val);
     } else {
-      return ''
+      throw new Error('There was an error processing for http_build_query().');
     }
   }
 
   if (!argSeparator) {
-    argSeparator = '&'
+    argSeparator = '&';
   }
-  for (key in formdata) {
-    value = formdata[key]
+  
+  for (let key in formdata) {
+    let value = formdata[key];
+    
     if (numericPrefix && !isNaN(key)) {
-      key = String(numericPrefix) + key
+      key = String(numericPrefix) + key;
     }
-    var query = _httpBuildQueryHelper(key, value, argSeparator)
+    
+    let query = _httpBuildQueryHelper(key, value, argSeparator);
     if (query !== '') {
-      tmp.push(query)
+      tmp.push(query);
     }
   }
 
-  return tmp.join(argSeparator)
+  return tmp.join(argSeparator);
 }
