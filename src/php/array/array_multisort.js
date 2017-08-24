@@ -1,6 +1,7 @@
 module.exports = function array_multisort (arr) { // eslint-disable-line camelcase
   //  discuss at: http://locutus.io/php/array_multisort/
   // original by: Theriault (https://github.com/Theriault)
+  // improved by: Oleg Andreyev (https://github.com/oleg-andreyev)
   //   example 1: array_multisort([1, 2, 1, 2, 1, 2], [1, 2, 3, 4, 5, 6])
   //   returns 1: true
   //   example 2: var $characters = {A: 'Edward', B: 'Locke', C: 'Sabin', D: 'Terra', E: 'Edward'}
@@ -182,8 +183,8 @@ module.exports = function array_multisort (arr) { // eslint-disable-line camelca
             args[i][vkey] = sortArrs[i][j]
           }
         }
-        delete sortArrs[i]
-        delete sortKeys[i]
+        sortArrs.splice(i, 1)
+        sortKeys.splice(i, 1)
         continue
       }
 
@@ -294,8 +295,8 @@ module.exports = function array_multisort (arr) { // eslint-disable-line camelca
           args[i][vkey] = sortArrs[i][j]
         }
       }
-      delete sortArrs[i]
-      delete sortKeys[i]
+      sortArrs.splice(i, 1)
+      sortKeys.splice(i, 1)
     }
   }
   return true
