@@ -33,6 +33,7 @@
     "globby": "4.0.0",
     "indent-string": "2.1.0",
     "invig": "0.0.13",
+    "jest": "^19.0.2",
     "js-yaml": "3.6.0",
     "lodash": "4.11.1",
     "mkdirp": "0.5.1",
@@ -86,6 +87,9 @@
     "website:start": "cd website && hexo server",
     "website:build": "cd website && hexo generate",
     "website:clean": "cd website && hexo clean"
+  },
+  "jest": {
+    "testMatch": ["**/test/**/test-*.js"]
   },
   "dependencies": {}
 }
