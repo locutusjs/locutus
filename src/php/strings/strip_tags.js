@@ -41,16 +41,18 @@ module.exports = function strip_tags (input, allowed) { // eslint-disable-line c
   var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi
   var commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi
 
+  var before = input
   var after = input
   // recursively remove tags to ensure that the returned string doesn't contain forbidden tags after previous passes (e.g. '<<bait/>switch/>')
-  while(true){
+  while (true) {
     before = after
     after = before.replace(commentsAndPhpTags, '').replace(tags, function ($0, $1) {
       return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : ''
     })
 
     // return once no more tags are removed
-    if(before === after) 
+    if (before === after) {
       return after
+    }
   }
 }
