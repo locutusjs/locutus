@@ -21,7 +21,7 @@ module.exports = function sprintf () {
   //   example 5: sprintf('%-03s', 'E')
   //   returns 5: 'E00'
 
-  var regex = /%%|%(\d+\$)?([-+'#0 ]*)(\*\d+\$|\*|\d+)?(?:\.(\*\d+\$|\*|\d+))?([scboxXuideEfFgG])/g
+  var regex = /%%|%(\d+\$)?([-+'#0 ]*)(\*\d+\$|\*|\d+)?(?:\.(\d*))?([scboxXuideEfFgG])/g
   var a = arguments
   var i = 0
   var format = a[i++]
@@ -134,10 +134,6 @@ module.exports = function sprintf () {
 
     if (!precision) {
       precision = 'fFeE'.indexOf(type) > -1 ? 6 : (type === 'd') ? 0 : undefined
-    } else if (precision === '*') {
-      precision = +a[i++]
-    } else if (precision.charAt(0) === '*') {
-      precision = +a[precision.slice(1, -1)]
     } else {
       precision = +precision
     }
