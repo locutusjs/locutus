@@ -15,7 +15,7 @@ hexo.extend.helper.register('thumbnail', function (post) {
         if(url.length > 0) {
             var pattern = /^[\\{0,1}\/{0,1}]([^\/^\\]+)/,
                 pattern_ = /([^\/^\\]+)/;
-            if ((ret = pattern.exec(url)) != null) {
+            if ((ret = pattern.exec(url)) !== null) {
                 if(ret[0].length === url.length) {
                     url = post.path + ret[1];
                 }
