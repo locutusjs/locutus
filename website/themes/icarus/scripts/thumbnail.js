@@ -19,7 +19,7 @@ hexo.extend.helper.register('thumbnail', function (post) {
                 if(ret[0].length === url.length) {
                     url = post.path + ret[1];
                 }
-            } else if ((ret = pattern_.exec(url)) != null) {
+            } else if ((ret = pattern_.exec(url)) !== null) {
                 if(ret[0].length === url.length) {
                     url = post.path + ret[1];
                 }
