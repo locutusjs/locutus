@@ -630,7 +630,7 @@ class Util {
     var i = 0
     var lines = []
     var raise = false
-    for (i in (lines = code.replace('\r', '').split('\n'))) {
+    for (i in (lines = code.replace(/\r+/g, '').split('\n'))) {
       // Detect if line is a comment, and return the actual comment
       if ((comment = lines[i].match(/^\s*(\/\/|\/\*|\*)\s*(.*)$/))) {
         if (raise === true) {
