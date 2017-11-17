@@ -11,7 +11,7 @@ module.exports = function stristr (haystack, needle, bool) {
 
   haystack += ''
   pos = haystack.toLowerCase()
-    .indexOf((needle + '')
+    .indexOf((String(needle))
       .toLowerCase())
   if (pos === -1) {
     return false
