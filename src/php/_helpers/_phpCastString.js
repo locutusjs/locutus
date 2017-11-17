@@ -43,7 +43,7 @@ module.exports = function _phpCastString (value) {
         return (value < 0 ? '-' : '') + 'INF'
       }
 
-      return value + ''
+      return String(value)
     case 'undefined':
       return ''
     case 'object':
