@@ -19,7 +19,7 @@ module.exports = function htmlentities (string, quoteStyle, charset, doubleEncod
   var getHtmlTranslationTable = require('../strings/get_html_translation_table')
   var hashMap = getHtmlTranslationTable('HTML_ENTITIES', quoteStyle)
 
-  string = string === null ? '' : string + ''
+  string = string === null ? '' : String(string)
 
   if (!hashMap) {
     return false
