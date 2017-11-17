@@ -20,7 +20,7 @@ module.exports = function preg_grep (pattern, input, flags) { // eslint-disable-
 
   if (invert) {
     for (p in input) {
-      if ((input[p] + '').search(pattern) === -1) {
+      if ((String(input[p])).search(pattern) === -1) {
         retObj[p] = input[p]
       }
     }
