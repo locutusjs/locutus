@@ -10,11 +10,11 @@ module.exports = function fmod (x, y) {
   var tmp2
   var p = 0
   var pY = 0
-  var l = 0.0
-  var l2 = 0.0
+  var l = 0
+  var l2 = 0
 
   tmp = x.toExponential().match(/^.\.?(.*)e(.+)$/)
-  p = parseInt(tmp[2], 10) - (tmp[1] + '').length
+  p = parseInt(tmp[2], 10) - (String(tmp[1])).length
   tmp = y.toExponential().match(/^.\.?(.*)e(.+)$/)
   pY = parseInt(tmp[2], 10) - (tmp[1] + '').length
 
