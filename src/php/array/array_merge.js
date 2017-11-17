@@ -49,7 +49,7 @@ module.exports = function array_merge () { // eslint-disable-line camelcase
     } else {
       for (k in arg) {
         if (arg.hasOwnProperty(k)) {
-          if (parseInt(k, 10) + '' === k) {
+          if (String(parseInt(k, 10)) === k) {
             retObj[ct++] = arg[k]
           } else {
             retObj[k] = arg[k]
