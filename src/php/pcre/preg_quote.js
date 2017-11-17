@@ -12,6 +12,6 @@ module.exports = function preg_quote (str, delimiter) { // eslint-disable-line c
   //   example 3: preg_quote("\\.+*?[^]$(){}=!<>|:")
   //   returns 3: '\\\\\\.\\+\\*\\?\\[\\^\\]\\$\\(\\)\\{\\}\\=\\!\\<\\>\\|\\:'
 
-  return (str + '')
+  return (String(str))
     .replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\' + (delimiter || '') + '-]', 'g'), '\\$&')
 }
