@@ -21,7 +21,7 @@ module.exports = function rawurlencode (str) {
   //        example 3: rawurlencode('http://www.google.nl/search?q=Locutus&ie=utf-8')
   //        returns 3: 'http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3Dutf-8'
 
-  str = (str + '')
+  str = (String(str))
 
   // Tilde should be allowed unescaped in future versions of PHP (as reflected below),
   // but if you want to reflect current
