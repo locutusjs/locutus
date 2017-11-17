@@ -16,7 +16,7 @@ module.exports = function ucwords (str) {
   //   example 4: ucwords('τάχιστη αλώπηξ βαφής ψημένη γη, δρασκελίζει υπέρ νωθρού κυνός')
   //   returns 4: 'Τάχιστη Αλώπηξ Βαφής Ψημένη Γη, Δρασκελίζει Υπέρ Νωθρού Κυνός'
 
-  return (str + '')
+  return (String(str))
     .replace(/^(.)|\s+(.)/g, function ($1) {
       return $1.toUpperCase()
     })
