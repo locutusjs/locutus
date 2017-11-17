@@ -4,5 +4,5 @@ module.exports = function Contains (s, substr) {
   //   example 1: Contains('Kevin', 'K')
   //   returns 1: true
 
-  return (s + '').indexOf(substr) !== -1
+  return (String(s)).indexOf(substr) !== -1
 }
