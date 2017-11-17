@@ -50,7 +50,7 @@ module.exports = function version_compare (v1, v2, operator) { // eslint-disable
   // It's also important to not strip spaces because of this.
   //   version_compare('', ' ') === 1
   var _prepVersion = function (v) {
-    v = ('' + v).replace(/[_\-+]/g, '.')
+    v = (String(v)).replace(/[_\-+]/g, '.')
     v = v.replace(/([^.\d]+)/g, '.$1.').replace(/\.{2,}/g, '.')
     return (!v.length ? [-8] : v.split('.'))
   }
