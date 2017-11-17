@@ -12,7 +12,7 @@ module.exports = function array_rand (array, num) { // eslint-disable-line camel
   if (typeof num === 'undefined' || num === null) {
     num = 1
   } else {
-    num = +num
+    num = Number(num)
   }
 
   if (isNaN(num) || num < 1 || num > keys.length) {
