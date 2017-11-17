@@ -118,7 +118,7 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
           ct = -1
           for (p in obj) {
             if (obj.hasOwnProperty(p)) {
-              if (+p > ct && p.match(/^\d+$/g)) {
+              if (Number(p) > ct && p.match(/^\d+$/g)) {
                 ct = +p
               }
             }
