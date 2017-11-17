@@ -8,7 +8,7 @@ module.exports = function bindec (binaryString) {
   //   example 3: bindec('111')
   //   returns 3: 7
 
-  binaryString = (binaryString + '').replace(/[^01]/gi, '')
+  binaryString = (String(binaryString)).replace(/[^01]/gi, '')
 
   return parseInt(binaryString, 2)
 }
