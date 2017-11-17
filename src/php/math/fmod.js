@@ -16,7 +16,7 @@ module.exports = function fmod (x, y) {
   tmp = x.toExponential().match(/^.\.?(.*)e(.+)$/)
   p = parseInt(tmp[2], 10) - (String(tmp[1])).length
   tmp = y.toExponential().match(/^.\.?(.*)e(.+)$/)
-  pY = parseInt(tmp[2], 10) - (tmp[1] + '').length
+  pY = parseInt(tmp[2], 10) - (String(tmp[1])).length
 
   if (pY > p) {
     p = pY
