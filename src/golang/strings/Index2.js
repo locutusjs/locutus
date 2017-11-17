@@ -6,5 +6,5 @@ module.exports = function Index (s, sep) {
   //   example 2: Index('Kevin', 'Z')
   //   returns 2: -1
 
-  return (s + '').indexOf(sep)
+  return (String(s)).indexOf(sep)
 }
