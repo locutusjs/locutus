@@ -11,7 +11,7 @@ module.exports = function addslashes (str) {
   //   example 1: addslashes("kevin's birthday")
   //   returns 1: "kevin\\'s birthday"
 
-  return (str + '')
+  return (String(str))
     .replace(/[\\"']/g, '\\$&')
     .replace(/\u0000/g, '\\0')
 }
