@@ -74,8 +74,8 @@ module.exports = function arsort (inputArr, sortFlags) {
       sorter = function (b, a) {
         var aFloat = parseFloat(a)
         var bFloat = parseFloat(b)
-        var aNumeric = aFloat + '' === a
-        var bNumeric = String(bFloat) === b
+        var aNumeric = String(aFloat) === a
+        var bNumeric = bFloat + '' === b
 
         if (aNumeric && bNumeric) {
           return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0
