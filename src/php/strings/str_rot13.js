@@ -11,7 +11,7 @@ module.exports = function str_rot13 (str) { // eslint-disable-line camelcase
   //   example 3: str_rot13(33)
   //   returns 3: '33'
 
-  return (str + '')
+  return (String(str))
     .replace(/[a-z]/gi, function (s) {
       return String.fromCharCode(s.charCodeAt(0) + (s.toLowerCase() < 'n' ? 13 : -13))
     })
