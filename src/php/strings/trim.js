@@ -45,7 +45,7 @@ module.exports = function trim (str, charlist) {
   str += ''
 
   if (charlist) {
-    whitespace = (charlist + '').replace(/([[\]().?/*{}+$^:])/g, '$1')
+    whitespace = (String(charlist)).replace(/([[\]().?/*{}+$^:])/g, '$1')
   }
 
   l = str.length
