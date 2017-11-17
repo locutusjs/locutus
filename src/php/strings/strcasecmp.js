@@ -6,7 +6,7 @@ module.exports = function strcasecmp (fString1, fString2) {
   //   returns 1: 0
 
   var string1 = (fString1 + '').toLowerCase()
-  var string2 = (fString2 + '').toLowerCase()
+  var string2 = (String(fString2)).toLowerCase()
 
   if (string1 > string2) {
     return 1
