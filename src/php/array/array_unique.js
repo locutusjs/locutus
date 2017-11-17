@@ -23,7 +23,7 @@ module.exports = function array_unique (inputArr) { // eslint-disable-line camel
     var fkey = ''
     for (fkey in haystack) {
       if (haystack.hasOwnProperty(fkey)) {
-        if ((haystack[fkey] + '') === (String(needle))) {
+        if ((String(haystack[fkey])) === (String(needle))) {
           return fkey
         }
       }
