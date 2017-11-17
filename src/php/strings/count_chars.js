@@ -15,7 +15,7 @@ module.exports = function count_chars (str, mode) { // eslint-disable-line camel
   var resultArr = []
   var i
 
-  str = ('' + str)
+  str = (String(str))
     .split('')
     .sort()
     .join('')
