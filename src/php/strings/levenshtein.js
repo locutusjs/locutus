@@ -16,7 +16,7 @@ module.exports = function levenshtein (s1, s2, costIns, costRep, costDel) {
   // var LEVENSHTEIN_MAX_LENGTH = 255 // PHP limits the function to max 255 character-long strings
 
   costIns = typeof costIns === 'undefined' ? 1 : Number(costIns)
-  costRep = typeof costRep === 'undefined' ? 1 : +costRep
+  costRep = typeof costRep === 'undefined' ? 1 : Number(costRep)
   costDel = typeof costDel === 'undefined' ? 1 : +costDel
 
   if (s1 === s2) {
