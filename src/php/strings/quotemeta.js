@@ -4,6 +4,6 @@ module.exports = function quotemeta (str) {
   //   example 1: quotemeta(". + * ? ^ ( $ )")
   //   returns 1: '\\. \\+ \\* \\? \\^ \\( \\$ \\)'
 
-  return (str + '')
+  return (String(str))
     .replace(/([.\\+*?[^\]$()])/g, '\\$1')
 }
