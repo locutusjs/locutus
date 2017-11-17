@@ -51,7 +51,7 @@ module.exports = function number_format (number, decimals, decPoint, thousandsSe
 
   number = (number + '').replace(/[^0-9+\-Ee.]/g, '')
   var n = !isFinite(+number) ? 0 : +number
-  var prec = !isFinite(+decimals) ? 0 : Math.abs(decimals)
+  var prec = !isFinite(Number(decimals)) ? 0 : Math.abs(decimals)
   var sep = (typeof thousandsSep === 'undefined') ? ',' : thousandsSep
   var dec = (typeof decPoint === 'undefined') ? '.' : decPoint
   var s = ''
