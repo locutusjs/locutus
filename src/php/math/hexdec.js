@@ -6,6 +6,6 @@ module.exports = function hexdec (hexString) {
   //   example 2: hexdec('a0')
   //   returns 2: 160
 
-  hexString = (hexString + '').replace(/[^a-f0-9]/gi, '')
+  hexString = (String(hexString)).replace(/[^a-f0-9]/gi, '')
   return parseInt(hexString, 16)
 }
