@@ -68,7 +68,7 @@ module.exports = function ksort (inputArr, sortFlags) {
         var aFloat = parseFloat(a)
         var bFloat = parseFloat(b)
         var aNumeric = aFloat + '' === a
-        var bNumeric = bFloat + '' === b
+        var bNumeric = String(bFloat) === b
         if (aNumeric && bNumeric) {
           return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0
         } else if (aNumeric && !bNumeric) {
