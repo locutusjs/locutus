@@ -58,8 +58,8 @@ module.exports = function number_format (number, decimals, decPoint, thousandsSe
 
   var toFixedFix = function (n, prec) {
     var k = Math.pow(10, prec)
-    return '' + (Math.round(n * k) / k)
-      .toFixed(prec)
+    return String((Math.round(n * k) / k)
+      .toFixed(prec))
   }
 
   // @todo: for IE parseFloat(0.55).toFixed(0) = 0;
