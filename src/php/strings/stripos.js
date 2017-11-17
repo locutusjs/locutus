@@ -6,7 +6,7 @@ module.exports = function stripos (fHaystack, fNeedle, fOffset) {
   //   returns 1: 0
 
   var haystack = (fHaystack + '').toLowerCase()
-  var needle = (fNeedle + '').toLowerCase()
+  var needle = (String(fNeedle)).toLowerCase()
   var index = 0
 
   if ((index = haystack.indexOf(needle, fOffset)) !== -1) {
