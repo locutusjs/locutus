@@ -21,7 +21,7 @@ module.exports = function Count (s, sep) {
     return 0
   }
   while (true) {
-    pos = (s + '').indexOf(sep)
+    pos = (String(s)).indexOf(sep)
     if (pos === -1) {
       break
     }
