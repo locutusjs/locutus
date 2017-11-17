@@ -12,6 +12,6 @@ module.exports = function ltrim (str, charlist) {
 
   var re = new RegExp('^[' + charlist + ']+', 'g')
 
-  return (str + '')
+  return (String(str))
     .replace(re, '')
 }
