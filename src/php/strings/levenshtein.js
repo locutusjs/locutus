@@ -17,7 +17,7 @@ module.exports = function levenshtein (s1, s2, costIns, costRep, costDel) {
 
   costIns = typeof costIns === 'undefined' ? 1 : Number(costIns)
   costRep = typeof costRep === 'undefined' ? 1 : Number(costRep)
-  costDel = typeof costDel === 'undefined' ? 1 : +costDel
+  costDel = typeof costDel === 'undefined' ? 1 : Number(costDel)
 
   if (s1 === s2) {
     return 0
