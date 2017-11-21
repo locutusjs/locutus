@@ -49,7 +49,7 @@ module.exports = function number_format (number, decimals, decPoint, thousandsSe
   //  example 14: number_format(1e-8, 8, '.', '')
   //  returns 14: '0.00000001'
 
-  number = (number + '').replace(/[^0-9+\-Ee.]/g, '')
+  number = (String(number)).replace(/[^0-9+\-Ee.]/g, '')
   var n = !isFinite(+number) ? 0 : Number(number)
   var prec = !isFinite(Number(decimals)) ? 0 : Math.abs(decimals)
   var sep = (typeof thousandsSep === 'undefined') ? ',' : thousandsSep
