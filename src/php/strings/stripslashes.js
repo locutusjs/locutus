@@ -15,7 +15,7 @@ module.exports = function stripslashes (str) {
   //        example 2: stripslashes('Kevin\\\'s code')
   //        returns 2: "Kevin\'s code"
 
-  return (str + '')
+  return String(str)
     .replace(/\\(.?)/g, function (s, n1) {
       switch (n1) {
         case '\\':
