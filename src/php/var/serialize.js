@@ -30,7 +30,7 @@ module.exports = function serialize (mixedValue) {
   var count = 0
 
   var _utf8Size = function (str) {
-    return ~-encodeURI(str).split(/%..|./).length;
+    return ~-encodeURI(str).split(/%..|./).length
   }
 
   var _getType = function (inp) {
