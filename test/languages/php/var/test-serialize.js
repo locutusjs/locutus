@@ -19,4 +19,10 @@ describe('src/php/var/serialize.js (tested in test/languages/php/var/test-serial
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 3', function (done) {
+    var expected = 'a:3:{s:2:"ü";s:2:"ü";s:3:"四";s:3:"四";s:4:"𠜎";s:4:"𠜎";}'
+    var result = serialize( {'ü': 'ü', '四': '四', '𠜎': '𠜎'})
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })

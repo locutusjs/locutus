@@ -11,6 +11,7 @@ module.exports = function serialize (mixedValue) {
   // bugfixed by: Kevin van Zonneveld (http://kvz.io/)
   // bugfixed by: Ben (http://benblume.co.uk/)
   // bugfixed by: Codestar (http://codestarlive.com/)
+  // bugfixed by: idjem (https://github.com/idjem)
   //    input by: DtTvB (http://dt.in.th/2008-09-16.string-length-in-bytes.html)
   //    input by: Martin (http://www.erlenwiese.de/)
   //      note 1: We feel the main purpose of this function should be to ease
@@ -20,6 +21,8 @@ module.exports = function serialize (mixedValue) {
   //   returns 1: 'a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}'
   //   example 2: serialize({firstName: 'Kevin', midName: 'van'})
   //   returns 2: 'a:2:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";}'
+  //   example 3: serialize( {'ü': 'ü', '四': '四', '𠜎': '𠜎'})
+  //   returns 3: 'a:3:{s:2:"ü";s:2:"ü";s:3:"四";s:3:"四";s:4:"𠜎";s:4:"𠜎";}'
 
   var val, key, okey
   var ktype = ''
@@ -27,21 +30,7 @@ module.exports = function serialize (mixedValue) {
   var count = 0
 
   var _utf8Size = function (str) {
-    var size = 0
-    var i = 0
-    var l = str.length
-    var code = ''
-    for (i = 0; i < l; i++) {
-      code = str.charCodeAt(i)
-      if (code < 0x0080) {
-        size += 1
-      } else if (code < 0x0800) {
-        size += 2
-      } else {
-        size += 3
-      }
-    }
-    return size
+    return ~-encodeURI(str).split(/%..|./).length
   }
 
   var _getType = function (inp) {
