@@ -17,6 +17,7 @@ module.exports = function strip_tags (input, allowed) { // eslint-disable-line c
   // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Tomasz Wesolowski
   // bugfixed by: Tymon Sturgeon (https://scryptonite.com)
+  // bugfixed by: Tim de Koning (https://www.kingsquare.nl)
   //  revised by: Rafał Kukawski (http://blog.kukawski.pl)
   //   example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i><b>')
   //   returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
@@ -34,6 +35,10 @@ module.exports = function strip_tags (input, allowed) { // eslint-disable-line c
   //   returns 7: '1 <br/> 1'
   //   example 8: strip_tags('<i>hello</i> <<foo>script>world<</foo>/script>')
   //   returns 8: 'hello world'
+  //   example 9: strip_tags(4)
+  //   returns 9: '4'
+
+  var _phpCastString = require('../_helpers/_phpCastString')
 
   // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
   allowed = (((allowed || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('')
@@ -41,11 +46,10 @@ module.exports = function strip_tags (input, allowed) { // eslint-disable-line c
   var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi
   var commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi
 
-  var before = input
-  var after = input
+  var after = _phpCastString(input)
   // recursively remove tags to ensure that the returned string doesn't contain forbidden tags after previous passes (e.g. '<<bait/>switch/>')
   while (true) {
-    before = after
+    var before = after
     after = before.replace(commentsAndPhpTags, '').replace(tags, function ($0, $1) {
       return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : ''
     })

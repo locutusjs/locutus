@@ -49,4 +49,16 @@ describe('src/php/strings/strip_tags.js (tested in test/languages/php/strings/te
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 8', function (done) {
+    var expected = 'hello world'
+    var result = strip_tags('<i>hello</i> <<foo>script>world<</foo>/script>')
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 9', function (done) {
+    var expected = '4'
+    var result = strip_tags(4)
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })
