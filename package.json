@@ -87,5 +87,9 @@
     "website:build": "cd website && hexo generate",
     "website:clean": "cd website && hexo clean"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "browser": {
+    "fs": false,
+    "child_process": false
+  }
 }
