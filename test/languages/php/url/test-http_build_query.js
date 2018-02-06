@@ -19,4 +19,10 @@ describe('src/php/url/http_build_query.js (tested in test/languages/php/url/test
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 3', function (done) {
+    var expected = 'foo=bar&amp;php=hypertext%20processor&amp;baz=boom&amp;cow=milk'
+    var result = http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;', 'PHP_QUERY_RFC3986')
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })
