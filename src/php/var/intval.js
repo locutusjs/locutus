@@ -16,6 +16,8 @@ module.exports = function intval (mixedVar, base) {
   //   returns 4: 9
   //   example 5: intval('1e', 16)
   //   returns 5: 30
+  //   example 6: intval(0x200000001)
+  //   returns 6: 8589934593
 
   var tmp
 
@@ -27,7 +29,7 @@ module.exports = function intval (mixedVar, base) {
     tmp = parseInt(mixedVar, base || 10)
     return (isNaN(tmp) || !isFinite(tmp)) ? 0 : tmp
   } else if (type === 'number' && isFinite(mixedVar)) {
-    return mixedVar | 0
+    return mixedVar < 0 ? Math.ceil(mixedVar) : Math.floor(mixedVar)
   } else {
     return 0
   }
