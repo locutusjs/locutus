@@ -18,14 +18,22 @@ module.exports = function intval (mixedVar, base) {
   //   returns 5: 30
   //   example 6: intval(0x200000001)
   //   returns 6: 8589934593
+  //   example 7: intval('0xff', 0)
+  //   returns 7: 255
+  //   example 8: intval('010', 0)
+  //   returns 8: 8
 
-  var tmp
+  var tmp, match
 
   var type = typeof mixedVar
 
   if (type === 'boolean') {
     return +mixedVar
   } else if (type === 'string') {
+    if (base === 0) {
+      match = mixedVar.match(/^\s*0(x?)/i)
+      base = match ? (match[1] ? 16 : 8) : 10
+    }
     tmp = parseInt(mixedVar, base || 10)
     return (isNaN(tmp) || !isFinite(tmp)) ? 0 : tmp
   } else if (type === 'number' && isFinite(mixedVar)) {
