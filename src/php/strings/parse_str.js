@@ -14,6 +14,7 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
   //         input by: Zaide (http://zaidesthings.com/)
   //         input by: David Pesta (http://davidpesta.com/)
   //         input by: jeicquest
+  //      bugfixed by: Rafał Kukawski
   //           note 1: When no argument is specified, will put variables in global scope.
   //           note 1: When a particular argument has been passed, and the
   //           note 1: returned value is different parse_str of PHP.
@@ -30,6 +31,14 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
   //        example 3: parse_str('a[b]["c"]=def&a[q]=t+5', $abc)
   //        example 3: var $result = $abc
   //        returns 3: {"3":"a","a":{"b":{"c":"def"},"q":"t 5"}}
+  //        example 4: var $arr = {}
+  //        example 4: parse_str('a[][]=value', $arr)
+  //        example 4: var $result = $arr
+  //        returns 4: {"a":{"0":{"0":"value"}}}
+  //        example 5: var $arr = {}
+  //        example 5: parse_str('a=1&a[]=2', $arr)
+  //        example 5: var $result = $arr
+  //        returns 5: {"a":{"0":"2"}}
 
   var strArr = String(str).replace(/^&/, '').replace(/&$/, '').split('&')
   var sal = strArr.length
@@ -39,7 +48,6 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
   var p
   var lastObj
   var obj
-  var undef
   var chr
   var tmp
   var key
@@ -69,12 +77,15 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
     while (key.charAt(0) === ' ') {
       key = key.slice(1)
     }
+
     if (key.indexOf('\x00') > -1) {
       key = key.slice(0, key.indexOf('\x00'))
     }
+
     if (key && key.charAt(0) !== '[') {
       keys = []
       postLeftBracketPos = 0
+
       for (j = 0; j < key.length; j++) {
         if (key.charAt(j) === '[' && !postLeftBracketPos) {
           postLeftBracketPos = j + 1
@@ -83,39 +94,43 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
             if (!keys.length) {
               keys.push(key.slice(0, postLeftBracketPos - 1))
             }
+
             keys.push(key.substr(postLeftBracketPos, j - postLeftBracketPos))
             postLeftBracketPos = 0
+
             if (key.charAt(j + 1) !== '[') {
               break
             }
           }
         }
       }
+
       if (!keys.length) {
         keys = [key]
       }
+
       for (j = 0; j < keys[0].length; j++) {
         chr = keys[0].charAt(j)
+
         if (chr === ' ' || chr === '.' || chr === '[') {
           keys[0] = keys[0].substr(0, j) + '_' + keys[0].substr(j + 1)
         }
+
         if (chr === '[') {
           break
         }
       }
 
       obj = array
+
       for (j = 0, keysLen = keys.length; j < keysLen; j++) {
         key = keys[j].replace(/^['"]/, '').replace(/['"]$/, '')
         lastObj = obj
-        if ((key !== '' && key !== ' ') || j === 0) {
-          if (obj[key] === undef) {
-            obj[key] = {}
-          }
-          obj = obj[key]
-        } else {
-          // To insert new dimension
+
+        if ((key === '' || key === ' ') && j !== 0) {
+          // Insert new dimension
           ct = -1
+
           for (p in obj) {
             if (obj.hasOwnProperty(p)) {
               if (+p > ct && p.match(/^\d+$/g)) {
@@ -123,9 +138,18 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
               }
             }
           }
+
           key = ct + 1
         }
+
+        // if primitive value, replace with object
+        if (Object(obj[key]) !== obj[key]) {
+          obj[key] = {}
+        }
+
+        obj = obj[key]
       }
+
       lastObj[key] = value
     }
   }
