@@ -31,4 +31,20 @@ describe('src/php/strings/parse_str.js (tested in test/languages/php/strings/tes
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 4', function (done) {
+    var expected = {"a":{"0":{"0":"value"}}}
+    var $arr = {}
+    parse_str('a[][]=value', $arr)
+    var result = $arr
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 5', function (done) {
+    var expected = {"a":{"0":"2"}}
+    var $arr = {}
+    parse_str('a=1&a[]=2', $arr)
+    var result = $arr
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })
