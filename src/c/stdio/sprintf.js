@@ -7,8 +7,8 @@ function pad (str, minLength, padChar, leftJustify) {
 
 module.exports = function sprintf (format, ...args) {
   // original by: Rafał Kukawski
-  //   example 1: sprintf('%+10.*', 5, 1)
-  //   returns 1: '      +0001'
+  //   example 1: sprintf('%+10.*d', 5, 1)
+  //   returns 1: '     +0001'
   const placeholderRegex = /%(?:(\d+)\$)?([-+#0 ]*)(\*|\d+)?(?:\.(\*|\d*))?([\s\S])/g
 
   let index = 0
