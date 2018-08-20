@@ -180,7 +180,7 @@ const formats = {
   yesterday: {
     regex: /^yesterday/i,
     name: 'yesterday',
-    callback: function () {
+    callback () {
       this.rd -= 1
       return this.resetTime()
     }
@@ -195,7 +195,7 @@ const formats = {
   noon: {
     regex: /^noon/i,
     name: 'noon',
-    callback: function () {
+    callback () {
       return this.resetTime() && this.time(12, 0, 0, 0)
     }
   },
@@ -203,7 +203,7 @@ const formats = {
   midnightOrToday: {
     regex: /^(midnight|today)/i,
     name: 'midnight | today',
-    callback: function () {
+    callback () {
       return this.resetTime()
     }
   },
@@ -211,7 +211,7 @@ const formats = {
   tomorrow: {
     regex: /^tomorrow/i,
     name: 'tomorrow',
-    callback: function () {
+    callback () {
       this.rd += 1
       return this.resetTime()
     }
@@ -220,7 +220,7 @@ const formats = {
   timestamp: {
     regex: /^@(-?\d+)/i,
     name: 'timestamp',
-    callback: function (match, timestamp) {
+    callback (match, timestamp) {
       this.rs += +timestamp
       this.y = 1970
       this.m = 0
@@ -234,7 +234,7 @@ const formats = {
   firstOrLastDay: {
     regex: /^(first|last) day of/i,
     name: 'firstdayof | lastdayof',
-    callback: function (match, day) {
+    callback (match, day) {
       if (day.toLowerCase() === 'first') {
         this.firstOrLastDayOfMonth = 1
       } else {
@@ -246,7 +246,7 @@ const formats = {
   backOrFrontOf: {
     regex: RegExp('^(back|front) of ' + reHour24 + reSpaceOpt + reMeridian + '?', 'i'),
     name: 'backof | frontof',
-    callback: function (match, side, hours, meridian) {
+    callback (match, side, hours, meridian) {
       let back = side.toLowerCase() === 'back'
       let hour = +hours
       let minute = 15
@@ -271,7 +271,7 @@ const formats = {
   mssqltime: {
     regex: RegExp('^' + reHour12 + ':' + reMinutelz + ':' + reSecondlz + '[:.]([0-9]+)' + reMeridian, 'i'),
     name: 'mssqltime',
-    callback: function (match, hour, minute, second, frac, meridian) {
+    callback (match, hour, minute, second, frac, meridian) {
       return this.time(processMeridian(+hour, meridian), +minute, +second, +frac.substr(0, 3))
     }
   },
@@ -279,7 +279,7 @@ const formats = {
   timeLong12: {
     regex: RegExp('^' + reHour12 + '[:.]' + reMinute + '[:.]' + reSecondlz + reSpaceOpt + reMeridian, 'i'),
     name: 'timelong12',
-    callback: function (match, hour, minute, second, meridian) {
+    callback (match, hour, minute, second, meridian) {
       return this.time(processMeridian(+hour, meridian), +minute, +second, 0)
     }
   },
@@ -287,7 +287,7 @@ const formats = {
   timeShort12: {
     regex: RegExp('^' + reHour12 + '[:.]' + reMinutelz + reSpaceOpt + reMeridian, 'i'),
     name: 'timeshort12',
-    callback: function (match, hour, minute, meridian) {
+    callback (match, hour, minute, meridian) {
       return this.time(processMeridian(+hour, meridian), +minute, 0, 0)
     }
   },
@@ -295,7 +295,7 @@ const formats = {
   timeTiny12: {
     regex: RegExp('^' + reHour12 + reSpaceOpt + reMeridian, 'i'),
     name: 'timetiny12',
-    callback: function (match, hour, meridian) {
+    callback (match, hour, meridian) {
       return this.time(processMeridian(+hour, meridian), 0, 0, 0)
     }
   },
@@ -303,7 +303,7 @@ const formats = {
   soap: {
     regex: RegExp('^' + reYear4 + '-' + reMonthlz + '-' + reDaylz + 'T' + reHour24lz + ':' + reMinutelz + ':' + reSecondlz + reFrac + reTzCorrection + '?', 'i'),
     name: 'soap',
-    callback: function (match, year, month, day, hour, minute, second, frac, tzCorrection) {
+    callback (match, year, month, day, hour, minute, second, frac, tzCorrection) {
       return this.ymd(+year, month - 1, +day) &&
               this.time(+hour, +minute, +second, +frac.substr(0, 3)) &&
               this.zone(processTzCorrection(tzCorrection))
@@ -313,7 +313,7 @@ const formats = {
   wddx: {
     regex: RegExp('^' + reYear4 + '-' + reMonth + '-' + reDay + 'T' + reHour24 + ':' + reMinute + ':' + reSecond),
     name: 'wddx',
-    callback: function (match, year, month, day, hour, minute, second) {
+    callback (match, year, month, day, hour, minute, second) {
       return this.ymd(+year, month - 1, +day) && this.time(+hour, +minute, +second, 0)
     }
   },
@@ -321,7 +321,7 @@ const formats = {
   exif: {
     regex: RegExp('^' + reYear4 + ':' + reMonthlz + ':' + reDaylz + ' ' + reHour24lz + ':' + reMinutelz + ':' + reSecondlz, 'i'),
     name: 'exif',
-    callback: function (match, year, month, day, hour, minute, second) {
+    callback (match, year, month, day, hour, minute, second) {
       return this.ymd(+year, month - 1, +day) && this.time(+hour, +minute, +second, 0)
     }
   },
@@ -329,7 +329,7 @@ const formats = {
   xmlRpc: {
     regex: RegExp('^' + reYear4 + reMonthlz + reDaylz + 'T' + reHour24 + ':' + reMinutelz + ':' + reSecondlz),
     name: 'xmlrpc',
-    callback: function (match, year, month, day, hour, minute, second) {
+    callback (match, year, month, day, hour, minute, second) {
       return this.ymd(+year, month - 1, +day) && this.time(+hour, +minute, +second, 0)
     }
   },
@@ -337,7 +337,7 @@ const formats = {
   xmlRpcNoColon: {
     regex: RegExp('^' + reYear4 + reMonthlz + reDaylz + '[Tt]' + reHour24 + reMinutelz + reSecondlz),
     name: 'xmlrpcnocolon',
-    callback: function (match, year, month, day, hour, minute, second) {
+    callback (match, year, month, day, hour, minute, second) {
       return this.ymd(+year, month - 1, +day) && this.time(+hour, +minute, +second, 0)
     }
   },
@@ -345,7 +345,7 @@ const formats = {
   clf: {
     regex: RegExp('^' + reDay + '/(' + reMonthAbbr + ')/' + reYear4 + ':' + reHour24lz + ':' + reMinutelz + ':' + reSecondlz + reSpace + reTzCorrection, 'i'),
     name: 'clf',
-    callback: function (match, day, month, year, hour, minute, second, tzCorrection) {
+    callback (match, day, month, year, hour, minute, second, tzCorrection) {
       return this.ymd(+year, lookupMonth(month), +day) &&
               this.time(+hour, +minute, +second, 0) &&
               this.zone(processTzCorrection(tzCorrection))
@@ -355,7 +355,7 @@ const formats = {
   iso8601long: {
     regex: RegExp('^t?' + reHour24 + '[:.]' + reMinute + '[:.]' + reSecond + reFrac, 'i'),
     name: 'iso8601long',
-    callback: function (match, hour, minute, second, frac) {
+    callback (match, hour, minute, second, frac) {
       return this.time(+hour, +minute, +second, +frac.substr(0, 3))
     }
   },
@@ -363,7 +363,7 @@ const formats = {
   dateTextual: {
     regex: RegExp('^' + reMonthText + '[ .\\t-]*' + reDay + '[,.stndrh\\t ]+' + reYear, 'i'),
     name: 'datetextual',
-    callback: function (match, month, day, year) {
+    callback (match, month, day, year) {
       return this.ymd(processYear(year), lookupMonth(month), +day)
     }
   },
@@ -371,7 +371,7 @@ const formats = {
   pointedDate4: {
     regex: RegExp('^' + reDay + '[.\\t-]' + reMonth + '[.-]' + reYear4),
     name: 'pointeddate4',
-    callback: function (match, day, month, year) {
+    callback (match, day, month, year) {
       return this.ymd(+year, month - 1, +day)
     }
   },
@@ -379,7 +379,7 @@ const formats = {
   pointedDate2: {
     regex: RegExp('^' + reDay + '[.\\t]' + reMonth + '\\.' + reYear2),
     name: 'pointeddate2',
-    callback: function (match, day, month, year) {
+    callback (match, day, month, year) {
       return this.ymd(processYear(year), month - 1, +day)
     }
   },
@@ -387,7 +387,7 @@ const formats = {
   timeLong24: {
     regex: RegExp('^t?' + reHour24 + '[:.]' + reMinute + '[:.]' + reSecond),
     name: 'timelong24',
-    callback: function (match, hour, minute, second) {
+    callback (match, hour, minute, second) {
       return this.time(+hour, +minute, +second, 0)
     }
   },
@@ -395,7 +395,7 @@ const formats = {
   dateNoColon: {
     regex: RegExp('^' + reYear4 + reMonthlz + reDaylz),
     name: 'datenocolon',
-    callback: function (match, year, month, day) {
+    callback (match, year, month, day) {
       return this.ymd(+year, month - 1, +day)
     }
   },
@@ -403,7 +403,7 @@ const formats = {
   pgydotd: {
     regex: RegExp('^' + reYear4 + '\\.?' + reDayOfYear),
     name: 'pgydotd',
-    callback: function (match, year, day) {
+    callback (match, year, day) {
       return this.ymd(+year, 0, +day)
     }
   },
@@ -411,7 +411,7 @@ const formats = {
   timeShort24: {
     regex: RegExp('^t?' + reHour24 + '[:.]' + reMinute, 'i'),
     name: 'timeshort24',
-    callback: function (match, hour, minute) {
+    callback (match, hour, minute) {
       return this.time(+hour, +minute, 0, 0)
     }
   },
@@ -419,7 +419,7 @@ const formats = {
   iso8601noColon: {
     regex: RegExp('^t?' + reHour24lz + reMinutelz + reSecondlz, 'i'),
     name: 'iso8601nocolon',
-    callback: function (match, hour, minute, second) {
+    callback (match, hour, minute, second) {
       return this.time(+hour, +minute, +second, 0)
     }
   },
@@ -430,7 +430,7 @@ const formats = {
     // are handled by dateslash
     regex: RegExp('^' + reYear4 + '/' + reMonthlz + '/' + reDaylz + '/'),
     name: 'iso8601dateslash',
-    callback: function (match, year, month, day) {
+    callback (match, year, month, day) {
       return this.ymd(+year, month - 1, +day)
     }
   },
@@ -438,7 +438,7 @@ const formats = {
   dateSlash: {
     regex: RegExp('^' + reYear4 + '/' + reMonth + '/' + reDay),
     name: 'dateslash',
-    callback: function (match, year, month, day) {
+    callback (match, year, month, day) {
       return this.ymd(+year, month - 1, +day)
     }
   },
@@ -446,7 +446,7 @@ const formats = {
   american: {
     regex: RegExp('^' + reMonth + '/' + reDay + '/' + reYear),
     name: 'american',
-    callback: function (match, month, day, year) {
+    callback (match, month, day, year) {
       return this.ymd(processYear(year), month - 1, +day)
     }
   },
@@ -454,7 +454,7 @@ const formats = {
   americanShort: {
     regex: RegExp('^' + reMonth + '/' + reDay),
     name: 'americanshort',
-    callback: function (match, month, day) {
+    callback (match, month, day) {
       return this.ymd(this.y, month - 1, +day)
     }
   },
@@ -463,7 +463,7 @@ const formats = {
     // iso8601date2 is complete subset of gnudateshort
     regex: RegExp('^' + reYear + '-' + reMonth + '-' + reDay),
     name: 'gnudateshort | iso8601date2',
-    callback: function (match, year, month, day) {
+    callback (match, year, month, day) {
       return this.ymd(processYear(year), month - 1, +day)
     }
   },
@@ -471,7 +471,7 @@ const formats = {
   iso8601date4: {
     regex: RegExp('^' + reYear4withSign + '-' + reMonthlz + '-' + reDaylz),
     name: 'iso8601date4',
-    callback: function (match, year, month, day) {
+    callback (match, year, month, day) {
       return this.ymd(+year, month - 1, +day)
     }
   },
@@ -479,7 +479,7 @@ const formats = {
   gnuNoColon: {
     regex: RegExp('^t' + reHour24lz + reMinutelz, 'i'),
     name: 'gnunocolon',
-    callback: function (match, hour, minute) {
+    callback (match, hour, minute) {
       return this.time(+hour, +minute, 0, this.f)
     }
   },
@@ -487,7 +487,7 @@ const formats = {
   gnuDateShorter: {
     regex: RegExp('^' + reYear4 + '-' + reMonth),
     name: 'gnudateshorter',
-    callback: function (match, year, month) {
+    callback (match, year, month) {
       return this.ymd(+year, month - 1, 1)
     }
   },
@@ -497,7 +497,7 @@ const formats = {
     // years below 32 should be treated as days in datefull
     regex: RegExp('^' + '(\\d{3,4}|[4-9]\\d|3[2-9])-(' + reMonthAbbr + ')-' + reDaylz, 'i'),
     name: 'pgtextreverse',
-    callback: function (match, year, month, day) {
+    callback (match, year, month, day) {
       return this.ymd(processYear(year), lookupMonth(month), +day)
     }
   },
@@ -505,7 +505,7 @@ const formats = {
   dateFull: {
     regex: RegExp('^' + reDay + '[ \\t.-]*' + reMonthText + '[ \\t.-]*' + reYear, 'i'),
     name: 'datefull',
-    callback: function (match, day, month, year) {
+    callback (match, day, month, year) {
       return this.ymd(processYear(year), lookupMonth(month), +day)
     }
   },
@@ -513,7 +513,7 @@ const formats = {
   dateNoDay: {
     regex: RegExp('^' + reMonthText + '[ .\\t-]*' + reYear4, 'i'),
     name: 'datenoday',
-    callback: function (match, month, year) {
+    callback (match, month, year) {
       return this.ymd(+year, lookupMonth(month), 1)
     }
   },
@@ -521,7 +521,7 @@ const formats = {
   dateNoDayRev: {
     regex: RegExp('^' + reYear4 + '[ .\\t-]*' + reMonthText, 'i'),
     name: 'datenodayrev',
-    callback: function (match, year, month) {
+    callback (match, year, month) {
       return this.ymd(+year, lookupMonth(month), 1)
     }
   },
@@ -529,7 +529,7 @@ const formats = {
   pgTextShort: {
     regex: RegExp('^(' + reMonthAbbr + ')-' + reDaylz + '-' + reYear, 'i'),
     name: 'pgtextshort',
-    callback: function (match, month, day, year) {
+    callback (match, month, day, year) {
       return this.ymd(processYear(year), lookupMonth(month), +day)
     }
   },
@@ -537,7 +537,7 @@ const formats = {
   dateNoYear: {
     regex: RegExp('^' + reMonthText + '[ .\\t-]*' + reDay + '[,.stndrh\\t ]*', 'i'),
     name: 'datenoyear',
-    callback: function (match, month, day) {
+    callback (match, month, day) {
       return this.ymd(this.y, lookupMonth(month), +day)
     }
   },
@@ -545,7 +545,7 @@ const formats = {
   dateNoYearRev: {
     regex: RegExp('^' + reDay + '[ .\\t-]*' + reMonthText, 'i'),
     name: 'datenoyearrev',
-    callback: function (match, day, month) {
+    callback (match, day, month) {
       return this.ymd(this.y, lookupMonth(month), +day)
     }
   },
@@ -553,7 +553,7 @@ const formats = {
   isoWeekDay: {
     regex: RegExp('^' + reYear4 + '-?W' + reWeekOfYear + '(?:-?([0-7]))?'),
     name: 'isoweekday | isoweek',
-    callback: function (match, year, week, day) {
+    callback (match, year, week, day) {
       day = day ? +day : 1
 
       if (!this.ymd(+year, 0, 1)) {
@@ -573,7 +573,7 @@ const formats = {
   relativeText: {
     regex: RegExp('^(' + reReltextnumber + '|' + reReltexttext + ')' + reSpace + '(' + reReltextunit + ')', 'i'),
     name: 'relativetext',
-    callback: function (match, relValue, relUnit) {
+    callback (match, relValue, relUnit) {
       // todo: implement handling of 'this time-unit'
       // eslint-disable-next-line no-unused-vars
       const { amount, behavior } = lookupRelative(relValue)
@@ -640,7 +640,7 @@ const formats = {
   relative: {
     regex: RegExp('^([+-]*)[ \\t]*(\\d+)' + reSpaceOpt + '(' + reReltextunit + '|week)', 'i'),
     name: 'relative',
-    callback: function (match, signs, relValue, relUnit) {
+    callback (match, signs, relValue, relUnit) {
       const minuses = signs.replace(/[^-]/g, '').length
 
       let amount = +relValue * Math.pow(-1, minuses)
@@ -707,7 +707,7 @@ const formats = {
   dayText: {
     regex: RegExp('^(' + reDaytext + ')', 'i'),
     name: 'daytext',
-    callback: function (match, dayText) {
+    callback (match, dayText) {
       this.resetTime()
       this.weekday = lookupWeekday(dayText, 0)
 
@@ -720,7 +720,7 @@ const formats = {
   relativeTextWeek: {
     regex: RegExp('^(' + reReltexttext + ')' + reSpace + 'week', 'i'),
     name: 'relativetextweek',
-    callback: function (match, relText) {
+    callback (match, relText) {
       this.weekdayBehavior = 2
 
       switch (relText.toLowerCase()) {
@@ -745,7 +745,7 @@ const formats = {
   monthFullOrMonthAbbr: {
     regex: RegExp('^(' + reMonthFull + '|' + reMonthAbbr + ')', 'i'),
     name: 'monthfull | monthabbr',
-    callback: function (match, month) {
+    callback (match, month) {
       return this.ymd(this.y, lookupMonth(month), this.d)
     }
   },
@@ -753,7 +753,7 @@ const formats = {
   tzCorrection: {
     regex: RegExp('^' + reTzCorrection, 'i'),
     name: 'tzcorrection',
-    callback: function (tzCorrection) {
+    callback (tzCorrection) {
       return this.zone(processTzCorrection(tzCorrection))
     }
   },
@@ -761,7 +761,7 @@ const formats = {
   ago: {
     regex: /^ago/i,
     name: 'ago',
-    callback: function () {
+    callback () {
       this.ry = -this.ry
       this.rm = -this.rm
       this.rd = -this.rd
@@ -779,7 +779,7 @@ const formats = {
     // only year4 should come afterwards
     regex: RegExp('^' + reHour24lz + reMinutelz, 'i'),
     name: 'gnunocolon',
-    callback: function (match, hour, minute) {
+    callback (match, hour, minute) {
       return this.time(+hour, +minute, 0, this.f)
     }
   },
@@ -787,7 +787,7 @@ const formats = {
   year4: {
     regex: RegExp('^' + reYear4),
     name: 'year4',
-    callback: function (match, year) {
+    callback (match, year) {
       this.y = +year
       return true
     }
@@ -802,7 +802,7 @@ const formats = {
   any: {
     regex: /^[\s\S]+/,
     name: 'any',
-    callback: function () {
+    callback () {
       return false
     }
   }
@@ -845,7 +845,7 @@ let resultProto = {
   zones: 0,
 
   // helper functions
-  ymd: function (y, m, d) {
+  ymd (y, m, d) {
     if (this.dates > 0) {
       return false
     }
@@ -857,7 +857,7 @@ let resultProto = {
     return true
   },
 
-  time: function (h, i, s, f) {
+  time (h, i, s, f) {
     if (this.times > 0) {
       return false
     }
@@ -871,7 +871,7 @@ let resultProto = {
     return true
   },
 
-  resetTime: function () {
+  resetTime () {
     this.h = 0
     this.i = 0
     this.s = 0
@@ -881,7 +881,7 @@ let resultProto = {
     return true
   },
 
-  zone: function (minutes) {
+  zone (minutes) {
     if (this.zones <= 1) {
       this.zones++
       this.z = minutes
@@ -891,7 +891,7 @@ let resultProto = {
     return false
   },
 
-  toDate: function (relativeTo) {
+  toDate (relativeTo) {
     if (this.dates && !this.times) {
       this.h = this.i = this.s = this.f = 0
     }
