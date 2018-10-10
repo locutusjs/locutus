@@ -634,7 +634,7 @@ class Util {
       name: name,
       filepath: filepath,
       codepath: codepath,
-      // code: code,
+      code: code,
       language: language,
       category: category,
       func_name: funcName,
