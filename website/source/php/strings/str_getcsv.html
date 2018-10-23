@@ -17,7 +17,7 @@ layout: function
 title: PHP's str_getcsv in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.str_getcsv.php">PHP's str_getcsv</a>
+  href="http://php.net/manual/en/function.str-getcsv.php">PHP's str_getcsv</a>
   looks like.
 function: str_getcsv
 category: strings
@@ -64,7 +64,7 @@ alias:
   }
   var _pq = function (str) {
     // preg_quote()
-    return String(str).replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}=!<>\|:])/g, '\\$1')
+    return String(str).replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1')
   }
 
   delimiter = delimiter || ','

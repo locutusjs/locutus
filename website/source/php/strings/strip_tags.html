@@ -10,6 +10,8 @@ examples:
   - strip_tags('1 <br/> 1')
   - 'strip_tags(''1 <br/> 1'', ''<br>'')'
   - 'strip_tags(''1 <br/> 1'', ''<br><br/>'')'
+  - strip_tags('<i>hello</i> <<foo>script>world<</foo>/script>')
+  - strip_tags(4)
 estarget: es5
 returns:
   - '''Kevin <b>van</b> <i>Zonneveld</i>'''
@@ -19,6 +21,8 @@ returns:
   - '''1  1'''
   - '''1 <br/> 1'''
   - '''1 <br/> 1'''
+  - '''hello world'''
+  - '''4'''
 dependencies: []
 authors:
   original by:
@@ -34,6 +38,8 @@ authors:
     - Eric Nagel
     - 'Kevin van Zonneveld (http://kvz.io)'
     - Tomasz Wesolowski
+    - 'Tymon Sturgeon (https://scryptonite.com)'
+    - 'Tim de Koning (https://www.kingsquare.nl)'
   revised by:
     - 'Rafał Kukawski (http://blog.kukawski.pl)'
   input by:
@@ -49,7 +55,7 @@ layout: function
 title: PHP's strip_tags in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.strip_tags.php">PHP's strip_tags</a>
+  href="http://php.net/manual/en/function.strip-tags.php">PHP's strip_tags</a>
   looks like.
 function: strip_tags
 category: strings
@@ -79,6 +85,8 @@ alias:
   // bugfixed by: Eric Nagel
   // bugfixed by: Kevin van Zonneveld (http://kvz.io)
   // bugfixed by: Tomasz Wesolowski
+  // bugfixed by: Tymon Sturgeon (https://scryptonite.com)
+  // bugfixed by: Tim de Koning (https://www.kingsquare.nl)
   //  revised by: Rafał Kukawski (http://blog.kukawski.pl)
   //   example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i><b>')
   //   returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
@@ -94,6 +102,12 @@ alias:
   //   returns 6: '1 <br/> 1'
   //   example 7: strip_tags('1 <br/> 1', '<br><br/>')
   //   returns 7: '1 <br/> 1'
+  //   example 8: strip_tags('<i>hello</i> <<foo>script>world<</foo>/script>')
+  //   returns 8: 'hello world'
+  //   example 9: strip_tags(4)
+  //   returns 9: '4'
+
+  var _phpCastString = require('../_helpers/_phpCastString')
 
   // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
   allowed = (((allowed || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('')
@@ -101,8 +115,18 @@ alias:
   var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi
   var commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi
 
-  return input.replace(commentsAndPhpTags, '').replace(tags, function ($0, $1) {
-    return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : ''
-  })
+  var after = _phpCastString(input)
+  // recursively remove tags to ensure that the returned string doesn't contain forbidden tags after previous passes (e.g. '<<bait/>switch/>')
+  while (true) {
+    var before = after
+    after = before.replace(commentsAndPhpTags, '').replace(tags, function ($0, $1) {
+      return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : ''
+    })
+
+    // return once no more tags are removed
+    if (before === after) {
+      return after
+    }
+  }
 }
 {% endcodeblock %}

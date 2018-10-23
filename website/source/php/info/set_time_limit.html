@@ -15,7 +15,7 @@ layout: function
 title: PHP's set_time_limit in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.set_time_limit.php">PHP's
+  href="http://php.net/manual/en/function.set-time-limit.php">PHP's
   set_time_limit</a> looks like.
 function: set_time_limit
 category: info
@@ -34,7 +34,7 @@ alias:
   //   example 1: set_time_limit(4)
   //   returns 1: undefined
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

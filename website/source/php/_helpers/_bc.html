@@ -19,7 +19,7 @@ layout: function
 title: PHP's _bc in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function._bc.php">PHP's _bc</a> looks like.
+  href="http://php.net/manual/en/function.-bc.php">PHP's _bc</a> looks like.
 function: _bc
 category: _helpers
 language: php
@@ -468,7 +468,8 @@ alias:
 
       // Assign to prod and clean up the number.
       pval.n_sign = (n1.n_sign === n2.n_sign ? Libbcmath.PLUS : Libbcmath.MINUS)
-        // pval.n_value = pval.nPtr; // @todo: pval.n_len = len2 + len1 + 1 - fullScale
+        // pval.n_value = pval.nPtr;
+      pval.n_len = len2 + len1 + 1 - fullScale
       pval.n_scale = prodScale
       Libbcmath._bc_rm_leading_zeros(pval)
       if (Libbcmath.bc_is_zero(pval)) {
@@ -478,12 +479,13 @@ alias:
       return pval
     },
 
-    new_sub_num: function (length, scale, value) {
+    new_sub_num: function (length, scale, value, ptr = 0) {
       var temp = new Libbcmath.bc_num() // eslint-disable-line new-cap
       temp.n_sign = Libbcmath.PLUS
       temp.n_len = length
       temp.n_scale = scale
-      temp.n_value = value
+      temp.n_value = Libbcmath.safe_emalloc(1, length + scale, 0)
+      Libbcmath.memcpy(temp.n_value, 0, value, ptr, length + scale)
       return temp
     },
 
@@ -539,7 +541,7 @@ alias:
       // Set up pointers and others
       // (signed char *)(accum->n_value + accum->n_len + accum->n_scale - shift - 1);
       accp = accum.n_len + accum.n_scale - shift - 1
-      valp = val.n_len = 1 // (signed char *)(val->n_value + val->n_len - 1);
+      valp = val.n_len - 1 // (signed char *)(val->n_value + val->n_len - 1);
       carry = 0
       if (sub) {
         // Subtraction, carry is really borrow.
@@ -617,14 +619,14 @@ alias:
         u0 = Libbcmath.new_sub_num(ulen, 0, u.n_value)
       } else {
         u1 = Libbcmath.new_sub_num(ulen - n, 0, u.n_value)
-        u0 = Libbcmath.new_sub_num(n, 0, u.n_value + ulen - n)
+        u0 = Libbcmath.new_sub_num(n, 0, u.n_value, ulen - n)
       }
       if (vlen < n) {
         v1 = Libbcmath.bc_init_num() // bc_copy_num (BCG(_zero_));
         v0 = Libbcmath.new_sub_num(vlen, 0, v.n_value)
       } else {
         v1 = Libbcmath.new_sub_num(vlen - n, 0, v.n_value)
-        v0 = Libbcmath.new_sub_num(n, 0, v.n_value + vlen - n)
+        v0 = Libbcmath.new_sub_num(n, 0, v.n_value, vlen - n)
       }
       Libbcmath._bc_rm_leading_zeros(u1)
       Libbcmath._bc_rm_leading_zeros(u0)

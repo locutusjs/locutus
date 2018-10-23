@@ -48,7 +48,7 @@ layout: function
 title: PHP's str_replace in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.str_replace.php">PHP's str_replace</a>
+  href="http://php.net/manual/en/function.str-replace.php">PHP's str_replace</a>
   looks like.
 function: str_replace
 category: strings
@@ -104,7 +104,7 @@ alias:
   var sa = Object.prototype.toString.call(s) === '[object Array]'
   s = [].concat(s)
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

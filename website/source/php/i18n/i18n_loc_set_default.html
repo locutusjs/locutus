@@ -23,7 +23,7 @@ layout: function
 title: PHP's i18n_loc_set_default in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.i18n_loc_set_default.php">PHP's
+  href="http://php.net/manual/en/function.i18n-loc-set-default.php">PHP's
   i18n_loc_set_default</a> looks like.
 function: i18n_loc_set_default
 category: i18n
@@ -44,7 +44,7 @@ alias:
   //   example 1: i18n_loc_set_default('pt_PT')
   //   returns 1: true
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

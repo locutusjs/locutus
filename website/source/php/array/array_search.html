@@ -4,15 +4,18 @@ examples:
   - >-
     array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname:
     'zonneveld'})
+  - 'array_search(''3'', {a: 3, b: 5, c: 7})'
 estarget: es5
 returns:
   - '''surname'''
+  - '''a'''
 dependencies: []
 authors:
   original by:
     - 'Kevin van Zonneveld (http://kvz.io)'
   bugfixed by:
     - 'Kevin van Zonneveld (http://kvz.io)'
+    - 'Reynier de la Rosa (http://scriptinside.blogspot.com.es/)'
   input by:
     - 'Brett Zamir (http://brett-zamir.me)'
 notes: []
@@ -21,7 +24,7 @@ layout: function
 title: PHP's array_search in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.array_search.php">PHP's
+  href="http://php.net/manual/en/function.array-search.php">PHP's
   array_search</a> looks like.
 function: array_search
 category: array
@@ -38,9 +41,12 @@ alias:
   // original by: Kevin van Zonneveld (http://kvz.io)
   //    input by: Brett Zamir (http://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  // bugfixed by: Reynier de la Rosa (http://scriptinside.blogspot.com.es/)
   //        test: skip-all
   //   example 1: array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'})
   //   returns 1: 'surname'
+  //   example 2: array_search('3', {a: 3, b: 5, c: 7})
+  //   returns 2: 'a'
 
   var strict = !!argStrict
   var key = ''
@@ -67,7 +73,7 @@ alias:
 
   for (key in haystack) {
     if (haystack.hasOwnProperty(key)) {
-      if ((strict && haystack[key] === needle) || (!strict && haystack[key] === needle)) {
+      if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) { // eslint-disable-line eqeqeq
         return key
       }
     }

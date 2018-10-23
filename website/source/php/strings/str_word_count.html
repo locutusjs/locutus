@@ -37,7 +37,7 @@ layout: function
 title: PHP's str_word_count in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.str_word_count.php">PHP's
+  href="http://php.net/manual/en/function.str-word-count.php">PHP's
   str_word_count</a> looks like.
 function: str_word_count
 category: strings
@@ -81,7 +81,7 @@ alias:
   var match = false
 
   var _pregQuote = function (str) {
-    return (str + '').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}=!<>\|:])/g, '\\$1')
+    return (str + '').replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1')
   }
   var _getWholeChar = function (str, i) {
     // Use for rare cases of non-BMP characters

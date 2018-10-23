@@ -29,7 +29,7 @@ layout: function
 title: PHP's call_user_func_array in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.call_user_func_array.php">PHP's
+  href="http://php.net/manual/en/function.call-user-func-array.php">PHP's
   call_user_func_array</a> looks like.
 function: call_user_func_array
 category: funchand
@@ -58,7 +58,7 @@ alias:
   //   example 2: call_user_func_array('isNaN', [1])
   //   returns 2: false
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   var func
   var scope = null
 

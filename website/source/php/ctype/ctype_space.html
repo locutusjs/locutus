@@ -15,7 +15,7 @@ layout: function
 title: PHP's ctype_space in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.ctype_space.php">PHP's ctype_space</a>
+  href="http://php.net/manual/en/function.ctype-space.php">PHP's ctype_space</a>
   looks like.
 function: ctype_space
 category: ctype
@@ -40,7 +40,7 @@ alias:
   // ensure setup of localization variables takes place
   setlocale('LC_ALL', 0)
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   var p = $locutus.php

@@ -15,7 +15,7 @@ layout: function
 title: PHP's sql_regcase in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.sql_regcase.php">PHP's sql_regcase</a>
+  href="http://php.net/manual/en/function.sql-regcase.php">PHP's sql_regcase</a>
   looks like.
 function: sql_regcase
 category: pcre
@@ -42,7 +42,7 @@ alias:
 
   setlocale('LC_ALL', 0)
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
