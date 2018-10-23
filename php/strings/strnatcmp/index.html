@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://locutus.io/php/strings/strnatcmp/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s strnatcmp looks like.">
-<meta property="og:updated_time" content="2016-06-03T12:06:01.000Z">
+<meta property="og:updated_time" content="2018-10-23T10:14:21.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's strnatcmp in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s strnatcmp looks like.">
@@ -21,19 +21,19 @@
 
     
 
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/vendor/open-sans/styles.css" type="text/css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css" type="text/css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
 
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
-    <link rel="stylesheet" href="/css/locutus.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/locutus.css">
 
-    <script src="/vendor/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
     <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
 
     
     
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
     
     
         <script type="text/javascript">
@@ -117,7 +117,7 @@ ga('send', 'pageview');
     console.log(INSIGHT_CONFIG)
 })(window);
 </script>
-<script src="/js/insight.js" type="text/javascript"></script>
+<script src="/js/insight.js"></script>
 
 
 </div>
@@ -174,7 +174,7 @@ ga('send', 'pageview');
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">strnatcmp</span> (<span class="params">fString1, fString2, fVersion</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//  discuss at: http://locutus.io/php/strnatcmp/</span></span><br><span class="line">  <span class="comment">// original by: Martijn Wieringa</span></span><br><span class="line">  <span class="comment">// improved by: Michael White (http://getsprink.com)</span></span><br><span class="line">  <span class="comment">// improved by: Jack</span></span><br><span class="line">  <span class="comment">// bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)</span></span><br><span class="line">  <span class="comment">//      note 1: Added fVersion argument against code guidelines, because it's so neat</span></span><br><span class="line">  <span class="comment">//   example 1: strnatcmp('Price 12.9', 'Price 12.15')</span></span><br><span class="line">  <span class="comment">//   returns 1: 1</span></span><br><span class="line">  <span class="comment">//   example 2: strnatcmp('Price 12.09', 'Price 12.15')</span></span><br><span class="line">  <span class="comment">//   returns 2: -1</span></span><br><span class="line">  <span class="comment">//   example 3: strnatcmp('Price 12.90', 'Price 12.15')</span></span><br><span class="line">  <span class="comment">//   returns 3: 1</span></span><br><span class="line">  <span class="comment">//   example 4: strnatcmp('Version 12.9', 'Version 12.15', true)</span></span><br><span class="line">  <span class="comment">//   returns 4: -6</span></span><br><span class="line">  <span class="comment">//   example 5: strnatcmp('Version 12.15', 'Version 12.9', true)</span></span><br><span class="line">  <span class="comment">//   returns 5: 6</span></span><br><span class="line">  <span class="comment">//        test: skip-2</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> strcmp = <span class="built_in">require</span>(<span class="string">'../strings/strcmp'</span>)</span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (fVersion === <span class="literal">undefined</span>) &#123;</span><br><span class="line">    fVersion = <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> _strnatcmpSplit = <span class="function"><span class="keyword">function</span> (<span class="params">fString</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = []</span><br><span class="line">    <span class="keyword">var</span> buffer = <span class="string">''</span></span><br><span class="line">    <span class="keyword">var</span> chr = <span class="string">''</span></span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> fStringl = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> text = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">    fStringl = fString.length</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; fStringl; i++) &#123;</span><br><span class="line">      chr = fString.substring(i, i + <span class="number">1</span>)</span><br><span class="line">      <span class="keyword">if</span> (chr.match(<span class="regexp">/\d/</span>)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (text) &#123;</span><br><span class="line">          <span class="keyword">if</span> (buffer.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            result[result.length] = buffer</span><br><span class="line">            buffer = <span class="string">''</span></span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          text = <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        buffer += chr</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> ((text === <span class="literal">false</span>) &amp;&amp;</span><br><span class="line">        (chr === <span class="string">'.'</span>) &amp;&amp;</span><br><span class="line">        (i &lt; (fString.length - <span class="number">1</span>)) &amp;&amp;</span><br><span class="line">        (fString.substring(i + <span class="number">1</span>, i + <span class="number">2</span>).match(<span class="regexp">/\d/</span>))) &#123;</span><br><span class="line">        <span class="comment">// @todo: ^--- Break this up to make it more readable</span></span><br><span class="line">        result[result.length] = buffer</span><br><span class="line">        buffer = <span class="string">''</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (text === <span class="literal">false</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span> (buffer.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            result[result.length] = <span class="built_in">parseInt</span>(buffer, <span class="number">10</span>)</span><br><span class="line">            buffer = <span class="string">''</span></span><br><span class="line">          &#125;</span><br><span class="line">          text = <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">        buffer += chr</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (buffer.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (text) &#123;</span><br><span class="line">        result[result.length] = buffer</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        result[result.length] = <span class="built_in">parseInt</span>(buffer, <span class="number">10</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> array1 = _strnatcmpSplit(fString1 + <span class="string">''</span>)</span><br><span class="line">  <span class="keyword">var</span> array2 = _strnatcmpSplit(fString2 + <span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> len = array1.length</span><br><span class="line">  <span class="keyword">var</span> text = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> result = -<span class="number">1</span></span><br><span class="line">  <span class="keyword">var</span> r = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (len &gt; array2.length) &#123;</span><br><span class="line">    len = array2.length</span><br><span class="line">    result = <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isNaN</span>(array1[i])) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">isNaN</span>(array2[i])) &#123;</span><br><span class="line">        text = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ((r = strcmp(array1[i], array2[i])) !== <span class="number">0</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> r</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (text) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">isNaN</span>(array2[i])) &#123;</span><br><span class="line">      <span class="keyword">if</span> (text) &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (text || fVersion) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((r = (array1[i] - array2[i])) !== <span class="number">0</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> r</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> ((r = strcmp(array1[i].toString(), array2[i].toString())) !== <span class="number">0</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> r</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      text = <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">strnatcmp</span> (<span class="params">a, b</span>) </span>&#123;</div><div class="line">  <span class="comment">//       discuss at: http://locutus.io/php/strnatcmp/</span></div><div class="line">  <span class="comment">//      original by: Martijn Wieringa</span></div><div class="line">  <span class="comment">//      improved by: Michael White (http://getsprink.com)</span></div><div class="line">  <span class="comment">//      improved by: Jack</span></div><div class="line">  <span class="comment">//      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)</span></div><div class="line">  <span class="comment">// reimplemented by: Rafał Kukawski</span></div><div class="line">  <span class="comment">//        example 1: strnatcmp('abc', 'abc')</span></div><div class="line">  <span class="comment">//        returns 1: 0</span></div><div class="line">  <span class="comment">//        example 2: strnatcmp('a', 'b')</span></div><div class="line">  <span class="comment">//        returns 2: -1</span></div><div class="line">  <span class="comment">//        example 3: strnatcmp('10', '1')</span></div><div class="line">  <span class="comment">//        returns 3: 1</span></div><div class="line">  <span class="comment">//        example 4: strnatcmp('0000abc', '0abc')</span></div><div class="line">  <span class="comment">//        returns 4: 0</span></div><div class="line">  <span class="comment">//        example 5: strnatcmp('1239', '12345')</span></div><div class="line">  <span class="comment">//        returns 5: -1</span></div><div class="line">  <span class="comment">//        example 6: strnatcmp('t01239', 't012345')</span></div><div class="line">  <span class="comment">//        returns 6: 1</span></div><div class="line">  <span class="comment">//        example 7: strnatcmp('0A', '5N')</span></div><div class="line">  <span class="comment">//        returns 7: -1</span></div><div class="line"></div><div class="line">  <span class="keyword">var</span> _phpCastString = <span class="built_in">require</span>(<span class="string">'../_helpers/_phpCastString'</span>)</div><div class="line"></div><div class="line">  <span class="keyword">var</span> leadingZeros = <span class="regexp">/^0+(?=\d)/</span></div><div class="line">  <span class="keyword">var</span> whitespace = <span class="regexp">/^\s/</span></div><div class="line">  <span class="keyword">var</span> digit = <span class="regexp">/^\d/</span></div><div class="line"></div><div class="line">  <span class="keyword">if</span> (<span class="built_in">arguments</span>.length !== <span class="number">2</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">null</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  a = _phpCastString(a)</div><div class="line">  b = _phpCastString(b)</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (!a.length || !b.length) &#123;</div><div class="line">    <span class="keyword">return</span> a.length - b.length</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> i = <span class="number">0</span></div><div class="line">  <span class="keyword">var</span> j = <span class="number">0</span></div><div class="line"></div><div class="line">  a = a.replace(leadingZeros, <span class="string">''</span>)</div><div class="line">  b = b.replace(leadingZeros, <span class="string">''</span>)</div><div class="line"></div><div class="line">  <span class="keyword">while</span> (i &lt; a.length &amp;&amp; j &lt; b.length) &#123;</div><div class="line">    <span class="comment">// skip consecutive whitespace</span></div><div class="line">    <span class="keyword">while</span> (whitespace.test(a.charAt(i))) i++</div><div class="line">    <span class="keyword">while</span> (whitespace.test(b.charAt(j))) j++</div><div class="line"></div><div class="line">    <span class="keyword">var</span> ac = a.charAt(i)</div><div class="line">    <span class="keyword">var</span> bc = b.charAt(j)</div><div class="line">    <span class="keyword">var</span> aIsDigit = digit.test(ac)</div><div class="line">    <span class="keyword">var</span> bIsDigit = digit.test(bc)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (aIsDigit &amp;&amp; bIsDigit) &#123;</div><div class="line">      <span class="keyword">var</span> bias = <span class="number">0</span></div><div class="line">      <span class="keyword">var</span> fractional = ac === <span class="string">'0'</span> || bc === <span class="string">'0'</span></div><div class="line"></div><div class="line">      <span class="keyword">do</span> &#123;</div><div class="line">        <span class="keyword">if</span> (!aIsDigit) &#123;</div><div class="line">          <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!bIsDigit) &#123;</div><div class="line">          <span class="keyword">return</span> <span class="number">1</span></div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ac &lt; bc) &#123;</div><div class="line">          <span class="keyword">if</span> (!bias) &#123;</div><div class="line">            bias = <span class="number">-1</span></div><div class="line">          &#125;</div><div class="line"></div><div class="line">          <span class="keyword">if</span> (fractional) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">          &#125;</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ac &gt; bc) &#123;</div><div class="line">          <span class="keyword">if</span> (!bias) &#123;</div><div class="line">            bias = <span class="number">1</span></div><div class="line">          &#125;</div><div class="line"></div><div class="line">          <span class="keyword">if</span> (fractional) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span></div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        ac = a.charAt(++i)</div><div class="line">        bc = b.charAt(++j)</div><div class="line"></div><div class="line">        aIsDigit = digit.test(ac)</div><div class="line">        bIsDigit = digit.test(bc)</div><div class="line">      &#125; <span class="keyword">while</span> (aIsDigit || bIsDigit)</div><div class="line"></div><div class="line">      <span class="keyword">if</span> (!fractional &amp;&amp; bias) &#123;</div><div class="line">        <span class="keyword">return</span> bias</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="keyword">continue</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (!ac || !bc) &#123;</div><div class="line">      <span class="keyword">continue</span></div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ac &lt; bc) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ac &gt; bc) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="number">1</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    i++</div><div class="line">    j++</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> iBeforeStrEnd = i &lt; a.length</div><div class="line">  <span class="keyword">var</span> jBeforeStrEnd = j &lt; b.length</div><div class="line"></div><div class="line">  <span class="comment">// Check which string ended first</span></div><div class="line">  <span class="comment">// return -1 if a, 1 if b, 0 otherwise</span></div><div class="line">  <span class="keyword">return</span> (iBeforeStrEnd &gt; jBeforeStrEnd) - (iBeforeStrEnd &lt; jBeforeStrEnd)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
       <a href="https://github.com/kvz/locutus/blob/master/src/php/strings/strnatcmp.js">View on GitHub</a>
@@ -224,14 +224,6 @@ ga('send', 'pageview');
         and learning purposes only.
       </p>
       
-        <h2>Notes</h2>
-        <ul>
-        
-          <li><p>Added fVersion argument against code guidelines, because it’s so neat</p>
-</li>
-        
-        </ul>
-      
 
       
 
@@ -245,15 +237,19 @@ ga('send', 'pageview');
         <table>
           <tr><th>#</th><th>code</th><th>expected result</th></tr>
         
-          <tr><td>1</td><td><code>strnatcmp(&#39;Price 12.9&#39;, &#39;Price 12.15&#39;)</code></td><td><code>1</code></td></tr>
+          <tr><td>1</td><td><code>strnatcmp(&#39;abc&#39;, &#39;abc&#39;)</code></td><td><code>0</code></td></tr>
         
-          <tr><td>2</td><td><code>strnatcmp(&#39;Price 12.09&#39;, &#39;Price 12.15&#39;)</code></td><td><code>-1</code></td></tr>
+          <tr><td>2</td><td><code>strnatcmp(&#39;a&#39;, &#39;b&#39;)</code></td><td><code>-1</code></td></tr>
         
-          <tr><td>3</td><td><code>strnatcmp(&#39;Price 12.90&#39;, &#39;Price 12.15&#39;)</code></td><td><code>1</code></td></tr>
+          <tr><td>3</td><td><code>strnatcmp(&#39;10&#39;, &#39;1&#39;)</code></td><td><code>1</code></td></tr>
         
-          <tr><td>4</td><td><code>strnatcmp(&#39;Version 12.9&#39;, &#39;Version 12.15&#39;, true)</code></td><td><code>-6</code></td></tr>
+          <tr><td>4</td><td><code>strnatcmp(&#39;0000abc&#39;, &#39;0abc&#39;)</code></td><td><code>0</code></td></tr>
         
-          <tr><td>5</td><td><code>strnatcmp(&#39;Version 12.15&#39;, &#39;Version 12.9&#39;, true)</code></td><td><code>6</code></td></tr>
+          <tr><td>5</td><td><code>strnatcmp(&#39;1239&#39;, &#39;12345&#39;)</code></td><td><code>-1</code></td></tr>
+        
+          <tr><td>6</td><td><code>strnatcmp(&#39;t01239&#39;, &#39;t012345&#39;)</code></td><td><code>1</code></td></tr>
+        
+          <tr><td>7</td><td><code>strnatcmp(&#39;0A&#39;, &#39;5N&#39;)</code></td><td><code>-1</code></td></tr>
         
         </table>
       
@@ -284,7 +280,7 @@ ga('send', 'pageview');
 
             <br />
             <div class="Social">
-              <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @locutus_io</a><br />
+              <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
               <iframe src="http://ghbtns.com/github-btn.html?user=kvz&repo=locutus&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe><br />
               <a href="https://travis-ci.org/kvz/locutus"><img src="https://travis-ci.org/kvz/locutus.svg" alt="Build Status"></a><br />
             </div>
@@ -297,7 +293,7 @@ ga('send', 'pageview');
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                322
+                325
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -337,12 +333,19 @@ ga('send', 'pageview');
       
         <li><a href="/c/">
           C
-          (1)
+          (3)
         </a></li>
         
         <ul>
           <li><a href="/c/math/">
             math
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/stdio/">
+            stdio
             (1)
           </a></li>
         </ul>
@@ -389,13 +392,13 @@ ga('send', 'pageview');
       
         <li><a href="/php/">
           PHP
-          (316)
+          (317)
         </a></li>
         
         <ul>
           <li><a href="/php/array/">
             array
-            (71)
+            (72)
           </a></li>
         </ul>
         
@@ -614,7 +617,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2016 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2018 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="http://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
@@ -626,13 +629,13 @@ ga('send', 'pageview');
         
 
     
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
     
 
 
 <!-- Custom Scripts -->
-<script src="/js/main.js" type="text/javascript"></script>
-<script src="/js/locutus.js" type="text/javascript"></script>
+<script src="/js/main.js"></script>
+<script src="/js/locutus.js"></script>
 
 <!-- Twitter follow button script -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
