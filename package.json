@@ -83,7 +83,7 @@
     "test:util": "mocha --compilers js:babel-register --reporter spec test/util/",
     "test": "npm-run-all test:languages test:util test:module",
     "website:install": "cd website && npm install",
-    "website:deploy": "cd website && hexo deploy --silent",
+    "website:deploy": "cd website && hexo deploy",
     "website:start": "cd website && hexo server",
     "website:build": "cd website && hexo generate",
     "website:clean": "cd website && hexo clean"
