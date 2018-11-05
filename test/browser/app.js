@@ -11,6 +11,8 @@ var preg_match = require('../../src/php/pcre/preg_match')
 
 varDump(preg_match('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$', 'rony@pharaohtools.com')) // Should report true
 varDump(preg_match('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$', 'ronypharaohtools.com')) // Should report flase
+varDump(preg_match('^[0-9-+s()]*$', '021827495')) // Should report true
+varDump(preg_match('^[0-9-+s()]*$', 'phone23no')) // Should report flase
 document.write(sprintf('Hey %s, please check the console log', 'you'))
 varDump(iniSet('locutus.objectsAsArrays', 'on'))
 varDump(isArray({'name': 'locutus'})) // Should report true
