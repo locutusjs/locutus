@@ -88,7 +88,9 @@
     "website:build": "cd website && hexo generate",
     "website:clean": "cd website && hexo clean"
   },
-  "dependencies": {},
+  "dependencies": {
+    "es6-promise": "^4.2.5"
+  },
   "browser": {
     "fs": false,
     "child_process": false
