@@ -75,7 +75,7 @@ Even the the website is bundled with this repo, we treat it as a separate projec
 
 Here's the flow that takes written functions to the website:
 
- - `npm run website:inject` runs `src/_util/util.js`'s `injectweb` method
+ - `npm run injectweb` runs `src/_util/util.js`'s `injectweb` method
  - `injectweb` iterates over functions and parses them via the `_load` and `_parse` methods, specifically: the header comments that declare authors, tests, and dependencies
  - `injectweb` then writes each function to `website/source`. The code is written as the content. The other parsed properties are prepended as [YAML front matter](https://jekyllrb.com/docs/frontmatter/)
  - Jekyll uses `website/_layouts/function.html` as the layout template for the function collection, this determines how all the properties are rendered.
