@@ -126,13 +126,13 @@ alias:
     Oy
   */
   var _pregQuote = function (str) {
-    return (str + '').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}=!<>\|:])/g, '\\$1')
+    return (str + '').replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1')
   }
 
   // ensure setup of localization variables takes place
   setlocale('LC_ALL', 0)
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   var locale = $locutus.php.localeCategories.LC_TIME
@@ -179,7 +179,7 @@ alias:
       if (literalPos !== -1) {
         if (['%', '\n', '\t'].indexOf(dateStr.charAt(j)) === literalPos) {
           // a matched literal
-          ++i;
+          ++i
           // skip beyond
           ++j
           continue

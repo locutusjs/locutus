@@ -15,7 +15,7 @@ layout: function
 title: PHP's nl_langinfo in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.nl_langinfo.php">PHP's nl_langinfo</a>
+  href="http://php.net/manual/en/function.nl-langinfo.php">PHP's nl_langinfo</a>
   looks like.
 function: nl_langinfo
 category: strings
@@ -37,7 +37,7 @@ alias:
 
   setlocale('LC_ALL', 0) // Ensure locale data is available
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

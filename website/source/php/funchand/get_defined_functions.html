@@ -28,7 +28,7 @@ layout: function
 title: PHP's get_defined_functions in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.get_defined_functions.php">PHP's
+  href="http://php.net/manual/en/function.get-defined-functions.php">PHP's
   get_defined_functions</a> looks like.
 function: get_defined_functions
 category: funchand
@@ -53,7 +53,7 @@ alias:
   //   returns 1: true
   //        test: skip-1
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

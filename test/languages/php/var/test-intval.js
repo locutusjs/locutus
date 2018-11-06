@@ -37,4 +37,22 @@ describe('src/php/var/intval.js (tested in test/languages/php/var/test-intval.js
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 6', function (done) {
+    var expected = 8589934593
+    var result = intval(0x200000001)
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 7', function (done) {
+    var expected = 255
+    var result = intval('0xff', 0)
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 8', function (done) {
+    var expected = 8
+    var result = intval('010', 0)
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })

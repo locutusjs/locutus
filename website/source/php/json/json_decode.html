@@ -24,7 +24,7 @@ layout: function
 title: PHP's json_decode in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.json_decode.php">PHP's json_decode</a>
+  href="http://php.net/manual/en/function.json-decode.php">PHP's json_decode</a>
   looks like.
 function: json_decode
 category: json
@@ -56,7 +56,7 @@ alias:
     See http://www.JSON.org/js.html
   */
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
@@ -118,8 +118,8 @@ alias:
   // ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
 
   var m = (/^[\],:{}\s]*$/)
-    .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
-    .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
+    .test(text.replace(/\\(?:["\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
+    .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?/g, ']')
     .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))
 
   if (m) {

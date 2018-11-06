@@ -17,7 +17,7 @@ layout: function
 title: PHP's date_parse in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.date_parse.php">PHP's date_parse</a>
+  href="http://php.net/manual/en/function.date-parse.php">PHP's date_parse</a>
   looks like.
 function: date_parse
 category: datetime
@@ -40,10 +40,12 @@ alias:
 
   try {
     ts = strtotime(date)
-  } finally {
-    if (!ts) {
-      return false
-    }
+  } catch (e) {
+    ts = false
+  }
+
+  if (!ts) {
+    return false
   }
 
   var dt = new Date(ts * 1000)

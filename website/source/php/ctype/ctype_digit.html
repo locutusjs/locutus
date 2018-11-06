@@ -15,7 +15,7 @@ layout: function
 title: PHP's ctype_digit in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.ctype_digit.php">PHP's ctype_digit</a>
+  href="http://php.net/manual/en/function.ctype-digit.php">PHP's ctype_digit</a>
   looks like.
 function: ctype_digit
 category: ctype
@@ -40,7 +40,7 @@ alias:
   // ensure setup of localization variables takes place
   setlocale('LC_ALL', 0)
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   var p = $locutus.php

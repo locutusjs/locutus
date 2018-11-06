@@ -21,7 +21,7 @@ layout: function
 title: PHP's var_dump in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.var_dump.php">PHP's var_dump</a> looks
+  href="http://php.net/manual/en/function.var-dump.php">PHP's var_dump</a> looks
   like.
 function: var_dump
 category: var
@@ -51,7 +51,7 @@ alias:
   var i = 0
 
   var _getFuncName = function (fn) {
-    var name = (/\W*function\s+([\w\$]+)\s*\(/)
+    var name = (/\W*function\s+([\w$]+)\s*\(/)
       .exec(fn)
     if (!name) {
       return '(Anonymous)'

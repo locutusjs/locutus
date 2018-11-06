@@ -18,7 +18,7 @@ layout: function
 title: PHP's ini_set in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.ini_set.php">PHP's ini_set</a> looks
+  href="http://php.net/manual/en/function.ini-set.php">PHP's ini_set</a> looks
   like.
 function: ini_set
 category: info
@@ -38,7 +38,7 @@ alias:
   //   example 1: ini_set('date.timezone', 'America/Chicago')
   //   returns 1: 'Asia/Hong_Kong'
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

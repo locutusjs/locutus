@@ -35,7 +35,7 @@ layout: function
 title: PHP's array_splice in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.array_splice.php">PHP's
+  href="http://php.net/manual/en/function.array-splice.php">PHP's
   array_splice</a> looks like.
 function: array_splice
 category: array
@@ -102,7 +102,7 @@ alias:
     /* if (arr.length !== undefined) {
      // Deal with array-like objects as input
     delete arr.length;
-    }*/
+    } */
     var lgt = 0
     var ct = -1
     var rmvd = []
@@ -111,7 +111,7 @@ alias:
     var intCt = -1
     var returnArr = true
     var rmvdCt = 0
-    var rmvdLngth = 0
+    // var rmvdLngth = 0
     var key = ''
     // rmvdObj.length = 0;
     for (key in arr) {
@@ -144,7 +144,7 @@ alias:
         rmvdObj[key] = arr[key]
         returnArr = false
       }
-      rmvdLngth += 1
+      // rmvdLngth += 1
       // rmvdObj.length += 1;
       if (replacement && replacement[++replCt]) {
         arr[key] = replacement[replCt]

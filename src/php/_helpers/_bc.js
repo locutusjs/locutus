@@ -447,12 +447,13 @@ module.exports = function _bc () { // eslint-disable-line camelcase
       return pval
     },
 
-    new_sub_num: function (length, scale, value) {
+    new_sub_num: function (length, scale, value, ptr = 0) {
       var temp = new Libbcmath.bc_num() // eslint-disable-line new-cap
       temp.n_sign = Libbcmath.PLUS
       temp.n_len = length
       temp.n_scale = scale
-      temp.n_value = value
+      temp.n_value = Libbcmath.safe_emalloc(1, length + scale, 0)
+      Libbcmath.memcpy(temp.n_value, 0, value, ptr, length + scale)
       return temp
     },
 
@@ -508,7 +509,7 @@ module.exports = function _bc () { // eslint-disable-line camelcase
       // Set up pointers and others
       // (signed char *)(accum->n_value + accum->n_len + accum->n_scale - shift - 1);
       accp = accum.n_len + accum.n_scale - shift - 1
-      valp = val.n_len = 1 // (signed char *)(val->n_value + val->n_len - 1);
+      valp = val.n_len - 1 // (signed char *)(val->n_value + val->n_len - 1);
       carry = 0
       if (sub) {
         // Subtraction, carry is really borrow.
@@ -586,14 +587,14 @@ module.exports = function _bc () { // eslint-disable-line camelcase
         u0 = Libbcmath.new_sub_num(ulen, 0, u.n_value)
       } else {
         u1 = Libbcmath.new_sub_num(ulen - n, 0, u.n_value)
-        u0 = Libbcmath.new_sub_num(n, 0, u.n_value + ulen - n)
+        u0 = Libbcmath.new_sub_num(n, 0, u.n_value, ulen - n)
       }
       if (vlen < n) {
         v1 = Libbcmath.bc_init_num() // bc_copy_num (BCG(_zero_));
         v0 = Libbcmath.new_sub_num(vlen, 0, v.n_value)
       } else {
         v1 = Libbcmath.new_sub_num(vlen - n, 0, v.n_value)
-        v0 = Libbcmath.new_sub_num(n, 0, v.n_value + vlen - n)
+        v0 = Libbcmath.new_sub_num(n, 0, v.n_value, vlen - n)
       }
       Libbcmath._bc_rm_leading_zeros(u1)
       Libbcmath._bc_rm_leading_zeros(u0)

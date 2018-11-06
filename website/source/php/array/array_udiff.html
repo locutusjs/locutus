@@ -23,7 +23,7 @@ layout: function
 title: PHP's array_udiff in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.array_udiff.php">PHP's array_udiff</a>
+  href="http://php.net/manual/en/function.array-udiff.php">PHP's array_udiff</a>
   looks like.
 function: array_udiff
 category: array
@@ -51,7 +51,7 @@ alias:
   var k1 = ''
   var k = ''
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
 
   cb = (typeof cb === 'string')
     ? $global[cb]

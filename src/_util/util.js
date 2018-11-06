@@ -7,6 +7,7 @@ var mkdirp = require('mkdirp')
 var debug = require('depurar')('locutus')
 var indentString = require('indent-string')
 var _ = require('lodash')
+const esprima = require('esprima')
 
 class Util {
   constructor (argv) {
@@ -576,41 +577,68 @@ class Util {
     var name = parts.pop()
     var category = parts.join('.')
 
-    var patFuncStart = /^\s*module\.exports = function\s*([^\s)]+)\s*\(([^)]*)\)\s*\{\s*/i
-    var patFuncEnd = /\s*}\s*$/
-    var commentBlocks = this._commentBlocks(code)
+    var ast = esprima.parseScript(code, { comment: true, loc: true, range: true })
 
-    if (!commentBlocks[0]) {
-      var msg = `Unable to parse ${filepath}. Did not find any comment blocks in: ${code}`
+    // find module.exports in the code
+    var moduleExports = ast.body.filter(node => {
+      try {
+        var leftArg = node.expression.left
+        var rightArg = node.expression.right
+
+        return leftArg.object.name === 'module' &&
+            leftArg.property.name === 'exports' &&
+            rightArg.type === 'FunctionExpression' &&
+            rightArg.id.type === 'Identifier' &&
+            !!rightArg.id.name
+      } catch (err) {
+        return false
+      }
+    })
+
+    // if file contains more than one export, fail
+    if (moduleExports.length !== 1) {
+      return cb(Error(`File ${filepath} is allowed to contain exactly one module.exports`))
+    }
+
+    // get the only export
+    var exp = moduleExports[0]
+
+    // look for function name and param list
+    var funcName = exp.expression.right.id.name
+    var funcParams = exp.expression.right.params.map(p => p.name)
+
+    // remember the lines where the function is defined
+    var funcLoc = exp.expression.right.loc
+
+    // since comments are not included in the AST
+    // but are offered in ast.comments
+    // remember the location of first function body statement/expression
+    var firstFuncBodyElementLoc = exp.expression.right.body.body[0].loc
+
+    // get all line comments which are located between function signature definition
+    // and first function body element
+    var headComments = ast.comments.filter(c =>
+      c.type === 'Line' &&
+      c.loc.start.line >= funcLoc.start.line &&
+      c.loc.end.line <= firstFuncBodyElementLoc.start.line).map(c => c.value.trim())
+
+    if (headComments.length === 0) {
+      var msg = `Unable to parse ${filepath}. Did not find any comments in function definition`
       return cb(new Error(msg))
     }
 
-    var head = commentBlocks[0].raw.join('\n')
-    var body = code.replace(head, '')
-    body = body.replace(patFuncStart, '')
-    body = body.replace(patFuncEnd, '')
-    var headKeys = this._headKeys(commentBlocks[0].clean)
-
-    // Parse fucntion signature
-    var funcSigMatch = code.match(patFuncStart)
-    if (!funcSigMatch) {
-      return cb(new Error('Unable to parse ' + name))
-    }
+    var headKeys = this._headKeys(headComments)
 
     var params = {
       headKeys: headKeys,
-      body: body,
-      head: head,
       name: name,
       filepath: filepath,
       codepath: codepath,
       code: code,
       language: language,
       category: category,
-      func_signature: funcSigMatch[0],
-      func_name: funcSigMatch[1],
-      func_arguments: funcSigMatch[2].split(/,\s*/),
-      commentBlocks: commentBlocks
+      func_name: funcName,
+      func_arguments: funcParams
     }
 
     this._findDependencies(filepath, params, {}, function (err, dependencies) {
@@ -621,37 +649,6 @@ class Util {
       params.dependencies = dependencies
       return cb(null, params)
     })
-  }
-
-  _commentBlocks (code) {
-    var cnt = 0
-    var comment = []
-    var commentBlocks = []
-    var i = 0
-    var lines = []
-    var raise = false
-    for (i in (lines = code.replace(/\r+/g, '').split('\n'))) {
-      // Detect if line is a comment, and return the actual comment
-      if ((comment = lines[i].match(/^\s*(\/\/|\/\*|\*)\s*(.*)$/))) {
-        if (raise === true) {
-          cnt = commentBlocks.length
-          raise = false
-        }
-        if (!commentBlocks[cnt]) {
-          commentBlocks[cnt] = {
-            clean: [],
-            raw: []
-          }
-        }
-
-        commentBlocks[cnt].clean.push(comment[2].trim())
-        commentBlocks[cnt].raw.push(lines[i])
-      } else {
-        raise = true
-      }
-    }
-
-    return commentBlocks
   }
 
   _headKeys (headLines) {

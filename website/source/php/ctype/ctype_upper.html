@@ -15,7 +15,7 @@ layout: function
 title: PHP's ctype_upper in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.ctype_upper.php">PHP's ctype_upper</a>
+  href="http://php.net/manual/en/function.ctype-upper.php">PHP's ctype_upper</a>
   looks like.
 function: ctype_upper
 category: ctype
@@ -41,7 +41,7 @@ alias:
   // ensure setup of localization variables takes place
   setlocale('LC_ALL', 0)
 
-  var $global = (typeof window !== 'undefined' ? window : GLOBAL)
+  var $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
   var $locutus = $global.$locutus
   var p = $locutus.php
