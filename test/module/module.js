@@ -10,6 +10,9 @@ var sprintf = require(location + '/php/strings/sprintf')
 var ruby = require(location + '/ruby')
 var math = require(location + '/ruby/Math')
 var preg_match = require(location + '/php/pcre/preg_match')
+var preg_replace = require(location + '/php/pcre/preg_replace')
+
+console.log(preg_replace("/(\\w+) (\\d+), (\\d+)/i", "${1}1,$3", "April 15, 2003")) // Should report April1,2003
 
 console.log(preg_match('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$', 'rony@pharaohtools.com')) // Should report true
 console.log(preg_match('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$', 'ronypharaohtools.com')) // Should report flase
