@@ -7,18 +7,11 @@ addons:
 
 language: node_js
 node_js:
-- '0.10' # these should be quoted; otherwise, 0.10 turns into 0.1
-- '0.12'
-- '4'
+- 'node' # these should be quoted; otherwise, 0.10 turns into 0.1
+- '10'
+- '8'
 - '6' # When you update this, also update deploy.on.node further down, to tell who is the deployer build
-- '7'
 sudo: false
-matrix:
-  allow_failures:
-  - node_js: '0.10'
-  - node_js: '0.12'
-  - node_js: '4'
-  - node_js: '7'
 
 cache:
   directories:
@@ -43,4 +36,4 @@ deploy:
   script: scripts/travis-deploy.sh
   on:
     branch: master
-    node: '6'
+    node: '10'
