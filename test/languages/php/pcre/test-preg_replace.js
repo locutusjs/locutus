@@ -21,7 +21,7 @@ describe('src/php/pcre/preg_replace.js (tested in test/languages/php/pcre/test-p
   })
   it('should pass example 3', function (done) {
     var expected = 'April1,2003'
-    var result = preg_replace('\/(\\w+) (\\d+), (\\d+)\/i', '${1}1,$3', 'April 15, 2003')
+    var result = preg_replace('\/(\\w+) (\\d+), (\\d+)\/i', '$11,$3', 'April 15, 2003')
     expect(result).to.deep.equal(expected)
     done()
   })

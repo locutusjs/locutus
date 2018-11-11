@@ -4,7 +4,7 @@ module.exports = function preg_replace (pattern, replacement, string) { // eslin
   //   returns 1: "It was the night before Christmas."
   //   example 2: preg_replace('/xmas/ig', 'Christmas', 'xMas: It was the night before Xmas.')
   //   returns 2: "Christmas: It was the night before Christmas."
-  //   example 3: preg_replace('\/(\\w+) (\\d+), (\\d+)\/i', '${1}1,$3', 'April 15, 2003')
+  //   example 3: preg_replace('\/(\\w+) (\\d+), (\\d+)\/i', '$11,$3', 'April 15, 2003')
   //   returns 3: "April1,2003"
   //   example 4: preg_replace('/[^a-zA-Z0-9]+/', '', 'The Development of code . http://www.')
   //   returns 4: "TheDevelopmentofcodehttpwww"
