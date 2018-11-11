@@ -12,8 +12,8 @@ var math = require(location + '/ruby/Math')
 var preg_match = require(location + '/php/pcre/preg_match')
 var preg_replace = require(location + '/php/pcre/preg_replace')
 
-console.log(preg_replace("/xmas/i", "Christmas", "It was the night before Xmas...")) // Should report It was the night before Christmas...
-console.log(preg_replace("/xmas/ig", "Christmas", "xMas: It was the night before Xmas...")) // Should report Christmas: It was the night before Christmas...
+console.log(preg_replace("/xmas/i", "Christmas", "Twas the night before Xmas.")) // Should report Twas the night before Christmas.
+console.log(preg_replace("/xmas/ig", "Christmas", "xMas: Twas the night before Xmas.")) // Should report Christmas: Twas the night before Christmas.
 console.log(preg_replace("/(\\w+) (\\d+), (\\d+)/i", "$11,$3", "April 15, 2003")) // Should report April1,2003
 console.log(preg_replace("/[^a-zA-Z0-9]+/", "", "The Development of code . http://www.")) // Should report TheDevelopmentofcodehttpwww
 console.log(preg_replace("/[^A-Za-z0-9_\\s]/", "", 'D"usseldorfer H"auptstrasse')) // Should report Dusseldorfer Hauptstrasse
