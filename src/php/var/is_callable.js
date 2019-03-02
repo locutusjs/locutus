@@ -43,6 +43,10 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
     return name[1]
   }
 
+  if(/^class/.test(mixedVar.toString())) {
+	  return false;
+  }
+
   if (typeof mixedVar === 'string') {
     obj = $global
     method = mixedVar
@@ -57,8 +61,6 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
     obj = mixedVar[0]
     method = mixedVar[1]
     name = (obj.constructor && getFuncName(obj.constructor)) + '::' + method
-  } else {
-    return false
   }
 
   if (syntaxOnly || typeof obj[method] === 'function') {
