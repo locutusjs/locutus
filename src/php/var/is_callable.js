@@ -3,6 +3,7 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
   // original by: Brett Zamir (http://brett-zamir.me)
   //    input by: François
   // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: KnightYoshi
   //      note 1: The variable callableName cannot work as a string variable passed by
   //      note 1: reference as in PHP (since JavaScript does not support passing
   //      note 1: strings by reference), but instead will take the name of
@@ -25,6 +26,8 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
   //   returns 3: 'SomeClass::someMethod'
   //   example 4: is_callable(function () {})
   //   returns 4: true
+  //   example 5: is_callable(class MyClass {})
+  //   returns 5: false
 
   var $global = (typeof window !== 'undefined' ? window : global)
 
@@ -43,6 +46,10 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
     return name[1]
   }
 
+  if(/^class/.test(mixedVar.toString())) {
+	  return false;
+  }
+
   if (typeof mixedVar === 'string') {
     obj = $global
     method = mixedVar
@@ -57,8 +64,6 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
     obj = mixedVar[0]
     method = mixedVar[1]
     name = (obj.constructor && getFuncName(obj.constructor)) + '::' + method
-  } else {
-    return false
   }
 
   if (syntaxOnly || typeof obj[method] === 'function') {
