@@ -35,4 +35,10 @@ describe('src/php/var/is_callable.js (tested in test/languages/php/var/test-is_c
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 5', function (done) {
+    var expected = false
+    var result = is_callable(class MyClass {})
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })
