@@ -5,6 +5,7 @@ module.exports = function urlencode (str) {
   //      improved by: Kevin van Zonneveld (http://kvz.io)
   //      improved by: Brett Zamir (http://brett-zamir.me)
   //      improved by: Lars Fischer
+  //      improved by: Waldo Malqui Silva (https://fayr.us/waldo/)
   //         input by: AJ
   //         input by: travc
   //         input by: Brett Zamir (http://brett-zamir.me)
@@ -27,14 +28,12 @@ module.exports = function urlencode (str) {
 
   str = (str + '')
 
-  // Tilde should be allowed unescaped in future versions of PHP (as reflected below),
-  // but if you want to reflect current
-  // PHP behavior, you would need to add ".replace(/~/g, '%7E');" to the following.
   return encodeURIComponent(str)
     .replace(/!/g, '%21')
     .replace(/'/g, '%27')
     .replace(/\(/g, '%28')
     .replace(/\)/g, '%29')
     .replace(/\*/g, '%2A')
+    .replace(/~/g, '%7E')
     .replace(/%20/g, '+')
 }
