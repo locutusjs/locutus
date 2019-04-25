@@ -27,7 +27,7 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
   //   example 4: is_callable(function () {})
   //   returns 4: true
   //   example 5: is_callable(class MyClass {})
-  //   returns 5: false
+  //   returns 5: true
 
   var $global = (typeof window !== 'undefined' ? window : global)
 
@@ -46,8 +46,8 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
     return name[1]
   }
 
-  if(/^class/.test(mixedVar.toString())) {
-	  return false;
+  if (/^class/.test(mixedVar.toString())) {
+    return false
   }
 
   if (typeof mixedVar === 'string') {
