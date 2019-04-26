@@ -4,6 +4,7 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
   //    input by: François
   // improved by: Brett Zamir (http://brett-zamir.me)
   // improved by: KnightYoshi
+  // improved by: Waldo Malqui Silva (https://fayr.us/waldo/)
   //      note 1: The variable callableName cannot work as a string variable passed by
   //      note 1: reference as in PHP (since JavaScript does not support passing
   //      note 1: strings by reference), but instead will take the name of
@@ -27,7 +28,7 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
   //   example 4: is_callable(function () {})
   //   returns 4: true
   //   example 5: is_callable(class MyClass {})
-  //   returns 5: true
+  //   returns 5: false
 
   var $global = (typeof window !== 'undefined' ? window : global)
 
@@ -46,7 +47,8 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
     return name[1]
   }
 
-  if (/^class/.test(mixedVar.toString())) {
+  // eslint-disable-next-line no-useless-escape
+  if (/(^class|\(this\,)/.test(mixedVar.toString())) {
     return false
   }
 
