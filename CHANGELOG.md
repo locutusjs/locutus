@@ -32,23 +32,32 @@ Ideas that will be planned and find their way into a release at one point
 ## master
 
 Released: TBA. 
-[Diff](https://github.com/kvz/locutus/compare/v2.0.10...master).
+[Diff](https://github.com/kvz/locutus/compare/v2.0.11...master).
 
 - [ ] 
+
+## v2.0.11
+
+Released: 2019-06-12. 
+[Diff](https://github.com/kvz/locutus/compare/v2.0.10...v2.0.11).
+
+- [x] functions: Community-contributed function improvements, see respective functions' changelogs in the Diff:
+- [x] ci: test Node.js 6, 8, 10 and 11 (#384)
+- [x] website: Fix code listing on locutus website (#379)
 
 ## v2.0.10
 
 Released: 2018-09-07. 
 [Diff](https://github.com/kvz/locutus/compare/v2.0.9...v2.0.10).
 
-- [x] Community-contributed function improvements, see respective functions' changelogs in the Diff.
+- [x] functions: Community-contributed function improvements, see respective functions' changelogs in the Diff.
 
 ## v2.0.9
 
 Released: 2017-06-22. 
 [Diff](https://github.com/kvz/locutus/compare/v2.0.8...v2.0.9).
 
-- [x] Community-contributed function improvements, see respective functions' changelogs in the Diff.
+- [x] functions: Community-contributed function improvements, see respective functions' changelogs in the Diff.
 
 
 ## v2.0.8
@@ -57,14 +66,14 @@ Released: 2017-02-23.
 [Diff](https://github.com/kvz/locutus/compare/v2.0.7...v2.0.8).
 
 - [x] Upgrade eslint and fix newly found issues accordingly
-- [x] Community-contributed function improvements, see respective functions' changelogs in the Diff.
+- [x] functions: Community-contributed function improvements, see respective functions' changelogs in the Diff.
 
 ## v2.0.7
 
 Released: 2017-02-09. 
 [Diff](https://github.com/kvz/locutus/compare/v2.0.6...v2.0.7).
 
-- [x] Community-contributed function improvements, see respective functions' changelogs in the Diff.
+- [x] functions: Community-contributed function improvements, see respective functions' changelogs in the Diff.
 
 ## v2.0.6
 
