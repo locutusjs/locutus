@@ -13,9 +13,9 @@ module.exports = function rawurldecode (str) {
   //           note 1: pages served as UTF-8
   //        example 1: rawurldecode('Kevin+van+Zonneveld%21')
   //        returns 1: 'Kevin+van+Zonneveld!'
-  //        example 2: rawurldecode('http%3A%2F%2Fkvz.io%2F')
+  //        example 2: rawurldecode('https%3A%2F%2Fkvz.io%2F')
   //        returns 2: 'https://kvz.io/'
-  //        example 3: rawurldecode('http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3D')
+  //        example 3: rawurldecode('https%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3D')
   //        returns 3: 'https://www.google.nl/search?q=Locutus&ie='
 
   return decodeURIComponent((str + '')

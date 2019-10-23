@@ -15,9 +15,9 @@ module.exports = function parse_url (str, component) { // eslint-disable-line ca
   //           note 1: well as our allowing
   //           note 1: an extra slash after the scheme/protocol (to allow file:/// as in PHP)
   //        example 1: parse_url('https://user:pass@host/path?a=v#a')
-  //        returns 1: {scheme: 'http', host: 'host', user: 'user', pass: 'pass', path: '/path', query: 'a=v', fragment: 'a'}
+  //        returns 1: {scheme: 'https', host: 'host', user: 'user', pass: 'pass', path: '/path', query: 'a=v', fragment: 'a'}
   //        example 2: parse_url('https://en.wikipedia.org/wiki/%22@%22_%28album%29')
-  //        returns 2: {scheme: 'http', host: 'en.wikipedia.org', path: '/wiki/%22@%22_%28album%29'}
+  //        returns 2: {scheme: 'https', host: 'en.wikipedia.org', path: '/wiki/%22@%22_%28album%29'}
   //        example 3: parse_url('https://host.domain.tld/a@b.c/folder')
   //        returns 3: {scheme: 'https', host: 'host.domain.tld', path: '/a@b.c/folder'}
   //        example 4: parse_url('https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar')

@@ -14,13 +14,13 @@ describe('src/php/url/urlencode.js (tested in test/languages/php/url/test-urlenc
     done()
   })
   it('should pass example 2', function (done) {
-    var expected = 'http%3A%2F%2Fkvz.io%2F'
+    var expected = 'https%3A%2F%2Fkvz.io%2F'
     var result = urlencode('https://kvz.io/')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    var expected = 'http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3Dutf-8'
+    var expected = 'https%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3Dutf-8'
     var result = urlencode('https://www.google.nl/search?q=Locutus&ie=utf-8')
     expect(result).to.deep.equal(expected)
     done()

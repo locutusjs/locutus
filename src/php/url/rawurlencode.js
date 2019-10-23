@@ -17,9 +17,9 @@ module.exports = function rawurlencode (str) {
   //        example 1: rawurlencode('Kevin van Zonneveld!')
   //        returns 1: 'Kevin%20van%20Zonneveld%21'
   //        example 2: rawurlencode('https://kvz.io/')
-  //        returns 2: 'http%3A%2F%2Fkvz.io%2F'
+  //        returns 2: 'https%3A%2F%2Fkvz.io%2F'
   //        example 3: rawurlencode('https://www.google.nl/search?q=Locutus&ie=utf-8')
-  //        returns 3: 'http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3Dutf-8'
+  //        returns 3: 'https%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3Dutf-8'
 
   str = (str + '')
 

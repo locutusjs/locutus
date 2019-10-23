@@ -2,7 +2,7 @@ module.exports = function ip2long (argIP) {
   //  discuss at: https://locutus.io/php/ip2long/
   // original by: Waldo Malqui Silva (https://waldo.malqui.info)
   // improved by: Victor
-  //  revised by: fearphage (https://http/my.opera.com/fearphage/)
+  //  revised by: fearphage (https://my.opera.com/fearphage/)
   //  revised by: Theriault (https://github.com/Theriault)
   //    estarget: es2015
   //   example 1: ip2long('192.0.34.166')

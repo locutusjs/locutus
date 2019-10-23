@@ -15,13 +15,13 @@ describe('src/php/url/urldecode.js (tested in test/languages/php/url/test-urldec
   })
   it('should pass example 2', function (done) {
     var expected = 'https://kvz.io/'
-    var result = urldecode('http%3A%2F%2Fkvz.io%2F')
+    var result = urldecode('https%3A%2F%2Fkvz.io%2F')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
     var expected = 'https://www.google.nl/search?q=Locutus&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a'
-    var result = urldecode('http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a')
+    var result = urldecode('https%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a')
     expect(result).to.deep.equal(expected)
     done()
   })

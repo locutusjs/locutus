@@ -15,13 +15,13 @@ describe('src/php/url/rawurldecode.js (tested in test/languages/php/url/test-raw
   })
   it('should pass example 2', function (done) {
     var expected = 'https://kvz.io/'
-    var result = rawurldecode('http%3A%2F%2Fkvz.io%2F')
+    var result = rawurldecode('https%3A%2F%2Fkvz.io%2F')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
     var expected = 'https://www.google.nl/search?q=Locutus&ie='
-    var result = rawurldecode('http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3D')
+    var result = rawurldecode('https%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3D')
     expect(result).to.deep.equal(expected)
     done()
   })

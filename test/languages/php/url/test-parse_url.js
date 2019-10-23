@@ -8,13 +8,13 @@ var parse_url = require('../../../../src/php/url/parse_url.js') // eslint-disabl
 
 describe('src/php/url/parse_url.js (tested in test/languages/php/url/test-parse_url.js)', function () {
   it('should pass example 1', function (done) {
-    var expected = {scheme: 'http', host: 'host', user: 'user', pass: 'pass', path: '/path', query: 'a=v', fragment: 'a'}
+    var expected = {scheme: 'https', host: 'host', user: 'user', pass: 'pass', path: '/path', query: 'a=v', fragment: 'a'}
     var result = parse_url('https://user:pass@host/path?a=v#a')
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    var expected = {scheme: 'http', host: 'en.wikipedia.org', path: '/wiki/%22@%22_%28album%29'}
+    var expected = {scheme: 'https', host: 'en.wikipedia.org', path: '/wiki/%22@%22_%28album%29'}
     var result = parse_url('https://en.wikipedia.org/wiki/%22@%22_%28album%29')
     expect(result).to.deep.equal(expected)
     done()
