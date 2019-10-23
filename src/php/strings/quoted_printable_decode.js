@@ -1,10 +1,10 @@
 module.exports = function quoted_printable_decode (str) { // eslint-disable-line camelcase
-  //       discuss at: http://locutus.io/php/quoted_printable_decode/
+  //       discuss at: https://locutus.io/php/quoted_printable_decode/
   //      original by: Ole Vrijenhoek
-  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //      bugfixed by: Brett Zamir (https://brett-zamir.me)
   //      bugfixed by: Theriault (https://github.com/Theriault)
   // reimplemented by: Theriault (https://github.com/Theriault)
-  //      improved by: Brett Zamir (http://brett-zamir.me)
+  //      improved by: Brett Zamir (https://brett-zamir.me)
   //        example 1: quoted_printable_decode('a=3Db=3Dc')
   //        returns 1: 'a=b=c'
   //        example 2: quoted_printable_decode('abc  =20\r\n123  =20\r\n')

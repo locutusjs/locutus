@@ -20,7 +20,7 @@ Locutus will, however, also be different on a few key points. Locutus will focus
 - Expanding to other languages, such as C, Go, Python and Ruby
 - Hack-free porting, meaning we will only port individual functions from the standard libraries, while avoiding language features, environment, data-types and configuration
 - The educational aspect and the intellectual challenge
-- Using npm as the distribution platform of choice, so you can do `var strings = require('golang/strings')` and, in case the browser is your target platform, bundle this via [Browserify](http://browserify.org/), [rollup.js](http://rollupjs.org/) or [webpack](https://webpack.github.io/).
+- Using npm as the distribution platform of choice, so you can do `var strings = require('golang/strings')` and, in case the browser is your target platform, bundle this via [Browserify](https://browserify.org/), [rollup.js](https://rollupjs.org/) or [webpack](https://webpack.github.io/).
 - Trying to deliver functions that are interoperable between browsers and Node.js, but also allowing to target just one platform when that saves us from writing overly wieldy code. These cases will be documented with a `note`. An example of this would be opening a file from disk. We would then state it is Node.js-only.
 
 While it is still very much a work in progress, I have already deprecated and updated many functions that did not adhere to this renewed focus. If you spot a function I overlooked, please let me know on GitHub.
@@ -32,7 +32,7 @@ There are several reasons why I had lost my intrinsic motivation:
 - The things that could reasonably be ported, had already been ported. The things that probably should not have been ported, had been ported too - and were now mostly good for provoking purists and inducing maintenance load. Not very rewarding.
 - Misuse of the project. I shed approximately 451 tears when some people started using the project so they would not have to learn JavaScript and could continue PHP-ing in the browser, using 2.1MB, 451-function, ready-to-rock spaceship bundles in the browser. I made efforts to [stop newcomers from doing that](/blog/2013/05/a-word-on-the-focus-of-php-dot-js/). I shed approximately 2.1 tears from the angry notes they then sent me.
 - I started a new company and protocol, which took much time by itself, but also meant I spent my time writing exclusively in other programming languages. You won't find any bitterness about that here, but it did mean I had less time and use for PHP oriented projects
-- 9 years ago, the tech world was a different place. Node.js did not exist, [everyone was on IE6](https://www.w3counter.com/globalstats.php?date=2007-05-30), and JavaScript's main use was opening popups. Going from age 23 to 32, I have changed my stance on pretty much everything. One of these things that I have now abandoned is the idea that our project could perhaps one day be used as an interactive debugging tool, or run entire scripts from other languages in Node. I pursued that goal for some time with the thirst of a youngster, and while we had some success doing so, it drove me to write and accept hacks that, in retrospect, have probably secured me a special place in hell. Projects like [GopherJS](https://github.com/gopherjs/gopherjs) or [Emscripten](http://kripken.github.io/emscripten-site/) offer far better means to that end. Our approach isn't suitable for it.
+- 9 years ago, the tech world was a different place. Node.js did not exist, [everyone was on IE6](https://www.w3counter.com/globalstats.php?date=2007-05-30), and JavaScript's main use was opening popups. Going from age 23 to 32, I have changed my stance on pretty much everything. One of these things that I have now abandoned is the idea that our project could perhaps one day be used as an interactive debugging tool, or run entire scripts from other languages in Node. I pursued that goal for some time with the thirst of a youngster, and while we had some success doing so, it drove me to write and accept hacks that, in retrospect, have probably secured me a special place in hell. Projects like [GopherJS](https://github.com/gopherjs/gopherjs) or [Emscripten](https://kripken.github.io/emscripten-site/) offer far better means to that end. Our approach isn't suitable for it.
 
 Knowing that I was beginning to fall short as a project lead, I tried to recruit fresh blood to replace me. However, even though there is still an active community of contributors, I couldn't find any volunteers for taking the lead. For a while, I considered declaring `[UNMAINTAINED]`, but I felt - and still feel - too great a deal of duty and responsibility towards past and present contributors.
 
@@ -49,9 +49,9 @@ working on in order to clean up our codebase and breathe new life into this proj
 - Added native JSON, base64, sha1 and md5 support where available
 - Added npm versioning and releases
 - Added support for ES6, any function can be written in this JavaScript version and it will be transpiled to ES5 before we publish to npm to ensure compatability.
-- Asked [Troy Dodd](http://troydodd.deviantart.com/art/Locutus-of-Borg-217586598) if we could use his stunning Locutus artwork to be our avatar (and he said yes!)
+- Asked [Troy Dodd](https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598) if we could use his stunning Locutus artwork to be our avatar (and he said yes!)
 - Assimilated a dozen of example functions that showcase how we could port four new languages to JavaScript
-- Changed all functions to make them adhere to the [JavaScript Standard Style](http://standardjs.com/) and have a max line length of 100. Travis CI will fail when new additions do not adhere
+- Changed all functions to make them adhere to the [JavaScript Standard Style](https://standardjs.com/) and have a max line length of 100. Travis CI will fail when new additions do not adhere
 - Deprecated/documented all functions using `eval`, `new Function` and other bad practices
 - Fixed  around 50 failed tests that were previously marked as skipped (still a few to go)
 - Made it so that all functions can be required individually via npm
@@ -106,4 +106,4 @@ Also, there are plenty project-wide ideas in our [Backlog](https://github.com/kv
 
 [To the GitHubs](https://github.com/kvz/locutus)!
 
-[Kevin](http://twitter.com/kvz)
+[Kevin](https://twitter.com/kvz)

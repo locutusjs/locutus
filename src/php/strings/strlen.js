@@ -1,11 +1,11 @@
 module.exports = function strlen (string) {
-  //  discuss at: http://locutus.io/php/strlen/
-  // original by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/strlen/
+  // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Sakimori
-  // improved by: Kevin van Zonneveld (http://kvz.io)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
   //    input by: Kirk Strobeck
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  //  revised by: Brett Zamir (http://brett-zamir.me)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
   //      note 1: May look like overkill, but in order to be truly faithful to handling all Unicode
   //      note 1: characters and to this function in PHP which does not count the number of bytes
   //      note 1: but counts the number of characters, something like this is really necessary.

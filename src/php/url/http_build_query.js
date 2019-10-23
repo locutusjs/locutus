@@ -1,14 +1,14 @@
 module.exports = function http_build_query (formdata, numericPrefix, argSeparator, encType) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/http_build_query/
-  // original by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/http_build_query/
+  // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Legaev Andrey
-  // improved by: Michael White (http://getsprink.com)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Michael White (https://getsprink.com)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //  revised by: stag019
   //    input by: Dreamer
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: MIO_KODUKI (http://mio-koduki.blogspot.com/)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: MIO_KODUKI (https://mio-koduki.blogspot.com/)
   // improved by: Will Rowe
   //      note 1: If the value is null, key and value are skipped in the
   //      note 1: http_build_query of PHP while in locutus they are not.

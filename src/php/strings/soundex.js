@@ -1,13 +1,13 @@
 module.exports = function soundex (str) {
-  //  discuss at: http://locutus.io/php/soundex/
-  // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-  // original by: Arnout Kazemier (http://www.3rd-Eden.com)
+  //  discuss at: https://locutus.io/php/soundex/
+  // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
+  // original by: Arnout Kazemier (https://www.3rd-Eden.com)
   // improved by: Jack
-  // improved by: Kevin van Zonneveld (http://kvz.io)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
-  //    input by: Brett Zamir (http://brett-zamir.me)
-  //  revised by: Rafał Kukawski (http://blog.kukawski.pl)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //    input by: Brett Zamir (https://brett-zamir.me)
+  //  revised by: Rafał Kukawski (https://blog.kukawski.pl)
   //   example 1: soundex('Kevin')
   //   returns 1: 'K150'
   //   example 2: soundex('Ellery')

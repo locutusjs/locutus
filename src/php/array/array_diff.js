@@ -1,8 +1,8 @@
 module.exports = function array_diff (arr1) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_diff/
-  // original by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/array_diff/
+  // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Sanjoy Roy
-  //  revised by: Brett Zamir (http://brett-zamir.me)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
   //   example 1: array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld'])
   //   returns 1: {0:'Kevin'}
 

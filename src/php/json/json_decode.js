@@ -1,7 +1,7 @@
 module.exports = function json_decode (strJson) { // eslint-disable-line camelcase
-  //       discuss at: http://phpjs.org/functions/json_decode/
-  //      original by: Public Domain (http://www.json.org/json2.js)
-  // reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //       discuss at: https://phpjs.org/functions/json_decode/
+  //      original by: Public Domain (https://www.json.org/json2.js)
+  // reimplemented by: Kevin van Zonneveld (https://kevin.vanzonneveld.net)
   //      improved by: T.J. Leahy
   //      improved by: Michael White
   //           note 1: If node or the browser does not offer JSON.parse,
@@ -11,11 +11,11 @@ module.exports = function json_decode (strJson) { // eslint-disable-line camelca
   //        returns 1: [1]
 
   /*
-    http://www.JSON.org/json2.js
+    https://www.JSON.org/json2.js
     2008-11-19
     Public Domain.
     NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
-    See http://www.JSON.org/js.html
+    See https://www.JSON.org/js.html
   */
 
   var $global = (typeof window !== 'undefined' ? window : global)

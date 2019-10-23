@@ -1,5 +1,5 @@
 module.exports = function bcmul (leftOperand, rightOperand, scale) {
-  //  discuss at: http://locutus.io/php/bcmul/
+  //  discuss at: https://locutus.io/php/bcmul/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcmul('1', '2')
   //   returns 1: '2'

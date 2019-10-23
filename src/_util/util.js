@@ -39,10 +39,10 @@ class Util {
         human: 'C',
         packageType: 'header file',
         inspiration_urls: [
-          '<a href="http://en.cppreference.com/w/c/numeric/math">the C math.h documentation</a>',
+          '<a href="https://en.cppreference.com/w/c/numeric/math">the C math.h documentation</a>',
           '<a href="https://sourceware.org/git/?p=glibc.git;a=tree;f=math;hb=HEAD">the C math.h source</a>'
         ],
-        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="http://en.cppreference.com/w/c/numeric/[category]/[function]">[language]\'s [function] found in the [category].h header file</a> looks like.'
+        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="https://en.cppreference.com/w/c/numeric/[category]/[function]">[language]\'s [function] found in the [category].h header file</a> looks like.'
       },
       golang: {
         order: 2,
@@ -53,7 +53,7 @@ class Util {
           '<a href="https://golang.org/pkg/strings/">Go strings documentation</a>',
           '<a href="https://golang.org/src/strings/strings.go">Go strings source</a>',
           '<a href="https://golang.org/src/strings/example_test.go">Go strings examples source</a>',
-          '<a href="http://gophersjs.com">GopherJS</a>'
+          '<a href="https://gophersjs.com">GopherJS</a>'
         ],
         function_description_template: 'Here’s what our current JavaScript equivalent to <a href="https://golang.org/pkg/[category]/#[function]">[language]\'s [category].[function]</a> looks like.'
       },
@@ -73,9 +73,9 @@ class Util {
         human: 'Ruby',
         packageType: 'module',
         inspiration_urls: [
-          '<a href="http://ruby-doc.org/core-2.2.2/Math.html">the Ruby core documentation</a>'
+          '<a href="https://ruby-doc.org/core-2.2.2/Math.html">the Ruby core documentation</a>'
         ],
-        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="http://ruby-doc.org/core-2.2.2/[category].html#method-c-[function]">[language]\'s [category].[function]</a> looks like.'
+        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="https://ruby-doc.org/core-2.2.2/[category].html#method-c-[function]">[language]\'s [category].[function]</a> looks like.'
       },
       php: {
         order: 5,
@@ -83,11 +83,11 @@ class Util {
         human: 'PHP',
         packageType: 'extension',
         inspiration_urls: [
-          '<a href="http://php.net/manual/en/book.strings.php">the PHP string documentation</a>',
+          '<a href="https://php.net/manual/en/book.strings.php">the PHP string documentation</a>',
           '<a href="https://github.com/php/php-src/blob/master/ext/standard/string.c#L5338">the PHP string source</a>',
           '<a href="https://github.com/php/php-src/blob/master/ext/standard/tests/strings/str_pad_variation1.phpt">a PHP str_pad test</a>'
         ],
-        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="http://php.net/manual/en/function.[functiondashed].php">[language]\'s [function]</a> looks like.',
+        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.[functiondashed].php">[language]\'s [function]</a> looks like.',
         alias: [
           '/categories/',
           '/categories/array/',
@@ -367,7 +367,7 @@ class Util {
     }
 
     // Set timezone for testing dates
-    // Not ideal: http://stackoverflow.com/questions/8083410/how-to-set-default-timezone-in-node-js
+    // Not ideal: https://stackoverflow.com/questions/8083410/how-to-set-default-timezone-in-node-js
     codez.push('process.env.TZ = \'UTC\'')
 
     codez.push('var ' + 'expect' + ' = require(\'chai\').expect')

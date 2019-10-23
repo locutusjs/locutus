@@ -1,10 +1,10 @@
 module.exports = function pack (format) {
-  //  discuss at: http://locutus.io/php/pack/
-  // original by: Tim de Koning (http://www.kingsquare.nl)
-  //    parts by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-  // bugfixed by: Tim de Koning (http://www.kingsquare.nl)
+  //  discuss at: https://locutus.io/php/pack/
+  // original by: Tim de Koning (https://www.kingsquare.nl)
+  //    parts by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
+  // bugfixed by: Tim de Koning (https://www.kingsquare.nl)
   //      note 1: Float encoding by: Jonas Raoni Soares Silva
-  //      note 1: Home: http://www.kingsquare.nl/blog/12-12-2009/13507444
+  //      note 1: Home: https://www.kingsquare.nl/blog/12-12-2009/13507444
   //      note 1: Feedback: phpjs-pack@kingsquare.nl
   //      note 1: "machine dependent byte order and size" aren't
   //      note 1: applicable for JavaScript; pack works as on a 32bit,

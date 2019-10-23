@@ -1,10 +1,10 @@
 module.exports = function strncmp (str1, str2, lgth) {
-  //       discuss at: http://locutus.io/php/strncmp/
-  //      original by: Waldo Malqui Silva (http://waldo.malqui.info)
+  //       discuss at: https://locutus.io/php/strncmp/
+  //      original by: Waldo Malqui Silva (https://waldo.malqui.info)
   //         input by: Steve Hilder
-  //      improved by: Kevin van Zonneveld (http://kvz.io)
+  //      improved by: Kevin van Zonneveld (https://kvz.io)
   //       revised by: gorthaur
-  // reimplemented by: Brett Zamir (http://brett-zamir.me)
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
   //        example 1: strncmp('aaa', 'aab', 2)
   //        returns 1: 0
   //        example 2: strncmp('aaa', 'aab', 3 )

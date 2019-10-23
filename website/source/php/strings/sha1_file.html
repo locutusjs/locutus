@@ -8,7 +8,7 @@ returns:
 dependencies: []
 authors:
   original by:
-    - 'Kevin van Zonneveld (http://kvz.io)'
+    - 'Kevin van Zonneveld (https://kvz.io)'
 notes:
   - >-
     Relies on file_get_contents which does not work in the browser, so Node
@@ -25,7 +25,7 @@ layout: function
 title: PHP's sha1_file in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.sha1-file.php">PHP's sha1_file</a>
+  href="https://php.net/manual/en/function.sha1-file.php">PHP's sha1_file</a>
   looks like.
 function: sha1_file
 category: strings
@@ -38,8 +38,8 @@ alias:
   - /functions/sha1_file/
 ---
 {% codeblock lang:javascript %}module.exports = function sha1_file (str_filename) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/sha1_file/
-  // original by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/sha1_file/
+  // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Relies on file_get_contents which does not work in the browser, so Node only.
   //      note 2: Keep in mind that in accordance with PHP, the whole file is buffered and then
   //      note 2: hashed. We'd recommend Node's native crypto modules for faster and more

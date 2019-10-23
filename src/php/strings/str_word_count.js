@@ -1,11 +1,11 @@
 module.exports = function str_word_count (str, format, charlist) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/str_word_count/
+  //  discuss at: https://locutus.io/php/str_word_count/
   // original by: Ole Vrijenhoek
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //    input by: Bug?
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 1)
   //   returns 1: ['Hello', 'fri', 'nd', "you're", 'looking', 'good', 'today']
   //   example 2: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 2)

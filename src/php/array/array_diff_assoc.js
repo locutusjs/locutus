@@ -1,8 +1,8 @@
 module.exports = function array_diff_assoc (arr1) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_diff_assoc/
-  // original by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/array_diff_assoc/
+  // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: 0m3r
-  //  revised by: Brett Zamir (http://brett-zamir.me)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
   //   example 1: array_diff_assoc({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'})
   //   returns 1: {1: 'van', 2: 'Zonneveld'}
 

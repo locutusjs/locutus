@@ -1,14 +1,14 @@
 module.exports = function empty (mixedVar) {
-  //  discuss at: http://locutus.io/php/empty/
+  //  discuss at: https://locutus.io/php/empty/
   // original by: Philippe Baumann
   //    input by: Onno Marsman (https://twitter.com/onnomarsman)
   //    input by: LH
-  //    input by: Stoyan Kyosev (http://www.svest.org/)
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  //    input by: Stoyan Kyosev (https://www.svest.org/)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Francesco
   // improved by: Marc Jansen
-  // improved by: Rafał Kukawski (http://blog.kukawski.pl)
+  // improved by: Rafał Kukawski (https://blog.kukawski.pl)
   //   example 1: empty(null)
   //   returns 1: true
   //   example 2: empty(undefined)

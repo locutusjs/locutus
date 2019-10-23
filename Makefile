@@ -23,7 +23,7 @@
 #   languages (npm scripts is obviously very Node centric)
 # - Profit from better autocomplete (make <TAB><TAB>) than npm currently offers.
 #   OSX users will have to install bash-completion
-#   (http://davidalger.com/development/bash-completion-on-os-x-with-brew/)
+#   (https://davidalger.com/development/bash-completion-on-os-x-with-brew/)
 
 define npm_script_targets
 TARGETS := $(shell node -e 'for (var k in require("./package.json").scripts) {console.log(k.replace(/:/g, "-"));}')

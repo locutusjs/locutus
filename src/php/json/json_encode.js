@@ -1,19 +1,19 @@
 module.exports = function json_encode (mixedVal) { // eslint-disable-line camelcase
-  //       discuss at: http://phpjs.org/functions/json_encode/
-  //      original by: Public Domain (http://www.json.org/json2.js)
-  // reimplemented by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //       discuss at: https://phpjs.org/functions/json_encode/
+  //      original by: Public Domain (https://www.json.org/json2.js)
+  // reimplemented by: Kevin van Zonneveld (https://kevin.vanzonneveld.net)
   //      improved by: Michael White
   //         input by: felix
-  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //      bugfixed by: Brett Zamir (https://brett-zamir.me)
   //        example 1: json_encode('Kevin')
   //        returns 1: '"Kevin"'
 
   /*
-    http://www.JSON.org/json2.js
+    https://www.JSON.org/json2.js
     2008-11-19
     Public Domain.
     NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
-    See http://www.JSON.org/js.html
+    See https://www.JSON.org/js.html
   */
 
   var $global = (typeof window !== 'undefined' ? window : global)

@@ -1,6 +1,6 @@
 module.exports = function strptime (dateStr, format) {
-  //  discuss at: http://locutus.io/php/strptime/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/strptime/
+  // original by: Brett Zamir (https://brett-zamir.me)
   // original by: strftime
   //   example 1: strptime('20091112222135', '%Y%m%d%H%M%S') // Return value will depend on date and locale
   //   returns 1: {tm_sec: 35, tm_min: 21, tm_hour: 22, tm_mday: 12, tm_mon: 10, tm_year: 109, tm_wday: 4, tm_yday: 315, unparsed: ''}
@@ -69,7 +69,7 @@ module.exports = function strptime (dateStr, format) {
     X: 'locale'
   }
 
-  /* Fix: Locale alternatives are supported though not documented in PHP; see http://linux.die.net/man/3/strptime
+  /* Fix: Locale alternatives are supported though not documented in PHP; see https://linux.die.net/man/3/strptime
     Ec
     EC
     Ex

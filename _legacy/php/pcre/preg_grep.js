@@ -1,6 +1,6 @@
 module.exports = function preg_grep (pattern, input, flags) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/preg_grep/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/preg_grep/
+  // original by: Brett Zamir (https://brett-zamir.me)
   //        note: If pass pattern as string, must escape backslashes, even for single quotes
   //        note: The regular expression itself must be expressed JavaScript style
   //        note: It is not recommended to submit the pattern as a string, as we may implement

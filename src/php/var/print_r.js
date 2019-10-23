@@ -1,10 +1,10 @@
 module.exports = function print_r (array, returnVal) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/print_r/
-  // original by: Michael White (http://getsprink.com)
+  //  discuss at: https://locutus.io/php/print_r/
+  // original by: Michael White (https://getsprink.com)
   // improved by: Ben Bryan
-  // improved by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
-  //    input by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  //    input by: Brett Zamir (https://brett-zamir.me)
   //   example 1: print_r(1, true)
   //   returns 1: '1'
 

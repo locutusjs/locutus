@@ -1,7 +1,7 @@
 #Icarus
 
-### The blog theme you may fall in love with, coming to Hexo. [Preview](http://ppoffice.github.io/hexo-theme-icarus/)
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/preview.png "")
+### The blog theme you may fall in love with, coming to Hexo. [Preview](https://ppoffice.github.io/hexo-theme-icarus/)
+![](https://ppoffice.github.io/hexo-theme-icarus/gallery/preview.png "")
 
 #### [View Documentation](https://github.com/ppoffice/hexo-theme-icarus/wiki)
 :star: It is strongly recommended that you read the docs before using Icarus.
@@ -12,7 +12,7 @@
 
 A nice place to show yourself. You can add your own information in your site's `_config.yml`
 
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/profile.png "")
+![](https://ppoffice.github.io/hexo-theme-icarus/gallery/profile.png "")
 
 ### Self-hosted Insite Search Engine
 With the help of [Insight Search](https://github.com/ppoffice/hexo-theme-icarus/wiki/Search#insight-search), you can search anything inside your site without any third-party plugin.
@@ -27,7 +27,7 @@ Thanks to [atika](https://github.com/atika), you can now add thumbnails and bann
 
 Icarus knows on what screen size you are browsering the website, and reorganize the layout to fit your device.
 
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/responsive.jpg "")
+![](https://ppoffice.github.io/hexo-theme-icarus/gallery/responsive.jpg "")
 
 ### Custom Categories & Tags Pages
 

@@ -1,12 +1,12 @@
 module.exports = function ucwords (str) {
-  //  discuss at: http://locutus.io/php/ucwords/
-  // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-  // improved by: Waldo Malqui Silva (http://waldo.malqui.info)
+  //  discuss at: https://locutus.io/php/ucwords/
+  // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
+  // improved by: Waldo Malqui Silva (https://waldo.malqui.info)
   // improved by: Robin
-  // improved by: Kevin van Zonneveld (http://kvz.io)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Cetvertacov Alexandr (https://github.com/cetver)
-  //    input by: James (http://www.james-bell.co.uk/)
+  //    input by: James (https://www.james-bell.co.uk/)
   //   example 1: ucwords('kevin van  zonneveld')
   //   returns 1: 'Kevin Van  Zonneveld'
   //   example 2: ucwords('HELLO WORLD')

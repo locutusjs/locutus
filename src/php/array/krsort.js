@@ -1,8 +1,8 @@
 module.exports = function krsort (inputArr, sortFlags) {
-  //  discuss at: http://locutus.io/php/krsort/
-  // original by: GeekFG (http://geekfg.blogspot.com)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/krsort/
+  // original by: GeekFG (https://geekfg.blogspot.com)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: pseudaria (https://github.com/pseudaria)
   //      note 1: The examples are correct, this is a new way
   //      note 1: This function deviates from PHP in returning a copy of the array instead

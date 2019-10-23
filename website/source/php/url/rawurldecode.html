@@ -7,21 +7,21 @@ examples:
 estarget: es5
 returns:
   - '''Kevin+van+Zonneveld!'''
-  - '''http://kvz.io/'''
-  - '''http://www.google.nl/search?q=Locutus&ie='''
+  - '''https://kvz.io/'''
+  - '''https://www.google.nl/search?q=Locutus&ie='''
 dependencies: []
 authors:
   original by:
-    - 'Brett Zamir (http://brett-zamir.me)'
+    - 'Brett Zamir (https://brett-zamir.me)'
   improved by:
-    - 'Brett Zamir (http://brett-zamir.me)'
+    - 'Brett Zamir (https://brett-zamir.me)'
   reimplemented by:
-    - 'Brett Zamir (http://brett-zamir.me)'
+    - 'Brett Zamir (https://brett-zamir.me)'
   bugfixed by:
-    - 'Kevin van Zonneveld (http://kvz.io)'
+    - 'Kevin van Zonneveld (https://kvz.io)'
   input by:
     - travc
-    - 'Brett Zamir (http://brett-zamir.me)'
+    - 'Brett Zamir (https://brett-zamir.me)'
     - Ratheous
     - lovio
 notes:
@@ -34,7 +34,7 @@ layout: function
 title: PHP's rawurldecode in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.rawurldecode.php">PHP's
+  href="https://php.net/manual/en/function.rawurldecode.php">PHP's
   rawurldecode</a> looks like.
 function: rawurldecode
 category: url
@@ -47,24 +47,24 @@ alias:
   - /functions/rawurldecode/
 ---
 {% codeblock lang:javascript %}module.exports = function rawurldecode (str) {
-  //       discuss at: http://locutus.io/php/rawurldecode/
-  //      original by: Brett Zamir (http://brett-zamir.me)
+  //       discuss at: https://locutus.io/php/rawurldecode/
+  //      original by: Brett Zamir (https://brett-zamir.me)
   //         input by: travc
-  //         input by: Brett Zamir (http://brett-zamir.me)
+  //         input by: Brett Zamir (https://brett-zamir.me)
   //         input by: Ratheous
   //         input by: lovio
-  //      bugfixed by: Kevin van Zonneveld (http://kvz.io)
-  // reimplemented by: Brett Zamir (http://brett-zamir.me)
-  //      improved by: Brett Zamir (http://brett-zamir.me)
+  //      bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
+  //      improved by: Brett Zamir (https://brett-zamir.me)
   //           note 1: Please be aware that this function expects to decode
   //           note 1: from UTF-8 encoded strings, as found on
   //           note 1: pages served as UTF-8
   //        example 1: rawurldecode('Kevin+van+Zonneveld%21')
   //        returns 1: 'Kevin+van+Zonneveld!'
   //        example 2: rawurldecode('http%3A%2F%2Fkvz.io%2F')
-  //        returns 2: 'http://kvz.io/'
+  //        returns 2: 'https://kvz.io/'
   //        example 3: rawurldecode('http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3D')
-  //        returns 3: 'http://www.google.nl/search?q=Locutus&ie='
+  //        returns 3: 'https://www.google.nl/search?q=Locutus&ie='
 
   return decodeURIComponent((str + '')
     .replace(/%(?![\da-f]{2})/gi, function () {

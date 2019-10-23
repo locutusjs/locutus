@@ -1,8 +1,8 @@
 module.exports = function settype (vr, type) {
-  //  discuss at: http://locutus.io/php/settype/
-  // original by: Waldo Malqui Silva (http://waldo.malqui.info)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
-  //  revised by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/settype/
+  // original by: Waldo Malqui Silva (https://waldo.malqui.info)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
   //        note: Credits to Crockford also
   //        note: only works on global variables, and "vr" must be passed in as a string
   //   example 1: var $foo = '5bar'

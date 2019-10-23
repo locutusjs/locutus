@@ -1,6 +1,6 @@
 module.exports = function frexp (arg) {
-  //  discuss at: http://locutus.io/c/frexp/
-  // original by: Oskar Larsson Högfeldt (http://oskar-lh.name/)
+  //  discuss at: https://locutus.io/c/frexp/
+  // original by: Oskar Larsson Högfeldt (https://oskar-lh.name/)
   //      note 1: Instead of
   //      note 1: double frexp( double arg, int* exp );
   //      note 1: this is built as
@@ -36,7 +36,7 @@ module.exports = function frexp (arg) {
   // Object.is(n, (2 * frexp(n)[0]) * 2 ** (frexp(n)[1] - 1)) for all number values of n
   // Object.is(n, frexp(n)[0]) for these values of n: 0, -0, NaN, Infinity, -Infinity
   // Math.abs(frexp(n)[0]) is >= 0.5 and < 1.0 for any other number-type value of n
-  // See http://en.cppreference.com/w/c/numeric/math/frexp for a more detailed description
+  // See https://en.cppreference.com/w/c/numeric/math/frexp for a more detailed description
 
   arg = Number(arg)
 

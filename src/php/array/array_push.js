@@ -1,7 +1,7 @@
 module.exports = function array_push (inputArr) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_push/
-  // original by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/array_push/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Note also that IE retains information about property position even
   //      note 1: after being supposedly deleted, so if you delete properties and then
   //      note 1: add back properties with the same keys (including numeric) that had

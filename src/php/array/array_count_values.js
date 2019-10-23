@@ -1,11 +1,11 @@
 module.exports = function array_count_values (array) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_count_values/
-  // original by: Ates Goral (http://magnetiq.com)
-  // improved by: Michael White (http://getsprink.com)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/array_count_values/
+  // original by: Ates Goral (https://magnetiq.com)
+  // improved by: Michael White (https://getsprink.com)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
   //    input by: sankai
   //    input by: Shingo
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //   example 1: array_count_values([ 3, 5, 3, "foo", "bar", "foo" ])
   //   returns 1: {3:2, 5:1, "foo":2, "bar":1}
   //   example 2: array_count_values({ p1: 3, p2: 5, p3: 3, p4: "foo", p5: "bar", p6: "foo" })

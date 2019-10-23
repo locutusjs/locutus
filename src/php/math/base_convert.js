@@ -1,7 +1,7 @@
 module.exports = function base_convert (number, frombase, tobase) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/base_convert/
+  //  discuss at: https://locutus.io/php/base_convert/
   // original by: Philippe Baumann
-  // improved by: Rafał Kukawski (http://blog.kukawski.pl)
+  // improved by: Rafał Kukawski (https://blog.kukawski.pl)
   //   example 1: base_convert('A37334', 16, 2)
   //   returns 1: '101000110111001100110100'
 

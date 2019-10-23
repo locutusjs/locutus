@@ -1,15 +1,15 @@
 module.exports = function utf8_decode (strData) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/utf8_decode/
-  // original by: Webtoolkit.info (http://www.webtoolkit.info/)
+  //  discuss at: https://locutus.io/php/utf8_decode/
+  // original by: Webtoolkit.info (https://www.webtoolkit.info/)
   //    input by: Aman Gupta
-  //    input by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
+  //    input by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Norman "zEh" Fuchs
   // bugfixed by: hitwork
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: kirilloid
-  // bugfixed by: w35l3y (http://www.wesley.eti.br)
+  // bugfixed by: w35l3y (https://www.wesley.eti.br)
   //   example 1: utf8_decode('Kevin van Zonneveld')
   //   returns 1: 'Kevin van Zonneveld'
 
@@ -24,7 +24,7 @@ module.exports = function utf8_decode (strData) { // eslint-disable-line camelca
     c1 = strData.charCodeAt(i) & 0xFF
     seqlen = 0
 
-    // http://en.wikipedia.org/wiki/UTF-8#Codepage_layout
+    // https://en.wikipedia.org/wiki/UTF-8#Codepage_layout
     if (c1 <= 0xBF) {
       c1 = (c1 & 0x7F)
       seqlen = 1

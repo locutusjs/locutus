@@ -1,6 +1,6 @@
 module.exports = function strtok (str, tokens) {
-  //  discuss at: http://locutus.io/php/strtok/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/strtok/
+  // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Use tab and newline as tokenizing characters as well
   //   example 1: var $string = "\t\t\t\nThis is\tan example\nstring\n"
   //   example 1: var $tok = strtok($string, " \n\t")

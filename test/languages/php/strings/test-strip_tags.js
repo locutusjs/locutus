@@ -20,8 +20,8 @@ describe('src/php/strings/strip_tags.js (tested in test/languages/php/strings/te
     done()
   })
   it('should pass example 3', function (done) {
-    var expected = "<a href='http://kvz.io'>Kevin van Zonneveld</a>"
-    var result = strip_tags("<a href='http://kvz.io'>Kevin van Zonneveld</a>", "<a>")
+    var expected = "<a href='https://kvz.io'>Kevin van Zonneveld</a>"
+    var result = strip_tags("<a href='https://kvz.io'>Kevin van Zonneveld</a>", "<a>")
     expect(result).to.deep.equal(expected)
     done()
   })

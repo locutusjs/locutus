@@ -1,8 +1,8 @@
 title: "About"
 layout: "page"
 ---
-### The blog theme you may fall in love with, coming to Hexo. [Preview](http://ppoffice.github.io/hexo-theme-icarus/)
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/preview.jpg "")
+### The blog theme you may fall in love with, coming to Hexo. [Preview](https://ppoffice.github.io/hexo-theme-icarus/)
+![](https://ppoffice.github.io/hexo-theme-icarus/gallery/preview.jpg "")
 
 ## Installation
 
@@ -56,7 +56,7 @@ thumbnail: true
 
 # Contacts
 contacts:
-  github: http://github.com/ppoffice/hexo-theme-icarus
+  github: https://github.com/ppoffice/hexo-theme-icarus
   twitter: '#'
   facebook: '#'
   dribbble: '#'
@@ -64,7 +64,7 @@ contacts:
 
 # Links
 links:
-  Hexo: http://hexo.io
+  Hexo: https://hexo.io
 
 # Miscellaneous
 google_analytics:
@@ -117,8 +117,8 @@ title: Demo
 date: 2015-01-01
 ...
 # add those
-thumbnail: http://example.com/thumbnail.jpg
-banner: http://example.com/banner.jpg
+thumbnail: https://example.com/thumbnail.jpg
+banner: https://example.com/banner.jpg
 ```
 
 ### Custom Categories & Tags Pages
@@ -147,7 +147,7 @@ language: zh-CN
 
 A nice place to show yourself. You can add your own information in your site's `_config.yml`
 
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/profile.png "")
+![](https://ppoffice.github.io/hexo-theme-icarus/gallery/profile.png "")
 
 ### Post Banner & Thumbnail
 
@@ -157,7 +157,7 @@ Thanks to [atika](https://github.com/atika), you can now add thumbnails and bann
 
 Icarus knows on what screen size you are browsering the website, and reorganize the layout to fit your device.
 
-![](http://ppoffice.github.io/hexo-theme-icarus/gallery/responsive.jpg "")
+![](https://ppoffice.github.io/hexo-theme-icarus/gallery/responsive.jpg "")
 
 ### Custom Categories & Tags Pages
 
@@ -198,9 +198,9 @@ All of them are enabled by default. You can edit them in `widget` setting.
 - **fancybox** - Only download [Fancybox].
 - **clean** - Clean temporarily files and downloaded files.
 
-[Hexo]: http://zespia.tw/hexo/
-[Fancybox]: http://fancyapps.com/fancybox/
-[Font Awesome]: http://fontawesome.io/
-[Grunt]: http://gruntjs.com/
+[Hexo]: https://zespia.tw/hexo/
+[Fancybox]: https://fancyapps.com/fancybox/
+[Font Awesome]: https://fontawesome.io/
+[Grunt]: https://gruntjs.com/
 
 

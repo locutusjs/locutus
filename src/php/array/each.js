@@ -1,7 +1,7 @@
 module.exports = function each (arr) {
-  //  discuss at: http://locutus.io/php/each/
-  // original by: Ates Goral (http://magnetiq.com)
-  //  revised by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/each/
+  // original by: Ates Goral (https://magnetiq.com)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Uses global: locutus to store the array pointer
   //   example 1: each({a: "apple", b: "balloon"})
   //   returns 1: {0: "a", 1: "apple", key: "a", value: "apple"}

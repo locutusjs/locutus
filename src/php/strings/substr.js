@@ -1,9 +1,9 @@
 module.exports = function substr (str, start, len) {
-  //  discuss at: http://locutus.io/php/substr/
+  //  discuss at: https://locutus.io/php/substr/
   // original by: Martijn Wieringa
   // bugfixed by: T.Wild
   // improved by: Onno Marsman (https://twitter.com/onnomarsman)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //  revised by: Theriault (https://github.com/Theriault)
   //      note 1: Handles rare Unicode characters if 'unicode.semantics' ini (PHP6) is set to 'on'
   //   example 1: substr('abcdef', 0, -1)

@@ -1,8 +1,8 @@
 module.exports = function call_user_func (cb, parameters) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/call_user_func/
-  // original by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Diplom@t (http://difane.com/)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/call_user_func/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Diplom@t (https://difane.com/)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Depends on call_user_func_array which in turn depends on the `cb` that is passed,
   //      note 1: this function can use `eval`.
   //      note 1: The `eval` input is however checked to only allow valid function names,

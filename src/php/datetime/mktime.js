@@ -1,19 +1,19 @@
 module.exports = function mktime () {
-  //  discuss at: http://locutus.io/php/mktime/
-  // original by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/mktime/
+  // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: baris ozdil
-  // improved by: Kevin van Zonneveld (http://kvz.io)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
   // improved by: FGFEmperor
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //    input by: gabriel paderni
   //    input by: Yannoo
   //    input by: jakes
   //    input by: 3D-GRAF
   //    input by: Chris
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Marc Palau
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //  revised by: Theriault (https://github.com/Theriault)
   //      note 1: The return values of the following examples are
   //      note 1: received only if your system's timezone is UTC.

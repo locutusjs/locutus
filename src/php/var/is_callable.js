@@ -1,8 +1,8 @@
 module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/is_callable/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/is_callable/
+  // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: François
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   // improved by: KnightYoshi
   // improved by: Waldo Malqui Silva (https://fayr.us/waldo/)
   //      note 1: The variable callableName cannot work as a string variable passed by

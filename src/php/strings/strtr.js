@@ -1,14 +1,14 @@
 module.exports = function strtr (str, trFrom, trTo) {
-  //  discuss at: http://locutus.io/php/strtr/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/strtr/
+  // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: uestla
   //    input by: Alan C
   //    input by: Taras Bogach
   //    input by: jpfle
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $trans = {'hello' : 'hi', 'hi' : 'hello'}
   //   example 1: strtr('hi all, I said hello', $trans)
   //   returns 1: 'hello all, I said hi'

@@ -1,7 +1,7 @@
 module.exports = function mt_rand (min, max) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/mt_rand/
+  //  discuss at: https://locutus.io/php/mt_rand/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //    input by: Kongo
   //   example 1: mt_rand(1, 1)
   //   returns 1: 1

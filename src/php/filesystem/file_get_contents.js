@@ -1,12 +1,12 @@
 module.exports = function file_get_contents (url, flags, context, offset, maxLen) { // eslint-disable-line camelcase
-  //       discuss at: http://locutus.io/php/file_get_contents/
+  //       discuss at: https://locutus.io/php/file_get_contents/
   //      original by: Legaev Andrey
   //         input by: Jani Hartikainen
   //         input by: Raphael (Ao) RUDLER
-  //      improved by: Kevin van Zonneveld (http://kvz.io)
-  //      improved by: Brett Zamir (http://brett-zamir.me)
-  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // reimplemented by: Kevin van Zonneveld (http://kvz.io)
+  //      improved by: Kevin van Zonneveld (https://kvz.io)
+  //      improved by: Brett Zamir (https://brett-zamir.me)
+  //      bugfixed by: Brett Zamir (https://brett-zamir.me)
+  // reimplemented by: Kevin van Zonneveld (https://kvz.io)
   //           note 1: This used to work in the browser via blocking ajax
   //           note 1: requests in 1.3.2 and earlier
   //           note 1: but then people started using that for real app,

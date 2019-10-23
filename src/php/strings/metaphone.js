@@ -1,8 +1,8 @@
 module.exports = function metaphone (word, maxPhonemes) {
-  //  discuss at: http://locutus.io/php/metaphone/
+  //  discuss at: https://locutus.io/php/metaphone/
   // original by: Greg Frazier
-  // improved by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Rafał Kukawski (http://blog.kukawski.pl)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Rafał Kukawski (https://blog.kukawski.pl)
   //   example 1: metaphone('Gnu')
   //   returns 1: 'N'
   //   example 2: metaphone('bigger')

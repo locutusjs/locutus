@@ -1,35 +1,35 @@
 module.exports = function date (format, timestamp) {
-  //  discuss at: http://locutus.io/php/date/
-  // original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
+  //  discuss at: https://locutus.io/php/date/
+  // original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)
   // original by: gettimeofday
-  //    parts by: Peter-Paul Koch (http://www.quirksmode.org/js/beat.html)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: MeEtc (http://yass.meetcweb.com)
+  //    parts by: Peter-Paul Koch (https://www.quirksmode.org/js/beat.html)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: MeEtc (https://yass.meetcweb.com)
   // improved by: Brad Touesnard
   // improved by: Tim Wiel
   // improved by: Bryan Elliott
   // improved by: David Randall
   // improved by: Theriault (https://github.com/Theriault)
   // improved by: Theriault (https://github.com/Theriault)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   // improved by: Theriault (https://github.com/Theriault)
-  // improved by: Thomas Beaucourt (http://www.webapp.fr)
+  // improved by: Thomas Beaucourt (https://www.webapp.fr)
   // improved by: JT
   // improved by: Theriault (https://github.com/Theriault)
-  // improved by: Rafał Kukawski (http://blog.kukawski.pl)
+  // improved by: Rafał Kukawski (https://blog.kukawski.pl)
   // improved by: Theriault (https://github.com/Theriault)
-  //    input by: Brett Zamir (http://brett-zamir.me)
+  //    input by: Brett Zamir (https://brett-zamir.me)
   //    input by: majak
   //    input by: Alex
   //    input by: Martin
   //    input by: Alex Wilson
   //    input by: Haravikk
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: majak
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: omid (http://locutus.io/php/380:380#comment_137122)
-  // bugfixed by: Chris (http://www.devotis.nl/)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: omid (https://locutus.io/php/380:380#comment_137122)
+  // bugfixed by: Chris (https://www.devotis.nl/)
   //      note 1: Uses global: locutus to store the default timezone
   //      note 1: Although the function potentially allows timezone info
   //      note 1: (see notes), it currently does not set

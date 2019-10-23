@@ -1,6 +1,6 @@
 module.exports = function array_walk_recursive (array, funcname, userdata) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_walk_recursive/
-  // original by: Johnny Mast (http://www.phpvrouwen.nl)
+  //  discuss at: https://locutus.io/php/array_walk_recursive/
+  // original by: Johnny Mast (https://www.phpvrouwen.nl)
   //   example 1: array_walk_recursive ({'a': 'b', 'c': {'d': 'e'}}, 'void', 'userdata')
   //   returns 1: true
   //   example 2: array_walk_recursive ('a', 'void', 'userdata')

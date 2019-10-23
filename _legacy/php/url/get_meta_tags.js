@@ -1,10 +1,10 @@
 module.exports = function get_meta_tags (file) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/get_meta_tags/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/get_meta_tags/
+  // original by: Brett Zamir (https://brett-zamir.me)
   //        note: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
   //        note: Synchronous so may lock up browser, mainly here for study purposes.
   //        test: skip-all
-  //   example 1: get_meta_tags('http://kvz.io/pj_test_supportfile_2.htm')
+  //   example 1: get_meta_tags('https://kvz.io/pj_test_supportfile_2.htm')
   //   returns 1: {description: 'a php manual', author: 'name', keywords: 'php documentation', 'geo_position': '49.33;-86.59'}
 
   var file_get_contents = require('../filesystem/file_get_contents')

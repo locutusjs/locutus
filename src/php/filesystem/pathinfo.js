@@ -1,8 +1,8 @@
 module.exports = function pathinfo (path, options) {
-  //  discuss at: http://locutus.io/php/pathinfo/
+  //  discuss at: https://locutus.io/php/pathinfo/
   // original by: Nate
-  //  revised by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  revised by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   // improved by: Dmitry Gorelenkov
   //    input by: Timo
   //      note 1: Inspired by actual PHP source: php5-5.2.6/ext/standard/string.c line #1559

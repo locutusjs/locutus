@@ -1,5 +1,5 @@
 module.exports = function array_multisort (arr) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_multisort/
+  //  discuss at: https://locutus.io/php/array_multisort/
   // original by: Theriault (https://github.com/Theriault)
   // improved by: Oleg Andreyev (https://github.com/oleg-andreyev)
   //   example 1: array_multisort([1, 2, 1, 2, 1, 2], [1, 2, 3, 4, 5, 6])

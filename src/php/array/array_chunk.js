@@ -1,7 +1,7 @@
 module.exports = function array_chunk (input, size, preserveKeys) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_chunk/
-  // original by: Carlos R. L. Rodrigues (http://www.jsfromhell.com)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/array_chunk/
+  // original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Important note: Per the ECMAScript specification,
   //      note 1: objects may not always iterate in a predictable order
   //   example 1: array_chunk(['Kevin', 'van', 'Zonneveld'], 2)

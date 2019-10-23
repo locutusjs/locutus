@@ -1,11 +1,11 @@
 module.exports = function get_headers (url, format) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/get_headers/
+  //  discuss at: https://locutus.io/php/get_headers/
   // original by: Paulo Freitas
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //        note: This function uses XmlHttpRequest and cannot retrieve resource from different domain.
   //        note: Synchronous so may lock up browser, mainly here for study purposes.
   //        test: skip-all
-  //   example 1: get_headers('http://kvz.io/pj_test_supportfile_1.htm')[0]
+  //   example 1: get_headers('https://kvz.io/pj_test_supportfile_1.htm')[0]
   //   returns 1: 'Date: Wed, 13 May 2009 23:53:11 GMT'
 
   var array_filter = require('../array/array_filter')

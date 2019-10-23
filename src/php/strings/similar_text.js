@@ -1,9 +1,9 @@
 module.exports = function similar_text (first, second, percent) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/similar_text/
-  // original by: Rafał Kukawski (http://blog.kukawski.pl)
+  //  discuss at: https://locutus.io/php/similar_text/
+  // original by: Rafał Kukawski (https://blog.kukawski.pl)
   // bugfixed by: Chris McMacken
-  // bugfixed by: Jarkko Rantavuori original by findings in stackoverflow (http://stackoverflow.com/questions/14136349/how-does-similar-text-work)
-  // improved by: Markus Padourek (taken from http://www.kevinhq.com/2012/06/php-similartext-function-in-javascript_16.html)
+  // bugfixed by: Jarkko Rantavuori original by findings in stackoverflow (https://stackoverflow.com/questions/14136349/how-does-similar-text-work)
+  // improved by: Markus Padourek (taken from https://www.kevinhq.com/2012/06/php-similartext-function-in-javascript_16.html)
   //   example 1: similar_text('Hello World!', 'Hello locutus!')
   //   returns 1: 8
   //   example 2: similar_text('Hello World!', null)

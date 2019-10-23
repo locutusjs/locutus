@@ -1,6 +1,6 @@
 module.exports = function ctype_cntrl (text) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/ctype_cntrl/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/ctype_cntrl/
+  // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: ctype_cntrl('\u0020')
   //   returns 1: false
   //   example 2: ctype_cntrl('\u001F')

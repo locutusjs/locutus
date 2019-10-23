@@ -1,6 +1,6 @@
 module.exports = function getlastmod () {
-  //  discuss at: http://locutus.io/php/getlastmod/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/getlastmod/
+  // original by: Brett Zamir (https://brett-zamir.me)
   //        note: Will not work on browsers which don't support document.lastModified
   //   example 1: getlastmod()
   //   returns 1: 1237610043

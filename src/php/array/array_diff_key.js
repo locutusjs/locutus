@@ -1,7 +1,7 @@
 module.exports = function array_diff_key (arr1) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_diff_key/
-  // original by: Ates Goral (http://magnetiq.com)
-  //  revised by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/array_diff_key/
+  // original by: Ates Goral (https://magnetiq.com)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
   //    input by: Everlasto
   //   example 1: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5})
   //   returns 1: {"green":2, "blue":3, "white":4}

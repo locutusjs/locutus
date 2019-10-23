@@ -1,6 +1,6 @@
 module.exports = function xdiff_string_patch (originalStr, patch, flags, errorObj) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/xdiff_string_patch/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/xdiff_string_patch/
+  // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Steven Levithan (stevenlevithan.com)
   //      note 1: The XDIFF_PATCH_IGNORESPACE flag and the error argument are not
   //      note 1: currently supported.
@@ -14,7 +14,7 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, errorOb
   // Adapted from XRegExp 1.5.0
   // (c) 2007-2010 Steven Levithan
   // MIT License
-  // <http://xregexp.com>
+  // <https://xregexp.com>
 
   var _getNativeFlags = function (regex) {
     // Proposed for ES4; included in AS3

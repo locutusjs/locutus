@@ -1,10 +1,10 @@
 module.exports = function count_chars (str, mode) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/count_chars/
-  // original by: Ates Goral (http://magnetiq.com)
+  //  discuss at: https://locutus.io/php/count_chars/
+  // original by: Ates Goral (https://magnetiq.com)
   // improved by: Jack
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
-  //    input by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //    input by: Brett Zamir (https://brett-zamir.me)
   //  revised by: Theriault (https://github.com/Theriault)
   //   example 1: count_chars("Hello World!", 3)
   //   returns 1: " !HWdelor"

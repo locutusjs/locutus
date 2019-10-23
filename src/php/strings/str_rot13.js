@@ -1,8 +1,8 @@
 module.exports = function str_rot13 (str) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/str_rot13/
-  // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
-  // improved by: Ates Goral (http://magnetiq.com)
-  // improved by: Rafał Kukawski (http://blog.kukawski.pl)
+  //  discuss at: https://locutus.io/php/str_rot13/
+  // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
+  // improved by: Ates Goral (https://magnetiq.com)
+  // improved by: Rafał Kukawski (https://blog.kukawski.pl)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: str_rot13('Kevin van Zonneveld')
   //   returns 1: 'Xriva ina Mbaariryq'

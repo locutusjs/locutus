@@ -1,5 +1,5 @@
 module.exports = function bcdiv (leftOperand, rightOperand, scale) {
-  //  discuss at: http://locutus.io/php/bcdiv/
+  //  discuss at: https://locutus.io/php/bcdiv/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcdiv('1', '2')
   //   returns 1: '0'

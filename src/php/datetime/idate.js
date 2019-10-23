@@ -1,10 +1,10 @@
 module.exports = function idate (format, timestamp) {
-  //  discuss at: http://locutus.io/php/idate/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/idate/
+  // original by: Brett Zamir (https://brett-zamir.me)
   // original by: date
   // original by: gettimeofday
   //    input by: Alex
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
   // improved by: Theriault (https://github.com/Theriault)
   //   example 1: idate('y', 1255633200)
   //   returns 1: 9

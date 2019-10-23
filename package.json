@@ -3,7 +3,7 @@
   "version": "2.0.11",
   "license": "MIT",
   "description": "Locutus other languages' standard libraries to JavaScript for fun and educational purposes",
-  "homepage": "http://locutus.io",
+  "homepage": "https://locutus.io",
   "author": "Kevin van Zonneveld <kevin@vanzonneveld.net>",
   "engines": {
     "node": ">= 0.12.0"

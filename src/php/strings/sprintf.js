@@ -1,16 +1,16 @@
 module.exports = function sprintf () {
-  //  discuss at: http://locutus.io/php/sprintf/
-  // original by: Ash Searle (http://hexmen.com/blog/)
-  // improved by: Michael White (http://getsprink.com)
+  //  discuss at: https://locutus.io/php/sprintf/
+  // original by: Ash Searle (https://hexmen.com/blog/)
+  // improved by: Michael White (https://getsprink.com)
   // improved by: Jack
-  // improved by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Dj
   // improved by: Allidylls
   //    input by: Paulo Freitas
-  //    input by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Rafał Kukawski (http://kukawski.pl)
+  //    input by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Rafał Kukawski (https://kukawski.pl)
   //   example 1: sprintf("%01.2f", 123.1)
   //   returns 1: '123.10'
   //   example 2: sprintf("[%10s]", 'monkey')

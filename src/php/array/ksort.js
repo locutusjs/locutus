@@ -1,8 +1,8 @@
 module.exports = function ksort (inputArr, sortFlags) {
-  //  discuss at: http://locutus.io/php/ksort/
-  // original by: GeekFG (http://geekfg.blogspot.com)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/ksort/
+  // original by: GeekFG (https://geekfg.blogspot.com)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //      note 1: This function deviates from PHP in returning a copy of the array instead
   //      note 1: of acting by reference and returning true; this was necessary because
   //      note 1: IE does not allow deleting and re-adding of properties without caching

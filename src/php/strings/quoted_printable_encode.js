@@ -1,7 +1,7 @@
 module.exports = function quoted_printable_encode (str) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/quoted_printable_encode/
+  //  discuss at: https://locutus.io/php/quoted_printable_encode/
   // original by: Theriault (https://github.com/Theriault)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   // improved by: Theriault (https://github.com/Theriault)
   //   example 1: quoted_printable_encode('a=b=c')
   //   returns 1: 'a=3Db=3Dc'

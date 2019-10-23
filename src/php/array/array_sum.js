@@ -1,10 +1,10 @@
 module.exports = function array_sum (array) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_sum/
-  // original by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/array_sum/
+  // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Nate
   // bugfixed by: Gilbert
-  // improved by: David Pilia (http://www.beteck.it/)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: David Pilia (https://www.beteck.it/)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: array_sum([4, 9, 182.6])
   //   returns 1: 195.6
   //   example 2: var $total = []

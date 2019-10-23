@@ -9,38 +9,38 @@ examples:
 estarget: es5
 returns:
   - '''Kevin van Zonneveld!'''
-  - '''http://kvz.io/'''
+  - '''https://kvz.io/'''
   - >-
-    'http://www.google.nl/search?q=Locutus&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a'
+    'https://www.google.nl/search?q=Locutus&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a'
   - '''\u597d%3_4'''
 dependencies: []
 authors:
   original by:
     - Philip Peterson
   improved by:
-    - 'Kevin van Zonneveld (http://kvz.io)'
-    - 'Kevin van Zonneveld (http://kvz.io)'
-    - 'Brett Zamir (http://brett-zamir.me)'
+    - 'Kevin van Zonneveld (https://kvz.io)'
+    - 'Kevin van Zonneveld (https://kvz.io)'
+    - 'Brett Zamir (https://brett-zamir.me)'
     - Lars Fischer
     - Orlando
-    - 'Brett Zamir (http://brett-zamir.me)'
-    - 'Brett Zamir (http://brett-zamir.me)'
+    - 'Brett Zamir (https://brett-zamir.me)'
+    - 'Brett Zamir (https://brett-zamir.me)'
   reimplemented by:
-    - 'Brett Zamir (http://brett-zamir.me)'
+    - 'Brett Zamir (https://brett-zamir.me)'
   bugfixed by:
-    - 'Kevin van Zonneveld (http://kvz.io)'
+    - 'Kevin van Zonneveld (https://kvz.io)'
     - Rob
   input by:
     - AJ
     - travc
-    - 'Brett Zamir (http://brett-zamir.me)'
+    - 'Brett Zamir (https://brett-zamir.me)'
     - Ratheous
     - e-mike
     - lovio
 notes:
   - |-
     info on what encoding functions to use from:
-    http://xkr.us/articles/javascript/encode-compare/
+    https://xkr.us/articles/javascript/encode-compare/
     Please be aware that this function expects to decode
     from UTF-8 encoded strings, as found on
     pages served as UTF-8
@@ -49,7 +49,7 @@ layout: function
 title: PHP's urldecode in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.urldecode.php">PHP's urldecode</a>
+  href="https://php.net/manual/en/function.urldecode.php">PHP's urldecode</a>
   looks like.
 function: urldecode
 category: url
@@ -62,35 +62,35 @@ alias:
   - /functions/urldecode/
 ---
 {% codeblock lang:javascript %}module.exports = function urldecode (str) {
-  //       discuss at: http://locutus.io/php/urldecode/
+  //       discuss at: https://locutus.io/php/urldecode/
   //      original by: Philip Peterson
-  //      improved by: Kevin van Zonneveld (http://kvz.io)
-  //      improved by: Kevin van Zonneveld (http://kvz.io)
-  //      improved by: Brett Zamir (http://brett-zamir.me)
+  //      improved by: Kevin van Zonneveld (https://kvz.io)
+  //      improved by: Kevin van Zonneveld (https://kvz.io)
+  //      improved by: Brett Zamir (https://brett-zamir.me)
   //      improved by: Lars Fischer
   //      improved by: Orlando
-  //      improved by: Brett Zamir (http://brett-zamir.me)
-  //      improved by: Brett Zamir (http://brett-zamir.me)
+  //      improved by: Brett Zamir (https://brett-zamir.me)
+  //      improved by: Brett Zamir (https://brett-zamir.me)
   //         input by: AJ
   //         input by: travc
-  //         input by: Brett Zamir (http://brett-zamir.me)
+  //         input by: Brett Zamir (https://brett-zamir.me)
   //         input by: Ratheous
   //         input by: e-mike
   //         input by: lovio
-  //      bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  //      bugfixed by: Kevin van Zonneveld (https://kvz.io)
   //      bugfixed by: Rob
-  // reimplemented by: Brett Zamir (http://brett-zamir.me)
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
   //           note 1: info on what encoding functions to use from:
-  //           note 1: http://xkr.us/articles/javascript/encode-compare/
+  //           note 1: https://xkr.us/articles/javascript/encode-compare/
   //           note 1: Please be aware that this function expects to decode
   //           note 1: from UTF-8 encoded strings, as found on
   //           note 1: pages served as UTF-8
   //        example 1: urldecode('Kevin+van+Zonneveld%21')
   //        returns 1: 'Kevin van Zonneveld!'
   //        example 2: urldecode('http%3A%2F%2Fkvz.io%2F')
-  //        returns 2: 'http://kvz.io/'
+  //        returns 2: 'https://kvz.io/'
   //        example 3: urldecode('http%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3Dutf-8%26oe%3Dutf-8%26aq%3Dt%26rls%3Dcom.ubuntu%3Aen-US%3Aunofficial%26client%3Dfirefox-a')
-  //        returns 3: 'http://www.google.nl/search?q=Locutus&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a'
+  //        returns 3: 'https://www.google.nl/search?q=Locutus&ie=utf-8&oe=utf-8&aq=t&rls=com.ubuntu:en-US:unofficial&client=firefox-a'
   //        example 4: urldecode('%E5%A5%BD%3_4')
   //        returns 4: '\u597d%3_4'
 

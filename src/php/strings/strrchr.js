@@ -1,8 +1,8 @@
 module.exports = function strrchr (haystack, needle) {
-  //  discuss at: http://locutus.io/php/strrchr/
-  // original by: Brett Zamir (http://brett-zamir.me)
-  //    input by: Jason Wong (http://carrot.org/)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/strrchr/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //    input by: Jason Wong (https://carrot.org/)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //   example 1: strrchr("Line 1\nLine 2\nLine 3", 10).substr(1)
   //   returns 1: 'Line 3'
 

@@ -1,8 +1,8 @@
 module.exports = function money_format (format, number) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/money_format/
-  // original by: Brett Zamir (http://brett-zamir.me)
-  //    input by: daniel airton wermann (http://wermann.com.br)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/money_format/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //    input by: daniel airton wermann (https://wermann.com.br)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //      note 1: This depends on setlocale having the appropriate
   //      note 1: locale (these examples use 'en_US')
   //   example 1: money_format('%i', 1234.56)
@@ -41,8 +41,8 @@ module.exports = function money_format (format, number) { // eslint-disable-line
   // understanding of the description is that there should be padding;
   // need to revisit examples
 
-  // Helpful info at http://ftp.gnu.org/pub/pub/old-gnu/Manuals/glibc-2.2.3/html_chapter/libc_7.html
-  // and http://publib.boulder.ibm.com/infocenter/zos/v1r10/index.jsp?topic=/com.ibm.zos.r10.bpxbd00/strfmp.htm
+  // Helpful info at https://ftp.gnu.org/pub/pub/old-gnu/Manuals/glibc-2.2.3/html_chapter/libc_7.html
+  // and https://publib.boulder.ibm.com/infocenter/zos/v1r10/index.jsp?topic=/com.ibm.zos.r10.bpxbd00/strfmp.htm
 
   if (typeof number !== 'number') {
     return null

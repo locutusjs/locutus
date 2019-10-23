@@ -1,8 +1,8 @@
 module.exports = function reset (arr) {
-  //  discuss at: http://locutus.io/php/reset/
-  // original by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/reset/
+  // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Legaev Andrey
-  //  revised by: Brett Zamir (http://brett-zamir.me)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Uses global: locutus to store the array pointer
   //   example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
   //   returns 1: 'Kevin'

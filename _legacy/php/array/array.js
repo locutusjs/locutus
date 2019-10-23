@@ -1,7 +1,7 @@
 module.exports = function array () {
-  //  discuss at: http://locutus.io/php/array/
+  //  discuss at: https://locutus.io/php/array/
   // original by: d3x
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //        test: skip-all
   //   example 1: array('Kevin', 'van', 'Zonneveld')
   //   returns 1: ['Kevin', 'van', 'Zonneveld']
@@ -34,9 +34,9 @@ module.exports = function array () {
   if (!p.Relator) {
     p.Relator = (function () {
       // Used this functional class for giving privacy to the class we are creating
-      // Code adapted from http://www.devpro.it/code/192.html
-      // Relator explained at http://webreflection.blogspot.com/2008/07/javascript-relator-object-aka.html
-      // Its use as privacy technique described at http://webreflection.blogspot.com/2008/10/new-relator-object-plus-unshared.html
+      // Code adapted from https://www.devpro.it/code/192.html
+      // Relator explained at https://webreflection.blogspot.com/2008/07/javascript-relator-object-aka.html
+      // Its use as privacy technique described at https://webreflection.blogspot.com/2008/10/new-relator-object-plus-unshared.html
       // 1) At top of closure, put: var __ = Relator.$();
       // 2) In constructor, put: var _ = __.constructor(this);
       // 3) At top of each prototype method, put: var _ = __.method(this);

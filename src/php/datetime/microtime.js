@@ -1,7 +1,7 @@
 module.exports = function microtime (getAsFloat) {
-  //  discuss at: http://locutus.io/php/microtime/
+  //  discuss at: https://locutus.io/php/microtime/
   // original by: Paulo Freitas
-  // improved by: Dumitru Uzun (http://duzun.me)
+  // improved by: Dumitru Uzun (https://duzun.me)
   //   example 1: var $timeStamp = microtime(true)
   //   example 1: $timeStamp > 1000000000 && $timeStamp < 2000000000
   //   returns 1: true

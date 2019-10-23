@@ -1,7 +1,7 @@
 module.exports = function chr (codePt) {
-  //  discuss at: http://locutus.io/php/chr/
-  // original by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/chr/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: chr(75) === 'K'
   //   example 1: chr(65536) === '\uD800\uDC00'
   //   returns 1: true

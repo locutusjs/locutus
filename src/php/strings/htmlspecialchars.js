@@ -1,16 +1,16 @@
 module.exports = function htmlspecialchars (string, quoteStyle, charset, doubleEncode) {
-  //       discuss at: http://locutus.io/php/htmlspecialchars/
+  //       discuss at: https://locutus.io/php/htmlspecialchars/
   //      original by: Mirek Slugen
-  //      improved by: Kevin van Zonneveld (http://kvz.io)
+  //      improved by: Kevin van Zonneveld (https://kvz.io)
   //      bugfixed by: Nathan
   //      bugfixed by: Arno
-  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //       revised by: Kevin van Zonneveld (http://kvz.io)
+  //      bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //      bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //       revised by: Kevin van Zonneveld (https://kvz.io)
   //         input by: Ratheous
-  //         input by: Mailfaker (http://www.weedem.fr/)
+  //         input by: Mailfaker (https://www.weedem.fr/)
   //         input by: felix
-  // reimplemented by: Brett Zamir (http://brett-zamir.me)
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
   //           note 1: charset argument not supported
   //        example 1: htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES')
   //        returns 1: '&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;'

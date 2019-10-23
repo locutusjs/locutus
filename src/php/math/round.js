@@ -1,14 +1,14 @@
 module.exports = function round (value, precision, mode) {
-  //  discuss at: http://locutus.io/php/round/
+  //  discuss at: https://locutus.io/php/round/
   // original by: Philip Peterson
   //  revised by: Onno Marsman (https://twitter.com/onnomarsman)
   //  revised by: T.Wild
-  //  revised by: Rafał Kukawski (http://blog.kukawski.pl)
+  //  revised by: Rafał Kukawski (https://blog.kukawski.pl)
   //    input by: Greenseed
   //    input by: meo
   //    input by: William
-  //    input by: Josep Sanz (http://www.ws3.es/)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //    input by: Josep Sanz (https://www.ws3.es/)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Great work. Ideas for improvement:
   //      note 1: - code more compliant with developer guidelines
   //      note 1: - for implementing PHP constant arguments look at

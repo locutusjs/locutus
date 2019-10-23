@@ -1,11 +1,11 @@
 module.exports = function rtrim (str, charlist) {
-  //  discuss at: http://locutus.io/php/rtrim/
-  // original by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/rtrim/
+  // original by: Kevin van Zonneveld (https://kvz.io)
   //    input by: Erkekjetter
   //    input by: rem
-  // improved by: Kevin van Zonneveld (http://kvz.io)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //   example 1: rtrim('    Kevin van Zonneveld    ')
   //   returns 1: '    Kevin van Zonneveld'
 

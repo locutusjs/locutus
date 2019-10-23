@@ -1,8 +1,8 @@
 module.exports = function array_merge () { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_merge/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/array_merge/
+  // original by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Nate
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //    input by: josh
   //   example 1: var $arr1 = {"color": "red", 0: 2, 1: 4}
   //   example 1: var $arr2 = {0: "a", 1: "b", "color": "green", "shape": "trapezoid", 2: 4}

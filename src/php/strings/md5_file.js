@@ -1,8 +1,8 @@
 module.exports = function md5_file (str_filename) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/md5_file/
-  // original by: Kevin van Zonneveld (http://kvz.io)
-  //    input by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/md5_file/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  //    input by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Relies on file_get_contents which does not work in the browser, so Node only.
   //      note 2: Keep in mind that in accordance with PHP, the whole file is buffered and then
   //      note 2: hashed. We'd recommend Node's native crypto modules for faster and more

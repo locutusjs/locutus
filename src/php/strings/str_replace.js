@@ -1,20 +1,20 @@
 module.exports = function str_replace (search, replace, subject, countObj) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/str_replace/
-  // original by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/str_replace/
+  // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Gabriel Paderni
   // improved by: Philip Peterson
-  // improved by: Simon Willison (http://simonwillison.net)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
+  // improved by: Simon Willison (https://simonwillison.net)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Onno Marsman (https://twitter.com/onnomarsman)
-  // improved by: Brett Zamir (http://brett-zamir.me)
-  //  revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //  revised by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   // bugfixed by: Anton Ongson
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Oleg Eremeev
-  // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca)
-  // bugfixed by: Glen Arason (http://CanadianDomainRegistry.ca)
+  // bugfixed by: Glen Arason (https://CanadianDomainRegistry.ca)
+  // bugfixed by: Glen Arason (https://CanadianDomainRegistry.ca)
   //    input by: Onno Marsman (https://twitter.com/onnomarsman)
-  //    input by: Brett Zamir (http://brett-zamir.me)
+  //    input by: Brett Zamir (https://brett-zamir.me)
   //    input by: Oleg Eremeev
   //      note 1: The countObj parameter (optional) if used must be passed in as a
   //      note 1: object. The count will then be written by reference into it's `value` property

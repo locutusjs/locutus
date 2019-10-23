@@ -1,8 +1,8 @@
 module.exports = function gmstrftime (format, timestamp) {
-  //  discuss at: http://locutus.io/php/gmstrftime/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/gmstrftime/
+  // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: Alex
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //   example 1: gmstrftime("%A", 1062462400)
   //   returns 1: 'Tuesday'
 

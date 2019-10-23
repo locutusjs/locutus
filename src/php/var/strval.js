@@ -1,8 +1,8 @@
 module.exports = function strval (str) {
-  //  discuss at: http://locutus.io/php/strval/
-  // original by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/strval/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //   example 1: strval({red: 1, green: 2, blue: 3, white: 4})
   //   returns 1: 'Object'
 

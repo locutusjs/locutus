@@ -1,7 +1,7 @@
 module.exports = function Count (s, sep) {
-  //  discuss at: http://locutus.io/php/printf/
-  // original by: Kevin van Zonneveld (http://kvz.io)
-  //    input by: GopherJS (http://www.gopherjs.org/)
+  //  discuss at: https://locutus.io/php/printf/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  //    input by: GopherJS (https://www.gopherjs.org/)
   //   example 1: Count("cheese", "e")
   //   returns 1: 3
   //   example 2: Count("five", "") // before & after each rune

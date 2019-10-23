@@ -1,7 +1,7 @@
 module.exports = function strcoll (str1, str2) {
-  //  discuss at: http://locutus.io/php/strcoll/
-  // original by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/strcoll/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: strcoll('a', 'b')
   //   returns 1: -1
 

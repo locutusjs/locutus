@@ -1,7 +1,7 @@
 module.exports = function uksort (inputArr, sorter) {
-  //  discuss at: http://locutus.io/php/uksort/
-  // original by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/uksort/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //      note 1: The examples are correct, this is a new way
   //      note 1: This function deviates from PHP in returning a copy of the array instead
   //      note 1: of acting by reference and returning true; this was necessary because

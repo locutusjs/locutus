@@ -1,15 +1,15 @@
 module.exports = function echo () {
-  //  discuss at: http://locutus.io/php/echo/
+  //  discuss at: https://locutus.io/php/echo/
   // original by: Philip Peterson
   // improved by: echo is bad
   // improved by: Nate
-  // improved by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Brett Zamir (http://brett-zamir.me)
-  //  revised by: Der Simon (http://innerdom.sourceforge.net/)
-  // bugfixed by: Eugene Bulkin (http://doubleaw.com/)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //  revised by: Der Simon (https://innerdom.sourceforge.net/)
+  // bugfixed by: Eugene Bulkin (https://doubleaw.com/)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: EdorFaus
   //      note 1: In 1.3.2 and earlier, this function wrote to the body of the document when it
   //      note 1: was called in webbrowsers, in addition to supporting XUL.
@@ -19,7 +19,7 @@ module.exports = function echo () {
   //      note 2: You'll see functions depends on `echo` instead of `console.log` as we'll want
   //      note 2: to have 1 contact point to interface with the outside world, so that it's easy
   //      note 2: to support other ways of printing output.
-  //  revised by: Kevin van Zonneveld (http://kvz.io)
+  //  revised by: Kevin van Zonneveld (https://kvz.io)
   //    input by: JB
   //   example 1: echo('Hello world')
   //   returns 1: undefined

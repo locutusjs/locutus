@@ -1,6 +1,6 @@
 module.exports = function current (arr) {
-  //  discuss at: http://locutus.io/php/current/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/current/
+  // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Uses global: locutus to store the array pointer
   //   example 1: var $transport = ['foot', 'bike', 'car', 'plane']
   //   example 1: current($transport)

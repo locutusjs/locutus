@@ -1,7 +1,7 @@
 module.exports = function strspn (str1, str2, start, lgth) {
-  //  discuss at: http://locutus.io/php/strspn/
+  //  discuss at: https://locutus.io/php/strspn/
   // original by: Valentina De Rosa
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: strspn('42 is the answer, what is the question ...', '1234567890')
   //   returns 1: 2
   //   example 2: strspn('foo', 'o', 1, 2)

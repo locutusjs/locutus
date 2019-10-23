@@ -1,5 +1,5 @@
 module.exports = function is_finite (val) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/is_finite/
+  //  discuss at: https://locutus.io/php/is_finite/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: is_finite(Infinity)
   //   returns 1: false

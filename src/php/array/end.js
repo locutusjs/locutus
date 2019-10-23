@@ -1,11 +1,11 @@
 module.exports = function end (arr) {
-  //  discuss at: http://locutus.io/php/end/
-  // original by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/end/
+  // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Legaev Andrey
   //  revised by: J A R
-  //  revised by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Uses global: locutus to store the array pointer
   //   example 1: end({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
   //   returns 1: 'Zonneveld'

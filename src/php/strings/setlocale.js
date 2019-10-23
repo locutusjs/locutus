@@ -1,13 +1,13 @@
 module.exports = function setlocale (category, locale) {
-  //  discuss at: http://locutus.io/php/setlocale/
-  // original by: Brett Zamir (http://brett-zamir.me)
-  // original by: Blues (http://hacks.bluesmoon.info/strftime/strftime.js)
-  // original by: YUI Library (http://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html)
+  //  discuss at: https://locutus.io/php/setlocale/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // original by: Blues (https://hacks.bluesmoon.info/strftime/strftime.js)
+  // original by: YUI Library (https://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html)
   //      note 1: Is extensible, but currently only implements locales en,
   //      note 1: en_US, en_GB, en_AU, fr, and fr_CA for LC_TIME only; C for LC_CTYPE;
   //      note 1: C and en for LC_MONETARY/LC_NUMERIC; en for LC_COLLATE
   //      note 1: Uses global: locutus to store locale info
-  //      note 1: Consider using http://demo.icu-project.org/icu-bin/locexp as basis for localization (as in i18n_loc_set_default())
+  //      note 1: Consider using https://demo.icu-project.org/icu-bin/locexp as basis for localization (as in i18n_loc_set_default())
   //      note 2: This function tries to establish the locale via the `window` global.
   //      note 2: This feature will not work in Node and hence is Browser-only
   //   example 1: setlocale('LC_ALL', 'en_US')
@@ -37,14 +37,14 @@ module.exports = function setlocale (category, locale) {
   }
 
   // Function usable by a ngettext implementation (apparently not an accessible part of setlocale(),
-  // but locale-specific) See http://www.gnu.org/software/gettext/manual/gettext.html#Plural-forms
+  // but locale-specific) See https://www.gnu.org/software/gettext/manual/gettext.html#Plural-forms
   // though amended with others from https://developer.mozilla.org/En/Localization_and_Plurals (new
   // categories noted with "MDC" below, though not sure of whether there is a convention for the
   // relative order of these newer groups as far as ngettext) The function name indicates the number
-  // of plural forms (nplural) Need to look into http://cldr.unicode.org/ (maybe future JavaScript);
+  // of plural forms (nplural) Need to look into https://cldr.unicode.org/ (maybe future JavaScript);
   // Dojo has some functions (under new BSD), including JSON conversions of LDML XML from CLDR:
-  // http://bugs.dojotoolkit.org/browser/dojo/trunk/cldr and docs at
-  // http://api.dojotoolkit.org/jsdoc/HEAD/dojo.cldr
+  // https://bugs.dojotoolkit.org/browser/dojo/trunk/cldr and docs at
+  // https://api.dojotoolkit.org/jsdoc/HEAD/dojo.cldr
 
   // var _nplurals1 = function (n) {
   //   // e.g., Japanese
@@ -124,7 +124,7 @@ module.exports = function setlocale (category, locale) {
         // D_FMT // switched order of %m and %d; changed %y to %Y (C uses %y)
         X: '%r',
         // T_FMT // changed from %T to %r  (%T is default for C, not English US)
-        // Following are from nl_langinfo() or http://www.cptec.inpe.br/sx4/sx4man2/g1ab02e/strftime.4.html
+        // Following are from nl_langinfo() or https://www.cptec.inpe.br/sx4/sx4man2/g1ab02e/strftime.4.html
         alt_digits: '',
         // e.g., ordinal
         ERA: '',
@@ -257,8 +257,8 @@ module.exports = function setlocale (category, locale) {
     // Try to establish the locale via the `window` global
     if (typeof window !== 'undefined' && window.document) {
       var d = window.document
-      var NS_XHTML = 'http://www.w3.org/1999/xhtml'
-      var NS_XML = 'http://www.w3.org/XML/1998/namespace'
+      var NS_XHTML = 'https://www.w3.org/1999/xhtml'
+      var NS_XML = 'https://www.w3.org/XML/1998/namespace'
       if (d.getElementsByTagNameNS &&
         d.getElementsByTagNameNS(NS_XHTML, 'html')[0]) {
         if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS &&

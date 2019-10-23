@@ -1,8 +1,8 @@
 module.exports = function ord (string) {
-  //  discuss at: http://locutus.io/php/ord/
-  // original by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/ord/
+  // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //    input by: incidence
   //   example 1: ord('K')
   //   returns 1: 75

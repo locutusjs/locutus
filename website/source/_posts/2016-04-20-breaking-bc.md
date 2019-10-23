@@ -37,4 +37,4 @@ The new version will be available as `v2.0.2`, as well as `master` by the time I
 
 Stay tuned for more,
 
-[Kevin](http://twitter.com/kvz)
+[Kevin](https://twitter.com/kvz)

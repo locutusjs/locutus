@@ -1,7 +1,7 @@
 module.exports = function usort (inputArr, sorter) {
-  //  discuss at: http://locutus.io/php/usort/
-  // original by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/usort/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //      note 1: This function deviates from PHP in returning a copy of the array instead
   //      note 1: of acting by reference and returning true; this was necessary because
   //      note 1: IE does not allow deleting and re-adding of properties without caching

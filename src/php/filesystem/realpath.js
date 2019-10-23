@@ -1,8 +1,8 @@
 module.exports = function realpath (path) {
-  //  discuss at: http://locutus.io/php/realpath/
+  //  discuss at: https://locutus.io/php/realpath/
   // original by: mk.keck
-  // improved by: Kevin van Zonneveld (http://kvz.io)
-  //      note 1: Returned path is an url like e.g. 'http://yourhost.tld/path/'
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  //      note 1: Returned path is an url like e.g. 'https://yourhost.tld/path/'
   //   example 1: realpath('some/dir/.././_supporters/pj_test_supportfile_1.htm')
   //   returns 1: 'some/_supporters/pj_test_supportfile_1.htm'
 
@@ -15,7 +15,7 @@ module.exports = function realpath (path) {
   var arr = [] // Save the root, if not given
   var r = this.window.location.href // Avoid input failures
 
-  // Check if there's a port in path (like 'http://')
+  // Check if there's a port in path (like 'https://')
   path = (path + '').replace('\\', '/')
   if (path.indexOf('://') !== -1) {
     p = 1

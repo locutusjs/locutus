@@ -1,16 +1,16 @@
 module.exports = function asort (inputArr, sortFlags) {
-  //  discuss at: http://locutus.io/php/asort/
-  // original by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/asort/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   // improved by: Theriault (https://github.com/Theriault)
   //    input by: paulo kuong
-  // bugfixed by: Adam Wallner (http://web2.bitbaro.hu/)
+  // bugfixed by: Adam Wallner (https://web2.bitbaro.hu/)
   //      note 1: SORT_STRING (as well as natsort and natcasesort) might also be
   //      note 1: integrated into all of these functions by adapting the code at
-  //      note 1: http://sourcefrog.net/projects/natsort/natcompare.js
+  //      note 1: https://sourcefrog.net/projects/natsort/natcompare.js
   //      note 1: The examples are correct, this is a new way
-  //      note 1: Credits to: http://javascript.internet.com/math-related/bubble-sort.html
+  //      note 1: Credits to: https://javascript.internet.com/math-related/bubble-sort.html
   //      note 1: This function deviates from PHP in returning a copy of the array instead
   //      note 1: of acting by reference and returning true; this was necessary because
   //      note 1: IE does not allow deleting and re-adding of properties without caching

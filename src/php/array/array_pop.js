@@ -1,11 +1,11 @@
 module.exports = function array_pop (inputArr) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_pop/
-  // original by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
-  //    input by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/array_pop/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  //    input by: Brett Zamir (https://brett-zamir.me)
   //    input by: Theriault (https://github.com/Theriault)
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //      note 1: While IE (and other browsers) support iterating an object's
   //      note 1: own properties in order, if one attempts to add back properties
   //      note 1: in IE, they may end up in their former position due to their position

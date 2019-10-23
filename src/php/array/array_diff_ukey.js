@@ -1,6 +1,6 @@
 module.exports = function array_diff_ukey (arr1) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_diff_ukey/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/array_diff_ukey/
+  // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {blue: 1, red: 2, green: 3, purple: 4}
   //   example 1: var $array2 = {green: 5, blue: 6, yellow: 7, cyan: 8}
   //   example 1: array_diff_ukey($array1, $array2, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })

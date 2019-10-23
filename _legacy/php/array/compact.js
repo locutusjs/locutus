@@ -1,9 +1,9 @@
 module.exports = function compact () {
-  //  discuss at: http://locutus.io/php/compact/
-  // original by: Waldo Malqui Silva (http://waldo.malqui.info)
+  //  discuss at: https://locutus.io/php/compact/
+  // original by: Waldo Malqui Silva (https://waldo.malqui.info)
   // improved by: Jack
-  //    input by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  //    input by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
   //   example 1: var $var1 = 'Kevin'
   //   example 1: var $var2 = 'van'
   //   example 1: var $var3 = 'Zonneveld'

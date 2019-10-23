@@ -4,13 +4,13 @@ title: "A Word on the Focus of php.js"
 comments: true
 tags: [ focus ]
 alias: /blog/2013/05/03/a-word-on-the-focus-of-php-dot-js/
-thumbnail: http://mobilemarketingwatch.com/wp-content/uploads/2016/03/Focus.jpg
+thumbnail: https://mobilemarketingwatch.com/wp-content/uploads/2016/03/Focus.jpg
 ---
 
 Hi everybody,
 
 The [new site](/blog/2012/09/26/new-site/) has no server-side code. Instead
-we generate HTML [using Octopress](http://kvz.io/blog/2012/09/25/blog-with-octopress/)
+we generate HTML [using Octopress](https://kvz.io/blog/2012/09/25/blog-with-octopress/)
 and push to GitHub Pages, all from one [repository](https://github.com/kvz/locutus).
 
 This saves hosting costs/overhead and makes it really easy for people to submit
@@ -22,7 +22,7 @@ To move forward, sometimes you have to cut features.
 In this case I had to lose our compiler, a webtool that relied on server-side code
 to generate minified packages from php.js functions.
 
-Understandibly this has [raised](https://github.com/kvz/locutus/issues/75) [questions](http://locutus.io/about/index.html#comment-861825612).
+Understandibly this has [raised](https://github.com/kvz/locutus/issues/75) [questions](https://locutus.io/about/index.html#comment-861825612).
 It is still possible to bundle 4 useful functions:
 
 ```bash
@@ -43,7 +43,7 @@ curl -vo ./myphp.min.js \
     --data-urlencode output_format="text" \
     --data-urlencode output_info="compiled_code" \
     --data-urlencode js_code@myLocutus \
-    http://closure-compiler.appspot.com/compile
+    https://closure-compiler.appspot.com/compile
 ```
 
 but some people think php.js should bundle all of it's functions into one big file:
@@ -87,4 +87,4 @@ makes this easier.
 
 Best wishes,
 
-[Kevin](http://twitter.com/kvz)
+[Kevin](https://twitter.com/kvz)

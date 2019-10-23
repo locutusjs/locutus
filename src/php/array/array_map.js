@@ -1,8 +1,8 @@
 module.exports = function array_map (callback) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_map/
-  // original by: Andrea Giammarchi (http://webreflection.blogspot.com)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/array_map/
+  // original by: Andrea Giammarchi (https://webreflection.blogspot.com)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //    input by: thekid
   //      note 1: If the callback is a string (or object, if an array is supplied),
   //      note 1: it can only work if the function name is in the global context

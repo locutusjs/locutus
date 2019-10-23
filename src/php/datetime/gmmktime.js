@@ -1,6 +1,6 @@
 module.exports = function gmmktime () {
-  //  discuss at: http://locutus.io/php/gmmktime/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/gmmktime/
+  // original by: Brett Zamir (https://brett-zamir.me)
   // original by: mktime
   //   example 1: gmmktime(14, 10, 2, 2, 1, 2008)
   //   returns 1: 1201875002

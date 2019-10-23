@@ -13,14 +13,14 @@ returns:
 dependencies: []
 authors:
   original by:
-    - 'Brett Zamir (http://brett-zamir.me)'
+    - 'Brett Zamir (https://brett-zamir.me)'
 notes: []
 type: function
 layout: function
 title: PHP's array_udiff_assoc in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.array-udiff-assoc.php">PHP's
+  href="https://php.net/manual/en/function.array-udiff-assoc.php">PHP's
   array_udiff_assoc</a> looks like.
 function: array_udiff_assoc
 category: array
@@ -33,8 +33,8 @@ alias:
   - /functions/array_udiff_assoc/
 ---
 {% codeblock lang:javascript %}module.exports = function array_udiff_assoc (arr1) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_udiff_assoc/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/array_udiff_assoc/
+  // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: array_udiff_assoc({0: 'kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'}, function (f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 === string2) return 0; return -1;})
   //   returns 1: {1: 'van', 2: 'Zonneveld'}
 

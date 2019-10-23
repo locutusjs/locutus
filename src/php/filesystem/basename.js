@@ -1,7 +1,7 @@
 module.exports = function basename (path, suffix) {
-  //  discuss at: http://locutus.io/php/basename/
-  // original by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: Ash Searle (http://hexmen.com/blog/)
+  //  discuss at: https://locutus.io/php/basename/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Ash Searle (https://hexmen.com/blog/)
   // improved by: Lincoln Ramsay
   // improved by: djmix
   // improved by: Dmitry Gorelenkov

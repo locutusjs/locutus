@@ -1,8 +1,8 @@
 module.exports = function substr_count (haystack, needle, offset, length) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/substr_count/
-  // original by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/substr_count/
+  // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   // improved by: Thomas
   //   example 1: substr_count('Kevin van Zonneveld', 'e')
   //   returns 1: 3

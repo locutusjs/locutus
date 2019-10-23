@@ -1,9 +1,9 @@
 module.exports = function str_ireplace (search, replace, subject, countObj) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/str_ireplace/
-  // original by: Glen Arason (http://CanadianDomainRegistry.ca)
+  //  discuss at: https://locutus.io/php/str_ireplace/
+  // original by: Glen Arason (https://CanadianDomainRegistry.ca)
   //      note 1: Case-insensitive version of str_replace()
   //      note 1: Compliant with PHP 5.0 str_ireplace() Full details at:
-  //      note 1: http://ca3.php.net/manual/en/function.str-ireplace.php
+  //      note 1: https://ca3.php.net/manual/en/function.str-ireplace.php
   //      note 2: The countObj parameter (optional) if used must be passed in as a
   //      note 2: object. The count will then be written by reference into it's `value` property
   //   example 1: str_ireplace('M', 'e', 'name')

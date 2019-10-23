@@ -1,18 +1,18 @@
 module.exports = function parse_str (str, array) { // eslint-disable-line camelcase
-  //       discuss at: http://locutus.io/php/parse_str/
+  //       discuss at: https://locutus.io/php/parse_str/
   //      original by: Cagri Ekin
-  //      improved by: Michael White (http://getsprink.com)
+  //      improved by: Michael White (https://getsprink.com)
   //      improved by: Jack
-  //      improved by: Brett Zamir (http://brett-zamir.me)
+  //      improved by: Brett Zamir (https://brett-zamir.me)
   //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //      bugfixed by: Brett Zamir (https://brett-zamir.me)
   //      bugfixed by: stag019
-  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //      bugfixed by: MIO_KODUKI (http://mio-koduki.blogspot.com/)
+  //      bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //      bugfixed by: MIO_KODUKI (https://mio-koduki.blogspot.com/)
   // reimplemented by: stag019
   //         input by: Dreamer
-  //         input by: Zaide (http://zaidesthings.com/)
-  //         input by: David Pesta (http://davidpesta.com/)
+  //         input by: Zaide (https://zaidesthings.com/)
+  //         input by: David Pesta (https://davidpesta.com/)
   //         input by: jeicquest
   //      bugfixed by: Rafał Kukawski
   //           note 1: When no argument is specified, will put variables in global scope.

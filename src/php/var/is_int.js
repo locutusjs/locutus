@@ -1,11 +1,11 @@
 module.exports = function is_int (mixedVar) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/is_int/
+  //  discuss at: https://locutus.io/php/is_int/
   // original by: Alex
-  // improved by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: WebDevHobo (http://webdevhobo.blogspot.com/)
-  // improved by: Rafał Kukawski (http://blog.kukawski.pl)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: WebDevHobo (https://webdevhobo.blogspot.com/)
+  // improved by: Rafał Kukawski (https://blog.kukawski.pl)
   //  revised by: Matt Bradley
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
   //      note 1: it different from the PHP implementation. We can't fix this unfortunately.
   //   example 1: is_int(23)

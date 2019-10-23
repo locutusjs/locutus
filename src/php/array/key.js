@@ -1,8 +1,8 @@
 module.exports = function key (arr) {
-  //  discuss at: http://locutus.io/php/key/
-  // original by: Brett Zamir (http://brett-zamir.me)
-  //    input by: Riddler (http://www.frontierwebdev.com/)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/key/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //    input by: Riddler (https://www.frontierwebdev.com/)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Uses global: locutus to store the array pointer
   //   example 1: var $array = {fruit1: 'apple', 'fruit2': 'orange'}
   //   example 1: key($array)

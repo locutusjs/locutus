@@ -1,14 +1,14 @@
 module.exports = function htmlentities (string, quoteStyle, charset, doubleEncode) {
-  //  discuss at: http://locutus.io/php/htmlentities/
-  // original by: Kevin van Zonneveld (http://kvz.io)
-  //  revised by: Kevin van Zonneveld (http://kvz.io)
-  //  revised by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/htmlentities/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  //  revised by: Kevin van Zonneveld (https://kvz.io)
+  //  revised by: Kevin van Zonneveld (https://kvz.io)
   // improved by: nobbler
   // improved by: Jack
-  // improved by: Rafał Kukawski (http://blog.kukawski.pl)
-  // improved by: Dj (http://locutus.io/php/htmlentities:425#comment_134018)
+  // improved by: Rafał Kukawski (https://blog.kukawski.pl)
+  // improved by: Dj (https://locutus.io/php/htmlentities:425#comment_134018)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //    input by: Ratheous
   //      note 1: function is compatible with PHP 5.2 and older
   //   example 1: htmlentities('Kevin & van Zonneveld')

@@ -1,6 +1,6 @@
 module.exports = function array_uintersect (arr1) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_uintersect/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/array_uintersect/
+  // original by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Demosthenes Koptsis
   //   example 1: var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
   //   example 1: var $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}

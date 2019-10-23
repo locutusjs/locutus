@@ -1,6 +1,6 @@
 module.exports = function sscanf (str, format) {
-  //  discuss at: http://locutus.io/php/sscanf/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/sscanf/
+  // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: sscanf('SN/2350001', 'SN/%d')
   //   returns 1: [2350001]
   //   example 2: var myVar = {}
@@ -128,8 +128,8 @@ module.exports = function sscanf (str, format) {
       }
       // PROCESS CHARACTER
       try {
-        // For detailed explanations, see http://web.archive.org/web/20031128125047/http://www.uwm.edu/cgi-bin/IMT/wwwman?topic=scanf%283%29&msection=
-        // Also http://www.mathworks.com/access/helpdesk/help/techdoc/ref/sscanf.html
+        // For detailed explanations, see https://web.archive.org/web/20031128125047/https://www.uwm.edu/cgi-bin/IMT/wwwman?topic=scanf%283%29&msection=
+        // Also https://www.mathworks.com/access/helpdesk/help/techdoc/ref/sscanf.html
         // p, S, C arguments in C function not available
         // DOCUMENTED UNDER SSCANF
         switch (format.charAt(i + 1)) {

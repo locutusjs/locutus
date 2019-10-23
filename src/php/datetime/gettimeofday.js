@@ -1,8 +1,8 @@
 module.exports = function gettimeofday (returnFloat) {
-  //  discuss at: http://locutus.io/php/gettimeofday/
-  // original by: Brett Zamir (http://brett-zamir.me)
-  // original by: Josh Fraser (http://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)
-  //    parts by: Breaking Par Consulting Inc (http://www.breakingpar.com/bkp/home.nsf/0/87256B280015193F87256CFB006C45F7)
+  //  discuss at: https://locutus.io/php/gettimeofday/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // original by: Josh Fraser (https://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)
+  //    parts by: Breaking Par Consulting Inc (https://www.breakingpar.com/bkp/home.nsf/0/87256B280015193F87256CFB006C45F7)
   //  revised by: Theriault (https://github.com/Theriault)
   //   example 1: var $obj = gettimeofday()
   //   example 1: var $result = ('sec' in $obj && 'usec' in $obj && 'minuteswest' in $obj &&80, 'dsttime' in $obj)

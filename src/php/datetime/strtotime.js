@@ -1026,18 +1026,18 @@ let resultProto = {
 }
 
 module.exports = function strtotime (str, now) {
-  //       discuss at: http://locutus.io/php/strtotime/
-  //      original by: Caio Ariede (http://caioariede.com)
-  //      improved by: Kevin van Zonneveld (http://kvz.io)
-  //      improved by: Caio Ariede (http://caioariede.com)
-  //      improved by: A. Matías Quezada (http://amatiasq.com)
+  //       discuss at: https://locutus.io/php/strtotime/
+  //      original by: Caio Ariede (https://caioariede.com)
+  //      improved by: Kevin van Zonneveld (https://kvz.io)
+  //      improved by: Caio Ariede (https://caioariede.com)
+  //      improved by: A. Matías Quezada (https://amatiasq.com)
   //      improved by: preuter
-  //      improved by: Brett Zamir (http://brett-zamir.me)
+  //      improved by: Brett Zamir (https://brett-zamir.me)
   //      improved by: Mirko Faber
   //         input by: David
   //      bugfixed by: Wagner B. Soares
   //      bugfixed by: Artur Tchernychev
-  //      bugfixed by: Stephan Bösch-Plepelits (http://github.com/plepe)
+  //      bugfixed by: Stephan Bösch-Plepelits (https://github.com/plepe)
   // reimplemented by: Rafał Kukawski
   //           note 1: Examples all have a fixed timestamp to prevent
   //           note 1: tests to fail because of variable time(zones)

@@ -1,11 +1,11 @@
 module.exports = function sort (inputArr, sortFlags) {
-  //  discuss at: http://locutus.io/php/sort/
-  // original by: Kevin van Zonneveld (http://kvz.io)
-  //  revised by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/sort/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //      note 1: SORT_STRING (as well as natsort and natcasesort) might also be
   //      note 1: integrated into all of these functions by adapting the code at
-  //      note 1: http://sourcefrog.net/projects/natsort/natcompare.js
+  //      note 1: https://sourcefrog.net/projects/natsort/natcompare.js
   //      note 1: This function deviates from PHP in returning a copy of the array instead
   //      note 1: of acting by reference and returning true; this was necessary because
   //      note 1: IE does not allow deleting and re-adding of properties without caching

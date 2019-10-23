@@ -1,6 +1,6 @@
 module.exports = function getenv (varname) {
-  //  discuss at: http://locutus.io/php/getenv/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/getenv/
+  // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: getenv('LC_ALL')
   //   returns 1: false
 

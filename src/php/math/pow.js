@@ -1,5 +1,5 @@
 module.exports = function pow (base, exp) {
-  //  discuss at: http://locutus.io/php/pow/
+  //  discuss at: https://locutus.io/php/pow/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Waldo Malqui Silva (https://fayr.us/waldo/)
   //   example 1: pow(8723321.4, 7)

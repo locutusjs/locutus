@@ -1,12 +1,12 @@
 # Locutus
 
 <!-- badges/ -->
-[![Build Status](https://secure.travis-ci.org/kvz/locutus.svg?branch=master)](http://travis-ci.org/kvz/locutus "Check this project's build status on TravisCI")
+[![Build Status](https://secure.travis-ci.org/kvz/locutus.svg?branch=master)](https://travis-ci.org/kvz/locutus "Check this project's build status on TravisCI")
 <!-- /badges -->
 
 All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.
 
-More info at: http://locutus.io/
+More info at: https://locutus.io/
 
 ## Install
 

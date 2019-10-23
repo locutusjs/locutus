@@ -1,8 +1,8 @@
 module.exports = function ltrim (str, charlist) {
-  //  discuss at: http://locutus.io/php/ltrim/
-  // original by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/ltrim/
+  // original by: Kevin van Zonneveld (https://kvz.io)
   //    input by: Erkekjetter
-  // improved by: Kevin van Zonneveld (http://kvz.io)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: ltrim('    Kevin van Zonneveld    ')
   //   returns 1: 'Kevin van Zonneveld    '

@@ -1,10 +1,10 @@
 module.exports = function strftime (fmt, timestamp) {
-  //       discuss at: http://locutus.io/php/strftime/
-  //      original by: Blues (http://tech.bluesmoon.info/)
-  // reimplemented by: Brett Zamir (http://brett-zamir.me)
+  //       discuss at: https://locutus.io/php/strftime/
+  //      original by: Blues (https://tech.bluesmoon.info/)
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
   //         input by: Alex
-  //      bugfixed by: Brett Zamir (http://brett-zamir.me)
-  //      improved by: Brett Zamir (http://brett-zamir.me)
+  //      bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //      improved by: Brett Zamir (https://brett-zamir.me)
   //           note 1: Uses global: locutus to store locale info
   //        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale
   //        returns 1: 'Tuesday'

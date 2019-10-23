@@ -1,7 +1,7 @@
 module.exports = function utf8_encode (argString) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/utf8_encode/
-  // original by: Webtoolkit.info (http://www.webtoolkit.info/)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/utf8_encode/
+  // original by: Webtoolkit.info (https://www.webtoolkit.info/)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
   // improved by: sowberry
   // improved by: Jack
   // improved by: Yves Sucaet
@@ -9,7 +9,7 @@ module.exports = function utf8_encode (argString) { // eslint-disable-line camel
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Ulrich
-  // bugfixed by: Rafał Kukawski (http://blog.kukawski.pl)
+  // bugfixed by: Rafał Kukawski (https://blog.kukawski.pl)
   // bugfixed by: kirilloid
   //   example 1: utf8_encode('Kevin van Zonneveld')
   //   returns 1: 'Kevin van Zonneveld'

@@ -3,7 +3,7 @@
  * version: 2.1.5 (Fri, 14 Jun 2013)
  * requires jQuery v1.6 or later
  *
- * Examples at http://fancyapps.com/fancybox/
+ * Examples at https://fancyapps.com/fancybox/
  * License: www.fancyapps.com/fancybox/#license
  *
  * Copyright 2012 Janis Skarnelis - janis@fancyapps.com
@@ -650,7 +650,7 @@
 				rez.h = locked[0].clientHeight;
 
 			} else {
-				// See http://bugs.jquery.com/ticket/6724
+				// See https://bugs.jquery.com/ticket/6724
 				rez.w = isTouch && window.innerWidth  ? window.innerWidth  : W.width();
 				rez.h = isTouch && window.innerHeight ? window.innerHeight : W.height();
 			}
@@ -1654,7 +1654,7 @@
 				}
 			}
 
-			// Workaround for http://bugs.jquery.com/ticket/12273
+			// Workaround for https://bugs.jquery.com/ticket/12273
 			if (effect === 'none') {
 				F._afterZoomIn();
 
@@ -1973,7 +1973,7 @@
 		var w1, w2;
 
 		if ( $.scrollbarWidth === undefined ) {
-			// http://benalman.com/projects/jquery-misc-plugins/#scrollbarwidth
+			// https://benalman.com/projects/jquery-misc-plugins/#scrollbarwidth
 			$.scrollbarWidth = function() {
 				var parent = $('<div style="width:50px;height:50px;overflow:auto"><div/></div>').appendTo('body'),
 					child  = parent.children(),

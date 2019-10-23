@@ -1,19 +1,19 @@
 module.exports = function serialize (mixedValue) {
-  //  discuss at: http://locutus.io/php/serialize/
+  //  discuss at: https://locutus.io/php/serialize/
   // original by: Arpad Ray (mailto:arpad@php.net)
   // improved by: Dino
-  // improved by: Le Torbi (http://www.letorbi.de/)
-  // improved by: Kevin van Zonneveld (http://kvz.io/)
+  // improved by: Le Torbi (https://www.letorbi.de/)
+  // improved by: Kevin van Zonneveld (https://kvz.io/)
   // bugfixed by: Andrej Pavlovic
   // bugfixed by: Garagoth
-  // bugfixed by: Russell Walker (http://www.nbill.co.uk/)
-  // bugfixed by: Jamie Beck (http://www.terabit.ca/)
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io/)
-  // bugfixed by: Ben (http://benblume.co.uk/)
-  // bugfixed by: Codestar (http://codestarlive.com/)
+  // bugfixed by: Russell Walker (https://www.nbill.co.uk/)
+  // bugfixed by: Jamie Beck (https://www.terabit.ca/)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io/)
+  // bugfixed by: Ben (https://benblume.co.uk/)
+  // bugfixed by: Codestar (https://codestarlive.com/)
   // bugfixed by: idjem (https://github.com/idjem)
-  //    input by: DtTvB (http://dt.in.th/2008-09-16.string-length-in-bytes.html)
-  //    input by: Martin (http://www.erlenwiese.de/)
+  //    input by: DtTvB (https://dt.in.th/2008-09-16.string-length-in-bytes.html)
+  //    input by: Martin (https://www.erlenwiese.de/)
   //      note 1: We feel the main purpose of this function should be to ease
   //      note 1: the transport of data between php & js
   //      note 1: Aiming for PHP-compatibility, we have to translate objects to arrays

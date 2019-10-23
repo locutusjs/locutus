@@ -1,7 +1,7 @@
 module.exports = function hypot (x, y) {
-  //  discuss at: http://locutus.io/php/hypot/
+  //  discuss at: https://locutus.io/php/hypot/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
-  // imprived by: Robert Eisele (http://www.xarg.org/)
+  // imprived by: Robert Eisele (https://www.xarg.org/)
   //   example 1: hypot(3, 4)
   //   returns 1: 5
   //   example 2: hypot([], 'a')

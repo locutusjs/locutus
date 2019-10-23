@@ -8,26 +8,26 @@ returns:
 dependencies: []
 authors:
   original by:
-    - 'Webtoolkit.info (http://www.webtoolkit.info/)'
+    - 'Webtoolkit.info (https://www.webtoolkit.info/)'
   improved by:
-    - 'Kevin van Zonneveld (http://kvz.io)'
+    - 'Kevin van Zonneveld (https://kvz.io)'
     - Norman "zEh" Fuchs
   bugfixed by:
     - hitwork
     - 'Onno Marsman (https://twitter.com/onnomarsman)'
-    - 'Kevin van Zonneveld (http://kvz.io)'
+    - 'Kevin van Zonneveld (https://kvz.io)'
     - kirilloid
-    - 'w35l3y (http://www.wesley.eti.br)'
+    - 'w35l3y (https://www.wesley.eti.br)'
   input by:
     - Aman Gupta
-    - 'Brett Zamir (http://brett-zamir.me)'
+    - 'Brett Zamir (https://brett-zamir.me)'
 notes: []
 type: function
 layout: function
 title: PHP's utf8_decode in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.utf8-decode.php">PHP's utf8_decode</a>
+  href="https://php.net/manual/en/function.utf8-decode.php">PHP's utf8_decode</a>
   looks like.
 function: utf8_decode
 category: xml
@@ -40,17 +40,17 @@ alias:
   - /functions/utf8_decode/
 ---
 {% codeblock lang:javascript %}module.exports = function utf8_decode (strData) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/utf8_decode/
-  // original by: Webtoolkit.info (http://www.webtoolkit.info/)
+  //  discuss at: https://locutus.io/php/utf8_decode/
+  // original by: Webtoolkit.info (https://www.webtoolkit.info/)
   //    input by: Aman Gupta
-  //    input by: Brett Zamir (http://brett-zamir.me)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
+  //    input by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Norman "zEh" Fuchs
   // bugfixed by: hitwork
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: kirilloid
-  // bugfixed by: w35l3y (http://www.wesley.eti.br)
+  // bugfixed by: w35l3y (https://www.wesley.eti.br)
   //   example 1: utf8_decode('Kevin van Zonneveld')
   //   returns 1: 'Kevin van Zonneveld'
 
@@ -65,7 +65,7 @@ alias:
     c1 = strData.charCodeAt(i) & 0xFF
     seqlen = 0
 
-    // http://en.wikipedia.org/wiki/UTF-8#Codepage_layout
+    // https://en.wikipedia.org/wiki/UTF-8#Codepage_layout
     if (c1 <= 0xBF) {
       c1 = (c1 & 0x7F)
       seqlen = 1

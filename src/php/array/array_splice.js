@@ -1,6 +1,6 @@
 module.exports = function array_splice (arr, offst, lgth, replacement) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_splice/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/array_splice/
+  // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: Theriault (https://github.com/Theriault)
   //      note 1: Order does get shifted in associative array input with numeric indices,
   //      note 1: since PHP behavior doesn't preserve keys, but I understand order is

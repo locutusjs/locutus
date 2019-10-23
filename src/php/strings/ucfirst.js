@@ -1,8 +1,8 @@
 module.exports = function ucfirst (str) {
-  //  discuss at: http://locutus.io/php/ucfirst/
-  // original by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/ucfirst/
+  // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: ucfirst('kevin van zonneveld')
   //   returns 1: 'Kevin van zonneveld'
 

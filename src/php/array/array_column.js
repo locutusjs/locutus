@@ -1,5 +1,5 @@
 module.exports = function array_column (input, ColumnKey, IndexKey = null) { // eslint-disable-line camelcase
-  //   discuss at: http://locutus.io/php/array_column/
+  //   discuss at: https://locutus.io/php/array_column/
   //   original by: Enzo Dañobeytía
   //   example 1: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], 'name')
   //   returns 1: {0: "Alex", 1: "Elvis", 2: "Michael"}

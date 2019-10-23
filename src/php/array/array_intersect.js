@@ -1,6 +1,6 @@
 module.exports = function array_intersect (arr1) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_intersect/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/array_intersect/
+  // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: These only output associative arrays (would need to be
   //      note 1: all numeric and counting from zero to be numeric)
   //   example 1: var $array1 = {'a' : 'green', 0:'red', 1: 'blue'}

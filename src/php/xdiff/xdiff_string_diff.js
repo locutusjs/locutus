@@ -1,16 +1,16 @@
 module.exports = function xdiff_string_diff (oldData, newData, contextLines, minimal) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/xdiff_string_diff
-  // original by: Brett Zamir (http://brett-zamir.me)
-  //    based on: Imgen Tata (http://www.myipdf.com/)
-  // bugfixed by: Imgen Tata (http://www.myipdf.com/)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/xdiff_string_diff
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //    based on: Imgen Tata (https://www.myipdf.com/)
+  // bugfixed by: Imgen Tata (https://www.myipdf.com/)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //      note 1: The minimal argument is not currently supported
   //   example 1: xdiff_string_diff('', 'Hello world!')
   //   returns 1: '@@ -0,0 +1,1 @@\n+Hello world!'
 
   // (This code was done by Imgen Tata; I have only reformatted for use in Locutus)
 
-  // See http://en.wikipedia.org/wiki/Diff#Unified_format
+  // See https://en.wikipedia.org/wiki/Diff#Unified_format
   var i = 0
   var j = 0
   var k = 0
@@ -184,7 +184,7 @@ module.exports = function xdiff_string_diff (oldData, newData, contextLines, min
 
   /**
    * Finds longest common sequence between two sequences
-   * @see {@link http://wordaligned.org/articles/longest-common-subsequence}
+   * @see {@link https://wordaligned.org/articles/longest-common-subsequence}
    */
   var _findLongestCommonSequence = function (seq1, seq2, seq1IsInLcs, seq2IsInLcs) {
     if (!_areTypeOf(Array, seq1, seq2)) {

@@ -1,30 +1,30 @@
 module.exports = function strip_tags (input, allowed) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/strip_tags/
-  // original by: Kevin van Zonneveld (http://kvz.io)
+  //  discuss at: https://locutus.io/php/strip_tags/
+  // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Luke Godfrey
-  // improved by: Kevin van Zonneveld (http://kvz.io)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
   //    input by: Pul
   //    input by: Alex
   //    input by: Marc Palau
-  //    input by: Brett Zamir (http://brett-zamir.me)
+  //    input by: Brett Zamir (https://brett-zamir.me)
   //    input by: Bobby Drake
   //    input by: Evertjan Garretsen
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Eric Nagel
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Tomasz Wesolowski
   // bugfixed by: Tymon Sturgeon (https://scryptonite.com)
   // bugfixed by: Tim de Koning (https://www.kingsquare.nl)
-  //  revised by: Rafał Kukawski (http://blog.kukawski.pl)
+  //  revised by: Rafał Kukawski (https://blog.kukawski.pl)
   //   example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i><b>')
   //   returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
   //   example 2: strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>', '<p>')
   //   returns 2: '<p>Kevin van Zonneveld</p>'
-  //   example 3: strip_tags("<a href='http://kvz.io'>Kevin van Zonneveld</a>", "<a>")
-  //   returns 3: "<a href='http://kvz.io'>Kevin van Zonneveld</a>"
+  //   example 3: strip_tags("<a href='https://kvz.io'>Kevin van Zonneveld</a>", "<a>")
+  //   returns 3: "<a href='https://kvz.io'>Kevin van Zonneveld</a>"
   //   example 4: strip_tags('1 < 5 5 > 1')
   //   returns 4: '1 < 5 5 > 1'
   //   example 5: strip_tags('1 <br/> 1')

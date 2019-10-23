@@ -1,10 +1,10 @@
 module.exports = function trim (str, charlist) {
-  //  discuss at: http://locutus.io/php/trim/
-  // original by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: mdsjack (http://www.mdsjack.bo.it)
-  // improved by: Alexander Ermolaev (http://snippets.dzone.com/user/AlexanderErmolaev)
-  // improved by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: Steven Levithan (http://blog.stevenlevithan.com)
+  //  discuss at: https://locutus.io/php/trim/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: mdsjack (https://www.mdsjack.bo.it)
+  // improved by: Alexander Ermolaev (https://snippets.dzone.com/user/AlexanderErmolaev)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Steven Levithan (https://blog.stevenlevithan.com)
   // improved by: Jack
   //    input by: Erkekjetter
   //    input by: DxGx

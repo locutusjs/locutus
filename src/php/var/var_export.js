@@ -1,12 +1,12 @@
 module.exports = function var_export (mixedExpression, boolReturn) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/var_export/
+  //  discuss at: https://locutus.io/php/var_export/
   // original by: Philip Peterson
   // improved by: johnrembo
-  // improved by: Brett Zamir (http://brett-zamir.me)
-  //    input by: Brian Tafoya (http://www.premasolutions.com/)
-  //    input by: Hans Henrik (http://hanshenrik.tk/)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //    input by: Brian Tafoya (https://www.premasolutions.com/)
+  //    input by: Hans Henrik (https://hanshenrik.tk/)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var_export(null)
   //   returns 1: null
   //   example 2: var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true)

@@ -1,11 +1,11 @@
 module.exports = function count (mixedVar, mode) {
-  //  discuss at: http://locutus.io/php/count/
-  // original by: Kevin van Zonneveld (http://kvz.io)
-  //    input by: Waldo Malqui Silva (http://waldo.malqui.info)
+  //  discuss at: https://locutus.io/php/count/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  //    input by: Waldo Malqui Silva (https://waldo.malqui.info)
   //    input by: merabi
   // bugfixed by: Soren Hansen
-  // bugfixed by: Olivier Louvignes (http://mg-crea.com/)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  // bugfixed by: Olivier Louvignes (https://mg-crea.com/)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: count([[0,0],[0,-4]], 'COUNT_RECURSIVE')
   //   returns 1: 6
   //   example 2: count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE')

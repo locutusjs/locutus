@@ -1,9 +1,9 @@
 module.exports = function abs (mixedNumber) {
-  //  discuss at: http://locutus.io/php/abs/
-  // original by: Waldo Malqui Silva (http://waldo.malqui.info)
+  //  discuss at: https://locutus.io/php/abs/
+  // original by: Waldo Malqui Silva (https://waldo.malqui.info)
   // improved by: Karol Kowalski
-  // improved by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   //   example 1: abs(4.2)
   //   returns 1: 4.2
   //   example 2: abs(-4.2)

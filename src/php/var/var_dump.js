@@ -1,8 +1,8 @@
 module.exports = function var_dump () { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/var_dump/
-  // original by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/var_dump/
+  // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Zahlii
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //      note 1: For returning a string, use var_export() with the second argument set to true
   //        test: skip-all
   //   example 1: var_dump(1)
@@ -65,7 +65,7 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
       switch (val.nodeType) {
         case 1:
           if (typeof val.namespaceURI === 'undefined' ||
-            val.namespaceURI === 'http://www.w3.org/1999/xhtml') {
+            val.namespaceURI === 'https://www.w3.org/1999/xhtml') {
           // Undefined namespace could be plain XML, but namespaceURI not widely supported
             ret = 'HTMLElement("' + val.nodeName + '")'
           } else {

@@ -13,9 +13,9 @@ for reasons outlined in the introductory post: [Coding Style](/blog/2013/05/codi
 The reasoning behind adopting such a widely supported coding style, has not changed. Locutus should be
 focused on its added value, and less so arguing about, and inventing custom conventions around coding style.
 
-What has changed a great deal though, is the JavaScript landscape. A large part of the community is gathering behind [Feross Aboukhadijeh's JavaScript Standard Style](http://standardjs.com/) and [ESLint](http://eslint.org/).
+What has changed a great deal though, is the JavaScript landscape. A large part of the community is gathering behind [Feross Aboukhadijeh's JavaScript Standard Style](https://standardjs.com/) and [ESLint](https://eslint.org/).
 
-Standard offers sensible defaults (no semicolons might take some getting used to but it's really [ok](http://mislav.net/2010/05/semicolons/) and after two weeks you won't look back). ESLint offers powerful ways to enforce the standard.
+Standard offers sensible defaults (no semicolons might take some getting used to but it's really [ok](https://mislav.net/2010/05/semicolons/) and after two weeks you won't look back). ESLint offers powerful ways to enforce the standard.
 
 ESLint for instance, offers a `--fix` command-line argument flag, that converts non-conforming codebases to whichever coding style convention was selected.
 
@@ -28,4 +28,4 @@ Locutus does few naughty tricks to bend the laws of physics and overcome a few o
 
 Best wishes,
 
-[Kevin](http://twitter.com/kvz)
+[Kevin](https://twitter.com/kvz)

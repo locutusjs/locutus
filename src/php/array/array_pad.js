@@ -1,6 +1,6 @@
 module.exports = function array_pad (input, padSize, padValue) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_pad/
-  // original by: Waldo Malqui Silva (http://waldo.malqui.info)
+  //  discuss at: https://locutus.io/php/array_pad/
+  // original by: Waldo Malqui Silva (https://waldo.malqui.info)
   //   example 1: array_pad([ 7, 8, 9 ], 2, 'a')
   //   returns 1: [ 7, 8, 9]
   //   example 2: array_pad([ 7, 8, 9 ], 5, 'a')

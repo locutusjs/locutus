@@ -1,8 +1,8 @@
 module.exports = function printf () {
-  //  discuss at: http://locutus.io/php/printf/
-  // original by: Ash Searle (http://hexmen.com/blog/)
-  // improved by: Michael White (http://getsprink.com)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/printf/
+  // original by: Ash Searle (https://hexmen.com/blog/)
+  // improved by: Michael White (https://getsprink.com)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: printf("%01.2f", 123.1)
   //   returns 1: 6
 

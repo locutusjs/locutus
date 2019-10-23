@@ -1,8 +1,8 @@
 module.exports = function array_merge_recursive (arr1, arr2) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_merge_recursive/
+  //  discuss at: https://locutus.io/php/array_merge_recursive/
   // original by: Subhasis Deb
-  //    input by: Brett Zamir (http://brett-zamir.me)
-  // bugfixed by: Kevin van Zonneveld (http://kvz.io)
+  //    input by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
   //   example 1: var $arr1 = {'color': {'favorite': 'red'}, 0: 5}
   //   example 1: var $arr2 = {0: 10, 'color': {'favorite': 'green', 0: 'blue'}}
   //   example 1: array_merge_recursive($arr1, $arr2)

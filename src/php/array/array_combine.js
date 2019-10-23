@@ -1,7 +1,7 @@
 module.exports = function array_combine (keys, values) { // eslint-disable-line camelcase
-  //  discuss at: http://locutus.io/php/array_combine/
-  // original by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  //  discuss at: https://locutus.io/php/array_combine/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: array_combine([0,1,2], ['kevin','van','zonneveld'])
   //   returns 1: {0: 'kevin', 1: 'van', 2: 'zonneveld'}
 

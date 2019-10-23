@@ -22,9 +22,9 @@ authors:
   original by:
     - Paulo Freitas
   improved by:
-    - 'Kevin van Zonneveld (http://kvz.io)'
-    - 'Douglas Crockford (http://javascript.crockford.com)'
-    - 'Brett Zamir (http://brett-zamir.me)'
+    - 'Kevin van Zonneveld (https://kvz.io)'
+    - 'Douglas Crockford (https://javascript.crockford.com)'
+    - 'Brett Zamir (https://brett-zamir.me)'
   input by:
     - KELAN
 notes:
@@ -36,7 +36,7 @@ layout: function
 title: PHP's gettype in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="http://php.net/manual/en/function.gettype.php">PHP's gettype</a> looks
+  href="https://php.net/manual/en/function.gettype.php">PHP's gettype</a> looks
   like.
 function: gettype
 category: var
@@ -49,11 +49,11 @@ alias:
   - /functions/gettype/
 ---
 {% codeblock lang:javascript %}module.exports = function gettype (mixedVar) {
-  //  discuss at: http://locutus.io/php/gettype/
+  //  discuss at: https://locutus.io/php/gettype/
   // original by: Paulo Freitas
-  // improved by: Kevin van Zonneveld (http://kvz.io)
-  // improved by: Douglas Crockford (http://javascript.crockford.com)
-  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Douglas Crockford (https://javascript.crockford.com)
+  // improved by: Brett Zamir (https://brett-zamir.me)
   //    input by: KELAN
   //      note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
   //      note 1: it different from the PHP implementation. We can't fix this unfortunately.
@@ -86,7 +86,7 @@ alias:
 
   if (s === 'object') {
     if (mixedVar !== null) {
-      // From: http://javascript.crockford.com/remedial.html
+      // From: https://javascript.crockford.com/remedial.html
       // @todo: Break up this lengthy if statement
       if (typeof mixedVar.length === 'number' &&
         !(mixedVar.propertyIsEnumerable('length')) &&
