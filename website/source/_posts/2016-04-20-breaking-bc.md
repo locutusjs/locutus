@@ -4,7 +4,7 @@ title: "Breaking Backwards Compatibility"
 comments: true
 tags: [ future ]
 alias: /blog/2016/04/20/breaking-bc/
-thumbnail: http://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg
+thumbnail: https://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg
 ---
 
 Hi all,
