@@ -100,10 +100,7 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
           return isFinite(value) ? String(value) : 'null'
 
         case 'boolean':
-        case 'null':
-          // If the value is a boolean or null, convert it to a string. Note:
-          // typeof null does not produce 'null'. The case is included here in
-          // the remote chance that this gets fixed someday.
+          // If the value is a boolean or null, convert it to a string.
           return String(value)
 
         case 'object':
