@@ -29,9 +29,10 @@ module.exports = function settype (vr, type) {
         } else if (v === '0') {
           this[vr] = false
         } else if (typeof v === 'object' && !isArray(v)) {
-          var lgth = false
-          for (i in v) {
+          var _, lgth = false
+          for (_ in v) {
             lgth = true
+            break;
           }
           this[vr] = lgth
         } else {
