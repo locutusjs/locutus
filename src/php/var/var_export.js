@@ -7,6 +7,7 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
   //    input by: Hans Henrik (https://hanshenrik.tk/)
   // bugfixed by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: simivar (https://github.com/simivar)
   //   example 1: var_export(null)
   //   returns 1: null
   //   example 2: var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true)
@@ -37,10 +38,10 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
     }
     return name[1]
   }
-  
+
   var _isNormalInteger = function (string) {
-    var number = Math.floor(Number(string));
-    return number !== Infinity && String(number) === string && number >= 0;
+    var number = Math.floor(Number(string))
+    return number !== Infinity && String(number) === string && number >= 0
   }
 
   var _makeIndent = function (idtLevel) {
