@@ -14,6 +14,8 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
   //   example 3: var data = 'Kevin'
   //   example 3: var_export(data, true)
   //   returns 3: "'Kevin'"
+  //   example 4: var_export({0: 'Kevin', 1: 'van', 'lastName': 'Zonneveld'}, true)
+  //   returns 4: "array (\n  0 => 'Kevin',\n  1 => 'van',\n  'lastName' => 'Zonneveld'\n)"
 
   var echo = require('../strings/echo')
   var retstr = ''
@@ -34,6 +36,11 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
       return '(Anonymous)'
     }
     return name[1]
+  }
+  
+  var _isNormalInteger = function (string) {
+    var number = Math.floor(Number(string));
+    return number !== Infinity && String(number) === string && number >= 0;
   }
 
   var _makeIndent = function (idtLevel) {
@@ -87,6 +94,7 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
       value = var_export(mixedExpression[i], 1, idtLevel + 2)
       value = typeof value === 'string' ? value.replace(/</g, '&lt;')
         .replace(/>/g, '&gt;') : value
+      i = _isNormalInteger(i) ? i : `'${i}'`
       x[cnt++] = innerIndent + i + ' => ' +
         (__getType(mixedExpression[i]) === 'array' ? '\n' : '') + value
     }
