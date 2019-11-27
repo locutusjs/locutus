@@ -8,6 +8,7 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
   // bugfixed by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: simivar (https://github.com/simivar)
+  // bugfixed by: simivar (https://github.com/simivar)
   //   example 1: var_export(null)
   //   returns 1: null
   //   example 2: var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true)
@@ -17,6 +18,8 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
   //   returns 3: "'Kevin'"
   //   example 4: var_export({0: 'Kevin', 1: 'van', 'lastName': 'Zonneveld'}, true)
   //   returns 4: "array (\n  0 => 'Kevin',\n  1 => 'van',\n  'lastName' => 'Zonneveld'\n)"
+  //   example 5: var_export([], true)
+  //   returns 5: "array (\n)"
 
   var echo = require('../strings/echo')
   var retstr = ''
@@ -99,8 +102,10 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
       x[cnt++] = innerIndent + i + ' => ' +
         (__getType(mixedExpression[i]) === 'array' ? '\n' : '') + value
     }
-    iret = x.join(',\n')
-    retstr = outerIndent + 'array (\n' + iret + '\n' + outerIndent + ')'
+    if (x.length > 0) {
+      iret = x.join(',\n') + '\n'
+    }
+    retstr = outerIndent + 'array (\n' + iret + outerIndent + ')'
   } else if (type === 'function') {
     funcParts = mixedExpression.toString().match(/function .*?\((.*?)\) \{([\s\S]*)\}/)
 
