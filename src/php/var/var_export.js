@@ -96,8 +96,6 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
     innerIndent = _makeIndent(idtLevel)
     for (i in mixedExpression) {
       value = var_export(mixedExpression[i], 1, idtLevel + 2)
-      value = typeof value === 'string' ? value.replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;') : value
       i = _isNormalInteger(i) ? i : `'${i}'`
       x[cnt++] = innerIndent + i + ' => ' +
         (__getType(mixedExpression[i]) === 'array' ? '\n' : '') + value
