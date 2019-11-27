@@ -100,7 +100,7 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
     for (i in mixedExpression) {
       value = ''
       if (__getType(mixedExpression[i]) === 'array') {
-          value = '\n'
+        value = '\n'
       }
       value += var_export(mixedExpression[i], 1, idtLevel + 2)
       value = typeof value === 'string' ? value.replace(/</g, '&lt;')
