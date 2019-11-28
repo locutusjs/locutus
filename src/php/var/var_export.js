@@ -98,14 +98,14 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
     outerIndent = _makeIndent(idtLevel - 2)
     innerIndent = _makeIndent(idtLevel)
     for (i in mixedExpression) {
-      value = ''
+      value = ' '
       var subtype = __getType(mixedExpression[i])
       if (subtype === 'array' || subtype === 'object') {
         value = '\n'
       }
       value += var_export(mixedExpression[i], 1, idtLevel + 2)
       i = _isNormalInteger(i) ? i : `'${i}'`
-      x[cnt++] = innerIndent + i + ' => ' + value
+      x[cnt++] = innerIndent + i + ' =>' + value
     }
     if (x.length > 0) {
       iret = x.join(',\n') + '\n'
