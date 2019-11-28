@@ -99,7 +99,8 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
     innerIndent = _makeIndent(idtLevel)
     for (i in mixedExpression) {
       value = ''
-      if (__getType(mixedExpression[i]) === 'array') {
+      var subtype = __getType(mixedExpression[i])
+      if (subtype === 'array' || subtype === 'object') {
         value = '\n'
       }
       value += var_export(mixedExpression[i], 1, idtLevel + 2)
