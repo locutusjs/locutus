@@ -103,7 +103,7 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
       if (subtype === 'array' || subtype === 'object') {
         value = '\n'
       }
-      value = var_export(mixedExpression[i], 1, idtLevel + 2)
+      value += var_export(mixedExpression[i], 1, idtLevel + 2)
       i = _isNormalInteger(i) ? i : `'${i}'`
       x[cnt++] = innerIndent + i + ' => ' + value
     }
