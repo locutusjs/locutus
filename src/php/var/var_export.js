@@ -9,6 +9,7 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
   // bugfixed by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: simivar (https://github.com/simivar)
   // bugfixed by: simivar (https://github.com/simivar)
+  // bugfixed by: simivar (https://github.com/simivar)
   //   example 1: var_export(null)
   //   returns 1: null
   //   example 2: var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true)
@@ -20,6 +21,8 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
   //   returns 4: "array (\n  0 => 'Kevin',\n  1 => 'van',\n  'lastName' => 'Zonneveld'\n)"
   //   example 5: var_export([], true)
   //   returns 5: "array (\n)"
+  //   example 6: var_export({ test: [ 'a', 'b' ] }, true)
+  //   returns 6: "array (\n  'test' =>\n  array (\n    0 => 'a',\n    1 => 'b'\n  )\n)"
 
   var echo = require('../strings/echo')
   var retstr = ''
@@ -95,10 +98,14 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
     outerIndent = _makeIndent(idtLevel - 2)
     innerIndent = _makeIndent(idtLevel)
     for (i in mixedExpression) {
-      value = var_export(mixedExpression[i], 1, idtLevel + 2)
+      value = ' '
+      var subtype = __getType(mixedExpression[i])
+      if (subtype === 'array' || subtype === 'object') {
+        value = '\n'
+      }
+      value += var_export(mixedExpression[i], 1, idtLevel + 2)
       i = _isNormalInteger(i) ? i : `'${i}'`
-      x[cnt++] = innerIndent + i + ' => ' +
-        (__getType(mixedExpression[i]) === 'array' ? '\n' : '') + value
+      x[cnt++] = innerIndent + i + ' =>' + value
     }
     if (x.length > 0) {
       iret = x.join(',\n') + '\n'
