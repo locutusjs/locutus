@@ -25,4 +25,16 @@ describe('src/php/var/unserialize.js (tested in test/languages/php/var/test-unse
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 4', function (done) {
+    var expected = false
+    var result = unserialize(undefined)
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 5', function (done) {
+    var expected = { foo: true }
+    var result = unserialize('O:8:"stdClass":1:{s:3:"foo";b:1;}')
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })
