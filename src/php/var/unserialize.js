@@ -18,6 +18,7 @@ module.exports = function unserialize (data) {
   //    input by: kilops
   //    input by: Jaroslaw Czarniak
   //    input by: lovasoa (https://github.com/lovasoa/)
+  // bugfixed by: Rafał Kukawski
   //      note 1: We feel the main purpose of this function should be
   //      note 1: to ease the transport of data between php & js
   //      note 1: Aiming for PHP-compatibility, we have to translate objects to arrays
@@ -27,6 +28,8 @@ module.exports = function unserialize (data) {
   //   returns 2: {firstName: 'Kevin', midName: 'van'}
   //   example 3: unserialize('a:3:{s:2:"ü";s:2:"ü";s:3:"四";s:3:"四";s:4:"𠜎";s:4:"𠜎";}')
   //   returns 3: {'ü': 'ü', '四': '四', '𠜎': '𠜎'}
+  //   example 4: unserialize(undefined)
+  //   returns 4: false
 
   var $global = (typeof window !== 'undefined' ? window : global)
 
@@ -198,5 +201,5 @@ module.exports = function unserialize (data) {
     return [dtype, dataoffset - offset, typeconvert(readdata)]
   }
 
-  return _unserialize((data + ''), 0)[2]
+  return typeof data === 'string' ? _unserialize((data + ''), 0)[2] : false
 }
