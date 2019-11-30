@@ -18,7 +18,7 @@ module.exports = function unserialize (data) {
   //    input by: kilops
   //    input by: Jaroslaw Czarniak
   //    input by: lovasoa (https://github.com/lovasoa/)
-  // bugfixed by: Rafał Kukawski
+  // improved by: Rafał Kukawski
   //      note 1: We feel the main purpose of this function should be
   //      note 1: to ease the transport of data between php & js
   //      note 1: Aiming for PHP-compatibility, we have to translate objects to arrays
@@ -30,8 +30,8 @@ module.exports = function unserialize (data) {
   //   returns 3: {'ü': 'ü', '四': '四', '𠜎': '𠜎'}
   //   example 4: unserialize(undefined)
   //   returns 4: false
-
-  var $global = (typeof window !== 'undefined' ? window : global)
+  //   example 5: unserialize('O:8:"stdClass":1:{s:3:"foo";b:1;}')
+  //   returns 5: { foo: true }
 
   var utf8Overhead = function (str) {
     var s = str.length
@@ -49,10 +49,6 @@ module.exports = function unserialize (data) {
     }
     return s - 1
   }
-  var error = function (type,
-    msg, filename, line) {
-    throw new $global[type](msg, filename, line)
-  }
   var readUntil = function (data, offset, stopchr) {
     var i = 2
     var buf = []
@@ -60,7 +56,7 @@ module.exports = function unserialize (data) {
 
     while (chr !== stopchr) {
       if ((i + offset) > data.length) {
-        error('Error', 'Invalid')
+        throw Error('Invalid')
       }
       buf.push(chr)
       chr = data.slice(offset + (i - 1), offset + i)
@@ -87,6 +83,7 @@ module.exports = function unserialize (data) {
     var contig
     var length
     var array
+    var obj
     var readdata
     var readData
     var ccount
@@ -106,7 +103,7 @@ module.exports = function unserialize (data) {
     if (!offset) {
       offset = 0
     }
-    dtype = (data.slice(offset, offset + 1)).toLowerCase()
+    dtype = (data.slice(offset, offset + 1))
 
     dataoffset = offset + 2
 
@@ -122,7 +119,16 @@ module.exports = function unserialize (data) {
         break
       case 'b':
         typeconvert = function (x) {
-          return parseInt(x, 10) !== 0
+          const value = parseInt(x, 10)
+
+          switch (value) {
+            case 0:
+              return false
+            case 1:
+              return true
+            default:
+              throw SyntaxError('Invalid boolean value')
+          }
         }
         readData = readUntil(data, dataoffset, ';')
         chrs = readData[0]
@@ -152,7 +158,7 @@ module.exports = function unserialize (data) {
         readdata = readData[1]
         dataoffset += chrs + 2
         if (chrs !== parseInt(stringlength, 10) && chrs !== readdata.length) {
-          error('SyntaxError', 'String length mismatch')
+          throw SyntaxError('String length mismatch')
         }
         break
       case 'a':
@@ -194,12 +200,52 @@ module.exports = function unserialize (data) {
 
         dataoffset += 1
         break
-      default:
-        error('SyntaxError', 'Unknown / Unhandled data type(s): ' + dtype)
+      case 'O': {
+        // O:<class name length>:"class name":<prop count>:{<props and values>}
+        // O:8:"stdClass":2:{s:3:"foo";s:3:"bar";s:3:"bar";s:3:"baz";}
+        readData = readUntil(data, dataoffset, ':') // read class name length
+        dataoffset += readData[0] + 1
+        readData = readUntil(data, dataoffset, ':')
+
+        if (readData[1] !== '"stdClass"') {
+          throw Error('Unsupported object type: ' + readData[1])
+        }
+
+        dataoffset += readData[0] + 1 // skip ":"
+        readData = readUntil(data, dataoffset, ':')
+        keys = parseInt(readData[1], 10)
+
+        dataoffset += readData[0] + 2 // skip ":{"
+        obj = {}
+
+        for (i = 0; i < keys; i++) {
+          readData = _unserialize(data, dataoffset)
+          key = readData[2]
+          dataoffset += readData[1]
+
+          readData = _unserialize(data, dataoffset)
+          dataoffset += readData[1]
+          obj[key] = readData[2]
+        }
+
+        dataoffset += 1 // skip "}"
+        readdata = obj
         break
+      }
+      default:
+        throw SyntaxError('Unknown / Unhandled data type(s): ' + dtype)
     }
     return [dtype, dataoffset - offset, typeconvert(readdata)]
   }
 
-  return typeof data === 'string' ? _unserialize((data + ''), 0)[2] : false
+  try {
+    if (typeof data !== 'string') {
+      return false
+    }
+
+    return _unserialize(data, 0)[2]
+  } catch (err) {
+    console.error(err)
+    return false
+  }
 }
