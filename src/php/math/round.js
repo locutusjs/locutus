@@ -1,4 +1,17 @@
-module.exports = function round (value, precision, mode) {
+function roundToInt (value, mode) {
+  var tmp = Math.floor(Math.abs(value) + 0.5)
+
+  if (
+    (mode === 'PHP_ROUND_HALF_DOWN' && value === (tmp - 0.5)) ||
+      (mode === 'PHP_ROUND_HALF_EVEN' && value === (0.5 + 2 * Math.floor(tmp / 2))) ||
+      (mode === 'PHP_ROUND_HALF_ODD' && value === (0.5 + 2 * Math.floor(tmp / 2) - 1))) {
+    tmp -= 1
+  }
+
+  return value < 0 ? -tmp : tmp
+}
+
+module.exports = function round (value, precision = 0, mode = 'PHP_ROUND_HALF_UP') {
   //  discuss at: https://locutus.io/php/round/
   // original by: Philip Peterson
   //  revised by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -9,11 +22,7 @@ module.exports = function round (value, precision, mode) {
   //    input by: William
   //    input by: Josep Sanz (https://www.ws3.es/)
   // bugfixed by: Brett Zamir (https://brett-zamir.me)
-  //      note 1: Great work. Ideas for improvement:
-  //      note 1: - code more compliant with developer guidelines
-  //      note 1: - for implementing PHP constant arguments look at
-  //      note 1: the pathinfo() function, it offers the greatest
-  //      note 1: flexibility & compatibility possible
+  //  revised by: Rafał Kukawski
   //   example 1: round(1241757, -3)
   //   returns 1: 1242000
   //   example 2: round(3.6)
@@ -24,36 +33,42 @@ module.exports = function round (value, precision, mode) {
   //   returns 4: 1.17
   //   example 5: round(58551.799999999996, 2)
   //   returns 5: 58551.8
+  //   example 6: round(4096.485, 2)
+  //   returns 6: 4096.49
 
-  var m, f, isHalf, sgn // helper variables
-  // making sure precision is integer
-  precision |= 0
-  m = Math.pow(10, precision)
-  value *= m
-  // sign of the number
-  sgn = (value > 0) | -(value < 0)
-  isHalf = value % 1 === 0.5 * sgn
-  f = Math.floor(value)
+  var floatCast = require('../_helpers/_php_cast_float')
+  var intCast = require('../_helpers/_php_cast_int')
+  var p
 
-  if (isHalf) {
-    switch (mode) {
-      case 'PHP_ROUND_HALF_DOWN':
-      // rounds .5 toward zero
-        value = f + (sgn < 0)
-        break
-      case 'PHP_ROUND_HALF_EVEN':
-      // rouds .5 towards the next even integer
-        value = f + (f % 2 * sgn)
-        break
-      case 'PHP_ROUND_HALF_ODD':
-      // rounds .5 towards the next odd integer
-        value = f + !(f % 2)
-        break
-      default:
-      // rounds .5 away from zero
-        value = f + (sgn > 0)
-    }
+  // the code is heavily based on the native PHP implementation
+  // https://github.com/php/php-src/blob/PHP-7.4/ext/standard/math.c#L355
+
+  value = floatCast(value)
+  precision = intCast(precision)
+  p = Math.pow(10, precision)
+
+  if (isNaN(value) || !isFinite(value)) {
+    return value
   }
 
-  return (isHalf ? value : Math.round(value)) / m
+  // if value already integer and positive precision
+  // then nothing to do, return early
+  if (Math.trunc(value) === value && precision >= 0) {
+    return value
+  }
+
+  // PHP does a pre-rounding before rounding to desired precision
+  // https://wiki.php.net/rfc/rounding#pre-rounding_to_the_value_s_precision_if_possible
+  var preRoundPrecision = 14 - Math.floor(Math.log10(Math.abs(value)))
+
+  if (preRoundPrecision > precision && preRoundPrecision - 15 < precision) {
+    value = roundToInt(value * Math.pow(10, preRoundPrecision), mode)
+    value /= Math.pow(10, Math.abs(precision - preRoundPrecision))
+  } else {
+    value *= p
+  }
+
+  value = roundToInt(value, mode)
+
+  return value / p
 }
