@@ -13,16 +13,16 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
   //   example 1: var_export(null)
   //   returns 1: null
   //   example 2: var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true)
-  //   returns 2: "array (\n  0 => 'Kevin',\n  1 => 'van',\n  2 => 'Zonneveld'\n)"
+  //   returns 2: "array (\n  0 => 'Kevin',\n  1 => 'van',\n  2 => 'Zonneveld',\n)"
   //   example 3: var data = 'Kevin'
   //   example 3: var_export(data, true)
   //   returns 3: "'Kevin'"
   //   example 4: var_export({0: 'Kevin', 1: 'van', 'lastName': 'Zonneveld'}, true)
-  //   returns 4: "array (\n  0 => 'Kevin',\n  1 => 'van',\n  'lastName' => 'Zonneveld'\n)"
+  //   returns 4: "array (\n  0 => 'Kevin',\n  1 => 'van',\n  'lastName' => 'Zonneveld',\n)"
   //   example 5: var_export([], true)
   //   returns 5: "array (\n)"
   //   example 6: var_export({ test: [ 'a', 'b' ] }, true)
-  //   returns 6: "array (\n  'test' =>\n  array (\n    0 => 'a',\n    1 => 'b'\n  )\n)"
+  //   returns 6: "array (\n  'test' =>\n  array (\n    0 => 'a',\n    1 => 'b',\n  ),\n)"
 
   var echo = require('../strings/echo')
   var retstr = ''
@@ -108,7 +108,7 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
       x[cnt++] = innerIndent + i + ' =>' + value
     }
     if (x.length > 0) {
-      iret = x.join(',\n') + '\n'
+      iret = x.join(',\n') + ',\n'
     }
     retstr = outerIndent + 'array (\n' + iret + outerIndent + ')'
   } else if (type === 'function') {
