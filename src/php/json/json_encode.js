@@ -130,7 +130,7 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
             v = partial.length === 0 ? '[]' : gap
               ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']'
               : '[' + partial.join(',') + ']'
-            gap = mind
+            // gap = mind // not used
             return v
           }
 
