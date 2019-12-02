@@ -66,7 +66,7 @@ module.exports = function settype (vr, type) {
           if (!mtch) {
             this[vr] = 0
           } else {
-            this[vr] = parseFloat(v, 10)
+            this[vr] = parseFloat(v)
           }
         } else if (v === true) {
           this[vr] = 1
