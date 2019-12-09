@@ -18,6 +18,17 @@ Here are a few pointers that could save us from disappointment, we'll try to kee
 1. If you are fixing bad behavior, or introducing new ones, please add an `example` that would fail before your patch, and a `result` that passes after your patch, to the function's header-comment. We use these for website documentation, as well as to generate test cases that avoid regression going forward. There should already be a few ones there if you want to see how it's done.
 1. If you are contributing performance upgrades, please provide proof via e.g. <https://jsperf.com>
 1. Please keep in mind that some obvious readability improvements are sometimes unwanted for performance reasons. For example, we sometimes place similar `for` loops inside `if` and `else` conditions for performance reasons, even though the code could be half the size if we put the conditions inside a single loop.
+1. If you are adding a new function, please make sure to:
+  - include exactly one export with a named function, `module.exports = function functionName (param1, ...) {`
+    - the file can contain more definitions (helper functions, classes, etc.), but is allowed to have only one export
+  - add header-comments as first thing in function's body. Minimal header-comment should consist of
+  
+  ```js
+  //  discuss at: https://locutus.io/<LANGUAGE>/<FUNCTION NAME>/
+  // original by: <YOUR NAME>
+  //   example 1: <FUNCTION NAME>("foo")
+  //   returns 1: "bar"
+  ```
 
 ## Locutus Development
 
