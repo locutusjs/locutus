@@ -52,11 +52,11 @@ function expectType(str, cache) {
 }
 
 function expectBool(str) {
-	const reBool = /^b:([01]);/;
+  const reBool = /^b:([01]);/;
   const [ match, boolMatch ] = reBool.exec(str) || [];
   
   if (!boolMatch) {
-  	throw SyntaxError('Invalid bool value, expected 0 or 1');
+    throw SyntaxError('Invalid bool value, expected 0 or 1');
   }
   
   return [ boolMatch === '1', match.length ];
@@ -102,11 +102,11 @@ function expectFloat(str) {
 }
 
 function expectString(str) {
-	const reStrLength = /^s:(\d+):/g
+  const reStrLength = /^s:(\d+):/g
   const [ match, strLenMatch ] = reStrLength.exec(str) || [];
   
   if (!strLenMatch) {
-  	throw SyntaxError('Expected string length annotation');
+    throw SyntaxError('Expected string length annotation');
   }
   
   const len = parseInt(strLenMatch, 10);
@@ -123,11 +123,11 @@ function expectString(str) {
 }
 
 function expectEscapedString(str) {
-	const reStrLength = /^S:(\d+):/g
+  const reStrLength = /^S:(\d+):/g
   const [ match, strLenMatch ] = reStrLength.exec(str) || [];
   
   if (!strLenMatch) {
-  	throw SyntaxError('Expected string length annotation');
+    throw SyntaxError('Expected string length annotation');
   }
   
   const len = parseInt(strLenMatch, 10);
@@ -264,7 +264,7 @@ function expectArrayItems(str, expectedItems = 0, cache) {
   return [ items, totalOffset ];
 }
 
-module.exports = function unserialize (data) {
+module.exports = function unserialize (str) {
   //       discuss at: https://locutus.io/php/unserialize/
   //      original by: Arpad Ray (mailto:arpad@php.net)
   //      improved by: Pedro Tainha (https://www.pedrotainha.com)
@@ -303,13 +303,13 @@ module.exports = function unserialize (data) {
   //        returns 6: [null, ""]
 
   try {
-    if (typeof data !== 'string') {
+    if (typeof str !== 'string') {
       return false;
     }
 
-  	return expectType(data, cache())[0];
+    return expectType(str, cache())[0];
   } catch (err) {
     console.error(err);
-  	return false;
+    return false;
   }
 }
