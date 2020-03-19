@@ -30,7 +30,7 @@ module.exports = function substr (str, start, len) {
   str += ''
   var end = str.length
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('unicode.emantics') : undefined) || 'off'
+  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('unicode.semantics') : undefined) || 'off'
 
   if (iniVal === 'off') {
     // assumes there are no non-BMP characters;
