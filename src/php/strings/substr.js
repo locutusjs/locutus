@@ -27,9 +27,12 @@ module.exports = function substr (str, start, len) {
   //   returns 7: '\uD801\uDC00z'
   //        test: skip-3 skip-4 skip-5 skip-6 skip-7
 
-  str += ''
+  var _php_cast_string = require('../_helpers/_phpCastString') // eslint-disable-line camelcase
+
+  str = _php_cast_string(str)
+
   var end = str.length
-  var ini_get = require('../info/ini_get')
+  var ini_get = require('../info/ini_get') // eslint-disable-line camelcase
   var surrogatePair = /[\uD800-\uDBFF][\uDC00-\uDFFF]/
   var multibyte = ini_get('unicode.semantics') === 'on' && surrogatePair.test(str)
 
