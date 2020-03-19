@@ -54,7 +54,7 @@ module.exports = function substr (str, start, len) {
     // PHP returns false if the calculated end comes before the calculated start.
     // PHP returns an empty string if start and end are the same.
     // Otherwise, PHP returns the portion of the string from start to end.
-    if (start >= str.length || start < 0 || start > end) {
+    if (start > str.length || start < 0 || start > end) {
       return false
     }
 
