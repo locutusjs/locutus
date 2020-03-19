@@ -29,10 +29,11 @@ module.exports = function substr (str, start, len) {
 
   str += ''
   var end = str.length
+  var ini_get = require('../info/ini_get')
+  var surrogatePair = /[\uD800-\uDBFF][\uDC00-\uDFFF]/
+  var multibyte = ini_get('unicode.semantics') === 'on' && surrogatePair.test(str)
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('unicode.semantics') : undefined) || 'off'
-
-  if (iniVal === 'off') {
+  if (!multibyte) {
     // assumes there are no non-BMP characters;
     // if there may be such characters, then it is best to turn it on (critical in true XHTML/XML)
     if (start < 0) {
@@ -59,63 +60,53 @@ module.exports = function substr (str, start, len) {
 
   // Full-blown Unicode including non-Basic-Multilingual-Plane characters
   var i = 0
-  var allBMP = true
   var es = 0
   var el = 0
   var se = 0
   var ret = ''
 
-  for (i = 0; i < str.length; i++) {
-    if (/[\uD800-\uDBFF]/.test(str.charAt(i)) && /[\uDC00-\uDFFF]/.test(str.charAt(i + 1))) {
-      allBMP = false
-      break
+  if (start < 0) {
+    for (i = end - 1, es = (start += end); i >= es; i--) {
+      if (/[\uDC00-\uDFFF]/.test(str.charAt(i)) && /[\uD800-\uDBFF]/.test(str.charAt(i - 1))) {
+        start--
+        es--
+      }
+    }
+  } else {
+    var surrogatePairs = RegExp(surrogatePair.source, 'g')
+    while ((surrogatePairs.exec(str)) !== null) {
+      var li = surrogatePairs.lastIndex
+      if (li - 2 < start) {
+        start++
+      } else {
+        break
+      }
     }
   }
 
-  if (!allBMP) {
-    if (start < 0) {
-      for (i = end - 1, es = (start += end); i >= es; i--) {
-        if (/[\uDC00-\uDFFF]/.test(str.charAt(i)) && /[\uD800-\uDBFF]/.test(str.charAt(i - 1))) {
-          start--
-          es--
-        }
-      }
-    } else {
-      var surrogatePairs = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g
-      while ((surrogatePairs.exec(str)) !== null) {
-        var li = surrogatePairs.lastIndex
-        if (li - 2 < start) {
-          start++
-        } else {
-          break
-        }
+  if (start >= end || start < 0) {
+    return false
+  }
+  if (len < 0) {
+    for (i = end - 1, el = (end += len); i >= el; i--) {
+      if (/[\uDC00-\uDFFF]/.test(str.charAt(i)) && /[\uD800-\uDBFF]/.test(str.charAt(i - 1))) {
+        end--
+        el--
       }
     }
-
-    if (start >= end || start < 0) {
+    if (start > end) {
       return false
     }
-    if (len < 0) {
-      for (i = end - 1, el = (end += len); i >= el; i--) {
-        if (/[\uDC00-\uDFFF]/.test(str.charAt(i)) && /[\uD800-\uDBFF]/.test(str.charAt(i - 1))) {
-          end--
-          el--
-        }
+    return str.slice(start, end)
+  } else {
+    se = start + len
+    for (i = start; i < se; i++) {
+      ret += str.charAt(i)
+      if (/[\uD800-\uDBFF]/.test(str.charAt(i)) && /[\uDC00-\uDFFF]/.test(str.charAt(i + 1))) {
+        // Go one further, since one of the "characters" is part of a surrogate pair
+        se++
       }
-      if (start > end) {
-        return false
-      }
-      return str.slice(start, end)
-    } else {
-      se = start + len
-      for (i = start; i < se; i++) {
-        ret += str.charAt(i)
-        if (/[\uD800-\uDBFF]/.test(str.charAt(i)) && /[\uDC00-\uDFFF]/.test(str.charAt(i + 1))) {
-          // Go one further, since one of the "characters" is part of a surrogate pair
-          se++
-        }
-      }
-      return ret
     }
+    return ret
   }
 }
