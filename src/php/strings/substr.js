@@ -1,10 +1,11 @@
-module.exports = function substr (str, start, len) {
+module.exports = function substr (input, start, len) {
   //  discuss at: https://locutus.io/php/substr/
   // original by: Martijn Wieringa
   // bugfixed by: T.Wild
   // improved by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Brett Zamir (https://brett-zamir.me)
   //  revised by: Theriault (https://github.com/Theriault)
+  //  revised by: Rafał Kukawski
   //      note 1: Handles rare Unicode characters if 'unicode.semantics' ini (PHP6) is set to 'on'
   //   example 1: substr('abcdef', 0, -1)
   //   returns 1: 'abcde'
@@ -29,87 +30,37 @@ module.exports = function substr (str, start, len) {
 
   var _php_cast_string = require('../_helpers/_phpCastString') // eslint-disable-line camelcase
 
-  str = _php_cast_string(str)
+  input = _php_cast_string(input)
 
-  var end = str.length
   var ini_get = require('../info/ini_get') // eslint-disable-line camelcase
-  var surrogatePair = /[\uD800-\uDBFF][\uDC00-\uDFFF]/
-  var multibyte = ini_get('unicode.semantics') === 'on' && surrogatePair.test(str)
+  var multibyte = ini_get('unicode.semantics') === 'on'
 
-  if (!multibyte) {
-    // assumes there are no non-BMP characters;
-    // if there may be such characters, then it is best to turn it on (critical in true XHTML/XML)
-    if (start < 0) {
-      start += end
-    }
-    if (typeof len !== 'undefined') {
-      if (len < 0) {
-        end = len + end
-      } else {
-        end = len + start
-      }
-    }
-
-    // PHP returns false if start does not fall within the string.
-    // PHP returns false if the calculated end comes before the calculated start.
-    // PHP returns an empty string if start and end are the same.
-    // Otherwise, PHP returns the portion of the string from start to end.
-    if (start > str.length || start < 0 || start > end) {
-      return false
-    }
-
-    return str.slice(start, end)
+  if (multibyte) {
+    input = input.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[\s\S]/g) || []
   }
 
-  // Full-blown Unicode including non-Basic-Multilingual-Plane characters
-  var i = 0
-  var es = 0
-  var el = 0
-  var se = 0
-  var ret = ''
+  var inputLength = input.length
+  var end = inputLength
 
   if (start < 0) {
-    for (i = end - 1, es = (start += end); i >= es; i--) {
-      if (/[\uDC00-\uDFFF]/.test(str.charAt(i)) && /[\uD800-\uDBFF]/.test(str.charAt(i - 1))) {
-        start--
-        es--
-      }
-    }
-  } else {
-    var surrogatePairs = RegExp(surrogatePair.source, 'g')
-    while ((surrogatePairs.exec(str)) !== null) {
-      var li = surrogatePairs.lastIndex
-      if (li - 2 < start) {
-        start++
-      } else {
-        break
-      }
+    start += end
+  }
+
+  if (typeof len !== 'undefined') {
+    if (len < 0) {
+      end = len + end
+    } else {
+      end = len + start
     }
   }
 
-  if (start >= end || start < 0) {
+  if (start > inputLength || start < 0 || start > end) {
     return false
   }
-  if (len < 0) {
-    for (i = end - 1, el = (end += len); i >= el; i--) {
-      if (/[\uDC00-\uDFFF]/.test(str.charAt(i)) && /[\uD800-\uDBFF]/.test(str.charAt(i - 1))) {
-        end--
-        el--
-      }
-    }
-    if (start > end) {
-      return false
-    }
-    return str.slice(start, end)
-  } else {
-    se = start + len
-    for (i = start; i < se; i++) {
-      ret += str.charAt(i)
-      if (/[\uD800-\uDBFF]/.test(str.charAt(i)) && /[\uDC00-\uDFFF]/.test(str.charAt(i + 1))) {
-        // Go one further, since one of the "characters" is part of a surrogate pair
-        se++
-      }
-    }
-    return ret
+
+  if (multibyte) {
+    return input.slice(start, end).join('')
   }
+
+  return input.slice(start, end)
 }
