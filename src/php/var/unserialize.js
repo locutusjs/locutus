@@ -1,267 +1,269 @@
-function cache() {
-  const store = [];
+function cache () {
+  const store = []
   const cache = function cache (value) {
-    store.push(value[0]);
-    return value;
-  };
+    store.push(value[0])
+    return value
+  }
 
   cache.get = (index) => {
     if (index >= store.length) {
-      throw RangeError(`Can't resolve reference ${index + 1}`);
+      throw RangeError(`Can't resolve reference ${index + 1}`)
     }
 
-    return store[index];
-  };
+    return store[index]
+  }
 
-  return cache;
+  return cache
 }
 
-function expectType(str, cache) {
-  const types = /^(?:N(?=;)|[bidsSaOCrR](?=:)|[^:]+(?=:))/g;
-  const type = (types.exec(str) || [])[0];
+function expectType (str, cache) {
+  const types = /^(?:N(?=;)|[bidsSaOCrR](?=:)|[^:]+(?=:))/g
+  const type = (types.exec(str) || [])[0]
 
   if (!type) {
-    throw SyntaxError('Invalid input: ' + str);
+    throw SyntaxError('Invalid input: ' + str)
   }
 
   switch (type) {
     case 'N':
-      return cache([ null, 2 ]);
+      return cache([ null, 2 ])
     case 'b':
-      return cache(expectBool(str));
+      return cache(expectBool(str))
     case 'i':
-      return cache(expectInt(str));
+      return cache(expectInt(str))
     case 'd':
-      return cache(expectFloat(str));
+      return cache(expectFloat(str))
     case 's':
-      return cache(expectString(str));
+      return cache(expectString(str))
     case 'S':
-      return cache(expectEscapedString(str));
+      return cache(expectEscapedString(str))
     case 'a':
-      return expectArray(str, cache);
+      return expectArray(str, cache)
     case 'O':
-      return expectObject(str, cache);
+      return expectObject(str, cache)
     case 'C':
-      return expectClass(str, cache);
+      return expectClass(str, cache)
     case 'r':
     case 'R':
-      return expectReference(str, cache);
+      return expectReference(str, cache)
     default:
-      throw SyntaxError(`Invalid or unsupported data type: ${type}`);
+      throw SyntaxError(`Invalid or unsupported data type: ${type}`)
   }
 }
 
-function expectBool(str) {
-  const reBool = /^b:([01]);/;
-  const [ match, boolMatch ] = reBool.exec(str) || [];
-  
+function expectBool (str) {
+  const reBool = /^b:([01]);/
+  const [ match, boolMatch ] = reBool.exec(str) || []
+
   if (!boolMatch) {
-    throw SyntaxError('Invalid bool value, expected 0 or 1');
+    throw SyntaxError('Invalid bool value, expected 0 or 1')
   }
-  
-  return [ boolMatch === '1', match.length ];
+
+  return [ boolMatch === '1', match.length ]
 }
 
-function expectInt(str) {
-  const reInt = /^i:([+-]?\d+);/;
-  const [ match, intMatch ] = reInt.exec(str) || [];
+function expectInt (str) {
+  const reInt = /^i:([+-]?\d+);/
+  const [ match, intMatch ] = reInt.exec(str) || []
 
   if (!intMatch) {
-    throw SyntaxError('Expected an integer value');
+    throw SyntaxError('Expected an integer value')
   }
 
-  return [ parseInt(intMatch, 10), match.length ];
+  return [ parseInt(intMatch, 10), match.length ]
 }
 
-function expectFloat(str) {
-  const reFloat = /^d:(NAN|-?INF|(?:\d+\.\d*|\d*\.\d+|\d+)(?:[eE][+-]\d+)?);/;
-  const [ match, floatMatch ] = reFloat.exec(str) || [];
+function expectFloat (str) {
+  const reFloat = /^d:(NAN|-?INF|(?:\d+\.\d*|\d*\.\d+|\d+)(?:[eE][+-]\d+)?);/
+  const [ match, floatMatch ] = reFloat.exec(str) || []
 
   if (!floatMatch) {
-    throw SyntaxError('Expected a float value');
+    throw SyntaxError('Expected a float value')
   }
 
-  let floatValue;
+  let floatValue
 
   switch (floatMatch) {
     case 'NAN':
-      floatValue = Number.NaN;
-      break;
+      floatValue = Number.NaN
+      break
     case '-INF':
-      floatValue = Number.NEGATIVE_INFINITY;
-      break;
+      floatValue = Number.NEGATIVE_INFINITY
+      break
     case 'INF':
-      floatValue = Number.POSITIVE_INFINITY;
-      break;
+      floatValue = Number.POSITIVE_INFINITY
+      break
     default:
-      floatValue = parseFloat(floatMatch);
-      break;
+      floatValue = parseFloat(floatMatch)
+      break
   }
 
-  return [ floatValue, match.length ];
+  return [ floatValue, match.length ]
 }
 
-function expectString(str) {
+function expectString (str) {
   const reStrLength = /^s:(\d+):/g
-  const [ match, strLenMatch ] = reStrLength.exec(str) || [];
-  
+  const [ match, strLenMatch ] = reStrLength.exec(str) || []
+
   if (!strLenMatch) {
-    throw SyntaxError('Expected string length annotation');
+    throw SyntaxError('Expected string length annotation')
   }
-  
-  const len = parseInt(strLenMatch, 10);
+
+  const len = parseInt(strLenMatch, 10)
 
   // todo: handle utf8 overhead chars
-  const reString = RegExp(`^"([\\s\\S]{${len}})";`);
-  const [ strLiteralMatch, strMatch ] = reString.exec(str.substr(match.length)) || [];
+  const reString = RegExp(`^"([\\s\\S]{${len}})";`)
+  const [ strLiteralMatch, strMatch ] = reString.exec(str.substr(match.length)) || []
 
   if (!strLiteralMatch) {
-    throw SyntaxError('Expected a string value');
+    throw SyntaxError('Expected a string value')
   }
 
-  return [ strMatch, match.length + strLiteralMatch.length ];
+  return [ strMatch, match.length + strLiteralMatch.length ]
 }
 
-function expectEscapedString(str) {
+function expectEscapedString (str) {
   const reStrLength = /^S:(\d+):/g
-  const [ match, strLenMatch ] = reStrLength.exec(str) || [];
-  
+  const [ match, strLenMatch ] = reStrLength.exec(str) || []
+
   if (!strLenMatch) {
-    throw SyntaxError('Expected string length annotation');
+    throw SyntaxError('Expected string length annotation')
   }
-  
-  const len = parseInt(strLenMatch, 10);
+
+  const len = parseInt(strLenMatch, 10)
 
   // todo: handle utf8 overhead chars
-  const reString = RegExp(`^"((?:\\\\[0-9a-fA-F]{2}|[\\s\\S]){${len}})";`);
-  const [ strLiteralMatch, strMatch ] = reString.exec(str.substr(match.length)) || [];
+  const reString = RegExp(`^"((?:\\\\[0-9a-fA-F]{2}|[\\s\\S]){${len}})";`)
+  const [ strLiteralMatch, strMatch ] = reString.exec(str.substr(match.length)) || []
 
   if (!strLiteralMatch) {
-    throw SyntaxError('Expected a string value');
+    throw SyntaxError('Expected a string value')
   }
 
-  return [ strMatch.replace(/\\([0-9a-fA-F]{2})/g, (m, e) => String.fromCharCode(parseInt(e, 16))), match.length + strLiteralMatch.length ];
+  return [ strMatch.replace(/\\([0-9a-fA-F]{2})/g, (m, e) => String.fromCharCode(parseInt(e, 16))), match.length + strLiteralMatch.length ]
 }
-function expectKeyOrIndex(str) {
+function expectKeyOrIndex (str) {
   try {
-    return expectString(str);
+    return expectString(str)
   } catch (err) {}
 
   try {
-    return expectEscapedString(str);
+    return expectEscapedString(str)
   } catch (err) {}
 
   try {
-    return expectInt(str);
+    return expectInt(str)
   } catch (err) {
-    throw SyntaxError('Expected key or index');
+    throw SyntaxError('Expected key or index')
   }
 }
 
-function expectObject(str, cache) {
+function expectObject (str, cache) {
   // O:<class name length>:"class name":<prop count>:{<props and values>}
   // O:8:"stdClass":2:{s:3:"foo";s:3:"bar";s:3:"bar";s:3:"baz";}
-  const reObjectLiteral = /^O:(\d+):"([^"]+)":(\d+):\{/;
-  const [ objectLiteralBeginMatch, classNameLengthMatch, className, propCountMatch ] = reObjectLiteral.exec(str) || [];
+  const reObjectLiteral = /^O:(\d+):"([^"]+)":(\d+):\{/
+  const [ objectLiteralBeginMatch, /* classNameLengthMatch */, className, propCountMatch ] = reObjectLiteral.exec(str) || []
 
   if (!objectLiteralBeginMatch) {
-    throw SyntaxError('Invalid input');
+    throw SyntaxError('Invalid input')
   }
 
   if (className !== 'stdClass') {
-    throw SyntaxError(`Unsupported object type: ${className}`);
+    throw SyntaxError(`Unsupported object type: ${className}`)
   }
 
-  let totalOffset = objectLiteralBeginMatch.length;
+  let totalOffset = objectLiteralBeginMatch.length
 
   const propCount = parseInt(propCountMatch, 10)
-  const obj = {};
-  cache([obj]);
+  const obj = {}
+  cache([obj])
 
-  str = str.substr(totalOffset);
+  str = str.substr(totalOffset)
 
   for (let i = 0; i < propCount; i++) {
-    const prop = expectKeyOrIndex(str);
-    str = str.substr(prop[1]);
-    totalOffset += prop[1];
+    const prop = expectKeyOrIndex(str)
+    str = str.substr(prop[1])
+    totalOffset += prop[1]
 
-    const value = expectType(str, cache);
-    str = str.substr(value[1]);
+    const value = expectType(str, cache)
+    str = str.substr(value[1])
     totalOffset += value[1]
 
-    obj[prop[0]] = value[0];
+    obj[prop[0]] = value[0]
   }
 
   // strict parsing, expect } after object literal
   if (str.charAt(0) !== '}') {
-    throw SyntaxError('Expected }');
+    throw SyntaxError('Expected }')
   }
 
-  return [ obj, totalOffset + 1 ]; // skip final }
+  return [ obj, totalOffset + 1 ] // skip final }
 }
 
-function expectClass(str, cache) {
+function expectClass (str, cache) {
   // can't be well supported, because requires calling eval (or similar)
   // in order to call serialized constructor name
   // which is unsafe
   // or assume that constructor is defined in global scope
   // but this is too much limiting
-  throw Error('Not yet implemented');
+  throw Error('Not yet implemented')
 }
 
-function expectReference(str, cache) {
-  const reRef = /^[rR]:([1-9]\d*);/;
-  const [ match, refIndex ] = reRef.exec(str) || [];
+function expectReference (str, cache) {
+  const reRef = /^[rR]:([1-9]\d*);/
+  const [ match, refIndex ] = reRef.exec(str) || []
 
   if (!match) {
-    throw SyntaxError('Expected reference value');
+    throw SyntaxError('Expected reference value')
   }
 
-  return [ cache.get(parseInt(refIndex, 10) - 1), match.length ];
+  return [ cache.get(parseInt(refIndex, 10) - 1), match.length ]
 }
 
-function expectArray(str, cache) {
-  const reArrayLength = /^a:(\d+):{/;
-  const [ arrayLiteralBeginMatch, arrayLengthMatch ] = reArrayLength.exec(str) || [];
+function expectArray (str, cache) {
+  const reArrayLength = /^a:(\d+):{/
+  const [ arrayLiteralBeginMatch, arrayLengthMatch ] = reArrayLength.exec(str) || []
 
   if (!arrayLengthMatch) {
-    throw SyntaxError('Expected array length annotation');
+    throw SyntaxError('Expected array length annotation')
   }
 
-  str = str.substr(arrayLiteralBeginMatch.length);
+  str = str.substr(arrayLiteralBeginMatch.length)
 
-  const array = expectArrayItems(str, parseInt(arrayLengthMatch, 10), cache);
+  const array = expectArrayItems(str, parseInt(arrayLengthMatch, 10), cache)
 
   // strict parsing, expect closing } brace after array literal
   if (str.charAt(array[1]) !== '}') {
-    throw SyntaxError('Expected }');
+    throw SyntaxError('Expected }')
   }
 
-  return [ array[0], arrayLiteralBeginMatch.length + array[1] + 1 ]; // jump over }
+  return [ array[0], arrayLiteralBeginMatch.length + array[1] + 1 ] // jump over }
 }
 
-function expectArrayItems(str, expectedItems = 0, cache) {
-  let key, item, totalOffset = 0;
-  const items = [];
-  cache([items]);
+function expectArrayItems (str, expectedItems = 0, cache) {
+  let key
+  let item
+  let totalOffset = 0
+  const items = []
+  cache([items])
 
   for (let i = 0; i < expectedItems; i++) {
-    key = expectKeyOrIndex(str);
+    key = expectKeyOrIndex(str)
 
-    str = str.substr(key[1]);
-    totalOffset += key[1];
+    str = str.substr(key[1])
+    totalOffset += key[1]
 
     // references are resolved immediately, so if duplicate key overwrites previous array index
     // the old value is anyway resolved
     // fixme: but next time the same reference should point to the new value
-    item = expectType(str, cache);
-    str = str.substr(item[1]);
-    totalOffset += item[1];
+    item = expectType(str, cache)
+    str = str.substr(item[1])
+    totalOffset += item[1]
 
-    items[key[0]] = item[0];
+    items[key[0]] = item[0]
   }
 
-  return [ items, totalOffset ];
+  return [ items, totalOffset ]
 }
 
 module.exports = function unserialize (str) {
@@ -304,12 +306,12 @@ module.exports = function unserialize (str) {
 
   try {
     if (typeof str !== 'string') {
-      return false;
+      return false
     }
 
-    return expectType(str, cache())[0];
+    return expectType(str, cache())[0]
   } catch (err) {
-    console.error(err);
-    return false;
+    console.error(err)
+    return false
   }
 }
