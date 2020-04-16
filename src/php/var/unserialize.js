@@ -101,25 +101,71 @@ function expectFloat (str) {
   return [ floatValue, match.length ]
 }
 
-function expectString (str) {
-  const reStrLength = /^s:(\d+):/g
-  const [ match, strLenMatch ] = reStrLength.exec(str) || []
+function readBytes (str, len) {
+  let bytes = 0
+  let out = ''
+  let c = 0
+  const strLen = str.length
+  let wasHighSurrogate = false
 
-  if (!strLenMatch) {
+  while (bytes < len && c < strLen) {
+    const chr = str.charAt(c)
+    const code = chr.charCodeAt(0)
+    const isHighSurrogate = code >= 0xd800 && code <= 0xdbff
+    const isLowSurrogate = code >= 0xdc00 && code <= 0xdfff
+
+    c++
+
+    bytes += isHighSurrogate || (isLowSurrogate && wasHighSurrogate)
+      // if high surrogate, count 2 bytes, as expectation is to be followed by low surrogate
+      // if low surrogate preceded by high surrogate, add 2 bytes
+      ? 2
+      : code > 0x7ff
+        // otherwise low surrogate falls into this part
+        ? 3
+        : code > 0x7f
+          ? 2
+          : 1
+
+    // if high surrogate is not followed by low surrogate, add 1 more byte
+    bytes += wasHighSurrogate && !isLowSurrogate ? 1 : 0
+
+    out += chr
+    wasHighSurrogate = isHighSurrogate
+  }
+
+  return [ out, bytes ]
+}
+
+function expectString (str) {
+  // PHP strings consist of one-byte characters.
+  // JS uses 2 bytes with possible surrogate pairs.
+  // Serialized length of 2 is still 1 JS string character
+  const reStrLength = /^s:(\d+):"/g // also match the opening " char
+  const [ match, byteLenMatch ] = reStrLength.exec(str) || []
+
+  if (!byteLenMatch) {
     throw SyntaxError('Expected string length annotation')
   }
 
-  const len = parseInt(strLenMatch, 10)
+  const len = parseInt(byteLenMatch, 10)
 
-  // todo: handle utf8 overhead chars
-  const reString = RegExp(`^"([\\s\\S]{${len}})";`)
-  const [ strLiteralMatch, strMatch ] = reString.exec(str.substr(match.length)) || []
+  str = str.substr(match.length)
 
-  if (!strLiteralMatch) {
-    throw SyntaxError('Expected a string value')
+  let [ strMatch, bytes ] = readBytes(str, len)
+
+  if (bytes !== len) {
+    throw SyntaxError(`Expected string of ${len} bytes, but got ${bytes}`)
   }
 
-  return [ strMatch, match.length + strLiteralMatch.length ]
+  str = str.substr(strMatch.length)
+
+  // strict parsing, match closing "; chars
+  if (!str.startsWith('";')) {
+    throw SyntaxError('Expected ";')
+  }
+
+  return [ strMatch, match.length + strMatch.length + 2 ] // skip last ";
 }
 
 function expectEscapedString (str) {
@@ -142,6 +188,7 @@ function expectEscapedString (str) {
 
   return [ strMatch.replace(/\\([0-9a-fA-F]{2})/g, (m, e) => String.fromCharCode(parseInt(e, 16))), match.length + strLiteralMatch.length ]
 }
+
 function expectKeyOrIndex (str) {
   try {
     return expectString(str)
