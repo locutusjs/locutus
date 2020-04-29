@@ -36,6 +36,8 @@ const reTzCorrection = '((?:GMT)?([+-])' + reHour24 + ':?' + reMinute + '?)'
 const reDayOfYear = '(00[1-9]|0[1-9][0-9]|[12][0-9][0-9]|3[0-5][0-9]|36[0-6])'
 const reWeekOfYear = '(0[1-9]|[1-4][0-9]|5[0-3])'
 
+const reDateNoYear = reMonthText + '[ .\\t-]*' + reDay + '[,.stndrh\\t ]*'
+
 function processMeridian (hour, meridian) {
   meridian = meridian && meridian.toLowerCase()
 
@@ -477,10 +479,22 @@ const formats = {
   },
 
   gnuNoColon: {
-    regex: RegExp('^t' + reHour24lz + reMinutelz, 'i'),
+    regex: RegExp('^t?' + reHour24lz + reMinutelz, 'i'),
     name: 'gnunocolon',
     callback (match, hour, minute) {
-      return this.time(+hour, +minute, 0, this.f)
+      // this rule is a special case
+      // if time was already set once by any preceding rule, it sets the captured value as year
+      switch (this.times) {
+        case 0:
+          return this.time(+hour, +minute, 0, this.f)
+        case 1:
+          this.y = hour * 100 + +minute
+          this.times++
+
+          return true
+        default:
+          return false
+      }
     }
   },
 
@@ -535,7 +549,7 @@ const formats = {
   },
 
   dateNoYear: {
-    regex: RegExp('^' + reMonthText + '[ .\\t-]*' + reDay + '[,.stndrh\\t ]*', 'i'),
+    regex: RegExp('^' + reDateNoYear, 'i'),
     name: 'datenoyear',
     callback (match, month, day) {
       return this.ymd(this.y, lookupMonth(month), +day)
@@ -772,18 +786,6 @@ const formats = {
     }
   },
 
-  gnuNoColon2: {
-    // second instance of gnunocolon, without leading 't'
-    // it's down here, because it is very generic (4 digits in a row)
-    // thus conflicts with many rules above
-    // only year4 should come afterwards
-    regex: RegExp('^' + reHour24lz + reMinutelz, 'i'),
-    name: 'gnunocolon',
-    callback (match, hour, minute) {
-      return this.time(+hour, +minute, 0, this.f)
-    }
-  },
-
   year4: {
     regex: RegExp('^' + reYear4),
     name: 'year4',
@@ -799,11 +801,35 @@ const formats = {
     // do nothing
   },
 
-  any: {
-    regex: /^[\s\S]+/,
-    name: 'any',
-    callback () {
-      return false
+  dateShortWithTimeLong: {
+    regex: RegExp('^' + reDateNoYear + 't?' + reHour24 + '[:.]' + reMinute + '[:.]' + reSecond, 'i'),
+    name: 'dateshortwithtimelong',
+    callback (match, month, day, hour, minute, second) {
+      return this.ymd(this.y, lookupMonth(month), +day) && this.time(+hour, +minute, +second, 0)
+    }
+  },
+
+  dateShortWithTimeLong12: {
+    regex: RegExp('^' + reDateNoYear + reHour12 + '[:.]' + reMinute + '[:.]' + reSecondlz + reSpaceOpt + reMeridian, 'i'),
+    name: 'dateshortwithtimelong12',
+    callback (match, month, day, hour, minute, second, meridian) {
+      return this.ymd(this.y, lookupMonth(month), +day) && this.time(processMeridian(+hour, meridian), +minute, +second, 0)
+    }
+  },
+
+  dateShortWithTimeShort: {
+    regex: RegExp('^' + reDateNoYear + 't?' + reHour24 + '[:.]' + reMinute, 'i'),
+    name: 'dateshortwithtimeshort',
+    callback (match, month, day, hour, minute) {
+      return this.ymd(this.y, lookupMonth(month), +day) && this.time(+hour, +minute, 0, 0)
+    }
+  },
+
+  dateShortWithTimeShort12: {
+    regex: RegExp('^' + reDateNoYear + reHour12 + '[:.]' + reMinutelz + reSpaceOpt + reMeridian, 'i'),
+    name: 'dateshortwithtimeshort12',
+    callback (match, month, day, hour, minute, meridian) {
+      return this.ymd(this.y, lookupMonth(month), +day) && this.time(processMeridian(+hour, meridian), +minute, 0, 0)
     }
   }
 }
@@ -1051,14 +1077,14 @@ module.exports = function strtotime (str, now) {
   //        returns 4: 1241425800
   //        example 5: strtotime('2009-05-04 08:30:00+02:00')
   //        returns 5: 1241418600
+
   if (now == null) {
     now = Math.floor(Date.now() / 1000)
   }
 
-  // the rule order is very fragile
-  // as many formats are similar to others
-  // so small change can cause
-  // input misinterpretation
+  // the rule order is important
+  // if multiple rules match, the longest match wins
+  // if multiple rules match the same string, the first match wins
   const rules = [
     formats.yesterday,
     formats.now,
@@ -1069,75 +1095,82 @@ module.exports = function strtotime (str, now) {
     formats.firstOrLastDay,
     formats.backOrFrontOf,
     // formats.weekdayOf, // not yet implemented
-    formats.mssqltime,
-    formats.timeLong12,
-    formats.timeShort12,
     formats.timeTiny12,
+    formats.timeShort12,
+    formats.timeLong12,
+    formats.mssqltime,
+    formats.timeShort24,
+    formats.timeLong24,
+    formats.iso8601long,
+    formats.gnuNoColon,
+    formats.iso8601noColon,
+    formats.americanShort,
+    formats.american,
+    formats.iso8601date4,
+    formats.iso8601dateSlash,
+    formats.dateSlash,
+    formats.gnuDateShortOrIso8601date2,
+    formats.gnuDateShorter,
+    formats.dateFull,
+    formats.pointedDate4,
+    formats.pointedDate2,
+    formats.dateNoDay,
+    formats.dateNoDayRev,
+    formats.dateTextual,
+    formats.dateNoYear,
+    formats.dateNoYearRev,
+    formats.dateNoColon,
+    formats.xmlRpc,
+    formats.xmlRpcNoColon,
     formats.soap,
     formats.wddx,
     formats.exif,
-    formats.xmlRpc,
-    formats.xmlRpcNoColon,
-    formats.clf,
-    formats.iso8601long,
-    formats.dateTextual,
-    formats.pointedDate4,
-    formats.pointedDate2,
-    formats.timeLong24,
-    formats.dateNoColon,
     formats.pgydotd,
-    formats.timeShort24,
-    formats.iso8601noColon,
-    // iso8601dateSlash needs to come before dateSlash
-    formats.iso8601dateSlash,
-    formats.dateSlash,
-    formats.american,
-    formats.americanShort,
-    formats.gnuDateShortOrIso8601date2,
-    formats.iso8601date4,
-    formats.gnuNoColon,
-    formats.gnuDateShorter,
-    formats.pgTextReverse,
-    formats.dateFull,
-    formats.dateNoDay,
-    formats.dateNoDayRev,
-    formats.pgTextShort,
-    formats.dateNoYear,
-    formats.dateNoYearRev,
     formats.isoWeekDay,
-    formats.relativeText,
-    formats.relative,
+    formats.pgTextShort,
+    formats.pgTextReverse,
+    formats.clf,
+    formats.year4,
+    formats.ago,
     formats.dayText,
     formats.relativeTextWeek,
+    formats.relativeText,
     formats.monthFullOrMonthAbbr,
     formats.tzCorrection,
-    formats.ago,
-    formats.gnuNoColon2,
-    formats.year4,
-    // note: the two rules below
-    // should always come last
-    formats.whitespace,
-    formats.any
+    formats.dateShortWithTimeShort12,
+    formats.dateShortWithTimeLong12,
+    formats.dateShortWithTimeShort,
+    formats.dateShortWithTimeLong,
+    formats.relative,
+    formats.whitespace
   ]
 
   let result = Object.create(resultProto)
 
   while (str.length) {
+    let longestMatch = null
+    let finalRule = null
+
     for (let i = 0, l = rules.length; i < l; i++) {
       const format = rules[i]
 
       const match = str.match(format.regex)
 
       if (match) {
-        // care only about false results. Ignore other values
-        if (format.callback && format.callback.apply(result, match) === false) {
-          return false
+        if (!longestMatch || match[0].length > longestMatch[0].length) {
+          longestMatch = match
+          finalRule = format
         }
-
-        str = str.substr(match[0].length)
-        break
       }
     }
+
+    if (!finalRule || (finalRule.callback && finalRule.callback.apply(result, longestMatch) === false)) {
+      return false
+    }
+
+    str = str.substr(longestMatch[0].length)
+    finalRule = null
+    longestMatch = null
   }
 
   return Math.floor(result.toDate(new Date(now * 1000)) / 1000)
