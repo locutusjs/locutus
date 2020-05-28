@@ -32,7 +32,7 @@ const reMonthAbbr = 'jan|feb|mar|apr|may|jun|jul|aug|sept?|oct|nov|dec'
 const reMonthroman = 'i[vx]|vi{0,3}|xi{0,2}|i{1,3}'
 const reMonthText = '(' + reMonthFull + '|' + reMonthAbbr + '|' + reMonthroman + ')'
 
-const reTzCorrection = '((?:GMT)?([+-])' + reHour24 + ':?' + reMinute + '?)'
+const reTzCorrection = '(Z|((?:GMT)?([+-])' + reHour24 + ':?' + reMinute + '?))'
 const reDayOfYear = '(00[1-9]|0[1-9][0-9]|[12][0-9][0-9]|3[0-5][0-9]|36[0-6])'
 const reWeekOfYear = '(0[1-9]|[1-4][0-9]|5[0-3])'
 
@@ -159,6 +159,9 @@ function lookupRelative (relText) {
 }
 
 function processTzCorrection (tzOffset, oldValue) {
+  if (tzOffset === 'Z') {
+    tzOffset = '+00'
+  }
   const reTzCorrectionLoose = /(?:GMT)?([+-])(\d+)(:?)(\d{0,2})/i
   tzOffset = tzOffset && tzOffset.match(reTzCorrectionLoose)
 
@@ -1065,6 +1068,7 @@ module.exports = function strtotime (str, now) {
   //      bugfixed by: Artur Tchernychev
   //      bugfixed by: Stephan Bösch-Plepelits (https://github.com/plepe)
   // reimplemented by: Rafał Kukawski
+  //      bugfixed by: Glen Sawyer (https://github.com/snelg)
   //           note 1: Examples all have a fixed timestamp to prevent
   //           note 1: tests to fail because of variable time(zones)
   //        example 1: strtotime('+1 day', 1129633200)
@@ -1077,6 +1081,8 @@ module.exports = function strtotime (str, now) {
   //        returns 4: 1241425800
   //        example 5: strtotime('2009-05-04 08:30:00+02:00')
   //        returns 5: 1241418600
+  //        example 6: strtotime('2009-05-04T08:30:00.000Z')
+  //        returns 6: 1241425800
 
   if (now == null) {
     now = Math.floor(Date.now() / 1000)
