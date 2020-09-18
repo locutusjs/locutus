@@ -103,7 +103,7 @@ module.exports = function unserialize (data) {
     if (!offset) {
       offset = 0
     }
-    dtype = (data.slice(offset, offset + 1))
+    dtype = (data.slice(offset, offset + 1)).toLowerCase()
 
     dataoffset = offset + 2
 
