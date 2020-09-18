@@ -1,7 +1,7 @@
 # Locutus
 
 <!-- badges/ -->
-[![Build Status](https://secure.travis-ci.org/kvz/locutus.svg?branch=master)](https://travis-ci.org/kvz/locutus "Check this project's build status on TravisCI")
+[![Build Status](https://secure.travis-ci.org/locutusjs/locutus.svg?branch=master)](https://travis-ci.org/locutusjs/locutus "Check this project's build status on TravisCI")
 <!-- /badges -->
 
 All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.

@@ -32,14 +32,14 @@ Ideas that will be planned and find their way into a release at one point
 ## master
 
 Released: TBA. 
-[Diff](https://github.com/kvz/locutus/compare/v2.0.11...master).
+[Diff](https://github.com/locutusjs/locutus/compare/v2.0.11...master).
 
 - [ ] 
 
 ## v2.0.11
 
 Released: 2019-06-12. 
-[Diff](https://github.com/kvz/locutus/compare/v2.0.10...v2.0.11).
+[Diff](https://github.com/locutusjs/locutus/compare/v2.0.10...v2.0.11).
 
 - [x] functions: Community-contributed function improvements, see respective functions' changelogs in the Diff:
 - [x] ci: test Node.js 6, 8, 10 and 11 (#384)
@@ -48,14 +48,14 @@ Released: 2019-06-12.
 ## v2.0.10
 
 Released: 2018-09-07. 
-[Diff](https://github.com/kvz/locutus/compare/v2.0.9...v2.0.10).
+[Diff](https://github.com/locutusjs/locutus/compare/v2.0.9...v2.0.10).
 
 - [x] functions: Community-contributed function improvements, see respective functions' changelogs in the Diff.
 
 ## v2.0.9
 
 Released: 2017-06-22. 
-[Diff](https://github.com/kvz/locutus/compare/v2.0.8...v2.0.9).
+[Diff](https://github.com/locutusjs/locutus/compare/v2.0.8...v2.0.9).
 
 - [x] functions: Community-contributed function improvements, see respective functions' changelogs in the Diff.
 
@@ -63,7 +63,7 @@ Released: 2017-06-22.
 ## v2.0.8
 
 Released: 2017-02-23. 
-[Diff](https://github.com/kvz/locutus/compare/v2.0.7...v2.0.8).
+[Diff](https://github.com/locutusjs/locutus/compare/v2.0.7...v2.0.8).
 
 - [x] Upgrade eslint and fix newly found issues accordingly
 - [x] functions: Community-contributed function improvements, see respective functions' changelogs in the Diff.
@@ -71,28 +71,28 @@ Released: 2017-02-23.
 ## v2.0.7
 
 Released: 2017-02-09. 
-[Diff](https://github.com/kvz/locutus/compare/v2.0.6...v2.0.7).
+[Diff](https://github.com/locutusjs/locutus/compare/v2.0.6...v2.0.7).
 
 - [x] functions: Community-contributed function improvements, see respective functions' changelogs in the Diff.
 
 ## v2.0.6
 
 Released: 2016-06-16. 
-[Diff](https://github.com/kvz/locutus/compare/v2.0.5...v2.0.6).
+[Diff](https://github.com/locutusjs/locutus/compare/v2.0.5...v2.0.6).
 
 - [x] Language fixes
 
 ## v2.0.5
 
 Released: 2016-06-16. 
-[Diff](https://github.com/kvz/locutus/compare/v2.0.4...v2.0.5).
+[Diff](https://github.com/locutusjs/locutus/compare/v2.0.4...v2.0.5).
 
 - [x] Cache node modules on Travis so we'll be less dependent on npm connectivity
 
 ## v2.0.4
 
 Released: 2016-05-25. 
-[Diff](https://github.com/kvz/locutus/compare/v2.0.3...v2.0.4).
+[Diff](https://github.com/locutusjs/locutus/compare/v2.0.3...v2.0.4).
 
 - [x] Upgrade depurar to 0.2.2, fixing an issue with the testwriter (@kukawski)
 - [x] Add the 'reimplemented by' and 'parts by' contributionKeys to the /authors website page
@@ -103,7 +103,7 @@ Released: 2016-05-25.
 ## v2.0.3
 
 Released: 2016-05-22. 
-[Diff](https://github.com/kvz/locutus/compare/v2.0.2...v2.0.3).
+[Diff](https://github.com/locutusjs/locutus/compare/v2.0.2...v2.0.3).
 
 - [x] Minor `util.js` refactoring
 - [x] Use hexo deploy instead of custom bash script to aid Windows compatibility
@@ -122,21 +122,21 @@ Released: 2016-05-22.
 ## v2.0.2
 
 Released: 2016-05-02. 
-[Diff](https://github.com/kvz/locutus/compare/v2.0.1...v2.0.2).
+[Diff](https://github.com/locutusjs/locutus/compare/v2.0.1...v2.0.2).
 
 - [x] Don't use `files` in package.json as we don't ship all of `dist` now
 
 ## v2.0.1
 
 Released: 2016-05-02. 
-[Diff](https://github.com/kvz/locutus/compare/v2.0.0...v2.0.1).
+[Diff](https://github.com/locutusjs/locutus/compare/v2.0.0...v2.0.1).
 
 - [x] Don't use `bin` in package.json as we don't ship `cli.js`
 
 ## v2.0.0
 
 Released: 2016-05-02. 
-[Diff](https://github.com/kvz/locutus/compare/v1.3.2...v2.0.0).
+[Diff](https://github.com/locutusjs/locutus/compare/v1.3.2...v2.0.0).
 
 - [x] website: Add profile to sidebar
 - [x] Rename `_locutus_shared` to `_helpers`. Rename `_locutus_shared_bc` to `_bc`
@@ -187,4 +187,4 @@ Released: 2016-05-02.
 
 Released: April 4, 2016
 
-- [x] Start using a CHANGELOG https://github.com/kvz/locutus/releases/tag/v1.3.2
+- [x] Start using a CHANGELOG https://github.com/locutusjs/locutus/releases/tag/v1.3.2

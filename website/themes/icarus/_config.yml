@@ -17,13 +17,13 @@ customize:
     author: Locutus
     author_title: All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.
     location: GitHub
-    follow: https://github.com/kvz/locutus/stargazers
+    follow: https://github.com/locutusjs/locutus/stargazers
   highlight: monokai
   sidebar: right # sidebar position, options: left, right
   thumbnail: true # enable posts thumbnail, options: true, false
   favicon: # path to favicon
   social_links:
-    github: https://github.com/kvz/locutus
+    github: https://github.com/locutusjs/locutus
     twitter: https://twitter.com/locutus_io
     # facebook: /
     # dribbble: /

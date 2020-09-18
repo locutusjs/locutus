@@ -42,7 +42,7 @@ npm install --global mocha babel-cli hexo
 
 ```bash
 cd ~/code
-git clone git@github.com:kvz/locutus.git
+git clone git@github.com:locutusjs/locutus.git
 cd locutus
 ```
 
