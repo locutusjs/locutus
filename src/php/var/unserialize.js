@@ -32,6 +32,8 @@ module.exports = function unserialize (data) {
   //   returns 4: false
   //   example 5: unserialize('O:8:"stdClass":1:{s:3:"foo";b:1;}')
   //   returns 5: { foo: true }
+  //   example 6: unserialize('a:2:{i:0;N;i:1;s:0:"";')
+  //   returns 6: [null, ""]
 
   var utf8Overhead = function (str) {
     var s = str.length
@@ -103,7 +105,7 @@ module.exports = function unserialize (data) {
     if (!offset) {
       offset = 0
     }
-    dtype = (data.slice(offset, offset + 1)).toLowerCase()
+    dtype = (data.slice(offset, offset + 1))
 
     dataoffset = offset + 2
 
@@ -144,6 +146,7 @@ module.exports = function unserialize (data) {
         readdata = readData[1]
         dataoffset += chrs + 1
         break
+      case 'N':
       case 'n':
         readdata = null
         break
