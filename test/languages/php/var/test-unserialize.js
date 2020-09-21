@@ -38,7 +38,7 @@ describe('src/php/var/unserialize.js (tested in test/languages/php/var/test-unse
     done()
   })
   it('should pass example 6', function (done) {
-    var expected = [null, '']
+    var expected = [null, ""]
     var result = unserialize('a:2:{i:0;N;i:1;s:0:"";')
     expect(result).to.deep.equal(expected)
     done()
