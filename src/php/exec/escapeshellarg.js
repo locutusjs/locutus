@@ -7,7 +7,7 @@ module.exports = function escapeshellarg (arg) {
 
   var ret = ''
 
-  ret = arg.replace(/\'/g,'\'\\\'\'')
+  ret = arg.replace(/\'/g, '\'\\\'\'')
 
   return "'" + ret + "'"
 }
