@@ -4,6 +4,10 @@ module.exports = function escapeshellarg (arg) {
   // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: escapeshellarg("kevin's birthday")
   //   returns 1: "'kevin\\'s birthday'"
+  
+  if(arg.indexOf("\x00") !== -1) {
+    throw new Error('escapeshellarg(): Argument #1 ($arg) must not contain any null bytes');
+  }
 
   var ret = ''
 
