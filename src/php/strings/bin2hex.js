@@ -10,7 +10,7 @@ module.exports = function bin2hex (s) {
   //   example 2: bin2hex(String.fromCharCode(0x00))
   //   returns 2: '00'
   //   example 3: bin2hex("æ")
-  //   returns 3: c3a6
+  //   returns 3: 'c3a6'
 
   const arr = (new TextEncoder()).encode(s);
   let ret = "";
