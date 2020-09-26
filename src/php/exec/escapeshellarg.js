@@ -5,8 +5,8 @@ module.exports = function escapeshellarg (arg) {
   // bugfixed by: divinity76 (https://github.com/divinity76)
   //   example 1: escapeshellarg("kevin's birthday")
   //   returns 1: "'Kevin'\''s birthday'"
-  //   example 2: /home'; whoami;''
-  //   returns 2: '/home'\''; whoami;'\'''\'''
+  //   example 2: escapeshellarg("/home'; whoami;''")
+  //   returns 2: "'/home'\''; whoami;'\'''\'''"
 
   var ret = ''
 
