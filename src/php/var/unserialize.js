@@ -1,5 +1,6 @@
-function cache () {
+function initCache () {
   const store = []
+  // cache only first element, second is length to jump ahead for the parser
   const cache = function cache (value) {
     store.push(value[0])
     return value
@@ -367,7 +368,7 @@ module.exports = function unserialize (str) {
       return false
     }
 
-    return expectType(str, cache())[0]
+    return expectType(str, initCache())[0]
   } catch (err) {
     console.error(err)
     return false
