@@ -102,18 +102,28 @@ function expectFloat (str) {
   return [ floatValue, match.length ]
 }
 
-function readBytes (str, len) {
+function readBytes (str, len, escapedString = false) {
   let bytes = 0
   let out = ''
   let c = 0
   const strLen = str.length
   let wasHighSurrogate = false
+  let escapedChars = 0
 
   while (bytes < len && c < strLen) {
-    const chr = str.charAt(c)
+    let chr = str.charAt(c)
     const code = chr.charCodeAt(0)
     const isHighSurrogate = code >= 0xd800 && code <= 0xdbff
     const isLowSurrogate = code >= 0xdc00 && code <= 0xdfff
+
+    if (escapedString && chr === '\\') {
+      chr = String.fromCharCode(parseInt(str.substr(c + 1, 2), 16))
+      escapedChars++
+
+      // each escaped sequence is 3 characters. Go 2 chars ahead.
+      // third character will be jumped over a few lines later
+      c += 2
+    }
 
     c++
 
@@ -135,7 +145,7 @@ function readBytes (str, len) {
     wasHighSurrogate = isHighSurrogate
   }
 
-  return [ out, bytes ]
+  return [ out, bytes, escapedChars ]
 }
 
 function expectString (str) {
@@ -170,24 +180,31 @@ function expectString (str) {
 }
 
 function expectEscapedString (str) {
-  const reStrLength = /^S:(\d+):/g
+  const reStrLength = /^S:(\d+):"/g // also match the opening " char
   const [ match, strLenMatch ] = reStrLength.exec(str) || []
 
-  if (!strLenMatch) {
-    throw SyntaxError('Expected string length annotation')
+  if (!match) {
+    throw SyntaxError('Expected an escaped string value')
   }
 
   const len = parseInt(strLenMatch, 10)
 
-  // todo: handle utf8 overhead chars
-  const reString = RegExp(`^"((?:\\\\[0-9a-fA-F]{2}|[\\s\\S]){${len}})";`)
-  const [ strLiteralMatch, strMatch ] = reString.exec(str.substr(match.length)) || []
+  str = str.substr(match.length)
 
-  if (!strLiteralMatch) {
-    throw SyntaxError('Expected a string value')
+  let [ strMatch, bytes, escapedChars ] = readBytes(str, len, true)
+
+  if (bytes !== len) {
+    throw SyntaxError(`Expected escaped string of ${len} bytes, but got ${bytes}`)
   }
 
-  return [ strMatch.replace(/\\([0-9a-fA-F]{2})/g, (m, e) => String.fromCharCode(parseInt(e, 16))), match.length + strLiteralMatch.length ]
+  str = str.substr(strMatch.length + escapedChars * 2)
+
+  // strict parsing, match closing "; chars
+  if (!str.startsWith('";')) {
+    throw SyntaxError('Expected ";')
+  }
+
+  return [ strMatch, match.length + strMatch.length + 2 ] // skip last ";
 }
 
 function expectKeyOrIndex (str) {
@@ -362,6 +379,8 @@ module.exports = function unserialize (str) {
   //        returns 5: { foo: true }
   //        example 6: unserialize('a:2:{i:0;N;i:1;s:0:"";}')
   //        returns 6: [null, ""]
+  //        example 7: unserialize('S:7:"\\65\\73\\63\\61\\70\\65\\64";')
+  //        returns 7: 'escaped'
 
   try {
     if (typeof str !== 'string') {

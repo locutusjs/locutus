@@ -43,4 +43,10 @@ describe('src/php/var/unserialize.js (tested in test/languages/php/var/test-unse
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 7', function (done) {
+    var expected = 'escaped'
+    var result = unserialize('S:7:"\\65\\73\\63\\61\\70\\65\\64";')
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })
