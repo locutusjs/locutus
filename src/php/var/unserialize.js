@@ -155,8 +155,8 @@ function expectString (str) {
   const reStrLength = /^s:(\d+):"/g // also match the opening " char
   const [ match, byteLenMatch ] = reStrLength.exec(str) || []
 
-  if (!byteLenMatch) {
-    throw SyntaxError('Expected string length annotation')
+  if (!match) {
+    throw SyntaxError('Expected a string value')
   }
 
   const len = parseInt(byteLenMatch, 10)
