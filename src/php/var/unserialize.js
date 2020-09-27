@@ -359,7 +359,7 @@ module.exports = function unserialize (str) {
   //        returns 4: false
   //        example 5: unserialize('O:8:"stdClass":1:{s:3:"foo";b:1;}')
   //        returns 5: { foo: true }
-  //        example 6: unserialize('a:2:{i:0;N;i:1;s:0:"";')
+  //        example 6: unserialize('a:2:{i:0;N;i:1;s:0:"";}')
   //        returns 6: [null, ""]
 
   try {
