@@ -13,6 +13,7 @@ module.exports = function str_replace (search, replace, subject, countObj) { // 
   // bugfixed by: Oleg Eremeev
   // bugfixed by: Glen Arason (https://CanadianDomainRegistry.ca)
   // bugfixed by: Glen Arason (https://CanadianDomainRegistry.ca)
+  // bugfixed by: Mahmoud Saeed
   //    input by: Onno Marsman (https://twitter.com/onnomarsman)
   //    input by: Brett Zamir (https://brett-zamir.me)
   //    input by: Oleg Eremeev
@@ -28,6 +29,8 @@ module.exports = function str_replace (search, replace, subject, countObj) { // 
   //   example 4: str_replace(['A','D'], ['x','y'] , 'ASDFASDF' , countObj)
   //   example 4: var $result = countObj.value
   //   returns 4: 4
+  //   example 5: str_replace('', '.', 'aaa')
+  //   returns 5: 'aaa'
 
   var i = 0
   var j = 0
@@ -67,6 +70,9 @@ module.exports = function str_replace (search, replace, subject, countObj) { // 
       continue
     }
     for (j = 0, fl = f.length; j < fl; j++) {
+      if (f[j] === '') {
+        continue
+      }
       temp = s[i] + ''
       repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0]
       s[i] = (temp).split(f[j]).join(repl)
