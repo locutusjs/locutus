@@ -166,7 +166,7 @@ function processTzCorrection (tzOffset, oldValue) {
     return oldValue
   }
 
-  let sign = tzOffset[1] === '-' ? 1 : -1
+  let sign = tzOffset[1] === '-' ? -1 : 1
   let hours = +tzOffset[2]
   let minutes = +tzOffset[4]
 
@@ -175,7 +175,8 @@ function processTzCorrection (tzOffset, oldValue) {
     hours = Math.floor(hours / 100)
   }
 
-  return sign * (hours * 60 + minutes)
+  // timezone offset in seconds
+  return sign * (hours * 60 + minutes) * 60
 }
 
 const formats = {
@@ -1042,8 +1043,8 @@ let resultProto = {
 
       result.setUTCHours(
         result.getHours(),
-        result.getMinutes() + this.z,
-        result.getSeconds(),
+        result.getMinutes(),
+        result.getSeconds() - this.z,
         result.getMilliseconds())
     }
 
