@@ -14,7 +14,7 @@ describe('src/php/var/var_export.js (tested in test/languages/php/var/test-var_e
     done()
   })
   it('should pass example 2', function (done) {
-    var expected = "array (\n  0 => 'Kevin',\n  1 => 'van',\n  2 => 'Zonneveld'\n)"
+    var expected = "array (\n  0 => 'Kevin',\n  1 => 'van',\n  2 => 'Zonneveld',\n)"
     var result = var_export({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, true)
     expect(result).to.deep.equal(expected)
     done()
@@ -23,6 +23,24 @@ describe('src/php/var/var_export.js (tested in test/languages/php/var/test-var_e
     var expected = "'Kevin'"
     var data = 'Kevin'
     var result = var_export(data, true)
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 4', function (done) {
+    var expected = "array (\n  0 => 'Kevin',\n  1 => 'van',\n  'lastName' => 'Zonneveld',\n)"
+    var result = var_export({0: 'Kevin', 1: 'van', 'lastName': 'Zonneveld'}, true)
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 5', function (done) {
+    var expected = "array (\n)"
+    var result = var_export([], true)
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 6', function (done) {
+    var expected = "array (\n  'test' =>\n  array (\n    0 => 'a',\n    1 => 'b',\n  ),\n)"
+    var result = var_export({ test: [ 'a', 'b' ] }, true)
     expect(result).to.deep.equal(expected)
     done()
   })

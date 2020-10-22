@@ -90,5 +90,5 @@ theme: icarus
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:kvz/locutus.git
+  repo: git@github.com:locutusjs/locutus.git
   branch: gh-pages

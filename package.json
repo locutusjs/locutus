@@ -1,6 +1,6 @@
 {
   "name": "locutus",
-  "version": "2.0.11",
+  "version": "2.0.14",
   "license": "MIT",
   "description": "Locutus other languages' standard libraries to JavaScript for fun and educational purposes",
   "homepage": "https://locutus.io",
@@ -52,11 +52,11 @@
     "locutus"
   ],
   "bugs": {
-    "url": "https://github.com/kvz/locutus/issues"
+    "url": "https://github.com/locutusjs/locutus/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kvz/locutus.git"
+    "url": "https://github.com/locutusjs/locutus.git"
   },
   "readmeFilename": "README.md",
   "scripts": {

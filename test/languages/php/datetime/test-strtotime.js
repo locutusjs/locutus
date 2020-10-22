@@ -27,25 +27,19 @@ describe('src/php/datetime/strtotime.js (tested in test/languages/php/datetime/t
   })
   it('should pass example 4', function (done) {
     var expected = 1241425800
-    var result = strtotime('2009-05-04 08:30:00 GMT')
-    expect(result).to.deep.equal(expected)
-    done()
-  })
-  it('should pass example 5', function (done) {
-    var expected = 1241425800
     var result = strtotime('2009-05-04 08:30:00+00')
     expect(result).to.deep.equal(expected)
     done()
   })
-  it('should pass example 6', function (done) {
+  it('should pass example 5', function (done) {
     var expected = 1241418600
     var result = strtotime('2009-05-04 08:30:00+02:00')
     expect(result).to.deep.equal(expected)
     done()
   })
-  it('should pass example 7', function (done) {
-    var expected = 1241425800
-    var result = strtotime('2009-05-04T08:30:00Z')
+  it('should pass example 6', function (done) {
+    var expected = 1241454600
+    var result = strtotime('2009-05-04 08:30:00 YWT')
     expect(result).to.deep.equal(expected)
     done()
   })

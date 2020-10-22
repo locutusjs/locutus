@@ -7,7 +7,7 @@ thumbnail: /css/images/locutus-alpha.png
 ---
 
 As was briefly mentioned in [Breaking Backwards Compatibility](/blog/2016/04/20/breaking-bc/), 
-I am launching a big iteration of php.js today. It includes so [many](https://github.com/kvz/locutus/pull/291) breaking [changes](https://github.com/kvz/locutus/blob/master/CHANGELOG.md#v200) that it is safe to say that, after 
+I am launching a big iteration of php.js today. It includes so [many](https://github.com/locutusjs/locutus/pull/291) breaking [changes](https://github.com/locutusjs/locutus/blob/master/CHANGELOG.md#v200) that it is safe to say that, after 
 9 years, php.js is dead. And, like a phoenix, **Locutus** has risen from its ashes.
 
 Locutus will largely have the same mission: 
@@ -102,8 +102,8 @@ true
 
 If you want to help Locutus, our newly added languages don't have much meat on the bones yet and it would be fantastic to see if you can think of ways to assimilate a function that Locutus currently does not harbor.
 
-Also, there are plenty project-wide ideas in our [Backlog](https://github.com/kvz/locutus/blob/master/CHANGELOG.md#Backlog) that we would love help with, so I guess there is just one thing left to say..
+Also, there are plenty project-wide ideas in our [Backlog](https://github.com/locutusjs/locutus/blob/master/CHANGELOG.md#Backlog) that we would love help with, so I guess there is just one thing left to say..
 
-[To the GitHubs](https://github.com/kvz/locutus)!
+[To the GitHubs](https://github.com/locutusjs/locutus)!
 
 [Kevin](https://twitter.com/kvz)

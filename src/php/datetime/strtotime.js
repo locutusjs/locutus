@@ -33,6 +33,7 @@ const reMonthroman = 'i[vx]|vi{0,3}|xi{0,2}|i{1,3}'
 const reMonthText = '(' + reMonthFull + '|' + reMonthAbbr + '|' + reMonthroman + ')'
 
 const reTzCorrection = '((?:GMT)?([+-])' + reHour24 + ':?' + reMinute + '?)'
+const reTzAbbr = '\\(?([a-zA-Z]{1,6})\\)?'
 const reDayOfYear = '(00[1-9]|0[1-9][0-9]|[12][0-9][0-9]|3[0-5][0-9]|36[0-6])'
 const reWeekOfYear = '(0[1-9]|[1-4][0-9]|5[0-3])'
 
@@ -166,7 +167,7 @@ function processTzCorrection (tzOffset, oldValue) {
     return oldValue
   }
 
-  let sign = tzOffset[1] === '-' ? 1 : -1
+  let sign = tzOffset[1] === '-' ? -1 : 1
   let hours = +tzOffset[2]
   let minutes = +tzOffset[4]
 
@@ -175,7 +176,156 @@ function processTzCorrection (tzOffset, oldValue) {
     hours = Math.floor(hours / 100)
   }
 
-  return sign * (hours * 60 + minutes)
+  // timezone offset in seconds
+  return sign * (hours * 60 + minutes) * 60
+}
+
+// tz abbrevation : tz offset in seconds
+const tzAbbrOffsets = {
+  acdt: 37800,
+  acst: 34200,
+  addt: -7200,
+  adt: -10800,
+  aedt: 39600,
+  aest: 36000,
+  ahdt: -32400,
+  ahst: -36000,
+  akdt: -28800,
+  akst: -32400,
+  amt: -13840,
+  apt: -10800,
+  ast: -14400,
+  awdt: 32400,
+  awst: 28800,
+  awt: -10800,
+  bdst: 7200,
+  bdt: -36000,
+  bmt: -14309,
+  bst: 3600,
+  cast: 34200,
+  cat: 7200,
+  cddt: -14400,
+  cdt: -18000,
+  cemt: 10800,
+  cest: 7200,
+  cet: 3600,
+  cmt: -15408,
+  cpt: -18000,
+  cst: -21600,
+  cwt: -18000,
+  chst: 36000,
+  dmt: -1521,
+  eat: 10800,
+  eddt: -10800,
+  edt: -14400,
+  eest: 10800,
+  eet: 7200,
+  emt: -26248,
+  ept: -14400,
+  est: -18000,
+  ewt: -14400,
+  ffmt: -14660,
+  fmt: -4056,
+  gdt: 39600,
+  gmt: 0,
+  gst: 36000,
+  hdt: -34200,
+  hkst: 32400,
+  hkt: 28800,
+  hmt: -19776,
+  hpt: -34200,
+  hst: -36000,
+  hwt: -34200,
+  iddt: 14400,
+  idt: 10800,
+  imt: 25025,
+  ist: 7200,
+  jdt: 36000,
+  jmt: 8440,
+  jst: 32400,
+  kdt: 36000,
+  kmt: 5736,
+  kst: 30600,
+  lst: 9394,
+  mddt: -18000,
+  mdst: 16279,
+  mdt: -21600,
+  mest: 7200,
+  met: 3600,
+  mmt: 9017,
+  mpt: -21600,
+  msd: 14400,
+  msk: 10800,
+  mst: -25200,
+  mwt: -21600,
+  nddt: -5400,
+  ndt: -9052,
+  npt: -9000,
+  nst: -12600,
+  nwt: -9000,
+  nzdt: 46800,
+  nzmt: 41400,
+  nzst: 43200,
+  pddt: -21600,
+  pdt: -25200,
+  pkst: 21600,
+  pkt: 18000,
+  plmt: 25590,
+  pmt: -13236,
+  ppmt: -17340,
+  ppt: -25200,
+  pst: -28800,
+  pwt: -25200,
+  qmt: -18840,
+  rmt: 5794,
+  sast: 7200,
+  sdmt: -16800,
+  sjmt: -20173,
+  smt: -13884,
+  sst: -39600,
+  tbmt: 10751,
+  tmt: 12344,
+  uct: 0,
+  utc: 0,
+  wast: 7200,
+  wat: 3600,
+  wemt: 7200,
+  west: 3600,
+  wet: 0,
+  wib: 25200,
+  wita: 28800,
+  wit: 32400,
+  wmt: 5040,
+  yddt: -25200,
+  ydt: -28800,
+  ypt: -28800,
+  yst: -32400,
+  ywt: -28800,
+  a: 3600,
+  b: 7200,
+  c: 10800,
+  d: 14400,
+  e: 18000,
+  f: 21600,
+  g: 25200,
+  h: 28800,
+  i: 32400,
+  k: 36000,
+  l: 39600,
+  m: 43200,
+  n: -3600,
+  o: -7200,
+  p: -10800,
+  q: -14400,
+  r: -18000,
+  s: -21600,
+  t: -25200,
+  u: -28800,
+  v: -32400,
+  w: -36000,
+  x: -39600,
+  y: -43200,
+  z: 0
 }
 
 const formats = {
@@ -772,6 +922,20 @@ const formats = {
     }
   },
 
+  tzAbbr: {
+    regex: RegExp('^' + reTzAbbr),
+    name: 'tzabbr',
+    callback (match, abbr) {
+      const offset = tzAbbrOffsets[abbr.toLowerCase()]
+
+      if (isNaN(offset)) {
+        return false
+      }
+
+      return this.zone(offset)
+    }
+  },
+
   ago: {
     regex: /^ago/i,
     name: 'ago',
@@ -1042,8 +1206,8 @@ let resultProto = {
 
       result.setUTCHours(
         result.getHours(),
-        result.getMinutes() + this.z,
-        result.getSeconds(),
+        result.getMinutes(),
+        result.getSeconds() - this.z,
         result.getMilliseconds())
     }
 
@@ -1077,6 +1241,8 @@ module.exports = function strtotime (str, now) {
   //        returns 4: 1241425800
   //        example 5: strtotime('2009-05-04 08:30:00+02:00')
   //        returns 5: 1241418600
+  //        example 6: strtotime('2009-05-04 08:30:00 YWT')
+  //        returns 6: 1241454600
 
   if (now == null) {
     now = Math.floor(Date.now() / 1000)
@@ -1137,6 +1303,7 @@ module.exports = function strtotime (str, now) {
     formats.relativeText,
     formats.monthFullOrMonthAbbr,
     formats.tzCorrection,
+    formats.tzAbbr,
     formats.dateShortWithTimeShort12,
     formats.dateShortWithTimeLong12,
     formats.dateShortWithTimeShort,

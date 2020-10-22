@@ -21,36 +21,44 @@ module.exports = function inet_pton (a) { // eslint-disable-line camelcase
     // Return if 4 bytes, otherwise false.
     return m.length === 4 ? m : false
   }
-  r = /^((?:[\da-f]{1,4}(?::|)){0,8})(::)?((?:[\da-f]{1,4}(?::|)){0,8})$/
 
   // IPv6
-  m = a.match(r)
-  if (m) {
-    // Translate each hexadecimal value.
-    for (j = 1; j < 4; j++) {
-      // Indice 2 is :: and if no length, continue.
-      if (j === 2 || m[j].length === 0) {
-        continue
-      }
-      m[j] = m[j].split(':')
-      for (i = 0; i < m[j].length; i++) {
-        m[j][i] = parseInt(m[j][i], 16)
-        // Would be NaN if it was blank, return false.
-        if (isNaN(m[j][i])) {
-          // Invalid IP.
-          return false
-        }
-        m[j][i] = f(m[j][i] >> 8) + f(m[j][i] & 0xFF)
-      }
-      m[j] = m[j].join('')
+  if(a.length>39)return false;
+
+  m = a.split('::')
+
+  let res = ''
+  if(m.length>2)return false;	// :: can't be used more than once in IPv6.
+  for (j = 0; j < m.length; j++) {
+    if (m[j].length === 0) {	// Skip if empty.
+      continue
     }
-    x = m[1].length + m[3].length
-    if (x === 16) {
-      return m[1] + m[3]
-    } else if (x < 16 && m[2].length > 0) {
-      return m[1] + (new Array(16 - x + 1))
-        .join('\x00') + m[3]
+    m[j] = m[j].split(':')
+    for (i = 0; i < m[j].length; i++) {
+
+      // check if valid hex string up to 4 chars
+      if(!(m[j][i].match(/^[\da-f]{1,4}$/))) {
+        return false
+      }
+
+      m[j][i] = parseInt(m[j][i], 16)
+
+      // Would be NaN if it was blank, return false.
+      if (isNaN(m[j][i])) {
+        // Invalid IP.
+        return false
+      }
+      m[j][i] = f(m[j][i] >> 8) + f(m[j][i] & 0xFF)
     }
+    m[j] = m[j].join('')
+    res += m[j];
+  }
+  x = res.length
+  if (x === 16) {
+    return res
+  } else if (x < 16 && m.length > 1) {
+    return res + (new Array(16 - x + 1))
+      .join('\x00') + m[1]
   }
 
   // Invalid IP

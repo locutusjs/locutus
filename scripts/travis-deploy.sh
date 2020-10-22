@@ -21,7 +21,7 @@ git config --global user.name 'Locutus Bot'
 git config --global user.email 'bot@locutus.io'
 
 pushd "${__root}"
-  sed -i.bak -e "s~git@github.com:kvz/locutus.git~${GHPAGES_URL}~" "${__webroot}/_config.yml"
+  sed -i.bak -e "s~git@github.com:locutusjs/locutus.git~${GHPAGES_URL}~" "${__webroot}/_config.yml"
   rm -f "${__webroot}/_config.yml.bak" # This .bak dance makes sed portable accross gnu/bsd
   # Travis docs: Note that pull request builds skip deployment step altogether.
   # https://docs.travis-ci.com/user/deployment/#Conditional-Releases-with-on
