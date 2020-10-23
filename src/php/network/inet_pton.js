@@ -1,12 +1,12 @@
 module.exports = function inet_pton (a) { // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/inet_pton/
   // original by: Theriault (https://github.com/Theriault)
+  // improved by: alromh87 and JamieSlome
   //   example 1: inet_pton('::')
   //   returns 1: '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0'
   //   example 2: inet_pton('127.0.0.1')
   //   returns 2: '\x7F\x00\x00\x01'
 
-  var r
   var m
   var x
   var i
@@ -32,19 +32,19 @@ module.exports = function inet_pton (a) { // eslint-disable-line camelcase
   let res = ''
   if (m.length > 2) {
     return false
-  }	// :: can't be used more than once in IPv6.
+  } // :: can't be used more than once in IPv6.
 
-  let reHexDigits = /^[\da-f]{1,4}$/
+  const reHexDigits = /^[\da-f]{1,4}$/i
 
   for (j = 0; j < m.length; j++) {
-    if (m[j].length === 0) {	// Skip if empty.
+    if (m[j].length === 0) { // Skip if empty.
       continue
     }
     m[j] = m[j].split(':')
     for (i = 0; i < m[j].length; i++) {
       let hextet = m[j][i]
       // check if valid hex string up to 4 chars
-      if(!reHexDigits.test(hextet)) {
+      if (!reHexDigits.test(hextet)) {
         return false
       }
 
@@ -55,18 +55,11 @@ module.exports = function inet_pton (a) { // eslint-disable-line camelcase
         // Invalid IP.
         return false
       }
-      hextet = f(hextet >> 8, hextet & 0xFF)
+      m[j][i] = f(hextet >> 8, hextet & 0xFF)
     }
-    res += m[j].join('')
+    m[j] = m[j].join('')
     res += m[j]
   }
-  x = res.length
-  if (x === 16) {
-    return res
-  } else if (x < 16 && m.length > 1) {
-    return res + '\x00'.repeat(16 - x + 1) + m[1]
-  }
 
-  // Invalid IP
-  return false
+  return m.join('\x00'.repeat(16 - m[0].length - m[1].length))
 }
