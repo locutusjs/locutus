@@ -8,7 +8,6 @@ module.exports = function inet_pton (a) { // eslint-disable-line camelcase
   //   returns 2: '\x7F\x00\x00\x01'
 
   var m
-  var x
   var i
   var j
   var f = String.fromCharCode
@@ -29,7 +28,6 @@ module.exports = function inet_pton (a) { // eslint-disable-line camelcase
 
   m = a.split('::')
 
-  let res = ''
   if (m.length > 2) {
     return false
   } // :: can't be used more than once in IPv6.
@@ -58,8 +56,7 @@ module.exports = function inet_pton (a) { // eslint-disable-line camelcase
       m[j][i] = f(hextet >> 8, hextet & 0xFF)
     }
     m[j] = m[j].join('')
-    res += m[j]
   }
 
-  return m.join('\x00'.repeat(16 - m[0].length - m[1].length))
+  return m.join('\x00'.repeat(16 - m.reduce((tl, m) => tl + m.length, 0)))
 }
