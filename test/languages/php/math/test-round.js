@@ -37,4 +37,10 @@ describe('src/php/math/round.js (tested in test/languages/php/math/test-round.js
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 6', function (done) {
+    var expected = 4096.49
+    var result = round(4096.485, 2)
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })
