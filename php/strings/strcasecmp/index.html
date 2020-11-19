@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/strings/strcasecmp/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s strcasecmp looks like.">
-<meta property="og:updated_time" content="2020-11-19T18:45:25.626Z">
+<meta property="og:updated_time" content="2020-11-19T19:05:33.450Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's strcasecmp in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s strcasecmp looks like.">
@@ -174,7 +174,7 @@ ga('send', 'pageview');
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">strcasecmp</span> (<span class="params">fString1, fString2</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/strcasecmp/</span></div><div class="line">  <span class="comment">// original by: Martijn Wieringa</span></div><div class="line">  <span class="comment">// bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)</span></div><div class="line">  <span class="comment">//   example 1: strcasecmp('Hello', 'hello')</span></div><div class="line">  <span class="comment">//   returns 1: 0</span></div><div class="line"></div><div class="line">  <span class="keyword">var</span> string1 = (fString1 + <span class="string">''</span>).toLowerCase()</div><div class="line">  <span class="keyword">var</span> string2 = (fString2 + <span class="string">''</span>).toLowerCase()</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (string1 &gt; string2) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span></div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (string1 === string2) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">strcasecmp</span> (<span class="params">fString1, fString2</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/strcasecmp/</span></div><div class="line">  <span class="comment">// original by: Martijn Wieringa</span></div><div class="line">  <span class="comment">// bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)</span></div><div class="line">  <span class="comment">//   example 1: strcasecmp('Hello', 'hello')</span></div><div class="line">  <span class="comment">//   returns 1: 0</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> string1 = (fString1 + <span class="string">''</span>).toLowerCase()</div><div class="line">  <span class="keyword">const</span> string2 = (fString2 + <span class="string">''</span>).toLowerCase()</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (string1 &gt; string2) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span></div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (string1 === string2) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
       <a href="https://github.com/locutusjs/locutus/blob/master/src/php/strings/strcasecmp.js">View on GitHub</a>
@@ -280,7 +280,7 @@ ga('send', 'pageview');
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                328
+                332
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -340,13 +340,13 @@ ga('send', 'pageview');
       
         <li><a href="/golang/">
           Go
-          (3)
+          (4)
         </a></li>
         
         <ul>
-          <li><a href="/golang/strings/Index.html">
+          <li><a href="/golang/strings/">
             strings
-            (3)
+            (4)
           </a></li>
         </ul>
         
@@ -379,13 +379,13 @@ ga('send', 'pageview');
       
         <li><a href="/php/">
           PHP
-          (317)
+          (320)
         </a></li>
         
         <ul>
           <li><a href="/php/array/">
             array
-            (72)
+            (73)
           </a></li>
         </ul>
         
@@ -483,7 +483,7 @@ ga('send', 'pageview');
         <ul>
           <li><a href="/php/pcre/">
             pcre
-            (2)
+            (4)
           </a></li>
         </ul>
         

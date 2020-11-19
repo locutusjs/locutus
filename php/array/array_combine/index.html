@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/array/array_combine/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s array_combine looks like.">
-<meta property="og:updated_time" content="2020-11-19T18:45:25.614Z">
+<meta property="og:updated_time" content="2020-11-19T19:05:33.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's array_combine in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s array_combine looks like.">
@@ -174,7 +174,7 @@ ga('send', 'pageview');
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">array_combine</span> (<span class="params">keys, values</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_combine/</span></div><div class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: array_combine([0,1,2], ['kevin','van','zonneveld'])</span></div><div class="line">  <span class="comment">//   returns 1: &#123;0: 'kevin', 1: 'van', 2: 'zonneveld'&#125;</span></div><div class="line"></div><div class="line">  <span class="keyword">var</span> newArray = &#123;&#125;</div><div class="line">  <span class="keyword">var</span> i = <span class="number">0</span></div><div class="line"></div><div class="line">  <span class="comment">// input sanitation</span></div><div class="line">  <span class="comment">// Only accept arrays or array-like objects</span></div><div class="line">  <span class="comment">// Require arrays to have a count</span></div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> keys !== <span class="string">'object'</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> values !== <span class="string">'object'</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> keys.length !== <span class="string">'number'</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> values.length !== <span class="string">'number'</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (!keys.length) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// number of elements does not match</span></div><div class="line">  <span class="keyword">if</span> (keys.length !== values.length) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; keys.length; i++) &#123;</div><div class="line">    newArray[keys[i]] = values[i]</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> newArray</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">array_combine</span> (<span class="params">keys, values</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_combine/</span></div><div class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: array_combine([0,1,2], ['kevin','van','zonneveld'])</span></div><div class="line">  <span class="comment">//   returns 1: &#123;0: 'kevin', 1: 'van', 2: 'zonneveld'&#125;</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> newArray = &#123;&#125;</div><div class="line">  <span class="keyword">let</span> i = <span class="number">0</span></div><div class="line"></div><div class="line">  <span class="comment">// input sanitation</span></div><div class="line">  <span class="comment">// Only accept arrays or array-like objects</span></div><div class="line">  <span class="comment">// Require arrays to have a count</span></div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> keys !== <span class="string">'object'</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> values !== <span class="string">'object'</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> keys.length !== <span class="string">'number'</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> values.length !== <span class="string">'number'</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (!keys.length) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// number of elements does not match</span></div><div class="line">  <span class="keyword">if</span> (keys.length !== values.length) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; keys.length; i++) &#123;</div><div class="line">    newArray[keys[i]] = values[i]</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> newArray</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
       <a href="https://github.com/locutusjs/locutus/blob/master/src/php/array/array_combine.js">View on GitHub</a>
@@ -295,7 +295,7 @@ ga('send', 'pageview');
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                328
+                332
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -355,13 +355,13 @@ ga('send', 'pageview');
       
         <li><a href="/golang/">
           Go
-          (3)
+          (4)
         </a></li>
         
         <ul>
-          <li><a href="/golang/strings/Index.html">
+          <li><a href="/golang/strings/">
             strings
-            (3)
+            (4)
           </a></li>
         </ul>
         
@@ -394,13 +394,13 @@ ga('send', 'pageview');
       
         <li><a href="/php/">
           PHP
-          (317)
+          (320)
         </a></li>
         
         <ul>
           <li><a href="/php/array/">
             array
-            (72)
+            (73)
           </a></li>
         </ul>
         
@@ -498,7 +498,7 @@ ga('send', 'pageview');
         <ul>
           <li><a href="/php/pcre/">
             pcre
-            (2)
+            (4)
           </a></li>
         </ul>
         

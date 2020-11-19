@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/network/long2ip/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s long2ip looks like.">
-<meta property="og:updated_time" content="2020-11-19T18:45:25.622Z">
+<meta property="og:updated_time" content="2020-11-19T19:05:33.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's long2ip in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s long2ip looks like.">
@@ -174,7 +174,7 @@ ga('send', 'pageview');
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">long2ip</span> (<span class="params">ip</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/long2ip/</span></div><div class="line">  <span class="comment">// original by: Waldo Malqui Silva (https://waldo.malqui.info)</span></div><div class="line">  <span class="comment">//   example 1: long2ip( 3221234342 )</span></div><div class="line">  <span class="comment">//   returns 1: '192.0.34.166'</span></div><div class="line"></div><div class="line">  <span class="keyword">if</span> (!<span class="built_in">isFinite</span>(ip)) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> [ip &gt;&gt;&gt; <span class="number">24</span>, ip &gt;&gt;&gt; <span class="number">16</span> &amp; <span class="number">0xFF</span>, ip &gt;&gt;&gt; <span class="number">8</span> &amp; <span class="number">0xFF</span>, ip &amp; <span class="number">0xFF</span>].join(<span class="string">'.'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">long2ip</span> (<span class="params">ip</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/long2ip/</span></div><div class="line">  <span class="comment">// original by: Waldo Malqui Silva (https://fayr.us/waldo/)</span></div><div class="line">  <span class="comment">//   example 1: long2ip( 3221234342 )</span></div><div class="line">  <span class="comment">//   returns 1: '192.0.34.166'</span></div><div class="line"></div><div class="line">  <span class="keyword">if</span> (!<span class="built_in">isFinite</span>(ip)) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> [ip &gt;&gt;&gt; <span class="number">24</span> &amp; <span class="number">0xFF</span>, ip &gt;&gt;&gt; <span class="number">16</span> &amp; <span class="number">0xFF</span>, ip &gt;&gt;&gt; <span class="number">8</span> &amp; <span class="number">0xFF</span>, ip &amp; <span class="number">0xFF</span>].join(<span class="string">'.'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
       <a href="https://github.com/locutusjs/locutus/blob/master/src/php/network/long2ip.js">View on GitHub</a>
@@ -280,7 +280,7 @@ ga('send', 'pageview');
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                328
+                332
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -340,13 +340,13 @@ ga('send', 'pageview');
       
         <li><a href="/golang/">
           Go
-          (3)
+          (4)
         </a></li>
         
         <ul>
-          <li><a href="/golang/strings/Index.html">
+          <li><a href="/golang/strings/">
             strings
-            (3)
+            (4)
           </a></li>
         </ul>
         
@@ -379,13 +379,13 @@ ga('send', 'pageview');
       
         <li><a href="/php/">
           PHP
-          (317)
+          (320)
         </a></li>
         
         <ul>
           <li><a href="/php/array/">
             array
-            (72)
+            (73)
           </a></li>
         </ul>
         
@@ -483,7 +483,7 @@ ga('send', 'pageview');
         <ul>
           <li><a href="/php/pcre/">
             pcre
-            (2)
+            (4)
           </a></li>
         </ul>
         

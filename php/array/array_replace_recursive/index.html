@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/array/array_replace_recursive/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s array_replace_recursive looks like.">
-<meta property="og:updated_time" content="2020-11-19T18:45:25.614Z">
+<meta property="og:updated_time" content="2020-11-19T19:05:33.178Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's array_replace_recursive in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s array_replace_recursive looks like.">
@@ -174,7 +174,7 @@ ga('send', 'pageview');
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">array_replace_recursive</span> (<span class="params">arr</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_replace_recursive/</span></div><div class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: array_replace_recursive(&#123;'citrus' : ['orange'], 'berries' : ['blackberry', 'raspberry']&#125;, &#123;'citrus' : ['pineapple'], 'berries' : ['blueberry']&#125;)</span></div><div class="line">  <span class="comment">//   returns 1: &#123;citrus : ['pineapple'], berries : ['blueberry', 'raspberry']&#125;</span></div><div class="line"></div><div class="line">  <span class="keyword">var</span> i = <span class="number">0</span></div><div class="line">  <span class="keyword">var</span> p = <span class="string">''</span></div><div class="line">  <span class="keyword">var</span> argl = <span class="built_in">arguments</span>.length</div><div class="line">  <span class="keyword">var</span> retObj</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (argl &lt; <span class="number">2</span>) &#123;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'There should be at least 2 arguments passed to array_replace_recursive()'</span>)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// Although docs state that the arguments are passed in by reference,</span></div><div class="line">  <span class="comment">// it seems they are not altered, but rather the copy that is returned</span></div><div class="line">  <span class="comment">// So we make a copy here, instead of acting on arr itself</span></div><div class="line">  <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(arr) === <span class="string">'[object Array]'</span>) &#123;</div><div class="line">    retObj = []</div><div class="line">    <span class="keyword">for</span> (p <span class="keyword">in</span> arr) &#123;</div><div class="line">      retObj.push(arr[p])</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    retObj = &#123;&#125;</div><div class="line">    <span class="keyword">for</span> (p <span class="keyword">in</span> arr) &#123;</div><div class="line">      retObj[p] = arr[p]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; argl; i++) &#123;</div><div class="line">    <span class="keyword">for</span> (p <span class="keyword">in</span> <span class="built_in">arguments</span>[i]) &#123;</div><div class="line">      <span class="keyword">if</span> (retObj[p] &amp;&amp; <span class="keyword">typeof</span> retObj[p] === <span class="string">'object'</span>) &#123;</div><div class="line">        retObj[p] = array_replace_recursive(retObj[p], <span class="built_in">arguments</span>[i][p])</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        retObj[p] = <span class="built_in">arguments</span>[i][p]</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> retObj</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">array_replace_recursive</span> (<span class="params">arr</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_replace_recursive/</span></div><div class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: array_replace_recursive(&#123;'citrus' : ['orange'], 'berries' : ['blackberry', 'raspberry']&#125;, &#123;'citrus' : ['pineapple'], 'berries' : ['blueberry']&#125;)</span></div><div class="line">  <span class="comment">//   returns 1: &#123;citrus : ['pineapple'], berries : ['blueberry', 'raspberry']&#125;</span></div><div class="line"></div><div class="line">  <span class="keyword">let</span> i = <span class="number">0</span></div><div class="line">  <span class="keyword">let</span> p = <span class="string">''</span></div><div class="line">  <span class="keyword">const</span> argl = <span class="built_in">arguments</span>.length</div><div class="line">  <span class="keyword">let</span> retObj</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (argl &lt; <span class="number">2</span>) &#123;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'There should be at least 2 arguments passed to array_replace_recursive()'</span>)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// Although docs state that the arguments are passed in by reference,</span></div><div class="line">  <span class="comment">// it seems they are not altered, but rather the copy that is returned</span></div><div class="line">  <span class="comment">// So we make a copy here, instead of acting on arr itself</span></div><div class="line">  <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(arr) === <span class="string">'[object Array]'</span>) &#123;</div><div class="line">    retObj = []</div><div class="line">    <span class="keyword">for</span> (p <span class="keyword">in</span> arr) &#123;</div><div class="line">      retObj.push(arr[p])</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    retObj = &#123;&#125;</div><div class="line">    <span class="keyword">for</span> (p <span class="keyword">in</span> arr) &#123;</div><div class="line">      retObj[p] = arr[p]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; argl; i++) &#123;</div><div class="line">    <span class="keyword">for</span> (p <span class="keyword">in</span> <span class="built_in">arguments</span>[i]) &#123;</div><div class="line">      <span class="keyword">if</span> (retObj[p] &amp;&amp; <span class="keyword">typeof</span> retObj[p] === <span class="string">'object'</span>) &#123;</div><div class="line">        retObj[p] = array_replace_recursive(retObj[p], <span class="built_in">arguments</span>[i][p])</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        retObj[p] = <span class="built_in">arguments</span>[i][p]</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> retObj</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
       <a href="https://github.com/locutusjs/locutus/blob/master/src/php/array/array_replace_recursive.js">View on GitHub</a>
@@ -295,7 +295,7 @@ ga('send', 'pageview');
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                328
+                332
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -355,13 +355,13 @@ ga('send', 'pageview');
       
         <li><a href="/golang/">
           Go
-          (3)
+          (4)
         </a></li>
         
         <ul>
-          <li><a href="/golang/strings/Index.html">
+          <li><a href="/golang/strings/">
             strings
-            (3)
+            (4)
           </a></li>
         </ul>
         
@@ -394,13 +394,13 @@ ga('send', 'pageview');
       
         <li><a href="/php/">
           PHP
-          (317)
+          (320)
         </a></li>
         
         <ul>
           <li><a href="/php/array/">
             array
-            (72)
+            (73)
           </a></li>
         </ul>
         
@@ -498,7 +498,7 @@ ga('send', 'pageview');
         <ul>
           <li><a href="/php/pcre/">
             pcre
-            (2)
+            (4)
           </a></li>
         </ul>
         

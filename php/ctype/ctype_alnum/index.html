@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/ctype/ctype_alnum/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s ctype_alnum looks like.">
-<meta property="og:updated_time" content="2020-11-19T18:45:25.614Z">
+<meta property="og:updated_time" content="2020-11-19T19:05:33.250Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's ctype_alnum in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s ctype_alnum looks like.">
@@ -174,7 +174,7 @@ ga('send', 'pageview');
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">ctype_alnum</span> (<span class="params">text</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/ctype_alnum/</span></div><div class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: ctype_alnum('AbC12')</span></div><div class="line">  <span class="comment">//   returns 1: true</span></div><div class="line"></div><div class="line">  <span class="keyword">var</span> setlocale = <span class="built_in">require</span>(<span class="string">'../strings/setlocale'</span>)</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> text !== <span class="string">'string'</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// ensure setup of localization variables takes place</span></div><div class="line">  setlocale(<span class="string">'LC_ALL'</span>, <span class="number">0</span>)</div><div class="line"></div><div class="line">  <span class="keyword">var</span> $global = (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : global)</div><div class="line">  $global.$locutus = $global.$locutus || &#123;&#125;</div><div class="line">  <span class="keyword">var</span> $locutus = $global.$locutus</div><div class="line">  <span class="keyword">var</span> p = $locutus.php</div><div class="line"></div><div class="line">  <span class="keyword">return</span> text.search(p.locales[p.localeCategories.LC_CTYPE].LC_CTYPE.an) !== <span class="number">-1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">ctype_alnum</span> (<span class="params">text</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/ctype_alnum/</span></div><div class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: ctype_alnum('AbC12')</span></div><div class="line">  <span class="comment">//   returns 1: true</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> setlocale = <span class="built_in">require</span>(<span class="string">'../strings/setlocale'</span>)</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> text !== <span class="string">'string'</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// ensure setup of localization variables takes place</span></div><div class="line">  setlocale(<span class="string">'LC_ALL'</span>, <span class="number">0</span>)</div><div class="line"></div><div class="line">  <span class="keyword">const</span> $global = (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : global)</div><div class="line">  $global.$locutus = $global.$locutus || &#123;&#125;</div><div class="line">  <span class="keyword">const</span> $locutus = $global.$locutus</div><div class="line">  <span class="keyword">const</span> p = $locutus.php</div><div class="line"></div><div class="line">  <span class="keyword">return</span> text.search(p.locales[p.localeCategories.LC_CTYPE].LC_CTYPE.an) !== <span class="number">-1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
       <a href="https://github.com/locutusjs/locutus/blob/master/src/php/ctype/ctype_alnum.js">View on GitHub</a>
@@ -280,7 +280,7 @@ ga('send', 'pageview');
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                328
+                332
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -340,13 +340,13 @@ ga('send', 'pageview');
       
         <li><a href="/golang/">
           Go
-          (3)
+          (4)
         </a></li>
         
         <ul>
-          <li><a href="/golang/strings/Index.html">
+          <li><a href="/golang/strings/">
             strings
-            (3)
+            (4)
           </a></li>
         </ul>
         
@@ -379,13 +379,13 @@ ga('send', 'pageview');
       
         <li><a href="/php/">
           PHP
-          (317)
+          (320)
         </a></li>
         
         <ul>
           <li><a href="/php/array/">
             array
-            (72)
+            (73)
           </a></li>
         </ul>
         
@@ -483,7 +483,7 @@ ga('send', 'pageview');
         <ul>
           <li><a href="/php/pcre/">
             pcre
-            (2)
+            (4)
           </a></li>
         </ul>
         

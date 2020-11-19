@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/network/setcookie/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s setcookie looks like.">
-<meta property="og:updated_time" content="2020-11-19T18:45:25.622Z">
+<meta property="og:updated_time" content="2020-11-19T19:05:33.378Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's setcookie in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s setcookie looks like.">
@@ -174,7 +174,7 @@ ga('send', 'pageview');
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">setcookie</span> (<span class="params">name, value, expires, path, domain, secure</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/setcookie/</span></div><div class="line">  <span class="comment">// original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)</span></div><div class="line">  <span class="comment">// bugfixed by: Andreas</span></div><div class="line">  <span class="comment">// bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)</span></div><div class="line">  <span class="comment">// improved by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">//   example 1: setcookie('author_name', 'Kevin van Zonneveld')</span></div><div class="line">  <span class="comment">//   returns 1: true</span></div><div class="line"></div><div class="line">  <span class="keyword">var</span> setrawcookie = <span class="built_in">require</span>(<span class="string">'../network/setrawcookie'</span>)</div><div class="line">  <span class="keyword">return</span> setrawcookie(name, <span class="built_in">encodeURIComponent</span>(value), expires, path, domain, secure)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">setcookie</span> (<span class="params">name, value, expires, path, domain, secure</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/setcookie/</span></div><div class="line">  <span class="comment">// original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)</span></div><div class="line">  <span class="comment">// bugfixed by: Andreas</span></div><div class="line">  <span class="comment">// bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)</span></div><div class="line">  <span class="comment">// improved by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">//   example 1: setcookie('author_name', 'Kevin van Zonneveld')</span></div><div class="line">  <span class="comment">//   returns 1: true</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> setrawcookie = <span class="built_in">require</span>(<span class="string">'../network/setrawcookie'</span>)</div><div class="line">  <span class="keyword">return</span> setrawcookie(name, <span class="built_in">encodeURIComponent</span>(value), expires, path, domain, secure)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
       <a href="https://github.com/locutusjs/locutus/blob/master/src/php/network/setcookie.js">View on GitHub</a>
@@ -280,7 +280,7 @@ ga('send', 'pageview');
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                328
+                332
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -340,13 +340,13 @@ ga('send', 'pageview');
       
         <li><a href="/golang/">
           Go
-          (3)
+          (4)
         </a></li>
         
         <ul>
-          <li><a href="/golang/strings/Index.html">
+          <li><a href="/golang/strings/">
             strings
-            (3)
+            (4)
           </a></li>
         </ul>
         
@@ -379,13 +379,13 @@ ga('send', 'pageview');
       
         <li><a href="/php/">
           PHP
-          (317)
+          (320)
         </a></li>
         
         <ul>
           <li><a href="/php/array/">
             array
-            (72)
+            (73)
           </a></li>
         </ul>
         
@@ -483,7 +483,7 @@ ga('send', 'pageview');
         <ul>
           <li><a href="/php/pcre/">
             pcre
-            (2)
+            (4)
           </a></li>
         </ul>
         

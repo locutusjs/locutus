@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/json/json_last_error/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s json_last_error looks like.">
-<meta property="og:updated_time" content="2020-11-19T18:45:25.618Z">
+<meta property="og:updated_time" content="2020-11-19T19:05:33.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's json_last_error in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s json_last_error looks like.">
@@ -174,7 +174,7 @@ ga('send', 'pageview');
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">json_last_error</span> (<span class="params"></span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://phpjs.org/functions/json_last_error/</span></div><div class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: json_last_error()</span></div><div class="line">  <span class="comment">//   returns 1: 0</span></div><div class="line"></div><div class="line">  <span class="comment">// JSON_ERROR_NONE = 0</span></div><div class="line">  <span class="comment">// max depth limit to be removed per PHP comments in json.c (not possible in JS?):</span></div><div class="line">  <span class="comment">// JSON_ERROR_DEPTH = 1</span></div><div class="line">  <span class="comment">// internal use? also not documented:</span></div><div class="line">  <span class="comment">// JSON_ERROR_STATE_MISMATCH = 2</span></div><div class="line">  <span class="comment">// [\u0000-\u0008\u000B-\u000C\u000E-\u001F] if used directly within json_decode():</span></div><div class="line">  <span class="comment">// JSON_ERROR_CTRL_CHAR = 3</span></div><div class="line">  <span class="comment">// but JSON functions auto-escape these, so error not possible in JavaScript</span></div><div class="line">  <span class="comment">// JSON_ERROR_SYNTAX = 4</span></div><div class="line"></div><div class="line">  <span class="keyword">var</span> $global = (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : global)</div><div class="line">  $global.$locutus = $global.$locutus || &#123;&#125;</div><div class="line">  <span class="keyword">var</span> $locutus = $global.$locutus</div><div class="line">  $locutus.php = $locutus.php || &#123;&#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> $locutus.php &amp;&amp; $locutus.php.last_error_json ? $locutus.php.last_error_json : <span class="number">0</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">json_last_error</span> (<span class="params"></span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://phpjs.org/functions/json_last_error/</span></div><div class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: json_last_error()</span></div><div class="line">  <span class="comment">//   returns 1: 0</span></div><div class="line"></div><div class="line">  <span class="comment">// JSON_ERROR_NONE = 0</span></div><div class="line">  <span class="comment">// max depth limit to be removed per PHP comments in json.c (not possible in JS?):</span></div><div class="line">  <span class="comment">// JSON_ERROR_DEPTH = 1</span></div><div class="line">  <span class="comment">// internal use? also not documented:</span></div><div class="line">  <span class="comment">// JSON_ERROR_STATE_MISMATCH = 2</span></div><div class="line">  <span class="comment">// [\u0000-\u0008\u000B-\u000C\u000E-\u001F] if used directly within json_decode():</span></div><div class="line">  <span class="comment">// JSON_ERROR_CTRL_CHAR = 3</span></div><div class="line">  <span class="comment">// but JSON functions auto-escape these, so error not possible in JavaScript</span></div><div class="line">  <span class="comment">// JSON_ERROR_SYNTAX = 4</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> $global = (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : global)</div><div class="line">  $global.$locutus = $global.$locutus || &#123;&#125;</div><div class="line">  <span class="keyword">const</span> $locutus = $global.$locutus</div><div class="line">  $locutus.php = $locutus.php || &#123;&#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> $locutus.php &amp;&amp; $locutus.php.last_error_json ? $locutus.php.last_error_json : <span class="number">0</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
       <a href="https://github.com/locutusjs/locutus/blob/master/src/php/json/json_last_error.js">View on GitHub</a>
@@ -280,7 +280,7 @@ ga('send', 'pageview');
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                328
+                332
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -340,13 +340,13 @@ ga('send', 'pageview');
       
         <li><a href="/golang/">
           Go
-          (3)
+          (4)
         </a></li>
         
         <ul>
-          <li><a href="/golang/strings/Index.html">
+          <li><a href="/golang/strings/">
             strings
-            (3)
+            (4)
           </a></li>
         </ul>
         
@@ -379,13 +379,13 @@ ga('send', 'pageview');
       
         <li><a href="/php/">
           PHP
-          (317)
+          (320)
         </a></li>
         
         <ul>
           <li><a href="/php/array/">
             array
-            (72)
+            (73)
           </a></li>
         </ul>
         
@@ -483,7 +483,7 @@ ga('send', 'pageview');
         <ul>
           <li><a href="/php/pcre/">
             pcre
-            (2)
+            (4)
           </a></li>
         </ul>
         
