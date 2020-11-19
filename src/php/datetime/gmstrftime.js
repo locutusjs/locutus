@@ -6,13 +6,13 @@ module.exports = function gmstrftime (format, timestamp) {
   //   example 1: gmstrftime("%A", 1062462400)
   //   returns 1: 'Tuesday'
 
-  var strftime = require('../datetime/strftime')
+  const strftime = require('../datetime/strftime')
 
-  var _date = (typeof timestamp === 'undefined')
+  const _date = (typeof timestamp === 'undefined')
     ? new Date()
     : (timestamp instanceof Date)
-      ? new Date(timestamp)
-      : new Date(timestamp * 1000)
+        ? new Date(timestamp)
+        : new Date(timestamp * 1000)
 
   timestamp = Date.parse(_date.toUTCString().slice(0, -4)) / 1000
 

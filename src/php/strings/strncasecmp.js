@@ -16,10 +16,10 @@ module.exports = function strncasecmp (argStr1, argStr2, len) {
   //   example 5: strncasecmp('Version 12.15', 'Version 12.9', 20)
   //   returns 5: -8
 
-  var diff
-  var i = 0
-  var str1 = (argStr1 + '').toLowerCase().substr(0, len)
-  var str2 = (argStr2 + '').toLowerCase().substr(0, len)
+  let diff
+  let i = 0
+  const str1 = (argStr1 + '').toLowerCase().substr(0, len)
+  const str2 = (argStr2 + '').toLowerCase().substr(0, len)
 
   if (str1.length !== str2.length) {
     if (str1.length < str2.length) {

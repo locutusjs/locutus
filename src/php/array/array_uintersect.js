@@ -7,22 +7,22 @@ module.exports = function array_uintersect (arr1) { // eslint-disable-line camel
   //   example 1: array_uintersect($array1, $array2, function( f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 === string2) return 0; return -1;})
   //   returns 1: {a: 'green', b: 'brown', 0: 'red'}
 
-  var retArr = {}
-  var arglm1 = arguments.length - 1
-  var arglm2 = arglm1 - 1
-  var cb = arguments[arglm1]
-  var k1 = ''
-  var i = 1
-  var arr = {}
-  var k = ''
+  const retArr = {}
+  const arglm1 = arguments.length - 1
+  const arglm2 = arglm1 - 1
+  let cb = arguments[arglm1]
+  let k1 = ''
+  let i = 1
+  let arr = {}
+  let k = ''
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
 
   cb = (typeof cb === 'string')
     ? $global[cb]
     : (Object.prototype.toString.call(cb) === '[object Array]')
-      ? $global[cb[0]][cb[1]]
-      : cb
+        ? $global[cb[0]][cb[1]]
+        : cb
 
   arr1keys: for (k1 in arr1) { // eslint-disable-line no-labels
     arrs: for (i = 1; i < arglm1; i++) { // eslint-disable-line no-labels

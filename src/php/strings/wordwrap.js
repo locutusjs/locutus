@@ -19,7 +19,7 @@ module.exports = function wordwrap (str, intWidth, strBreak, cut) {
   strBreak = arguments.length >= 3 ? '' + strBreak : '\n'
   cut = arguments.length >= 4 ? !!cut : false
 
-  var i, j, line
+  let i, j, line
 
   str += ''
 
@@ -27,13 +27,13 @@ module.exports = function wordwrap (str, intWidth, strBreak, cut) {
     return str
   }
 
-  var reLineBreaks = /\r\n|\n|\r/
-  var reBeginningUntilFirstWhitespace = /^\S*/
-  var reLastCharsWithOptionalTrailingWhitespace = /\S*(\s)?$/
+  const reLineBreaks = /\r\n|\n|\r/
+  const reBeginningUntilFirstWhitespace = /^\S*/
+  const reLastCharsWithOptionalTrailingWhitespace = /\S*(\s)?$/
 
-  var lines = str.split(reLineBreaks)
-  var l = lines.length
-  var match
+  const lines = str.split(reLineBreaks)
+  const l = lines.length
+  let match
 
   // for each line of text
   for (i = 0; i < l; lines[i++] += line) {
@@ -42,12 +42,12 @@ module.exports = function wordwrap (str, intWidth, strBreak, cut) {
 
     while (line.length > intWidth) {
       // get slice of length one char above limit
-      var slice = line.slice(0, intWidth + 1)
+      const slice = line.slice(0, intWidth + 1)
 
       // remove leading whitespace from rest of line to parse
-      var ltrim = 0
+      let ltrim = 0
       // remove trailing whitespace from new line content
-      var rtrim = 0
+      let rtrim = 0
 
       match = slice.match(reLastCharsWithOptionalTrailingWhitespace)
 
@@ -74,7 +74,7 @@ module.exports = function wordwrap (str, intWidth, strBreak, cut) {
         // if cut wasn't forced
         // cut at next possible whitespace after the limit
         if (!j) {
-          var charsUntilNextWhitespace = (line.slice(intWidth).match(reBeginningUntilFirstWhitespace) || [''])[0]
+          const charsUntilNextWhitespace = (line.slice(intWidth).match(reBeginningUntilFirstWhitespace) || [''])[0]
 
           j = slice.length + charsUntilNextWhitespace.length
         }

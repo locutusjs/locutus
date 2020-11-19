@@ -17,7 +17,7 @@ module.exports = function array_walk (array, funcname, userdata) { // eslint-dis
 
   try {
     if (typeof funcname === 'function') {
-      for (var key in array) {
+      for (const key in array) {
         if (arguments.length > 2) {
           funcname(array[key], key, userdata)
         } else {

@@ -12,7 +12,7 @@ module.exports = function metaphone (word, maxPhonemes) {
   //   example 4: metaphone('batch batcher')
   //   returns 4: 'BXBXR'
 
-  var type = typeof word
+  const type = typeof word
 
   if (type === 'undefined' || type === 'object' && word !== null) {
     // weird!
@@ -37,10 +37,10 @@ module.exports = function metaphone (word, maxPhonemes) {
   // alpha depends on locale, so this var might need an update
   // or should be turned into a regex
   // for now assuming pure a-z
-  var alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  var vowel = 'AEIOU'
-  var soft = 'EIY'
-  var leadingNonAlpha = new RegExp('^[^' + alpha + ']+')
+  const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  const vowel = 'AEIOU'
+  const soft = 'EIY'
+  const leadingNonAlpha = new RegExp('^[^' + alpha + ']+')
 
   word = typeof word === 'string' ? word : ''
   word = word.toUpperCase().replace(leadingNonAlpha, '')
@@ -49,19 +49,19 @@ module.exports = function metaphone (word, maxPhonemes) {
     return ''
   }
 
-  var is = function (p, c) {
+  const is = function (p, c) {
     return c !== '' && p.indexOf(c) !== -1
   }
 
-  var i = 0
-  var cc = word.charAt(0) // current char. Short name because it's used all over the function
-  var nc = word.charAt(1)  // next char
-  var nnc // after next char
-  var pc // previous char
-  var l = word.length
-  var meta = ''
+  let i = 0
+  let cc = word.charAt(0) // current char. Short name because it's used all over the function
+  let nc = word.charAt(1) // next char
+  let nnc // after next char
+  let pc // previous char
+  const l = word.length
+  let meta = ''
   // traditional is an internal param that could be exposed for now let it be a local var
-  var traditional = true
+  const traditional = true
 
   switch (cc) {
     case 'A':

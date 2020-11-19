@@ -20,7 +20,7 @@ module.exports = function base64_decode (encodedData) { // eslint-disable-line c
   // decodeUTF8string()
   // Internal function to decode properly UTF8 string
   // Adapted from Solution #1 at https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
-  var decodeUTF8string = function (str) {
+  const decodeUTF8string = function (str) {
     // Going backwards: from bytestream, to percent-encoding, to original string.
     return decodeURIComponent(str.split('').map(function (c) {
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
@@ -35,19 +35,19 @@ module.exports = function base64_decode (encodedData) { // eslint-disable-line c
     return new Buffer(encodedData, 'base64').toString('utf-8')
   }
 
-  var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
-  var o1
-  var o2
-  var o3
-  var h1
-  var h2
-  var h3
-  var h4
-  var bits
-  var i = 0
-  var ac = 0
-  var dec = ''
-  var tmpArr = []
+  const b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
+  let o1
+  let o2
+  let o3
+  let h1
+  let h2
+  let h3
+  let h4
+  let bits
+  let i = 0
+  let ac = 0
+  let dec = ''
+  const tmpArr = []
 
   if (!encodedData) {
     return encodedData

@@ -8,12 +8,12 @@ module.exports = function array_diff_key (arr1) { // eslint-disable-line camelca
   //   example 2: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {red: 5})
   //   returns 2: {"green":2, "blue":3, "white":4}
 
-  var argl = arguments.length
-  var retArr = {}
-  var k1 = ''
-  var i = 1
-  var k = ''
-  var arr = {}
+  const argl = arguments.length
+  const retArr = {}
+  let k1 = ''
+  let i = 1
+  let k = ''
+  let arr = {}
 
   arr1keys: for (k1 in arr1) { // eslint-disable-line no-labels
     for (i = 1; i < argl; i++) {

@@ -6,18 +6,18 @@ module.exports = function ini_set (varname, newvalue) { // eslint-disable-line c
   //   example 1: ini_set('date.timezone', 'America/Chicago')
   //   returns 1: 'Asia/Hong_Kong'
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
-  var $locutus = $global.$locutus
+  const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
   $locutus.php.ini = $locutus.php.ini || {}
 
   $locutus.php.ini = $locutus.php.ini || {}
   $locutus.php.ini[varname] = $locutus.php.ini[varname] || {}
 
-  var oldval = $locutus.php.ini[varname].local_value
+  const oldval = $locutus.php.ini[varname].local_value
 
-  var lowerStr = (newvalue + '').toLowerCase().trim()
+  const lowerStr = (newvalue + '').toLowerCase().trim()
   if (newvalue === true || lowerStr === 'on' || lowerStr === '1') {
     newvalue = 'on'
   }
@@ -25,7 +25,7 @@ module.exports = function ini_set (varname, newvalue) { // eslint-disable-line c
     newvalue = 'off'
   }
 
-  var _setArr = function (oldval) {
+  const _setArr = function (oldval) {
     // Although these are set individually, they are all accumulated
     if (typeof oldval === 'undefined') {
       $locutus.ini[varname].local_value = []

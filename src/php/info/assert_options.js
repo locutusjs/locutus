@@ -4,7 +4,7 @@ module.exports = function assert_options (what, value) { // eslint-disable-line 
   //   example 1: assert_options('ASSERT_CALLBACK')
   //   returns 1: null
 
-  var iniKey, defaultVal
+  let iniKey, defaultVal
   switch (what) {
     case 'ASSERT_ACTIVE':
       iniKey = 'assert.active'
@@ -33,7 +33,7 @@ module.exports = function assert_options (what, value) { // eslint-disable-line 
   }
 
   // I presume this is to be the most recent value, instead of the default value
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')(iniKey) : undefined) || defaultVal
+  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')(iniKey) : undefined) || defaultVal
 
   return iniVal
 }

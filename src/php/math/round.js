@@ -1,5 +1,5 @@
 function roundToInt (value, mode) {
-  var tmp = Math.floor(Math.abs(value) + 0.5)
+  let tmp = Math.floor(Math.abs(value) + 0.5)
 
   if (
     (mode === 'PHP_ROUND_HALF_DOWN' && value === (tmp - 0.5)) ||
@@ -36,9 +36,9 @@ module.exports = function round (value, precision = 0, mode = 'PHP_ROUND_HALF_UP
   //   example 6: round(4096.485, 2)
   //   returns 6: 4096.49
 
-  var floatCast = require('../_helpers/_php_cast_float')
-  var intCast = require('../_helpers/_php_cast_int')
-  var p
+  const floatCast = require('../_helpers/_php_cast_float')
+  const intCast = require('../_helpers/_php_cast_int')
+  let p
 
   // the code is heavily based on the native PHP implementation
   // https://github.com/php/php-src/blob/PHP-7.4/ext/standard/math.c#L355
@@ -59,7 +59,7 @@ module.exports = function round (value, precision = 0, mode = 'PHP_ROUND_HALF_UP
 
   // PHP does a pre-rounding before rounding to desired precision
   // https://wiki.php.net/rfc/rounding#pre-rounding_to_the_value_s_precision_if_possible
-  var preRoundPrecision = 14 - Math.floor(Math.log10(Math.abs(value)))
+  const preRoundPrecision = 14 - Math.floor(Math.log10(Math.abs(value)))
 
   if (preRoundPrecision > precision && preRoundPrecision - 15 < precision) {
     value = roundToInt(value * Math.pow(10, preRoundPrecision), mode)

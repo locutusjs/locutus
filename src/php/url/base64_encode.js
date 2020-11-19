@@ -18,7 +18,7 @@ module.exports = function base64_encode (stringToEncode) { // eslint-disable-lin
   // encodeUTF8string()
   // Internal function to encode properly UTF8 string
   // Adapted from Solution #1 at https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
-  var encodeUTF8string = function (str) {
+  const encodeUTF8string = function (str) {
     // first we use encodeURIComponent to get percent-encoded UTF-8,
     // then we convert the percent encodings into raw bytes which
     // can be fed into the base64 encoding algorithm.
@@ -36,19 +36,19 @@ module.exports = function base64_encode (stringToEncode) { // eslint-disable-lin
     return new Buffer(stringToEncode).toString('base64')
   }
 
-  var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
-  var o1
-  var o2
-  var o3
-  var h1
-  var h2
-  var h3
-  var h4
-  var bits
-  var i = 0
-  var ac = 0
-  var enc = ''
-  var tmpArr = []
+  const b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
+  let o1
+  let o2
+  let o3
+  let h1
+  let h2
+  let h3
+  let h4
+  let bits
+  let i = 0
+  let ac = 0
+  let enc = ''
+  const tmpArr = []
 
   if (!stringToEncode) {
     return stringToEncode
@@ -75,7 +75,7 @@ module.exports = function base64_encode (stringToEncode) { // eslint-disable-lin
 
   enc = tmpArr.join('')
 
-  var r = stringToEncode.length % 3
+  const r = stringToEncode.length % 3
 
   return (r ? enc.slice(0, r - 3) : enc) + '==='.slice(r || 3)
 }

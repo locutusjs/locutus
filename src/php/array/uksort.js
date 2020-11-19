@@ -17,12 +17,12 @@ module.exports = function uksort (inputArr, sorter) {
   //   example 1: var $result = $data
   //   returns 1: {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
 
-  var tmpArr = {}
-  var keys = []
-  var i = 0
-  var k = ''
-  var sortByReference = false
-  var populateArr = {}
+  const tmpArr = {}
+  const keys = []
+  let i = 0
+  let k = ''
+  let sortByReference = false
+  let populateArr = {}
 
   if (typeof sorter === 'string') {
     sorter = this.window[sorter]
@@ -46,7 +46,7 @@ module.exports = function uksort (inputArr, sorter) {
     return false
   }
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

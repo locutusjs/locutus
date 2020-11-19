@@ -24,6 +24,6 @@ module.exports = function echo () {
   //   example 1: echo('Hello world')
   //   returns 1: undefined
 
-  var args = Array.prototype.slice.call(arguments)
+  const args = Array.prototype.slice.call(arguments)
   return console.log(args.join(' '))
 }

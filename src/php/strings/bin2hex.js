@@ -9,10 +9,10 @@ module.exports = function bin2hex (s) {
   //   example 2: bin2hex(String.fromCharCode(0x00))
   //   returns 2: '00'
 
-  var i
-  var l
-  var o = ''
-  var n
+  let i
+  let l
+  let o = ''
+  let n
 
   s += ''
 

@@ -23,15 +23,15 @@ module.exports = function str_getcsv (input, delimiter, enclosure, escape) { // 
     Should also test newlines within
   */
 
-  var i
-  var inpLen
-  var output = []
-  var _backwards = function (str) {
+  let i
+  let inpLen
+  const output = []
+  const _backwards = function (str) {
     // We need to go backwards to simulate negative look-behind (don't split on
     // an escaped enclosure even if followed by the delimiter and another enclosure mark)
     return str.split('').reverse().join('')
   }
-  var _pq = function (str) {
+  const _pq = function (str) {
     // preg_quote()
     return String(str).replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1')
   }
@@ -39,8 +39,8 @@ module.exports = function str_getcsv (input, delimiter, enclosure, escape) { // 
   delimiter = delimiter || ','
   enclosure = enclosure || '"'
   escape = escape || '\\'
-  var pqEnc = _pq(enclosure)
-  var pqEsc = _pq(escape)
+  const pqEnc = _pq(enclosure)
+  const pqEsc = _pq(escape)
 
   input = input
     .replace(new RegExp('^\\s*' + pqEnc), '')

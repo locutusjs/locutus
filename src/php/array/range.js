@@ -10,12 +10,12 @@ module.exports = function range (low, high, step) {
   //   example 4: range( 'c', 'a' )
   //   returns 4: ['c', 'b', 'a']
 
-  var matrix = []
-  var iVal
-  var endval
-  var plus
-  var walker = step || 1
-  var chars = false
+  const matrix = []
+  let iVal
+  let endval
+  let plus
+  const walker = step || 1
+  let chars = false
 
   if (!isNaN(low) && !isNaN(high)) {
     iVal = low

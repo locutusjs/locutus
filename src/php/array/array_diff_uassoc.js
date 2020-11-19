@@ -7,21 +7,21 @@ module.exports = function array_diff_uassoc (arr1) { // eslint-disable-line came
   //   returns 1: {b: 'brown', c: 'blue', 0: 'red'}
   //        test: skip-1
 
-  var retArr = {}
-  var arglm1 = arguments.length - 1
-  var cb = arguments[arglm1]
-  var arr = {}
-  var i = 1
-  var k1 = ''
-  var k = ''
+  const retArr = {}
+  const arglm1 = arguments.length - 1
+  let cb = arguments[arglm1]
+  let arr = {}
+  let i = 1
+  let k1 = ''
+  let k = ''
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
 
   cb = (typeof cb === 'string')
     ? $global[cb]
     : (Object.prototype.toString.call(cb) === '[object Array]')
-      ? $global[cb[0]][cb[1]]
-      : cb
+        ? $global[cb[0]][cb[1]]
+        : cb
 
   arr1keys: for (k1 in arr1) { // eslint-disable-line no-labels
     for (i = 1; i < arglm1; i++) {

@@ -4,16 +4,16 @@ module.exports = function nl_langinfo (item) { // eslint-disable-line camelcase
   //   example 1: nl_langinfo('DAY_1')
   //   returns 1: 'Sunday'
 
-  var setlocale = require('../strings/setlocale')
+  const setlocale = require('../strings/setlocale')
 
   setlocale('LC_ALL', 0) // Ensure locale data is available
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
-  var $locutus = $global.$locutus
+  const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 
-  var loc = $locutus.php.locales[$locutus.php.localeCategories.LC_TIME]
+  let loc = $locutus.php.locales[$locutus.php.localeCategories.LC_TIME]
   if (item.indexOf('ABDAY_') === 0) {
     return loc.LC_TIME.a[parseInt(item.replace(/^ABDAY_/, ''), 10) - 1]
   } else if (item.indexOf('DAY_') === 0) {

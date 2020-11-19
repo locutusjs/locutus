@@ -19,14 +19,14 @@ module.exports = function natcasesort (inputArr) {
   //   example 1: var $result = $array1
   //   returns 1: {a: 'IMG0.png', e: 'img1.png', d: 'img2.png', f: 'IMG3.png', c: 'img10.png', b: 'img12.png'}
 
-  var strnatcasecmp = require('../strings/strnatcasecmp')
-  var valArr = []
-  var k
-  var i
-  var sortByReference = false
-  var populateArr = {}
+  const strnatcasecmp = require('../strings/strnatcasecmp')
+  const valArr = []
+  let k
+  let i
+  let sortByReference = false
+  let populateArr = {}
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

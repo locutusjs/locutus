@@ -28,19 +28,19 @@ module.exports = function substr (input, start, len) {
   //   returns 7: '\uD801\uDC00z'
   //        test: skip-3 skip-4 skip-5 skip-6 skip-7
 
-  var _php_cast_string = require('../_helpers/_phpCastString') // eslint-disable-line camelcase
+  const _php_cast_string = require('../_helpers/_phpCastString') // eslint-disable-line camelcase
 
   input = _php_cast_string(input)
 
-  var ini_get = require('../info/ini_get') // eslint-disable-line camelcase
-  var multibyte = ini_get('unicode.semantics') === 'on'
+  const ini_get = require('../info/ini_get') // eslint-disable-line camelcase
+  const multibyte = ini_get('unicode.semantics') === 'on'
 
   if (multibyte) {
     input = input.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[\s\S]/g) || []
   }
 
-  var inputLength = input.length
-  var end = inputLength
+  const inputLength = input.length
+  let end = inputLength
 
   if (start < 0) {
     start += end

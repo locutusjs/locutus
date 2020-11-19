@@ -4,6 +4,6 @@ module.exports = function split (delimiter, string) {
   //   example 1: split(' ', 'Kevin van Zonneveld')
   //   returns 1: ['Kevin', 'van', 'Zonneveld']
 
-  var explode = require('../strings/explode')
+  const explode = require('../strings/explode')
   return explode(delimiter, string)
 }

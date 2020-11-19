@@ -4,10 +4,10 @@ module.exports = function array_replace_recursive (arr) { // eslint-disable-line
   //   example 1: array_replace_recursive({'citrus' : ['orange'], 'berries' : ['blackberry', 'raspberry']}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']})
   //   returns 1: {citrus : ['pineapple'], berries : ['blueberry', 'raspberry']}
 
-  var i = 0
-  var p = ''
-  var argl = arguments.length
-  var retObj
+  let i = 0
+  let p = ''
+  const argl = arguments.length
+  let retObj
 
   if (argl < 2) {
     throw new Error('There should be at least 2 arguments passed to array_replace_recursive()')

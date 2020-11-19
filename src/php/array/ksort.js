@@ -26,20 +26,20 @@ module.exports = function ksort (inputArr, sortFlags) {
   //   example 2: var $result = $data
   //   returns 2: {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
 
-  var i18nlgd = require('../i18n/i18n_loc_get_default')
-  var strnatcmp = require('../strings/strnatcmp')
+  const i18nlgd = require('../i18n/i18n_loc_get_default')
+  const strnatcmp = require('../strings/strnatcmp')
 
-  var tmpArr = {}
-  var keys = []
-  var sorter
-  var i
-  var k
-  var sortByReference = false
-  var populateArr = {}
+  const tmpArr = {}
+  const keys = []
+  let sorter
+  let i
+  let k
+  let sortByReference = false
+  let populateArr = {}
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
-  var $locutus = $global.$locutus
+  const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
   $locutus.php.locales = $locutus.php.locales || {}
 
@@ -65,10 +65,10 @@ module.exports = function ksort (inputArr, sortFlags) {
     default:
       // case 'SORT_REGULAR': // compare items normally (don't change types)
       sorter = function (a, b) {
-        var aFloat = parseFloat(a)
-        var bFloat = parseFloat(b)
-        var aNumeric = aFloat + '' === a
-        var bNumeric = bFloat + '' === b
+        const aFloat = parseFloat(a)
+        const bFloat = parseFloat(b)
+        const aNumeric = aFloat + '' === a
+        const bNumeric = bFloat + '' === b
         if (aNumeric && bNumeric) {
           return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0
         } else if (aNumeric && !bNumeric) {
@@ -89,7 +89,7 @@ module.exports = function ksort (inputArr, sortFlags) {
   }
   keys.sort(sorter)
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

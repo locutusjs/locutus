@@ -16,11 +16,11 @@ module.exports = function usort (inputArr, sorter) {
   //   example 1: var $result = $stuff
   //   returns 1: {0: '1', 1: '3', 2: '4', 3: '11'}
 
-  var valArr = []
-  var k = ''
-  var i = 0
-  var sortByReference = false
-  var populateArr = {}
+  const valArr = []
+  let k = ''
+  let i = 0
+  let sortByReference = false
+  let populateArr = {}
 
   if (typeof sorter === 'string') {
     sorter = this[sorter]
@@ -28,7 +28,7 @@ module.exports = function usort (inputArr, sorter) {
     sorter = this[sorter[0]][sorter[1]]
   }
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

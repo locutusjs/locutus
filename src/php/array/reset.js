@@ -7,15 +7,15 @@ module.exports = function reset (arr) {
   //   example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
   //   returns 1: 'Kevin'
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
-  var $locutus = $global.$locutus
+  const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
   $locutus.php.pointers = $locutus.php.pointers || []
-  var pointers = $locutus.php.pointers
+  const pointers = $locutus.php.pointers
 
-  var indexOf = function (value) {
-    for (var i = 0, length = this.length; i < length; i++) {
+  const indexOf = function (value) {
+    for (let i = 0, length = this.length; i < length; i++) {
       if (this[i] === value) {
         return i
       }
@@ -29,9 +29,9 @@ module.exports = function reset (arr) {
   if (pointers.indexOf(arr) === -1) {
     pointers.push(arr, 0)
   }
-  var arrpos = pointers.indexOf(arr)
+  const arrpos = pointers.indexOf(arr)
   if (Object.prototype.toString.call(arr) !== '[object Array]') {
-    for (var k in arr) {
+    for (const k in arr) {
       if (pointers.indexOf(arr) === -1) {
         pointers.push(arr, 0)
       } else {

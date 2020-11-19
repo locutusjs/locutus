@@ -18,38 +18,38 @@ module.exports = function array_multisort (arr) { // eslint-disable-line camelca
   //      note 1: bits: HGFE DCBA
   //      note 1: args: Holds pointer to arguments for reassignment
 
-  var g
-  var i
-  var j
-  var k
-  var l
-  var sal
-  var vkey
-  var elIndex
-  var lastSorts
-  var tmpArray
-  var zlast
+  let g
+  let i
+  let j
+  let k
+  let l
+  let sal
+  let vkey
+  let elIndex
+  let lastSorts
+  let tmpArray
+  let zlast
 
-  var sortFlag = [0]
-  var thingsToSort = []
-  var nLastSort = []
-  var lastSort = []
+  const sortFlag = [0]
+  const thingsToSort = []
+  let nLastSort = []
+  let lastSort = []
   // possibly redundant
-  var args = arguments
+  const args = arguments
 
-  var flags = {
-    'SORT_REGULAR': 16,
-    'SORT_NUMERIC': 17,
-    'SORT_STRING': 18,
-    'SORT_ASC': 32,
-    'SORT_DESC': 40
+  const flags = {
+    SORT_REGULAR: 16,
+    SORT_NUMERIC: 17,
+    SORT_STRING: 18,
+    SORT_ASC: 32,
+    SORT_DESC: 40
   }
 
-  var sortDuplicator = function (a, b) {
+  const sortDuplicator = function (a, b) {
     return nLastSort.shift()
   }
 
-  var sortFunctions = [
+  const sortFunctions = [
     [
 
       function (a, b) {
@@ -85,11 +85,11 @@ module.exports = function array_multisort (arr) { // eslint-disable-line camelca
     ]
   ]
 
-  var sortArrs = [
+  const sortArrs = [
     []
   ]
 
-  var sortKeys = [
+  const sortKeys = [
     []
   ]
 
@@ -113,12 +113,12 @@ module.exports = function array_multisort (arr) { // eslint-disable-line camelca
   // All other arrays must be of equal length, otherwise function would return FALSE like in PHP
   // sortComponents: Holds 2 indexes per every section of the array
   // that can be sorted. As this is the start, the whole array can be sorted.
-  var arrMainLength = sortArrs[0].length
-  var sortComponents = [0, arrMainLength]
+  const arrMainLength = sortArrs[0].length
+  let sortComponents = [0, arrMainLength]
 
   // Loop through all other arguments, checking lengths and sort flags
   // of arrays and adding them to the above variables.
-  var argl = arguments.length
+  const argl = arguments.length
   for (j = 1; j < argl; j++) {
     if (Object.prototype.toString.call(arguments[j]) === '[object Array]') {
       sortArrs[j] = arguments[j]
@@ -140,7 +140,7 @@ module.exports = function array_multisort (arr) { // eslint-disable-line camelca
         return false
       }
     } else if (typeof arguments[j] === 'string') {
-      var lFlag = sortFlag.pop()
+      const lFlag = sortFlag.pop()
       // Keep extra parentheses around latter flags check
       // to avoid minimization leading to CDATA closer
       if (typeof flags[arguments[j]] === 'undefined' ||
@@ -189,7 +189,7 @@ module.exports = function array_multisort (arr) { // eslint-disable-line camelca
       }
 
       // Sort function for sorting. Either sorts asc or desc, regular/string or numeric.
-      var sFunction = sortFunctions[(sortFlag[i] & 3)][((sortFlag[i] & 8) > 0) ? 1 : 0]
+      let sFunction = sortFunctions[(sortFlag[i] & 3)][((sortFlag[i] & 8) > 0) ? 1 : 0]
 
       // Sort current array.
       for (l = 0; l !== sortComponents.length; l += 2) {

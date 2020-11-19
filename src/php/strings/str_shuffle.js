@@ -15,9 +15,9 @@ module.exports = function str_shuffle (str) { // eslint-disable-line camelcase
 
   str += ''
 
-  var newStr = ''
-  var rand
-  var i = str.length
+  let newStr = ''
+  let rand
+  let i = str.length
 
   while (i) {
     rand = Math.floor(Math.random() * i)

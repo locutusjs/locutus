@@ -16,7 +16,7 @@ module.exports = function trim (str, charlist) {
   //   example 3: trim(16, 1)
   //   returns 3: '6'
 
-  var whitespace = [
+  let whitespace = [
     ' ',
     '\n',
     '\r',
@@ -40,8 +40,8 @@ module.exports = function trim (str, charlist) {
     '\u2029',
     '\u3000'
   ].join('')
-  var l = 0
-  var i = 0
+  let l = 0
+  let i = 0
   str += ''
 
   if (charlist) {

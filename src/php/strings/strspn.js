@@ -7,11 +7,11 @@ module.exports = function strspn (str1, str2, start, lgth) {
   //   example 2: strspn('foo', 'o', 1, 2)
   //   returns 2: 2
 
-  var found
-  var stri
-  var strj
-  var j = 0
-  var i = 0
+  let found
+  let stri
+  let strj
+  let j = 0
+  let i = 0
 
   start = start ? (start < 0 ? (str1.length + start) : start) : 0
   lgth = lgth ? ((lgth < 0) ? (str1.length + lgth - start) : lgth) : str1.length - start

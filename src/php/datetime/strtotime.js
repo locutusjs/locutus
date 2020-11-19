@@ -167,7 +167,7 @@ function processTzCorrection (tzOffset, oldValue) {
     return oldValue
   }
 
-  let sign = tzOffset[1] === '-' ? -1 : 1
+  const sign = tzOffset[1] === '-' ? -1 : 1
   let hours = +tzOffset[2]
   let minutes = +tzOffset[4]
 
@@ -399,7 +399,7 @@ const formats = {
     regex: RegExp('^(back|front) of ' + reHour24 + reSpaceOpt + reMeridian + '?', 'i'),
     name: 'backof | frontof',
     callback (match, side, hours, meridian) {
-      let back = side.toLowerCase() === 'back'
+      const back = side.toLowerCase() === 'back'
       let hour = +hours
       let minute = 15
 
@@ -807,7 +807,7 @@ const formats = {
     callback (match, signs, relValue, relUnit) {
       const minuses = signs.replace(/[^-]/g, '').length
 
-      let amount = +relValue * Math.pow(-1, minuses)
+      const amount = +relValue * Math.pow(-1, minuses)
 
       switch (relUnit.toLowerCase()) {
         case 'sec':
@@ -998,7 +998,7 @@ const formats = {
   }
 }
 
-let resultProto = {
+const resultProto = {
   // date
   y: NaN,
   m: NaN,
@@ -1127,11 +1127,11 @@ let resultProto = {
     }
 
     if (!isNaN(this.weekday)) {
-      var date = new Date(relativeTo.getTime())
+      const date = new Date(relativeTo.getTime())
       date.setFullYear(this.y, this.m, this.d)
       date.setHours(this.h, this.i, this.s, this.f)
 
-      var dow = date.getDay()
+      const dow = date.getDay()
 
       if (this.weekdayBehavior === 2) {
         // To make "this week" work, where the current day of week is a "sunday"
@@ -1147,7 +1147,7 @@ let resultProto = {
         this.d -= dow
         this.d += this.weekday
       } else {
-        var diff = this.weekday - dow
+        let diff = this.weekday - dow
 
         // some PHP magic
         if ((this.rd < 0 && diff < 0) || (this.rd >= 0 && diff <= -this.weekdayBehavior)) {
@@ -1177,7 +1177,7 @@ let resultProto = {
     this.ry = this.rm = this.rd = 0
     this.rh = this.ri = this.rs = this.rf = 0
 
-    let result = new Date(relativeTo.getTime())
+    const result = new Date(relativeTo.getTime())
     // since Date constructor treats years <= 99 as 1900+
     // it can't be used, thus this weird way
     result.setFullYear(this.y, this.m, this.d)
@@ -1312,7 +1312,7 @@ module.exports = function strtotime (str, now) {
     formats.whitespace
   ]
 
-  let result = Object.create(resultProto)
+  const result = Object.create(resultProto)
 
   while (str.length) {
     let longestMatch = null

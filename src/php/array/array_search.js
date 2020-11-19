@@ -10,14 +10,14 @@ module.exports = function array_search (needle, haystack, argStrict) { // eslint
   //   example 2: array_search('3', {a: 3, b: 5, c: 7})
   //   returns 2: 'a'
 
-  var strict = !!argStrict
-  var key = ''
+  const strict = !!argStrict
+  let key = ''
 
   if (typeof needle === 'object' && needle.exec) {
     // Duck-type for RegExp
     if (!strict) {
       // Let's consider case sensitive searches as strict
-      var flags = 'i' + (needle.global ? 'g' : '') +
+      const flags = 'i' + (needle.global ? 'g' : '') +
         (needle.multiline ? 'm' : '') +
         // sticky is FF only
         (needle.sticky ? 'y' : '')

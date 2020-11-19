@@ -20,7 +20,7 @@ module.exports = function is_numeric (mixedVar) { // eslint-disable-line camelca
   //   example 6: is_numeric('1 ')
   //   returns 6: false
 
-  var whitespace = [
+  const whitespace = [
     ' ',
     '\n',
     '\r',

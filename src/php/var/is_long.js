@@ -6,6 +6,6 @@ module.exports = function is_long (mixedVar) { // eslint-disable-line camelcase
   //   example 1: is_long(186.31)
   //   returns 1: true
 
-  var _isFloat = require('../var/is_float')
+  const _isFloat = require('../var/is_float')
   return _isFloat(mixedVar)
 }

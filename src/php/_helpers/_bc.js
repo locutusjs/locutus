@@ -66,11 +66,11 @@ module.exports = function _bc () { // eslint-disable-line camelcase
       this.n_sign = null // sign
       this.n_len = null // (int) The number of digits before the decimal point.
       this.n_scale = null // (int) The number of digits after the decimal point.
-        // this.n_refs = null; // (int) The number of pointers to this number.
-        // this.n_text = null; // ?? Linked list for available list.
+      // this.n_refs = null; // (int) The number of pointers to this number.
+      // this.n_text = null; // ?? Linked list for available list.
       this.n_value = null // array as value, where 1.23 = [1,2,3]
       this.toString = function () {
-        var r, tmp
+        let r, tmp
         tmp = this.n_value.join('')
 
         // add minus sign (if applicable) then add the integer part
@@ -97,7 +97,7 @@ module.exports = function _bc () { // eslint-disable-line camelcase
      * @return bc_num
      */
     bc_add: function (n1, n2, scaleMin) {
-      var sum, cmpRes, resScale
+      let sum, cmpRes, resScale
 
       if (n1.n_sign === n2.n_sign) {
         sum = Libbcmath._bc_do_add(n1, n2, scaleMin)
@@ -138,8 +138,8 @@ module.exports = function _bc () { // eslint-disable-line camelcase
     },
 
     _one_mult: function (num, nPtr, size, digit, result, rPtr) {
-      var carry, value // int
-      var nptr, rptr // int pointers
+      let carry, value // int
+      let nptr, rptr // int pointers
       if (digit === 0) {
         Libbcmath.memset(result, 0, 0, size) // memset (result, 0, size);
       } else {
@@ -165,15 +165,15 @@ module.exports = function _bc () { // eslint-disable-line camelcase
 
     bc_divide: function (n1, n2, scale) {
       // var quot // bc_num return
-      var qval // bc_num
-      var num1, num2 // string
-      var ptr1, ptr2, n2ptr, qptr // int pointers
-      var scale1, val // int
-      var len1, len2, scale2, qdigits, extra, count // int
-      var qdig, qguess, borrow, carry // int
-      var mval // string
-      var zero // char
-      var norm // int
+      let qval // bc_num
+      let num1, num2 // string
+      let ptr1, ptr2, n2ptr, qptr // int pointers
+      let scale1, val // int
+      let len1, len2, scale2, qdigits, extra, count // int
+      let qdig, qguess, borrow, carry // int
+      let mval // string
+      let zero // char
+      let norm // int
       // var ptrs // return object from one_mul
       // Test for divide by zero. (return failure)
       if (Libbcmath.bc_is_zero(n2)) {
@@ -273,7 +273,7 @@ module.exports = function _bc () { // eslint-disable-line camelcase
       qval = Libbcmath.bc_new_num(qdigits - scale, scale)
       // memset (qval->n_value, 0, qdigits);
       Libbcmath.memset(qval.n_value, 0, 0, qdigits)
-        // Allocate storage for the temporary storage mval.
+      // Allocate storage for the temporary storage mval.
       // mval = (unsigned char *) safe_emalloc (1, len2, 1);
       mval = Libbcmath.safe_emalloc(1, len2, 1)
       if (mval === null) {
@@ -419,10 +419,10 @@ module.exports = function _bc () { // eslint-disable-line camelcase
      * @param scale [int] optional
      */
     bc_multiply: function (n1, n2, scale) {
-      var pval // bc_num
-      var len1, len2 // int
-      var fullScale, prodScale // int
-        // Initialize things.
+      let pval // bc_num
+      let len1, len2 // int
+      let fullScale, prodScale // int
+      // Initialize things.
       len1 = n1.n_len + n1.n_scale
       len2 = n2.n_len + n2.n_scale
       fullScale = n1.n_scale + n2.n_scale
@@ -436,7 +436,7 @@ module.exports = function _bc () { // eslint-disable-line camelcase
 
       // Assign to prod and clean up the number.
       pval.n_sign = (n1.n_sign === n2.n_sign ? Libbcmath.PLUS : Libbcmath.MINUS)
-        // pval.n_value = pval.nPtr;
+      // pval.n_value = pval.nPtr;
       pval.n_len = len2 + len1 + 1 - fullScale
       pval.n_scale = prodScale
       Libbcmath._bc_rm_leading_zeros(pval)
@@ -448,7 +448,7 @@ module.exports = function _bc () { // eslint-disable-line camelcase
     },
 
     new_sub_num: function (length, scale, value, ptr = 0) {
-      var temp = new Libbcmath.bc_num() // eslint-disable-line new-cap
+      const temp = new Libbcmath.bc_num() // eslint-disable-line new-cap
       temp.n_sign = Libbcmath.PLUS
       temp.n_len = length
       temp.n_scale = scale
@@ -458,10 +458,10 @@ module.exports = function _bc () { // eslint-disable-line camelcase
     },
 
     _bc_simp_mul: function (n1, n1len, n2, n2len, fullScale) {
-      var prod // bc_num
-      var n1ptr, n2ptr, pvptr // char *n1ptr, *n2ptr, *pvptr;
-      var n1end, n2end // char *n1end, *n2end;        // To the end of n1 and n2.
-      var indx, sum, prodlen // int indx, sum, prodlen;
+      let prod // bc_num
+      let n1ptr, n2ptr, pvptr // char *n1ptr, *n2ptr, *pvptr;
+      let n1end, n2end // char *n1end, *n2end;        // To the end of n1 and n2.
+      let indx, sum, prodlen // int indx, sum, prodlen;
       prodlen = n1len + n2len + 1
 
       prod = Libbcmath.bc_new_num(prodlen, 0)
@@ -494,8 +494,8 @@ module.exports = function _bc () { // eslint-disable-line camelcase
        be larger that what is being subtracted.  Also, accum and val
        must have n_scale = 0.  (e.g. they must look like integers. *) */
     _bc_shift_addsub: function (accum, val, shift, sub) {
-      var accp, valp // signed char *accp, *valp;
-      var count, carry // int  count, carry;
+      let accp, valp // signed char *accp, *valp;
+      let count, carry // int  count, carry;
       count = val.n_len
       if (val.n_value[0] === 0) {
         count--
@@ -564,14 +564,14 @@ module.exports = function _bc () { // eslint-disable-line camelcase
        B is the base of storage, number of digits in u1,u0 close to equal.
     */
     _bc_rec_mul: function (u, ulen, v, vlen, fullScale) {
-      var prod // @return
-      var u0, u1, v0, v1 // bc_num
+      let prod // @return
+      let u0, u1, v0, v1 // bc_num
       // var u0len,
       // var v0len // int
-      var m1, m2, m3, d1, d2 // bc_num
-      var n, prodlen, m1zero // int
-      var d1len, d2len // int
-        // Base case?
+      let m1, m2, m3, d1, d2 // bc_num
+      let n, prodlen, m1zero // int
+      let d1len, d2len // int
+      // Base case?
       if ((ulen + vlen) < Libbcmath.MUL_BASE_DIGITS ||
         ulen < Libbcmath.MUL_SMALL_DIGITS ||
         vlen < Libbcmath.MUL_SMALL_DIGITS) {
@@ -648,16 +648,16 @@ module.exports = function _bc () { // eslint-disable-line camelcase
       Libbcmath._bc_shift_addsub(prod, m2, n, d1.n_sign !== d2.n_sign)
 
       return prod
-        // Now clean up!
-        // bc_free_num (&u1);
-        // bc_free_num (&u0);
-        // bc_free_num (&v1);
-        // bc_free_num (&m1);
-        // bc_free_num (&v0);
-        // bc_free_num (&m2);
-        // bc_free_num (&m3);
-        // bc_free_num (&d1);
-        // bc_free_num (&d2);
+      // Now clean up!
+      // bc_free_num (&u1);
+      // bc_free_num (&u0);
+      // bc_free_num (&v1);
+      // bc_free_num (&m1);
+      // bc_free_num (&v0);
+      // bc_free_num (&m2);
+      // bc_free_num (&m3);
+      // bc_free_num (&d1);
+      // bc_free_num (&d2);
     },
 
     /**
@@ -669,9 +669,9 @@ module.exports = function _bc () { // eslint-disable-line camelcase
      * @return -1, 0, 1 (see bc_compare)
      */
     _bc_do_compare: function (n1, n2, useSign, ignoreLast) {
-      var n1ptr, n2ptr // int
-      var count // int
-        // First, compare signs.
+      let n1ptr, n2ptr // int
+      let count // int
+      // First, compare signs.
       if (useSign && (n1.n_sign !== n2.n_sign)) {
         if (n1.n_sign === Libbcmath.PLUS) {
           return (1) // Positive N1 > Negative N2
@@ -762,8 +762,8 @@ module.exports = function _bc () { // eslint-disable-line camelcase
    N2 is subtracted from N1 and the result placed in RESULT.  SCALE_MIN
    is the minimum scale for the result. */
     bc_sub: function (n1, n2, scaleMin) {
-      var diff // bc_num
-      var cmpRes, resScale // int
+      let diff // bc_num
+      let cmpRes, resScale // int
       if (n1.n_sign !== n2.n_sign) {
         diff = Libbcmath._bc_do_add(n1, n2, scaleMin)
         diff.n_sign = n1.n_sign
@@ -797,11 +797,11 @@ module.exports = function _bc () { // eslint-disable-line camelcase
     },
 
     _bc_do_add: function (n1, n2, scaleMin) {
-      var sum // bc_num
-      var sumScale, sumDigits // int
-      var n1ptr, n2ptr, sumptr // int
-      var carry, n1bytes, n2bytes // int
-      var tmp // int
+      let sum // bc_num
+      let sumScale, sumDigits // int
+      let n1ptr, n2ptr, sumptr // int
+      let carry, n1bytes, n2bytes // int
+      let tmp // int
 
       // Prepare sum.
       sumScale = Libbcmath.MAX(n1.n_scale, n2.n_scale)
@@ -822,14 +822,14 @@ module.exports = function _bc () { // eslint-disable-line camelcase
           // n1 has more dp then n2
           while (n1bytes > n2bytes) {
             sum.n_value[sumptr--] = n1.n_value[n1ptr--]
-              // *sumptr-- = *n1ptr--;
+            // *sumptr-- = *n1ptr--;
             n1bytes--
           }
         } else {
           // n2 has more dp then n1
           while (n2bytes > n1bytes) {
             sum.n_value[sumptr--] = n2.n_value[n2ptr--]
-              // *sumptr-- = *n2ptr--;
+            // *sumptr-- = *n2ptr--;
             n2bytes--
           }
         }
@@ -842,8 +842,8 @@ module.exports = function _bc () { // eslint-disable-line camelcase
       while ((n1bytes > 0) && (n2bytes > 0)) {
         // add the two numbers together
         tmp = n1.n_value[n1ptr--] + n2.n_value[n2ptr--] + carry
-          // *sumptr = *n1ptr-- + *n2ptr-- + carry;
-          // check if they are >= 10 (impossible to be more then 18)
+        // *sumptr = *n1ptr-- + *n2ptr-- + carry;
+        // check if they are >= 10 (impossible to be more then 18)
         if (tmp >= Libbcmath.BASE) {
           carry = 1
           tmp -= Libbcmath.BASE // yep, subtract 10, add a carry
@@ -861,7 +861,7 @@ module.exports = function _bc () { // eslint-disable-line camelcase
         // n2 is a bigger number then n1
         while (n2bytes-- > 0) {
           tmp = n2.n_value[n2ptr--] + carry
-            // *sumptr = *n2ptr-- + carry;
+          // *sumptr = *n2ptr-- + carry;
           if (tmp >= Libbcmath.BASE) {
             carry = 1
             tmp -= Libbcmath.BASE
@@ -874,7 +874,7 @@ module.exports = function _bc () { // eslint-disable-line camelcase
         // n1 is bigger then n2..
         while (n1bytes-- > 0) {
           tmp = n1.n_value[n1ptr--] + carry
-            // *sumptr = *n1ptr-- + carry;
+          // *sumptr = *n1ptr-- + carry;
           if (tmp >= Libbcmath.BASE) {
             carry = 1
             tmp -= Libbcmath.BASE
@@ -888,7 +888,7 @@ module.exports = function _bc () { // eslint-disable-line camelcase
       // Set final carry.
       if (carry === 1) {
         sum.n_value[sumptr] += 1
-          // *sumptr += 1;
+        // *sumptr += 1;
       }
 
       // Adjust sum and return.
@@ -916,12 +916,12 @@ module.exports = function _bc () { // eslint-disable-line camelcase
      * @return bc_num
      */
     _bc_do_sub: function (n1, n2, scaleMin) {
-      var diff // bc_num
-      var diffScale, diffLen // int
-      var minScale, minLen // int
-      var n1ptr, n2ptr, diffptr // int
-      var borrow, count, val // int
-        // Allocate temporary storage.
+      let diff // bc_num
+      let diffScale, diffLen // int
+      let minScale, minLen // int
+      let n1ptr, n2ptr, diffptr // int
+      let borrow, count, val // int
+      // Allocate temporary storage.
       diffLen = Libbcmath.MAX(n1.n_len, n2.n_len)
       diffScale = Libbcmath.MAX(n1.n_scale, n2.n_scale)
       minLen = Libbcmath.MIN(n1.n_len, n2.n_len)
@@ -951,13 +951,13 @@ module.exports = function _bc () { // eslint-disable-line camelcase
         // n1 has the longer scale
         for (count = n1.n_scale - minScale; count > 0; count--) {
           diff.n_value[diffptr--] = n1.n_value[n1ptr--]
-            // *diffptr-- = *n1ptr--;
+          // *diffptr-- = *n1ptr--;
         }
       } else {
         // n2 has the longer scale
         for (count = n2.n_scale - minScale; count > 0; count--) {
           val = 0 - n2.n_value[n2ptr--] - borrow
-            // val = - *n2ptr-- - borrow;
+          // val = - *n2ptr-- - borrow;
           if (val < 0) {
             val += Libbcmath.BASE
             borrow = 1
@@ -965,14 +965,14 @@ module.exports = function _bc () { // eslint-disable-line camelcase
             borrow = 0
           }
           diff.n_value[diffptr--] = val
-            //* diffptr-- = val;
+          //* diffptr-- = val;
         }
       }
 
       // Now do the equal length scale and integer parts.
       for (count = 0; count < minLen + minScale; count++) {
         val = n1.n_value[n1ptr--] - n2.n_value[n2ptr--] - borrow
-          // val = *n1ptr-- - *n2ptr-- - borrow;
+        // val = *n1ptr-- - *n2ptr-- - borrow;
         if (val < 0) {
           val += Libbcmath.BASE
           borrow = 1
@@ -980,14 +980,14 @@ module.exports = function _bc () { // eslint-disable-line camelcase
           borrow = 0
         }
         diff.n_value[diffptr--] = val
-          //* diffptr-- = val;
+        //* diffptr-- = val;
       }
 
       // If n1 has more digits then n2, we now do that subtract.
       if (diffLen !== minLen) {
         for (count = diffLen - minLen; count > 0; count--) {
           val = n1.n_value[n1ptr--] - borrow
-            // val = *n1ptr-- - borrow;
+          // val = *n1ptr-- - borrow;
           if (val < 0) {
             val += Libbcmath.BASE
             borrow = 1
@@ -1010,7 +1010,7 @@ module.exports = function _bc () { // eslint-disable-line camelcase
      * @return bc_num
      */
     bc_new_num: function (length, scale) {
-      var temp // bc_num
+      let temp // bc_num
       temp = new Libbcmath.bc_num() // eslint-disable-line new-cap
       temp.n_sign = Libbcmath.PLUS
       temp.n_len = length
@@ -1043,7 +1043,7 @@ module.exports = function _bc () { // eslint-disable-line camelcase
      * Convert to bc_num detecting scale
      */
     php_str2num: function (str) {
-      var p
+      let p
       p = str.indexOf('.')
       if (p === -1) {
         return Libbcmath.bc_str2num(str, 0)
@@ -1065,9 +1065,9 @@ module.exports = function _bc () { // eslint-disable-line camelcase
     },
 
     bc_str2num: function (strIn, scale) {
-      var str, num, ptr, digits, strscale, zeroInt, nptr
-        // remove any non-expected characters
-        // Check for valid number and count digits.
+      let str, num, ptr, digits, strscale, zeroInt, nptr
+      // remove any non-expected characters
+      // Check for valid number and count digits.
 
       str = strIn.split('') // convert to array
       ptr = 0 // str
@@ -1098,7 +1098,7 @@ module.exports = function _bc () { // eslint-disable-line camelcase
       if ((str[ptr]) || (digits + strscale === 0)) {
         // invalid number, return 0
         return Libbcmath.bc_init_num()
-          //* num = bc_copy_num (BCG(_zero_));
+        //* num = bc_copy_num (BCG(_zero_));
       }
 
       // Adjust numbers and allocate storage and initialize fields.
@@ -1114,11 +1114,11 @@ module.exports = function _bc () { // eslint-disable-line camelcase
       ptr = 0 // str
       if (str[ptr] === '-') {
         num.n_sign = Libbcmath.MINUS
-          // (*num)->n_sign = MINUS;
+        // (*num)->n_sign = MINUS;
         ptr++
       } else {
         num.n_sign = Libbcmath.PLUS
-          // (*num)->n_sign = PLUS;
+        // (*num)->n_sign = PLUS;
         if (str[ptr] === '+') {
           ptr++
         }
@@ -1134,7 +1134,7 @@ module.exports = function _bc () { // eslint-disable-line camelcase
       }
       for (; digits > 0; digits--) {
         num.n_value[nptr++] = Libbcmath.CH_VAL(str[ptr++])
-          //* nptr++ = CH_VAL(*ptr++);
+        //* nptr++ = CH_VAL(*ptr++);
       }
 
       // Build the fractional part.
@@ -1152,7 +1152,7 @@ module.exports = function _bc () { // eslint-disable-line camelcase
       if (typeof v === 'undefined') {
         v = 0
       }
-      var x = parseInt(v, 10)
+      let x = parseInt(v, 10)
       if (isNaN(x)) {
         x = 0
       }
@@ -1193,7 +1193,7 @@ module.exports = function _bc () { // eslint-disable-line camelcase
      * @param {int} len       length to fill
      */
     memset: function (r, ptr, chr, len) {
-      var i
+      let i
       for (i = 0; i < len; i++) {
         r[ptr + i] = chr
       }
@@ -1206,7 +1206,7 @@ module.exports = function _bc () { // eslint-disable-line camelcase
      * Also only works on arrays
      */
     memcpy: function (dest, ptr, src, srcptr, len) {
-      var i
+      let i
       for (i = 0; i < len; i++) {
         dest[ptr + i] = src[srcptr + i]
       }
@@ -1219,8 +1219,8 @@ module.exports = function _bc () { // eslint-disable-line camelcase
      * @return boolean      true when zero, false when not zero.
      */
     bc_is_zero: function (num) {
-      var count // int
-      var nptr // int
+      let count // int
+      let nptr // int
       // Quick check.
       // if (num === BCG(_zero_)) return TRUE;
       // Initialize

@@ -10,11 +10,11 @@ module.exports = function preg_replace (pattern, replacement, string) { // eslin
   //   returns 4: "TheDevelopmentofcodehttpwww"
   //   example 5: preg_replace('/[^A-Za-z0-9_\\s]/', '', 'D"usseldorfer H"auptstrasse')
   //   returns 5: "Dusseldorfer Hauptstrasse"
-  var _flag = pattern.substr(pattern.lastIndexOf(pattern[0]) + 1)
+  let _flag = pattern.substr(pattern.lastIndexOf(pattern[0]) + 1)
   _flag = (_flag !== '') ? _flag : 'g'
-  var _pattern = pattern.substr(1, pattern.lastIndexOf(pattern[0]) - 1)
-  var regex = new RegExp(_pattern, _flag)
-  var result = string.replace(regex, replacement)
+  const _pattern = pattern.substr(1, pattern.lastIndexOf(pattern[0]) - 1)
+  const regex = new RegExp(_pattern, _flag)
+  const result = string.replace(regex, replacement)
 
   return result
 }

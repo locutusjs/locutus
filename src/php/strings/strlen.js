@@ -15,20 +15,20 @@ module.exports = function strlen (string) {
   //   example 2: strlen('A\ud87e\udc04Z')
   //   returns 2: 3
 
-  var str = string + ''
+  const str = string + ''
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('unicode.semantics') : undefined) || 'off'
+  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('unicode.semantics') : undefined) || 'off'
   if (iniVal === 'off') {
     return str.length
   }
 
-  var i = 0
-  var lgth = 0
+  let i = 0
+  let lgth = 0
 
-  var getWholeChar = function (str, i) {
-    var code = str.charCodeAt(i)
-    var next = ''
-    var prev = ''
+  const getWholeChar = function (str, i) {
+    const code = str.charCodeAt(i)
+    let next = ''
+    let prev = ''
     if (code >= 0xD800 && code <= 0xDBFF) {
       // High surrogate (could change last hex to 0xDB7F to
       // treat high private surrogates as single characters)

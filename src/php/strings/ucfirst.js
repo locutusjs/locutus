@@ -7,7 +7,7 @@ module.exports = function ucfirst (str) {
   //   returns 1: 'Kevin van zonneveld'
 
   str += ''
-  var f = str.charAt(0)
+  const f = str.charAt(0)
     .toUpperCase()
   return f + str.substr(1)
 }

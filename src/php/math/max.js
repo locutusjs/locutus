@@ -17,18 +17,18 @@ module.exports = function max () {
   //   example 6: max([2, 4, 8], [2, 5, 7])
   //   returns 6: [2, 5, 7]
 
-  var ar
-  var retVal
-  var i = 0
-  var n = 0
-  var argv = arguments
-  var argc = argv.length
-  var _obj2Array = function (obj) {
+  let ar
+  let retVal
+  let i = 0
+  let n = 0
+  const argv = arguments
+  const argc = argv.length
+  const _obj2Array = function (obj) {
     if (Object.prototype.toString.call(obj) === '[object Array]') {
       return obj
     } else {
-      var ar = []
-      for (var i in obj) {
+      const ar = []
+      for (const i in obj) {
         if (obj.hasOwnProperty(i)) {
           ar.push(obj[i])
         }
@@ -37,11 +37,11 @@ module.exports = function max () {
     }
   }
   var _compare = function (current, next) {
-    var i = 0
-    var n = 0
-    var tmp = 0
-    var nl = 0
-    var cl = 0
+    let i = 0
+    let n = 0
+    let tmp = 0
+    let nl = 0
+    let cl = 0
 
     if (current === next) {
       return 0

@@ -6,8 +6,8 @@ module.exports = function strval (str) {
   //   example 1: strval({red: 1, green: 2, blue: 3, white: 4})
   //   returns 1: 'Object'
 
-  var gettype = require('../var/gettype')
-  var type = ''
+  const gettype = require('../var/gettype')
+  let type = ''
 
   if (str === null) {
     return ''

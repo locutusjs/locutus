@@ -22,12 +22,12 @@ module.exports = function gettype (mixedVar) {
   //   example 7: gettype(['test'])
   //   returns 7: 'array'
 
-  var isFloat = require('../var/is_float')
+  const isFloat = require('../var/is_float')
 
-  var s = typeof mixedVar
-  var name
-  var _getFuncName = function (fn) {
-    var name = (/\W*function\s+([\w$]+)\s*\(/).exec(fn)
+  let s = typeof mixedVar
+  let name
+  const _getFuncName = function (fn) {
+    const name = (/\W*function\s+([\w$]+)\s*\(/).exec(fn)
     if (!name) {
       return '(Anonymous)'
     }

@@ -1,1 +1,1 @@
-module.exports['acos'] = require('./acos')
+module.exports.acos = require('./acos')

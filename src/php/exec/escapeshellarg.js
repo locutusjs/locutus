@@ -15,7 +15,7 @@ module.exports = function escapeshellarg (arg) {
     throw new Error('escapeshellarg(): Argument #1 ($arg) must not contain any null bytes')
   }
 
-  var ret = ''
+  let ret = ''
 
   ret = arg.replace(/'/g, '\'\\\'\'')
 

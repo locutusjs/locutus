@@ -13,20 +13,20 @@ module.exports = function setlocale (category, locale) {
   //   example 1: setlocale('LC_ALL', 'en_US')
   //   returns 1: 'en_US'
 
-  var getenv = require('../info/getenv')
+  const getenv = require('../info/getenv')
 
-  var categ = ''
-  var cats = []
-  var i = 0
+  let categ = ''
+  const cats = []
+  let i = 0
 
-  var _copy = function _copy (orig) {
+  const _copy = function _copy (orig) {
     if (orig instanceof RegExp) {
       return new RegExp(orig)
     } else if (orig instanceof Date) {
       return new Date(orig)
     }
-    var newObj = {}
-    for (var i in orig) {
+    const newObj = {}
+    for (const i in orig) {
       if (typeof orig[i] === 'object') {
         newObj[i] = _copy(orig[i])
       } else {
@@ -50,18 +50,18 @@ module.exports = function setlocale (category, locale) {
   //   // e.g., Japanese
   //   return 0
   // }
-  var _nplurals2a = function (n) {
+  const _nplurals2a = function (n) {
     // e.g., English
     return n !== 1 ? 1 : 0
   }
-  var _nplurals2b = function (n) {
+  const _nplurals2b = function (n) {
     // e.g., French
     return n > 1 ? 1 : 0
   }
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
-  var $locutus = $global.$locutus
+  const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 
   // Reconcile Windows vs. *nix locale names?
@@ -75,12 +75,12 @@ module.exports = function setlocale (category, locale) {
     $locutus.php.locales = {}
 
     $locutus.php.locales.en = {
-      'LC_COLLATE': function (str1, str2) {
+      LC_COLLATE: function (str1, str2) {
         // @todo: This one taken from strcmp, but need for other locales; we don't use localeCompare
         // since its locale is not settable
         return (str1 === str2) ? 0 : ((str1 > str2) ? 1 : -1)
       },
-      'LC_CTYPE': {
+      LC_CTYPE: {
         // Need to change any of these for English as opposed to C?
         an: /^[A-Za-z\d]+$/g,
         al: /^[A-Za-z]+$/g,
@@ -98,7 +98,7 @@ module.exports = function setlocale (category, locale) {
         lower: 'abcdefghijklmnopqrstuvwxyz',
         upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
       },
-      'LC_TIME': {
+      LC_TIME: {
         // Comments include nl_langinfo() constant equivalents and any
         // changes from Blues' implementation
         a: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -135,7 +135,7 @@ module.exports = function setlocale (category, locale) {
       },
       // Assuming distinction between numeric and monetary is thus:
       // See below for C locale
-      'LC_MONETARY': {
+      LC_MONETARY: {
         // based on Windows "english" (English_United States.1252) locale
         int_curr_symbol: 'USD',
         currency_symbol: '$',
@@ -166,13 +166,13 @@ module.exports = function setlocale (category, locale) {
         // succeeds curr. symbol
         n_sign_posn: 0 // see p_sign_posn
       },
-      'LC_NUMERIC': {
+      LC_NUMERIC: {
         // based on Windows "english" (English_United States.1252) locale
         decimal_point: '.',
         thousands_sep: ',',
         grouping: [3] // see mon_grouping, but for non-monetary values (use thousands_sep)
       },
-      'LC_MESSAGES': {
+      LC_MESSAGES: {
         YESEXPR: '^[yY].*',
         NOEXPR: '^[nN].*',
         YESSTR: '',
@@ -256,9 +256,9 @@ module.exports = function setlocale (category, locale) {
     $locutus.php.locale = 'en_US'
     // Try to establish the locale via the `window` global
     if (typeof window !== 'undefined' && window.document) {
-      var d = window.document
-      var NS_XHTML = 'https://www.w3.org/1999/xhtml'
-      var NS_XML = 'https://www.w3.org/XML/1998/namespace'
+      const d = window.document
+      const NS_XHTML = 'https://www.w3.org/1999/xhtml'
+      const NS_XML = 'https://www.w3.org/XML/1998/namespace'
       if (d.getElementsByTagNameNS &&
         d.getElementsByTagNameNS(NS_XHTML, 'html')[0]) {
         if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS &&
@@ -286,18 +286,18 @@ module.exports = function setlocale (category, locale) {
 
   if (!$locutus.php.localeCategories) {
     $locutus.php.localeCategories = {
-      'LC_COLLATE': $locutus.php.locale,
+      LC_COLLATE: $locutus.php.locale,
       // for string comparison, see strcoll()
-      'LC_CTYPE': $locutus.php.locale,
+      LC_CTYPE: $locutus.php.locale,
       // for character classification and conversion, for example strtoupper()
-      'LC_MONETARY': $locutus.php.locale,
+      LC_MONETARY: $locutus.php.locale,
       // for localeconv()
-      'LC_NUMERIC': $locutus.php.locale,
+      LC_NUMERIC: $locutus.php.locale,
       // for decimal separator (See also localeconv())
-      'LC_TIME': $locutus.php.locale,
+      LC_TIME: $locutus.php.locale,
       // for date and time formatting with strftime()
       // for system responses (available if PHP was compiled with libintl):
-      'LC_MESSAGES': $locutus.php.locale
+      LC_MESSAGES: $locutus.php.locale
     }
   }
 

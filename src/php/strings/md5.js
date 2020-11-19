@@ -12,10 +12,10 @@ module.exports = function md5 (str) {
   //   example 1: md5('Kevin van Zonneveld')
   //   returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'
 
-  var hash
+  let hash
   try {
-    var crypto = require('crypto')
-    var md5sum = crypto.createHash('md5')
+    const crypto = require('crypto')
+    const md5sum = crypto.createHash('md5')
     md5sum.update(str)
     hash = md5sum.digest('hex')
   } catch (e) {
@@ -26,15 +26,15 @@ module.exports = function md5 (str) {
     return hash
   }
 
-  var utf8Encode = require('../xml/utf8_encode')
-  var xl
+  const utf8Encode = require('../xml/utf8_encode')
+  let xl
 
-  var _rotateLeft = function (lValue, iShiftBits) {
+  const _rotateLeft = function (lValue, iShiftBits) {
     return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits))
   }
 
-  var _addUnsigned = function (lX, lY) {
-    var lX4, lY4, lX8, lY8, lResult
+  const _addUnsigned = function (lX, lY) {
+    let lX4, lY4, lX8, lY8, lResult
     lX8 = (lX & 0x80000000)
     lY8 = (lY & 0x80000000)
     lX4 = (lX & 0x40000000)
@@ -54,48 +54,48 @@ module.exports = function md5 (str) {
     }
   }
 
-  var _F = function (x, y, z) {
+  const _F = function (x, y, z) {
     return (x & y) | ((~x) & z)
   }
-  var _G = function (x, y, z) {
+  const _G = function (x, y, z) {
     return (x & z) | (y & (~z))
   }
-  var _H = function (x, y, z) {
+  const _H = function (x, y, z) {
     return (x ^ y ^ z)
   }
-  var _I = function (x, y, z) {
+  const _I = function (x, y, z) {
     return (y ^ (x | (~z)))
   }
 
-  var _FF = function (a, b, c, d, x, s, ac) {
+  const _FF = function (a, b, c, d, x, s, ac) {
     a = _addUnsigned(a, _addUnsigned(_addUnsigned(_F(b, c, d), x), ac))
     return _addUnsigned(_rotateLeft(a, s), b)
   }
 
-  var _GG = function (a, b, c, d, x, s, ac) {
+  const _GG = function (a, b, c, d, x, s, ac) {
     a = _addUnsigned(a, _addUnsigned(_addUnsigned(_G(b, c, d), x), ac))
     return _addUnsigned(_rotateLeft(a, s), b)
   }
 
-  var _HH = function (a, b, c, d, x, s, ac) {
+  const _HH = function (a, b, c, d, x, s, ac) {
     a = _addUnsigned(a, _addUnsigned(_addUnsigned(_H(b, c, d), x), ac))
     return _addUnsigned(_rotateLeft(a, s), b)
   }
 
-  var _II = function (a, b, c, d, x, s, ac) {
+  const _II = function (a, b, c, d, x, s, ac) {
     a = _addUnsigned(a, _addUnsigned(_addUnsigned(_I(b, c, d), x), ac))
     return _addUnsigned(_rotateLeft(a, s), b)
   }
 
-  var _convertToWordArray = function (str) {
-    var lWordCount
-    var lMessageLength = str.length
-    var lNumberOfWordsTemp1 = lMessageLength + 8
-    var lNumberOfWordsTemp2 = (lNumberOfWordsTemp1 - (lNumberOfWordsTemp1 % 64)) / 64
-    var lNumberOfWords = (lNumberOfWordsTemp2 + 1) * 16
-    var lWordArray = new Array(lNumberOfWords - 1)
-    var lBytePosition = 0
-    var lByteCount = 0
+  const _convertToWordArray = function (str) {
+    let lWordCount
+    const lMessageLength = str.length
+    const lNumberOfWordsTemp1 = lMessageLength + 8
+    const lNumberOfWordsTemp2 = (lNumberOfWordsTemp1 - (lNumberOfWordsTemp1 % 64)) / 64
+    const lNumberOfWords = (lNumberOfWordsTemp2 + 1) * 16
+    const lWordArray = new Array(lNumberOfWords - 1)
+    let lBytePosition = 0
+    let lByteCount = 0
     while (lByteCount < lMessageLength) {
       lWordCount = (lByteCount - (lByteCount % 4)) / 4
       lBytePosition = (lByteCount % 4) * 8
@@ -111,11 +111,11 @@ module.exports = function md5 (str) {
     return lWordArray
   }
 
-  var _wordToHex = function (lValue) {
-    var wordToHexValue = ''
-    var wordToHexValueTemp = ''
-    var lByte
-    var lCount
+  const _wordToHex = function (lValue) {
+    let wordToHexValue = ''
+    let wordToHexValueTemp = ''
+    let lByte
+    let lCount
 
     for (lCount = 0; lCount <= 3; lCount++) {
       lByte = (lValue >>> (lCount * 8)) & 255
@@ -125,32 +125,32 @@ module.exports = function md5 (str) {
     return wordToHexValue
   }
 
-  var x = []
-  var k
-  var AA
-  var BB
-  var CC
-  var DD
-  var a
-  var b
-  var c
-  var d
-  var S11 = 7
-  var S12 = 12
-  var S13 = 17
-  var S14 = 22
-  var S21 = 5
-  var S22 = 9
-  var S23 = 14
-  var S24 = 20
-  var S31 = 4
-  var S32 = 11
-  var S33 = 16
-  var S34 = 23
-  var S41 = 6
-  var S42 = 10
-  var S43 = 15
-  var S44 = 21
+  let x = []
+  let k
+  let AA
+  let BB
+  let CC
+  let DD
+  let a
+  let b
+  let c
+  let d
+  const S11 = 7
+  const S12 = 12
+  const S13 = 17
+  const S14 = 22
+  const S21 = 5
+  const S22 = 9
+  const S23 = 14
+  const S24 = 20
+  const S31 = 4
+  const S32 = 11
+  const S33 = 16
+  const S34 = 23
+  const S41 = 6
+  const S42 = 10
+  const S43 = 15
+  const S44 = 21
 
   str = utf8Encode(str)
   x = _convertToWordArray(str)
@@ -235,7 +235,7 @@ module.exports = function md5 (str) {
     d = _addUnsigned(d, DD)
   }
 
-  var temp = _wordToHex(a) + _wordToHex(b) + _wordToHex(c) + _wordToHex(d)
+  const temp = _wordToHex(a) + _wordToHex(b) + _wordToHex(c) + _wordToHex(d)
 
   return temp.toLowerCase()
 }

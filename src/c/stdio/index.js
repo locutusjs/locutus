@@ -1,1 +1,1 @@
-module.exports['sprintf'] = require('./sprintf')
+module.exports.sprintf = require('./sprintf')

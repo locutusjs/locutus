@@ -18,12 +18,12 @@ module.exports = function json_decode (strJson) { // eslint-disable-line camelca
     See https://www.JSON.org/js.html
   */
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
-  var $locutus = $global.$locutus
+  const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 
-  var json = $global.JSON
+  const json = $global.JSON
   if (typeof json === 'object' && typeof json.parse === 'function') {
     try {
       return json.parse(strJson)
@@ -38,7 +38,7 @@ module.exports = function json_decode (strJson) { // eslint-disable-line camelca
     }
   }
 
-  var chars = [
+  const chars = [
     '\u0000',
     '\u00ad',
     '\u0600-\u0604',
@@ -51,9 +51,9 @@ module.exports = function json_decode (strJson) { // eslint-disable-line camelca
     '\ufeff',
     '\ufff0-\uffff'
   ].join('')
-  var cx = new RegExp('[' + chars + ']', 'g')
-  var j
-  var text = strJson
+  const cx = new RegExp('[' + chars + ']', 'g')
+  let j
+  let text = strJson
 
   // Parsing happens in four stages. In the first stage, we replace certain
   // Unicode characters with escape sequences. JavaScript handles many characters
@@ -79,10 +79,10 @@ module.exports = function json_decode (strJson) { // eslint-disable-line camelca
   // we look to see that the remaining characters are only whitespace or ']' or
   // ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
 
-  var m = (/^[\],:{}\s]*$/)
+  const m = (/^[\],:{}\s]*$/)
     .test(text.replace(/\\(?:["\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
-    .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?/g, ']')
-    .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))
+      .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?/g, ']')
+      .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))
 
   if (m) {
     // In the third stage we use the eval function to compile the text into a

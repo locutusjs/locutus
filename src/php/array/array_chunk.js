@@ -13,12 +13,12 @@ module.exports = function array_chunk (input, size, preserveKeys) { // eslint-di
   //   example 4: array_chunk({1:'Kevin', 2:'van', 3:'Zonneveld'}, 2, true)
   //   returns 4: [{1: 'Kevin', 2: 'van'}, {3: 'Zonneveld'}]
 
-  var x
-  var p = ''
-  var i = 0
-  var c = -1
-  var l = input.length || 0
-  var n = []
+  let x
+  let p = ''
+  let i = 0
+  let c = -1
+  const l = input.length || 0
+  const n = []
 
   if (size < 1) {
     return null

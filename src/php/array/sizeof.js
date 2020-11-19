@@ -6,7 +6,7 @@ module.exports = function sizeof (mixedVar, mode) {
   //   example 2: sizeof({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE')
   //   returns 2: 6
 
-  var count = require('../array/count')
+  const count = require('../array/count')
 
   return count(mixedVar, mode)
 }

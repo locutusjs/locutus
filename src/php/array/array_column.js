@@ -11,16 +11,16 @@ module.exports = function array_column (input, ColumnKey, IndexKey = null) { // 
   //   returns 4: {1: {name: 'Alex', value: 1}, 2: {name: 'Elvis', value: 2}, 3: {name: 'Michael', value: 3}}
 
   if (input !== null && (typeof input === 'object' || Array.isArray(input))) {
-    var newarray = []
+    const newarray = []
     if (typeof input === 'object') {
-      let temparray = []
-      for (let key of Object.keys(input)) {
+      const temparray = []
+      for (const key of Object.keys(input)) {
         temparray.push(input[key])
       }
       input = temparray
     }
     if (Array.isArray(input)) {
-      for (let key of input.keys()) {
+      for (const key of input.keys()) {
         if (IndexKey && input[key][IndexKey]) {
           if (ColumnKey) {
             newarray[input[key][IndexKey]] = input[key][ColumnKey]

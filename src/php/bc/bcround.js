@@ -4,11 +4,11 @@ module.exports = function bcround (val, precision) {
   //   example 1: bcround(1, 2)
   //   returns 1: '1.00'
 
-  var _bc = require('../_helpers/_bc')
-  var libbcmath = _bc()
+  const _bc = require('../_helpers/_bc')
+  const libbcmath = _bc()
 
-  var temp, result, digit
-  var rightOperand
+  let temp, result, digit
+  let rightOperand
 
   // create number
   temp = libbcmath.bc_init_num()

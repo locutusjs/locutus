@@ -5,21 +5,21 @@ module.exports = function array_reverse (array, preserveKeys) { // eslint-disabl
   //   example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
   //   returns 1: { 2: ['green', 'red'], 1: '4.0', 0: 'php'}
 
-  var isArray = Object.prototype.toString.call(array) === '[object Array]'
-  var tmpArr = preserveKeys ? {} : []
-  var key
+  const isArray = Object.prototype.toString.call(array) === '[object Array]'
+  const tmpArr = preserveKeys ? {} : []
+  let key
 
   if (isArray && !preserveKeys) {
     return array.slice(0).reverse()
   }
 
   if (preserveKeys) {
-    var keys = []
+    const keys = []
     for (key in array) {
       keys.push(key)
     }
 
-    var i = keys.length
+    let i = keys.length
     while (i--) {
       key = keys[i]
       // @todo: don't rely on browsers keeping keys in insertion order

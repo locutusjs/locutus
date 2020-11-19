@@ -1,2 +1,2 @@
-module.exports['math'] = require('./math')
-module.exports['stdio'] = require('./stdio')
+module.exports.math = require('./math')
+module.exports.stdio = require('./stdio')

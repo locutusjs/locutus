@@ -29,7 +29,7 @@ module.exports = function _php_cast_float (value) { // eslint-disable-line camel
   //  example 14: _php_cast_float('3.14abc')
   //  returns 14: 3.14
 
-  var type = typeof value
+  const type = typeof value
 
   switch (type) {
     case 'number':

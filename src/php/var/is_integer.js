@@ -8,6 +8,6 @@ module.exports = function is_integer (mixedVar) { // eslint-disable-line camelca
   //   example 2: is_integer(12)
   //   returns 2: true
 
-  var _isInt = require('../var/is_int')
+  const _isInt = require('../var/is_int')
   return _isInt(mixedVar)
 }

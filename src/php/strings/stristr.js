@@ -7,7 +7,7 @@ module.exports = function stristr (haystack, needle, bool) {
   //   example 2: stristr('Kevin van Zonneveld', 'VAN', true)
   //   returns 2: 'Kevin '
 
-  var pos = 0
+  let pos = 0
 
   haystack += ''
   pos = haystack.toLowerCase()

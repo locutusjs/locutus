@@ -33,17 +33,17 @@ module.exports = function pathinfo (path, options) {
   //   example 7: pathinfo('/www/htdocs/index.html')
   //   returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
 
-  var basename = require('../filesystem/basename')
-  var opt = ''
-  var realOpt = ''
-  var optName = ''
-  var optTemp = 0
-  var tmpArr = {}
-  var cnt = 0
-  var i = 0
-  var haveBasename = false
-  var haveExtension = false
-  var haveFilename = false
+  const basename = require('../filesystem/basename')
+  let opt = ''
+  let realOpt = ''
+  let optName = ''
+  let optTemp = 0
+  const tmpArr = {}
+  let cnt = 0
+  let i = 0
+  let haveBasename = false
+  let haveExtension = false
+  let haveFilename = false
 
   // Input defaulting & sanitation
   if (!path) {
@@ -55,12 +55,12 @@ module.exports = function pathinfo (path, options) {
 
   // Initialize binary arguments. Both the string & integer (constant) input is
   // allowed
-  var OPTS = {
-    'PATHINFO_DIRNAME': 1,
-    'PATHINFO_BASENAME': 2,
-    'PATHINFO_EXTENSION': 4,
-    'PATHINFO_FILENAME': 8,
-    'PATHINFO_ALL': 0
+  const OPTS = {
+    PATHINFO_DIRNAME: 1,
+    PATHINFO_BASENAME: 2,
+    PATHINFO_EXTENSION: 4,
+    PATHINFO_FILENAME: 8,
+    PATHINFO_ALL: 0
   }
   // PATHINFO_ALL sums up all previously defined PATHINFOs (could just pre-calculate)
   for (optName in OPTS) {
@@ -81,15 +81,15 @@ module.exports = function pathinfo (path, options) {
   }
 
   // Internal Functions
-  var _getExt = function (path) {
-    var str = path + ''
-    var dotP = str.lastIndexOf('.') + 1
+  const _getExt = function (path) {
+    const str = path + ''
+    const dotP = str.lastIndexOf('.') + 1
     return !dotP ? false : dotP !== str.length ? str.substr(dotP) : ''
   }
 
   // Gather path infos
   if (options & OPTS.PATHINFO_DIRNAME) {
-    var dirName = path
+    const dirName = path
       .replace(/\\/g, '/')
       .replace(/\/[^/]*\/?$/, '') // dirname
     tmpArr.dirname = dirName === path ? '.' : dirName
@@ -127,7 +127,7 @@ module.exports = function pathinfo (path, options) {
         : haveExtension === false
           ? 0
           : 1
-        )
+      )
       )
     }
 

@@ -9,9 +9,9 @@ module.exports = function implode (glue, pieces) {
   //   example 2: implode(' ', {first:'Kevin', last: 'van Zonneveld'})
   //   returns 2: 'Kevin van Zonneveld'
 
-  var i = ''
-  var retVal = ''
-  var tGlue = ''
+  let i = ''
+  let retVal = ''
+  let tGlue = ''
 
   if (arguments.length === 1) {
     pieces = glue

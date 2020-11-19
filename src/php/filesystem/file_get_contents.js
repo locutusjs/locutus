@@ -16,7 +16,7 @@ module.exports = function file_get_contents (url, flags, context, offset, maxLen
   //        example 1: var $result = $buf.indexOf('hash') !== -1
   //        returns 1: true
 
-  var fs = require('fs')
+  const fs = require('fs')
 
   return fs.readFileSync(url, 'utf-8')
 }

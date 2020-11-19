@@ -17,9 +17,9 @@ module.exports = function str_split (string, splitLength) { // eslint-disable-li
   }
 
   string += ''
-  var chunks = []
-  var pos = 0
-  var len = string.length
+  const chunks = []
+  let pos = 0
+  const len = string.length
 
   while (pos < len) {
     chunks.push(string.slice(pos, pos += splitLength))

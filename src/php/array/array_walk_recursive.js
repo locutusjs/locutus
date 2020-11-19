@@ -16,10 +16,10 @@ module.exports = function array_walk_recursive (array, funcname, userdata) { // 
     return false
   }
 
-  for (var key in array) {
+  for (const key in array) {
     // apply "funcname" recursively only on arrays
     if (Object.prototype.toString.call(array[key]) === '[object Array]') {
-      var funcArgs = [array[key], funcname]
+      const funcArgs = [array[key], funcname]
       if (arguments.length > 2) {
         funcArgs.push(userdata)
       }

@@ -20,11 +20,11 @@ module.exports = function strnatcmp (a, b) {
   //        example 7: strnatcmp('0A', '5N')
   //        returns 7: -1
 
-  var _phpCastString = require('../_helpers/_phpCastString')
+  const _phpCastString = require('../_helpers/_phpCastString')
 
-  var leadingZeros = /^0+(?=\d)/
-  var whitespace = /^\s/
-  var digit = /^\d/
+  const leadingZeros = /^0+(?=\d)/
+  const whitespace = /^\s/
+  const digit = /^\d/
 
   if (arguments.length !== 2) {
     return null
@@ -37,8 +37,8 @@ module.exports = function strnatcmp (a, b) {
     return a.length - b.length
   }
 
-  var i = 0
-  var j = 0
+  let i = 0
+  let j = 0
 
   a = a.replace(leadingZeros, '')
   b = b.replace(leadingZeros, '')
@@ -48,14 +48,14 @@ module.exports = function strnatcmp (a, b) {
     while (whitespace.test(a.charAt(i))) i++
     while (whitespace.test(b.charAt(j))) j++
 
-    var ac = a.charAt(i)
-    var bc = b.charAt(j)
-    var aIsDigit = digit.test(ac)
-    var bIsDigit = digit.test(bc)
+    let ac = a.charAt(i)
+    let bc = b.charAt(j)
+    let aIsDigit = digit.test(ac)
+    let bIsDigit = digit.test(bc)
 
     if (aIsDigit && bIsDigit) {
-      var bias = 0
-      var fractional = ac === '0' || bc === '0'
+      let bias = 0
+      const fractional = ac === '0' || bc === '0'
 
       do {
         if (!aIsDigit) {
@@ -106,8 +106,8 @@ module.exports = function strnatcmp (a, b) {
     j++
   }
 
-  var iBeforeStrEnd = i < a.length
-  var jBeforeStrEnd = j < b.length
+  const iBeforeStrEnd = i < a.length
+  const jBeforeStrEnd = j < b.length
 
   // Check which string ended first
   // return -1 if a, 1 if b, 0 otherwise

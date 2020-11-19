@@ -6,8 +6,8 @@ module.exports = function array_fill_keys (keys, value) { // eslint-disable-line
   //   example 1: array_fill_keys($keys, 'banana')
   //   returns 1: {"foo": "banana", 5: "banana", 10: "banana", "bar": "banana"}
 
-  var retObj = {}
-  var key = ''
+  const retObj = {}
+  let key = ''
 
   for (key in keys) {
     retObj[keys[key]] = value

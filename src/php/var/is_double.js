@@ -6,6 +6,6 @@ module.exports = function is_double (mixedVar) { // eslint-disable-line camelcas
   //   example 1: is_double(186.31)
   //   returns 1: true
 
-  var _isFloat = require('../var/is_float')
+  const _isFloat = require('../var/is_float')
   return _isFloat(mixedVar)
 }

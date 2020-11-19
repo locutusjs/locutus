@@ -30,17 +30,17 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
   //   example 5: is_callable(class MyClass {})
   //   returns 5: false
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
 
-  var validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
+  const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
-  var name = ''
-  var obj = {}
-  var method = ''
-  var validFunctionName = false
+  let name = ''
+  let obj = {}
+  let method = ''
+  let validFunctionName = false
 
-  var getFuncName = function (fn) {
-    var name = (/\W*function\s+([\w$]+)\s*\(/).exec(fn)
+  const getFuncName = function (fn) {
+    const name = (/\W*function\s+([\w$]+)\s*\(/).exec(fn)
     if (!name) {
       return '(Anonymous)'
     }

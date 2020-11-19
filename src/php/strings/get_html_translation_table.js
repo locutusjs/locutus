@@ -19,13 +19,13 @@ module.exports = function get_html_translation_table (table, quoteStyle) { // es
   //   example 1: get_html_translation_table('HTML_SPECIALCHARS')
   //   returns 1: {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
 
-  var entities = {}
-  var hashMap = {}
-  var decimal
-  var constMappingTable = {}
-  var constMappingQuoteStyle = {}
-  var useTable = {}
-  var useQuoteStyle = {}
+  const entities = {}
+  const hashMap = {}
+  let decimal
+  const constMappingTable = {}
+  const constMappingQuoteStyle = {}
+  let useTable = {}
+  let useQuoteStyle = {}
 
   // Translate arguments
   constMappingTable[0] = 'HTML_SPECIALCHARS'

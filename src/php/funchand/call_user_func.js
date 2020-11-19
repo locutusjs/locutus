@@ -11,7 +11,7 @@ module.exports = function call_user_func (cb, parameters) { // eslint-disable-li
   //   example 1: call_user_func('isNaN', 'a')
   //   returns 1: true
 
-  var callUserFuncArray = require('../funchand/call_user_func_array')
+  const callUserFuncArray = require('../funchand/call_user_func_array')
   parameters = Array.prototype.slice.call(arguments, 1)
   return callUserFuncArray(cb, parameters)
 }

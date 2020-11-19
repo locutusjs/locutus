@@ -7,7 +7,7 @@ module.exports = function strpos (haystack, needle, offset) {
   //   example 1: strpos('Kevin van Zonneveld', 'e', 5)
   //   returns 1: 14
 
-  var i = (haystack + '')
+  const i = (haystack + '')
     .indexOf(needle, (offset || 0))
   return i === -1 ? false : i
 }

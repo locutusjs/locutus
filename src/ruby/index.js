@@ -1,1 +1,1 @@
-module.exports['Math'] = require('./Math')
+module.exports.Math = require('./Math')

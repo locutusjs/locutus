@@ -6,8 +6,8 @@ module.exports = function array_flip (trans) { // eslint-disable-line camelcase
   //   example 1: array_flip( {a: 1, b: 1, c: 2} )
   //   returns 1: {1: 'b', 2: 'c'}
 
-  var key
-  var tmpArr = {}
+  let key
+  const tmpArr = {}
 
   for (key in trans) {
     if (!trans.hasOwnProperty(key)) {

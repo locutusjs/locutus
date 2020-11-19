@@ -20,8 +20,8 @@ module.exports = function soundex (str) {
     return ''
   }
 
-  var sdx = [0, 0, 0, 0]
-  var m = {
+  const sdx = [0, 0, 0, 0]
+  const m = {
     B: 1,
     F: 1,
     P: 1,
@@ -41,11 +41,11 @@ module.exports = function soundex (str) {
     N: 5,
     R: 6
   }
-  var i = 0
-  var j
-  var s = 0
-  var c
-  var p
+  let i = 0
+  let j
+  let s = 0
+  let c
+  let p
 
   while ((c = str.charAt(i++)) && s < 4) {
     if ((j = m[c])) {

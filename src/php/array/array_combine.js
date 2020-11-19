@@ -5,8 +5,8 @@ module.exports = function array_combine (keys, values) { // eslint-disable-line 
   //   example 1: array_combine([0,1,2], ['kevin','van','zonneveld'])
   //   returns 1: {0: 'kevin', 1: 'van', 2: 'zonneveld'}
 
-  var newArray = {}
-  var i = 0
+  const newArray = {}
+  let i = 0
 
   // input sanitation
   // Only accept arrays or array-like objects

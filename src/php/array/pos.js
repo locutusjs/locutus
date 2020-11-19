@@ -6,6 +6,6 @@ module.exports = function pos (arr) {
   //   example 1: pos($transport)
   //   returns 1: 'foot'
 
-  var current = require('../array/current')
+  const current = require('../array/current')
   return current(arr)
 }

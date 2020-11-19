@@ -10,10 +10,10 @@ module.exports = function bcdiv (leftOperand, rightOperand, scale) {
   //   example 4: bcdiv('8728932001983192837219398127471', '1928372132132819737213', 2)
   //   returns 4: '4526580661.75'
 
-  var _bc = require('../_helpers/_bc')
-  var libbcmath = _bc()
+  const _bc = require('../_helpers/_bc')
+  const libbcmath = _bc()
 
-  var first, second, result
+  let first, second, result
 
   if (typeof scale === 'undefined') {
     scale = libbcmath.scale

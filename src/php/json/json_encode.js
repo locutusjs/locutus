@@ -16,13 +16,13 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
     See https://www.JSON.org/js.html
   */
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
-  var $locutus = $global.$locutus
+  const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 
-  var json = $global.JSON
-  var retVal
+  const json = $global.JSON
+  let retVal
   try {
     if (typeof json === 'object' && typeof json.stringify === 'function') {
       // Errors will not be caught here if our own equivalent to resource
@@ -33,10 +33,10 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
       return retVal
     }
 
-    var value = mixedVal
+    const value = mixedVal
 
-    var quote = function (string) {
-      var escapeChars = [
+    const quote = function (string) {
+      const escapeChars = [
         '\u0000-\u001f',
         '\u007f-\u009f',
         '\u00ad',
@@ -50,8 +50,8 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
         '\ufeff',
         '\ufff0-\uffff'
       ].join('')
-      var escapable = new RegExp('[\\"' + escapeChars + ']', 'g')
-      var meta = {
+      const escapable = new RegExp('[\\"' + escapeChars + ']', 'g')
+      const meta = {
         // table of character substitutions
         '\b': '\\b',
         '\t': '\\t',
@@ -64,7 +64,7 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
 
       escapable.lastIndex = 0
       return escapable.test(string) ? '"' + string.replace(escapable, function (a) {
-        var c = meta[a]
+        const c = meta[a]
         return typeof c === 'string' ? c : '\\u' + ('0000' + a.charCodeAt(0)
           .toString(16))
           .slice(-4)
@@ -72,18 +72,18 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
     }
 
     var _str = function (key, holder) {
-      var gap = ''
-      var indent = '    '
+      let gap = ''
+      const indent = '    '
       // The loop counter.
-      var i = 0
+      let i = 0
       // The member key.
-      var k = ''
+      let k = ''
       // The member value.
-      var v = ''
-      var length = 0
-      var mind = gap
-      var partial = []
-      var value = holder[key]
+      let v = ''
+      let length = 0
+      const mind = gap
+      let partial = []
+      let value = holder[key]
 
       // If the value has a toJSON method, call it to obtain a replacement value.
       if (value && typeof value === 'object' && typeof value.toJSON === 'function') {

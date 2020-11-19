@@ -9,16 +9,16 @@ module.exports = function strftime (fmt, timestamp) {
   //        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale
   //        returns 1: 'Tuesday'
 
-  var setlocale = require('../strings/setlocale')
+  const setlocale = require('../strings/setlocale')
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
-  var $locutus = $global.$locutus
+  const $locutus = $global.$locutus
 
   // ensure setup of localization variables takes place
   setlocale('LC_ALL', 0)
 
-  var _xPad = function (x, pad, r) {
+  const _xPad = function (x, pad, r) {
     if (typeof r === 'undefined') {
       r = 10
     }
@@ -28,8 +28,8 @@ module.exports = function strftime (fmt, timestamp) {
     return x.toString()
   }
 
-  var locale = $locutus.php.localeCategories.LC_TIME
-  var lcTime = $locutus.php.locales[locale].LC_TIME
+  const locale = $locutus.php.localeCategories.LC_TIME
+  const lcTime = $locutus.php.locales[locale].LC_TIME
 
   var _formats = {
     a: function (d) {
@@ -53,9 +53,9 @@ module.exports = function strftime (fmt, timestamp) {
       return _xPad(parseInt(this.G(d) / 100, 10), 0)
     },
     G: function (d) {
-      var y = d.getFullYear()
-      var V = parseInt(_formats.V(d), 10)
-      var W = parseInt(_formats.W(d), 10)
+      let y = d.getFullYear()
+      const V = parseInt(_formats.V(d), 10)
+      const W = parseInt(_formats.W(d), 10)
 
       if (W > V) {
         y++
@@ -67,21 +67,21 @@ module.exports = function strftime (fmt, timestamp) {
     },
     H: ['getHours', '0'],
     I: function (d) {
-      var I = d.getHours() % 12
+      const I = d.getHours() % 12
       return _xPad(I === 0 ? 12 : I, 0)
     },
     j: function (d) {
-      var ms = d - new Date('' + d.getFullYear() + '/1/1 GMT')
+      let ms = d - new Date('' + d.getFullYear() + '/1/1 GMT')
       // Line differs from Yahoo implementation which would be
       // equivalent to replacing it here with:
       ms += d.getTimezoneOffset() * 60000
-      var doy = parseInt(ms / 60000 / 60 / 24, 10) + 1
+      const doy = parseInt(ms / 60000 / 60 / 24, 10) + 1
       return _xPad(doy, 0, 100)
     },
     k: ['getHours', '0'],
     // not in PHP, but implemented here (as in Yahoo)
     l: function (d) {
-      var l = d.getHours() % 12
+      const l = d.getHours() % 12
       return _xPad(l === 0 ? 12 : l, ' ')
     },
     m: function (d) {
@@ -100,24 +100,24 @@ module.exports = function strftime (fmt, timestamp) {
     },
     S: ['getSeconds', '0'],
     u: function (d) {
-      var dow = d.getDay()
+      const dow = d.getDay()
       return ((dow === 0) ? 7 : dow)
     },
     U: function (d) {
-      var doy = parseInt(_formats.j(d), 10)
-      var rdow = 6 - d.getDay()
-      var woy = parseInt((doy + rdow) / 7, 10)
+      const doy = parseInt(_formats.j(d), 10)
+      const rdow = 6 - d.getDay()
+      const woy = parseInt((doy + rdow) / 7, 10)
       return _xPad(woy, 0)
     },
     V: function (d) {
-      var woy = parseInt(_formats.W(d), 10)
-      var dow11 = (new Date('' + d.getFullYear() + '/1/1')).getDay()
+      const woy = parseInt(_formats.W(d), 10)
+      const dow11 = (new Date('' + d.getFullYear() + '/1/1')).getDay()
       // First week is 01 and not 00 as in the case of %U and %W,
       // so we add 1 to the final result except if day 1 of the year
       // is a Monday (then %W returns 01).
       // We also need to subtract 1 if the day 1 of the year is
       // Friday-Sunday, so the resulting equation becomes:
-      var idow = woy + (dow11 > 4 || dow11 <= 1 ? 0 : 1)
+      let idow = woy + (dow11 > 4 || dow11 <= 1 ? 0 : 1)
       if (idow === 53 && (new Date('' + d.getFullYear() + '/12/31')).getDay() < 4) {
         idow = 1
       } else if (idow === 0) {
@@ -127,9 +127,9 @@ module.exports = function strftime (fmt, timestamp) {
     },
     w: 'getDay',
     W: function (d) {
-      var doy = parseInt(_formats.j(d), 10)
-      var rdow = 7 - _formats.u(d)
-      var woy = parseInt((doy + rdow) / 7, 10)
+      const doy = parseInt(_formats.j(d), 10)
+      const rdow = 7 - _formats.u(d)
+      const woy = parseInt((doy + rdow) / 7, 10)
       return _xPad(woy, 0, 10)
     },
     y: function (d) {
@@ -137,9 +137,9 @@ module.exports = function strftime (fmt, timestamp) {
     },
     Y: 'getFullYear',
     z: function (d) {
-      var o = d.getTimezoneOffset()
-      var H = _xPad(parseInt(Math.abs(o / 60), 10), 0)
-      var M = _xPad(o % 60, 0)
+      const o = d.getTimezoneOffset()
+      const H = _xPad(parseInt(Math.abs(o / 60), 10), 0)
+      const M = _xPad(o % 60, 0)
       return (o > 0 ? '-' : '+') + H + M
     },
     Z: function (d) {
@@ -150,13 +150,13 @@ module.exports = function strftime (fmt, timestamp) {
     }
   }
 
-  var _date = (typeof timestamp === 'undefined')
+  const _date = (typeof timestamp === 'undefined')
     ? new Date()
     : (timestamp instanceof Date)
-      ? new Date(timestamp)
-      : new Date(timestamp * 1000)
+        ? new Date(timestamp)
+        : new Date(timestamp * 1000)
 
-  var _aggregates = {
+  const _aggregates = {
     c: 'locale',
     D: '%m/%d/%y',
     F: '%y-%m-%d',
@@ -173,14 +173,14 @@ module.exports = function strftime (fmt, timestamp) {
   // First replace aggregates (run in a loop because an agg may be made up of other aggs)
   while (fmt.match(/%[cDFhnrRtTxX]/)) {
     fmt = fmt.replace(/%([cDFhnrRtTxX])/g, function (m0, m1) {
-      var f = _aggregates[m1]
+      const f = _aggregates[m1]
       return (f === 'locale' ? lcTime[m1] : f)
     })
   }
 
   // Now replace formats - we need a closure so that the date object gets passed through
-  var str = fmt.replace(/%([aAbBCdegGHIjklmMpPsSuUVwWyYzZ%])/g, function (m0, m1) {
-    var f = _formats[m1]
+  const str = fmt.replace(/%([aAbBCdegGHIjklmMpPsSuUVwWyYzZ%])/g, function (m0, m1) {
+    const f = _formats[m1]
     if (typeof f === 'string') {
       return _date[f]()
     } else if (typeof f === 'function') {

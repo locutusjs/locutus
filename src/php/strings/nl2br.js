@@ -25,7 +25,7 @@ module.exports = function nl2br (str, isXhtml) {
   }
 
   // Adjust comment to avoid issue on locutus.io display
-  var breakTag = (isXhtml || typeof isXhtml === 'undefined') ? '<br ' + '/>' : '<br>'
+  const breakTag = (isXhtml || typeof isXhtml === 'undefined') ? '<br ' + '/>' : '<br>'
 
   return (str + '')
     .replace(/(\r\n|\n\r|\r|\n)/g, breakTag + '$1')

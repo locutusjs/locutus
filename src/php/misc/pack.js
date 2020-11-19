@@ -19,39 +19,39 @@ module.exports = function pack (format) {
   //   returns 4: "\u0000\u0000\u0000\u0000\u00008YÀ"
   //        test: skip-1
 
-  var formatPointer = 0
-  var argumentPointer = 1
-  var result = ''
-  var argument = ''
-  var i = 0
-  var r = []
-  var instruction, quantifier, word, precisionBits, exponentBits, extraNullCount
+  let formatPointer = 0
+  let argumentPointer = 1
+  let result = ''
+  let argument = ''
+  let i = 0
+  let r = []
+  let instruction, quantifier, word, precisionBits, exponentBits, extraNullCount
 
   // vars used by float encoding
-  var bias
-  var minExp
-  var maxExp
-  var minUnnormExp
-  var status
-  var exp
-  var len
-  var bin
-  var signal
-  var n
-  var intPart
-  var floatPart
-  var lastBit
-  var rounded
-  var j
-  var k
-  var tmpResult
+  let bias
+  let minExp
+  let maxExp
+  let minUnnormExp
+  let status
+  let exp
+  let len
+  let bin
+  let signal
+  let n
+  let intPart
+  let floatPart
+  let lastBit
+  let rounded
+  let j
+  let k
+  let tmpResult
 
   while (formatPointer < format.length) {
     instruction = format.charAt(formatPointer)
     quantifier = ''
     formatPointer++
     while ((formatPointer < format.length) && (format.charAt(formatPointer)
-        .match(/[\d*]/) !== null)) {
+      .match(/[\d*]/) !== null)) {
       quantifier += format.charAt(formatPointer)
       formatPointer++
     }
@@ -99,7 +99,7 @@ module.exports = function pack (format) {
           quantifier = argument.length
         }
         if (quantifier > argument.length) {
-          var msg = 'Warning: pack() Type ' + instruction + ': not enough characters in string'
+          const msg = 'Warning: pack() Type ' + instruction + ': not enough characters in string'
           throw new Error(msg)
         }
 
@@ -264,7 +264,7 @@ module.exports = function pack (format) {
           for (k = -1; ++k < len && !bin[k];) {}
 
           // @todo: Make this more readable:
-          var key = (lastBit = precisionBits - 1 +
+          const key = (lastBit = precisionBits - 1 +
             (k =
               (exp = bias + 1 - k) >= minExp &&
               exp <= maxExp ? k + 1 : bias + 1 - (exp = minExp - 1))) + 1
@@ -274,7 +274,7 @@ module.exports = function pack (format) {
               for (j = lastBit + 2; !rounded && j < len; rounded = bin[j++]) {}
             }
             for (j = lastBit + 1; rounded && --j >= 0;
-            (bin[j] = !bin[j] - 0) && (rounded = 0)) {}
+              (bin[j] = !bin[j] - 0) && (rounded = 0)) {}
           }
 
           for (k = k - 2 < 0 ? -1 : k - 3; ++k < len && !bin[k];) {}
@@ -376,7 +376,7 @@ module.exports = function pack (format) {
     }
   }
   if (argumentPointer < arguments.length) {
-    var msg2 = 'Warning: pack(): ' + (arguments.length - argumentPointer) + ' arguments unused'
+    const msg2 = 'Warning: pack(): ' + (arguments.length - argumentPointer) + ' arguments unused'
     throw new Error(msg2)
   }
 

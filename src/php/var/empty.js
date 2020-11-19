@@ -20,11 +20,11 @@ module.exports = function empty (mixedVar) {
   //   example 5: empty({'aFunc' : function () { alert('humpty'); } })
   //   returns 5: false
 
-  var undef
-  var key
-  var i
-  var len
-  var emptyValues = [undef, null, false, 0, '', '0']
+  let undef
+  let key
+  let i
+  let len
+  const emptyValues = [undef, null, false, 0, '', '0']
 
   for (i = 0, len = emptyValues.length; i < len; i++) {
     if (mixedVar === emptyValues[i]) {

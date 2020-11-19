@@ -6,9 +6,9 @@ module.exports = function inet_ntop (a) { // eslint-disable-line camelcase
   //   _example 2: inet_ntop('\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\1')
   //   _returns 2: '::1'
 
-  var i = 0
-  var m = ''
-  var c = []
+  let i = 0
+  let m = ''
+  const c = []
 
   a += ''
   if (a.length === 4) {

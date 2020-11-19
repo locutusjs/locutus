@@ -10,11 +10,11 @@ module.exports = function array_pad (input, padSize, padValue) { // eslint-disab
   //   example 4: array_pad([ 7, 8, 9 ], -5, 'a')
   //   returns 4: [ 'a', 'a', 7, 8, 9 ]
 
-  var pad = []
-  var newArray = []
-  var newLength
-  var diff = 0
-  var i = 0
+  let pad = []
+  const newArray = []
+  let newLength
+  let diff = 0
+  let i = 0
 
   if (Object.prototype.toString.call(input) === '[object Array]' && !isNaN(padSize)) {
     newLength = ((padSize < 0) ? (padSize * -1) : padSize)

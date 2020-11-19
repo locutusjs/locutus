@@ -7,7 +7,7 @@ module.exports = function strpbrk (haystack, charList) {
   //   example 1: strpbrk('This is a Simple text.', 'is')
   //   returns 1: 'is is a Simple text.'
 
-  for (var i = 0, len = haystack.length; i < len; ++i) {
+  for (let i = 0, len = haystack.length; i < len; ++i) {
     if (charList.indexOf(haystack.charAt(i)) >= 0) {
       return haystack.slice(i)
     }

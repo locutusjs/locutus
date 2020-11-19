@@ -8,13 +8,13 @@ module.exports = function array_intersect_assoc (arr1) { // eslint-disable-line 
   //   example 1: array_intersect_assoc($array1, $array2)
   //   returns 1: {a: 'green'}
 
-  var retArr = {}
-  var argl = arguments.length
-  var arglm1 = argl - 1
-  var k1 = ''
-  var arr = {}
-  var i = 0
-  var k = ''
+  const retArr = {}
+  const argl = arguments.length
+  const arglm1 = argl - 1
+  let k1 = ''
+  let arr = {}
+  let i = 0
+  let k = ''
 
   arr1keys: for (k1 in arr1) { // eslint-disable-line no-labels
     arrs: for (i = 1; i < argl; i++) { // eslint-disable-line no-labels

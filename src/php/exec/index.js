@@ -1,1 +1,1 @@
-module.exports['escapeshellarg'] = require('./escapeshellarg')
+module.exports.escapeshellarg = require('./escapeshellarg')

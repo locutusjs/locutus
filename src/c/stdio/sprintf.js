@@ -18,7 +18,7 @@ module.exports = function sprintf (format, ...args) {
 
     // flag '0' is ignored when flag '-' is present
     const padChar = leftJustify ? ' '
-                      : flags.split('').reduce((pc, c) => [' ', '0'].includes(c) ? c : pc, ' ')
+      : flags.split('').reduce((pc, c) => [' ', '0'].includes(c) ? c : pc, ' ')
 
     const positiveSign = flags.includes('+') ? '+' : flags.includes(' ') ? ' ' : ''
 
@@ -26,11 +26,11 @@ module.exports = function sprintf (format, ...args) {
     let precision = prec === '*' ? args[index++] : +prec
 
     if (param && !+param) {
-      throw Error(`Param index must be greater than 0`)
+      throw Error('Param index must be greater than 0')
     }
 
     if (param && +param > args.length) {
-      throw Error(`Too few arguments`)
+      throw Error('Too few arguments')
     }
 
     // compiling with default clang params, mixed positional and non-positional params
@@ -81,7 +81,7 @@ module.exports = function sprintf (format, ...args) {
 
         const isSpecial = isNaN(abs) || !isFinite(abs)
 
-        let str = isSpecial ? abs.toString().substr(0, 3) : op.call(abs, precision)
+        const str = isSpecial ? abs.toString().substr(0, 3) : op.call(abs, precision)
 
         if (padChar === '0' && !isSpecial) {
           return prefix + pad(tr.call(str), minWidth - prefix.length, padChar, leftJustify)

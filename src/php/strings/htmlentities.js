@@ -16,8 +16,8 @@ module.exports = function htmlentities (string, quoteStyle, charset, doubleEncod
   //   example 2: htmlentities("foo'bar","ENT_QUOTES")
   //   returns 2: 'foo&#039;bar'
 
-  var getHtmlTranslationTable = require('../strings/get_html_translation_table')
-  var hashMap = getHtmlTranslationTable('HTML_ENTITIES', quoteStyle)
+  const getHtmlTranslationTable = require('../strings/get_html_translation_table')
+  const hashMap = getHtmlTranslationTable('HTML_ENTITIES', quoteStyle)
 
   string = string === null ? '' : string + ''
 
@@ -31,12 +31,12 @@ module.exports = function htmlentities (string, quoteStyle, charset, doubleEncod
 
   doubleEncode = doubleEncode === null || !!doubleEncode
 
-  var regex = new RegExp('&(?:#\\d+|#x[\\da-f]+|[a-zA-Z][\\da-z]*);|[' +
+  const regex = new RegExp('&(?:#\\d+|#x[\\da-f]+|[a-zA-Z][\\da-z]*);|[' +
     Object.keys(hashMap)
-    .join('')
+      .join('')
     // replace regexp special chars
-    .replace(/([()[\]{}\-.*+?^$|/\\])/g, '\\$1') + ']',
-    'g')
+      .replace(/([()[\]{}\-.*+?^$|/\\])/g, '\\$1') + ']',
+  'g')
 
   return string.replace(regex, function (ent) {
     if (ent.length > 1) {

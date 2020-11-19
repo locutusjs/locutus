@@ -32,19 +32,19 @@ module.exports = function arsort (inputArr, sortFlags) {
   //   returns 2: {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
   //        test: skip-1
 
-  var i18lgd = require('../i18n/i18n_loc_get_default')
-  var strnatcmp = require('../strings/strnatcmp')
-  var valArr = []
-  var valArrLen = 0
-  var k
-  var i
-  var sorter
-  var sortByReference = false
-  var populateArr = {}
+  const i18lgd = require('../i18n/i18n_loc_get_default')
+  const strnatcmp = require('../strings/strnatcmp')
+  const valArr = []
+  let valArrLen = 0
+  let k
+  let i
+  let sorter
+  let sortByReference = false
+  const populateArr = {}
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
-  var $locutus = $global.$locutus
+  const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
   $locutus.php.locales = $locutus.php.locales || {}
 
@@ -72,10 +72,10 @@ module.exports = function arsort (inputArr, sortFlags) {
       break
     default:
       sorter = function (b, a) {
-        var aFloat = parseFloat(a)
-        var bFloat = parseFloat(b)
-        var aNumeric = aFloat + '' === a
-        var bNumeric = bFloat + '' === b
+        const aFloat = parseFloat(a)
+        const bFloat = parseFloat(b)
+        const aNumeric = aFloat + '' === a
+        const bNumeric = bFloat + '' === b
 
         if (aNumeric && bNumeric) {
           return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0
@@ -90,7 +90,7 @@ module.exports = function arsort (inputArr, sortFlags) {
       break
   }
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
   sortByReference = iniVal === 'on'
 
   // Get key and value arrays

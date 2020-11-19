@@ -9,11 +9,11 @@ module.exports = function str_pad (input, padLength, padString, padType) { // es
   //   example 2: str_pad('Kevin van Zonneveld', 30, '-', 'STR_PAD_BOTH')
   //   returns 2: '------Kevin van Zonneveld-----'
 
-  var half = ''
-  var padToGo
+  let half = ''
+  let padToGo
 
-  var _strPadRepeater = function (s, len) {
-    var collect = ''
+  const _strPadRepeater = function (s, len) {
+    let collect = ''
 
     while (collect.length < len) {
       collect += s

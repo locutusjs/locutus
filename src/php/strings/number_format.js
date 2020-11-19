@@ -50,18 +50,18 @@ module.exports = function number_format (number, decimals, decPoint, thousandsSe
   //  returns 14: '0.00000001'
 
   number = (number + '').replace(/[^0-9+\-Ee.]/g, '')
-  var n = !isFinite(+number) ? 0 : +number
-  var prec = !isFinite(+decimals) ? 0 : Math.abs(decimals)
-  var sep = (typeof thousandsSep === 'undefined') ? ',' : thousandsSep
-  var dec = (typeof decPoint === 'undefined') ? '.' : decPoint
-  var s = ''
+  const n = !isFinite(+number) ? 0 : +number
+  const prec = !isFinite(+decimals) ? 0 : Math.abs(decimals)
+  const sep = (typeof thousandsSep === 'undefined') ? ',' : thousandsSep
+  const dec = (typeof decPoint === 'undefined') ? '.' : decPoint
+  let s = ''
 
-  var toFixedFix = function (n, prec) {
+  const toFixedFix = function (n, prec) {
     if (('' + n).indexOf('e') === -1) {
       return +(Math.round(n + 'e+' + prec) + 'e-' + prec)
     } else {
-      var arr = ('' + n).split('e')
-      var sig = ''
+      const arr = ('' + n).split('e')
+      let sig = ''
       if (+arr[1] + prec > 0) {
         sig = '+'
       }

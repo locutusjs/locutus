@@ -6,23 +6,23 @@ module.exports = function array_intersect_uassoc (arr1) { // eslint-disable-line
   //   example 1: array_intersect_uassoc($array1, $array2, function (f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 === string2) return 0; return -1;})
   //   returns 1: {b: 'brown'}
 
-  var retArr = {}
-  var arglm1 = arguments.length - 1
-  var arglm2 = arglm1 - 1
-  var cb = arguments[arglm1]
+  const retArr = {}
+  const arglm1 = arguments.length - 1
+  const arglm2 = arglm1 - 1
+  let cb = arguments[arglm1]
   // var cb0 = arguments[arglm2]
-  var k1 = ''
-  var i = 1
-  var k = ''
-  var arr = {}
+  let k1 = ''
+  let i = 1
+  let k = ''
+  let arr = {}
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
 
   cb = (typeof cb === 'string')
     ? $global[cb]
     : (Object.prototype.toString.call(cb) === '[object Array]')
-      ? $global[cb[0]][cb[1]]
-      : cb
+        ? $global[cb[0]][cb[1]]
+        : cb
 
   // cb0 = (typeof cb0 === 'string')
   //   ? $global[cb0]

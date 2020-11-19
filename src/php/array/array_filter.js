@@ -13,8 +13,8 @@ module.exports = function array_filter (arr, func) { // eslint-disable-line came
   //   example 3: array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined})
   //   returns 3: {"a":1, "c":-1}
 
-  var retObj = {}
-  var k
+  let retObj = {}
+  let k
 
   func = func || function (v) {
     return v

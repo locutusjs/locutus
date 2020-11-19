@@ -14,9 +14,9 @@ module.exports = function json_last_error () { // eslint-disable-line camelcase
   // but JSON functions auto-escape these, so error not possible in JavaScript
   // JSON_ERROR_SYNTAX = 4
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
-  var $locutus = $global.$locutus
+  const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 
   return $locutus.php && $locutus.php.last_error_json ? $locutus.php.last_error_json : 0

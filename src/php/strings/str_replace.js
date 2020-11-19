@@ -29,22 +29,22 @@ module.exports = function str_replace (search, replace, subject, countObj) { // 
   //   example 4: var $result = countObj.value
   //   returns 4: 4
 
-  var i = 0
-  var j = 0
-  var temp = ''
-  var repl = ''
-  var sl = 0
-  var fl = 0
-  var f = [].concat(search)
-  var r = [].concat(replace)
-  var s = subject
-  var ra = Object.prototype.toString.call(r) === '[object Array]'
-  var sa = Object.prototype.toString.call(s) === '[object Array]'
+  let i = 0
+  let j = 0
+  let temp = ''
+  let repl = ''
+  let sl = 0
+  let fl = 0
+  const f = [].concat(search)
+  let r = [].concat(replace)
+  let s = subject
+  let ra = Object.prototype.toString.call(r) === '[object Array]'
+  const sa = Object.prototype.toString.call(s) === '[object Array]'
   s = [].concat(s)
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
-  var $locutus = $global.$locutus
+  const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 
   if (typeof (search) === 'object' && typeof (replace) === 'string') {

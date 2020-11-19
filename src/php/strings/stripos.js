@@ -5,9 +5,9 @@ module.exports = function stripos (fHaystack, fNeedle, fOffset) {
   //   example 1: stripos('ABC', 'a')
   //   returns 1: 0
 
-  var haystack = (fHaystack + '').toLowerCase()
-  var needle = (fNeedle + '').toLowerCase()
-  var index = 0
+  const haystack = (fHaystack + '').toLowerCase()
+  const needle = (fNeedle + '').toLowerCase()
+  let index = 0
 
   if ((index = haystack.indexOf(needle, fOffset)) !== -1) {
     return index

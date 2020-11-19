@@ -27,7 +27,7 @@ module.exports = function _php_cast_int (value) { // eslint-disable-line camelca
   //  example 13: _php_cast_int(0x200000001)
   //  returns 13: 8589934593
 
-  var type = typeof value
+  const type = typeof value
 
   switch (type) {
     case 'number':

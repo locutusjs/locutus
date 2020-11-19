@@ -6,7 +6,7 @@ module.exports = function str_repeat (input, multiplier) { // eslint-disable-lin
   //   example 1: str_repeat('-=', 10)
   //   returns 1: '-=-=-=-=-=-=-=-=-=-='
 
-  var y = ''
+  let y = ''
   while (true) {
     if (multiplier & 1) {
       y += input

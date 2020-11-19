@@ -6,9 +6,9 @@ module.exports = function ini_get (varname) { // eslint-disable-line camelcase
   //   example 1: ini_get('date.timezone')
   //   returns 1: 'Asia/Hong_Kong'
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
-  var $locutus = $global.$locutus
+  const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
   $locutus.php.ini = $locutus.php.ini || {}
 

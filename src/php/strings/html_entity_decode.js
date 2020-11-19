@@ -16,13 +16,13 @@ module.exports = function html_entity_decode (string, quoteStyle) { // eslint-di
   //   example 2: html_entity_decode('&amp;lt;')
   //   returns 2: '&lt;'
 
-  var getHtmlTranslationTable = require('../strings/get_html_translation_table')
-  var tmpStr = ''
-  var entity = ''
-  var symbol = ''
+  const getHtmlTranslationTable = require('../strings/get_html_translation_table')
+  let tmpStr = ''
+  let entity = ''
+  let symbol = ''
   tmpStr = string.toString()
 
-  var hashMap = getHtmlTranslationTable('HTML_ENTITIES', quoteStyle)
+  const hashMap = getHtmlTranslationTable('HTML_ENTITIES', quoteStyle)
   if (hashMap === false) {
     return false
   }

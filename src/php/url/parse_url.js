@@ -23,11 +23,11 @@ module.exports = function parse_url (str, component) { // eslint-disable-line ca
   //        example 4: parse_url('https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar')
   //        returns 4: { scheme: 'https', host: 'www.example.com', path: '/a@b.c/folder', query: 'foo=bar', user: 'gooduser', pass: 'secretpassword' }
 
-  var query
+  let query
 
-  var mode = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.mode') : undefined) || 'php'
+  const mode = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.mode') : undefined) || 'php'
 
-  var key = [
+  const key = [
     'source',
     'scheme',
     'authority',
@@ -45,7 +45,7 @@ module.exports = function parse_url (str, component) { // eslint-disable-line ca
   ]
 
   // For loose we added one optional slash to post-scheme to catch file:/// (should restrict this)
-  var parser = {
+  let parser = {
     php: new RegExp([
       '(?:([^:\\/?#]+):)?',
       '(?:\\/\\/()(?:(?:()(?:([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?',
@@ -66,9 +66,9 @@ module.exports = function parse_url (str, component) { // eslint-disable-line ca
     ].join(''))
   }
 
-  var m = parser[mode].exec(str)
-  var uri = {}
-  var i = 14
+  const m = parser[mode].exec(str)
+  const uri = {}
+  let i = 14
 
   while (i--) {
     if (m[i]) {
@@ -81,7 +81,7 @@ module.exports = function parse_url (str, component) { // eslint-disable-line ca
   }
 
   if (mode !== 'php') {
-    var name = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.queryKey') : undefined) || 'queryKey'
+    const name = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.queryKey') : undefined) || 'queryKey'
     parser = /(?:^|&)([^&=]*)=?([^&]*)/g
     uri[name] = {}
     query = uri[key[12]] || ''

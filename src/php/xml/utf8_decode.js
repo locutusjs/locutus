@@ -13,10 +13,10 @@ module.exports = function utf8_decode (strData) { // eslint-disable-line camelca
   //   example 1: utf8_decode('Kevin van Zonneveld')
   //   returns 1: 'Kevin van Zonneveld'
 
-  var tmpArr = []
-  var i = 0
-  var c1 = 0
-  var seqlen = 0
+  const tmpArr = []
+  let i = 0
+  let c1 = 0
+  let seqlen = 0
 
   strData += ''
 
@@ -39,7 +39,7 @@ module.exports = function utf8_decode (strData) { // eslint-disable-line camelca
       seqlen = 4
     }
 
-    for (var ai = 1; ai < seqlen; ++ai) {
+    for (let ai = 1; ai < seqlen; ++ai) {
       c1 = ((c1 << 0x06) | (strData.charCodeAt(ai + i) & 0x3F))
     }
 

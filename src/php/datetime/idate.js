@@ -17,12 +17,12 @@ module.exports = function idate (format, timestamp) {
   }
 
   // @todo: Need to allow date_default_timezone_set() (check for $locutus.default_timezone and use)
-  var _date = (typeof timestamp === 'undefined')
+  const _date = (typeof timestamp === 'undefined')
     ? new Date()
     : (timestamp instanceof Date)
-      ? new Date(timestamp)
-      : new Date(timestamp * 1000)
-  var a
+        ? new Date(timestamp)
+        : new Date(timestamp * 1000)
+  let a
 
   switch (format) {
     case 'B':
@@ -55,7 +55,7 @@ module.exports = function idate (format, timestamp) {
       return _date.getSeconds()
     case 't':
       return (new Date(_date.getFullYear(), _date.getMonth() + 1, 0))
-      .getDate()
+        .getDate()
     case 'U':
       return Math.round(_date.getTime() / 1000)
     case 'w':
@@ -69,7 +69,7 @@ module.exports = function idate (format, timestamp) {
       return 1 + Math.round((a - (new Date(a.getFullYear(), 0, 4))) / 864e5 / 7)
     case 'y':
       return parseInt((_date.getFullYear() + '')
-      .slice(2), 10) // This function returns an integer, unlike _date()
+        .slice(2), 10) // This function returns an integer, unlike _date()
     case 'Y':
       return _date.getFullYear()
     case 'z':

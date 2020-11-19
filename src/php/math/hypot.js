@@ -10,7 +10,7 @@ module.exports = function hypot (x, y) {
   x = Math.abs(x)
   y = Math.abs(y)
 
-  var t = Math.min(x, y)
+  let t = Math.min(x, y)
   x = Math.max(x, y)
   t = t / x
 

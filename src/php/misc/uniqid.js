@@ -17,8 +17,8 @@ module.exports = function uniqid (prefix, moreEntropy) {
     prefix = ''
   }
 
-  var retId
-  var _formatSeed = function (seed, reqWidth) {
+  let retId
+  const _formatSeed = function (seed, reqWidth) {
     seed = parseInt(seed, 10).toString(16) // to hex str
     if (reqWidth < seed.length) {
       // so long we split
@@ -31,9 +31,9 @@ module.exports = function uniqid (prefix, moreEntropy) {
     return seed
   }
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
-  var $locutus = $global.$locutus
+  const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 
   if (!$locutus.php.uniqidSeed) {

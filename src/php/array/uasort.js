@@ -18,11 +18,11 @@ module.exports = function uasort (inputArr, sorter) {
   //   example 1: var $result = $fruits
   //   returns 1: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
 
-  var valArr = []
-  var k = ''
-  var i = 0
-  var sortByReference = false
-  var populateArr = {}
+  const valArr = []
+  let k = ''
+  let i = 0
+  let sortByReference = false
+  let populateArr = {}
 
   if (typeof sorter === 'string') {
     sorter = this[sorter]
@@ -30,7 +30,7 @@ module.exports = function uasort (inputArr, sorter) {
     sorter = this[sorter[0]][sorter[1]]
   }
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

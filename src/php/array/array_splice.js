@@ -20,7 +20,7 @@ module.exports = function array_splice (arr, offst, lgth, replacement) { // esli
   //   returns 3: ["yellow"]
   //        test: skip-1
 
-  var isInt = require('../var/is_int')
+  const isInt = require('../var/is_int')
 
   var _checkToUpIndices = function (arr, ct, key) {
     // Deal with situation, e.g., if encounter index 4 and try
@@ -28,7 +28,7 @@ module.exports = function array_splice (arr, offst, lgth, replacement) { // esli
     // increment all subsequent (skipping current key,
     // since we need its value below) until find unused)
     if (arr[ct] !== undefined) {
-      var tmp = ct
+      const tmp = ct
       ct += 1
       if (ct === key) {
         ct += 1
@@ -54,16 +54,16 @@ module.exports = function array_splice (arr, offst, lgth, replacement) { // esli
      // Deal with array-like objects as input
     delete arr.length;
     } */
-    var lgt = 0
-    var ct = -1
-    var rmvd = []
-    var rmvdObj = {}
-    var replCt = -1
-    var intCt = -1
-    var returnArr = true
-    var rmvdCt = 0
+    let lgt = 0
+    let ct = -1
+    const rmvd = []
+    const rmvdObj = {}
+    let replCt = -1
+    let intCt = -1
+    let returnArr = true
+    let rmvdCt = 0
     // var rmvdLngth = 0
-    var key = ''
+    let key = ''
     // rmvdObj.length = 0;
     for (key in arr) {
       // Can do arr.__count__ in some browsers

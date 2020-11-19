@@ -16,8 +16,8 @@ module.exports = function in_array (needle, haystack, argStrict) { // eslint-dis
   //   example 4: in_array(1, ['1', '2', '3'], true)
   //   returns 4: false
 
-  var key = ''
-  var strict = !!argStrict
+  let key = ''
+  const strict = !!argStrict
 
   // we prevent the double check (strict && arr[key] === ndl) || (!strict && arr[key] === ndl)
   // in just one for, in order to improve the performance

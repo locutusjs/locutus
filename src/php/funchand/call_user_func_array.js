@@ -15,11 +15,11 @@ module.exports = function call_user_func_array (cb, parameters) { // eslint-disa
   //   example 2: call_user_func_array('isNaN', [1])
   //   returns 2: false
 
-  var $global = (typeof window !== 'undefined' ? window : global)
-  var func
-  var scope = null
+  const $global = (typeof window !== 'undefined' ? window : global)
+  let func
+  let scope = null
 
-  var validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
+  const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
   if (typeof cb === 'string') {
     if (typeof $global[cb] === 'function') {

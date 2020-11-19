@@ -6,9 +6,9 @@ module.exports = function printf () {
   //   example 1: printf("%01.2f", 123.1)
   //   returns 1: 6
 
-  var sprintf = require('../strings/sprintf')
-  var echo = require('../strings/echo')
-  var ret = sprintf.apply(this, arguments)
+  const sprintf = require('../strings/sprintf')
+  const echo = require('../strings/echo')
+  const ret = sprintf.apply(this, arguments)
   echo(ret)
   return ret.length
 }

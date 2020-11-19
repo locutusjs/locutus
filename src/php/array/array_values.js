@@ -5,8 +5,8 @@ module.exports = function array_values (input) { // eslint-disable-line camelcas
   //   example 1: array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} )
   //   returns 1: [ 'Kevin', 'van Zonneveld' ]
 
-  var tmpArr = []
-  var key = ''
+  const tmpArr = []
+  let key = ''
 
   for (key in input) {
     tmpArr[tmpArr.length] = input[key]

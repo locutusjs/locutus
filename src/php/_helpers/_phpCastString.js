@@ -27,7 +27,7 @@ module.exports = function _phpCastString (value) {
   //   example 13: _phpCastString(3.14)
   //   returns 13: '3.14'
 
-  var type = typeof value
+  const type = typeof value
 
   switch (type) {
     case 'boolean':

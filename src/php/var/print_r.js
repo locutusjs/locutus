@@ -8,15 +8,15 @@ module.exports = function print_r (array, returnVal) { // eslint-disable-line ca
   //   example 1: print_r(1, true)
   //   returns 1: '1'
 
-  var echo = require('../strings/echo')
+  const echo = require('../strings/echo')
 
-  var output = ''
-  var padChar = ' '
-  var padVal = 4
+  let output = ''
+  const padChar = ' '
+  const padVal = 4
 
-  var _repeatChar = function (len, padChar) {
-    var str = ''
-    for (var i = 0; i < len; i++) {
+  const _repeatChar = function (len, padChar) {
+    let str = ''
+    for (let i = 0; i < len; i++) {
       str += padChar
     }
     return str
@@ -26,15 +26,15 @@ module.exports = function print_r (array, returnVal) { // eslint-disable-line ca
       curDepth++
     }
 
-    var basePad = _repeatChar(padVal * curDepth, padChar)
-    var thickPad = _repeatChar(padVal * (curDepth + 1), padChar)
-    var str = ''
+    const basePad = _repeatChar(padVal * curDepth, padChar)
+    const thickPad = _repeatChar(padVal * (curDepth + 1), padChar)
+    let str = ''
 
     if (typeof obj === 'object' &&
       obj !== null &&
       obj.constructor) {
       str += 'Array\n' + basePad + '(\n'
-      for (var key in obj) {
+      for (const key in obj) {
         if (Object.prototype.toString.call(obj[key]) === '[object Array]') {
           str += thickPad
           str += '['

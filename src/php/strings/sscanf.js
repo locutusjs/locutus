@@ -10,12 +10,12 @@ module.exports = function sscanf (str, format) {
   //   example 3: sscanf("10--20", "%2$d--%1$d") // Must escape '$' in PHP, but not JS
   //   returns 3: [20, 10]
 
-  var retArr = []
-  var _NWS = /\S/
-  var args = arguments
-  var digit
+  const retArr = []
+  const _NWS = /\S/
+  const args = arguments
+  let digit
 
-  var _setExtraConversionSpecs = function (offset) {
+  const _setExtraConversionSpecs = function (offset) {
     // Since a mismatched character sets us off track from future
     // legitimate finds, we just scan
     // to the end for any other conversion specifications (besides a percent literal),
@@ -25,10 +25,10 @@ module.exports = function sscanf (str, format) {
     // Do not allow % in last char. class
     // var matches = format.match(/%[+-]?([ 0]|'.)?-?\d*(\.\d+)?[bcdeufFosxX]/g);
     // Do not allow % in last char. class:
-    var matches = format.slice(offset).match(/%[cdeEufgosxX]/g)
+    const matches = format.slice(offset).match(/%[cdeEufgosxX]/g)
     // b, F,G give errors in PHP, but 'g', though also disallowed, doesn't
     if (matches) {
-      var lgth = matches.length
+      let lgth = matches.length
       while (lgth--) {
         retArr.push(null)
       }
@@ -46,20 +46,20 @@ module.exports = function sscanf (str, format) {
     return i
   }
 
-  var _addNext = function (j, regex, cb) {
+  const _addNext = function (j, regex, cb) {
     if (assign) {
-      var remaining = str.slice(j)
-      var check = width ? remaining.substr(0, width) : remaining
-      var match = regex.exec(check)
+      const remaining = str.slice(j)
+      const check = width ? remaining.substr(0, width) : remaining
+      const match = regex.exec(check)
       // @todo: Make this more readable
-      var key = digit !== undefined
+      const key = digit !== undefined
         ? digit
         : retArr.length
-      var testNull = retArr[key] = match
-          ? (cb
+      const testNull = retArr[key] = match
+        ? (cb
             ? cb.apply(null, match)
             : match[0])
-          : null
+        : null
       if (testNull === null) {
         throw new Error('No match in string')
       }
@@ -73,7 +73,7 @@ module.exports = function sscanf (str, format) {
   }
 
   // PROCESS
-  for (var i = 0, j = 0; i < format.length; i++) {
+  for (let i = 0, j = 0; i < format.length; i++) {
     var width = 0
     var assign = true
 
@@ -93,13 +93,13 @@ module.exports = function sscanf (str, format) {
       // CHARACTER FOLLOWING PERCENT IS NOT A PERCENT
 
       // We need 'g' set to get lastIndex
-      var prePattern = new RegExp('^(?:(\\d+)\\$)?(\\*)?(\\d*)([hlL]?)', 'g')
+      const prePattern = new RegExp('^(?:(\\d+)\\$)?(\\*)?(\\d*)([hlL]?)', 'g')
 
-      var preConvs = prePattern.exec(format.slice(i + 1))
+      const preConvs = prePattern.exec(format.slice(i + 1))
 
-      var tmpDigit = digit
+      const tmpDigit = digit
       if (tmpDigit && preConvs[1] === undefined) {
-        var msg = 'All groups in sscanf() must be expressed as numeric if '
+        let msg = 'All groups in sscanf() must be expressed as numeric if '
         msg += 'any have already been used'
         throw new Error(msg)
       }
@@ -107,7 +107,7 @@ module.exports = function sscanf (str, format) {
 
       assign = !preConvs[2]
       width = parseInt(preConvs[3], 10)
-      var sizeCode = preConvs[4]
+      const sizeCode = preConvs[4]
       i += prePattern.lastIndex
 
       // @todo: Does PHP do anything with these? Seems not to matter
@@ -155,7 +155,7 @@ module.exports = function sscanf (str, format) {
             // Integer with base detection (Equivalent of 'd', but base 0 instead of 10)
             var pattern = /([+-])?(?:(?:0x([\da-fA-F]+))|(?:0([0-7]+))|(\d+))/
             j = _addNext(j, pattern, function (num, sign, hex,
-            oct, dec) {
+              oct, dec) {
               return hex ? parseInt(num, 16) : oct ? parseInt(num, 8) : parseInt(num, 10)
             })
             break
@@ -176,7 +176,7 @@ module.exports = function sscanf (str, format) {
             // Optionally signed decimal integer
             j = _addNext(j, /([+-])?(?:0*)(\d+)/, function (num, sign, dec) {
               // Ignores initial zeroes, unlike %i and parseInt()
-              var decInt = parseInt((sign || '') + dec, 10)
+              const decInt = parseInt((sign || '') + dec, 10)
               if (decInt < 0) {
                 // PHP also won't allow less than -2147483648
                 // integer overflow with negative
@@ -206,7 +206,7 @@ module.exports = function sscanf (str, format) {
             // We won't deal with integer overflows due to signs
             j = _addNext(j, /([+-])?(?:0*)(\d+)/, function (num, sign, dec) {
               // Ignores initial zeroes, unlike %i and parseInt()
-              var decInt = parseInt(dec, 10)
+              const decInt = parseInt(dec, 10)
               if (sign === '-') {
                 // PHP also won't allow greater than 4294967295
                 // integer overflow with negative
@@ -217,7 +217,7 @@ module.exports = function sscanf (str, format) {
             })
             break
           case 'o':
-              // Octal integer // @todo: add overflows as above?
+            // Octal integer // @todo: add overflows as above?
             j = _addNext(j, /([+-])?(?:0([0-7]+))/, function (num, sign, oct) {
               return parseInt(num, 8)
             })
@@ -250,7 +250,7 @@ module.exports = function sscanf (str, format) {
       }
       ++i
     } else if (format.charAt(i) !== str.charAt(j)) {
-        // @todo: Double-check i whitespace ignored in string and/or formats
+      // @todo: Double-check i whitespace ignored in string and/or formats
       _NWS.lastIndex = 0
       if ((_NWS)
         .test(str.charAt(j)) || str.charAt(j) === '') {

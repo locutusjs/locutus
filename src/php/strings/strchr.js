@@ -6,6 +6,6 @@ module.exports = function strchr (haystack, needle, bool) {
   //   example 2: strchr('Kevin van Zonneveld', 'van', true)
   //   returns 2: 'Kevin '
 
-  var strstr = require('../strings/strstr')
+  const strstr = require('../strings/strstr')
   return strstr(haystack, needle, bool)
 }

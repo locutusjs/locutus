@@ -16,9 +16,9 @@ module.exports = function version_compare (v1, v2, operator) { // eslint-disable
   //        returns 4: 1
 
   // Important: compare must be initialized at 0.
-  var i
-  var x
-  var compare = 0
+  let i
+  let x
+  let compare = 0
 
   // vm maps textual PHP versions to negatives so they're less than 0.
   // PHP currently defines these as CASE-SENSITIVE. It is important to
@@ -27,17 +27,17 @@ module.exports = function version_compare (v1, v2, operator) { // eslint-disable
   // (1alpha is < 1 and < 1.1 but > 1dev1)
   // If a non-numerical value can't be mapped to this table, it receives
   // -7 as its value.
-  var vm = {
-    'dev': -6,
-    'alpha': -5,
-    'a': -5,
-    'beta': -4,
-    'b': -4,
-    'RC': -3,
-    'rc': -3,
+  const vm = {
+    dev: -6,
+    alpha: -5,
+    a: -5,
+    beta: -4,
+    b: -4,
+    RC: -3,
+    rc: -3,
     '#': -2,
-    'p': 1,
-    'pl': 1
+    p: 1,
+    pl: 1
   }
 
   // This function will be called to prepare each version argument.
@@ -49,7 +49,7 @@ module.exports = function version_compare (v1, v2, operator) { // eslint-disable
   // even less than an unexisting value in vm (-7), hence [-8].
   // It's also important to not strip spaces because of this.
   //   version_compare('', ' ') === 1
-  var _prepVersion = function (v) {
+  const _prepVersion = function (v) {
     v = ('' + v).replace(/[_\-+]/g, '.')
     v = v.replace(/([^.\d]+)/g, '.$1.').replace(/\.{2,}/g, '.')
     return (!v.length ? [-8] : v.split('.'))
@@ -58,7 +58,7 @@ module.exports = function version_compare (v1, v2, operator) { // eslint-disable
   // Empty component becomes 0.
   // Non-numerical component becomes a negative number.
   // Numerical component becomes itself as an integer.
-  var _numVersion = function (v) {
+  const _numVersion = function (v) {
     return !v ? 0 : (isNaN(v) ? vm[v] || -7 : parseInt(v, 10))
   }
 

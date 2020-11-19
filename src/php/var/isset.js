@@ -9,10 +9,10 @@ module.exports = function isset () {
   //   example 2: isset( 'Kevin van Zonneveld' )
   //   returns 2: true
 
-  var a = arguments
-  var l = a.length
-  var i = 0
-  var undef
+  const a = arguments
+  const l = a.length
+  let i = 0
+  let undef
 
   if (l === 0) {
     throw new Error('Empty isset')

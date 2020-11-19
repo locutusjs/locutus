@@ -7,7 +7,7 @@ module.exports = function is_nan (val) { // eslint-disable-line camelcase
   //   example 2: is_nan(0)
   //   returns 2: false
 
-  var warningType = ''
+  let warningType = ''
 
   if (typeof val === 'number' && isNaN(val)) {
     return true

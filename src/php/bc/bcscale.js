@@ -4,8 +4,8 @@ module.exports = function bcscale (scale) {
   //   example 1: bcscale(1)
   //   returns 1: true
 
-  var _bc = require('../_helpers/_bc')
-  var libbcmath = _bc()
+  const _bc = require('../_helpers/_bc')
+  const libbcmath = _bc()
 
   scale = parseInt(scale, 10)
   if (isNaN(scale)) {

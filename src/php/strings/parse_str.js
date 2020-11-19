@@ -40,29 +40,29 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
   //        example 5: var $result = $arr
   //        returns 5: {"a":{"0":"2"}}
 
-  var strArr = String(str).replace(/^&/, '').replace(/&$/, '').split('&')
-  var sal = strArr.length
-  var i
-  var j
-  var ct
-  var p
-  var lastObj
-  var obj
-  var chr
-  var tmp
-  var key
-  var value
-  var postLeftBracketPos
-  var keys
-  var keysLen
+  const strArr = String(str).replace(/^&/, '').replace(/&$/, '').split('&')
+  const sal = strArr.length
+  let i
+  let j
+  let ct
+  let p
+  let lastObj
+  let obj
+  let chr
+  let tmp
+  let key
+  let value
+  let postLeftBracketPos
+  let keys
+  let keysLen
 
-  var _fixStr = function (str) {
+  const _fixStr = function (str) {
     return decodeURIComponent(str.replace(/\+/g, '%20'))
   }
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
-  var $locutus = $global.$locutus
+  const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 
   if (!array) {

@@ -11,14 +11,14 @@ module.exports = function get_defined_functions () { // eslint-disable-line came
   //   returns 1: true
   //        test: skip-1
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
-  var $locutus = $global.$locutus
+  const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 
-  var i = ''
-  var arr = []
-  var already = {}
+  let i = ''
+  const arr = []
+  const already = {}
 
   for (i in $global) {
     try {
@@ -28,7 +28,7 @@ module.exports = function get_defined_functions () { // eslint-disable-line came
           arr.push(i)
         }
       } else if (typeof $global[i] === 'object') {
-        for (var j in $global[i]) {
+        for (const j in $global[i]) {
           if (typeof $global[j] === 'function' && $global[j] && !already[j]) {
             already[j] = 1
             arr.push(j)

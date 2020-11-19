@@ -6,9 +6,9 @@ module.exports = function vprintf (format, args) {
   //        example 1: vprintf("%01.2f", 123.1)
   //        returns 1: 6
 
-  var sprintf = require('../strings/sprintf')
-  var echo = require('../strings/echo')
-  var ret = sprintf.apply(this, [format].concat(args))
+  const sprintf = require('../strings/sprintf')
+  const echo = require('../strings/echo')
+  const ret = sprintf.apply(this, [format].concat(args))
   echo(ret)
 
   return ret.length

@@ -21,7 +21,7 @@ module.exports = function strrev (string) {
   // We also add the low surrogate range at the beginning here so it will be
   // maintained with its preceding high surrogate
 
-  var chars = [
+  const chars = [
     '\uDC00-\uDFFF',
     '\u0300-\u036F',
     '\u0483-\u0489',
@@ -205,7 +205,7 @@ module.exports = function strrev (string) {
     '\uFE20-\uFE26'
   ]
 
-  var graphemeExtend = new RegExp('(.)([' + chars.join('') + ']+)', 'g')
+  const graphemeExtend = new RegExp('(.)([' + chars.join('') + ']+)', 'g')
 
   // Temporarily reverse
   string = string.replace(graphemeExtend, '$2$1')

@@ -5,7 +5,7 @@ module.exports = function lcfirst (str) {
   //   returns 1: 'kevin Van Zonneveld'
 
   str += ''
-  var f = str.charAt(0)
+  const f = str.charAt(0)
     .toLowerCase()
   return f + str.substr(1)
 }

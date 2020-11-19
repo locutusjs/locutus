@@ -11,9 +11,9 @@ module.exports = function count_chars (str, mode) { // eslint-disable-line camel
   //   example 2: count_chars("Hello World!", 1)
   //   returns 2: {32:1,33:1,72:1,87:1,100:1,101:1,108:3,111:2,114:1}
 
-  var result = {}
-  var resultArr = []
-  var i
+  const result = {}
+  const resultArr = []
+  let i
 
   str = ('' + str)
     .split('')

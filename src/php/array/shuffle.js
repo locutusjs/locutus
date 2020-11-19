@@ -10,11 +10,11 @@ module.exports = function shuffle (inputArr) {
   //   example 1: var $result = $data.q
   //   returns 1: 5
 
-  var valArr = []
-  var k = ''
-  var i = 0
-  var sortByReference = false
-  var populateArr = []
+  const valArr = []
+  let k = ''
+  let i = 0
+  let sortByReference = false
+  let populateArr = []
 
   for (k in inputArr) {
     // Get key and value arrays
@@ -29,7 +29,7 @@ module.exports = function shuffle (inputArr) {
     return 0.5 - Math.random()
   })
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

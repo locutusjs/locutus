@@ -7,10 +7,10 @@ module.exports = function gmmktime () {
   //   example 2: gmmktime(0, 0, -1, 1, 1, 1970)
   //   returns 2: -1
 
-  var d = new Date()
-  var r = arguments
-  var i = 0
-  var e = ['Hours', 'Minutes', 'Seconds', 'Month', 'Date', 'FullYear']
+  const d = new Date()
+  const r = arguments
+  let i = 0
+  const e = ['Hours', 'Minutes', 'Seconds', 'Month', 'Date', 'FullYear']
 
   for (i = 0; i < e.length; i++) {
     if (typeof r[i] === 'undefined') {
@@ -35,7 +35,7 @@ module.exports = function gmmktime () {
   // Set hours, minutes, and seconds.
   d.setUTCHours(r[0], r[1], r[2])
 
-  var time = d.getTime()
+  const time = d.getTime()
 
   // Divide milliseconds by 1000 to return seconds and drop decimal.
   // Add 1 second if negative or it'll be off from PHP by 1 second.

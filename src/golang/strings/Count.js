@@ -7,8 +7,8 @@ module.exports = function Count (s, sep) {
   //   example 2: Count("five", "") // before & after each rune
   //   returns 2: 5
 
-  var pos
-  var n = 0
+  let pos
+  let n = 0
 
   if ((sep.length === 0)) {
     return s.split(sep).length + 1

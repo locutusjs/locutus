@@ -6,7 +6,7 @@ module.exports = function doubleval (mixedVar) {
   //   example 1: doubleval(186)
   //   returns 1: 186.00
 
-  var floatval = require('../var/floatval')
+  const floatval = require('../var/floatval')
 
   return floatval(mixedVar)
 }

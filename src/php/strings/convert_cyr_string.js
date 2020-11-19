@@ -13,7 +13,7 @@ module.exports = function convert_cyr_string (str, from, to) { // eslint-disable
   //   example 1: convert_cyr_string(String.fromCharCode(214), 'k', 'w').charCodeAt(0) === 230; // Char. 214 of KOI8-R gives equivalent number value 230 in win1251
   //   returns 1: true
 
-  var _cyrWin1251 = [
+  const _cyrWin1251 = [
     0,
     1,
     2,
@@ -527,7 +527,7 @@ module.exports = function convert_cyr_string (str, from, to) { // eslint-disable
     215,
     218
   ]
-  var _cyrCp866 = [
+  const _cyrCp866 = [
     0,
     1,
     2,
@@ -1041,7 +1041,7 @@ module.exports = function convert_cyr_string (str, from, to) { // eslint-disable
     151,
     154
   ]
-  var _cyrIso88595 = [
+  const _cyrIso88595 = [
     0,
     1,
     2,
@@ -1555,7 +1555,7 @@ module.exports = function convert_cyr_string (str, from, to) { // eslint-disable
     199,
     202
   ]
-  var _cyrMac = [
+  const _cyrMac = [
     0,
     1,
     2,
@@ -2073,11 +2073,11 @@ module.exports = function convert_cyr_string (str, from, to) { // eslint-disable
     154
   ]
 
-  var fromTable = null
-  var toTable = null
-  var tmp
-  var i = 0
-  var retStr = ''
+  let fromTable = null
+  let toTable = null
+  let tmp
+  let i = 0
+  let retStr = ''
 
   switch (from.toUpperCase()) {
     case 'W':

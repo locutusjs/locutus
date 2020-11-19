@@ -11,8 +11,8 @@ module.exports = function gettimeofday (returnFloat) {
   //   example 2: var $result = $timeStamp > 1000000000 && $timeStamp < 2000000000
   //   returns 2: true
 
-  var t = new Date()
-  var y = 0
+  const t = new Date()
+  let y = 0
 
   if (returnFloat) {
     return t.getTime() / 1000

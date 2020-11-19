@@ -13,7 +13,7 @@ module.exports = function strrpos (haystack, needle, offset) {
   //   example 4: strrpos('baa', 'a', 2)
   //   returns 4: 2
 
-  var i = -1
+  let i = -1
   if (offset) {
     i = (haystack + '')
       .slice(offset)

@@ -8,7 +8,7 @@ module.exports = function rand (min, max) {
   //   example 1: rand(1, 1)
   //   returns 1: 1
 
-  var argc = arguments.length
+  const argc = arguments.length
   if (argc === 0) {
     min = 0
     max = 2147483647

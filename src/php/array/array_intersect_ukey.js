@@ -6,23 +6,23 @@ module.exports = function array_intersect_ukey (arr1) { // eslint-disable-line c
   //   example 1: array_intersect_ukey ($array1, $array2, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })
   //   returns 1: {blue: 1, green: 3}
 
-  var retArr = {}
-  var arglm1 = arguments.length - 1
-  var arglm2 = arglm1 - 1
-  var cb = arguments[arglm1]
+  const retArr = {}
+  const arglm1 = arguments.length - 1
+  const arglm2 = arglm1 - 1
+  let cb = arguments[arglm1]
   // var cb0 = arguments[arglm2]
-  var k1 = ''
-  var i = 1
-  var k = ''
-  var arr = {}
+  let k1 = ''
+  let i = 1
+  let k = ''
+  let arr = {}
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
 
   cb = (typeof cb === 'string')
     ? $global[cb]
     : (Object.prototype.toString.call(cb) === '[object Array]')
-      ? $global[cb[0]][cb[1]]
-      : cb
+        ? $global[cb[0]][cb[1]]
+        : cb
 
   // cb0 = (typeof cb0 === 'string')
   //   ? $global[cb0]

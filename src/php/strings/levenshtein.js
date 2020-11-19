@@ -23,8 +23,8 @@ module.exports = function levenshtein (s1, s2, costIns, costRep, costDel) {
     return 0
   }
 
-  var l1 = s1.length
-  var l2 = s2.length
+  const l1 = s1.length
+  const l2 = s2.length
 
   if (l1 === 0) {
     return l2 * costIns
@@ -38,7 +38,7 @@ module.exports = function levenshtein (s1, s2, costIns, costRep, costDel) {
   //   return -1;
   // }
 
-  var split = false
+  let split = false
   try {
     split = !('0')[0]
   } catch (e) {
@@ -51,10 +51,10 @@ module.exports = function levenshtein (s1, s2, costIns, costRep, costDel) {
     s2 = s2.split('')
   }
 
-  var p1 = new Array(l2 + 1)
-  var p2 = new Array(l2 + 1)
+  let p1 = new Array(l2 + 1)
+  let p2 = new Array(l2 + 1)
 
-  var i1, i2, c0, c1, c2, tmp
+  let i1, i2, c0, c1, c2, tmp
 
   for (i2 = 0; i2 <= l2; i2++) {
     p1[i2] = i2 * costIns

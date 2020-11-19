@@ -19,15 +19,15 @@ module.exports = function similar_text (first, second, percent) { // eslint-disa
   first += ''
   second += ''
 
-  var pos1 = 0
-  var pos2 = 0
-  var max = 0
-  var firstLength = first.length
-  var secondLength = second.length
-  var p
-  var q
-  var l
-  var sum
+  let pos1 = 0
+  let pos2 = 0
+  let max = 0
+  const firstLength = first.length
+  const secondLength = second.length
+  let p
+  let q
+  let l
+  let sum
 
   for (p = 0; p < firstLength; p++) {
     for (q = 0; q < secondLength; q++) {
@@ -53,7 +53,7 @@ module.exports = function similar_text (first, second, percent) { // eslint-disa
       sum += similar_text(
         first.substr(pos1 + max, firstLength - pos1 - max),
         second.substr(pos2 + max,
-        secondLength - pos2 - max))
+          secondLength - pos2 - max))
     }
   }
 

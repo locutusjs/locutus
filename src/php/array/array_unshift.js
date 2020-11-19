@@ -7,7 +7,7 @@ module.exports = function array_unshift (array) { // eslint-disable-line camelca
   //   example 1: array_unshift(['van', 'Zonneveld'], 'Kevin')
   //   returns 1: 3
 
-  var i = arguments.length
+  let i = arguments.length
 
   while (--i !== 0) {
     arguments[0].unshift(arguments[i])

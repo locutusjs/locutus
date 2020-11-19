@@ -10,9 +10,9 @@ module.exports = function md5_file (str_filename) { // eslint-disable-line camel
   //   example 1: md5_file('test/never-change.txt')
   //   returns 1: 'bc3aa724b0ec7dce4c26e7f4d0d9b064'
 
-  var fileGetContents = require('../filesystem/file_get_contents')
-  var md5 = require('../strings/md5')
-  var buf = fileGetContents(str_filename)
+  const fileGetContents = require('../filesystem/file_get_contents')
+  const md5 = require('../strings/md5')
+  const buf = fileGetContents(str_filename)
 
   if (buf === false) {
     return false

@@ -7,10 +7,10 @@ module.exports = function inet_pton (a) { // eslint-disable-line camelcase
   //   example 2: inet_pton('127.0.0.1')
   //   returns 2: '\x7F\x00\x00\x01'
 
-  var m
-  var i
-  var j
-  var f = String.fromCharCode
+  let m
+  let i
+  let j
+  const f = String.fromCharCode
 
   // IPv4
   m = a.match(/^(?:\d{1,3}(?:\.|$)){4}/)

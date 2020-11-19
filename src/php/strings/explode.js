@@ -30,7 +30,7 @@ module.exports = function explode (delimiter, string, limit) {
   delimiter += ''
   string += ''
 
-  var s = string.split(delimiter)
+  const s = string.split(delimiter)
 
   if (typeof limit === 'undefined') return s
 

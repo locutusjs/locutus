@@ -19,17 +19,17 @@ module.exports = function utf8_encode (argString) { // eslint-disable-line camel
   }
 
   // .replace(/\r\n/g, "\n").replace(/\r/g, "\n");
-  var string = (argString + '')
-  var utftext = ''
-  var start
-  var end
-  var stringl = 0
+  const string = (argString + '')
+  let utftext = ''
+  let start
+  let end
+  let stringl = 0
 
   start = end = 0
   stringl = string.length
-  for (var n = 0; n < stringl; n++) {
-    var c1 = string.charCodeAt(n)
-    var enc = null
+  for (let n = 0; n < stringl; n++) {
+    let c1 = string.charCodeAt(n)
+    let enc = null
 
     if (c1 < 128) {
       end++
@@ -46,7 +46,7 @@ module.exports = function utf8_encode (argString) { // eslint-disable-line camel
       if ((c1 & 0xFC00) !== 0xD800) {
         throw new RangeError('Unmatched trail surrogate at ' + n)
       }
-      var c2 = string.charCodeAt(++n)
+      const c2 = string.charCodeAt(++n)
       if ((c2 & 0xFC00) !== 0xDC00) {
         throw new RangeError('Unmatched lead surrogate at ' + (n - 1))
       }

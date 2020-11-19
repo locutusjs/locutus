@@ -23,22 +23,22 @@ module.exports = function strtr (str, trFrom, trTo) {
   //   example 6: strtr('aa', {'a':1,'aa':2})
   //   returns 6: '2'
 
-  var krsort = require('../array/krsort')
-  var iniSet = require('../info/ini_set')
+  const krsort = require('../array/krsort')
+  const iniSet = require('../info/ini_set')
 
-  var fr = ''
-  var i = 0
-  var j = 0
-  var lenStr = 0
-  var lenFrom = 0
-  var sortByReference = false
-  var fromTypeStr = ''
-  var toTypeStr = ''
-  var istr = ''
-  var tmpFrom = []
-  var tmpTo = []
-  var ret = ''
-  var match = false
+  let fr = ''
+  let i = 0
+  let j = 0
+  let lenStr = 0
+  let lenFrom = 0
+  let sortByReference = false
+  let fromTypeStr = ''
+  let toTypeStr = ''
+  let istr = ''
+  const tmpFrom = []
+  const tmpTo = []
+  let ret = ''
+  let match = false
 
   // Received replace_pairs?
   // Convert to normal trFrom->trTo chars

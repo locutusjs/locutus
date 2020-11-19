@@ -7,6 +7,6 @@ module.exports = function setcookie (name, value, expires, path, domain, secure)
   //   example 1: setcookie('author_name', 'Kevin van Zonneveld')
   //   returns 1: true
 
-  var setrawcookie = require('../network/setrawcookie')
+  const setrawcookie = require('../network/setrawcookie')
   return setrawcookie(name, encodeURIComponent(value), expires, path, domain, secure)
 }

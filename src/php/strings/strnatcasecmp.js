@@ -13,8 +13,8 @@ module.exports = function strnatcasecmp (a, b) {
   //        example 2: strnatcasecmp('1', '10')
   //        returns 2: -1
 
-  var strnatcmp = require('../strings/strnatcmp')
-  var _phpCastString = require('../_helpers/_phpCastString')
+  const strnatcmp = require('../strings/strnatcmp')
+  const _phpCastString = require('../_helpers/_phpCastString')
 
   if (arguments.length !== 2) {
     return null

@@ -5,8 +5,8 @@ module.exports = function strcasecmp (fString1, fString2) {
   //   example 1: strcasecmp('Hello', 'hello')
   //   returns 1: 0
 
-  var string1 = (fString1 + '').toLowerCase()
-  var string2 = (fString2 + '').toLowerCase()
+  const string1 = (fString1 + '').toLowerCase()
+  const string2 = (fString2 + '').toLowerCase()
 
   if (string1 > string2) {
     return 1

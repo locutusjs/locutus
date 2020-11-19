@@ -19,7 +19,7 @@ module.exports = function http_build_query (formdata, numericPrefix, argSeparato
   //   example 3: http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;', 'PHP_QUERY_RFC3986')
   //   returns 3: 'foo=bar&amp;php=hypertext%20processor&amp;baz=boom&amp;cow=milk'
 
-  var encodeFunc
+  let encodeFunc
 
   switch (encType) {
     case 'PHP_QUERY_RFC3986':
@@ -32,13 +32,13 @@ module.exports = function http_build_query (formdata, numericPrefix, argSeparato
       break
   }
 
-  var value
-  var key
-  var tmp = []
+  let value
+  let key
+  const tmp = []
 
   var _httpBuildQueryHelper = function (key, val, argSeparator) {
-    var k
-    var tmp = []
+    let k
+    const tmp = []
     if (val === true) {
       val = '1'
     } else if (val === false) {
@@ -70,7 +70,7 @@ module.exports = function http_build_query (formdata, numericPrefix, argSeparato
     if (numericPrefix && !isNaN(key)) {
       key = String(numericPrefix) + key
     }
-    var query = _httpBuildQueryHelper(key, value, argSeparator)
+    const query = _httpBuildQueryHelper(key, value, argSeparator)
     if (query !== '') {
       tmp.push(query)
     }

@@ -13,17 +13,17 @@ module.exports = function array_merge () { // eslint-disable-line camelcase
   //   example 2: array_merge($arr1, $arr2)
   //   returns 2: {0: "data"}
 
-  var args = Array.prototype.slice.call(arguments)
-  var argl = args.length
-  var arg
-  var retObj = {}
-  var k = ''
-  var argil = 0
-  var j = 0
-  var i = 0
-  var ct = 0
-  var toStr = Object.prototype.toString
-  var retArr = true
+  const args = Array.prototype.slice.call(arguments)
+  const argl = args.length
+  let arg
+  const retObj = {}
+  let k = ''
+  let argil = 0
+  let j = 0
+  let i = 0
+  let ct = 0
+  const toStr = Object.prototype.toString
+  let retArr = true
 
   for (i = 0; i < argl; i++) {
     if (toStr.call(args[i]) !== '[object Array]') {

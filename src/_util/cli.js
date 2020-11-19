@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-var Util = require('./util')
+const Util = require('./util')
 
-var util = new Util(process.argv)
+const util = new Util(process.argv)
 
 util[process.argv[2]](function (err) {
   if (err) {

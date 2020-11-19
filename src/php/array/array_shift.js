@@ -12,7 +12,7 @@ module.exports = function array_shift (inputArr) { // eslint-disable-line camelc
     // increment all subsequent (skipping current key, since
     // we need its value below) until find unused)
     if (arr[ct] !== undefined) {
-      var tmp = ct
+      const tmp = ct
       ct += 1
       if (ct === key) {
         ct += 1

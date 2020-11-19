@@ -6,7 +6,7 @@ module.exports = function getdate (timestamp) {
   //   example 1: getdate(1055901520)
   //   returns 1: {'seconds': 40, 'minutes': 58, 'hours': 1, 'mday': 18, 'wday': 3, 'mon': 6, 'year': 2003, 'yday': 168, 'weekday': 'Wednesday', 'month': 'June', '0': 1055901520}
 
-  var _w = [
+  const _w = [
     'Sun',
     'Mon',
     'Tues',
@@ -15,7 +15,7 @@ module.exports = function getdate (timestamp) {
     'Fri',
     'Satur'
   ]
-  var _m = [
+  const _m = [
     'January',
     'February',
     'March',
@@ -29,14 +29,14 @@ module.exports = function getdate (timestamp) {
     'November',
     'December'
   ]
-  var d = ((typeof timestamp === 'undefined') ? new Date()
-    : (timestamp instanceof Date) ? new Date(timestamp)  // Not provided
-    : new Date(timestamp * 1000) // Javascript Date() // UNIX timestamp (auto-convert to int)
+  const d = ((typeof timestamp === 'undefined') ? new Date()
+    : (timestamp instanceof Date) ? new Date(timestamp) // Not provided
+        : new Date(timestamp * 1000) // Javascript Date() // UNIX timestamp (auto-convert to int)
   )
-  var w = d.getDay()
-  var m = d.getMonth()
-  var y = d.getFullYear()
-  var r = {}
+  const w = d.getDay()
+  const m = d.getMonth()
+  const y = d.getFullYear()
+  const r = {}
 
   r.seconds = d.getSeconds()
   r.minutes = d.getMinutes()

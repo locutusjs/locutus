@@ -30,17 +30,17 @@ module.exports = function sort (inputArr, sortFlags) {
   //   returns 2: {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
   //        test: skip-1
 
-  var i18nlgd = require('../i18n/i18n_loc_get_default')
+  const i18nlgd = require('../i18n/i18n_loc_get_default')
 
-  var sorter
-  var i
-  var k
-  var sortByReference = false
-  var populateArr = {}
+  let sorter
+  let i
+  let k
+  let sortByReference = false
+  let populateArr = {}
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
-  var $locutus = $global.$locutus
+  const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
   $locutus.php.locales = $locutus.php.locales || {}
 
@@ -70,10 +70,10 @@ module.exports = function sort (inputArr, sortFlags) {
     case 'SORT_REGULAR':
     default:
       sorter = function (a, b) {
-        var aFloat = parseFloat(a)
-        var bFloat = parseFloat(b)
-        var aNumeric = aFloat + '' === a
-        var bNumeric = bFloat + '' === b
+        const aFloat = parseFloat(a)
+        const bFloat = parseFloat(b)
+        const aNumeric = aFloat + '' === a
+        const bNumeric = bFloat + '' === b
 
         if (aNumeric && bNumeric) {
           return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0
@@ -88,11 +88,11 @@ module.exports = function sort (inputArr, sortFlags) {
       break
   }
 
-  var iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 
-  var valArr = []
+  const valArr = []
   for (k in inputArr) {
     // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {

@@ -10,10 +10,10 @@ module.exports = function bcmul (leftOperand, rightOperand, scale) {
   //   example 4: bcmul('2.5', '1.5', 2)
   //   returns 4: '3.75'
 
-  var _bc = require('../_helpers/_bc')
-  var libbcmath = _bc()
+  const _bc = require('../_helpers/_bc')
+  const libbcmath = _bc()
 
-  var first, second, result
+  let first, second, result
 
   if (typeof scale === 'undefined') {
     scale = libbcmath.scale

@@ -23,9 +23,9 @@ module.exports = function intval (mixedVar, base) {
   //   example 8: intval('010', 0)
   //   returns 8: 8
 
-  var tmp, match
+  let tmp, match
 
-  var type = typeof mixedVar
+  const type = typeof mixedVar
 
   if (type === 'boolean') {
     return +mixedVar

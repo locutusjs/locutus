@@ -7,13 +7,13 @@ module.exports = function realpath (path) {
   //   returns 1: 'some/_supporters/pj_test_supportfile_1.htm'
 
   if (typeof window === 'undefined') {
-    var nodePath = require('path')
+    const nodePath = require('path')
     return nodePath.normalize(path)
   }
 
-  var p = 0
-  var arr = [] // Save the root, if not given
-  var r = this.window.location.href // Avoid input failures
+  let p = 0
+  let arr = [] // Save the root, if not given
+  const r = this.window.location.href // Avoid input failures
 
   // Check if there's a port in path (like 'https://')
   path = (path + '').replace('\\', '/')
@@ -29,7 +29,7 @@ module.exports = function realpath (path) {
   // Explode the given path into it's parts
   arr = path.split('/') // The path is an array now
   path = [] // Foreach part make a check
-  for (var k in arr) { // This is'nt really interesting
+  for (const k in arr) { // This is'nt really interesting
     if (arr[k] === '.') {
       continue
     }

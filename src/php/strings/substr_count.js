@@ -11,7 +11,7 @@ module.exports = function substr_count (haystack, needle, offset, length) { // e
   //   example 3: substr_count('Kevin van Zonneveld', 'Z', 0, 10)
   //   returns 3: false
 
-  var cnt = 0
+  let cnt = 0
 
   haystack += ''
   needle += ''

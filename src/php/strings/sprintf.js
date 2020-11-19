@@ -30,21 +30,21 @@ module.exports = function sprintf () {
   //   example 9: sprintf('%% %2$d', 1, 2)
   //   returns 9: '% 2'
 
-  var regex = /%%|%(?:(\d+)\$)?((?:[-+#0 ]|'[\s\S])*)(\d+)?(?:\.(\d*))?([\s\S])/g
-  var args = arguments
-  var i = 0
-  var format = args[i++]
+  const regex = /%%|%(?:(\d+)\$)?((?:[-+#0 ]|'[\s\S])*)(\d+)?(?:\.(\d*))?([\s\S])/g
+  const args = arguments
+  let i = 0
+  const format = args[i++]
 
-  var _pad = function (str, len, chr, leftJustify) {
+  const _pad = function (str, len, chr, leftJustify) {
     if (!chr) {
       chr = ' '
     }
-    var padding = (str.length >= len) ? '' : new Array(1 + len - str.length >>> 0).join(chr)
+    const padding = (str.length >= len) ? '' : new Array(1 + len - str.length >>> 0).join(chr)
     return leftJustify ? str + padding : padding + str
   }
 
-  var justify = function (value, prefix, leftJustify, minWidth, padChar) {
-    var diff = minWidth - value.length
+  const justify = function (value, prefix, leftJustify, minWidth, padChar) {
+    const diff = minWidth - value.length
     if (diff > 0) {
       // when padding with zeros
       // on the left side
@@ -62,15 +62,15 @@ module.exports = function sprintf () {
     return value
   }
 
-  var _formatBaseX = function (value, base, leftJustify, minWidth, precision, padChar) {
+  const _formatBaseX = function (value, base, leftJustify, minWidth, precision, padChar) {
     // Note: casts negative numbers to positive ones
-    var number = value >>> 0
+    const number = value >>> 0
     value = _pad(number.toString(base), precision || 0, '0', false)
     return justify(value, '', leftJustify, minWidth, padChar)
   }
 
   // _formatString()
-  var _formatString = function (value, leftJustify, minWidth, precision, customPadChar) {
+  const _formatString = function (value, leftJustify, minWidth, precision, customPadChar) {
     if (precision !== null && precision !== undefined) {
       value = value.slice(0, precision)
     }
@@ -78,18 +78,18 @@ module.exports = function sprintf () {
   }
 
   // doFormat()
-  var doFormat = function (substring, argIndex, modifiers, minWidth, precision, specifier) {
-    var number, prefix, method, textTransform, value
+  const doFormat = function (substring, argIndex, modifiers, minWidth, precision, specifier) {
+    let number, prefix, method, textTransform, value
 
     if (substring === '%%') {
       return '%'
     }
 
     // parse modifiers
-    var padChar = ' ' // pad with spaces by default
-    var leftJustify = false
-    var positiveNumberPrefix = ''
-    var j, l
+    let padChar = ' ' // pad with spaces by default
+    let leftJustify = false
+    let positiveNumberPrefix = ''
+    let j, l
 
     for (j = 0, l = modifiers.length; j < l; j++) {
       switch (modifiers.charAt(j)) {

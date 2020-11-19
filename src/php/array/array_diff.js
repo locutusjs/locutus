@@ -6,12 +6,12 @@ module.exports = function array_diff (arr1) { // eslint-disable-line camelcase
   //   example 1: array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld'])
   //   returns 1: {0:'Kevin'}
 
-  var retArr = {}
-  var argl = arguments.length
-  var k1 = ''
-  var i = 1
-  var k = ''
-  var arr = {}
+  const retArr = {}
+  const argl = arguments.length
+  let k1 = ''
+  let i = 1
+  let k = ''
+  let arr = {}
 
   arr1keys: for (k1 in arr1) { // eslint-disable-line no-labels
     for (i = 1; i < argl; i++) {

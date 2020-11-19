@@ -23,9 +23,9 @@ module.exports = function setrawcookie (name, value, expires, path, domain, secu
     expires = (new Date(expires * 1e3)).toUTCString()
   }
 
-  var r = [name + '=' + value]
-  var i = ''
-  var s = {
+  const r = [name + '=' + value]
+  let i = ''
+  const s = {
     expires: expires,
     path: path,
     domain: domain

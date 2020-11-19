@@ -24,42 +24,42 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
   //   example 6: var_export({ test: [ 'a', 'b' ] }, true)
   //   returns 6: "array (\n  'test' =>\n  array (\n    0 => 'a',\n    1 => 'b',\n  ),\n)"
 
-  var echo = require('../strings/echo')
-  var retstr = ''
-  var iret = ''
-  var value
-  var cnt = 0
-  var x = []
-  var i = 0
-  var funcParts = []
+  const echo = require('../strings/echo')
+  let retstr = ''
+  let iret = ''
+  let value
+  let cnt = 0
+  const x = []
+  let i = 0
+  let funcParts = []
   // We use the last argument (not part of PHP) to pass in
   // our indentation level
-  var idtLevel = arguments[2] || 2
-  var innerIndent = ''
-  var outerIndent = ''
-  var getFuncName = function (fn) {
-    var name = (/\W*function\s+([\w$]+)\s*\(/).exec(fn)
+  const idtLevel = arguments[2] || 2
+  let innerIndent = ''
+  let outerIndent = ''
+  const getFuncName = function (fn) {
+    const name = (/\W*function\s+([\w$]+)\s*\(/).exec(fn)
     if (!name) {
       return '(Anonymous)'
     }
     return name[1]
   }
 
-  var _isNormalInteger = function (string) {
-    var number = Math.floor(Number(string))
+  const _isNormalInteger = function (string) {
+    const number = Math.floor(Number(string))
     return number !== Infinity && String(number) === string && number >= 0
   }
 
-  var _makeIndent = function (idtLevel) {
+  const _makeIndent = function (idtLevel) {
     return (new Array(idtLevel + 1))
       .join(' ')
   }
-  var __getType = function (inp) {
-    var i = 0
-    var match
-    var types
-    var cons
-    var type = typeof inp
+  const __getType = function (inp) {
+    let i = 0
+    let match
+    let types
+    let cons
+    let type = typeof inp
     if (type === 'object' && (inp && inp.constructor) &&
       getFuncName(inp.constructor) === 'LOCUTUS_Resource') {
       return 'resource'
@@ -90,7 +90,7 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
     }
     return type
   }
-  var type = __getType(mixedExpression)
+  const type = __getType(mixedExpression)
 
   if (type === null) {
     retstr = 'NULL'
@@ -99,7 +99,7 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
     innerIndent = _makeIndent(idtLevel)
     for (i in mixedExpression) {
       value = ' '
-      var subtype = __getType(mixedExpression[i])
+      const subtype = __getType(mixedExpression[i])
       if (subtype === 'array' || subtype === 'object') {
         value = '\n'
       }

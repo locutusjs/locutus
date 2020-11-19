@@ -9,13 +9,13 @@ module.exports = function ord (string) {
   //   example 2: ord('\uD800\uDC00'); // surrogate pair to create a single Unicode character
   //   returns 2: 65536
 
-  var str = string + ''
-  var code = str.charCodeAt(0)
+  const str = string + ''
+  const code = str.charCodeAt(0)
 
   if (code >= 0xD800 && code <= 0xDBFF) {
     // High surrogate (could change last hex to 0xDB7F to treat
     // high private surrogates as single characters)
-    var hi = code
+    const hi = code
     if (str.length === 1) {
       // This is just a high surrogate with no following low surrogate,
       // so we return its value;
@@ -23,7 +23,7 @@ module.exports = function ord (string) {
       // we could also throw an error as it is not a complete character,
       // but someone may want to know
     }
-    var low = str.charCodeAt(1)
+    const low = str.charCodeAt(1)
     return ((hi - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000
   }
   if (code >= 0xDC00 && code <= 0xDFFF) {

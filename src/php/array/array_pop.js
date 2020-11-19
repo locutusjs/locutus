@@ -19,8 +19,8 @@ module.exports = function array_pop (inputArr) { // eslint-disable-line camelcas
   //   example 2: var $result = $data
   //   returns 2: {firstName: 'Kevin'}
 
-  var key = ''
-  var lastKey = ''
+  let key = ''
+  let lastKey = ''
 
   if (inputArr.hasOwnProperty('length')) {
     // Indexed
@@ -37,7 +37,7 @@ module.exports = function array_pop (inputArr) { // eslint-disable-line camelcas
       }
     }
     if (lastKey) {
-      var tmp = inputArr[lastKey]
+      const tmp = inputArr[lastKey]
       delete (inputArr[lastKey])
       return tmp
     } else {

@@ -8,15 +8,15 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
   //   example 1: var_dump(1)
   //   returns 1: 'int(1)'
 
-  var echo = require('../strings/echo')
-  var output = ''
-  var padChar = ' '
-  var padVal = 4
-  var lgth = 0
-  var i = 0
+  const echo = require('../strings/echo')
+  let output = ''
+  const padChar = ' '
+  const padVal = 4
+  let lgth = 0
+  let i = 0
 
-  var _getFuncName = function (fn) {
-    var name = (/\W*function\s+([\w$]+)\s*\(/)
+  const _getFuncName = function (fn) {
+    const name = (/\W*function\s+([\w$]+)\s*\(/)
       .exec(fn)
     if (!name) {
       return '(Anonymous)'
@@ -24,15 +24,15 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
     return name[1]
   }
 
-  var _repeatChar = function (len, padChar) {
-    var str = ''
-    for (var i = 0; i < len; i++) {
+  const _repeatChar = function (len, padChar) {
+    let str = ''
+    for (let i = 0; i < len; i++) {
       str += padChar
     }
     return str
   }
-  var _getInnerVal = function (val, thickPad) {
-    var ret = ''
+  const _getInnerVal = function (val, thickPad) {
+    let ret = ''
     if (val === null) {
       ret = 'NULL'
     } else if (typeof val === 'boolean') {
@@ -50,10 +50,10 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
       // only exist in this exact form in JavaScript
       ret = 'undefined'
     } else if (typeof val === 'function') {
-      var funcLines = val.toString()
+      const funcLines = val.toString()
         .split('\n')
       ret = ''
-      for (var i = 0, fll = funcLines.length; i < fll; i++) {
+      for (let i = 0, fll = funcLines.length; i < fll; i++) {
         ret += (i !== 0 ? '\n' + thickPad : '') + funcLines[i]
       }
     } else if (val instanceof Date) {
@@ -115,24 +115,24 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
       curDepth++
     }
 
-    var basePad = _repeatChar(padVal * (curDepth - 1), padChar)
-    var thickPad = _repeatChar(padVal * (curDepth + 1), padChar)
-    var str = ''
-    var val = ''
+    const basePad = _repeatChar(padVal * (curDepth - 1), padChar)
+    const thickPad = _repeatChar(padVal * (curDepth + 1), padChar)
+    let str = ''
+    let val = ''
 
     if (typeof obj === 'object' && obj !== null) {
       if (obj.constructor && _getFuncName(obj.constructor) === 'LOCUTUS_Resource') {
         return obj.var_dump()
       }
       lgth = 0
-      for (var someProp in obj) {
+      for (const someProp in obj) {
         if (obj.hasOwnProperty(someProp)) {
           lgth++
         }
       }
       str += 'array(' + lgth + ') {\n'
-      for (var key in obj) {
-        var objVal = obj[key]
+      for (const key in obj) {
+        const objVal = obj[key]
         if (typeof objVal === 'object' &&
           objVal !== null &&
           !(objVal instanceof Date) &&

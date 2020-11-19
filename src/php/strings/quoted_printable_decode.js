@@ -15,13 +15,13 @@ module.exports = function quoted_printable_decode (str) { // eslint-disable-line
   //        returns 4: 'Lorem ipsum dolor sit amet#, consectetur adipisicing elit'
 
   // Decodes all equal signs followed by two hex digits
-  var RFC2045Decode1 = /=\r\n/gm
+  const RFC2045Decode1 = /=\r\n/gm
 
   // the RFC states against decoding lower case encodings, but following apparent PHP behavior
-  var RFC2045Decode2IN = /=([0-9A-F]{2})/gim
+  const RFC2045Decode2IN = /=([0-9A-F]{2})/gim
   // RFC2045Decode2IN = /=([0-9A-F]{2})/gm,
 
-  var RFC2045Decode2OUT = function (sMatch, sHex) {
+  const RFC2045Decode2OUT = function (sMatch, sHex) {
     return String.fromCharCode(parseInt(sHex, 16))
   }
 

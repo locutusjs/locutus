@@ -13,13 +13,13 @@ module.exports = function array_count_values (array) { // eslint-disable-line ca
   //   example 3: array_count_values([ true, 4.2, 42, "fubar" ])
   //   returns 3: {42:1, "fubar":1}
 
-  var tmpArr = {}
-  var key = ''
-  var t = ''
+  const tmpArr = {}
+  let key = ''
+  let t = ''
 
-  var _getType = function (obj) {
+  const _getType = function (obj) {
     // Objects are php associative arrays.
-    var t = typeof obj
+    let t = typeof obj
     t = t.toLowerCase()
     if (t === 'object') {
       t = 'array'
@@ -27,7 +27,7 @@ module.exports = function array_count_values (array) { // eslint-disable-line ca
     return t
   }
 
-  var _countValue = function (tmpArr, value) {
+  const _countValue = function (tmpArr, value) {
     if (typeof value === 'number') {
       if (Math.floor(value) !== value) {
         return

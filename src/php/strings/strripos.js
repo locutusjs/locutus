@@ -12,7 +12,7 @@ module.exports = function strripos (haystack, needle, offset) {
   needle = (needle + '')
     .toLowerCase()
 
-  var i = -1
+  let i = -1
   if (offset) {
     i = (haystack + '')
       .slice(offset)

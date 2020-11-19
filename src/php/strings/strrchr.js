@@ -6,7 +6,7 @@ module.exports = function strrchr (haystack, needle) {
   //   example 1: strrchr("Line 1\nLine 2\nLine 3", 10).substr(1)
   //   returns 1: 'Line 3'
 
-  var pos = 0
+  let pos = 0
 
   if (typeof needle !== 'string') {
     needle = String.fromCharCode(parseInt(needle, 10))

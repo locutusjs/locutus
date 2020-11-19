@@ -13,8 +13,8 @@ module.exports = function array_sum (array) { // eslint-disable-line camelcase
   //   example 2: array_sum($total)
   //   returns 2: 67.2
 
-  var key
-  var sum = 0
+  let key
+  let sum = 0
 
   // input sanitation
   if (typeof array !== 'object') {

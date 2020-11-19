@@ -6,12 +6,12 @@ module.exports = function fmod (x, y) {
   //   example 1: fmod(5.7, 1.3)
   //   returns 1: 0.5
 
-  var tmp
-  var tmp2
-  var p = 0
-  var pY = 0
-  var l = 0.0
-  var l2 = 0.0
+  let tmp
+  let tmp2
+  let p = 0
+  let pY = 0
+  let l = 0.0
+  let l2 = 0.0
 
   tmp = x.toExponential().match(/^.\.?(.*)e(.+)$/)
   p = parseInt(tmp[2], 10) - (tmp[1] + '').length
