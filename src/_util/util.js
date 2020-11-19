@@ -196,7 +196,7 @@ class Util {
       this._reindexBuffer[indexJs] = []
     }
 
-    const line = 'module.exports[\'' + module + '\'] = require(\'./' + basefile + '\')'
+    const line = 'module.exports.' + module + ' = require(\'./' + basefile + '\')'
     this._reindexBuffer[indexJs].push(line)
     return cb(null)
   }
