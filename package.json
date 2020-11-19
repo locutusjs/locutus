@@ -71,7 +71,6 @@
     "build:tests:noskip": "rimraf test/languages && babel-node src/_util/cli.js writetests --noskip",
     "build:tests": "rimraf test/languages && babel-node src/_util/cli.js writetests",
     "build": "npm-run-all build:*",
-    "deploy": "npm-run-all injectweb website:build website:deploy",
     "fix": "eslint src --fix",
     "injectweb": "rimraf website/source/{c,golang,php,python,ruby} && babel-node src/_util/cli.js injectweb",
     "lint": "eslint src",

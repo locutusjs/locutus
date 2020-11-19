@@ -42,6 +42,7 @@ jobs:
         if  : github.ref == 'refs/heads/master'
         run : |
           yarn website:install
+          yarn injectweb
           yarn website:build
       - name: Website Deploy 🚀
         if  : github.ref == 'refs/heads/master'
