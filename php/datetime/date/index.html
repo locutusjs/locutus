@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>PHP&#39;s date in JavaScript | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Here’s what our current JavaScript equivalent to PHP&apos;s date looks like.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP's date in JavaScript">
+<meta property="og:url" content="https://locutus.io/php/datetime/date/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s date looks like.">
+<meta property="og:updated_time" content="2020-11-19T12:29:17.954Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP's date in JavaScript">
+<meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s date looks like.">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/locutus.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <nav id="main-nav">
+                
+                  <a class="main-nav-link" href="/c">C</a>
+                
+                  <a class="main-nav-link" href="/golang">Go</a>
+                
+                  <a class="main-nav-link" href="/python">Python</a>
+                
+                  <a class="main-nav-link" href="/ruby">Ruby</a>
+                
+                  <a class="main-nav-link" href="/php">PHP</a>
+                
+                <span class="main-nav-link">|</span>
+                
+                  <a class="main-nav-link" href="/archives">Blog</a>
+                
+                  <a class="main-nav-link" href="/authors">Authors</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+        x: 'en',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    console.log(INSIGHT_CONFIG)
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                  <td><a class="main-nav-link" href="/c">C</a></td>
+                
+                  <td><a class="main-nav-link" href="/golang">Go</a></td>
+                
+                  <td><a class="main-nav-link" href="/python">Python</a></td>
+                
+                  <td><a class="main-nav-link" href="/ruby">Ruby</a></td>
+                
+                  <td><a class="main-nav-link" href="/php">PHP</a></td>
+                
+                <td><span class="main-nav-link">|</span></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Blog</a></td>
+                
+                    <td><a class="main-nav-link" href="/authors">Authors</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">PHP&#39;s date in JavaScript</h1>
+    </header>
+
+    <div class="article-entry">
+      <p>
+        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.date.php">PHP's date</a> looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">date</span> (<span class="params">format, timestamp</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/date/</span></div><div class="line">  <span class="comment">// original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)</span></div><div class="line">  <span class="comment">// original by: gettimeofday</span></div><div class="line">  <span class="comment">//    parts by: Peter-Paul Koch (https://www.quirksmode.org/js/beat.html)</span></div><div class="line">  <span class="comment">// improved by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// improved by: MeEtc (https://yass.meetcweb.com)</span></div><div class="line">  <span class="comment">// improved by: Brad Touesnard</span></div><div class="line">  <span class="comment">// improved by: Tim Wiel</span></div><div class="line">  <span class="comment">// improved by: Bryan Elliott</span></div><div class="line">  <span class="comment">// improved by: David Randall</span></div><div class="line">  <span class="comment">// improved by: Theriault (https://github.com/Theriault)</span></div><div class="line">  <span class="comment">// improved by: Theriault (https://github.com/Theriault)</span></div><div class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">// improved by: Theriault (https://github.com/Theriault)</span></div><div class="line">  <span class="comment">// improved by: Thomas Beaucourt (https://www.webapp.fr)</span></div><div class="line">  <span class="comment">// improved by: JT</span></div><div class="line">  <span class="comment">// improved by: Theriault (https://github.com/Theriault)</span></div><div class="line">  <span class="comment">// improved by: Rafał Kukawski (https://blog.kukawski.pl)</span></div><div class="line">  <span class="comment">// improved by: Theriault (https://github.com/Theriault)</span></div><div class="line">  <span class="comment">//    input by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//    input by: majak</span></div><div class="line">  <span class="comment">//    input by: Alex</span></div><div class="line">  <span class="comment">//    input by: Martin</span></div><div class="line">  <span class="comment">//    input by: Alex Wilson</span></div><div class="line">  <span class="comment">//    input by: Haravikk</span></div><div class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// bugfixed by: majak</span></div><div class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">// bugfixed by: omid (https://locutus.io/php/380:380#comment_137122)</span></div><div class="line">  <span class="comment">// bugfixed by: Chris (https://www.devotis.nl/)</span></div><div class="line">  <span class="comment">//      note 1: Uses global: locutus to store the default timezone</span></div><div class="line">  <span class="comment">//      note 1: Although the function potentially allows timezone info</span></div><div class="line">  <span class="comment">//      note 1: (see notes), it currently does not set</span></div><div class="line">  <span class="comment">//      note 1: per a timezone specified by date_default_timezone_set(). Implementers might use</span></div><div class="line">  <span class="comment">//      note 1: $locutus.currentTimezoneOffset and</span></div><div class="line">  <span class="comment">//      note 1: $locutus.currentTimezoneDST set by that function</span></div><div class="line">  <span class="comment">//      note 1: in order to adjust the dates in this function</span></div><div class="line">  <span class="comment">//      note 1: (or our other date functions!) accordingly</span></div><div class="line">  <span class="comment">//   example 1: date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400)</span></div><div class="line">  <span class="comment">//   returns 1: '07:09:40 m is month'</span></div><div class="line">  <span class="comment">//   example 2: date('F j, Y, g:i a', 1062462400)</span></div><div class="line">  <span class="comment">//   returns 2: 'September 2, 2003, 12:26 am'</span></div><div class="line">  <span class="comment">//   example 3: date('Y W o', 1062462400)</span></div><div class="line">  <span class="comment">//   returns 3: '2003 36 2003'</span></div><div class="line">  <span class="comment">//   example 4: var $x = date('Y m d', (new Date()).getTime() / 1000)</span></div><div class="line">  <span class="comment">//   example 4: $x = $x + ''</span></div><div class="line">  <span class="comment">//   example 4: var $result = $x.length // 2009 01 09</span></div><div class="line">  <span class="comment">//   returns 4: 10</span></div><div class="line">  <span class="comment">//   example 5: date('W', 1104534000)</span></div><div class="line">  <span class="comment">//   returns 5: '52'</span></div><div class="line">  <span class="comment">//   example 6: date('B t', 1104534000)</span></div><div class="line">  <span class="comment">//   returns 6: '999 31'</span></div><div class="line">  <span class="comment">//   example 7: date('W U', 1293750000.82); // 2010-12-31</span></div><div class="line">  <span class="comment">//   returns 7: '52 1293750000'</span></div><div class="line">  <span class="comment">//   example 8: date('W', 1293836400); // 2011-01-01</span></div><div class="line">  <span class="comment">//   returns 8: '52'</span></div><div class="line">  <span class="comment">//   example 9: date('W Y-m-d', 1293974054); // 2011-01-02</span></div><div class="line">  <span class="comment">//   returns 9: '52 2011-01-02'</span></div><div class="line">  <span class="comment">//        test: skip-1 skip-2 skip-5</span></div><div class="line"></div><div class="line">  <span class="keyword">var</span> jsdate, f</div><div class="line">  <span class="comment">// Keep this here (works, but for code commented-out below for file size reasons)</span></div><div class="line">  <span class="comment">// var tal= [];</span></div><div class="line">  <span class="keyword">var</span> txtWords = [</div><div class="line">    <span class="string">'Sun'</span>, <span class="string">'Mon'</span>, <span class="string">'Tues'</span>, <span class="string">'Wednes'</span>, <span class="string">'Thurs'</span>, <span class="string">'Fri'</span>, <span class="string">'Satur'</span>,</div><div class="line">    <span class="string">'January'</span>, <span class="string">'February'</span>, <span class="string">'March'</span>, <span class="string">'April'</span>, <span class="string">'May'</span>, <span class="string">'June'</span>,</div><div class="line">    <span class="string">'July'</span>, <span class="string">'August'</span>, <span class="string">'September'</span>, <span class="string">'October'</span>, <span class="string">'November'</span>, <span class="string">'December'</span></div><div class="line">  ]</div><div class="line">  <span class="comment">// trailing backslash -&gt; (dropped)</span></div><div class="line">  <span class="comment">// a backslash followed by any character (including backslash) -&gt; the character</span></div><div class="line">  <span class="comment">// empty string -&gt; empty string</span></div><div class="line">  <span class="keyword">var</span> formatChr = <span class="regexp">/\\?(.?)/gi</span></div><div class="line">  <span class="keyword">var</span> formatChrCb = <span class="function"><span class="keyword">function</span> (<span class="params">t, s</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> f[t] ? f[t]() : s</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">var</span> _pad = <span class="function"><span class="keyword">function</span> (<span class="params">n, c</span>) </span>&#123;</div><div class="line">    n = <span class="built_in">String</span>(n)</div><div class="line">    <span class="keyword">while</span> (n.length &lt; c) &#123;</div><div class="line">      n = <span class="string">'0'</span> + n</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> n</div><div class="line">  &#125;</div><div class="line">  f = &#123;</div><div class="line">    <span class="comment">// Day</span></div><div class="line">    d: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Day of month w/leading 0; 01..31</span></div><div class="line">      <span class="keyword">return</span> _pad(f.j(), <span class="number">2</span>)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">D</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Shorthand day name; Mon...Sun</span></div><div class="line">      <span class="keyword">return</span> f.l()</div><div class="line">        .slice(<span class="number">0</span>, <span class="number">3</span>)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">j</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Day of month; 1..31</span></div><div class="line">      <span class="keyword">return</span> jsdate.getDate()</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">l</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Full day name; Monday...Sunday</span></div><div class="line">      <span class="keyword">return</span> txtWords[f.w()] + <span class="string">'day'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">N</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// ISO-8601 day of week; 1[Mon]..7[Sun]</span></div><div class="line">      <span class="keyword">return</span> f.w() || <span class="number">7</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">S</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Ordinal suffix for day of month; st, nd, rd, th</span></div><div class="line">      <span class="keyword">var</span> j = f.j()</div><div class="line">      <span class="keyword">var</span> i = j % <span class="number">10</span></div><div class="line">      <span class="keyword">if</span> (i &lt;= <span class="number">3</span> &amp;&amp; <span class="built_in">parseInt</span>((j % <span class="number">100</span>) / <span class="number">10</span>, <span class="number">10</span>) === <span class="number">1</span>) &#123;</div><div class="line">        i = <span class="number">0</span></div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> [<span class="string">'st'</span>, <span class="string">'nd'</span>, <span class="string">'rd'</span>][i - <span class="number">1</span>] || <span class="string">'th'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">w</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Day of week; 0[Sun]..6[Sat]</span></div><div class="line">      <span class="keyword">return</span> jsdate.getDay()</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">z</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Day of year; 0..365</span></div><div class="line">      <span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Date</span>(f.Y(), f.n() - <span class="number">1</span>, f.j())</div><div class="line">      <span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Date</span>(f.Y(), <span class="number">0</span>, <span class="number">1</span>)</div><div class="line">      <span class="keyword">return</span> <span class="built_in">Math</span>.round((a - b) / <span class="number">864e5</span>)</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="comment">// Week</span></div><div class="line">    W: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// ISO-8601 week number</span></div><div class="line">      <span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Date</span>(f.Y(), f.n() - <span class="number">1</span>, f.j() - f.N() + <span class="number">3</span>)</div><div class="line">      <span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Date</span>(a.getFullYear(), <span class="number">0</span>, <span class="number">4</span>)</div><div class="line">      <span class="keyword">return</span> _pad(<span class="number">1</span> + <span class="built_in">Math</span>.round((a - b) / <span class="number">864e5</span> / <span class="number">7</span>), <span class="number">2</span>)</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="comment">// Month</span></div><div class="line">    F: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Full month name; January...December</span></div><div class="line">      <span class="keyword">return</span> txtWords[<span class="number">6</span> + f.n()]</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">m</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Month w/leading 0; 01...12</span></div><div class="line">      <span class="keyword">return</span> _pad(f.n(), <span class="number">2</span>)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">M</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Shorthand month name; Jan...Dec</span></div><div class="line">      <span class="keyword">return</span> f.F()</div><div class="line">        .slice(<span class="number">0</span>, <span class="number">3</span>)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">n</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Month; 1...12</span></div><div class="line">      <span class="keyword">return</span> jsdate.getMonth() + <span class="number">1</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">t</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Days in month; 28...31</span></div><div class="line">      <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Date</span>(f.Y(), f.n(), <span class="number">0</span>))</div><div class="line">        .getDate()</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="comment">// Year</span></div><div class="line">    L: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Is leap year?; 0 or 1</span></div><div class="line">      <span class="keyword">var</span> j = f.Y()</div><div class="line">      <span class="keyword">return</span> j % <span class="number">4</span> === <span class="number">0</span> &amp; j % <span class="number">100</span> !== <span class="number">0</span> | j % <span class="number">400</span> === <span class="number">0</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">o</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// ISO-8601 year</span></div><div class="line">      <span class="keyword">var</span> n = f.n()</div><div class="line">      <span class="keyword">var</span> W = f.W()</div><div class="line">      <span class="keyword">var</span> Y = f.Y()</div><div class="line">      <span class="keyword">return</span> Y + (n === <span class="number">12</span> &amp;&amp; W &lt; <span class="number">9</span> ? <span class="number">1</span> : n === <span class="number">1</span> &amp;&amp; W &gt; <span class="number">9</span> ? <span class="number">-1</span> : <span class="number">0</span>)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">Y</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Full year; e.g. 1980...2010</span></div><div class="line">      <span class="keyword">return</span> jsdate.getFullYear()</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">y</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Last two digits of year; 00...99</span></div><div class="line">      <span class="keyword">return</span> f.Y()</div><div class="line">        .toString()</div><div class="line">        .slice(<span class="number">-2</span>)</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="comment">// Time</span></div><div class="line">    a: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// am or pm</span></div><div class="line">      <span class="keyword">return</span> jsdate.getHours() &gt; <span class="number">11</span> ? <span class="string">'pm'</span> : <span class="string">'am'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">A</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// AM or PM</span></div><div class="line">      <span class="keyword">return</span> f.a()</div><div class="line">        .toUpperCase()</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">B</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Swatch Internet time; 000..999</span></div><div class="line">      <span class="keyword">var</span> H = jsdate.getUTCHours() * <span class="number">36e2</span></div><div class="line">      <span class="comment">// Hours</span></div><div class="line">      <span class="keyword">var</span> i = jsdate.getUTCMinutes() * <span class="number">60</span></div><div class="line">      <span class="comment">// Minutes</span></div><div class="line">      <span class="comment">// Seconds</span></div><div class="line">      <span class="keyword">var</span> s = jsdate.getUTCSeconds()</div><div class="line">      <span class="keyword">return</span> _pad(<span class="built_in">Math</span>.floor((H + i + s + <span class="number">36e2</span>) / <span class="number">86.4</span>) % <span class="number">1e3</span>, <span class="number">3</span>)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">g</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// 12-Hours; 1..12</span></div><div class="line">      <span class="keyword">return</span> f.G() % <span class="number">12</span> || <span class="number">12</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">G</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// 24-Hours; 0..23</span></div><div class="line">      <span class="keyword">return</span> jsdate.getHours()</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">h</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// 12-Hours w/leading 0; 01..12</span></div><div class="line">      <span class="keyword">return</span> _pad(f.g(), <span class="number">2</span>)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">H</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// 24-Hours w/leading 0; 00..23</span></div><div class="line">      <span class="keyword">return</span> _pad(f.G(), <span class="number">2</span>)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">i</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Minutes w/leading 0; 00..59</span></div><div class="line">      <span class="keyword">return</span> _pad(jsdate.getMinutes(), <span class="number">2</span>)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">s</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Seconds w/leading 0; 00..59</span></div><div class="line">      <span class="keyword">return</span> _pad(jsdate.getSeconds(), <span class="number">2</span>)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">u</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Microseconds; 000000-999000</span></div><div class="line">      <span class="keyword">return</span> _pad(jsdate.getMilliseconds() * <span class="number">1000</span>, <span class="number">6</span>)</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="comment">// Timezone</span></div><div class="line">    e: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Timezone identifier; e.g. Atlantic/Azores, ...</span></div><div class="line">      <span class="comment">// The following works, but requires inclusion of the very large</span></div><div class="line">      <span class="comment">// timezone_abbreviations_list() function.</span></div><div class="line">      <span class="comment">/*              return that.date_default_timezone_get();</span></div><div class="line">       */</div><div class="line">      <span class="keyword">var</span> msg = <span class="string">'Not supported (see source code of date() for timezone on how to add support)'</span></div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(msg)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">I</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// DST observed?; 0 or 1</span></div><div class="line">      <span class="comment">// Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.</span></div><div class="line">      <span class="comment">// If they are not equal, then DST is observed.</span></div><div class="line">      <span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Date</span>(f.Y(), <span class="number">0</span>)</div><div class="line">      <span class="comment">// Jan 1</span></div><div class="line">      <span class="keyword">var</span> c = <span class="built_in">Date</span>.UTC(f.Y(), <span class="number">0</span>)</div><div class="line">      <span class="comment">// Jan 1 UTC</span></div><div class="line">      <span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Date</span>(f.Y(), <span class="number">6</span>)</div><div class="line">      <span class="comment">// Jul 1</span></div><div class="line">      <span class="comment">// Jul 1 UTC</span></div><div class="line">      <span class="keyword">var</span> d = <span class="built_in">Date</span>.UTC(f.Y(), <span class="number">6</span>)</div><div class="line">      <span class="keyword">return</span> ((a - c) !== (b - d)) ? <span class="number">1</span> : <span class="number">0</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">O</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Difference to GMT in hour format; e.g. +0200</span></div><div class="line">      <span class="keyword">var</span> tzo = jsdate.getTimezoneOffset()</div><div class="line">      <span class="keyword">var</span> a = <span class="built_in">Math</span>.abs(tzo)</div><div class="line">      <span class="keyword">return</span> (tzo &gt; <span class="number">0</span> ? <span class="string">'-'</span> : <span class="string">'+'</span>) + _pad(<span class="built_in">Math</span>.floor(a / <span class="number">60</span>) * <span class="number">100</span> + a % <span class="number">60</span>, <span class="number">4</span>)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">P</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Difference to GMT w/colon; e.g. +02:00</span></div><div class="line">      <span class="keyword">var</span> O = f.O()</div><div class="line">      <span class="keyword">return</span> (O.substr(<span class="number">0</span>, <span class="number">3</span>) + <span class="string">':'</span> + O.substr(<span class="number">3</span>, <span class="number">2</span>))</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">T</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// The following works, but requires inclusion of the very</span></div><div class="line">      <span class="comment">// large timezone_abbreviations_list() function.</span></div><div class="line">      <span class="comment">/*              var abbr, i, os, _default;</span></div><div class="line">      if (!tal.length) &#123;</div><div class="line">        tal = that.timezone_abbreviations_list();</div><div class="line">      &#125;</div><div class="line">      if ($locutus &amp;&amp; $locutus.default_timezone) &#123;</div><div class="line">        _default = $locutus.default_timezone;</div><div class="line">        for (abbr in tal) &#123;</div><div class="line">          for (i = 0; i &lt; tal[abbr].length; i++) &#123;</div><div class="line">            if (tal[abbr][i].timezone_id === _default) &#123;</div><div class="line">              return abbr.toUpperCase();</div><div class="line">            &#125;</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      for (abbr in tal) &#123;</div><div class="line">        for (i = 0; i &lt; tal[abbr].length; i++) &#123;</div><div class="line">          os = -jsdate.getTimezoneOffset() * 60;</div><div class="line">          if (tal[abbr][i].offset === os) &#123;</div><div class="line">            return abbr.toUpperCase();</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      */</div><div class="line">      <span class="keyword">return</span> <span class="string">'UTC'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">Z</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Timezone offset in seconds (-43200...50400)</span></div><div class="line">      <span class="keyword">return</span> -jsdate.getTimezoneOffset() * <span class="number">60</span></div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="comment">// Full Date/Time</span></div><div class="line">    c: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// ISO-8601 date.</span></div><div class="line">      <span class="keyword">return</span> <span class="string">'Y-m-d\\TH:i:sP'</span>.replace(formatChr, formatChrCb)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">r</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// RFC 2822</span></div><div class="line">      <span class="keyword">return</span> <span class="string">'D, d M Y H:i:s O'</span>.replace(formatChr, formatChrCb)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">U</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// Seconds since UNIX epoch</span></div><div class="line">      <span class="keyword">return</span> jsdate / <span class="number">1000</span> | <span class="number">0</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> _date = <span class="function"><span class="keyword">function</span> (<span class="params">format, timestamp</span>) </span>&#123;</div><div class="line">    jsdate = (timestamp === <span class="literal">undefined</span> ? <span class="keyword">new</span> <span class="built_in">Date</span>() <span class="comment">// Not provided</span></div><div class="line">      : (timestamp <span class="keyword">instanceof</span> <span class="built_in">Date</span>) ? <span class="keyword">new</span> <span class="built_in">Date</span>(timestamp) <span class="comment">// JS Date()</span></div><div class="line">      : <span class="keyword">new</span> <span class="built_in">Date</span>(timestamp * <span class="number">1000</span>) <span class="comment">// UNIX timestamp (auto-convert to int)</span></div><div class="line">    )</div><div class="line">    <span class="keyword">return</span> format.replace(formatChr, formatChrCb)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> _date(format, timestamp)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      [
+      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/datetime/date.js">View on GitHub</a>
+      |
+      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/datetime/date.js">Edit on GitHub</a>
+      |
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/datetime/date.js">Source on GitHub</a>
+      ]
+
+      <div class="clearfix"></div>
+
+      <h2>How to use</h2>
+      <p>
+        You you can install via <code>npm install locutus</code> and
+        require it via <code>require('locutus/php/datetime/date')</code>.
+        You could also require the <code>datetime</code> module in full
+        so that you could access <code>datetime.date</code> instead.
+      </p>
+      <p>
+        If you intend to target the browser, you can then use a module bundler such as
+        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>,
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a> or
+        <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+      </p>
+
+      <h2>ES5/ES6</h2>
+      <p>
+        
+          This function targets ES5, but as of Locutus 2.0.2 we also support
+          ES6 functions. Locutus transpiles to ES5 before publishing to npm.
+        
+      </p>
+
+      
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we don't consider it to be a bad thing that many of
+        our functions are first iterations, which may still have their
+        fair share of issues. We hope that these flaws will inspire others to come up with better ideas.
+      </p>
+      <p>
+        This way of working also means that we don't offer any
+        production guarantees, and recommend to use Locutus inspiration
+        and learning purposes only.
+      </p>
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>Uses global: locutus to store the default timezone
+Although the function potentially allows timezone info
+(see notes), it currently does not set
+per a timezone specified by date_default_timezone_set(). Implementers might use
+$locutus.currentTimezoneOffset and
+$locutus.currentTimezoneDST set by that function
+in order to adjust the dates in this function
+(or our other date functions!) accordingly</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>date(&#39;H:m:s \\m \\i\\s \\m\\o\\n\\t\\h&#39;, 1062402400)</code></td><td><code>&#39;07:09:40 m is month&#39;</code></td></tr>
+        
+          <tr><td>2</td><td><code>date(&#39;F j, Y, g:i a&#39;, 1062462400)</code></td><td><code>&#39;September 2, 2003, 12:26 am&#39;</code></td></tr>
+        
+          <tr><td>3</td><td><code>date(&#39;Y W o&#39;, 1062462400)</code></td><td><code>&#39;2003 36 2003&#39;</code></td></tr>
+        
+          <tr><td>4</td><td><code>var $x = date(&#39;Y m d&#39;, (new Date()).getTime() / 1000)
+$x = $x + &#39;&#39;
+var $result = $x.length // 2009 01 09</code></td><td><code>10</code></td></tr>
+        
+          <tr><td>5</td><td><code>date(&#39;W&#39;, 1104534000)</code></td><td><code>&#39;52&#39;</code></td></tr>
+        
+          <tr><td>6</td><td><code>date(&#39;B t&#39;, 1104534000)</code></td><td><code>&#39;999 31&#39;</code></td></tr>
+        
+          <tr><td>7</td><td><code>date(&#39;W U&#39;, 1293750000.82); // 2010-12-31</code></td><td><code>&#39;52 1293750000&#39;</code></td></tr>
+        
+          <tr><td>8</td><td><code>date(&#39;W&#39;, 1293836400); // 2011-01-01</code></td><td><code>&#39;52&#39;</code></td></tr>
+        
+          <tr><td>9</td><td><code>date(&#39;W Y-m-d&#39;, 1293974054); // 2011-01-02</code></td><td><code>&#39;52 2011-01-02&#39;</code></td></tr>
+        
+        </table>
+      
+
+      <hr />
+      
+
+      <p>
+        <a href="/php/datetime/">&laquo; More PHP datetime functions</a>
+      </p>
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/locutus-alpha.png" />
+            <h2 id="name">Locutus</h2>
+            <h3 id="title">All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.</h3>
+            <!-- <span id="location"><i class="fa fa-map-marker"></i>GitHub</span> -->
+            <!-- <a id="follow" target="_blank" href="https://github.com/locutusjs/locutus/stargazers">FOLLOW</a> -->
+
+            <br />
+            <div class="Social">
+              <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
+              <iframe src="https://ghbtns.com/github-btn.html?user=kvz&repo=locutus&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe><br />
+            </div>
+
+
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+              5
+              <span>languages marked</span>
+            </div>
+            <div class="article-info-block">
+                328
+                <span>functions assimilated</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="https://github.com/locutusjs/locutus" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://twitter.com/locutus_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    
+                    <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+<div class="clear"></div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget widget-on_the_githubs">
+    <div class="on-the-githubs" data-event-source="repos/locutusjs/locutus">Loading...</div>
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (3)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/stdio/">
+            stdio
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (3)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strings/Index.html">
+            strings
+            (3)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (4)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (4)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (317)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (72)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (30)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-05-02T00:00:00.000Z" itemprop="datePublished">2016-05-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/breaking-bc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/jekyll/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
+                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2020 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
+            Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
+            Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
+
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+<script src="/js/locutus.js"></script>
+
+<!-- Twitter follow button script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    </div>
+</body>
+</html>
