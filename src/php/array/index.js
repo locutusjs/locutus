@@ -1,5 +1,6 @@
 module.exports.array_change_key_case = require('./array_change_key_case')
 module.exports.array_chunk = require('./array_chunk')
+module.exports.array_column = require('./array_column')
 module.exports.array_combine = require('./array_combine')
 module.exports.array_count_values = require('./array_count_values')
 module.exports.array_diff = require('./array_diff')
