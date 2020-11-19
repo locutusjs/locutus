@@ -1,0 +1,43 @@
+name: Locutus CI
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types:
+      - opened
+      - synchronize
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps  : 
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@master
+        with:
+          node-version: 10.x 
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "##[set-output name=dir;]$(yarn cache dir)"
+      - uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - uses: sergioramos/yarn-actions/install@master
+        with:
+          frozen-lockfile: true
+      - name: Build
+        run : |
+          yarn lint
+          yarn build
+          yarn test
+          yarn website:install
+      - name: Deploy
+        if: github.ref != 'refs/heads/master' 
+        run : |
+          scripts/ci-deploy.sh
+        env:
+          GHPAGES_URL: ${{ secrets.GHPAGES_URL }}

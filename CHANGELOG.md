@@ -34,7 +34,7 @@ Ideas that will be planned and find their way into a release at one point
 Released: TBA. 
 [Diff](https://github.com/locutusjs/locutus/compare/v2.0.11...master).
 
-- [ ] 
+- [ ] Switch from Travis CI to GitHub Actions
 
 ## v2.0.11
 
