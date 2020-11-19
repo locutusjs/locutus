@@ -8,7 +8,7 @@ on:
       - opened
       - synchronize
 jobs:
-  deploy:
+  ci:
     runs-on: ubuntu-latest
     steps  : 
       - uses: actions/checkout@v2
@@ -32,12 +32,16 @@ jobs:
       - name: Build
         run : |
           yarn lint
-          yarn build
-          yarn test
-          yarn website:install
-      - name: Deploy
-        if: github.ref != 'refs/heads/master' 
+      - name: Build
         run : |
+          yarn build
+      - name: Test
+        run : |
+          yarn test
+      - name: Deploy
+        # if: github.ref != 'refs/heads/master' 
+        run : |
+          yarn website:install
           scripts/ci-deploy.sh
         env:
           GHPAGES_URL: ${{ secrets.GHPAGES_URL }}
