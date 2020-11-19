@@ -8,8 +8,14 @@ var escapeshellarg = require('../../../../src/php/exec/escapeshellarg.js') // es
 
 describe('src/php/exec/escapeshellarg.js (tested in test/languages/php/exec/test-escapeshellarg.js)', function () {
   it('should pass example 1', function (done) {
-    var expected = "'kevin\\'s birthday'"
+    var expected = "'kevin'\\''s birthday'"
     var result = escapeshellarg("kevin's birthday")
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 2', function (done) {
+    var expected = "'/home'\\''; whoami;'\\'''\\'''"
+    var result = escapeshellarg("/home'; whoami;''")
     expect(result).to.deep.equal(expected)
     done()
   })

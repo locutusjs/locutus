@@ -1,7 +1,7 @@
 Thank you so much for being or becoming a Locutus contributor!
 
 Even if you have write access already, all code changes should be done via a Pull Request. This way
-we can peer-review, and also Travis CI can check if the code adheres to our policies already before
+we can peer-review, and also GitHub Actions can check if the code adheres to our policies already before
 merging it into `master`.
 
 ## Contributing Checklist
