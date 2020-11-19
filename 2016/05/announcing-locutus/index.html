@@ -16,7 +16,7 @@ I am launching a big iteration of php.js today. It includes so many breaking cha
 I am launching a big iteration of php.js today. It includes so many breaking changes that it is safe to say that, after 
 9 years, php.js">
 <meta property="og:image" content="https://locutus.io/css/images/locutus-alpha.png">
-<meta property="og:updated_time" content="2020-11-19T19:04:22.589Z">
+<meta property="og:updated_time" content="2020-11-19T19:34:45.902Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php.js is Dead - Long Live Locutus">
 <meta name="twitter:description" content="As was briefly mentioned in Breaking Backwards Compatibility, 
@@ -249,9 +249,9 @@ working on in order to clean up our codebase and breathe new life into this proj
 <p>This time we will be a little bit older, a little bit wiser, and hopefully have the resolve to steer clear of the darker areas. Nevertheless, we will have just as much fun in challenging ourselves and each other, as well as by learning other languages. I promise! : )</p>
 <p>For those that can forgive me for my past mistakes and for deprecating some of our previous work in this new major release: 
 you can try Locutus right now if you want:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ npm init</div><div class="line">$ npm install locutus</div><div class="line">$ vim index.js</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> echo = <span class="built_in">require</span>(<span class="string">'locutus/php/strings/echo'</span>)</div><div class="line"><span class="keyword">var</span> capwords = <span class="built_in">require</span>(<span class="string">'locutus/python/string/capwords'</span>)</div><div class="line"><span class="keyword">var</span> strings = <span class="built_in">require</span>(<span class="string">'locutus/golang/strings'</span>)</div><div class="line"><span class="keyword">var</span> rubyMath = <span class="built_in">require</span>(<span class="string">'locutus/ruby/Math'</span>)</div><div class="line"><span class="keyword">var</span> c = <span class="built_in">require</span>(<span class="string">'locutus/c'</span>)</div><div class="line"></div><div class="line">echo(capwords(<span class="string">'locutus'</span>))</div><div class="line">echo(strings.Contains(<span class="string">'Locutus'</span>, <span class="string">'us'</span>))</div><div class="line">echo(rubyMath.acos(<span class="number">0.3</span>))</div><div class="line">echo(c.math.abs(<span class="number">-5</span>))</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ node index.js</div><div class="line">Locutus</div><div class="line"><span class="literal">true</span></div><div class="line">1.266103672779499</div><div class="line">5</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ npm init</div><div class="line">$ npm install locutus</div><div class="line">$ vim index.js</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> echo = <span class="built_in">require</span>(<span class="string">'locutus/php/strings/echo'</span>)</div><div class="line"><span class="keyword">var</span> capwords = <span class="built_in">require</span>(<span class="string">'locutus/python/string/capwords'</span>)</div><div class="line"><span class="keyword">var</span> strings = <span class="built_in">require</span>(<span class="string">'locutus/golang/strings'</span>)</div><div class="line"><span class="keyword">var</span> rubyMath = <span class="built_in">require</span>(<span class="string">'locutus/ruby/Math'</span>)</div><div class="line"><span class="keyword">var</span> c = <span class="built_in">require</span>(<span class="string">'locutus/c'</span>)</div><div class="line"></div><div class="line">echo(capwords(<span class="string">'locutus'</span>))</div><div class="line">echo(strings.Contains(<span class="string">'Locutus'</span>, <span class="string">'us'</span>))</div><div class="line">echo(rubyMath.acos(<span class="number">0.3</span>))</div><div class="line">echo(c.math.abs(<span class="number">-5</span>))</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ node index.js</div><div class="line">Locutus</div><div class="line"><span class="literal">true</span></div><div class="line">1.266103672779499</div><div class="line">5</div></pre></td></tr></table></figure>
 <p>If you want to help Locutus, our newly added languages don’t have much meat on the bones yet and it would be fantastic to see if you can think of ways to assimilate a function that Locutus currently does not harbor.</p>
 <p>Also, there are plenty project-wide ideas in our <a href="https://github.com/locutusjs/locutus/blob/master/CHANGELOG.md#Backlog" target="_blank" rel="external">Backlog</a> that we would love help with, so I guess there is just one thing left to say..</p>
 <p><a href="https://github.com/locutusjs/locutus" target="_blank" rel="external">To the GitHubs</a>!</p>
@@ -266,7 +266,7 @@ you can try Locutus right now if you want:</p>
 
 </div>
 
-    <a data-url="https://locutus.io/2016/05/announcing-locutus/" data-id="ckhp7fwkn0013benhb5x7zwjf" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://locutus.io/2016/05/announcing-locutus/" data-id="ckhp8irv30010cmnbpuyj5r3y" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -378,10 +378,9 @@ you can try Locutus right now if you want:</p>
             <br />
             <div class="Social">
               <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
-              <iframe src="https://ghbtns.com/github-btn.html?user=kvz&repo=locutus&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe><br />
+              <br />
+              <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
             </div>
-
-
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
@@ -732,6 +731,9 @@ you can try Locutus right now if you want:</p>
 <!-- Custom Scripts -->
 <script src="/js/main.js"></script>
 <script src="/js/locutus.js"></script>
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <!-- Twitter follow button script -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

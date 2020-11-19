@@ -20,7 +20,7 @@ one built in Octopress, so it would be easier for people to contribute, and we w
 about keeping servers online.
 Th">
 <meta property="og:image" content="https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg">
-<meta property="og:updated_time" content="2020-11-19T19:04:22.589Z">
+<meta property="og:updated_time" content="2020-11-19T19:34:45.898Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Switching to Jekyll">
 <meta name="twitter:description" content="Hi all,
@@ -213,12 +213,12 @@ are already familiar with it.</p>
 what you’d do.</p>
 <p>Jekyll runs on Ruby, so make sure you have that installed, preferably with a working version of bundler. The rest of the site-building dependencies are node-based, so make sure you have a working <code>npm</code> as well.</p>
 <p>To install the dependencies:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install</div><div class="line">npm run website:install</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">npm install</div><div class="line">npm run website:install</div></pre></td></tr></table></figure>
 <p>To start a local version of the website and open a browser that will auto-refresh on changes, type:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run website:start</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">npm run website:start</div></pre></td></tr></table></figure>
 <p>Now hack on the files in the <code>./website</code> folder, until you’re happy with the local results. Commit the changes to Git or send in a PR if you don’t have write access to the repository. This means the sources are saved, but someone with write access still needs to deploy.</p>
 <p>To do that, type:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run website:deploy</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">npm run website:deploy</div></pre></td></tr></table></figure>
 <p>That’s it : )</p>
 <p>P.S. We have a few custom build steps such as rendering the functions, that make it hard for us to only use the GitHub Pages provided Jekyll, this means for the time being we’ll be relying on our own scripts and Jekyll version. That said, it’s still possible to orchestrate auto-deploys whenever there’s a change to <code>master</code>, by using Travis CI and encrypted environment keys. If I have time, I’d like to set this up too. This way people could propose changes, and merging them would be enough to see them go live.</p>
 <p>Best wishes,</p>
@@ -233,7 +233,7 @@ what you’d do.</p>
 
 </div>
 
-    <a data-url="https://locutus.io/2016/04/jekyll/" data-id="ckhp7fwgy000cbenhuzx0j7k8" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://locutus.io/2016/04/jekyll/" data-id="ckhp8irsh000hcmnb9zz4gb09" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -354,10 +354,9 @@ what you’d do.</p>
             <br />
             <div class="Social">
               <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
-              <iframe src="https://ghbtns.com/github-btn.html?user=kvz&repo=locutus&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe><br />
+              <br />
+              <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
             </div>
-
-
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
@@ -708,6 +707,9 @@ what you’d do.</p>
 <!-- Custom Scripts -->
 <script src="/js/main.js"></script>
 <script src="/js/locutus.js"></script>
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <!-- Twitter follow button script -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/array/array_keys/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s array_keys looks like.">
-<meta property="og:updated_time" content="2020-11-19T19:05:33.138Z">
+<meta property="og:updated_time" content="2020-11-19T19:35:46.919Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's array_keys in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s array_keys looks like.">
@@ -174,7 +174,7 @@ ga('send', 'pageview');
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">array_keys</span> (<span class="params">input, searchValue, argStrict</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_keys/</span></div><div class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">//    input by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//    input by: P</span></div><div class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">// improved by: jd</span></div><div class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: array_keys( &#123;firstname: 'Kevin', surname: 'van Zonneveld'&#125; )</span></div><div class="line">  <span class="comment">//   returns 1: [ 'firstname', 'surname' ]</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> search = <span class="keyword">typeof</span> searchValue !== <span class="string">'undefined'</span></div><div class="line">  <span class="keyword">const</span> tmpArr = []</div><div class="line">  <span class="keyword">const</span> strict = !!argStrict</div><div class="line">  <span class="keyword">let</span> include = <span class="literal">true</span></div><div class="line">  <span class="keyword">let</span> key = <span class="string">''</span></div><div class="line"></div><div class="line">  <span class="keyword">for</span> (key <span class="keyword">in</span> input) &#123;</div><div class="line">    <span class="keyword">if</span> (input.hasOwnProperty(key)) &#123;</div><div class="line">      include = <span class="literal">true</span></div><div class="line">      <span class="keyword">if</span> (search) &#123;</div><div class="line">        <span class="keyword">if</span> (strict &amp;&amp; input[key] !== searchValue) &#123;</div><div class="line">          include = <span class="literal">false</span></div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (input[key] !== searchValue) &#123;</div><div class="line">          include = <span class="literal">false</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="keyword">if</span> (include) &#123;</div><div class="line">        tmpArr[tmpArr.length] = key</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> tmpArr</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">array_keys</span> (<span class="params">input, searchValue, argStrict</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_keys/</span></div><div class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">//    input by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//    input by: P</span></div><div class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">// improved by: jd</span></div><div class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: array_keys( &#123;firstname: 'Kevin', surname: 'van Zonneveld'&#125; )</span></div><div class="line">  <span class="comment">//   returns 1: [ 'firstname', 'surname' ]</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> search = <span class="keyword">typeof</span> searchValue !== <span class="string">'undefined'</span></div><div class="line">  <span class="keyword">const</span> tmpArr = []</div><div class="line">  <span class="keyword">const</span> strict = !!argStrict</div><div class="line">  <span class="keyword">let</span> include = <span class="literal">true</span></div><div class="line">  <span class="keyword">let</span> key = <span class="string">''</span></div><div class="line"></div><div class="line">  <span class="keyword">for</span> (key <span class="keyword">in</span> input) &#123;</div><div class="line">    <span class="keyword">if</span> (input.hasOwnProperty(key)) &#123;</div><div class="line">      include = <span class="literal">true</span></div><div class="line">      <span class="keyword">if</span> (search) &#123;</div><div class="line">        <span class="keyword">if</span> (strict &amp;&amp; input[key] !== searchValue) &#123;</div><div class="line">          include = <span class="literal">false</span></div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (input[key] !== searchValue) &#123;</div><div class="line">          include = <span class="literal">false</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="keyword">if</span> (include) &#123;</div><div class="line">        tmpArr[tmpArr.length] = key</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> tmpArr</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
       <a href="https://github.com/locutusjs/locutus/blob/master/src/php/array/array_keys.js">View on GitHub</a>
@@ -195,17 +195,15 @@ ga('send', 'pageview');
       </p>
       <p>
         If you intend to target the browser, you can then use a module bundler such as
-        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>,
-        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a> or
+        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>,
+        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>, or
         <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
-      </p>
 
-      <h2>ES5/ES6</h2>
-      <p>
-        
-          This function targets ES5, but as of Locutus 2.0.2 we also support
-          ES6 functions. Locutus transpiles to ES5 before publishing to npm.
-        
+        This can be important because Locutus allows modern JavaScript in
+        the source files, meaning it may not work in all browsers without
+        a build/transpile step. Locutus does transpile all functions to ES5
+        before publishing to npm.
       </p>
 
       
@@ -263,6 +261,13 @@ ga('send', 'pageview');
       <p>
         <a href="/php/array/">&laquo; More PHP array functions</a>
       </p>
+
+      <center>
+        <br>
+        <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+        <br>
+        <br>
+      </center>
     </div>
   </div>
 </article>
@@ -284,10 +289,9 @@ ga('send', 'pageview');
             <br />
             <div class="Social">
               <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
-              <iframe src="https://ghbtns.com/github-btn.html?user=kvz&repo=locutus&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe><br />
+              <br />
+              <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
             </div>
-
-
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
@@ -638,6 +642,9 @@ ga('send', 'pageview');
 <!-- Custom Scripts -->
 <script src="/js/main.js"></script>
 <script src="/js/locutus.js"></script>
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <!-- Twitter follow button script -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

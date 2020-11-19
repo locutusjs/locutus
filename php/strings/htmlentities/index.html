@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/strings/htmlentities/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s htmlentities looks like.">
-<meta property="og:updated_time" content="2020-11-19T19:05:33.406Z">
+<meta property="og:updated_time" content="2020-11-19T19:35:47.139Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's htmlentities in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s htmlentities looks like.">
@@ -174,7 +174,7 @@ ga('send', 'pageview');
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">htmlentities</span> (<span class="params">string, quoteStyle, charset, doubleEncode</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/htmlentities/</span></div><div class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">//  revised by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">//  revised by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// improved by: nobbler</span></div><div class="line">  <span class="comment">// improved by: Jack</span></div><div class="line">  <span class="comment">// improved by: Rafał Kukawski (https://blog.kukawski.pl)</span></div><div class="line">  <span class="comment">// improved by: Dj (https://locutus.io/php/htmlentities:425#comment_134018)</span></div><div class="line">  <span class="comment">// bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)</span></div><div class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//    input by: Ratheous</span></div><div class="line">  <span class="comment">//      note 1: function is compatible with PHP 5.2 and older</span></div><div class="line">  <span class="comment">//   example 1: htmlentities('Kevin &amp; van Zonneveld')</span></div><div class="line">  <span class="comment">//   returns 1: 'Kevin &amp;amp; van Zonneveld'</span></div><div class="line">  <span class="comment">//   example 2: htmlentities("foo'bar","ENT_QUOTES")</span></div><div class="line">  <span class="comment">//   returns 2: 'foo&amp;#039;bar'</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> getHtmlTranslationTable = <span class="built_in">require</span>(<span class="string">'../strings/get_html_translation_table'</span>)</div><div class="line">  <span class="keyword">const</span> hashMap = getHtmlTranslationTable(<span class="string">'HTML_ENTITIES'</span>, quoteStyle)</div><div class="line"></div><div class="line">  string = string === <span class="literal">null</span> ? <span class="string">''</span> : string + <span class="string">''</span></div><div class="line"></div><div class="line">  <span class="keyword">if</span> (!hashMap) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (quoteStyle &amp;&amp; quoteStyle === <span class="string">'ENT_QUOTES'</span>) &#123;</div><div class="line">    hashMap[<span class="string">"'"</span>] = <span class="string">'&amp;#039;'</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  doubleEncode = doubleEncode === <span class="literal">null</span> || !!doubleEncode</div><div class="line"></div><div class="line">  <span class="keyword">const</span> regex = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'&amp;(?:#\\d+|#x[\\da-f]+|[a-zA-Z][\\da-z]*);|['</span> +</div><div class="line">    <span class="built_in">Object</span>.keys(hashMap)</div><div class="line">      .join(<span class="string">''</span>)</div><div class="line">    <span class="comment">// replace regexp special chars</span></div><div class="line">      .replace(<span class="regexp">/([()[\]&#123;&#125;\-.*+?^$|/\\])/g</span>, <span class="string">'\\$1'</span>) + <span class="string">']'</span>,</div><div class="line">  <span class="string">'g'</span>)</div><div class="line"></div><div class="line">  <span class="keyword">return</span> string.replace(regex, <span class="function"><span class="keyword">function</span> (<span class="params">ent</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (ent.length &gt; <span class="number">1</span>) &#123;</div><div class="line">      <span class="keyword">return</span> doubleEncode ? hashMap[<span class="string">'&amp;'</span>] + ent.substr(<span class="number">1</span>) : ent</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> hashMap[ent]</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">htmlentities</span> (<span class="params">string, quoteStyle, charset, doubleEncode</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/htmlentities/</span></div><div class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">//  revised by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">//  revised by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// improved by: nobbler</span></div><div class="line">  <span class="comment">// improved by: Jack</span></div><div class="line">  <span class="comment">// improved by: Rafał Kukawski (https://blog.kukawski.pl)</span></div><div class="line">  <span class="comment">// improved by: Dj (https://locutus.io/php/htmlentities:425#comment_134018)</span></div><div class="line">  <span class="comment">// bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)</span></div><div class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//    input by: Ratheous</span></div><div class="line">  <span class="comment">//      note 1: function is compatible with PHP 5.2 and older</span></div><div class="line">  <span class="comment">//   example 1: htmlentities('Kevin &amp; van Zonneveld')</span></div><div class="line">  <span class="comment">//   returns 1: 'Kevin &amp;amp; van Zonneveld'</span></div><div class="line">  <span class="comment">//   example 2: htmlentities("foo'bar","ENT_QUOTES")</span></div><div class="line">  <span class="comment">//   returns 2: 'foo&amp;#039;bar'</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> getHtmlTranslationTable = <span class="built_in">require</span>(<span class="string">'../strings/get_html_translation_table'</span>)</div><div class="line">  <span class="keyword">const</span> hashMap = getHtmlTranslationTable(<span class="string">'HTML_ENTITIES'</span>, quoteStyle)</div><div class="line"></div><div class="line">  string = string === <span class="literal">null</span> ? <span class="string">''</span> : string + <span class="string">''</span></div><div class="line"></div><div class="line">  <span class="keyword">if</span> (!hashMap) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (quoteStyle &amp;&amp; quoteStyle === <span class="string">'ENT_QUOTES'</span>) &#123;</div><div class="line">    hashMap[<span class="string">"'"</span>] = <span class="string">'&amp;#039;'</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  doubleEncode = doubleEncode === <span class="literal">null</span> || !!doubleEncode</div><div class="line"></div><div class="line">  <span class="keyword">const</span> regex = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'&amp;(?:#\\d+|#x[\\da-f]+|[a-zA-Z][\\da-z]*);|['</span> +</div><div class="line">    <span class="built_in">Object</span>.keys(hashMap)</div><div class="line">      .join(<span class="string">''</span>)</div><div class="line">    <span class="comment">// replace regexp special chars</span></div><div class="line">      .replace(<span class="regexp">/([()[\]&#123;&#125;\-.*+?^$|/\\])/g</span>, <span class="string">'\\$1'</span>) + <span class="string">']'</span>,</div><div class="line">  <span class="string">'g'</span>)</div><div class="line"></div><div class="line">  <span class="keyword">return</span> string.replace(regex, <span class="function"><span class="keyword">function</span> (<span class="params">ent</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (ent.length &gt; <span class="number">1</span>) &#123;</div><div class="line">      <span class="keyword">return</span> doubleEncode ? hashMap[<span class="string">'&amp;'</span>] + ent.substr(<span class="number">1</span>) : ent</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> hashMap[ent]</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
       <a href="https://github.com/locutusjs/locutus/blob/master/src/php/strings/htmlentities.js">View on GitHub</a>
@@ -195,17 +195,15 @@ ga('send', 'pageview');
       </p>
       <p>
         If you intend to target the browser, you can then use a module bundler such as
-        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>,
-        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a> or
+        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>,
+        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>, or
         <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
-      </p>
 
-      <h2>ES5/ES6</h2>
-      <p>
-        
-          This function targets ES5, but as of Locutus 2.0.2 we also support
-          ES6 functions. Locutus transpiles to ES5 before publishing to npm.
-        
+        This can be important because Locutus allows modern JavaScript in
+        the source files, meaning it may not work in all browsers without
+        a build/transpile step. Locutus does transpile all functions to ES5
+        before publishing to npm.
       </p>
 
       
@@ -258,6 +256,13 @@ ga('send', 'pageview');
       <p>
         <a href="/php/strings/">&laquo; More PHP strings functions</a>
       </p>
+
+      <center>
+        <br>
+        <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+        <br>
+        <br>
+      </center>
     </div>
   </div>
 </article>
@@ -279,10 +284,9 @@ ga('send', 'pageview');
             <br />
             <div class="Social">
               <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
-              <iframe src="https://ghbtns.com/github-btn.html?user=kvz&repo=locutus&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe><br />
+              <br />
+              <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
             </div>
-
-
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
@@ -633,6 +637,9 @@ ga('send', 'pageview');
 <!-- Custom Scripts -->
 <script src="/js/main.js"></script>
 <script src="/js/locutus.js"></script>
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <!-- Twitter follow button script -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

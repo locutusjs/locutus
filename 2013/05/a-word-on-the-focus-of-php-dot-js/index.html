@@ -20,7 +20,7 @@ we generate HTML using Octopress
 and push to GitHub Pages, all from one repository.
 This saves hosting costs/overhead and makes it really ea">
 <meta property="og:image" content="https://mobilemarketingwatch.com/wp-content/uploads/2016/03/Focus.jpg">
-<meta property="og:updated_time" content="2020-11-19T19:04:22.589Z">
+<meta property="og:updated_time" content="2020-11-19T19:34:45.898Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A Word on the Focus of php.js">
 <meta name="twitter:description" content="Hi everybody,
@@ -212,7 +212,7 @@ In this case I had to lose our compiler, a webtool that relied on server-side co
 to generate minified packages from php.js functions.</p>
 <p>Understandibly this has <a href="https://github.com/locutusjs/locutus/issues/75" target="_blank" rel="external">raised</a> <a href="https://locutus.io/about/index.html#comment-861825612">questions</a>.
 It is still possible to bundle 4 useful functions:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># - Note that this combined 4 php.js functions into a file called: myLocutus</span></div><div class="line"><span class="comment"># and minified version: myphp.min.js in the current directory.</span></div><div class="line"><span class="comment"># - Note that this throws all functions into the</span></div><div class="line"><span class="comment"># global scope. It would be better to put them in a dedicated locutus object.</span></div><div class="line">curl -sk https://raw.github.com/locutusjs/locutus/31bf3129f08672f8c1d6d0dcad2368ebc4ac57f2/<span class="built_in">functions</span>/\</div><div class="line">&#123;datetime/date\</div><div class="line">,datetime/strtotime\</div><div class="line">,strings/md5\</div><div class="line">,strings/vsprintf\</div><div class="line">&#125;.js |tee ./myLocutus &amp;&amp; \</div><div class="line">curl -vo ./myphp.min.js \</div><div class="line">    -X POST \</div><div class="line">    -H <span class="string">'Expect: '</span> \</div><div class="line">    --data-urlencode compilation_level=<span class="string">"SIMPLE_OPTIMIZATIONS"</span> \</div><div class="line">    --data-urlencode output_format=<span class="string">"text"</span> \</div><div class="line">    --data-urlencode output_info=<span class="string">"compiled_code"</span> \</div><div class="line">    --data-urlencode js_code@myLocutus \</div><div class="line">    https://closure-compiler.appspot.com/compile</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># - Note that this combined 4 php.js functions into a file called: myLocutus</span></div><div class="line"><span class="comment"># and minified version: myphp.min.js in the current directory.</span></div><div class="line"><span class="comment"># - Note that this throws all functions into the</span></div><div class="line"><span class="comment"># global scope. It would be better to put them in a dedicated locutus object.</span></div><div class="line">curl -sk https://raw.github.com/locutusjs/locutus/31bf3129f08672f8c1d6d0dcad2368ebc4ac57f2/<span class="built_in">functions</span>/\</div><div class="line">&#123;datetime/date\</div><div class="line">,datetime/strtotime\</div><div class="line">,strings/md5\</div><div class="line">,strings/vsprintf\</div><div class="line">&#125;.js |tee ./myLocutus &amp;&amp; \</div><div class="line">curl -vo ./myphp.min.js \</div><div class="line">    -X POST \</div><div class="line">    -H <span class="string">'Expect: '</span> \</div><div class="line">    --data-urlencode compilation_level=<span class="string">"SIMPLE_OPTIMIZATIONS"</span> \</div><div class="line">    --data-urlencode output_format=<span class="string">"text"</span> \</div><div class="line">    --data-urlencode output_info=<span class="string">"compiled_code"</span> \</div><div class="line">    --data-urlencode js_code@myLocutus \</div><div class="line">    https://closure-compiler.appspot.com/compile</div></pre></td></tr></table></figure>
 <p>but some people think php.js should bundle all of it’s functions into one big file:</p>
 <blockquote>
 <p>Not providing an all-in-one, downloadable, minified, ready-to-use
@@ -258,7 +258,7 @@ makes this easier.</p>
 
 </div>
 
-    <a data-url="https://locutus.io/2013/05/a-word-on-the-focus-of-php-dot-js/" data-id="ckhp7fwgs0005benh2c4ftw4s" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://locutus.io/2013/05/a-word-on-the-focus-of-php-dot-js/" data-id="ckhp8irsd000acmnbt0ycm1s4" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -379,10 +379,9 @@ makes this easier.</p>
             <br />
             <div class="Social">
               <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
-              <iframe src="https://ghbtns.com/github-btn.html?user=kvz&repo=locutus&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe><br />
+              <br />
+              <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
             </div>
-
-
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
@@ -733,6 +732,9 @@ makes this easier.</p>
 <!-- Custom Scripts -->
 <script src="/js/main.js"></script>
 <script src="/js/locutus.js"></script>
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <!-- Twitter follow button script -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
