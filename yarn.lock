@@ -3268,9 +3268,10 @@ extsprintf@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.0.2.tgz#e1080e0658e300b06294990cc70e1502235fd550"
 
-fakefile@0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/fakefile/-/fakefile-0.0.8.tgz#96836c4220d093c6aa60e5faee0c2465e7f9ce8b"
+fakefile@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/fakefile/-/fakefile-1.0.0.tgz#f2c82825d3bac762407e719885960d20de5a96d2"
+  integrity sha512-2FRMEwkz/qNlQ6AvAj0KzdCcvzrhVM9XtuwOWmBuYkpv18l08b14nwfEw7wV5PlP2pLl+Vci+oY8yZfxOTlr6w==
   dependencies:
     fs-extra "0.26.5"
 
