@@ -38,10 +38,16 @@ jobs:
       - name: Test
         run : |
           yarn test
-      - name: Deploy
+      - name: Website Build
         # if: github.ref != 'refs/heads/master' 
         run : |
           yarn website:install
-          scripts/ci-deploy.sh
-        env:
-          GHPAGES_URL: ${{ secrets.GHPAGES_URL }}
+          yarn website:build
+      - name: Website Deploy 🚀
+        # if: github.ref != 'refs/heads/master' 
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: website/pbulic # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch          
