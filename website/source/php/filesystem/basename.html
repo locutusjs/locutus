@@ -26,8 +26,8 @@ layout: function
 title: PHP's basename in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="https://php.net/manual/en/function.basename.php">PHP's basename</a> looks
-  like.
+  href="https://php.net/manual/en/function.basename.php">PHP's basename</a>
+  looks like.
 function: basename
 category: filesystem
 language: php
@@ -54,8 +54,8 @@ alias:
   //   example 4: basename('/some/path_ext.ext/','.ext')
   //   returns 4: 'path_ext'
 
-  var b = path
-  var lastChar = b.charAt(b.length - 1)
+  let b = path
+  const lastChar = b.charAt(b.length - 1)
 
   if (lastChar === '/' || lastChar === '\\') {
     b = b.slice(0, -1)

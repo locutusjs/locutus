@@ -77,21 +77,21 @@ alias:
   //   example 3: serialize( {'ü': 'ü', '四': '四', '𠜎': '𠜎'})
   //   returns 3: 'a:3:{s:2:"ü";s:2:"ü";s:3:"四";s:3:"四";s:4:"𠜎";s:4:"𠜎";}'
 
-  var val, key, okey
-  var ktype = ''
-  var vals = ''
-  var count = 0
+  let val, key, okey
+  let ktype = ''
+  let vals = ''
+  let count = 0
 
-  var _utf8Size = function (str) {
+  const _utf8Size = function (str) {
     return ~-encodeURI(str).split(/%..|./).length
   }
 
-  var _getType = function (inp) {
-    var match
-    var key
-    var cons
-    var types
-    var type = typeof inp
+  const _getType = function (inp) {
+    let match
+    let key
+    let cons
+    let types
+    let type = typeof inp
 
     if (type === 'object' && !inp) {
       return 'null'
@@ -117,7 +117,7 @@ alias:
     return type
   }
 
-  var type = _getType(mixedValue)
+  const type = _getType(mixedValue)
 
   switch (type) {
     case 'function':

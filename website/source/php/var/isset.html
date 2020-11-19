@@ -21,7 +21,8 @@ layout: function
 title: PHP's isset in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="https://php.net/manual/en/function.isset.php">PHP's isset</a> looks like.
+  href="https://php.net/manual/en/function.isset.php">PHP's isset</a> looks
+  like.
 function: isset
 category: var
 language: php
@@ -43,10 +44,10 @@ alias:
   //   example 2: isset( 'Kevin van Zonneveld' )
   //   returns 2: true
 
-  var a = arguments
-  var l = a.length
-  var i = 0
-  var undef
+  const a = arguments
+  const l = a.length
+  let i = 0
+  let undef
 
   if (l === 0) {
     throw new Error('Empty isset')

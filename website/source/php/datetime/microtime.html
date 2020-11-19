@@ -43,8 +43,8 @@ alias:
   //   example 2: /^0\.[0-9]{1,6} [0-9]{10,10}$/.test(microtime())
   //   returns 2: true
 
-  var s
-  var now
+  let s
+  let now
   if (typeof performance !== 'undefined' && performance.now) {
     now = (performance.now() + performance.timing.navigationStart) / 1e3
     if (getAsFloat) {

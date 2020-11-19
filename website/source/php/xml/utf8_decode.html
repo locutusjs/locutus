@@ -27,8 +27,8 @@ layout: function
 title: PHP's utf8_decode in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="https://php.net/manual/en/function.utf8-decode.php">PHP's utf8_decode</a>
-  looks like.
+  href="https://php.net/manual/en/function.utf8-decode.php">PHP's
+  utf8_decode</a> looks like.
 function: utf8_decode
 category: xml
 language: php
@@ -54,10 +54,10 @@ alias:
   //   example 1: utf8_decode('Kevin van Zonneveld')
   //   returns 1: 'Kevin van Zonneveld'
 
-  var tmpArr = []
-  var i = 0
-  var c1 = 0
-  var seqlen = 0
+  const tmpArr = []
+  let i = 0
+  let c1 = 0
+  let seqlen = 0
 
   strData += ''
 
@@ -80,7 +80,7 @@ alias:
       seqlen = 4
     }
 
-    for (var ai = 1; ai < seqlen; ++ai) {
+    for (let ai = 1; ai < seqlen; ++ai) {
       c1 = ((c1 << 0x06) | (strData.charCodeAt(ai + i) & 0x3F))
     }
 

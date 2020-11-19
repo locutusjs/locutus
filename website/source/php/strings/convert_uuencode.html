@@ -41,9 +41,9 @@ alias:
   //        example 1: convert_uuencode("test\ntext text\r\n")
   //        returns 1: "0=&5S=`IT97AT('1E>'0-\"@\n`\n"
 
-  var isScalar = require('../var/is_scalar')
+  const isScalar = require('../var/is_scalar')
 
-  var chr = function (c) {
+  const chr = function (c) {
     return String.fromCharCode(c)
   }
 
@@ -53,17 +53,17 @@ alias:
     return false
   }
 
-  var c = 0
-  var u = 0
-  var i = 0
-  var a = 0
-  var encoded = ''
-  var tmp1 = ''
-  var tmp2 = ''
-  var bytes = {}
+  let c = 0
+  let u = 0
+  let i = 0
+  let a = 0
+  let encoded = ''
+  let tmp1 = ''
+  let tmp2 = ''
+  let bytes = {}
 
   // divide string into chunks of 45 characters
-  var chunk = function () {
+  const chunk = function () {
     bytes = str.substr(u, 45).split('')
     for (i in bytes) {
       bytes[i] = bytes[i].charCodeAt(0)

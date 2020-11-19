@@ -19,8 +19,8 @@ layout: function
 title: PHP's is_infinite in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="https://php.net/manual/en/function.is-infinite.php">PHP's is_infinite</a>
-  looks like.
+  href="https://php.net/manual/en/function.is-infinite.php">PHP's
+  is_infinite</a> looks like.
 function: is_infinite
 category: math
 language: php
@@ -41,7 +41,7 @@ alias:
   //   example 3: is_infinite(0)
   //   returns 3: false
 
-  var warningType = ''
+  let warningType = ''
 
   if (val === Infinity || val === -Infinity) {
     return true
@@ -55,7 +55,7 @@ alias:
     warningType = 'string'
   }
   if (warningType) {
-    var msg = 'Warning: is_infinite() expects parameter 1 to be double, ' + warningType + ' given'
+    const msg = 'Warning: is_infinite() expects parameter 1 to be double, ' + warningType + ' given'
     throw new Error(msg)
   }
 

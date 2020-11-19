@@ -58,9 +58,9 @@ alias:
   //   example 6: array_change_key_case({ FuBaR: 42 }, 2)
   //   returns 6: {"FUBAR": 42}
 
-  var caseFnc
-  var key
-  var tmpArr = {}
+  let caseFnc
+  let key
+  const tmpArr = {}
 
   if (Object.prototype.toString.call(array) === '[object Array]') {
     return array

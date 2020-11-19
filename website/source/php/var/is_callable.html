@@ -25,6 +25,7 @@ authors:
   improved by:
     - 'Brett Zamir (https://brett-zamir.me)'
     - KnightYoshi
+    - 'Waldo Malqui Silva (https://fayr.us/waldo/)'
   input by:
     - François
 notes:
@@ -45,8 +46,8 @@ layout: function
 title: PHP's is_callable in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="https://php.net/manual/en/function.is-callable.php">PHP's is_callable</a>
-  looks like.
+  href="https://php.net/manual/en/function.is-callable.php">PHP's
+  is_callable</a> looks like.
 function: is_callable
 category: var
 language: php
@@ -63,6 +64,7 @@ alias:
   //    input by: François
   // improved by: Brett Zamir (https://brett-zamir.me)
   // improved by: KnightYoshi
+  // improved by: Waldo Malqui Silva (https://fayr.us/waldo/)
   //      note 1: The variable callableName cannot work as a string variable passed by
   //      note 1: reference as in PHP (since JavaScript does not support passing
   //      note 1: strings by reference), but instead will take the name of
@@ -88,25 +90,26 @@ alias:
   //   example 5: is_callable(class MyClass {})
   //   returns 5: false
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
 
-  var validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
+  const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
-  var name = ''
-  var obj = {}
-  var method = ''
-  var validFunctionName = false
+  let name = ''
+  let obj = {}
+  let method = ''
+  let validFunctionName = false
 
-  var getFuncName = function (fn) {
-    var name = (/\W*function\s+([\w$]+)\s*\(/).exec(fn)
+  const getFuncName = function (fn) {
+    const name = (/\W*function\s+([\w$]+)\s*\(/).exec(fn)
     if (!name) {
       return '(Anonymous)'
     }
     return name[1]
   }
 
-  if(/^class/.test(mixedVar.toString())) {
-	  return false;
+  // eslint-disable-next-line no-useless-escape
+  if (/(^class|\(this\,)/.test(mixedVar.toString())) {
+    return false
   }
 
   if (typeof mixedVar === 'string') {

@@ -33,7 +33,8 @@ layout: function
 title: PHP's nl2br in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="https://php.net/manual/en/function.nl2br.php">PHP's nl2br</a> looks like.
+  href="https://php.net/manual/en/function.nl2br.php">PHP's nl2br</a> looks
+  like.
 function: nl2br
 category: strings
 language: php
@@ -71,7 +72,7 @@ alias:
   }
 
   // Adjust comment to avoid issue on locutus.io display
-  var breakTag = (isXhtml || typeof isXhtml === 'undefined') ? '<br ' + '/>' : '<br>'
+  const breakTag = (isXhtml || typeof isXhtml === 'undefined') ? '<br ' + '/>' : '<br>'
 
   return (str + '')
     .replace(/(\r\n|\n\r|\r|\n)/g, breakTag + '$1')

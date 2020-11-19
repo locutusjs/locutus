@@ -32,8 +32,8 @@ layout: function
 title: PHP's in_array in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="https://php.net/manual/en/function.in-array.php">PHP's in_array</a> looks
-  like.
+  href="https://php.net/manual/en/function.in-array.php">PHP's in_array</a>
+  looks like.
 function: in_array
 category: array
 language: php
@@ -62,8 +62,8 @@ alias:
   //   example 4: in_array(1, ['1', '2', '3'], true)
   //   returns 4: false
 
-  var key = ''
-  var strict = !!argStrict
+  let key = ''
+  const strict = !!argStrict
 
   // we prevent the double check (strict && arr[key] === ndl) || (!strict && arr[key] === ndl)
   // in just one for, in order to improve the performance

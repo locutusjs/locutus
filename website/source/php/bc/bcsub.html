@@ -19,7 +19,8 @@ layout: function
 title: PHP's bcsub in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="https://php.net/manual/en/function.bcsub.php">PHP's bcsub</a> looks like.
+  href="https://php.net/manual/en/function.bcsub.php">PHP's bcsub</a> looks
+  like.
 function: bcsub
 category: bc
 language: php
@@ -40,10 +41,10 @@ alias:
   //   example 3: bcsub('8728932001983192837219398127471', '1928372132132819737213', 2)
   //   returns 3: '8728932000054820705086578390258.00'
 
-  var _bc = require('../_helpers/_bc')
-  var libbcmath = _bc()
+  const _bc = require('../_helpers/_bc')
+  const libbcmath = _bc()
 
-  var first, second, result
+  let first, second, result
 
   if (typeof scale === 'undefined') {
     scale = libbcmath.scale

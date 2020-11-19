@@ -46,18 +46,18 @@ alias:
   //   example 1: array_map( function (a){return (a * a * a)}, [1, 2, 3, 4, 5] )
   //   returns 1: [ 1, 8, 27, 64, 125 ]
 
-  var argc = arguments.length
-  var argv = arguments
-  var obj = null
-  var cb = callback
-  var j = argv[1].length
-  var i = 0
-  var k = 1
-  var m = 0
-  var tmp = []
-  var tmpArr = []
+  const argc = arguments.length
+  const argv = arguments
+  let obj = null
+  let cb = callback
+  const j = argv[1].length
+  let i = 0
+  let k = 1
+  let m = 0
+  let tmp = []
+  const tmpArr = []
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
 
   while (i < j) {
     while (k < argc) {

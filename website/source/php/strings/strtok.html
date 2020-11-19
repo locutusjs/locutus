@@ -44,9 +44,9 @@ alias:
   //   example 1: var $result = $b
   //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
 
-  var $global = (typeof window !== 'undefined' ? window : global)
+  const $global = (typeof window !== 'undefined' ? window : global)
   $global.$locutus = $global.$locutus || {}
-  var $locutus = $global.$locutus
+  const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 
   if (tokens === undefined) {

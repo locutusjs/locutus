@@ -18,8 +18,8 @@ layout: function
 title: PHP's array_shift in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="https://php.net/manual/en/function.array-shift.php">PHP's array_shift</a>
-  looks like.
+  href="https://php.net/manual/en/function.array-shift.php">PHP's
+  array_shift</a> looks like.
 function: array_shift
 category: array
 language: php
@@ -44,7 +44,7 @@ alias:
     // increment all subsequent (skipping current key, since
     // we need its value below) until find unused)
     if (arr[ct] !== undefined) {
-      var tmp = ct
+      const tmp = ct
       ct += 1
       if (ct === key) {
         ct += 1

@@ -41,7 +41,7 @@ alias:
   //   example 3: is_finite(0)
   //   returns 3: true
 
-  var warningType = ''
+  let warningType = ''
 
   if (val === Infinity || val === -Infinity) {
     return false
@@ -55,7 +55,7 @@ alias:
     warningType = 'string'
   }
   if (warningType) {
-    var msg = 'Warning: is_finite() expects parameter 1 to be double, ' + warningType + ' given'
+    const msg = 'Warning: is_finite() expects parameter 1 to be double, ' + warningType + ' given'
     throw new Error(msg)
   }
 

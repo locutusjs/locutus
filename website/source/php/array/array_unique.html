@@ -59,12 +59,12 @@ alias:
   //   example 2: array_unique({'a': 'green', 0: 'red', 'b': 'green', 1: 'blue', 2: 'red'})
   //   returns 2: {a: 'green', 0: 'red', 1: 'blue'}
 
-  var key = ''
-  var tmpArr2 = {}
-  var val = ''
+  let key = ''
+  const tmpArr2 = {}
+  let val = ''
 
-  var _arraySearch = function (needle, haystack) {
-    var fkey = ''
+  const _arraySearch = function (needle, haystack) {
+    let fkey = ''
     for (fkey in haystack) {
       if (haystack.hasOwnProperty(fkey)) {
         if ((haystack[fkey] + '') === (needle + '')) {

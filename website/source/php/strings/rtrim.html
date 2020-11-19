@@ -23,7 +23,8 @@ layout: function
 title: PHP's rtrim in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="https://php.net/manual/en/function.rtrim.php">PHP's rtrim</a> looks like.
+  href="https://php.net/manual/en/function.rtrim.php">PHP's rtrim</a> looks
+  like.
 function: rtrim
 category: strings
 language: php
@@ -48,7 +49,7 @@ alias:
   charlist = !charlist ? ' \\s\u00A0' : (charlist + '')
     .replace(/([[\]().?/*{}+$^:])/g, '\\$1')
 
-  var re = new RegExp('[' + charlist + ']+$', 'g')
+  const re = new RegExp('[' + charlist + ']+$', 'g')
 
   return (str + '').replace(re, '')
 }

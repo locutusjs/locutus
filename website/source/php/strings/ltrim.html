@@ -21,7 +21,8 @@ layout: function
 title: PHP's ltrim in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="https://php.net/manual/en/function.ltrim.php">PHP's ltrim</a> looks like.
+  href="https://php.net/manual/en/function.ltrim.php">PHP's ltrim</a> looks
+  like.
 function: ltrim
 category: strings
 language: php
@@ -44,7 +45,7 @@ alias:
   charlist = !charlist ? ' \\s\u00A0' : (charlist + '')
     .replace(/([[\]().?/*{}+$^:])/g, '$1')
 
-  var re = new RegExp('^[' + charlist + ']+', 'g')
+  const re = new RegExp('^[' + charlist + ']+', 'g')
 
   return (str + '')
     .replace(re, '')

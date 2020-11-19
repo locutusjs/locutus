@@ -21,7 +21,8 @@ layout: function
 title: PHP's bcmul in JavaScript
 description: >-
   Here’s what our current JavaScript equivalent to <a
-  href="https://php.net/manual/en/function.bcmul.php">PHP's bcmul</a> looks like.
+  href="https://php.net/manual/en/function.bcmul.php">PHP's bcmul</a> looks
+  like.
 function: bcmul
 category: bc
 language: php
@@ -44,10 +45,10 @@ alias:
   //   example 4: bcmul('2.5', '1.5', 2)
   //   returns 4: '3.75'
 
-  var _bc = require('../_helpers/_bc')
-  var libbcmath = _bc()
+  const _bc = require('../_helpers/_bc')
+  const libbcmath = _bc()
 
-  var first, second, result
+  let first, second, result
 
   if (typeof scale === 'undefined') {
     scale = libbcmath.scale

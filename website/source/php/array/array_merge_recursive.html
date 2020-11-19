@@ -45,8 +45,8 @@ alias:
   //   returns 1: {'color': {'favorite': {0: 'red', 1: 'green'}, 0: 'blue'}, 1: 5, 1: 10}
   //        test: skip-1
 
-  var arrayMerge = require('../array/array_merge')
-  var idx = ''
+  const arrayMerge = require('../array/array_merge')
+  let idx = ''
 
   if (arr1 && Object.prototype.toString.call(arr1) === '[object Array]' &&
     arr2 && Object.prototype.toString.call(arr2) === '[object Array]') {
