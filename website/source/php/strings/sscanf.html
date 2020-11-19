@@ -7,7 +7,6 @@ examples:
     sscanf('SN/2350001', 'SN/%d', myVar)
     var $result = myVar.value
   - 'sscanf("10--20", "%2$d--%1$d") // Must escape ''$'' in PHP, but not JS'
-estarget: es5
 returns:
   - '[2350001]'
   - '2350001'

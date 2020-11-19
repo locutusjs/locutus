@@ -6,7 +6,6 @@ examples:
   - 'parse_url(''https://host.domain.tld/a@b.c/folder'')'
   - >-
     parse_url('https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar')
-estarget: es5
 returns:
   - >-
     {scheme: 'https', host: 'host', user: 'user', pass: 'pass', path: '/path',

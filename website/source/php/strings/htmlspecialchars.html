@@ -4,7 +4,6 @@ examples:
   - 'htmlspecialchars("<a href=''test''>Test</a>", ''ENT_QUOTES'')'
   - 'htmlspecialchars("ab\"c''d", [''ENT_NOQUOTES'', ''ENT_QUOTES''])'
   - 'htmlspecialchars(''my "&entity;" is still here'', null, null, false)'
-estarget: es5
 returns:
   - '''&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;'''
   - '''ab"c&#039;d'''

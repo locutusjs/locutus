@@ -36,24 +36,15 @@
       </p>
       <p>
         If you intend to target the browser, you can then use a module bundler such as
-        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>,
-        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a> or
+        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>,
+        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>, or
         <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
-      </p>
 
-      <h2>ES5/ES6</h2>
-      <p>
-        <% if (page.estarget == 'es2015') { %>
-          Even though the function you see here is written for ES6, we transpile all functions
-          down to ES5 before we publish to npm, meaning you don't have to transpile yourself
-          when you require Locutus that way.
-        <% } else if (page.estarget === 'es5') { %>
-          This function targets ES5, but as of Locutus 2.0.2 we also support
-          ES6 functions. Locutus transpiles to ES5 before publishing to npm.
-        <% } else { %>
-          This function has an unrecognized estarget: '<%= page.estarget %>'. Someone
-          please investigate as this should not happen.
-        <% } %>
+        This can be important because Locutus allows modern JavaScript in
+        the source files, meaning it may not work in all browsers without
+        a build/transpile step. Locutus does transpile all functions to ES5
+        before publishing to npm.
       </p>
 
       <% if (page.language === 'php' && page.category === 'array') { %>

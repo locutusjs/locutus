@@ -6,7 +6,6 @@ examples:
   - 'preg_replace(''\/(\\w+) (\\d+), (\\d+)\/i'', ''$11,$3'', ''April 15, 2003'')'
   - 'preg_replace(''/[^a-zA-Z0-9]+/'', '''', ''The Development of code . http://www.'')'
   - 'preg_replace(''/[^A-Za-z0-9_\\s]/'', '''', ''D"usseldorfer H"auptstrasse'')'
-estarget: es5
 returns:
   - '"It was the night before Christmas."'
   - '"Christmas: It was the night before Christmas."'

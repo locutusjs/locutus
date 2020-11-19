@@ -271,9 +271,6 @@ class Util {
       examples: (params.headKeys.example || []).map(function (lines, i) {
         return lines.join('\n')
       }),
-      estarget: (params.headKeys.estarget || []).map(function (lines, i) {
-        return lines.join('\n')
-      }).join('\n').trim() || 'es5',
       returns: (params.headKeys.returns || []).map(function (lines, i) {
         return lines.join('\n')
       }),
