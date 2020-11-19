@@ -7,8 +7,8 @@
   },
   "scripts": {
     "deploy": "hexo deploy",
-    "start": "hexo server",
-    "build": "hexo generate",
+    "server": "hexo server",
+    "generate": "hexo generate",
     "clean": "hexo clean"
   },
   "devDependencies": {
