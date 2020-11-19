@@ -5,6 +5,12 @@
   "hexo": {
     "version": "3.2.2"
   },
+  "scripts": {
+    "deploy": "hexo deploy",
+    "start": "hexo server",
+    "build": "hexo generate",
+    "clean": "hexo clean"
+  },
   "devDependencies": {
     "eslint": "3.12.2",
     "eslint-config-standard": "6.2.1",
