@@ -23,7 +23,7 @@
     "browserify": "17.0.0",
     "budo": "11.3.2",
     "chai": "3.5.0",
-    "cross-env": "1.0.7",
+    "cross-env": "7.0.3",
     "depurar": "0.3.0",
     "es6-promise": "4.2.5",
     "eslint": "7.13.0",
