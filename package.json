@@ -38,7 +38,7 @@
     "indent-string": "2.1.0",
     "invig": "0.0.22",
     "js-yaml": "3.6.0",
-    "lodash": "4.17.10",
+    "lodash": "4.17.21",
     "mkdirp": "0.5.1",
     "mocha": "5.2.0",
     "npm-run-all": "1.8.0",
