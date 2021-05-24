@@ -41,7 +41,7 @@
     "lodash": "4.17.21",
     "mkdirp": "0.5.1",
     "mocha": "5.2.0",
-    "npm-run-all": "1.8.0",
+    "npm-run-all": "4.1.5",
     "rimraf": "2.5.2",
     "strip-indent": "2.0.0"
   },
