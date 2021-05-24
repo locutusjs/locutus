@@ -302,11 +302,10 @@ class Util {
 
     buf += `{% codeblock lang:javascript %}${params.code}{% endcodeblock %}`
 
-    mkdirp(path.dirname(funcPath), function (err) {
-      if (err) {
-        throw new Error('Could not mkdir  for ' + funcPath + '. ' + err)
-      }
+    mkdirp(path.dirname(funcPath)).then(function () {
       fs.writeFile(funcPath, buf, 'utf-8', cb)
+    }, function (err) {
+      throw new Error('Could not mkdir  for ' + funcPath + '. ' + err)
     })
   }
 
@@ -457,12 +456,11 @@ class Util {
     const code = codez.join('\n')
 
     // Write to disk
-    mkdirp(testdir, function (err) {
-      if (err) {
-        throw new Error(err)
-      }
+    mkdirp(testdir).then(function () {
       debug('writing: ' + testpath)
       fs.writeFile(testpath, code, 'utf-8', cb)
+    }, function (err) {
+      throw new Error(err)
     })
   }
 
