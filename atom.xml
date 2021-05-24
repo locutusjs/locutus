@@ -5,7 +5,7 @@
   <link href="//atom.xml" rel="self"/>
   
   <link href="https://locutus.io/"/>
-  <updated>2021-05-24T14:05:00.601Z</updated>
+  <updated>2021-05-24T14:39:00.541Z</updated>
   <id>https://locutus.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://locutus.io/2016/05/announcing-locutus/"/>
     <id>https://locutus.io/2016/05/announcing-locutus/</id>
     <published>2016-05-02T00:00:00.000Z</published>
-    <updated>2021-05-24T14:05:00.601Z</updated>
+    <updated>2021-05-24T14:39:00.541Z</updated>
     
     <content type="html"><![CDATA[<p>As was briefly mentioned in <a href="/blog/2016/04/20/breaking-bc/">Breaking Backwards Compatibility</a>, 
 I am launching a big iteration of php.js today. It includes so <a href="https://github.com/locutusjs/locutus/pull/291" target="_blank" rel="external">many</a> breaking <a href="https://github.com/locutusjs/locutus/blob/master/CHANGELOG.md#v200" target="_blank" rel="external">changes</a> that it is safe to say that, after 
@@ -116,7 +116,7 @@ I am launching a big iteration
     <link href="https://locutus.io/2016/04/breaking-bc/"/>
     <id>https://locutus.io/2016/04/breaking-bc/</id>
     <published>2016-04-20T00:00:00.000Z</published>
-    <updated>2021-05-24T14:05:00.597Z</updated>
+    <updated>2021-05-24T14:39:00.541Z</updated>
     
     <content type="html"><![CDATA[<p>Hi all,</p>
 <p>I’m planning to push out a big release soon that will change a lot of things about this project.</p>
@@ -157,7 +157,7 @@ I am launching a big iteration
     <link href="https://locutus.io/2016/04/jekyll/"/>
     <id>https://locutus.io/2016/04/jekyll/</id>
     <published>2016-04-02T00:00:00.000Z</published>
-    <updated>2021-05-24T14:05:00.597Z</updated>
+    <updated>2021-05-24T14:39:00.541Z</updated>
     
     <content type="html"><![CDATA[<p>Hi all,</p>
 <p><a href="https://locutus.io/blog/2012/09/new-site/">Four years ago</a> we switched from a PHP generated site to 
@@ -209,7 +209,7 @@ one built
     <link href="https://locutus.io/2016/04/standard-coding-style/"/>
     <id>https://locutus.io/2016/04/standard-coding-style/</id>
     <published>2016-04-01T00:00:00.000Z</published>
-    <updated>2021-05-24T14:05:00.597Z</updated>
+    <updated>2021-05-24T14:39:00.541Z</updated>
     
     <content type="html"><![CDATA[<p>Three years ago we switched from our own home-brown coding style convention to Felix’ Node.js Style Guide, 
 for reasons outlined in the introductory post: <a href="/blog/2013/05/coding-style/">Coding Style</a>.</p>
@@ -244,7 +244,7 @@ for reasons outlined in the i
     <link href="https://locutus.io/2013/05/coding-style/"/>
     <id>https://locutus.io/2013/05/coding-style/</id>
     <published>2013-05-04T00:00:00.000Z</published>
-    <updated>2021-05-24T14:05:00.597Z</updated>
+    <updated>2021-05-24T14:39:00.541Z</updated>
     
     <content type="html"><![CDATA[<p>Given <a href="/blog/2013/05/a-word-on-the-focus-of-php-dot-js/">the focus of Locutus</a> I think
 we should re-invent as few wheels as possible and make use of sensible tools
@@ -281,7 +281,7 @@ we should re-invent as few wheels as po
     <link href="https://locutus.io/2013/05/a-word-on-the-focus-of-php-dot-js/"/>
     <id>https://locutus.io/2013/05/a-word-on-the-focus-of-php-dot-js/</id>
     <published>2013-05-03T00:00:00.000Z</published>
-    <updated>2021-05-24T14:05:00.597Z</updated>
+    <updated>2021-05-24T14:39:00.541Z</updated>
     
     <content type="html"><![CDATA[<p>Hi everybody,</p>
 <p>The <a href="/blog/2012/09/26/new-site/">new site</a> has no server-side code. Instead
@@ -352,7 +352,7 @@ we generate HTML &lt;a href=&quot;htt
     <link href="https://locutus.io/2012/09/new-site/"/>
     <id>https://locutus.io/2012/09/new-site/</id>
     <published>2012-09-26T00:00:00.000Z</published>
-    <updated>2021-05-24T14:05:00.597Z</updated>
+    <updated>2021-05-24T14:39:00.541Z</updated>
     
     <content type="html"><![CDATA[<p>Hi everybody,</p>
 <p>Welcome to our new site.
