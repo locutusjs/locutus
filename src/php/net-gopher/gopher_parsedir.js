@@ -22,7 +22,7 @@ module.exports = function gopher_parsedir (dirent) { // eslint-disable-line came
    * s = Audio file format, primarily a WAV file
    */
 
-  const entryPattern = /^(.)(.*?)\t(.*?)\t(.*?)\t(.*?)\u000d\u000a$/
+  const entryPattern = /^(.)([^\t]*)\t([^\t]*)\t([^\t]*)\t([^\t]*)\r\n$/
   const entry = dirent.match(entryPattern)
 
   if (entry === null) {
