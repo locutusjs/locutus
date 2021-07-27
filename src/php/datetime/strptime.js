@@ -262,8 +262,7 @@ module.exports = function strptime (dateStr, format) {
             j = _addNext(j, /^(am|pm)/i, function (d) {
               // No effect on 'H' since already 24 hours but
               //   works before or after setting of l/I hour
-              amPmOffset = (/a/)
-                .test(d) ? 0 : 12
+              amPmOffset = /a/.test(d) ? 0 : 12
               if (prevHour) {
                 retObj.tm_hour += amPmOffset
               }

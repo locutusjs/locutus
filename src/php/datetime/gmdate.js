@@ -8,8 +8,10 @@ module.exports = function gmdate (format, timestamp) {
 
   const date = require('../datetime/date')
 
-  const dt = typeof timestamp === 'undefined' ? new Date() // Not provided
-    : timestamp instanceof Date ? new Date(timestamp) // Javascript Date()
+  const dt = typeof timestamp === 'undefined'
+    ? new Date() // Not provided
+    : timestamp instanceof Date
+      ? new Date(timestamp) // Javascript Date()
       : new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
 
   timestamp = Date.parse(dt.toUTCString().slice(0, -4)) / 1000

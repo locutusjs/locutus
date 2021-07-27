@@ -182,8 +182,9 @@ module.exports = function money_format (format, number) { // eslint-disable-line
       // @todo: unclear on whether and how sepBySpace, signPosn, or csPrecedes have
       // an impact here (as they do below), but assuming for now behaves as signPosn 0 as
       // far as localized sepBySpace and signPosn behavior
-      repl = (csPrecedes ? symbol + (sepBySpace === 1 ? ' ' : '') : '') + value + (!csPrecedes ? (
-        sepBySpace === 1 ? ' ' : '') + symbol : '')
+      repl = (csPrecedes ? symbol + (sepBySpace === 1 ? ' ' : '') : '') + value + (!csPrecedes
+        ? (sepBySpace === 1 ? ' ' : '') + symbol
+        : '')
       if (neg) {
         repl = '(' + repl + ')'
       } else {

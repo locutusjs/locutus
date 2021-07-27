@@ -63,12 +63,12 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
       }
 
       escapable.lastIndex = 0
-      return escapable.test(string) ? '"' + string.replace(escapable, function (a) {
-        const c = meta[a]
-        return typeof c === 'string' ? c : '\\u' + ('0000' + a.charCodeAt(0)
-          .toString(16))
-          .slice(-4)
-      }) + '"' : '"' + string + '"'
+      return escapable.test(string)
+        ? '"' + string.replace(escapable, function (a) {
+          const c = meta[a]
+          return typeof c === 'string' ? c : '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4)
+        }) + '"'
+        : '"' + string + '"'
     }
 
     var _str = function (key, holder) {
@@ -127,9 +127,11 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
 
             // Join all of the elements together, separated with commas, and wrap them in
             // brackets.
-            v = partial.length === 0 ? '[]' : gap
-              ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']'
-              : '[' + partial.join(',') + ']'
+            v = partial.length === 0
+              ? '[]'
+              : gap
+                ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']'
+                : '[' + partial.join(',') + ']'
             // gap = mind // not used
             return v
           }
@@ -146,9 +148,11 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
 
           // Join all of the member texts together, separated with commas,
           // and wrap them in braces.
-          v = partial.length === 0 ? '{}' : gap
-            ? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}'
-            : '{' + partial.join(',') + '}'
+          v = partial.length === 0
+            ? '{}'
+            : gap
+              ? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}'
+              : '{' + partial.join(',') + '}'
           // gap = mind // Not used
           return v
         case 'undefined':

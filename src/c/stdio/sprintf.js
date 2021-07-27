@@ -20,7 +20,8 @@ module.exports = function sprintf (format, ...args) {
     const leftJustify = flags.includes('-')
 
     // flag '0' is ignored when flag '-' is present
-    const padChar = leftJustify ? ' '
+    const padChar = leftJustify
+      ? ' '
       : flags.split('').reduce((pc, c) => [' ', '0'].includes(c) ? c : pc, ' ')
 
     const positiveSign = flags.includes('+') ? '+' : flags.includes(' ') ? ' ' : ''
