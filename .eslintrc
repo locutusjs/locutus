@@ -10,7 +10,6 @@
       }
     ],
     "no-cond-assign": "warn",
-    "no-unused-vars": "warn",
     "no-unreachable-loop": "warn",
     "no-use-before-define": "warn",
     "node/no-deprecated-api": "warn",
