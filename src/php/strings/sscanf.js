@@ -93,7 +93,7 @@ module.exports = function sscanf (str, format) {
       // CHARACTER FOLLOWING PERCENT IS NOT A PERCENT
 
       // We need 'g' set to get lastIndex
-      const prePattern = new RegExp('^(?:(\\d+)\\$)?(\\*)?(\\d*)([hlL]?)', 'g')
+      const prePattern = /^(?:(\d+)\$)?(\*)?(\d*)([hlL]?)/g
 
       const preConvs = prePattern.exec(format.slice(i + 1))
 

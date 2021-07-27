@@ -122,7 +122,7 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
     // are using the namespaced version, note that create_function() will
     // not be available as a global
     retstr = "create_function ('" + funcParts[1] + "', '" +
-      funcParts[2].replace(new RegExp("'", 'g'), "\\'") + "')"
+      funcParts[2].replace(/'/g, "\\'") + "')"
   } else if (type === 'resource') {
     // Resources treated as null for var_export
     retstr = 'NULL'

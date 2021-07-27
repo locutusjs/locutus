@@ -13,7 +13,6 @@
     "no-unreachable-loop": "warn",
     "no-use-before-define": "warn",
     "node/no-deprecated-api": "warn",
-    "prefer-regex-literals": "warn",
     "valid-typeof": "warn",
     "no-control-regex": "warn",
     "no-mixed-operators": "warn",
