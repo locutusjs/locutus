@@ -10,7 +10,11 @@ module.exports = function microtime (getAsFloat) {
 
   let s
   let now
-  if (typeof performance !== 'undefined' && performance.now) {
+  if (
+    typeof performance !== 'undefined' &&
+    performance.now &&
+    performance.timing
+  ) {
     now = (performance.now() + performance.timing.navigationStart) / 1e3
     if (getAsFloat) {
       return now
