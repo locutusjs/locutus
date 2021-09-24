@@ -3,6 +3,5 @@ module.exports = function punctuation () {
   //   example 1: punctuation()
   //   returns 1: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
 
-  return "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
+  return "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
 }
-© 2021 GitHub, Inc.
