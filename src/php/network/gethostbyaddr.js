@@ -15,5 +15,5 @@ module.exports = async function gethostbyaddr(ip)
   const response = await fetch(url, init);
   const data = await response.json();
 
-  return data?.Answer?.[0]?.name ?? ip;
+  return data?.Answer?.[0]?.data ?? ip;
 }
