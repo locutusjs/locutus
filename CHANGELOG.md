@@ -32,9 +32,18 @@ Ideas that will be planned and find their way into a release at one point
 ## master
 
 Released: TBA. 
-[Diff](https://github.com/locutusjs/locutus/compare/v2.0.11...master).
+[Diff](https://github.com/locutusjs/locutus/compare/v2.0.16...master).
 
-- [ ] Switch from Travis CI to GitHub Actions
+- [ ] 
+
+## v2.0.16
+
+Released: 2019-06-12. 
+[Diff](https://github.com/locutusjs/locutus/compare/v2.0.10...v2.0.16).
+
+- [x] Switch from Travis CI to GitHub Actions
+- [x] Fix ReDOS on IPv6
+- [x] Basic timezone support in strtotime
 
 ## v2.0.11
 
