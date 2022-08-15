@@ -307,19 +307,18 @@ function expectArray (str, cache) {
 
 function expectArrayItems (str, expectedItems = 0, cache) {
   let key
-  let hasStringKeys = false
   let item
   let totalOffset = 0
-  let items = []
+  let hasContinousIndexes = true
+  let lastIndex = -1
+  let items = {}
   cache([items])
 
   for (let i = 0; i < expectedItems; i++) {
     key = expectKeyOrIndex(str)
 
-    // this is for backward compatibility with previous implementation
-    if (!hasStringKeys) {
-      hasStringKeys = (typeof key[0] === 'string')
-    }
+    hasContinousIndexes = hasContinousIndexes && typeof key[0] === 'number' && key[0] === lastIndex + 1
+    lastIndex = key[0]
 
     str = str.substr(key[1])
     totalOffset += key[1]
@@ -334,9 +333,8 @@ function expectArrayItems (str, expectedItems = 0, cache) {
     items[key[0]] = item[0]
   }
 
-  // this is for backward compatibility with previous implementation
-  if (hasStringKeys) {
-    items = Object.assign({}, items)
+  if (hasContinousIndexes) {
+    items = Object.values(items)
   }
 
   return [items, totalOffset]
