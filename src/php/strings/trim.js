@@ -18,6 +18,7 @@ module.exports = function trim (str, charlist) {
 
   let whitespace = [
     ' ',
+    '\0',
     '\n',
     '\r',
     '\t',
