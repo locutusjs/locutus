@@ -33,7 +33,7 @@
     "eslint-plugin-promise": "5.1.0",
     "eslint-plugin-standard": "5.0.0",
     "esprima": "4.0.1",
-    "fakefile": "1.0.0",
+    "fakefile": "1.1.0",
     "globby": "4.0.0",
     "indent-string": "2.1.0",
     "invig": "0.0.22",
