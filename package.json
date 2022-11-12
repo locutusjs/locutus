@@ -22,7 +22,7 @@
     "babel-register": "6.26.0",
     "browserify": "17.0.0",
     "budo": "11.8.4",
-    "chai": "3.5.0",
+    "chai": "4.3.7",
     "cross-env": "7.0.3",
     "depurar": "0.3.0",
     "es6-promise": "4.2.5",
