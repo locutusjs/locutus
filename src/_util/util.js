@@ -445,7 +445,7 @@ class Util {
       body.push('expect(result).to.deep.equal(expected)')
       body.push('done()')
 
-      codez.push(indentString(body.join('\n'), ' ', 4))
+      codez.push(indentString(body.join('\n'), 4, { indent: ' ' }))
 
       codez.push('  })')
     }
