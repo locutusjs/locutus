@@ -6,7 +6,7 @@
   "homepage": "https://locutus.io",
   "author": "Kevin van Zonneveld <kevin@vanzonneveld.net>",
   "engines": {
-    "node": ">= 10"
+    "node": ">= 12.12"
   },
   "devDependencies": {
     "async": "3.2.4",
@@ -20,12 +20,11 @@
     "cross-env": "7.0.3",
     "depurar": "0.3.0",
     "es6-promise": "4.2.5",
-    "eslint": "7.27.0",
-    "eslint-config-standard": "16.0.2",
-    "eslint-plugin-import": "2.23.3",
-    "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-promise": "5.1.0",
-    "eslint-plugin-standard": "5.0.0",
+    "eslint": "8.27.0",
+    "eslint-config-standard": "17.0.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-n": "15.5.1",
+    "eslint-plugin-promise": "6.1.1",
     "esprima": "4.0.1",
     "fakefile": "1.1.0",
     "globby": "4.0.0",

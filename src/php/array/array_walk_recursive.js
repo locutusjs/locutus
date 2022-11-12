@@ -23,6 +23,7 @@ module.exports = function array_walk_recursive (array, funcname, userdata) { // 
       if (arguments.length > 2) {
         funcArgs.push(userdata)
       }
+      // eslint-disable-next-line camelcase
       if (array_walk_recursive.apply(null, funcArgs) === false) {
         return false
       }
