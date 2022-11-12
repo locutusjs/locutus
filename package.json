@@ -9,7 +9,7 @@
     "node": ">= 10"
   },
   "devDependencies": {
-    "async": "2.0.0-rc.3",
+    "async": "3.2.4",
     "babel-cli": "6.26.0",
     "babel-core": "6.26.3",
     "babel-eslint": "10.1.0",

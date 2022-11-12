@@ -178,7 +178,7 @@ class Util {
 
     q.push(files)
 
-    q.drain = cb
+    q.drain(cb)
   }
 
   _reindexOne (params, cb) {
