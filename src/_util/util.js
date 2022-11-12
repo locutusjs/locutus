@@ -6,7 +6,7 @@ const async = require('async')
 const YAML = require('js-yaml')
 const debug = require('depurar')('locutus')
 const indentString = require('indent-string')
-const _ = require('lodash')
+const flattenDeep = require('lodash/flattenDeep')
 const esprima = require('esprima')
 
 class Util {
@@ -205,7 +205,7 @@ class Util {
     const authors = {}
     this.authorKeys.forEach(function (key) {
       if (params.headKeys[key]) {
-        authors[key] = _.flattenDeep(params.headKeys[key])
+        authors[key] = flattenDeep(params.headKeys[key])
       }
     })
 
