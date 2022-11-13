@@ -27,7 +27,7 @@
     "eslint-plugin-promise": "6.1.1",
     "esprima": "4.0.1",
     "fakefile": "1.1.0",
-    "globby": "4.0.0",
+    "globby": "11.1.0",
     "indent-string": "4.0.0",
     "invig": "0.0.22",
     "js-yaml": "3.6.0",
