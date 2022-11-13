@@ -1,12 +1,12 @@
 const globby = require('globby')
 const path = require('path')
 const fs = require('fs')
+const { mkdir } = require('fs/promises')
 const async = require('async')
 const YAML = require('js-yaml')
-const mkdirp = require('mkdirp')
 const debug = require('depurar')('locutus')
 const indentString = require('indent-string')
-const _ = require('lodash')
+const flattenDeep = require('lodash/flattenDeep')
 const esprima = require('esprima')
 
 class Util {
@@ -178,7 +178,7 @@ class Util {
 
     q.push(files)
 
-    q.drain = cb
+    q.drain(cb)
   }
 
   _reindexOne (params, cb) {
@@ -205,7 +205,7 @@ class Util {
     const authors = {}
     this.authorKeys.forEach(function (key) {
       if (params.headKeys[key]) {
-        authors[key] = _.flattenDeep(params.headKeys[key])
+        authors[key] = flattenDeep(params.headKeys[key])
       }
     })
 
@@ -302,7 +302,7 @@ class Util {
 
     buf += `{% codeblock lang:javascript %}${params.code}{% endcodeblock %}`
 
-    mkdirp(path.dirname(funcPath)).then(function () {
+    mkdir(path.dirname(funcPath), { recursive: true }).then(function () {
       fs.writeFile(funcPath, buf, 'utf-8', cb)
     }, function (err) {
       throw new Error('Could not mkdir  for ' + funcPath + '. ' + err)
@@ -445,7 +445,7 @@ class Util {
       body.push('expect(result).to.deep.equal(expected)')
       body.push('done()')
 
-      codez.push(indentString(body.join('\n'), ' ', 4))
+      codez.push(indentString(body.join('\n'), 4, { indent: ' ' }))
 
       codez.push('  })')
     }
@@ -456,7 +456,7 @@ class Util {
     const code = codez.join('\n')
 
     // Write to disk
-    mkdirp(testdir).then(function () {
+    mkdir(testdir, { recursive: true }).then(function () {
       debug('writing: ' + testpath)
       fs.writeFile(testpath, code, 'utf-8', cb)
     }, function (err) {

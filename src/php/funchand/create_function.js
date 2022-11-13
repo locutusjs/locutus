@@ -7,6 +7,7 @@ module.exports = function create_function (args, code) { // eslint-disable-line 
   //        returns 1: 3
 
   try {
+    // eslint-disable-next-line no-new-func
     return Function.apply(null, args.split(',').concat(code))
   } catch (e) {
     return false
