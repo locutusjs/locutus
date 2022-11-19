@@ -57,7 +57,13 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
   let keysLen
 
   const _fixStr = function (str) {
-    return decodeURIComponent(str.replace(/\+/g, '%20'))
+    let strDecoded;
+    try {
+      strDecoded = decodeURIComponent(str.replace(/\+/g, '%20'));
+    } catch (e) {
+      strDecoded = '';
+    }
+    return strDecoded;
   }
 
   const $global = (typeof window !== 'undefined' ? window : global)
