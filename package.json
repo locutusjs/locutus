@@ -70,6 +70,7 @@
     "budo": "11.8.4",
     "chai": "4",
     "cross-env": "7.0.3",
+    "debug": "^4.3.4",
     "es6-promise": "4.2.8",
     "eslint": "8.57.0",
     "eslint-config-prettier": "^9.1.0",
@@ -97,8 +98,5 @@
     "node": ">= 10",
     "yarn": "4.0.1"
   },
-  "readmeFilename": "README.md",
-  "dependencies": {
-    "debug": "^4.3.4"
-  }
+  "readmeFilename": "README.md"
 }
