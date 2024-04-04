@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/datetime/microtime/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s microtime looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.334Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.395Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's microtime in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s microtime looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">microtime</span> (<span class="params">getAsFloat</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/microtime/</span></div><div class="line">  <span class="comment">// original by: Paulo Freitas</span></div><div class="line">  <span class="comment">// improved by: Dumitru Uzun (https://duzun.me)</span></div><div class="line">  <span class="comment">//   example 1: var $timeStamp = microtime(true)</span></div><div class="line">  <span class="comment">//   example 1: $timeStamp &gt; 1000000000 &amp;&amp; $timeStamp &lt; 2000000000</span></div><div class="line">  <span class="comment">//   returns 1: true</span></div><div class="line">  <span class="comment">//   example 2: /^0\.[0-9]&#123;1,6&#125; [0-9]&#123;10,10&#125;$/.test(microtime())</span></div><div class="line">  <span class="comment">//   returns 2: true</span></div><div class="line"></div><div class="line">  <span class="keyword">let</span> s</div><div class="line">  <span class="keyword">let</span> now</div><div class="line">  <span class="keyword">if</span> (</div><div class="line">    <span class="keyword">typeof</span> performance !== <span class="string">'undefined'</span> &amp;&amp;</div><div class="line">    performance.now &amp;&amp;</div><div class="line">    performance.timing</div><div class="line">  ) &#123;</div><div class="line">    now = (performance.now() + performance.timing.navigationStart) / <span class="number">1e3</span></div><div class="line">    <span class="keyword">if</span> (getAsFloat) &#123;</div><div class="line">      <span class="keyword">return</span> now</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Math.round(now)</span></div><div class="line">    s = now | <span class="number">0</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> (<span class="built_in">Math</span>.round((now - s) * <span class="number">1e6</span>) / <span class="number">1e6</span>) + <span class="string">' '</span> + s</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    now = (<span class="built_in">Date</span>.now ? <span class="built_in">Date</span>.now() : <span class="keyword">new</span> <span class="built_in">Date</span>().getTime()) / <span class="number">1e3</span></div><div class="line">    <span class="keyword">if</span> (getAsFloat) &#123;</div><div class="line">      <span class="keyword">return</span> now</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Math.round(now)</span></div><div class="line">    s = now | <span class="number">0</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> (<span class="built_in">Math</span>.round((now - s) * <span class="number">1e3</span>) / <span class="number">1e3</span>) + <span class="string">' '</span> + s</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/datetime/microtime.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/datetime/microtime.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/datetime/microtime.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/datetime/microtime.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/datetime/microtime.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/datetime/microtime.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -611,7 +611,7 @@ $timeStamp &gt; 1000000000 &amp;&amp; $timeStamp &lt; 2000000000</code></td><td>
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/datetime/gmstrftime/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s gmstrftime looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.326Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.395Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's gmstrftime in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s gmstrftime looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">gmstrftime</span> (<span class="params">format, timestamp</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/gmstrftime/</span></div><div class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//    input by: Alex</span></div><div class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: gmstrftime("%A", 1062462400)</span></div><div class="line">  <span class="comment">//   returns 1: 'Tuesday'</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> strftime = <span class="built_in">require</span>(<span class="string">'../datetime/strftime'</span>)</div><div class="line"></div><div class="line">  <span class="keyword">const</span> _date = (<span class="keyword">typeof</span> timestamp === <span class="string">'undefined'</span>)</div><div class="line">    ? <span class="keyword">new</span> <span class="built_in">Date</span>()</div><div class="line">    : (timestamp <span class="keyword">instanceof</span> <span class="built_in">Date</span>)</div><div class="line">        ? <span class="keyword">new</span> <span class="built_in">Date</span>(timestamp)</div><div class="line">        : <span class="keyword">new</span> <span class="built_in">Date</span>(timestamp * <span class="number">1000</span>)</div><div class="line"></div><div class="line">  timestamp = <span class="built_in">Date</span>.parse(_date.toUTCString().slice(<span class="number">0</span>, <span class="number">-4</span>)) / <span class="number">1000</span></div><div class="line"></div><div class="line">  <span class="keyword">return</span> strftime(format, timestamp)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/datetime/gmstrftime.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/datetime/gmstrftime.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/datetime/gmstrftime.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/datetime/gmstrftime.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/datetime/gmstrftime.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/datetime/gmstrftime.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -608,7 +608,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

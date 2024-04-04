@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/strings/html_entity_decode/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s html_entity_decode looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.438Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.491Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's html_entity_decode in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s html_entity_decode looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">html_entity_decode</span> (<span class="params">string, quoteStyle</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/html_entity_decode/</span></div><div class="line">  <span class="comment">// original by: john (https://www.jd-tech.net)</span></div><div class="line">  <span class="comment">//    input by: ger</span></div><div class="line">  <span class="comment">//    input by: Ratheous</span></div><div class="line">  <span class="comment">//    input by: Nick Kolosov (https://sammy.ru)</span></div><div class="line">  <span class="comment">// improved by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// improved by: marc andreu</span></div><div class="line">  <span class="comment">//  revised by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">//  revised by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)</span></div><div class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">// bugfixed by: Fox</span></div><div class="line">  <span class="comment">//   example 1: html_entity_decode('Kevin &amp;amp; van Zonneveld')</span></div><div class="line">  <span class="comment">//   returns 1: 'Kevin &amp; van Zonneveld'</span></div><div class="line">  <span class="comment">//   example 2: html_entity_decode('&amp;amp;lt;')</span></div><div class="line">  <span class="comment">//   returns 2: '&amp;lt;'</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> getHtmlTranslationTable = <span class="built_in">require</span>(<span class="string">'../strings/get_html_translation_table'</span>)</div><div class="line">  <span class="keyword">let</span> tmpStr = <span class="string">''</span></div><div class="line">  <span class="keyword">let</span> entity = <span class="string">''</span></div><div class="line">  <span class="keyword">let</span> symbol = <span class="string">''</span></div><div class="line">  tmpStr = string.toString()</div><div class="line"></div><div class="line">  <span class="keyword">const</span> hashMap = getHtmlTranslationTable(<span class="string">'HTML_ENTITIES'</span>, quoteStyle)</div><div class="line">  <span class="keyword">if</span> (hashMap === <span class="literal">false</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// @todo: &amp;amp; problem</span></div><div class="line">  <span class="comment">// https://locutus.io/php/get_html_translation_table:416#comment_97660</span></div><div class="line">  <span class="keyword">delete</span> (hashMap[<span class="string">'&amp;'</span>])</div><div class="line">  hashMap[<span class="string">'&amp;'</span>] = <span class="string">'&amp;amp;'</span></div><div class="line"></div><div class="line">  <span class="keyword">for</span> (symbol <span class="keyword">in</span> hashMap) &#123;</div><div class="line">    entity = hashMap[symbol]</div><div class="line">    tmpStr = tmpStr.split(entity).join(symbol)</div><div class="line">  &#125;</div><div class="line">  tmpStr = tmpStr.split(<span class="string">'&amp;#039;'</span>).join(<span class="string">"'"</span>)</div><div class="line"></div><div class="line">  <span class="keyword">return</span> tmpStr</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/strings/html_entity_decode.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/strings/html_entity_decode.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/strings/html_entity_decode.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/strings/html_entity_decode.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/strings/html_entity_decode.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/strings/html_entity_decode.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -610,7 +610,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

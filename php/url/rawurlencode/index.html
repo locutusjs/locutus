@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/url/rawurlencode/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s rawurlencode looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.526Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.551Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's rawurlencode in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s rawurlencode looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">rawurlencode</span> (<span class="params">str</span>) </span>&#123;</div><div class="line">  <span class="comment">//       discuss at: https://locutus.io/php/rawurlencode/</span></div><div class="line">  <span class="comment">//      original by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//         input by: travc</span></div><div class="line">  <span class="comment">//         input by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//         input by: Michael Grier</span></div><div class="line">  <span class="comment">//         input by: Ratheous</span></div><div class="line">  <span class="comment">//      bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">//      bugfixed by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//      bugfixed by: Joris</span></div><div class="line">  <span class="comment">// reimplemented by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">// reimplemented by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//           note 1: This reflects PHP 5.3/6.0+ behavior</span></div><div class="line">  <span class="comment">//           note 1: Please be aware that this function expects \</span></div><div class="line">  <span class="comment">//           note 1: to encode into UTF-8 encoded strings, as found on</span></div><div class="line">  <span class="comment">//           note 1: pages served as UTF-8</span></div><div class="line">  <span class="comment">//        example 1: rawurlencode('Kevin van Zonneveld!')</span></div><div class="line">  <span class="comment">//        returns 1: 'Kevin%20van%20Zonneveld%21'</span></div><div class="line">  <span class="comment">//        example 2: rawurlencode('https://kvz.io/')</span></div><div class="line">  <span class="comment">//        returns 2: 'https%3A%2F%2Fkvz.io%2F'</span></div><div class="line">  <span class="comment">//        example 3: rawurlencode('https://www.google.nl/search?q=Locutus&amp;ie=utf-8')</span></div><div class="line">  <span class="comment">//        returns 3: 'https%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3Dutf-8'</span></div><div class="line"></div><div class="line">  str = (str + <span class="string">''</span>)</div><div class="line"></div><div class="line">  <span class="comment">// Tilde should be allowed unescaped in future versions of PHP (as reflected below),</span></div><div class="line">  <span class="comment">// but if you want to reflect current</span></div><div class="line">  <span class="comment">// PHP behavior, you would need to add ".replace(/~/g, '%7E');" to the following.</span></div><div class="line">  <span class="keyword">return</span> <span class="built_in">encodeURIComponent</span>(str)</div><div class="line">    .replace(<span class="regexp">/!/g</span>, <span class="string">'%21'</span>)</div><div class="line">    .replace(<span class="regexp">/'/g</span>, <span class="string">'%27'</span>)</div><div class="line">    .replace(<span class="regexp">/\(/g</span>, <span class="string">'%28'</span>)</div><div class="line">    .replace(<span class="regexp">/\)/g</span>, <span class="string">'%29'</span>)</div><div class="line">    .replace(<span class="regexp">/\*/g</span>, <span class="string">'%2A'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/url/rawurlencode.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/url/rawurlencode.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/url/rawurlencode.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/url/rawurlencode.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/url/rawurlencode.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/url/rawurlencode.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -623,7 +623,7 @@ pages served as UTF-8</p>
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

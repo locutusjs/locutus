@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/array/array_change_key_case/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s array_change_key_case looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.194Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.291Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's array_change_key_case in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s array_change_key_case looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">array_change_key_case</span> (<span class="params">array, cs</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_change_key_case/</span></div><div class="line">  <span class="comment">// original by: Ates Goral (https://magnetiq.com)</span></div><div class="line">  <span class="comment">// improved by: marrtins</span></div><div class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: array_change_key_case(42)</span></div><div class="line">  <span class="comment">//   returns 1: false</span></div><div class="line">  <span class="comment">//   example 2: array_change_key_case([ 3, 5 ])</span></div><div class="line">  <span class="comment">//   returns 2: [3, 5]</span></div><div class="line">  <span class="comment">//   example 3: array_change_key_case(&#123; FuBaR: 42 &#125;)</span></div><div class="line">  <span class="comment">//   returns 3: &#123;"fubar": 42&#125;</span></div><div class="line">  <span class="comment">//   example 4: array_change_key_case(&#123; FuBaR: 42 &#125;, 'CASE_LOWER')</span></div><div class="line">  <span class="comment">//   returns 4: &#123;"fubar": 42&#125;</span></div><div class="line">  <span class="comment">//   example 5: array_change_key_case(&#123; FuBaR: 42 &#125;, 'CASE_UPPER')</span></div><div class="line">  <span class="comment">//   returns 5: &#123;"FUBAR": 42&#125;</span></div><div class="line">  <span class="comment">//   example 6: array_change_key_case(&#123; FuBaR: 42 &#125;, 2)</span></div><div class="line">  <span class="comment">//   returns 6: &#123;"FUBAR": 42&#125;</span></div><div class="line"></div><div class="line">  <span class="keyword">let</span> caseFnc</div><div class="line">  <span class="keyword">let</span> key</div><div class="line">  <span class="keyword">const</span> tmpArr = &#123;&#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(array) === <span class="string">'[object Array]'</span>) &#123;</div><div class="line">    <span class="keyword">return</span> array</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (array &amp;&amp; <span class="keyword">typeof</span> array === <span class="string">'object'</span>) &#123;</div><div class="line">    caseFnc = (!cs || cs === <span class="string">'CASE_LOWER'</span>) ? <span class="string">'toLowerCase'</span> : <span class="string">'toUpperCase'</span></div><div class="line">    <span class="keyword">for</span> (key <span class="keyword">in</span> array) &#123;</div><div class="line">      tmpArr[key[caseFnc]()] = array[key]</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> tmpArr</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/array/array_change_key_case.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/array/array_change_key_case.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/array/array_change_key_case.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/array/array_change_key_case.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/array/array_change_key_case.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/array/array_change_key_case.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -633,7 +633,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

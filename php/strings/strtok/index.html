@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/strings/strtok/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s strtok looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.510Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.539Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's strtok in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s strtok looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">strtok</span> (<span class="params">str, tokens</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/strtok/</span></div><div class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//      note 1: Use tab and newline as tokenizing characters as well</span></div><div class="line">  <span class="comment">//   example 1: var $string = "\t\t\t\nThis is\tan example\nstring\n"</span></div><div class="line">  <span class="comment">//   example 1: var $tok = strtok($string, " \n\t")</span></div><div class="line">  <span class="comment">//   example 1: var $b = ''</span></div><div class="line">  <span class="comment">//   example 1: while ($tok !== false) &#123;$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");&#125;</span></div><div class="line">  <span class="comment">//   example 1: var $result = $b</span></div><div class="line">  <span class="comment">//   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> $global = (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : global)</div><div class="line">  $global.$locutus = $global.$locutus || &#123;&#125;</div><div class="line">  <span class="keyword">const</span> $locutus = $global.$locutus</div><div class="line">  $locutus.php = $locutus.php || &#123;&#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (tokens === <span class="literal">undefined</span>) &#123;</div><div class="line">    tokens = str</div><div class="line">    str = $locutus.php.strtokleftOver</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (str.length === <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (tokens.indexOf(str.charAt(<span class="number">0</span>)) !== <span class="number">-1</span>) &#123;</div><div class="line">    <span class="keyword">return</span> strtok(str.substr(<span class="number">1</span>), tokens)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; str.length; i++) &#123;</div><div class="line">    <span class="keyword">if</span> (tokens.indexOf(str.charAt(i)) !== <span class="number">-1</span>) &#123;</div><div class="line">      <span class="keyword">break</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  $locutus.php.strtokleftOver = str.substr(i + <span class="number">1</span>)</div><div class="line"></div><div class="line">  <span class="keyword">return</span> str.substring(<span class="number">0</span>, i)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/strings/strtok.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/strings/strtok.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/strings/strtok.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/strings/strtok.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/strings/strtok.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/strings/strtok.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -620,7 +620,7 @@ var $result = $b</code></td><td><code>&quot;Word=This\nWord=is\nWord=an\nWord=ex
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

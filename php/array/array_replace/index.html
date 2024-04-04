@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/array/array_replace/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s array_replace looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.250Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's array_replace in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s array_replace looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">array_replace</span> (<span class="params">arr</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_replace/</span></div><div class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: array_replace(["orange", "banana", "apple", "raspberry"], &#123;0 : "pineapple", 4 : "cherry"&#125;, &#123;0:"grape"&#125;)</span></div><div class="line">  <span class="comment">//   returns 1: &#123;0: 'grape', 1: 'banana', 2: 'apple', 3: 'raspberry', 4: 'cherry'&#125;</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> retObj = &#123;&#125;</div><div class="line">  <span class="keyword">let</span> i = <span class="number">0</span></div><div class="line">  <span class="keyword">let</span> p = <span class="string">''</span></div><div class="line">  <span class="keyword">const</span> argl = <span class="built_in">arguments</span>.length</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (argl &lt; <span class="number">2</span>) &#123;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'There should be at least 2 arguments passed to array_replace()'</span>)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// Although docs state that the arguments are passed in by reference,</span></div><div class="line">  <span class="comment">// it seems they are not altered, but rather the copy that is returned</span></div><div class="line">  <span class="comment">// (just guessing), so we make a copy here, instead of acting on arr itself</span></div><div class="line">  <span class="keyword">for</span> (p <span class="keyword">in</span> arr) &#123;</div><div class="line">    retObj[p] = arr[p]</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; argl; i++) &#123;</div><div class="line">    <span class="keyword">for</span> (p <span class="keyword">in</span> <span class="built_in">arguments</span>[i]) &#123;</div><div class="line">      retObj[p] = <span class="built_in">arguments</span>[i][p]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> retObj</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/array/array_replace.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/array/array_replace.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/array/array_replace.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/array/array_replace.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/array/array_replace.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/array/array_replace.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -623,7 +623,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

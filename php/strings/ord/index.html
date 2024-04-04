@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/strings/ord/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s ord looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.454Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.503Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's ord in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s ord looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">ord</span> (<span class="params">string</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/ord/</span></div><div class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)</span></div><div class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//    input by: incidence</span></div><div class="line">  <span class="comment">//   example 1: ord('K')</span></div><div class="line">  <span class="comment">//   returns 1: 75</span></div><div class="line">  <span class="comment">//   example 2: ord('\uD800\uDC00'); // surrogate pair to create a single Unicode character</span></div><div class="line">  <span class="comment">//   returns 2: 65536</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> str = string + <span class="string">''</span></div><div class="line">  <span class="keyword">const</span> code = str.charCodeAt(<span class="number">0</span>)</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (code &gt;= <span class="number">0xD800</span> &amp;&amp; code &lt;= <span class="number">0xDBFF</span>) &#123;</div><div class="line">    <span class="comment">// High surrogate (could change last hex to 0xDB7F to treat</span></div><div class="line">    <span class="comment">// high private surrogates as single characters)</span></div><div class="line">    <span class="keyword">const</span> hi = code</div><div class="line">    <span class="keyword">if</span> (str.length === <span class="number">1</span>) &#123;</div><div class="line">      <span class="comment">// This is just a high surrogate with no following low surrogate,</span></div><div class="line">      <span class="comment">// so we return its value;</span></div><div class="line">      <span class="keyword">return</span> code</div><div class="line">      <span class="comment">// we could also throw an error as it is not a complete character,</span></div><div class="line">      <span class="comment">// but someone may want to know</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">const</span> low = str.charCodeAt(<span class="number">1</span>)</div><div class="line">    <span class="keyword">return</span> ((hi - <span class="number">0xD800</span>) * <span class="number">0x400</span>) + (low - <span class="number">0xDC00</span>) + <span class="number">0x10000</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (code &gt;= <span class="number">0xDC00</span> &amp;&amp; code &lt;= <span class="number">0xDFFF</span>) &#123;</div><div class="line">    <span class="comment">// Low surrogate</span></div><div class="line">    <span class="comment">// This is just a low surrogate with no preceding high surrogate,</span></div><div class="line">    <span class="comment">// so we return its value;</span></div><div class="line">    <span class="keyword">return</span> code</div><div class="line">    <span class="comment">// we could also throw an error as it is not a complete character,</span></div><div class="line">    <span class="comment">// but someone may want to know</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> code</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/strings/ord.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/strings/ord.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/strings/ord.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/strings/ord.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/strings/ord.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/strings/ord.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -610,7 +610,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

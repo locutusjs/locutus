@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/info/ini_get/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s ini_get looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.370Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.431Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's ini_get in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s ini_get looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">ini_get</span> (<span class="params">varname</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/ini_get/</span></div><div class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//      note 1: The ini values must be set by ini_set or manually within an ini file</span></div><div class="line">  <span class="comment">//   example 1: ini_set('date.timezone', 'Asia/Hong_Kong')</span></div><div class="line">  <span class="comment">//   example 1: ini_get('date.timezone')</span></div><div class="line">  <span class="comment">//   returns 1: 'Asia/Hong_Kong'</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> $global = (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : global)</div><div class="line">  $global.$locutus = $global.$locutus || &#123;&#125;</div><div class="line">  <span class="keyword">const</span> $locutus = $global.$locutus</div><div class="line">  $locutus.php = $locutus.php || &#123;&#125;</div><div class="line">  $locutus.php.ini = $locutus.php.ini || &#123;&#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> ($locutus.php.ini[varname] &amp;&amp; $locutus.php.ini[varname].local_value !== <span class="literal">undefined</span>) &#123;</div><div class="line">    <span class="keyword">if</span> ($locutus.php.ini[varname].local_value === <span class="literal">null</span>) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="string">''</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> $locutus.php.ini[varname].local_value</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="string">''</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/info/ini_get.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/info/ini_get.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/info/ini_get.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/info/ini_get.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/info/ini_get.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/info/ini_get.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -617,7 +617,7 @@ ini_get(&#39;date.timezone&#39;)</code></td><td><code>&#39;Asia/Hong_Kong&#39;</
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

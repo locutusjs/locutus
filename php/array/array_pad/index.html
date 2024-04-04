@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/array/array_pad/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s array_pad looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.230Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.319Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's array_pad in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s array_pad looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">array_pad</span> (<span class="params">input, padSize, padValue</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_pad/</span></div><div class="line">  <span class="comment">// original by: Waldo Malqui Silva (https://waldo.malqui.info)</span></div><div class="line">  <span class="comment">//   example 1: array_pad([ 7, 8, 9 ], 2, 'a')</span></div><div class="line">  <span class="comment">//   returns 1: [ 7, 8, 9]</span></div><div class="line">  <span class="comment">//   example 2: array_pad([ 7, 8, 9 ], 5, 'a')</span></div><div class="line">  <span class="comment">//   returns 2: [ 7, 8, 9, 'a', 'a']</span></div><div class="line">  <span class="comment">//   example 3: array_pad([ 7, 8, 9 ], 5, 2)</span></div><div class="line">  <span class="comment">//   returns 3: [ 7, 8, 9, 2, 2]</span></div><div class="line">  <span class="comment">//   example 4: array_pad([ 7, 8, 9 ], -5, 'a')</span></div><div class="line">  <span class="comment">//   returns 4: [ 'a', 'a', 7, 8, 9 ]</span></div><div class="line"></div><div class="line">  <span class="keyword">let</span> pad = []</div><div class="line">  <span class="keyword">const</span> newArray = []</div><div class="line">  <span class="keyword">let</span> newLength</div><div class="line">  <span class="keyword">let</span> diff = <span class="number">0</span></div><div class="line">  <span class="keyword">let</span> i = <span class="number">0</span></div><div class="line"></div><div class="line">  <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(input) === <span class="string">'[object Array]'</span> &amp;&amp; !<span class="built_in">isNaN</span>(padSize)) &#123;</div><div class="line">    newLength = ((padSize &lt; <span class="number">0</span>) ? (padSize * <span class="number">-1</span>) : padSize)</div><div class="line">    diff = newLength - input.length</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</div><div class="line">      <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; diff; i++) &#123;</div><div class="line">        newArray[i] = padValue</div><div class="line">      &#125;</div><div class="line">      pad = ((padSize &lt; <span class="number">0</span>) ? newArray.concat(input) : input.concat(newArray))</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      pad = input</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> pad</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/array/array_pad.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/array/array_pad.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/array/array_pad.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/array/array_pad.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/array/array_pad.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/array/array_pad.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -629,7 +629,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

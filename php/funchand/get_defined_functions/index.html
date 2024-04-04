@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/funchand/get_defined_functions/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s get_defined_functions looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.362Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's get_defined_functions in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s get_defined_functions looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">get_defined_functions</span> (<span class="params"></span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/get_defined_functions/</span></div><div class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//      note 1: Test case 1: If get_defined_functions can find</span></div><div class="line">  <span class="comment">//      note 1: itself in the defined functions, it worked :)</span></div><div class="line">  <span class="comment">//   example 1: function test_in_array (array, p_val) &#123;for(var i = 0, l = array.length; i &lt; l; i++) &#123;if (array[i] === p_val) return true&#125; return false&#125;</span></div><div class="line">  <span class="comment">//   example 1: var $funcs = get_defined_functions()</span></div><div class="line">  <span class="comment">//   example 1: var $found = test_in_array($funcs, 'get_defined_functions')</span></div><div class="line">  <span class="comment">//   example 1: var $result = $found</span></div><div class="line">  <span class="comment">//   returns 1: true</span></div><div class="line">  <span class="comment">//        test: skip-1</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> $global = (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : global)</div><div class="line">  $global.$locutus = $global.$locutus || &#123;&#125;</div><div class="line">  <span class="keyword">const</span> $locutus = $global.$locutus</div><div class="line">  $locutus.php = $locutus.php || &#123;&#125;</div><div class="line"></div><div class="line">  <span class="keyword">let</span> i = <span class="string">''</span></div><div class="line">  <span class="keyword">const</span> arr = []</div><div class="line">  <span class="keyword">const</span> already = &#123;&#125;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (i <span class="keyword">in</span> $global) &#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> $global[i] === <span class="string">'function'</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (!already[i]) &#123;</div><div class="line">          already[i] = <span class="number">1</span></div><div class="line">          arr.push(i)</div><div class="line">        &#125;</div><div class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> $global[i] === <span class="string">'object'</span>) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">const</span> j <span class="keyword">in</span> $global[i]) &#123;</div><div class="line">          <span class="keyword">if</span> (<span class="keyword">typeof</span> $global[j] === <span class="string">'function'</span> &amp;&amp; $global[j] &amp;&amp; !already[j]) &#123;</div><div class="line">            already[j] = <span class="number">1</span></div><div class="line">            arr.push(j)</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">      <span class="comment">// Some objects in Firefox throw exceptions when their</span></div><div class="line">      <span class="comment">// properties are accessed (e.g., sessionStorage)</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> arr</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/funchand/get_defined_functions.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/funchand/get_defined_functions.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/funchand/get_defined_functions.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/funchand/get_defined_functions.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/funchand/get_defined_functions.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/funchand/get_defined_functions.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -620,7 +620,7 @@ var $result = $found</code></td><td><code>true</code></td></tr>
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

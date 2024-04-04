@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/var/isset/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s isset looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.546Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's isset in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s isset looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">isset</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/isset/</span></div><div class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// improved by: FremyCompany</span></div><div class="line">  <span class="comment">// improved by: Onno Marsman (https://twitter.com/onnomarsman)</span></div><div class="line">  <span class="comment">// improved by: Rafał Kukawski (https://blog.kukawski.pl)</span></div><div class="line">  <span class="comment">//   example 1: isset( undefined, true)</span></div><div class="line">  <span class="comment">//   returns 1: false</span></div><div class="line">  <span class="comment">//   example 2: isset( 'Kevin van Zonneveld' )</span></div><div class="line">  <span class="comment">//   returns 2: true</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> a = <span class="built_in">arguments</span></div><div class="line">  <span class="keyword">const</span> l = a.length</div><div class="line">  <span class="keyword">let</span> i = <span class="number">0</span></div><div class="line">  <span class="keyword">let</span> undef</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (l === <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Empty isset'</span>)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">while</span> (i !== l) &#123;</div><div class="line">    <span class="keyword">if</span> (a[i] === undef || a[i] === <span class="literal">null</span>) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">    &#125;</div><div class="line">    i++</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/var/isset.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/var/isset.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/var/isset.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/var/isset.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/var/isset.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/var/isset.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -610,7 +610,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

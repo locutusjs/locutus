@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/network/setrawcookie/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s setrawcookie looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.414Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.467Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's setrawcookie in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s setrawcookie looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">setrawcookie</span> (<span class="params">name, value, expires, path, domain, secure</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/setrawcookie/</span></div><div class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">// original by: setcookie</span></div><div class="line">  <span class="comment">// improved by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">//    input by: Michael</span></div><div class="line">  <span class="comment">//      note 1: This function requires access to the `window` global and is Browser-only</span></div><div class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: setrawcookie('author_name', 'Kevin van Zonneveld')</span></div><div class="line">  <span class="comment">//   returns 1: true</span></div><div class="line"></div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span> === <span class="string">'undefined'</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> expires === <span class="string">'string'</span> &amp;&amp; (<span class="regexp">/^\d+$/</span>).test(expires)) &#123;</div><div class="line">    expires = <span class="built_in">parseInt</span>(expires, <span class="number">10</span>)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (expires <span class="keyword">instanceof</span> <span class="built_in">Date</span>) &#123;</div><div class="line">    expires = expires.toUTCString()</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> expires === <span class="string">'number'</span>) &#123;</div><div class="line">    expires = (<span class="keyword">new</span> <span class="built_in">Date</span>(expires * <span class="number">1e3</span>)).toUTCString()</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">const</span> r = [name + <span class="string">'='</span> + value]</div><div class="line">  <span class="keyword">let</span> i = <span class="string">''</span></div><div class="line">  <span class="keyword">const</span> s = &#123;</div><div class="line">    <span class="attr">expires</span>: expires,</div><div class="line">    <span class="attr">path</span>: path,</div><div class="line">    <span class="attr">domain</span>: domain</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">for</span> (i <span class="keyword">in</span> s) &#123;</div><div class="line">    <span class="keyword">if</span> (s.hasOwnProperty(i)) &#123;</div><div class="line">      <span class="comment">// Exclude items on Object.prototype</span></div><div class="line">      s[i] &amp;&amp; r.push(i + <span class="string">'='</span> + s[i])</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (secure) &#123;</div><div class="line">    r.push(<span class="string">'secure'</span>)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="built_in">window</span>.document.cookie = r.join(<span class="string">';'</span>)</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/network/setrawcookie.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/network/setrawcookie.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/network/setrawcookie.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/network/setrawcookie.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/network/setrawcookie.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/network/setrawcookie.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -616,7 +616,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

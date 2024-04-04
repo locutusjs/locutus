@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/strings/str_shuffle/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s str_shuffle looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.474Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.519Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's str_shuffle in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s str_shuffle looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">str_shuffle</span> (<span class="params">str</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/str_shuffle/</span></div><div class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: var $shuffled = str_shuffle("abcdef")</span></div><div class="line">  <span class="comment">//   example 1: var $result = $shuffled.length</span></div><div class="line">  <span class="comment">//   returns 1: 6</span></div><div class="line"></div><div class="line">  <span class="keyword">if</span> (<span class="built_in">arguments</span>.length === <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Wrong parameter count for str_shuffle()'</span>)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (str === <span class="literal">null</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">''</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  str += <span class="string">''</span></div><div class="line"></div><div class="line">  <span class="keyword">let</span> newStr = <span class="string">''</span></div><div class="line">  <span class="keyword">let</span> rand</div><div class="line">  <span class="keyword">let</span> i = str.length</div><div class="line"></div><div class="line">  <span class="keyword">while</span> (i) &#123;</div><div class="line">    rand = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * i)</div><div class="line">    newStr += str.charAt(rand)</div><div class="line">    str = str.substring(<span class="number">0</span>, rand) + str.substr(rand + <span class="number">1</span>)</div><div class="line">    i--</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> newStr</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/strings/str_shuffle.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/strings/str_shuffle.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/strings/str_shuffle.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/strings/str_shuffle.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/strings/str_shuffle.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/strings/str_shuffle.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -609,7 +609,7 @@ var $result = $shuffled.length</code></td><td><code>6</code></td></tr>
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

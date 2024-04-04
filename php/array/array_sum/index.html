@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/array/array_sum/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s array_sum looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.258Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.339Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's array_sum in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s array_sum looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">array_sum</span> (<span class="params">array</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_sum/</span></div><div class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// bugfixed by: Nate</span></div><div class="line">  <span class="comment">// bugfixed by: Gilbert</span></div><div class="line">  <span class="comment">// improved by: David Pilia (https://www.beteck.it/)</span></div><div class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: array_sum([4, 9, 182.6])</span></div><div class="line">  <span class="comment">//   returns 1: 195.6</span></div><div class="line">  <span class="comment">//   example 2: var $total = []</span></div><div class="line">  <span class="comment">//   example 2: var $index = 0.1</span></div><div class="line">  <span class="comment">//   example 2: for (var $y = 0; $y &lt; 12; $y++)&#123; $total[$y] = $y + $index &#125;</span></div><div class="line">  <span class="comment">//   example 2: array_sum($total)</span></div><div class="line">  <span class="comment">//   returns 2: 67.2</span></div><div class="line"></div><div class="line">  <span class="keyword">let</span> key</div><div class="line">  <span class="keyword">let</span> sum = <span class="number">0</span></div><div class="line"></div><div class="line">  <span class="comment">// input sanitation</span></div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> array !== <span class="string">'object'</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">null</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">for</span> (key <span class="keyword">in</span> array) &#123;</div><div class="line">    <span class="keyword">if</span> (!<span class="built_in">isNaN</span>(<span class="built_in">parseFloat</span>(array[key]))) &#123;</div><div class="line">      sum += <span class="built_in">parseFloat</span>(array[key])</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> sum</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/array/array_sum.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/array/array_sum.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/array/array_sum.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/array/array_sum.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/array/array_sum.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/array/array_sum.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -628,7 +628,7 @@ array_sum($total)</code></td><td><code>67.2</code></td></tr>
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

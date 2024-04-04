@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/var/boolval/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s boolval looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.526Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.555Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's boolval in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s boolval looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">boolval</span> (<span class="params">mixedVar</span>) </span>&#123;</div><div class="line">  <span class="comment">// original by: Will Rowe</span></div><div class="line">  <span class="comment">//   example 1: boolval(true)</span></div><div class="line">  <span class="comment">//   returns 1: true</span></div><div class="line">  <span class="comment">//   example 2: boolval(false)</span></div><div class="line">  <span class="comment">//   returns 2: false</span></div><div class="line">  <span class="comment">//   example 3: boolval(0)</span></div><div class="line">  <span class="comment">//   returns 3: false</span></div><div class="line">  <span class="comment">//   example 4: boolval(0.0)</span></div><div class="line">  <span class="comment">//   returns 4: false</span></div><div class="line">  <span class="comment">//   example 5: boolval('')</span></div><div class="line">  <span class="comment">//   returns 5: false</span></div><div class="line">  <span class="comment">//   example 6: boolval('0')</span></div><div class="line">  <span class="comment">//   returns 6: false</span></div><div class="line">  <span class="comment">//   example 7: boolval([])</span></div><div class="line">  <span class="comment">//   returns 7: false</span></div><div class="line">  <span class="comment">//   example 8: boolval('')</span></div><div class="line">  <span class="comment">//   returns 8: false</span></div><div class="line">  <span class="comment">//   example 9: boolval(null)</span></div><div class="line">  <span class="comment">//   returns 9: false</span></div><div class="line">  <span class="comment">//   example 10: boolval(undefined)</span></div><div class="line">  <span class="comment">//   returns 10: false</span></div><div class="line">  <span class="comment">//   example 11: boolval('true')</span></div><div class="line">  <span class="comment">//   returns 11: true</span></div><div class="line"></div><div class="line">  <span class="keyword">if</span> (mixedVar === <span class="literal">false</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (mixedVar === <span class="number">0</span> || mixedVar === <span class="number">0.0</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (mixedVar === <span class="string">''</span> || mixedVar === <span class="string">'0'</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(mixedVar) &amp;&amp; mixedVar.length === <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (mixedVar === <span class="literal">null</span> || mixedVar === <span class="literal">undefined</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/var/boolval.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/var/boolval.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/var/boolval.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/var/boolval.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/var/boolval.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/var/boolval.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -628,7 +628,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

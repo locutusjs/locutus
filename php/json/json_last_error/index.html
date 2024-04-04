@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/json/json_last_error/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s json_last_error looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.378Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.435Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's json_last_error in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s json_last_error looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">json_last_error</span> (<span class="params"></span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://phpjs.org/functions/json_last_error/</span></div><div class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: json_last_error()</span></div><div class="line">  <span class="comment">//   returns 1: 0</span></div><div class="line"></div><div class="line">  <span class="comment">// JSON_ERROR_NONE = 0</span></div><div class="line">  <span class="comment">// max depth limit to be removed per PHP comments in json.c (not possible in JS?):</span></div><div class="line">  <span class="comment">// JSON_ERROR_DEPTH = 1</span></div><div class="line">  <span class="comment">// internal use? also not documented:</span></div><div class="line">  <span class="comment">// JSON_ERROR_STATE_MISMATCH = 2</span></div><div class="line">  <span class="comment">// [\u0000-\u0008\u000B-\u000C\u000E-\u001F] if used directly within json_decode():</span></div><div class="line">  <span class="comment">// JSON_ERROR_CTRL_CHAR = 3</span></div><div class="line">  <span class="comment">// but JSON functions auto-escape these, so error not possible in JavaScript</span></div><div class="line">  <span class="comment">// JSON_ERROR_SYNTAX = 4</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> $global = (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> ? <span class="built_in">window</span> : global)</div><div class="line">  $global.$locutus = $global.$locutus || &#123;&#125;</div><div class="line">  <span class="keyword">const</span> $locutus = $global.$locutus</div><div class="line">  $locutus.php = $locutus.php || &#123;&#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> $locutus.php &amp;&amp; $locutus.php.last_error_json ? $locutus.php.last_error_json : <span class="number">0</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/json/json_last_error.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/json/json_last_error.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/json/json_last_error.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/json/json_last_error.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/json/json_last_error.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/json/json_last_error.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -608,7 +608,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/var/floatval/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s floatval looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.534Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.555Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's floatval in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s floatval looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">floatval</span> (<span class="params">mixedVar</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/floatval/</span></div><div class="line">  <span class="comment">// original by: Michael White (https://getsprink.com)</span></div><div class="line">  <span class="comment">//      note 1: The native parseFloat() method of JavaScript returns NaN</span></div><div class="line">  <span class="comment">//      note 1: when it encounters a string before an int or float value.</span></div><div class="line">  <span class="comment">//   example 1: floatval('150.03_page-section')</span></div><div class="line">  <span class="comment">//   returns 1: 150.03</span></div><div class="line">  <span class="comment">//   example 2: floatval('page: 3')</span></div><div class="line">  <span class="comment">//   example 2: floatval('-50 + 8')</span></div><div class="line">  <span class="comment">//   returns 2: 0</span></div><div class="line">  <span class="comment">//   returns 2: -50</span></div><div class="line"></div><div class="line">  <span class="keyword">return</span> (<span class="built_in">parseFloat</span>(mixedVar) || <span class="number">0</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/var/floatval.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/var/floatval.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/var/floatval.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/var/floatval.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/var/floatval.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/var/floatval.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -621,7 +621,7 @@ floatval(&#39;-50 + 8&#39;)</code></td><td><code>0
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

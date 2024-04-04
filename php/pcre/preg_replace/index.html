@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/pcre/preg_replace/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s preg_replace looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.418Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.467Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's preg_replace in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s preg_replace looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">preg_replace</span> (<span class="params">pattern, replacement, string</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//   original by: rony2k6 (https://github.com/rony2k6)</span></div><div class="line">  <span class="comment">//   example 1: preg_replace('/xmas/i', 'Christmas', 'It was the night before Xmas.')</span></div><div class="line">  <span class="comment">//   returns 1: "It was the night before Christmas."</span></div><div class="line">  <span class="comment">//   example 2: preg_replace('/xmas/ig', 'Christmas', 'xMas: It was the night before Xmas.')</span></div><div class="line">  <span class="comment">//   returns 2: "Christmas: It was the night before Christmas."</span></div><div class="line">  <span class="comment">//   example 3: preg_replace('\/(\\w+) (\\d+), (\\d+)\/i', '$11,$3', 'April 15, 2003')</span></div><div class="line">  <span class="comment">//   returns 3: "April1,2003"</span></div><div class="line">  <span class="comment">//   example 4: preg_replace('/[^a-zA-Z0-9]+/', '', 'The Development of code . http://www.')</span></div><div class="line">  <span class="comment">//   returns 4: "TheDevelopmentofcodehttpwww"</span></div><div class="line">  <span class="comment">//   example 5: preg_replace('/[^A-Za-z0-9_\\s]/', '', 'D"usseldorfer H"auptstrasse')</span></div><div class="line">  <span class="comment">//   returns 5: "Dusseldorfer Hauptstrasse"</span></div><div class="line">  <span class="keyword">let</span> _flag = pattern.substr(pattern.lastIndexOf(pattern[<span class="number">0</span>]) + <span class="number">1</span>)</div><div class="line">  _flag = (_flag !== <span class="string">''</span>) ? _flag : <span class="string">'g'</span></div><div class="line">  <span class="keyword">const</span> _pattern = pattern.substr(<span class="number">1</span>, pattern.lastIndexOf(pattern[<span class="number">0</span>]) - <span class="number">1</span>)</div><div class="line">  <span class="keyword">const</span> regex = <span class="keyword">new</span> <span class="built_in">RegExp</span>(_pattern, _flag)</div><div class="line">  <span class="keyword">const</span> result = string.replace(regex, replacement)</div><div class="line"></div><div class="line">  <span class="keyword">return</span> result</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/pcre/preg_replace.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/pcre/preg_replace.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/pcre/preg_replace.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/pcre/preg_replace.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/pcre/preg_replace.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/pcre/preg_replace.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -616,7 +616,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

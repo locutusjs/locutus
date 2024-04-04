@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/filesystem/basename/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s basename looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.354Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.415Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's basename in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s basename looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">basename</span> (<span class="params">path, suffix</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/basename/</span></div><div class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// improved by: Ash Searle (https://hexmen.com/blog/)</span></div><div class="line">  <span class="comment">// improved by: Lincoln Ramsay</span></div><div class="line">  <span class="comment">// improved by: djmix</span></div><div class="line">  <span class="comment">// improved by: Dmitry Gorelenkov</span></div><div class="line">  <span class="comment">//   example 1: basename('/www/site/home.htm', '.htm')</span></div><div class="line">  <span class="comment">//   returns 1: 'home'</span></div><div class="line">  <span class="comment">//   example 2: basename('ecra.php?p=1')</span></div><div class="line">  <span class="comment">//   returns 2: 'ecra.php?p=1'</span></div><div class="line">  <span class="comment">//   example 3: basename('/some/path/')</span></div><div class="line">  <span class="comment">//   returns 3: 'path'</span></div><div class="line">  <span class="comment">//   example 4: basename('/some/path_ext.ext/','.ext')</span></div><div class="line">  <span class="comment">//   returns 4: 'path_ext'</span></div><div class="line"></div><div class="line">  <span class="keyword">let</span> b = path</div><div class="line">  <span class="keyword">const</span> lastChar = b.charAt(b.length - <span class="number">1</span>)</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (lastChar === <span class="string">'/'</span> || lastChar === <span class="string">'\\'</span>) &#123;</div><div class="line">    b = b.slice(<span class="number">0</span>, <span class="number">-1</span>)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  b = b.replace(<span class="regexp">/^.*[/\\]/g</span>, <span class="string">''</span>)</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> suffix === <span class="string">'string'</span> &amp;&amp; b.substr(b.length - suffix.length) === suffix) &#123;</div><div class="line">    b = b.substr(<span class="number">0</span>, b.length - suffix.length)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> b</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/filesystem/basename.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/filesystem/basename.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/filesystem/basename.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/filesystem/basename.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/filesystem/basename.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/filesystem/basename.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -614,7 +614,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

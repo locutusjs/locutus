@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/array/array_intersect_assoc/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s array_intersect_assoc looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.214Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's array_intersect_assoc in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s array_intersect_assoc looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">array_intersect_assoc</span> (<span class="params">arr1</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_intersect_assoc/</span></div><div class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//      note 1: These only output associative arrays (would need to be</span></div><div class="line">  <span class="comment">//      note 1: all numeric and counting from zero to be numeric)</span></div><div class="line">  <span class="comment">//   example 1: var $array1 = &#123;a: 'green', b: 'brown', c: 'blue', 0: 'red'&#125;</span></div><div class="line">  <span class="comment">//   example 1: var $array2 = &#123;a: 'green', 0: 'yellow', 1: 'red'&#125;</span></div><div class="line">  <span class="comment">//   example 1: array_intersect_assoc($array1, $array2)</span></div><div class="line">  <span class="comment">//   returns 1: &#123;a: 'green'&#125;</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> retArr = &#123;&#125;</div><div class="line">  <span class="keyword">const</span> argl = <span class="built_in">arguments</span>.length</div><div class="line">  <span class="keyword">const</span> arglm1 = argl - <span class="number">1</span></div><div class="line">  <span class="keyword">let</span> k1 = <span class="string">''</span></div><div class="line">  <span class="keyword">let</span> arr = &#123;&#125;</div><div class="line">  <span class="keyword">let</span> i = <span class="number">0</span></div><div class="line">  <span class="keyword">let</span> k = <span class="string">''</span></div><div class="line"></div><div class="line">  arr1keys: <span class="keyword">for</span> (k1 <span class="keyword">in</span> arr1) &#123; <span class="comment">// eslint-disable-line no-labels</span></div><div class="line">    arrs: <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; argl; i++) &#123; <span class="comment">// eslint-disable-line no-labels</span></div><div class="line">      arr = <span class="built_in">arguments</span>[i]</div><div class="line">      <span class="keyword">for</span> (k <span class="keyword">in</span> arr) &#123;</div><div class="line">        <span class="keyword">if</span> (arr[k] === arr1[k1] &amp;&amp; k === k1) &#123;</div><div class="line">          <span class="keyword">if</span> (i === arglm1) &#123;</div><div class="line">            retArr[k1] = arr1[k1]</div><div class="line">          &#125;</div><div class="line">          <span class="comment">// If the innermost loop always leads at least once to an equal value,</span></div><div class="line">          <span class="comment">// continue the loop until done</span></div><div class="line">          <span class="keyword">continue</span> arrs <span class="comment">// eslint-disable-line no-labels</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// If it reaches here, it wasn't found in at least one array, so try next value</span></div><div class="line">      <span class="keyword">continue</span> arr1keys <span class="comment">// eslint-disable-line no-labels</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> retArr</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/array/array_intersect_assoc.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/array/array_intersect_assoc.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/array/array_intersect_assoc.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/array/array_intersect_assoc.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/array/array_intersect_assoc.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/array/array_intersect_assoc.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -634,7 +634,7 @@ array_intersect_assoc($array1, $array2)</code></td><td><code>{a: &#39;green&#39;
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

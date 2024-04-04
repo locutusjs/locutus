@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/array/array_fill/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s array_fill looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.206Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.295Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's array_fill in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s array_fill looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">array_fill</span> (<span class="params">startIndex, num, mixedVal</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_fill/</span></div><div class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// improved by: Waldo Malqui Silva (https://waldo.malqui.info)</span></div><div class="line">  <span class="comment">//   example 1: array_fill(5, 6, 'banana')</span></div><div class="line">  <span class="comment">//   returns 1: &#123; 5: 'banana', 6: 'banana', 7: 'banana', 8: 'banana', 9: 'banana', 10: 'banana' &#125;</span></div><div class="line"></div><div class="line">  <span class="keyword">let</span> key</div><div class="line">  <span class="keyword">const</span> tmpArr = &#123;&#125;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (!<span class="built_in">isNaN</span>(startIndex) &amp;&amp; !<span class="built_in">isNaN</span>(num)) &#123;</div><div class="line">    <span class="keyword">for</span> (key = <span class="number">0</span>; key &lt; num; key++) &#123;</div><div class="line">      tmpArr[(key + startIndex)] = mixedVal</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> tmpArr</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/array/array_fill.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/array/array_fill.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/array/array_fill.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/array/array_fill.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/array/array_fill.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/array/array_fill.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -623,7 +623,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

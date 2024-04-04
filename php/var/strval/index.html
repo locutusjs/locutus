@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/var/strval/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s strval looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.554Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.575Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's strval in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s strval looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">strval</span> (<span class="params">str</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/strval/</span></div><div class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">// improved by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: strval(&#123;red: 1, green: 2, blue: 3, white: 4&#125;)</span></div><div class="line">  <span class="comment">//   returns 1: 'Object'</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> gettype = <span class="built_in">require</span>(<span class="string">'../var/gettype'</span>)</div><div class="line">  <span class="keyword">let</span> type = <span class="string">''</span></div><div class="line"></div><div class="line">  <span class="keyword">if</span> (str === <span class="literal">null</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">''</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  type = gettype(str)</div><div class="line"></div><div class="line">  <span class="comment">// Comment out the entire switch if you want JS-like</span></div><div class="line">  <span class="comment">// behavior instead of PHP behavior</span></div><div class="line">  <span class="keyword">switch</span> (type) &#123;</div><div class="line">    <span class="keyword">case</span> <span class="string">'boolean'</span>:</div><div class="line">      <span class="keyword">if</span> (str === <span class="literal">true</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">'1'</span></div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> <span class="string">''</span></div><div class="line">    <span class="keyword">case</span> <span class="string">'array'</span>:</div><div class="line">      <span class="keyword">return</span> <span class="string">'Array'</span></div><div class="line">    <span class="keyword">case</span> <span class="string">'object'</span>:</div><div class="line">      <span class="keyword">return</span> <span class="string">'Object'</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> str</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/var/strval.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/var/strval.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/var/strval.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/var/strval.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/var/strval.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/var/strval.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -608,7 +608,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

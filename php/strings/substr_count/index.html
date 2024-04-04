@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/strings/substr_count/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s substr_count looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.510Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.543Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's substr_count in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s substr_count looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">substr_count</span> (<span class="params">haystack, needle, offset, length</span>) </span>&#123; <span class="comment">// eslint-disable-line camelcase</span></div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/substr_count/</span></div><div class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)</span></div><div class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">// improved by: Thomas</span></div><div class="line">  <span class="comment">//   example 1: substr_count('Kevin van Zonneveld', 'e')</span></div><div class="line">  <span class="comment">//   returns 1: 3</span></div><div class="line">  <span class="comment">//   example 2: substr_count('Kevin van Zonneveld', 'K', 1)</span></div><div class="line">  <span class="comment">//   returns 2: 0</span></div><div class="line">  <span class="comment">//   example 3: substr_count('Kevin van Zonneveld', 'Z', 0, 10)</span></div><div class="line">  <span class="comment">//   returns 3: false</span></div><div class="line"></div><div class="line">  <span class="keyword">let</span> cnt = <span class="number">0</span></div><div class="line"></div><div class="line">  haystack += <span class="string">''</span></div><div class="line">  needle += <span class="string">''</span></div><div class="line">  <span class="keyword">if</span> (<span class="built_in">isNaN</span>(offset)) &#123;</div><div class="line">    offset = <span class="number">0</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (<span class="built_in">isNaN</span>(length)) &#123;</div><div class="line">    length = <span class="number">0</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (needle.length === <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line">  offset--</div><div class="line"></div><div class="line">  <span class="keyword">while</span> ((offset = haystack.indexOf(needle, offset + <span class="number">1</span>)) !== <span class="number">-1</span>) &#123;</div><div class="line">    <span class="keyword">if</span> (length &gt; <span class="number">0</span> &amp;&amp; (offset + needle.length) &gt; length) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">    &#125;</div><div class="line">    cnt++</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> cnt</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/strings/substr_count.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/strings/substr_count.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/strings/substr_count.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/strings/substr_count.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/strings/substr_count.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/strings/substr_count.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -612,7 +612,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

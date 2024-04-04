@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/bc/bcsub/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s bcsub looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.310Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.379Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's bcsub in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s bcsub looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">bcsub</span> (<span class="params">leftOperand, rightOperand, scale</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/bcsub/</span></div><div class="line">  <span class="comment">// original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)</span></div><div class="line">  <span class="comment">//   example 1: bcsub('1', '2')</span></div><div class="line">  <span class="comment">//   returns 1: '-1'</span></div><div class="line">  <span class="comment">//   example 2: bcsub('-1', '5', 4)</span></div><div class="line">  <span class="comment">//   returns 2: '-6.0000'</span></div><div class="line">  <span class="comment">//   example 3: bcsub('8728932001983192837219398127471', '1928372132132819737213', 2)</span></div><div class="line">  <span class="comment">//   returns 3: '8728932000054820705086578390258.00'</span></div><div class="line"></div><div class="line">  <span class="keyword">const</span> _bc = <span class="built_in">require</span>(<span class="string">'../_helpers/_bc'</span>)</div><div class="line">  <span class="keyword">const</span> libbcmath = _bc()</div><div class="line"></div><div class="line">  <span class="keyword">let</span> first, second, result</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> scale === <span class="string">'undefined'</span>) &#123;</div><div class="line">    scale = libbcmath.scale</div><div class="line">  &#125;</div><div class="line">  scale = ((scale &lt; <span class="number">0</span>) ? <span class="number">0</span> : scale)</div><div class="line"></div><div class="line">  <span class="comment">// create objects</span></div><div class="line">  first = libbcmath.bc_init_num()</div><div class="line">  second = libbcmath.bc_init_num()</div><div class="line">  result = libbcmath.bc_init_num()</div><div class="line"></div><div class="line">  first = libbcmath.php_str2num(leftOperand.toString())</div><div class="line">  second = libbcmath.php_str2num(rightOperand.toString())</div><div class="line"></div><div class="line">  result = libbcmath.bc_sub(first, second, scale)</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (result.n_scale &gt; scale) &#123;</div><div class="line">    result.n_scale = scale</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> result.toString()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/bc/bcsub.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/bc/bcsub.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/bc/bcsub.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/bc/bcsub.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/bc/bcsub.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/bc/bcsub.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -612,7 +612,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.

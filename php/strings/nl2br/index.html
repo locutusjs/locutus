@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://locutus.io/php/strings/nl2br/index.html">
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s nl2br looks like.">
-<meta property="og:updated_time" content="2022-08-15T18:20:47.454Z">
+<meta property="og:updated_time" content="2024-04-04T14:08:18.503Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP's nl2br in JavaScript">
 <meta name="twitter:description" content="Here’s what our current JavaScript equivalent to PHP&apos;s nl2br looks like.">
@@ -177,11 +177,11 @@ ga('send', 'pageview');
       <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">nl2br</span> (<span class="params">str, isXhtml</span>) </span>&#123;</div><div class="line">  <span class="comment">//  discuss at: https://locutus.io/php/nl2br/</span></div><div class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// improved by: Philip Peterson</span></div><div class="line">  <span class="comment">// improved by: Onno Marsman (https://twitter.com/onnomarsman)</span></div><div class="line">  <span class="comment">// improved by: Atli Þór</span></div><div class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">// improved by: Maximusya</span></div><div class="line">  <span class="comment">// bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)</span></div><div class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></div><div class="line">  <span class="comment">// bugfixed by: Reynier de la Rosa (https://scriptinside.blogspot.com.es/)</span></div><div class="line">  <span class="comment">//    input by: Brett Zamir (https://brett-zamir.me)</span></div><div class="line">  <span class="comment">//   example 1: nl2br('Kevin\nvan\nZonneveld')</span></div><div class="line">  <span class="comment">//   returns 1: 'Kevin&lt;br /&gt;\nvan&lt;br /&gt;\nZonneveld'</span></div><div class="line">  <span class="comment">//   example 2: nl2br("\nOne\nTwo\n\nThree\n", false)</span></div><div class="line">  <span class="comment">//   returns 2: '&lt;br&gt;\nOne&lt;br&gt;\nTwo&lt;br&gt;\n&lt;br&gt;\nThree&lt;br&gt;\n'</span></div><div class="line">  <span class="comment">//   example 3: nl2br("\nOne\nTwo\n\nThree\n", true)</span></div><div class="line">  <span class="comment">//   returns 3: '&lt;br /&gt;\nOne&lt;br /&gt;\nTwo&lt;br /&gt;\n&lt;br /&gt;\nThree&lt;br /&gt;\n'</span></div><div class="line">  <span class="comment">//   example 4: nl2br(null)</span></div><div class="line">  <span class="comment">//   returns 4: ''</span></div><div class="line"></div><div class="line">  <span class="comment">// Some latest browsers when str is null return and unexpected null value</span></div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> str === <span class="string">'undefined'</span> || str === <span class="literal">null</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">''</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// Adjust comment to avoid issue on locutus.io display</span></div><div class="line">  <span class="keyword">const</span> breakTag = (isXhtml || <span class="keyword">typeof</span> isXhtml === <span class="string">'undefined'</span>) ? <span class="string">'&lt;br '</span> + <span class="string">'/&gt;'</span> : <span class="string">'&lt;br&gt;'</span></div><div class="line"></div><div class="line">  <span class="keyword">return</span> (str + <span class="string">''</span>)</div><div class="line">    .replace(<span class="regexp">/(\r\n|\n\r|\r|\n)/g</span>, breakTag + <span class="string">'$1'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       [
-      <a href="https://github.com/locutusjs/locutus/blob/master/src/php/strings/nl2br.js">View on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/strings/nl2br.js">View on GitHub</a>
       |
-      <a href="https://github.com/locutusjs/locutus/edit/master/src/php/strings/nl2br.js">Edit on GitHub</a>
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/strings/nl2br.js">Edit on GitHub</a>
       |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/master/src/php/strings/nl2br.js">Source on GitHub</a>
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/strings/nl2br.js">Source on GitHub</a>
       ]
 
       <div class="clearfix"></div>
@@ -614,7 +614,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2022 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
             Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
