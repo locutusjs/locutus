@@ -5,7 +5,7 @@
   <link href="//atom.xml" rel="self"/>
   
   <link href="https://locutus.io/"/>
-  <updated>2024-04-04T14:07:23.448Z</updated>
+  <updated>2024-04-04T14:08:04.955Z</updated>
   <id>https://locutus.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://locutus.io/2016/05/announcing-locutus/"/>
     <id>https://locutus.io/2016/05/announcing-locutus/</id>
     <published>2016-05-02T00:00:00.000Z</published>
-    <updated>2024-04-04T14:07:23.448Z</updated>
+    <updated>2024-04-04T14:08:04.955Z</updated>
     
     <content type="html"><![CDATA[<p>As was briefly mentioned in <a href="/blog/2016/04/20/breaking-bc/">Breaking Backwards Compatibility</a>, 
 I am launching a big iteration of php.js today. It includes so <a href="https://github.com/locutusjs/locutus/pull/291" target="_blank" rel="external">many</a> breaking <a href="https://github.com/locutusjs/locutus/blob/main/CHANGELOG.md#v200" target="_blank" rel="external">changes</a> that it is safe to say that, after 
@@ -82,7 +82,7 @@ you can try Locutus right now if you want:</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> echo = <span class="built_in">require</span>(<span class="string">'locutus/php/strings/echo'</span>)</div><div class="line"><span class="keyword">var</span> capwords = <span class="built_in">require</span>(<span class="string">'locutus/python/string/capwords'</span>)</div><div class="line"><span class="keyword">var</span> strings = <span class="built_in">require</span>(<span class="string">'locutus/golang/strings'</span>)</div><div class="line"><span class="keyword">var</span> rubyMath = <span class="built_in">require</span>(<span class="string">'locutus/ruby/Math'</span>)</div><div class="line"><span class="keyword">var</span> c = <span class="built_in">require</span>(<span class="string">'locutus/c'</span>)</div><div class="line"></div><div class="line">echo(capwords(<span class="string">'locutus'</span>))</div><div class="line">echo(strings.Contains(<span class="string">'Locutus'</span>, <span class="string">'us'</span>))</div><div class="line">echo(rubyMath.acos(<span class="number">0.3</span>))</div><div class="line">echo(c.math.abs(<span class="number">-5</span>))</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ node index.js</div><div class="line">Locutus</div><div class="line"><span class="literal">true</span></div><div class="line">1.266103672779499</div><div class="line">5</div></pre></td></tr></table></figure>
 <p>If you want to help Locutus, our newly added languages don’t have much meat on the bones yet and it would be fantastic to see if you can think of ways to assimilate a function that Locutus currently does not harbor.</p>
-<p>Also, there are plenty project-wide ideas in our <a href="https://github.com/locutusjs/locutus/blob/master/CHANGELOG.md#Backlog" target="_blank" rel="external">Backlog</a> that we would love help with, so I guess there is just one thing left to say..</p>
+<p>Also, there are plenty project-wide ideas in our <a href="https://github.com/locutusjs/locutus/blob/main/CHANGELOG.md#Backlog" target="_blank" rel="external">Backlog</a> that we would love help with, so I guess there is just one thing left to say..</p>
 <p><a href="https://github.com/locutusjs/locutus" target="_blank" rel="external">To the GitHubs</a>!</p>
 <p><a href="https://twitter.com/kvz" target="_blank" rel="external">Kevin</a></p>
 ]]></content>
@@ -116,7 +116,7 @@ I am launching a big iteration
     <link href="https://locutus.io/2016/04/breaking-bc/"/>
     <id>https://locutus.io/2016/04/breaking-bc/</id>
     <published>2016-04-20T00:00:00.000Z</published>
-    <updated>2024-04-04T14:07:23.448Z</updated>
+    <updated>2024-04-04T14:08:04.955Z</updated>
     
     <content type="html"><![CDATA[<p>Hi all,</p>
 <p>I’m planning to push out a big release soon that will change a lot of things about this project.</p>
@@ -134,7 +134,7 @@ I am launching a big iteration
 <p>until you can figure out how to vendor in that function and host it yourself.</p>
 <p>If you are using the project via npm, the old version will be available under the <code>1.3.2</code> package version.</p>
 <p>If you are using it via Git, use <code>git checkout v1.3.2</code>.</p>
-<p>The new version will be available as <code>v2.0.2</code>, as well as <code>master</code> by the time I launch. I’m not sure yet when that will be, but I thought it might save some headaches to already give the heads up about this.</p>
+<p>The new version will be available as <code>v2.0.2</code>, as well as <code>main</code> by the time I launch. I’m not sure yet when that will be, but I thought it might save some headaches to already give the heads up about this.</p>
 <p>Stay tuned for more,</p>
 <p><a href="https://twitter.com/kvz" target="_blank" rel="external">Kevin</a></p>
 ]]></content>
@@ -157,7 +157,7 @@ I am launching a big iteration
     <link href="https://locutus.io/2016/04/jekyll/"/>
     <id>https://locutus.io/2016/04/jekyll/</id>
     <published>2016-04-02T00:00:00.000Z</published>
-    <updated>2024-04-04T14:07:23.448Z</updated>
+    <updated>2024-04-04T14:08:04.955Z</updated>
     
     <content type="html"><![CDATA[<p>Hi all,</p>
 <p><a href="https://locutus.io/blog/2012/09/new-site/">Four years ago</a> we switched from a PHP generated site to 
@@ -209,7 +209,7 @@ one built
     <link href="https://locutus.io/2016/04/standard-coding-style/"/>
     <id>https://locutus.io/2016/04/standard-coding-style/</id>
     <published>2016-04-01T00:00:00.000Z</published>
-    <updated>2024-04-04T14:07:23.448Z</updated>
+    <updated>2024-04-04T14:08:04.955Z</updated>
     
     <content type="html"><![CDATA[<p>Three years ago we switched from our own home-brown coding style convention to Felix’ Node.js Style Guide, 
 for reasons outlined in the introductory post: <a href="/blog/2013/05/coding-style/">Coding Style</a>.</p>
@@ -244,7 +244,7 @@ for reasons outlined in the i
     <link href="https://locutus.io/2013/05/coding-style/"/>
     <id>https://locutus.io/2013/05/coding-style/</id>
     <published>2013-05-04T00:00:00.000Z</published>
-    <updated>2024-04-04T14:07:23.448Z</updated>
+    <updated>2024-04-04T14:08:04.955Z</updated>
     
     <content type="html"><![CDATA[<p>Given <a href="/blog/2013/05/a-word-on-the-focus-of-php-dot-js/">the focus of Locutus</a> I think
 we should re-invent as few wheels as possible and make use of sensible tools
@@ -281,7 +281,7 @@ we should re-invent as few wheels as po
     <link href="https://locutus.io/2013/05/a-word-on-the-focus-of-php-dot-js/"/>
     <id>https://locutus.io/2013/05/a-word-on-the-focus-of-php-dot-js/</id>
     <published>2013-05-03T00:00:00.000Z</published>
-    <updated>2024-04-04T14:07:23.448Z</updated>
+    <updated>2024-04-04T14:08:04.955Z</updated>
     
     <content type="html"><![CDATA[<p>Hi everybody,</p>
 <p>The <a href="/blog/2012/09/26/new-site/">new site</a> has no server-side code. Instead
@@ -352,7 +352,7 @@ we generate HTML &lt;a href=&quot;htt
     <link href="https://locutus.io/2012/09/new-site/"/>
     <id>https://locutus.io/2012/09/new-site/</id>
     <published>2012-09-26T00:00:00.000Z</published>
-    <updated>2024-04-04T14:07:23.448Z</updated>
+    <updated>2024-04-04T14:08:04.955Z</updated>
     
     <content type="html"><![CDATA[<p>Hi everybody,</p>
 <p>Welcome to our new site.
