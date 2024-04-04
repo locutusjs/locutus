@@ -1,5 +1,4 @@
 module.exports = function is_float(mixedVar) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/is_float/
   // original by: Paulo Freitas
   // bugfixed by: Brett Zamir (https://brett-zamir.me)

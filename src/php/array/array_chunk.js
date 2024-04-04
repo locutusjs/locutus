@@ -1,5 +1,4 @@
 module.exports = function array_chunk(input, size, preserveKeys) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_chunk/
   // original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)
   // improved by: Brett Zamir (https://brett-zamir.me)

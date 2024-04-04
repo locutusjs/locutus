@@ -1,5 +1,4 @@
 module.exports = function _php_cast_int(value) {
-  // eslint-disable-line camelcase
   // original by: Rafał Kukawski
   //   example 1: _php_cast_int(false)
   //   returns 1: 0

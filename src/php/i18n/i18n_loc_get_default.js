@@ -1,5 +1,4 @@
 module.exports = function i18n_loc_get_default() {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/i18n_loc_get_default/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Renamed in PHP6 from locale_get_default(). Not listed yet at php.net.

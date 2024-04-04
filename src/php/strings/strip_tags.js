@@ -1,5 +1,4 @@
 module.exports = function strip_tags(input, allowed) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/strip_tags/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Luke Godfrey

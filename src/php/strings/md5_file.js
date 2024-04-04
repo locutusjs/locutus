@@ -1,5 +1,4 @@
 module.exports = function md5_file(str_filename) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/md5_file/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //    input by: Brett Zamir (https://brett-zamir.me)

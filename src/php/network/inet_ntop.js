@@ -1,5 +1,4 @@
 module.exports = function inet_ntop(a) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/inet_ntop/
   // original by: Theriault (https://github.com/Theriault)
   //   example 1: inet_ntop('\x7F\x00\x00\x01')

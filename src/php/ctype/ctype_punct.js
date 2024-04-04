@@ -1,5 +1,4 @@
 module.exports = function ctype_punct(text) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/ctype_punct/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: ctype_punct('!?')

@@ -1,5 +1,4 @@
 module.exports = function array_key_exists(key, search) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_key_exists/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Felix Geisendoerfer (https://www.debuggable.com/felix)

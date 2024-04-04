@@ -1,5 +1,4 @@
 module.exports = function preg_replace(pattern, replacement, string) {
-  // eslint-disable-line camelcase
   //   original by: rony2k6 (https://github.com/rony2k6)
   //   example 1: preg_replace('/xmas/i', 'Christmas', 'It was the night before Xmas.')
   //   returns 1: "It was the night before Christmas."

@@ -1,5 +1,4 @@
 module.exports = function _bc() {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/_helpers/_bc
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   // improved by: Brett Zamir (https://brett-zamir.me)

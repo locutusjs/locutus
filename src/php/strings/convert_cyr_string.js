@@ -1,5 +1,4 @@
 module.exports = function convert_cyr_string(str, from, to) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/convert_cyr_string/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Assumes and converts to Unicode strings with character

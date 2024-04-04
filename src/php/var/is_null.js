@@ -1,5 +1,4 @@
 module.exports = function is_null(mixedVar) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/is_null/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //   example 1: is_null('23')

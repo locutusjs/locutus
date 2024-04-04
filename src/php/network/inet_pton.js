@@ -1,5 +1,4 @@
 module.exports = function inet_pton(a) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/inet_pton/
   // original by: Theriault (https://github.com/Theriault)
   // improved by: alromh87 and JamieSlome

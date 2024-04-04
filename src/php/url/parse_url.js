@@ -1,5 +1,4 @@
 module.exports = function parse_url(str, component) {
-  // eslint-disable-line camelcase
   //       discuss at: https://locutus.io/php/parse_url/
   //      original by: Steven Levithan (https://blog.stevenlevithan.com)
   // reimplemented by: Brett Zamir (https://brett-zamir.me)

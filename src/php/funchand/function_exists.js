@@ -1,5 +1,4 @@
 module.exports = function function_exists(funcName) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/function_exists/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Steve Clay

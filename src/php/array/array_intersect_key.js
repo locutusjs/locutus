@@ -1,5 +1,4 @@
 module.exports = function array_intersect_key(arr1) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_intersect_key/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: These only output associative arrays (would need to be
@@ -18,12 +17,10 @@ module.exports = function array_intersect_key(arr1) {
   let k = ''
 
   arr1keys: for (k1 in arr1) {
-    // eslint-disable-line no-labels
     if (!arr1.hasOwnProperty(k1)) {
       continue
     }
     arrs: for (i = 1; i < argl; i++) {
-      // eslint-disable-line no-labels
       arr = arguments[i]
       for (k in arr) {
         if (!arr.hasOwnProperty(k)) {

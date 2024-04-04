@@ -1,5 +1,4 @@
 module.exports = function money_format(format, number) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/money_format/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: daniel airton wermann (https://wermann.com.br)

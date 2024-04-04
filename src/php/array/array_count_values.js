@@ -1,5 +1,4 @@
 module.exports = function array_count_values(array) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_count_values/
   // original by: Ates Goral (https://magnetiq.com)
   // improved by: Michael White (https://getsprink.com)

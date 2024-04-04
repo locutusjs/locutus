@@ -1,5 +1,4 @@
 module.exports = function str_word_count(str, format, charlist) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/str_word_count/
   // original by: Ole Vrijenhoek
   // bugfixed by: Kevin van Zonneveld (https://kvz.io)

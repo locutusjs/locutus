@@ -1,5 +1,4 @@
 module.exports = function file_get_contents(url, flags, context, offset, maxLen) {
-  // eslint-disable-line camelcase
   //       discuss at: https://locutus.io/php/file_get_contents/
   //      original by: Legaev Andrey
   //         input by: Jani Hartikainen

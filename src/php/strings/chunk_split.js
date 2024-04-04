@@ -1,5 +1,4 @@
 module.exports = function chunk_split(body, chunklen, end) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/chunk_split/
   // original by: Paulo Freitas
   //    input by: Brett Zamir (https://brett-zamir.me)

@@ -1,5 +1,4 @@
 module.exports = function array_product(input) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_product/
   // original by: Waldo Malqui Silva (https://waldo.malqui.info)
   //   example 1: array_product([ 2, 4, 6, 8 ])

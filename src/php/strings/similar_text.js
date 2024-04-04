@@ -1,5 +1,4 @@
 module.exports = function similar_text(first, second, percent) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/similar_text/
   // original by: Rafał Kukawski (https://blog.kukawski.pl)
   // bugfixed by: Chris McMacken
@@ -30,7 +29,6 @@ module.exports = function similar_text(first, second, percent) {
   for (p = 0; p < firstLength; p++) {
     for (q = 0; q < secondLength; q++) {
       for (l = 0; p + l < firstLength && q + l < secondLength && first.charAt(p + l) === second.charAt(q + l); l++) {
-        // eslint-disable-line max-len
         // @todo: ^-- break up this crazy for loop and put the logic in its body
       }
       if (l > max) {

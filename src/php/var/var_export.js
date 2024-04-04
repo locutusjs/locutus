@@ -1,5 +1,4 @@
 module.exports = function var_export(mixedExpression, boolReturn) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/var_export/
   // original by: Philip Peterson
   // improved by: johnrembo

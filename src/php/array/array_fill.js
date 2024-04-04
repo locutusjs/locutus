@@ -1,5 +1,4 @@
 module.exports = function array_fill(startIndex, num, mixedVal) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_fill/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Waldo Malqui Silva (https://waldo.malqui.info)

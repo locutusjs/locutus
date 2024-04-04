@@ -1,5 +1,4 @@
 module.exports = function htmlspecialchars_decode(string, quoteStyle) {
-  // eslint-disable-line camelcase
   //       discuss at: https://locutus.io/php/htmlspecialchars_decode/
   //      original by: Mirek Slugen
   //      improved by: Kevin van Zonneveld (https://kvz.io)

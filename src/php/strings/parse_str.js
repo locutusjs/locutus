@@ -1,5 +1,4 @@
 module.exports = function parse_str(str, array) {
-  // eslint-disable-line camelcase
   //       discuss at: https://locutus.io/php/parse_str/
   //      original by: Cagri Ekin
   //      improved by: Michael White (https://getsprink.com)

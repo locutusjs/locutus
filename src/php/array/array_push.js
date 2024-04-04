@@ -1,5 +1,4 @@
 module.exports = function array_push(inputArr) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_push/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Brett Zamir (https://brett-zamir.me)

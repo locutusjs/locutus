@@ -1,5 +1,4 @@
 module.exports = function var_dump() {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/var_dump/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Zahlii

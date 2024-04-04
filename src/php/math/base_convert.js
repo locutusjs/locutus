@@ -1,5 +1,4 @@
 module.exports = function base_convert(number, frombase, tobase) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/base_convert/
   // original by: Philippe Baumann
   // improved by: Rafał Kukawski (https://blog.kukawski.pl)

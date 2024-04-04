@@ -1,5 +1,4 @@
 module.exports = function array_merge_recursive(arr1, arr2) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_merge_recursive/
   // original by: Subhasis Deb
   //    input by: Brett Zamir (https://brett-zamir.me)

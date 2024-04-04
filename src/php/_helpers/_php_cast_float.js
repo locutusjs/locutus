@@ -1,5 +1,4 @@
 module.exports = function _php_cast_float(value) {
-  // eslint-disable-line camelcase
   // original by: Rafał Kukawski
   //   example 1: _php_cast_float(false)
   //   returns 1: 0

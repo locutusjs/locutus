@@ -1,5 +1,4 @@
 module.exports = function array_walk(array, funcname, userdata) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_walk/
   // original by: Johnny Mast (https://www.phpvrouwen.nl)
   // bugfixed by: David

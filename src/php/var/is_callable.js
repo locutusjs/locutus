@@ -1,5 +1,4 @@
 module.exports = function is_callable(mixedVar, syntaxOnly, callableName) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/is_callable/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: François
@@ -79,8 +78,8 @@ module.exports = function is_callable(mixedVar, syntaxOnly, callableName) {
   }
 
   // validFunctionName avoids exploits
+  // eslint-disable-next-line no-eval
   if (validFunctionName && typeof eval(method) === 'function') {
-    // eslint-disable-line no-eval
     if (callableName) {
       $global[callableName] = name
     }

@@ -1,5 +1,4 @@
 module.exports = function array_map(callback) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_map/
   // original by: Andrea Giammarchi (https://webreflection.blogspot.com)
   // improved by: Kevin van Zonneveld (https://kvz.io)

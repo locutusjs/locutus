@@ -1,5 +1,4 @@
 module.exports = function json_decode(strJson) {
-  // eslint-disable-line camelcase
   //       discuss at: https://phpjs.org/functions/json_decode/
   //      original by: Public Domain (https://www.json.org/json2.js)
   // reimplemented by: Kevin van Zonneveld (https://kevin.vanzonneveld.net)

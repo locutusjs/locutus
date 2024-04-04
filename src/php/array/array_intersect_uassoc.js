@@ -1,5 +1,4 @@
 module.exports = function array_intersect_uassoc(arr1) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_intersect_uassoc/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
@@ -33,9 +32,7 @@ module.exports = function array_intersect_uassoc(arr1) {
   //     : cb0
 
   arr1keys: for (k1 in arr1) {
-    // eslint-disable-line no-labels
     arrs: for (i = 1; i < arglm1; i++) {
-      // eslint-disable-line no-labels
       arr = arguments[i]
       for (k in arr) {
         if (arr[k] === arr1[k1] && cb(k, k1) === 0) {

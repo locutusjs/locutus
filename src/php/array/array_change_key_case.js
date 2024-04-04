@@ -1,5 +1,4 @@
 module.exports = function array_change_key_case(array, cs) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_change_key_case/
   // original by: Ates Goral (https://magnetiq.com)
   // improved by: marrtins

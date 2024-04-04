@@ -1,5 +1,4 @@
 module.exports = function array_multisort(arr) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_multisort/
   // original by: Theriault (https://github.com/Theriault)
   // improved by: Oleg Andreyev (https://github.com/oleg-andreyev)

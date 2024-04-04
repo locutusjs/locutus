@@ -1,5 +1,4 @@
 module.exports = function str_ireplace(search, replace, subject, countObj) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/str_ireplace/
   // original by: Glen Arason (https://CanadianDomainRegistry.ca)
   // bugfixed by: Mahmoud Saeed

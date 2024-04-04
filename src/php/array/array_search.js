@@ -1,5 +1,4 @@
 module.exports = function array_search(needle, haystack, argStrict) {
-  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_search/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //    input by: Brett Zamir (https://brett-zamir.me)
@@ -38,8 +37,8 @@ module.exports = function array_search(needle, haystack, argStrict) {
 
   for (key in haystack) {
     if (haystack.hasOwnProperty(key)) {
+      // eslint-disable-next-line eqeqeq
       if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
-        // eslint-disable-line eqeqeq
         return key
       }
     }

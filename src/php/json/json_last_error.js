@@ -1,5 +1,4 @@
 module.exports = function json_last_error() {
-  // eslint-disable-line camelcase
   //  discuss at: https://phpjs.org/functions/json_last_error/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: json_last_error()
