@@ -76,7 +76,7 @@
     "build:tests": "rimraf test/languages && babel-node src/_util/cli.js writetests",
     "build": "npm-run-all 'build:*'",
     "injectweb": "rimraf website/source/{c,golang,php,python,ruby} && babel-node src/_util/cli.js injectweb",
-    "fix:js": "DEBUG=eslint:cli-engine eslint --fix --ext .js,.jsx,.ts,.tsx .",
+    "fix:js": "DEBUG=eslint:cli-engine eslint --fix --quiet --ext .js,.jsx,.ts,.tsx .",
     "fix:formatting": "env DEBUG=prettier prettier --write .",
     "fix": "npm-run-all --serial 'fix:**'",
     "lint:formatting": "prettier --check .",
