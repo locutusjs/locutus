@@ -733,13 +733,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"app-root-path@npm:1.3.0":
-  version: 1.3.0
-  resolution: "app-root-path@npm:1.3.0"
-  checksum: 411570c07e471f57ac7add012e35864323effcde478e0125ce768f2821294e9f61de3e039e4ad7656c028fa2aa3eb57664b01265da23a25200872acb16df97c0
-  languageName: node
-  linkType: hard
-
 "aproba@npm:^1.0.3":
   version: 1.1.1
   resolution: "aproba@npm:1.1.1"
@@ -2560,18 +2553,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"concat-stream@npm:, concat-stream@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "concat-stream@npm:2.0.0"
-  dependencies:
-    buffer-from: "npm:^1.0.0"
-    inherits: "npm:^2.0.3"
-    readable-stream: "npm:^3.0.2"
-    typedarray: "npm:^0.0.6"
-  checksum: 250e576d0617e7c58e1c4b2dd6fe69560f316d2c962a409f9f3aac794018499ddb31948b1e4296f217008e124cd5d526432097745157fe504b5d9f3dc469eadb
-  languageName: node
-  linkType: hard
-
 "concat-stream@npm:^1.5.0":
   version: 1.5.2
   resolution: "concat-stream@npm:1.5.2"
@@ -2592,6 +2573,18 @@ __metadata:
     readable-stream: "npm:^2.2.2"
     typedarray: "npm:^0.0.6"
   checksum: 71db903c84fc073ca35a274074e8d26c4330713d299f8623e993c448c1f6bf8b967806dd1d1a7b0f8add6f15ab1af7435df21fe79b4fe7efd78420c89e054e28
+  languageName: node
+  linkType: hard
+
+"concat-stream@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "concat-stream@npm:2.0.0"
+  dependencies:
+    buffer-from: "npm:^1.0.0"
+    inherits: "npm:^2.0.3"
+    readable-stream: "npm:^3.0.2"
+    typedarray: "npm:^0.0.6"
+  checksum: 250e576d0617e7c58e1c4b2dd6fe69560f316d2c962a409f9f3aac794018499ddb31948b1e4296f217008e124cd5d526432097745157fe504b5d9f3dc469eadb
   languageName: node
   linkType: hard
 
@@ -2668,18 +2661,6 @@ __metadata:
   version: 1.0.2
   resolution: "core-util-is@npm:1.0.2"
   checksum: d0f7587346b44a1fe6c269267e037dd34b4787191e473c3e685f507229d88561c40eb18872fabfff02977301815d474300b7bfbd15396c13c5377393f7e87ec3
-  languageName: node
-  linkType: hard
-
-"crc-32@npm:0.4.1":
-  version: 0.4.1
-  resolution: "crc-32@npm:0.4.1"
-  dependencies:
-    concat-stream: "npm:"
-    exit-on-epipe: "npm:"
-  bin:
-    crc32: ./bin/crc32.njs
-  checksum: 4d2c24a8ec7f3e7874255dd0fdaf4ff182862d693beaab68e9dfb77af54c4ac5d9d969997495cbed7959d379f1f29dca82b70d11e539f97dcce4d0a31ee976d0
   languageName: node
   linkType: hard
 
@@ -2857,15 +2838,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:2.2.0, debug@npm:^2.2.0, debug@npm:~2.2.0":
-  version: 2.2.0
-  resolution: "debug@npm:2.2.0"
-  dependencies:
-    ms: "npm:0.7.1"
-  checksum: 19387e1b6da7757297c2ea835f16f0df2d325687a311fdd57e43851190492fe770b991fc5ca1b8b53b007bf3126acd14ed75f2f1eef864ceb49a6bb8177988f7
-  languageName: node
-  linkType: hard
-
 "debug@npm:4, debug@npm:4.3.4, debug@npm:^4.0.0, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.4":
   version: 4.3.4
   resolution: "debug@npm:4.3.4"
@@ -2875,6 +2847,15 @@ __metadata:
     supports-color:
       optional: true
   checksum: 0073c3bcbd9cb7d71dd5f6b55be8701af42df3e56e911186dfa46fac3a5b9eb7ce7f377dd1d3be6db8977221f8eb333d945216f645cf56f6b688cd484837d255
+  languageName: node
+  linkType: hard
+
+"debug@npm:^2.2.0, debug@npm:~2.2.0":
+  version: 2.2.0
+  resolution: "debug@npm:2.2.0"
+  dependencies:
+    ms: "npm:0.7.1"
+  checksum: 19387e1b6da7757297c2ea835f16f0df2d325687a311fdd57e43851190492fe770b991fc5ca1b8b53b007bf3126acd14ed75f2f1eef864ceb49a6bb8177988f7
   languageName: node
   linkType: hard
 
@@ -3038,17 +3019,6 @@ __metadata:
   bin:
     deps-sort: bin/cmd.js
   checksum: 87adb5477a639f4d93611b4e67113eb1387738f1b60f90d5c1137539d084da62437a3e74c0a99a4124de81e410cb56c06f38e490e8d669e82a0cc7db54dbefcb
-  languageName: node
-  linkType: hard
-
-"depurar@npm:0.3.0":
-  version: 0.3.0
-  resolution: "depurar@npm:0.3.0"
-  dependencies:
-    app-root-path: "npm:1.3.0"
-    crc-32: "npm:0.4.1"
-    debug: "npm:2.2.0"
-  checksum: 661fde563f77e0866dc9e59c3503a3e65b3c7549997728c92af9bd1415f59f91a56e21baa2670f4fee218f921800c1925392bdaff9ede121d7f3cd91201d88db
   languageName: node
   linkType: hard
 
@@ -3850,13 +3820,6 @@ __metadata:
     signal-exit: "npm:^3.0.0"
     strip-eof: "npm:^1.0.0"
   checksum: 8aa9865625b2f359f6c5e5c7a5b89d53cdc2f232b56c493034c7f350b51ebeae2281e83e4ba0a795d170b5c2771626d9b56d3225236f3edc8df467cc8908627e
-  languageName: node
-  linkType: hard
-
-"exit-on-epipe@npm:":
-  version: 1.0.1
-  resolution: "exit-on-epipe@npm:1.0.1"
-  checksum: b180aa277aec5bef2609b34e5876061f421a1f81bf343beb213c4d60b382ddcb6b83012833f0ba329d6bc38042685c8d89b1c52ea495b9b6327948ea80627398
   languageName: node
   linkType: hard
 
@@ -6001,7 +5964,7 @@ __metadata:
     budo: "npm:11.8.4"
     chai: "npm:4"
     cross-env: "npm:7.0.3"
-    depurar: "npm:0.3.0"
+    debug: "npm:^4.3.4"
     es6-promise: "npm:4.2.8"
     eslint: "npm:8.57.0"
     eslint-config-prettier: "npm:^9.1.0"
@@ -6016,7 +5979,6 @@ __metadata:
     indent-string: "npm:2.1.0"
     js-yaml: "npm:4.1.0"
     lodash: "npm:4.17.21"
-    mkdirp: "npm:1.0.4"
     mocha: "npm:10.4.0"
     npm-run-all: "npm:^4.1.5"
     prettier: "npm:^3.2.5"
@@ -6729,15 +6691,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mkdirp@npm:1.0.4, mkdirp@npm:^1.0.3":
-  version: 1.0.4
-  resolution: "mkdirp@npm:1.0.4"
-  bin:
-    mkdirp: bin/cmd.js
-  checksum: d71b8dcd4b5af2fe13ecf3bd24070263489404fe216488c5ba7e38ece1f54daf219e72a833a3a2dc404331e870e9f44963a33399589490956bff003a3404d3b2
-  languageName: node
-  linkType: hard
-
 "mkdirp@npm:>=0.5 0, mkdirp@npm:^0.5.1, mkdirp@npm:~0.5.1":
   version: 0.5.1
   resolution: "mkdirp@npm:0.5.1"
@@ -6746,6 +6699,15 @@ __metadata:
   bin:
     mkdirp: bin/cmd.js
   checksum: 8651af2facdfa53f39e68fd93cf1653c11f7c1d49c6d1b4e53bcedc52e669cc64f1b5e95c49cfde7e99dbbcad26d3e61f4f2b4812f18c871c6455d9592f02806
+  languageName: node
+  linkType: hard
+
+"mkdirp@npm:^1.0.3":
+  version: 1.0.4
+  resolution: "mkdirp@npm:1.0.4"
+  bin:
+    mkdirp: bin/cmd.js
+  checksum: d71b8dcd4b5af2fe13ecf3bd24070263489404fe216488c5ba7e38ece1f54daf219e72a833a3a2dc404331e870e9f44963a33399589490956bff003a3404d3b2
   languageName: node
   linkType: hard
 

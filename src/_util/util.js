@@ -1,10 +1,10 @@
 const globby = require('globby')
 const path = require('path')
 const fs = require('fs')
+const fsPromises = fs.promises
 const async = require('async')
 const YAML = require('js-yaml')
-const mkdirp = require('mkdirp')
-const debug = require('depurar')('locutus')
+const debug = require('debug')('locutus:utils')
 const indentString = require('indent-string')
 const _ = require('lodash')
 const esprima = require('esprima')
@@ -301,7 +301,7 @@ class Util {
 
     buf += `{% codeblock lang:javascript %}${params.code}{% endcodeblock %}`
 
-    mkdirp(path.dirname(funcPath)).then(
+    fsPromises.mkdir(path.dirname(funcPath), { recursive: true }).then(
       function () {
         fs.writeFile(funcPath, buf, 'utf-8', cb)
       },
@@ -447,7 +447,7 @@ class Util {
     const code = codez.join('\n')
 
     // Write to disk
-    mkdirp(testdir).then(
+    fsPromises.mkdir(testdir, { recursive: true }).then(
       function () {
         debug('writing: ' + testpath)
         fs.writeFile(testpath, code, 'utf-8', cb)
