@@ -8,6 +8,7 @@ env.sh
 nbproject
 node_modules/
 npm-debug.*
+package.tgz
 scripts/main.js
 scripts/main.js.map
 scripts/split-*.js
