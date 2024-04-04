@@ -1,4 +1,4 @@
-module.exports = function tan (arg) {
+module.exports = function tan(arg) {
   //  discuss at: https://locutus.io/php/tan/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: Math.ceil(tan(8723321.4) * 10000000)

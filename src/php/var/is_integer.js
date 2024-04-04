@@ -1,4 +1,4 @@
-module.exports = function is_integer (mixedVar) { // eslint-disable-line camelcase
+module.exports = function is_integer(mixedVar) {
   //  discuss at: https://locutus.io/php/is_integer/
   // original by: Paulo Freitas
   //      note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes

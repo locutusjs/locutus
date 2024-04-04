@@ -1,4 +1,4 @@
-module.exports = function metaphone (word, maxPhonemes) {
+module.exports = function metaphone(word, maxPhonemes) {
   //  discuss at: https://locutus.io/php/metaphone/
   // original by: Greg Frazier
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -14,7 +14,7 @@ module.exports = function metaphone (word, maxPhonemes) {
 
   const type = typeof word
 
-  if (type === 'undefined' || type === 'object' && word !== null) {
+  if (type === 'undefined' || (type === 'object' && word !== null)) {
     // weird!
     return null
   }
@@ -98,7 +98,8 @@ module.exports = function metaphone (word, maxPhonemes) {
       break
   }
 
-  for (; i < l && (maxPhonemes === 0 || meta.length < maxPhonemes); i += 1) { // eslint-disable-line no-unmodified-loop-condition,max-len
+  // eslint-disable-next-line no-unmodified-loop-condition,max-len
+  for (; i < l && (maxPhonemes === 0 || meta.length < maxPhonemes); i += 1) {
     cc = word.charAt(i)
     nc = word.charAt(i + 1)
     pc = word.charAt(i - 1)

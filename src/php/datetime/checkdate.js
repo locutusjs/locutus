@@ -1,4 +1,4 @@
-module.exports = function checkdate (m, d, y) {
+module.exports = function checkdate(m, d, y) {
   //  discuss at: https://locutus.io/php/checkdate/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Pyerre
@@ -12,6 +12,5 @@ module.exports = function checkdate (m, d, y) {
   //   example 4: checkdate(1, 390, 2000)
   //   returns 4: false
 
-  return m > 0 && m < 13 && y > 0 && y < 32768 && d > 0 && d <= (new Date(y, m, 0))
-    .getDate()
+  return m > 0 && m < 13 && y > 0 && y < 32768 && d > 0 && d <= new Date(y, m, 0).getDate()
 }

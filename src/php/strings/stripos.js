@@ -1,4 +1,4 @@
-module.exports = function stripos (fHaystack, fNeedle, fOffset) {
+module.exports = function stripos(fHaystack, fNeedle, fOffset) {
   //  discuss at: https://locutus.io/php/stripos/
   // original by: Martijn Wieringa
   //  revised by: Onno Marsman (https://twitter.com/onnomarsman)

@@ -1,4 +1,4 @@
-module.exports = function hexdec (hexString) {
+module.exports = function hexdec(hexString) {
   //  discuss at: https://locutus.io/php/hexdec/
   // original by: Philippe Baumann
   //   example 1: hexdec('that')

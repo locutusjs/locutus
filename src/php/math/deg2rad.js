@@ -1,4 +1,4 @@
-module.exports = function deg2rad (angle) {
+module.exports = function deg2rad(angle) {
   //  discuss at: https://locutus.io/php/deg2rad/
   // original by: Enrique Gonzalez
   // improved by: Thomas Grainger (https://graingert.co.uk)

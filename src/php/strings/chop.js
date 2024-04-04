@@ -1,4 +1,4 @@
-module.exports = function chop (str, charlist) {
+module.exports = function chop(str, charlist) {
   //  discuss at: https://locutus.io/php/chop/
   // original by: Paulo Freitas
   //   example 1: chop('    Kevin van Zonneveld    ')

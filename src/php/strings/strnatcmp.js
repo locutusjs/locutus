@@ -1,4 +1,4 @@
-module.exports = function strnatcmp (a, b) {
+module.exports = function strnatcmp(a, b) {
   //       discuss at: https://locutus.io/php/strnatcmp/
   //      original by: Martijn Wieringa
   //      improved by: Michael White (https://getsprink.com)

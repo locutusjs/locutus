@@ -1,4 +1,4 @@
-module.exports = function strrev (string) {
+module.exports = function strrev(string) {
   //       discuss at: https://locutus.io/php/strrev/
   //      original by: Kevin van Zonneveld (https://kvz.io)
   //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -202,7 +202,7 @@ module.exports = function strrev (string) {
     '\uAA4D',
     '\uFB1E',
     '\uFE00-\uFE0F',
-    '\uFE20-\uFE26'
+    '\uFE20-\uFE26',
   ]
 
   const graphemeExtend = new RegExp('(.)([' + chars.join('') + ']+)', 'g')

@@ -1,4 +1,4 @@
-module.exports = function chr (codePt) {
+module.exports = function chr(codePt) {
   //  discuss at: https://locutus.io/php/chr/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -7,12 +7,13 @@ module.exports = function chr (codePt) {
   //   returns 1: true
   //   returns 1: true
 
-  if (codePt > 0xFFFF) { // Create a four-byte string (length 2) since this code point is high
+  if (codePt > 0xffff) {
+    // Create a four-byte string (length 2) since this code point is high
     //   enough for the UTF-16 encoding (JavaScript internal use), to
     //   require representation with two surrogates (reserved non-characters
     //   used for building other characters; the first is "high" and the next "low")
     codePt -= 0x10000
-    return String.fromCharCode(0xD800 + (codePt >> 10), 0xDC00 + (codePt & 0x3FF))
+    return String.fromCharCode(0xd800 + (codePt >> 10), 0xdc00 + (codePt & 0x3ff))
   }
   return String.fromCharCode(codePt)
 }

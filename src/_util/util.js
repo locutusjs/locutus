@@ -1,16 +1,16 @@
 const globby = require('globby')
 const path = require('path')
 const fs = require('fs')
+const fsPromises = fs.promises
 const async = require('async')
 const YAML = require('js-yaml')
-const mkdirp = require('mkdirp')
-const debug = require('depurar')('locutus')
+const debug = require('debug')('locutus:utils')
 const indentString = require('indent-string')
 const _ = require('lodash')
 const esprima = require('esprima')
 
 class Util {
-  constructor (argv) {
+  constructor(argv) {
     if (!argv) {
       argv = []
     }
@@ -29,65 +29,68 @@ class Util {
       'parts by',
       'bugfixed by',
       'revised by',
-      'input by'
+      'input by',
     ]
 
     this.langDefaults = {
       c: {
         order: 1,
-        function_title_template: '[language]\'s [category].[function] in JavaScript',
+        function_title_template: "[language]'s [category].[function] in JavaScript",
         human: 'C',
         packageType: 'header file',
         inspiration_urls: [
           '<a href="https://en.cppreference.com/w/c/numeric/math">the C math.h documentation</a>',
-          '<a href="https://sourceware.org/git/?p=glibc.git;a=tree;f=math;hb=HEAD">the C math.h source</a>'
+          '<a href="https://sourceware.org/git/?p=glibc.git;a=tree;f=math;hb=HEAD">the C math.h source</a>',
         ],
-        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="https://en.cppreference.com/w/c/numeric/[category]/[function]">[language]\'s [function] found in the [category].h header file</a> looks like.'
+        function_description_template:
+          'Here’s what our current JavaScript equivalent to <a href="https://en.cppreference.com/w/c/numeric/[category]/[function]">[language]\'s [function] found in the [category].h header file</a> looks like.',
       },
       golang: {
         order: 2,
-        function_title_template: '[language]\'s [category].[function] in JavaScript',
+        function_title_template: "[language]'s [category].[function] in JavaScript",
         human: 'Go',
         packageType: 'package',
         inspiration_urls: [
           '<a href="https://golang.org/pkg/strings/">Go strings documentation</a>',
           '<a href="https://golang.org/src/strings/strings.go">Go strings source</a>',
           '<a href="https://golang.org/src/strings/example_test.go">Go strings examples source</a>',
-          '<a href="https://gophersjs.com">GopherJS</a>'
+          '<a href="https://gophersjs.com">GopherJS</a>',
         ],
-        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="https://golang.org/pkg/[category]/#[function]">[language]\'s [category].[function]</a> looks like.'
+        function_description_template:
+          'Here’s what our current JavaScript equivalent to <a href="https://golang.org/pkg/[category]/#[function]">[language]\'s [category].[function]</a> looks like.',
       },
       python: {
         order: 3,
-        function_title_template: '[language]\'s [category].[function] in JavaScript',
+        function_title_template: "[language]'s [category].[function] in JavaScript",
         human: 'Python',
         packageType: 'module',
         inspiration_urls: [
-          '<a href="https://docs.python.org/3/library/string.html">the Python 3 standard library string page</a>'
+          '<a href="https://docs.python.org/3/library/string.html">the Python 3 standard library string page</a>',
         ],
-        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="https://docs.python.org/3/library/[category].html#[category].[function]">[language]\'s [category].[function]</a> looks like.'
+        function_description_template:
+          'Here’s what our current JavaScript equivalent to <a href="https://docs.python.org/3/library/[category].html#[category].[function]">[language]\'s [category].[function]</a> looks like.',
       },
       ruby: {
         order: 4,
-        function_title_template: '[language]\'s [category].[function] in JavaScript',
+        function_title_template: "[language]'s [category].[function] in JavaScript",
         human: 'Ruby',
         packageType: 'module',
-        inspiration_urls: [
-          '<a href="https://ruby-doc.org/core-2.2.2/Math.html">the Ruby core documentation</a>'
-        ],
-        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="https://ruby-doc.org/core-2.2.2/[category].html#method-c-[function]">[language]\'s [category].[function]</a> looks like.'
+        inspiration_urls: ['<a href="https://ruby-doc.org/core-2.2.2/Math.html">the Ruby core documentation</a>'],
+        function_description_template:
+          'Here’s what our current JavaScript equivalent to <a href="https://ruby-doc.org/core-2.2.2/[category].html#method-c-[function]">[language]\'s [category].[function]</a> looks like.',
       },
       php: {
         order: 5,
-        function_title_template: '[language]\'s [function] in JavaScript',
+        function_title_template: "[language]'s [function] in JavaScript",
         human: 'PHP',
         packageType: 'extension',
         inspiration_urls: [
           '<a href="https://php.net/manual/en/book.strings.php">the PHP string documentation</a>',
           '<a href="https://github.com/php/php-src/blob/master/ext/standard/string.c#L5338">the PHP string source</a>',
-          '<a href="https://github.com/php/php-src/blob/master/ext/standard/tests/strings/str_pad_variation1.phpt">a PHP str_pad test</a>'
+          '<a href="https://github.com/php/php-src/blob/master/ext/standard/tests/strings/str_pad_variation1.phpt">a PHP str_pad test</a>',
         ],
-        function_description_template: 'Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.[functiondashed].php">[language]\'s [function]</a> looks like.',
+        function_description_template:
+          'Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.[functiondashed].php">[language]\'s [function]</a> looks like.',
         alias: [
           '/categories/',
           '/categories/array/',
@@ -114,18 +117,18 @@ class Util {
           '/functions/index/',
           '/functions/',
           '/packages/',
-          '/packages/index/'
-        ]
-      }
+          '/packages/index/',
+        ],
+      },
     }
 
-    this.allowSkip = (argv.indexOf('--noskip') === -1)
+    this.allowSkip = argv.indexOf('--noskip') === -1
 
     this._reindexBuffer = {}
     this._injectwebBuffer = {}
   }
 
-  injectweb (cb) {
+  injectweb(cb) {
     const self = this
     this._runFunctionOnAll(this._injectwebOne, function (err) {
       if (err) {
@@ -138,7 +141,7 @@ class Util {
     })
   }
 
-  reindex (cb) {
+  reindex(cb) {
     const self = this
     self._reindexBuffer = {}
     self._runFunctionOnAll(self._reindexOne, function (err) {
@@ -154,11 +157,11 @@ class Util {
     })
   }
 
-  writetests (cb) {
+  writetests(cb) {
     this._runFunctionOnAll(this._writetestOne, cb)
   }
 
-  _runFunctionOnAll (runFunc, cb) {
+  _runFunctionOnAll(runFunc, cb) {
     const self = this
 
     const q = async.queue(function (fullpath, callback) {
@@ -172,7 +175,7 @@ class Util {
     }, self.concurrency)
 
     debug({
-      pattern: self.pattern
+      pattern: self.pattern,
     })
     const files = globby.sync(self.pattern)
 
@@ -181,7 +184,7 @@ class Util {
     q.drain = cb
   }
 
-  _reindexOne (params, cb) {
+  _reindexOne(params, cb) {
     const fullpath = this.__src + '/' + params.filepath
     const dir = path.dirname(fullpath)
     const basefile = path.basename(fullpath, '.js')
@@ -196,12 +199,12 @@ class Util {
       this._reindexBuffer[indexJs] = []
     }
 
-    const line = 'module.exports.' + module + ' = require(\'./' + basefile + '\')'
+    const line = 'module.exports.' + module + " = require('./" + basefile + "')"
     this._reindexBuffer[indexJs].push(line)
     return cb(null)
   }
 
-  _injectwebOne (params, cb) {
+  _injectwebOne(params, cb) {
     const authors = {}
     this.authorKeys.forEach(function (key) {
       if (params.headKeys[key]) {
@@ -209,11 +212,7 @@ class Util {
       }
     })
 
-    const langPath = [
-      this.__root,
-      '/website/source/',
-      params.language
-    ].join('')
+    const langPath = [this.__root, '/website/source/', params.language].join('')
 
     const langIndexPath = langPath + '/index.html'
     const catPath = langPath + '/' + params.category
@@ -227,31 +226,31 @@ class Util {
       langTitle += ' in JavaScript'
 
       const langData = Object.assign({}, this.langDefaults[params.language], {
-        warning: 'This file is auto generated by `npm run web:inject`, do not edit by hand',
+        warning: 'This file is auto generated by `yarn web:inject`, do not edit by hand',
         type: 'language',
         layout: 'language',
         language: params.language,
-        title: langTitle
+        title: langTitle,
       })
-      this._injectwebBuffer[langIndexPath] = '---' + '\n' + YAML.safeDump(langData).trim() + '\n' + '---' + '\n'
+      this._injectwebBuffer[langIndexPath] = '---' + '\n' + YAML.dump(langData).trim() + '\n' + '---' + '\n'
     }
 
     if (!this._injectwebBuffer[catIndexPath]) {
       let catTitle = ''
-      catTitle += this.langDefaults[params.language].human + '\'s '
+      catTitle += this.langDefaults[params.language].human + "'s "
       catTitle += params.category + ' '
       catTitle += this.langDefaults[params.language].packageType + ' '
       catTitle += ' in JavaScript'
 
       const catData = {
-        warning: 'This file is auto generated by `npm run web:inject`, do not edit by hand',
+        warning: 'This file is auto generated by `yarn web:inject`, do not edit by hand',
         type: 'category',
         layout: 'category',
         language: params.language,
         category: params.category,
-        title: catTitle
+        title: catTitle,
       }
-      this._injectwebBuffer[catIndexPath] = '---' + '\n' + YAML.safeDump(catData).trim() + '\n' + '---' + '\n'
+      this._injectwebBuffer[catIndexPath] = '---' + '\n' + YAML.dump(catData).trim() + '\n' + '---' + '\n'
     }
 
     const functionTitle = this.langDefaults[params.language].function_title_template
@@ -267,7 +266,7 @@ class Util {
       .replace(/\[functiondashed]/g, params.func_name.replace(/_/g, '-'))
 
     const funcData = {
-      warning: 'This file is auto generated by `npm run web:inject`, do not edit by hand',
+      warning: 'This file is auto generated by `yarn web:inject`, do not edit by hand',
       examples: (params.headKeys.example || []).map(function (lines, i) {
         return lines.join('\n')
       }),
@@ -290,36 +289,39 @@ class Util {
       alias: [
         '/functions/' + params.language + '/' + params.func_name + '/',
         '/functions/' + params.category + '/' + params.func_name + '/',
-        '/' + params.language + '/' + params.func_name + '/'
-      ]
+        '/' + params.language + '/' + params.func_name + '/',
+      ],
     }
 
     if (params.language === 'php') {
       funcData.alias.push('/functions/' + params.func_name + '/')
     }
 
-    let buf = '---' + '\n' + YAML.safeDump(funcData).trim() + '\n' + '---' + '\n'
+    let buf = '---' + '\n' + YAML.dump(funcData).trim() + '\n' + '---' + '\n'
 
     buf += `{% codeblock lang:javascript %}${params.code}{% endcodeblock %}`
 
-    mkdirp(path.dirname(funcPath)).then(function () {
-      fs.writeFile(funcPath, buf, 'utf-8', cb)
-    }, function (err) {
-      throw new Error('Could not mkdir  for ' + funcPath + '. ' + err)
-    })
+    fsPromises.mkdir(path.dirname(funcPath), { recursive: true }).then(
+      function () {
+        fs.writeFile(funcPath, buf, 'utf-8', cb)
+      },
+      function (err) {
+        throw new Error('Could not mkdir  for ' + funcPath + '. ' + err)
+      },
+    )
   }
 
-  _addRequire (name, relativeSrcForTest) {
+  _addRequire(name, relativeSrcForTest) {
     return [
       'var ',
       name,
-      ' = require(\'',
+      " = require('",
       relativeSrcForTest,
-      '\') // eslint-disable-line no-unused-vars,camelcase'
+      "') // eslint-disable-line no-unused-vars,camelcase",
     ].join('')
   }
 
-  _writetestOne (params, cb) {
+  _writetestOne(params, cb) {
     const self = this
 
     if (!params.func_name) {
@@ -354,7 +356,7 @@ class Util {
 
     const codez = []
 
-    codez.push('// warning: This file is auto generated by `npm run build:tests`')
+    codez.push('// warning: This file is auto generated by `yarn build:tests`')
     codez.push('// Do not edit by hand!')
 
     // Add globals
@@ -364,9 +366,9 @@ class Util {
 
     // Set timezone for testing dates
     // Not ideal: https://stackoverflow.com/questions/8083410/how-to-set-default-timezone-in-node-js
-    codez.push('process.env.TZ = \'UTC\'')
+    codez.push("process.env.TZ = 'UTC'")
 
-    codez.push('var ' + 'expect' + ' = require(\'chai\').expect')
+    codez.push('var ' + 'expect' + " = require('chai').expect")
 
     // Add language-wide dependencies
     // @todo: It would be great if we could remove this
@@ -374,36 +376,31 @@ class Util {
       codez.push(self._addRequire('ini_set', relativeSrcForTestDir + '/' + 'php/info/ini_set'))
       codez.push(self._addRequire('ini_get', relativeSrcForTestDir + '/' + 'php/info/ini_get'))
       if (params.func_name === 'localeconv') {
-        codez.push(self._addRequire(
-          'setlocale',
-          relativeSrcForTestDir + '/' + 'php/strings/setlocale'
-        ))
+        codez.push(self._addRequire('setlocale', relativeSrcForTestDir + '/' + 'php/strings/setlocale'))
       }
       if (params.func_name === 'i18n_loc_get_default') {
-        codez.push(self._addRequire(
-          'i18n_loc_set_default',
-          relativeSrcForTestDir + '/' + 'php/i18n/i18n_loc_set_default'
-        ))
+        codez.push(
+          self._addRequire('i18n_loc_set_default', relativeSrcForTestDir + '/' + 'php/i18n/i18n_loc_set_default'),
+        )
       }
     }
 
     // Add the main function to test
-    codez.push(self._addRequire(
-      params.func_name,
-      relativeSrcForTestDir + '/' + params.filepath
-    ))
+    codez.push(self._addRequire(params.func_name, relativeSrcForTestDir + '/' + params.filepath))
 
     codez.push('')
 
-    codez.push([
-      'describe',
-      describeSkip,
-      '(\'src/',
-      params.filepath,
-      ' (tested in ',
-      relativeTestFileForRoot,
-      ')\', function () {'
-    ].join(''))
+    codez.push(
+      [
+        'describe',
+        describeSkip,
+        "('src/",
+        params.filepath,
+        ' (tested in ',
+        relativeTestFileForRoot,
+        ")', function () {",
+      ].join(''),
+    )
 
     // Run each example
     for (const i in params.headKeys.example) {
@@ -417,13 +414,7 @@ class Util {
         itSkip = '.skip'
       }
 
-      codez.push([
-        '  it',
-        itSkip,
-        '(\'should pass example ',
-        (humanIndex),
-        '\', function (done) {'
-      ].join(''))
+      codez.push(['  it', itSkip, "('should pass example ", humanIndex, "', function (done) {"].join(''))
 
       const body = []
 
@@ -456,18 +447,21 @@ class Util {
     const code = codez.join('\n')
 
     // Write to disk
-    mkdirp(testdir).then(function () {
-      debug('writing: ' + testpath)
-      fs.writeFile(testpath, code, 'utf-8', cb)
-    }, function (err) {
-      throw new Error(err)
-    })
+    fsPromises.mkdir(testdir, { recursive: true }).then(
+      function () {
+        debug('writing: ' + testpath)
+        fs.writeFile(testpath, code, 'utf-8', cb)
+      },
+      function (err) {
+        throw new Error(err)
+      },
+    )
   }
 
   // Environment-specific file opener. function name needs to
   // be translated to code. The difficulty is in finding the
   // category.
-  _opener (fileOrName, requesterParams, cb) {
+  _opener(fileOrName, requesterParams, cb) {
     const self = this
     let pattern
 
@@ -514,7 +508,7 @@ class Util {
     })
   }
 
-  _load (fileOrName, requesterParams, cb) {
+  _load(fileOrName, requesterParams, cb) {
     const self = this
     self._opener(fileOrName, requesterParams, function (err, fullpath, code) {
       if (err) {
@@ -526,7 +520,7 @@ class Util {
     })
   }
 
-  _findDependencies (fileOrName, requesterParams, dependencies, cb) {
+  _findDependencies(fileOrName, requesterParams, dependencies, cb) {
     const self = this
 
     if (!requesterParams.headKeys['depends on'] || !requesterParams.headKeys['depends on'].length) {
@@ -557,13 +551,13 @@ class Util {
     }
   }
 
-  _parse (filepath, code, cb) {
+  _parse(filepath, code, cb) {
     if (!code) {
       return cb(new Error('Unable to parse ' + filepath + '. Received no code'))
     }
 
     if (filepath.indexOf('/') === -1) {
-      return cb(new Error('Parse only accepts relative filepaths. Received: \'' + filepath + '\''))
+      return cb(new Error("Parse only accepts relative filepaths. Received: '" + filepath + "'"))
     }
 
     const parts = filepath.split('/')
@@ -575,16 +569,18 @@ class Util {
     const ast = esprima.parseScript(code, { comment: true, loc: true, range: true })
 
     // find module.exports in the code
-    const moduleExports = ast.body.filter(node => {
+    const moduleExports = ast.body.filter((node) => {
       try {
         const leftArg = node.expression.left
         const rightArg = node.expression.right
 
-        return leftArg.object.name === 'module' &&
-            leftArg.property.name === 'exports' &&
-            rightArg.type === 'FunctionExpression' &&
-            rightArg.id.type === 'Identifier' &&
-            !!rightArg.id.name
+        return (
+          leftArg.object.name === 'module' &&
+          leftArg.property.name === 'exports' &&
+          rightArg.type === 'FunctionExpression' &&
+          rightArg.id.type === 'Identifier' &&
+          !!rightArg.id.name
+        )
       } catch (err) {
         return false
       }
@@ -600,7 +596,7 @@ class Util {
 
     // look for function name and param list
     const funcName = exp.expression.right.id.name
-    const funcParams = exp.expression.right.params.map(p => p.name)
+    const funcParams = exp.expression.right.params.map((p) => p.name)
 
     // remember the lines where the function is defined
     const funcLoc = exp.expression.right.loc
@@ -612,10 +608,14 @@ class Util {
 
     // get all line comments which are located between function signature definition
     // and first function body element
-    const headComments = ast.comments.filter(c =>
-      c.type === 'Line' &&
-      c.loc.start.line >= funcLoc.start.line &&
-      c.loc.end.line <= firstFuncBodyElementLoc.start.line).map(c => c.value.trim())
+    const headComments = ast.comments
+      .filter(
+        (c) =>
+          c.type === 'Line' &&
+          c.loc.start.line >= funcLoc.start.line &&
+          c.loc.end.line <= firstFuncBodyElementLoc.start.line,
+      )
+      .map((c) => c.value.trim())
 
     if (headComments.length === 0) {
       const msg = `Unable to parse ${filepath}. Did not find any comments in function definition`
@@ -625,15 +625,15 @@ class Util {
     const headKeys = this._headKeys(headComments)
 
     const params = {
-      headKeys: headKeys,
-      name: name,
-      filepath: filepath,
-      codepath: codepath,
-      code: code,
-      language: language,
-      category: category,
+      headKeys,
+      name,
+      filepath,
+      codepath,
+      code,
+      language,
+      category,
       func_name: funcName,
-      func_arguments: funcParams
+      func_arguments: funcParams,
     }
 
     this._findDependencies(filepath, params, {}, function (err, dependencies) {
@@ -646,7 +646,7 @@ class Util {
     })
   }
 
-  _headKeys (headLines) {
+  _headKeys(headLines) {
     let i
     const keys = {}
     let match = []

@@ -1,4 +1,4 @@
-module.exports = function money_format (format, number) { // eslint-disable-line camelcase
+module.exports = function money_format(format, number) {
   //  discuss at: https://locutus.io/php/money_format/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: daniel airton wermann (https://wermann.com.br)
@@ -53,7 +53,7 @@ module.exports = function money_format (format, number) { // eslint-disable-line
   // Ensure the locale data we need is set up
   setlocale('LC_ALL', 0)
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
@@ -67,7 +67,7 @@ module.exports = function money_format (format, number) { // eslint-disable-line
       // Percent does not seem to be allowed with intervening content
       return '%'
     }
-    const fill = flags && (/=./).test(flags) ? flags.match(/=(.)/)[1] : ' ' // flag: =f (numeric fill)
+    const fill = flags && /=./.test(flags) ? flags.match(/=(.)/)[1] : ' ' // flag: =f (numeric fill)
     // flag: ! (suppress currency symbol)
     const showCurrSymbol = !flags || flags.indexOf('!') === -1
     // field width: w (minimum field width)
@@ -148,9 +148,7 @@ module.exports = function money_format (format, number) { // eslint-disable-line
         fraction = ''
         decPt = ''
       } else if (right < fraction.length) {
-        fraction = Math.round(parseFloat(
-          fraction.slice(0, right) + '.' + fraction.substr(right, 1)
-        ))
+        fraction = Math.round(parseFloat(fraction.slice(0, right) + '.' + fraction.substr(right, 1)))
         if (right > fraction.length) {
           fraction = new Array(right - fraction.length + 1).join('0') + fraction // prepend with 0's
         }
@@ -182,9 +180,10 @@ module.exports = function money_format (format, number) { // eslint-disable-line
       // @todo: unclear on whether and how sepBySpace, signPosn, or csPrecedes have
       // an impact here (as they do below), but assuming for now behaves as signPosn 0 as
       // far as localized sepBySpace and signPosn behavior
-      repl = (csPrecedes ? symbol + (sepBySpace === 1 ? ' ' : '') : '') + value + (!csPrecedes
-        ? (sepBySpace === 1 ? ' ' : '') + symbol
-        : '')
+      repl =
+        (csPrecedes ? symbol + (sepBySpace === 1 ? ' ' : '') : '') +
+        value +
+        (!csPrecedes ? (sepBySpace === 1 ? ' ' : '') + symbol : '')
       if (neg) {
         repl = '(' + repl + ')'
       } else {
@@ -196,8 +195,8 @@ module.exports = function money_format (format, number) { // eslint-disable-line
       const posSign = monetary.positive_sign
       // '-'
       const negSign = monetary.negative_sign
-      const sign = neg ? (negSign) : (posSign)
-      const otherSign = neg ? (posSign) : (negSign)
+      const sign = neg ? negSign : posSign
+      const otherSign = neg ? posSign : negSign
       let signPadding = ''
       if (signPosn) {
         // has a sign
@@ -231,17 +230,13 @@ module.exports = function money_format (format, number) { // eslint-disable-line
           break
         case 3:
           repl = csPrecedes
-            ? signPadding + sign + (sepBySpace === 2 ? ' ' : '') + symbol +
-              (sepBySpace === 1 ? ' ' : '') + value
-            : value + (sepBySpace === 1 ? ' ' : '') + sign + signPadding +
-              (sepBySpace === 2 ? ' ' : '') + symbol
+            ? signPadding + sign + (sepBySpace === 2 ? ' ' : '') + symbol + (sepBySpace === 1 ? ' ' : '') + value
+            : value + (sepBySpace === 1 ? ' ' : '') + sign + signPadding + (sepBySpace === 2 ? ' ' : '') + symbol
           break
         case 4:
           repl = csPrecedes
-            ? symbol + (sepBySpace === 2 ? ' ' : '') + signPadding + sign +
-              (sepBySpace === 1 ? ' ' : '') + value
-            : value + (sepBySpace === 1 ? ' ' : '') + symbol +
-              (sepBySpace === 2 ? ' ' : '') + sign + signPadding
+            ? symbol + (sepBySpace === 2 ? ' ' : '') + signPadding + sign + (sepBySpace === 1 ? ' ' : '') + value
+            : value + (sepBySpace === 1 ? ' ' : '') + symbol + (sepBySpace === 2 ? ' ' : '') + sign + signPadding
           break
       }
     }

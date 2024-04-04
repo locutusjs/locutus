@@ -1,4 +1,4 @@
-module.exports = function gmstrftime (format, timestamp) {
+module.exports = function gmstrftime(format, timestamp) {
   //  discuss at: https://locutus.io/php/gmstrftime/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: Alex
@@ -8,9 +8,10 @@ module.exports = function gmstrftime (format, timestamp) {
 
   const strftime = require('../datetime/strftime')
 
-  const _date = (typeof timestamp === 'undefined')
-    ? new Date()
-    : (timestamp instanceof Date)
+  const _date =
+    typeof timestamp === 'undefined'
+      ? new Date()
+      : timestamp instanceof Date
         ? new Date(timestamp)
         : new Date(timestamp * 1000)
 

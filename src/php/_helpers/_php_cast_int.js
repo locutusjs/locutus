@@ -1,4 +1,4 @@
-module.exports = function _php_cast_int (value) { // eslint-disable-line camelcase
+module.exports = function _php_cast_int(value) {
   // original by: Rafał Kukawski
   //   example 1: _php_cast_int(false)
   //   returns 1: 0
@@ -40,7 +40,7 @@ module.exports = function _php_cast_int (value) { // eslint-disable-line camelca
     case 'string':
       return parseInt(value, 10) || 0
     case 'boolean':
-      // fall through
+    // fall through
     default:
       // Behaviour for types other than float, string, boolean
       // is undefined and can change any time.

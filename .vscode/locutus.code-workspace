@@ -1,8 +1,22 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {}
+  "folders": [
+    {
+      "path": "..",
+    },
+  ],
+  "settings": {
+    "files.exclude": {
+      ".yarn/": true,
+      "yarn.lock": true,
+      "dist/": true,
+      "node_modules/": true,
+      "website/.deploy_git/": true,
+      "website/.yarn": true,
+      "website/db.json": true,
+      "website/node_modules/": true,
+      "website/public/": true,
+      "website/source/{c,golang,php,python,ruby}": true,
+      "website/themes/": true,
+    },
+  },
 }

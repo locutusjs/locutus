@@ -1,4 +1,4 @@
-module.exports = function doubleval (mixedVar) {
+module.exports = function doubleval(mixedVar) {
   //  discuss at: https://locutus.io/php/doubleval/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes

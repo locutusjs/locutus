@@ -1,4 +1,4 @@
-module.exports = function decoct (number) {
+module.exports = function decoct(number) {
   //  discuss at: https://locutus.io/php/decoct/
   // original by: Enrique Gonzalez
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -10,8 +10,7 @@ module.exports = function decoct (number) {
   //   returns 2: '410'
 
   if (number < 0) {
-    number = 0xFFFFFFFF + number + 1
+    number = 0xffffffff + number + 1
   }
-  return parseInt(number, 10)
-    .toString(8)
+  return parseInt(number, 10).toString(8)
 }

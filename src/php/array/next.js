@@ -1,4 +1,4 @@
-module.exports = function next (arr) {
+module.exports = function next(arr) {
   //  discuss at: https://locutus.io/php/next/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Uses global: locutus to store the array pointer
@@ -7,7 +7,7 @@ module.exports = function next (arr) {
   //   example 1: next($transport)
   //   returns 1: 'car'
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
@@ -43,7 +43,7 @@ module.exports = function next (arr) {
     // End
     return false
   }
-  if (arr.length === 0 || cursor === (arr.length - 1)) {
+  if (arr.length === 0 || cursor === arr.length - 1) {
     return false
   }
   pointers[arrpos + 1] += 1

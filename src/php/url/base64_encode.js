@@ -1,4 +1,4 @@
-module.exports = function base64_encode (stringToEncode) { // eslint-disable-line camelcase
+module.exports = function base64_encode(stringToEncode) {
   //  discuss at: https://locutus.io/php/base64_encode/
   // original by: Tyler Akins (https://rumkin.com)
   // improved by: Bayron Guevara
@@ -22,10 +22,9 @@ module.exports = function base64_encode (stringToEncode) { // eslint-disable-lin
     // first we use encodeURIComponent to get percent-encoded UTF-8,
     // then we convert the percent encodings into raw bytes which
     // can be fed into the base64 encoding algorithm.
-    return encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
-      function toSolidBytes (match, p1) {
-        return String.fromCharCode('0x' + p1)
-      })
+    return encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function toSolidBytes(match, p1) {
+      return String.fromCharCode('0x' + p1)
+    })
   }
 
   if (typeof window !== 'undefined') {
@@ -62,11 +61,11 @@ module.exports = function base64_encode (stringToEncode) { // eslint-disable-lin
     o2 = stringToEncode.charCodeAt(i++)
     o3 = stringToEncode.charCodeAt(i++)
 
-    bits = o1 << 16 | o2 << 8 | o3
+    bits = (o1 << 16) | (o2 << 8) | o3
 
-    h1 = bits >> 18 & 0x3f
-    h2 = bits >> 12 & 0x3f
-    h3 = bits >> 6 & 0x3f
+    h1 = (bits >> 18) & 0x3f
+    h2 = (bits >> 12) & 0x3f
+    h3 = (bits >> 6) & 0x3f
     h4 = bits & 0x3f
 
     // use hexets to index into b64, and append result to encoded string

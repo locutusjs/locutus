@@ -1,4 +1,4 @@
-module.exports = function ip2long (argIP) {
+module.exports = function ip2long(argIP) {
   //  discuss at: https://locutus.io/php/ip2long/
   // original by: Waldo Malqui Silva (https://waldo.malqui.info)
   // improved by: Victor
@@ -16,12 +16,15 @@ module.exports = function ip2long (argIP) {
   // PHP allows decimal, octal, and hexadecimal IP components.
   // PHP allows between 1 (e.g. 127) to 4 (e.g 127.0.0.1) components.
 
-  const pattern = new RegExp([
-    '^([1-9]\\d*|0[0-7]*|0x[\\da-f]+)',
-    '(?:\\.([1-9]\\d*|0[0-7]*|0x[\\da-f]+))?',
-    '(?:\\.([1-9]\\d*|0[0-7]*|0x[\\da-f]+))?',
-    '(?:\\.([1-9]\\d*|0[0-7]*|0x[\\da-f]+))?$'
-  ].join(''), 'i')
+  const pattern = new RegExp(
+    [
+      '^([1-9]\\d*|0[0-7]*|0x[\\da-f]+)',
+      '(?:\\.([1-9]\\d*|0[0-7]*|0x[\\da-f]+))?',
+      '(?:\\.([1-9]\\d*|0[0-7]*|0x[\\da-f]+))?',
+      '(?:\\.([1-9]\\d*|0[0-7]*|0x[\\da-f]+))?$',
+    ].join(''),
+    'i',
+  )
 
   argIP = argIP.match(pattern) // Verify argIP format.
   if (!argIP) {
@@ -31,7 +34,7 @@ module.exports = function ip2long (argIP) {
   // Reuse argIP variable for component counter.
   argIP[0] = 0
   for (i = 1; i < 5; i += 1) {
-    argIP[0] += !!((argIP[i] || '').length)
+    argIP[0] += !!(argIP[i] || '').length
     argIP[i] = parseInt(argIP[i]) || 0
   }
   // Continue to use argIP for overflow values.
@@ -39,15 +42,14 @@ module.exports = function ip2long (argIP) {
   argIP.push(256, 256, 256, 256)
   // Recalculate overflow of last component supplied to make up for missing components.
   argIP[4 + argIP[0]] *= Math.pow(256, 4 - argIP[0])
-  if (argIP[1] >= argIP[5] ||
-    argIP[2] >= argIP[6] ||
-    argIP[3] >= argIP[7] ||
-    argIP[4] >= argIP[8]) {
+  if (argIP[1] >= argIP[5] || argIP[2] >= argIP[6] || argIP[3] >= argIP[7] || argIP[4] >= argIP[8]) {
     return false
   }
 
-  return argIP[1] * (argIP[0] === 1 || 16777216) +
+  return (
+    argIP[1] * (argIP[0] === 1 || 16777216) +
     argIP[2] * (argIP[0] <= 2 || 65536) +
     argIP[3] * (argIP[0] <= 3 || 256) +
     argIP[4] * 1
+  )
 }

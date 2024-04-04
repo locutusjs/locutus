@@ -1,4 +1,4 @@
-module.exports = function base64_decode (encodedData) { // eslint-disable-line camelcase
+module.exports = function base64_decode(encodedData) {
   //  discuss at: https://locutus.io/php/base64_decode/
   // original by: Tyler Akins (https://rumkin.com)
   // improved by: Thunder.m
@@ -22,9 +22,14 @@ module.exports = function base64_decode (encodedData) { // eslint-disable-line c
   // Adapted from Solution #1 at https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
   const decodeUTF8string = function (str) {
     // Going backwards: from bytestream, to percent-encoding, to original string.
-    return decodeURIComponent(str.split('').map(function (c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-    }).join(''))
+    return decodeURIComponent(
+      str
+        .split('')
+        .map(function (c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+        })
+        .join(''),
+    )
   }
 
   if (typeof window !== 'undefined') {
@@ -62,10 +67,10 @@ module.exports = function base64_decode (encodedData) { // eslint-disable-line c
     h3 = b64.indexOf(encodedData.charAt(i++))
     h4 = b64.indexOf(encodedData.charAt(i++))
 
-    bits = h1 << 18 | h2 << 12 | h3 << 6 | h4
+    bits = (h1 << 18) | (h2 << 12) | (h3 << 6) | h4
 
-    o1 = bits >> 16 & 0xff
-    o2 = bits >> 8 & 0xff
+    o1 = (bits >> 16) & 0xff
+    o2 = (bits >> 8) & 0xff
     o3 = bits & 0xff
 
     if (h3 === 64) {

@@ -1,4 +1,4 @@
-module.exports = function serialize (mixedValue) {
+module.exports = function serialize(mixedValue) {
   //  discuss at: https://locutus.io/php/serialize/
   // original by: Arpad Ray (mailto:arpad@php.net)
   // improved by: Dino
@@ -100,7 +100,7 @@ module.exports = function serialize (mixedValue) {
             continue
           }
 
-          okey = (key.match(/^[0-9]+$/) ? parseInt(key, 10) : key)
+          okey = key.match(/^[0-9]+$/) ? parseInt(key, 10) : key
           vals += serialize(okey) + serialize(mixedValue[key])
           count++
         }

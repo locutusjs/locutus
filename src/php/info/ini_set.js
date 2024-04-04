@@ -1,4 +1,4 @@
-module.exports = function ini_set (varname, newvalue) { // eslint-disable-line camelcase
+module.exports = function ini_set(varname, newvalue) {
   //  discuss at: https://locutus.io/php/ini_set/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: This will not set a global_value or access level for the ini item
@@ -6,7 +6,7 @@ module.exports = function ini_set (varname, newvalue) { // eslint-disable-line c
   //   example 1: ini_set('date.timezone', 'America/Chicago')
   //   returns 1: 'Asia/Hong_Kong'
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

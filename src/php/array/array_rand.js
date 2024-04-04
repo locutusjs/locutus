@@ -1,4 +1,4 @@
-module.exports = function array_rand (array, num) { // eslint-disable-line camelcase
+module.exports = function array_rand(array, num) {
   //       discuss at: https://locutus.io/php/array_rand/
   //      original by: Waldo Malqui Silva (https://waldo.malqui.info)
   // reimplemented by: Rafał Kukawski

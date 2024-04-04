@@ -1,4 +1,4 @@
-module.exports = function setcookie (name, value, expires, path, domain, secure) {
+module.exports = function setcookie(name, value, expires, path, domain, secure) {
   //  discuss at: https://locutus.io/php/setcookie/
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   // bugfixed by: Andreas

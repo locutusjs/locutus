@@ -1,4 +1,4 @@
-module.exports = function exp (arg) {
+module.exports = function exp(arg) {
   //  discuss at: https://locutus.io/php/exp/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: exp(0.3)

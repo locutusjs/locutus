@@ -33,7 +33,7 @@ If you are using the project via npm, the old version will be available under th
 
 If you are using it via Git, use `git checkout v1.3.2`.
 
-The new version will be available as `v2.0.2`, as well as `master` by the time I launch. I'm not sure yet when that will be, but I thought it might save some headaches to already give the heads up about this.
+The new version will be available as `v2.0.2`, as well as `main` by the time I launch. I'm not sure yet when that will be, but I thought it might save some headaches to already give the heads up about this.
 
 Stay tuned for more,
 

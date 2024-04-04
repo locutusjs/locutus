@@ -1,4 +1,4 @@
-module.exports = function escapeshellarg (arg) {
+module.exports = function escapeshellarg(arg) {
   //  discuss at: https://locutus.io/php/escapeshellarg/
   // Warning: this function emulates escapeshellarg() for php-running-on-linux
   // the function behaves differently when running on Windows, which is not covered by this code.
@@ -17,7 +17,7 @@ module.exports = function escapeshellarg (arg) {
 
   let ret = ''
 
-  ret = arg.replace(/'/g, '\'\\\'\'')
+  ret = arg.replace(/'/g, "'\\''")
 
   return "'" + ret + "'"
 }

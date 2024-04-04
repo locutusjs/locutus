@@ -1,4 +1,4 @@
-module.exports = function is_bool (mixedVar) { // eslint-disable-line camelcase
+module.exports = function is_bool(mixedVar) {
   //  discuss at: https://locutus.io/php/is_bool/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: CoursesWeb (https://www.coursesweb.net/)
@@ -7,5 +7,5 @@ module.exports = function is_bool (mixedVar) { // eslint-disable-line camelcase
   //   example 2: is_bool(0)
   //   returns 2: false
 
-  return (mixedVar === true || mixedVar === false) // Faster (in FF) than type checking
+  return mixedVar === true || mixedVar === false // Faster (in FF) than type checking
 }

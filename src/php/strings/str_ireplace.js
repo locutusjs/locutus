@@ -1,4 +1,4 @@
-module.exports = function str_ireplace (search, replace, subject, countObj) { // eslint-disable-line camelcase
+module.exports = function str_ireplace(search, replace, subject, countObj) {
   //  discuss at: https://locutus.io/php/str_ireplace/
   // original by: Glen Arason (https://CanadianDomainRegistry.ca)
   // bugfixed by: Mahmoud Saeed
@@ -33,7 +33,7 @@ module.exports = function str_ireplace (search, replace, subject, countObj) { //
   const osa = Object.prototype.toString.call(os) === '[object Array]'
   // var sa = ''
 
-  if (typeof (search) === 'object') {
+  if (typeof search === 'object') {
     temp = search
     search = []
     for (i = 0; i < temp.length; i += 1) {
@@ -43,7 +43,7 @@ module.exports = function str_ireplace (search, replace, subject, countObj) { //
     search = search.toLowerCase()
   }
 
-  if (typeof (subject) === 'object') {
+  if (typeof subject === 'object') {
     temp = subject
     subject = []
     for (i = 0; i < temp.length; i += 1) {
@@ -53,7 +53,7 @@ module.exports = function str_ireplace (search, replace, subject, countObj) { //
     subject = subject.toLowerCase()
   }
 
-  if (typeof (search) === 'object' && typeof (replace) === 'string') {
+  if (typeof search === 'object' && typeof replace === 'string') {
     temp = replace
     replace = []
     for (i = 0; i < search.length; i += 1) {
@@ -84,16 +84,16 @@ module.exports = function str_ireplace (search, replace, subject, countObj) { //
       }
       temp = s[i] + ''
       repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0]
-      s[i] = (temp).split(f[j]).join(repl)
+      s[i] = temp.split(f[j]).join(repl)
       otemp = os[i] + ''
       oi = temp.indexOf(f[j])
       ofjl = f[j].length
       if (oi >= 0) {
-        os[i] = (otemp).split(otemp.substr(oi, ofjl)).join(repl)
+        os[i] = otemp.split(otemp.substr(oi, ofjl)).join(repl)
       }
 
       if (countObj) {
-        countObj.value += ((temp.split(f[j])).length - 1)
+        countObj.value += temp.split(f[j]).length - 1
       }
     }
   }

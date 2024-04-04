@@ -1,4 +1,4 @@
-module.exports = function trim (str, charlist) {
+module.exports = function trim(str, charlist) {
   //  discuss at: https://locutus.io/php/trim/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: mdsjack (https://www.mdsjack.bo.it)
@@ -38,7 +38,7 @@ module.exports = function trim (str, charlist) {
     '\u200b',
     '\u2028',
     '\u2029',
-    '\u3000'
+    '\u3000',
   ].join('')
   let l = 0
   let i = 0

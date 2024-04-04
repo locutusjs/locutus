@@ -1,4 +1,4 @@
-module.exports = function parse_url (str, component) { // eslint-disable-line camelcase
+module.exports = function parse_url(str, component) {
   //       discuss at: https://locutus.io/php/parse_url/
   //      original by: Steven Levithan (https://blog.stevenlevithan.com)
   // reimplemented by: Brett Zamir (https://brett-zamir.me)
@@ -25,7 +25,8 @@ module.exports = function parse_url (str, component) { // eslint-disable-line ca
 
   let query
 
-  const mode = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.mode') : undefined) || 'php'
+  const mode =
+    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.mode') : undefined) || 'php'
 
   const key = [
     'source',
@@ -41,29 +42,35 @@ module.exports = function parse_url (str, component) { // eslint-disable-line ca
     'directory',
     'file',
     'query',
-    'fragment'
+    'fragment',
   ]
 
   // For loose we added one optional slash to post-scheme to catch file:/// (should restrict this)
   let parser = {
-    php: new RegExp([
-      '(?:([^:\\/?#]+):)?',
-      '(?:\\/\\/()(?:(?:()(?:([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?',
-      '()',
-      '(?:(()(?:(?:[^?#\\/]*\\/)*)()(?:[^?#]*))(?:\\?([^#]*))?(?:#(.*))?)'
-    ].join('')),
-    strict: new RegExp([
-      '(?:([^:\\/?#]+):)?',
-      '(?:\\/\\/((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?',
-      '((((?:[^?#\\/]*\\/)*)([^?#]*))(?:\\?([^#]*))?(?:#(.*))?)'
-    ].join('')),
-    loose: new RegExp([
-      '(?:(?![^:@]+:[^:@\\/]*@)([^:\\/?#.]+):)?',
-      '(?:\\/\\/\\/?)?',
-      '((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?)',
-      '(((\\/(?:[^?#](?![^?#\\/]*\\.[^?#\\/.]+(?:[?#]|$)))*\\/?)?([^?#\\/]*))',
-      '(?:\\?([^#]*))?(?:#(.*))?)'
-    ].join(''))
+    php: new RegExp(
+      [
+        '(?:([^:\\/?#]+):)?',
+        '(?:\\/\\/()(?:(?:()(?:([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?',
+        '()',
+        '(?:(()(?:(?:[^?#\\/]*\\/)*)()(?:[^?#]*))(?:\\?([^#]*))?(?:#(.*))?)',
+      ].join(''),
+    ),
+    strict: new RegExp(
+      [
+        '(?:([^:\\/?#]+):)?',
+        '(?:\\/\\/((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?',
+        '((((?:[^?#\\/]*\\/)*)([^?#]*))(?:\\?([^#]*))?(?:#(.*))?)',
+      ].join(''),
+    ),
+    loose: new RegExp(
+      [
+        '(?:(?![^:@]+:[^:@\\/]*@)([^:\\/?#.]+):)?',
+        '(?:\\/\\/\\/?)?',
+        '((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?)',
+        '(((\\/(?:[^?#](?![^?#\\/]*\\.[^?#\\/.]+(?:[?#]|$)))*\\/?)?([^?#\\/]*))',
+        '(?:\\?([^#]*))?(?:#(.*))?)',
+      ].join(''),
+    ),
   }
 
   const m = parser[mode].exec(str)
@@ -81,7 +88,9 @@ module.exports = function parse_url (str, component) { // eslint-disable-line ca
   }
 
   if (mode !== 'php') {
-    const name = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.queryKey') : undefined) || 'queryKey'
+    const name =
+      (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.queryKey') : undefined) ||
+      'queryKey'
     parser = /(?:^|&)([^&=]*)=?([^&]*)/g
     uri[name] = {}
     query = uri[key[12]] || ''

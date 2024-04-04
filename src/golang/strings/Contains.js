@@ -1,4 +1,4 @@
-module.exports = function Contains (s, substr) {
+module.exports = function Contains(s, substr) {
   //  discuss at: https://locutus.io/golang/strings/Contains
   // original by: Kevin van Zonneveld (https://kvz.io)
   //   example 1: Contains('Kevin', 'K')
