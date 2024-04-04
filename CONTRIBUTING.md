@@ -117,14 +117,11 @@ Any change to `main` is deployed automatically onto GitHub Pages by CI.
 
 ### Releasing
 
-Any newly pushed git tag is automatically released on npm by CI:
+Any newly pushed git tag is automatically released on npm by CI. To push a new tag:
 
 ```bash
-# make changes
-# change version in package.json (e.g. 2.0.19)
-# update CHANGELOG.md
-# commit all
-git commit -am 'Release v2.0.19'
-git tag v2.0.19
+newVersion=$(npm version patch)
+git commit -am "${newVersion}"
+git tag "${newVersion}"
 git push --tags
 ```
