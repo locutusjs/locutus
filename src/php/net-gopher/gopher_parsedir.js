@@ -71,7 +71,7 @@ module.exports = function gopher_parsedir (dirent) { // eslint-disable-line came
       } // GOPHER_UNKNOWN
   }
   return {
-    type: type,
+    type,
     title: entry[2],
     path: entry[3],
     host: entry[4],

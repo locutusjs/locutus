@@ -110,7 +110,7 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
     return ret
   }
 
-  var _formatArray = function (obj, curDepth, padVal, padChar) {
+  const _formatArray = function (obj, curDepth, padVal, padChar) {
     if (curDepth > 0) {
       curDepth++
     }

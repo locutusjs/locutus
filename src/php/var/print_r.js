@@ -21,7 +21,7 @@ module.exports = function print_r (array, returnVal) { // eslint-disable-line ca
     }
     return str
   }
-  var _formatArray = function (obj, curDepth, padVal, padChar) {
+  const _formatArray = function (obj, curDepth, padVal, padChar) {
     if (curDepth > 0) {
       curDepth++
     }

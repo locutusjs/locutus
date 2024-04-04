@@ -71,7 +71,7 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
         : '"' + string + '"'
     }
 
-    var _str = function (key, holder) {
+    const _str = function (key, holder) {
       let gap = ''
       const indent = '    '
       // The loop counter.

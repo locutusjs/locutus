@@ -36,7 +36,7 @@ module.exports = function min () {
     return ar
   }
 
-  var _compare = function (current, next) {
+  const _compare = function (current, next) {
     let i = 0
     let n = 0
     let tmp = 0

@@ -36,7 +36,7 @@ module.exports = function http_build_query (formdata, numericPrefix, argSeparato
   let key
   const tmp = []
 
-  var _httpBuildQueryHelper = function (key, val, argSeparator) {
+  const _httpBuildQueryHelper = function (key, val, argSeparator) {
     let k
     const tmp = []
     if (val === true) {

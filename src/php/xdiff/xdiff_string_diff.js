@@ -218,7 +218,7 @@ module.exports = function xdiff_string_diff (oldData, newData, contextLines, min
     }
 
     // Function to find lcs and fill in the array to indicate the optimal longest common sequence
-    var _findLcs = function (xs, xidx, xIsIn, ys) {
+    const _findLcs = function (xs, xidx, xIsIn, ys) {
       let i
       let xb
       let xe

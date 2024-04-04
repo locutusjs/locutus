@@ -625,13 +625,13 @@ class Util {
     const headKeys = this._headKeys(headComments)
 
     const params = {
-      headKeys: headKeys,
-      name: name,
-      filepath: filepath,
-      codepath: codepath,
-      code: code,
-      language: language,
-      category: category,
+      headKeys,
+      name,
+      filepath,
+      codepath,
+      code,
+      language,
+      category,
       func_name: funcName,
       func_arguments: funcParams
     }

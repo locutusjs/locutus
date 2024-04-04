@@ -267,7 +267,9 @@ module.exports = function pack (format) {
           const key = (lastBit = precisionBits - 1 +
             (k =
               (exp = bias + 1 - k) >= minExp &&
-              exp <= maxExp ? k + 1 : bias + 1 - (exp = minExp - 1))) + 1
+              exp <= maxExp
+                ? k + 1
+                : bias + 1 - (exp = minExp - 1))) + 1
 
           if (bin[key]) {
             if (!(rounded = bin[lastBit])) {

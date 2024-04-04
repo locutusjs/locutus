@@ -26,9 +26,9 @@ module.exports = function setrawcookie (name, value, expires, path, domain, secu
   const r = [name + '=' + value]
   let i = ''
   const s = {
-    expires: expires,
-    path: path,
-    domain: domain
+    expires,
+    path,
+    domain
   }
   for (i in s) {
     if (s.hasOwnProperty(i)) {

@@ -22,7 +22,7 @@ module.exports = function array_splice (arr, offst, lgth, replacement) { // esli
 
   const isInt = require('../var/is_int')
 
-  var _checkToUpIndices = function (arr, ct, key) {
+  const _checkToUpIndices = function (arr, ct, key) {
     // Deal with situation, e.g., if encounter index 4 and try
     // to set it to 0, but 0 exists later in loop (need to
     // increment all subsequent (skipping current key,
