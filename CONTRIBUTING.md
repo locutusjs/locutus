@@ -96,7 +96,7 @@ This re-uses an already generated mocha test:
 
 ```bash
 env DEBUG=locutus:* ./node_modules/.bin/mocha \
-  --compilers js:babel-register \
+  --require babel-register \
   --reporter spec \
 test/languages/php/array/test-natsort.js
 ```
