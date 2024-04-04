@@ -74,6 +74,13 @@ yarn
 yarn website:install
 ```
 
+## Code
+
+We hack in `src/`, for example: `src/php/var/serialize.js`.
+
+If you use VSCode, consider starting it like `code .vscode/locutus.code-workspace`, so that heavy generated files &
+directories are excluded from your file tree and searches.
+
 ## Build
 
 ```bash
@@ -105,6 +112,10 @@ env DEBUG=locutus:* ./node_modules/.bin/mocha \
 test/languages/php/array/test-natsort.js
 ```
 
+By interfacing with Mocha directly you could also enable watch mode by adding `--watch`.
+
+And there's a way to test functions inside Browsers with watching, via `yarn browser:watch`.
+
 ## Website Development
 
 We keep the website in `./website` so it's easy to keep code and website in sync as we iterate. For those reading this
@@ -119,10 +130,10 @@ injected by a script.
 
 Here's the flow that takes written functions to the website:
 
-- `yarn injectweb` runs `src/_util/util.js`'s `injectweb` method
-- `injectweb` iterates over functions and parses them via the `_load` and `_parse` methods, specifically: the header
+- `yarn injectweb` runs `src/_util/util.js`'s `injectweb()` method
+- `injectweb()` iterates over functions and parses them via the `_load` and `_parse` methods, specifically: the header
   comments that declare authors, tests, and dependencies
-- `injectweb` then writes each function to `website/source`. The code is written as the content. The other parsed
+- `injectweb()` then writes each function to `website/source`. The code is written as the content. The other parsed
   properties are prepended as YAML front matter
 
 Blog posts can be found in `website/source/_posts`.
