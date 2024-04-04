@@ -1,4 +1,4 @@
-module.exports = function array_unique (inputArr) { // eslint-disable-line camelcase
+module.exports = function array_unique(inputArr) {
   //  discuss at: https://locutus.io/php/array_unique/
   // original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)
   //    input by: duncan
@@ -23,7 +23,7 @@ module.exports = function array_unique (inputArr) { // eslint-disable-line camel
     let fkey = ''
     for (fkey in haystack) {
       if (haystack.hasOwnProperty(fkey)) {
-        if ((haystack[fkey] + '') === (needle + '')) {
+        if (haystack[fkey] + '' === needle + '') {
           return fkey
         }
       }

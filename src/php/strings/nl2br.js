@@ -1,4 +1,4 @@
-module.exports = function nl2br (str, isXhtml) {
+module.exports = function nl2br(str, isXhtml) {
   //  discuss at: https://locutus.io/php/nl2br/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Philip Peterson
@@ -25,8 +25,7 @@ module.exports = function nl2br (str, isXhtml) {
   }
 
   // Adjust comment to avoid issue on locutus.io display
-  const breakTag = (isXhtml || typeof isXhtml === 'undefined') ? '<br ' + '/>' : '<br>'
+  const breakTag = isXhtml || typeof isXhtml === 'undefined' ? '<br ' + '/>' : '<br>'
 
-  return (str + '')
-    .replace(/(\r\n|\n\r|\r|\n)/g, breakTag + '$1')
+  return (str + '').replace(/(\r\n|\n\r|\r|\n)/g, breakTag + '$1')
 }

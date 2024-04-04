@@ -1,4 +1,4 @@
-module.exports = function octdec (octString) {
+module.exports = function octdec(octString) {
   //  discuss at: https://locutus.io/php/octdec/
   // original by: Philippe Baumann
   //   example 1: octdec('77')

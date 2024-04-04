@@ -1,4 +1,4 @@
-module.exports = function realpath (path) {
+module.exports = function realpath(path) {
   //  discuss at: https://locutus.io/php/realpath/
   // original by: mk.keck
   // improved by: Kevin van Zonneveld (https://kvz.io)
@@ -29,7 +29,8 @@ module.exports = function realpath (path) {
   // Explode the given path into it's parts
   arr = path.split('/') // The path is an array now
   path = [] // Foreach part make a check
-  for (const k in arr) { // This is'nt really interesting
+  for (const k in arr) {
+    // This is'nt really interesting
     if (arr[k] === '.') {
       continue
     }
@@ -45,7 +46,7 @@ module.exports = function realpath (path) {
       // But only if the part is not empty or the uri
       // (the first three parts ar needed) was not
       // saved
-      if ((path.length < 2) || (arr[k] !== '')) {
+      if (path.length < 2 || arr[k] !== '') {
         path.push(arr[k])
       }
     }

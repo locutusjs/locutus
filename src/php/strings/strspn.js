@@ -1,4 +1,4 @@
-module.exports = function strspn (str1, str2, start, lgth) {
+module.exports = function strspn(str1, str2, start, lgth) {
   //  discuss at: https://locutus.io/php/strspn/
   // original by: Valentina De Rosa
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -13,8 +13,8 @@ module.exports = function strspn (str1, str2, start, lgth) {
   let j = 0
   let i = 0
 
-  start = start ? (start < 0 ? (str1.length + start) : start) : 0
-  lgth = lgth ? ((lgth < 0) ? (str1.length + lgth - start) : lgth) : str1.length - start
+  start = start ? (start < 0 ? str1.length + start : start) : 0
+  lgth = lgth ? (lgth < 0 ? str1.length + lgth - start : lgth) : str1.length - start
   str1 = str1.substr(start, lgth)
 
   for (i = 0; i < str1.length; i++) {

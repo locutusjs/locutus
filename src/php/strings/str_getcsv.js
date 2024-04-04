@@ -1,4 +1,4 @@
-module.exports = function str_getcsv (input, delimiter, enclosure, escape) { // eslint-disable-line camelcase
+module.exports = function str_getcsv(input, delimiter, enclosure, escape) {
   //  discuss at: https://locutus.io/php/str_getcsv/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: str_getcsv('"abc","def","ghi"')
@@ -42,9 +42,7 @@ module.exports = function str_getcsv (input, delimiter, enclosure, escape) { // 
   const pqEnc = _pq(enclosure)
   const pqEsc = _pq(escape)
 
-  input = input
-    .replace(new RegExp('^\\s*' + pqEnc), '')
-    .replace(new RegExp(pqEnc + '\\s*$'), '')
+  input = input.replace(new RegExp('^\\s*' + pqEnc), '').replace(new RegExp(pqEnc + '\\s*$'), '')
 
   // PHP behavior may differ by including whitespace even outside of the enclosure
   input = _backwards(input)
@@ -52,8 +50,7 @@ module.exports = function str_getcsv (input, delimiter, enclosure, escape) { // 
     .reverse()
 
   for (i = 0, inpLen = input.length; i < inpLen; i++) {
-    output.push(_backwards(input[i])
-      .replace(new RegExp(pqEsc + pqEnc, 'g'), enclosure))
+    output.push(_backwards(input[i]).replace(new RegExp(pqEsc + pqEnc, 'g'), enclosure))
   }
 
   return output

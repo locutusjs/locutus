@@ -1,4 +1,4 @@
-module.exports = function htmlentities (string, quoteStyle, charset, doubleEncode) {
+module.exports = function htmlentities(string, quoteStyle, charset, doubleEncode) {
   //  discuss at: https://locutus.io/php/htmlentities/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //  revised by: Kevin van Zonneveld (https://kvz.io)
@@ -31,12 +31,15 @@ module.exports = function htmlentities (string, quoteStyle, charset, doubleEncod
 
   doubleEncode = doubleEncode === null || !!doubleEncode
 
-  const regex = new RegExp('&(?:#\\d+|#x[\\da-f]+|[a-zA-Z][\\da-z]*);|[' +
-    Object.keys(hashMap)
-      .join('')
-    // replace regexp special chars
-      .replace(/([()[\]{}\-.*+?^$|/\\])/g, '\\$1') + ']',
-  'g')
+  const regex = new RegExp(
+    '&(?:#\\d+|#x[\\da-f]+|[a-zA-Z][\\da-z]*);|[' +
+      Object.keys(hashMap)
+        .join('')
+        // replace regexp special chars
+        .replace(/([()[\]{}\-.*+?^$|/\\])/g, '\\$1') +
+      ']',
+    'g',
+  )
 
   return string.replace(regex, function (ent) {
     if (ent.length > 1) {

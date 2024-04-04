@@ -1,4 +1,4 @@
-module.exports = function array_map (callback) { // eslint-disable-line camelcase
+module.exports = function array_map(callback) {
   //  discuss at: https://locutus.io/php/array_map/
   // original by: Andrea Giammarchi (https://webreflection.blogspot.com)
   // improved by: Kevin van Zonneveld (https://kvz.io)
@@ -20,7 +20,7 @@ module.exports = function array_map (callback) { // eslint-disable-line camelcas
   let tmp = []
   const tmpArr = []
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
 
   while (i < j) {
     while (k < argc) {

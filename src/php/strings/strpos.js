@@ -1,4 +1,4 @@
-module.exports = function strpos (haystack, needle, offset) {
+module.exports = function strpos(haystack, needle, offset) {
   //  discuss at: https://locutus.io/php/strpos/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -7,7 +7,6 @@ module.exports = function strpos (haystack, needle, offset) {
   //   example 1: strpos('Kevin van Zonneveld', 'e', 5)
   //   returns 1: 14
 
-  const i = (haystack + '')
-    .indexOf(needle, (offset || 0))
+  const i = (haystack + '').indexOf(needle, offset || 0)
   return i === -1 ? false : i
 }

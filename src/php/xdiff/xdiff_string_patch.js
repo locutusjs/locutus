@@ -1,4 +1,4 @@
-module.exports = function xdiff_string_patch (originalStr, patch, flags, errorObj) { // eslint-disable-line camelcase
+module.exports = function xdiff_string_patch(originalStr, patch, flags, errorObj) {
   //  discuss at: https://locutus.io/php/xdiff_string_patch/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Steven Levithan (stevenlevithan.com)
@@ -19,11 +19,11 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, errorOb
   const _getNativeFlags = function (regex) {
     // Proposed for ES4; included in AS3
     return [
-      (regex.global ? 'g' : ''),
-      (regex.ignoreCase ? 'i' : ''),
-      (regex.multiline ? 'm' : ''),
-      (regex.extended ? 'x' : ''),
-      (regex.sticky ? 'y' : '')
+      regex.global ? 'g' : '',
+      regex.ignoreCase ? 'i' : '',
+      regex.multiline ? 'm' : '',
+      regex.extended ? 'x' : '',
+      regex.sticky ? 'y' : '',
     ].join('')
   }
 
@@ -47,7 +47,7 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, errorOb
     if (x) {
       s._xregexp = {
         source: x.source,
-        captureNames: x.captureNames ? x.captureNames.slice(0) : null
+        captureNames: x.captureNames ? x.captureNames.slice(0) : null,
       }
     }
 
@@ -101,7 +101,7 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, errorOb
     // Unsure of actual PHP values, so better to rely on string
     XDIFF_PATCH_NORMAL: 1,
     XDIFF_PATCH_REVERSE: 2,
-    XDIFF_PATCH_IGNORESPACE: 4
+    XDIFF_PATCH_IGNORESPACE: 4,
   }
 
   // Input defaulting & sanitation
@@ -133,11 +133,11 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, errorOb
         while (lastLinePos < linePos) {
           newStrArr[newStrArr.length] = origLines[lastLinePos++]
         }
-        while (lines[++i] && (rangeExp.exec(lines[i])) === null) {
+        while (lines[++i] && rangeExp.exec(lines[i]) === null) {
           firstChar = lines[i].charAt(0)
           switch (firstChar) {
             case '-':
-            // Skip including that line
+              // Skip including that line
               ++linePos
               break
             case '+':
@@ -147,7 +147,7 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, errorOb
               newStrArr[newStrArr.length] = origLines[linePos++]
               break
             default:
-            // Reconcile with returning errrors arg?
+              // Reconcile with returning errrors arg?
               throw new Error('Unrecognized initial character in unidiff line')
           }
         }
@@ -169,21 +169,21 @@ module.exports = function xdiff_string_patch (originalStr, patch, flags, errorOb
         while (lastLinePos < linePos) {
           newStrArr[newStrArr.length] = origLines[lastLinePos++]
         }
-        while (lines[++i] && (rangeExp.exec(lines[i])) === null) {
+        while (lines[++i] && rangeExp.exec(lines[i]) === null) {
           firstChar = lines[i].charAt(0)
           switch (firstChar) {
             case '-':
               newStrArr[newStrArr.length] = lines[i].slice(1)
               break
             case '+':
-            // Skip including that line
+              // Skip including that line
               ++linePos
               break
             case ' ':
               newStrArr[newStrArr.length] = origLines[linePos++]
               break
             default:
-            // Reconcile with returning errrors arg?
+              // Reconcile with returning errrors arg?
               throw new Error('Unrecognized initial character in unidiff line')
           }
         }

@@ -1,4 +1,4 @@
-module.exports = function abs (mixedNumber) {
+module.exports = function abs(mixedNumber) {
   //  discuss at: https://locutus.io/c/abs/
   // original by: Waldo Malqui Silva (https://waldo.malqui.info)
   // improved by: Karol Kowalski

@@ -1,4 +1,4 @@
-module.exports = function urlencode (str) {
+module.exports = function urlencode(str) {
   //       discuss at: https://locutus.io/php/urlencode/
   //      original by: Philip Peterson
   //      improved by: Kevin van Zonneveld (https://kvz.io)
@@ -26,7 +26,7 @@ module.exports = function urlencode (str) {
   //        example 3: urlencode('https://www.google.nl/search?q=Locutus&ie=utf-8')
   //        returns 3: 'https%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3Dutf-8'
 
-  str = (str + '')
+  str = str + ''
 
   return encodeURIComponent(str)
     .replace(/!/g, '%21')

@@ -1,4 +1,4 @@
-module.exports = function soundex (str) {
+module.exports = function soundex(str) {
   //  discuss at: https://locutus.io/php/soundex/
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   // original by: Arnout Kazemier (https://www.3rd-Eden.com)
@@ -39,7 +39,7 @@ module.exports = function soundex (str) {
     L: 4,
     M: 5,
     N: 5,
-    R: 6
+    R: 6,
   }
   let i = 0
   let j

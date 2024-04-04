@@ -1,4 +1,4 @@
-module.exports = function rtrim (str, charlist) {
+module.exports = function rtrim(str, charlist) {
   //  discuss at: https://locutus.io/php/rtrim/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //    input by: Erkekjetter
@@ -9,8 +9,7 @@ module.exports = function rtrim (str, charlist) {
   //   example 1: rtrim('    Kevin van Zonneveld    ')
   //   returns 1: '    Kevin van Zonneveld'
 
-  charlist = !charlist ? ' \\s\u00A0' : (charlist + '')
-    .replace(/([[\]().?/*{}+$^:])/g, '\\$1')
+  charlist = !charlist ? ' \\s\u00A0' : (charlist + '').replace(/([[\]().?/*{}+$^:])/g, '\\$1')
 
   const re = new RegExp('[' + charlist + ']+$', 'g')
 

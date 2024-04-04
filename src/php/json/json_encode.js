@@ -1,4 +1,4 @@
-module.exports = function json_encode (mixedVal) { // eslint-disable-line camelcase
+module.exports = function json_encode(mixedVal) {
   //       discuss at: https://phpjs.org/functions/json_encode/
   //      original by: Public Domain (https://www.json.org/json2.js)
   // reimplemented by: Kevin van Zonneveld (https://kevin.vanzonneveld.net)
@@ -16,7 +16,7 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
     See https://www.JSON.org/js.html
   */
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
@@ -48,7 +48,7 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
         '\u2028-\u202f',
         '\u2060-\u206f',
         '\ufeff',
-        '\ufff0-\uffff'
+        '\ufff0-\uffff',
       ].join('')
       const escapable = new RegExp('[\\"' + escapeChars + ']', 'g')
       const meta = {
@@ -59,19 +59,21 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
         '\f': '\\f',
         '\r': '\\r',
         '"': '\\"',
-        '\\': '\\\\'
+        '\\': '\\\\',
       }
 
       escapable.lastIndex = 0
-      return escapable.test(string) ? '"' + string.replace(escapable, function (a) {
-        const c = meta[a]
-        return typeof c === 'string' ? c : '\\u' + ('0000' + a.charCodeAt(0)
-          .toString(16))
-          .slice(-4)
-      }) + '"' : '"' + string + '"'
+      return escapable.test(string)
+        ? '"' +
+            string.replace(escapable, function (a) {
+              const c = meta[a]
+              return typeof c === 'string' ? c : '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4)
+            }) +
+            '"'
+        : '"' + string + '"'
     }
 
-    var _str = function (key, holder) {
+    const _str = function (key, holder) {
       let gap = ''
       const indent = '    '
       // The loop counter.
@@ -127,9 +129,12 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
 
             // Join all of the elements together, separated with commas, and wrap them in
             // brackets.
-            v = partial.length === 0 ? '[]' : gap
-              ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']'
-              : '[' + partial.join(',') + ']'
+            v =
+              partial.length === 0
+                ? '[]'
+                : gap
+                  ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']'
+                  : '[' + partial.join(',') + ']'
             // gap = mind // not used
             return v
           }
@@ -146,9 +151,12 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
 
           // Join all of the member texts together, separated with commas,
           // and wrap them in braces.
-          v = partial.length === 0 ? '{}' : gap
-            ? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}'
-            : '{' + partial.join(',') + '}'
+          v =
+            partial.length === 0
+              ? '{}'
+              : gap
+                ? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}'
+                : '{' + partial.join(',') + '}'
           // gap = mind // Not used
           return v
         case 'undefined':
@@ -161,7 +169,7 @@ module.exports = function json_encode (mixedVal) { // eslint-disable-line camelc
     // Make a fake root object containing our value under the key of ''.
     // Return the result of stringifying the value.
     return _str('', {
-      '': value
+      '': value,
     })
   } catch (err) {
     // @todo: ensure error handling above throws a SyntaxError in all cases where it could

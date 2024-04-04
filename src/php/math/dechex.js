@@ -1,4 +1,4 @@
-module.exports = function dechex (number) {
+module.exports = function dechex(number) {
   //  discuss at: https://locutus.io/php/dechex/
   // original by: Philippe Baumann
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -12,8 +12,7 @@ module.exports = function dechex (number) {
   //   returns 3: 'ab9dc427'
 
   if (number < 0) {
-    number = 0xFFFFFFFF + number + 1
+    number = 0xffffffff + number + 1
   }
-  return parseInt(number, 10)
-    .toString(16)
+  return parseInt(number, 10).toString(16)
 }

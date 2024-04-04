@@ -1,4 +1,4 @@
-module.exports = function localeconv () {
+module.exports = function localeconv() {
   //  discuss at: https://locutus.io/php/localeconv/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: setlocale('LC_ALL', 'en_US')
@@ -13,7 +13,7 @@ module.exports = function localeconv () {
   // ensure setup of localization variables takes place, if not already
   setlocale('LC_ALL', 0)
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

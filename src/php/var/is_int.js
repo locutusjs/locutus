@@ -1,4 +1,4 @@
-module.exports = function is_int (mixedVar) { // eslint-disable-line camelcase
+module.exports = function is_int(mixedVar) {
   //  discuss at: https://locutus.io/php/is_int/
   // original by: Alex
   // improved by: Kevin van Zonneveld (https://kvz.io)

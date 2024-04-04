@@ -1,4 +1,4 @@
-module.exports = function atan (arg) {
+module.exports = function atan(arg) {
   //  discuss at: https://locutus.io/php/atan/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: atan(8723321.4)

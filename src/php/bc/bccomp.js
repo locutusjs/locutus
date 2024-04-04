@@ -1,4 +1,4 @@
-module.exports = function bccomp (leftOperand, rightOperand, scale) {
+module.exports = function bccomp(leftOperand, rightOperand, scale) {
   //  discuss at: https://locutus.io/php/bccomp/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bccomp('-1', '5', 4)
@@ -18,7 +18,7 @@ module.exports = function bccomp (leftOperand, rightOperand, scale) {
   if (typeof scale === 'undefined') {
     scale = libbcmath.scale
   }
-  scale = ((scale < 0) ? 0 : scale)
+  scale = scale < 0 ? 0 : scale
 
   first = libbcmath.bc_init_num()
   second = libbcmath.bc_init_num()

@@ -1,4 +1,4 @@
-module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // eslint-disable-line camelcase
+module.exports = function is_callable(mixedVar, syntaxOnly, callableName) {
   //  discuss at: https://locutus.io/php/is_callable/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: François
@@ -30,7 +30,7 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
   //   example 5: is_callable(class MyClass {})
   //   returns 5: false
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
 
   const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
@@ -40,7 +40,7 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
   let validFunctionName = false
 
   const getFuncName = function (fn) {
-    const name = (/\W*function\s+([\w$]+)\s*\(/).exec(fn)
+    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn)
     if (!name) {
       return '(Anonymous)'
     }
@@ -59,10 +59,12 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
     validFunctionName = !!name.match(validJSFunctionNamePattern)
   } else if (typeof mixedVar === 'function') {
     return true
-  } else if (Object.prototype.toString.call(mixedVar) === '[object Array]' &&
+  } else if (
+    Object.prototype.toString.call(mixedVar) === '[object Array]' &&
     mixedVar.length === 2 &&
     typeof mixedVar[0] === 'object' &&
-    typeof mixedVar[1] === 'string') {
+    typeof mixedVar[1] === 'string'
+  ) {
     obj = mixedVar[0]
     method = mixedVar[1]
     name = (obj.constructor && getFuncName(obj.constructor)) + '::' + method
@@ -76,7 +78,8 @@ module.exports = function is_callable (mixedVar, syntaxOnly, callableName) { // 
   }
 
   // validFunctionName avoids exploits
-  if (validFunctionName && typeof eval(method) === 'function') { // eslint-disable-line no-eval
+  // eslint-disable-next-line no-eval
+  if (validFunctionName && typeof eval(method) === 'function') {
     if (callableName) {
       $global[callableName] = name
     }

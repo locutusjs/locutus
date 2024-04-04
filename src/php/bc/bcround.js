@@ -1,4 +1,4 @@
-module.exports = function bcround (val, precision) {
+module.exports = function bcround(val, precision) {
   //  discuss at: https://locutus.io/php/bcround/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcround(1, 2)

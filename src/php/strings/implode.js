@@ -1,4 +1,4 @@
-module.exports = function implode (glue, pieces) {
+module.exports = function implode(glue, pieces) {
   //  discuss at: https://locutus.io/php/implode/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Waldo Malqui Silva (https://waldo.malqui.info)

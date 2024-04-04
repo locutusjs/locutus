@@ -1,4 +1,4 @@
-module.exports = function acos (arg) {
+module.exports = function acos(arg) {
   //  discuss at: https://locutus.io/ruby/Math/acos/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //      note 1: Sorry about the crippled test.

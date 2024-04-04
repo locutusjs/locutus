@@ -40,10 +40,10 @@ So, if you know a better way to do something, we would love to see your improvem
 
 ## Contributing
 
-We use [GitHub](https://github.com/locutusjs/locutus) for collaboration. There are a few guidelines in our [CONTRIBUTING.md](https://github.com/locutusjs/locutus/blob/master/CONTRIBUTING.md) document. It would be helpful to glance over them before submitting your work, to avoid unnecessary back and forth, as well as potential disappointment.
+We use [GitHub](https://github.com/locutusjs/locutus) for collaboration. There are a few guidelines in our [CONTRIBUTING.md](https://github.com/locutusjs/locutus/blob/HEAD/CONTRIBUTING.md) document. It would be helpful to glance over them before submitting your work, to avoid unnecessary back and forth, as well as potential disappointment.
 
 ## Licensing
 
 Locutus is licensed under the MIT licenses.
 
-[The MIT license](https://github.com/locutusjs/locutus/blob/master/LICENSE) allows you to use the library as you see fit (even in commercial projects) as long as you redistribute the original license along with it. You are not obligated to share your improvements, even though that would obviously be greatly appreciated and would also ensure that you won't lose your changes after you upgrade.
+[The MIT license](https://github.com/locutusjs/locutus/blob/HEAD/LICENSE) allows you to use the library as you see fit (even in commercial projects) as long as you redistribute the original license along with it. You are not obligated to share your improvements, even though that would obviously be greatly appreciated and would also ensure that you won't lose your changes after you upgrade.

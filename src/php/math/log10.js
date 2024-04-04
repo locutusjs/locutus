@@ -1,4 +1,4 @@
-module.exports = function log10 (arg) {
+module.exports = function log10(arg) {
   //  discuss at: https://locutus.io/php/log10/
   // original by: Philip Peterson
   // improved by: Onno Marsman (https://twitter.com/onnomarsman)

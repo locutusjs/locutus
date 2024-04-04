@@ -1,4 +1,4 @@
-module.exports = function gettype (mixedVar) {
+module.exports = function gettype(mixedVar) {
   //  discuss at: https://locutus.io/php/gettype/
   // original by: Paulo Freitas
   // improved by: Kevin van Zonneveld (https://kvz.io)
@@ -27,7 +27,7 @@ module.exports = function gettype (mixedVar) {
   let s = typeof mixedVar
   let name
   const _getFuncName = function (fn) {
-    const name = (/\W*function\s+([\w$]+)\s*\(/).exec(fn)
+    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn)
     if (!name) {
       return '(Anonymous)'
     }
@@ -38,9 +38,11 @@ module.exports = function gettype (mixedVar) {
     if (mixedVar !== null) {
       // From: https://javascript.crockford.com/remedial.html
       // @todo: Break up this lengthy if statement
-      if (typeof mixedVar.length === 'number' &&
-        !(mixedVar.propertyIsEnumerable('length')) &&
-        typeof mixedVar.splice === 'function') {
+      if (
+        typeof mixedVar.length === 'number' &&
+        !mixedVar.propertyIsEnumerable('length') &&
+        typeof mixedVar.splice === 'function'
+      ) {
         s = 'array'
       } else if (mixedVar.constructor && _getFuncName(mixedVar.constructor)) {
         name = _getFuncName(mixedVar.constructor)

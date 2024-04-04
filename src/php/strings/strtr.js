@@ -1,4 +1,4 @@
-module.exports = function strtr (str, trFrom, trTo) {
+module.exports = function strtr(str, trFrom, trTo) {
   //  discuss at: https://locutus.io/php/strtr/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: uestla
@@ -81,7 +81,7 @@ module.exports = function strtr (str, trFrom, trTo) {
         if (str.substr(i, trFrom[j].length) === trFrom[j]) {
           match = true
           // Fast forward
-          i = (i + trFrom[j].length) - 1
+          i = i + trFrom[j].length - 1
           break
         }
       }

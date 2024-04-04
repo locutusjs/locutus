@@ -1,4 +1,4 @@
-module.exports = function str_rot13 (str) { // eslint-disable-line camelcase
+module.exports = function str_rot13(str) {
   //  discuss at: https://locutus.io/php/str_rot13/
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   // improved by: Ates Goral (https://magnetiq.com)
@@ -11,8 +11,7 @@ module.exports = function str_rot13 (str) { // eslint-disable-line camelcase
   //   example 3: str_rot13(33)
   //   returns 3: '33'
 
-  return (str + '')
-    .replace(/[a-z]/gi, function (s) {
-      return String.fromCharCode(s.charCodeAt(0) + (s.toLowerCase() < 'n' ? 13 : -13))
-    })
+  return (str + '').replace(/[a-z]/gi, function (s) {
+    return String.fromCharCode(s.charCodeAt(0) + (s.toLowerCase() < 'n' ? 13 : -13))
+  })
 }

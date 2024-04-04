@@ -1,4 +1,4 @@
-module.exports = function addslashes (str) {
+module.exports = function addslashes(str) {
   //  discuss at: https://locutus.io/php/addslashes/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Ates Goral (https://magnetiq.com)
@@ -11,7 +11,5 @@ module.exports = function addslashes (str) {
   //   example 1: addslashes("kevin's birthday")
   //   returns 1: "kevin\\'s birthday"
 
-  return (str + '')
-    .replace(/[\\"']/g, '\\$&')
-    .replace(/\u0000/g, '\\0')
+  return (str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0')
 }

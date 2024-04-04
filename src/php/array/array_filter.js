@@ -1,4 +1,4 @@
-module.exports = function array_filter (arr, func) { // eslint-disable-line camelcase
+module.exports = function array_filter(arr, func) {
   //  discuss at: https://locutus.io/php/array_filter/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: max4ever
@@ -16,9 +16,11 @@ module.exports = function array_filter (arr, func) { // eslint-disable-line came
   let retObj = {}
   let k
 
-  func = func || function (v) {
-    return v
-  }
+  func =
+    func ||
+    function (v) {
+      return v
+    }
 
   // @todo: Issue #73
   if (Object.prototype.toString.call(arr) === '[object Array]') {

@@ -1,54 +1,64 @@
 name: Locutus CI
 on:
-  push:
-    branches:
-      - master
   pull_request:
-    types:
-      - opened
-      - synchronize
+  push:
+    branches: [main]
+    tags: ['*']
 jobs:
   ci:
     runs-on: ubuntu-latest
-    steps  : 
-      - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - uses: actions/setup-node@master
+      - uses: actions/setup-node@v4
         with:
-          node-version: 10.x 
+          node-version: 20.x
+          registry-url: 'https://registry.npmjs.org'
       - name: Get yarn cache directory path
-        id  : yarn-cache-dir-path
-        run : echo "##[set-output name=dir;]$(yarn cache dir)"
-      - uses: actions/cache@v2
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+      - uses: actions/cache@v4
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
-          path        : ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key         : ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          path: |
+            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            .yarn
+            website/.yarn
+            dist/.yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - uses: sergioramos/yarn-actions/install@master
-        with:
-          frozen-lockfile: true
+      - name: Install Dependencies
+        run: |
+          corepack yarn
       - name: Lint
-        run : |
-          yarn lint
+        run: |
+          corepack yarn lint
       - name: Build
-        run : |
-          yarn build
+        run: |
+          corepack yarn build
       - name: Test
-        run : |
-          yarn test
+        run: |
+          corepack yarn test
+      - name: Release
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          cd dist/
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Website Build
-        if  : github.ref == 'refs/heads/master'
-        run : |
-          yarn website:install
-          yarn injectweb
-          yarn website:build
+        if: github.ref == 'refs/heads/main'
+        run: |
+          corepack yarn website:install
+          corepack yarn injectweb
+          corepack yarn website:build
       - name: Website Deploy 🚀
-        if  : github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@3.7.1
-        with: 
+        with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH      : gh-pages # The branch the action should deploy to.
-          FOLDER      : website/public # The folder the action should deploy.
-          CLEAN       : true # Automatically remove deleted files from the deploy branch
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: website/public # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch

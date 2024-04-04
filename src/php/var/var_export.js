@@ -1,4 +1,4 @@
-module.exports = function var_export (mixedExpression, boolReturn) { // eslint-disable-line camelcase
+module.exports = function var_export(mixedExpression, boolReturn) {
   //  discuss at: https://locutus.io/php/var_export/
   // original by: Philip Peterson
   // improved by: johnrembo
@@ -38,7 +38,7 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
   let innerIndent = ''
   let outerIndent = ''
   const getFuncName = function (fn) {
-    const name = (/\W*function\s+([\w$]+)\s*\(/).exec(fn)
+    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn)
     if (!name) {
       return '(Anonymous)'
     }
@@ -51,8 +51,7 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
   }
 
   const _makeIndent = function (idtLevel) {
-    return (new Array(idtLevel + 1))
-      .join(' ')
+    return new Array(idtLevel + 1).join(' ')
   }
   const __getType = function (inp) {
     let i = 0
@@ -60,8 +59,7 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
     let types
     let cons
     let type = typeof inp
-    if (type === 'object' && (inp && inp.constructor) &&
-      getFuncName(inp.constructor) === 'LOCUTUS_Resource') {
+    if (type === 'object' && inp && inp.constructor && getFuncName(inp.constructor) === 'LOCUTUS_Resource') {
       return 'resource'
     }
     if (type === 'function') {
@@ -121,14 +119,15 @@ module.exports = function var_export (mixedExpression, boolReturn) { // eslint-d
     // variables in JavaScript); if using instead in JavaScript and you
     // are using the namespaced version, note that create_function() will
     // not be available as a global
-    retstr = "create_function ('" + funcParts[1] + "', '" +
-      funcParts[2].replace(new RegExp("'", 'g'), "\\'") + "')"
+    retstr = "create_function ('" + funcParts[1] + "', '" + funcParts[2].replace(/'/g, "\\'") + "')"
   } else if (type === 'resource') {
     // Resources treated as null for var_export
     retstr = 'NULL'
   } else {
-    retstr = typeof mixedExpression !== 'string' ? mixedExpression
-      : "'" + mixedExpression.replace(/(["'])/g, '\\$1').replace(/\0/g, '\\0') + "'"
+    retstr =
+      typeof mixedExpression !== 'string'
+        ? mixedExpression
+        : "'" + mixedExpression.replace(/(["'])/g, '\\$1').replace(/\0/g, '\\0') + "'"
   }
 
   if (!boolReturn) {

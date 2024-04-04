@@ -2,14 +2,30 @@
   "name": "hexo-site",
   "version": "0.0.0",
   "private": true,
-  "hexo": {
-    "version": "3.2.2"
-  },
   "scripts": {
+    "clean": "hexo clean",
     "deploy": "hexo deploy",
-    "server": "hexo server",
     "generate": "hexo generate",
-    "clean": "hexo clean"
+    "server": "hexo server"
+  },
+  "dependencies": {
+    "cross-spawn-async": "2.2.5",
+    "hexo": "7.1.1",
+    "hexo-browsersync": "0.3.0",
+    "hexo-cli": "4.3.1",
+    "hexo-deployer-git": "4.0.0",
+    "hexo-front-matter-excerpt": "0.2.0",
+    "hexo-generator-alias": "1.0.0",
+    "hexo-generator-archive": "2.0.0",
+    "hexo-generator-category": "2.0.0",
+    "hexo-generator-feed": "3.0.0",
+    "hexo-generator-json-content": "4.2.3",
+    "hexo-generator-tag": "2.0.0",
+    "hexo-migrator-rss": "1.1.0",
+    "hexo-renderer-ejs": "2.0.0",
+    "hexo-renderer-marked": "6.3.0",
+    "hexo-renderer-stylus": "3.0.1",
+    "hexo-server": "3.0.0"
   },
   "devDependencies": {
     "eslint": "3.12.2",
@@ -17,23 +33,12 @@
     "eslint-plugin-promise": "3.4.0",
     "eslint-plugin-standard": "2.0.1"
   },
-  "dependencies": {
-    "cross-spawn-async": "2.2.5",
-    "hexo": "3.2.2",
-    "hexo-browsersync": "0.2.0",
-    "hexo-cli": "1.0.2",
-    "hexo-deployer-git": "0.2.0",
-    "hexo-front-matter-excerpt": "0.2.0",
-    "hexo-generator-alias": "0.1.3",
-    "hexo-generator-archive": "0.1.4",
-    "hexo-generator-category": "0.1.3",
-    "hexo-generator-feed": "1.2.0",
-    "hexo-generator-json-content": "3.0.1",
-    "hexo-generator-tag": "0.2.0",
-    "hexo-migrator-rss": "0.1.2",
-    "hexo-renderer-ejs": "0.2.0",
-    "hexo-renderer-marked": "0.2.11",
-    "hexo-renderer-stylus": "0.3.1",
-    "hexo-server": "0.2.0"
+  "packageManager": "yarn@4.0.1+sha224.ca5d6f5a8aecd0801adc32f775675b01961bdc2383867d36f4732a0a",
+  "engines": {
+    "node": ">= 10",
+    "yarn": "4.0.1"
+  },
+  "hexo": {
+    "version": "7.1.1"
   }
 }

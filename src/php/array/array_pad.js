@@ -1,4 +1,4 @@
-module.exports = function array_pad (input, padSize, padValue) { // eslint-disable-line camelcase
+module.exports = function array_pad(input, padSize, padValue) {
   //  discuss at: https://locutus.io/php/array_pad/
   // original by: Waldo Malqui Silva (https://waldo.malqui.info)
   //   example 1: array_pad([ 7, 8, 9 ], 2, 'a')
@@ -17,14 +17,14 @@ module.exports = function array_pad (input, padSize, padValue) { // eslint-disab
   let i = 0
 
   if (Object.prototype.toString.call(input) === '[object Array]' && !isNaN(padSize)) {
-    newLength = ((padSize < 0) ? (padSize * -1) : padSize)
+    newLength = padSize < 0 ? padSize * -1 : padSize
     diff = newLength - input.length
 
     if (diff > 0) {
       for (i = 0; i < diff; i++) {
         newArray[i] = padValue
       }
-      pad = ((padSize < 0) ? newArray.concat(input) : input.concat(newArray))
+      pad = padSize < 0 ? newArray.concat(input) : input.concat(newArray)
     } else {
       pad = input
     }

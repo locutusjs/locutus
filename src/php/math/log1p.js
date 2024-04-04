@@ -1,4 +1,4 @@
-module.exports = function log1p (x) {
+module.exports = function log1p(x) {
   //  discuss at: https://locutus.io/php/log1p/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Robert Eisele (https://www.xarg.org/)

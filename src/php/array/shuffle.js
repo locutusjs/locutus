@@ -1,4 +1,4 @@
-module.exports = function shuffle (inputArr) {
+module.exports = function shuffle(inputArr) {
   //  discuss at: https://locutus.io/php/shuffle/
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   //  revised by: Kevin van Zonneveld (https://kvz.io)
@@ -29,7 +29,8 @@ module.exports = function shuffle (inputArr) {
     return 0.5 - Math.random()
   })
 
-  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal =
+    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

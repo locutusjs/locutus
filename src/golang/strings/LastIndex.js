@@ -1,4 +1,4 @@
-module.exports = function LastIndex (s, sep) {
+module.exports = function LastIndex(s, sep) {
   //  discuss at: https://locutus.io/golang/strings/LastIndex
   // original by: Kevin van Zonneveld (https://kvz.io)
   //    input by: GopherJS (https://www.gopherjs.org/)

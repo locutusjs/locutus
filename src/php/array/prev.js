@@ -1,4 +1,4 @@
-module.exports = function prev (arr) {
+module.exports = function prev(arr) {
   //  discuss at: https://locutus.io/php/prev/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Uses global: locutus to store the array pointer
@@ -6,7 +6,7 @@ module.exports = function prev (arr) {
   //   example 1: prev($transport)
   //   returns 1: false
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

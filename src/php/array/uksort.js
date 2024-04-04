@@ -1,4 +1,4 @@
-module.exports = function uksort (inputArr, sorter) {
+module.exports = function uksort(inputArr, sorter) {
   //  discuss at: https://locutus.io/php/uksort/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -46,7 +46,8 @@ module.exports = function uksort (inputArr, sorter) {
     return false
   }
 
-  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal =
+    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

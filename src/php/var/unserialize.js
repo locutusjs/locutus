@@ -1,7 +1,7 @@
-function initCache () {
+function initCache() {
   const store = []
   // cache only first element, second is length to jump ahead for the parser
-  const cache = function cache (value) {
+  const cache = function cache(value) {
     store.push(value[0])
     return value
   }
@@ -17,7 +17,7 @@ function initCache () {
   return cache
 }
 
-function expectType (str, cache) {
+function expectType(str, cache) {
   const types = /^(?:N(?=;)|[bidsSaOCrR](?=:)|[^:]+(?=:))/g
   const type = (types.exec(str) || [])[0]
 
@@ -52,7 +52,7 @@ function expectType (str, cache) {
   }
 }
 
-function expectBool (str) {
+function expectBool(str) {
   const reBool = /^b:([01]);/
   const [match, boolMatch] = reBool.exec(str) || []
 
@@ -63,7 +63,7 @@ function expectBool (str) {
   return [boolMatch === '1', match.length]
 }
 
-function expectInt (str) {
+function expectInt(str) {
   const reInt = /^i:([+-]?\d+);/
   const [match, intMatch] = reInt.exec(str) || []
 
@@ -74,7 +74,7 @@ function expectInt (str) {
   return [parseInt(intMatch, 10), match.length]
 }
 
-function expectFloat (str) {
+function expectFloat(str) {
   const reFloat = /^d:(NAN|-?INF|(?:\d+\.\d*|\d*\.\d+|\d+)(?:[eE][+-]\d+)?);/
   const [match, floatMatch] = reFloat.exec(str) || []
 
@@ -102,7 +102,7 @@ function expectFloat (str) {
   return [floatValue, match.length]
 }
 
-function readBytes (str, len, escapedString = false) {
+function readBytes(str, len, escapedString = false) {
   let bytes = 0
   let out = ''
   let c = 0
@@ -127,16 +127,17 @@ function readBytes (str, len, escapedString = false) {
 
     c++
 
-    bytes += isHighSurrogate || (isLowSurrogate && wasHighSurrogate)
-      // if high surrogate, count 2 bytes, as expectation is to be followed by low surrogate
-      // if low surrogate preceded by high surrogate, add 2 bytes
-      ? 2
-      : code > 0x7ff
-        // otherwise low surrogate falls into this part
-        ? 3
-        : code > 0x7f
-          ? 2
-          : 1
+    bytes +=
+      isHighSurrogate || (isLowSurrogate && wasHighSurrogate)
+        ? // if high surrogate, count 2 bytes, as expectation is to be followed by low surrogate
+          // if low surrogate preceded by high surrogate, add 2 bytes
+          2
+        : code > 0x7ff
+          ? // otherwise low surrogate falls into this part
+            3
+          : code > 0x7f
+            ? 2
+            : 1
 
     // if high surrogate is not followed by low surrogate, add 1 more byte
     bytes += wasHighSurrogate && !isLowSurrogate ? 1 : 0
@@ -148,7 +149,7 @@ function readBytes (str, len, escapedString = false) {
   return [out, bytes, escapedChars]
 }
 
-function expectString (str) {
+function expectString(str) {
   // PHP strings consist of one-byte characters.
   // JS uses 2 bytes with possible surrogate pairs.
   // Serialized length of 2 is still 1 JS string character
@@ -179,7 +180,7 @@ function expectString (str) {
   return [strMatch, match.length + strMatch.length + 2] // skip last ";
 }
 
-function expectEscapedString (str) {
+function expectEscapedString(str) {
   const reStrLength = /^S:(\d+):"/g // also match the opening " char
   const [match, strLenMatch] = reStrLength.exec(str) || []
 
@@ -207,7 +208,7 @@ function expectEscapedString (str) {
   return [strMatch, match.length + strMatch.length + 2] // skip last ";
 }
 
-function expectKeyOrIndex (str) {
+function expectKeyOrIndex(str) {
   try {
     return expectString(str)
   } catch (err) {}
@@ -223,11 +224,12 @@ function expectKeyOrIndex (str) {
   }
 }
 
-function expectObject (str, cache) {
+function expectObject(str, cache) {
   // O:<class name length>:"class name":<prop count>:{<props and values>}
   // O:8:"stdClass":2:{s:3:"foo";s:3:"bar";s:3:"bar";s:3:"baz";}
   const reObjectLiteral = /^O:(\d+):"([^"]+)":(\d+):\{/
-  const [objectLiteralBeginMatch, /* classNameLengthMatch */, className, propCountMatch] = reObjectLiteral.exec(str) || []
+  const [objectLiteralBeginMatch /* classNameLengthMatch */, , className, propCountMatch] =
+    reObjectLiteral.exec(str) || []
 
   if (!objectLiteralBeginMatch) {
     throw SyntaxError('Invalid input')
@@ -265,7 +267,7 @@ function expectObject (str, cache) {
   return [obj, totalOffset + 1] // skip final }
 }
 
-function expectClass (str, cache) {
+function expectClass(str, cache) {
   // can't be well supported, because requires calling eval (or similar)
   // in order to call serialized constructor name
   // which is unsafe
@@ -274,7 +276,7 @@ function expectClass (str, cache) {
   throw Error('Not yet implemented')
 }
 
-function expectReference (str, cache) {
+function expectReference(str, cache) {
   const reRef = /^[rR]:([1-9]\d*);/
   const [match, refIndex] = reRef.exec(str) || []
 
@@ -285,7 +287,7 @@ function expectReference (str, cache) {
   return [cache.get(parseInt(refIndex, 10) - 1), match.length]
 }
 
-function expectArray (str, cache) {
+function expectArray(str, cache) {
   const reArrayLength = /^a:(\d+):{/
   const [arrayLiteralBeginMatch, arrayLengthMatch] = reArrayLength.exec(str) || []
 
@@ -305,21 +307,20 @@ function expectArray (str, cache) {
   return [array[0], arrayLiteralBeginMatch.length + array[1] + 1] // jump over }
 }
 
-function expectArrayItems (str, expectedItems = 0, cache) {
+function expectArrayItems(str, expectedItems = 0, cache) {
   let key
-  let hasStringKeys = false
   let item
   let totalOffset = 0
-  let items = []
+  let hasContinousIndexes = true
+  let lastIndex = -1
+  let items = {}
   cache([items])
 
   for (let i = 0; i < expectedItems; i++) {
     key = expectKeyOrIndex(str)
 
-    // this is for backward compatibility with previous implementation
-    if (!hasStringKeys) {
-      hasStringKeys = (typeof key[0] === 'string')
-    }
+    hasContinousIndexes = hasContinousIndexes && typeof key[0] === 'number' && key[0] === lastIndex + 1
+    lastIndex = key[0]
 
     str = str.substr(key[1])
     totalOffset += key[1]
@@ -334,15 +335,14 @@ function expectArrayItems (str, expectedItems = 0, cache) {
     items[key[0]] = item[0]
   }
 
-  // this is for backward compatibility with previous implementation
-  if (hasStringKeys) {
-    items = Object.assign({}, items)
+  if (hasContinousIndexes) {
+    items = Object.values(items)
   }
 
   return [items, totalOffset]
 }
 
-module.exports = function unserialize (str) {
+module.exports = function unserialize(str) {
   //       discuss at: https://locutus.io/php/unserialize/
   //      original by: Arpad Ray (mailto:arpad@php.net)
   //      improved by: Pedro Tainha (https://www.pedrotainha.com)

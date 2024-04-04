@@ -1,4 +1,4 @@
-module.exports = function stristr (haystack, needle, bool) {
+module.exports = function stristr(haystack, needle, bool) {
   //  discuss at: https://locutus.io/php/stristr/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -10,9 +10,7 @@ module.exports = function stristr (haystack, needle, bool) {
   let pos = 0
 
   haystack += ''
-  pos = haystack.toLowerCase()
-    .indexOf((needle + '')
-      .toLowerCase())
+  pos = haystack.toLowerCase().indexOf((needle + '').toLowerCase())
   if (pos === -1) {
     return false
   } else {

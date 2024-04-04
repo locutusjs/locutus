@@ -1,4 +1,4 @@
-module.exports = function date (format, timestamp) {
+module.exports = function date(format, timestamp) {
   //  discuss at: https://locutus.io/php/date/
   // original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)
   // original by: gettimeofday
@@ -64,9 +64,25 @@ module.exports = function date (format, timestamp) {
   // Keep this here (works, but for code commented-out below for file size reasons)
   // var tal= [];
   const txtWords = [
-    'Sun', 'Mon', 'Tues', 'Wednes', 'Thurs', 'Fri', 'Satur',
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
+    'Sun',
+    'Mon',
+    'Tues',
+    'Wednes',
+    'Thurs',
+    'Fri',
+    'Satur',
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ]
   // trailing backslash -> (dropped)
   // a backslash followed by any character (including backslash) -> the character
@@ -90,8 +106,7 @@ module.exports = function date (format, timestamp) {
     },
     D: function () {
       // Shorthand day name; Mon...Sun
-      return f.l()
-        .slice(0, 3)
+      return f.l().slice(0, 3)
     },
     j: function () {
       // Day of month; 1..31
@@ -144,8 +159,7 @@ module.exports = function date (format, timestamp) {
     },
     M: function () {
       // Shorthand month name; Jan...Dec
-      return f.F()
-        .slice(0, 3)
+      return f.F().slice(0, 3)
     },
     n: function () {
       // Month; 1...12
@@ -153,15 +167,14 @@ module.exports = function date (format, timestamp) {
     },
     t: function () {
       // Days in month; 28...31
-      return (new Date(f.Y(), f.n(), 0))
-        .getDate()
+      return new Date(f.Y(), f.n(), 0).getDate()
     },
 
     // Year
     L: function () {
       // Is leap year?; 0 or 1
       const j = f.Y()
-      return j % 4 === 0 & j % 100 !== 0 | j % 400 === 0
+      return ((j % 4 === 0) & (j % 100 !== 0)) | (j % 400 === 0)
     },
     o: function () {
       // ISO-8601 year
@@ -176,9 +189,7 @@ module.exports = function date (format, timestamp) {
     },
     y: function () {
       // Last two digits of year; 00...99
-      return f.Y()
-        .toString()
-        .slice(-2)
+      return f.Y().toString().slice(-2)
     },
 
     // Time
@@ -188,8 +199,7 @@ module.exports = function date (format, timestamp) {
     },
     A: function () {
       // AM or PM
-      return f.a()
-        .toUpperCase()
+      return f.a().toUpperCase()
     },
     B: function () {
       // Swatch Internet time; 000..999
@@ -252,18 +262,18 @@ module.exports = function date (format, timestamp) {
       // Jul 1
       // Jul 1 UTC
       const d = Date.UTC(f.Y(), 6)
-      return ((a - c) !== (b - d)) ? 1 : 0
+      return a - c !== b - d ? 1 : 0
     },
     O: function () {
       // Difference to GMT in hour format; e.g. +0200
       const tzo = jsdate.getTimezoneOffset()
       const a = Math.abs(tzo)
-      return (tzo > 0 ? '-' : '+') + _pad(Math.floor(a / 60) * 100 + a % 60, 4)
+      return (tzo > 0 ? '-' : '+') + _pad(Math.floor(a / 60) * 100 + (a % 60), 4)
     },
     P: function () {
       // Difference to GMT w/colon; e.g. +02:00
       const O = f.O()
-      return (O.substr(0, 3) + ':' + O.substr(3, 2))
+      return O.substr(0, 3) + ':' + O.substr(3, 2)
     },
     T: function () {
       // The following works, but requires inclusion of the very
@@ -309,15 +319,17 @@ module.exports = function date (format, timestamp) {
     },
     U: function () {
       // Seconds since UNIX epoch
-      return jsdate / 1000 | 0
-    }
+      return (jsdate / 1000) | 0
+    },
   }
 
   const _date = function (format, timestamp) {
-    jsdate = (timestamp === undefined ? new Date() // Not provided
-      : (timestamp instanceof Date) ? new Date(timestamp) // JS Date()
+    jsdate =
+      timestamp === undefined
+        ? new Date() // Not provided
+        : timestamp instanceof Date
+          ? new Date(timestamp) // JS Date()
           : new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
-    )
     return format.replace(formatChr, formatChrCb)
   }
 

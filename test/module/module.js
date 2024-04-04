@@ -30,5 +30,5 @@ console.log(sprintf('Resistance is %s', effectiveness))
 console.log(ruby.Math.acos(0.3))
 console.log(math.acos(0.3))
 
-strings.echo(php.url.parse_url('mysql://kevin:abcd1234@example.com/databasename')['pass'])
+strings.echo(php.url.parse_url('mysql://kevin:abcd1234@example.com/databasename').pass)
 strings.echo(php.datetime.strtotime('2 januari 2012, 11:12:13 GMT'))

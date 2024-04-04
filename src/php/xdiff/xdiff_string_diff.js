@@ -1,4 +1,4 @@
-module.exports = function xdiff_string_diff (oldData, newData, contextLines, minimal) { // eslint-disable-line camelcase
+module.exports = function xdiff_string_diff(oldData, newData, contextLines, minimal) {
   //  discuss at: https://locutus.io/php/xdiff_string_diff
   // original by: Brett Zamir (https://brett-zamir.me)
   //    based on: Imgen Tata (https://www.myipdf.com/)
@@ -218,7 +218,7 @@ module.exports = function xdiff_string_diff (oldData, newData, contextLines, min
     }
 
     // Function to find lcs and fill in the array to indicate the optimal longest common sequence
-    var _findLcs = function (xs, xidx, xIsIn, ys) {
+    const _findLcs = function (xs, xidx, xIsIn, ys) {
       let i
       let xb
       let xe
@@ -245,9 +245,7 @@ module.exports = function xdiff_string_diff (oldData, newData, contextLines, min
       xb = xs.slice(0, i)
       xe = xs.slice(i)
       llB = lcsLens(xb, ys)
-      llE = lcsLens(xe.slice(0)
-        .reverse(), ys.slice(0)
-        .reverse())
+      llE = lcsLens(xe.slice(0).reverse(), ys.slice(0).reverse())
 
       pivot = 0
       max = 0
@@ -278,9 +276,7 @@ module.exports = function xdiff_string_diff (oldData, newData, contextLines, min
     return ''
   }
 
-  if (typeof contextLines !== 'number' ||
-    contextLines > MAX_CONTEXT_LINES ||
-    contextLines < MIN_CONTEXT_LINES) {
+  if (typeof contextLines !== 'number' || contextLines > MAX_CONTEXT_LINES || contextLines < MIN_CONTEXT_LINES) {
     contextLines = DEFAULT_CONTEXT_LINES
   }
 
@@ -298,15 +294,15 @@ module.exports = function xdiff_string_diff (oldData, newData, contextLines, min
     unidiff = [
       HEADER_PREFIX,
       ORIGINAL_INDICATOR,
-      (oriLen > 0 ? '1' : '0'),
+      oriLen > 0 ? '1' : '0',
       RANGE_SEPARATOR,
       oriLen,
       ' ',
       NEW_INDICATOR,
-      (newLen > 0 ? '1' : '0'),
+      newLen > 0 ? '1' : '0',
       RANGE_SEPARATOR,
       newLen,
-      HEADER_SUFFIX
+      HEADER_SUFFIX,
     ].join('')
 
     for (i = 0; i < oriLen; i++) {
@@ -379,8 +375,10 @@ module.exports = function xdiff_string_diff (oldData, newData, contextLines, min
       j++
     }
 
-    if (k >= lcsLen || // No more in longest common lines
-      trailingContext.length >= 2 * contextLines) {
+    if (
+      k >= lcsLen || // No more in longest common lines
+      trailingContext.length >= 2 * contextLines
+    ) {
       // Context break found
       if (trailingContext.length < 2 * contextLines) {
         // It must be last block of common lines but not a context break
@@ -424,14 +422,12 @@ module.exports = function xdiff_string_diff (oldData, newData, contextLines, min
         RANGE_SEPARATOR,
         newHunkSize,
         HEADER_SUFFIX,
-        NEW_LINE
+        NEW_LINE,
       ].join('')
 
       // Build the diff hunk content
       while (oriHunkStart < oriHunkEnd || newHunkStart < newHunkEnd) {
-        if (oriHunkStart < oriHunkEnd &&
-          oriIsInLcs[oriHunkStart] === true &&
-          newIsInLcs[newHunkStart] === true) {
+        if (oriHunkStart < oriHunkEnd && oriIsInLcs[oriHunkStart] === true && newIsInLcs[newHunkStart] === true) {
           // The context line
           unidiff += CONTEXT_INDICATOR + oriLines[oriHunkStart] + NEW_LINE
           oriHunkStart++

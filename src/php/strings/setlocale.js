@@ -1,4 +1,4 @@
-module.exports = function setlocale (category, locale) {
+module.exports = function setlocale(category, locale) {
   //  discuss at: https://locutus.io/php/setlocale/
   // original by: Brett Zamir (https://brett-zamir.me)
   // original by: Blues (https://hacks.bluesmoon.info/strftime/strftime.js)
@@ -19,7 +19,7 @@ module.exports = function setlocale (category, locale) {
   const cats = []
   let i = 0
 
-  const _copy = function _copy (orig) {
+  const _copy = function _copy(orig) {
     if (orig instanceof RegExp) {
       return new RegExp(orig)
     } else if (orig instanceof Date) {
@@ -59,7 +59,7 @@ module.exports = function setlocale (category, locale) {
     return n > 1 ? 1 : 0
   }
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
@@ -67,10 +67,12 @@ module.exports = function setlocale (category, locale) {
   // Reconcile Windows vs. *nix locale names?
   // Allow different priority orders of languages, esp. if implement gettext as in
   // LANGUAGE env. var.? (e.g., show German if French is not available)
-  if (!$locutus.php.locales ||
+  if (
+    !$locutus.php.locales ||
     !$locutus.php.locales.fr_CA ||
     !$locutus.php.locales.fr_CA.LC_TIME ||
-    !$locutus.php.locales.fr_CA.LC_TIME.x) {
+    !$locutus.php.locales.fr_CA.LC_TIME.x
+  ) {
     // Can add to the locales
     $locutus.php.locales = {}
 
@@ -78,7 +80,7 @@ module.exports = function setlocale (category, locale) {
       LC_COLLATE: function (str1, str2) {
         // @todo: This one taken from strcmp, but need for other locales; we don't use localeCompare
         // since its locale is not settable
-        return (str1 === str2) ? 0 : ((str1 > str2) ? 1 : -1)
+        return str1 === str2 ? 0 : str1 > str2 ? 1 : -1
       },
       LC_CTYPE: {
         // Need to change any of these for English as opposed to C?
@@ -96,7 +98,7 @@ module.exports = function setlocale (category, locale) {
         CODESET: 'UTF-8',
         // Used by sql_regcase
         lower: 'abcdefghijklmnopqrstuvwxyz',
-        upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
       },
       LC_TIME: {
         // Comments include nl_langinfo() constant equivalents and any
@@ -107,9 +109,19 @@ module.exports = function setlocale (category, locale) {
         // DAY_
         b: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         // ABMON_
-        B: ['January', 'February', 'March', 'April', 'May', 'June', 'July',
-          'August', 'September', 'October',
-          'November', 'December'
+        B: [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December',
         ],
         // MON_
         c: '%a %d %b %Y %r %Z',
@@ -131,7 +143,7 @@ module.exports = function setlocale (category, locale) {
         ERA_YEAR: '',
         ERA_D_T_FMT: '',
         ERA_D_FMT: '',
-        ERA_T_FMT: ''
+        ERA_T_FMT: '',
       },
       // Assuming distinction between numeric and monetary is thus:
       // See below for C locale
@@ -164,21 +176,21 @@ module.exports = function setlocale (category, locale) {
         // 0: parentheses surround quantity and curr. symbol; 1: sign precedes them;
         // 2: sign follows them; 3: sign immed. precedes curr. symbol; 4: sign immed.
         // succeeds curr. symbol
-        n_sign_posn: 0 // see p_sign_posn
+        n_sign_posn: 0, // see p_sign_posn
       },
       LC_NUMERIC: {
         // based on Windows "english" (English_United States.1252) locale
         decimal_point: '.',
         thousands_sep: ',',
-        grouping: [3] // see mon_grouping, but for non-monetary values (use thousands_sep)
+        grouping: [3], // see mon_grouping, but for non-monetary values (use thousands_sep)
       },
       LC_MESSAGES: {
         YESEXPR: '^[yY].*',
         NOEXPR: '^[nN].*',
         YESSTR: '',
-        NOSTR: ''
+        NOSTR: '',
       },
-      nplurals: _nplurals2a
+      nplurals: _nplurals2a,
     }
     $locutus.php.locales.en_US = _copy($locutus.php.locales.en)
     $locutus.php.locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z'
@@ -214,12 +226,12 @@ module.exports = function setlocale (category, locale) {
       positive_sign: '',
       negative_sign: '',
       int_frac_digits: 127,
-      frac_digits: 127
+      frac_digits: 127,
     }
     $locutus.php.locales.C.LC_NUMERIC = {
       decimal_point: '.',
       thousands_sep: '',
-      grouping: []
+      grouping: [],
     }
     // D_T_FMT
     $locutus.php.locales.C.LC_TIME.c = '%a %b %e %H:%M:%S %Y'
@@ -233,15 +245,34 @@ module.exports = function setlocale (category, locale) {
     $locutus.php.locales.fr = _copy($locutus.php.locales.en)
     $locutus.php.locales.fr.nplurals = _nplurals2b
     $locutus.php.locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam']
-    $locutus.php.locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi',
-      'jeudi', 'vendredi', 'samedi']
-    $locutus.php.locales.fr.LC_TIME.b = ['jan', 'f\u00E9v', 'mar', 'avr', 'mai',
-      'jun', 'jui', 'ao\u00FB', 'sep', 'oct',
-      'nov', 'd\u00E9c'
+    $locutus.php.locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']
+    $locutus.php.locales.fr.LC_TIME.b = [
+      'jan',
+      'f\u00E9v',
+      'mar',
+      'avr',
+      'mai',
+      'jun',
+      'jui',
+      'ao\u00FB',
+      'sep',
+      'oct',
+      'nov',
+      'd\u00E9c',
     ]
-    $locutus.php.locales.fr.LC_TIME.B = ['janvier', 'f\u00E9vrier', 'mars',
-      'avril', 'mai', 'juin', 'juillet', 'ao\u00FBt',
-      'septembre', 'octobre', 'novembre', 'd\u00E9cembre'
+    $locutus.php.locales.fr.LC_TIME.B = [
+      'janvier',
+      'f\u00E9vrier',
+      'mars',
+      'avril',
+      'mai',
+      'juin',
+      'juillet',
+      'ao\u00FBt',
+      'septembre',
+      'octobre',
+      'novembre',
+      'd\u00E9cembre',
     ]
     $locutus.php.locales.fr.LC_TIME.c = '%a %d %b %Y %T %Z'
     $locutus.php.locales.fr.LC_TIME.p = ['', '']
@@ -259,18 +290,17 @@ module.exports = function setlocale (category, locale) {
       const d = window.document
       const NS_XHTML = 'https://www.w3.org/1999/xhtml'
       const NS_XML = 'https://www.w3.org/XML/1998/namespace'
-      if (d.getElementsByTagNameNS &&
-        d.getElementsByTagNameNS(NS_XHTML, 'html')[0]) {
-        if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS &&
-          d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')) {
-          $locutus.php.locale = d.getElementsByTagName(NS_XHTML, 'html')[0]
-            .getAttributeNS(NS_XML, 'lang')
+      if (d.getElementsByTagNameNS && d.getElementsByTagNameNS(NS_XHTML, 'html')[0]) {
+        if (
+          d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS &&
+          d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')
+        ) {
+          $locutus.php.locale = d.getElementsByTagName(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')
         } else if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang) {
           // XHTML 1.0 only
           $locutus.php.locale = d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang
         }
-      } else if (d.getElementsByTagName('html')[0] &&
-        d.getElementsByTagName('html')[0].lang) {
+      } else if (d.getElementsByTagName('html')[0] && d.getElementsByTagName('html')[0].lang) {
         $locutus.php.locale = d.getElementsByTagName('html')[0].lang
       }
     }
@@ -297,7 +327,7 @@ module.exports = function setlocale (category, locale) {
       LC_TIME: $locutus.php.locale,
       // for date and time formatting with strftime()
       // for system responses (available if PHP was compiled with libintl):
-      LC_MESSAGES: $locutus.php.locale
+      LC_MESSAGES: $locutus.php.locale,
     }
   }
 
