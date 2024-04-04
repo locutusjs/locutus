@@ -1,14 +1,56 @@
 {
   "name": "locutus",
   "version": "2.0.18",
-  "license": "MIT",
   "description": "Locutus other languages' standard libraries to JavaScript for fun and educational purposes",
+  "keywords": [
+    "php",
+    "golang",
+    "c",
+    "ruby",
+    "python",
+    "js",
+    "locutus"
+  ],
   "homepage": "https://locutus.io",
+  "bugs": {
+    "url": "https://github.com/locutusjs/locutus/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/locutusjs/locutus.git"
+  },
+  "license": "MIT",
   "author": "Kevin van Zonneveld <kevin@vanzonneveld.net>",
-  "packageManager": "yarn@4.0.1+sha224.ca5d6f5a8aecd0801adc32f775675b01961bdc2383867d36f4732a0a",
-  "engines": {
-    "node": ">= 10",
-    "yarn": "4.0.1"
+  "browser": {
+    "child_process": false,
+    "fs": false
+  },
+  "scripts": {
+    "browser:bundle": "browserify test/browser/app.js --outfile test/browser/bundle.js",
+    "browser:watch": "budo test/browser/app.js --live --serve test/browser/bundle.js",
+    "build:dist": "babel src --out-dir dist --source-maps && cp package.json dist/",
+    "build:indices": "babel-node src/_util/cli.js reindex",
+    "build:tests:noskip": "rimraf test/languages && babel-node src/_util/cli.js writetests --noskip",
+    "build:tests": "rimraf test/languages && babel-node src/_util/cli.js writetests",
+    "build": "npm-run-all 'build:*'",
+    "injectweb": "rimraf website/source/{c,golang,php,python,ruby} && babel-node src/_util/cli.js injectweb",
+    "fix:js": "DEBUG=eslint:cli-engine eslint --fix --quiet --ext .js,.jsx,.ts,.tsx .",
+    "fix:formatting": "env DEBUG=prettier prettier --write .",
+    "fix": "npm-run-all --serial 'fix:**'",
+    "lint:formatting": "prettier --check .",
+    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint": "npm-run-all --parallel 'lint:**'",
+    "playground:start": "cd test/browser && babel-node server.js",
+    "test:languages:noskip": "yarn build:tests:noskip && cross-env DEBUG='locutus:*' mocha --compilers js:babel-register --reporter spec --recursive test/languages --grep \"${TEST_GREP:-}\"",
+    "test:languages": "yarn build:tests && cross-env DEBUG='locutus:*' mocha --compilers js:babel-register --reporter spec --recursive test/languages --grep \"${TEST_GREP:-}\"",
+    "test:module": "babel-node test/module/module.js",
+    "test:util": "mocha --compilers js:babel-register --reporter spec test/util/",
+    "test": "npm-run-all test:languages test:util test:module",
+    "website:install": "cd website && yarn",
+    "website:deploy": "cd website && yarn deploy",
+    "website:start": "cd website && yarn server",
+    "website:build": "cd website && yarn generate",
+    "website:clean": "cd website && yarn clean"
   },
   "devDependencies": {
     "@shopify/prettier-plugin-liquid": "^1.4.4",
@@ -49,52 +91,10 @@
     "prettier-plugin-packagejson": "^2.4.14",
     "rimraf": "3.0.2"
   },
-  "keywords": [
-    "php",
-    "golang",
-    "c",
-    "ruby",
-    "python",
-    "js",
-    "locutus"
-  ],
-  "bugs": {
-    "url": "https://github.com/locutusjs/locutus/issues"
+  "packageManager": "yarn@4.0.1+sha224.ca5d6f5a8aecd0801adc32f775675b01961bdc2383867d36f4732a0a",
+  "engines": {
+    "node": ">= 10",
+    "yarn": "4.0.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/locutusjs/locutus.git"
-  },
-  "readmeFilename": "README.md",
-  "scripts": {
-    "browser:bundle": "browserify test/browser/app.js --outfile test/browser/bundle.js",
-    "browser:watch": "budo test/browser/app.js --live --serve test/browser/bundle.js",
-    "build:dist": "babel src --out-dir dist --source-maps && cp package.json dist/",
-    "build:indices": "babel-node src/_util/cli.js reindex",
-    "build:tests:noskip": "rimraf test/languages && babel-node src/_util/cli.js writetests --noskip",
-    "build:tests": "rimraf test/languages && babel-node src/_util/cli.js writetests",
-    "build": "npm-run-all 'build:*'",
-    "injectweb": "rimraf website/source/{c,golang,php,python,ruby} && babel-node src/_util/cli.js injectweb",
-    "fix:js": "DEBUG=eslint:cli-engine eslint --fix --quiet --ext .js,.jsx,.ts,.tsx .",
-    "fix:formatting": "env DEBUG=prettier prettier --write .",
-    "fix": "npm-run-all --serial 'fix:**'",
-    "lint:formatting": "prettier --check .",
-    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx .",
-    "lint": "npm-run-all --parallel 'lint:**'",
-    "playground:start": "cd test/browser && babel-node server.js",
-    "test:languages:noskip": "yarn build:tests:noskip && cross-env DEBUG='locutus:*' mocha --compilers js:babel-register --reporter spec --recursive test/languages --grep \"${TEST_GREP:-}\"",
-    "test:languages": "yarn build:tests && cross-env DEBUG='locutus:*' mocha --compilers js:babel-register --reporter spec --recursive test/languages --grep \"${TEST_GREP:-}\"",
-    "test:module": "babel-node test/module/module.js",
-    "test:util": "mocha --compilers js:babel-register --reporter spec test/util/",
-    "test": "npm-run-all test:languages test:util test:module",
-    "website:install": "cd website && yarn",
-    "website:deploy": "cd website && yarn deploy",
-    "website:start": "cd website && yarn server",
-    "website:build": "cd website && yarn generate",
-    "website:clean": "cd website && yarn clean"
-  },
-  "browser": {
-    "child_process": false,
-    "fs": false
-  }
+  "readmeFilename": "README.md"
 }
