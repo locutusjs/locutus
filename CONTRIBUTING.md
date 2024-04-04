@@ -35,13 +35,7 @@ Here are a few pointers that could save us from disappointment, we'll try to kee
 
 ## Locutus Development
 
-For ease of development, we recommend these global installs:
-
-```bash
-npm install --global mocha babel-cli hexo
-```
-
-## Clone
+### Clone
 
 ```bash
 cd ~/code
@@ -49,23 +43,23 @@ git clone git@github.com:locutusjs/locutus.git
 cd locutus
 ```
 
-## Install
+### Install
 
 ```bash
-npm install
-npm run website:install
+yarn
+yarn website:install
 ```
 
-## Test
+### Test
 
 ```bash
-npm run test
+yarn test
 ```
 
 Single out one function: `natsort`
 
 ```bash
-TEST_GREP=natsort npm run test:languages
+TEST_GREP=natsort yarn test:languages
 ```
 
 This first rewrites mocha test-cases based on `example` and `result` comments found in the function's headers. This is useful if you're changing the tests themselves as well.
@@ -79,7 +73,7 @@ env DEBUG=locutus:* mocha \
 test/languages/php/array/test-natsort.js
 ```
 
-## Website Development
+### Website Development
 
 We keep the website in `./website` so it's easy to keep code and website in sync as we iterate. For those reading this screaming murder, [HashiCorp does this](https://github.com/hashicorp/terraform/tree/HEAD/website) for all their projects, and it's working well for them on a scale more impressive than ours.
 
