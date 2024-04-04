@@ -5,8 +5,10 @@
   "description": "Locutus other languages' standard libraries to JavaScript for fun and educational purposes",
   "homepage": "https://locutus.io",
   "author": "Kevin van Zonneveld <kevin@vanzonneveld.net>",
+  "packageManager": "yarn@4.0.1+sha224.ca5d6f5a8aecd0801adc32f775675b01961bdc2383867d36f4732a0a",
   "engines": {
-    "node": ">= 10"
+    "node": ">= 10",
+    "yarn": "4.0.1"
   },
   "devDependencies": {
     "async": "2.0.0-rc.3",
@@ -89,9 +91,8 @@
     "website:build": "cd website && yarn generate",
     "website:clean": "cd website && yarn clean"
   },
-  "dependencies": {},
   "browser": {
-    "fs": false,
-    "child_process": false
+    "child_process": false,
+    "fs": false
   }
 }
