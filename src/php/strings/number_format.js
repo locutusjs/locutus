@@ -1,4 +1,5 @@
-module.exports = function number_format (number, decimals, decPoint, thousandsSep) { // eslint-disable-line camelcase
+module.exports = function number_format(number, decimals, decPoint, thousandsSep) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/number_format/
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   // improved by: Kevin van Zonneveld (https://kvz.io)
@@ -52,8 +53,8 @@ module.exports = function number_format (number, decimals, decPoint, thousandsSe
   number = (number + '').replace(/[^0-9+\-Ee.]/g, '')
   const n = !isFinite(+number) ? 0 : +number
   const prec = !isFinite(+decimals) ? 0 : Math.abs(decimals)
-  const sep = (typeof thousandsSep === 'undefined') ? ',' : thousandsSep
-  const dec = (typeof decPoint === 'undefined') ? '.' : decPoint
+  const sep = typeof thousandsSep === 'undefined' ? ',' : thousandsSep
+  const dec = typeof decPoint === 'undefined' ? '.' : decPoint
   let s = ''
 
   const toFixedFix = function (n, prec) {

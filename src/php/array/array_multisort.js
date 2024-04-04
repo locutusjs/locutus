@@ -1,4 +1,5 @@
-module.exports = function array_multisort (arr) { // eslint-disable-line camelcase
+module.exports = function array_multisort(arr) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_multisort/
   // original by: Theriault (https://github.com/Theriault)
   // improved by: Oleg Andreyev (https://github.com/oleg-andreyev)
@@ -42,7 +43,7 @@ module.exports = function array_multisort (arr) { // eslint-disable-line camelca
     SORT_NUMERIC: 17,
     SORT_STRING: 18,
     SORT_ASC: 32,
-    SORT_DESC: 40
+    SORT_DESC: 40,
   }
 
   const sortDuplicator = function (a, b) {
@@ -51,18 +52,16 @@ module.exports = function array_multisort (arr) { // eslint-disable-line camelca
 
   const sortFunctions = [
     [
-
       function (a, b) {
-        lastSort.push(a > b ? 1 : (a < b ? -1 : 0))
-        return a > b ? 1 : (a < b ? -1 : 0)
+        lastSort.push(a > b ? 1 : a < b ? -1 : 0)
+        return a > b ? 1 : a < b ? -1 : 0
       },
       function (a, b) {
-        lastSort.push(b > a ? 1 : (b < a ? -1 : 0))
-        return b > a ? 1 : (b < a ? -1 : 0)
-      }
+        lastSort.push(b > a ? 1 : b < a ? -1 : 0)
+        return b > a ? 1 : b < a ? -1 : 0
+      },
     ],
     [
-
       function (a, b) {
         lastSort.push(a - b)
         return a - b
@@ -70,28 +69,23 @@ module.exports = function array_multisort (arr) { // eslint-disable-line camelca
       function (a, b) {
         lastSort.push(b - a)
         return b - a
-      }
+      },
     ],
     [
-
       function (a, b) {
-        lastSort.push((a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0))
-        return (a + '') > (b + '') ? 1 : ((a + '') < (b + '') ? -1 : 0)
+        lastSort.push(a + '' > b + '' ? 1 : a + '' < b + '' ? -1 : 0)
+        return a + '' > b + '' ? 1 : a + '' < b + '' ? -1 : 0
       },
       function (a, b) {
-        lastSort.push((b + '') > (a + '') ? 1 : ((b + '') < (a + '') ? -1 : 0))
-        return (b + '') > (a + '') ? 1 : ((b + '') < (a + '') ? -1 : 0)
-      }
-    ]
+        lastSort.push(b + '' > a + '' ? 1 : b + '' < a + '' ? -1 : 0)
+        return b + '' > a + '' ? 1 : b + '' < a + '' ? -1 : 0
+      },
+    ],
   ]
 
-  const sortArrs = [
-    []
-  ]
+  const sortArrs = [[]]
 
-  const sortKeys = [
-    []
-  ]
+  const sortKeys = [[]]
 
   // Store first argument into sortArrs and sortKeys if an Object.
   // First Argument should be either a Javascript Array or an Object,
@@ -143,8 +137,7 @@ module.exports = function array_multisort (arr) { // eslint-disable-line camelca
       const lFlag = sortFlag.pop()
       // Keep extra parentheses around latter flags check
       // to avoid minimization leading to CDATA closer
-      if (typeof flags[arguments[j]] === 'undefined' ||
-        ((((flags[arguments[j]]) >>> 4) & (lFlag >>> 4)) > 0)) {
+      if (typeof flags[arguments[j]] === 'undefined' || ((flags[arguments[j]] >>> 4) & (lFlag >>> 4)) > 0) {
         return false
       }
       sortFlag.push(lFlag + flags[arguments[j]])
@@ -189,7 +182,7 @@ module.exports = function array_multisort (arr) { // eslint-disable-line camelca
       }
 
       // Sort function for sorting. Either sorts asc or desc, regular/string or numeric.
-      let sFunction = sortFunctions[(sortFlag[i] & 3)][((sortFlag[i] & 8) > 0) ? 1 : 0]
+      let sFunction = sortFunctions[sortFlag[i] & 3][(sortFlag[i] & 8) > 0 ? 1 : 0]
 
       // Sort current array.
       for (l = 0; l !== sortComponents.length; l += 2) {
@@ -253,7 +246,7 @@ module.exports = function array_multisort (arr) { // eslint-disable-line camelca
       for (j in sortArrs[i]) {
         if (sortArrs[i].hasOwnProperty(j)) {
           if (!thingsToSort[j]) {
-            if ((sortComponents.length & 1)) {
+            if (sortComponents.length & 1) {
               sortComponents.push(j - 1)
             }
             zlast = null

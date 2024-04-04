@@ -1,4 +1,5 @@
-module.exports = function array_fill (startIndex, num, mixedVal) { // eslint-disable-line camelcase
+module.exports = function array_fill(startIndex, num, mixedVal) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_fill/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Waldo Malqui Silva (https://waldo.malqui.info)
@@ -10,7 +11,7 @@ module.exports = function array_fill (startIndex, num, mixedVal) { // eslint-dis
 
   if (!isNaN(startIndex) && !isNaN(num)) {
     for (key = 0; key < num; key++) {
-      tmpArr[(key + startIndex)] = mixedVal
+      tmpArr[key + startIndex] = mixedVal
     }
   }
 

@@ -1,4 +1,5 @@
-module.exports = function array_uintersect (arr1) { // eslint-disable-line camelcase
+module.exports = function array_uintersect(arr1) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_uintersect/
   // original by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Demosthenes Koptsis
@@ -16,16 +17,19 @@ module.exports = function array_uintersect (arr1) { // eslint-disable-line camel
   let arr = {}
   let k = ''
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
 
-  cb = (typeof cb === 'string')
-    ? $global[cb]
-    : (Object.prototype.toString.call(cb) === '[object Array]')
+  cb =
+    typeof cb === 'string'
+      ? $global[cb]
+      : Object.prototype.toString.call(cb) === '[object Array]'
         ? $global[cb[0]][cb[1]]
         : cb
 
-  arr1keys: for (k1 in arr1) { // eslint-disable-line no-labels
-    arrs: for (i = 1; i < arglm1; i++) { // eslint-disable-line no-labels
+  arr1keys: for (k1 in arr1) {
+    // eslint-disable-line no-labels
+    arrs: for (i = 1; i < arglm1; i++) {
+      // eslint-disable-line no-labels
       arr = arguments[i]
       for (k in arr) {
         if (cb(arr[k], arr1[k1]) === 0) {

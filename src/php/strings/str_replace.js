@@ -1,4 +1,5 @@
-module.exports = function str_replace (search, replace, subject, countObj) { // eslint-disable-line camelcase
+module.exports = function str_replace(search, replace, subject, countObj) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/str_replace/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Gabriel Paderni
@@ -45,12 +46,12 @@ module.exports = function str_replace (search, replace, subject, countObj) { // 
   const sa = Object.prototype.toString.call(s) === '[object Array]'
   s = [].concat(s)
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 
-  if (typeof (search) === 'object' && typeof (replace) === 'string') {
+  if (typeof search === 'object' && typeof replace === 'string') {
     temp = replace
     replace = []
     for (i = 0; i < search.length; i += 1) {
@@ -75,9 +76,9 @@ module.exports = function str_replace (search, replace, subject, countObj) { // 
       }
       temp = s[i] + ''
       repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0]
-      s[i] = (temp).split(f[j]).join(repl)
+      s[i] = temp.split(f[j]).join(repl)
       if (typeof countObj !== 'undefined') {
-        countObj.value += ((temp.split(f[j])).length - 1)
+        countObj.value += temp.split(f[j]).length - 1
       }
     }
   }

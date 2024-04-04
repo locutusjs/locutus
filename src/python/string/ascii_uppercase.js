@@ -1,4 +1,5 @@
-module.exports = function ascii_uppercase () { // eslint-disable-line camelcase
+module.exports = function ascii_uppercase() {
+  // eslint-disable-line camelcase
   //   original by: Yury Shapkarin (https://shapkarin.me)
   //   example 1: ascii_uppercase()
   //   returns 1: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -6,8 +7,7 @@ module.exports = function ascii_uppercase () { // eslint-disable-line camelcase
   const length = 26
   let i = 65
 
-  return [...Array(length)]
-    .reduce(function (accumulator) {
-      return accumulator + String.fromCharCode(i++)
-    }, '')
+  return [...Array(length)].reduce(function (accumulator) {
+    return accumulator + String.fromCharCode(i++)
+  }, '')
 }

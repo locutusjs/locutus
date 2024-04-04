@@ -1,4 +1,4 @@
-module.exports = function reset (arr) {
+module.exports = function reset(arr) {
   //  discuss at: https://locutus.io/php/reset/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Legaev Andrey
@@ -7,7 +7,7 @@ module.exports = function reset (arr) {
   //   example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
   //   returns 1: 'Kevin'
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

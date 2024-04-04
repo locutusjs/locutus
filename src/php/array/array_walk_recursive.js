@@ -1,4 +1,5 @@
-module.exports = function array_walk_recursive (array, funcname, userdata) { // eslint-disable-line camelcase
+module.exports = function array_walk_recursive(array, funcname, userdata) {
+  // eslint-disable-line camelcase
   // original by: Hugues Peccatte
   //      note 1: Only works with user-defined functions, not built-in functions like void()
   //   example 1: array_walk_recursive([3, 4], function () {}, 'userdata')

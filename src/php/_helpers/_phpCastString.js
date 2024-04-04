@@ -1,4 +1,4 @@
-module.exports = function _phpCastString (value) {
+module.exports = function _phpCastString(value) {
   // original by: Rafał Kukawski
   //   example 1: _phpCastString(true)
   //   returns 1: '1'
@@ -57,7 +57,7 @@ module.exports = function _phpCastString (value) {
 
       return ''
     case 'function':
-      // fall through
+    // fall through
     default:
       throw new Error('Unsupported value type')
   }

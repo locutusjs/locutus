@@ -1,4 +1,5 @@
-module.exports = function in_array (needle, haystack, argStrict) { // eslint-disable-line camelcase
+module.exports = function in_array(needle, haystack, argStrict) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/in_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: vlado houba
@@ -30,7 +31,8 @@ module.exports = function in_array (needle, haystack, argStrict) { // eslint-dis
     }
   } else {
     for (key in haystack) {
-      if (haystack[key] == needle) { // eslint-disable-line eqeqeq
+      if (haystack[key] == needle) {
+        // eslint-disable-line eqeqeq
         return true
       }
     }

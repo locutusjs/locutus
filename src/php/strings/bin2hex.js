@@ -1,4 +1,4 @@
-module.exports = function bin2hex (s) {
+module.exports = function bin2hex(s) {
   //  discuss at: https://locutus.io/php/bin2hex/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -17,8 +17,7 @@ module.exports = function bin2hex (s) {
   s += ''
 
   for (i = 0, l = s.length; i < l; i++) {
-    n = s.charCodeAt(i)
-      .toString(16)
+    n = s.charCodeAt(i).toString(16)
     o += n.length < 2 ? '0' + n : n
   }
 

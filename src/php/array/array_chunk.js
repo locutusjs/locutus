@@ -1,4 +1,5 @@
-module.exports = function array_chunk (input, size, preserveKeys) { // eslint-disable-line camelcase
+module.exports = function array_chunk(input, size, preserveKeys) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_chunk/
   // original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -27,16 +28,13 @@ module.exports = function array_chunk (input, size, preserveKeys) { // eslint-di
   if (Object.prototype.toString.call(input) === '[object Array]') {
     if (preserveKeys) {
       while (i < l) {
-        (x = i % size)
-          ? n[c][i] = input[i]
-          : n[++c] = {}; n[c][i] = input[i]
+        ;(x = i % size) ? (n[c][i] = input[i]) : (n[++c] = {})
+        n[c][i] = input[i]
         i++
       }
     } else {
       while (i < l) {
-        (x = i % size)
-          ? n[c][x] = input[i]
-          : n[++c] = [input[i]]
+        ;(x = i % size) ? (n[c][x] = input[i]) : (n[++c] = [input[i]])
         i++
       }
     }
@@ -44,18 +42,15 @@ module.exports = function array_chunk (input, size, preserveKeys) { // eslint-di
     if (preserveKeys) {
       for (p in input) {
         if (input.hasOwnProperty(p)) {
-          (x = i % size)
-            ? n[c][p] = input[p]
-            : n[++c] = {}; n[c][p] = input[p]
+          ;(x = i % size) ? (n[c][p] = input[p]) : (n[++c] = {})
+          n[c][p] = input[p]
           i++
         }
       }
     } else {
       for (p in input) {
         if (input.hasOwnProperty(p)) {
-          (x = i % size)
-            ? n[c][x] = input[p]
-            : n[++c] = [input[p]]
+          ;(x = i % size) ? (n[c][x] = input[p]) : (n[++c] = [input[p]])
           i++
         }
       }

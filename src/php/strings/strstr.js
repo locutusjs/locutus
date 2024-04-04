@@ -1,4 +1,4 @@
-module.exports = function strstr (haystack, needle, bool) {
+module.exports = function strstr(haystack, needle, bool) {
   //  discuss at: https://locutus.io/php/strstr/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)

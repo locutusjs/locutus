@@ -1,4 +1,4 @@
-module.exports = function crc32 (str) {
+module.exports = function crc32(str) {
   //  discuss at: https://locutus.io/php/crc32/
   // original by: Webtoolkit.info (https://www.webtoolkit.info/)
   // improved by: T0bsn
@@ -263,7 +263,7 @@ module.exports = function crc32 (str) {
     'B40BBE37',
     'C30C8EA1',
     '5A05DF1B',
-    '2D02EF8D'
+    '2D02EF8D',
   ].join(' ')
   // @todo: ^-- Now that `table` is an array, maybe we can use that directly using slices,
   // instead of converting it to a string and substringing
@@ -272,12 +272,12 @@ module.exports = function crc32 (str) {
   let x = 0
   let y = 0
 
-  crc = crc ^ (-1)
+  crc = crc ^ -1
   for (let i = 0, iTop = str.length; i < iTop; i++) {
-    y = (crc ^ str.charCodeAt(i)) & 0xFF
+    y = (crc ^ str.charCodeAt(i)) & 0xff
     x = '0x' + table.substr(y * 9, 8)
     crc = (crc >>> 8) ^ x
   }
 
-  return crc ^ (-1)
+  return crc ^ -1
 }

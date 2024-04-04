@@ -1,4 +1,5 @@
-module.exports = function json_decode (strJson) { // eslint-disable-line camelcase
+module.exports = function json_decode(strJson) {
+  // eslint-disable-line camelcase
   //       discuss at: https://phpjs.org/functions/json_decode/
   //      original by: Public Domain (https://www.json.org/json2.js)
   // reimplemented by: Kevin van Zonneveld (https://kevin.vanzonneveld.net)
@@ -18,7 +19,7 @@ module.exports = function json_decode (strJson) { // eslint-disable-line camelca
     See https://www.JSON.org/js.html
   */
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
@@ -49,7 +50,7 @@ module.exports = function json_decode (strJson) { // eslint-disable-line camelca
     '\u2028-\u202f',
     '\u2060-\u206f',
     '\ufeff',
-    '\ufff0-\uffff'
+    '\ufff0-\uffff',
   ].join('')
   const cx = new RegExp('[' + chars + ']', 'g')
   let j
@@ -61,9 +62,7 @@ module.exports = function json_decode (strJson) { // eslint-disable-line camelca
   cx.lastIndex = 0
   if (cx.test(text)) {
     text = text.replace(cx, function (a) {
-      return '\\u' + ('0000' + a.charCodeAt(0)
-        .toString(16))
-        .slice(-4)
+      return '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4)
     })
   }
 
@@ -79,10 +78,12 @@ module.exports = function json_decode (strJson) { // eslint-disable-line camelca
   // we look to see that the remaining characters are only whitespace or ']' or
   // ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
 
-  const m = (/^[\],:{}\s]*$/)
-    .test(text.replace(/\\(?:["\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
+  const m = /^[\],:{}\s]*$/.test(
+    text
+      .replace(/\\(?:["\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
       .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?/g, ']')
-      .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))
+      .replace(/(?:^|:|,)(?:\s*\[)+/g, ''),
+  )
 
   if (m) {
     // In the third stage we use the eval function to compile the text into a

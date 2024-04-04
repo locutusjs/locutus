@@ -1,8 +1,8 @@
 module.exports = {
   extends: ['standard', 'prettier'],
   rules: {
-    'camelcase': 'off',
-    'eqeqeq': 'warn',
+    camelcase: 'off',
+    eqeqeq: 'warn',
     'multiline-ternary': 'off',
     'n/no-deprecated-api': 'warn',
     'no-cond-assign': 'warn',

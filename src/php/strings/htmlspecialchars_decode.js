@@ -1,4 +1,5 @@
-module.exports = function htmlspecialchars_decode (string, quoteStyle) { // eslint-disable-line camelcase
+module.exports = function htmlspecialchars_decode(string, quoteStyle) {
+  // eslint-disable-line camelcase
   //       discuss at: https://locutus.io/php/htmlspecialchars_decode/
   //      original by: Mirek Slugen
   //      improved by: Kevin van Zonneveld (https://kvz.io)
@@ -26,16 +27,14 @@ module.exports = function htmlspecialchars_decode (string, quoteStyle) { // esli
   if (typeof quoteStyle === 'undefined') {
     quoteStyle = 2
   }
-  string = string.toString()
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
+  string = string.toString().replace(/&lt;/g, '<').replace(/&gt;/g, '>')
   const OPTS = {
     ENT_NOQUOTES: 0,
     ENT_HTML_QUOTE_SINGLE: 1,
     ENT_HTML_QUOTE_DOUBLE: 2,
     ENT_COMPAT: 2,
     ENT_QUOTES: 3,
-    ENT_IGNORE: 4
+    ENT_IGNORE: 4,
   }
   if (quoteStyle === 0) {
     noquotes = true

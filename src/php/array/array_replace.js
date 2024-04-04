@@ -1,4 +1,5 @@
-module.exports = function array_replace (arr) { // eslint-disable-line camelcase
+module.exports = function array_replace(arr) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_replace/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"})

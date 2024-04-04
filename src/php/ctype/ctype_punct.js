@@ -1,4 +1,5 @@
-module.exports = function ctype_punct (text) { // eslint-disable-line camelcase
+module.exports = function ctype_punct(text) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/ctype_punct/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: ctype_punct('!?')
@@ -11,7 +12,7 @@ module.exports = function ctype_punct (text) { // eslint-disable-line camelcase
   // ensure setup of localization variables takes place
   setlocale('LC_ALL', 0)
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   const p = $locutus.php

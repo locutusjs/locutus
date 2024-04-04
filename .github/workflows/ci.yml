@@ -10,7 +10,7 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
-    steps  :
+    steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
@@ -18,37 +18,37 @@ jobs:
         with:
           node-version: 20.x
       - name: Get yarn cache directory path
-        id  : yarn-cache-dir-path
-        run : echo "##[set-output name=dir;].yarn"
+        id: yarn-cache-dir-path
+        run: echo "##[set-output name=dir;].yarn"
       - uses: actions/cache@v4
         with:
-          path        : ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key         : ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install Dependencies
-        run : |
+        run: |
           corepack yarn
       - name: Lint
-        run : |
+        run: |
           corepack yarn lint
       - name: Build
-        run : |
+        run: |
           corepack yarn build
       - name: Test
-        run : |
+        run: |
           corepack yarn test
       - name: Website Build
-        if  : github.ref == 'refs/heads/main'
-        run : |
+        if: github.ref == 'refs/heads/main'
+        run: |
           corepack yarn website:install
           corepack yarn injectweb
           corepack yarn website:build
       - name: Website Deploy 🚀
-        if  : github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH      : gh-pages # The branch the action should deploy to.
-          FOLDER      : website/public # The folder the action should deploy.
-          CLEAN       : true # Automatically remove deleted files from the deploy branch
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: website/public # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch

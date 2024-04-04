@@ -15,9 +15,9 @@ varDump(preg_match('^[0-9-+s()]*$', '021827495')) // Should report true
 varDump(preg_match('^[0-9-+s()]*$', 'phone23no')) // Should report flase
 document.write(sprintf('Hey %s, please check the console log', 'you'))
 varDump(iniSet('locutus.objectsAsArrays', 'on'))
-varDump(isArray({'name': 'locutus'})) // Should report true
+varDump(isArray({ name: 'locutus' })) // Should report true
 varDump(iniSet('locutus.objectsAsArrays', 'off'))
-varDump(isArray({'name': 'locutus'})) // Should report false
+varDump(isArray({ name: 'locutus' })) // Should report false
 varDump(sha1('Resistance'))
 varDump(md5('Futile'))
 varDump(md5File('Futile'))

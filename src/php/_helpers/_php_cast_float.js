@@ -1,4 +1,5 @@
-module.exports = function _php_cast_float (value) { // eslint-disable-line camelcase
+module.exports = function _php_cast_float(value) {
+  // eslint-disable-line camelcase
   // original by: Rafał Kukawski
   //   example 1: _php_cast_float(false)
   //   returns 1: 0
@@ -37,7 +38,7 @@ module.exports = function _php_cast_float (value) { // eslint-disable-line camel
     case 'string':
       return parseFloat(value) || 0
     case 'boolean':
-      // fall through
+    // fall through
     default:
       // PHP docs state, that for types other than string
       // conversion is {input type}->int->float

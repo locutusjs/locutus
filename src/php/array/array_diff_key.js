@@ -1,4 +1,5 @@
-module.exports = function array_diff_key (arr1) { // eslint-disable-line camelcase
+module.exports = function array_diff_key(arr1) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_diff_key/
   // original by: Ates Goral (https://magnetiq.com)
   //  revised by: Brett Zamir (https://brett-zamir.me)
@@ -15,7 +16,8 @@ module.exports = function array_diff_key (arr1) { // eslint-disable-line camelca
   let k = ''
   let arr = {}
 
-  arr1keys: for (k1 in arr1) { // eslint-disable-line no-labels
+  arr1keys: for (k1 in arr1) {
+    // eslint-disable-line no-labels
     for (i = 1; i < argl; i++) {
       arr = arguments[i]
       for (k in arr) {

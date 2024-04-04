@@ -1,4 +1,4 @@
-module.exports = function pack (format) {
+module.exports = function pack(format) {
   //  discuss at: https://locutus.io/php/pack/
   // original by: Tim de Koning (https://www.kingsquare.nl)
   //    parts by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
@@ -50,8 +50,7 @@ module.exports = function pack (format) {
     instruction = format.charAt(formatPointer)
     quantifier = ''
     formatPointer++
-    while ((formatPointer < format.length) && (format.charAt(formatPointer)
-      .match(/[\d*]/) !== null)) {
+    while (formatPointer < format.length && format.charAt(formatPointer).match(/[\d*]/) !== null) {
       quantifier += format.charAt(formatPointer)
       formatPointer++
     }
@@ -106,7 +105,7 @@ module.exports = function pack (format) {
         for (i = 0; i < quantifier; i += 2) {
           // Always get per 2 bytes...
           word = argument[i]
-          if (((i + 1) >= quantifier) || typeof argument[i + 1] === 'undefined') {
+          if (i + 1 >= quantifier || typeof argument[i + 1] === 'undefined') {
             word += '0'
           } else {
             word += argument[i + 1]
@@ -128,7 +127,7 @@ module.exports = function pack (format) {
         if (quantifier === '*') {
           quantifier = arguments.length - argumentPointer
         }
-        if (quantifier > (arguments.length - argumentPointer)) {
+        if (quantifier > arguments.length - argumentPointer) {
           throw new Error('Warning:  pack() Type ' + instruction + ': too few arguments')
         }
 
@@ -147,13 +146,13 @@ module.exports = function pack (format) {
         if (quantifier === '*') {
           quantifier = arguments.length - argumentPointer
         }
-        if (quantifier > (arguments.length - argumentPointer)) {
+        if (quantifier > arguments.length - argumentPointer) {
           throw new Error('Warning:  pack() Type ' + instruction + ': too few arguments')
         }
 
         for (i = 0; i < quantifier; i++) {
-          result += String.fromCharCode(arguments[argumentPointer] & 0xFF)
-          result += String.fromCharCode(arguments[argumentPointer] >> 8 & 0xFF)
+          result += String.fromCharCode(arguments[argumentPointer] & 0xff)
+          result += String.fromCharCode((arguments[argumentPointer] >> 8) & 0xff)
           argumentPointer++
         }
         break
@@ -163,13 +162,13 @@ module.exports = function pack (format) {
         if (quantifier === '*') {
           quantifier = arguments.length - argumentPointer
         }
-        if (quantifier > (arguments.length - argumentPointer)) {
+        if (quantifier > arguments.length - argumentPointer) {
           throw new Error('Warning: pack() Type ' + instruction + ': too few arguments')
         }
 
         for (i = 0; i < quantifier; i++) {
-          result += String.fromCharCode(arguments[argumentPointer] >> 8 & 0xFF)
-          result += String.fromCharCode(arguments[argumentPointer] & 0xFF)
+          result += String.fromCharCode((arguments[argumentPointer] >> 8) & 0xff)
+          result += String.fromCharCode(arguments[argumentPointer] & 0xff)
           argumentPointer++
         }
         break
@@ -187,15 +186,15 @@ module.exports = function pack (format) {
         if (quantifier === '*') {
           quantifier = arguments.length - argumentPointer
         }
-        if (quantifier > (arguments.length - argumentPointer)) {
+        if (quantifier > arguments.length - argumentPointer) {
           throw new Error('Warning:  pack() Type ' + instruction + ': too few arguments')
         }
 
         for (i = 0; i < quantifier; i++) {
-          result += String.fromCharCode(arguments[argumentPointer] & 0xFF)
-          result += String.fromCharCode(arguments[argumentPointer] >> 8 & 0xFF)
-          result += String.fromCharCode(arguments[argumentPointer] >> 16 & 0xFF)
-          result += String.fromCharCode(arguments[argumentPointer] >> 24 & 0xFF)
+          result += String.fromCharCode(arguments[argumentPointer] & 0xff)
+          result += String.fromCharCode((arguments[argumentPointer] >> 8) & 0xff)
+          result += String.fromCharCode((arguments[argumentPointer] >> 16) & 0xff)
+          result += String.fromCharCode((arguments[argumentPointer] >> 24) & 0xff)
           argumentPointer++
         }
 
@@ -205,15 +204,15 @@ module.exports = function pack (format) {
         if (quantifier === '*') {
           quantifier = arguments.length - argumentPointer
         }
-        if (quantifier > (arguments.length - argumentPointer)) {
+        if (quantifier > arguments.length - argumentPointer) {
           throw new Error('Warning:  pack() Type ' + instruction + ': too few arguments')
         }
 
         for (i = 0; i < quantifier; i++) {
-          result += String.fromCharCode(arguments[argumentPointer] >> 24 & 0xFF)
-          result += String.fromCharCode(arguments[argumentPointer] >> 16 & 0xFF)
-          result += String.fromCharCode(arguments[argumentPointer] >> 8 & 0xFF)
-          result += String.fromCharCode(arguments[argumentPointer] & 0xFF)
+          result += String.fromCharCode((arguments[argumentPointer] >> 24) & 0xff)
+          result += String.fromCharCode((arguments[argumentPointer] >> 16) & 0xff)
+          result += String.fromCharCode((arguments[argumentPointer] >> 8) & 0xff)
+          result += String.fromCharCode(arguments[argumentPointer] & 0xff)
           argumentPointer++
         }
         break
@@ -233,7 +232,7 @@ module.exports = function pack (format) {
         if (quantifier === '*') {
           quantifier = arguments.length - argumentPointer
         }
-        if (quantifier > (arguments.length - argumentPointer)) {
+        if (quantifier > arguments.length - argumentPointer) {
           throw new Error('Warning:  pack() Type ' + instruction + ': too few arguments')
         }
         for (i = 0; i < quantifier; i++) {
@@ -242,7 +241,7 @@ module.exports = function pack (format) {
           minExp = -bias + 1
           maxExp = bias
           minUnnormExp = minExp - precisionBits
-          status = isNaN(n = parseFloat(argument)) || n === -Infinity || n === +Infinity ? n : 0
+          status = isNaN((n = parseFloat(argument))) || n === -Infinity || n === +Infinity ? n : 0
           exp = 0
           len = 2 * bias + 1 + precisionBits + 3
           bin = new Array(len)
@@ -251,35 +250,33 @@ module.exports = function pack (format) {
           intPart = Math.floor(n)
           floatPart = n - intPart
 
-          for (k = len; k;) {
+          for (k = len; k; ) {
             bin[--k] = 0
           }
-          for (k = bias + 2; intPart && k;) {
+          for (k = bias + 2; intPart && k; ) {
             bin[--k] = intPart % 2
             intPart = Math.floor(intPart / 2)
           }
           for (k = bias + 1; floatPart > 0 && k; --floatPart) {
-            (bin[++k] = ((floatPart *= 2) >= 1) - 0)
+            bin[++k] = ((floatPart *= 2) >= 1) - 0
           }
-          for (k = -1; ++k < len && !bin[k];) {}
+          for (k = -1; ++k < len && !bin[k]; ) {}
 
           // @todo: Make this more readable:
-          const key = (lastBit = precisionBits - 1 +
-            (k =
-              (exp = bias + 1 - k) >= minExp &&
-              exp <= maxExp
-                ? k + 1
-                : bias + 1 - (exp = minExp - 1))) + 1
+          const key =
+            (lastBit =
+              precisionBits -
+              1 +
+              (k = (exp = bias + 1 - k) >= minExp && exp <= maxExp ? k + 1 : bias + 1 - (exp = minExp - 1))) + 1
 
           if (bin[key]) {
             if (!(rounded = bin[lastBit])) {
               for (j = lastBit + 2; !rounded && j < len; rounded = bin[j++]) {}
             }
-            for (j = lastBit + 1; rounded && --j >= 0;
-              (bin[j] = !bin[j] - 0) && (rounded = 0)) {}
+            for (j = lastBit + 1; rounded && --j >= 0; (bin[j] = !bin[j] - 0) && (rounded = 0)) {}
           }
 
-          for (k = k - 2 < 0 ? -1 : k - 3; ++k < len && !bin[k];) {}
+          for (k = k - 2 < 0 ? -1 : k - 3; ++k < len && !bin[k]; ) {}
 
           if ((exp = bias + 1 - k) >= minExp && exp <= maxExp) {
             ++k
@@ -305,20 +302,17 @@ module.exports = function pack (format) {
           n = Math.abs(exp + bias)
           tmpResult = ''
 
-          for (j = exponentBits + 1; --j;) {
+          for (j = exponentBits + 1; --j; ) {
             tmpResult = (n % 2) + tmpResult
             n = n >>= 1
           }
 
           n = 0
           j = 0
-          k = (tmpResult = (signal ? '1' : '0') + tmpResult + (bin
-            .slice(k, k + precisionBits)
-            .join(''))
-          ).length
+          k = (tmpResult = (signal ? '1' : '0') + tmpResult + bin.slice(k, k + precisionBits).join('')).length
           r = []
 
-          for (; k;) {
+          for (; k; ) {
             n += (1 << j) * tmpResult.charAt(--k)
             if (j === 7) {
               r[r.length] = String.fromCharCode(n)
@@ -336,7 +330,7 @@ module.exports = function pack (format) {
       case 'x':
         // NUL byte
         if (quantifier === '*') {
-          throw new Error('Warning: pack(): Type x: \'*\' ignored')
+          throw new Error("Warning: pack(): Type x: '*' ignored")
         }
         for (i = 0; i < quantifier; i++) {
           result += String.fromCharCode(0)
@@ -346,7 +340,7 @@ module.exports = function pack (format) {
       case 'X':
         // Back up one byte
         if (quantifier === '*') {
-          throw new Error('Warning: pack(): Type X: \'*\' ignored')
+          throw new Error("Warning: pack(): Type X: '*' ignored")
         }
         for (i = 0; i < quantifier; i++) {
           if (result.length === 0) {
@@ -360,7 +354,7 @@ module.exports = function pack (format) {
       case '@':
         // NUL-fill to absolute position
         if (quantifier === '*') {
-          throw new Error('Warning: pack(): Type X: \'*\' ignored')
+          throw new Error("Warning: pack(): Type X: '*' ignored")
         }
         if (quantifier > result.length) {
           extraNullCount = quantifier - result.length

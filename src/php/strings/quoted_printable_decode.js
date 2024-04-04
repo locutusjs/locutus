@@ -1,4 +1,5 @@
-module.exports = function quoted_printable_decode (str) { // eslint-disable-line camelcase
+module.exports = function quoted_printable_decode(str) {
+  // eslint-disable-line camelcase
   //       discuss at: https://locutus.io/php/quoted_printable_decode/
   //      original by: Ole Vrijenhoek
   //      bugfixed by: Brett Zamir (https://brett-zamir.me)
@@ -25,6 +26,5 @@ module.exports = function quoted_printable_decode (str) { // eslint-disable-line
     return String.fromCharCode(parseInt(sHex, 16))
   }
 
-  return str.replace(RFC2045Decode1, '')
-    .replace(RFC2045Decode2IN, RFC2045Decode2OUT)
+  return str.replace(RFC2045Decode1, '').replace(RFC2045Decode2IN, RFC2045Decode2OUT)
 }

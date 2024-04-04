@@ -1,4 +1,5 @@
-module.exports = function nl_langinfo (item) { // eslint-disable-line camelcase
+module.exports = function nl_langinfo(item) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/nl_langinfo/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: nl_langinfo('DAY_1')
@@ -8,7 +9,7 @@ module.exports = function nl_langinfo (item) { // eslint-disable-line camelcase
 
   setlocale('LC_ALL', 0) // Ensure locale data is available
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

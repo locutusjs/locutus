@@ -1,4 +1,5 @@
-module.exports = function array_pop (inputArr) { // eslint-disable-line camelcase
+module.exports = function array_pop(inputArr) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_pop/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Kevin van Zonneveld (https://kvz.io)
@@ -38,7 +39,7 @@ module.exports = function array_pop (inputArr) { // eslint-disable-line camelcas
     }
     if (lastKey) {
       const tmp = inputArr[lastKey]
-      delete (inputArr[lastKey])
+      delete inputArr[lastKey]
       return tmp
     } else {
       return null

@@ -1,4 +1,4 @@
-module.exports = function capwords (str) {
+module.exports = function capwords(str) {
   //  discuss at: https://locutus.io/python/capwords/
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   // improved by: Waldo Malqui Silva (https://waldo.malqui.info)

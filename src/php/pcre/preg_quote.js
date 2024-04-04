@@ -1,4 +1,5 @@
-module.exports = function preg_quote (str, delimiter) { // eslint-disable-line camelcase
+module.exports = function preg_quote(str, delimiter) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/preg_quote/
   // original by: booeyOH
   // improved by: Ates Goral (https://magnetiq.com)
@@ -12,6 +13,5 @@ module.exports = function preg_quote (str, delimiter) { // eslint-disable-line c
   //   example 3: preg_quote("\\.+*?[^]$(){}=!<>|:")
   //   returns 3: '\\\\\\.\\+\\*\\?\\[\\^\\]\\$\\(\\)\\{\\}\\=\\!\\<\\>\\|\\:'
 
-  return (str + '')
-    .replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\' + (delimiter || '') + '-]', 'g'), '\\$&')
+  return (str + '').replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\\' + (delimiter || '') + '-]', 'g'), '\\$&')
 }

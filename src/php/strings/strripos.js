@@ -1,4 +1,4 @@
-module.exports = function strripos (haystack, needle, offset) {
+module.exports = function strripos(haystack, needle, offset) {
   //  discuss at: https://locutus.io/php/strripos/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -7,23 +7,18 @@ module.exports = function strripos (haystack, needle, offset) {
   //   example 1: strripos('Kevin van Zonneveld', 'E')
   //   returns 1: 16
 
-  haystack = (haystack + '')
-    .toLowerCase()
-  needle = (needle + '')
-    .toLowerCase()
+  haystack = (haystack + '').toLowerCase()
+  needle = (needle + '').toLowerCase()
 
   let i = -1
   if (offset) {
-    i = (haystack + '')
-      .slice(offset)
-      .lastIndexOf(needle) // strrpos' offset indicates starting point of range till end,
+    i = (haystack + '').slice(offset).lastIndexOf(needle) // strrpos' offset indicates starting point of range till end,
     // while lastIndexOf's optional 2nd argument indicates ending point of range from the beginning
     if (i !== -1) {
       i += offset
     }
   } else {
-    i = (haystack + '')
-      .lastIndexOf(needle)
+    i = (haystack + '').lastIndexOf(needle)
   }
   return i >= 0 ? i : false
 }

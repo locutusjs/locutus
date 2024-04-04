@@ -1,4 +1,4 @@
-module.exports = function hex2bin (s) {
+module.exports = function hex2bin(s) {
   //  discuss at: https://locutus.io/php/hex2bin/
   // original by: Dumitru Uzun (https://duzun.me)
   //   example 1: hex2bin('44696d61')

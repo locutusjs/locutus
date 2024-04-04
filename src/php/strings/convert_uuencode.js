@@ -1,4 +1,5 @@
-module.exports = function convert_uuencode (str) { // eslint-disable-line camelcase
+module.exports = function convert_uuencode(str) {
+  // eslint-disable-line camelcase
   //       discuss at: https://locutus.io/php/convert_uuencode/
   //      original by: Ole Vrijenhoek
   //      bugfixed by: Kevin van Zonneveld (https://kvz.io)
@@ -56,7 +57,7 @@ module.exports = function convert_uuencode (str) { // eslint-disable-line camelc
       tmp2 = tmp2 + '0'
     }
 
-    for (i = 0; i <= (tmp2.length / 6) - 1; i++) {
+    for (i = 0; i <= tmp2.length / 6 - 1; i++) {
       tmp1 = tmp2.substr(a, 6)
       if (tmp1 === '000000') {
         encoded += chr(96)

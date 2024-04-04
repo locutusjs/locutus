@@ -1,4 +1,5 @@
-module.exports = function is_array (mixedVar) { // eslint-disable-line camelcase
+module.exports = function is_array(mixedVar) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/is_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Legaev Andrey
@@ -29,7 +30,7 @@ module.exports = function is_array (mixedVar) { // eslint-disable-line camelcase
   //   returns 5: false
 
   const _getFuncName = function (fn) {
-    const name = (/\W*function\s+([\w$]+)\s*\(/).exec(fn)
+    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn)
     if (!name) {
       return '(Anonymous)'
     }
@@ -77,7 +78,8 @@ module.exports = function is_array (mixedVar) { // eslint-disable-line camelcase
     return true
   }
 
-  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.objectsAsArrays') : undefined) || 'on'
+  const iniVal =
+    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.objectsAsArrays') : undefined) || 'on'
   if (iniVal === 'on') {
     const asString = Object.prototype.toString.call(mixedVar)
     const asFunc = _getFuncName(mixedVar.constructor)

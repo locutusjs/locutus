@@ -1,4 +1,5 @@
-module.exports = function array_fill_keys (keys, value) { // eslint-disable-line camelcase
+module.exports = function array_fill_keys(keys, value) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_fill_keys/
   // original by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Brett Zamir (https://brett-zamir.me)

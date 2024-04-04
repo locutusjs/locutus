@@ -1,4 +1,5 @@
-module.exports = function is_numeric (mixedVar) { // eslint-disable-line camelcase
+module.exports = function is_numeric(mixedVar) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/is_numeric/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: David
@@ -42,13 +43,13 @@ module.exports = function is_numeric (mixedVar) { // eslint-disable-line camelca
     '\u200b',
     '\u2028',
     '\u2029',
-    '\u3000'
+    '\u3000',
   ].join('')
 
   // @todo: Break this up using many single conditions with early returns
-  return (typeof mixedVar === 'number' ||
-    (typeof mixedVar === 'string' &&
-    whitespace.indexOf(mixedVar.slice(-1)) === -1)) &&
+  return (
+    (typeof mixedVar === 'number' || (typeof mixedVar === 'string' && whitespace.indexOf(mixedVar.slice(-1)) === -1)) &&
     mixedVar !== '' &&
     !isNaN(mixedVar)
+  )
 }

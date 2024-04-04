@@ -1,4 +1,4 @@
-module.exports = function rand (min, max) {
+module.exports = function rand(min, max) {
   //  discuss at: https://locutus.io/php/rand/
   // original by: Leslie Hoare
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)

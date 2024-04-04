@@ -1,4 +1,5 @@
-module.exports = function array_change_key_case (array, cs) { // eslint-disable-line camelcase
+module.exports = function array_change_key_case(array, cs) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_change_key_case/
   // original by: Ates Goral (https://magnetiq.com)
   // improved by: marrtins
@@ -25,7 +26,7 @@ module.exports = function array_change_key_case (array, cs) { // eslint-disable-
   }
 
   if (array && typeof array === 'object') {
-    caseFnc = (!cs || cs === 'CASE_LOWER') ? 'toLowerCase' : 'toUpperCase'
+    caseFnc = !cs || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase'
     for (key in array) {
       tmpArr[key[caseFnc]()] = array[key]
     }

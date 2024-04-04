@@ -1,4 +1,5 @@
-module.exports = function print_r (array, returnVal) { // eslint-disable-line camelcase
+module.exports = function print_r(array, returnVal) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/print_r/
   // original by: Michael White (https://getsprink.com)
   // improved by: Ben Bryan
@@ -30,9 +31,7 @@ module.exports = function print_r (array, returnVal) { // eslint-disable-line ca
     const thickPad = _repeatChar(padVal * (curDepth + 1), padChar)
     let str = ''
 
-    if (typeof obj === 'object' &&
-      obj !== null &&
-      obj.constructor) {
+    if (typeof obj === 'object' && obj !== null && obj.constructor) {
       str += 'Array\n' + basePad + '(\n'
       for (const key in obj) {
         if (Object.prototype.toString.call(obj[key]) === '[object Array]') {

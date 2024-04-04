@@ -1,4 +1,4 @@
-module.exports = function current (arr) {
+module.exports = function current(arr) {
   //  discuss at: https://locutus.io/php/current/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Uses global: locutus to store the array pointer
@@ -6,7 +6,7 @@ module.exports = function current (arr) {
   //   example 1: current($transport)
   //   returns 1: 'foot'
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

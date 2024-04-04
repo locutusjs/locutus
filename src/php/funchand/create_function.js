@@ -1,4 +1,5 @@
-module.exports = function create_function (args, code) { // eslint-disable-line camelcase
+module.exports = function create_function(args, code) {
+  // eslint-disable-line camelcase
   //       discuss at: https://locutus.io/php/create_function/
   //      original by: Johnny Mast (https://www.phpvrouwen.nl)
   // reimplemented by: Brett Zamir (https://brett-zamir.me)

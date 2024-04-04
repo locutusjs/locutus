@@ -1,4 +1,5 @@
-module.exports = function get_html_translation_table (table, quoteStyle) { // eslint-disable-line camelcase
+module.exports = function get_html_translation_table(table, quoteStyle) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/get_html_translation_table/
   // original by: Philip Peterson
   //  revised by: Kevin van Zonneveld (https://kvz.io)
@@ -34,11 +35,7 @@ module.exports = function get_html_translation_table (table, quoteStyle) { // es
   constMappingQuoteStyle[2] = 'ENT_COMPAT'
   constMappingQuoteStyle[3] = 'ENT_QUOTES'
 
-  useTable = !isNaN(table)
-    ? constMappingTable[table]
-    : table
-      ? table.toUpperCase()
-      : 'HTML_SPECIALCHARS'
+  useTable = !isNaN(table) ? constMappingTable[table] : table ? table.toUpperCase() : 'HTML_SPECIALCHARS'
 
   useQuoteStyle = !isNaN(quoteStyle)
     ? constMappingQuoteStyle[quoteStyle]

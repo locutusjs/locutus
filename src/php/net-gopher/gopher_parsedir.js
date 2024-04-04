@@ -1,4 +1,5 @@
-module.exports = function gopher_parsedir (dirent) { // eslint-disable-line camelcase
+module.exports = function gopher_parsedir(dirent) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/gopher_parsedir/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var entry = gopher_parsedir('0All about my gopher site.\t/allabout.txt\tgopher.example.com\t70\u000d\u000a')
@@ -33,41 +34,41 @@ module.exports = function gopher_parsedir (dirent) { // eslint-disable-line came
   let type = entry[1]
   switch (type) {
     case 'i':
-    // GOPHER_INFO
+      // GOPHER_INFO
       type = 255
       break
     case '1':
-    // GOPHER_DIRECTORY
+      // GOPHER_DIRECTORY
       type = 1
       break
     case '0':
-    // GOPHER_DOCUMENT
+      // GOPHER_DOCUMENT
       type = 0
       break
     case '4':
-    // GOPHER_BINHEX
+      // GOPHER_BINHEX
       type = 4
       break
     case '5':
-    // GOPHER_DOSBINARY
+      // GOPHER_DOSBINARY
       type = 5
       break
     case '6':
-    // GOPHER_UUENCODED
+      // GOPHER_UUENCODED
       type = 6
       break
     case '9':
-    // GOPHER_BINARY
+      // GOPHER_BINARY
       type = 9
       break
     case 'h':
-    // GOPHER_HTTP
+      // GOPHER_HTTP
       type = 254
       break
     default:
       return {
         type: -1,
-        data: dirent
+        data: dirent,
       } // GOPHER_UNKNOWN
   }
   return {
@@ -75,6 +76,6 @@ module.exports = function gopher_parsedir (dirent) { // eslint-disable-line came
     title: entry[2],
     path: entry[3],
     host: entry[4],
-    port: entry[5]
+    port: entry[5],
   }
 }

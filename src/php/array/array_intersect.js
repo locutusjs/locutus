@@ -1,4 +1,5 @@
-module.exports = function array_intersect (arr1) { // eslint-disable-line camelcase
+module.exports = function array_intersect(arr1) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_intersect/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: These only output associative arrays (would need to be
@@ -17,8 +18,10 @@ module.exports = function array_intersect (arr1) { // eslint-disable-line camelc
   let i = 0
   let k = ''
 
-  arr1keys: for (k1 in arr1) { // eslint-disable-line no-labels
-    arrs: for (i = 1; i < argl; i++) { // eslint-disable-line no-labels
+  arr1keys: for (k1 in arr1) {
+    // eslint-disable-line no-labels
+    arrs: for (i = 1; i < argl; i++) {
+      // eslint-disable-line no-labels
       arr = arguments[i]
       for (k in arr) {
         if (arr[k] === arr1[k1]) {
@@ -27,11 +30,11 @@ module.exports = function array_intersect (arr1) { // eslint-disable-line camelc
           }
           // If the innermost loop always leads at least once to an equal value,
           // continue the loop until done
-          continue arrs// eslint-disable-line no-labels
+          continue arrs // eslint-disable-line no-labels
         }
       }
       // If it reaches here, it wasn't found in at least one array, so try next value
-      continue arr1keys// eslint-disable-line no-labels
+      continue arr1keys // eslint-disable-line no-labels
     }
   }
 

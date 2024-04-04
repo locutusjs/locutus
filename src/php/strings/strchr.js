@@ -1,4 +1,4 @@
-module.exports = function strchr (haystack, needle, bool) {
+module.exports = function strchr(haystack, needle, bool) {
   //  discuss at: https://locutus.io/php/strchr/
   // original by: Philip Peterson
   //   example 1: strchr('Kevin van Zonneveld', 'van')

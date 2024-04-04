@@ -1,4 +1,4 @@
-module.exports = function strncmp (str1, str2, lgth) {
+module.exports = function strncmp(str1, str2, lgth) {
   //       discuss at: https://locutus.io/php/strncmp/
   //      original by: Waldo Malqui Silva (https://waldo.malqui.info)
   //         input by: Steve Hilder
@@ -10,10 +10,8 @@ module.exports = function strncmp (str1, str2, lgth) {
   //        example 2: strncmp('aaa', 'aab', 3 )
   //        returns 2: -1
 
-  const s1 = (str1 + '')
-    .substr(0, lgth)
-  const s2 = (str2 + '')
-    .substr(0, lgth)
+  const s1 = (str1 + '').substr(0, lgth)
+  const s2 = (str2 + '').substr(0, lgth)
 
-  return ((s1 === s2) ? 0 : ((s1 > s2) ? 1 : -1))
+  return s1 === s2 ? 0 : s1 > s2 ? 1 : -1
 }

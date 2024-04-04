@@ -1,4 +1,5 @@
-module.exports = function quoted_printable_encode (str) { // eslint-disable-line camelcase
+module.exports = function quoted_printable_encode(str) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/quoted_printable_encode/
   // original by: Theriault (https://github.com/Theriault)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -21,7 +22,7 @@ module.exports = function quoted_printable_encode (str) { // eslint-disable-line
     }
     // Encode matching character
     const chr = sMatch.charCodeAt(0)
-    return '=' + hexChars[((chr >>> 4) & 15)] + hexChars[(chr & 15)]
+    return '=' + hexChars[(chr >>> 4) & 15] + hexChars[chr & 15]
   }
 
   // Split lines to 75 characters; the reason it's 75 and not 76 is because softline breaks are
@@ -37,9 +38,7 @@ module.exports = function quoted_printable_encode (str) { // eslint-disable-line
     return sMatch + '=\r\n'
   }
 
-  str = str
-    .replace(RFC2045Encode1IN, RFC2045Encode1OUT)
-    .replace(RFC2045Encode2IN, RFC2045Encode2OUT)
+  str = str.replace(RFC2045Encode1IN, RFC2045Encode1OUT).replace(RFC2045Encode2IN, RFC2045Encode2OUT)
 
   // Strip last softline break
   return str.substr(0, str.length - 3)

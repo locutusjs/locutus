@@ -1,4 +1,5 @@
-module.exports = function inet_pton (a) { // eslint-disable-line camelcase
+module.exports = function inet_pton(a) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/inet_pton/
   // original by: Theriault (https://github.com/Theriault)
   // improved by: alromh87 and JamieSlome
@@ -35,7 +36,8 @@ module.exports = function inet_pton (a) { // eslint-disable-line camelcase
   const reHexDigits = /^[\da-f]{1,4}$/i
 
   for (j = 0; j < m.length; j++) {
-    if (m[j].length === 0) { // Skip if empty.
+    if (m[j].length === 0) {
+      // Skip if empty.
       continue
     }
     m[j] = m[j].split(':')
@@ -53,7 +55,7 @@ module.exports = function inet_pton (a) { // eslint-disable-line camelcase
         // Invalid IP.
         return false
       }
-      m[j][i] = f(hextet >> 8, hextet & 0xFF)
+      m[j][i] = f(hextet >> 8, hextet & 0xff)
     }
     m[j] = m[j].join('')
   }

@@ -1,4 +1,5 @@
-module.exports = function version_compare (v1, v2, operator) { // eslint-disable-line camelcase
+module.exports = function version_compare(v1, v2, operator) {
+  // eslint-disable-line camelcase
   //       discuss at: https://locutus.io/php/version_compare/
   //      original by: Philippe Jausions (https://pear.php.net/user/jausions)
   //      original by: Aidan Lister (https://aidanlister.com/)
@@ -37,7 +38,7 @@ module.exports = function version_compare (v1, v2, operator) { // eslint-disable
     rc: -3,
     '#': -2,
     p: 1,
-    pl: 1
+    pl: 1,
   }
 
   // This function will be called to prepare each version argument.
@@ -52,14 +53,14 @@ module.exports = function version_compare (v1, v2, operator) { // eslint-disable
   const _prepVersion = function (v) {
     v = ('' + v).replace(/[_\-+]/g, '.')
     v = v.replace(/([^.\d]+)/g, '.$1.').replace(/\.{2,}/g, '.')
-    return (!v.length ? [-8] : v.split('.'))
+    return !v.length ? [-8] : v.split('.')
   }
   // This converts a version component to a number.
   // Empty component becomes 0.
   // Non-numerical component becomes a negative number.
   // Numerical component becomes itself as an integer.
   const _numVersion = function (v) {
-    return !v ? 0 : (isNaN(v) ? vm[v] || -7 : parseInt(v, 10))
+    return !v ? 0 : isNaN(v) ? vm[v] || -7 : parseInt(v, 10)
   }
 
   v1 = _prepVersion(v1)
@@ -89,25 +90,25 @@ module.exports = function version_compare (v1, v2, operator) { // eslint-disable
   switch (operator) {
     case '>':
     case 'gt':
-      return (compare > 0)
+      return compare > 0
     case '>=':
     case 'ge':
-      return (compare >= 0)
+      return compare >= 0
     case '<=':
     case 'le':
-      return (compare <= 0)
+      return compare <= 0
     case '===':
     case '=':
     case 'eq':
-      return (compare === 0)
+      return compare === 0
     case '<>':
     case '!==':
     case 'ne':
-      return (compare !== 0)
+      return compare !== 0
     case '':
     case '<':
     case 'lt':
-      return (compare < 0)
+      return compare < 0
     default:
       return null
   }

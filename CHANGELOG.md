@@ -5,8 +5,8 @@ Our combined changelog and roadmap. It contains todos as well as dones.
 Only project-wide changes are mentioned here. For individual function changelogs, please refer to their
 respective Git histories.
 
-Locutus does not follow SemVer as we're a work in progress - and even though we try, 
-we cannot guarantee BC-safety for the hundreds of contributions across the many 
+Locutus does not follow SemVer as we're a work in progress - and even though we try,
+we cannot guarantee BC-safety for the hundreds of contributions across the many
 languages that Locutus is assimilating.
 
 Instead, we recommend using version pinning, and inspect changes for the few particular functions you rely on
@@ -31,14 +31,14 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. 
+Released: TBA.
 [Diff](https://github.com/locutusjs/locutus/compare/v2.0.16...main).
 
-- [ ] 
+- [ ]
 
 ## v2.0.16
 
-Released: 2019-06-12. 
+Released: 2019-06-12.
 [Diff](https://github.com/locutusjs/locutus/compare/v2.0.10...v2.0.16).
 
 - [x] Switch from Travis CI to GitHub Actions
@@ -47,7 +47,7 @@ Released: 2019-06-12.
 
 ## v2.0.11
 
-Released: 2019-06-12. 
+Released: 2019-06-12.
 [Diff](https://github.com/locutusjs/locutus/compare/v2.0.10...v2.0.11).
 
 - [x] functions: Community-contributed function improvements, see respective functions' changelogs in the Diff:
@@ -56,22 +56,21 @@ Released: 2019-06-12.
 
 ## v2.0.10
 
-Released: 2018-09-07. 
+Released: 2018-09-07.
 [Diff](https://github.com/locutusjs/locutus/compare/v2.0.9...v2.0.10).
 
 - [x] functions: Community-contributed function improvements, see respective functions' changelogs in the Diff.
 
 ## v2.0.9
 
-Released: 2017-06-22. 
+Released: 2017-06-22.
 [Diff](https://github.com/locutusjs/locutus/compare/v2.0.8...v2.0.9).
 
 - [x] functions: Community-contributed function improvements, see respective functions' changelogs in the Diff.
 
-
 ## v2.0.8
 
-Released: 2017-02-23. 
+Released: 2017-02-23.
 [Diff](https://github.com/locutusjs/locutus/compare/v2.0.7...v2.0.8).
 
 - [x] Upgrade eslint and fix newly found issues accordingly
@@ -79,28 +78,28 @@ Released: 2017-02-23.
 
 ## v2.0.7
 
-Released: 2017-02-09. 
+Released: 2017-02-09.
 [Diff](https://github.com/locutusjs/locutus/compare/v2.0.6...v2.0.7).
 
 - [x] functions: Community-contributed function improvements, see respective functions' changelogs in the Diff.
 
 ## v2.0.6
 
-Released: 2016-06-16. 
+Released: 2016-06-16.
 [Diff](https://github.com/locutusjs/locutus/compare/v2.0.5...v2.0.6).
 
 - [x] Language fixes
 
 ## v2.0.5
 
-Released: 2016-06-16. 
+Released: 2016-06-16.
 [Diff](https://github.com/locutusjs/locutus/compare/v2.0.4...v2.0.5).
 
 - [x] Cache node modules on Travis so we'll be less dependent on npm connectivity
 
 ## v2.0.4
 
-Released: 2016-05-25. 
+Released: 2016-05-25.
 [Diff](https://github.com/locutusjs/locutus/compare/v2.0.3...v2.0.4).
 
 - [x] Upgrade depurar to 0.2.2, fixing an issue with the testwriter (@kukawski)
@@ -108,10 +107,9 @@ Released: 2016-05-25.
 - [x] Fix linting warnings when hacking on website by adding eslint dependencies locally
 - [x] Improve array_rand: Fix coding style, hangs when selected huge number of keys from huge array, function signature (@kukawski)
 
-
 ## v2.0.3
 
-Released: 2016-05-22. 
+Released: 2016-05-22.
 [Diff](https://github.com/locutusjs/locutus/compare/v2.0.2...v2.0.3).
 
 - [x] Minor `util.js` refactoring
@@ -130,21 +128,21 @@ Released: 2016-05-22.
 
 ## v2.0.2
 
-Released: 2016-05-02. 
+Released: 2016-05-02.
 [Diff](https://github.com/locutusjs/locutus/compare/v2.0.1...v2.0.2).
 
 - [x] Don't use `files` in package.json as we don't ship all of `dist` now
 
 ## v2.0.1
 
-Released: 2016-05-02. 
+Released: 2016-05-02.
 [Diff](https://github.com/locutusjs/locutus/compare/v2.0.0...v2.0.1).
 
 - [x] Don't use `bin` in package.json as we don't ship `cli.js`
 
 ## v2.0.0
 
-Released: 2016-05-02. 
+Released: 2016-05-02.
 [Diff](https://github.com/locutusjs/locutus/compare/v1.3.2...v2.0.0).
 
 - [x] website: Add profile to sidebar

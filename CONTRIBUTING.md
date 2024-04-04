@@ -10,25 +10,28 @@ Here are a few pointers that could save us from disappointment, we'll try to kee
 
 1. By submitting a Pull Request you are giving Locutus permission to distribute your code under the MIT License.
 1. Please adhere to our [updated coding standards](/blog/2016/04/standard-coding-style/). Use `npm run lint` to check. Code should:
-  - Follow the [JavaScript Standard Style](https://standardjs.com/), and in addition:
-  - Not have lines longer than 100 chars
-  - Use `//` for comments instead of `/*`
-  - Avoid using lengthy (3+ word) comments on the same line as code
+
+- Follow the [JavaScript Standard Style](https://standardjs.com/), and in addition:
+- Not have lines longer than 100 chars
+- Use `//` for comments instead of `/*`
+- Avoid using lengthy (3+ word) comments on the same line as code
+
 1. Please credit yourself in the function's header-comment: `(original by|reimplemented by|improved by|parts by|bugfixed by|revised by|input by): Your Name (https://your.url)`
 1. If you are fixing bad behavior, or introducing new ones, please add an `example` that would fail before your patch, and a `result` that passes after your patch, to the function's header-comment. We use these for website documentation, as well as to generate test cases that avoid regression going forward. There should already be a few ones there if you want to see how it's done.
 1. If you are contributing performance upgrades, please provide proof via e.g. <https://jsperf.com>
 1. Please keep in mind that some obvious readability improvements are sometimes unwanted for performance reasons. For example, we sometimes place similar `for` loops inside `if` and `else` conditions for performance reasons, even though the code could be half the size if we put the conditions inside a single loop.
 1. If you are adding a new function, please make sure to:
-  - include exactly one export with a named function, `module.exports = function functionName (param1, ...) {`
-    - the file can contain more definitions (helper functions, classes, etc.), but is allowed to have only one export
-  - add header-comments as first thing in function's body. Minimal header-comment should consist of
-  
-  ```js
-  //  discuss at: https://locutus.io/<LANGUAGE>/<FUNCTION NAME>/
-  // original by: <YOUR NAME>
-  //   example 1: <FUNCTION NAME>("foo")
-  //   returns 1: "bar"
-  ```
+
+- include exactly one export with a named function, `module.exports = function functionName (param1, ...) {`
+  - the file can contain more definitions (helper functions, classes, etc.), but is allowed to have only one export
+- add header-comments as first thing in function's body. Minimal header-comment should consist of
+
+```js
+//  discuss at: https://locutus.io/<LANGUAGE>/<FUNCTION NAME>/
+// original by: <YOUR NAME>
+//   example 1: <FUNCTION NAME>("foo")
+//   returns 1: "bar"
+```
 
 ## Locutus Development
 
@@ -49,7 +52,7 @@ cd locutus
 ## Install
 
 ```bash
-npm install 
+npm install
 npm run website:install
 ```
 
@@ -65,7 +68,7 @@ Single out one function: `natsort`
 TEST_GREP=natsort npm run test:languages
 ```
 
-This first rewrites mocha test-cases based on `example` and `result` comments found in the function's headers. This is useful if you're changing the tests themselves as well. 
+This first rewrites mocha test-cases based on `example` and `result` comments found in the function's headers. This is useful if you're changing the tests themselves as well.
 
 If that's not needed as you're iterating purely on the implementation, here's a speedier way of singling out `natsort`. This re-uses an already generated mocha test:
 
@@ -86,13 +89,13 @@ Even the the website is bundled with this repo, we treat it as a separate projec
 
 Here's the flow that takes written functions to the website:
 
- - `npm run injectweb` runs `src/_util/util.js`'s `injectweb` method
- - `injectweb` iterates over functions and parses them via the `_load` and `_parse` methods, specifically: the header comments that declare authors, tests, and dependencies
- - `injectweb` then writes each function to `website/source`. The code is written as the content. The other parsed properties are prepended as [YAML front matter](https://jekyllrb.com/docs/frontmatter/)
- - Jekyll uses `website/_layouts/function.html` as the layout template for the function collection, this determines how all the properties are rendered.
- 
+- `npm run injectweb` runs `src/_util/util.js`'s `injectweb` method
+- `injectweb` iterates over functions and parses them via the `_load` and `_parse` methods, specifically: the header comments that declare authors, tests, and dependencies
+- `injectweb` then writes each function to `website/source`. The code is written as the content. The other parsed properties are prepended as [YAML front matter](https://jekyllrb.com/docs/frontmatter/)
+- Jekyll uses `website/_layouts/function.html` as the layout template for the function collection, this determines how all the properties are rendered.
+
 Blog posts can be found in `website/source/_posts`.
- 
+
 If you want to preview locally type `npm run website:start`.
 
 Any change to `main` is deployed automatically onto GitHub Pages by Travis CI via the `travis-deploy.sh` script.

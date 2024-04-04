@@ -1,4 +1,5 @@
-module.exports = function is_long (mixedVar) { // eslint-disable-line camelcase
+module.exports = function is_long(mixedVar) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/is_long/
   // original by: Paulo Freitas
   //      note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes

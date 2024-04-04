@@ -1,4 +1,5 @@
-module.exports = function is_finite (val) { // eslint-disable-line camelcase
+module.exports = function is_finite(val) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/is_finite/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: is_finite(Infinity)
@@ -16,7 +17,7 @@ module.exports = function is_finite (val) { // eslint-disable-line camelcase
 
   // Some warnings for maximum PHP compatibility
   if (typeof val === 'object') {
-    warningType = (Object.prototype.toString.call(val) === '[object Array]' ? 'array' : 'object')
+    warningType = Object.prototype.toString.call(val) === '[object Array]' ? 'array' : 'object'
   } else if (typeof val === 'string' && !val.match(/^[+-]?\d/)) {
     // simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
     warningType = 'string'

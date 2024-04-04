@@ -1,4 +1,5 @@
-module.exports = function html_entity_decode (string, quoteStyle) { // eslint-disable-line camelcase
+module.exports = function html_entity_decode(string, quoteStyle) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/html_entity_decode/
   // original by: john (https://www.jd-tech.net)
   //    input by: ger
@@ -29,7 +30,7 @@ module.exports = function html_entity_decode (string, quoteStyle) { // eslint-di
 
   // @todo: &amp; problem
   // https://locutus.io/php/get_html_translation_table:416#comment_97660
-  delete (hashMap['&'])
+  delete hashMap['&']
   hashMap['&'] = '&amp;'
 
   for (symbol in hashMap) {

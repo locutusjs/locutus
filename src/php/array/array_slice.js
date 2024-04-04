@@ -1,4 +1,5 @@
-module.exports = function array_slice (arr, offst, lgth, preserveKeys) { // eslint-disable-line camelcase
+module.exports = function array_slice(arr, offst, lgth, preserveKeys) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_slice/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: Brett Zamir (https://brett-zamir.me)
@@ -29,8 +30,8 @@ module.exports = function array_slice (arr, offst, lgth, preserveKeys) { // esli
     }
     arr = newAssoc
 
-    offst = (offst < 0) ? lgt + offst : offst
-    lgth = lgth === undefined ? lgt : (lgth < 0) ? lgt + lgth - offst : lgth
+    offst = offst < 0 ? lgt + offst : offst
+    lgth = lgth === undefined ? lgt : lgth < 0 ? lgt + lgth - offst : lgth
 
     const assoc = {}
     let start = false
@@ -48,7 +49,8 @@ module.exports = function array_slice (arr, offst, lgth, preserveKeys) { // esli
       }
       if (!start) {
         continue
-      }++arrlgth
+      }
+      ++arrlgth
       if (isInt(key) && !preserveKeys) {
         assoc[noPkIdx++] = arr[key]
       } else {

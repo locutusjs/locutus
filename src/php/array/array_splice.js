@@ -1,4 +1,5 @@
-module.exports = function array_splice (arr, offst, lgth, replacement) { // eslint-disable-line camelcase
+module.exports = function array_splice(arr, offst, lgth, replacement) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_splice/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: Theriault (https://github.com/Theriault)
@@ -69,7 +70,7 @@ module.exports = function array_splice (arr, offst, lgth, replacement) { // esli
       // Can do arr.__count__ in some browsers
       lgt += 1
     }
-    offst = (offst >= 0) ? offst : lgt + offst
+    offst = offst >= 0 ? offst : lgt + offst
     for (key in arr) {
       ct += 1
       if (ct < offst) {

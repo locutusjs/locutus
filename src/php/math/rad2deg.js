@@ -1,4 +1,4 @@
-module.exports = function rad2deg (angle) {
+module.exports = function rad2deg(angle) {
   //  discuss at: https://locutus.io/php/rad2deg/
   // original by: Enrique Gonzalez
   // improved by: Brett Zamir (https://brett-zamir.me)

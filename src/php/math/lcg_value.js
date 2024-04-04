@@ -1,4 +1,5 @@
-module.exports = function lcg_value () { // eslint-disable-line camelcase
+module.exports = function lcg_value() {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/lcg_value/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: var $rnd = lcg_value()

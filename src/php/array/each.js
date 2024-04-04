@@ -1,4 +1,4 @@
-module.exports = function each (arr) {
+module.exports = function each(arr) {
   //  discuss at: https://locutus.io/php/each/
   // original by: Ates Goral (https://magnetiq.com)
   //  revised by: Brett Zamir (https://brett-zamir.me)
@@ -6,7 +6,7 @@ module.exports = function each (arr) {
   //   example 1: each({a: "apple", b: "balloon"})
   //   returns 1: {0: "a", 1: "apple", key: "a", value: "apple"}
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
@@ -44,7 +44,7 @@ module.exports = function each (arr) {
             1: arr[k],
             value: arr[k],
             0: k,
-            key: k
+            key: k,
           }
         }
       }
@@ -65,7 +65,7 @@ module.exports = function each (arr) {
       1: arr[pos],
       value: arr[pos],
       0: pos,
-      key: pos
+      key: pos,
     }
   }
 }

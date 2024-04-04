@@ -1,4 +1,5 @@
-module.exports = function similar_text (first, second, percent) { // eslint-disable-line camelcase
+module.exports = function similar_text(first, second, percent) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/similar_text/
   // original by: Rafał Kukawski (https://blog.kukawski.pl)
   // bugfixed by: Chris McMacken
@@ -9,10 +10,7 @@ module.exports = function similar_text (first, second, percent) { // eslint-disa
   //   example 2: similar_text('Hello World!', null)
   //   returns 2: 0
 
-  if (first === null ||
-    second === null ||
-    typeof first === 'undefined' ||
-    typeof second === 'undefined') {
+  if (first === null || second === null || typeof first === 'undefined' || typeof second === 'undefined') {
     return 0
   }
 
@@ -31,7 +29,8 @@ module.exports = function similar_text (first, second, percent) { // eslint-disa
 
   for (p = 0; p < firstLength; p++) {
     for (q = 0; q < secondLength; q++) {
-      for (l = 0; (p + l < firstLength) && (q + l < secondLength) && (first.charAt(p + l) === second.charAt(q + l)); l++) { // eslint-disable-line max-len
+      for (l = 0; p + l < firstLength && q + l < secondLength && first.charAt(p + l) === second.charAt(q + l); l++) {
+        // eslint-disable-line max-len
         // @todo: ^-- break up this crazy for loop and put the logic in its body
       }
       if (l > max) {
@@ -49,11 +48,11 @@ module.exports = function similar_text (first, second, percent) { // eslint-disa
       sum += similar_text(first.substr(0, pos1), second.substr(0, pos2))
     }
 
-    if ((pos1 + max < firstLength) && (pos2 + max < secondLength)) {
+    if (pos1 + max < firstLength && pos2 + max < secondLength) {
       sum += similar_text(
         first.substr(pos1 + max, firstLength - pos1 - max),
-        second.substr(pos2 + max,
-          secondLength - pos2 - max))
+        second.substr(pos2 + max, secondLength - pos2 - max),
+      )
     }
   }
 

@@ -1,4 +1,5 @@
-module.exports = function var_dump () { // eslint-disable-line camelcase
+module.exports = function var_dump() {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/var_dump/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Zahlii
@@ -16,8 +17,7 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
   let i = 0
 
   const _getFuncName = function (fn) {
-    const name = (/\W*function\s+([\w$]+)\s*\(/)
-      .exec(fn)
+    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn)
     if (!name) {
       return '(Anonymous)'
     }
@@ -50,8 +50,7 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
       // only exist in this exact form in JavaScript
       ret = 'undefined'
     } else if (typeof val === 'function') {
-      const funcLines = val.toString()
-        .split('\n')
+      const funcLines = val.toString().split('\n')
       ret = ''
       for (let i = 0, fll = funcLines.length; i < fll; i++) {
         ret += (i !== 0 ? '\n' + thickPad : '') + funcLines[i]
@@ -64,9 +63,8 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
       // Different than PHP's DOMElement
       switch (val.nodeType) {
         case 1:
-          if (typeof val.namespaceURI === 'undefined' ||
-            val.namespaceURI === 'https://www.w3.org/1999/xhtml') {
-          // Undefined namespace could be plain XML, but namespaceURI not widely supported
+          if (typeof val.namespaceURI === 'undefined' || val.namespaceURI === 'https://www.w3.org/1999/xhtml') {
+            // Undefined namespace could be plain XML, but namespaceURI not widely supported
             ret = 'HTMLElement("' + val.nodeName + '")'
           } else {
             ret = 'XML Element("' + val.nodeName + '")'
@@ -133,11 +131,13 @@ module.exports = function var_dump () { // eslint-disable-line camelcase
       str += 'array(' + lgth + ') {\n'
       for (const key in obj) {
         const objVal = obj[key]
-        if (typeof objVal === 'object' &&
+        if (
+          typeof objVal === 'object' &&
           objVal !== null &&
           !(objVal instanceof Date) &&
           !(objVal instanceof RegExp) &&
-          !objVal.nodeName) {
+          !objVal.nodeName
+        ) {
           str += thickPad
           str += '['
           str += key

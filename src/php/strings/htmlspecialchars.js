@@ -1,4 +1,4 @@
-module.exports = function htmlspecialchars (string, quoteStyle, charset, doubleEncode) {
+module.exports = function htmlspecialchars(string, quoteStyle, charset, doubleEncode) {
   //       discuss at: https://locutus.io/php/htmlspecialchars/
   //      original by: Mirek Slugen
   //      improved by: Kevin van Zonneveld (https://kvz.io)
@@ -33,9 +33,7 @@ module.exports = function htmlspecialchars (string, quoteStyle, charset, doubleE
     string = string.replace(/&/g, '&amp;')
   }
 
-  string = string
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
+  string = string.replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
   const OPTS = {
     ENT_NOQUOTES: 0,
@@ -43,7 +41,7 @@ module.exports = function htmlspecialchars (string, quoteStyle, charset, doubleE
     ENT_HTML_QUOTE_DOUBLE: 2,
     ENT_COMPAT: 2,
     ENT_QUOTES: 3,
-    ENT_IGNORE: 4
+    ENT_IGNORE: 4,
   }
   if (quoteStyle === 0) {
     noquotes = true

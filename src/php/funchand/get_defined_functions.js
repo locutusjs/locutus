@@ -1,4 +1,5 @@
-module.exports = function get_defined_functions () { // eslint-disable-line camelcase
+module.exports = function get_defined_functions() {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/get_defined_functions/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -11,7 +12,7 @@ module.exports = function get_defined_functions () { // eslint-disable-line came
   //   returns 1: true
   //        test: skip-1
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

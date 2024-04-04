@@ -1,4 +1,4 @@
-module.exports = function vprintf (format, args) {
+module.exports = function vprintf(format, args) {
   //       discuss at: https://locutus.io/php/vprintf/
   //      original by: Ash Searle (https://hexmen.com/blog/)
   //      improved by: Michael White (https://getsprink.com)

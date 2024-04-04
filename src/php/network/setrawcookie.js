@@ -1,4 +1,4 @@
-module.exports = function setrawcookie (name, value, expires, path, domain, secure) {
+module.exports = function setrawcookie(name, value, expires, path, domain, secure) {
   //  discuss at: https://locutus.io/php/setrawcookie/
   // original by: Brett Zamir (https://brett-zamir.me)
   // original by: setcookie
@@ -13,14 +13,14 @@ module.exports = function setrawcookie (name, value, expires, path, domain, secu
     return true
   }
 
-  if (typeof expires === 'string' && (/^\d+$/).test(expires)) {
+  if (typeof expires === 'string' && /^\d+$/.test(expires)) {
     expires = parseInt(expires, 10)
   }
 
   if (expires instanceof Date) {
     expires = expires.toUTCString()
   } else if (typeof expires === 'number') {
-    expires = (new Date(expires * 1e3)).toUTCString()
+    expires = new Date(expires * 1e3).toUTCString()
   }
 
   const r = [name + '=' + value]
@@ -28,7 +28,7 @@ module.exports = function setrawcookie (name, value, expires, path, domain, secu
   const s = {
     expires,
     path,
-    domain
+    domain,
   }
   for (i in s) {
     if (s.hasOwnProperty(i)) {

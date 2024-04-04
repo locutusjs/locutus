@@ -1,4 +1,4 @@
-module.exports = function strcmp (str1, str2) {
+module.exports = function strcmp(str1, str2) {
   //  discuss at: https://locutus.io/php/strcmp/
   // original by: Waldo Malqui Silva (https://waldo.malqui.info)
   //    input by: Steve Hilder
@@ -9,5 +9,5 @@ module.exports = function strcmp (str1, str2) {
   //   example 2: strcmp( 'owald', 'waldo' )
   //   returns 2: -1
 
-  return ((str1 === str2) ? 0 : ((str1 > str2) ? 1 : -1))
+  return str1 === str2 ? 0 : str1 > str2 ? 1 : -1
 }

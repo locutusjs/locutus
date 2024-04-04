@@ -1,4 +1,5 @@
-module.exports = function sql_regcase (str) { // eslint-disable-line camelcase
+module.exports = function sql_regcase(str) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/sql_regcase/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: sql_regcase('Foo - bar.')
@@ -13,7 +14,7 @@ module.exports = function sql_regcase (str) { // eslint-disable-line camelcase
 
   setlocale('LC_ALL', 0)
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
@@ -23,8 +24,7 @@ module.exports = function sql_regcase (str) { // eslint-disable-line camelcase
 
   // @todo: Make this more readable
   for (i = 0; i < str.length; i++) {
-    if (((pos = upper.indexOf(str.charAt(i))) !== -1) ||
-      ((pos = lower.indexOf(str.charAt(i))) !== -1)) {
+    if ((pos = upper.indexOf(str.charAt(i))) !== -1 || (pos = lower.indexOf(str.charAt(i))) !== -1) {
       retStr += '[' + upper.charAt(pos) + lower.charAt(pos) + ']'
     } else {
       retStr += str.charAt(i)

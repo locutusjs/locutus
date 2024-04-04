@@ -1,4 +1,4 @@
-module.exports = function substr (input, start, len) {
+module.exports = function substr(input, start, len) {
   //  discuss at: https://locutus.io/php/substr/
   // original by: Martijn Wieringa
   // bugfixed by: T.Wild

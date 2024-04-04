@@ -1,4 +1,5 @@
-module.exports = function array_search (needle, haystack, argStrict) { // eslint-disable-line camelcase
+module.exports = function array_search(needle, haystack, argStrict) {
+  // eslint-disable-line camelcase
   //  discuss at: https://locutus.io/php/array_search/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //    input by: Brett Zamir (https://brett-zamir.me)
@@ -17,7 +18,9 @@ module.exports = function array_search (needle, haystack, argStrict) { // eslint
     // Duck-type for RegExp
     if (!strict) {
       // Let's consider case sensitive searches as strict
-      const flags = 'i' + (needle.global ? 'g' : '') +
+      const flags =
+        'i' +
+        (needle.global ? 'g' : '') +
         (needle.multiline ? 'm' : '') +
         // sticky is FF only
         (needle.sticky ? 'y' : '')
@@ -35,7 +38,8 @@ module.exports = function array_search (needle, haystack, argStrict) { // eslint
 
   for (key in haystack) {
     if (haystack.hasOwnProperty(key)) {
-      if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) { // eslint-disable-line eqeqeq
+      if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
+        // eslint-disable-line eqeqeq
         return key
       }
     }
