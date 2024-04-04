@@ -8,9 +8,6 @@ histories.
 Locutus does not follow SemVer as we're a work in progress - and even though we try, we cannot guarantee BC-safety for
 the hundreds of contributions across the many languages that Locutus is assimilating.
 
-Instead, we recommend using version pinning, and inspect changes for the few particular functions you rely on when you
-upgrade.
-
 ## Backlog
 
 Ideas that will be planned and find their way into a release at one point
@@ -38,9 +35,23 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.16...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.29...main).
 
 - [ ]
+
+## v2.0.29
+
+Released: 2024-04-04. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.16...v2.0.29).
+
+- [x] Fix issue #458: unserialize fails when serialized array contains (@kukawski)
+- [x] dx: Switch from `master` -> `main` branch
+- [x] dx: Upgrade to Yarn 4 managed by Corepack
+- [x] dx: Add testing for Node 20
+- [x] dx: Add prettier & upgrade ESLint & StandardJS
+- [x] dx: Upgrade Hexo to latest
+- [x] dx: Clarify contributing docs
+- [x] dx: Allow all core contributors to cut NPM releases by pushing Git tags (GHA CI handles the rest)
+- [x] dx: Upgrade all remaining dependencies
 
 ## v2.0.16
 
