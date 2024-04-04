@@ -50,6 +50,12 @@ yarn
 yarn website:install
 ```
 
+### Build
+
+```bash
+yarn build
+```
+
 ### Test
 
 ```bash
@@ -67,7 +73,7 @@ This first rewrites mocha test-cases based on `example` and `result` comments fo
 If that's not needed as you're iterating purely on the implementation, here's a speedier way of singling out `natsort`. This re-uses an already generated mocha test:
 
 ```bash
-env DEBUG=locutus:* mocha \
+env DEBUG=locutus:* ./node_modules/.bin/mocha \
   --compilers js:babel-register \
   --reporter spec \
 test/languages/php/array/test-natsort.js
@@ -77,21 +83,33 @@ test/languages/php/array/test-natsort.js
 
 We keep the website in `./website` so it's easy to keep code and website in sync as we iterate. For those reading this screaming murder, [HashiCorp does this](https://github.com/hashicorp/terraform/tree/HEAD/website) for all their projects, and it's working well for them on a scale more impressive than ours.
 
-Our website is built with Hexo. To install the prerequisites type `npm run website:install`.
+Our website is built with Hexo. To install the prerequisites type `yarn website:install`.
 
 Even the the website is bundled with this repo, we treat it as a separate project, with its own `package.json`. We also try to avoid dependencies from the website straight to the main code base. Instead, any such dependency shall be injected by a script.
 
 Here's the flow that takes written functions to the website:
 
-- `npm run injectweb` runs `src/_util/util.js`'s `injectweb` method
+- `yarn injectweb` runs `src/_util/util.js`'s `injectweb` method
 - `injectweb` iterates over functions and parses them via the `_load` and `_parse` methods, specifically: the header comments that declare authors, tests, and dependencies
 - `injectweb` then writes each function to `website/source`. The code is written as the content. The other parsed properties are prepended as [YAML front matter](https://jekyllrb.com/docs/frontmatter/)
 - Jekyll uses `website/_layouts/function.html` as the layout template for the function collection, this determines how all the properties are rendered.
 
 Blog posts can be found in `website/source/_posts`.
 
-If you want to preview locally type `npm run website:start`.
+If you want to preview locally type `yarn website:start`.
 
-Any change to `main` is deployed automatically onto GitHub Pages by Travis CI via the `travis-deploy.sh` script.
+Any change to `main` is deployed automatically onto GitHub Pages by CI.
 
-Typing `npm run deploy` in the root of the project takes care of all the building steps, and then force pushes the generated HTML to the `gh-pages` branch of this repo. But as mentioned, this should not be necessary as Travis handles it automatically.
+### Releasing
+
+Any newly pushed git tag is automatically released on npm by CI:
+
+```bash
+# make changes
+# change version in package.json (e.g. 2.0.17)
+# update CHANGELOG.md
+# commit all
+git tag v2.0.17
+git push --tags
+
+```
