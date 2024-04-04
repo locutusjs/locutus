@@ -3,6 +3,7 @@ module.exports = {
   rules: {
     camelcase: 'off',
     'multiline-ternary': 'off',
+    'no-labels': 'warn',
     'n/no-deprecated-api': 'warn',
     'no-cond-assign': 'warn',
     'no-control-regex': 'warn',
