@@ -24,4 +24,4 @@ scripts/main.js.map
 website/public
 website/db.json
 website/.deploy_git
-.yarn/install-state.gz
+.yarn/
