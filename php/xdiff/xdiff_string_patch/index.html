@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>PHP&#39;s xdiff_string_patch in JavaScript | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Here’s what our current JavaScript equivalent to PHP&#39;s xdiff_string_patch looks like.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP&#39;s xdiff_string_patch in JavaScript">
+<meta property="og:url" content="https://locutus.io/php/xdiff/xdiff_string_patch/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&#39;s xdiff_string_patch looks like.">
+<meta property="og:locale">
+<meta property="article:published_time" content="2024-04-04T15:17:48.761Z">
+<meta property="article:modified_time" content="2024-04-04T15:17:48.761Z">
+<meta property="article:author" content="Kevin van Zonneveld">
+<meta name="twitter:card" content="summary">
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/vendor/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/locutus.css">
+
+
+    
+<script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="Locutus" type="application/atom+xml">
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <nav id="main-nav">
+                
+                  <a class="main-nav-link" href="/c">C</a>
+                
+                  <a class="main-nav-link" href="/golang">Go</a>
+                
+                  <a class="main-nav-link" href="/python">Python</a>
+                
+                  <a class="main-nav-link" href="/ruby">Ruby</a>
+                
+                  <a class="main-nav-link" href="/php">PHP</a>
+                
+                <span class="main-nav-link">|</span>
+                
+                  <a class="main-nav-link" href="/archives">Blog</a>
+                
+                  <a class="main-nav-link" href="/authors">Authors</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+        x: 'en',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    console.log(INSIGHT_CONFIG)
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                  <td><a class="main-nav-link" href="/c">C</a></td>
+                
+                  <td><a class="main-nav-link" href="/golang">Go</a></td>
+                
+                  <td><a class="main-nav-link" href="/python">Python</a></td>
+                
+                  <td><a class="main-nav-link" href="/ruby">Ruby</a></td>
+                
+                  <td><a class="main-nav-link" href="/php">PHP</a></td>
+                
+                <td><span class="main-nav-link">|</span></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Blog</a></td>
+                
+                    <td><a class="main-nav-link" href="/authors">Authors</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">PHP&#39;s xdiff_string_patch in JavaScript</h1>
+    </header>
+
+    <div class="article-entry">
+      <p>
+        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.xdiff-string-patch.php">PHP's xdiff_string_patch</a> looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">xdiff_string_patch</span>(<span class="params">originalStr, patch, flags, errorObj</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/xdiff_string_patch/</span></span><br><span class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// improved by: Steven Levithan (stevenlevithan.com)</span></span><br><span class="line">  <span class="comment">//      note 1: The XDIFF_PATCH_IGNORESPACE flag and the error argument are not</span></span><br><span class="line">  <span class="comment">//      note 1: currently supported.</span></span><br><span class="line">  <span class="comment">//      note 2: This has not been tested exhaustively yet.</span></span><br><span class="line">  <span class="comment">//      note 3: The errorObj parameter (optional) if used must be passed in as a</span></span><br><span class="line">  <span class="comment">//      note 3: object. The errors will then be written by reference into it&#x27;s `value` property</span></span><br><span class="line">  <span class="comment">//   example 1: xdiff_string_patch(&#x27;&#x27;, &#x27;@@ -0,0 +1,1 @@\n+Hello world!&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 1: &#x27;Hello world!&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// First two functions were adapted from Steven Levithan, also under an MIT license</span></span><br><span class="line">  <span class="comment">// Adapted from XRegExp 1.5.0</span></span><br><span class="line">  <span class="comment">// (c) 2007-2010 Steven Levithan</span></span><br><span class="line">  <span class="comment">// MIT License</span></span><br><span class="line">  <span class="comment">// &lt;https://xregexp.com&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _getNativeFlags = <span class="keyword">function</span> (<span class="params">regex</span>) &#123;</span><br><span class="line">    <span class="comment">// Proposed for ES4; included in AS3</span></span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">      regex.<span class="property">global</span> ? <span class="string">&#x27;g&#x27;</span> : <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      regex.<span class="property">ignoreCase</span> ? <span class="string">&#x27;i&#x27;</span> : <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      regex.<span class="property">multiline</span> ? <span class="string">&#x27;m&#x27;</span> : <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      regex.<span class="property">extended</span> ? <span class="string">&#x27;x&#x27;</span> : <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      regex.<span class="property">sticky</span> ? <span class="string">&#x27;y&#x27;</span> : <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    ].<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _cbSplit = <span class="keyword">function</span> (<span class="params">string, sep</span>) &#123;</span><br><span class="line">    <span class="comment">// If separator `s` is not a regex, use the native `split`</span></span><br><span class="line">    <span class="keyword">if</span> (!(sep <span class="keyword">instanceof</span> <span class="title class_">RegExp</span>)) &#123;</span><br><span class="line">      <span class="comment">// Had problems to get it to work here using prototype test</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">String</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">split</span>.<span class="title function_">apply</span>(string, <span class="variable language_">arguments</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> str = <span class="title class_">String</span>(string)</span><br><span class="line">    <span class="keyword">const</span> output = []</span><br><span class="line">    <span class="keyword">let</span> lastLastIndex = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> match</span><br><span class="line">    <span class="keyword">let</span> lastLength</span><br><span class="line">    <span class="keyword">const</span> limit = <span class="title class_">Infinity</span></span><br><span class="line">    <span class="keyword">const</span> x = sep.<span class="property">_xregexp</span></span><br><span class="line">    <span class="comment">// This is required if not `s.global`, and it avoids needing to set `s.lastIndex` to zero</span></span><br><span class="line">    <span class="comment">// and restore it to its original value when we&#x27;re done using the regex</span></span><br><span class="line">    <span class="comment">// Brett paring down</span></span><br><span class="line">    <span class="keyword">const</span> s = <span class="keyword">new</span> <span class="title class_">RegExp</span>(sep.<span class="property">source</span>, <span class="title function_">_getNativeFlags</span>(sep) + <span class="string">&#x27;g&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> (x) &#123;</span><br><span class="line">      s.<span class="property">_xregexp</span> = &#123;</span><br><span class="line">        <span class="attr">source</span>: x.<span class="property">source</span>,</span><br><span class="line">        <span class="attr">captureNames</span>: x.<span class="property">captureNames</span> ? x.<span class="property">captureNames</span>.<span class="title function_">slice</span>(<span class="number">0</span>) : <span class="literal">null</span>,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> ((match = s.<span class="title function_">exec</span>(str))) &#123;</span><br><span class="line">      <span class="comment">// Run the altered `exec` (required for `lastIndex` fix, etc.)</span></span><br><span class="line">      <span class="keyword">if</span> (s.<span class="property">lastIndex</span> &gt; lastLastIndex) &#123;</span><br><span class="line">        output.<span class="title function_">push</span>(str.<span class="title function_">slice</span>(lastLastIndex, match.<span class="property">index</span>))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (match.<span class="property">length</span> &gt; <span class="number">1</span> &amp;&amp; match.<span class="property">index</span> &lt; str.<span class="property">length</span>) &#123;</span><br><span class="line">          <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">push</span>.<span class="title function_">apply</span>(output, match.<span class="title function_">slice</span>(<span class="number">1</span>))</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        lastLength = match[<span class="number">0</span>].<span class="property">length</span></span><br><span class="line">        lastLastIndex = s.<span class="property">lastIndex</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (output.<span class="property">length</span> &gt;= limit) &#123;</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (s.<span class="property">lastIndex</span> === match.<span class="property">index</span>) &#123;</span><br><span class="line">        s.<span class="property">lastIndex</span>++</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (lastLastIndex === str.<span class="property">length</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!s.<span class="title function_">test</span>(<span class="string">&#x27;&#x27;</span>) || lastLength) &#123;</span><br><span class="line">        output.<span class="title function_">push</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      output.<span class="title function_">push</span>(str.<span class="title function_">slice</span>(lastLastIndex))</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> output.<span class="property">length</span> &gt; limit ? output.<span class="title function_">slice</span>(<span class="number">0</span>, limit) : output</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> ll = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> ranges = []</span><br><span class="line">  <span class="keyword">let</span> lastLinePos = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> firstChar = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">const</span> rangeExp = <span class="regexp">/^@@\s+-(\d+),(\d+)\s+\+(\d+),(\d+)\s+@@$/</span></span><br><span class="line">  <span class="keyword">const</span> lineBreaks = <span class="regexp">/\r?\n/</span></span><br><span class="line">  <span class="keyword">const</span> lines = <span class="title function_">_cbSplit</span>(patch.<span class="title function_">replace</span>(<span class="regexp">/(\r?\n)+$/</span>, <span class="string">&#x27;&#x27;</span>), lineBreaks)</span><br><span class="line">  <span class="keyword">const</span> origLines = <span class="title function_">_cbSplit</span>(originalStr, lineBreaks)</span><br><span class="line">  <span class="keyword">const</span> newStrArr = []</span><br><span class="line">  <span class="keyword">let</span> linePos = <span class="number">0</span></span><br><span class="line">  <span class="keyword">const</span> errors = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> optTemp = <span class="number">0</span> <span class="comment">// Both string &amp; integer (constant) input is allowed</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">OPTS</span> = &#123;</span><br><span class="line">    <span class="comment">// Unsure of actual PHP values, so better to rely on string</span></span><br><span class="line">    <span class="attr">XDIFF_PATCH_NORMAL</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">XDIFF_PATCH_REVERSE</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">XDIFF_PATCH_IGNORESPACE</span>: <span class="number">4</span>,</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Input defaulting &amp; sanitation</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> originalStr !== <span class="string">&#x27;string&#x27;</span> || !patch) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!flags) &#123;</span><br><span class="line">    flags = <span class="string">&#x27;XDIFF_PATCH_NORMAL&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> flags !== <span class="string">&#x27;number&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment">// Allow for a single string or an array of string flags</span></span><br><span class="line">    flags = [].<span class="title function_">concat</span>(flags)</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; flags.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      <span class="comment">// Resolve string input to bitwise e.g. &#x27;XDIFF_PATCH_NORMAL&#x27; becomes 1</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="variable constant_">OPTS</span>[flags[i]]) &#123;</span><br><span class="line">        optTemp = optTemp | <span class="variable constant_">OPTS</span>[flags[i]]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    flags = optTemp</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (flags &amp; <span class="variable constant_">OPTS</span>.<span class="property">XDIFF_PATCH_NORMAL</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>, ll = lines.<span class="property">length</span>; i &lt; ll; i++) &#123;</span><br><span class="line">      ranges = lines[i].<span class="title function_">match</span>(rangeExp)</span><br><span class="line">      <span class="keyword">if</span> (ranges) &#123;</span><br><span class="line">        lastLinePos = linePos</span><br><span class="line">        linePos = ranges[<span class="number">1</span>] - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> (lastLinePos &lt; linePos) &#123;</span><br><span class="line">          newStrArr[newStrArr.<span class="property">length</span>] = origLines[lastLinePos++]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (lines[++i] &amp;&amp; rangeExp.<span class="title function_">exec</span>(lines[i]) === <span class="literal">null</span>) &#123;</span><br><span class="line">          firstChar = lines[i].<span class="title function_">charAt</span>(<span class="number">0</span>)</span><br><span class="line">          <span class="keyword">switch</span> (firstChar) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;-&#x27;</span>:</span><br><span class="line">              <span class="comment">// Skip including that line</span></span><br><span class="line">              ++linePos</span><br><span class="line">              <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;+&#x27;</span>:</span><br><span class="line">              newStrArr[newStrArr.<span class="property">length</span>] = lines[i].<span class="title function_">slice</span>(<span class="number">1</span>)</span><br><span class="line">              <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27; &#x27;</span>:</span><br><span class="line">              newStrArr[newStrArr.<span class="property">length</span>] = origLines[linePos++]</span><br><span class="line">              <span class="keyword">break</span></span><br><span class="line">            <span class="attr">default</span>:</span><br><span class="line">              <span class="comment">// Reconcile with returning errrors arg?</span></span><br><span class="line">              <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Unrecognized initial character in unidiff line&#x27;</span>)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (lines[i]) &#123;</span><br><span class="line">          i--</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (linePos &gt; <span class="number">0</span> &amp;&amp; linePos &lt; origLines.<span class="property">length</span>) &#123;</span><br><span class="line">      newStrArr[newStrArr.<span class="property">length</span>] = origLines[linePos++]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (flags &amp; <span class="variable constant_">OPTS</span>.<span class="property">XDIFF_PATCH_REVERSE</span>) &#123;</span><br><span class="line">    <span class="comment">// Only differs from above by a few lines</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>, ll = lines.<span class="property">length</span>; i &lt; ll; i++) &#123;</span><br><span class="line">      ranges = lines[i].<span class="title function_">match</span>(rangeExp)</span><br><span class="line">      <span class="keyword">if</span> (ranges) &#123;</span><br><span class="line">        lastLinePos = linePos</span><br><span class="line">        linePos = ranges[<span class="number">3</span>] - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> (lastLinePos &lt; linePos) &#123;</span><br><span class="line">          newStrArr[newStrArr.<span class="property">length</span>] = origLines[lastLinePos++]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (lines[++i] &amp;&amp; rangeExp.<span class="title function_">exec</span>(lines[i]) === <span class="literal">null</span>) &#123;</span><br><span class="line">          firstChar = lines[i].<span class="title function_">charAt</span>(<span class="number">0</span>)</span><br><span class="line">          <span class="keyword">switch</span> (firstChar) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;-&#x27;</span>:</span><br><span class="line">              newStrArr[newStrArr.<span class="property">length</span>] = lines[i].<span class="title function_">slice</span>(<span class="number">1</span>)</span><br><span class="line">              <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;+&#x27;</span>:</span><br><span class="line">              <span class="comment">// Skip including that line</span></span><br><span class="line">              ++linePos</span><br><span class="line">              <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27; &#x27;</span>:</span><br><span class="line">              newStrArr[newStrArr.<span class="property">length</span>] = origLines[linePos++]</span><br><span class="line">              <span class="keyword">break</span></span><br><span class="line">            <span class="attr">default</span>:</span><br><span class="line">              <span class="comment">// Reconcile with returning errrors arg?</span></span><br><span class="line">              <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Unrecognized initial character in unidiff line&#x27;</span>)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (lines[i]) &#123;</span><br><span class="line">          i--</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (linePos &gt; <span class="number">0</span> &amp;&amp; linePos &lt; origLines.<span class="property">length</span>) &#123;</span><br><span class="line">      newStrArr[newStrArr.<span class="property">length</span>] = origLines[linePos++]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (errorObj) &#123;</span><br><span class="line">    errorObj.<span class="property">value</span> = errors</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> newStrArr.<span class="title function_">join</span>(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      [
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/xdiff/xdiff_string_patch.js">View on GitHub</a>
+      |
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/xdiff/xdiff_string_patch.js">Edit on GitHub</a>
+      |
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/xdiff/xdiff_string_patch.js">Source on GitHub</a>
+      ]
+
+      <div class="clearfix"></div>
+
+      <h2>How to use</h2>
+      <p>
+        You you can install via <code>npm install locutus</code> and
+        require it via <code>require('locutus/php/xdiff/xdiff_string_patch')</code>.
+        You could also require the <code>xdiff</code> module in full
+        so that you could access <code>xdiff.xdiff_string_patch</code> instead.
+      </p>
+      <p>
+        If you intend to target the browser, you can then use a module bundler such as
+        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>,
+        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>, or
+        <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+
+        This can be important because Locutus allows modern JavaScript in
+        the source files, meaning it may not work in all browsers without
+        a build/transpile step. Locutus does transpile all functions to ES5
+        before publishing to npm.
+      </p>
+
+      
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we don't consider it to be a bad thing that many of
+        our functions are first iterations, which may still have their
+        fair share of issues. We hope that these flaws will inspire others to come up with better ideas.
+      </p>
+      <p>
+        This way of working also means that we don't offer any
+        production guarantees, and recommend to use Locutus inspiration
+        and learning purposes only.
+      </p>
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>The XDIFF_PATCH_IGNORESPACE flag and the error argument are not
+currently supported.</p>
+</li>
+        
+          <li><p>This has not been tested exhaustively yet.</p>
+</li>
+        
+          <li><p>The errorObj parameter (optional) if used must be passed in as a
+object. The errors will then be written by reference into it’s <code>value</code> property</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>xdiff_string_patch(&#39;&#39;, &#39;@@ -0,0 +1,1 @@\n+Hello world!&#39;)</code></td><td><code>&#39;Hello world!&#39;</code></td></tr>
+        
+        </table>
+      
+
+      <hr />
+      
+
+      <p>
+        <a href="/php/xdiff/">&laquo; More PHP xdiff functions</a>
+      </p>
+
+      <center>
+        <br>
+        <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+        <br>
+        <br>
+      </center>
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/locutus-alpha.png" />
+            <h2 id="name">Locutus</h2>
+            <h3 id="title">All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.</h3>
+            <!-- <span id="location"><i class="fa fa-map-marker"></i>GitHub</span> -->
+            <!-- <a id="follow" target="_blank" href="https://github.com/locutusjs/locutus/stargazers">FOLLOW</a> -->
+
+            <br />
+            <div class="Social">
+              <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
+              <br />
+              <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+            </div>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+              5
+              <span>languages marked</span>
+            </div>
+            <div class="article-info-block">
+                333
+                <span>functions assimilated</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="https://github.com/locutusjs/locutus" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://twitter.com/locutus_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    
+                    <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+<div class="clear"></div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget widget-on_the_githubs">
+    <div class="on-the-githubs" data-event-source="repos/locutusjs/locutus">Loading...</div>
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (3)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/stdio/">
+            stdio
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (4)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strings/">
+            strings
+            (4)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (5)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (5)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (320)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (73)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (4)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (30)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-05-02T00:00:00.000Z" itemprop="datePublished">2016-05-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/breaking-bc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/jekyll/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
+                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
+            Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
+            Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
+
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+
+    
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+<script src="/js/locutus.js"></script>
+
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- Twitter follow button script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    </div>
+</body>
+</html>

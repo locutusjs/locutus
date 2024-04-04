@@ -1,0 +1,60 @@
+#profile {
+  width: 100%;
+}
+.Social {
+  text-align: center;
+}
+.widget-wrap-locutus_profile .avatar {
+  max-width: 80%;
+  display: block;
+  margin: auto auto;
+}
+.widget-wrap-locutus_profile .mission {
+  text-align: justify;
+}
+.widget-on_the_githubs {
+  margin: 0;
+  padding: 15px 0;
+}
+.on-the-githubs li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0px;
+  height: 26px;
+  clear: both;
+}
+.on-the-githubs li p {
+  line-height: 16px;
+  font-size: 12px;
+  margin: 0 2px;
+  padding: 0;
+  display: inline-block;
+  float: left;
+  max-width: 90%;
+}
+.on-the-githubs li abbr {
+  position: absolute;
+  right: 0;
+  float: left;
+  text-align: right;
+  display: none;
+}
+.on-the-githubs li a {
+  font-weight: normal;
+}
+.on-the-githubs li img {
+  float: left;
+  margin: 0 2px 0 0;
+  border-radius: 10px;
+  width: 16px;
+  height: 16px;
+}
+section.authors entry {
+  display: none;
+}
+section.authors li a:before {
+  content: "";
+}
+.article-entry blockquote:before {
+  content: "";
+}

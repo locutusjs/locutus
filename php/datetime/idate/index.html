@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>PHP&#39;s idate in JavaScript | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Here’s what our current JavaScript equivalent to PHP&#39;s idate looks like.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP&#39;s idate in JavaScript">
+<meta property="og:url" content="https://locutus.io/php/datetime/idate/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&#39;s idate looks like.">
+<meta property="og:locale">
+<meta property="article:published_time" content="2024-04-04T15:17:48.597Z">
+<meta property="article:modified_time" content="2024-04-04T15:17:48.597Z">
+<meta property="article:author" content="Kevin van Zonneveld">
+<meta name="twitter:card" content="summary">
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/vendor/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/locutus.css">
+
+
+    
+<script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="Locutus" type="application/atom+xml">
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <nav id="main-nav">
+                
+                  <a class="main-nav-link" href="/c">C</a>
+                
+                  <a class="main-nav-link" href="/golang">Go</a>
+                
+                  <a class="main-nav-link" href="/python">Python</a>
+                
+                  <a class="main-nav-link" href="/ruby">Ruby</a>
+                
+                  <a class="main-nav-link" href="/php">PHP</a>
+                
+                <span class="main-nav-link">|</span>
+                
+                  <a class="main-nav-link" href="/archives">Blog</a>
+                
+                  <a class="main-nav-link" href="/authors">Authors</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+        x: 'en',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    console.log(INSIGHT_CONFIG)
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                  <td><a class="main-nav-link" href="/c">C</a></td>
+                
+                  <td><a class="main-nav-link" href="/golang">Go</a></td>
+                
+                  <td><a class="main-nav-link" href="/python">Python</a></td>
+                
+                  <td><a class="main-nav-link" href="/ruby">Ruby</a></td>
+                
+                  <td><a class="main-nav-link" href="/php">PHP</a></td>
+                
+                <td><span class="main-nav-link">|</span></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Blog</a></td>
+                
+                    <td><a class="main-nav-link" href="/authors">Authors</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">PHP&#39;s idate in JavaScript</h1>
+    </header>
+
+    <div class="article-entry">
+      <p>
+        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.idate.php">PHP's idate</a> looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">idate</span>(<span class="params">format, timestamp</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/idate/</span></span><br><span class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// original by: date</span></span><br><span class="line">  <span class="comment">// original by: gettimeofday</span></span><br><span class="line">  <span class="comment">//    input by: Alex</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// improved by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">//   example 1: idate(&#x27;y&#x27;, 1255633200)</span></span><br><span class="line">  <span class="comment">//   returns 1: 9</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (format === <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;idate() expects at least 1 parameter, 0 given&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!format.<span class="property">length</span> || format.<span class="property">length</span> &gt; <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;idate format is one char&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// @todo: Need to allow date_default_timezone_set() (check for $locutus.default_timezone and use)</span></span><br><span class="line">  <span class="keyword">const</span> _date =</span><br><span class="line">    <span class="keyword">typeof</span> timestamp === <span class="string">&#x27;undefined&#x27;</span></span><br><span class="line">      ? <span class="keyword">new</span> <span class="title class_">Date</span>()</span><br><span class="line">      : timestamp <span class="keyword">instanceof</span> <span class="title class_">Date</span></span><br><span class="line">        ? <span class="keyword">new</span> <span class="title class_">Date</span>(timestamp)</span><br><span class="line">        : <span class="keyword">new</span> <span class="title class_">Date</span>(timestamp * <span class="number">1000</span>)</span><br><span class="line">  <span class="keyword">let</span> a</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (format) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;B&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        <span class="title class_">Math</span>.<span class="title function_">floor</span>((_date.<span class="title function_">getUTCHours</span>() * <span class="number">36e2</span> + _date.<span class="title function_">getUTCMinutes</span>() * <span class="number">60</span> + _date.<span class="title function_">getUTCSeconds</span>() + <span class="number">36e2</span>) / <span class="number">86.4</span>) %</span><br><span class="line">        <span class="number">1e3</span></span><br><span class="line">      )</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;d&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> _date.<span class="title function_">getDate</span>()</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;h&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> _date.<span class="title function_">getHours</span>() % <span class="number">12</span> || <span class="number">12</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;H&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> _date.<span class="title function_">getHours</span>()</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;i&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> _date.<span class="title function_">getMinutes</span>()</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;I&#x27;</span>:</span><br><span class="line">      <span class="comment">// capital &#x27;i&#x27;</span></span><br><span class="line">      <span class="comment">// Logic original by getimeofday().</span></span><br><span class="line">      <span class="comment">// Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.</span></span><br><span class="line">      <span class="comment">// If they are not equal, then DST is observed.</span></span><br><span class="line">      a = _date.<span class="title function_">getFullYear</span>()</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span> + (<span class="keyword">new</span> <span class="title class_">Date</span>(a, <span class="number">0</span>) - <span class="title class_">Date</span>.<span class="title function_">UTC</span>(a, <span class="number">0</span>) !== <span class="keyword">new</span> <span class="title class_">Date</span>(a, <span class="number">6</span>) - <span class="title class_">Date</span>.<span class="title function_">UTC</span>(a, <span class="number">6</span>))</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;L&#x27;</span>:</span><br><span class="line">      a = _date.<span class="title function_">getFullYear</span>()</span><br><span class="line">      <span class="keyword">return</span> !(a &amp; <span class="number">3</span>) &amp;&amp; (a % <span class="number">1e2</span> || !(a % <span class="number">4e2</span>)) ? <span class="number">1</span> : <span class="number">0</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;m&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> _date.<span class="title function_">getMonth</span>() + <span class="number">1</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;s&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> _date.<span class="title function_">getSeconds</span>()</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;t&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Date</span>(_date.<span class="title function_">getFullYear</span>(), _date.<span class="title function_">getMonth</span>() + <span class="number">1</span>, <span class="number">0</span>).<span class="title function_">getDate</span>()</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;U&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">round</span>(_date.<span class="title function_">getTime</span>() / <span class="number">1000</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;w&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> _date.<span class="title function_">getDay</span>()</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;W&#x27;</span>:</span><br><span class="line">      a = <span class="keyword">new</span> <span class="title class_">Date</span>(_date.<span class="title function_">getFullYear</span>(), _date.<span class="title function_">getMonth</span>(), _date.<span class="title function_">getDate</span>() - (_date.<span class="title function_">getDay</span>() || <span class="number">7</span>) + <span class="number">3</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span> + <span class="title class_">Math</span>.<span class="title function_">round</span>((a - <span class="keyword">new</span> <span class="title class_">Date</span>(a.<span class="title function_">getFullYear</span>(), <span class="number">0</span>, <span class="number">4</span>)) / <span class="number">864e5</span> / <span class="number">7</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;y&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">parseInt</span>((_date.<span class="title function_">getFullYear</span>() + <span class="string">&#x27;&#x27;</span>).<span class="title function_">slice</span>(<span class="number">2</span>), <span class="number">10</span>) <span class="comment">// This function returns an integer, unlike _date()</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;Y&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> _date.<span class="title function_">getFullYear</span>()</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;z&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">floor</span>((_date - <span class="keyword">new</span> <span class="title class_">Date</span>(_date.<span class="title function_">getFullYear</span>(), <span class="number">0</span>, <span class="number">1</span>)) / <span class="number">864e5</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;Z&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> -_date.<span class="title function_">getTimezoneOffset</span>() * <span class="number">60</span></span><br><span class="line">    <span class="attr">default</span>:</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Unrecognized _date format token&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      [
+      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/datetime/idate.js">View on GitHub</a>
+      |
+      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/datetime/idate.js">Edit on GitHub</a>
+      |
+      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/datetime/idate.js">Source on GitHub</a>
+      ]
+
+      <div class="clearfix"></div>
+
+      <h2>How to use</h2>
+      <p>
+        You you can install via <code>npm install locutus</code> and
+        require it via <code>require('locutus/php/datetime/idate')</code>.
+        You could also require the <code>datetime</code> module in full
+        so that you could access <code>datetime.idate</code> instead.
+      </p>
+      <p>
+        If you intend to target the browser, you can then use a module bundler such as
+        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>,
+        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>, or
+        <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+
+        This can be important because Locutus allows modern JavaScript in
+        the source files, meaning it may not work in all browsers without
+        a build/transpile step. Locutus does transpile all functions to ES5
+        before publishing to npm.
+      </p>
+
+      
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we don't consider it to be a bad thing that many of
+        our functions are first iterations, which may still have their
+        fair share of issues. We hope that these flaws will inspire others to come up with better ideas.
+      </p>
+      <p>
+        This way of working also means that we don't offer any
+        production guarantees, and recommend to use Locutus inspiration
+        and learning purposes only.
+      </p>
+      
+
+      
+
+      
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>idate(&#39;y&#39;, 1255633200)</code></td><td><code>9</code></td></tr>
+        
+        </table>
+      
+
+      <hr />
+      
+
+      <p>
+        <a href="/php/datetime/">&laquo; More PHP datetime functions</a>
+      </p>
+
+      <center>
+        <br>
+        <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+        <br>
+        <br>
+      </center>
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/locutus-alpha.png" />
+            <h2 id="name">Locutus</h2>
+            <h3 id="title">All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.</h3>
+            <!-- <span id="location"><i class="fa fa-map-marker"></i>GitHub</span> -->
+            <!-- <a id="follow" target="_blank" href="https://github.com/locutusjs/locutus/stargazers">FOLLOW</a> -->
+
+            <br />
+            <div class="Social">
+              <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
+              <br />
+              <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+            </div>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+              5
+              <span>languages marked</span>
+            </div>
+            <div class="article-info-block">
+                333
+                <span>functions assimilated</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="https://github.com/locutusjs/locutus" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://twitter.com/locutus_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    
+                    <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+<div class="clear"></div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget widget-on_the_githubs">
+    <div class="on-the-githubs" data-event-source="repos/locutusjs/locutus">Loading...</div>
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (3)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/stdio/">
+            stdio
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (4)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strings/">
+            strings
+            (4)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (5)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (5)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (1)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (320)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (73)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (4)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (30)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-05-02T00:00:00.000Z" itemprop="datePublished">2016-05-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/breaking-bc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/jekyll/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
+                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
+            Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
+            Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
+
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+
+    
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+<script src="/js/locutus.js"></script>
+
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- Twitter follow button script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    </div>
+</body>
+</html>
