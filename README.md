@@ -4,6 +4,12 @@ All your standard libraries will be assimilated into our JavaScript collective. 
 
 More info at: https://locutus.io/
 
+## Table of contents
+
+- [Install](#install)
+- [Use](#use)
+- [Development](#development)
+
 ## Install
 
 ```bash
@@ -37,4 +43,3 @@ true
 ## Development
 
 Some guidelines and instructions can be found in [CONTRIBUTING.md](CONTRIBUTING.md)
-

@@ -36,6 +36,7 @@
     "injectweb": "rimraf website/source/{c,golang,php,python,ruby} && babel-node src/_util/cli.js injectweb",
     "fix:js": "DEBUG=eslint:cli-engine eslint --fix --quiet --ext .js,.jsx,.ts,.tsx .",
     "fix:formatting": "env DEBUG=prettier prettier --write .",
+    "fix:markdown": "remark {README,CONTRIBUTING}.md --output && prettier --write {README,CONTRIBUTING}.md",
     "fix": "npm-run-all --serial 'fix:**'",
     "lint:formatting": "prettier --check .",
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx .",
@@ -89,6 +90,8 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^3.2.5",
     "prettier-plugin-packagejson": "^2.4.14",
+    "remark-cli": "^11.0.0",
+    "remark-toc": "^8.0.1",
     "rimraf": "3.0.2"
   },
   "packageManager": "yarn@4.0.1+sha224.ca5d6f5a8aecd0801adc32f775675b01961bdc2383867d36f4732a0a",
