@@ -1,6 +1,7 @@
 module.exports = {
   extends: [
-    'standard'
+    'standard',
+    'prettier'
   ],
   "rules": {
     "camelcase": "off",

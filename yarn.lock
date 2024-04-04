@@ -4570,6 +4570,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-config-prettier@npm:^9.1.0":
+  version: 9.1.0
+  resolution: "eslint-config-prettier@npm:9.1.0"
+  peerDependencies:
+    eslint: ">=7.0.0"
+  bin:
+    eslint-config-prettier: bin/cli.js
+  checksum: 411e3b3b1c7aa04e3e0f20d561271b3b909014956c4dba51c878bf1a23dbb8c800a3be235c46c4732c70827276e540b6eed4636d9b09b444fd0a8e07f0fcd830
+  languageName: node
+  linkType: hard
+
 "eslint-config-standard@npm:10.2.1":
   version: 10.2.1
   resolution: "eslint-config-standard@npm:10.2.1"
@@ -8052,6 +8063,7 @@ __metadata:
     depurar: "npm:0.3.0"
     es6-promise: "npm:4.2.8"
     eslint: "npm:8.57.0"
+    eslint-config-prettier: "npm:^9.1.0"
     eslint-config-standard: "npm:17.1.0"
     eslint-plugin-import: "npm:2.29.1"
     eslint-plugin-n: "npm:^16.6.2"
@@ -8067,7 +8079,8 @@ __metadata:
     lodash: "npm:4.17.21"
     mkdirp: "npm:1.0.4"
     mocha: "npm:5.2.0"
-    npm-run-all: "npm:4.1.5"
+    npm-run-all: "npm:^4.1.5"
+    prettier: "npm:^3.2.5"
     rimraf: "npm:3.0.2"
   languageName: unknown
   linkType: soft
@@ -8912,7 +8925,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-run-all@npm:4.1.5":
+"npm-run-all@npm:^4.1.5":
   version: 4.1.5
   resolution: "npm-run-all@npm:4.1.5"
   dependencies:
@@ -9754,6 +9767,15 @@ __metadata:
   bin:
     prettier: ./bin/prettier.js
   checksum: 2062b3be466418d7b3421dec8aa5edc5e9107cfc678b9d46fa04029905d2f0dcbe2b0f509c69b29086f11d7c34375fba7523cbe5216937fe7db2747de9d90804
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^3.2.5":
+  version: 3.2.5
+  resolution: "prettier@npm:3.2.5"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: d509f9da0b70e8cacc561a1911c0d99ec75117faed27b95cc8534cb2349667dee6351b0ca83fa9d5703f14127faa52b798de40f5705f02d843da133fc3aa416a
   languageName: node
   linkType: hard
 
