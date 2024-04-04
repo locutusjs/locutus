@@ -5,6 +5,11 @@
   "hexo": {
     "version": "3.2.2"
   },
+  "packageManager": "yarn@4.0.1+sha224.ca5d6f5a8aecd0801adc32f775675b01961bdc2383867d36f4732a0a",
+  "engines": {
+    "node": ">= 10",
+    "yarn": "4.0.1"
+  },
   "scripts": {
     "deploy": "hexo deploy",
     "server": "hexo server",
