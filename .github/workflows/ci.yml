@@ -11,39 +11,39 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps  :
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - uses: actions/setup-node@master
+      - uses: actions/setup-node@v4
         with:
           node-version: 10.x
       - name: Get yarn cache directory path
         id  : yarn-cache-dir-path
         run : echo "##[set-output name=dir;].yarn"
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         with:
           path        : ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key         : ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - uses: sergioramos/yarn-actions/install@master
-        with:
-          frozen-lockfile: true
+      - name: Install Dependencies
+        run : |
+          corepack yarn
       - name: Lint
         run : |
-          yarn lint
+          corepack yarn lint
       - name: Build
         run : |
-          yarn build
+          corepack yarn build
       - name: Test
         run : |
-          yarn test
+          corepack yarn test
       - name: Website Build
         if  : github.ref == 'refs/heads/main'
         run : |
-          yarn website:install
-          yarn injectweb
-          yarn website:build
+          corepack yarn website:install
+          corepack yarn injectweb
+          corepack yarn website:build
       - name: Website Deploy 🚀
         if  : github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@3.7.1
