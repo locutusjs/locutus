@@ -11,6 +11,7 @@ npm-debug.*
 scripts/main.js
 scripts/main.js.map
 scripts/split-*.js
+test/languages/
 tools/_temp/*
 website/_site/
 website/.asset-cache
@@ -22,6 +23,7 @@ website/assets/build/
 website/db.json
 website/node_modules/
 website/public
+website/source/
 website/themes
 website/vendor/bundle/
 website/vendor/cache/
