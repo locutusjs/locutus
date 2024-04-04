@@ -1,4 +1,4 @@
-module.exports = function intval (mixedVar, base) {
+module.exports = function intval(mixedVar, base) {
   //  discuss at: https://locutus.io/php/intval/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: stensi
@@ -35,7 +35,7 @@ module.exports = function intval (mixedVar, base) {
       base = match ? (match[1] ? 16 : 8) : 10
     }
     tmp = parseInt(mixedVar, base || 10)
-    return (isNaN(tmp) || !isFinite(tmp)) ? 0 : tmp
+    return isNaN(tmp) || !isFinite(tmp) ? 0 : tmp
   } else if (type === 'number' && isFinite(mixedVar)) {
     return mixedVar < 0 ? Math.ceil(mixedVar) : Math.floor(mixedVar)
   } else {

@@ -1,4 +1,4 @@
-module.exports = function atanh (arg) {
+module.exports = function atanh(arg) {
   //  discuss at: https://locutus.io/php/atanh/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: atanh(0.3)

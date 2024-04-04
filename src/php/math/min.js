@@ -1,4 +1,4 @@
-module.exports = function min () {
+module.exports = function min() {
   //  discuss at: https://locutus.io/php/min/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //  revised by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -36,7 +36,7 @@ module.exports = function min () {
     return ar
   }
 
-  var _compare = function (current, next) {
+  const _compare = function (current, next) {
     let i = 0
     let n = 0
     let tmp = 0
@@ -73,19 +73,19 @@ module.exports = function min () {
       if (current === 0) {
         return 0
       }
-      return (current < 0 ? 1 : -1)
+      return current < 0 ? 1 : -1
     } else if (isNaN(current) && !isNaN(next)) {
       if (next === 0) {
         return 0
       }
-      return (next > 0 ? 1 : -1)
+      return next > 0 ? 1 : -1
     }
 
     if (next === current) {
       return 0
     }
 
-    return (next > current ? 1 : -1)
+    return next > current ? 1 : -1
   }
 
   if (argc === 0) {

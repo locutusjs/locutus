@@ -1,4 +1,4 @@
-module.exports = function array_diff_assoc (arr1) { // eslint-disable-line camelcase
+module.exports = function array_diff_assoc(arr1) {
   //  discuss at: https://locutus.io/php/array_diff_assoc/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: 0m3r
@@ -13,7 +13,7 @@ module.exports = function array_diff_assoc (arr1) { // eslint-disable-line camel
   let k = ''
   let arr = {}
 
-  arr1keys: for (k1 in arr1) { // eslint-disable-line no-labels
+  arr1keys: for (k1 in arr1) {
     for (i = 1; i < argl; i++) {
       arr = arguments[i]
       for (k in arr) {

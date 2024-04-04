@@ -1,4 +1,4 @@
-module.exports = function sprintf () {
+module.exports = function sprintf() {
   //  discuss at: https://locutus.io/php/sprintf/
   // original by: Ash Searle (https://hexmen.com/blog/)
   // improved by: Michael White (https://getsprink.com)
@@ -39,7 +39,7 @@ module.exports = function sprintf () {
     if (!chr) {
       chr = ' '
     }
-    const padding = (str.length >= len) ? '' : new Array(1 + len - str.length >>> 0).join(chr)
+    const padding = str.length >= len ? '' : new Array((1 + len - str.length) >>> 0).join(chr)
     return leftJustify ? str + padding : padding + str
   }
 
@@ -50,11 +50,7 @@ module.exports = function sprintf () {
       // on the left side
       // keep sign (+ or -) in front
       if (!leftJustify && padChar === '0') {
-        value = [
-          value.slice(0, prefix.length),
-          _pad('', diff, '0', true),
-          value.slice(prefix.length)
-        ].join('')
+        value = [value.slice(0, prefix.length), _pad('', diff, '0', true), value.slice(prefix.length)].join('')
       } else {
         value = _pad(value, minWidth, padChar, leftJustify)
       }
@@ -123,7 +119,7 @@ module.exports = function sprintf () {
     }
 
     if (!precision) {
-      precision = (specifier === 'd') ? 0 : 'fFeE'.indexOf(specifier) > -1 ? 6 : undefined
+      precision = specifier === 'd' ? 0 : 'fFeE'.indexOf(specifier) > -1 ? 6 : undefined
     } else {
       precision = +precision
     }
@@ -152,15 +148,14 @@ module.exports = function sprintf () {
       case 'x':
         return _formatBaseX(value, 16, leftJustify, minWidth, precision, padChar)
       case 'X':
-        return _formatBaseX(value, 16, leftJustify, minWidth, precision, padChar)
-          .toUpperCase()
+        return _formatBaseX(value, 16, leftJustify, minWidth, precision, padChar).toUpperCase()
       case 'u':
         return _formatBaseX(value, 10, leftJustify, minWidth, precision, padChar)
       case 'i':
       case 'd':
         number = +value || 0
         // Plain Math.round doesn't just truncate
-        number = Math.round(number - number % 1)
+        number = Math.round(number - (number % 1))
         prefix = number < 0 ? '-' : positiveNumberPrefix
         value = prefix + _pad(String(Math.abs(number)), precision, '0', false)
 

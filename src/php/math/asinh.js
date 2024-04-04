@@ -1,4 +1,4 @@
-module.exports = function asinh (arg) {
+module.exports = function asinh(arg) {
   //  discuss at: https://locutus.io/php/asinh/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: asinh(8723321.4)

@@ -1,4 +1,4 @@
-module.exports = function echo () {
+module.exports = function echo() {
   //  discuss at: https://locutus.io/php/echo/
   // original by: Philip Peterson
   // improved by: echo is bad

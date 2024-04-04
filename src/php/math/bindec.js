@@ -1,4 +1,4 @@
-module.exports = function bindec (binaryString) {
+module.exports = function bindec(binaryString) {
   //  discuss at: https://locutus.io/php/bindec/
   // original by: Philippe Baumann
   //   example 1: bindec('110011')

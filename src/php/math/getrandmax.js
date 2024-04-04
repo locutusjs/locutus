@@ -1,4 +1,4 @@
-module.exports = function getrandmax () {
+module.exports = function getrandmax() {
   //  discuss at: https://locutus.io/php/getrandmax/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: getrandmax()

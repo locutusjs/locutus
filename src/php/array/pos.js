@@ -1,4 +1,4 @@
-module.exports = function pos (arr) {
+module.exports = function pos(arr) {
   //  discuss at: https://locutus.io/php/pos/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Uses global: locutus to store the array pointer

@@ -1,4 +1,4 @@
-module.exports = function pi () {
+module.exports = function pi() {
   //  discuss at: https://locutus.io/php/pi/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: dude

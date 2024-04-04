@@ -1,4 +1,4 @@
-module.exports = function i18n_loc_set_default (name) { // eslint-disable-line camelcase
+module.exports = function i18n_loc_set_default(name) {
   //  discuss at: https://locutus.io/php/i18n_loc_set_default/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Renamed in PHP6 from locale_set_default(). Not listed yet at php.net
@@ -7,7 +7,7 @@ module.exports = function i18n_loc_set_default (name) { // eslint-disable-line c
   //   example 1: i18n_loc_set_default('pt_PT')
   //   returns 1: true
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
@@ -17,8 +17,8 @@ module.exports = function i18n_loc_set_default (name) { // eslint-disable-line c
     sorting: function (str1, str2) {
       // @todo: This one taken from strcmp, but need for other locales;
       // we don't use localeCompare since its locale is not settable
-      return (str1 === str2) ? 0 : ((str1 > str2) ? 1 : -1)
-    }
+      return str1 === str2 ? 0 : str1 > str2 ? 1 : -1
+    },
   }
 
   $locutus.php.locale_default = name

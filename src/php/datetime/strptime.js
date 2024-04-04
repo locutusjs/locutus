@@ -1,4 +1,4 @@
-module.exports = function strptime (dateStr, format) {
+module.exports = function strptime(dateStr, format) {
   //  discuss at: https://locutus.io/php/strptime/
   // original by: Brett Zamir (https://brett-zamir.me)
   // original by: strftime
@@ -19,7 +19,7 @@ module.exports = function strptime (dateStr, format) {
     tm_year: 0,
     tm_wday: 0,
     tm_yday: 0,
-    unparsed: ''
+    unparsed: '',
   }
   let i = 0
   let j = 0
@@ -44,15 +44,10 @@ module.exports = function strptime (dateStr, format) {
   const _date = function () {
     const o = retObj
     // We set date to at least 1 to ensure year or month doesn't go backwards
-    return _reset(new Date(Date.UTC(
-      o.tm_year + 1900,
-      o.tm_mon,
-      o.tm_mday || 1,
-      o.tm_hour,
-      o.tm_min,
-      o.tm_sec
-    )),
-    o.tm_mday)
+    return _reset(
+      new Date(Date.UTC(o.tm_year + 1900, o.tm_mon, o.tm_mday || 1, o.tm_hour, o.tm_min, o.tm_sec)),
+      o.tm_mday,
+    )
   }
 
   const _NWS = /\S/
@@ -66,7 +61,7 @@ module.exports = function strptime (dateStr, format) {
     R: '%H:%M',
     T: '%H:%M:%S',
     x: 'locale',
-    X: 'locale'
+    X: 'locale',
   }
 
   /* Fix: Locale alternatives are supported though not documented in PHP; see https://linux.die.net/man/3/strptime
@@ -94,7 +89,7 @@ module.exports = function strptime (dateStr, format) {
   // ensure setup of localization variables takes place
   setlocale('LC_ALL', 0)
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   const locale = $locutus.php.localeCategories.LC_TIME
@@ -104,7 +99,7 @@ module.exports = function strptime (dateStr, format) {
   while (format.match(/%[cDFhnrRtTxX]/)) {
     format = format.replace(/%([cDFhnrRtTxX])/g, function (m0, m1) {
       const f = _aggregates[m1]
-      return (f === 'locale' ? lcTime[m1] : f)
+      return f === 'locale' ? lcTime[m1] : f
     })
   }
 
@@ -125,13 +120,12 @@ module.exports = function strptime (dateStr, format) {
 
   const _addLocalized = function (j, formatChar, category) {
     // Could make each parenthesized instead and pass index to callback:
-    return _addNext(j, arrayMap(_pregQuote, lcTime[formatChar]).join('|'),
-      function (m) {
-        const match = lcTime[formatChar].search(new RegExp('^' + _pregQuote(m) + '$', 'i'))
-        if (match) {
-          retObj[category] = match[0]
-        }
-      })
+    return _addNext(j, arrayMap(_pregQuote, lcTime[formatChar]).join('|'), function (m) {
+      const match = lcTime[formatChar].search(new RegExp('^' + _pregQuote(m) + '$', 'i'))
+      if (match) {
+        retObj[category] = match[0]
+      }
+    })
   }
 
   // BEGIN PROCESSING CHARACTERS
@@ -174,7 +168,9 @@ module.exports = function strptime (dateStr, format) {
           case 'C':
             // 0+; century (19 for 20th)
             // PHP docs say two-digit, but accepts one-digit (two-digit max):
-            j = _addNext(j, /^\d?\d/,
+            j = _addNext(
+              j,
+              /^\d?\d/,
 
               function (d) {
                 const year = (parseInt(d, 10) - 19) * 100
@@ -183,16 +179,14 @@ module.exports = function strptime (dateStr, format) {
                 if (!retObj.tm_yday) {
                   retObj.tm_yday = -1
                 }
-              // Also changes wday; and sets yday to -1 (always?)
-              })
+                // Also changes wday; and sets yday to -1 (always?)
+              },
+            )
             break
           case 'd':
           case 'e':
             // 1-31 day
-            j = _addNext(j, formatChar === 'd'
-              ? /^(0[1-9]|[1-2]\d|3[0-1])/
-              : /^([1-2]\d|3[0-1]|[1-9])/,
-            function (d) {
+            j = _addNext(j, formatChar === 'd' ? /^(0[1-9]|[1-2]\d|3[0-1])/ : /^([1-2]\d|3[0-1]|[1-9])/, function (d) {
               const dayMonth = parseInt(d, 10)
               retObj.tm_mday = dayMonth
               // Also changes w_day, y_day
@@ -216,10 +210,7 @@ module.exports = function strptime (dateStr, format) {
           case 'l':
           case 'I':
             // 01-12 hours
-            j = _addNext(j, formatChar === 'l'
-              ? /^([1-9]|1[0-2])/
-              : /^(0[1-9]|1[0-2])/,
-            function (d) {
+            j = _addNext(j, formatChar === 'l' ? /^([1-9]|1[0-2])/ : /^(0[1-9]|1[0-2])/, function (d) {
               const hour = parseInt(d, 10) - 1 + amPmOffset
               retObj.tm_hour = hour
               // Used for coordinating with am-pm
@@ -250,7 +241,7 @@ module.exports = function strptime (dateStr, format) {
             j = _addNext(j, /^[0-5]\d/, function (d) {
               const minute = parseInt(d, 10)
               retObj.tm_min = minute
-            // Changes nothing else
+              // Changes nothing else
             })
             break
           case 'P':
@@ -262,8 +253,7 @@ module.exports = function strptime (dateStr, format) {
             j = _addNext(j, /^(am|pm)/i, function (d) {
               // No effect on 'H' since already 24 hours but
               //   works before or after setting of l/I hour
-              amPmOffset = (/a/)
-                .test(d) ? 0 : 12
+              amPmOffset = /a/.test(d) ? 0 : 12
               if (prevHour) {
                 retObj.tm_hour += amPmOffset
               }
@@ -280,13 +270,16 @@ module.exports = function strptime (dateStr, format) {
             break
           case 'S':
             // 00-59 seconds
-            j = _addNext(j, /^[0-5]\d/, // strptime also accepts 60-61 for some reason
+            j = _addNext(
+              j,
+              /^[0-5]\d/, // strptime also accepts 60-61 for some reason
 
               function (d) {
                 const second = parseInt(d, 10)
                 retObj.tm_sec = second
-              // Changes nothing else
-              })
+                // Changes nothing else
+              },
+            )
             break
           case 'u':
           case 'w':
@@ -304,7 +297,9 @@ module.exports = function strptime (dateStr, format) {
           case 'y':
             // 69 (or higher) for 1969+, 68 (or lower) for 2068-
             // PHP docs say two-digit, but accepts one-digit (two-digit max):
-            j = _addNext(j, /^\d?\d/,
+            j = _addNext(
+              j,
+              /^\d?\d/,
 
               function (d) {
                 d = parseInt(d, 10)
@@ -314,23 +309,27 @@ module.exports = function strptime (dateStr, format) {
                 if (!retObj.tm_yday) {
                   retObj.tm_yday = -1
                 }
-              // Also changes wday; and sets yday to -1 (always?)
-              })
+                // Also changes wday; and sets yday to -1 (always?)
+              },
+            )
             break
           case 'Y':
             // 2010 (4-digit year)
             // PHP docs say four-digit, but accepts one-digit (four-digit max):
-            j = _addNext(j, /^\d{1,4}/,
+            j = _addNext(
+              j,
+              /^\d{1,4}/,
 
               function (d) {
-                const year = (parseInt(d, 10)) - 1900
+                const year = parseInt(d, 10) - 1900
                 retObj.tm_year = year
                 _date()
                 if (!retObj.tm_yday) {
                   retObj.tm_yday = -1
                 }
-              // Also changes wday; and sets yday to -1 (always?)
-              })
+                // Also changes wday; and sets yday to -1 (always?)
+              },
+            )
             break
           case 'z':
             // Timezone; on my system, strftime gives -0800,

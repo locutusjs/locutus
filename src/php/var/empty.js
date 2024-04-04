@@ -1,4 +1,4 @@
-module.exports = function empty (mixedVar) {
+module.exports = function empty(mixedVar) {
   //  discuss at: https://locutus.io/php/empty/
   // original by: Philippe Baumann
   //    input by: Onno Marsman (https://twitter.com/onnomarsman)

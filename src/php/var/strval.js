@@ -1,4 +1,4 @@
-module.exports = function strval (str) {
+module.exports = function strval(str) {
   //  discuss at: https://locutus.io/php/strval/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Kevin van Zonneveld (https://kvz.io)

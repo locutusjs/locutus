@@ -1,4 +1,4 @@
-module.exports = function natsort (inputArr) {
+module.exports = function natsort(inputArr) {
   //  discuss at: https://locutus.io/php/natsort/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -25,7 +25,8 @@ module.exports = function natsort (inputArr) {
   let sortByReference = false
   let populateArr = {}
 
-  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal =
+    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

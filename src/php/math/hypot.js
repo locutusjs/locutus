@@ -1,4 +1,4 @@
-module.exports = function hypot (x, y) {
+module.exports = function hypot(x, y) {
   //  discuss at: https://locutus.io/php/hypot/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   // imprived by: Robert Eisele (https://www.xarg.org/)

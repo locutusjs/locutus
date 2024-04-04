@@ -1,4 +1,4 @@
-module.exports = function sort (inputArr, sortFlags) {
+module.exports = function sort(inputArr, sortFlags) {
   //  discuss at: https://locutus.io/php/sort/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //  revised by: Brett Zamir (https://brett-zamir.me)
@@ -38,7 +38,7 @@ module.exports = function sort (inputArr, sortFlags) {
   let sortByReference = false
   let populateArr = {}
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
@@ -64,7 +64,7 @@ module.exports = function sort (inputArr, sortFlags) {
     case 'SORT_NUMERIC':
       // compare items numerically
       sorter = function (a, b) {
-        return (a - b)
+        return a - b
       }
       break
     case 'SORT_REGULAR':
@@ -88,7 +88,8 @@ module.exports = function sort (inputArr, sortFlags) {
       break
   }
 
-  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal =
+    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

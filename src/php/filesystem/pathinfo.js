@@ -1,4 +1,4 @@
-module.exports = function pathinfo (path, options) {
+module.exports = function pathinfo(path, options) {
   //  discuss at: https://locutus.io/php/pathinfo/
   // original by: Nate
   //  revised by: Kevin van Zonneveld (https://kvz.io)
@@ -60,7 +60,7 @@ module.exports = function pathinfo (path, options) {
     PATHINFO_BASENAME: 2,
     PATHINFO_EXTENSION: 4,
     PATHINFO_FILENAME: 8,
-    PATHINFO_ALL: 0
+    PATHINFO_ALL: 0,
   }
   // PATHINFO_ALL sums up all previously defined PATHINFOs (could just pre-calculate)
   for (optName in OPTS) {
@@ -89,9 +89,7 @@ module.exports = function pathinfo (path, options) {
 
   // Gather path infos
   if (options & OPTS.PATHINFO_DIRNAME) {
-    const dirName = path
-      .replace(/\\/g, '/')
-      .replace(/\/[^/]*\/?$/, '') // dirname
+    const dirName = path.replace(/\\/g, '/').replace(/\/[^/]*\/?$/, '') // dirname
     tmpArr.dirname = dirName === path ? '.' : dirName
   }
 
@@ -122,12 +120,9 @@ module.exports = function pathinfo (path, options) {
       haveExtension = _getExt(haveBasename)
     }
     if (haveFilename === false) {
-      haveFilename = haveBasename.slice(0, haveBasename.length - (haveExtension
-        ? haveExtension.length + 1
-        : haveExtension === false
-          ? 0
-          : 1
-      )
+      haveFilename = haveBasename.slice(
+        0,
+        haveBasename.length - (haveExtension ? haveExtension.length + 1 : haveExtension === false ? 0 : 1),
       )
     }
 

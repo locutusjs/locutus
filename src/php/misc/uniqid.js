@@ -1,4 +1,4 @@
-module.exports = function uniqid (prefix, moreEntropy) {
+module.exports = function uniqid(prefix, moreEntropy) {
   //  discuss at: https://locutus.io/php/uniqid/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //  revised by: Kankrelune (https://www.webfaktory.info/)
@@ -31,7 +31,7 @@ module.exports = function uniqid (prefix, moreEntropy) {
     return seed
   }
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

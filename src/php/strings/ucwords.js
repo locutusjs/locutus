@@ -1,4 +1,4 @@
-module.exports = function ucwords (str) {
+module.exports = function ucwords(str) {
   //  discuss at: https://locutus.io/php/ucwords/
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   // improved by: Waldo Malqui Silva (https://waldo.malqui.info)
@@ -16,8 +16,7 @@ module.exports = function ucwords (str) {
   //   example 4: ucwords('τάχιστη αλώπηξ βαφής ψημένη γη, δρασκελίζει υπέρ νωθρού κυνός')
   //   returns 4: 'Τάχιστη Αλώπηξ Βαφής Ψημένη Γη, Δρασκελίζει Υπέρ Νωθρού Κυνός'
 
-  return (str + '')
-    .replace(/^(.)|\s+(.)/g, function ($1) {
-      return $1.toUpperCase()
-    })
+  return (str + '').replace(/^(.)|\s+(.)/g, function ($1) {
+    return $1.toUpperCase()
+  })
 }

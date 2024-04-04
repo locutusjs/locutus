@@ -1,14 +1,17 @@
-function pad (str, minLength, padChar, leftJustify) {
+function pad(str, minLength, padChar, leftJustify) {
   const diff = minLength - str.length
   const padStr = padChar.repeat(Math.max(0, diff))
 
   return leftJustify ? str + padStr : padStr + str
 }
 
-module.exports = function sprintf (format, ...args) {
+module.exports = function sprintf(format, ...args) {
   // original by: Rafał Kukawski
+  // bugfixed by: Param Siddharth
   //   example 1: sprintf('%+10.*d', 5, 1)
   //   returns 1: '    +00001'
+  //   example 2: sprintf('%s is a %d%% %s %s.', 'Param', 90, 'good', 'boy')
+  //   returns 2: 'Param is a 90% good boy.'
   const placeholderRegex = /%(?:(\d+)\$)?([-+#0 ]*)(\*|\d+)?(?:\.(\*|\d*))?([\s\S])/g
 
   let index = 0
@@ -17,8 +20,7 @@ module.exports = function sprintf (format, ...args) {
     const leftJustify = flags.includes('-')
 
     // flag '0' is ignored when flag '-' is present
-    const padChar = leftJustify ? ' '
-      : flags.split('').reduce((pc, c) => [' ', '0'].includes(c) ? c : pc, ' ')
+    const padChar = leftJustify ? ' ' : flags.split('').reduce((pc, c) => ([' ', '0'].includes(c) ? c : pc), ' ')
 
     const positiveSign = flags.includes('+') ? '+' : flags.includes(' ') ? ' ' : ''
 
@@ -35,10 +37,14 @@ module.exports = function sprintf (format, ...args) {
 
     // compiling with default clang params, mixed positional and non-positional params
     // give only a warning
-    const arg = param ? args[param - 1] : args[index++]
+    const arg = param ? args[param - 1] : args[index]
+
+    if (modifier !== '%') {
+      index++
+    }
 
     if (precision === undefined || isNaN(precision)) {
-      precision = 'eEfFgG'.includes(modifier) ? 6 : (modifier === 's' ? String(arg).length : undefined)
+      precision = 'eEfFgG'.includes(modifier) ? 6 : modifier === 's' ? String(arg).length : undefined
     }
 
     switch (modifier) {
@@ -68,16 +74,11 @@ module.exports = function sprintf (format, ...args) {
         const abs = Math.abs(number)
         const prefix = number < 0 ? '-' : positiveSign
 
-        const op = [
-          Number.prototype.toExponential,
-          Number.prototype.toFixed,
-          Number.prototype.toPrecision
-        ]['efg'.indexOf(modifier.toLowerCase())]
+        const op = [Number.prototype.toExponential, Number.prototype.toFixed, Number.prototype.toPrecision][
+          'efg'.indexOf(modifier.toLowerCase())
+        ]
 
-        const tr = [
-          String.prototype.toLowerCase,
-          String.prototype.toUpperCase
-        ]['eEfFgG'.indexOf(modifier) % 2]
+        const tr = [String.prototype.toLowerCase, String.prototype.toUpperCase]['eEfFgG'.indexOf(modifier) % 2]
 
         const isSpecial = isNaN(abs) || !isFinite(abs)
 
@@ -95,12 +96,15 @@ module.exports = function sprintf (format, ...args) {
       case 'x':
       case 'X': {
         const number = +arg || 0
-        const intVal = Math.trunc(number) + (number < 0 ? 0xFFFFFFFF + 1 : 0)
+        const intVal = Math.trunc(number) + (number < 0 ? 0xffffffff + 1 : 0)
         const base = [2, 8, 10, 16, 16]['bouxX'.indexOf(modifier)]
         const prefix = intVal && flags.includes('#') ? ['', '0', '', '0x', '0X']['bouxXX'.indexOf(modifier)] : ''
 
         if (padChar === '0' && prefix) {
-          return prefix + pad(pad(intVal.toString(base), precision, '0', false), minWidth - prefix.length, padChar, leftJustify)
+          return (
+            prefix +
+            pad(pad(intVal.toString(base), precision, '0', false), minWidth - prefix.length, padChar, leftJustify)
+          )
         }
 
         return pad(prefix + pad(intVal.toString(base), precision, '0', false), minWidth, padChar, leftJustify)

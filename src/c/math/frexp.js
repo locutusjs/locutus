@@ -1,4 +1,4 @@
-module.exports = function frexp (arg) {
+module.exports = function frexp(arg) {
   //  discuss at: https://locutus.io/c/frexp/
   // original by: Oskar Larsson Högfeldt (https://oskar-lh.name/)
   //      note 1: Instead of
@@ -45,7 +45,11 @@ module.exports = function frexp (arg) {
   if (arg !== 0 && Number.isFinite(arg)) {
     const absArg = Math.abs(arg)
     // Math.log2 was introduced in ES2015, use it when available
-    const log2 = Math.log2 || function log2 (n) { return Math.log(n) * Math.LOG2E }
+    const log2 =
+      Math.log2 ||
+      function log2(n) {
+        return Math.log(n) * Math.LOG2E
+      }
     let exp = Math.max(-1023, Math.floor(log2(absArg)) + 1)
     let x = absArg * Math.pow(2, -exp)
 

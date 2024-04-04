@@ -1,4 +1,4 @@
-module.exports = function http_build_query (formdata, numericPrefix, argSeparator, encType) { // eslint-disable-line camelcase
+module.exports = function http_build_query(formdata, numericPrefix, argSeparator, encType) {
   //  discuss at: https://locutus.io/php/http_build_query/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Legaev Andrey
@@ -36,7 +36,7 @@ module.exports = function http_build_query (formdata, numericPrefix, argSeparato
   let key
   const tmp = []
 
-  var _httpBuildQueryHelper = function (key, val, argSeparator) {
+  const _httpBuildQueryHelper = function (key, val, argSeparator) {
     let k
     const tmp = []
     if (val === true) {

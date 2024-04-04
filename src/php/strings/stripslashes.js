@@ -1,4 +1,4 @@
-module.exports = function stripslashes (str) {
+module.exports = function stripslashes(str) {
   //       discuss at: https://locutus.io/php/stripslashes/
   //      original by: Kevin van Zonneveld (https://kvz.io)
   //      improved by: Ates Goral (https://magnetiq.com)
@@ -15,17 +15,16 @@ module.exports = function stripslashes (str) {
   //        example 2: stripslashes('Kevin\\\'s code')
   //        returns 2: "Kevin\'s code"
 
-  return (str + '')
-    .replace(/\\(.?)/g, function (s, n1) {
-      switch (n1) {
-        case '\\':
-          return '\\'
-        case '0':
-          return '\u0000'
-        case '':
-          return ''
-        default:
-          return n1
-      }
-    })
+  return (str + '').replace(/\\(.?)/g, function (s, n1) {
+    switch (n1) {
+      case '\\':
+        return '\\'
+      case '0':
+        return '\u0000'
+      case '':
+        return ''
+      default:
+        return n1
+    }
+  })
 }

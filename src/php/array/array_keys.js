@@ -1,4 +1,4 @@
-module.exports = function array_keys (input, searchValue, argStrict) { // eslint-disable-line camelcase
+module.exports = function array_keys(input, searchValue, argStrict) {
   //  discuss at: https://locutus.io/php/array_keys/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //    input by: Brett Zamir (https://brett-zamir.me)

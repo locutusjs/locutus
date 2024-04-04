@@ -1,4 +1,4 @@
-module.exports = function array_product (input) { // eslint-disable-line camelcase
+module.exports = function array_product(input) {
   //  discuss at: https://locutus.io/php/array_product/
   // original by: Waldo Malqui Silva (https://waldo.malqui.info)
   //   example 1: array_product([ 2, 4, 6, 8 ])
@@ -14,7 +14,7 @@ module.exports = function array_product (input) { // eslint-disable-line camelca
 
   il = input.length
   while (idx < il) {
-    product *= (!isNaN(input[idx]) ? input[idx] : 0)
+    product *= !isNaN(input[idx]) ? input[idx] : 0
     idx++
   }
 

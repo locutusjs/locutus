@@ -1,4 +1,4 @@
-module.exports = function strnatcasecmp (a, b) {
+module.exports = function strnatcasecmp(a, b) {
   //       discuss at: https://locutus.io/php/strnatcasecmp/
   //      original by: Martin Pool
   // reimplemented by: Pierre-Luc Paour

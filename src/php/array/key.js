@@ -1,4 +1,4 @@
-module.exports = function key (arr) {
+module.exports = function key(arr) {
   //  discuss at: https://locutus.io/php/key/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: Riddler (https://www.frontierwebdev.com/)
@@ -8,7 +8,7 @@ module.exports = function key (arr) {
   //   example 1: key($array)
   //   returns 1: 'fruit1'
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

@@ -1,4 +1,4 @@
-module.exports = function natcasesort (inputArr) {
+module.exports = function natcasesort(inputArr) {
   //  discuss at: https://locutus.io/php/natcasesort/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -26,7 +26,8 @@ module.exports = function natcasesort (inputArr) {
   let sortByReference = false
   let populateArr = {}
 
-  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal =
+    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

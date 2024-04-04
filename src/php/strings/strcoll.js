@@ -1,4 +1,4 @@
-module.exports = function strcoll (str1, str2) {
+module.exports = function strcoll(str1, str2) {
   //  discuss at: https://locutus.io/php/strcoll/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -7,7 +7,7 @@ module.exports = function strcoll (str1, str2) {
 
   const setlocale = require('../strings/setlocale')
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

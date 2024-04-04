@@ -1,17 +1,18 @@
-function roundToInt (value, mode) {
+function roundToInt(value, mode) {
   let tmp = Math.floor(Math.abs(value) + 0.5)
 
   if (
-    (mode === 'PHP_ROUND_HALF_DOWN' && value === (tmp - 0.5)) ||
-      (mode === 'PHP_ROUND_HALF_EVEN' && value === (0.5 + 2 * Math.floor(tmp / 2))) ||
-      (mode === 'PHP_ROUND_HALF_ODD' && value === (0.5 + 2 * Math.floor(tmp / 2) - 1))) {
+    (mode === 'PHP_ROUND_HALF_DOWN' && value === tmp - 0.5) ||
+    (mode === 'PHP_ROUND_HALF_EVEN' && value === 0.5 + 2 * Math.floor(tmp / 2)) ||
+    (mode === 'PHP_ROUND_HALF_ODD' && value === 0.5 + 2 * Math.floor(tmp / 2) - 1)
+  ) {
     tmp -= 1
   }
 
   return value < 0 ? -tmp : tmp
 }
 
-module.exports = function round (value, precision = 0, mode = 'PHP_ROUND_HALF_UP') {
+module.exports = function round(value, precision = 0, mode = 'PHP_ROUND_HALF_UP') {
   //  discuss at: https://locutus.io/php/round/
   // original by: Philip Peterson
   //  revised by: Onno Marsman (https://twitter.com/onnomarsman)

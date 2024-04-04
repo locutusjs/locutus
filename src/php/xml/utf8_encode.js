@@ -1,4 +1,4 @@
-module.exports = function utf8_encode (argString) { // eslint-disable-line camelcase
+module.exports = function utf8_encode(argString) {
   //  discuss at: https://locutus.io/php/utf8_encode/
   // original by: Webtoolkit.info (https://www.webtoolkit.info/)
   // improved by: Kevin van Zonneveld (https://kvz.io)
@@ -19,7 +19,7 @@ module.exports = function utf8_encode (argString) { // eslint-disable-line camel
   }
 
   // .replace(/\r\n/g, "\n").replace(/\r/g, "\n");
-  const string = (argString + '')
+  const string = argString + ''
   let utftext = ''
   let start
   let end
@@ -34,26 +34,20 @@ module.exports = function utf8_encode (argString) { // eslint-disable-line camel
     if (c1 < 128) {
       end++
     } else if (c1 > 127 && c1 < 2048) {
-      enc = String.fromCharCode(
-        (c1 >> 6) | 192, (c1 & 63) | 128
-      )
-    } else if ((c1 & 0xF800) !== 0xD800) {
-      enc = String.fromCharCode(
-        (c1 >> 12) | 224, ((c1 >> 6) & 63) | 128, (c1 & 63) | 128
-      )
+      enc = String.fromCharCode((c1 >> 6) | 192, (c1 & 63) | 128)
+    } else if ((c1 & 0xf800) !== 0xd800) {
+      enc = String.fromCharCode((c1 >> 12) | 224, ((c1 >> 6) & 63) | 128, (c1 & 63) | 128)
     } else {
       // surrogate pairs
-      if ((c1 & 0xFC00) !== 0xD800) {
+      if ((c1 & 0xfc00) !== 0xd800) {
         throw new RangeError('Unmatched trail surrogate at ' + n)
       }
       const c2 = string.charCodeAt(++n)
-      if ((c2 & 0xFC00) !== 0xDC00) {
+      if ((c2 & 0xfc00) !== 0xdc00) {
         throw new RangeError('Unmatched lead surrogate at ' + (n - 1))
       }
-      c1 = ((c1 & 0x3FF) << 10) + (c2 & 0x3FF) + 0x10000
-      enc = String.fromCharCode(
-        (c1 >> 18) | 240, ((c1 >> 12) & 63) | 128, ((c1 >> 6) & 63) | 128, (c1 & 63) | 128
-      )
+      c1 = ((c1 & 0x3ff) << 10) + (c2 & 0x3ff) + 0x10000
+      enc = String.fromCharCode((c1 >> 18) | 240, ((c1 >> 12) & 63) | 128, ((c1 >> 6) & 63) | 128, (c1 & 63) | 128)
     }
     if (enc !== null) {
       if (end > start) {

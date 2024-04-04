@@ -1,4 +1,4 @@
-module.exports = function array_diff_ukey (arr1) { // eslint-disable-line camelcase
+module.exports = function array_diff_ukey(arr1) {
   //  discuss at: https://locutus.io/php/array_diff_ukey/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {blue: 1, red: 2, green: 3, purple: 4}
@@ -15,15 +15,16 @@ module.exports = function array_diff_ukey (arr1) { // eslint-disable-line camelc
   let arr = {}
   let k = ''
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
 
-  cb = (typeof cb === 'string')
-    ? $global[cb]
-    : (Object.prototype.toString.call(cb) === '[object Array]')
+  cb =
+    typeof cb === 'string'
+      ? $global[cb]
+      : Object.prototype.toString.call(cb) === '[object Array]'
         ? $global[cb[0]][cb[1]]
         : cb
 
-  arr1keys: for (k1 in arr1) { // eslint-disable-line no-labels
+  arr1keys: for (k1 in arr1) {
     for (i = 1; i < arglm1; i++) {
       arr = arguments[i]
       for (k in arr) {

@@ -1,4 +1,4 @@
-module.exports = function bcscale (scale) {
+module.exports = function bcscale(scale) {
   //  discuss at: https://locutus.io/php/bcscale/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcscale(1)

@@ -1,4 +1,4 @@
-module.exports = function idate (format, timestamp) {
+module.exports = function idate(format, timestamp) {
   //  discuss at: https://locutus.io/php/idate/
   // original by: Brett Zamir (https://brett-zamir.me)
   // original by: date
@@ -17,20 +17,20 @@ module.exports = function idate (format, timestamp) {
   }
 
   // @todo: Need to allow date_default_timezone_set() (check for $locutus.default_timezone and use)
-  const _date = (typeof timestamp === 'undefined')
-    ? new Date()
-    : (timestamp instanceof Date)
+  const _date =
+    typeof timestamp === 'undefined'
+      ? new Date()
+      : timestamp instanceof Date
         ? new Date(timestamp)
         : new Date(timestamp * 1000)
   let a
 
   switch (format) {
     case 'B':
-      return Math.floor((
-        (_date.getUTCHours() * 36e2) +
-        (_date.getUTCMinutes() * 60) +
-        _date.getUTCSeconds() + 36e2
-      ) / 86.4) % 1e3
+      return (
+        Math.floor((_date.getUTCHours() * 36e2 + _date.getUTCMinutes() * 60 + _date.getUTCSeconds() + 36e2) / 86.4) %
+        1e3
+      )
     case 'd':
       return _date.getDate()
     case 'h':
@@ -40,36 +40,30 @@ module.exports = function idate (format, timestamp) {
     case 'i':
       return _date.getMinutes()
     case 'I':
-    // capital 'i'
-    // Logic original by getimeofday().
-    // Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.
-    // If they are not equal, then DST is observed.
+      // capital 'i'
+      // Logic original by getimeofday().
+      // Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.
+      // If they are not equal, then DST is observed.
       a = _date.getFullYear()
-      return 0 + (((new Date(a, 0)) - Date.UTC(a, 0)) !== ((new Date(a, 6)) - Date.UTC(a, 6)))
+      return 0 + (new Date(a, 0) - Date.UTC(a, 0) !== new Date(a, 6) - Date.UTC(a, 6))
     case 'L':
       a = _date.getFullYear()
-      return (!(a & 3) && (a % 1e2 || !(a % 4e2))) ? 1 : 0
+      return !(a & 3) && (a % 1e2 || !(a % 4e2)) ? 1 : 0
     case 'm':
       return _date.getMonth() + 1
     case 's':
       return _date.getSeconds()
     case 't':
-      return (new Date(_date.getFullYear(), _date.getMonth() + 1, 0))
-        .getDate()
+      return new Date(_date.getFullYear(), _date.getMonth() + 1, 0).getDate()
     case 'U':
       return Math.round(_date.getTime() / 1000)
     case 'w':
       return _date.getDay()
     case 'W':
-      a = new Date(
-        _date.getFullYear(),
-        _date.getMonth(),
-        _date.getDate() - (_date.getDay() || 7) + 3
-      )
-      return 1 + Math.round((a - (new Date(a.getFullYear(), 0, 4))) / 864e5 / 7)
+      a = new Date(_date.getFullYear(), _date.getMonth(), _date.getDate() - (_date.getDay() || 7) + 3)
+      return 1 + Math.round((a - new Date(a.getFullYear(), 0, 4)) / 864e5 / 7)
     case 'y':
-      return parseInt((_date.getFullYear() + '')
-        .slice(2), 10) // This function returns an integer, unlike _date()
+      return parseInt((_date.getFullYear() + '').slice(2), 10) // This function returns an integer, unlike _date()
     case 'Y':
       return _date.getFullYear()
     case 'z':

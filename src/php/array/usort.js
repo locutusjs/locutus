@@ -1,4 +1,4 @@
-module.exports = function usort (inputArr, sorter) {
+module.exports = function usort(inputArr, sorter) {
   //  discuss at: https://locutus.io/php/usort/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -28,7 +28,8 @@ module.exports = function usort (inputArr, sorter) {
     sorter = this[sorter[0]][sorter[1]]
   }
 
-  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal =
+    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

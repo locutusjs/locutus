@@ -1,4 +1,4 @@
-module.exports = function gmdate (format, timestamp) {
+module.exports = function gmdate(format, timestamp) {
   //  discuss at: https://locutus.io/php/gmdate/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: Alex
@@ -8,9 +8,12 @@ module.exports = function gmdate (format, timestamp) {
 
   const date = require('../datetime/date')
 
-  const dt = typeof timestamp === 'undefined' ? new Date() // Not provided
-    : timestamp instanceof Date ? new Date(timestamp) // Javascript Date()
-      : new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
+  const dt =
+    typeof timestamp === 'undefined'
+      ? new Date() // Not provided
+      : timestamp instanceof Date
+        ? new Date(timestamp) // Javascript Date()
+        : new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
 
   timestamp = Date.parse(dt.toUTCString().slice(0, -4)) / 1000
 

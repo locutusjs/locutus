@@ -1,4 +1,4 @@
-module.exports = function acosh (arg) {
+module.exports = function acosh(arg) {
   //  discuss at: https://locutus.io/php/acosh/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: acosh(8723321.4)

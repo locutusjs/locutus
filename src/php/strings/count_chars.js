@@ -1,4 +1,4 @@
-module.exports = function count_chars (str, mode) { // eslint-disable-line camelcase
+module.exports = function count_chars(str, mode) {
   //  discuss at: https://locutus.io/php/count_chars/
   // original by: Ates Goral (https://magnetiq.com)
   // improved by: Jack
@@ -32,7 +32,7 @@ module.exports = function count_chars (str, mode) { // eslint-disable-line camel
       delete result[str[i].charCodeAt(0)]
     }
     for (i in result) {
-      result[i] = (mode === 4) ? String.fromCharCode(i) : 0
+      result[i] = mode === 4 ? String.fromCharCode(i) : 0
     }
   } else if (mode === 3) {
     for (i = 0; i !== str.length; i += 1) {

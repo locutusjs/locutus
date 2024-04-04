@@ -1,4 +1,4 @@
-module.exports = function sqrt (arg) {
+module.exports = function sqrt(arg) {
   //  discuss at: https://locutus.io/php/sqrt/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: sqrt(8723321.4)
