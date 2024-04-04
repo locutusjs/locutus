@@ -102,7 +102,7 @@ true
 
 If you want to help Locutus, our newly added languages don't have much meat on the bones yet and it would be fantastic to see if you can think of ways to assimilate a function that Locutus currently does not harbor.
 
-Also, there are plenty project-wide ideas in our [Backlog](https://github.com/locutusjs/locutus/blob/master/CHANGELOG.md#Backlog) that we would love help with, so I guess there is just one thing left to say..
+Also, there are plenty project-wide ideas in our [Backlog](https://github.com/locutusjs/locutus/blob/main/CHANGELOG.md#Backlog) that we would love help with, so I guess there is just one thing left to say..
 
 [To the GitHubs](https://github.com/locutusjs/locutus)!
 
