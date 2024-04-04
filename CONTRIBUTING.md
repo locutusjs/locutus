@@ -2,7 +2,7 @@ Thank you so much for being or becoming a Locutus contributor!
 
 Even if you have write access already, all code changes should be done via a Pull Request. This way
 we can peer-review, and also GitHub Actions can check if the code adheres to our policies already before
-merging it into `master`.
+merging it into `main`.
 
 ## Contributing Checklist
 
@@ -78,7 +78,7 @@ test/languages/php/array/test-natsort.js
 
 ## Website Development
 
-We keep the website in `./website` so it's easy to keep code and website in sync as we iterate. For those reading this screaming murder, [HashiCorp does this](https://github.com/hashicorp/terraform/tree/master/website) for all their projects, and it's working well for them on a scale more impressive than ours.
+We keep the website in `./website` so it's easy to keep code and website in sync as we iterate. For those reading this screaming murder, [HashiCorp does this](https://github.com/hashicorp/terraform/tree/HEAD/website) for all their projects, and it's working well for them on a scale more impressive than ours.
 
 Our website is built with Hexo. To install the prerequisites type `npm run website:install`.
 
@@ -95,6 +95,6 @@ Blog posts can be found in `website/source/_posts`.
  
 If you want to preview locally type `npm run website:start`.
 
-Any change to `master` is deployed automatically onto GitHub Pages by Travis CI via the `travis-deploy.sh` script.
+Any change to `main` is deployed automatically onto GitHub Pages by Travis CI via the `travis-deploy.sh` script.
 
 Typing `npm run deploy` in the root of the project takes care of all the building steps, and then force pushes the generated HTML to the `gh-pages` branch of this repo. But as mentioned, this should not be necessary as Travis handles it automatically.

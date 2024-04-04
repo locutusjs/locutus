@@ -2,7 +2,7 @@ name: Locutus CI
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     types:
       - opened
@@ -10,13 +10,13 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
-    steps  : 
+    steps  :
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
       - uses: actions/setup-node@master
         with:
-          node-version: 10.x 
+          node-version: 10.x
       - name: Get yarn cache directory path
         id  : yarn-cache-dir-path
         run : echo "##[set-output name=dir;]$(yarn cache dir)"
@@ -39,15 +39,15 @@ jobs:
         run : |
           yarn test
       - name: Website Build
-        if  : github.ref == 'refs/heads/master'
+        if  : github.ref == 'refs/heads/main'
         run : |
           yarn website:install
           yarn injectweb
           yarn website:build
       - name: Website Deploy 🚀
-        if  : github.ref == 'refs/heads/master'
+        if  : github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@3.7.1
-        with: 
+        with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH      : gh-pages # The branch the action should deploy to.
           FOLDER      : website/public # The folder the action should deploy.

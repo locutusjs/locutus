@@ -29,10 +29,10 @@ Ideas that will be planned and find their way into a release at one point
 - [ ] website: Render authors server-side
 - [ ] website: Fix the search functionality
 
-## master
+## main
 
 Released: TBA. 
-[Diff](https://github.com/locutusjs/locutus/compare/v2.0.16...master).
+[Diff](https://github.com/locutusjs/locutus/compare/v2.0.16...main).
 
 - [ ] 
 
@@ -125,7 +125,7 @@ Released: 2016-05-22.
 - [x] website: Miscellaneous cosmetic updates
 - [x] website: Show languages & functions in profile sidebar
 - [x] website: Add social buttons
-- [x] website: Let Travis auto-deploy to gh-pages on master changes
+- [x] website: Let Travis auto-deploy to gh-pages on main changes
 - [x] website: Use Hexo deploy vs bash script
 
 ## v2.0.2
