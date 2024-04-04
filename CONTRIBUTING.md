@@ -8,7 +8,7 @@ and also GitHub Actions can check if the code adheres to our policies already be
 Here are a few pointers that could save us from disappointment, we'll try to keep it brief!
 
 1. By submitting a Pull Request you are giving Locutus permission to distribute your code under the MIT License.
-1. Please adhere to our [updated coding standards](/blog/2016/04/standard-coding-style/). Use `npm run lint` to check.
+1. Please adhere to our [updated coding standards](/blog/2016/04/standard-coding-style/). Use `yarn lint` to check.
    Code should:
 
 - Follow the [JavaScript Standard Style](https://standardjs.com/), and in addition:
@@ -125,7 +125,7 @@ Any change to `main` is deployed automatically onto GitHub Pages by CI.
 
 ### Releasing
 
-Any newly pushed git tag is automatically released on npm by CI. To push a new tag:
+Any newly pushed git tag is automatically released on NPM by CI. To push a new tag:
 
 ```bash
 npm version patch -m "Release v%s" && git push --tags

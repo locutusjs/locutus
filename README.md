@@ -7,7 +7,7 @@ More info at: https://locutus.io/
 ## Install
 
 ```bash
-npm install locutus
+yarn add locutus
 ```
 
 ## Use
@@ -38,6 +38,3 @@ true
 
 Some guidelines and instructions can be found in [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## Sponsors
-
-:sparkles: thanks to <https://jetbrains.com> for providing a free license to their development tools :heart:
