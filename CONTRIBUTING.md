@@ -120,8 +120,10 @@ Any change to `main` is deployed automatically onto GitHub Pages by CI.
 Any newly pushed git tag is automatically released on npm by CI. To push a new tag:
 
 ```bash
-newVersion=$(npm version patch)
-git commit -am "${newVersion}"
-git tag "${newVersion}"
+newVersion=$(npm version patch |sed 's@^v@@g')
+
+sed -ibak "s@\"version\": \".+\"@\"version\": \"${newVersion}\"@g" package.json
+git commit -am "v${newVersion}"
+git tag "v${newVersion}"
 git push --tags
 ```
