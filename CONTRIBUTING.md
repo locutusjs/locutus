@@ -109,7 +109,7 @@ Any newly pushed git tag is automatically released on npm by CI:
 # change version in package.json (e.g. 2.0.17)
 # update CHANGELOG.md
 # commit all
+git commit -am 'Release v2.0.17'
 git tag v2.0.17
 git push --tags
-
 ```
