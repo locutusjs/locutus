@@ -2,8 +2,8 @@
 
 Thank you so much for being or becoming a Locutus contributor!
 
-Even if you have write access already, all code changes should be done via a Pull Request. This way we can peer-review,
-and also GitHub Actions can check if the code adheres to our policies already before merging it into `main`.
+Our main focus is the challenge of completionism, seeing how far we can take it, rainy Sunday afternoon hacking to allow
+for fun experiments such as running PHP code directly in Node.js
 
 ## Table of Contents
 
@@ -21,20 +21,24 @@ and also GitHub Actions can check if the code adheres to our policies already be
 Here are a few pointers that could save us from disappointment, we'll try to keep it brief!
 
 1. By submitting a Pull Request you are giving Locutus permission to distribute your code under the MIT License.
-2. Please adhere to our coding standards. Use `yarn lint` to check.
-3. Use `//` for comments instead of `/*`
-4. Please credit yourself in the function's header-comment:
+1. Even if you can push to `main`, all code changes should be done via a Pull Request. This way we can peer-review, and
+   also GitHub Actions can check if the code adheres to our policies already before merging it into `main`.
+1. Please adhere to our coding standards. Use `yarn lint` to check.
+1. Locutus is self-contained, we don't use any dependency except for our own development. Hence you will only see
+   `devDependencies` populated, anything else should be corrected.
+1. Use `//` for comments instead of `/*`
+1. Please credit yourself in the function's header-comment:
    `(original by|reimplemented by|improved by|parts by|bugfixed by|revised by|input by): Your Name (https://your.url)`
-5. If you are fixing bad behavior, or introducing new good ones, please add an `example` comment that would fail before
+1. If you are fixing bad behavior, or introducing new good ones, please add an `example` comment that would fail before
    your patch, and a `result` comment that passes after your patch, to the function's header-comment. We use these for
    website documentation, as well as to generate test cases that avoid regression going forward. There should already be
    a few ones there if you want to see how it's done.
-6. If you are contributing performance upgrades, please provide proof via e.g. <https://jsperf.com>
-7. Please keep in mind that some obvious readability improvements are sometimes unwanted for performance reasons. For
+1. If you are contributing performance upgrades, please provide proof via e.g. <https://jsperf.com>
+1. Please keep in mind that some obvious readability improvements are sometimes unwanted for performance reasons. For
    example, we sometimes place similar `for` loops inside `if` and `else` conditions for performance reasons, even
    though the code could be half the size if we put the conditions inside a single loop. If we didn't comment this so
    far, a PR for adding such a comment is very welcome however.
-8. If you are adding a new function, please make sure to:
+1. If you are adding a new function, please make sure to:
 
 - include exactly one export with a named function, `module.exports = function functionName (param1, ...) {`
   - the file can contain more definitions (helper functions, classes, etc.), but is allowed to have only one export
