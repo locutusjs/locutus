@@ -232,7 +232,7 @@ class Util {
         language: params.language,
         title: langTitle,
       })
-      this._injectwebBuffer[langIndexPath] = '---' + '\n' + YAML.safeDump(langData).trim() + '\n' + '---' + '\n'
+      this._injectwebBuffer[langIndexPath] = '---' + '\n' + YAML.dump(langData).trim() + '\n' + '---' + '\n'
     }
 
     if (!this._injectwebBuffer[catIndexPath]) {
@@ -250,7 +250,7 @@ class Util {
         category: params.category,
         title: catTitle,
       }
-      this._injectwebBuffer[catIndexPath] = '---' + '\n' + YAML.safeDump(catData).trim() + '\n' + '---' + '\n'
+      this._injectwebBuffer[catIndexPath] = '---' + '\n' + YAML.dump(catData).trim() + '\n' + '---' + '\n'
     }
 
     const functionTitle = this.langDefaults[params.language].function_title_template
@@ -297,7 +297,7 @@ class Util {
       funcData.alias.push('/functions/' + params.func_name + '/')
     }
 
-    let buf = '---' + '\n' + YAML.safeDump(funcData).trim() + '\n' + '---' + '\n'
+    let buf = '---' + '\n' + YAML.dump(funcData).trim() + '\n' + '---' + '\n'
 
     buf += `{% codeblock lang:javascript %}${params.code}{% endcodeblock %}`
 
