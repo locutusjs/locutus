@@ -62,6 +62,9 @@ alias yarn="corepack yarn"
 
 ## Clone
 
+Unless you are a Core contributor, it's best to fork Locutus, and then clone your fork. Then you can freely change it,
+push it to GitHub, and then send us a Pull Request to review. Otherwise you can clone our origin:
+
 ```bash
 # cd ~/code
 git clone git@github.com:locutusjs/locutus.git
@@ -77,9 +80,15 @@ yarn website:install
 
 ## Code
 
-We hack in `src/`, for example: `src/php/var/serialize.js`.
+Best start a new branch for your work. For instance
 
-If you use VSCode, consider starting it like `code .vscode/locutus.code-workspace`, so that heavy generated files &
+```bash
+git checkout -b fix-serialize
+```
+
+Then hack in `src/`, for example: `src/php/var/serialize.js`.
+
+Tip: If you use VSCode, consider starting it like `code .vscode/locutus.code-workspace`, so that heavy generated files &
 directories are excluded from your file tree and searches.
 
 ## Build
@@ -117,6 +126,33 @@ By interfacing with Mocha directly you could also enable watch mode by adding `-
 
 And there's a way to test functions inside Browsers with watching, via `yarn browser:watch`.
 
+## Commit
+
+Tests passing? It's time to document your work in the unreleased section of our `CHANGELOG.md`, so that you can bundle
+it with your PR.
+
+Now it's time to apply linting & formatting fixes, and report on unfixable issues:
+
+```bash
+yarn fix
+```
+
+Make changes if needed, until there are no more errors. Then commit, push, and send a PR on GitHub.
+
+## Releasing
+
+After PRs have been approved and merged it's time to cut a release.
+
+Any Core contributor can let our GHA CI create an NPM release, by pushing a new version and Git tag, like so:
+
+```bash
+npm version patch -m "Release v%s" && git push --tags
+```
+
+Locutus does not adhere to Semver, so typically you would just use `patch` level upgrades for changes. If we change
+something dramatic to how Locutus works across functions (ship ESM, move to TypeScript, etc), that's when we'll involve
+`minor` and `major` levels.
+
 ## Website Development
 
 We keep the website in `./website` so it's easy to keep code and website in sync as we iterate. For those reading this
@@ -142,12 +178,3 @@ Blog posts can be found in `website/source/_posts`.
 If you want to preview locally type `yarn website:start`.
 
 Any change to `main` is deployed automatically onto GitHub Pages by CI.
-
-## Releasing
-
-Any newly pushed Git tag is automatically released to NPM by our GHA CI. Core contributors can push a new version and
-tag like so:
-
-```bash
-npm version patch -m "Release v%s" && git push --tags
-```
