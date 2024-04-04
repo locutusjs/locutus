@@ -1,4 +1,4 @@
-module.exports = function levenshtein (s1, s2, costIns, costRep, costDel) {
+module.exports = function levenshtein(s1, s2, costIns, costRep, costDel) {
   //       discuss at: https://locutus.io/php/levenshtein/
   //      original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)
   //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -40,7 +40,7 @@ module.exports = function levenshtein (s1, s2, costIns, costRep, costDel) {
 
   let split = false
   try {
-    split = !('0')[0]
+    split = !'0'[0]
   } catch (e) {
     // Earlier IE may not support access by string index
     split = true
@@ -64,7 +64,7 @@ module.exports = function levenshtein (s1, s2, costIns, costRep, costDel) {
     p2[0] = p1[0] + costDel
 
     for (i2 = 0; i2 < l2; i2++) {
-      c0 = p1[i2] + ((s1[i1] === s2[i2]) ? 0 : costRep)
+      c0 = p1[i2] + (s1[i1] === s2[i2] ? 0 : costRep)
       c1 = p1[i2 + 1] + costDel
 
       if (c1 < c0) {

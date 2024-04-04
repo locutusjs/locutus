@@ -1,4 +1,4 @@
-module.exports = function strrchr (haystack, needle) {
+module.exports = function strrchr(haystack, needle) {
   //  discuss at: https://locutus.io/php/strrchr/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: Jason Wong (https://carrot.org/)

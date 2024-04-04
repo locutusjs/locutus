@@ -1,4 +1,4 @@
-module.exports = function utf8_decode (strData) { // eslint-disable-line camelcase
+module.exports = function utf8_decode(strData) {
   //  discuss at: https://locutus.io/php/utf8_decode/
   // original by: Webtoolkit.info (https://www.webtoolkit.info/)
   //    input by: Aman Gupta
@@ -21,32 +21,32 @@ module.exports = function utf8_decode (strData) { // eslint-disable-line camelca
   strData += ''
 
   while (i < strData.length) {
-    c1 = strData.charCodeAt(i) & 0xFF
+    c1 = strData.charCodeAt(i) & 0xff
     seqlen = 0
 
     // https://en.wikipedia.org/wiki/UTF-8#Codepage_layout
-    if (c1 <= 0xBF) {
-      c1 = (c1 & 0x7F)
+    if (c1 <= 0xbf) {
+      c1 = c1 & 0x7f
       seqlen = 1
-    } else if (c1 <= 0xDF) {
-      c1 = (c1 & 0x1F)
+    } else if (c1 <= 0xdf) {
+      c1 = c1 & 0x1f
       seqlen = 2
-    } else if (c1 <= 0xEF) {
-      c1 = (c1 & 0x0F)
+    } else if (c1 <= 0xef) {
+      c1 = c1 & 0x0f
       seqlen = 3
     } else {
-      c1 = (c1 & 0x07)
+      c1 = c1 & 0x07
       seqlen = 4
     }
 
     for (let ai = 1; ai < seqlen; ++ai) {
-      c1 = ((c1 << 0x06) | (strData.charCodeAt(ai + i) & 0x3F))
+      c1 = (c1 << 0x06) | (strData.charCodeAt(ai + i) & 0x3f)
     }
 
     if (seqlen === 4) {
       c1 -= 0x10000
-      tmpArr.push(String.fromCharCode(0xD800 | ((c1 >> 10) & 0x3FF)))
-      tmpArr.push(String.fromCharCode(0xDC00 | (c1 & 0x3FF)))
+      tmpArr.push(String.fromCharCode(0xd800 | ((c1 >> 10) & 0x3ff)))
+      tmpArr.push(String.fromCharCode(0xdc00 | (c1 & 0x3ff)))
     } else {
       tmpArr.push(String.fromCharCode(c1))
     }

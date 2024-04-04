@@ -1,4 +1,4 @@
-module.exports = function ksort (inputArr, sortFlags) {
+module.exports = function ksort(inputArr, sortFlags) {
   //  discuss at: https://locutus.io/php/ksort/
   // original by: GeekFG (https://geekfg.blogspot.com)
   // improved by: Kevin van Zonneveld (https://kvz.io)
@@ -37,7 +37,7 @@ module.exports = function ksort (inputArr, sortFlags) {
   let sortByReference = false
   let populateArr = {}
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
@@ -59,7 +59,7 @@ module.exports = function ksort (inputArr, sortFlags) {
     case 'SORT_NUMERIC':
       // compare items numerically
       sorter = function (a, b) {
-        return ((a + 0) - (b + 0))
+        return a + 0 - (b + 0)
       }
       break
     default:
@@ -89,7 +89,8 @@ module.exports = function ksort (inputArr, sortFlags) {
   }
   keys.sort(sorter)
 
-  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal =
+    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

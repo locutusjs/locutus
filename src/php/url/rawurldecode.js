@@ -1,4 +1,4 @@
-module.exports = function rawurldecode (str) {
+module.exports = function rawurldecode(str) {
   //       discuss at: https://locutus.io/php/rawurldecode/
   //      original by: Brett Zamir (https://brett-zamir.me)
   //         input by: travc
@@ -18,9 +18,10 @@ module.exports = function rawurldecode (str) {
   //        example 3: rawurldecode('https%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3D')
   //        returns 3: 'https://www.google.nl/search?q=Locutus&ie='
 
-  return decodeURIComponent((str + '')
-    .replace(/%(?![\da-f]{2})/gi, function () {
+  return decodeURIComponent(
+    (str + '').replace(/%(?![\da-f]{2})/gi, function () {
       // PHP tolerates poorly formed escape sequences
       return '%25'
-    }))
+    }),
+  )
 }

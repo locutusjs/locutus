@@ -1,4 +1,4 @@
-module.exports = function gettimeofday (returnFloat) {
+module.exports = function gettimeofday(returnFloat) {
   //  discuss at: https://locutus.io/php/gettimeofday/
   // original by: Brett Zamir (https://brett-zamir.me)
   // original by: Josh Fraser (https://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)
@@ -25,6 +25,6 @@ module.exports = function gettimeofday (returnFloat) {
     usec: t.getUTCMilliseconds() * 1000,
     minuteswest: t.getTimezoneOffset(),
     // Compare Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC to see if DST is observed.
-    dsttime: 0 + (((new Date(y, 0)) - Date.UTC(y, 0)) !== ((new Date(y, 6)) - Date.UTC(y, 6)))
+    dsttime: 0 + (new Date(y, 0) - Date.UTC(y, 0) !== new Date(y, 6) - Date.UTC(y, 6)),
   }
 }

@@ -1,4 +1,4 @@
-module.exports = function wordwrap (str, intWidth, strBreak, cut) {
+module.exports = function wordwrap(str, intWidth, strBreak, cut) {
   //  discuss at: https://locutus.io/php/wordwrap/
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   // improved by: Nick Callen

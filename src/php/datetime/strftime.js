@@ -1,4 +1,4 @@
-module.exports = function strftime (fmt, timestamp) {
+module.exports = function strftime(fmt, timestamp) {
   //       discuss at: https://locutus.io/php/strftime/
   //      original by: Blues (https://tech.bluesmoon.info/)
   // reimplemented by: Brett Zamir (https://brett-zamir.me)
@@ -11,7 +11,7 @@ module.exports = function strftime (fmt, timestamp) {
 
   const setlocale = require('../strings/setlocale')
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
 
@@ -101,7 +101,7 @@ module.exports = function strftime (fmt, timestamp) {
     S: ['getSeconds', '0'],
     u: function (d) {
       const dow = d.getDay()
-      return ((dow === 0) ? 7 : dow)
+      return dow === 0 ? 7 : dow
     },
     U: function (d) {
       const doy = parseInt(_formats.j(d), 10)
@@ -111,14 +111,14 @@ module.exports = function strftime (fmt, timestamp) {
     },
     V: function (d) {
       const woy = parseInt(_formats.W(d), 10)
-      const dow11 = (new Date('' + d.getFullYear() + '/1/1')).getDay()
+      const dow11 = new Date('' + d.getFullYear() + '/1/1').getDay()
       // First week is 01 and not 00 as in the case of %U and %W,
       // so we add 1 to the final result except if day 1 of the year
       // is a Monday (then %W returns 01).
       // We also need to subtract 1 if the day 1 of the year is
       // Friday-Sunday, so the resulting equation becomes:
       let idow = woy + (dow11 > 4 || dow11 <= 1 ? 0 : 1)
-      if (idow === 53 && (new Date('' + d.getFullYear() + '/12/31')).getDay() < 4) {
+      if (idow === 53 && new Date('' + d.getFullYear() + '/12/31').getDay() < 4) {
         idow = 1
       } else if (idow === 0) {
         idow = _formats.V(new Date('' + (d.getFullYear() - 1) + '/12/31'))
@@ -147,12 +147,13 @@ module.exports = function strftime (fmt, timestamp) {
     },
     '%': function (d) {
       return '%'
-    }
+    },
   }
 
-  const _date = (typeof timestamp === 'undefined')
-    ? new Date()
-    : (timestamp instanceof Date)
+  const _date =
+    typeof timestamp === 'undefined'
+      ? new Date()
+      : timestamp instanceof Date
         ? new Date(timestamp)
         : new Date(timestamp * 1000)
 
@@ -167,14 +168,14 @@ module.exports = function strftime (fmt, timestamp) {
     t: '\t',
     T: '%H:%M:%S',
     x: 'locale',
-    X: 'locale'
+    X: 'locale',
   }
 
   // First replace aggregates (run in a loop because an agg may be made up of other aggs)
   while (fmt.match(/%[cDFhnrRtTxX]/)) {
     fmt = fmt.replace(/%([cDFhnrRtTxX])/g, function (m0, m1) {
       const f = _aggregates[m1]
-      return (f === 'locale' ? lcTime[m1] : f)
+      return f === 'locale' ? lcTime[m1] : f
     })
   }
 

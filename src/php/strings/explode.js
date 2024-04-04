@@ -1,25 +1,23 @@
-module.exports = function explode (delimiter, string, limit) {
+module.exports = function explode(delimiter, string, limit) {
   //  discuss at: https://locutus.io/php/explode/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //   example 1: explode(' ', 'Kevin van Zonneveld')
   //   returns 1: [ 'Kevin', 'van', 'Zonneveld' ]
 
-  if (arguments.length < 2 ||
-    typeof delimiter === 'undefined' ||
-    typeof string === 'undefined') {
+  if (arguments.length < 2 || typeof delimiter === 'undefined' || typeof string === 'undefined') {
     return null
   }
-  if (delimiter === '' ||
-    delimiter === false ||
-    delimiter === null) {
+  if (delimiter === '' || delimiter === false || delimiter === null) {
     return false
   }
-  if (typeof delimiter === 'function' ||
+  if (
+    typeof delimiter === 'function' ||
     typeof delimiter === 'object' ||
     typeof string === 'function' ||
-    typeof string === 'object') {
+    typeof string === 'object'
+  ) {
     return {
-      0: ''
+      0: '',
     }
   }
   if (delimiter === true) {
@@ -42,11 +40,7 @@ module.exports = function explode (delimiter, string, limit) {
     if (limit >= s.length) {
       return s
     }
-    return s
-      .slice(0, limit - 1)
-      .concat([s.slice(limit - 1)
-        .join(delimiter)
-      ])
+    return s.slice(0, limit - 1).concat([s.slice(limit - 1).join(delimiter)])
   }
 
   // Negative limit

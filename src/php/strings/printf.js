@@ -1,4 +1,4 @@
-module.exports = function printf () {
+module.exports = function printf() {
   //  discuss at: https://locutus.io/php/printf/
   // original by: Ash Searle (https://hexmen.com/blog/)
   // improved by: Michael White (https://getsprink.com)

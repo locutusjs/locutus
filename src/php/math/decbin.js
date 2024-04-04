@@ -1,4 +1,4 @@
-module.exports = function decbin (number) {
+module.exports = function decbin(number) {
   //  discuss at: https://locutus.io/php/decbin/
   // original by: Enrique Gonzalez
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -13,8 +13,7 @@ module.exports = function decbin (number) {
   //   returns 3: '11010'
 
   if (number < 0) {
-    number = 0xFFFFFFFF + number + 1
+    number = 0xffffffff + number + 1
   }
-  return parseInt(number, 10)
-    .toString(2)
+  return parseInt(number, 10).toString(2)
 }

@@ -1,4 +1,4 @@
-module.exports = function str_repeat (input, multiplier) { // eslint-disable-line camelcase
+module.exports = function str_repeat(input, multiplier) {
   //  discuss at: https://locutus.io/php/str_repeat/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)

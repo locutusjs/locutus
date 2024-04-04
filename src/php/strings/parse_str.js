@@ -1,4 +1,4 @@
-module.exports = function parse_str (str, array) { // eslint-disable-line camelcase
+module.exports = function parse_str(str, array) {
   //       discuss at: https://locutus.io/php/parse_str/
   //      original by: Cagri Ekin
   //      improved by: Michael White (https://getsprink.com)
@@ -66,7 +66,7 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
     return strDecoded;
   }
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
@@ -78,7 +78,7 @@ module.exports = function parse_str (str, array) { // eslint-disable-line camelc
   for (i = 0; i < sal; i++) {
     tmp = strArr[i].split('=')
     key = _fixStr(tmp[0])
-    value = (tmp.length < 2) ? '' : _fixStr(tmp[1])
+    value = tmp.length < 2 ? '' : _fixStr(tmp[1])
 
     if (key.includes('__proto__') || key.includes('constructor') || key.includes('prototype')) {
       break

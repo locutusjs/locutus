@@ -1,4 +1,4 @@
-module.exports = function gmmktime () {
+module.exports = function gmmktime() {
   //  discuss at: https://locutus.io/php/gmmktime/
   // original by: Brett Zamir (https://brett-zamir.me)
   // original by: mktime
@@ -16,7 +16,7 @@ module.exports = function gmmktime () {
     if (typeof r[i] === 'undefined') {
       r[i] = d['getUTC' + e[i]]()
       // +1 to fix JS months.
-      r[i] += (i === 3)
+      r[i] += i === 3
     } else {
       r[i] = parseInt(r[i], 10)
       if (isNaN(r[i])) {
@@ -26,7 +26,7 @@ module.exports = function gmmktime () {
   }
 
   // Map years 0-69 to 2000-2069 and years 70-100 to 1970-2000.
-  r[5] += (r[5] >= 0 ? (r[5] <= 69 ? 2e3 : (r[5] <= 100 ? 1900 : 0)) : 0)
+  r[5] += r[5] >= 0 ? (r[5] <= 69 ? 2e3 : r[5] <= 100 ? 1900 : 0) : 0
 
   // Set year, month (-1 to fix JS months), and date.
   // !This must come before the call to setHours!
@@ -39,5 +39,5 @@ module.exports = function gmmktime () {
 
   // Divide milliseconds by 1000 to return seconds and drop decimal.
   // Add 1 second if negative or it'll be off from PHP by 1 second.
-  return (time / 1e3 >> 0) - (time < 0)
+  return ((time / 1e3) >> 0) - (time < 0)
 }

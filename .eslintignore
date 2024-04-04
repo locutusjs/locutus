@@ -1,3 +1,5 @@
-test/languages
+dist/
 node_modules
+test/languages
 website/public
+website/themes

@@ -1,4 +1,4 @@
-module.exports = function strlen (string) {
+module.exports = function strlen(string) {
   //  discuss at: https://locutus.io/php/strlen/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Sakimori
@@ -29,24 +29,24 @@ module.exports = function strlen (string) {
     const code = str.charCodeAt(i)
     let next = ''
     let prev = ''
-    if (code >= 0xD800 && code <= 0xDBFF) {
+    if (code >= 0xd800 && code <= 0xdbff) {
       // High surrogate (could change last hex to 0xDB7F to
       // treat high private surrogates as single characters)
-      if (str.length <= (i + 1)) {
+      if (str.length <= i + 1) {
         throw new Error('High surrogate without following low surrogate')
       }
       next = str.charCodeAt(i + 1)
-      if (next < 0xDC00 || next > 0xDFFF) {
+      if (next < 0xdc00 || next > 0xdfff) {
         throw new Error('High surrogate without following low surrogate')
       }
       return str.charAt(i) + str.charAt(i + 1)
-    } else if (code >= 0xDC00 && code <= 0xDFFF) {
+    } else if (code >= 0xdc00 && code <= 0xdfff) {
       // Low surrogate
       if (i === 0) {
         throw new Error('Low surrogate without preceding high surrogate')
       }
       prev = str.charCodeAt(i - 1)
-      if (prev < 0xD800 || prev > 0xDBFF) {
+      if (prev < 0xd800 || prev > 0xdbff) {
         // (could change last hex to 0xDB7F to treat high private surrogates
         // as single characters)
         throw new Error('Low surrogate without preceding high surrogate')
@@ -59,7 +59,7 @@ module.exports = function strlen (string) {
   }
 
   for (i = 0, lgth = 0; i < str.length; i++) {
-    if ((getWholeChar(str, i)) === false) {
+    if (getWholeChar(str, i) === false) {
       continue
     }
     // Adapt this line at the top of any loop, passing in the whole string and

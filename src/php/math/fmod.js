@@ -1,4 +1,4 @@
-module.exports = function fmod (x, y) {
+module.exports = function fmod(x, y) {
   //  discuss at: https://locutus.io/php/fmod/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //    input by: Brett Zamir (https://brett-zamir.me)
@@ -22,7 +22,7 @@ module.exports = function fmod (x, y) {
     p = pY
   }
 
-  tmp2 = (x % y)
+  tmp2 = x % y
 
   if (p < -100 || p > 20) {
     // toFixed will give an out of bound error so we fix it like this:

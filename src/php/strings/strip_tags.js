@@ -1,4 +1,4 @@
-module.exports = function strip_tags (input, allowed) { // eslint-disable-line camelcase
+module.exports = function strip_tags(input, allowed) {
   //  discuss at: https://locutus.io/php/strip_tags/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Luke Godfrey
@@ -48,7 +48,7 @@ module.exports = function strip_tags (input, allowed) { // eslint-disable-line c
 
   let after = _phpCastString(input)
   // removes tha '<' char at the end of the string to replicate PHP's behaviour
-  after = (after.substring(after.length - 1) === '<') ? after.substring(0, after.length - 1) : after
+  after = after.substring(after.length - 1) === '<' ? after.substring(0, after.length - 1) : after
 
   // recursively remove tags to ensure that the returned string doesn't contain forbidden tags after previous passes (e.g. '<<bait/>switch/>')
   while (true) {

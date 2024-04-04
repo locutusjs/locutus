@@ -1,4 +1,4 @@
-module.exports = function Index (s, sep) {
+module.exports = function Index(s, sep) {
   //  discuss at: https://locutus.io/golang/strings/Index
   // original by: Kevin van Zonneveld (https://kvz.io)
   //   example 1: Index('Kevin', 'K')

@@ -1,4 +1,4 @@
-module.exports = function basename (path, suffix) {
+module.exports = function basename(path, suffix) {
   //  discuss at: https://locutus.io/php/basename/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Ash Searle (https://hexmen.com/blog/)

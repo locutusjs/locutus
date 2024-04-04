@@ -1,4 +1,4 @@
-module.exports = function floatval (mixedVar) {
+module.exports = function floatval(mixedVar) {
   //  discuss at: https://locutus.io/php/floatval/
   // original by: Michael White (https://getsprink.com)
   //      note 1: The native parseFloat() method of JavaScript returns NaN
@@ -10,5 +10,5 @@ module.exports = function floatval (mixedVar) {
   //   returns 2: 0
   //   returns 2: -50
 
-  return (parseFloat(mixedVar) || 0)
+  return parseFloat(mixedVar) || 0
 }

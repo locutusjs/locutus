@@ -1,4 +1,4 @@
-module.exports = function boolval (mixedVar) {
+module.exports = function boolval(mixedVar) {
   // original by: Will Rowe
   //   example 1: boolval(true)
   //   returns 1: true

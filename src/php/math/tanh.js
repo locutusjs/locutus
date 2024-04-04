@@ -1,4 +1,4 @@
-module.exports = function tanh (arg) {
+module.exports = function tanh(arg) {
   //  discuss at: https://locutus.io/php/tanh/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   // imprived by: Robert Eisele (https://www.xarg.org/)

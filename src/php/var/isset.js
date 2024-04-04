@@ -1,4 +1,4 @@
-module.exports = function isset () {
+module.exports = function isset() {
   //  discuss at: https://locutus.io/php/isset/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: FremyCompany

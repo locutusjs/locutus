@@ -1,4 +1,4 @@
-module.exports = function end (arr) {
+module.exports = function end(arr) {
   //  discuss at: https://locutus.io/php/end/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Legaev Andrey
@@ -12,7 +12,7 @@ module.exports = function end (arr) {
   //   example 2: end(['Kevin', 'van', 'Zonneveld'])
   //   returns 2: 'Zonneveld'
 
-  const $global = (typeof window !== 'undefined' ? window : global)
+  const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}

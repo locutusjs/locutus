@@ -1,4 +1,4 @@
-module.exports = function cosh (arg) {
+module.exports = function cosh(arg) {
   //  discuss at: https://locutus.io/php/cosh/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: cosh(-0.18127180117607017)

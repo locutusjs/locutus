@@ -1,4 +1,4 @@
-module.exports = function sscanf (str, format) {
+module.exports = function sscanf(str, format) {
   //  discuss at: https://locutus.io/php/sscanf/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: sscanf('SN/2350001', 'SN/%d')
@@ -52,14 +52,8 @@ module.exports = function sscanf (str, format) {
       const check = width ? remaining.substr(0, width) : remaining
       const match = regex.exec(check)
       // @todo: Make this more readable
-      const key = digit !== undefined
-        ? digit
-        : retArr.length
-      const testNull = retArr[key] = match
-        ? (cb
-            ? cb.apply(null, match)
-            : match[0])
-        : null
+      const key = digit !== undefined ? digit : retArr.length
+      const testNull = (retArr[key] = match ? (cb ? cb.apply(null, match) : match[0]) : null)
       if (testNull === null) {
         throw new Error('No match in string')
       }
@@ -154,8 +148,7 @@ module.exports = function sscanf (str, format) {
           case 'i':
             // Integer with base detection (Equivalent of 'd', but base 0 instead of 10)
             var pattern = /([+-])?(?:(?:0x([\da-fA-F]+))|(?:0([0-7]+))|(\d+))/
-            j = _addNext(j, pattern, function (num, sign, hex,
-              oct, dec) {
+            j = _addNext(j, pattern, function (num, sign, hex, oct, dec) {
               return hex ? parseInt(num, 16) : oct ? parseInt(num, 8) : parseInt(num, 10)
             })
             break
@@ -163,7 +156,7 @@ module.exports = function sscanf (str, format) {
             // Number of characters processed so far
             retArr[digit !== undefined ? digit : retArr.length - 1] = j
             break
-            // DOCUMENTED UNDER SPRINTF
+          // DOCUMENTED UNDER SPRINTF
           case 'c':
             // Get character; suppresses skipping over whitespace!
             // (but shouldn't be whitespace in format anyways, so no difference here)
@@ -228,7 +221,7 @@ module.exports = function sscanf (str, format) {
             break
           case 'X':
           case 'x':
-          // Same as 'x'?
+            // Same as 'x'?
             // @todo: add overflows as above?
             // Initial 0x not necessary here
             j = _addNext(j, /([+-])?(?:(?:0x)?([\da-fA-F]+))/, function (num, sign, hex) {
@@ -252,8 +245,7 @@ module.exports = function sscanf (str, format) {
     } else if (format.charAt(i) !== str.charAt(j)) {
       // @todo: Double-check i whitespace ignored in string and/or formats
       _NWS.lastIndex = 0
-      if ((_NWS)
-        .test(str.charAt(j)) || str.charAt(j) === '') {
+      if (_NWS.test(str.charAt(j)) || str.charAt(j) === '') {
         // Whitespace doesn't need to be an exact match)
         return _setExtraConversionSpecs(i + 1)
       } else {

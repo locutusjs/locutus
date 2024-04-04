@@ -1,4 +1,4 @@
-module.exports = function bcmul (leftOperand, rightOperand, scale) {
+module.exports = function bcmul(leftOperand, rightOperand, scale) {
   //  discuss at: https://locutus.io/php/bcmul/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcmul('1', '2')
@@ -18,7 +18,7 @@ module.exports = function bcmul (leftOperand, rightOperand, scale) {
   if (typeof scale === 'undefined') {
     scale = libbcmath.scale
   }
-  scale = ((scale < 0) ? 0 : scale)
+  scale = scale < 0 ? 0 : scale
 
   // create objects
   first = libbcmath.bc_init_num()
