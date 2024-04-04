@@ -33,4 +33,10 @@ describe('src/php/strings/str_replace.js (tested in test/languages/php/strings/t
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 5', function (done) {
+    var expected = 'aaa'
+    var result = str_replace('', '.', 'aaa')
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })

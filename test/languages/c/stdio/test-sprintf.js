@@ -11,4 +11,10 @@ describe('src/c/stdio/sprintf.js (tested in test/languages/c/stdio/test-sprintf.
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 2', function (done) {
+    var expected = 'Param is a 90% good boy.'
+    var result = sprintf('%s is a %d%% %s %s.', 'Param', 90, 'good', 'boy')
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })
