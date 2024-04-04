@@ -49,6 +49,14 @@ git clone git@github.com:locutusjs/locutus.git
 cd locutus
 ```
 
+### Prerequisites
+
+We use yarn managed by Corepack. It's advisable to alias:
+
+```bash
+alias yarn="corepack yarn"
+```
+
 ### Install
 
 ```bash
@@ -120,6 +128,5 @@ Any change to `main` is deployed automatically onto GitHub Pages by CI.
 Any newly pushed git tag is automatically released on npm by CI. To push a new tag:
 
 ```bash
-npm version patch -m "Release v%s"
-git push --tags
+npm version patch -m "Release v%s" && git push --tags
 ```
