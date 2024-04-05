@@ -5,15 +5,15 @@
     
     <title>We are Locutus | Locutus</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Locutus is a project that seeks to assimilate other languages’ standard libraries to JavaScript. Why, you ask? Well, firstly because we can of course! Apart from that, it can also serve as a nice past">
+    <meta name="description" content="All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.  Welcome to Locutus, where the boundaries of coding languages blur. We’re a dedicated collective">
 <meta property="og:type" content="website">
 <meta property="og:title" content="We are Locutus">
 <meta property="og:url" content="https://locutus.io/index.html">
 <meta property="og:site_name" content="Locutus">
-<meta property="og:description" content="Locutus is a project that seeks to assimilate other languages’ standard libraries to JavaScript. Why, you ask? Well, firstly because we can of course! Apart from that, it can also serve as a nice past">
+<meta property="og:description" content="All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.  Welcome to Locutus, where the boundaries of coding languages blur. We’re a dedicated collective">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-04-05T17:38:07.053Z">
-<meta property="article:modified_time" content="2024-04-05T17:38:07.053Z">
+<meta property="article:published_time" content="2024-04-05T18:07:55.810Z">
+<meta property="article:modified_time" content="2024-04-05T18:07:55.810Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -198,16 +198,25 @@ ga('send', 'pageview');
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>Locutus is a project that seeks to assimilate other languages’ standard libraries to JavaScript. Why, you ask? Well, firstly because we can of course! Apart from that, it can also serve as a nice pastime for a rainy Sunday afternoon. Not only can porting a function be quite rewarding, but it also deepens your understanding of different languages. In that sense, it is not unlike doing a crossword puzzle. Lastly it will hopefully allow us to profit from interoperable functions (for instance when apps involve more than one programming language) as well as from higher level functions such as: <a href="/php/number_format/">number_format</a>, <a href="/php/sprintf/">sprintf</a>, and <a href="/php/strtotime/">strtotime</a>, which do not exist in JavaScript’s standard library.</p>
-<p>JavaScript is the most commonly used programming language, but it lacks an exhaustive 
-standard library. This means that developers coming from other languages are often left wondering how to achieve common tasks, such as <a href="/php/strftime/">formatting dates</a> or <a href="/php/sha1/">generating a hashes</a>.</p>
-<p>Locutus aims to show developers who are proficient in other programming languages how these high-level tasks can be achieved in JavaScript. </p>
-<p>Apart from the things that are missing in JavaScript, we are also porting functions like Go’s <a href="/golang/strings/Index/">strings.Index</a>, even though JavaScript offers a perfectly good native equivalent in the form of <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf">String.indexOf</a>. We are going this extra mile to show newcomers an example of how behavior might differ between various languages.</p>
-<p>At an earlier stage, we also had the idea that when enough parts of a language were ported, you might even be able to run programs in JavaScript that were entirely written in other languages. While this certainly was fun to try and we had some degree of success in doing this for PHP, we have since abandoned this goal. Mainly because it drove us to write many hacks, while we were never really able to get anything to work flawlessly. Moreover, projects like <a href="https://github.com/gopherjs/gopherjs">GopherJS</a> and <a href="https://kripken.github.io/emscripten-site/">Emscripten</a> offer better means to that end, anyway.</p>
+            <blockquote>
+<p>All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.</p>
+</blockquote>
+<p>Welcome to Locutus, where the boundaries of coding languages blur. We’re a dedicated collective of hobbyist developers
+and coding enthusiasts on a mission to explore the infinite possibilities of porting standard libraries from various
+programming languages into JavaScript. Our journey is one of discovery, innovation, and sometimes, delightful chaos.</p>
+<p>In the vast expanse of code, we believe that the essence of programming languages can be unified under the banner of
+JavaScript. From the complex to the quirky, we assimilate libraries with a spirit of curiosity and a penchant for
+experimentation. Our creations range from groundbreaking functions that enhance the JavaScript ecosystem, to unique
+oddities that challenge the norms of coding.</p>
+<p>As we navigate through this uncharted territory, we invite you to join us. Whether to contribute, learn, or simply
+marvel at the wonders of cross-language integration and portability, your presence is valued. With each function we
+port, we embrace the unexpected and celebrate the diversity of programming languages.</p>
+<p>Embark on this journey with us at <a href="https://locutus.io/">Locutus.io</a>.</p>
+<p>Use our creations at your own risk, and may they inspire you to push the boundaries of what’s possible with JavaScript.</p>
 <h2 id="What-we-are-not"><a href="#What-we-are-not" class="headerlink" title="What we are not"></a>What we are not</h2><p>Even though Locutus is porting standard libraries from other languages, this is for reference only. We are <strong>not a drop-in standard library for JavaScript</strong>. </p>
 <p>If that is something you are interested in, we recommend you to take a look at <a href="https://lodash.com/">lodash</a>, which is more lightweight, focused and mature. It does a great job of complementing JavaScript’s bare bones nature. </p>
 <p>That being said, there is still a fair amount of useful things to be found in this repository, and Locutus makes it easy to require and bundle just a single function that you deem worthy of your project. Our Notes should be helpful in evaluating the issues and maturity of a particular function.</p>
-<h2 id="What-we-are-not-porting"><a href="#What-we-are-not-porting" class="headerlink" title="What we are not porting"></a>What we are not porting</h2><p>As we have mentioned before, we are sticking to raw functions and steering clear of things that touch global environment, language constructs or data-types. We are not extending built-in natives either. While this would aid in assimilating a larger part of a language, past mistakes have led us to decide that these fall outside of Locutus’ scope. Other projects are of course welcome to take a stab at it.</p>
+<h2 id="What-we-are-not-porting"><a href="#What-we-are-not-porting" class="headerlink" title="What we are not porting"></a>What we are not porting</h2><p>As we have mentioned before, we are sticking to raw functions and steering clear of things that touch global environment, language constructs or data-types. We are not extending built-in natives either. While this would aid in assimilating a larger part of a language, past mistakes have led us to decide that these fall outside of Locutus’ scope. Other projects are of course welcome to take a stab at it, leveraging our MIT licensed sources.</p>
 <h2 id="A-community-effort"><a href="#A-community-effort" class="headerlink" title="A community effort"></a>A community effort</h2><p>Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>. This means that we don’t consider it to be a bad thing that many of our functions are first iterations, which may still have their fair share of issues. We hope that these flaws will inspire others to come up with better ideas.</p>
 <p>So, if you know a better way to do something, we would love to see your improvements!</p>
 <h2 id="Contributing"><a href="#Contributing" class="headerlink" title="Contributing"></a>Contributing</h2><p>We use <a href="https://github.com/locutusjs/locutus">GitHub</a> for collaboration. There are a few guidelines in our <a href="https://github.com/locutusjs/locutus/blob/HEAD/CONTRIBUTING.md">CONTRIBUTING.md</a> document. It would be helpful to glance over them before submitting your work, to avoid unnecessary back and forth, as well as potential disappointment.</p>
@@ -223,7 +232,7 @@ standard library. This means that developers coming from other languages are oft
 
 </div>
 
-    <a data-url="https://locutus.io/index.html" data-id="clumy9sn00002sop7316ob714" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://locutus.io/index.html" data-id="clumzcbbh0002s8pt576lg0xj" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
