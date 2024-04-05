@@ -35,9 +35,16 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.29...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.30...main).
 
 - [ ]
+
+## v2.0.30
+
+Released: 2024-04-05. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.16...v2.0.30).
+
+- [x] Relax yarn engine requirement (fixes #467)
+- [x] Allow for custom mocha tests for functions (that arent generated based on header comments)
 
 ## v2.0.29
 
