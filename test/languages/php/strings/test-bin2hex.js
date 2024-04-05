@@ -19,4 +19,10 @@ describe('src/php/strings/bin2hex.js (tested in test/languages/php/strings/test-
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 3', function (done) {
+    var expected = 'c3a6'
+    var result = bin2hex("æ")
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })
