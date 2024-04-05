@@ -15,9 +15,21 @@ module.exports = function escapeshellarg(arg) {
     throw new Error('escapeshellarg(): Argument #1 ($arg) must not contain any null bytes')
   }
 
-  let ret = ''
+  // Check if the script is running on Windows
+  let isWindows = false
+  if (typeof process !== 'undefined' && process.platform) {
+    isWindows = process.platform === 'win32'
+  }
+  if (typeof window !== 'undefined' && window.navigator.platform) {
+    isWindows = window.navigator.platform.indexOf('Win') !== -1
+  }
 
-  ret = arg.replace(/'/g, "'\\''")
-
-  return "'" + ret + "'"
+  if (isWindows) {
+    // Windows escaping strategy
+    // Double quotes need to be escaped and the whole argument enclosed in double quotes
+    return '"' + arg.replace(/(["%])/g, '^$1') + '"'
+  } else {
+    // Unix-like escaping strategy
+    return "'" + arg.replace(/'/g, "'\\''") + "'"
+  }
 }
