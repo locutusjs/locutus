@@ -37,8 +37,9 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.30...main).
 
-- [ ]
-- [x] Make var_dump detect circular references (fixes #305)
+- [x] dx: Add Stale Action
+- [x] bin2hex: Add support for multi-byte characters (fixes #427)
+- [x] var_dump: Detect circular references (fixes #305)
 
 ## v2.0.30
 
