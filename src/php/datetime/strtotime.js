@@ -443,6 +443,28 @@ const formats = {
     },
   },
 
+  oracledate: {
+    regex: /^(\d{2})-([A-Z]{3})-(\d{2})$/i,
+    name: 'd-M-y',
+    callback(match, day, monthText, year) {
+      const month = {
+        JAN: 0,
+        FEB: 1,
+        MAR: 2,
+        APR: 3,
+        MAY: 4,
+        JUN: 5,
+        JUL: 6,
+        AUG: 7,
+        SEP: 8,
+        OCT: 9,
+        NOV: 10,
+        DEC: 11,
+      }[monthText.toUpperCase()]
+      return this.ymd(2000 + parseInt(year, 10), month, parseInt(day, 10))
+    },
+  },
+
   timeLong12: {
     regex: RegExp('^' + reHour12 + '[:.]' + reMinute + '[:.]' + reSecondlz + reSpaceOpt + reMeridian, 'i'),
     name: 'timelong12',
@@ -1310,6 +1332,8 @@ module.exports = function strtotime(str, now) {
   //        returns 5: 1241418600
   //        example 6: strtotime('2009-05-04 08:30:00 YWT')
   //        returns 6: 1241454600
+  //        example 7: strtotime('10-JUL-17')
+  //        returns 7: 1499644800
 
   if (now == null) {
     now = Math.floor(Date.now() / 1000)
@@ -1332,6 +1356,7 @@ module.exports = function strtotime(str, now) {
     formats.timeShort12,
     formats.timeLong12,
     formats.mssqltime,
+    formats.oracledate,
     formats.timeShort24,
     formats.timeLong24,
     formats.iso8601long,

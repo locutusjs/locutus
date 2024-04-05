@@ -3,8 +3,11 @@ module.exports = function fmod(x, y) {
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //    input by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: Irina (https://github.com/dekairi)
   //   example 1: fmod(5.7, 1.3)
   //   returns 1: 0.5
+  //   example 2: fmod(10, 1)
+  //   returns 2: 0
 
   let tmp
   let tmp2
@@ -31,6 +34,6 @@ module.exports = function fmod(x, y) {
 
     return (tmp2 / l2).toFixed(l - p) * l2
   } else {
-    return parseFloat(tmp2.toFixed(-p))
+    return parseFloat(tmp2.toFixed(Math.abs(p)))
   }
 }

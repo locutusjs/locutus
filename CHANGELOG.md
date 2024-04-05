@@ -37,8 +37,13 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.30...main).
 
-- [ ]
-- [x] Make var_dump detect circular references (fixes #305)
+- [x] dx: Add `use strict` to generated tests
+- [x] dx: Add Stale Action
+- [x] strtotime: Add support oracle dates (fixes #340)
+- [x] bin2hex: Add support for multi-byte characters (fixes #427)
+- [x] var_dump: Detect circular references (fixes #305)
+- [x] escapeshellarg: Add Windows support (fixes #395)
+- [x] fmod: Fix Uncaught RangeError: toFixed() digits argument must be between 0 and 100 (thx @dekairi, fixes #417)
 
 ## v2.0.30
 
