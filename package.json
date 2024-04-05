@@ -42,7 +42,7 @@
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint": "npm-run-all --parallel 'lint:**'",
     "playground:start": "cd test/browser && babel-node server.js",
-    "test:generated:noskip": "yarn build:tests:noskip && cross-env DEBUG='locutus:*' mocha --require babel-register --reporter spec 'src/**/*.mocha.js' 'test/**/test-*.js'",
+    "test:languages:noskip": "yarn build:tests:noskip && cross-env DEBUG='locutus:*' mocha --require babel-register --reporter spec 'src/**/*.mocha.js' 'test/**/test-*.js'",
     "test:languages": "yarn build:tests && cross-env DEBUG='locutus:*' mocha --require babel-register --reporter spec 'src/**/*.mocha.js' 'test/**/test-*.js'",
     "test:module": "babel-node test/module/module.js",
     "test:util": "mocha --require babel-register --reporter spec test/util/",
