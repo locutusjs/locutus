@@ -39,6 +39,7 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.30...mai
 
 - [x] dx: Add `use strict` to generated tests
 - [x] dx: Add Stale Action
+- [x] file_exists: Introduced (in #461, thx @erikn69)
 - [x] strtotime: Add support oracle dates (fixes #340)
 - [x] bin2hex: Add support for multi-byte characters (fixes #427)
 - [x] var_dump: Detect circular references (fixes #305)
