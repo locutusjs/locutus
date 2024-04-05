@@ -37,6 +37,7 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.30...main).
 
+- [x] dx: Add `use strict` to generated tests
 - [x] dx: Add Stale Action
 - [x] strtotime: Add support oracle dates (fixes #340)
 - [x] bin2hex: Add support for multi-byte characters (fixes #427)
