@@ -10,9 +10,11 @@ const array_multisort = require('./array_multisort.js')
 
 describe('src/php/array/array_multisort.js', function () {
   it('should pass example 1', function (done) {
-    const expected = 'a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}'
-    const result = array_multisort(['productIds[]', '_'], 'SORT_ASC', ['productIds[]=977385529', '_=1502965788347'])
-    expect(result).to.deep.equal(expected)
+    const $ar1 = [10, 100, 100, 0]
+    const $ar2 = [1, 3, 2, 4]
+    array_multisort($ar1, $ar2)
+    expect($ar1).to.deep.equal([0, 10, 100, 100])
+    expect($ar2).to.deep.equal([4, 1, 2, 3])
     done()
   })
 })
