@@ -38,6 +38,7 @@ Ideas that will be planned and find their way into a release at one point
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.31...main).
 
 - [ ]
+- [x] Update intro and add to the NPM module as a `README.md`
 
 ## v2.0.31
 

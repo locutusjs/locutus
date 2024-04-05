@@ -9,16 +9,24 @@ alias:
 - /about/
 ---
 
-Locutus is a project that seeks to assimilate other languages' standard libraries to JavaScript. Why, you ask? Well, firstly because we can of course! Apart from that, it can also serve as a nice pastime for a rainy Sunday afternoon. Not only can porting a function be quite rewarding, but it also deepens your understanding of different languages. In that sense, it is not unlike doing a crossword puzzle. Lastly it will hopefully allow us to profit from interoperable functions (for instance when apps involve more than one programming language) as well as from higher level functions such as: [number_format](/php/number_format/), [sprintf](/php/sprintf/), and [strtotime](/php/strtotime/), which do not exist in JavaScript's standard library.
+> All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.
 
-JavaScript is the most commonly used programming language, but it lacks an exhaustive 
-standard library. This means that developers coming from other languages are often left wondering how to achieve common tasks, such as [formatting dates](/php/strftime/) or [generating a hashes](/php/sha1/).
+Welcome to Locutus, where the boundaries of coding languages blur. We're a dedicated collective of hobbyist developers
+and coding enthusiasts on a mission to explore the infinite possibilities of porting standard libraries from various
+programming languages into JavaScript. Our journey is one of discovery, innovation, and sometimes, delightful chaos.
 
-Locutus aims to show developers who are proficient in other programming languages how these high-level tasks can be achieved in JavaScript. 
+In the vast expanse of code, we believe that the essence of programming languages can be unified under the banner of
+JavaScript. From the complex to the quirky, we assimilate libraries with a spirit of curiosity and a penchant for
+experimentation. Our creations range from groundbreaking functions that enhance the JavaScript ecosystem, to unique
+oddities that challenge the norms of coding.
 
-Apart from the things that are missing in JavaScript, we are also porting functions like Go's [strings.Index](/golang/strings/Index/), even though JavaScript offers a perfectly good native equivalent in the form of [String.indexOf](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/indexOf). We are going this extra mile to show newcomers an example of how behavior might differ between various languages.
+As we navigate through this uncharted territory, we invite you to join us. Whether to contribute, learn, or simply
+marvel at the wonders of cross-language integration and portability, your presence is valued. With each function we
+port, we embrace the unexpected and celebrate the diversity of programming languages.
 
-At an earlier stage, we also had the idea that when enough parts of a language were ported, you might even be able to run programs in JavaScript that were entirely written in other languages. While this certainly was fun to try and we had some degree of success in doing this for PHP, we have since abandoned this goal. Mainly because it drove us to write many hacks, while we were never really able to get anything to work flawlessly. Moreover, projects like [GopherJS](https://github.com/gopherjs/gopherjs) and [Emscripten](https://kripken.github.io/emscripten-site/) offer better means to that end, anyway.
+Embark on this journey with us at [Locutus.io](https://locutus.io/).
+
+Use our creations at your own risk, and may they inspire you to push the boundaries of what's possible with JavaScript.
 
 ## What we are not
 
@@ -30,7 +38,7 @@ That being said, there is still a fair amount of useful things to be found in th
 
 ## What we are not porting
 
-As we have mentioned before, we are sticking to raw functions and steering clear of things that touch global environment, language constructs or data-types. We are not extending built-in natives either. While this would aid in assimilating a larger part of a language, past mistakes have led us to decide that these fall outside of Locutus' scope. Other projects are of course welcome to take a stab at it.
+As we have mentioned before, we are sticking to raw functions and steering clear of things that touch global environment, language constructs or data-types. We are not extending built-in natives either. While this would aid in assimilating a larger part of a language, past mistakes have led us to decide that these fall outside of Locutus' scope. Other projects are of course welcome to take a stab at it, leveraging our MIT licensed sources.
 
 ## A community effort
 
