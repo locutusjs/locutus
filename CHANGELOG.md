@@ -38,6 +38,7 @@ Ideas that will be planned and find their way into a release at one point
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.30...main).
 
 - [ ]
+- [x] Make var_dump detect circular references (fixes #305)
 
 ## v2.0.30
 

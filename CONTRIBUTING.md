@@ -14,8 +14,9 @@ for fun experiments such as running PHP code directly in Node.js
 - [Code](#code)
 - [Build](#build)
 - [Test](#test)
-- [Website Development](#website-development)
+- [Commit](#commit)
 - [Releasing](#releasing)
+- [Website Development](#website-development)
 
 ## Contributing Checklist
 
