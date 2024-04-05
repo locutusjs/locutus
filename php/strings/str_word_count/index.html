@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&#39;s str_word_count looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-04-05T18:08:50.910Z">
-<meta property="article:modified_time" content="2024-04-05T18:08:50.910Z">
+<meta property="article:published_time" content="2024-04-05T19:37:16.104Z">
+<meta property="article:modified_time" content="2024-04-05T19:37:16.104Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -187,61 +187,21 @@ ga('send', 'pageview');
     </header>
 
     <div class="article-entry">
-      <p>
-        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.str-word-count.php">PHP's str_word_count</a> looks like.
-      </p>
-
-      <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">str_word_count</span>(<span class="params">str, format, charlist</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/str_word_count/</span></span><br><span class="line">  <span class="comment">// original by: Ole Vrijenhoek</span></span><br><span class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Bug?</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//   example 1: str_word_count(&quot;Hello fri3nd, you&#x27;re\r\n       looking          good today!&quot;, 1)</span></span><br><span class="line">  <span class="comment">//   returns 1: [&#x27;Hello&#x27;, &#x27;fri&#x27;, &#x27;nd&#x27;, &quot;you&#x27;re&quot;, &#x27;looking&#x27;, &#x27;good&#x27;, &#x27;today&#x27;]</span></span><br><span class="line">  <span class="comment">//   example 2: str_word_count(&quot;Hello fri3nd, you&#x27;re\r\n       looking          good today!&quot;, 2)</span></span><br><span class="line">  <span class="comment">//   returns 2: &#123;0: &#x27;Hello&#x27;, 6: &#x27;fri&#x27;, 10: &#x27;nd&#x27;, 14: &quot;you&#x27;re&quot;, 29: &#x27;looking&#x27;, 46: &#x27;good&#x27;, 51: &#x27;today&#x27;&#125;</span></span><br><span class="line">  <span class="comment">//   example 3: str_word_count(&quot;Hello fri3nd, you&#x27;re\r\n       looking          good today!&quot;, 1, &#x27;\u00e0\u00e1\u00e3\u00e73&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 3: [&#x27;Hello&#x27;, &#x27;fri3nd&#x27;, &quot;you&#x27;re&quot;, &#x27;looking&#x27;, &#x27;good&#x27;, &#x27;today&#x27;]</span></span><br><span class="line">  <span class="comment">//   example 4: str_word_count(&#x27;hey&#x27;, 2)</span></span><br><span class="line">  <span class="comment">//   returns 4: &#123;0: &#x27;hey&#x27;&#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> ctypeAlpha = <span class="built_in">require</span>(<span class="string">&#x27;../ctype/ctype_alpha&#x27;</span>)</span><br><span class="line">  <span class="keyword">const</span> len = str.<span class="property">length</span></span><br><span class="line">  <span class="keyword">const</span> cl = charlist &amp;&amp; charlist.<span class="property">length</span></span><br><span class="line">  <span class="keyword">let</span> chr = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> tmpStr = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> c = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">const</span> wArr = []</span><br><span class="line">  <span class="keyword">let</span> wC = <span class="number">0</span></span><br><span class="line">  <span class="keyword">const</span> assoc = &#123;&#125;</span><br><span class="line">  <span class="keyword">let</span> aC = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> reg = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> match = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _pregQuote = <span class="keyword">function</span> (<span class="params">str</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (str + <span class="string">&#x27;&#x27;</span>).<span class="title function_">replace</span>(<span class="regexp">/([\\.+*?[^\]$()&#123;&#125;=!&lt;&gt;|:])/g</span>, <span class="string">&#x27;\\$1&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> _getWholeChar = <span class="keyword">function</span> (<span class="params">str, i</span>) &#123;</span><br><span class="line">    <span class="comment">// Use for rare cases of non-BMP characters</span></span><br><span class="line">    <span class="keyword">const</span> code = str.<span class="title function_">charCodeAt</span>(i)</span><br><span class="line">    <span class="keyword">if</span> (code &lt; <span class="number">0xd800</span> || code &gt; <span class="number">0xdfff</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> str.<span class="title function_">charAt</span>(i)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (code &gt;= <span class="number">0xd800</span> &amp;&amp; code &lt;= <span class="number">0xdbff</span>) &#123;</span><br><span class="line">      <span class="comment">// High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single</span></span><br><span class="line">      <span class="comment">// characters)</span></span><br><span class="line">      <span class="keyword">if</span> (str.<span class="property">length</span> &lt;= i + <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;High surrogate without following low surrogate&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">const</span> next = str.<span class="title function_">charCodeAt</span>(i + <span class="number">1</span>)</span><br><span class="line">      <span class="keyword">if</span> (next &lt; <span class="number">0xdc00</span> || next &gt; <span class="number">0xdfff</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;High surrogate without following low surrogate&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> str.<span class="title function_">charAt</span>(i) + str.<span class="title function_">charAt</span>(i + <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Low surrogate (0xDC00 &lt;= code &amp;&amp; code &lt;= 0xDFFF)</span></span><br><span class="line">    <span class="keyword">if</span> (i === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Low surrogate without preceding high surrogate&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> prev = str.<span class="title function_">charCodeAt</span>(i - <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> (prev &lt; <span class="number">0xd800</span> || prev &gt; <span class="number">0xdbff</span>) &#123;</span><br><span class="line">      <span class="comment">// (could change last hex to 0xDB7F to treat high private surrogates as single characters)</span></span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Low surrogate without preceding high surrogate&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// We can pass over low surrogates now as the second component in a pair which we have already</span></span><br><span class="line">    <span class="comment">// processed</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (cl) &#123;</span><br><span class="line">    reg = <span class="string">&#x27;^(&#x27;</span> + <span class="title function_">_pregQuote</span>(<span class="title function_">_getWholeChar</span>(charlist, <span class="number">0</span>))</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; cl; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> ((chr = <span class="title function_">_getWholeChar</span>(charlist, i)) === <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      &#125;</span><br><span class="line">      reg += <span class="string">&#x27;|&#x27;</span> + <span class="title function_">_pregQuote</span>(chr)</span><br><span class="line">    &#125;</span><br><span class="line">    reg += <span class="string">&#x27;)$&#x27;</span></span><br><span class="line">    reg = <span class="keyword">new</span> <span class="title class_">RegExp</span>(reg)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> ((c = <span class="title function_">_getWholeChar</span>(str, i)) === <span class="literal">false</span>) &#123;</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// No hyphen at beginning or end unless allowed in charlist (or locale)</span></span><br><span class="line">    <span class="comment">// No apostrophe at beginning unless allowed in charlist (or locale)</span></span><br><span class="line">    <span class="comment">// @todo: Make this more readable</span></span><br><span class="line">    match =</span><br><span class="line">      <span class="title function_">ctypeAlpha</span>(c) ||</span><br><span class="line">      (reg &amp;&amp; c.<span class="title function_">search</span>(reg) !== -<span class="number">1</span>) ||</span><br><span class="line">      (i !== <span class="number">0</span> &amp;&amp; i !== len - <span class="number">1</span> &amp;&amp; c === <span class="string">&#x27;-&#x27;</span>) ||</span><br><span class="line">      (i !== <span class="number">0</span> &amp;&amp; c === <span class="string">&quot;&#x27;&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> (match) &#123;</span><br><span class="line">      <span class="keyword">if</span> (tmpStr === <span class="string">&#x27;&#x27;</span> &amp;&amp; format === <span class="number">2</span>) &#123;</span><br><span class="line">        aC = i</span><br><span class="line">      &#125;</span><br><span class="line">      tmpStr = tmpStr + c</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i === len - <span class="number">1</span> || (!match &amp;&amp; tmpStr !== <span class="string">&#x27;&#x27;</span>)) &#123;</span><br><span class="line">      <span class="keyword">if</span> (format !== <span class="number">2</span>) &#123;</span><br><span class="line">        wArr[wArr.<span class="property">length</span>] = tmpStr</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        assoc[aC] = tmpStr</span><br><span class="line">      &#125;</span><br><span class="line">      tmpStr = <span class="string">&#x27;&#x27;</span></span><br><span class="line">      wC++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!format) &#123;</span><br><span class="line">    <span class="keyword">return</span> wC</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (format === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> wArr</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (format === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> assoc</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;You have supplied an incorrect format&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      [
-      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/strings/str_word_count.js">View on GitHub</a>
-      |
-      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/strings/str_word_count.js">Edit on GitHub</a>
-      |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/strings/str_word_count.js">Source on GitHub</a>
-      ]
-
-      <div class="clearfix"></div>
-
       <h2>How to use</h2>
       <p>
-        You you can install via <code>npm install locutus</code> and
-        require it via <code>require('locutus/php/strings/str_word_count')</code>.
-        You could also require the <code>strings</code> module in full
-        so that you could access <code>strings.str_word_count</code> instead.
+        You you can install via <code>yarn add locutus</code> and
+        require this function via <code>const str_word_count = require('locutus/php/strings/str_word_count')</code>.
       </p>
       <p>
-        If you intend to target the browser, you can then use a module bundler such as
+        It is important to use a bundler that supports tree-shaking
+        so that you only ship the functions that you actually use to your browser,
+        instead of all of Locutus, which is massive. Examples are:
         <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
-        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>,
-        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>, or
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
         <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
 
-        This can be important because Locutus allows modern JavaScript in
-        the source files, meaning it may not work in all browsers without
-        a build/transpile step. Locutus does transpile all functions to ES5
-        before publishing to npm.
+        For server-side use this is typically less of a concern.
       </p>
-
-      
-
-      <h2>A community effort</h2>
-      <p>
-        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
-        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
-        This means that we don't consider it to be a bad thing that many of
-        our functions are first iterations, which may still have their
-        fair share of issues. We hope that these flaws will inspire others to come up with better ideas.
-      </p>
-      <p>
-        This way of working also means that we don't offer any
-        production guarantees, and recommend to use Locutus inspiration
-        and learning purposes only.
-      </p>
-      
-
-      
 
       
         <h2>Examples</h2>
@@ -263,6 +223,45 @@ ga('send', 'pageview');
         
         </table>
       
+
+      
+
+      
+
+      
+
+      <p>
+        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.str-word-count.php">PHP's str_word_count</a> looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">str_word_count</span>(<span class="params">str, format, charlist</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/str_word_count/</span></span><br><span class="line">  <span class="comment">// original by: Ole Vrijenhoek</span></span><br><span class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Bug?</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//   example 1: str_word_count(&quot;Hello fri3nd, you&#x27;re\r\n       looking          good today!&quot;, 1)</span></span><br><span class="line">  <span class="comment">//   returns 1: [&#x27;Hello&#x27;, &#x27;fri&#x27;, &#x27;nd&#x27;, &quot;you&#x27;re&quot;, &#x27;looking&#x27;, &#x27;good&#x27;, &#x27;today&#x27;]</span></span><br><span class="line">  <span class="comment">//   example 2: str_word_count(&quot;Hello fri3nd, you&#x27;re\r\n       looking          good today!&quot;, 2)</span></span><br><span class="line">  <span class="comment">//   returns 2: &#123;0: &#x27;Hello&#x27;, 6: &#x27;fri&#x27;, 10: &#x27;nd&#x27;, 14: &quot;you&#x27;re&quot;, 29: &#x27;looking&#x27;, 46: &#x27;good&#x27;, 51: &#x27;today&#x27;&#125;</span></span><br><span class="line">  <span class="comment">//   example 3: str_word_count(&quot;Hello fri3nd, you&#x27;re\r\n       looking          good today!&quot;, 1, &#x27;\u00e0\u00e1\u00e3\u00e73&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 3: [&#x27;Hello&#x27;, &#x27;fri3nd&#x27;, &quot;you&#x27;re&quot;, &#x27;looking&#x27;, &#x27;good&#x27;, &#x27;today&#x27;]</span></span><br><span class="line">  <span class="comment">//   example 4: str_word_count(&#x27;hey&#x27;, 2)</span></span><br><span class="line">  <span class="comment">//   returns 4: &#123;0: &#x27;hey&#x27;&#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> ctypeAlpha = <span class="built_in">require</span>(<span class="string">&#x27;../ctype/ctype_alpha&#x27;</span>)</span><br><span class="line">  <span class="keyword">const</span> len = str.<span class="property">length</span></span><br><span class="line">  <span class="keyword">const</span> cl = charlist &amp;&amp; charlist.<span class="property">length</span></span><br><span class="line">  <span class="keyword">let</span> chr = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> tmpStr = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> c = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">const</span> wArr = []</span><br><span class="line">  <span class="keyword">let</span> wC = <span class="number">0</span></span><br><span class="line">  <span class="keyword">const</span> assoc = &#123;&#125;</span><br><span class="line">  <span class="keyword">let</span> aC = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> reg = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> match = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _pregQuote = <span class="keyword">function</span> (<span class="params">str</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (str + <span class="string">&#x27;&#x27;</span>).<span class="title function_">replace</span>(<span class="regexp">/([\\.+*?[^\]$()&#123;&#125;=!&lt;&gt;|:])/g</span>, <span class="string">&#x27;\\$1&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> _getWholeChar = <span class="keyword">function</span> (<span class="params">str, i</span>) &#123;</span><br><span class="line">    <span class="comment">// Use for rare cases of non-BMP characters</span></span><br><span class="line">    <span class="keyword">const</span> code = str.<span class="title function_">charCodeAt</span>(i)</span><br><span class="line">    <span class="keyword">if</span> (code &lt; <span class="number">0xd800</span> || code &gt; <span class="number">0xdfff</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> str.<span class="title function_">charAt</span>(i)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (code &gt;= <span class="number">0xd800</span> &amp;&amp; code &lt;= <span class="number">0xdbff</span>) &#123;</span><br><span class="line">      <span class="comment">// High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single</span></span><br><span class="line">      <span class="comment">// characters)</span></span><br><span class="line">      <span class="keyword">if</span> (str.<span class="property">length</span> &lt;= i + <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;High surrogate without following low surrogate&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">const</span> next = str.<span class="title function_">charCodeAt</span>(i + <span class="number">1</span>)</span><br><span class="line">      <span class="keyword">if</span> (next &lt; <span class="number">0xdc00</span> || next &gt; <span class="number">0xdfff</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;High surrogate without following low surrogate&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> str.<span class="title function_">charAt</span>(i) + str.<span class="title function_">charAt</span>(i + <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Low surrogate (0xDC00 &lt;= code &amp;&amp; code &lt;= 0xDFFF)</span></span><br><span class="line">    <span class="keyword">if</span> (i === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Low surrogate without preceding high surrogate&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> prev = str.<span class="title function_">charCodeAt</span>(i - <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> (prev &lt; <span class="number">0xd800</span> || prev &gt; <span class="number">0xdbff</span>) &#123;</span><br><span class="line">      <span class="comment">// (could change last hex to 0xDB7F to treat high private surrogates as single characters)</span></span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Low surrogate without preceding high surrogate&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// We can pass over low surrogates now as the second component in a pair which we have already</span></span><br><span class="line">    <span class="comment">// processed</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (cl) &#123;</span><br><span class="line">    reg = <span class="string">&#x27;^(&#x27;</span> + <span class="title function_">_pregQuote</span>(<span class="title function_">_getWholeChar</span>(charlist, <span class="number">0</span>))</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; cl; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> ((chr = <span class="title function_">_getWholeChar</span>(charlist, i)) === <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      &#125;</span><br><span class="line">      reg += <span class="string">&#x27;|&#x27;</span> + <span class="title function_">_pregQuote</span>(chr)</span><br><span class="line">    &#125;</span><br><span class="line">    reg += <span class="string">&#x27;)$&#x27;</span></span><br><span class="line">    reg = <span class="keyword">new</span> <span class="title class_">RegExp</span>(reg)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> ((c = <span class="title function_">_getWholeChar</span>(str, i)) === <span class="literal">false</span>) &#123;</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// No hyphen at beginning or end unless allowed in charlist (or locale)</span></span><br><span class="line">    <span class="comment">// No apostrophe at beginning unless allowed in charlist (or locale)</span></span><br><span class="line">    <span class="comment">// @todo: Make this more readable</span></span><br><span class="line">    match =</span><br><span class="line">      <span class="title function_">ctypeAlpha</span>(c) ||</span><br><span class="line">      (reg &amp;&amp; c.<span class="title function_">search</span>(reg) !== -<span class="number">1</span>) ||</span><br><span class="line">      (i !== <span class="number">0</span> &amp;&amp; i !== len - <span class="number">1</span> &amp;&amp; c === <span class="string">&#x27;-&#x27;</span>) ||</span><br><span class="line">      (i !== <span class="number">0</span> &amp;&amp; c === <span class="string">&quot;&#x27;&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> (match) &#123;</span><br><span class="line">      <span class="keyword">if</span> (tmpStr === <span class="string">&#x27;&#x27;</span> &amp;&amp; format === <span class="number">2</span>) &#123;</span><br><span class="line">        aC = i</span><br><span class="line">      &#125;</span><br><span class="line">      tmpStr = tmpStr + c</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i === len - <span class="number">1</span> || (!match &amp;&amp; tmpStr !== <span class="string">&#x27;&#x27;</span>)) &#123;</span><br><span class="line">      <span class="keyword">if</span> (format !== <span class="number">2</span>) &#123;</span><br><span class="line">        wArr[wArr.<span class="property">length</span>] = tmpStr</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        assoc[aC] = tmpStr</span><br><span class="line">      &#125;</span><br><span class="line">      tmpStr = <span class="string">&#x27;&#x27;</span></span><br><span class="line">      wC++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!format) &#123;</span><br><span class="line">    <span class="keyword">return</span> wC</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (format === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> wArr</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (format === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> assoc</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;You have supplied an incorrect format&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      <div class="clearfix"></div>
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we assimilate first iterations with imperfections,
+        hoping for others to take issue with-and improve them.
+
+        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
+        but please be reminded to use our creations at your own risk.
+        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+      </p>
+      <p>
+        Now go and:
+        [
+        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/php/strings/str_word_count.js">View on GitHub</a></strong>
+        |
+        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/php/strings/str_word_count.js">Edit on GitHub</a></strong>
+        |
+        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/strings/str_word_count.js">View Raw</a></strong>
+        ]
+      </p>
+
 
       <hr />
       
@@ -565,6 +564,25 @@ ga('send', 'pageview');
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2024/04/24-update/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/bunnies.webp)" alt="Easter Update" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/04/24-update/" class="title">Easter Update</a></p>
+                            <p class="item-date"><time datetime="2024-04-05T00:00:00.000Z" itemprop="datePublished">2024-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2016/05/announcing-locutus/" class="thumbnail">
     
     
@@ -600,25 +618,6 @@ ga('send', 'pageview');
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/04/jekyll/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
-                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -633,8 +632,6 @@ ga('send', 'pageview');
     <div class="outer">
         <div id="footer-info" class="inner">
             &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
-            Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
-            Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>

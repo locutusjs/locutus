@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&#39;s http_build_query looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-04-05T18:08:50.938Z">
-<meta property="article:modified_time" content="2024-04-05T18:08:50.938Z">
+<meta property="article:published_time" content="2024-04-05T19:37:16.128Z">
+<meta property="article:modified_time" content="2024-04-05T19:37:16.128Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -187,70 +187,21 @@ ga('send', 'pageview');
     </header>
 
     <div class="article-entry">
-      <p>
-        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.http-build-query.php">PHP's http_build_query</a> looks like.
-      </p>
-
-      <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">http_build_query</span>(<span class="params">formdata, numericPrefix, argSeparator, encType</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/http_build_query/</span></span><br><span class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Legaev Andrey</span></span><br><span class="line">  <span class="comment">// improved by: Michael White (https://getsprink.com)</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//  revised by: stag019</span></span><br><span class="line">  <span class="comment">//    input by: Dreamer</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: MIO_KODUKI (https://mio-koduki.blogspot.com/)</span></span><br><span class="line">  <span class="comment">// improved by: Will Rowe</span></span><br><span class="line">  <span class="comment">//      note 1: If the value is null, key and value are skipped in the</span></span><br><span class="line">  <span class="comment">//      note 1: http_build_query of PHP while in locutus they are not.</span></span><br><span class="line">  <span class="comment">//   example 1: http_build_query(&#123;foo: &#x27;bar&#x27;, php: &#x27;hypertext processor&#x27;, baz: &#x27;boom&#x27;, cow: &#x27;milk&#x27;&#125;, &#x27;&#x27;, &#x27;&amp;amp;&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 1: &#x27;foo=bar&amp;amp;php=hypertext+processor&amp;amp;baz=boom&amp;amp;cow=milk&#x27;</span></span><br><span class="line">  <span class="comment">//   example 2: http_build_query(&#123;&#x27;php&#x27;: &#x27;hypertext processor&#x27;, 0: &#x27;foo&#x27;, 1: &#x27;bar&#x27;, 2: &#x27;baz&#x27;, 3: &#x27;boom&#x27;, &#x27;cow&#x27;: &#x27;milk&#x27;&#125;, &#x27;myvar_&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 2: &#x27;myvar_0=foo&amp;myvar_1=bar&amp;myvar_2=baz&amp;myvar_3=boom&amp;php=hypertext+processor&amp;cow=milk&#x27;</span></span><br><span class="line">  <span class="comment">//   example 3: http_build_query(&#123;foo: &#x27;bar&#x27;, php: &#x27;hypertext processor&#x27;, baz: &#x27;boom&#x27;, cow: &#x27;milk&#x27;&#125;, &#x27;&#x27;, &#x27;&amp;amp;&#x27;, &#x27;PHP_QUERY_RFC3986&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 3: &#x27;foo=bar&amp;amp;php=hypertext%20processor&amp;amp;baz=boom&amp;amp;cow=milk&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> encodeFunc</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (encType) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;PHP_QUERY_RFC3986&#x27;</span>:</span><br><span class="line">      encodeFunc = <span class="built_in">require</span>(<span class="string">&#x27;../url/rawurlencode&#x27;</span>)</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;PHP_QUERY_RFC1738&#x27;</span>:</span><br><span class="line">    <span class="attr">default</span>:</span><br><span class="line">      encodeFunc = <span class="built_in">require</span>(<span class="string">&#x27;../url/urlencode&#x27;</span>)</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> value</span><br><span class="line">  <span class="keyword">let</span> key</span><br><span class="line">  <span class="keyword">const</span> tmp = []</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _httpBuildQueryHelper = <span class="keyword">function</span> (<span class="params">key, val, argSeparator</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> k</span><br><span class="line">    <span class="keyword">const</span> tmp = []</span><br><span class="line">    <span class="keyword">if</span> (val === <span class="literal">true</span>) &#123;</span><br><span class="line">      val = <span class="string">&#x27;1&#x27;</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (val === <span class="literal">false</span>) &#123;</span><br><span class="line">      val = <span class="string">&#x27;0&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (val !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> val === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (k <span class="keyword">in</span> val) &#123;</span><br><span class="line">          <span class="keyword">if</span> (val[k] !== <span class="literal">null</span>) &#123;</span><br><span class="line">            tmp.<span class="title function_">push</span>(<span class="title function_">_httpBuildQueryHelper</span>(key + <span class="string">&#x27;[&#x27;</span> + k + <span class="string">&#x27;]&#x27;</span>, val[k], argSeparator))</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> tmp.<span class="title function_">join</span>(argSeparator)</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> val !== <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_">encodeFunc</span>(key) + <span class="string">&#x27;=&#x27;</span> + <span class="title function_">encodeFunc</span>(val)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;There was an error processing for http_build_query().&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!argSeparator) &#123;</span><br><span class="line">    argSeparator = <span class="string">&#x27;&amp;&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (key <span class="keyword">in</span> formdata) &#123;</span><br><span class="line">    value = formdata[key]</span><br><span class="line">    <span class="keyword">if</span> (numericPrefix &amp;&amp; !<span class="built_in">isNaN</span>(key)) &#123;</span><br><span class="line">      key = <span class="title class_">String</span>(numericPrefix) + key</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> query = <span class="title function_">_httpBuildQueryHelper</span>(key, value, argSeparator)</span><br><span class="line">    <span class="keyword">if</span> (query !== <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">      tmp.<span class="title function_">push</span>(query)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> tmp.<span class="title function_">join</span>(argSeparator)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      [
-      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/url/http_build_query.js">View on GitHub</a>
-      |
-      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/url/http_build_query.js">Edit on GitHub</a>
-      |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/url/http_build_query.js">Source on GitHub</a>
-      ]
-
-      <div class="clearfix"></div>
-
       <h2>How to use</h2>
       <p>
-        You you can install via <code>npm install locutus</code> and
-        require it via <code>require('locutus/php/url/http_build_query')</code>.
-        You could also require the <code>url</code> module in full
-        so that you could access <code>url.http_build_query</code> instead.
+        You you can install via <code>yarn add locutus</code> and
+        require this function via <code>const http_build_query = require('locutus/php/url/http_build_query')</code>.
       </p>
       <p>
-        If you intend to target the browser, you can then use a module bundler such as
+        It is important to use a bundler that supports tree-shaking
+        so that you only ship the functions that you actually use to your browser,
+        instead of all of Locutus, which is massive. Examples are:
         <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
-        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>,
-        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>, or
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
         <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
 
-        This can be important because Locutus allows modern JavaScript in
-        the source files, meaning it may not work in all browsers without
-        a build/transpile step. Locutus does transpile all functions to ES5
-        before publishing to npm.
+        For server-side use this is typically less of a concern.
       </p>
-
-      
-
-      <h2>A community effort</h2>
-      <p>
-        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
-        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
-        This means that we don't consider it to be a bad thing that many of
-        our functions are first iterations, which may still have their
-        fair share of issues. We hope that these flaws will inspire others to come up with better ideas.
-      </p>
-      <p>
-        This way of working also means that we don't offer any
-        production guarantees, and recommend to use Locutus inspiration
-        and learning purposes only.
-      </p>
-      
-        <h2>Notes</h2>
-        <ul>
-        
-          <li><p>If the value is null, key and value are skipped in the
-http_build_query of PHP while in locutus they are not.</p>
-</li>
-        
-        </ul>
-      
-
-      
 
       
         <h2>Examples</h2>
@@ -270,6 +221,54 @@ http_build_query of PHP while in locutus they are not.</p>
         
         </table>
       
+
+      
+
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>If the value is null, key and value are skipped in the
+http_build_query of PHP while in locutus they are not.</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      <p>
+        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.http-build-query.php">PHP's http_build_query</a> looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">http_build_query</span>(<span class="params">formdata, numericPrefix, argSeparator, encType</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/http_build_query/</span></span><br><span class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Legaev Andrey</span></span><br><span class="line">  <span class="comment">// improved by: Michael White (https://getsprink.com)</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//  revised by: stag019</span></span><br><span class="line">  <span class="comment">//    input by: Dreamer</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: MIO_KODUKI (https://mio-koduki.blogspot.com/)</span></span><br><span class="line">  <span class="comment">// improved by: Will Rowe</span></span><br><span class="line">  <span class="comment">//      note 1: If the value is null, key and value are skipped in the</span></span><br><span class="line">  <span class="comment">//      note 1: http_build_query of PHP while in locutus they are not.</span></span><br><span class="line">  <span class="comment">//   example 1: http_build_query(&#123;foo: &#x27;bar&#x27;, php: &#x27;hypertext processor&#x27;, baz: &#x27;boom&#x27;, cow: &#x27;milk&#x27;&#125;, &#x27;&#x27;, &#x27;&amp;amp;&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 1: &#x27;foo=bar&amp;amp;php=hypertext+processor&amp;amp;baz=boom&amp;amp;cow=milk&#x27;</span></span><br><span class="line">  <span class="comment">//   example 2: http_build_query(&#123;&#x27;php&#x27;: &#x27;hypertext processor&#x27;, 0: &#x27;foo&#x27;, 1: &#x27;bar&#x27;, 2: &#x27;baz&#x27;, 3: &#x27;boom&#x27;, &#x27;cow&#x27;: &#x27;milk&#x27;&#125;, &#x27;myvar_&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 2: &#x27;myvar_0=foo&amp;myvar_1=bar&amp;myvar_2=baz&amp;myvar_3=boom&amp;php=hypertext+processor&amp;cow=milk&#x27;</span></span><br><span class="line">  <span class="comment">//   example 3: http_build_query(&#123;foo: &#x27;bar&#x27;, php: &#x27;hypertext processor&#x27;, baz: &#x27;boom&#x27;, cow: &#x27;milk&#x27;&#125;, &#x27;&#x27;, &#x27;&amp;amp;&#x27;, &#x27;PHP_QUERY_RFC3986&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 3: &#x27;foo=bar&amp;amp;php=hypertext%20processor&amp;amp;baz=boom&amp;amp;cow=milk&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> encodeFunc</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (encType) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;PHP_QUERY_RFC3986&#x27;</span>:</span><br><span class="line">      encodeFunc = <span class="built_in">require</span>(<span class="string">&#x27;../url/rawurlencode&#x27;</span>)</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;PHP_QUERY_RFC1738&#x27;</span>:</span><br><span class="line">    <span class="attr">default</span>:</span><br><span class="line">      encodeFunc = <span class="built_in">require</span>(<span class="string">&#x27;../url/urlencode&#x27;</span>)</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> value</span><br><span class="line">  <span class="keyword">let</span> key</span><br><span class="line">  <span class="keyword">const</span> tmp = []</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _httpBuildQueryHelper = <span class="keyword">function</span> (<span class="params">key, val, argSeparator</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> k</span><br><span class="line">    <span class="keyword">const</span> tmp = []</span><br><span class="line">    <span class="keyword">if</span> (val === <span class="literal">true</span>) &#123;</span><br><span class="line">      val = <span class="string">&#x27;1&#x27;</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (val === <span class="literal">false</span>) &#123;</span><br><span class="line">      val = <span class="string">&#x27;0&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (val !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> val === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (k <span class="keyword">in</span> val) &#123;</span><br><span class="line">          <span class="keyword">if</span> (val[k] !== <span class="literal">null</span>) &#123;</span><br><span class="line">            tmp.<span class="title function_">push</span>(<span class="title function_">_httpBuildQueryHelper</span>(key + <span class="string">&#x27;[&#x27;</span> + k + <span class="string">&#x27;]&#x27;</span>, val[k], argSeparator))</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> tmp.<span class="title function_">join</span>(argSeparator)</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> val !== <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_">encodeFunc</span>(key) + <span class="string">&#x27;=&#x27;</span> + <span class="title function_">encodeFunc</span>(val)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;There was an error processing for http_build_query().&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!argSeparator) &#123;</span><br><span class="line">    argSeparator = <span class="string">&#x27;&amp;&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (key <span class="keyword">in</span> formdata) &#123;</span><br><span class="line">    value = formdata[key]</span><br><span class="line">    <span class="keyword">if</span> (numericPrefix &amp;&amp; !<span class="built_in">isNaN</span>(key)) &#123;</span><br><span class="line">      key = <span class="title class_">String</span>(numericPrefix) + key</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> query = <span class="title function_">_httpBuildQueryHelper</span>(key, value, argSeparator)</span><br><span class="line">    <span class="keyword">if</span> (query !== <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">      tmp.<span class="title function_">push</span>(query)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> tmp.<span class="title function_">join</span>(argSeparator)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      <div class="clearfix"></div>
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we assimilate first iterations with imperfections,
+        hoping for others to take issue with-and improve them.
+
+        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
+        but please be reminded to use our creations at your own risk.
+        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+      </p>
+      <p>
+        Now go and:
+        [
+        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/php/url/http_build_query.js">View on GitHub</a></strong>
+        |
+        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/php/url/http_build_query.js">Edit on GitHub</a></strong>
+        |
+        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/url/http_build_query.js">View Raw</a></strong>
+        ]
+      </p>
+
 
       <hr />
       
@@ -572,6 +571,25 @@ http_build_query of PHP while in locutus they are not.</p>
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2024/04/24-update/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/bunnies.webp)" alt="Easter Update" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/04/24-update/" class="title">Easter Update</a></p>
+                            <p class="item-date"><time datetime="2024-04-05T00:00:00.000Z" itemprop="datePublished">2024-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2016/05/announcing-locutus/" class="thumbnail">
     
     
@@ -607,25 +625,6 @@ http_build_query of PHP while in locutus they are not.</p>
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/04/jekyll/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
-                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -640,8 +639,6 @@ http_build_query of PHP while in locutus they are not.</p>
     <div class="outer">
         <div id="footer-info" class="inner">
             &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
-            Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
-            Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>

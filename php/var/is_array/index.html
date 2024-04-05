@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&#39;s is_array looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-04-05T18:08:50.946Z">
-<meta property="article:modified_time" content="2024-04-05T18:08:50.946Z">
+<meta property="article:published_time" content="2024-04-05T19:37:16.136Z">
+<meta property="article:modified_time" content="2024-04-05T19:37:16.136Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -187,75 +187,21 @@ ga('send', 'pageview');
     </header>
 
     <div class="article-entry">
-      <p>
-        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.is-array.php">PHP's is_array</a> looks like.
-      </p>
-
-      <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">is_array</span>(<span class="params">mixedVar</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/is_array/</span></span><br><span class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Legaev Andrey</span></span><br><span class="line">  <span class="comment">// improved by: Onno Marsman (https://twitter.com/onnomarsman)</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// improved by: Nathan Sepulveda</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Cord</span></span><br><span class="line">  <span class="comment">// bugfixed by: Manish</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//      note 1: In Locutus, javascript objects are like php associative arrays,</span></span><br><span class="line">  <span class="comment">//      note 1: thus JavaScript objects will also</span></span><br><span class="line">  <span class="comment">//      note 1: return true in this function (except for objects which inherit properties,</span></span><br><span class="line">  <span class="comment">//      note 1: being thus used as objects),</span></span><br><span class="line">  <span class="comment">//      note 1: unless you do ini_set(&#x27;locutus.objectsAsArrays&#x27;, 0),</span></span><br><span class="line">  <span class="comment">//      note 1: in which case only genuine JavaScript arrays</span></span><br><span class="line">  <span class="comment">//      note 1: will return true</span></span><br><span class="line">  <span class="comment">//   example 1: is_array([&#x27;Kevin&#x27;, &#x27;van&#x27;, &#x27;Zonneveld&#x27;])</span></span><br><span class="line">  <span class="comment">//   returns 1: true</span></span><br><span class="line">  <span class="comment">//   example 2: is_array(&#x27;Kevin van Zonneveld&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 2: false</span></span><br><span class="line">  <span class="comment">//   example 3: is_array(&#123;0: &#x27;Kevin&#x27;, 1: &#x27;van&#x27;, 2: &#x27;Zonneveld&#x27;&#125;)</span></span><br><span class="line">  <span class="comment">//   returns 3: true</span></span><br><span class="line">  <span class="comment">//   example 4: ini_set(&#x27;locutus.objectsAsArrays&#x27;, 0)</span></span><br><span class="line">  <span class="comment">//   example 4: is_array(&#123;0: &#x27;Kevin&#x27;, 1: &#x27;van&#x27;, 2: &#x27;Zonneveld&#x27;&#125;)</span></span><br><span class="line">  <span class="comment">//   returns 4: false</span></span><br><span class="line">  <span class="comment">//   example 5: is_array(function tmp_a ()&#123; this.name = &#x27;Kevin&#x27; &#125;)</span></span><br><span class="line">  <span class="comment">//   returns 5: false</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _getFuncName = <span class="keyword">function</span> (<span class="params">fn</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> name = <span class="regexp">/\W*function\s+([\w$]+)\s*\(/</span>.<span class="title function_">exec</span>(fn)</span><br><span class="line">    <span class="keyword">if</span> (!name) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(Anonymous)&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> name[<span class="number">1</span>]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> _isArray = <span class="keyword">function</span> (<span class="params">mixedVar</span>) &#123;</span><br><span class="line">    <span class="comment">// return Object.prototype.toString.call(mixedVar) === &#x27;[object Array]&#x27;;</span></span><br><span class="line">    <span class="comment">// The above works, but let&#x27;s do the even more stringent approach:</span></span><br><span class="line">    <span class="comment">// (since Object.prototype.toString could be overridden)</span></span><br><span class="line">    <span class="comment">// Null, Not an object, no length property so couldn&#x27;t be an Array (or String)</span></span><br><span class="line">    <span class="keyword">if</span> (!mixedVar || <span class="keyword">typeof</span> mixedVar !== <span class="string">&#x27;object&#x27;</span> || <span class="keyword">typeof</span> mixedVar.<span class="property">length</span> !== <span class="string">&#x27;number&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> len = mixedVar.<span class="property">length</span></span><br><span class="line">    mixedVar[mixedVar.<span class="property">length</span>] = <span class="string">&#x27;bogus&#x27;</span></span><br><span class="line">    <span class="comment">// The only way I can think of to get around this (or where there would be trouble)</span></span><br><span class="line">    <span class="comment">// would be to have an object defined</span></span><br><span class="line">    <span class="comment">// with a custom &quot;length&quot; getter which changed behavior on each call</span></span><br><span class="line">    <span class="comment">// (or a setter to mess up the following below) or a custom</span></span><br><span class="line">    <span class="comment">// setter for numeric properties, but even that would need to listen for</span></span><br><span class="line">    <span class="comment">// specific indexes; but there should be no false negatives</span></span><br><span class="line">    <span class="comment">// and such a false positive would need to rely on later JavaScript</span></span><br><span class="line">    <span class="comment">// innovations like __defineSetter__</span></span><br><span class="line">    <span class="keyword">if</span> (len !== mixedVar.<span class="property">length</span>) &#123;</span><br><span class="line">      <span class="comment">// We know it&#x27;s an array since length auto-changed with the addition of a</span></span><br><span class="line">      <span class="comment">// numeric property at its length end, so safely get rid of our bogus element</span></span><br><span class="line">      mixedVar.<span class="property">length</span> -= <span class="number">1</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Get rid of the property we added onto a non-array object; only possible</span></span><br><span class="line">    <span class="comment">// side-effect is if the user adds back the property later, it will iterate</span></span><br><span class="line">    <span class="comment">// this property in the older order placement in IE (an order which should not</span></span><br><span class="line">    <span class="comment">// be depended on anyways)</span></span><br><span class="line">    <span class="keyword">delete</span> mixedVar[mixedVar.<span class="property">length</span>]</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!mixedVar || <span class="keyword">typeof</span> mixedVar !== <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> isArray = <span class="title function_">_isArray</span>(mixedVar)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (isArray) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> iniVal =</span><br><span class="line">    (<span class="keyword">typeof</span> <span class="built_in">require</span> !== <span class="string">&#x27;undefined&#x27;</span> ? <span class="built_in">require</span>(<span class="string">&#x27;../info/ini_get&#x27;</span>)(<span class="string">&#x27;locutus.objectsAsArrays&#x27;</span>) : <span class="literal">undefined</span>) || <span class="string">&#x27;on&#x27;</span></span><br><span class="line">  <span class="keyword">if</span> (iniVal === <span class="string">&#x27;on&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> asString = <span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(mixedVar)</span><br><span class="line">    <span class="keyword">const</span> asFunc = <span class="title function_">_getFuncName</span>(mixedVar.<span class="property">constructor</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (asString === <span class="string">&#x27;[object Object]&#x27;</span> &amp;&amp; asFunc === <span class="string">&#x27;Object&#x27;</span>) &#123;</span><br><span class="line">      <span class="comment">// Most likely a literal and intended as assoc. array</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      [
-      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/var/is_array.js">View on GitHub</a>
-      |
-      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/var/is_array.js">Edit on GitHub</a>
-      |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/var/is_array.js">Source on GitHub</a>
-      ]
-
-      <div class="clearfix"></div>
-
       <h2>How to use</h2>
       <p>
-        You you can install via <code>npm install locutus</code> and
-        require it via <code>require('locutus/php/var/is_array')</code>.
-        You could also require the <code>var</code> module in full
-        so that you could access <code>var.is_array</code> instead.
+        You you can install via <code>yarn add locutus</code> and
+        require this function via <code>const is_array = require('locutus/php/var/is_array')</code>.
       </p>
       <p>
-        If you intend to target the browser, you can then use a module bundler such as
+        It is important to use a bundler that supports tree-shaking
+        so that you only ship the functions that you actually use to your browser,
+        instead of all of Locutus, which is massive. Examples are:
         <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
-        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>,
-        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>, or
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
         <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
 
-        This can be important because Locutus allows modern JavaScript in
-        the source files, meaning it may not work in all browsers without
-        a build/transpile step. Locutus does transpile all functions to ES5
-        before publishing to npm.
+        For server-side use this is typically less of a concern.
       </p>
-
-      
-
-      <h2>A community effort</h2>
-      <p>
-        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
-        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
-        This means that we don't consider it to be a bad thing that many of
-        our functions are first iterations, which may still have their
-        fair share of issues. We hope that these flaws will inspire others to come up with better ideas.
-      </p>
-      <p>
-        This way of working also means that we don't offer any
-        production guarantees, and recommend to use Locutus inspiration
-        and learning purposes only.
-      </p>
-      
-        <h2>Notes</h2>
-        <ul>
-        
-          <li><p>In Locutus, javascript objects are like php associative arrays,
-thus JavaScript objects will also
-return true in this function (except for objects which inherit properties,
-being thus used as objects),
-unless you do ini_set(‘locutus.objectsAsArrays’, 0),
-in which case only genuine JavaScript arrays
-will return true</p>
-</li>
-        
-        </ul>
-      
-
-      
 
       
         <h2>Examples</h2>
@@ -280,6 +226,59 @@ is_array({0: &#39;Kevin&#39;, 1: &#39;van&#39;, 2: &#39;Zonneveld&#39;})</code><
         
         </table>
       
+
+      
+
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>In Locutus, javascript objects are like php associative arrays,
+thus JavaScript objects will also
+return true in this function (except for objects which inherit properties,
+being thus used as objects),
+unless you do ini_set(‘locutus.objectsAsArrays’, 0),
+in which case only genuine JavaScript arrays
+will return true</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      <p>
+        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.is-array.php">PHP's is_array</a> looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">is_array</span>(<span class="params">mixedVar</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/is_array/</span></span><br><span class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Legaev Andrey</span></span><br><span class="line">  <span class="comment">// improved by: Onno Marsman (https://twitter.com/onnomarsman)</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// improved by: Nathan Sepulveda</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Cord</span></span><br><span class="line">  <span class="comment">// bugfixed by: Manish</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//      note 1: In Locutus, javascript objects are like php associative arrays,</span></span><br><span class="line">  <span class="comment">//      note 1: thus JavaScript objects will also</span></span><br><span class="line">  <span class="comment">//      note 1: return true in this function (except for objects which inherit properties,</span></span><br><span class="line">  <span class="comment">//      note 1: being thus used as objects),</span></span><br><span class="line">  <span class="comment">//      note 1: unless you do ini_set(&#x27;locutus.objectsAsArrays&#x27;, 0),</span></span><br><span class="line">  <span class="comment">//      note 1: in which case only genuine JavaScript arrays</span></span><br><span class="line">  <span class="comment">//      note 1: will return true</span></span><br><span class="line">  <span class="comment">//   example 1: is_array([&#x27;Kevin&#x27;, &#x27;van&#x27;, &#x27;Zonneveld&#x27;])</span></span><br><span class="line">  <span class="comment">//   returns 1: true</span></span><br><span class="line">  <span class="comment">//   example 2: is_array(&#x27;Kevin van Zonneveld&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 2: false</span></span><br><span class="line">  <span class="comment">//   example 3: is_array(&#123;0: &#x27;Kevin&#x27;, 1: &#x27;van&#x27;, 2: &#x27;Zonneveld&#x27;&#125;)</span></span><br><span class="line">  <span class="comment">//   returns 3: true</span></span><br><span class="line">  <span class="comment">//   example 4: ini_set(&#x27;locutus.objectsAsArrays&#x27;, 0)</span></span><br><span class="line">  <span class="comment">//   example 4: is_array(&#123;0: &#x27;Kevin&#x27;, 1: &#x27;van&#x27;, 2: &#x27;Zonneveld&#x27;&#125;)</span></span><br><span class="line">  <span class="comment">//   returns 4: false</span></span><br><span class="line">  <span class="comment">//   example 5: is_array(function tmp_a ()&#123; this.name = &#x27;Kevin&#x27; &#125;)</span></span><br><span class="line">  <span class="comment">//   returns 5: false</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _getFuncName = <span class="keyword">function</span> (<span class="params">fn</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> name = <span class="regexp">/\W*function\s+([\w$]+)\s*\(/</span>.<span class="title function_">exec</span>(fn)</span><br><span class="line">    <span class="keyword">if</span> (!name) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(Anonymous)&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> name[<span class="number">1</span>]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> _isArray = <span class="keyword">function</span> (<span class="params">mixedVar</span>) &#123;</span><br><span class="line">    <span class="comment">// return Object.prototype.toString.call(mixedVar) === &#x27;[object Array]&#x27;;</span></span><br><span class="line">    <span class="comment">// The above works, but let&#x27;s do the even more stringent approach:</span></span><br><span class="line">    <span class="comment">// (since Object.prototype.toString could be overridden)</span></span><br><span class="line">    <span class="comment">// Null, Not an object, no length property so couldn&#x27;t be an Array (or String)</span></span><br><span class="line">    <span class="keyword">if</span> (!mixedVar || <span class="keyword">typeof</span> mixedVar !== <span class="string">&#x27;object&#x27;</span> || <span class="keyword">typeof</span> mixedVar.<span class="property">length</span> !== <span class="string">&#x27;number&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> len = mixedVar.<span class="property">length</span></span><br><span class="line">    mixedVar[mixedVar.<span class="property">length</span>] = <span class="string">&#x27;bogus&#x27;</span></span><br><span class="line">    <span class="comment">// The only way I can think of to get around this (or where there would be trouble)</span></span><br><span class="line">    <span class="comment">// would be to have an object defined</span></span><br><span class="line">    <span class="comment">// with a custom &quot;length&quot; getter which changed behavior on each call</span></span><br><span class="line">    <span class="comment">// (or a setter to mess up the following below) or a custom</span></span><br><span class="line">    <span class="comment">// setter for numeric properties, but even that would need to listen for</span></span><br><span class="line">    <span class="comment">// specific indexes; but there should be no false negatives</span></span><br><span class="line">    <span class="comment">// and such a false positive would need to rely on later JavaScript</span></span><br><span class="line">    <span class="comment">// innovations like __defineSetter__</span></span><br><span class="line">    <span class="keyword">if</span> (len !== mixedVar.<span class="property">length</span>) &#123;</span><br><span class="line">      <span class="comment">// We know it&#x27;s an array since length auto-changed with the addition of a</span></span><br><span class="line">      <span class="comment">// numeric property at its length end, so safely get rid of our bogus element</span></span><br><span class="line">      mixedVar.<span class="property">length</span> -= <span class="number">1</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Get rid of the property we added onto a non-array object; only possible</span></span><br><span class="line">    <span class="comment">// side-effect is if the user adds back the property later, it will iterate</span></span><br><span class="line">    <span class="comment">// this property in the older order placement in IE (an order which should not</span></span><br><span class="line">    <span class="comment">// be depended on anyways)</span></span><br><span class="line">    <span class="keyword">delete</span> mixedVar[mixedVar.<span class="property">length</span>]</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!mixedVar || <span class="keyword">typeof</span> mixedVar !== <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> isArray = <span class="title function_">_isArray</span>(mixedVar)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (isArray) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> iniVal =</span><br><span class="line">    (<span class="keyword">typeof</span> <span class="built_in">require</span> !== <span class="string">&#x27;undefined&#x27;</span> ? <span class="built_in">require</span>(<span class="string">&#x27;../info/ini_get&#x27;</span>)(<span class="string">&#x27;locutus.objectsAsArrays&#x27;</span>) : <span class="literal">undefined</span>) || <span class="string">&#x27;on&#x27;</span></span><br><span class="line">  <span class="keyword">if</span> (iniVal === <span class="string">&#x27;on&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> asString = <span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(mixedVar)</span><br><span class="line">    <span class="keyword">const</span> asFunc = <span class="title function_">_getFuncName</span>(mixedVar.<span class="property">constructor</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (asString === <span class="string">&#x27;[object Object]&#x27;</span> &amp;&amp; asFunc === <span class="string">&#x27;Object&#x27;</span>) &#123;</span><br><span class="line">      <span class="comment">// Most likely a literal and intended as assoc. array</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      <div class="clearfix"></div>
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we assimilate first iterations with imperfections,
+        hoping for others to take issue with-and improve them.
+
+        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
+        but please be reminded to use our creations at your own risk.
+        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+      </p>
+      <p>
+        Now go and:
+        [
+        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/php/var/is_array.js">View on GitHub</a></strong>
+        |
+        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/php/var/is_array.js">Edit on GitHub</a></strong>
+        |
+        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/var/is_array.js">View Raw</a></strong>
+        ]
+      </p>
+
 
       <hr />
       
@@ -582,6 +581,25 @@ is_array({0: &#39;Kevin&#39;, 1: &#39;van&#39;, 2: &#39;Zonneveld&#39;})</code><
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2024/04/24-update/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/bunnies.webp)" alt="Easter Update" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/04/24-update/" class="title">Easter Update</a></p>
+                            <p class="item-date"><time datetime="2024-04-05T00:00:00.000Z" itemprop="datePublished">2024-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2016/05/announcing-locutus/" class="thumbnail">
     
     
@@ -617,25 +635,6 @@ is_array({0: &#39;Kevin&#39;, 1: &#39;van&#39;, 2: &#39;Zonneveld&#39;})</code><
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/04/jekyll/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
-                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -650,8 +649,6 @@ is_array({0: &#39;Kevin&#39;, 1: &#39;van&#39;, 2: &#39;Zonneveld&#39;})</code><
     <div class="outer">
         <div id="footer-info" class="inner">
             &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
-            Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
-            Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>

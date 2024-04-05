@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&#39;s array_count_values looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-04-05T18:08:50.738Z">
-<meta property="article:modified_time" content="2024-04-05T18:08:50.738Z">
+<meta property="article:published_time" content="2024-04-05T19:37:15.932Z">
+<meta property="article:modified_time" content="2024-04-05T19:37:15.932Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -187,76 +187,21 @@ ga('send', 'pageview');
     </header>
 
     <div class="article-entry">
-      <p>
-        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.array-count-values.php">PHP's array_count_values</a> looks like.
-      </p>
-
-      <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">array_count_values</span>(<span class="params">array</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_count_values/</span></span><br><span class="line">  <span class="comment">// original by: Ates Goral (https://magnetiq.com)</span></span><br><span class="line">  <span class="comment">// improved by: Michael White (https://getsprink.com)</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//    input by: sankai</span></span><br><span class="line">  <span class="comment">//    input by: Shingo</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//   example 1: array_count_values([ 3, 5, 3, &quot;foo&quot;, &quot;bar&quot;, &quot;foo&quot; ])</span></span><br><span class="line">  <span class="comment">//   returns 1: &#123;3:2, 5:1, &quot;foo&quot;:2, &quot;bar&quot;:1&#125;</span></span><br><span class="line">  <span class="comment">//   example 2: array_count_values(&#123; p1: 3, p2: 5, p3: 3, p4: &quot;foo&quot;, p5: &quot;bar&quot;, p6: &quot;foo&quot; &#125;)</span></span><br><span class="line">  <span class="comment">//   returns 2: &#123;3:2, 5:1, &quot;foo&quot;:2, &quot;bar&quot;:1&#125;</span></span><br><span class="line">  <span class="comment">//   example 3: array_count_values([ true, 4.2, 42, &quot;fubar&quot; ])</span></span><br><span class="line">  <span class="comment">//   returns 3: &#123;42:1, &quot;fubar&quot;:1&#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> tmpArr = &#123;&#125;</span><br><span class="line">  <span class="keyword">let</span> key = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> t = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _getType = <span class="keyword">function</span> (<span class="params">obj</span>) &#123;</span><br><span class="line">    <span class="comment">// Objects are php associative arrays.</span></span><br><span class="line">    <span class="keyword">let</span> t = <span class="keyword">typeof</span> obj</span><br><span class="line">    t = t.<span class="title function_">toLowerCase</span>()</span><br><span class="line">    <span class="keyword">if</span> (t === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">      t = <span class="string">&#x27;array&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> t</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _countValue = <span class="keyword">function</span> (<span class="params">tmpArr, value</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> value === <span class="string">&#x27;number&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="title class_">Math</span>.<span class="title function_">floor</span>(value) !== value) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> value !== <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (value <span class="keyword">in</span> tmpArr &amp;&amp; tmpArr.<span class="title function_">hasOwnProperty</span>(value)) &#123;</span><br><span class="line">      ++tmpArr[value]</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      tmpArr[value] = <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  t = <span class="title function_">_getType</span>(array)</span><br><span class="line">  <span class="keyword">if</span> (t === <span class="string">&#x27;array&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (key <span class="keyword">in</span> array) &#123;</span><br><span class="line">      <span class="keyword">if</span> (array.<span class="title function_">hasOwnProperty</span>(key)) &#123;</span><br><span class="line">        _countValue.<span class="title function_">call</span>(<span class="variable language_">this</span>, tmpArr, array[key])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> tmpArr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      [
-      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/array/array_count_values.js">View on GitHub</a>
-      |
-      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/array/array_count_values.js">Edit on GitHub</a>
-      |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/array/array_count_values.js">Source on GitHub</a>
-      ]
-
-      <div class="clearfix"></div>
-
       <h2>How to use</h2>
       <p>
-        You you can install via <code>npm install locutus</code> and
-        require it via <code>require('locutus/php/array/array_count_values')</code>.
-        You could also require the <code>array</code> module in full
-        so that you could access <code>array.array_count_values</code> instead.
+        You you can install via <code>yarn add locutus</code> and
+        require this function via <code>const array_count_values = require('locutus/php/array/array_count_values')</code>.
       </p>
       <p>
-        If you intend to target the browser, you can then use a module bundler such as
+        It is important to use a bundler that supports tree-shaking
+        so that you only ship the functions that you actually use to your browser,
+        instead of all of Locutus, which is massive. Examples are:
         <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
-        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>,
-        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>, or
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
         <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
 
-        This can be important because Locutus allows modern JavaScript in
-        the source files, meaning it may not work in all browsers without
-        a build/transpile step. Locutus does transpile all functions to ES5
-        before publishing to npm.
+        For server-side use this is typically less of a concern.
       </p>
-
-      
-        <h2>PHP arrays and JavaScript</h2>
-        <p>
-          Please note that Locutus uses JavaScript objects as substitutes for PHP arrays,
-          they are the closest we can get to this hashtable-like data structure without
-          rolling our own. While many JavaScript implementations preserve the order of object properties, the
-          <a href="https://www.ecma-international.org/ecma-262/5.1/#sec-8.6">ECMAScript Language Specification</a>
-          explicitly states that:
-        </p>
-
-        <blockquote>The mechanics and order of enumerating the properties is not specified.</blockquote>
-
-        <p>
-          So don't use this for anything serious if you rely on the order to be consistent accross platforms.
-        </p>
-      
-
-      <h2>A community effort</h2>
-      <p>
-        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
-        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
-        This means that we don't consider it to be a bad thing that many of
-        our functions are first iterations, which may still have their
-        fair share of issues. We hope that these flaws will inspire others to come up with better ideas.
-      </p>
-      <p>
-        This way of working also means that we don't offer any
-        production guarantees, and recommend to use Locutus inspiration
-        and learning purposes only.
-      </p>
-      
-
-      
 
       
         <h2>Examples</h2>
@@ -276,6 +221,64 @@ ga('send', 'pageview');
         
         </table>
       
+
+      
+        <h2>PHP arrays and JavaScript</h2>
+        <p>
+          Please note that Locutus uses JavaScript objects as substitutes for PHP arrays,
+          they are the closest we can get to this hashtable-like data structure without
+          rolling our own. While many JavaScript implementations preserve the order of object properties, the
+          <a href="https://www.ecma-international.org/ecma-262/5.1/#sec-8.6">ECMAScript Language Specification</a>
+          explicitly states that:
+        </p>
+
+        <blockquote>The mechanics and order of enumerating the properties is not specified.</blockquote>
+
+        <p>
+          So don't use this for anything serious if you rely on the order to be consistent accross platforms.
+        </p>
+
+        <p>
+          To influence how Locutus treats objects to arrays, you can check out the `locutus.objectsAsArrays` setting.
+        </p>
+      
+
+      
+
+      
+
+      <p>
+        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.array-count-values.php">PHP's array_count_values</a> looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">array_count_values</span>(<span class="params">array</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_count_values/</span></span><br><span class="line">  <span class="comment">// original by: Ates Goral (https://magnetiq.com)</span></span><br><span class="line">  <span class="comment">// improved by: Michael White (https://getsprink.com)</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//    input by: sankai</span></span><br><span class="line">  <span class="comment">//    input by: Shingo</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//   example 1: array_count_values([ 3, 5, 3, &quot;foo&quot;, &quot;bar&quot;, &quot;foo&quot; ])</span></span><br><span class="line">  <span class="comment">//   returns 1: &#123;3:2, 5:1, &quot;foo&quot;:2, &quot;bar&quot;:1&#125;</span></span><br><span class="line">  <span class="comment">//   example 2: array_count_values(&#123; p1: 3, p2: 5, p3: 3, p4: &quot;foo&quot;, p5: &quot;bar&quot;, p6: &quot;foo&quot; &#125;)</span></span><br><span class="line">  <span class="comment">//   returns 2: &#123;3:2, 5:1, &quot;foo&quot;:2, &quot;bar&quot;:1&#125;</span></span><br><span class="line">  <span class="comment">//   example 3: array_count_values([ true, 4.2, 42, &quot;fubar&quot; ])</span></span><br><span class="line">  <span class="comment">//   returns 3: &#123;42:1, &quot;fubar&quot;:1&#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> tmpArr = &#123;&#125;</span><br><span class="line">  <span class="keyword">let</span> key = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> t = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _getType = <span class="keyword">function</span> (<span class="params">obj</span>) &#123;</span><br><span class="line">    <span class="comment">// Objects are php associative arrays.</span></span><br><span class="line">    <span class="keyword">let</span> t = <span class="keyword">typeof</span> obj</span><br><span class="line">    t = t.<span class="title function_">toLowerCase</span>()</span><br><span class="line">    <span class="keyword">if</span> (t === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">      t = <span class="string">&#x27;array&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> t</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _countValue = <span class="keyword">function</span> (<span class="params">tmpArr, value</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> value === <span class="string">&#x27;number&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="title class_">Math</span>.<span class="title function_">floor</span>(value) !== value) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> value !== <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (value <span class="keyword">in</span> tmpArr &amp;&amp; tmpArr.<span class="title function_">hasOwnProperty</span>(value)) &#123;</span><br><span class="line">      ++tmpArr[value]</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      tmpArr[value] = <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  t = <span class="title function_">_getType</span>(array)</span><br><span class="line">  <span class="keyword">if</span> (t === <span class="string">&#x27;array&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (key <span class="keyword">in</span> array) &#123;</span><br><span class="line">      <span class="keyword">if</span> (array.<span class="title function_">hasOwnProperty</span>(key)) &#123;</span><br><span class="line">        _countValue.<span class="title function_">call</span>(<span class="variable language_">this</span>, tmpArr, array[key])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> tmpArr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      <div class="clearfix"></div>
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we assimilate first iterations with imperfections,
+        hoping for others to take issue with-and improve them.
+
+        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
+        but please be reminded to use our creations at your own risk.
+        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+      </p>
+      <p>
+        Now go and:
+        [
+        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/php/array/array_count_values.js">View on GitHub</a></strong>
+        |
+        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/php/array/array_count_values.js">Edit on GitHub</a></strong>
+        |
+        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/array/array_count_values.js">View Raw</a></strong>
+        ]
+      </p>
+
 
       <hr />
       
@@ -578,6 +581,25 @@ ga('send', 'pageview');
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2024/04/24-update/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/bunnies.webp)" alt="Easter Update" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/04/24-update/" class="title">Easter Update</a></p>
+                            <p class="item-date"><time datetime="2024-04-05T00:00:00.000Z" itemprop="datePublished">2024-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2016/05/announcing-locutus/" class="thumbnail">
     
     
@@ -613,25 +635,6 @@ ga('send', 'pageview');
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/04/jekyll/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
-                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -646,8 +649,6 @@ ga('send', 'pageview');
     <div class="outer">
         <div id="footer-info" class="inner">
             &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
-            Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
-            Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>

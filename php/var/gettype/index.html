@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&#39;s gettype looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-04-05T18:08:50.946Z">
-<meta property="article:modified_time" content="2024-04-05T18:08:50.946Z">
+<meta property="article:published_time" content="2024-04-05T19:37:16.132Z">
+<meta property="article:modified_time" content="2024-04-05T19:37:16.132Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -187,70 +187,21 @@ ga('send', 'pageview');
     </header>
 
     <div class="article-entry">
-      <p>
-        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.gettype.php">PHP's gettype</a> looks like.
-      </p>
-
-      <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">gettype</span>(<span class="params">mixedVar</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/gettype/</span></span><br><span class="line">  <span class="comment">// original by: Paulo Freitas</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Douglas Crockford (https://javascript.crockford.com)</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: KELAN</span></span><br><span class="line">  <span class="comment">//      note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes</span></span><br><span class="line">  <span class="comment">//      note 1: it different from the PHP implementation. We can&#x27;t fix this unfortunately.</span></span><br><span class="line">  <span class="comment">//   example 1: gettype(1)</span></span><br><span class="line">  <span class="comment">//   returns 1: &#x27;integer&#x27;</span></span><br><span class="line">  <span class="comment">//   example 2: gettype(undefined)</span></span><br><span class="line">  <span class="comment">//   returns 2: &#x27;undefined&#x27;</span></span><br><span class="line">  <span class="comment">//   example 3: gettype(&#123;0: &#x27;Kevin van Zonneveld&#x27;&#125;)</span></span><br><span class="line">  <span class="comment">//   returns 3: &#x27;object&#x27;</span></span><br><span class="line">  <span class="comment">//   example 4: gettype(&#x27;foo&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 4: &#x27;string&#x27;</span></span><br><span class="line">  <span class="comment">//   example 5: gettype(&#123;0: function () &#123;return false;&#125;&#125;)</span></span><br><span class="line">  <span class="comment">//   returns 5: &#x27;object&#x27;</span></span><br><span class="line">  <span class="comment">//   example 6: gettype(&#123;0: &#x27;test&#x27;, length: 1, splice: function () &#123;&#125;&#125;)</span></span><br><span class="line">  <span class="comment">//   returns 6: &#x27;object&#x27;</span></span><br><span class="line">  <span class="comment">//   example 7: gettype([&#x27;test&#x27;])</span></span><br><span class="line">  <span class="comment">//   returns 7: &#x27;array&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> isFloat = <span class="built_in">require</span>(<span class="string">&#x27;../var/is_float&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> s = <span class="keyword">typeof</span> mixedVar</span><br><span class="line">  <span class="keyword">let</span> name</span><br><span class="line">  <span class="keyword">const</span> _getFuncName = <span class="keyword">function</span> (<span class="params">fn</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> name = <span class="regexp">/\W*function\s+([\w$]+)\s*\(/</span>.<span class="title function_">exec</span>(fn)</span><br><span class="line">    <span class="keyword">if</span> (!name) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(Anonymous)&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> name[<span class="number">1</span>]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (s === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (mixedVar !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="comment">// From: https://javascript.crockford.com/remedial.html</span></span><br><span class="line">      <span class="comment">// @todo: Break up this lengthy if statement</span></span><br><span class="line">      <span class="keyword">if</span> (</span><br><span class="line">        <span class="keyword">typeof</span> mixedVar.<span class="property">length</span> === <span class="string">&#x27;number&#x27;</span> &amp;&amp;</span><br><span class="line">        !mixedVar.<span class="title function_">propertyIsEnumerable</span>(<span class="string">&#x27;length&#x27;</span>) &amp;&amp;</span><br><span class="line">        <span class="keyword">typeof</span> mixedVar.<span class="property">splice</span> === <span class="string">&#x27;function&#x27;</span></span><br><span class="line">      ) &#123;</span><br><span class="line">        s = <span class="string">&#x27;array&#x27;</span></span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (mixedVar.<span class="property">constructor</span> &amp;&amp; <span class="title function_">_getFuncName</span>(mixedVar.<span class="property">constructor</span>)) &#123;</span><br><span class="line">        name = <span class="title function_">_getFuncName</span>(mixedVar.<span class="property">constructor</span>)</span><br><span class="line">        <span class="keyword">if</span> (name === <span class="string">&#x27;Date&#x27;</span>) &#123;</span><br><span class="line">          <span class="comment">// not in PHP</span></span><br><span class="line">          s = <span class="string">&#x27;date&#x27;</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (name === <span class="string">&#x27;RegExp&#x27;</span>) &#123;</span><br><span class="line">          <span class="comment">// not in PHP</span></span><br><span class="line">          s = <span class="string">&#x27;regexp&#x27;</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (name === <span class="string">&#x27;LOCUTUS_Resource&#x27;</span>) &#123;</span><br><span class="line">          <span class="comment">// Check against our own resource constructor</span></span><br><span class="line">          s = <span class="string">&#x27;resource&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      s = <span class="string">&#x27;null&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (s === <span class="string">&#x27;number&#x27;</span>) &#123;</span><br><span class="line">    s = <span class="title function_">isFloat</span>(mixedVar) ? <span class="string">&#x27;double&#x27;</span> : <span class="string">&#x27;integer&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> s</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      [
-      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/var/gettype.js">View on GitHub</a>
-      |
-      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/var/gettype.js">Edit on GitHub</a>
-      |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/var/gettype.js">Source on GitHub</a>
-      ]
-
-      <div class="clearfix"></div>
-
       <h2>How to use</h2>
       <p>
-        You you can install via <code>npm install locutus</code> and
-        require it via <code>require('locutus/php/var/gettype')</code>.
-        You could also require the <code>var</code> module in full
-        so that you could access <code>var.gettype</code> instead.
+        You you can install via <code>yarn add locutus</code> and
+        require this function via <code>const gettype = require('locutus/php/var/gettype')</code>.
       </p>
       <p>
-        If you intend to target the browser, you can then use a module bundler such as
+        It is important to use a bundler that supports tree-shaking
+        so that you only ship the functions that you actually use to your browser,
+        instead of all of Locutus, which is massive. Examples are:
         <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
-        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>,
-        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>, or
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
         <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
 
-        This can be important because Locutus allows modern JavaScript in
-        the source files, meaning it may not work in all browsers without
-        a build/transpile step. Locutus does transpile all functions to ES5
-        before publishing to npm.
+        For server-side use this is typically less of a concern.
       </p>
-
-      
-
-      <h2>A community effort</h2>
-      <p>
-        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
-        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
-        This means that we don't consider it to be a bad thing that many of
-        our functions are first iterations, which may still have their
-        fair share of issues. We hope that these flaws will inspire others to come up with better ideas.
-      </p>
-      <p>
-        This way of working also means that we don't offer any
-        production guarantees, and recommend to use Locutus inspiration
-        and learning purposes only.
-      </p>
-      
-        <h2>Notes</h2>
-        <ul>
-        
-          <li><p>1.0 is simplified to 1 before it can be accessed by the function, this makes
-it different from the PHP implementation. We can’t fix this unfortunately.</p>
-</li>
-        
-        </ul>
-      
-
-      
 
       
         <h2>Examples</h2>
@@ -278,6 +229,54 @@ it different from the PHP implementation. We can’t fix this unfortunately.</p>
         
         </table>
       
+
+      
+
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>1.0 is simplified to 1 before it can be accessed by the function, this makes
+it different from the PHP implementation. We can’t fix this unfortunately.</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      <p>
+        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.gettype.php">PHP's gettype</a> looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">gettype</span>(<span class="params">mixedVar</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/gettype/</span></span><br><span class="line">  <span class="comment">// original by: Paulo Freitas</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Douglas Crockford (https://javascript.crockford.com)</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: KELAN</span></span><br><span class="line">  <span class="comment">//      note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes</span></span><br><span class="line">  <span class="comment">//      note 1: it different from the PHP implementation. We can&#x27;t fix this unfortunately.</span></span><br><span class="line">  <span class="comment">//   example 1: gettype(1)</span></span><br><span class="line">  <span class="comment">//   returns 1: &#x27;integer&#x27;</span></span><br><span class="line">  <span class="comment">//   example 2: gettype(undefined)</span></span><br><span class="line">  <span class="comment">//   returns 2: &#x27;undefined&#x27;</span></span><br><span class="line">  <span class="comment">//   example 3: gettype(&#123;0: &#x27;Kevin van Zonneveld&#x27;&#125;)</span></span><br><span class="line">  <span class="comment">//   returns 3: &#x27;object&#x27;</span></span><br><span class="line">  <span class="comment">//   example 4: gettype(&#x27;foo&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 4: &#x27;string&#x27;</span></span><br><span class="line">  <span class="comment">//   example 5: gettype(&#123;0: function () &#123;return false;&#125;&#125;)</span></span><br><span class="line">  <span class="comment">//   returns 5: &#x27;object&#x27;</span></span><br><span class="line">  <span class="comment">//   example 6: gettype(&#123;0: &#x27;test&#x27;, length: 1, splice: function () &#123;&#125;&#125;)</span></span><br><span class="line">  <span class="comment">//   returns 6: &#x27;object&#x27;</span></span><br><span class="line">  <span class="comment">//   example 7: gettype([&#x27;test&#x27;])</span></span><br><span class="line">  <span class="comment">//   returns 7: &#x27;array&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> isFloat = <span class="built_in">require</span>(<span class="string">&#x27;../var/is_float&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> s = <span class="keyword">typeof</span> mixedVar</span><br><span class="line">  <span class="keyword">let</span> name</span><br><span class="line">  <span class="keyword">const</span> _getFuncName = <span class="keyword">function</span> (<span class="params">fn</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> name = <span class="regexp">/\W*function\s+([\w$]+)\s*\(/</span>.<span class="title function_">exec</span>(fn)</span><br><span class="line">    <span class="keyword">if</span> (!name) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(Anonymous)&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> name[<span class="number">1</span>]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (s === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (mixedVar !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="comment">// From: https://javascript.crockford.com/remedial.html</span></span><br><span class="line">      <span class="comment">// @todo: Break up this lengthy if statement</span></span><br><span class="line">      <span class="keyword">if</span> (</span><br><span class="line">        <span class="keyword">typeof</span> mixedVar.<span class="property">length</span> === <span class="string">&#x27;number&#x27;</span> &amp;&amp;</span><br><span class="line">        !mixedVar.<span class="title function_">propertyIsEnumerable</span>(<span class="string">&#x27;length&#x27;</span>) &amp;&amp;</span><br><span class="line">        <span class="keyword">typeof</span> mixedVar.<span class="property">splice</span> === <span class="string">&#x27;function&#x27;</span></span><br><span class="line">      ) &#123;</span><br><span class="line">        s = <span class="string">&#x27;array&#x27;</span></span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (mixedVar.<span class="property">constructor</span> &amp;&amp; <span class="title function_">_getFuncName</span>(mixedVar.<span class="property">constructor</span>)) &#123;</span><br><span class="line">        name = <span class="title function_">_getFuncName</span>(mixedVar.<span class="property">constructor</span>)</span><br><span class="line">        <span class="keyword">if</span> (name === <span class="string">&#x27;Date&#x27;</span>) &#123;</span><br><span class="line">          <span class="comment">// not in PHP</span></span><br><span class="line">          s = <span class="string">&#x27;date&#x27;</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (name === <span class="string">&#x27;RegExp&#x27;</span>) &#123;</span><br><span class="line">          <span class="comment">// not in PHP</span></span><br><span class="line">          s = <span class="string">&#x27;regexp&#x27;</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (name === <span class="string">&#x27;LOCUTUS_Resource&#x27;</span>) &#123;</span><br><span class="line">          <span class="comment">// Check against our own resource constructor</span></span><br><span class="line">          s = <span class="string">&#x27;resource&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      s = <span class="string">&#x27;null&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (s === <span class="string">&#x27;number&#x27;</span>) &#123;</span><br><span class="line">    s = <span class="title function_">isFloat</span>(mixedVar) ? <span class="string">&#x27;double&#x27;</span> : <span class="string">&#x27;integer&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> s</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      <div class="clearfix"></div>
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we assimilate first iterations with imperfections,
+        hoping for others to take issue with-and improve them.
+
+        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
+        but please be reminded to use our creations at your own risk.
+        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+      </p>
+      <p>
+        Now go and:
+        [
+        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/php/var/gettype.js">View on GitHub</a></strong>
+        |
+        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/php/var/gettype.js">Edit on GitHub</a></strong>
+        |
+        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/var/gettype.js">View Raw</a></strong>
+        ]
+      </p>
+
 
       <hr />
       
@@ -580,6 +579,25 @@ it different from the PHP implementation. We can’t fix this unfortunately.</p>
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2024/04/24-update/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/bunnies.webp)" alt="Easter Update" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/04/24-update/" class="title">Easter Update</a></p>
+                            <p class="item-date"><time datetime="2024-04-05T00:00:00.000Z" itemprop="datePublished">2024-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2016/05/announcing-locutus/" class="thumbnail">
     
     
@@ -615,25 +633,6 @@ it different from the PHP implementation. We can’t fix this unfortunately.</p>
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/04/jekyll/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
-                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -648,8 +647,6 @@ it different from the PHP implementation. We can’t fix this unfortunately.</p>
     <div class="outer">
         <div id="footer-info" class="inner">
             &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
-            Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
-            Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>

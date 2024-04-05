@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&#39;s json_decode looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-04-05T18:08:50.838Z">
-<meta property="article:modified_time" content="2024-04-05T18:08:50.838Z">
+<meta property="article:published_time" content="2024-04-05T19:37:16.032Z">
+<meta property="article:modified_time" content="2024-04-05T19:37:16.032Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -187,71 +187,21 @@ ga('send', 'pageview');
     </header>
 
     <div class="article-entry">
-      <p>
-        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.json-decode.php">PHP's json_decode</a> looks like.
-      </p>
-
-      <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">json_decode</span>(<span class="params">strJson</span>) &#123;</span><br><span class="line">  <span class="comment">//       discuss at: https://phpjs.org/functions/json_decode/</span></span><br><span class="line">  <span class="comment">//      original by: Public Domain (https://www.json.org/json2.js)</span></span><br><span class="line">  <span class="comment">// reimplemented by: Kevin van Zonneveld (https://kevin.vanzonneveld.net)</span></span><br><span class="line">  <span class="comment">//      improved by: T.J. Leahy</span></span><br><span class="line">  <span class="comment">//      improved by: Michael White</span></span><br><span class="line">  <span class="comment">//           note 1: If node or the browser does not offer JSON.parse,</span></span><br><span class="line">  <span class="comment">//           note 1: this function falls backslash</span></span><br><span class="line">  <span class="comment">//           note 1: to its own implementation using eval, and hence should be considered unsafe</span></span><br><span class="line">  <span class="comment">//        example 1: json_decode(&#x27;[ 1 ]&#x27;)</span></span><br><span class="line">  <span class="comment">//        returns 1: [1]</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">    https://www.JSON.org/json2.js</span></span><br><span class="line"><span class="comment">    2008-11-19</span></span><br><span class="line"><span class="comment">    Public Domain.</span></span><br><span class="line"><span class="comment">    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.</span></span><br><span class="line"><span class="comment">    See https://www.JSON.org/js.html</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> $global = <span class="keyword">typeof</span> <span class="variable language_">window</span> !== <span class="string">&#x27;undefined&#x27;</span> ? <span class="variable language_">window</span> : <span class="variable language_">global</span></span><br><span class="line">  $global.<span class="property">$locutus</span> = $global.<span class="property">$locutus</span> || &#123;&#125;</span><br><span class="line">  <span class="keyword">const</span> $locutus = $global.<span class="property">$locutus</span></span><br><span class="line">  $locutus.<span class="property">php</span> = $locutus.<span class="property">php</span> || &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> json = $global.<span class="property">JSON</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> json === <span class="string">&#x27;object&#x27;</span> &amp;&amp; <span class="keyword">typeof</span> json.<span class="property">parse</span> === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> json.<span class="title function_">parse</span>(strJson)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!(err <span class="keyword">instanceof</span> <span class="title class_">SyntaxError</span>)) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Unexpected error type in json_decode()&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// usable by json_last_error()</span></span><br><span class="line">      $locutus.<span class="property">php</span>.<span class="property">last_error_json</span> = <span class="number">4</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> chars = [</span><br><span class="line">    <span class="string">&#x27;\u0000&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\u00ad&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\u0600-\u0604&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\u070f&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\u17b4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\u17b5&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\u200c-\u200f&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\u2028-\u202f&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\u2060-\u206f&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\ufeff&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\ufff0-\uffff&#x27;</span>,</span><br><span class="line">  ].<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">  <span class="keyword">const</span> cx = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">&#x27;[&#x27;</span> + chars + <span class="string">&#x27;]&#x27;</span>, <span class="string">&#x27;g&#x27;</span>)</span><br><span class="line">  <span class="keyword">let</span> j</span><br><span class="line">  <span class="keyword">let</span> text = strJson</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Parsing happens in four stages. In the first stage, we replace certain</span></span><br><span class="line">  <span class="comment">// Unicode characters with escape sequences. JavaScript handles many characters</span></span><br><span class="line">  <span class="comment">// incorrectly, either silently deleting them, or treating them as line endings.</span></span><br><span class="line">  cx.<span class="property">lastIndex</span> = <span class="number">0</span></span><br><span class="line">  <span class="keyword">if</span> (cx.<span class="title function_">test</span>(text)) &#123;</span><br><span class="line">    text = text.<span class="title function_">replace</span>(cx, <span class="keyword">function</span> (<span class="params">a</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;\\u&#x27;</span> + (<span class="string">&#x27;0000&#x27;</span> + a.<span class="title function_">charCodeAt</span>(<span class="number">0</span>).<span class="title function_">toString</span>(<span class="number">16</span>)).<span class="title function_">slice</span>(-<span class="number">4</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// In the second stage, we run the text against regular expressions that look</span></span><br><span class="line">  <span class="comment">// for non-JSON patterns. We are especially concerned with &#x27;()&#x27; and &#x27;new&#x27;</span></span><br><span class="line">  <span class="comment">// because they can cause invocation, and &#x27;=&#x27; because it can cause mutation.</span></span><br><span class="line">  <span class="comment">// But just to be safe, we want to reject all unexpected forms.</span></span><br><span class="line">  <span class="comment">// We split the second stage into 4 regexp operations in order to work around</span></span><br><span class="line">  <span class="comment">// crippling inefficiencies in IE&#x27;s and Safari&#x27;s regexp engines. First we</span></span><br><span class="line">  <span class="comment">// replace the JSON backslash pairs with &#x27;@&#x27; (a non-JSON character). Second, we</span></span><br><span class="line">  <span class="comment">// replace all simple value tokens with &#x27;]&#x27; characters. Third, we delete all</span></span><br><span class="line">  <span class="comment">// open brackets that follow a colon or comma or that begin the text. Finally,</span></span><br><span class="line">  <span class="comment">// we look to see that the remaining characters are only whitespace or &#x27;]&#x27; or</span></span><br><span class="line">  <span class="comment">// &#x27;,&#x27; or &#x27;:&#x27; or &#x27;&#123;&#x27; or &#x27;&#125;&#x27;. If that is so, then the text is safe for eval.</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> m = <span class="regexp">/^[\],:&#123;&#125;\s]*$/</span>.<span class="title function_">test</span>(</span><br><span class="line">    text</span><br><span class="line">      .<span class="title function_">replace</span>(<span class="regexp">/\\(?:[&quot;\\/bfnrt]|u[0-9a-fA-F]&#123;4&#125;)/g</span>, <span class="string">&#x27;@&#x27;</span>)</span><br><span class="line">      .<span class="title function_">replace</span>(<span class="regexp">/&quot;[^&quot;\\\n\r]*&quot;|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?/g</span>, <span class="string">&#x27;]&#x27;</span>)</span><br><span class="line">      .<span class="title function_">replace</span>(<span class="regexp">/(?:^|:|,)(?:\s*\[)+/g</span>, <span class="string">&#x27;&#x27;</span>),</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (m) &#123;</span><br><span class="line">    <span class="comment">// In the third stage we use the eval function to compile the text into a</span></span><br><span class="line">    <span class="comment">// JavaScript structure. The &#x27;&#123;&#x27; operator is subject to a syntactic ambiguity</span></span><br><span class="line">    <span class="comment">// in JavaScript: it can begin a block or an object literal. We wrap the text</span></span><br><span class="line">    <span class="comment">// in parens to eliminate the ambiguity.</span></span><br><span class="line">    j = <span class="built_in">eval</span>(<span class="string">&#x27;(&#x27;</span> + text + <span class="string">&#x27;)&#x27;</span>) <span class="comment">// eslint-disable-line no-eval</span></span><br><span class="line">    <span class="keyword">return</span> j</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// usable by json_last_error()</span></span><br><span class="line">  $locutus.<span class="property">php</span>.<span class="property">last_error_json</span> = <span class="number">4</span></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      [
-      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/json/json_decode.js">View on GitHub</a>
-      |
-      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/json/json_decode.js">Edit on GitHub</a>
-      |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/json/json_decode.js">Source on GitHub</a>
-      ]
-
-      <div class="clearfix"></div>
-
       <h2>How to use</h2>
       <p>
-        You you can install via <code>npm install locutus</code> and
-        require it via <code>require('locutus/php/json/json_decode')</code>.
-        You could also require the <code>json</code> module in full
-        so that you could access <code>json.json_decode</code> instead.
+        You you can install via <code>yarn add locutus</code> and
+        require this function via <code>const json_decode = require('locutus/php/json/json_decode')</code>.
       </p>
       <p>
-        If you intend to target the browser, you can then use a module bundler such as
+        It is important to use a bundler that supports tree-shaking
+        so that you only ship the functions that you actually use to your browser,
+        instead of all of Locutus, which is massive. Examples are:
         <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
-        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>,
-        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>, or
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
         <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
 
-        This can be important because Locutus allows modern JavaScript in
-        the source files, meaning it may not work in all browsers without
-        a build/transpile step. Locutus does transpile all functions to ES5
-        before publishing to npm.
+        For server-side use this is typically less of a concern.
       </p>
-
-      
-
-      <h2>A community effort</h2>
-      <p>
-        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
-        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
-        This means that we don't consider it to be a bad thing that many of
-        our functions are first iterations, which may still have their
-        fair share of issues. We hope that these flaws will inspire others to come up with better ideas.
-      </p>
-      <p>
-        This way of working also means that we don't offer any
-        production guarantees, and recommend to use Locutus inspiration
-        and learning purposes only.
-      </p>
-      
-        <h2>Notes</h2>
-        <ul>
-        
-          <li><p>If node or the browser does not offer JSON.parse,
-this function falls backslash
-to its own implementation using eval, and hence should be considered unsafe</p>
-</li>
-        
-        </ul>
-      
-
-      
 
       
         <h2>Examples</h2>
@@ -267,6 +217,55 @@ to its own implementation using eval, and hence should be considered unsafe</p>
         
         </table>
       
+
+      
+
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>If node or the browser does not offer JSON.parse,
+this function falls backslash
+to its own implementation using eval, and hence should be considered unsafe</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      <p>
+        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.json-decode.php">PHP's json_decode</a> looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">json_decode</span>(<span class="params">strJson</span>) &#123;</span><br><span class="line">  <span class="comment">//       discuss at: https://phpjs.org/functions/json_decode/</span></span><br><span class="line">  <span class="comment">//      original by: Public Domain (https://www.json.org/json2.js)</span></span><br><span class="line">  <span class="comment">// reimplemented by: Kevin van Zonneveld (https://kevin.vanzonneveld.net)</span></span><br><span class="line">  <span class="comment">//      improved by: T.J. Leahy</span></span><br><span class="line">  <span class="comment">//      improved by: Michael White</span></span><br><span class="line">  <span class="comment">//           note 1: If node or the browser does not offer JSON.parse,</span></span><br><span class="line">  <span class="comment">//           note 1: this function falls backslash</span></span><br><span class="line">  <span class="comment">//           note 1: to its own implementation using eval, and hence should be considered unsafe</span></span><br><span class="line">  <span class="comment">//        example 1: json_decode(&#x27;[ 1 ]&#x27;)</span></span><br><span class="line">  <span class="comment">//        returns 1: [1]</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">    https://www.JSON.org/json2.js</span></span><br><span class="line"><span class="comment">    2008-11-19</span></span><br><span class="line"><span class="comment">    Public Domain.</span></span><br><span class="line"><span class="comment">    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.</span></span><br><span class="line"><span class="comment">    See https://www.JSON.org/js.html</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> $global = <span class="keyword">typeof</span> <span class="variable language_">window</span> !== <span class="string">&#x27;undefined&#x27;</span> ? <span class="variable language_">window</span> : <span class="variable language_">global</span></span><br><span class="line">  $global.<span class="property">$locutus</span> = $global.<span class="property">$locutus</span> || &#123;&#125;</span><br><span class="line">  <span class="keyword">const</span> $locutus = $global.<span class="property">$locutus</span></span><br><span class="line">  $locutus.<span class="property">php</span> = $locutus.<span class="property">php</span> || &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> json = $global.<span class="property">JSON</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> json === <span class="string">&#x27;object&#x27;</span> &amp;&amp; <span class="keyword">typeof</span> json.<span class="property">parse</span> === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> json.<span class="title function_">parse</span>(strJson)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!(err <span class="keyword">instanceof</span> <span class="title class_">SyntaxError</span>)) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Unexpected error type in json_decode()&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// usable by json_last_error()</span></span><br><span class="line">      $locutus.<span class="property">php</span>.<span class="property">last_error_json</span> = <span class="number">4</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> chars = [</span><br><span class="line">    <span class="string">&#x27;\u0000&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\u00ad&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\u0600-\u0604&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\u070f&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\u17b4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\u17b5&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\u200c-\u200f&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\u2028-\u202f&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\u2060-\u206f&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\ufeff&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\ufff0-\uffff&#x27;</span>,</span><br><span class="line">  ].<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">  <span class="keyword">const</span> cx = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">&#x27;[&#x27;</span> + chars + <span class="string">&#x27;]&#x27;</span>, <span class="string">&#x27;g&#x27;</span>)</span><br><span class="line">  <span class="keyword">let</span> j</span><br><span class="line">  <span class="keyword">let</span> text = strJson</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Parsing happens in four stages. In the first stage, we replace certain</span></span><br><span class="line">  <span class="comment">// Unicode characters with escape sequences. JavaScript handles many characters</span></span><br><span class="line">  <span class="comment">// incorrectly, either silently deleting them, or treating them as line endings.</span></span><br><span class="line">  cx.<span class="property">lastIndex</span> = <span class="number">0</span></span><br><span class="line">  <span class="keyword">if</span> (cx.<span class="title function_">test</span>(text)) &#123;</span><br><span class="line">    text = text.<span class="title function_">replace</span>(cx, <span class="keyword">function</span> (<span class="params">a</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;\\u&#x27;</span> + (<span class="string">&#x27;0000&#x27;</span> + a.<span class="title function_">charCodeAt</span>(<span class="number">0</span>).<span class="title function_">toString</span>(<span class="number">16</span>)).<span class="title function_">slice</span>(-<span class="number">4</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// In the second stage, we run the text against regular expressions that look</span></span><br><span class="line">  <span class="comment">// for non-JSON patterns. We are especially concerned with &#x27;()&#x27; and &#x27;new&#x27;</span></span><br><span class="line">  <span class="comment">// because they can cause invocation, and &#x27;=&#x27; because it can cause mutation.</span></span><br><span class="line">  <span class="comment">// But just to be safe, we want to reject all unexpected forms.</span></span><br><span class="line">  <span class="comment">// We split the second stage into 4 regexp operations in order to work around</span></span><br><span class="line">  <span class="comment">// crippling inefficiencies in IE&#x27;s and Safari&#x27;s regexp engines. First we</span></span><br><span class="line">  <span class="comment">// replace the JSON backslash pairs with &#x27;@&#x27; (a non-JSON character). Second, we</span></span><br><span class="line">  <span class="comment">// replace all simple value tokens with &#x27;]&#x27; characters. Third, we delete all</span></span><br><span class="line">  <span class="comment">// open brackets that follow a colon or comma or that begin the text. Finally,</span></span><br><span class="line">  <span class="comment">// we look to see that the remaining characters are only whitespace or &#x27;]&#x27; or</span></span><br><span class="line">  <span class="comment">// &#x27;,&#x27; or &#x27;:&#x27; or &#x27;&#123;&#x27; or &#x27;&#125;&#x27;. If that is so, then the text is safe for eval.</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> m = <span class="regexp">/^[\],:&#123;&#125;\s]*$/</span>.<span class="title function_">test</span>(</span><br><span class="line">    text</span><br><span class="line">      .<span class="title function_">replace</span>(<span class="regexp">/\\(?:[&quot;\\/bfnrt]|u[0-9a-fA-F]&#123;4&#125;)/g</span>, <span class="string">&#x27;@&#x27;</span>)</span><br><span class="line">      .<span class="title function_">replace</span>(<span class="regexp">/&quot;[^&quot;\\\n\r]*&quot;|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?/g</span>, <span class="string">&#x27;]&#x27;</span>)</span><br><span class="line">      .<span class="title function_">replace</span>(<span class="regexp">/(?:^|:|,)(?:\s*\[)+/g</span>, <span class="string">&#x27;&#x27;</span>),</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (m) &#123;</span><br><span class="line">    <span class="comment">// In the third stage we use the eval function to compile the text into a</span></span><br><span class="line">    <span class="comment">// JavaScript structure. The &#x27;&#123;&#x27; operator is subject to a syntactic ambiguity</span></span><br><span class="line">    <span class="comment">// in JavaScript: it can begin a block or an object literal. We wrap the text</span></span><br><span class="line">    <span class="comment">// in parens to eliminate the ambiguity.</span></span><br><span class="line">    j = <span class="built_in">eval</span>(<span class="string">&#x27;(&#x27;</span> + text + <span class="string">&#x27;)&#x27;</span>) <span class="comment">// eslint-disable-line no-eval</span></span><br><span class="line">    <span class="keyword">return</span> j</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// usable by json_last_error()</span></span><br><span class="line">  $locutus.<span class="property">php</span>.<span class="property">last_error_json</span> = <span class="number">4</span></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      <div class="clearfix"></div>
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we assimilate first iterations with imperfections,
+        hoping for others to take issue with-and improve them.
+
+        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
+        but please be reminded to use our creations at your own risk.
+        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+      </p>
+      <p>
+        Now go and:
+        [
+        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/php/json/json_decode.js">View on GitHub</a></strong>
+        |
+        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/php/json/json_decode.js">Edit on GitHub</a></strong>
+        |
+        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/json/json_decode.js">View Raw</a></strong>
+        ]
+      </p>
+
 
       <hr />
       
@@ -569,6 +568,25 @@ to its own implementation using eval, and hence should be considered unsafe</p>
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2024/04/24-update/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/bunnies.webp)" alt="Easter Update" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/04/24-update/" class="title">Easter Update</a></p>
+                            <p class="item-date"><time datetime="2024-04-05T00:00:00.000Z" itemprop="datePublished">2024-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2016/05/announcing-locutus/" class="thumbnail">
     
     
@@ -604,25 +622,6 @@ to its own implementation using eval, and hence should be considered unsafe</p>
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/04/jekyll/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
-                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -637,8 +636,6 @@ to its own implementation using eval, and hence should be considered unsafe</p>
     <div class="outer">
         <div id="footer-info" class="inner">
             &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
-            Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
-            Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>

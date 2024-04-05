@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&#39;s gmmktime looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-04-05T18:08:50.814Z">
-<meta property="article:modified_time" content="2024-04-05T18:08:50.814Z">
+<meta property="article:published_time" content="2024-04-05T19:37:16.008Z">
+<meta property="article:modified_time" content="2024-04-05T19:37:16.008Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -187,61 +187,21 @@ ga('send', 'pageview');
     </header>
 
     <div class="article-entry">
-      <p>
-        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.gmmktime.php">PHP's gmmktime</a> looks like.
-      </p>
-
-      <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">gmmktime</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/gmmktime/</span></span><br><span class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// original by: mktime</span></span><br><span class="line">  <span class="comment">//   example 1: gmmktime(14, 10, 2, 2, 1, 2008)</span></span><br><span class="line">  <span class="comment">//   returns 1: 1201875002</span></span><br><span class="line">  <span class="comment">//   example 2: gmmktime(0, 0, -1, 1, 1, 1970)</span></span><br><span class="line">  <span class="comment">//   returns 2: -1</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> d = <span class="keyword">new</span> <span class="title class_">Date</span>()</span><br><span class="line">  <span class="keyword">const</span> r = <span class="variable language_">arguments</span></span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">const</span> e = [<span class="string">&#x27;Hours&#x27;</span>, <span class="string">&#x27;Minutes&#x27;</span>, <span class="string">&#x27;Seconds&#x27;</span>, <span class="string">&#x27;Month&#x27;</span>, <span class="string">&#x27;Date&#x27;</span>, <span class="string">&#x27;FullYear&#x27;</span>]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; e.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> r[i] === <span class="string">&#x27;undefined&#x27;</span>) &#123;</span><br><span class="line">      r[i] = d[<span class="string">&#x27;getUTC&#x27;</span> + e[i]]()</span><br><span class="line">      <span class="comment">// +1 to fix JS months.</span></span><br><span class="line">      r[i] += i === <span class="number">3</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      r[i] = <span class="built_in">parseInt</span>(r[i], <span class="number">10</span>)</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">isNaN</span>(r[i])) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Map years 0-69 to 2000-2069 and years 70-100 to 1970-2000.</span></span><br><span class="line">  r[<span class="number">5</span>] += r[<span class="number">5</span>] &gt;= <span class="number">0</span> ? (r[<span class="number">5</span>] &lt;= <span class="number">69</span> ? <span class="number">2e3</span> : r[<span class="number">5</span>] &lt;= <span class="number">100</span> ? <span class="number">1900</span> : <span class="number">0</span>) : <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Set year, month (-1 to fix JS months), and date.</span></span><br><span class="line">  <span class="comment">// !This must come before the call to setHours!</span></span><br><span class="line">  d.<span class="title function_">setUTCFullYear</span>(r[<span class="number">5</span>], r[<span class="number">3</span>] - <span class="number">1</span>, r[<span class="number">4</span>])</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Set hours, minutes, and seconds.</span></span><br><span class="line">  d.<span class="title function_">setUTCHours</span>(r[<span class="number">0</span>], r[<span class="number">1</span>], r[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> time = d.<span class="title function_">getTime</span>()</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Divide milliseconds by 1000 to return seconds and drop decimal.</span></span><br><span class="line">  <span class="comment">// Add 1 second if negative or it&#x27;ll be off from PHP by 1 second.</span></span><br><span class="line">  <span class="keyword">return</span> ((time / <span class="number">1e3</span>) &gt;&gt; <span class="number">0</span>) - (time &lt; <span class="number">0</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      [
-      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/datetime/gmmktime.js">View on GitHub</a>
-      |
-      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/datetime/gmmktime.js">Edit on GitHub</a>
-      |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/datetime/gmmktime.js">Source on GitHub</a>
-      ]
-
-      <div class="clearfix"></div>
-
       <h2>How to use</h2>
       <p>
-        You you can install via <code>npm install locutus</code> and
-        require it via <code>require('locutus/php/datetime/gmmktime')</code>.
-        You could also require the <code>datetime</code> module in full
-        so that you could access <code>datetime.gmmktime</code> instead.
+        You you can install via <code>yarn add locutus</code> and
+        require this function via <code>const gmmktime = require('locutus/php/datetime/gmmktime')</code>.
       </p>
       <p>
-        If you intend to target the browser, you can then use a module bundler such as
+        It is important to use a bundler that supports tree-shaking
+        so that you only ship the functions that you actually use to your browser,
+        instead of all of Locutus, which is massive. Examples are:
         <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
-        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>,
-        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>, or
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
         <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
 
-        This can be important because Locutus allows modern JavaScript in
-        the source files, meaning it may not work in all browsers without
-        a build/transpile step. Locutus does transpile all functions to ES5
-        before publishing to npm.
+        For server-side use this is typically less of a concern.
       </p>
-
-      
-
-      <h2>A community effort</h2>
-      <p>
-        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
-        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
-        This means that we don't consider it to be a bad thing that many of
-        our functions are first iterations, which may still have their
-        fair share of issues. We hope that these flaws will inspire others to come up with better ideas.
-      </p>
-      <p>
-        This way of working also means that we don't offer any
-        production guarantees, and recommend to use Locutus inspiration
-        and learning purposes only.
-      </p>
-      
-
-      
 
       
         <h2>Examples</h2>
@@ -259,6 +219,45 @@ ga('send', 'pageview');
         
         </table>
       
+
+      
+
+      
+
+      
+
+      <p>
+        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.gmmktime.php">PHP's gmmktime</a> looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">gmmktime</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/gmmktime/</span></span><br><span class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// original by: mktime</span></span><br><span class="line">  <span class="comment">//   example 1: gmmktime(14, 10, 2, 2, 1, 2008)</span></span><br><span class="line">  <span class="comment">//   returns 1: 1201875002</span></span><br><span class="line">  <span class="comment">//   example 2: gmmktime(0, 0, -1, 1, 1, 1970)</span></span><br><span class="line">  <span class="comment">//   returns 2: -1</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> d = <span class="keyword">new</span> <span class="title class_">Date</span>()</span><br><span class="line">  <span class="keyword">const</span> r = <span class="variable language_">arguments</span></span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">const</span> e = [<span class="string">&#x27;Hours&#x27;</span>, <span class="string">&#x27;Minutes&#x27;</span>, <span class="string">&#x27;Seconds&#x27;</span>, <span class="string">&#x27;Month&#x27;</span>, <span class="string">&#x27;Date&#x27;</span>, <span class="string">&#x27;FullYear&#x27;</span>]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; e.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> r[i] === <span class="string">&#x27;undefined&#x27;</span>) &#123;</span><br><span class="line">      r[i] = d[<span class="string">&#x27;getUTC&#x27;</span> + e[i]]()</span><br><span class="line">      <span class="comment">// +1 to fix JS months.</span></span><br><span class="line">      r[i] += i === <span class="number">3</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      r[i] = <span class="built_in">parseInt</span>(r[i], <span class="number">10</span>)</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">isNaN</span>(r[i])) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Map years 0-69 to 2000-2069 and years 70-100 to 1970-2000.</span></span><br><span class="line">  r[<span class="number">5</span>] += r[<span class="number">5</span>] &gt;= <span class="number">0</span> ? (r[<span class="number">5</span>] &lt;= <span class="number">69</span> ? <span class="number">2e3</span> : r[<span class="number">5</span>] &lt;= <span class="number">100</span> ? <span class="number">1900</span> : <span class="number">0</span>) : <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Set year, month (-1 to fix JS months), and date.</span></span><br><span class="line">  <span class="comment">// !This must come before the call to setHours!</span></span><br><span class="line">  d.<span class="title function_">setUTCFullYear</span>(r[<span class="number">5</span>], r[<span class="number">3</span>] - <span class="number">1</span>, r[<span class="number">4</span>])</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Set hours, minutes, and seconds.</span></span><br><span class="line">  d.<span class="title function_">setUTCHours</span>(r[<span class="number">0</span>], r[<span class="number">1</span>], r[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> time = d.<span class="title function_">getTime</span>()</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Divide milliseconds by 1000 to return seconds and drop decimal.</span></span><br><span class="line">  <span class="comment">// Add 1 second if negative or it&#x27;ll be off from PHP by 1 second.</span></span><br><span class="line">  <span class="keyword">return</span> ((time / <span class="number">1e3</span>) &gt;&gt; <span class="number">0</span>) - (time &lt; <span class="number">0</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      <div class="clearfix"></div>
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we assimilate first iterations with imperfections,
+        hoping for others to take issue with-and improve them.
+
+        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
+        but please be reminded to use our creations at your own risk.
+        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+      </p>
+      <p>
+        Now go and:
+        [
+        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/php/datetime/gmmktime.js">View on GitHub</a></strong>
+        |
+        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/php/datetime/gmmktime.js">Edit on GitHub</a></strong>
+        |
+        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/datetime/gmmktime.js">View Raw</a></strong>
+        ]
+      </p>
+
 
       <hr />
       
@@ -561,6 +560,25 @@ ga('send', 'pageview');
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2024/04/24-update/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/bunnies.webp)" alt="Easter Update" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/04/24-update/" class="title">Easter Update</a></p>
+                            <p class="item-date"><time datetime="2024-04-05T00:00:00.000Z" itemprop="datePublished">2024-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2016/05/announcing-locutus/" class="thumbnail">
     
     
@@ -596,25 +614,6 @@ ga('send', 'pageview');
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/04/jekyll/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
-                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -629,8 +628,6 @@ ga('send', 'pageview');
     <div class="outer">
         <div id="footer-info" class="inner">
             &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
-            Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
-            Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>

@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&#39;s pathinfo looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-04-05T18:08:50.830Z">
-<meta property="article:modified_time" content="2024-04-05T18:08:50.830Z">
+<meta property="article:published_time" content="2024-04-05T19:37:16.024Z">
+<meta property="article:modified_time" content="2024-04-05T19:37:16.024Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -187,81 +187,21 @@ ga('send', 'pageview');
     </header>
 
     <div class="article-entry">
-      <p>
-        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.pathinfo.php">PHP's pathinfo</a> looks like.
-      </p>
-
-      <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">pathinfo</span>(<span class="params">path, options</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/pathinfo/</span></span><br><span class="line">  <span class="comment">// original by: Nate</span></span><br><span class="line">  <span class="comment">//  revised by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// improved by: Dmitry Gorelenkov</span></span><br><span class="line">  <span class="comment">//    input by: Timo</span></span><br><span class="line">  <span class="comment">//      note 1: Inspired by actual PHP source: php5-5.2.6/ext/standard/string.c line #1559</span></span><br><span class="line">  <span class="comment">//      note 1: The way the bitwise arguments are handled allows for greater flexibility</span></span><br><span class="line">  <span class="comment">//      note 1: &amp; compatability. We might even standardize this</span></span><br><span class="line">  <span class="comment">//      note 1: code and use a similar approach for</span></span><br><span class="line">  <span class="comment">//      note 1: other bitwise PHP functions</span></span><br><span class="line">  <span class="comment">//      note 1: Locutus tries very hard to stay away from a core.js</span></span><br><span class="line">  <span class="comment">//      note 1: file with global dependencies, because we like</span></span><br><span class="line">  <span class="comment">//      note 1: that you can just take a couple of functions and be on your way.</span></span><br><span class="line">  <span class="comment">//      note 1: But by way we implemented this function,</span></span><br><span class="line">  <span class="comment">//      note 1: if you want you can still declare the PATHINFO_*</span></span><br><span class="line">  <span class="comment">//      note 1: yourself, and then you can use:</span></span><br><span class="line">  <span class="comment">//      note 1: pathinfo(&#x27;/www/index.html&#x27;, PATHINFO_BASENAME | PATHINFO_EXTENSION);</span></span><br><span class="line">  <span class="comment">//      note 1: which makes it fully compliant with PHP syntax.</span></span><br><span class="line">  <span class="comment">//   example 1: pathinfo(&#x27;/www/htdocs/index.html&#x27;, 1)</span></span><br><span class="line">  <span class="comment">//   returns 1: &#x27;/www/htdocs&#x27;</span></span><br><span class="line">  <span class="comment">//   example 2: pathinfo(&#x27;/www/htdocs/index.html&#x27;, &#x27;PATHINFO_BASENAME&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 2: &#x27;index.html&#x27;</span></span><br><span class="line">  <span class="comment">//   example 3: pathinfo(&#x27;/www/htdocs/index.html&#x27;, &#x27;PATHINFO_EXTENSION&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 3: &#x27;html&#x27;</span></span><br><span class="line">  <span class="comment">//   example 4: pathinfo(&#x27;/www/htdocs/index.html&#x27;, &#x27;PATHINFO_FILENAME&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 4: &#x27;index&#x27;</span></span><br><span class="line">  <span class="comment">//   example 5: pathinfo(&#x27;/www/htdocs/index.html&#x27;, 2 | 4)</span></span><br><span class="line">  <span class="comment">//   returns 5: &#123;basename: &#x27;index.html&#x27;, extension: &#x27;html&#x27;&#125;</span></span><br><span class="line">  <span class="comment">//   example 6: pathinfo(&#x27;/www/htdocs/index.html&#x27;, &#x27;PATHINFO_ALL&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 6: &#123;dirname: &#x27;/www/htdocs&#x27;, basename: &#x27;index.html&#x27;, extension: &#x27;html&#x27;, filename: &#x27;index&#x27;&#125;</span></span><br><span class="line">  <span class="comment">//   example 7: pathinfo(&#x27;/www/htdocs/index.html&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 7: &#123;dirname: &#x27;/www/htdocs&#x27;, basename: &#x27;index.html&#x27;, extension: &#x27;html&#x27;, filename: &#x27;index&#x27;&#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> basename = <span class="built_in">require</span>(<span class="string">&#x27;../filesystem/basename&#x27;</span>)</span><br><span class="line">  <span class="keyword">let</span> opt = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> realOpt = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> optName = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> optTemp = <span class="number">0</span></span><br><span class="line">  <span class="keyword">const</span> tmpArr = &#123;&#125;</span><br><span class="line">  <span class="keyword">let</span> cnt = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> haveBasename = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">let</span> haveExtension = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">let</span> haveFilename = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Input defaulting &amp; sanitation</span></span><br><span class="line">  <span class="keyword">if</span> (!path) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!options) &#123;</span><br><span class="line">    options = <span class="string">&#x27;PATHINFO_ALL&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Initialize binary arguments. Both the string &amp; integer (constant) input is</span></span><br><span class="line">  <span class="comment">// allowed</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">OPTS</span> = &#123;</span><br><span class="line">    <span class="attr">PATHINFO_DIRNAME</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">PATHINFO_BASENAME</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">PATHINFO_EXTENSION</span>: <span class="number">4</span>,</span><br><span class="line">    <span class="attr">PATHINFO_FILENAME</span>: <span class="number">8</span>,</span><br><span class="line">    <span class="attr">PATHINFO_ALL</span>: <span class="number">0</span>,</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// PATHINFO_ALL sums up all previously defined PATHINFOs (could just pre-calculate)</span></span><br><span class="line">  <span class="keyword">for</span> (optName <span class="keyword">in</span> <span class="variable constant_">OPTS</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable constant_">OPTS</span>.<span class="title function_">hasOwnProperty</span>(optName)) &#123;</span><br><span class="line">      <span class="variable constant_">OPTS</span>.<span class="property">PATHINFO_ALL</span> = <span class="variable constant_">OPTS</span>.<span class="property">PATHINFO_ALL</span> | <span class="variable constant_">OPTS</span>[optName]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> options !== <span class="string">&#x27;number&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment">// Allow for a single string or an array of string flags</span></span><br><span class="line">    options = [].<span class="title function_">concat</span>(options)</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; options.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      <span class="comment">// Resolve string input to bitwise e.g. &#x27;PATHINFO_EXTENSION&#x27; becomes 4</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="variable constant_">OPTS</span>[options[i]]) &#123;</span><br><span class="line">        optTemp = optTemp | <span class="variable constant_">OPTS</span>[options[i]]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    options = optTemp</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Internal Functions</span></span><br><span class="line">  <span class="keyword">const</span> _getExt = <span class="keyword">function</span> (<span class="params">path</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> str = path + <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">const</span> dotP = str.<span class="title function_">lastIndexOf</span>(<span class="string">&#x27;.&#x27;</span>) + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> !dotP ? <span class="literal">false</span> : dotP !== str.<span class="property">length</span> ? str.<span class="title function_">substr</span>(dotP) : <span class="string">&#x27;&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Gather path infos</span></span><br><span class="line">  <span class="keyword">if</span> (options &amp; <span class="variable constant_">OPTS</span>.<span class="property">PATHINFO_DIRNAME</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> dirName = path.<span class="title function_">replace</span>(<span class="regexp">/\\/g</span>, <span class="string">&#x27;/&#x27;</span>).<span class="title function_">replace</span>(<span class="regexp">/\/[^/]*\/?$/</span>, <span class="string">&#x27;&#x27;</span>) <span class="comment">// dirname</span></span><br><span class="line">    tmpArr.<span class="property">dirname</span> = dirName === path ? <span class="string">&#x27;.&#x27;</span> : dirName</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (options &amp; <span class="variable constant_">OPTS</span>.<span class="property">PATHINFO_BASENAME</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (haveBasename === <span class="literal">false</span>) &#123;</span><br><span class="line">      haveBasename = <span class="title function_">basename</span>(path)</span><br><span class="line">    &#125;</span><br><span class="line">    tmpArr.<span class="property">basename</span> = haveBasename</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (options &amp; <span class="variable constant_">OPTS</span>.<span class="property">PATHINFO_EXTENSION</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (haveBasename === <span class="literal">false</span>) &#123;</span><br><span class="line">      haveBasename = <span class="title function_">basename</span>(path)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (haveExtension === <span class="literal">false</span>) &#123;</span><br><span class="line">      haveExtension = <span class="title function_">_getExt</span>(haveBasename)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (haveExtension !== <span class="literal">false</span>) &#123;</span><br><span class="line">      tmpArr.<span class="property">extension</span> = haveExtension</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (options &amp; <span class="variable constant_">OPTS</span>.<span class="property">PATHINFO_FILENAME</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (haveBasename === <span class="literal">false</span>) &#123;</span><br><span class="line">      haveBasename = <span class="title function_">basename</span>(path)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (haveExtension === <span class="literal">false</span>) &#123;</span><br><span class="line">      haveExtension = <span class="title function_">_getExt</span>(haveBasename)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (haveFilename === <span class="literal">false</span>) &#123;</span><br><span class="line">      haveFilename = haveBasename.<span class="title function_">slice</span>(</span><br><span class="line">        <span class="number">0</span>,</span><br><span class="line">        haveBasename.<span class="property">length</span> - (haveExtension ? haveExtension.<span class="property">length</span> + <span class="number">1</span> : haveExtension === <span class="literal">false</span> ? <span class="number">0</span> : <span class="number">1</span>),</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    tmpArr.<span class="property">filename</span> = haveFilename</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// If array contains only 1 element: return string</span></span><br><span class="line">  cnt = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> (opt <span class="keyword">in</span> tmpArr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (tmpArr.<span class="title function_">hasOwnProperty</span>(opt)) &#123;</span><br><span class="line">      cnt++</span><br><span class="line">      realOpt = opt</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (cnt === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> tmpArr[realOpt]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Return full-blown array</span></span><br><span class="line">  <span class="keyword">return</span> tmpArr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      [
-      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/filesystem/pathinfo.js">View on GitHub</a>
-      |
-      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/filesystem/pathinfo.js">Edit on GitHub</a>
-      |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/filesystem/pathinfo.js">Source on GitHub</a>
-      ]
-
-      <div class="clearfix"></div>
-
       <h2>How to use</h2>
       <p>
-        You you can install via <code>npm install locutus</code> and
-        require it via <code>require('locutus/php/filesystem/pathinfo')</code>.
-        You could also require the <code>filesystem</code> module in full
-        so that you could access <code>filesystem.pathinfo</code> instead.
+        You you can install via <code>yarn add locutus</code> and
+        require this function via <code>const pathinfo = require('locutus/php/filesystem/pathinfo')</code>.
       </p>
       <p>
-        If you intend to target the browser, you can then use a module bundler such as
+        It is important to use a bundler that supports tree-shaking
+        so that you only ship the functions that you actually use to your browser,
+        instead of all of Locutus, which is massive. Examples are:
         <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
-        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>,
-        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>, or
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
         <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
 
-        This can be important because Locutus allows modern JavaScript in
-        the source files, meaning it may not work in all browsers without
-        a build/transpile step. Locutus does transpile all functions to ES5
-        before publishing to npm.
+        For server-side use this is typically less of a concern.
       </p>
-
-      
-
-      <h2>A community effort</h2>
-      <p>
-        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
-        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
-        This means that we don't consider it to be a bad thing that many of
-        our functions are first iterations, which may still have their
-        fair share of issues. We hope that these flaws will inspire others to come up with better ideas.
-      </p>
-      <p>
-        This way of working also means that we don't offer any
-        production guarantees, and recommend to use Locutus inspiration
-        and learning purposes only.
-      </p>
-      
-        <h2>Notes</h2>
-        <ul>
-        
-          <li><p>Inspired by actual PHP source: php5-5.2.6&#x2F;ext&#x2F;standard&#x2F;string.c line #1559
-The way the bitwise arguments are handled allows for greater flexibility
-&amp; compatability. We might even standardize this
-code and use a similar approach for
-other bitwise PHP functions
-Locutus tries very hard to stay away from a core.js
-file with global dependencies, because we like
-that you can just take a couple of functions and be on your way.
-But by way we implemented this function,
-if you want you can still declare the PATHINFO_*
-yourself, and then you can use:
-pathinfo(‘&#x2F;www&#x2F;index.html’, PATHINFO_BASENAME | PATHINFO_EXTENSION);
-which makes it fully compliant with PHP syntax.</p>
-</li>
-        
-        </ul>
-      
-
-      
 
       
         <h2>Examples</h2>
@@ -289,6 +229,65 @@ which makes it fully compliant with PHP syntax.</p>
         
         </table>
       
+
+      
+
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>Inspired by actual PHP source: php5-5.2.6&#x2F;ext&#x2F;standard&#x2F;string.c line #1559
+The way the bitwise arguments are handled allows for greater flexibility
+&amp; compatability. We might even standardize this
+code and use a similar approach for
+other bitwise PHP functions
+Locutus tries very hard to stay away from a core.js
+file with global dependencies, because we like
+that you can just take a couple of functions and be on your way.
+But by way we implemented this function,
+if you want you can still declare the PATHINFO_*
+yourself, and then you can use:
+pathinfo(‘&#x2F;www&#x2F;index.html’, PATHINFO_BASENAME | PATHINFO_EXTENSION);
+which makes it fully compliant with PHP syntax.</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      <p>
+        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.pathinfo.php">PHP's pathinfo</a> looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">pathinfo</span>(<span class="params">path, options</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/pathinfo/</span></span><br><span class="line">  <span class="comment">// original by: Nate</span></span><br><span class="line">  <span class="comment">//  revised by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// improved by: Dmitry Gorelenkov</span></span><br><span class="line">  <span class="comment">//    input by: Timo</span></span><br><span class="line">  <span class="comment">//      note 1: Inspired by actual PHP source: php5-5.2.6/ext/standard/string.c line #1559</span></span><br><span class="line">  <span class="comment">//      note 1: The way the bitwise arguments are handled allows for greater flexibility</span></span><br><span class="line">  <span class="comment">//      note 1: &amp; compatability. We might even standardize this</span></span><br><span class="line">  <span class="comment">//      note 1: code and use a similar approach for</span></span><br><span class="line">  <span class="comment">//      note 1: other bitwise PHP functions</span></span><br><span class="line">  <span class="comment">//      note 1: Locutus tries very hard to stay away from a core.js</span></span><br><span class="line">  <span class="comment">//      note 1: file with global dependencies, because we like</span></span><br><span class="line">  <span class="comment">//      note 1: that you can just take a couple of functions and be on your way.</span></span><br><span class="line">  <span class="comment">//      note 1: But by way we implemented this function,</span></span><br><span class="line">  <span class="comment">//      note 1: if you want you can still declare the PATHINFO_*</span></span><br><span class="line">  <span class="comment">//      note 1: yourself, and then you can use:</span></span><br><span class="line">  <span class="comment">//      note 1: pathinfo(&#x27;/www/index.html&#x27;, PATHINFO_BASENAME | PATHINFO_EXTENSION);</span></span><br><span class="line">  <span class="comment">//      note 1: which makes it fully compliant with PHP syntax.</span></span><br><span class="line">  <span class="comment">//   example 1: pathinfo(&#x27;/www/htdocs/index.html&#x27;, 1)</span></span><br><span class="line">  <span class="comment">//   returns 1: &#x27;/www/htdocs&#x27;</span></span><br><span class="line">  <span class="comment">//   example 2: pathinfo(&#x27;/www/htdocs/index.html&#x27;, &#x27;PATHINFO_BASENAME&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 2: &#x27;index.html&#x27;</span></span><br><span class="line">  <span class="comment">//   example 3: pathinfo(&#x27;/www/htdocs/index.html&#x27;, &#x27;PATHINFO_EXTENSION&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 3: &#x27;html&#x27;</span></span><br><span class="line">  <span class="comment">//   example 4: pathinfo(&#x27;/www/htdocs/index.html&#x27;, &#x27;PATHINFO_FILENAME&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 4: &#x27;index&#x27;</span></span><br><span class="line">  <span class="comment">//   example 5: pathinfo(&#x27;/www/htdocs/index.html&#x27;, 2 | 4)</span></span><br><span class="line">  <span class="comment">//   returns 5: &#123;basename: &#x27;index.html&#x27;, extension: &#x27;html&#x27;&#125;</span></span><br><span class="line">  <span class="comment">//   example 6: pathinfo(&#x27;/www/htdocs/index.html&#x27;, &#x27;PATHINFO_ALL&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 6: &#123;dirname: &#x27;/www/htdocs&#x27;, basename: &#x27;index.html&#x27;, extension: &#x27;html&#x27;, filename: &#x27;index&#x27;&#125;</span></span><br><span class="line">  <span class="comment">//   example 7: pathinfo(&#x27;/www/htdocs/index.html&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 7: &#123;dirname: &#x27;/www/htdocs&#x27;, basename: &#x27;index.html&#x27;, extension: &#x27;html&#x27;, filename: &#x27;index&#x27;&#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> basename = <span class="built_in">require</span>(<span class="string">&#x27;../filesystem/basename&#x27;</span>)</span><br><span class="line">  <span class="keyword">let</span> opt = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> realOpt = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> optName = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> optTemp = <span class="number">0</span></span><br><span class="line">  <span class="keyword">const</span> tmpArr = &#123;&#125;</span><br><span class="line">  <span class="keyword">let</span> cnt = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> haveBasename = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">let</span> haveExtension = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">let</span> haveFilename = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Input defaulting &amp; sanitation</span></span><br><span class="line">  <span class="keyword">if</span> (!path) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!options) &#123;</span><br><span class="line">    options = <span class="string">&#x27;PATHINFO_ALL&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Initialize binary arguments. Both the string &amp; integer (constant) input is</span></span><br><span class="line">  <span class="comment">// allowed</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">OPTS</span> = &#123;</span><br><span class="line">    <span class="attr">PATHINFO_DIRNAME</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">PATHINFO_BASENAME</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">PATHINFO_EXTENSION</span>: <span class="number">4</span>,</span><br><span class="line">    <span class="attr">PATHINFO_FILENAME</span>: <span class="number">8</span>,</span><br><span class="line">    <span class="attr">PATHINFO_ALL</span>: <span class="number">0</span>,</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// PATHINFO_ALL sums up all previously defined PATHINFOs (could just pre-calculate)</span></span><br><span class="line">  <span class="keyword">for</span> (optName <span class="keyword">in</span> <span class="variable constant_">OPTS</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable constant_">OPTS</span>.<span class="title function_">hasOwnProperty</span>(optName)) &#123;</span><br><span class="line">      <span class="variable constant_">OPTS</span>.<span class="property">PATHINFO_ALL</span> = <span class="variable constant_">OPTS</span>.<span class="property">PATHINFO_ALL</span> | <span class="variable constant_">OPTS</span>[optName]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> options !== <span class="string">&#x27;number&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment">// Allow for a single string or an array of string flags</span></span><br><span class="line">    options = [].<span class="title function_">concat</span>(options)</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; options.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      <span class="comment">// Resolve string input to bitwise e.g. &#x27;PATHINFO_EXTENSION&#x27; becomes 4</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="variable constant_">OPTS</span>[options[i]]) &#123;</span><br><span class="line">        optTemp = optTemp | <span class="variable constant_">OPTS</span>[options[i]]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    options = optTemp</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Internal Functions</span></span><br><span class="line">  <span class="keyword">const</span> _getExt = <span class="keyword">function</span> (<span class="params">path</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> str = path + <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">const</span> dotP = str.<span class="title function_">lastIndexOf</span>(<span class="string">&#x27;.&#x27;</span>) + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> !dotP ? <span class="literal">false</span> : dotP !== str.<span class="property">length</span> ? str.<span class="title function_">substr</span>(dotP) : <span class="string">&#x27;&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Gather path infos</span></span><br><span class="line">  <span class="keyword">if</span> (options &amp; <span class="variable constant_">OPTS</span>.<span class="property">PATHINFO_DIRNAME</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> dirName = path.<span class="title function_">replace</span>(<span class="regexp">/\\/g</span>, <span class="string">&#x27;/&#x27;</span>).<span class="title function_">replace</span>(<span class="regexp">/\/[^/]*\/?$/</span>, <span class="string">&#x27;&#x27;</span>) <span class="comment">// dirname</span></span><br><span class="line">    tmpArr.<span class="property">dirname</span> = dirName === path ? <span class="string">&#x27;.&#x27;</span> : dirName</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (options &amp; <span class="variable constant_">OPTS</span>.<span class="property">PATHINFO_BASENAME</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (haveBasename === <span class="literal">false</span>) &#123;</span><br><span class="line">      haveBasename = <span class="title function_">basename</span>(path)</span><br><span class="line">    &#125;</span><br><span class="line">    tmpArr.<span class="property">basename</span> = haveBasename</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (options &amp; <span class="variable constant_">OPTS</span>.<span class="property">PATHINFO_EXTENSION</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (haveBasename === <span class="literal">false</span>) &#123;</span><br><span class="line">      haveBasename = <span class="title function_">basename</span>(path)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (haveExtension === <span class="literal">false</span>) &#123;</span><br><span class="line">      haveExtension = <span class="title function_">_getExt</span>(haveBasename)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (haveExtension !== <span class="literal">false</span>) &#123;</span><br><span class="line">      tmpArr.<span class="property">extension</span> = haveExtension</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (options &amp; <span class="variable constant_">OPTS</span>.<span class="property">PATHINFO_FILENAME</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (haveBasename === <span class="literal">false</span>) &#123;</span><br><span class="line">      haveBasename = <span class="title function_">basename</span>(path)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (haveExtension === <span class="literal">false</span>) &#123;</span><br><span class="line">      haveExtension = <span class="title function_">_getExt</span>(haveBasename)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (haveFilename === <span class="literal">false</span>) &#123;</span><br><span class="line">      haveFilename = haveBasename.<span class="title function_">slice</span>(</span><br><span class="line">        <span class="number">0</span>,</span><br><span class="line">        haveBasename.<span class="property">length</span> - (haveExtension ? haveExtension.<span class="property">length</span> + <span class="number">1</span> : haveExtension === <span class="literal">false</span> ? <span class="number">0</span> : <span class="number">1</span>),</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    tmpArr.<span class="property">filename</span> = haveFilename</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// If array contains only 1 element: return string</span></span><br><span class="line">  cnt = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> (opt <span class="keyword">in</span> tmpArr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (tmpArr.<span class="title function_">hasOwnProperty</span>(opt)) &#123;</span><br><span class="line">      cnt++</span><br><span class="line">      realOpt = opt</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (cnt === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> tmpArr[realOpt]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Return full-blown array</span></span><br><span class="line">  <span class="keyword">return</span> tmpArr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      <div class="clearfix"></div>
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we assimilate first iterations with imperfections,
+        hoping for others to take issue with-and improve them.
+
+        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
+        but please be reminded to use our creations at your own risk.
+        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+      </p>
+      <p>
+        Now go and:
+        [
+        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/php/filesystem/pathinfo.js">View on GitHub</a></strong>
+        |
+        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/php/filesystem/pathinfo.js">Edit on GitHub</a></strong>
+        |
+        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/filesystem/pathinfo.js">View Raw</a></strong>
+        ]
+      </p>
+
 
       <hr />
       
@@ -591,6 +590,25 @@ which makes it fully compliant with PHP syntax.</p>
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2024/04/24-update/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/bunnies.webp)" alt="Easter Update" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/04/24-update/" class="title">Easter Update</a></p>
+                            <p class="item-date"><time datetime="2024-04-05T00:00:00.000Z" itemprop="datePublished">2024-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2016/05/announcing-locutus/" class="thumbnail">
     
     
@@ -626,25 +644,6 @@ which makes it fully compliant with PHP syntax.</p>
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/04/jekyll/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
-                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -659,8 +658,6 @@ which makes it fully compliant with PHP syntax.</p>
     <div class="outer">
         <div id="footer-info" class="inner">
             &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
-            Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
-            Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>

@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&#39;s array_pop looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-04-05T18:08:50.762Z">
-<meta property="article:modified_time" content="2024-04-05T18:08:50.762Z">
+<meta property="article:published_time" content="2024-04-05T19:37:15.952Z">
+<meta property="article:modified_time" content="2024-04-05T19:37:15.952Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -187,89 +187,21 @@ ga('send', 'pageview');
     </header>
 
     <div class="article-entry">
-      <p>
-        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.array-pop.php">PHP's array_pop</a> looks like.
-      </p>
-
-      <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">array_pop</span>(<span class="params">inputArr</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_pop/</span></span><br><span class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//    input by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//      note 1: While IE (and other browsers) support iterating an object&#x27;s</span></span><br><span class="line">  <span class="comment">//      note 1: own properties in order, if one attempts to add back properties</span></span><br><span class="line">  <span class="comment">//      note 1: in IE, they may end up in their former position due to their position</span></span><br><span class="line">  <span class="comment">//      note 1: being retained. So use of this function with &quot;associative arrays&quot;</span></span><br><span class="line">  <span class="comment">//      note 1: (objects) may lead to unexpected behavior in an IE environment if</span></span><br><span class="line">  <span class="comment">//      note 1: you add back properties with the same keys that you removed</span></span><br><span class="line">  <span class="comment">//   example 1: array_pop([0,1,2])</span></span><br><span class="line">  <span class="comment">//   returns 1: 2</span></span><br><span class="line">  <span class="comment">//   example 2: var $data = &#123;firstName: &#x27;Kevin&#x27;, surName: &#x27;van Zonneveld&#x27;&#125;</span></span><br><span class="line">  <span class="comment">//   example 2: var $lastElem = array_pop($data)</span></span><br><span class="line">  <span class="comment">//   example 2: var $result = $data</span></span><br><span class="line">  <span class="comment">//   returns 2: &#123;firstName: &#x27;Kevin&#x27;&#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> key = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> lastKey = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (inputArr.<span class="title function_">hasOwnProperty</span>(<span class="string">&#x27;length&#x27;</span>)) &#123;</span><br><span class="line">    <span class="comment">// Indexed</span></span><br><span class="line">    <span class="keyword">if</span> (!inputArr.<span class="property">length</span>) &#123;</span><br><span class="line">      <span class="comment">// Done popping, are we?</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> inputArr.<span class="title function_">pop</span>()</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// Associative</span></span><br><span class="line">    <span class="keyword">for</span> (key <span class="keyword">in</span> inputArr) &#123;</span><br><span class="line">      <span class="keyword">if</span> (inputArr.<span class="title function_">hasOwnProperty</span>(key)) &#123;</span><br><span class="line">        lastKey = key</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (lastKey) &#123;</span><br><span class="line">      <span class="keyword">const</span> tmp = inputArr[lastKey]</span><br><span class="line">      <span class="keyword">delete</span> inputArr[lastKey]</span><br><span class="line">      <span class="keyword">return</span> tmp</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      [
-      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/array/array_pop.js">View on GitHub</a>
-      |
-      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/array/array_pop.js">Edit on GitHub</a>
-      |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/array/array_pop.js">Source on GitHub</a>
-      ]
-
-      <div class="clearfix"></div>
-
       <h2>How to use</h2>
       <p>
-        You you can install via <code>npm install locutus</code> and
-        require it via <code>require('locutus/php/array/array_pop')</code>.
-        You could also require the <code>array</code> module in full
-        so that you could access <code>array.array_pop</code> instead.
+        You you can install via <code>yarn add locutus</code> and
+        require this function via <code>const array_pop = require('locutus/php/array/array_pop')</code>.
       </p>
       <p>
-        If you intend to target the browser, you can then use a module bundler such as
+        It is important to use a bundler that supports tree-shaking
+        so that you only ship the functions that you actually use to your browser,
+        instead of all of Locutus, which is massive. Examples are:
         <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
-        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>,
-        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>, or
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
         <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
 
-        This can be important because Locutus allows modern JavaScript in
-        the source files, meaning it may not work in all browsers without
-        a build/transpile step. Locutus does transpile all functions to ES5
-        before publishing to npm.
+        For server-side use this is typically less of a concern.
       </p>
-
-      
-        <h2>PHP arrays and JavaScript</h2>
-        <p>
-          Please note that Locutus uses JavaScript objects as substitutes for PHP arrays,
-          they are the closest we can get to this hashtable-like data structure without
-          rolling our own. While many JavaScript implementations preserve the order of object properties, the
-          <a href="https://www.ecma-international.org/ecma-262/5.1/#sec-8.6">ECMAScript Language Specification</a>
-          explicitly states that:
-        </p>
-
-        <blockquote>The mechanics and order of enumerating the properties is not specified.</blockquote>
-
-        <p>
-          So don't use this for anything serious if you rely on the order to be consistent accross platforms.
-        </p>
-      
-
-      <h2>A community effort</h2>
-      <p>
-        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
-        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
-        This means that we don't consider it to be a bad thing that many of
-        our functions are first iterations, which may still have their
-        fair share of issues. We hope that these flaws will inspire others to come up with better ideas.
-      </p>
-      <p>
-        This way of working also means that we don't offer any
-        production guarantees, and recommend to use Locutus inspiration
-        and learning purposes only.
-      </p>
-      
-        <h2>Notes</h2>
-        <ul>
-        
-          <li><p>While IE (and other browsers) support iterating an object’s
-own properties in order, if one attempts to add back properties
-in IE, they may end up in their former position due to their position
-being retained. So use of this function with “associative arrays”
-(objects) may lead to unexpected behavior in an IE environment if
-you add back properties with the same keys that you removed</p>
-</li>
-        
-        </ul>
-      
-
-      
 
       
         <h2>Examples</h2>
@@ -289,6 +221,77 @@ var $result = $data</code></td><td><code>{firstName: &#39;Kevin&#39;}</code></td
         
         </table>
       
+
+      
+        <h2>PHP arrays and JavaScript</h2>
+        <p>
+          Please note that Locutus uses JavaScript objects as substitutes for PHP arrays,
+          they are the closest we can get to this hashtable-like data structure without
+          rolling our own. While many JavaScript implementations preserve the order of object properties, the
+          <a href="https://www.ecma-international.org/ecma-262/5.1/#sec-8.6">ECMAScript Language Specification</a>
+          explicitly states that:
+        </p>
+
+        <blockquote>The mechanics and order of enumerating the properties is not specified.</blockquote>
+
+        <p>
+          So don't use this for anything serious if you rely on the order to be consistent accross platforms.
+        </p>
+
+        <p>
+          To influence how Locutus treats objects to arrays, you can check out the `locutus.objectsAsArrays` setting.
+        </p>
+      
+
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>While IE (and other browsers) support iterating an object’s
+own properties in order, if one attempts to add back properties
+in IE, they may end up in their former position due to their position
+being retained. So use of this function with “associative arrays”
+(objects) may lead to unexpected behavior in an IE environment if
+you add back properties with the same keys that you removed</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      <p>
+        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.array-pop.php">PHP's array_pop</a> looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">array_pop</span>(<span class="params">inputArr</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_pop/</span></span><br><span class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//    input by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//      note 1: While IE (and other browsers) support iterating an object&#x27;s</span></span><br><span class="line">  <span class="comment">//      note 1: own properties in order, if one attempts to add back properties</span></span><br><span class="line">  <span class="comment">//      note 1: in IE, they may end up in their former position due to their position</span></span><br><span class="line">  <span class="comment">//      note 1: being retained. So use of this function with &quot;associative arrays&quot;</span></span><br><span class="line">  <span class="comment">//      note 1: (objects) may lead to unexpected behavior in an IE environment if</span></span><br><span class="line">  <span class="comment">//      note 1: you add back properties with the same keys that you removed</span></span><br><span class="line">  <span class="comment">//   example 1: array_pop([0,1,2])</span></span><br><span class="line">  <span class="comment">//   returns 1: 2</span></span><br><span class="line">  <span class="comment">//   example 2: var $data = &#123;firstName: &#x27;Kevin&#x27;, surName: &#x27;van Zonneveld&#x27;&#125;</span></span><br><span class="line">  <span class="comment">//   example 2: var $lastElem = array_pop($data)</span></span><br><span class="line">  <span class="comment">//   example 2: var $result = $data</span></span><br><span class="line">  <span class="comment">//   returns 2: &#123;firstName: &#x27;Kevin&#x27;&#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> key = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> lastKey = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (inputArr.<span class="title function_">hasOwnProperty</span>(<span class="string">&#x27;length&#x27;</span>)) &#123;</span><br><span class="line">    <span class="comment">// Indexed</span></span><br><span class="line">    <span class="keyword">if</span> (!inputArr.<span class="property">length</span>) &#123;</span><br><span class="line">      <span class="comment">// Done popping, are we?</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> inputArr.<span class="title function_">pop</span>()</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// Associative</span></span><br><span class="line">    <span class="keyword">for</span> (key <span class="keyword">in</span> inputArr) &#123;</span><br><span class="line">      <span class="keyword">if</span> (inputArr.<span class="title function_">hasOwnProperty</span>(key)) &#123;</span><br><span class="line">        lastKey = key</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (lastKey) &#123;</span><br><span class="line">      <span class="keyword">const</span> tmp = inputArr[lastKey]</span><br><span class="line">      <span class="keyword">delete</span> inputArr[lastKey]</span><br><span class="line">      <span class="keyword">return</span> tmp</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      <div class="clearfix"></div>
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we assimilate first iterations with imperfections,
+        hoping for others to take issue with-and improve them.
+
+        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
+        but please be reminded to use our creations at your own risk.
+        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+      </p>
+      <p>
+        Now go and:
+        [
+        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/php/array/array_pop.js">View on GitHub</a></strong>
+        |
+        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/php/array/array_pop.js">Edit on GitHub</a></strong>
+        |
+        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/array/array_pop.js">View Raw</a></strong>
+        ]
+      </p>
+
 
       <hr />
       
@@ -591,6 +594,25 @@ var $result = $data</code></td><td><code>{firstName: &#39;Kevin&#39;}</code></td
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2024/04/24-update/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/bunnies.webp)" alt="Easter Update" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/04/24-update/" class="title">Easter Update</a></p>
+                            <p class="item-date"><time datetime="2024-04-05T00:00:00.000Z" itemprop="datePublished">2024-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2016/05/announcing-locutus/" class="thumbnail">
     
     
@@ -626,25 +648,6 @@ var $result = $data</code></td><td><code>{firstName: &#39;Kevin&#39;}</code></td
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/04/jekyll/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
-                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -659,8 +662,6 @@ var $result = $data</code></td><td><code>{firstName: &#39;Kevin&#39;}</code></td
     <div class="outer">
         <div id="footer-info" class="inner">
             &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
-            Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
-            Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>

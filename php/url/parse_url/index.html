@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&#39;s parse_url looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2024-04-05T18:08:50.938Z">
-<meta property="article:modified_time" content="2024-04-05T18:08:50.938Z">
+<meta property="article:published_time" content="2024-04-05T19:37:16.128Z">
+<meta property="article:modified_time" content="2024-04-05T19:37:16.128Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -187,77 +187,21 @@ ga('send', 'pageview');
     </header>
 
     <div class="article-entry">
-      <p>
-        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.parse-url.php">PHP's parse_url</a> looks like.
-      </p>
-
-      <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">parse_url</span>(<span class="params">str, component</span>) &#123;</span><br><span class="line">  <span class="comment">//       discuss at: https://locutus.io/php/parse_url/</span></span><br><span class="line">  <span class="comment">//      original by: Steven Levithan (https://blog.stevenlevithan.com)</span></span><br><span class="line">  <span class="comment">// reimplemented by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//         input by: Lorenzo Pisani</span></span><br><span class="line">  <span class="comment">//         input by: Tony</span></span><br><span class="line">  <span class="comment">//      improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//           note 1: original by https://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js</span></span><br><span class="line">  <span class="comment">//           note 1: blog post at https://blog.stevenlevithan.com/archives/parseuri</span></span><br><span class="line">  <span class="comment">//           note 1: demo at https://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js</span></span><br><span class="line">  <span class="comment">//           note 1: Does not replace invalid characters with &#x27;_&#x27; as in PHP,</span></span><br><span class="line">  <span class="comment">//           note 1: nor does it return false with</span></span><br><span class="line">  <span class="comment">//           note 1: a seriously malformed URL.</span></span><br><span class="line">  <span class="comment">//           note 1: Besides function name, is essentially the same as parseUri as</span></span><br><span class="line">  <span class="comment">//           note 1: well as our allowing</span></span><br><span class="line">  <span class="comment">//           note 1: an extra slash after the scheme/protocol (to allow file:/// as in PHP)</span></span><br><span class="line">  <span class="comment">//        example 1: parse_url(&#x27;https://user:pass@host/path?a=v#a&#x27;)</span></span><br><span class="line">  <span class="comment">//        returns 1: &#123;scheme: &#x27;https&#x27;, host: &#x27;host&#x27;, user: &#x27;user&#x27;, pass: &#x27;pass&#x27;, path: &#x27;/path&#x27;, query: &#x27;a=v&#x27;, fragment: &#x27;a&#x27;&#125;</span></span><br><span class="line">  <span class="comment">//        example 2: parse_url(&#x27;https://en.wikipedia.org/wiki/%22@%22_%28album%29&#x27;)</span></span><br><span class="line">  <span class="comment">//        returns 2: &#123;scheme: &#x27;https&#x27;, host: &#x27;en.wikipedia.org&#x27;, path: &#x27;/wiki/%22@%22_%28album%29&#x27;&#125;</span></span><br><span class="line">  <span class="comment">//        example 3: parse_url(&#x27;https://host.domain.tld/a@b.c/folder&#x27;)</span></span><br><span class="line">  <span class="comment">//        returns 3: &#123;scheme: &#x27;https&#x27;, host: &#x27;host.domain.tld&#x27;, path: &#x27;/a@b.c/folder&#x27;&#125;</span></span><br><span class="line">  <span class="comment">//        example 4: parse_url(&#x27;https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar&#x27;)</span></span><br><span class="line">  <span class="comment">//        returns 4: &#123; scheme: &#x27;https&#x27;, host: &#x27;www.example.com&#x27;, path: &#x27;/a@b.c/folder&#x27;, query: &#x27;foo=bar&#x27;, user: &#x27;gooduser&#x27;, pass: &#x27;secretpassword&#x27; &#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> query</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> mode =</span><br><span class="line">    (<span class="keyword">typeof</span> <span class="built_in">require</span> !== <span class="string">&#x27;undefined&#x27;</span> ? <span class="built_in">require</span>(<span class="string">&#x27;../info/ini_get&#x27;</span>)(<span class="string">&#x27;locutus.parse_url.mode&#x27;</span>) : <span class="literal">undefined</span>) || <span class="string">&#x27;php&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> key = [</span><br><span class="line">    <span class="string">&#x27;source&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;scheme&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;authority&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;userInfo&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;user&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;pass&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;host&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;port&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;relative&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;path&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;directory&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;file&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;query&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;fragment&#x27;</span>,</span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line">  <span class="comment">// For loose we added one optional slash to post-scheme to catch file:/// (should restrict this)</span></span><br><span class="line">  <span class="keyword">let</span> parser = &#123;</span><br><span class="line">    <span class="attr">php</span>: <span class="keyword">new</span> <span class="title class_">RegExp</span>(</span><br><span class="line">      [</span><br><span class="line">        <span class="string">&#x27;(?:([^:\\/?#]+):)?&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;(?:\\/\\/()(?:(?:()(?:([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;()&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;(?:(()(?:(?:[^?#\\/]*\\/)*)()(?:[^?#]*))(?:\\?([^#]*))?(?:#(.*))?)&#x27;</span>,</span><br><span class="line">      ].<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>),</span><br><span class="line">    ),</span><br><span class="line">    <span class="attr">strict</span>: <span class="keyword">new</span> <span class="title class_">RegExp</span>(</span><br><span class="line">      [</span><br><span class="line">        <span class="string">&#x27;(?:([^:\\/?#]+):)?&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;(?:\\/\\/((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;((((?:[^?#\\/]*\\/)*)([^?#]*))(?:\\?([^#]*))?(?:#(.*))?)&#x27;</span>,</span><br><span class="line">      ].<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>),</span><br><span class="line">    ),</span><br><span class="line">    <span class="attr">loose</span>: <span class="keyword">new</span> <span class="title class_">RegExp</span>(</span><br><span class="line">      [</span><br><span class="line">        <span class="string">&#x27;(?:(?![^:@]+:[^:@\\/]*@)([^:\\/?#.]+):)?&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;(?:\\/\\/\\/?)?&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?)&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;(((\\/(?:[^?#](?![^?#\\/]*\\.[^?#\\/.]+(?:[?#]|$)))*\\/?)?([^?#\\/]*))&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;(?:\\?([^#]*))?(?:#(.*))?)&#x27;</span>,</span><br><span class="line">      ].<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>),</span><br><span class="line">    ),</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> m = parser[mode].<span class="title function_">exec</span>(str)</span><br><span class="line">  <span class="keyword">const</span> uri = &#123;&#125;</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">14</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (i--) &#123;</span><br><span class="line">    <span class="keyword">if</span> (m[i]) &#123;</span><br><span class="line">      uri[key[i]] = m[i]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (component) &#123;</span><br><span class="line">    <span class="keyword">return</span> uri[component.<span class="title function_">replace</span>(<span class="string">&#x27;PHP_URL_&#x27;</span>, <span class="string">&#x27;&#x27;</span>).<span class="title function_">toLowerCase</span>()]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (mode !== <span class="string">&#x27;php&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> name =</span><br><span class="line">      (<span class="keyword">typeof</span> <span class="built_in">require</span> !== <span class="string">&#x27;undefined&#x27;</span> ? <span class="built_in">require</span>(<span class="string">&#x27;../info/ini_get&#x27;</span>)(<span class="string">&#x27;locutus.parse_url.queryKey&#x27;</span>) : <span class="literal">undefined</span>) ||</span><br><span class="line">      <span class="string">&#x27;queryKey&#x27;</span></span><br><span class="line">    parser = <span class="regexp">/(?:^|&amp;)([^&amp;=]*)=?([^&amp;]*)/g</span></span><br><span class="line">    uri[name] = &#123;&#125;</span><br><span class="line">    query = uri[key[<span class="number">12</span>]] || <span class="string">&#x27;&#x27;</span></span><br><span class="line">    query.<span class="title function_">replace</span>(parser, <span class="keyword">function</span> (<span class="params">$0, $1, $2</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> ($1) &#123;</span><br><span class="line">        uri[name][$1] = $2</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">delete</span> uri.<span class="property">source</span></span><br><span class="line">  <span class="keyword">return</span> uri</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      [
-      <a href="https://github.com/locutusjs/locutus/blob/main/src/php/url/parse_url.js">View on GitHub</a>
-      |
-      <a href="https://github.com/locutusjs/locutus/edit/main/src/php/url/parse_url.js">Edit on GitHub</a>
-      |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/url/parse_url.js">Source on GitHub</a>
-      ]
-
-      <div class="clearfix"></div>
-
       <h2>How to use</h2>
       <p>
-        You you can install via <code>npm install locutus</code> and
-        require it via <code>require('locutus/php/url/parse_url')</code>.
-        You could also require the <code>url</code> module in full
-        so that you could access <code>url.parse_url</code> instead.
+        You you can install via <code>yarn add locutus</code> and
+        require this function via <code>const parse_url = require('locutus/php/url/parse_url')</code>.
       </p>
       <p>
-        If you intend to target the browser, you can then use a module bundler such as
+        It is important to use a bundler that supports tree-shaking
+        so that you only ship the functions that you actually use to your browser,
+        instead of all of Locutus, which is massive. Examples are:
         <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
-        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>,
-        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>, or
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
         <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
 
-        This can be important because Locutus allows modern JavaScript in
-        the source files, meaning it may not work in all browsers without
-        a build/transpile step. Locutus does transpile all functions to ES5
-        before publishing to npm.
+        For server-side use this is typically less of a concern.
       </p>
-
-      
-
-      <h2>A community effort</h2>
-      <p>
-        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
-        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
-        This means that we don't consider it to be a bad thing that many of
-        our functions are first iterations, which may still have their
-        fair share of issues. We hope that these flaws will inspire others to come up with better ideas.
-      </p>
-      <p>
-        This way of working also means that we don't offer any
-        production guarantees, and recommend to use Locutus inspiration
-        and learning purposes only.
-      </p>
-      
-        <h2>Notes</h2>
-        <ul>
-        
-          <li><p>original by <a href="https://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js">https://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js</a>
-blog post at <a href="https://blog.stevenlevithan.com/archives/parseuri">https://blog.stevenlevithan.com/archives/parseuri</a>
-demo at <a href="https://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js">https://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js</a>
-Does not replace invalid characters with ‘_’ as in PHP,
-nor does it return false with
-a seriously malformed URL.
-Besides function name, is essentially the same as parseUri as
-well as our allowing
-an extra slash after the scheme&#x2F;protocol (to allow file:&#x2F;&#x2F;&#x2F; as in PHP)</p>
-</li>
-        
-        </ul>
-      
-
-      
 
       
         <h2>Examples</h2>
@@ -279,6 +223,61 @@ an extra slash after the scheme&#x2F;protocol (to allow file:&#x2F;&#x2F;&#x2F; 
         
         </table>
       
+
+      
+
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>original by <a href="https://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js">https://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js</a>
+blog post at <a href="https://blog.stevenlevithan.com/archives/parseuri">https://blog.stevenlevithan.com/archives/parseuri</a>
+demo at <a href="https://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js">https://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js</a>
+Does not replace invalid characters with ‘_’ as in PHP,
+nor does it return false with
+a seriously malformed URL.
+Besides function name, is essentially the same as parseUri as
+well as our allowing
+an extra slash after the scheme&#x2F;protocol (to allow file:&#x2F;&#x2F;&#x2F; as in PHP)</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      <p>
+        Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.parse-url.php">PHP's parse_url</a> looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">parse_url</span>(<span class="params">str, component</span>) &#123;</span><br><span class="line">  <span class="comment">//       discuss at: https://locutus.io/php/parse_url/</span></span><br><span class="line">  <span class="comment">//      original by: Steven Levithan (https://blog.stevenlevithan.com)</span></span><br><span class="line">  <span class="comment">// reimplemented by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//         input by: Lorenzo Pisani</span></span><br><span class="line">  <span class="comment">//         input by: Tony</span></span><br><span class="line">  <span class="comment">//      improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//           note 1: original by https://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js</span></span><br><span class="line">  <span class="comment">//           note 1: blog post at https://blog.stevenlevithan.com/archives/parseuri</span></span><br><span class="line">  <span class="comment">//           note 1: demo at https://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js</span></span><br><span class="line">  <span class="comment">//           note 1: Does not replace invalid characters with &#x27;_&#x27; as in PHP,</span></span><br><span class="line">  <span class="comment">//           note 1: nor does it return false with</span></span><br><span class="line">  <span class="comment">//           note 1: a seriously malformed URL.</span></span><br><span class="line">  <span class="comment">//           note 1: Besides function name, is essentially the same as parseUri as</span></span><br><span class="line">  <span class="comment">//           note 1: well as our allowing</span></span><br><span class="line">  <span class="comment">//           note 1: an extra slash after the scheme/protocol (to allow file:/// as in PHP)</span></span><br><span class="line">  <span class="comment">//        example 1: parse_url(&#x27;https://user:pass@host/path?a=v#a&#x27;)</span></span><br><span class="line">  <span class="comment">//        returns 1: &#123;scheme: &#x27;https&#x27;, host: &#x27;host&#x27;, user: &#x27;user&#x27;, pass: &#x27;pass&#x27;, path: &#x27;/path&#x27;, query: &#x27;a=v&#x27;, fragment: &#x27;a&#x27;&#125;</span></span><br><span class="line">  <span class="comment">//        example 2: parse_url(&#x27;https://en.wikipedia.org/wiki/%22@%22_%28album%29&#x27;)</span></span><br><span class="line">  <span class="comment">//        returns 2: &#123;scheme: &#x27;https&#x27;, host: &#x27;en.wikipedia.org&#x27;, path: &#x27;/wiki/%22@%22_%28album%29&#x27;&#125;</span></span><br><span class="line">  <span class="comment">//        example 3: parse_url(&#x27;https://host.domain.tld/a@b.c/folder&#x27;)</span></span><br><span class="line">  <span class="comment">//        returns 3: &#123;scheme: &#x27;https&#x27;, host: &#x27;host.domain.tld&#x27;, path: &#x27;/a@b.c/folder&#x27;&#125;</span></span><br><span class="line">  <span class="comment">//        example 4: parse_url(&#x27;https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar&#x27;)</span></span><br><span class="line">  <span class="comment">//        returns 4: &#123; scheme: &#x27;https&#x27;, host: &#x27;www.example.com&#x27;, path: &#x27;/a@b.c/folder&#x27;, query: &#x27;foo=bar&#x27;, user: &#x27;gooduser&#x27;, pass: &#x27;secretpassword&#x27; &#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> query</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> mode =</span><br><span class="line">    (<span class="keyword">typeof</span> <span class="built_in">require</span> !== <span class="string">&#x27;undefined&#x27;</span> ? <span class="built_in">require</span>(<span class="string">&#x27;../info/ini_get&#x27;</span>)(<span class="string">&#x27;locutus.parse_url.mode&#x27;</span>) : <span class="literal">undefined</span>) || <span class="string">&#x27;php&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> key = [</span><br><span class="line">    <span class="string">&#x27;source&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;scheme&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;authority&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;userInfo&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;user&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;pass&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;host&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;port&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;relative&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;path&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;directory&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;file&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;query&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;fragment&#x27;</span>,</span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line">  <span class="comment">// For loose we added one optional slash to post-scheme to catch file:/// (should restrict this)</span></span><br><span class="line">  <span class="keyword">let</span> parser = &#123;</span><br><span class="line">    <span class="attr">php</span>: <span class="keyword">new</span> <span class="title class_">RegExp</span>(</span><br><span class="line">      [</span><br><span class="line">        <span class="string">&#x27;(?:([^:\\/?#]+):)?&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;(?:\\/\\/()(?:(?:()(?:([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;()&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;(?:(()(?:(?:[^?#\\/]*\\/)*)()(?:[^?#]*))(?:\\?([^#]*))?(?:#(.*))?)&#x27;</span>,</span><br><span class="line">      ].<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>),</span><br><span class="line">    ),</span><br><span class="line">    <span class="attr">strict</span>: <span class="keyword">new</span> <span class="title class_">RegExp</span>(</span><br><span class="line">      [</span><br><span class="line">        <span class="string">&#x27;(?:([^:\\/?#]+):)?&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;(?:\\/\\/((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;((((?:[^?#\\/]*\\/)*)([^?#]*))(?:\\?([^#]*))?(?:#(.*))?)&#x27;</span>,</span><br><span class="line">      ].<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>),</span><br><span class="line">    ),</span><br><span class="line">    <span class="attr">loose</span>: <span class="keyword">new</span> <span class="title class_">RegExp</span>(</span><br><span class="line">      [</span><br><span class="line">        <span class="string">&#x27;(?:(?![^:@]+:[^:@\\/]*@)([^:\\/?#.]+):)?&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;(?:\\/\\/\\/?)?&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?)&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;(((\\/(?:[^?#](?![^?#\\/]*\\.[^?#\\/.]+(?:[?#]|$)))*\\/?)?([^?#\\/]*))&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;(?:\\?([^#]*))?(?:#(.*))?)&#x27;</span>,</span><br><span class="line">      ].<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>),</span><br><span class="line">    ),</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> m = parser[mode].<span class="title function_">exec</span>(str)</span><br><span class="line">  <span class="keyword">const</span> uri = &#123;&#125;</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">14</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (i--) &#123;</span><br><span class="line">    <span class="keyword">if</span> (m[i]) &#123;</span><br><span class="line">      uri[key[i]] = m[i]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (component) &#123;</span><br><span class="line">    <span class="keyword">return</span> uri[component.<span class="title function_">replace</span>(<span class="string">&#x27;PHP_URL_&#x27;</span>, <span class="string">&#x27;&#x27;</span>).<span class="title function_">toLowerCase</span>()]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (mode !== <span class="string">&#x27;php&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> name =</span><br><span class="line">      (<span class="keyword">typeof</span> <span class="built_in">require</span> !== <span class="string">&#x27;undefined&#x27;</span> ? <span class="built_in">require</span>(<span class="string">&#x27;../info/ini_get&#x27;</span>)(<span class="string">&#x27;locutus.parse_url.queryKey&#x27;</span>) : <span class="literal">undefined</span>) ||</span><br><span class="line">      <span class="string">&#x27;queryKey&#x27;</span></span><br><span class="line">    parser = <span class="regexp">/(?:^|&amp;)([^&amp;=]*)=?([^&amp;]*)/g</span></span><br><span class="line">    uri[name] = &#123;&#125;</span><br><span class="line">    query = uri[key[<span class="number">12</span>]] || <span class="string">&#x27;&#x27;</span></span><br><span class="line">    query.<span class="title function_">replace</span>(parser, <span class="keyword">function</span> (<span class="params">$0, $1, $2</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> ($1) &#123;</span><br><span class="line">        uri[name][$1] = $2</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">delete</span> uri.<span class="property">source</span></span><br><span class="line">  <span class="keyword">return</span> uri</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      <div class="clearfix"></div>
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we assimilate first iterations with imperfections,
+        hoping for others to take issue with-and improve them.
+
+        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
+        but please be reminded to use our creations at your own risk.
+        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+      </p>
+      <p>
+        Now go and:
+        [
+        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/php/url/parse_url.js">View on GitHub</a></strong>
+        |
+        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/php/url/parse_url.js">Edit on GitHub</a></strong>
+        |
+        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/url/parse_url.js">View Raw</a></strong>
+        ]
+      </p>
+
 
       <hr />
       
@@ -581,6 +580,25 @@ an extra slash after the scheme&#x2F;protocol (to allow file:&#x2F;&#x2F;&#x2F; 
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2024/04/24-update/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/bunnies.webp)" alt="Easter Update" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/04/24-update/" class="title">Easter Update</a></p>
+                            <p class="item-date"><time datetime="2024-04-05T00:00:00.000Z" itemprop="datePublished">2024-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2016/05/announcing-locutus/" class="thumbnail">
     
     
@@ -616,25 +634,6 @@ an extra slash after the scheme&#x2F;protocol (to allow file:&#x2F;&#x2F;&#x2F; 
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/04/jekyll/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://seanpultzcommentaries.files.wordpress.com/2012/06/dr-jekyll-and-mr-hyde-1931_16.jpg)" alt="Switching to Jekyll" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/04/jekyll/" class="title">Switching to Jekyll</a></p>
-                            <p class="item-date"><time datetime="2016-04-02T00:00:00.000Z" itemprop="datePublished">2016-04-02</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -649,8 +648,6 @@ an extra slash after the scheme&#x2F;protocol (to allow file:&#x2F;&#x2F;&#x2F; 
     <div class="outer">
         <div id="footer-info" class="inner">
             &copy; 2007-2024 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
-            Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.
-            Theme by <a href="https://github.com/ppoffice">PPOffice</a>.
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>
