@@ -40,6 +40,7 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.30...mai
 - [x] dx: Add Stale Action
 - [x] bin2hex: Add support for multi-byte characters (fixes #427)
 - [x] var_dump: Detect circular references (fixes #305)
+- [x] fmod: Fix Uncaught RangeError: toFixed() digits argument must be between 0 and 100 (thx @dekairi, fixes #417)
 
 ## v2.0.30
 

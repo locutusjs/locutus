@@ -13,4 +13,10 @@ describe('src/php/math/fmod.js (tested in test/languages/php/math/test-fmod.js)'
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 2', function (done) {
+    var expected = 0
+    var result = fmod(10, 1)
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })
