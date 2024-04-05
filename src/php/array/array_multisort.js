@@ -1,3 +1,5 @@
+'use strict'
+
 module.exports = function array_multisort(arr) {
   //  discuss at: https://locutus.io/php/array_multisort/
   // original by: Theriault (https://github.com/Theriault)
@@ -20,25 +22,12 @@ module.exports = function array_multisort(arr) {
   //      note 1: bits: HGFE DCBA
   //      note 1: args: Holds pointer to arguments for reassignment
 
-  let g
-  let i
-  let j
-  let k
-  let l
-  let sal
-  let vkey
-  let elIndex
-  let lastSorts
-  let tmpArray
-  let zlast
-
+  let i, j, g, l, sal, vkey, elIndex, lastSorts, tmpArray, zlast
   const sortFlag = [0]
   const thingsToSort = []
   let nLastSort = []
   let lastSort = []
-  // possibly redundant
   const args = arguments
-
   const flags = {
     SORT_REGULAR: 16,
     SORT_NUMERIC: 17,
@@ -46,6 +35,8 @@ module.exports = function array_multisort(arr) {
     SORT_ASC: 32,
     SORT_DESC: 40,
   }
+  const sortArrs = [[]]
+  const sortKeys = [[]]
 
   const sortDuplicator = function (a, b) {
     return nLastSort.shift()
@@ -84,10 +75,6 @@ module.exports = function array_multisort(arr) {
     ],
   ]
 
-  const sortArrs = [[]]
-
-  const sortKeys = [[]]
-
   // Store first argument into sortArrs and sortKeys if an Object.
   // First Argument should be either a Javascript Array or an Object,
   // otherwise function would return FALSE like in PHP
@@ -95,10 +82,11 @@ module.exports = function array_multisort(arr) {
     sortArrs[0] = arr
   } else if (arr && typeof arr === 'object') {
     for (i in arr) {
-      if (arr.hasOwnProperty(i)) {
-        sortKeys[0].push(i)
-        sortArrs[0].push(arr[i])
+      if (!arr.hasOwnProperty(i)) {
+        continue
       }
+      sortKeys[0].push(i)
+      sortArrs[0].push(arr[i])
     }
   } else {
     return false
@@ -115,6 +103,10 @@ module.exports = function array_multisort(arr) {
   // of arrays and adding them to the above variables.
   const argl = arguments.length
   for (j = 1; j < argl; j++) {
+    if (!arguments.hasOwnProperty(j)) {
+      continue
+    }
+
     if (Object.prototype.toString.call(arguments[j]) === '[object Array]') {
       sortArrs[j] = arguments[j]
       sortFlag[j] = 0
@@ -153,145 +145,149 @@ module.exports = function array_multisort(arr) {
 
   // Sort all the arrays....
   for (i in sortArrs) {
-    if (sortArrs.hasOwnProperty(i)) {
-      lastSorts = []
-      tmpArray = []
-      elIndex = 0
-      nLastSort = []
-      lastSort = []
+    if (!sortArrs.hasOwnProperty(i)) {
+      continue
+    }
 
-      // If there are no sortComponents, then no more sorting is neeeded.
-      // Copy the array back to the argument.
-      if (sortComponents.length === 0) {
-        if (Object.prototype.toString.call(arguments[i]) === '[object Array]') {
-          args[i] = sortArrs[i]
-        } else {
-          for (k in arguments[i]) {
-            if (arguments[i].hasOwnProperty(k)) {
-              delete arguments[i][k]
-            }
-          }
-          sal = sortArrs[i].length
-          for (j = 0, vkey = 0; j < sal; j++) {
-            vkey = sortKeys[i][j]
-            args[i][vkey] = sortArrs[i][j]
-          }
-        }
-        sortArrs.splice(i, 1)
-        sortKeys.splice(i, 1)
-        continue
-      }
+    lastSorts = []
+    tmpArray = []
+    elIndex = 0
+    nLastSort = []
+    lastSort = []
 
-      // Sort function for sorting. Either sorts asc or desc, regular/string or numeric.
-      let sFunction = sortFunctions[sortFlag[i] & 3][(sortFlag[i] & 8) > 0 ? 1 : 0]
-
-      // Sort current array.
-      for (l = 0; l !== sortComponents.length; l += 2) {
-        tmpArray = sortArrs[i].slice(sortComponents[l], sortComponents[l + 1] + 1)
-        tmpArray.sort(sFunction)
-        // Is there a better way to copy an array in Javascript?
-        lastSorts[l] = [].concat(lastSort)
-        elIndex = sortComponents[l]
-        for (g in tmpArray) {
-          if (tmpArray.hasOwnProperty(g)) {
-            sortArrs[i][elIndex] = tmpArray[g]
-            elIndex++
-          }
-        }
-      }
-
-      // Duplicate the sorting of the current array on future arrays.
-      sFunction = sortDuplicator
-      for (j in sortArrs) {
-        if (sortArrs.hasOwnProperty(j)) {
-          if (sortArrs[j] === sortArrs[i]) {
-            continue
-          }
-          for (l = 0; l !== sortComponents.length; l += 2) {
-            tmpArray = sortArrs[j].slice(sortComponents[l], sortComponents[l + 1] + 1)
-            // alert(l + ':' + nLastSort);
-            nLastSort = [].concat(lastSorts[l])
-            tmpArray.sort(sFunction)
-            elIndex = sortComponents[l]
-            for (g in tmpArray) {
-              if (tmpArray.hasOwnProperty(g)) {
-                sortArrs[j][elIndex] = tmpArray[g]
-                elIndex++
-              }
-            }
-          }
-        }
-      }
-
-      // Duplicate the sorting of the current array on array keys
-      for (j in sortKeys) {
-        if (sortKeys.hasOwnProperty(j)) {
-          for (l = 0; l !== sortComponents.length; l += 2) {
-            tmpArray = sortKeys[j].slice(sortComponents[l], sortComponents[l + 1] + 1)
-            nLastSort = [].concat(lastSorts[l])
-            tmpArray.sort(sFunction)
-            elIndex = sortComponents[l]
-            for (g in tmpArray) {
-              if (tmpArray.hasOwnProperty(g)) {
-                sortKeys[j][elIndex] = tmpArray[g]
-                elIndex++
-              }
-            }
-          }
-        }
-      }
-
-      // Generate the next sortComponents
-      zlast = null
-      sortComponents = []
-      for (j in sortArrs[i]) {
-        if (sortArrs[i].hasOwnProperty(j)) {
-          if (!thingsToSort[j]) {
-            if (sortComponents.length & 1) {
-              sortComponents.push(j - 1)
-            }
-            zlast = null
-            continue
-          }
-          if (!(sortComponents.length & 1)) {
-            if (zlast !== null) {
-              if (sortArrs[i][j] === zlast) {
-                sortComponents.push(j - 1)
-              } else {
-                thingsToSort[j] = false
-              }
-            }
-            zlast = sortArrs[i][j]
-          } else {
-            if (sortArrs[i][j] !== zlast) {
-              sortComponents.push(j - 1)
-              zlast = sortArrs[i][j]
-            }
-          }
-        }
-      }
-
-      if (sortComponents.length & 1) {
-        sortComponents.push(j)
-      }
+    // If there are no sortComponents, then no more sorting is neeeded.
+    // Copy the array back to the argument.
+    if (sortComponents.length === 0) {
       if (Object.prototype.toString.call(arguments[i]) === '[object Array]') {
         args[i] = sortArrs[i]
       } else {
-        for (j in arguments[i]) {
-          if (arguments[i].hasOwnProperty(j)) {
-            delete arguments[i][j]
+        const obj = arguments[i]
+        for (j in obj) {
+          if (obj.hasOwnProperty(j)) {
+            // Instead of deleting, set to undefined or use a method that doesn't violate strict mode
+            obj[j] = undefined
           }
         }
-
         sal = sortArrs[i].length
         for (j = 0, vkey = 0; j < sal; j++) {
           vkey = sortKeys[i][j]
-          args[i][vkey] = sortArrs[i][j]
+          obj[vkey] = sortArrs[i][j]
         }
       }
       sortArrs.splice(i, 1)
       sortKeys.splice(i, 1)
+      continue
     }
+
+    // Sort function for sorting. Either sorts asc or desc, regular/string or numeric.
+    let sFunction = sortFunctions[sortFlag[i] & 3][(sortFlag[i] & 8) > 0 ? 1 : 0]
+
+    // Sort current array.
+    for (l = 0; l !== sortComponents.length; l += 2) {
+      tmpArray = sortArrs[i].slice(sortComponents[l], sortComponents[l + 1] + 1)
+      tmpArray.sort(sFunction)
+      // Is there a better way to copy an array in Javascript?
+      lastSorts[l] = [].concat(lastSort)
+      elIndex = sortComponents[l]
+      for (g in tmpArray) {
+        if (tmpArray.hasOwnProperty(g)) {
+          sortArrs[i][elIndex] = tmpArray[g]
+          elIndex++
+        }
+      }
+    }
+
+    // Duplicate the sorting of the current array on future arrays.
+    sFunction = sortDuplicator
+    for (j in sortArrs) {
+      if (sortArrs.hasOwnProperty(j)) {
+        if (sortArrs[j] === sortArrs[i]) {
+          continue
+        }
+        for (l = 0; l !== sortComponents.length; l += 2) {
+          tmpArray = sortArrs[j].slice(sortComponents[l], sortComponents[l + 1] + 1)
+          // alert(l + ':' + nLastSort);
+          nLastSort = [].concat(lastSorts[l])
+          tmpArray.sort(sFunction)
+          elIndex = sortComponents[l]
+          for (g in tmpArray) {
+            if (tmpArray.hasOwnProperty(g)) {
+              sortArrs[j][elIndex] = tmpArray[g]
+              elIndex++
+            }
+          }
+        }
+      }
+    }
+
+    // Duplicate the sorting of the current array on array keys
+    for (j in sortKeys) {
+      if (sortKeys.hasOwnProperty(j)) {
+        for (l = 0; l !== sortComponents.length; l += 2) {
+          tmpArray = sortKeys[j].slice(sortComponents[l], sortComponents[l + 1] + 1)
+          nLastSort = [].concat(lastSorts[l])
+          tmpArray.sort(sFunction)
+          elIndex = sortComponents[l]
+          for (g in tmpArray) {
+            if (tmpArray.hasOwnProperty(g)) {
+              sortKeys[j][elIndex] = tmpArray[g]
+              elIndex++
+            }
+          }
+        }
+      }
+    }
+
+    // Generate the next sortComponents
+    zlast = null
+    sortComponents = []
+    for (j in sortArrs[i]) {
+      if (sortArrs[i].hasOwnProperty(j)) {
+        if (!thingsToSort[j]) {
+          if (sortComponents.length & 1) {
+            sortComponents.push(j - 1)
+          }
+          zlast = null
+          continue
+        }
+        if (!(sortComponents.length & 1)) {
+          if (zlast !== null) {
+            if (sortArrs[i][j] === zlast) {
+              sortComponents.push(j - 1)
+            } else {
+              thingsToSort[j] = false
+            }
+          }
+          zlast = sortArrs[i][j]
+        } else {
+          if (sortArrs[i][j] !== zlast) {
+            sortComponents.push(j - 1)
+            zlast = sortArrs[i][j]
+          }
+        }
+      }
+    }
+
+    if (sortComponents.length & 1) {
+      sortComponents.push(j)
+    }
+    if (Object.prototype.toString.call(arguments[i]) === '[object Array]') {
+      args[i] = sortArrs[i]
+    } else {
+      for (j in arguments[i]) {
+        if (arguments[i].hasOwnProperty(j)) {
+          delete arguments[i][j]
+        }
+      }
+
+      sal = sortArrs[i].length
+      for (j = 0, vkey = 0; j < sal; j++) {
+        vkey = sortKeys[i][j]
+        args[i][vkey] = sortArrs[i][j]
+      }
+    }
+    sortArrs.splice(i, 1)
+    sortKeys.splice(i, 1)
   }
   return true
 }
