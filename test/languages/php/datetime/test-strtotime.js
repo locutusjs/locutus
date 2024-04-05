@@ -43,4 +43,10 @@ describe('src/php/datetime/strtotime.js (tested in test/languages/php/datetime/t
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 7', function (done) {
+    var expected = 1499644800
+    var result = strtotime('10-JUL-17')
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })
