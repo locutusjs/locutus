@@ -10,91 +10,21 @@
     </header>
 
     <div class="article-entry">
-      <p>
-        <%- page.description %>
-      </p>
-
-      <!-- Code -->
-      <%- page.content %>
-
-      [
-      <a href="https://github.com/locutusjs/locutus/blob/main/src/<%= page.language %>/<%= page.category %>/<%= page.function %>.js">View on GitHub</a>
-      |
-      <a href="https://github.com/locutusjs/locutus/edit/main/src/<%= page.language %>/<%= page.category %>/<%= page.function %>.js">Edit on GitHub</a>
-      |
-      <a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/<%= page.language %>/<%= page.category %>/<%= page.function %>.js">Source on GitHub</a>
-      ]
-
-      <div class="clearfix"></div>
-
       <h2>How to use</h2>
       <p>
-        You you can install via <code>npm install locutus</code> and
-        require it via <code>require('locutus/<%= page.language %>/<%= page.category %>/<%= page.function %>')</code>.
-        You could also require the <code><%= page.category %></code> module in full
-        so that you could access <code><%= page.category %>.<%= page.function %></code> instead.
+        You you can install via <code>yarn add locutus</code> and
+        require this function via <code>const <%= page.function %> = require('locutus/<%= page.language %>/<%= page.category %>/<%= page.function %>')</code>.
       </p>
       <p>
-        If you intend to target the browser, you can then use a module bundler such as
+        It is important to use a bundler that supports tree-shaking
+        so that you only ship the functions that you actually use to your browser,
+        instead of all of Locutus, which is massive. Examples are:
         <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
-        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>,
-        <a href="https://browserify.org/" target="_blank" rel="external">Browserify</a>, or
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
         <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
 
-        This can be important because Locutus allows modern JavaScript in
-        the source files, meaning it may not work in all browsers without
-        a build/transpile step. Locutus does transpile all functions to ES5
-        before publishing to npm.
+        For server-side use this is typically less of a concern.
       </p>
-
-      <% if (page.language === 'php' && page.category === 'array') { %>
-        <h2>PHP arrays and JavaScript</h2>
-        <p>
-          Please note that Locutus uses JavaScript objects as substitutes for PHP arrays,
-          they are the closest we can get to this hashtable-like data structure without
-          rolling our own. While many JavaScript implementations preserve the order of object properties, the
-          <a href="https://www.ecma-international.org/ecma-262/5.1/#sec-8.6">ECMAScript Language Specification</a>
-          explicitly states that:
-        </p>
-
-        <blockquote>The mechanics and order of enumerating the properties is not specified.</blockquote>
-
-        <p>
-          So don't use this for anything serious if you rely on the order to be consistent accross platforms.
-        </p>
-      <% } %>
-
-      <h2>A community effort</h2>
-      <p>
-        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
-        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
-        This means that we don't consider it to be a bad thing that many of
-        our functions are first iterations, which may still have their
-        fair share of issues. We hope that these flaws will inspire others to come up with better ideas.
-      </p>
-      <p>
-        This way of working also means that we don't offer any
-        production guarantees, and recommend to use Locutus inspiration
-        and learning purposes only.
-      </p>
-      <% if (page.notes.length > 0) { %>
-        <h2>Notes</h2>
-        <ul>
-        <% page.notes.forEach(function(note) { %>
-          <li><%- markdown(note) %></li>
-        <% }) %>
-        </ul>
-      <% } %>
-
-      <% if (page.dependencies.length > 0) { %><code><%= page.category %></code>
-        <h2>Dependencies</h2>
-
-        <ul>
-        <% page.dependencies.forEach(function(dependency) { %>
-          <li><a href="/functions/<%= dependency %>"><%= dependency %></a></li>
-        <% }) %>
-        </ul>
-      <% } %>
 
       <% if (page.examples.length > 0 ) { %>
         <h2>Examples</h2>
@@ -115,6 +45,79 @@
         <% }) %>
         </table>
       <% } %>
+
+      <% if (page.language === 'php' && page.category === 'array') { %>
+        <h2>PHP arrays and JavaScript</h2>
+        <p>
+          Please note that Locutus uses JavaScript objects as substitutes for PHP arrays,
+          they are the closest we can get to this hashtable-like data structure without
+          rolling our own. While many JavaScript implementations preserve the order of object properties, the
+          <a href="https://www.ecma-international.org/ecma-262/5.1/#sec-8.6">ECMAScript Language Specification</a>
+          explicitly states that:
+        </p>
+
+        <blockquote>The mechanics and order of enumerating the properties is not specified.</blockquote>
+
+        <p>
+          So don't use this for anything serious if you rely on the order to be consistent accross platforms.
+        </p>
+
+        <p>
+          To influence how Locutus treats objects to arrays, you can check out the `locutus.objectsAsArrays` setting.
+        </p>
+      <% } %>
+
+      <% if (page.notes.length > 0) { %>
+        <h2>Notes</h2>
+        <ul>
+        <% page.notes.forEach(function(note) { %>
+          <li><%- markdown(note) %></li>
+        <% }) %>
+        </ul>
+      <% } %>
+
+      <% if (page.dependencies.length > 0) { %><code><%= page.category %></code>
+        <h2>Dependencies</h2>
+
+        <ul>
+        <% page.dependencies.forEach(function(dependency) { %>
+          <li><a href="/functions/<%= dependency %>"><%= dependency %></a></li>
+        <% }) %>
+        </ul>
+      <% } %>
+
+      <p>
+        <%- page.description %>
+      </p>
+
+      <!-- Code -->
+      <%- page.content %>
+
+
+      <div class="clearfix"></div>
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we assimilate first iterations with imperfections,
+        hoping for others to take issue with-and improve them.
+
+        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
+        but please be reminded to use our creations at your own risk.
+        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+      </p>
+      <p>
+        Now go and:
+        [
+        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/<%= page.language %>/<%= page.category %>/<%= page.function %>.js">View on GitHub</a></strong>
+        |
+        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/<%= page.language %>/<%= page.category %>/<%= page.function %>.js">Edit on GitHub</a></strong>
+        |
+        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/<%= page.language %>/<%= page.category %>/<%= page.function %>.js">View Raw</a></strong>
+        ]
+      </p>
+
 
       <hr />
       <%- partial('locutus/add_more', {curLang: curLang}) %>

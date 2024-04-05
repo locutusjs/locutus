@@ -1,11 +1,11 @@
 <% if (curLang.language !== 'php') { %>
   <%
   var cnt = site.pages.find({ language: curLang.language, type: 'function' }).length
-  var header = 'Ehm.. Only ' + cnt + ' ' + curLang.human + ' function'
+  var header = 'Ehm.. only ' + cnt + ' ' + curLang.human + ' function'
   if (cnt !== 1) {
     header += 's'
   }
-  header += ' in all of Locutus?'
+  header += '?'
   if (cnt > 50) {
     header = 'Welcoming your addition'
   }
@@ -13,13 +13,7 @@
 
   <h2><%= header %></h2>
   <p>
-    We could still assimilate many more functions to this language.
-
-    We only just <a href="/2016/05/announcing-locutus/">rolled out multilingual  support to Locutus</a>.
-    If you fancy a challenge, we'd love your help
-    expanding that.
-
-    For instance, you could:
+    We can use your help porting more. Have a rainy Sunday afternoon to spare and a taste for a porting puzzle?
   </p>
   <ul>
     <li>

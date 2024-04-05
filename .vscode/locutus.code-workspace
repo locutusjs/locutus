@@ -16,7 +16,7 @@
       "website/node_modules/": true,
       "website/public/": true,
       "website/source/{c,golang,php,python,ruby}": true,
-      "website/themes/": true,
+      "website/themes/icarus/source/vendor/": true,
     },
   },
 }
