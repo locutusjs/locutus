@@ -15,8 +15,6 @@ module.exports = function array_multisort(arr) {
   //   example 3: var $president = [ 39, 6, 5, 10, 4, 35, 2 ]
   //   example 3: array_multisort($firstnames, 'SORT_DESC', 'SORT_STRING', $lastnames, 'SORT_ASC', 'SORT_STRING', $president, 'SORT_NUMERIC')
   //   returns 3: true
-  //   example 4: array_multisort(["productIds[]", "_"], 'SORT_ASC', ["productIds[]=977385529", "_=1502965788347"])
-  //   returns 4: true
   //      note 1: flags: Translation table for sort arguments.
   //      note 1: Each argument turns on certain bits in the flag byte through addition.
   //      note 1: bits: HGFE DCBA
