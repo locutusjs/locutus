@@ -11,7 +11,7 @@ npm-debug.*
 scripts/main.js
 scripts/main.js.map
 scripts/split-*.js
-test/languages/
+test/generated/
 tools/_temp/*
 website/_site/
 website/.asset-cache
