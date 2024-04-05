@@ -119,7 +119,7 @@ implementation file in `src/`:
   --require babel-register \
   --reporter spec \
   --watch \
-test/languages/php/array/test-natsort.js
+test/generated/php/array/test-natsort.js
 ```
 
 ### Custom tests

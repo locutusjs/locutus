@@ -336,7 +336,7 @@ class Util {
 
     const basename = path.basename(params.filepath)
     const subdir = path.dirname(params.filepath)
-    const testpath = this.__test + '/languages/' + subdir + '/test-' + basename
+    const testpath = this.__test + '/generated/' + subdir + '/test-' + basename
     const testdir = path.dirname(testpath)
     const relativeSrcForTestDir = path.relative(testdir, self.__src)
     const relativeTestFileForRoot = path.relative(self.__root, testpath)
