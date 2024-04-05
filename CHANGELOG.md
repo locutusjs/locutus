@@ -13,7 +13,7 @@ the hundreds of contributions across the many languages that Locutus is assimila
 Ideas that will be planned and find their way into a release at one point
 
 - [ ] Address the 25 remaining test failures that are currently skipped (find out which ones via
-      `npm run test:languages:noskip`)
+      `npm run test:generated:noskip`)
 - [ ] Compare example test cases for PHP against `php -r` to make sure they are correctly mimicking the most recent
       stable behavior
 - [ ] Have _one_ way of checking pure JS arrays vs PHP arrays (vs:

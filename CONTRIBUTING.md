@@ -14,6 +14,10 @@ for fun experiments such as running PHP code directly in Node.js
 - [Code](#code)
 - [Build](#build)
 - [Test](#test)
+  - [Generated tests](#generated-tests)
+  - [Running a single generated test](#running-a-single-generated-test)
+  - [Custom tests](#custom-tests)
+  - [Browser Playground](#browser-playground)
 - [Commit](#commit)
 - [Releasing](#releasing)
 - [Website Development](#website-development)
@@ -100,32 +104,38 @@ yarn build
 
 ## Test
 
+### Generated tests
+
 ```bash
 yarn test
 ```
 
-Single out one function: `natsort`
-
-```bash
-TEST_GREP=natsort yarn test:languages
-```
-
-This first rewrites mocha test-cases based on `example` and `result` comments found in the function's headers. This is
+This first rewrites mocha test-cases based on `example` and `result` comments found in the functions' headers. This is
 useful if you're changing the tests themselves as well.
 
-If that's not needed as you're iterating purely on the implementation, here's a faster way of singeling out `natsort`.
-This re-uses an already generated mocha test:
+### Running a single generated test
+
+If that's not needed as you're iterating purely on the implementation, here's a faster way of singeling out a function
+like `natsort` which re-uses an already generated Mocha test in Watch mode, so it gets executed as you change the
+implementation file in `src/`:
 
 ```bash
-env DEBUG=locutus:* ./node_modules/.bin/mocha \
+./node_modules/.bin/mocha \
   --require babel-register \
   --reporter spec \
-test/languages/php/array/test-natsort.js
+  --watch \
+test/generated/php/array/test-natsort.js
 ```
 
-By interfacing with Mocha directly you could also enable watch mode by adding `--watch`.
+### Custom tests
 
-And there's a way to test functions inside Browsers with watching, via `yarn browser:watch`.
+As of v2.0.30 you can also write custom tests, an example can be found in
+[`src/php/var/serialize.mocha.js`](src/php/var/serialize.mocha.js).
+
+### Browser Playground
+
+Aside from unit tests, you can also run functions inside web browsers, with Watching, via `yarn browser:watch`. This
+allows you to quickly iterate and see how your functions behave in browsers.
 
 ## Commit
 
