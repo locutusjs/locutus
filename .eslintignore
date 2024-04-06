@@ -1,6 +1,7 @@
 dist/
 node_modules
 test/generated/
-website/themes/icarus/source/vendor/
+website/public/
 website/themes/icarus/_source/
 website/themes/icarus/scripts/
+website/themes/icarus/source/

@@ -22,7 +22,8 @@ website/assets/bower/
 website/assets/build/
 website/db.json
 website/node_modules/
-website/public
+website/public/
 website/source/
-website/themes/icarus/source/vendor/
 website/themes/icarus/_source/
+website/themes/icarus/scripts/
+website/themes/icarus/source/
