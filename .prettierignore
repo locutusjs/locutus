@@ -24,6 +24,5 @@ website/db.json
 website/node_modules/
 website/public
 website/source/
-website/themes
-website/vendor/bundle/
-website/vendor/cache/
+website/themes/icarus/source/vendor/
+website/themes/icarus/_source/
