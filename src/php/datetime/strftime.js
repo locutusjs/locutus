@@ -11,6 +11,8 @@ module.exports = function strftime(fmt, timestamp) {
   //      bugfixed by: Markus Marchewa
   //        example 2: strftime('%F', 1577836800);
   //        returns 2: '2020-01-01'
+  //        example 3: (() => {let e = process.env, tz = e.TZ; e.TZ = 'Europe/Vienna'; let r = strftime('%j', 1680307200); e.TZ = tz; return r;})();
+  //        returns 3: '091'
 
   const setlocale = require('../strings/setlocale')
 
@@ -74,10 +76,13 @@ module.exports = function strftime(fmt, timestamp) {
       return _xPad(I === 0 ? 12 : I, 0)
     },
     j: function (d) {
-      let ms = d - new Date('' + d.getFullYear() + '/1/1 GMT')
-      // Line differs from Yahoo implementation which would be
-      // equivalent to replacing it here with:
-      ms += d.getTimezoneOffset() * 60000
+      // calculate the difference between the given date and the start of the year (in localtime), DST shifts may lead
+      // to deltas less than multiples of 24 hours (the day when DST starts has just 23 hours), compensate by adding
+      // the difference between timezone offsets (subtract since values are negative for positive offsets), e.g.:
+      // 2020-05-01 00:00:00 CEST, timezone +0200, offset -120
+      // 2020-01-01 00:00:00 CET , timezone +0100, offset  -60
+      const b = new Date(d.getFullYear(), 0)
+      const ms = d - b - (d.getTimezoneOffset() - b.getTimezoneOffset()) * 60000
       const doy = parseInt(ms / 60000 / 60 / 24, 10) + 1
       return _xPad(doy, 0, 100)
     },
