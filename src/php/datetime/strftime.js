@@ -8,6 +8,9 @@ module.exports = function strftime(fmt, timestamp) {
   //           note 1: Uses global: locutus to store locale info
   //        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale
   //        returns 1: 'Tuesday'
+  //      bugfixed by: Markus Marchewa
+  //        example 2: strftime('%F', 1577836800);
+  //        returns 2: '2020-01-01'
 
   const setlocale = require('../strings/setlocale')
 
@@ -160,7 +163,7 @@ module.exports = function strftime(fmt, timestamp) {
   const _aggregates = {
     c: 'locale',
     D: '%m/%d/%y',
-    F: '%y-%m-%d',
+    F: '%Y-%m-%d',
     h: '%b',
     n: '\n',
     r: 'locale',

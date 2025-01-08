@@ -16,4 +16,10 @@ describe('src/php/datetime/strftime.js (tested in test/generated/php/datetime/te
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 2', function (done) {
+    var expected = '2020-01-01'
+    var result = strftime('%F', 1577836800);
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })
