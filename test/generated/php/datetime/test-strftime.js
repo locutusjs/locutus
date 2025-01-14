@@ -16,4 +16,16 @@ describe('src/php/datetime/strftime.js (tested in test/generated/php/datetime/te
     expect(result).to.deep.equal(expected)
     done()
   })
+  it('should pass example 2', function (done) {
+    var expected = '2020-01-01'
+    var result = strftime('%F', 1577836800);
+    expect(result).to.deep.equal(expected)
+    done()
+  })
+  it('should pass example 3', function (done) {
+    var expected = '091'
+    var result = (() => {let e = process.env, tz = e.TZ; e.TZ = 'Europe/Vienna'; let r = strftime('%j', 1680307200); e.TZ = tz; return r;})();
+    expect(result).to.deep.equal(expected)
+    done()
+  })
 })
