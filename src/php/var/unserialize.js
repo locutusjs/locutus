@@ -390,12 +390,12 @@ module.exports = function unserialize(str, errorMode = 'log') {
 
     return expectType(str, initCache())[0]
   } catch (err) {
-	if (errorMode === 'throw') {
-		throw err;
-	} else if (errorMode === 'log') {
-		console.error(err);
-	}
-	// if silent mode we do nothing
+    if (errorMode === 'throw') {
+      throw err
+    } else if (errorMode === 'log') {
+      console.error(err)
+    }
+    // if silent mode we do nothing
     return false
   }
 }
