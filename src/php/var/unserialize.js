@@ -395,7 +395,7 @@ module.exports = function unserialize(str, errorMode = 'log') {
 	} else if (errorMode === 'log') {
 		console.error(err);
 	}
-	//if silent mode we do nothing
+	// if silent mode we do nothing
     return false
   }
 }
