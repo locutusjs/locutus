@@ -342,7 +342,8 @@ function expectArrayItems(str, expectedItems = 0, cache) {
   return [items, totalOffset]
 }
 
-module.exports = function unserialize(str) {
+// errorMode: 'throw', 'log', 'silent'
+module.exports = function unserialize(str, errorMode = 'log') {
   //       discuss at: https://locutus.io/php/unserialize/
   //      original by: Arpad Ray (mailto:arpad@php.net)
   //      improved by: Pedro Tainha (https://www.pedrotainha.com)
@@ -389,7 +390,12 @@ module.exports = function unserialize(str) {
 
     return expectType(str, initCache())[0]
   } catch (err) {
-    console.error(err)
+    if (errorMode === 'throw') {
+      throw err
+    } else if (errorMode === 'log') {
+      console.error(err)
+    }
+    // if silent mode we do nothing
     return false
   }
 }
