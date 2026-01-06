@@ -16,7 +16,7 @@ describe('src/php/strings/quoted_printable_encode.js (tested in test/generated/p
     expect(result).to.deep.equal(expected)
     done()
   })
-  it.skip('should pass example 2', function (done) {
+  it('should pass example 2', function (done) {
     var expected = 'abc  =20\r\n123  =20\r\n'
     var result = quoted_printable_encode('abc   \r\n123   \r\n')
     expect(result).to.deep.equal(expected)

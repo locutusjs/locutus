@@ -7,13 +7,12 @@ process.env.TZ = 'UTC'
 var expect = require('chai').expect
 var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
 var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var get_defined_functions = require('../../../../src/php/funchand/get_defined_functions.js') // eslint-disable-line no-unused-vars,camelcase
+var file_exists = require('../../../../src/php/filesystem/file_exists.js') // eslint-disable-line no-unused-vars,camelcase
 
-describe('src/php/funchand/get_defined_functions.js (tested in test/generated/php/funchand/test-get_defined_functions.js)', function () {
+describe('src/php/filesystem/file_exists.js (tested in test/generated/php/filesystem/test-file_exists.js)', function () {
   it('should pass example 1', function (done) {
     var expected = true
-    var $funcs = get_defined_functions()
-    var result = Array.isArray($funcs) && $funcs.length > 0
+    var result = file_exists('test/never-change.txt')
     expect(result).to.deep.equal(expected)
     done()
   })

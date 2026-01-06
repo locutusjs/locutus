@@ -1,0 +1,8 @@
+module.exports.isalnum = require('./isalnum')
+module.exports.isalpha = require('./isalpha')
+module.exports.isdigit = require('./isdigit')
+module.exports.islower = require('./islower')
+module.exports.isspace = require('./isspace')
+module.exports.isupper = require('./isupper')
+module.exports.tolower = require('./tolower')
+module.exports.toupper = require('./toupper')
