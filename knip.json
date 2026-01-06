@@ -1,0 +1,14 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": ["src/index.js", "src/*/index.js", "src/*/*/index.js"],
+  "project": ["src/**/*.js", "test/**/*.js", "scripts/**/*.js"],
+  "ignore": [
+    "test/generated/**",
+    "dist/**",
+    "website/**"
+  ],
+  "ignoreDependencies": [
+    "remark-stringify"
+  ],
+  "ignoreExportsUsedInFile": true
+}
