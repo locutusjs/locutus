@@ -89,7 +89,8 @@ module.exports = function json_decode(strJson) {
     // JavaScript structure. The '{' operator is subject to a syntactic ambiguity
     // in JavaScript: it can begin a block or an object literal. We wrap the text
     // in parens to eliminate the ambiguity.
-    j = eval('(' + text + ')') // biome-ignore lint/security/noGlobalEval: needed for PHP port
+    // biome-ignore lint/security/noGlobalEval: needed for PHP port
+    j = eval('(' + text + ')')
     return j
   }
 
