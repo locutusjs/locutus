@@ -22,6 +22,7 @@ Use our creations at your own risk, and may they inspire you to push the boundar
 - [Install](#install)
 - [Use](#use)
 - [Development](#development)
+- [License](#license)
 
 ## Install
 
@@ -64,3 +65,7 @@ true
 ## Development
 
 Some guidelines and instructions can be found in [CONTRIBUTING.md](CONTRIBUTING.md)
+
+## License
+
+MIT, except for `src/php/bc/` and `src/php/_helpers/_bc.js` which are LGPL-2.1 (derived from PHP's bcmath/Libbcmath). See [LICENSE](LICENSE) for details.

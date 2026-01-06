@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
+// NOTE: This file is LGPL licensed, not MIT like the rest of locutus.
+// See LICENSE file for details.
+
 module.exports = function _bc() {
   //  discuss at: https://locutus.io/php/_helpers/_bc
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
@@ -7,7 +11,7 @@ module.exports = function _bc() {
   //   returns 1: '+'
 
   /**
-   * BC Math Library for Javascript
+   * BC Math Library for Javascript (LGPL-2.1)
    * Ported from the PHP5 bcmath extension source code,
    * which uses the Libbcmath package...
    *    Copyright (C) 1991, 1992, 1993, 1994, 1997 Free Software Foundation, Inc.
@@ -21,10 +25,9 @@ module.exports = function _bc() {
    *               Western Washington University
    *               Bellingham, WA 98226-9062
    *
-   * bcmath-js homepage:
+   * bcmath-js homepage: https://sourceforge.net/projects/bcmath-js/
    *
-   * This code is covered under the LGPL licence, and can be used however you want :)
-   * Be kind and share any decent code changes.
+   * This code is covered under the LGPL-2.1 license.
    */
 
   /**

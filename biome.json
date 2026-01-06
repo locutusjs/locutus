@@ -12,8 +12,7 @@
       "!website",
       "!dist",
       "!node_modules",
-      "!.yarn",
-      "!scripts"
+      "!.yarn"
     ]
   },
   "formatter": {
