@@ -11,5 +11,6 @@ module.exports = function addslashes(str) {
   //   example 1: addslashes("kevin's birthday")
   //   returns 1: "kevin\\'s birthday"
 
+  // biome-ignore lint/suspicious/noControlCharactersInRegex: null byte escaping is intentional
   return (str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0')
 }
