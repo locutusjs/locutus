@@ -25,12 +25,12 @@ module.exports = function call_user_func_array(cb, parameters) {
     if (typeof $global[cb] === 'function') {
       func = $global[cb]
     } else if (cb.match(validJSFunctionNamePattern)) {
-      func = new Function(null, 'return ' + cb)() // eslint-disable-line no-new-func
+      func = new Function(null, 'return ' + cb)() // biome-ignore lint: new Function needed for PHP port
     }
   } else if (Object.prototype.toString.call(cb) === '[object Array]') {
     if (typeof cb[0] === 'string') {
       if (cb[0].match(validJSFunctionNamePattern)) {
-        func = eval(cb[0] + "['" + cb[1] + "']") // eslint-disable-line no-eval
+        func = eval(cb[0] + "['" + cb[1] + "']") // biome-ignore lint/security/noGlobalEval: needed for PHP port
       }
     } else {
       func = cb[0][cb[1]]
@@ -40,7 +40,7 @@ module.exports = function call_user_func_array(cb, parameters) {
       if (typeof $global[cb[0]] === 'function') {
         scope = $global[cb[0]]
       } else if (cb[0].match(validJSFunctionNamePattern)) {
-        scope = eval(cb[0]) // eslint-disable-line no-eval
+        scope = eval(cb[0]) // biome-ignore lint/security/noGlobalEval: needed for PHP port
       }
     } else if (typeof cb[0] === 'object') {
       scope = cb[0]

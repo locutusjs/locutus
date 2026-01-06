@@ -1,372 +1,143 @@
-# Locutus Maintenance & Development Plan
+# Locutus Maintenance Plan
 
-**Document Version:** 1.0
-**Created:** 2026-01-06
-**Lead Maintainer:** AI-Assisted Maintenance
-
----
-
-## Executive Summary
-
-Locutus is a JavaScript library that ports standard library functions from PHP, Go, Python, Ruby, and C into JavaScript. The project has **373+ functions** (primarily PHP), a robust CI/CD pipeline, and an integrated documentation website. This plan outlines strategies for maintaining and growing the project.
+**Last Updated:** 2026-01-06
+**Philosophy:** Quality over quantity. Curate with taste.
 
 ---
 
-## Current State Assessment
+## Project Overview
 
-### Health Metrics
-| Metric | Status | Notes |
-|--------|--------|-------|
-| Tests Passing | 812/812 (100%) | All tests passing! |
-| CI/CD Pipeline | ✅ Operational | GitHub Actions, auto-publish |
-| Documentation | ✅ Good | Auto-generated website |
-| Dependencies | ⚠️ Review Needed | Babel 6 → 7 migration recommended |
-| PHP Coverage | ✅ Excellent | 290+ functions, 22 modules |
-| Go Coverage | ✅ Improved | 14 functions (strings package) |
-| Python Coverage | ✅ Improved | 17 functions (string, math modules) |
-| Ruby/C Coverage | ⚠️ Minimal | Only 3-6 functions each |
+Locutus is a JavaScript library that ports standard library functions from PHP, Go, Python, Ruby, and C. The project has **373+ functions** (primarily PHP), focusing on complex implementations that provide real value beyond native JavaScript.
 
-### Recently Fixed Tests (v1.1)
-All previously failing tests have been fixed:
-- ✅ `array_diff_uassoc` - Fixed expected return value
-- ✅ `array_merge_recursive` - Reimplemented correctly
-- ✅ `array_splice` - Fixed test input
-- ✅ `get_defined_functions` - Fixed test expectation
-- ✅ `quoted_printable_encode` - Fixed soft break logic
+### Current Status
+- **Tests:** 910 passing
+- **Linting:** Biome (migrated from ESLint + Prettier)
+- **Build:** Babel 6 (legacy, migration planned)
+- **Package Manager:** Yarn 4.12.0
 
 ---
 
-## Maintenance Strategy
+## Known Issues & Licensing
 
-### Phase 1: Stabilization (Immediate)
+### BC Math LGPL Licensing (Issue #473)
 
-#### 1.1 Fix Failing Tests
-```bash
-# Files to investigate:
-src/php/array/array_diff_uassoc.js
-src/php/array/array_merge_recursive.js
-src/php/array/array_splice.js
-src/php/funchand/get_defined_functions.js
-src/php/strings/quoted_printable_encode.js
-```
+The following files contain code derived from PHP's bcmath extension, which is LGPL licensed:
 
-#### 1.2 Dependency Audit
-- Review `package.json` for outdated packages
-- Update Babel, ESLint, Mocha to latest compatible versions
-- Test Node.js 22 compatibility (current: Node 20)
-- Consider migrating from CommonJS to ES Modules
+- `src/php/_helpers/_bc.js` - Core bcmath implementation
+- `website/source/php/_helpers/_bc.html` - Documentation
 
-#### 1.3 Code Quality
-- Run `yarn lint` and fix any warnings
-- Ensure 100% of functions have examples/tests
-- Add `.mocha.js` custom tests for complex functions
+**Status:** This code has LGPL copyleft implications. Users of locutus who include these BC math functions may need to comply with LGPL requirements for that portion of their codebase.
 
----
+**Affected functions:**
+- `bcadd`, `bcsub`, `bcmul`, `bcdiv`, `bccomp`, `bcround`, `bcscale`
 
-### Phase 2: Enhancement (Short-term)
-
-#### 2.1 Expand Language Coverage
-
-**Go (golang)**
-Current: 6 functions (strings package only)
-Target: Add common functions from:
-- `strconv` (string conversion)
-- `fmt` (formatting)
-- `time` (date/time)
-- `path` (path manipulation)
-
-**Python**
-Current: 7 functions (string module only)
-Target: Add functions from:
-- `os.path` (path operations)
-- `datetime` (date/time)
-- `re` (regex - where different from JS)
-- `json` (JSON handling utilities)
-
-**Ruby**
-Current: 3 functions (Math module only)
-Target: Add functions from:
-- `String` class methods
-- `Array` class methods
-- `Time` class
-
-**C**
-Current: 6 functions (math.h, stdio.h)
-Target: Add functions from:
-- `string.h` (strlen, strcpy, etc.)
-- `ctype.h` (isalpha, isdigit, etc.)
-- `stdlib.h` (atoi, atof, etc.)
-
-#### 2.2 Improve Documentation
-- Add "Why use this?" examples
-- Include performance comparisons where relevant
-- Add browser/Node.js compatibility notes
-- Generate API reference documentation
-
-#### 2.3 Developer Experience
-- Add TypeScript type definitions
-- Create VS Code extension for quick function lookup
-- Add interactive REPL/playground to website
-
----
-
-### Phase 3: Growth (Medium-term)
-
-#### 3.1 Community Building
-- Create "Good First Issue" labels for newcomers
-- Write function implementation guides
-- Set up Discord/Slack community channel
-- Regular release schedule (monthly patches)
-
-#### 3.2 Performance Optimization
-- Benchmark critical functions (sprintf, serialize, etc.)
-- Optimize hot paths with modern JavaScript
-- Add performance regression tests
-
-#### 3.3 Testing Infrastructure
-- Add property-based testing (fast-check)
-- Cross-reference with actual PHP output
-- Browser compatibility testing matrix
-- Memory leak detection
+**Recommendation for users:** If LGPL compliance is a concern, avoid importing the `bc*` functions. The rest of locutus is MIT licensed.
 
 ---
 
 ## Development Workflow
 
-### For Contributors
+### Quick Commands
 
 ```bash
-# Setup
-git clone https://github.com/locutusjs/locutus
-cd locutus
-yarn install
-
-# Development cycle
-yarn lint          # Check code quality
-yarn test          # Run all tests
-yarn build         # Build indices and tests
-
-# Adding a new function
-1. Create file: src/{language}/{category}/{function_name}.js
-2. Add header comments with examples
-3. Run: yarn build:tests
-4. Run: yarn test
-5. Run: yarn injectweb
+yarn check          # Format, lint, type-check, test (run after changes)
+yarn test           # Full test suite
+yarn lint           # Biome check
+yarn fix:biome      # Auto-fix linting issues
+yarn build          # Build everything
 ```
 
-### For Maintainers
+### Adding a New Function
 
-```bash
-# Release process
-1. Update CHANGELOG.md
-2. Run full test suite: yarn test:languages:noskip
-3. Bump version: npm version patch -m "Release v%s"
-4. Push tags: git push --tags
-5. GitHub Actions auto-publishes to npm
+1. Create file: `src/{language}/{category}/{function_name}.js`
+2. Add header comments with examples (these become tests)
+3. Run: `yarn build:tests && yarn test`
+4. Run: `yarn check` to verify formatting
 
-# Website deployment
-git push origin main  # Auto-deploys via GitHub Actions
-```
+### Commit Guidelines
+
+- Get something merged before doing more work
+- Keep PRs focused and small
+- Run `yarn check` before committing
 
 ---
 
-## Architecture Decisions
+## Strategic Priorities
 
-### Current Architecture
-```
-src/
-├── {language}/           # PHP, golang, python, ruby, c
-│   ├── {category}/       # strings, array, math, etc.
-│   │   ├── function.js   # Individual function module
-│   │   └── index.js      # Generated exports
-│   └── index.js          # Language exports
-├── _util/                # Build tools
-│   ├── cli.js            # CLI entry point
-│   └── util.js           # Build engine (AST parsing)
-└── index.js              # Root exports
-```
+### Priority 1: Code Quality
+- Zero biome warnings (suppress only when necessary with comments)
+- Remove trivial wrapper functions
+- Verify implementations against actual languages
 
-### Key Design Principles
-1. **Zero runtime dependencies** - All functionality is self-contained
-2. **CommonJS modules** - For maximum compatibility
-3. **Test from examples** - Function headers ARE the test cases
-4. **PHP naming conventions** - CamelCase disabled to match PHP
+### Priority 2: Modernization (Planned)
+- Vitest migration (from Mocha)
+- TypeScript migration (gradual)
+- ESM support
 
-### Future Considerations
-- ES Modules support (dual-export package)
-- Tree-shaking optimization
-- WebAssembly for performance-critical functions
-- Monorepo structure for language-specific packages
+### Priority 3: Community
+- Respond to PRs/issues within a week
+- Regular releases (monthly patches)
 
 ---
 
-## Monitoring & Metrics
+## Curation Guidelines
 
-### Key Performance Indicators
-- NPM download trends
-- GitHub stars/forks growth
-- Issue response time
-- PR merge time
-- Test coverage percentage
-- Documentation completeness
+### Functions Worth Porting (High Value)
+- Complex implementations: `sprintf`, `strtotime`, `serialize`, `date`
+- PHP-specific behavior: `array_merge_recursive`, `json_encode` options
+- Educational value: showing language differences
 
-### Automated Monitoring
-- GitHub Actions CI status
-- npm package health score
-- Security vulnerability alerts (Dependabot)
-- Website uptime (GitHub Pages)
+### Functions to Avoid (Low Value)
+- Direct wrappers (`strlen` = `s.length`)
+- Functions in modern JS (`Array.includes`, etc.)
+- Trivial transformations
 
----
-
-## Risk Management
-
-### Technical Risks
-| Risk | Mitigation |
-|------|------------|
-| Breaking changes in dependencies | Pin versions, regular updates |
-| Test regressions | Generated tests from examples |
-| Browser compatibility issues | Browserify testing, polyfills |
-| Security vulnerabilities | Dependabot, regular audits |
-
-### Project Risks
-| Risk | Mitigation |
-|------|------------|
-| Contributor burnout | Clear contribution guidelines |
-| Scope creep | Focus on PHP, prioritize quality |
-| Abandonment | Document everything, bus factor |
-
----
-
-## Immediate Action Items
-
-### This Session
-- [ ] Fix 5 failing tests
-- [ ] Update any critical dependencies
-- [ ] Document the build system better
-- [ ] Add more comprehensive examples
-
-### This Week
-- [ ] Review all open issues/PRs
-- [ ] Create "good first issue" labels
-- [ ] Add TypeScript definitions starter
-
-### This Month
-- [ ] Expand Go string functions
-- [ ] Add Python datetime functions
-- [ ] Performance benchmark suite
-- [ ] Community engagement plan
-
----
-
-## File Reference
-
-### Critical Files
-| File | Purpose |
-|------|---------|
-| `src/_util/util.js` | Build engine, AST parsing |
-| `.github/workflows/ci.yml` | CI/CD pipeline |
-| `package.json` | Dependencies, scripts |
-| `CHANGELOG.md` | Release notes |
-| `CONTRIBUTING.md` | Developer guide |
-
-### Common Commands
-```bash
-yarn lint              # Lint code
-yarn test              # Run tests
-yarn build             # Full build
-yarn test:languages:noskip  # All tests including skipped
-yarn website:start     # Local docs server
-yarn injectweb         # Update website docs
-```
+### Before Adding a Function, Ask:
+1. Does this provide value beyond native JS?
+2. Is the implementation non-trivial?
+3. Have you verified against actual PHP/Go/Python?
 
 ---
 
 ## Changelog
 
-### v1.4 (2026-01-06) - Iteration 2 (Strategic)
-- Created strategic roadmap with focus on quality over quantity
-- Built cross-language PHP verification system (`scripts/verify-php.js`)
-- Reviewed open PR #477 (composer.json) - requested clarification
-- Commented on issue #473 (LGPL) - documented affected files
-- Updated yarn from 4.0.1 to 4.12.0
+### 2026-01-06 - Biome Migration
+- Migrated from ESLint + Prettier to Biome
+- Removed 12 ESLint/Prettier dependencies
+- Fixed variable scoping issues in 6 files after auto-fix
+- Added `yarn check` command for quick validation
+
+### 2026-01-06 - Initial Setup
+- Fixed 5 failing tests
+- Expanded Go, Python, Ruby, C coverage
+- Created TypeScript definitions
+- Updated yarn to 4.12.0
 - Added knip for unused code detection
-- Added TypeScript and @types/node as devDependencies
-- Created knip.json configuration
-- Identified unused dependencies:
-  - `@shopify/prettier-plugin-liquid` - can be removed
-  - `eslint-plugin-node` - duplicate of eslint-plugin-n
-  - `eslint-plugin-standard` - deprecated
-  - Several babel plugins need verification
-
-### v1.3 (2026-01-06) - Iteration 2
-- Added Ruby String module with 11 functions:
-  - capitalize, downcase, upcase, reverse, length, strip, chomp, chop, include, start_with, end_with
-- Added Ruby Array module with 6 functions:
-  - first, last, compact, flatten, uniq, sample
-- Added C ctype.h module with 8 functions:
-  - isalpha, isdigit, isalnum, isspace, isupper, islower, toupper, tolower
-- Added C stdlib.h module with 2 functions:
-  - atoi, atof
-- Added C string.h module with 5 functions:
-  - strlen, strcmp, strcat, strchr, strstr
-- Added Go strconv package with 6 functions:
-  - Atoi, Itoa, ParseBool, FormatBool, ParseInt, FormatInt
-- Created TypeScript type definitions (index.d.ts)
-- Total test count: 909 passing tests
-
-### v1.2 (2026-01-06)
-- Expanded Go strings package from 4 to 14 functions:
-  - Added: HasPrefix, HasSuffix, ToLower, ToUpper, Trim, TrimSpace, Replace, Split, Join, Repeat
-- Expanded Python string module from 5 to 10 functions:
-  - Added: digits, hexdigits, octdigits, whitespace, printable
-- Added new Python math module with 7 functions:
-  - Added: factorial, gcd, isfinite, isinf, isnan, pow, sqrt
-- Total test count: 812 passing tests
-
-### v1.1 (2026-01-06)
-- Fixed 5 failing tests (now 781/781 passing):
-  - `quoted_printable_encode` - Fixed soft line break stripping logic
-  - `get_defined_functions` - Fixed unrealistic test expectation
-  - `array_diff_uassoc` - Fixed incorrect expected return value (matched to PHP)
-  - `array_merge_recursive` - Completely reimplemented to match PHP behavior
-  - `array_splice` - Fixed test to use array instead of object
-- Removed skip directives from fixed tests
-- Updated test suite to 781 passing tests
-
-### v1.0 (2026-01-06)
-- Initial maintenance plan created
-- Documented current state and failing tests
-- Outlined phased improvement strategy
-- Defined workflows and action items
 
 ---
 
-## Dependency Update Notes
+## Lessons Learned
 
-The following packages could be updated (risk assessment):
+1. **Biome's unsafe fixes can break code** - Variable declarations with multiple variables (`let i, j = 0`) get split incorrectly. Always run tests after auto-fix.
 
-### Safe Updates (patch/minor)
-- `prettier`: 3.2.5 → 3.7.4
-- `debug`: 4.3.4 → 4.4.3
-- `browserify`: 17.0.0 → 17.0.1
-- `chai`: 4.4.1 → 4.5.0
-- `remark-cli`: 12.0.0 → 12.0.1
+2. **Keep one plan document** - Don't create multiple strategy docs. Revise this one.
 
-### Major Updates (requires testing)
-- `eslint`: 8.57.0 → 9.x (breaking changes)
-- `mocha`: 10.4.0 → 11.x (breaking changes)
-- `async`: 2.6.4 → 3.x (breaking changes)
-- `chai`: 4.x → 6.x (ESM only)
-- `rimraf`: 5.x → 6.x (breaking changes)
+3. **Merge before adding more** - Get changes merged before piling on more work.
 
-### Babel 6 → 7 Migration
-The project uses Babel 6.x which is deprecated. Migration to Babel 7 would involve:
-1. Replacing `babel-cli` with `@babel/cli`
-2. Replacing `babel-core` with `@babel/core`
-3. Replacing `babel-preset-es2015` with `@babel/preset-env`
-4. Updating all `babel-plugin-*` packages to `@babel/plugin-*`
-5. Testing all build scripts
+4. **Clean up thoroughly** - After migrations, remove ALL traces (including suppression comments).
+
+5. **eval() is sometimes necessary** - For PHP function ports like `json_decode`, `create_function`, `is_callable`, eval is legitimately needed. Suppress the warning with a comment explaining why.
 
 ---
 
-*This document should be updated as the project evolves. Review quarterly.*
+## Open Items
+
+### PR #477 - composer.json
+Status: Open, awaiting clarification on use case
+
+### Issue #473 - LGPL in _bc.js
+Status: Documented above. Consider rewriting from scratch if MIT purity is needed.
+
+---
+
+*Review and update this document regularly.*

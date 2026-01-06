@@ -44,7 +44,7 @@ module.exports = function usort(inputArr, sorter) {
   }
   try {
     valArr.sort(sorter)
-  } catch (e) {
+  } catch (_e) {
     return false
   }
   for (i = 0; i < valArr.length; i++) {

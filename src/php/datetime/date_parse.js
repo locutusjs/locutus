@@ -9,7 +9,7 @@ module.exports = function date_parse(date) {
 
   try {
     ts = strtotime(date)
-  } catch (e) {
+  } catch (_e) {
     ts = false
   }
 

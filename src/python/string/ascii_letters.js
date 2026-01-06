@@ -6,7 +6,7 @@ module.exports = function ascii_letters() {
   const length = 26
   let i = 65
 
-  return [...Array(length + 6 + length)]
+  return [...new Array(length + 6 + length)]
     .reduce(function (accumulator) {
       return accumulator + String.fromCharCode(i++)
     }, '')

@@ -11,7 +11,9 @@ module.exports = function bcadd(leftOperand, rightOperand, scale) {
   const bc = require('../_helpers/_bc')
   const libbcmath = bc()
 
-  let first, second, result
+  let first
+  let second
+  let result
 
   if (typeof scale === 'undefined') {
     scale = libbcmath.scale

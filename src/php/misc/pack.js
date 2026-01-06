@@ -25,7 +25,12 @@ module.exports = function pack(format) {
   let argument = ''
   let i = 0
   let r = []
-  let instruction, quantifier, word, precisionBits, exponentBits, extraNullCount
+  let instruction
+  let quantifier
+  let word
+  let precisionBits
+  let exponentBits
+  let extraNullCount
 
   // vars used by float encoding
   let bias

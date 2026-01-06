@@ -144,7 +144,14 @@ export namespace php {
     function gettimeofday(returnFloat?: boolean): object | number
     function gmdate(format: string, timestamp?: number): string
     function idate(format: string, timestamp?: number): number
-    function mktime(hour?: number, minute?: number, second?: number, month?: number, day?: number, year?: number): number
+    function mktime(
+      hour?: number,
+      minute?: number,
+      second?: number,
+      month?: number,
+      day?: number,
+      year?: number,
+    ): number
     function strftime(format: string, timestamp?: number): string
     function strtotime(str: string, now?: number): number | false
     function time(): number

@@ -8,5 +8,5 @@ module.exports = function strcat(dest, src) {
   //   example 2: strcat('abc', 'def')
   //   returns 2: 'abcdef'
 
-  return (dest + '') + (src + '')
+  return dest + '' + (src + '')
 }

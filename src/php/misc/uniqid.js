@@ -26,7 +26,7 @@ module.exports = function uniqid(prefix, moreEntropy) {
     }
     if (reqWidth > seed.length) {
       // so short we pad
-      return Array(1 + (reqWidth - seed.length)).join('0') + seed
+      return new Array(1 + (reqWidth - seed.length)).join('0') + seed
     }
     return seed
   }

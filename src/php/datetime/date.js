@@ -60,7 +60,8 @@ module.exports = function date(format, timestamp) {
   //   returns 9: '52 2011-01-02'
   //        test: skip-1 skip-2 skip-5
 
-  let jsdate, f
+  let jsdate
+  let f
   // Keep this here (works, but for code commented-out below for file size reasons)
   // var tal= [];
   const txtWords = [

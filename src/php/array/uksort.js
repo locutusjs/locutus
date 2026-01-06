@@ -42,7 +42,7 @@ module.exports = function uksort(inputArr, sorter) {
     } else {
       keys.sort()
     }
-  } catch (e) {
+  } catch (_e) {
     return false
   }
 

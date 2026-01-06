@@ -312,13 +312,7 @@ class Util {
   }
 
   _addRequire(name, relativeSrcForTest) {
-    return [
-      'var ',
-      name,
-      " = require('",
-      relativeSrcForTest,
-      "') // eslint-disable-line no-unused-vars,camelcase",
-    ].join('')
+    return ['var ', name, " = require('", relativeSrcForTest, "')"].join('')
   }
 
   _writetestOne(params, cb) {
@@ -584,14 +578,14 @@ class Util {
           rightArg.id.type === 'Identifier' &&
           !!rightArg.id.name
         )
-      } catch (err) {
+      } catch (_err) {
         return false
       }
     })
 
     // if file contains more than one export, fail
     if (moduleExports.length !== 1) {
-      return cb(Error(`File ${filepath} is allowed to contain exactly one module.exports`))
+      return cb(new Error(`File ${filepath} is allowed to contain exactly one module.exports`))
     }
 
     // get the only export

@@ -94,8 +94,8 @@ module.exports = function money_format(format, number) {
     const intLen = integer.length
     left = parseInt(left, 10)
     const filler = intLen < left
+    const fillnum = filler ? left - intLen : 0
     if (filler) {
-      var fillnum = left - intLen
       integer = new Array(fillnum + 1).join(fill) + integer
     }
     if (flags.indexOf('^') === -1) {
@@ -106,8 +106,10 @@ module.exports = function money_format(format, number) {
       // [3] (every 3 digits in U.S.A. locale)
       const monGrouping = monetary.mon_grouping
 
+      let i = 0
+      let idx = integer.length
       if (monGrouping[0] < integer.length) {
-        for (var i = 0, idx = integer.length; i < monGrouping.length; i++) {
+        for (; i < monGrouping.length; i++) {
           // e.g., 3
           idx -= monGrouping[i]
           if (idx <= 0) {

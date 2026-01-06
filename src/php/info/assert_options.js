@@ -4,18 +4,20 @@ module.exports = function assert_options(what, value) {
   //   example 1: assert_options('ASSERT_CALLBACK')
   //   returns 1: null
 
-  let iniKey, defaultVal
+  let iniKey
+  let defaultVal
   switch (what) {
     case 'ASSERT_ACTIVE':
       iniKey = 'assert.active'
       defaultVal = 1
       break
-    case 'ASSERT_WARNING':
+    case 'ASSERT_WARNING': {
       iniKey = 'assert.warning'
       defaultVal = 1
-      var msg = 'We have not yet implemented warnings for us to throw '
+      let msg = 'We have not yet implemented warnings for us to throw '
       msg += 'in JavaScript (assert_options())'
       throw new Error(msg)
+    }
     case 'ASSERT_BAIL':
       iniKey = 'assert.bail'
       defaultVal = 0

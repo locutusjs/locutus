@@ -7,7 +7,9 @@ module.exports = function bcround(val, precision) {
   const _bc = require('../_helpers/_bc')
   const libbcmath = _bc()
 
-  let temp, result, digit
+  let temp
+  let result
+  let digit
   let rightOperand
 
   // create number

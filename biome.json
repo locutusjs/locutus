@@ -1,0 +1,179 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+  "files": { "ignoreUnknown": false },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 120,
+    "attributePosition": "auto",
+    "bracketSameLine": false,
+    "bracketSpacing": true,
+    "expand": "auto",
+    "useEditorconfig": true,
+    "includes": [
+      "**",
+      "!**/.DS_Store",
+      "!**/.gitup.dat",
+      "!**/.idea",
+      "!**/.project",
+      "!**/.yarn/",
+      "!**/dist/",
+      "!**/env.sh",
+      "!**/nbproject",
+      "!**/node_modules/",
+      "!**/npm-debug.*",
+      "!scripts/main.js",
+      "!scripts/main.js.map",
+      "!scripts/split-*.js",
+      "!test/generated/",
+      "!tools/_temp/*",
+      "!website/_site/",
+      "!website/.asset-cache",
+      "!website/.deploy_git",
+      "!website/.jekyll-assets-cache",
+      "!website/.jekyll-metadata",
+      "!website/assets/bower/",
+      "!website/assets/build/",
+      "!website/db.json",
+      "!website/node_modules/",
+      "!website/public/",
+      "!website/source/",
+      "!website/themes/icarus/_source/",
+      "!website/themes/icarus/scripts/",
+      "!website/themes/icarus/source/"
+    ]
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": false,
+      "complexity": {
+        "noAdjacentSpacesInRegex": "error",
+        "noCommaOperator": "error",
+        "noExtraBooleanCast": "error",
+        "noUselessCatch": "error",
+        "noUselessConstructor": "error",
+        "noUselessEscapeInRegex": "error",
+        "noUselessLoneBlockStatements": "error",
+        "noUselessRename": "error",
+        "noUselessTernary": "error",
+        "noUselessUndefinedInitialization": "error",
+        "noVoid": "error",
+        "useLiteralKeys": "error",
+        "useRegexLiterals": "error"
+      },
+      "correctness": {
+        "noConstAssign": "error",
+        "noConstantCondition": "error",
+        "noEmptyCharacterClassInRegex": "error",
+        "noEmptyPattern": "error",
+        "noGlobalObjectCalls": "error",
+        "noInvalidConstructorSuper": "error",
+        "noInvalidUseBeforeDeclaration": "warn",
+        "noPrecisionLoss": "error",
+        "noSelfAssign": "error",
+        "noSwitchDeclarations": "error",
+        "noUndeclaredVariables": "error",
+        "noUnreachable": "error",
+        "noUnreachableSuper": "error",
+        "noUnsafeFinally": "error",
+        "noUnusedVariables": "error",
+        "useIsNan": "error",
+        "useValidTypeof": "warn"
+      },
+      "security": { "noGlobalEval": "warn" },
+      "style": {
+        "noYodaExpression": "error",
+        "useArrayLiterals": "error",
+        "useBlockStatements": "error",
+        "useConsistentBuiltinInstantiation": "error",
+        "useConst": "warn",
+        "useSingleVarDeclarator": "error",
+        "useSymbolDescription": "error"
+      },
+      "suspicious": {
+        "noAsyncPromiseExecutor": "error",
+        "noCatchAssign": "error",
+        "noClassAssign": "error",
+        "noCompareNegZero": "error",
+        "noControlCharactersInRegex": "warn",
+        "noDebugger": "error",
+        "noDoubleEquals": "error",
+        "noDuplicateCase": "error",
+        "noDuplicateClassMembers": "error",
+        "noDuplicateObjectKeys": "error",
+        "noDuplicateParameters": "error",
+        "noEmptyBlockStatements": "warn",
+        "noFallthroughSwitchClause": "error",
+        "noFunctionAssign": "error",
+        "noGlobalAssign": "error",
+        "noImportAssign": "error",
+        "noIrregularWhitespace": "error",
+        "noMisleadingCharacterClass": "warn",
+        "noOctalEscape": "error",
+        "noPrototypeBuiltins": "off",
+        "noRedeclare": "error",
+        "noSelfCompare": "error",
+        "noShadowRestrictedNames": "error",
+        "noSparseArray": "error",
+        "noTemplateCurlyInString": "error",
+        "noUnsafeNegation": "error",
+        "noUselessRegexBackrefs": "error",
+        "noVar": "warn",
+        "noWith": "error",
+        "useDefaultSwitchClauseLast": "error",
+        "useIterableCallbackReturn": "error"
+      }
+    },
+    "includes": [
+      "**",
+      "!**/dist/",
+      "!**/node_modules",
+      "!test/generated/",
+      "!website/public/",
+      "!website/themes/icarus/_source/",
+      "!website/themes/icarus/scripts/",
+      "!website/themes/icarus/source/"
+    ]
+  },
+  "javascript": {
+    "formatter": {
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "trailingCommas": "all",
+      "semicolons": "asNeeded",
+      "arrowParentheses": "always",
+      "bracketSameLine": false,
+      "quoteStyle": "single",
+      "attributePosition": "auto",
+      "bracketSpacing": true
+    },
+    "globals": ["navigator", "document", "window", "describe", "it", "test", "global", "escape"]
+  },
+  "html": {
+    "formatter": {
+      "indentScriptAndStyle": false,
+      "selfCloseVoidElements": "always"
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["*.html"],
+      "javascript": { "formatter": { "quoteStyle": "double" } }
+    },
+    {
+      "includes": ["*.scss", "*.css"],
+      "javascript": { "formatter": { "quoteStyle": "double" } },
+      "formatter": { "lineWidth": 80 }
+    },
+    { "includes": [".github/workflows/**/*.yml"] }
+  ],
+  "assist": {
+    "enabled": true,
+    "actions": { "source": { "organizeImports": "on" } }
+  }
+}

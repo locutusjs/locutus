@@ -143,7 +143,7 @@ module.exports = function strptime(dateStr, format) {
         // Format indicated a percent literal, but not actually present
         return false
       }
-      var formatChar = format.charAt(i + 1)
+      const formatChar = format.charAt(i + 1)
       try {
         switch (formatChar) {
           case 'a':

@@ -37,7 +37,7 @@ module.exports = function array_search(needle, haystack, argStrict) {
 
   for (key in haystack) {
     if (haystack.hasOwnProperty(key)) {
-      // eslint-disable-next-line eqeqeq
+      // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
       if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
         return key
       }

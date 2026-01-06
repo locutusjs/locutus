@@ -61,7 +61,7 @@ function parseExamples(filePath) {
       examples.push({
         number: parseInt(num),
         code: exampleMatches[num],
-        expected: returnsMatches[num]
+        expected: returnsMatches[num],
       })
     }
   }
@@ -88,7 +88,7 @@ function jsToPhp(jsCode, functionName) {
 // Convert JS expected value to PHP evaluation
 function jsExpectedToPhp(jsExpected) {
   // Handle common JS to PHP conversions
-  let php = jsExpected
+  const php = jsExpected
 
   // true/false are same
   // null is same
@@ -104,7 +104,7 @@ function runPhp(phpCode) {
   try {
     const result = spawnSync('php', ['-r', phpCode], {
       encoding: 'utf8',
-      timeout: 5000
+      timeout: 5000,
     })
 
     if (result.error) {
@@ -160,7 +160,9 @@ async function verifyFunction(filePath) {
       ${setupCode ? setupCode + ';' : ''}
       $result = ${callCode};
       echo json_encode($result);
-    `.trim().replace(/\n\s+/g, ' ')
+    `
+      .trim()
+      .replace(/\n\s+/g, ' ')
 
     const phpResult = runPhp(phpCode)
 
@@ -169,16 +171,16 @@ async function verifyFunction(filePath) {
       code: example.code.join('; '),
       expected: example.expected,
       phpResult: phpResult.success ? phpResult.output : `ERROR: ${phpResult.error}`,
-      match: phpResult.success && phpResult.output === example.expected
+      match: phpResult.success && phpResult.output === example.expected,
     })
   }
 
-  const allMatch = results.every(r => r.match)
+  const allMatch = results.every((r) => r.match)
 
   return {
     functionName,
     status: allMatch ? 'pass' : 'fail',
-    results
+    results,
   }
 }
 
@@ -203,7 +205,7 @@ async function main() {
 
   // Exclude index files and helpers
   const files = await glob(pattern, {
-    ignore: ['**/index.js', '**/_*.js', '**/*.mocha.js']
+    ignore: ['**/index.js', '**/_*.js', '**/*.mocha.js'],
   })
 
   console.log(`Verifying ${files.length} PHP functions against actual PHP...\n`)

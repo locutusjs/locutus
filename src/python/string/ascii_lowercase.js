@@ -6,7 +6,7 @@ module.exports = function ascii_lowercase() {
   const length = 26
   let i = 65 + length + 6
 
-  return [...Array(length)].reduce(function (accumulator) {
+  return [...new Array(length)].reduce(function (accumulator) {
     return accumulator + String.fromCharCode(i++)
   }, '')
 }

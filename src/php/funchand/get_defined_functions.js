@@ -32,7 +32,7 @@ module.exports = function get_defined_functions() {
           }
         }
       }
-    } catch (e) {
+    } catch (_e) {
       // Some objects in Firefox throw exceptions when their
       // properties are accessed (e.g., sessionStorage)
     }

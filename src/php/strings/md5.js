@@ -18,7 +18,7 @@ module.exports = function md5(str) {
     const md5sum = crypto.createHash('md5')
     md5sum.update(str)
     hash = md5sum.digest('hex')
-  } catch (e) {
+  } catch (_e) {
     hash = undefined
   }
 
@@ -34,7 +34,11 @@ module.exports = function md5(str) {
   }
 
   const _addUnsigned = function (lX, lY) {
-    let lX4, lY4, lX8, lY8, lResult
+    let lX4
+    let lY4
+    let lX8
+    let lY8
+    let lResult
     lX8 = lX & 0x80000000
     lY8 = lY & 0x80000000
     lX4 = lX & 0x40000000
