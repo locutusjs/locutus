@@ -25,3 +25,4 @@ website/node_modules/
 website/public
 website/vendor/bundle/
 website/vendor/cache/
+.cache/

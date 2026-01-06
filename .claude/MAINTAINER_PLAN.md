@@ -1,37 +1,101 @@
 # Locutus Maintenance Plan
 
 **Last Updated:** 2026-01-06
-**Philosophy:** Quality over quantity. Curate with taste.
+**Philosophy:** Quality over quantity. Verify against reality. Curate with taste.
 
 ---
 
-## Project Overview
+## Vision
 
-Locutus is a JavaScript library that ports standard library functions from PHP, Go, Python, Ruby, and C. The project has **373+ functions** (primarily PHP), focusing on complex implementations that provide real value beyond native JavaScript.
+Locutus is **the** reference implementation for cross-language standard library functions in JavaScript. Every function should be:
 
-### Current Status
-- **Tests:** 910 passing
-- **Linting:** Biome (migrated from ESLint + Prettier)
-- **Build:** Babel 6 (legacy, migration planned)
-- **Package Manager:** Yarn 4.12.0
+1. **Verified** - Tested against actual language runtimes (not just JS unit tests)
+2. **Documented** - Clear examples, edge cases, and differences from native
+3. **Typed** - Full TypeScript definitions
+4. **Modern** - ESM, tree-shakeable, zero dependencies
 
 ---
 
-## Known Issues & Licensing
+## Current State
 
-### BC Math LGPL Licensing (Issue #473)
+| Metric | Value |
+|--------|-------|
+| Functions | 394 with examples |
+| Tests | 910 passing |
+| Linting | Biome (25 warnings, 11 in LGPL code) |
+| Build | Babel 6 (legacy) |
+| Types | Basic index.d.ts |
+| Languages | PHP (primary), Go, Python, Ruby, C |
 
-The following files contain code derived from PHP's bcmath extension, which is LGPL licensed:
+---
 
-- `src/php/_helpers/_bc.js` - Core bcmath implementation
-- `website/source/php/_helpers/_bc.html` - Documentation
+## Roadmap
 
-**Status:** This code has LGPL copyleft implications. Users of locutus who include these BC math functions may need to comply with LGPL requirements for that portion of their codebase.
+### Phase 1: Verification Infrastructure (Current)
 
-**Affected functions:**
-- `bcadd`, `bcsub`, `bcmul`, `bcdiv`, `bccomp`, `bcround`, `bcscale`
+**Goal:** Every function verified against actual language runtime via Docker.
 
-**Recommendation for users:** If LGPL compliance is a concern, avoid importing the `bc*` functions. The rest of locutus is MIT licensed.
+- [x] Create `scripts/verify.ts` - TypeScript, native Node execution
+- [x] Content-based caching in `.cache/verify/`
+- [ ] Docker containers for PHP, Go, Python, Ruby, C
+- [ ] JS-to-native code transpilation for each language
+- [ ] CI integration - fail if verification diverges
+- [ ] Badge: "Verified against PHP 8.3"
+
+**Commands:**
+```bash
+yarn verify              # Verify all (uses cache)
+yarn verify php          # Verify PHP only
+yarn verify --no-cache   # Force re-verification
+```
+
+### Phase 2: Modernization
+
+**Goal:** Modern toolchain, ESM-first, tree-shakeable.
+
+- [ ] Migrate Babel 6 → native ESM (Node 20+)
+- [ ] Migrate Mocha → Vitest
+- [ ] Dual CJS/ESM exports
+- [ ] Publish as `locutus@3.0.0` with breaking changes
+- [ ] Drop Node < 20 support
+
+### Phase 3: TypeScript
+
+**Goal:** Full type safety, better DX.
+
+- [ ] Convert `src/_util/` to TypeScript
+- [ ] Generate types from JSDoc in function files
+- [ ] Per-function type exports: `import type { SprintfArgs } from 'locutus/php/strings/sprintf'`
+- [ ] Strict mode compatible
+
+### Phase 4: Expansion
+
+**Goal:** Best-in-class coverage for target languages.
+
+**PHP Priority Functions:**
+- [ ] `preg_match_all` - regex with captures
+- [ ] `DateTime` class methods
+- [ ] `array_column` improvements
+- [ ] `password_hash` / `password_verify`
+
+**Go Expansion:**
+- [ ] `fmt.Sprintf` with full verb support
+- [ ] `time.Parse` / `time.Format`
+- [ ] `regexp` package
+- [ ] `encoding/json` with struct tags
+
+**Python Expansion:**
+- [ ] `datetime` module
+- [ ] `re` module
+- [ ] `collections` (Counter, defaultdict)
+- [ ] `itertools`
+
+### Phase 5: Documentation & Website
+
+- [ ] Auto-generate docs from source
+- [ ] Interactive playground (run in browser)
+- [ ] Search by function name or behavior
+- [ ] "Rosetta Stone" - same function across all languages
 
 ---
 
@@ -40,108 +104,133 @@ The following files contain code derived from PHP's bcmath extension, which is L
 ### Quick Commands
 
 ```bash
-yarn check          # Format, lint, type-check, test (run after changes)
-yarn test           # Full test suite
-yarn lint           # Biome check
-yarn fix:biome      # Auto-fix linting issues
-yarn build          # Build everything
+yarn check              # Format + lint + test (run after changes)
+yarn verify             # Cross-language verification
+yarn test               # Full test suite
+yarn lint               # Biome check
+yarn fix:biome          # Auto-fix
 ```
 
 ### Adding a New Function
 
-1. Create file: `src/{language}/{category}/{function_name}.js`
-2. Add header comments with examples (these become tests)
-3. Run: `yarn build:tests && yarn test`
-4. Run: `yarn check` to verify formatting
+1. **Check it's worth adding:**
+   - Non-trivial implementation?
+   - Not available in modern JS?
+   - Verified against actual language?
+
+2. **Create the file:**
+   ```bash
+   # src/{language}/{category}/{function_name}.js
+   touch src/php/strings/new_function.js
+   ```
+
+3. **Add header with examples:**
+   ```javascript
+   module.exports = function new_function(arg) {
+     //  discuss at: https://locutus.io/php/new_function/
+     // original by: Your Name
+     //   example 1: new_function('test')
+     //   returns 1: 'expected'
+
+     // Implementation...
+   }
+   ```
+
+4. **Verify and test:**
+   ```bash
+   yarn verify php/strings/new_function
+   yarn build:tests && yarn test
+   yarn check
+   ```
 
 ### Commit Guidelines
 
-- Get something merged before doing more work
-- Keep PRs focused and small
+- Small, focused PRs
 - Run `yarn check` before committing
+- Merge early, iterate often
 
 ---
 
-## Strategic Priorities
+## Quality Standards
 
-### Priority 1: Code Quality
-- Zero biome warnings (suppress only when necessary with comments)
-- Remove trivial wrapper functions
-- Verify implementations against actual languages
+### Zero Tolerance
+- Failing tests
+- Biome errors
+- Unverified implementations (eventually)
 
-### Priority 2: Modernization (Planned)
-- Vitest migration (from Mocha)
-- TypeScript migration (gradual)
-- ESM support
+### Acceptable Warnings
+- LGPL code (`_bc.js`) - can't modify
+- Intentional eval/new Function (with biome-ignore comment)
+- Style warnings in complex algorithms
 
-### Priority 3: Community
-- Respond to PRs/issues within a week
-- Regular releases (monthly patches)
+### Curation Rules
 
----
+**Worth porting:**
+- Complex: `sprintf`, `strtotime`, `serialize`, `date`
+- Language-specific quirks: `array_merge` vs `array_merge_recursive`
+- Educational: showing PHP's type coercion
 
-## Curation Guidelines
-
-### Functions Worth Porting (High Value)
-- Complex implementations: `sprintf`, `strtotime`, `serialize`, `date`
-- PHP-specific behavior: `array_merge_recursive`, `json_encode` options
-- Educational value: showing language differences
-
-### Functions to Avoid (Low Value)
-- Direct wrappers (`strlen` = `s.length`)
-- Functions in modern JS (`Array.includes`, etc.)
-- Trivial transformations
-
-### Before Adding a Function, Ask:
-1. Does this provide value beyond native JS?
-2. Is the implementation non-trivial?
-3. Have you verified against actual PHP/Go/Python?
+**Skip:**
+- Direct wrappers: `strlen` → `s.length`
+- Modern JS equivalents: `Array.includes`, `Object.keys`
+- Trivial math: `abs`, `ceil`, `floor`
 
 ---
 
-## Changelog
+## Licensing
 
-### 2026-01-06 - Biome Migration
-- Migrated from ESLint + Prettier to Biome
-- Removed 12 ESLint/Prettier dependencies
-- Fixed variable scoping issues in 6 files after auto-fix
-- Added `yarn check` command for quick validation
+- **MIT** - Everything except BC Math
+- **LGPL-2.1** - `src/php/_helpers/_bc.js` and `src/php/bc/*`
 
-### 2026-01-06 - Initial Setup
-- Fixed 5 failing tests
-- Expanded Go, Python, Ruby, C coverage
-- Created TypeScript definitions
-- Updated yarn to 4.12.0
-- Added knip for unused code detection
-
----
-
-## Lessons Learned
-
-1. **Biome's unsafe fixes can break code** - Variable declarations with multiple variables (`let i, j = 0`) get split incorrectly. Always run tests after auto-fix.
-
-2. **Keep one plan document** - Don't create multiple strategy docs. Revise this one.
-
-3. **Merge before adding more** - Get changes merged before piling on more work.
-
-4. **Clean up thoroughly** - After migrations, remove ALL traces (including suppression comments).
-
-5. **eval() is sometimes necessary** - For PHP function ports like `json_decode`, `create_function`, `is_callable`, eval is legitimately needed. Suppress the warning with a comment explaining why.
-
-6. **Document licensing in the right places** - Don't just comment on issues. Update LICENSE, README, and add SPDX headers to affected files.
-
-7. **Don't duplicate existing infrastructure** - Check src/_util/ before creating new scripts. The test generation and parsing utilities already exist.
+See [LICENSE](../LICENSE) for details.
 
 ---
 
 ## Open Items
 
 ### PR #477 - composer.json
-Status: Open, awaiting clarification on use case
+Status: Open, needs clarification
 
-### Issue #473 - LGPL in _bc.js
-Status: **Resolved.** LGPL licensing now documented in LICENSE, README, and _bc.js header.
+### Issue #473 - LGPL
+Status: **Resolved** - Documented in LICENSE, README, source files
 
 ---
 
-*Review and update this document regularly.*
+## Lessons Learned
+
+1. **Verify against reality** - Unit tests aren't enough. Run actual PHP/Go/Python.
+
+2. **Don't duplicate infrastructure** - Check `src/_util/` before creating new tools.
+
+3. **Document in the right place** - LICENSE, README, SPDX headers. Not just issues.
+
+4. **Biome unsafe fixes break code** - Always test after auto-fix.
+
+5. **eval() is sometimes necessary** - Suppress with explanation, don't fight it.
+
+6. **Keep one plan** - Revise this document, don't create new ones.
+
+7. **Merge often** - Small PRs, fast iteration.
+
+---
+
+## Changelog
+
+### 2026-01-06 - Cross-Language Verification
+- Created `scripts/verify.ts` with Docker support
+- Content-based caching for fast re-runs
+- Native TypeScript (Node 25+)
+
+### 2026-01-06 - LGPL Documentation
+- Added LGPL exception to LICENSE
+- Added License section to README
+- Added SPDX headers to `_bc.js`
+
+### 2026-01-06 - Biome Migration
+- Migrated from ESLint + Prettier
+- Reduced warnings from 41 to 25
+- Added `yarn check` command
+
+---
+
+*This is a living document. Update it regularly.*
