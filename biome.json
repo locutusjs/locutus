@@ -1,7 +1,21 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
   "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
-  "files": { "ignoreUnknown": false },
+  "files": {
+    "ignoreUnknown": true,
+    "includes": [
+      "**",
+      "!.vscode",
+      "!**/*.html",
+      "!index.d.ts",
+      "!test/generated",
+      "!website",
+      "!dist",
+      "!node_modules",
+      "!.yarn",
+      "!scripts"
+    ]
+  },
   "formatter": {
     "enabled": true,
     "formatWithErrors": false,
@@ -9,43 +23,7 @@
     "indentWidth": 2,
     "lineEnding": "lf",
     "lineWidth": 120,
-    "attributePosition": "auto",
-    "bracketSameLine": false,
-    "bracketSpacing": true,
-    "expand": "auto",
-    "useEditorconfig": true,
-    "includes": [
-      "**",
-      "!**/.DS_Store",
-      "!**/.gitup.dat",
-      "!**/.idea",
-      "!**/.project",
-      "!**/.yarn/",
-      "!**/dist/",
-      "!**/env.sh",
-      "!**/nbproject",
-      "!**/node_modules/",
-      "!**/npm-debug.*",
-      "!scripts/main.js",
-      "!scripts/main.js.map",
-      "!scripts/split-*.js",
-      "!test/generated/",
-      "!tools/_temp/*",
-      "!website/_site/",
-      "!website/.asset-cache",
-      "!website/.deploy_git",
-      "!website/.jekyll-assets-cache",
-      "!website/.jekyll-metadata",
-      "!website/assets/bower/",
-      "!website/assets/build/",
-      "!website/db.json",
-      "!website/node_modules/",
-      "!website/public/",
-      "!website/source/",
-      "!website/themes/icarus/_source/",
-      "!website/themes/icarus/scripts/",
-      "!website/themes/icarus/source/"
-    ]
+    "attributePosition": "auto"
   },
   "linter": {
     "enabled": true,
@@ -128,17 +106,7 @@
         "useDefaultSwitchClauseLast": "error",
         "useIterableCallbackReturn": "error"
       }
-    },
-    "includes": [
-      "**",
-      "!**/dist/",
-      "!**/node_modules",
-      "!test/generated/",
-      "!website/public/",
-      "!website/themes/icarus/_source/",
-      "!website/themes/icarus/scripts/",
-      "!website/themes/icarus/source/"
-    ]
+    }
   },
   "javascript": {
     "formatter": {
@@ -153,27 +121,5 @@
       "bracketSpacing": true
     },
     "globals": ["navigator", "document", "window", "describe", "it", "test", "global", "escape"]
-  },
-  "html": {
-    "formatter": {
-      "indentScriptAndStyle": false,
-      "selfCloseVoidElements": "always"
-    }
-  },
-  "overrides": [
-    {
-      "includes": ["*.html"],
-      "javascript": { "formatter": { "quoteStyle": "double" } }
-    },
-    {
-      "includes": ["*.scss", "*.css"],
-      "javascript": { "formatter": { "quoteStyle": "double" } },
-      "formatter": { "lineWidth": 80 }
-    },
-    { "includes": [".github/workflows/**/*.yml"] }
-  ],
-  "assist": {
-    "enabled": true,
-    "actions": { "source": { "organizeImports": "on" } }
   }
 }
