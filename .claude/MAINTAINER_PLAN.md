@@ -128,6 +128,10 @@ yarn build          # Build everything
 
 5. **eval() is sometimes necessary** - For PHP function ports like `json_decode`, `create_function`, `is_callable`, eval is legitimately needed. Suppress the warning with a comment explaining why.
 
+6. **Document licensing in the right places** - Don't just comment on issues. Update LICENSE, README, and add SPDX headers to affected files.
+
+7. **Don't duplicate existing infrastructure** - Check src/_util/ before creating new scripts. The test generation and parsing utilities already exist.
+
 ---
 
 ## Open Items
@@ -136,7 +140,7 @@ yarn build          # Build everything
 Status: Open, awaiting clarification on use case
 
 ### Issue #473 - LGPL in _bc.js
-Status: Documented above. Consider rewriting from scratch if MIT purity is needed.
+Status: **Resolved.** LGPL licensing now documented in LICENSE, README, and _bc.js header.
 
 ---
 
