@@ -159,7 +159,11 @@ export const pythonHandler: LanguageHandler = {
   normalize: normalizePythonOutput,
   skipList: PYTHON_SKIP_LIST,
   dockerImage: 'python:3.12',
+  displayName: 'Python',
   version: '3.12',
+  get parityValue() {
+    return `${this.displayName} ${this.version}`
+  },
   dockerCmd: (code: string) => ['python3', '-c', code],
   mountRepo: false,
 }

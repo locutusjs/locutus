@@ -1,10 +1,10 @@
 module.exports = function lcg_value() {
-  //  discuss at: https://locutus.io/php/lcg_value/
-  //    verified: 8.3
-  // original by: Onno Marsman (https://twitter.com/onnomarsman)
-  //   example 1: var $rnd = lcg_value()
-  //   example 1: var $result = $rnd >= 0 && $rnd <= 1
-  //   returns 1: true
+  //      discuss at: https://locutus.io/php/lcg_value/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: var $rnd = lcg_value()
+  //       example 1: var $result = $rnd >= 0 && $rnd <= 1
+  //       returns 1: true
 
   return Math.random()
 }

@@ -6,13 +6,17 @@
  */
 
 import { z } from 'zod'
+import { getValidParityVerifiedValues } from '../../test/parity/lib/config.ts'
+
+// Get valid parity values at module load time
+const validParityValues = getValidParityVerifiedValues()
 
 // Valid header keys and their descriptions
 export const VALID_HEADER_KEYS: Record<string, string> = {
   // Metadata
   'discuss at': 'URL to the function documentation page',
   estarget: 'ECMAScript target version (e.g., es2015)',
-  verified: 'Runtime version(s) verified against, or "impossible"',
+  'parity verified': `Parity-verified against runtime (valid: ${validParityValues.join(', ')})`,
   test: 'Test flags (e.g., skip-all, skip-1)',
   note: 'Additional notes about the implementation',
   'depends on': 'Dependencies on other locutus functions',
@@ -35,12 +39,33 @@ export const VALID_HEADER_KEYS: Record<string, string> = {
 // Schema for a single header value (array of lines)
 const HeaderValueSchema = z.array(z.array(z.string()))
 
+// Schema for parity verified values - validates against the parity config
+const ParityVerifiedValueSchema = z
+  .array(z.array(z.string()))
+  .refine(
+    (values) => {
+      // Each value entry should match a valid parity value
+      for (const entry of values) {
+        for (const value of entry) {
+          if (!validParityValues.includes(value)) {
+            return false
+          }
+        }
+      }
+      return true
+    },
+    {
+      message: `Invalid parity verified value. Valid values are: ${validParityValues.join(', ')}`,
+    },
+  )
+  .optional()
+
 // Schema for all header keys
 export const HeaderKeysSchema = z
   .object({
     'discuss at': HeaderValueSchema.optional(),
     estarget: HeaderValueSchema.optional(),
-    verified: HeaderValueSchema.optional(),
+    'parity verified': ParityVerifiedValueSchema,
     test: HeaderValueSchema.optional(),
     note: HeaderValueSchema.optional(),
     'depends on': HeaderValueSchema.optional(),

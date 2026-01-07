@@ -1,13 +1,13 @@
 module.exports = function print_r(array, returnVal) {
-  //  discuss at: https://locutus.io/php/print_r/
-  //    verified: 8.3
-  // original by: Michael White (https://getsprink.com)
-  // improved by: Ben Bryan
-  // improved by: Brett Zamir (https://brett-zamir.me)
-  // improved by: Kevin van Zonneveld (https://kvz.io)
-  //    input by: Brett Zamir (https://brett-zamir.me)
-  //   example 1: print_r(1, true)
-  //   returns 1: '1'
+  //      discuss at: https://locutus.io/php/print_r/
+  // parity verified: PHP 8.3
+  //     original by: Michael White (https://getsprink.com)
+  //     improved by: Ben Bryan
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: print_r(1, true)
+  //       returns 1: '1'
 
   const echo = require('../strings/echo')
 

@@ -1,28 +1,28 @@
 module.exports = function intval(mixedVar, base) {
-  //  discuss at: https://locutus.io/php/intval/
-  //    verified: 8.3
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: stensi
-  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
-  // bugfixed by: Brett Zamir (https://brett-zamir.me)
-  // bugfixed by: Rafał Kukawski (https://blog.kukawski.pl)
-  //    input by: Matteo
-  //   example 1: intval('Kevin van Zonneveld')
-  //   returns 1: 0
-  //   example 2: intval(4.2)
-  //   returns 2: 4
-  //   example 3: intval(42, 8)
-  //   returns 3: 42
-  //   example 4: intval('09')
-  //   returns 4: 9
-  //   example 5: intval('1e', 16)
-  //   returns 5: 30
-  //   example 6: intval(0x200000001)
-  //   returns 6: 8589934593
-  //   example 7: intval('0xff', 0)
-  //   returns 7: 255
-  //   example 8: intval('010', 0)
-  //   returns 8: 8
+  //      discuss at: https://locutus.io/php/intval/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: stensi
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //     bugfixed by: Rafał Kukawski (https://blog.kukawski.pl)
+  //        input by: Matteo
+  //       example 1: intval('Kevin van Zonneveld')
+  //       returns 1: 0
+  //       example 2: intval(4.2)
+  //       returns 2: 4
+  //       example 3: intval(42, 8)
+  //       returns 3: 42
+  //       example 4: intval('09')
+  //       returns 4: 9
+  //       example 5: intval('1e', 16)
+  //       returns 5: 30
+  //       example 6: intval(0x200000001)
+  //       returns 6: 8589934593
+  //       example 7: intval('0xff', 0)
+  //       returns 7: 255
+  //       example 8: intval('010', 0)
+  //       returns 8: 8
 
   let tmp
   let match

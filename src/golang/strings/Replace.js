@@ -1,11 +1,12 @@
 module.exports = function Replace(s, old, newStr, n) {
-  //  discuss at: https://locutus.io/golang/strings/Replace
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //      note 1: n is the number of replacements. If n < 0, no limit on replacements.
-  //   example 1: Replace('oink oink oink', 'k', 'ky', 2)
-  //   returns 1: 'oinky oinky oink'
-  //   example 2: Replace('oink oink oink', 'oink', 'moo', -1)
-  //   returns 2: 'moo moo moo'
+  //      discuss at: https://locutus.io/golang/strings/Replace
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: n is the number of replacements. If n < 0, no limit on replacements.
+  //       example 1: Replace('oink oink oink', 'k', 'ky', 2)
+  //       returns 1: 'oinky oinky oink'
+  //       example 2: Replace('oink oink oink', 'oink', 'moo', -1)
+  //       returns 2: 'moo moo moo'
 
   s = s + ''
   old = old + ''

@@ -1,8 +1,8 @@
 module.exports = function ascii_letters() {
-  //    verified: 3.12
-  // original by: Yury Shapkarin (https://shapkarin.me)
-  //   example 1: ascii_letters()
-  //   returns 1: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  // parity verified: Python 3.12
+  //     original by: Yury Shapkarin (https://shapkarin.me)
+  //       example 1: ascii_letters()
+  //       returns 1: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
   const length = 26
   let i = 65

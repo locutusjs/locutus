@@ -1,15 +1,15 @@
 module.exports = function xdiff_string_patch(originalStr, patch, flags, errorObj) {
-  //  discuss at: https://locutus.io/php/xdiff_string_patch/
-  //    verified: 8.3
-  // original by: Brett Zamir (https://brett-zamir.me)
-  // improved by: Steven Levithan (stevenlevithan.com)
-  //      note 1: The XDIFF_PATCH_IGNORESPACE flag and the error argument are not
-  //      note 1: currently supported.
-  //      note 2: This has not been tested exhaustively yet.
-  //      note 3: The errorObj parameter (optional) if used must be passed in as a
-  //      note 3: object. The errors will then be written by reference into it's `value` property
-  //   example 1: xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!')
-  //   returns 1: 'Hello world!'
+  //      discuss at: https://locutus.io/php/xdiff_string_patch/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Steven Levithan (stevenlevithan.com)
+  //          note 1: The XDIFF_PATCH_IGNORESPACE flag and the error argument are not
+  //          note 1: currently supported.
+  //          note 2: This has not been tested exhaustively yet.
+  //          note 3: The errorObj parameter (optional) if used must be passed in as a
+  //          note 3: object. The errors will then be written by reference into it's `value` property
+  //       example 1: xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!')
+  //       returns 1: 'Hello world!'
 
   // First two functions were adapted from Steven Levithan, also under an MIT license
   // Adapted from XRegExp 1.5.0

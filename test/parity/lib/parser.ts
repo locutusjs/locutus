@@ -72,8 +72,8 @@ export function parseDependsOn(filePath: string): string[] {
 }
 
 /**
- * Parse verified versions from function file
- * Format: // verified: 8.3 or // verified: 8.3, 8.2 or // verified: impossible
+ * Parse parity verified from function file
+ * Format: // parity verified: PHP 8.3 or // parity verified: impossible
  */
 export function parseVerified(filePath: string): { verified: string[]; isImpossible: boolean } {
   const content = readFileSync(filePath, 'utf8')
@@ -82,9 +82,9 @@ export function parseVerified(filePath: string): { verified: string[]; isImpossi
 
   const lines = content.split('\n')
   for (const line of lines) {
-    const match = line.match(/\/\/\s+verified:\s*(.+)/)
+    const match = line.match(/\/\/\s+parity verified:\s*(.+)/)
     if (match) {
-      // Split by comma and trim each version
+      // Split by comma and trim each value (e.g., "PHP 8.3, Python 3.12")
       const versions = match[1].split(',').map((v) => v.trim())
       for (const v of versions) {
         if (v === 'impossible') {
@@ -108,18 +108,18 @@ export function parseDependsOnFromHeadKeys(headKeys: Record<string, string[][]>)
 }
 
 /**
- * Parse verified versions from headKeys (util.js output)
+ * Parse parity verified from headKeys (util.js output)
  */
 export function parseVerifiedFromHeadKeys(headKeys: Record<string, string[][]>): {
   verified: string[]
   isImpossible: boolean
 } {
-  const verifiedRaw = headKeys.verified || []
+  const verifiedRaw = headKeys['parity verified'] || []
   const verified: string[] = []
   let isImpossible = false
 
-  // Each entry is an array of lines, but verified should be single values
-  const allVersions = verifiedRaw
+  // Each entry is an array of lines, but parity verified should be single values like "PHP 8.3"
+  const allValues = verifiedRaw
     .flatMap((lines) =>
       lines
         .join(',')
@@ -128,7 +128,7 @@ export function parseVerifiedFromHeadKeys(headKeys: Record<string, string[][]>):
     )
     .filter(Boolean)
 
-  for (const v of allVersions) {
+  for (const v of allValues) {
     if (v === 'impossible') {
       isImpossible = true
     } else {

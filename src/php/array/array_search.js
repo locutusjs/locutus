@@ -1,14 +1,14 @@
 module.exports = function array_search(needle, haystack, argStrict) {
-  //  discuss at: https://locutus.io/php/array_search/
-  //    verified: 8.3
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //    input by: Brett Zamir (https://brett-zamir.me)
-  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
-  // bugfixed by: Reynier de la Rosa (https://scriptinside.blogspot.com.es/)
-  //   example 1: array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'})
-  //   returns 1: 'surname'
-  //   example 2: array_search('3', {a: 3, b: 5, c: 7})
-  //   returns 2: 'a'
+  //      discuss at: https://locutus.io/php/array_search/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //     bugfixed by: Reynier de la Rosa (https://scriptinside.blogspot.com.es/)
+  //       example 1: array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'})
+  //       returns 1: 'surname'
+  //       example 2: array_search('3', {a: 3, b: 5, c: 7})
+  //       returns 2: 'a'
 
   const strict = !!argStrict
   let key = ''

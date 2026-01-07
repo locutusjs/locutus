@@ -1,11 +1,11 @@
 module.exports = function prev(arr) {
-  //  discuss at: https://locutus.io/php/prev/
-  //    verified: 8.3
-  // original by: Brett Zamir (https://brett-zamir.me)
-  //      note 1: Uses global: locutus to store the array pointer
-  //   example 1: var $transport = ['foot', 'bike', 'car', 'plane']
-  //   example 1: prev($transport)
-  //   returns 1: false
+  //      discuss at: https://locutus.io/php/prev/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: Uses global: locutus to store the array pointer
+  //       example 1: var $transport = ['foot', 'bike', 'car', 'plane']
+  //       example 1: prev($transport)
+  //       returns 1: false
 
   const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}

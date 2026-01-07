@@ -1,12 +1,12 @@
 module.exports = function gmmktime() {
-  //  discuss at: https://locutus.io/php/gmmktime/
-  //    verified: 8.3
-  // original by: Brett Zamir (https://brett-zamir.me)
-  // original by: mktime
-  //   example 1: gmmktime(14, 10, 2, 2, 1, 2008)
-  //   returns 1: 1201875002
-  //   example 2: gmmktime(0, 0, -1, 1, 1, 1970)
-  //   returns 2: -1
+  //      discuss at: https://locutus.io/php/gmmktime/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //     original by: mktime
+  //       example 1: gmmktime(14, 10, 2, 2, 1, 2008)
+  //       returns 1: 1201875002
+  //       example 2: gmmktime(0, 0, -1, 1, 1, 1970)
+  //       returns 2: -1
 
   const d = new Date()
   const r = arguments

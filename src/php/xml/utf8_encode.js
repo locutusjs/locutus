@@ -1,19 +1,19 @@
 module.exports = function utf8_encode(argString) {
-  //  discuss at: https://locutus.io/php/utf8_encode/
-  //    verified: 8.3
-  // original by: Webtoolkit.info (https://www.webtoolkit.info/)
-  // improved by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: sowberry
-  // improved by: Jack
-  // improved by: Yves Sucaet
-  // improved by: kirilloid
-  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // bugfixed by: Ulrich
-  // bugfixed by: Rafał Kukawski (https://blog.kukawski.pl)
-  // bugfixed by: kirilloid
-  //   example 1: utf8_encode('Kevin van Zonneveld')
-  //   returns 1: 'Kevin van Zonneveld'
+  //      discuss at: https://locutus.io/php/utf8_encode/
+  // parity verified: PHP 8.3
+  //     original by: Webtoolkit.info (https://www.webtoolkit.info/)
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: sowberry
+  //     improved by: Jack
+  //     improved by: Yves Sucaet
+  //     improved by: kirilloid
+  //     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     bugfixed by: Ulrich
+  //     bugfixed by: Rafał Kukawski (https://blog.kukawski.pl)
+  //     bugfixed by: kirilloid
+  //       example 1: utf8_encode('Kevin van Zonneveld')
+  //       returns 1: 'Kevin van Zonneveld'
 
   if (argString === null || typeof argString === 'undefined') {
     return ''

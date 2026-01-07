@@ -1,6 +1,6 @@
 module.exports = function strncmp(str1, str2, lgth) {
   //       discuss at: https://locutus.io/php/strncmp/
-  //         verified: 8.3
+  //  parity verified: PHP 8.3
   //      original by: Waldo Malqui Silva (https://waldo.malqui.info)
   //         input by: Steve Hilder
   //      improved by: Kevin van Zonneveld (https://kvz.io)

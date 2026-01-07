@@ -1,11 +1,11 @@
 module.exports = function current(arr) {
-  //  discuss at: https://locutus.io/php/current/
-  //    verified: 8.3
-  // original by: Brett Zamir (https://brett-zamir.me)
-  //      note 1: Uses global: locutus to store the array pointer
-  //   example 1: var $transport = ['foot', 'bike', 'car', 'plane']
-  //   example 1: current($transport)
-  //   returns 1: 'foot'
+  //      discuss at: https://locutus.io/php/current/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: Uses global: locutus to store the array pointer
+  //       example 1: var $transport = ['foot', 'bike', 'car', 'plane']
+  //       example 1: current($transport)
+  //       returns 1: 'foot'
 
   const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}

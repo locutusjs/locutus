@@ -1,9 +1,9 @@
 module.exports = function ctype_alnum(text) {
-  //  discuss at: https://locutus.io/php/ctype_alnum/
-  //    verified: 8.3
-  // original by: Brett Zamir (https://brett-zamir.me)
-  //   example 1: ctype_alnum('AbC12')
-  //   returns 1: true
+  //      discuss at: https://locutus.io/php/ctype_alnum/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: ctype_alnum('AbC12')
+  //       returns 1: true
 
   const setlocale = require('../strings/setlocale')
   if (typeof text !== 'string') {

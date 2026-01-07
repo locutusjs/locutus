@@ -1,10 +1,10 @@
 module.exports = function substr_compare(mainStr, str, offset, length, caseInsensitivity) {
-  //  discuss at: https://locutus.io/php/substr_compare/
-  //    verified: 8.3
-  // original by: Brett Zamir (https://brett-zamir.me)
-  // original by: strcasecmp, strcmp
-  //   example 1: substr_compare("abcde", "bc", 1, 2)
-  //   returns 1: 0
+  //      discuss at: https://locutus.io/php/substr_compare/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //     original by: strcasecmp, strcmp
+  //       example 1: substr_compare("abcde", "bc", 1, 2)
+  //       returns 1: 0
 
   if (!offset && offset !== 0) {
     throw new Error('Missing offset for substr_compare()')

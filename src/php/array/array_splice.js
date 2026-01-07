@@ -1,24 +1,24 @@
 module.exports = function array_splice(arr, offst, lgth, replacement) {
-  //  discuss at: https://locutus.io/php/array_splice/
-  //    verified: 8.3
-  // original by: Brett Zamir (https://brett-zamir.me)
-  //    input by: Theriault (https://github.com/Theriault)
-  //      note 1: Order does get shifted in associative array input with numeric indices,
-  //      note 1: since PHP behavior doesn't preserve keys, but I understand order is
-  //      note 1: not reliable anyways
-  //      note 1: Note also that IE retains information about property position even
-  //      note 1: after being supposedly deleted, so use of this function may produce
-  //      note 1: unexpected results in IE if you later attempt to add back properties
-  //      note 1: with the same keys that had been deleted
-  //   example 1: var $input = ["red", "green", "blue", "yellow"]
-  //   example 1: array_splice($input, 2)
-  //   returns 1: ["blue", "yellow"]
-  //   example 2: var $input = ["red", "green", "blue", "yellow"]
-  //   example 2: array_splice($input, 3, 0, "purple")
-  //   returns 2: []
-  //   example 3: var $input = ["red", "green", "blue", "yellow"]
-  //   example 3: array_splice($input, -1, 1, ["black", "maroon"])
-  //   returns 3: ["yellow"]
+  //      discuss at: https://locutus.io/php/array_splice/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //        input by: Theriault (https://github.com/Theriault)
+  //          note 1: Order does get shifted in associative array input with numeric indices,
+  //          note 1: since PHP behavior doesn't preserve keys, but I understand order is
+  //          note 1: not reliable anyways
+  //          note 1: Note also that IE retains information about property position even
+  //          note 1: after being supposedly deleted, so use of this function may produce
+  //          note 1: unexpected results in IE if you later attempt to add back properties
+  //          note 1: with the same keys that had been deleted
+  //       example 1: var $input = ["red", "green", "blue", "yellow"]
+  //       example 1: array_splice($input, 2)
+  //       returns 1: ["blue", "yellow"]
+  //       example 2: var $input = ["red", "green", "blue", "yellow"]
+  //       example 2: array_splice($input, 3, 0, "purple")
+  //       returns 2: []
+  //       example 3: var $input = ["red", "green", "blue", "yellow"]
+  //       example 3: array_splice($input, -1, 1, ["black", "maroon"])
+  //       returns 3: ["yellow"]
 
   const isInt = require('../var/is_int')
 

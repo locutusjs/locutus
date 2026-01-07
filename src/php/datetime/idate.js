@@ -1,14 +1,14 @@
 module.exports = function idate(format, timestamp) {
-  //  discuss at: https://locutus.io/php/idate/
-  //    verified: 8.3
-  // original by: Brett Zamir (https://brett-zamir.me)
-  // original by: date
-  // original by: gettimeofday
-  //    input by: Alex
-  // bugfixed by: Brett Zamir (https://brett-zamir.me)
-  // improved by: Theriault (https://github.com/Theriault)
-  //   example 1: idate('y', 1255633200)
-  //   returns 1: 9
+  //      discuss at: https://locutus.io/php/idate/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //     original by: date
+  //     original by: gettimeofday
+  //        input by: Alex
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Theriault (https://github.com/Theriault)
+  //       example 1: idate('y', 1255633200)
+  //       returns 1: 9
 
   if (format === undefined) {
     throw new Error('idate() expects at least 1 parameter, 0 given')

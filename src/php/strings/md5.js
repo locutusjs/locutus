@@ -1,17 +1,17 @@
 module.exports = function md5(str) {
-  //  discuss at: https://locutus.io/php/md5/
-  //    verified: 8.3
-  // original by: Webtoolkit.info (https://www.webtoolkit.info/)
-  // improved by: Michael White (https://getsprink.com)
-  // improved by: Jack
-  // improved by: Kevin van Zonneveld (https://kvz.io)
-  //    input by: Brett Zamir (https://brett-zamir.me)
-  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
-  //      note 1: Keep in mind that in accordance with PHP, the whole string is buffered and then
-  //      note 1: hashed. If available, we'd recommend using Node's native crypto modules directly
-  //      note 1: in a steaming fashion for faster and more efficient hashing
-  //   example 1: md5('Kevin van Zonneveld')
-  //   returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'
+  //      discuss at: https://locutus.io/php/md5/
+  // parity verified: PHP 8.3
+  //     original by: Webtoolkit.info (https://www.webtoolkit.info/)
+  //     improved by: Michael White (https://getsprink.com)
+  //     improved by: Jack
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Keep in mind that in accordance with PHP, the whole string is buffered and then
+  //          note 1: hashed. If available, we'd recommend using Node's native crypto modules directly
+  //          note 1: in a steaming fashion for faster and more efficient hashing
+  //       example 1: md5('Kevin van Zonneveld')
+  //       returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'
 
   let hash
   try {

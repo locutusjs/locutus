@@ -1,17 +1,17 @@
 module.exports = function metaphone(word, maxPhonemes) {
-  //  discuss at: https://locutus.io/php/metaphone/
-  //    verified: 8.3
-  // original by: Greg Frazier
-  // improved by: Brett Zamir (https://brett-zamir.me)
-  // improved by: Rafał Kukawski (https://blog.kukawski.pl)
-  //   example 1: metaphone('Gnu')
-  //   returns 1: 'N'
-  //   example 2: metaphone('bigger')
-  //   returns 2: 'BKR'
-  //   example 3: metaphone('accuracy')
-  //   returns 3: 'AKKRS'
-  //   example 4: metaphone('batch batcher')
-  //   returns 4: 'BXBXR'
+  //      discuss at: https://locutus.io/php/metaphone/
+  // parity verified: PHP 8.3
+  //     original by: Greg Frazier
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Rafał Kukawski (https://blog.kukawski.pl)
+  //       example 1: metaphone('Gnu')
+  //       returns 1: 'N'
+  //       example 2: metaphone('bigger')
+  //       returns 2: 'BKR'
+  //       example 3: metaphone('accuracy')
+  //       returns 3: 'AKKRS'
+  //       example 4: metaphone('batch batcher')
+  //       returns 4: 'BXBXR'
 
   const type = typeof word
 

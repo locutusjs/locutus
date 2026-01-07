@@ -1,9 +1,9 @@
 module.exports = function json_last_error() {
-  //  discuss at: https://phpjs.org/functions/json_last_error/
-  //    verified: 8.3
-  // original by: Brett Zamir (https://brett-zamir.me)
-  //   example 1: json_last_error()
-  //   returns 1: 0
+  //      discuss at: https://phpjs.org/functions/json_last_error/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: json_last_error()
+  //       returns 1: 0
 
   // JSON_ERROR_NONE = 0
   // max depth limit to be removed per PHP comments in json.c (not possible in JS?):

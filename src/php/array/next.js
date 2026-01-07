@@ -1,12 +1,12 @@
 module.exports = function next(arr) {
-  //  discuss at: https://locutus.io/php/next/
-  //    verified: 8.3
-  // original by: Brett Zamir (https://brett-zamir.me)
-  //      note 1: Uses global: locutus to store the array pointer
-  //   example 1: var $transport = ['foot', 'bike', 'car', 'plane']
-  //   example 1: next($transport)
-  //   example 1: next($transport)
-  //   returns 1: 'car'
+  //      discuss at: https://locutus.io/php/next/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: Uses global: locutus to store the array pointer
+  //       example 1: var $transport = ['foot', 'bike', 'car', 'plane']
+  //       example 1: next($transport)
+  //       example 1: next($transport)
+  //       returns 1: 'car'
 
   const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
