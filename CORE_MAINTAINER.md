@@ -28,9 +28,9 @@ Note that for any task, it's important to first get ample context. Search past i
     - a security concern
     
     Do what is most important and impactful first. First search what is already available, and what we can already re-use, even if it takes a little refactoring. Define what a successful outcome looks like and how you'll validate it (tests, browser checks, screenshots for design changes, or a working migration). This is imperative: no changes without validation. Anything that can't be validated should not be PR'ed or merged.
-6. **NEVER commit directly to `main`.** Always create a feature branch and open a PR:
+6. **NEVER commit directly to `main`.** Always create or (re-use, see `Batching Related Work`) another branch and open a PR:
     ```bash
-    git checkout -b fix/descriptive-name  # or feat/, chore/, docs/
+    git checkout [-]b fix/descriptive-name  # or feat/, chore/, docs/
     # ... make changes ...
     git push -u origin HEAD
     gh pr create
