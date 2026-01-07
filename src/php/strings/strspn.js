@@ -1,12 +1,12 @@
 module.exports = function strspn(str1, str2, start, lgth) {
-  //  discuss at: https://locutus.io/php/strspn/
-  //    verified: 8.3
-  // original by: Valentina De Rosa
-  // improved by: Brett Zamir (https://brett-zamir.me)
-  //   example 1: strspn('42 is the answer, what is the question ...', '1234567890')
-  //   returns 1: 2
-  //   example 2: strspn('foo', 'o', 1, 2)
-  //   returns 2: 2
+  //      discuss at: https://locutus.io/php/strspn/
+  // parity verified: PHP 8.3
+  //     original by: Valentina De Rosa
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: strspn('42 is the answer, what is the question ...', '1234567890')
+  //       returns 1: 2
+  //       example 2: strspn('foo', 'o', 1, 2)
+  //       returns 2: 2
 
   let found
   let stri

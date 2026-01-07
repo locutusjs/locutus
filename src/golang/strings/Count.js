@@ -1,12 +1,12 @@
 module.exports = function Count(s, sep) {
-  //  discuss at: https://locutus.io/golang/strings/Count
-  //    verified: 1.23
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //    input by: GopherJS (https://www.gopherjs.org/)
-  //   example 1: Count("cheese", "e")
-  //   returns 1: 3
-  //   example 2: Count("five", "") // before & after each rune
-  //   returns 2: 5
+  //      discuss at: https://locutus.io/golang/strings/Count
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //        input by: GopherJS (https://www.gopherjs.org/)
+  //       example 1: Count("cheese", "e")
+  //       returns 1: 3
+  //       example 2: Count("five", "") // before & after each rune
+  //       returns 2: 5
 
   let pos
   let n = 0

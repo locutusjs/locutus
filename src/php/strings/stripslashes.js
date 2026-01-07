@@ -1,6 +1,6 @@
 module.exports = function stripslashes(str) {
   //       discuss at: https://locutus.io/php/stripslashes/
-  //         verified: 8.3
+  //  parity verified: PHP 8.3
   //      original by: Kevin van Zonneveld (https://kvz.io)
   //      improved by: Ates Goral (https://magnetiq.com)
   //      improved by: marrtins

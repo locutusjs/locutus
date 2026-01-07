@@ -1,12 +1,12 @@
 module.exports = function FormatBool(b) {
-  //  discuss at: https://locutus.io/golang/strconv/FormatBool
-  //    verified: 1.23
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //      note 1: Returns "true" or "false" according to the value of b.
-  //   example 1: FormatBool(true)
-  //   returns 1: 'true'
-  //   example 2: FormatBool(false)
-  //   returns 2: 'false'
+  //      discuss at: https://locutus.io/golang/strconv/FormatBool
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns "true" or "false" according to the value of b.
+  //       example 1: FormatBool(true)
+  //       returns 1: 'true'
+  //       example 2: FormatBool(false)
+  //       returns 2: 'false'
 
   return b ? 'true' : 'false'
 }

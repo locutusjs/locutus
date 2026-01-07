@@ -1,21 +1,21 @@
 module.exports = function trim(str, charlist) {
-  //  discuss at: https://locutus.io/php/trim/
-  //    verified: 8.3
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: mdsjack (https://www.mdsjack.bo.it)
-  // improved by: Alexander Ermolaev (https://snippets.dzone.com/user/AlexanderErmolaev)
-  // improved by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: Steven Levithan (https://blog.stevenlevithan.com)
-  // improved by: Jack
-  //    input by: Erkekjetter
-  //    input by: DxGx
-  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  //   example 1: trim('    Kevin van Zonneveld    ')
-  //   returns 1: 'Kevin van Zonneveld'
-  //   example 2: trim('Hello World', 'Hdle')
-  //   returns 2: 'o Wor'
-  //   example 3: trim(16, 1)
-  //   returns 3: '6'
+  //      discuss at: https://locutus.io/php/trim/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: mdsjack (https://www.mdsjack.bo.it)
+  //     improved by: Alexander Ermolaev (https://snippets.dzone.com/user/AlexanderErmolaev)
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Steven Levithan (https://blog.stevenlevithan.com)
+  //     improved by: Jack
+  //        input by: Erkekjetter
+  //        input by: DxGx
+  //     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: trim('    Kevin van Zonneveld    ')
+  //       returns 1: 'Kevin van Zonneveld'
+  //       example 2: trim('Hello World', 'Hdle')
+  //       returns 2: 'o Wor'
+  //       example 3: trim(16, 1)
+  //       returns 3: '6'
 
   let whitespace = [
     ' ',

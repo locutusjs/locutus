@@ -13,30 +13,30 @@ function roundToInt(value, mode) {
 }
 
 module.exports = function round(value, precision = 0, mode = 'PHP_ROUND_HALF_UP') {
-  //  discuss at: https://locutus.io/php/round/
-  //    verified: 8.3
-  // original by: Philip Peterson
-  //  revised by: Onno Marsman (https://twitter.com/onnomarsman)
-  //  revised by: T.Wild
-  //  revised by: Rafał Kukawski (https://blog.kukawski.pl)
-  //    input by: Greenseed
-  //    input by: meo
-  //    input by: William
-  //    input by: Josep Sanz (https://www.ws3.es/)
-  // bugfixed by: Brett Zamir (https://brett-zamir.me)
-  //  revised by: Rafał Kukawski
-  //   example 1: round(1241757, -3)
-  //   returns 1: 1242000
-  //   example 2: round(3.6)
-  //   returns 2: 4
-  //   example 3: round(2.835, 2)
-  //   returns 3: 2.84
-  //   example 4: round(1.1749999999999, 2)
-  //   returns 4: 1.17
-  //   example 5: round(58551.799999999996, 2)
-  //   returns 5: 58551.8
-  //   example 6: round(4096.485, 2)
-  //   returns 6: 4096.49
+  //      discuss at: https://locutus.io/php/round/
+  // parity verified: PHP 8.3
+  //     original by: Philip Peterson
+  //      revised by: Onno Marsman (https://twitter.com/onnomarsman)
+  //      revised by: T.Wild
+  //      revised by: Rafał Kukawski (https://blog.kukawski.pl)
+  //        input by: Greenseed
+  //        input by: meo
+  //        input by: William
+  //        input by: Josep Sanz (https://www.ws3.es/)
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //      revised by: Rafał Kukawski
+  //       example 1: round(1241757, -3)
+  //       returns 1: 1242000
+  //       example 2: round(3.6)
+  //       returns 2: 4
+  //       example 3: round(2.835, 2)
+  //       returns 3: 2.84
+  //       example 4: round(1.1749999999999, 2)
+  //       returns 4: 1.17
+  //       example 5: round(58551.799999999996, 2)
+  //       returns 5: 58551.8
+  //       example 6: round(4096.485, 2)
+  //       returns 6: 4096.49
 
   const floatCast = require('../_helpers/_php_cast_float')
   const intCast = require('../_helpers/_php_cast_int')

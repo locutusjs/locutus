@@ -1,20 +1,20 @@
 module.exports = function base64_encode(stringToEncode) {
-  //  discuss at: https://locutus.io/php/base64_encode/
-  //    verified: 8.3
-  // original by: Tyler Akins (https://rumkin.com)
-  // improved by: Bayron Guevara
-  // improved by: Thunder.m
-  // improved by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: Rafał Kukawski (https://blog.kukawski.pl)
-  // bugfixed by: Pellentesque Malesuada
-  // improved by: Indigo744
-  //   example 1: base64_encode('Kevin van Zonneveld')
-  //   returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
-  //   example 2: base64_encode('a')
-  //   returns 2: 'YQ=='
-  //   example 3: base64_encode('✓ à la mode')
-  //   returns 3: '4pyTIMOgIGxhIG1vZGU='
+  //      discuss at: https://locutus.io/php/base64_encode/
+  // parity verified: PHP 8.3
+  //     original by: Tyler Akins (https://rumkin.com)
+  //     improved by: Bayron Guevara
+  //     improved by: Thunder.m
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Rafał Kukawski (https://blog.kukawski.pl)
+  //     bugfixed by: Pellentesque Malesuada
+  //     improved by: Indigo744
+  //       example 1: base64_encode('Kevin van Zonneveld')
+  //       returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
+  //       example 2: base64_encode('a')
+  //       returns 2: 'YQ=='
+  //       example 3: base64_encode('✓ à la mode')
+  //       returns 3: '4pyTIMOgIGxhIG1vZGU='
 
   // encodeUTF8string()
   // Internal function to encode properly UTF8 string

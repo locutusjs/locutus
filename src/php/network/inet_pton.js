@@ -1,12 +1,12 @@
 module.exports = function inet_pton(a) {
-  //  discuss at: https://locutus.io/php/inet_pton/
-  //    verified: 8.3
-  // original by: Theriault (https://github.com/Theriault)
-  // improved by: alromh87 and JamieSlome
-  //   example 1: inet_pton('::')
-  //   returns 1: '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0'
-  //   example 2: inet_pton('127.0.0.1')
-  //   returns 2: '\x7F\x00\x00\x01'
+  //      discuss at: https://locutus.io/php/inet_pton/
+  // parity verified: PHP 8.3
+  //     original by: Theriault (https://github.com/Theriault)
+  //     improved by: alromh87 and JamieSlome
+  //       example 1: inet_pton('::')
+  //       returns 1: '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0'
+  //       example 2: inet_pton('127.0.0.1')
+  //       returns 2: '\x7F\x00\x00\x01'
 
   let m
   let i

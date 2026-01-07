@@ -1,9 +1,9 @@
 module.exports = function atan(arg) {
-  //  discuss at: https://locutus.io/php/atan/
-  //    verified: 8.3
-  // original by: Onno Marsman (https://twitter.com/onnomarsman)
-  //   example 1: atan(8723321.4)
-  //   returns 1: 1.5707962121596615
+  //      discuss at: https://locutus.io/php/atan/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: atan(8723321.4)
+  //       returns 1: 1.5707962121596615
 
   return Math.atan(arg)
 }

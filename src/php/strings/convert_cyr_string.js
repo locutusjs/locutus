@@ -1,18 +1,18 @@
 module.exports = function convert_cyr_string(str, from, to) {
-  //  discuss at: https://locutus.io/php/convert_cyr_string/
-  //    verified: 8.3
-  // original by: Brett Zamir (https://brett-zamir.me)
-  //      note 1: Assumes and converts to Unicode strings with character
-  //      note 1: code equivalents of the same numbers as in the from or
-  //      note 1: target character set; Note that neither the input or output
-  //      note 1: should be treated as actual Unicode, since the PHP function
-  //      note 1: this is original by does not either
-  //      note 1: One could easily represent (or convert the results) of a
-  //      note 1: string form as arrays of code points instead but since JavaScript
-  //      note 1: currently has no clear binary data type, we chose to use strings
-  //      note 1: as in PHP
-  //   example 1: convert_cyr_string(String.fromCharCode(214), 'k', 'w').charCodeAt(0) === 230; // Char. 214 of KOI8-R gives equivalent number value 230 in win1251
-  //   returns 1: true
+  //      discuss at: https://locutus.io/php/convert_cyr_string/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: Assumes and converts to Unicode strings with character
+  //          note 1: code equivalents of the same numbers as in the from or
+  //          note 1: target character set; Note that neither the input or output
+  //          note 1: should be treated as actual Unicode, since the PHP function
+  //          note 1: this is original by does not either
+  //          note 1: One could easily represent (or convert the results) of a
+  //          note 1: string form as arrays of code points instead but since JavaScript
+  //          note 1: currently has no clear binary data type, we chose to use strings
+  //          note 1: as in PHP
+  //       example 1: convert_cyr_string(String.fromCharCode(214), 'k', 'w').charCodeAt(0) === 230; // Char. 214 of KOI8-R gives equivalent number value 230 in win1251
+  //       returns 1: true
 
   const _cyrWin1251 = [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,

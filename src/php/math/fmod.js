@@ -1,14 +1,14 @@
 module.exports = function fmod(x, y) {
-  //  discuss at: https://locutus.io/php/fmod/
-  //    verified: 8.3
-  // original by: Onno Marsman (https://twitter.com/onnomarsman)
-  //    input by: Brett Zamir (https://brett-zamir.me)
-  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
-  // bugfixed by: Irina (https://github.com/dekairi)
-  //   example 1: fmod(5.7, 1.3)
-  //   returns 1: 0.5
-  //   example 2: fmod(10, 1)
-  //   returns 2: 0
+  //      discuss at: https://locutus.io/php/fmod/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //     bugfixed by: Irina (https://github.com/dekairi)
+  //       example 1: fmod(5.7, 1.3)
+  //       returns 1: 0.5
+  //       example 2: fmod(10, 1)
+  //       returns 2: 0
 
   let tmp
   let tmp2

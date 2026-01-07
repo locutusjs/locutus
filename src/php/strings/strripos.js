@@ -1,12 +1,12 @@
 module.exports = function strripos(haystack, needle, offset) {
-  //  discuss at: https://locutus.io/php/strripos/
-  //    verified: 8.3
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // bugfixed by: Brett Zamir (https://brett-zamir.me)
-  //    input by: saulius
-  //   example 1: strripos('Kevin van Zonneveld', 'E')
-  //   returns 1: 16
+  //      discuss at: https://locutus.io/php/strripos/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //        input by: saulius
+  //       example 1: strripos('Kevin van Zonneveld', 'E')
+  //       returns 1: 16
 
   haystack = (haystack + '').toLowerCase()
   needle = (needle + '').toLowerCase()

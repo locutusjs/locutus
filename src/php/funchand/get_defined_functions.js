@@ -1,13 +1,13 @@
 module.exports = function get_defined_functions() {
-  //  discuss at: https://locutus.io/php/get_defined_functions/
-  //    verified: 8.3
-  // original by: Brett Zamir (https://brett-zamir.me)
-  // improved by: Brett Zamir (https://brett-zamir.me)
-  //      note 1: Returns an array of global function names. Unlike PHP,
-  //      note 1: JavaScript doesn't distinguish between user and internal functions.
-  //   example 1: var $funcs = get_defined_functions()
-  //   example 1: var $result = Array.isArray($funcs) && $funcs.length > 0
-  //   returns 1: true
+  //      discuss at: https://locutus.io/php/get_defined_functions/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: Returns an array of global function names. Unlike PHP,
+  //          note 1: JavaScript doesn't distinguish between user and internal functions.
+  //       example 1: var $funcs = get_defined_functions()
+  //       example 1: var $result = Array.isArray($funcs) && $funcs.length > 0
+  //       returns 1: true
 
   const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}

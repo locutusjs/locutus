@@ -338,7 +338,11 @@ export const phpHandler: LanguageHandler = {
   normalize: normalizePhpOutput,
   skipList: PHP_SKIP_LIST,
   dockerImage: 'php:8.3-cli',
+  displayName: 'PHP',
   version: '8.3',
+  get parityValue() {
+    return `${this.displayName} ${this.version}`
+  },
   dockerCmd: (code: string) => ['php', '-r', code],
   mountRepo: true,
 }

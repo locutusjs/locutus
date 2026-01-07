@@ -1,11 +1,11 @@
 module.exports = function gmstrftime(format, timestamp) {
-  //  discuss at: https://locutus.io/php/gmstrftime/
-  //    verified: 8.3
-  // original by: Brett Zamir (https://brett-zamir.me)
-  //    input by: Alex
-  // bugfixed by: Brett Zamir (https://brett-zamir.me)
-  //   example 1: gmstrftime("%A", 1062462400)
-  //   returns 1: 'Tuesday'
+  //      discuss at: https://locutus.io/php/gmstrftime/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //        input by: Alex
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: gmstrftime("%A", 1062462400)
+  //       returns 1: 'Tuesday'
 
   const strftime = require('../datetime/strftime')
 

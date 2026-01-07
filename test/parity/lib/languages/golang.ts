@@ -201,7 +201,11 @@ export const golangHandler: LanguageHandler = {
   normalize: normalizeGoOutput,
   skipList: GO_SKIP_LIST,
   dockerImage: 'golang:1.23',
+  displayName: 'Go',
   version: '1.23',
+  get parityValue() {
+    return `${this.displayName} ${this.version}`
+  },
   dockerCmd: (code: string) => [
     'sh',
     '-c',

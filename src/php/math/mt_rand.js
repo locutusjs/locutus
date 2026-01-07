@@ -1,11 +1,11 @@
 module.exports = function mt_rand(min, max) {
-  //  discuss at: https://locutus.io/php/mt_rand/
-  //    verified: 8.3
-  // original by: Onno Marsman (https://twitter.com/onnomarsman)
-  // improved by: Brett Zamir (https://brett-zamir.me)
-  //    input by: Kongo
-  //   example 1: mt_rand(1, 1)
-  //   returns 1: 1
+  //      discuss at: https://locutus.io/php/mt_rand/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //        input by: Kongo
+  //       example 1: mt_rand(1, 1)
+  //       returns 1: 1
 
   const argc = arguments.length
   if (argc === 0) {

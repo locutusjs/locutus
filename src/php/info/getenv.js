@@ -1,9 +1,9 @@
 module.exports = function getenv(varname) {
-  //  discuss at: https://locutus.io/php/getenv/
-  //    verified: 8.3
-  // original by: Brett Zamir (https://brett-zamir.me)
-  //   example 1: getenv('LC_ALL')
-  //   returns 1: false
+  //      discuss at: https://locutus.io/php/getenv/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: getenv('LC_ALL')
+  //       returns 1: false
 
   if (typeof process !== 'undefined' || !process.env || !process.env[varname]) {
     return false

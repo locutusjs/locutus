@@ -1,20 +1,20 @@
 module.exports = function soundex(str) {
-  //  discuss at: https://locutus.io/php/soundex/
-  //    verified: 8.3
-  // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
-  // original by: Arnout Kazemier (https://www.3rd-Eden.com)
-  // improved by: Jack
-  // improved by: Kevin van Zonneveld (https://kvz.io)
-  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
-  //    input by: Brett Zamir (https://brett-zamir.me)
-  //  revised by: Rafał Kukawski (https://blog.kukawski.pl)
-  //   example 1: soundex('Kevin')
-  //   returns 1: 'K150'
-  //   example 2: soundex('Ellery')
-  //   returns 2: 'E460'
-  //   example 3: soundex('Euler')
-  //   returns 3: 'E460'
+  //      discuss at: https://locutus.io/php/soundex/
+  // parity verified: PHP 8.3
+  //     original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
+  //     original by: Arnout Kazemier (https://www.3rd-Eden.com)
+  //     improved by: Jack
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //      revised by: Rafał Kukawski (https://blog.kukawski.pl)
+  //       example 1: soundex('Kevin')
+  //       returns 1: 'K150'
+  //       example 2: soundex('Ellery')
+  //       returns 2: 'E460'
+  //       example 3: soundex('Euler')
+  //       returns 3: 'E460'
 
   str = (str + '').toUpperCase()
   if (!str) {

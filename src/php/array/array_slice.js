@@ -1,14 +1,14 @@
 module.exports = function array_slice(arr, offst, lgth, preserveKeys) {
-  //  discuss at: https://locutus.io/php/array_slice/
-  //    verified: 8.3
-  // original by: Brett Zamir (https://brett-zamir.me)
-  //    input by: Brett Zamir (https://brett-zamir.me)
-  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
-  //      note 1: Relies on is_int because !isNaN accepts floats
-  //   example 1: array_slice(["a", "b", "c", "d", "e"], 2, -1)
-  //   returns 1: [ 'c', 'd' ]
-  //   example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true)
-  //   returns 2: {2: 'c', 3: 'd'}
+  //      discuss at: https://locutus.io/php/array_slice/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Relies on is_int because !isNaN accepts floats
+  //       example 1: array_slice(["a", "b", "c", "d", "e"], 2, -1)
+  //       returns 1: [ 'c', 'd' ]
+  //       example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true)
+  //       returns 2: {2: 'c', 3: 'd'}
 
   const isInt = require('../var/is_int')
 

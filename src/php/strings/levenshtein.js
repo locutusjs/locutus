@@ -1,6 +1,6 @@
 module.exports = function levenshtein(s1, s2, costIns, costRep, costDel) {
   //       discuss at: https://locutus.io/php/levenshtein/
-  //         verified: 8.3
+  //  parity verified: PHP 8.3
   //      original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)
   //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //       revised by: Andrea Giammarchi (https://webreflection.blogspot.com)

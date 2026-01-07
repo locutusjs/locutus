@@ -13,7 +13,7 @@ export interface Example {
 
 /**
  * Verification status for a function:
- * - version string (e.g., "8.3"): verified against that runtime version
+ * - parity value (e.g., "PHP 8.3"): verified against that runtime
  * - "impossible": cannot be tested (pass-by-ref, side effects, etc.)
  */
 export type VerifiedStatus = string
@@ -60,8 +60,12 @@ export interface LanguageHandler {
   skipList: Set<string>
   /** Docker image for this language */
   dockerImage: string
-  /** Version extracted from Docker image (e.g., "8.3" from "php:8.3-cli") */
+  /** Display name for headers (e.g., "PHP", "Python", "Go") */
+  displayName: string
+  /** Version string (e.g., "8.3", "3.12", "1.23") */
   version: string
+  /** Full parity value for header matching (e.g., "PHP 8.3") */
+  readonly parityValue: string
   /** Generate Docker command for running code */
   dockerCmd(code: string): string[]
   /** Whether to mount the repo in Docker */

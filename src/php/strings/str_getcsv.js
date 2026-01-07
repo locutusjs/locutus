@@ -1,12 +1,12 @@
 // biome-ignore lint/suspicious/noShadowRestrictedNames: escape is PHP parameter name
 module.exports = function str_getcsv(input, delimiter, enclosure, escape) {
-  //  discuss at: https://locutus.io/php/str_getcsv/
-  //    verified: 8.3
-  // original by: Brett Zamir (https://brett-zamir.me)
-  //   example 1: str_getcsv('"abc","def","ghi"')
-  //   returns 1: ['abc', 'def', 'ghi']
-  //   example 2: str_getcsv('"row2""cell1","row2cell2","row2cell3"', null, null, '"')
-  //   returns 2: ['row2"cell1', 'row2cell2', 'row2cell3']
+  //      discuss at: https://locutus.io/php/str_getcsv/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: str_getcsv('"abc","def","ghi"')
+  //       returns 1: ['abc', 'def', 'ghi']
+  //       example 2: str_getcsv('"row2""cell1","row2cell2","row2cell3"', null, null, '"')
+  //       returns 2: ['row2"cell1', 'row2cell2', 'row2cell3']
 
   /*
   // These test cases allowing for missing delimiters are not currently supported

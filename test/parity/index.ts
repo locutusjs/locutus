@@ -382,8 +382,8 @@ async function main() {
       continue
     }
 
-    // Check if function has verified: header matching the handler version
-    const isVerified = func.verified.some((v) => v === handler.version || handler.version.startsWith(v))
+    // Check if function has parity verified: header matching the handler
+    const isVerified = func.verified.some((v) => v === handler.parityValue)
     if (isVerified) {
       verifiedFunctions.push(func)
     } else {

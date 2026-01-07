@@ -1,35 +1,35 @@
 module.exports = function sprintf() {
-  //  discuss at: https://locutus.io/php/sprintf/
-  //    verified: 8.3
-  // original by: Ash Searle (https://hexmen.com/blog/)
-  // improved by: Michael White (https://getsprink.com)
-  // improved by: Jack
-  // improved by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: Dj
-  // improved by: Allidylls
-  //    input by: Paulo Freitas
-  //    input by: Brett Zamir (https://brett-zamir.me)
-  // improved by: Rafał Kukawski (https://kukawski.pl)
-  //   example 1: sprintf("%01.2f", 123.1)
-  //   returns 1: '123.10'
-  //   example 2: sprintf("[%10s]", 'monkey')
-  //   returns 2: '[    monkey]'
-  //   example 3: sprintf("[%'#10s]", 'monkey')
-  //   returns 3: '[####monkey]'
-  //   example 4: sprintf("%d", 123456789012345)
-  //   returns 4: '123456789012345'
-  //   example 5: sprintf('%-03s', 'E')
-  //   returns 5: 'E00'
-  //   example 6: sprintf('%+010d', 9)
-  //   returns 6: '+000000009'
-  //   example 7: sprintf('%+0\'@10d', 9)
-  //   returns 7: '@@@@@@@@+9'
-  //   example 8: sprintf('%.f', 3.14)
-  //   returns 8: '3.140000'
-  //   example 9: sprintf('%% %2$d', 1, 2)
-  //   returns 9: '% 2'
+  //      discuss at: https://locutus.io/php/sprintf/
+  // parity verified: PHP 8.3
+  //     original by: Ash Searle (https://hexmen.com/blog/)
+  //     improved by: Michael White (https://getsprink.com)
+  //     improved by: Jack
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Dj
+  //     improved by: Allidylls
+  //        input by: Paulo Freitas
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Rafał Kukawski (https://kukawski.pl)
+  //       example 1: sprintf("%01.2f", 123.1)
+  //       returns 1: '123.10'
+  //       example 2: sprintf("[%10s]", 'monkey')
+  //       returns 2: '[    monkey]'
+  //       example 3: sprintf("[%'#10s]", 'monkey')
+  //       returns 3: '[####monkey]'
+  //       example 4: sprintf("%d", 123456789012345)
+  //       returns 4: '123456789012345'
+  //       example 5: sprintf('%-03s', 'E')
+  //       returns 5: 'E00'
+  //       example 6: sprintf('%+010d', 9)
+  //       returns 6: '+000000009'
+  //       example 7: sprintf('%+0\'@10d', 9)
+  //       returns 7: '@@@@@@@@+9'
+  //       example 8: sprintf('%.f', 3.14)
+  //       returns 8: '3.140000'
+  //       example 9: sprintf('%% %2$d', 1, 2)
+  //       returns 9: '% 2'
 
   const regex = /%%|%(?:(\d+)\$)?((?:[-+#0 ]|'[\s\S])*)(\d+)?(?:\.(\d*))?([\s\S])/g
   const args = arguments
