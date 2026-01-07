@@ -36,7 +36,7 @@ Ideas that will be planned and find their way into a release at one point
       - [ ] C: not implemented
       - [x] Infrastructure: parallel execution, caching, modular architecture, per-language handlers
       - [x] CI integration: `verified:` header in function files, `yarn test:parity` for CI
-      - [ ] Badge: "Verified against PHP 8.3"
+      - [x] Badge: "Verified against PHP 8.3" (added to README, PR #501)
 - [ ] Modernize, e.g.:
       - [ ] Migrate Babel 6 → native ESM (Node 20+)
       - [ ] Migrate Mocha → Vitest
