@@ -68,7 +68,7 @@
     "babel-register": "6.26.0",
     "browserify": "17.0.1",
     "budo": "11.8.4",
-    "chai": "4",
+    "chai": "6",
     "cross-env": "7.0.3",
     "debug": "^4.4.3",
     "es6-promise": "4.2.8",
