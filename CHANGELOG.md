@@ -48,7 +48,7 @@ working 2026-01-07, Insight search)
 - [ ] Expansion (port more functions to the different languages) we'll go from most feasible + sensible, to least :) Also: improve header comment driven test coverage to expose more edge cases, 
 - [ ] Docs/Website:
       - [x] The function pages could have a badge themselves in which language version they were parity checked (similar to what was added in the README.md)
-      - [ ] website: Render authors server-side
+      - [x] website: Render authors server-side (PR #511)
       - [x] website: Fix the search functionality (verified       
       - [ ] Hexo → Next.js 16 SSG(?) Or just a Hexo upgrade. Maybe it's fine.
       - [x] Fix Search by function name or behavior (verified working 2026-01-07)

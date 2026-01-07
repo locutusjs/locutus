@@ -224,30 +224,23 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - All 923 tests pass
 - Lesson learned: The `async` library's API is footgun-prone; prefer modern Promise-based alternatives
 
-### Iteration 21
+### Iterations 21-30
 
 2026-01-07
 
-- **Area: Verification (Go) + TypeScript/Infrastructure**
-- Added Go parity verification support (PR #504, merged):
-  - Created `test/parity/lib/languages/golang.ts` handler
-  - All 20 Go functions verified against `golang:1.23` Docker image
-  - Fixed Count.js discuss URL (was incorrectly pointing to `php/printf`)
-- **Refactored header format** for type safety:
-  - Changed `verified: 8.3` → `parity verified: PHP 8.3` (more explicit)
-  - Created `test/parity/lib/config.ts` as source of truth for parity languages
-  - Added Zod validation in `headerSchema.ts` against parity config
-  - Added `displayName` and `parityValue` to `LanguageHandler` interface
-  - Updated 199 function files (164 PHP, 15 Python, 20 Go)
-- Total verified functions: 199 (164 PHP + 15 Python + 20 Go)
-- Balance: verification + TypeScript/infrastructure improvements
-- Iterations 11-21 balance review:
-  - Dependencies: 11
-  - Verification: 12, 13, 14, 16, 18, 21
-  - Website: 17
-  - TypeScript: 15, 19, 21
-  - Critical fixes: 20
-  - Next iteration should focus on: website, dependencies, or non-verification modernization
+- **Verification expanded to all 5 languages**: 226 total verified (164 PHP + 15 Python + 20 Go + 16 Ruby + 11 C)
+  - Go: 20/20 functions (PR #504) - `golang.ts` handler, parity header format refactor
+  - Ruby: 16/18 functions (PR #507) - nil↔undefined equivalence, website disclaimer
+  - C: 11/18 functions (PR #509) - simplified handler, `abs` with custom edge case tests, website disclaimer
+- **Test framework modernized**: Mocha 11 + Chai 6 → Vitest 4.0.16 (PR #506)
+  - 10x faster tests via `isolate: false`, ESM-native, better TypeScript support
+- **Website improvements**:
+  - Verification badges on function pages (PR #505)
+  - Authors rendered server-side (PR #511) - removed ~90 lines client JS, better SEO
+  - C disclaimer added for type flexibility
+- **Infrastructure**: Docker pull flow refactored (PR #507), Biome zero warnings (PR #508)
+- **Lessons learned**: Cache can be stale for platform-specific behavior (atof scientific notation)
+- Balance: Verification (5), Website (3), Infrastructure (2), Modernization (1)
 
 ### Iteration 22
 
@@ -393,3 +386,20 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - C outputs `-2.5e+10` (printf `%g` format)
 - Closed PR, keeping atof in skip list
 - Lesson learned: always clear cache or use `--all` when testing new functions
+
+### Iteration 30
+
+2026-01-07
+
+- **Area: Website**
+- Rendered authors server-side instead of client-side JS (PR #511)
+  - Moved author aggregation/sorting from `locutus.js` to `authors.ejs`
+  - Authors now render immediately without JavaScript
+  - Better SEO (search engines can index author content)
+  - Removed ~90 lines of client-side JS
+- Balance check (iterations 21-30):
+  - Verification: 5 (21, 24, 27, 28, 29)
+  - Website: 3 (22, 28, 30)
+  - Infrastructure: 2 (25, 26)
+  - Modernization: 1 (23)
+- Should summarize iterations 21-30 per LOG.md rules
