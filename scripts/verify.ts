@@ -379,11 +379,52 @@ function convertPropertyAccess(line: string): string {
   })
 }
 
+// Strip trailing JS comments (// ...) that are not inside strings
+function stripTrailingComment(code: string): string {
+  let inString: string | null = null
+  let escaped = false
+
+  for (let i = 0; i < code.length; i++) {
+    const char = code[i]
+
+    if (escaped) {
+      escaped = false
+      continue
+    }
+
+    if (char === '\\') {
+      escaped = true
+      continue
+    }
+
+    if (inString) {
+      if (char === inString) {
+        inString = null
+      }
+    } else {
+      if (char === '"' || char === "'") {
+        inString = char
+      } else if (char === '/' && code[i + 1] === '/') {
+        // Found // outside of string - strip from here
+        return code.slice(0, i).trim()
+      }
+    }
+  }
+
+  return code
+}
+
 function convertJsLineToPhp(line: string): string {
   let php = line.trim()
   if (!php) {
     return ''
   }
+
+  // Strip trailing JS comments before conversion
+  php = stripTrailingComment(php)
+
+  // Strip trailing semicolons (we add them when building the full PHP)
+  php = php.replace(/;+$/, '')
 
   php = php.replace(/^\s*(var|let|const)\s+/, '')
 
