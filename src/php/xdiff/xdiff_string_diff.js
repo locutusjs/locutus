@@ -220,15 +220,6 @@ module.exports = function xdiff_string_diff(oldData, newData, contextLines, mini
 
     // Function to find lcs and fill in the array to indicate the optimal longest common sequence
     const _findLcs = function (xs, xidx, xIsIn, ys) {
-      let i
-      let xb
-      let xe
-      let llB
-      let llE
-      let pivot
-      let max
-      let yb
-      let ye
       const nx = xs.length
       const ny = ys.length
 
@@ -242,22 +233,22 @@ module.exports = function xdiff_string_diff(oldData, newData, contextLines, mini
         }
         return []
       }
-      i = Math.floor(nx / 2)
-      xb = xs.slice(0, i)
-      xe = xs.slice(i)
-      llB = lcsLens(xb, ys)
-      llE = lcsLens(xe.slice(0).reverse(), ys.slice(0).reverse())
+      const i = Math.floor(nx / 2)
+      const xb = xs.slice(0, i)
+      const xe = xs.slice(i)
+      const llB = lcsLens(xb, ys)
+      const llE = lcsLens(xe.slice(0).reverse(), ys.slice(0).reverse())
 
-      pivot = 0
-      max = 0
+      let pivot = 0
+      let max = 0
       for (j = 0; j <= ny; j++) {
         if (llB[j] + llE[ny - j] > max) {
           pivot = j
           max = llB[j] + llE[ny - j]
         }
       }
-      yb = ys.slice(0, pivot)
-      ye = ys.slice(pivot)
+      const yb = ys.slice(0, pivot)
+      const ye = ys.slice(pivot)
       return _findLcs(xb, xidx, xIsIn, yb).concat(_findLcs(xe, xidx + i, xIsIn, ye))
     }
 

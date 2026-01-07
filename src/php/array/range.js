@@ -14,7 +14,6 @@ module.exports = function range(low, high, step) {
   const matrix = []
   let iVal
   let endval
-  let plus
   const walker = step || 1
   let chars = false
 
@@ -30,7 +29,7 @@ module.exports = function range(low, high, step) {
     endval = isNaN(high) ? 0 : high
   }
 
-  plus = !(iVal > endval)
+  const plus = !(iVal > endval)
   if (plus) {
     while (iVal <= endval) {
       matrix.push(chars ? String.fromCharCode(iVal) : iVal)

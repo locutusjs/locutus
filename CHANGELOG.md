@@ -19,15 +19,11 @@ Ideas that will be planned and find their way into a release at one point
       `Object.prototype.toString.call(arr1) === '[object Array]'`, `typeof retObj[p] === 'object'`,
       `var asString = Object.prototype.toString.call(mixedVar) var asFunc = _getFuncName(mixedVar.constructor) if (asString === '[object Object]' && asFunc === 'Object') {`
       )
-- [ ] Investigate if we can have one helper function for intersecting, and use that in all `array_*diff*` and
-      `array_*sort*` functions. Refrain from using `labels`, which those functions currently still rely on
-- [ ] Investigate if we can have one helper function for sorting, and use that in all `*sort*` functions
 - [ ] Investigate if we can have one helper function to resolve
       `Function/'function'/'Class::function'/[$object, 'function']`, and use that in `is_callable`, `array_walk`,
       `call_user_func_array` etc.
-- [ ] Parse `require`s with ts-morph. Then we can add dependencies back to website
-- [ ] website: Render authors server-side
-- [x] website: Fix the search functionality (verified working 2026-01-07, Insight search)
+- [ ] Parse `require`s with ts-morph and add them to the function params and types. Then we can add show internal dependencies on website, with links to them
+working 2026-01-07, Insight search)
 - [ ] Verification: verify examples against native runtimes with Docker (balance efforts across languages)
       - [x] PHP: 164 functions verified against PHP 8.3
       - [x] Go: 20 functions verified against Go 1.23
@@ -43,18 +39,18 @@ Ideas that will be planned and find their way into a release at one point
       - [ ] Migrate custom `test/browser/app.js` and `yarn browser:watch`/browserify → Vitest with Playwright support (blocked on ESM migration - Vite browser mode requires ESM, but source functions are CJS)
       - [x] Drop Node < 22 support (now requires Node >= 22)
       - [x] ESLint/Prettier → Biome (done in v2.0.33)
-      - [ ] Migrate CJS → ESM (should we do this for all source functions? think so, but with Dual CJS/ESM exports. With https://github.com/colinhacks/zshy? What's best these days?)
+      - [ ] Migrate CJS → ESM (should we do this for all source functions? think so, but with Dual CJS/ESM exports. With https://github.com/colinhacks/zshy? What's best these days?) (for direct browser use via jsdlvr maybe add a note on the website on a relevant place that/how ESM imports in the browser work these days)
       - [ ] Migrate Custom tagged releases (`CONTRIBUTING.md`) → Changesets bundled in PRs
       - [x] Migrate JS → TS for infra scripts (use Node v22+ native type stripping to run)
-- [ ] TypeScript:
+- [x] TypeScript:
       - [x] Convert `src/_util/` to TypeScript
-      - [ ] Generate types from JSDoc in function files
-      - [ ] Per-function type exports
       - [x] Strict mode compatible. Node type stripping compatible
-- [ ] Expansion (port more functions to the different languages), we'll go from most feasible + sensible, to least :)
+- [ ] Expansion (port more functions to the different languages) we'll go from most feasible + sensible, to least :) Also: improve header comment driven test coverage to expose more edge cases, 
 - [ ] Docs/Website:
       - [x] The function pages could have a badge themselves in which language version they were parity checked (similar to what was added in the README.md)
-      - [ ] Hexo → Next.js 16 SSG
+      - [ ] website: Render authors server-side
+      - [x] website: Fix the search functionality (verified       
+      - [ ] Hexo → Next.js 16 SSG(?) Or just a Hexo upgrade. Maybe it's fine.
       - [x] Fix Search by function name or behavior (verified working 2026-01-07)
       - [ ] "Rosetta Stone" view for cross-language comparison
 
