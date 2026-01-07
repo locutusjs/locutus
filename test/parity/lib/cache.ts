@@ -7,7 +7,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import type { CacheEntry } from './types.ts'
 
-export const CACHE_VERSION = 7
+export const CACHE_VERSION = 8
 
 /**
  * Strip comments and blank lines from code for hashing
@@ -49,7 +49,7 @@ export function calculateHash(filePath: string, deps: string[], srcDir: string, 
   }
 
   // Include language handlers
-  const langDir = join(verifyDir, 'verify', 'languages')
+  const langDir = join(verifyDir, 'lib', 'languages')
   if (existsSync(langDir)) {
     for (const file of ['index.ts', 'php.ts', 'python.ts']) {
       const fullPath = join(langDir, file)
