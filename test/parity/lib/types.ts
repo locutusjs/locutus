@@ -54,8 +54,8 @@ export interface DockerConfig {
 export interface LanguageHandler {
   /** Translate JS example code to native language code */
   translate(jsCode: string[], funcName: string): string
-  /** Normalize native output for comparison */
-  normalize(output: string): string
+  /** Normalize native output for comparison. Expected value provided for context-aware normalization. */
+  normalize(output: string, expected?: string): string
   /** Functions to skip (removed, deprecated, etc.) */
   skipList: Set<string>
   /** Docker image for this language */

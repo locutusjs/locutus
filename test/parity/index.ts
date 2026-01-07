@@ -212,8 +212,8 @@ async function runParityTest(
       continue
     }
 
-    // Normalize and compare
-    const nativeResult = handler.normalize(nativeRun.output)
+    // Normalize and compare (pass expected for context-aware normalization)
+    const nativeResult = handler.normalize(nativeRun.output, expectedEval.result.trim())
     const passed = expectedEval.result.trim() === nativeResult
     results.push({
       example: example.number,

@@ -128,7 +128,8 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `yarn verify:php` → `yarn test:parity:php`
   - Updated CI workflow, README, CONTRIBUTING, and CHANGELOG
 - Bumped CACHE_VERSION to 9 (hash algorithm changed)
-- Investigation ongoing: CI strcmp failure (returns 8 instead of 1)
-  - Root cause: Docker image digest differs between arm64 (local) and amd64 (CI)
-  - PHP 8.0 changed strcmp from returning character difference to -1/0/1
-  - Added debug output to show exact PHP version and digest in CI
+- Fixed CI strcmp failure (PHP 8.3 returns 8 instead of 1 on amd64):
+  - Root cause: PHP's strcmp returns platform-dependent values due to C memcmp
+  - See: https://github.com/php/php-src/issues/17119
+  - Fix: Normalize comparison results when expected is -1/0/1
+  - Added `expected` parameter to `normalize()` for context-aware normalization

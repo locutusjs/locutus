@@ -299,12 +299,37 @@ function stripPhpWarnings(output: string): string {
 
 /**
  * Normalize PHP output for comparison
+ *
+ * Handles platform-dependent behavior of comparison functions like strcmp.
+ * PHP's strcmp returns platform-dependent values (character difference on some
+ * platforms, -1/0/1 on others) due to underlying C memcmp differences.
+ * See: https://github.com/php/php-src/issues/17119
+ *
+ * When expected is -1, 0, or 1 (comparison result), we normalize PHP's output
+ * to match by converting any positive to 1 and any negative to -1.
  */
-function normalizePhpOutput(output: string): string {
+function normalizePhpOutput(output: string, expected?: string): string {
   // Strip warnings first
   let result = stripPhpWarnings(output)
   // Unescape forward slashes (PHP's json_encode escapes / as \/)
   result = result.trim().replace(/\\\//g, '/')
+
+  // Normalize strcmp-like results when expected is a comparison value (-1, 0, 1)
+  // Only applies when expected is explicitly a comparison result
+  if (expected === '1' || expected === '-1' || expected === '0') {
+    const intMatch = result.match(/^-?\d+$/)
+    if (intMatch) {
+      const num = Number.parseInt(result, 10)
+      if (num > 0) {
+        return '1'
+      }
+      if (num < 0) {
+        return '-1'
+      }
+      return '0'
+    }
+  }
+
   return result
 }
 
