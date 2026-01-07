@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&#39;s array_splice looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2025-12-16T15:34:51.105Z">
-<meta property="article:modified_time" content="2025-12-16T15:34:51.105Z">
+<meta property="article:published_time" content="2026-01-07T10:18:30.057Z">
+<meta property="article:modified_time" content="2026-01-07T10:18:30.057Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -213,8 +213,8 @@ ga('send', 'pageview');
         <table>
           <tr><th>#</th><th>code</th><th>expected result</th></tr>
         
-          <tr><td>1</td><td><code>var $input = {4: &#34;red&#34;, &#39;abc&#39;: &#34;green&#34;, 2: &#34;blue&#34;, &#39;dud&#39;: &#34;yellow&#34;}
-array_splice($input, 2)</code></td><td><code>{4: &#34;red&#34;, &#39;abc&#39;: &#34;green&#34;}</code></td></tr>
+          <tr><td>1</td><td><code>var $input = [&#34;red&#34;, &#34;green&#34;, &#34;blue&#34;, &#34;yellow&#34;]
+array_splice($input, 2)</code></td><td><code>[&#34;blue&#34;, &#34;yellow&#34;]</code></td></tr>
         
           <tr><td>2</td><td><code>var $input = [&#34;red&#34;, &#34;green&#34;, &#34;blue&#34;, &#34;yellow&#34;]
 array_splice($input, 3, 0, &#34;purple&#34;)</code></td><td><code>[]</code></td></tr>
@@ -269,7 +269,7 @@ with the same keys that had been deleted</p>
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">array_splice</span>(<span class="params">arr, offst, lgth, replacement</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_splice/</span></span><br><span class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">//      note 1: Order does get shifted in associative array input with numeric indices,</span></span><br><span class="line">  <span class="comment">//      note 1: since PHP behavior doesn&#x27;t preserve keys, but I understand order is</span></span><br><span class="line">  <span class="comment">//      note 1: not reliable anyways</span></span><br><span class="line">  <span class="comment">//      note 1: Note also that IE retains information about property position even</span></span><br><span class="line">  <span class="comment">//      note 1: after being supposedly deleted, so use of this function may produce</span></span><br><span class="line">  <span class="comment">//      note 1: unexpected results in IE if you later attempt to add back properties</span></span><br><span class="line">  <span class="comment">//      note 1: with the same keys that had been deleted</span></span><br><span class="line">  <span class="comment">//   example 1: var $input = &#123;4: &quot;red&quot;, &#x27;abc&#x27;: &quot;green&quot;, 2: &quot;blue&quot;, &#x27;dud&#x27;: &quot;yellow&quot;&#125;</span></span><br><span class="line">  <span class="comment">//   example 1: array_splice($input, 2)</span></span><br><span class="line">  <span class="comment">//   returns 1: &#123;4: &quot;red&quot;, &#x27;abc&#x27;: &quot;green&quot;&#125;</span></span><br><span class="line">  <span class="comment">//   example 2: var $input = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;yellow&quot;]</span></span><br><span class="line">  <span class="comment">//   example 2: array_splice($input, 3, 0, &quot;purple&quot;)</span></span><br><span class="line">  <span class="comment">//   returns 2: []</span></span><br><span class="line">  <span class="comment">//   example 3: var $input = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;yellow&quot;]</span></span><br><span class="line">  <span class="comment">//   example 3: array_splice($input, -1, 1, [&quot;black&quot;, &quot;maroon&quot;])</span></span><br><span class="line">  <span class="comment">//   returns 3: [&quot;yellow&quot;]</span></span><br><span class="line">  <span class="comment">//        test: skip-1</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> isInt = <span class="built_in">require</span>(<span class="string">&#x27;../var/is_int&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _checkToUpIndices = <span class="keyword">function</span> (<span class="params">arr, ct, key</span>) &#123;</span><br><span class="line">    <span class="comment">// Deal with situation, e.g., if encounter index 4 and try</span></span><br><span class="line">    <span class="comment">// to set it to 0, but 0 exists later in loop (need to</span></span><br><span class="line">    <span class="comment">// increment all subsequent (skipping current key,</span></span><br><span class="line">    <span class="comment">// since we need its value below) until find unused)</span></span><br><span class="line">    <span class="keyword">if</span> (arr[ct] !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> tmp = ct</span><br><span class="line">      ct += <span class="number">1</span></span><br><span class="line">      <span class="keyword">if</span> (ct === key) &#123;</span><br><span class="line">        ct += <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">      ct = <span class="title function_">_checkToUpIndices</span>(arr, ct, key)</span><br><span class="line">      arr[ct] = arr[tmp]</span><br><span class="line">      <span class="keyword">delete</span> arr[tmp]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ct</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (replacement &amp;&amp; <span class="keyword">typeof</span> replacement !== <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">    replacement = [replacement]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (lgth === <span class="literal">undefined</span>) &#123;</span><br><span class="line">    lgth = offst &gt;= <span class="number">0</span> ? arr.<span class="property">length</span> - offst : -offst</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (lgth &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    lgth = (offst &gt;= <span class="number">0</span> ? arr.<span class="property">length</span> - offst : -offst) + lgth</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(arr) !== <span class="string">&#x27;[object Array]&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment">/* if (arr.length !== undefined) &#123;</span></span><br><span class="line"><span class="comment">     // Deal with array-like objects as input</span></span><br><span class="line"><span class="comment">    delete arr.length;</span></span><br><span class="line"><span class="comment">    &#125; */</span></span><br><span class="line">    <span class="keyword">let</span> lgt = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> ct = -<span class="number">1</span></span><br><span class="line">    <span class="keyword">const</span> rmvd = []</span><br><span class="line">    <span class="keyword">const</span> rmvdObj = &#123;&#125;</span><br><span class="line">    <span class="keyword">let</span> replCt = -<span class="number">1</span></span><br><span class="line">    <span class="keyword">let</span> intCt = -<span class="number">1</span></span><br><span class="line">    <span class="keyword">let</span> returnArr = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">let</span> rmvdCt = <span class="number">0</span></span><br><span class="line">    <span class="comment">// var rmvdLngth = 0</span></span><br><span class="line">    <span class="keyword">let</span> key = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="comment">// rmvdObj.length = 0;</span></span><br><span class="line">    <span class="keyword">for</span> (key <span class="keyword">in</span> arr) &#123;</span><br><span class="line">      <span class="comment">// Can do arr.__count__ in some browsers</span></span><br><span class="line">      lgt += <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    offst = offst &gt;= <span class="number">0</span> ? offst : lgt + offst</span><br><span class="line">    <span class="keyword">for</span> (key <span class="keyword">in</span> arr) &#123;</span><br><span class="line">      ct += <span class="number">1</span></span><br><span class="line">      <span class="keyword">if</span> (ct &lt; offst) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">isInt</span>(key)) &#123;</span><br><span class="line">          intCt += <span class="number">1</span></span><br><span class="line">          <span class="keyword">if</span> (<span class="built_in">parseInt</span>(key, <span class="number">10</span>) === intCt) &#123;</span><br><span class="line">            <span class="comment">// Key is already numbered ok, so don&#x27;t need to change key for value</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">// Deal with situation, e.g.,</span></span><br><span class="line">          <span class="title function_">_checkToUpIndices</span>(arr, intCt, key)</span><br><span class="line">          <span class="comment">// if encounter index 4 and try to set it to 0, but 0 exists later in loop</span></span><br><span class="line">          arr[intCt] = arr[key]</span><br><span class="line">          <span class="keyword">delete</span> arr[key]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (returnArr &amp;&amp; <span class="title function_">isInt</span>(key)) &#123;</span><br><span class="line">        rmvd.<span class="title function_">push</span>(arr[key])</span><br><span class="line">        <span class="comment">// PHP starts over here too</span></span><br><span class="line">        rmvdObj[rmvdCt++] = arr[key]</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        rmvdObj[key] = arr[key]</span><br><span class="line">        returnArr = <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// rmvdLngth += 1</span></span><br><span class="line">      <span class="comment">// rmvdObj.length += 1;</span></span><br><span class="line">      <span class="keyword">if</span> (replacement &amp;&amp; replacement[++replCt]) &#123;</span><br><span class="line">        arr[key] = replacement[replCt]</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">delete</span> arr[key]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Make (back) into an array-like object</span></span><br><span class="line">    <span class="comment">// arr.length = lgt - rmvdLngth + (replacement ? replacement.length : 0);</span></span><br><span class="line">    <span class="keyword">return</span> returnArr ? rmvd : rmvdObj</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (replacement) &#123;</span><br><span class="line">    replacement.<span class="title function_">unshift</span>(offst, lgth)</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">splice</span>.<span class="title function_">apply</span>(arr, replacement)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> arr.<span class="title function_">splice</span>(offst, lgth)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">array_splice</span>(<span class="params">arr, offst, lgth, replacement</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_splice/</span></span><br><span class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">//      note 1: Order does get shifted in associative array input with numeric indices,</span></span><br><span class="line">  <span class="comment">//      note 1: since PHP behavior doesn&#x27;t preserve keys, but I understand order is</span></span><br><span class="line">  <span class="comment">//      note 1: not reliable anyways</span></span><br><span class="line">  <span class="comment">//      note 1: Note also that IE retains information about property position even</span></span><br><span class="line">  <span class="comment">//      note 1: after being supposedly deleted, so use of this function may produce</span></span><br><span class="line">  <span class="comment">//      note 1: unexpected results in IE if you later attempt to add back properties</span></span><br><span class="line">  <span class="comment">//      note 1: with the same keys that had been deleted</span></span><br><span class="line">  <span class="comment">//   example 1: var $input = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;yellow&quot;]</span></span><br><span class="line">  <span class="comment">//   example 1: array_splice($input, 2)</span></span><br><span class="line">  <span class="comment">//   returns 1: [&quot;blue&quot;, &quot;yellow&quot;]</span></span><br><span class="line">  <span class="comment">//   example 2: var $input = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;yellow&quot;]</span></span><br><span class="line">  <span class="comment">//   example 2: array_splice($input, 3, 0, &quot;purple&quot;)</span></span><br><span class="line">  <span class="comment">//   returns 2: []</span></span><br><span class="line">  <span class="comment">//   example 3: var $input = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;yellow&quot;]</span></span><br><span class="line">  <span class="comment">//   example 3: array_splice($input, -1, 1, [&quot;black&quot;, &quot;maroon&quot;])</span></span><br><span class="line">  <span class="comment">//   returns 3: [&quot;yellow&quot;]</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> isInt = <span class="built_in">require</span>(<span class="string">&#x27;../var/is_int&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _checkToUpIndices = <span class="keyword">function</span> (<span class="params">arr, ct, key</span>) &#123;</span><br><span class="line">    <span class="comment">// Deal with situation, e.g., if encounter index 4 and try</span></span><br><span class="line">    <span class="comment">// to set it to 0, but 0 exists later in loop (need to</span></span><br><span class="line">    <span class="comment">// increment all subsequent (skipping current key,</span></span><br><span class="line">    <span class="comment">// since we need its value below) until find unused)</span></span><br><span class="line">    <span class="keyword">if</span> (arr[ct] !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> tmp = ct</span><br><span class="line">      ct += <span class="number">1</span></span><br><span class="line">      <span class="keyword">if</span> (ct === key) &#123;</span><br><span class="line">        ct += <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">      ct = <span class="title function_">_checkToUpIndices</span>(arr, ct, key)</span><br><span class="line">      arr[ct] = arr[tmp]</span><br><span class="line">      <span class="keyword">delete</span> arr[tmp]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ct</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (replacement &amp;&amp; <span class="keyword">typeof</span> replacement !== <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">    replacement = [replacement]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (lgth === <span class="literal">undefined</span>) &#123;</span><br><span class="line">    lgth = offst &gt;= <span class="number">0</span> ? arr.<span class="property">length</span> - offst : -offst</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (lgth &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    lgth = (offst &gt;= <span class="number">0</span> ? arr.<span class="property">length</span> - offst : -offst) + lgth</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(arr) !== <span class="string">&#x27;[object Array]&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment">/* if (arr.length !== undefined) &#123;</span></span><br><span class="line"><span class="comment">     // Deal with array-like objects as input</span></span><br><span class="line"><span class="comment">    delete arr.length;</span></span><br><span class="line"><span class="comment">    &#125; */</span></span><br><span class="line">    <span class="keyword">let</span> lgt = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> ct = -<span class="number">1</span></span><br><span class="line">    <span class="keyword">const</span> rmvd = []</span><br><span class="line">    <span class="keyword">const</span> rmvdObj = &#123;&#125;</span><br><span class="line">    <span class="keyword">let</span> replCt = -<span class="number">1</span></span><br><span class="line">    <span class="keyword">let</span> intCt = -<span class="number">1</span></span><br><span class="line">    <span class="keyword">let</span> returnArr = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">let</span> rmvdCt = <span class="number">0</span></span><br><span class="line">    <span class="comment">// var rmvdLngth = 0</span></span><br><span class="line">    <span class="keyword">let</span> key = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="comment">// rmvdObj.length = 0;</span></span><br><span class="line">    <span class="keyword">for</span> (key <span class="keyword">in</span> arr) &#123;</span><br><span class="line">      <span class="comment">// Can do arr.__count__ in some browsers</span></span><br><span class="line">      lgt += <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    offst = offst &gt;= <span class="number">0</span> ? offst : lgt + offst</span><br><span class="line">    <span class="keyword">for</span> (key <span class="keyword">in</span> arr) &#123;</span><br><span class="line">      ct += <span class="number">1</span></span><br><span class="line">      <span class="keyword">if</span> (ct &lt; offst) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">isInt</span>(key)) &#123;</span><br><span class="line">          intCt += <span class="number">1</span></span><br><span class="line">          <span class="keyword">if</span> (<span class="built_in">parseInt</span>(key, <span class="number">10</span>) === intCt) &#123;</span><br><span class="line">            <span class="comment">// Key is already numbered ok, so don&#x27;t need to change key for value</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">// Deal with situation, e.g.,</span></span><br><span class="line">          <span class="title function_">_checkToUpIndices</span>(arr, intCt, key)</span><br><span class="line">          <span class="comment">// if encounter index 4 and try to set it to 0, but 0 exists later in loop</span></span><br><span class="line">          arr[intCt] = arr[key]</span><br><span class="line">          <span class="keyword">delete</span> arr[key]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (returnArr &amp;&amp; <span class="title function_">isInt</span>(key)) &#123;</span><br><span class="line">        rmvd.<span class="title function_">push</span>(arr[key])</span><br><span class="line">        <span class="comment">// PHP starts over here too</span></span><br><span class="line">        rmvdObj[rmvdCt++] = arr[key]</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        rmvdObj[key] = arr[key]</span><br><span class="line">        returnArr = <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// rmvdLngth += 1</span></span><br><span class="line">      <span class="comment">// rmvdObj.length += 1;</span></span><br><span class="line">      <span class="keyword">if</span> (replacement &amp;&amp; replacement[++replCt]) &#123;</span><br><span class="line">        arr[key] = replacement[replCt]</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">delete</span> arr[key]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Make (back) into an array-like object</span></span><br><span class="line">    <span class="comment">// arr.length = lgt - rmvdLngth + (replacement ? replacement.length : 0);</span></span><br><span class="line">    <span class="keyword">return</span> returnArr ? rmvd : rmvdObj</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (replacement) &#123;</span><br><span class="line">    replacement.<span class="title function_">unshift</span>(offst, lgth)</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">splice</span>.<span class="title function_">apply</span>(arr, replacement)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> arr.<span class="title function_">splice</span>(offst, lgth)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       <div class="clearfix"></div>
@@ -341,7 +341,7 @@ with the same keys that had been deleted</p>
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                334
+                394
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -381,8 +381,15 @@ with the same keys that had been deleted</p>
       
         <li><a href="/c/">
           C
-          (3)
+          (18)
         </a></li>
+        
+        <ul>
+          <li><a href="/c/ctype/">
+            ctype
+            (8)
+          </a></li>
+        </ul>
         
         <ul>
           <li><a href="/c/math/">
@@ -398,42 +405,84 @@ with the same keys that had been deleted</p>
           </a></li>
         </ul>
         
-      
-        <li><a href="/golang/">
-          Go
-          (4)
-        </a></li>
-        
         <ul>
-          <li><a href="/golang/strings/">
-            strings
-            (4)
+          <li><a href="/c/stdlib/">
+            stdlib
+            (2)
           </a></li>
         </ul>
         
-      
-        <li><a href="/python/">
-          Python
-          (5)
-        </a></li>
-        
         <ul>
-          <li><a href="/python/string/">
+          <li><a href="/c/string/">
             string
             (5)
           </a></li>
         </ul>
         
       
+        <li><a href="/golang/">
+          Go
+          (20)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strconv/">
+            strconv
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/strings/">
+            strings
+            (14)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (17)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/math/">
+            math
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (10)
+          </a></li>
+        </ul>
+        
+      
         <li><a href="/ruby/">
           Ruby
-          (1)
+          (18)
         </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Array/">
+            Array
+            (6)
+          </a></li>
+        </ul>
         
         <ul>
           <li><a href="/ruby/Math/">
             Math
             (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/ruby/String/">
+            String
+            (11)
           </a></li>
         </ul>
         
@@ -665,7 +714,7 @@ with the same keys that had been deleted</p>
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2025 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2026 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>

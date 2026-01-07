@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&#39;s call_user_func_array looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2025-12-16T15:34:51.162Z">
-<meta property="article:modified_time" content="2025-12-16T15:34:51.162Z">
+<meta property="article:published_time" content="2026-01-07T10:18:30.118Z">
+<meta property="article:modified_time" content="2026-01-07T10:18:30.118Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -243,7 +243,7 @@ already pass any function to be executed here.</p>
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">call_user_func_array</span>(<span class="params">cb, parameters</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/call_user_func_array/</span></span><br><span class="line">  <span class="comment">// original by: Thiago Mata (https://thiagomata.blog.com)</span></span><br><span class="line">  <span class="comment">//  revised by: Jon Hohle</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// improved by: Diplom@t (https://difane.com/)</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//      note 1: Depending on the `cb` that is passed,</span></span><br><span class="line">  <span class="comment">//      note 1: this function can use `eval` and/or `new Function`.</span></span><br><span class="line">  <span class="comment">//      note 1: The `eval` input is however checked to only allow valid function names,</span></span><br><span class="line">  <span class="comment">//      note 1: So it should not be unsafer than uses without eval (seeing as you can)</span></span><br><span class="line">  <span class="comment">//      note 1: already pass any function to be executed here.</span></span><br><span class="line">  <span class="comment">//   example 1: call_user_func_array(&#x27;isNaN&#x27;, [&#x27;a&#x27;])</span></span><br><span class="line">  <span class="comment">//   returns 1: true</span></span><br><span class="line">  <span class="comment">//   example 2: call_user_func_array(&#x27;isNaN&#x27;, [1])</span></span><br><span class="line">  <span class="comment">//   returns 2: false</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> $global = <span class="keyword">typeof</span> <span class="variable language_">window</span> !== <span class="string">&#x27;undefined&#x27;</span> ? <span class="variable language_">window</span> : <span class="variable language_">global</span></span><br><span class="line">  <span class="keyword">let</span> func</span><br><span class="line">  <span class="keyword">let</span> scope = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> validJSFunctionNamePattern = <span class="regexp">/^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> cb === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> $global[cb] === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">      func = $global[cb]</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (cb.<span class="title function_">match</span>(validJSFunctionNamePattern)) &#123;</span><br><span class="line">      func = <span class="keyword">new</span> <span class="title class_">Function</span>(<span class="literal">null</span>, <span class="string">&#x27;return &#x27;</span> + cb)() <span class="comment">// eslint-disable-line no-new-func</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(cb) === <span class="string">&#x27;[object Array]&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> cb[<span class="number">0</span>] === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (cb[<span class="number">0</span>].<span class="title function_">match</span>(validJSFunctionNamePattern)) &#123;</span><br><span class="line">        func = <span class="built_in">eval</span>(cb[<span class="number">0</span>] + <span class="string">&quot;[&#x27;&quot;</span> + cb[<span class="number">1</span>] + <span class="string">&quot;&#x27;]&quot;</span>) <span class="comment">// eslint-disable-line no-eval</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      func = cb[<span class="number">0</span>][cb[<span class="number">1</span>]]</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> cb[<span class="number">0</span>] === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> $global[cb[<span class="number">0</span>]] === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">        scope = $global[cb[<span class="number">0</span>]]</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (cb[<span class="number">0</span>].<span class="title function_">match</span>(validJSFunctionNamePattern)) &#123;</span><br><span class="line">        scope = <span class="built_in">eval</span>(cb[<span class="number">0</span>]) <span class="comment">// eslint-disable-line no-eval</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> cb[<span class="number">0</span>] === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">      scope = cb[<span class="number">0</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> cb === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">    func = cb</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> func !== <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(func + <span class="string">&#x27; is not a valid function&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> func.<span class="title function_">apply</span>(scope, parameters)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">call_user_func_array</span>(<span class="params">cb, parameters</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/call_user_func_array/</span></span><br><span class="line">  <span class="comment">// original by: Thiago Mata (https://thiagomata.blog.com)</span></span><br><span class="line">  <span class="comment">//  revised by: Jon Hohle</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// improved by: Diplom@t (https://difane.com/)</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//      note 1: Depending on the `cb` that is passed,</span></span><br><span class="line">  <span class="comment">//      note 1: this function can use `eval` and/or `new Function`.</span></span><br><span class="line">  <span class="comment">//      note 1: The `eval` input is however checked to only allow valid function names,</span></span><br><span class="line">  <span class="comment">//      note 1: So it should not be unsafer than uses without eval (seeing as you can)</span></span><br><span class="line">  <span class="comment">//      note 1: already pass any function to be executed here.</span></span><br><span class="line">  <span class="comment">//   example 1: call_user_func_array(&#x27;isNaN&#x27;, [&#x27;a&#x27;])</span></span><br><span class="line">  <span class="comment">//   returns 1: true</span></span><br><span class="line">  <span class="comment">//   example 2: call_user_func_array(&#x27;isNaN&#x27;, [1])</span></span><br><span class="line">  <span class="comment">//   returns 2: false</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> $global = <span class="keyword">typeof</span> <span class="variable language_">window</span> !== <span class="string">&#x27;undefined&#x27;</span> ? <span class="variable language_">window</span> : <span class="variable language_">global</span></span><br><span class="line">  <span class="keyword">let</span> func</span><br><span class="line">  <span class="keyword">let</span> scope = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> validJSFunctionNamePattern = <span class="regexp">/^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> cb === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> $global[cb] === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">      func = $global[cb]</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (cb.<span class="title function_">match</span>(validJSFunctionNamePattern)) &#123;</span><br><span class="line">      func = <span class="keyword">new</span> <span class="title class_">Function</span>(<span class="literal">null</span>, <span class="string">&#x27;return &#x27;</span> + cb)()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(cb) === <span class="string">&#x27;[object Array]&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> cb[<span class="number">0</span>] === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (cb[<span class="number">0</span>].<span class="title function_">match</span>(validJSFunctionNamePattern)) &#123;</span><br><span class="line">        <span class="comment">// biome-ignore lint/security/noGlobalEval: needed for PHP port</span></span><br><span class="line">        func = <span class="built_in">eval</span>(cb[<span class="number">0</span>] + <span class="string">&quot;[&#x27;&quot;</span> + cb[<span class="number">1</span>] + <span class="string">&quot;&#x27;]&quot;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      func = cb[<span class="number">0</span>][cb[<span class="number">1</span>]]</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> cb[<span class="number">0</span>] === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> $global[cb[<span class="number">0</span>]] === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">        scope = $global[cb[<span class="number">0</span>]]</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (cb[<span class="number">0</span>].<span class="title function_">match</span>(validJSFunctionNamePattern)) &#123;</span><br><span class="line">        <span class="comment">// biome-ignore lint/security/noGlobalEval: needed for PHP port</span></span><br><span class="line">        scope = <span class="built_in">eval</span>(cb[<span class="number">0</span>])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> cb[<span class="number">0</span>] === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">      scope = cb[<span class="number">0</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> cb === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">    func = cb</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> func !== <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(func + <span class="string">&#x27; is not a valid function&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> func.<span class="title function_">apply</span>(scope, parameters)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       <div class="clearfix"></div>
@@ -315,7 +315,7 @@ already pass any function to be executed here.</p>
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                334
+                394
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -355,8 +355,15 @@ already pass any function to be executed here.</p>
       
         <li><a href="/c/">
           C
-          (3)
+          (18)
         </a></li>
+        
+        <ul>
+          <li><a href="/c/ctype/">
+            ctype
+            (8)
+          </a></li>
+        </ul>
         
         <ul>
           <li><a href="/c/math/">
@@ -372,42 +379,84 @@ already pass any function to be executed here.</p>
           </a></li>
         </ul>
         
-      
-        <li><a href="/golang/">
-          Go
-          (4)
-        </a></li>
-        
         <ul>
-          <li><a href="/golang/strings/">
-            strings
-            (4)
+          <li><a href="/c/stdlib/">
+            stdlib
+            (2)
           </a></li>
         </ul>
         
-      
-        <li><a href="/python/">
-          Python
-          (5)
-        </a></li>
-        
         <ul>
-          <li><a href="/python/string/">
+          <li><a href="/c/string/">
             string
             (5)
           </a></li>
         </ul>
         
       
+        <li><a href="/golang/">
+          Go
+          (20)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strconv/">
+            strconv
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/strings/">
+            strings
+            (14)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (17)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/math/">
+            math
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (10)
+          </a></li>
+        </ul>
+        
+      
         <li><a href="/ruby/">
           Ruby
-          (1)
+          (18)
         </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Array/">
+            Array
+            (6)
+          </a></li>
+        </ul>
         
         <ul>
           <li><a href="/ruby/Math/">
             Math
             (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/ruby/String/">
+            String
+            (11)
           </a></li>
         </ul>
         
@@ -639,7 +688,7 @@ already pass any function to be executed here.</p>
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2025 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2026 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>

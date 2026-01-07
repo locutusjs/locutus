@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here’s what our current JavaScript equivalent to PHP&#39;s array_intersect_ukey looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2025-12-16T15:34:51.078Z">
-<meta property="article:modified_time" content="2025-12-16T15:34:51.078Z">
+<meta property="article:published_time" content="2026-01-07T10:18:30.037Z">
+<meta property="article:modified_time" content="2026-01-07T10:18:30.037Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -250,7 +250,7 @@ array_intersect_ukey ($array1, $array2, function (key1, key2){ return (key1 === 
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">array_intersect_ukey</span>(<span class="params">arr1</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_intersect_ukey/</span></span><br><span class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//   example 1: var $array1 = &#123;blue: 1, red: 2, green: 3, purple: 4&#125;</span></span><br><span class="line">  <span class="comment">//   example 1: var $array2 = &#123;green: 5, blue: 6, yellow: 7, cyan: 8&#125;</span></span><br><span class="line">  <span class="comment">//   example 1: array_intersect_ukey ($array1, $array2, function (key1, key2)&#123; return (key1 === key2 ? 0 : (key1 &gt; key2 ? 1 : -1)); &#125;)</span></span><br><span class="line">  <span class="comment">//   returns 1: &#123;blue: 1, green: 3&#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> retArr = &#123;&#125;</span><br><span class="line">  <span class="keyword">const</span> arglm1 = <span class="variable language_">arguments</span>.<span class="property">length</span> - <span class="number">1</span></span><br><span class="line">  <span class="keyword">const</span> arglm2 = arglm1 - <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> cb = <span class="variable language_">arguments</span>[arglm1]</span><br><span class="line">  <span class="comment">// var cb0 = arguments[arglm2]</span></span><br><span class="line">  <span class="keyword">let</span> k1 = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> k = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> arr = &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> $global = <span class="keyword">typeof</span> <span class="variable language_">window</span> !== <span class="string">&#x27;undefined&#x27;</span> ? <span class="variable language_">window</span> : <span class="variable language_">global</span></span><br><span class="line"></span><br><span class="line">  cb =</span><br><span class="line">    <span class="keyword">typeof</span> cb === <span class="string">&#x27;string&#x27;</span></span><br><span class="line">      ? $global[cb]</span><br><span class="line">      : <span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(cb) === <span class="string">&#x27;[object Array]&#x27;</span></span><br><span class="line">        ? $global[cb[<span class="number">0</span>]][cb[<span class="number">1</span>]]</span><br><span class="line">        : cb</span><br><span class="line"></span><br><span class="line">  <span class="comment">// cb0 = (typeof cb0 === &#x27;string&#x27;)</span></span><br><span class="line">  <span class="comment">//   ? $global[cb0]</span></span><br><span class="line">  <span class="comment">//   : (Object.prototype.toString.call(cb0) === &#x27;[object Array]&#x27;)</span></span><br><span class="line">  <span class="comment">//     ? $global[cb0[0]][cb0[1]]</span></span><br><span class="line">  <span class="comment">//     : cb0</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">arr1keys</span>: <span class="keyword">for</span> (k1 <span class="keyword">in</span> arr1) &#123;</span><br><span class="line">    <span class="attr">arrs</span>: <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; arglm1; i++) &#123;</span><br><span class="line">      arr = <span class="variable language_">arguments</span>[i]</span><br><span class="line">      <span class="keyword">for</span> (k <span class="keyword">in</span> arr) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">cb</span>(k, k1) === <span class="number">0</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span> (i === arglm2) &#123;</span><br><span class="line">            retArr[k1] = arr1[k1]</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">// If the innermost loop always leads at least once to an equal value,</span></span><br><span class="line">          <span class="comment">// continue the loop until done</span></span><br><span class="line">          <span class="keyword">continue</span> arrs <span class="comment">// eslint-disable-line no-labels</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// If it reaches here, it wasn&#x27;t found in at least one array, so try next value</span></span><br><span class="line">      <span class="keyword">continue</span> arr1keys <span class="comment">// eslint-disable-line no-labels</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> retArr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">array_intersect_ukey</span>(<span class="params">arr1</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/array_intersect_ukey/</span></span><br><span class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//   example 1: var $array1 = &#123;blue: 1, red: 2, green: 3, purple: 4&#125;</span></span><br><span class="line">  <span class="comment">//   example 1: var $array2 = &#123;green: 5, blue: 6, yellow: 7, cyan: 8&#125;</span></span><br><span class="line">  <span class="comment">//   example 1: array_intersect_ukey ($array1, $array2, function (key1, key2)&#123; return (key1 === key2 ? 0 : (key1 &gt; key2 ? 1 : -1)); &#125;)</span></span><br><span class="line">  <span class="comment">//   returns 1: &#123;blue: 1, green: 3&#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> retArr = &#123;&#125;</span><br><span class="line">  <span class="keyword">const</span> arglm1 = <span class="variable language_">arguments</span>.<span class="property">length</span> - <span class="number">1</span></span><br><span class="line">  <span class="keyword">const</span> arglm2 = arglm1 - <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> cb = <span class="variable language_">arguments</span>[arglm1]</span><br><span class="line">  <span class="comment">// var cb0 = arguments[arglm2]</span></span><br><span class="line">  <span class="keyword">let</span> k1 = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> k = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> arr = &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> $global = <span class="keyword">typeof</span> <span class="variable language_">window</span> !== <span class="string">&#x27;undefined&#x27;</span> ? <span class="variable language_">window</span> : <span class="variable language_">global</span></span><br><span class="line"></span><br><span class="line">  cb =</span><br><span class="line">    <span class="keyword">typeof</span> cb === <span class="string">&#x27;string&#x27;</span></span><br><span class="line">      ? $global[cb]</span><br><span class="line">      : <span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(cb) === <span class="string">&#x27;[object Array]&#x27;</span></span><br><span class="line">        ? $global[cb[<span class="number">0</span>]][cb[<span class="number">1</span>]]</span><br><span class="line">        : cb</span><br><span class="line"></span><br><span class="line">  <span class="comment">// cb0 = (typeof cb0 === &#x27;string&#x27;)</span></span><br><span class="line">  <span class="comment">//   ? $global[cb0]</span></span><br><span class="line">  <span class="comment">//   : (Object.prototype.toString.call(cb0) === &#x27;[object Array]&#x27;)</span></span><br><span class="line">  <span class="comment">//     ? $global[cb0[0]][cb0[1]]</span></span><br><span class="line">  <span class="comment">//     : cb0</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">arr1keys</span>: <span class="keyword">for</span> (k1 <span class="keyword">in</span> arr1) &#123;</span><br><span class="line">    <span class="attr">arrs</span>: <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; arglm1; i++) &#123;</span><br><span class="line">      arr = <span class="variable language_">arguments</span>[i]</span><br><span class="line">      <span class="keyword">for</span> (k <span class="keyword">in</span> arr) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">cb</span>(k, k1) === <span class="number">0</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span> (i === arglm2) &#123;</span><br><span class="line">            retArr[k1] = arr1[k1]</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">// If the innermost loop always leads at least once to an equal value,</span></span><br><span class="line">          <span class="comment">// continue the loop until done</span></span><br><span class="line">          <span class="keyword">continue</span> arrs</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// If it reaches here, it wasn&#x27;t found in at least one array, so try next value</span></span><br><span class="line">      <span class="keyword">continue</span> arr1keys</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> retArr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       <div class="clearfix"></div>
@@ -322,7 +322,7 @@ array_intersect_ukey ($array1, $array2, function (key1, key2){ return (key1 === 
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                334
+                394
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -362,8 +362,15 @@ array_intersect_ukey ($array1, $array2, function (key1, key2){ return (key1 === 
       
         <li><a href="/c/">
           C
-          (3)
+          (18)
         </a></li>
+        
+        <ul>
+          <li><a href="/c/ctype/">
+            ctype
+            (8)
+          </a></li>
+        </ul>
         
         <ul>
           <li><a href="/c/math/">
@@ -379,42 +386,84 @@ array_intersect_ukey ($array1, $array2, function (key1, key2){ return (key1 === 
           </a></li>
         </ul>
         
-      
-        <li><a href="/golang/">
-          Go
-          (4)
-        </a></li>
-        
         <ul>
-          <li><a href="/golang/strings/">
-            strings
-            (4)
+          <li><a href="/c/stdlib/">
+            stdlib
+            (2)
           </a></li>
         </ul>
         
-      
-        <li><a href="/python/">
-          Python
-          (5)
-        </a></li>
-        
         <ul>
-          <li><a href="/python/string/">
+          <li><a href="/c/string/">
             string
             (5)
           </a></li>
         </ul>
         
       
+        <li><a href="/golang/">
+          Go
+          (20)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strconv/">
+            strconv
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/strings/">
+            strings
+            (14)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (17)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/math/">
+            math
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (10)
+          </a></li>
+        </ul>
+        
+      
         <li><a href="/ruby/">
           Ruby
-          (1)
+          (18)
         </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Array/">
+            Array
+            (6)
+          </a></li>
+        </ul>
         
         <ul>
           <li><a href="/ruby/Math/">
             Math
             (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/ruby/String/">
+            String
+            (11)
           </a></li>
         </ul>
         
@@ -646,7 +695,7 @@ array_intersect_ukey ($array1, $array2, function (key1, key2){ return (key1 === 
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2007-2025 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            &copy; 2007-2026 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
             Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>
