@@ -31,11 +31,11 @@ Ideas that will be planned and find their way into a release at one point
 - [ ] Verification: verify examples against native runtimes with Docker (balance efforts across languages)
       - [x] PHP: 62/91 (68%) - remaining: Unicode, pass-by-ref, complex edge cases
       - [ ] Go: not implemented (Docker image configured but verification skipped)
-      - [ ] Python: not implemented
+      - [x] Python: 15/17 (88%) - remaining: capwords (impl difference), printable (.length)
       - [ ] Ruby: not implemented
       - [ ] C: not implemented
-      - [x] Infrastructure: parallel execution, caching, PHP warning stripping
-      - [ ] CI integration: fail if verification diverges
+      - [x] Infrastructure: parallel execution, caching, modular architecture, per-language handlers
+      - [x] CI integration: `verified:` header in function files, `yarn verify` for CI
       - [ ] Badge: "Verified against PHP 8.3"
 - [ ] Modernize, e.g.:
       - [ ] Migrate Babel 6 → native ESM (Node 20+)
