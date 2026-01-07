@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ascii_uppercase = require('../../../../src/python/string/ascii_uppercase.js') // eslint-disable-line no-unused-vars,camelcase
+var ascii_uppercase = require('../../../../src/python/string/ascii_uppercase.js')
 
 describe('src/python/string/ascii_uppercase.js (tested in test/generated/python/string/test-ascii_uppercase.js)', function () {
   it('should pass example 1', function (done) {

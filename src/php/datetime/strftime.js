@@ -36,7 +36,7 @@ module.exports = function strftime(fmt, timestamp) {
   const locale = $locutus.php.localeCategories.LC_TIME
   const lcTime = $locutus.php.locales[locale].LC_TIME
 
-  var _formats = {
+  const _formats = {
     a: function (d) {
       return lcTime.a[d.getDay()]
     },

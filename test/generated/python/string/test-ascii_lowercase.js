@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ascii_lowercase = require('../../../../src/python/string/ascii_lowercase.js') // eslint-disable-line no-unused-vars,camelcase
+var ascii_lowercase = require('../../../../src/python/string/ascii_lowercase.js')
 
 describe('src/python/string/ascii_lowercase.js (tested in test/generated/python/string/test-ascii_lowercase.js)', function () {
   it('should pass example 1', function (done) {

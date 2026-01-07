@@ -30,10 +30,14 @@ module.exports = function explode(delimiter, string, limit) {
 
   const s = string.split(delimiter)
 
-  if (typeof limit === 'undefined') return s
+  if (typeof limit === 'undefined') {
+    return s
+  }
 
   // Support for limit
-  if (limit === 0) limit = 1
+  if (limit === 0) {
+    limit = 1
+  }
 
   // Positive limit
   if (limit > 0) {

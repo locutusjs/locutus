@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var substr_compare = require('../../../../src/php/strings/substr_compare.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var substr_compare = require('../../../../src/php/strings/substr_compare.js')
 
 describe('src/php/strings/substr_compare.js (tested in test/generated/php/strings/test-substr_compare.js)', function () {
   it('should pass example 1', function (done) {

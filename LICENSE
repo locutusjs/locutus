@@ -1,3 +1,5 @@
+MIT License
+
 Copyright (c) 2007-2024 Kevin van Zonneveld (https://kvz.io) and Contributors (https://locutus.io/authors)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
@@ -12,3 +14,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+---
+
+LGPL-2.1 Exception
+
+The BC Math functions (src/php/_helpers/_bc.js, src/php/bc/*) are derived from PHP's bcmath extension and Libbcmath,
+which are licensed under LGPL-2.1. These files retain their original LGPL-2.1 license. If you use these functions,
+LGPL-2.1 terms apply to that portion of your project.
+
+If LGPL is a concern, simply avoid importing from `locutus/php/bc/`.

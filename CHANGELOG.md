@@ -12,8 +12,7 @@ the hundreds of contributions across the many languages that Locutus is assimila
 
 Ideas that will be planned and find their way into a release at one point
 
-- [ ] Address the 25 remaining test failures that are currently skipped (find out which ones via
-      `yarn test:languages:noskip`)
+- [x] ~~Address the 25 remaining test failures~~ → reduced to 1 (`set_time_limit` is intentionally untestable)
 - [ ] Compare example test cases for PHP against `php -r` to make sure they are correctly mimicking the most recent
       stable behavior
 - [ ] Have _one_ way of checking pure JS arrays vs PHP arrays (vs:
@@ -26,18 +25,78 @@ Ideas that will be planned and find their way into a release at one point
 - [ ] Investigate if we can have one helper function to resolve
       `Function/'function'/'Class::function'/[$object, 'function']`, and use that in `is_callable`, `array_walk`,
       `call_user_func_array` etc.
-- [ ] Parse `require`s with AST just like Browserify does. Then we can add dependencies back to website
-- [ ] Port a few more tricky/inter-depending Go functions
-- [ ] Port a few more tricky/inter-depending Python functions
-- [ ] Port a few more tricky/inter-depending Ruby functions
+- [ ] Parse `require`s with ts-morph. Then we can add dependencies back to website
 - [ ] website: Render authors server-side
 - [ ] website: Fix the search functionality
+- [ ] Verification: verify examples against native runtimes (PHP/Go/Python/Ruby/C) with Docker
+      - [x] `yarn verify` and `yarn verify:php` scripts added
+      - [x] Docker-based PHP verification working (56/91 string functions pass, 61.5%)
+      - [x] Parallel execution with p-map (8x concurrency)
+      - [x] Cache invalidation when verify.ts changes
+      - [x] Strip PHP warnings from output, fix object literal translation, string-aware property access
+      - [ ] Remaining 35 failures: Unicode handling, pass-by-ref patterns, implementation differences
+      - [ ] CI integration: fail if verification diverges
+      - [ ] Badge: "Verified against PHP 8.3"
+- [ ] Modernize, e.g.:
+      - [ ] Migrate Babel 6 → native ESM (Node 20+)
+      - [ ] Migrate Mocha → Vitest
+      - [ ] Dual CJS/ESM exports
+      - [ ] Drop Node < 20 support
+      - [ ] Publish as `locutus@3.0.0` with breaking changes
+      - [x] ESLint/Prettier → Biome (done in v2.0.33)
+      - [ ] CJS → ESM
+      - [ ] Custom tagged releases (`CONTRIBUTING.md`) → Changesets bundled in PRs
+      - [ ] JS → TS for infra scripts (use Node v24 native type stripping to run)
+- [ ] TypeScript:
+      - [ ] Convert `src/_util/` to TypeScript
+      - [ ] Generate types from JSDoc in function files
+      - [ ] Per-function type exports
+      - [ ] Strict mode compatible. Node type stripping compatible
+- [ ] Expansion (port more functions to the different languages), we'll go from most feasible + sensible, to least :)
+- [ ] Docs/Website:
+      - [ ] Jekyll → Next.js 16 SSG
+      - [ ] Fix Search by function name or behavior
+      - [ ] "Rosetta Stone" view for cross-language comparison
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.32...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.33...main).
 
-- [ ]
+## v2.0.33
+
+Released: 2026-01-07. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.32...v2.0.33).
+
+### Bug Fixes
+- [x] `quoted_printable_encode`: Fixed soft line break stripping logic
+- [x] `get_defined_functions`: Updated unrealistic test expectation
+- [x] `array_diff_uassoc`: Corrected expected return value to match PHP
+- [x] `array_merge_recursive`: Reimplemented to properly merge arrays recursively
+- [x] `array_splice`: Fixed test to use arrays instead of objects
+
+### Tooling Updates
+- [x] Updated Yarn from 4.0.1 to 4.12.0
+- [x] Added Knip for unused code detection
+- [x] Added TypeScript and @types/node as devDependencies
+- [x] Created initial TypeScript type definitions (index.d.ts)
+- [x] Added cross-language verification script (scripts/verify.ts)
+- [x] Migrated from ESLint/Prettier to Biome
+- [x] Introduced `yarn check` command
+
+### Documentation
+- [x] Added CORE_MAINTAINER.md maintenance workflow
+- [x] Documents LGPL licensing for bc functions (closes #473)
+- [x] Added CONTRIBUTING.md improvements
+
+### Expanded Coverage
+- [x] Go strings: +10 functions (HasPrefix, HasSuffix, ToLower, ToUpper, Trim, TrimSpace, Replace, Split, Join, Repeat)
+- [x] Go strconv: +6 functions (Atoi, Itoa, ParseBool, ParseInt, FormatBool, FormatInt)
+- [x] Python string: +5 functions (digits, hexdigits, octdigits, printable, whitespace)
+- [x] Python math: +7 functions (factorial, gcd, isfinite, isinf, isnan, pow, sqrt)
+- [x] Ruby String: +11 functions (capitalize, chomp, chop, downcase, upcase, include, length, reverse, start_with, end_with, strip)
+- [x] Ruby Array: +6 functions (compact, first, last, flatten, sample, uniq)
+- [x] C ctype.h: +8 functions (isalnum, isalpha, isdigit, islower, isupper, isspace, tolower, toupper)
+- [x] C stdlib.h: +2 functions (atoi, atof)
+- [x] C string.h: +5 functions (strlen, strcmp, strchr, strstr, strcat)
 
 ## v2.0.32
 

@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var natsort = require('../../../../src/php/array/natsort.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var natsort = require('../../../../src/php/array/natsort.js')
 
 describe('src/php/array/natsort.js (tested in test/generated/php/array/test-natsort.js)', function () {
   it('should pass example 1', function (done) {

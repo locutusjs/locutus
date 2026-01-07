@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var bcscale = require('../../../../src/php/bc/bcscale.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var bcscale = require('../../../../src/php/bc/bcscale.js')
 
 describe('src/php/bc/bcscale.js (tested in test/generated/php/bc/test-bcscale.js)', function () {
   it('should pass example 1', function (done) {

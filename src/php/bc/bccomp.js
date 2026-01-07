@@ -14,7 +14,8 @@ module.exports = function bccomp(leftOperand, rightOperand, scale) {
   const libbcmath = bc()
 
   // bc_num
-  let first, second
+  let first
+  let second
   if (typeof scale === 'undefined') {
     scale = libbcmath.scale
   }

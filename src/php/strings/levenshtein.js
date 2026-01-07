@@ -41,7 +41,7 @@ module.exports = function levenshtein(s1, s2, costIns, costRep, costDel) {
   let split = false
   try {
     split = !'0'[0]
-  } catch (e) {
+  } catch (_e) {
     // Earlier IE may not support access by string index
     split = true
   }
@@ -54,7 +54,12 @@ module.exports = function levenshtein(s1, s2, costIns, costRep, costDel) {
   let p1 = new Array(l2 + 1)
   let p2 = new Array(l2 + 1)
 
-  let i1, i2, c0, c1, c2, tmp
+  let i1
+  let i2
+  let c0
+  let c1
+  let c2
+  let tmp
 
   for (i2 = 0; i2 <= l2; i2++) {
     p1[i2] = i2 * costIns

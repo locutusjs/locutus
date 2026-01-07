@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var strrev = require('../../../../src/php/strings/strrev.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var strrev = require('../../../../src/php/strings/strrev.js')
 
 describe('src/php/strings/strrev.js (tested in test/generated/php/strings/test-strrev.js)', function () {
   it('should pass example 1', function (done) {
@@ -22,7 +22,7 @@ describe('src/php/strings/strrev.js (tested in test/generated/php/strings/test-s
     expect(result).to.deep.equal(expected)
     done()
   })
-  it.skip('should pass example 3', function (done) {
+  it('should pass example 3', function (done) {
     var expected = 'Z\uD87E\uDC04A' // surrogates
     var result = strrev('A\uD87E\uDC04Z')
     expect(result).to.deep.equal(expected)

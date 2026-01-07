@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var serialize = require('../../../../src/php/var/serialize.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var serialize = require('../../../../src/php/var/serialize.js')
 
 describe('src/php/var/serialize.js (tested in test/generated/php/var/test-serialize.js)', function () {
   it('should pass example 1', function (done) {

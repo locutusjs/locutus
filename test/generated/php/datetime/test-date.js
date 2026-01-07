@@ -5,18 +5,18 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var date = require('../../../../src/php/datetime/date.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var date = require('../../../../src/php/datetime/date.js')
 
 describe('src/php/datetime/date.js (tested in test/generated/php/datetime/test-date.js)', function () {
-  it.skip('should pass example 1', function (done) {
+  it('should pass example 1', function (done) {
     var expected = '07:09:40 m is month'
     var result = date('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400)
     expect(result).to.deep.equal(expected)
     done()
   })
-  it.skip('should pass example 2', function (done) {
+  it('should pass example 2', function (done) {
     var expected = 'September 2, 2003, 12:26 am'
     var result = date('F j, Y, g:i a', 1062462400)
     expect(result).to.deep.equal(expected)
@@ -36,7 +36,7 @@ describe('src/php/datetime/date.js (tested in test/generated/php/datetime/test-d
     expect(result).to.deep.equal(expected)
     done()
   })
-  it.skip('should pass example 5', function (done) {
+  it('should pass example 5', function (done) {
     var expected = '52'
     var result = date('W', 1104534000)
     expect(result).to.deep.equal(expected)

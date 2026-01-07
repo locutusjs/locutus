@@ -27,11 +27,11 @@ module.exports = function array_intersect(arr1) {
           }
           // If the innermost loop always leads at least once to an equal value,
           // continue the loop until done
-          continue arrs // eslint-disable-line no-labels
+          continue arrs
         }
       }
       // If it reaches here, it wasn't found in at least one array, so try next value
-      continue arr1keys // eslint-disable-line no-labels
+      continue arr1keys
     }
   }
 

@@ -19,7 +19,9 @@ module.exports = function wordwrap(str, intWidth, strBreak, cut) {
   strBreak = arguments.length >= 3 ? '' + strBreak : '\n'
   cut = arguments.length >= 4 ? !!cut : false
 
-  let i, j, line
+  let i
+  let j
+  let line
 
   str += ''
 

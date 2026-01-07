@@ -27,7 +27,7 @@ module.exports = function array_walk(array, funcname, userdata) {
     } else {
       return false
     }
-  } catch (e) {
+  } catch (_e) {
     return false
   }
 

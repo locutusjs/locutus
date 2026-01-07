@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var cos = require('../../../../src/php/math/cos.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var cos = require('../../../../src/php/math/cos.js')
 
 describe('src/php/math/cos.js (tested in test/generated/php/math/test-cos.js)', function () {
   it('should pass example 1', function (done) {

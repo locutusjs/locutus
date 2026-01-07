@@ -26,13 +26,12 @@ module.exports = function substr(input, start, len) {
   //   example 7: ini_set('unicode.semantics', 'on')
   //   example 7: substr('a\uD801\uDC00z\uD801\uDC00', -3, -1)
   //   returns 7: '\uD801\uDC00z'
-  //        test: skip-3 skip-4 skip-5 skip-6 skip-7
 
-  const _php_cast_string = require('../_helpers/_phpCastString') // eslint-disable-line camelcase
+  const _php_cast_string = require('../_helpers/_phpCastString')
 
   input = _php_cast_string(input)
 
-  const ini_get = require('../info/ini_get') // eslint-disable-line camelcase
+  const ini_get = require('../info/ini_get')
   const multibyte = ini_get('unicode.semantics') === 'on'
 
   if (multibyte) {

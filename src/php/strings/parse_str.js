@@ -147,7 +147,7 @@ module.exports = function parse_str(str, array) {
         }
 
         // if primitive value, replace with object
-        if (Object(obj[key]) !== obj[key]) {
+        if (new Object(obj[key]) !== obj[key]) {
           obj[key] = {}
         }
 

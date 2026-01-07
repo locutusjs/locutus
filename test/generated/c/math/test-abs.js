@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var abs = require('../../../../src/c/math/abs.js') // eslint-disable-line no-unused-vars,camelcase
+var abs = require('../../../../src/c/math/abs.js')
 
 describe('src/c/math/abs.js (tested in test/generated/c/math/test-abs.js)', function () {
   it('should pass example 1', function (done) {

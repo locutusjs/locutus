@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var strcoll = require('../../../../src/php/strings/strcoll.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var strcoll = require('../../../../src/php/strings/strcoll.js')
 
 describe('src/php/strings/strcoll.js (tested in test/generated/php/strings/test-strcoll.js)', function () {
   it('should pass example 1', function (done) {

@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var Count = require('../../../../src/golang/strings/Count.js') // eslint-disable-line no-unused-vars,camelcase
+var Count = require('../../../../src/golang/strings/Count.js')
 
 describe('src/golang/strings/Count.js (tested in test/generated/golang/strings/test-Count.js)', function () {
   it('should pass example 1', function (done) {

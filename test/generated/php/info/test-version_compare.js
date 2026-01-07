@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var version_compare = require('../../../../src/php/info/version_compare.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var version_compare = require('../../../../src/php/info/version_compare.js')
 
 describe('src/php/info/version_compare.js (tested in test/generated/php/info/test-version_compare.js)', function () {
   it('should pass example 1', function (done) {

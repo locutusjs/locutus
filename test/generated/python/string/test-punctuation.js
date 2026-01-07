@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var punctuation = require('../../../../src/python/string/punctuation.js') // eslint-disable-line no-unused-vars,camelcase
+var punctuation = require('../../../../src/python/string/punctuation.js')
 
 describe('src/python/string/punctuation.js (tested in test/generated/python/string/test-punctuation.js)', function () {
   it('should pass example 1', function (done) {

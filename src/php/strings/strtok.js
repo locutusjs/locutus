@@ -24,7 +24,8 @@ module.exports = function strtok(str, tokens) {
   if (tokens.indexOf(str.charAt(0)) !== -1) {
     return strtok(str.substr(1), tokens)
   }
-  for (var i = 0; i < str.length; i++) {
+  let i = 0
+  for (; i < str.length; i++) {
     if (tokens.indexOf(str.charAt(i)) !== -1) {
       break
     }

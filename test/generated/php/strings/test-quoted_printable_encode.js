@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var quoted_printable_encode = require('../../../../src/php/strings/quoted_printable_encode.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var quoted_printable_encode = require('../../../../src/php/strings/quoted_printable_encode.js')
 
 describe('src/php/strings/quoted_printable_encode.js (tested in test/generated/php/strings/test-quoted_printable_encode.js)', function () {
   it('should pass example 1', function (done) {
@@ -16,7 +16,7 @@ describe('src/php/strings/quoted_printable_encode.js (tested in test/generated/p
     expect(result).to.deep.equal(expected)
     done()
   })
-  it.skip('should pass example 2', function (done) {
+  it('should pass example 2', function (done) {
     var expected = 'abc  =20\r\n123  =20\r\n'
     var result = quoted_printable_encode('abc   \r\n123   \r\n')
     expect(result).to.deep.equal(expected)

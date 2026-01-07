@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var xdiff_string_diff = require('../../../../src/php/xdiff/xdiff_string_diff.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var xdiff_string_diff = require('../../../../src/php/xdiff/xdiff_string_diff.js')
 
 describe('src/php/xdiff/xdiff_string_diff.js (tested in test/generated/php/xdiff/test-xdiff_string_diff.js)', function () {
   it('should pass example 1', function (done) {

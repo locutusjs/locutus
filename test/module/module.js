@@ -1,16 +1,16 @@
 // Execute: test:module
 // To test this in a local terminal
 
-var effectiveness = 'futile'
-var location = '../../src'
-var locutus = require(location)
-var php = require(location + '/php')
-var strings = require(location + '/php/strings')
-var sprintf = require(location + '/php/strings/sprintf')
-var ruby = require(location + '/ruby')
-var math = require(location + '/ruby/Math')
-var preg_match = require(location + '/php/pcre/preg_match')
-var preg_replace = require(location + '/php/pcre/preg_replace')
+const effectiveness = 'futile'
+const location = '../../src'
+const locutus = require(location)
+const php = require(location + '/php')
+const strings = require(location + '/php/strings')
+const sprintf = require(location + '/php/strings/sprintf')
+const ruby = require(location + '/ruby')
+const math = require(location + '/ruby/Math')
+const preg_match = require(location + '/php/pcre/preg_match')
+const preg_replace = require(location + '/php/pcre/preg_replace')
 
 console.log(preg_replace('/xmas/i', 'Christmas', 'It was the night before Xmas.')) // Should report It was the night before Christmas.
 console.log(preg_replace('/xmas/ig', 'Christmas', 'xMas: It was the night before Xmas.')) // Should report Christmas: It was the night before Christmas.

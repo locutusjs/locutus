@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var shuffle = require('../../../../src/php/array/shuffle.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var shuffle = require('../../../../src/php/array/shuffle.js')
 
 describe('src/php/array/shuffle.js (tested in test/generated/php/array/test-shuffle.js)', function () {
   it('should pass example 1', function (done) {

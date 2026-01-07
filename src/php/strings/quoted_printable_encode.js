@@ -9,7 +9,6 @@ module.exports = function quoted_printable_encode(str) {
   //   returns 2: 'abc  =20\r\n123  =20\r\n'
   //   example 3: quoted_printable_encode('0123456789012345678901234567890123456789012345678901234567890123456789012345')
   //   returns 3: '012345678901234567890123456789012345678901234567890123456789012345678901234=\r\n5'
-  //        test: skip-2
 
   const hexChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']
   const RFC2045Encode1IN = / \r\n|\r\n|[^!-<>-~ ]/gm
@@ -39,6 +38,9 @@ module.exports = function quoted_printable_encode(str) {
 
   str = str.replace(RFC2045Encode1IN, RFC2045Encode1OUT).replace(RFC2045Encode2IN, RFC2045Encode2OUT)
 
-  // Strip last softline break
-  return str.substr(0, str.length - 3)
+  // Strip last softline break (only if it's a soft break =\r\n, not a hard break \r\n)
+  if (str.substr(str.length - 3) === '=\r\n') {
+    return str.substr(0, str.length - 3)
+  }
+  return str
 }

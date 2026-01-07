@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var rawurlencode = require('../../../../src/php/url/rawurlencode.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var rawurlencode = require('../../../../src/php/url/rawurlencode.js')
 
 describe('src/php/url/rawurlencode.js (tested in test/generated/php/url/test-rawurlencode.js)', function () {
   it('should pass example 1', function (done) {

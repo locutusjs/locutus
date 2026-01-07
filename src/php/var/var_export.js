@@ -127,7 +127,7 @@ module.exports = function var_export(mixedExpression, boolReturn) {
     retstr =
       typeof mixedExpression !== 'string'
         ? mixedExpression
-        : "'" + mixedExpression.replace(/(["'])/g, '\\$1').replace(/\0/g, '\\0') + "'"
+        : "'" + mixedExpression.replace(/([\\'])/g, '\\$1').replace(/\0/g, '\\0') + "'"
   }
 
   if (!boolReturn) {

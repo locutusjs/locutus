@@ -30,7 +30,7 @@ module.exports = function in_array(needle, haystack, argStrict) {
     }
   } else {
     for (key in haystack) {
-      // eslint-disable-next-line eqeqeq
+      // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
       if (haystack[key] == needle) {
         return true
       }

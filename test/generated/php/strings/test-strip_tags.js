@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var strip_tags = require('../../../../src/php/strings/strip_tags.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var strip_tags = require('../../../../src/php/strings/strip_tags.js')
 
 describe('src/php/strings/strip_tags.js (tested in test/generated/php/strings/test-strip_tags.js)', function () {
   it('should pass example 1', function (done) {

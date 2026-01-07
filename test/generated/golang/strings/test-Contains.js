@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var Contains = require('../../../../src/golang/strings/Contains.js') // eslint-disable-line no-unused-vars,camelcase
+var Contains = require('../../../../src/golang/strings/Contains.js')
 
 describe('src/golang/strings/Contains.js (tested in test/generated/golang/strings/test-Contains.js)', function () {
   it('should pass example 1', function (done) {

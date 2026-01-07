@@ -8,6 +8,8 @@ for fun experiments such as running PHP code directly in Node.js
 ## Table of Contents
 
 - [Contributing Checklist](#contributing-checklist)
+- [Curation Rules](#curation-rules)
+- [Quick Commands](#quick-commands)
 - [Prerequisites](#prerequisites)
 - [Clone](#clone)
 - [Install](#install)
@@ -56,6 +58,34 @@ Here are a few pointers that could save us from disappointment, we'll try to kee
 //   example 1: <FUNCTION NAME>("foo")
 //   returns 1: "bar"
 ```
+
+Verification steps (for new or changed functions):
+
+- `yarn verify php/<category>/<function>` (or the relevant language)
+- `yarn build:tests && yarn test`
+- `yarn check`
+
+## Curation Rules
+
+Worth porting:
+
+- Complex functions like `sprintf`, `strtotime`, `serialize`, `date`
+- Language-specific quirks like `array_merge` vs `array_merge_recursive`
+- Educational cases that demonstrate type coercion or edge behavior
+
+Skip:
+
+- Direct wrappers like `strlen` → `s.length`
+- Modern JS equivalents like `Array.includes`, `Object.keys`
+- Trivial math like `abs`, `ceil`, `floor`
+
+## Quick Commands
+
+- `yarn check` - format + lint + test (run after changes)
+- `yarn verify` - cross-language verification
+- `yarn test` - full test suite
+- `yarn lint` - Biome check
+- `yarn fix:biome` - auto-fix
 
 ## Prerequisites
 
@@ -142,6 +172,12 @@ allows you to quickly iterate and see how your functions behave in browsers.
 Tests passing? It's time to document your work in the unreleased section of our `CHANGELOG.md`, so that you can bundle
 it with your PR.
 
+Commit guidelines:
+
+- Keep PRs small and focused
+- Run `yarn check` before committing
+- Merge early, iterate often
+
 Now it's time to apply linting & formatting fixes, and report on unfixable issues:
 
 ```bash
@@ -154,11 +190,14 @@ Make changes if needed, until there are no more errors. Then commit, push, and s
 
 After PRs have been approved and merged it's time to cut a release.
 
-Any Core contributor can let our GHA CI create an NPM release, by pushing a new version and Git tag, like so:
+Any Core contributor can let our GHA CI create an npm release via OIDC Trusted Publishing (no npm token required),
+by pushing a new version and Git tag, like so:
 
 ```bash
 npm version patch -m "Release v%s" && git push --tags
 ```
+
+The publish workflow is `.github/workflows/ci.yml` and triggers on tags that point at `main`.
 
 Locutus does not adhere to Semver, so typically you would just use `patch` level upgrades for changes. If we change
 something dramatic to how Locutus works across functions (ship ESM, move to TypeScript, etc), that's when we'll involve

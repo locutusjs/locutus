@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var atanh = require('../../../../src/php/math/atanh.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var atanh = require('../../../../src/php/math/atanh.js')
 
 describe('src/php/math/atanh.js (tested in test/generated/php/math/test-atanh.js)', function () {
   it('should pass example 1', function (done) {

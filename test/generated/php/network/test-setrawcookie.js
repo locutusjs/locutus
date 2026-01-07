@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var setrawcookie = require('../../../../src/php/network/setrawcookie.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var setrawcookie = require('../../../../src/php/network/setrawcookie.js')
 
 describe('src/php/network/setrawcookie.js (tested in test/generated/php/network/test-setrawcookie.js)', function () {
   it('should pass example 1', function (done) {

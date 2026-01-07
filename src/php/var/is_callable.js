@@ -47,8 +47,8 @@ module.exports = function is_callable(mixedVar, syntaxOnly, callableName) {
     return name[1]
   }
 
-  // eslint-disable-next-line no-useless-escape
-  if (/(^class|\(this\,)/.test(mixedVar.toString())) {
+  // biome-ignore lint: escape needed
+  if (/(^class|\(this,)/.test(mixedVar.toString())) {
     return false
   }
 
@@ -78,7 +78,7 @@ module.exports = function is_callable(mixedVar, syntaxOnly, callableName) {
   }
 
   // validFunctionName avoids exploits
-  // eslint-disable-next-line no-eval
+  // biome-ignore lint/security/noGlobalEval: needed for PHP port
   if (validFunctionName && typeof eval(method) === 'function') {
     if (callableName) {
       $global[callableName] = name

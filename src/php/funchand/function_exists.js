@@ -6,7 +6,6 @@ module.exports = function function_exists(funcName) {
   // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: function_exists('isFinite')
   //   returns 1: true
-  //        test: skip-1
 
   const $global = typeof window !== 'undefined' ? window : global
 

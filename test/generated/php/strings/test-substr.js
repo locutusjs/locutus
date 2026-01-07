@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var substr = require('../../../../src/php/strings/substr.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var substr = require('../../../../src/php/strings/substr.js')
 
 describe('src/php/strings/substr.js (tested in test/generated/php/strings/test-substr.js)', function () {
   it('should pass example 1', function (done) {
@@ -22,35 +22,35 @@ describe('src/php/strings/substr.js (tested in test/generated/php/strings/test-s
     expect(result).to.deep.equal(expected)
     done()
   })
-  it.skip('should pass example 3', function (done) {
+  it('should pass example 3', function (done) {
     var expected = 'a'
     ini_set('unicode.semantics', 'on')
     var result = substr('a\uD801\uDC00', 0, -1)
     expect(result).to.deep.equal(expected)
     done()
   })
-  it.skip('should pass example 4', function (done) {
+  it('should pass example 4', function (done) {
     var expected = 'a\uD801\uDC00'
     ini_set('unicode.semantics', 'on')
     var result = substr('a\uD801\uDC00', 0, 2)
     expect(result).to.deep.equal(expected)
     done()
   })
-  it.skip('should pass example 5', function (done) {
+  it('should pass example 5', function (done) {
     var expected = '\uD801\uDC00'
     ini_set('unicode.semantics', 'on')
     var result = substr('a\uD801\uDC00', -1, 1)
     expect(result).to.deep.equal(expected)
     done()
   })
-  it.skip('should pass example 6', function (done) {
+  it('should pass example 6', function (done) {
     var expected = '\uD801\uDC00z'
     ini_set('unicode.semantics', 'on')
     var result = substr('a\uD801\uDC00z\uD801\uDC00', -3, 2)
     expect(result).to.deep.equal(expected)
     done()
   })
-  it.skip('should pass example 7', function (done) {
+  it('should pass example 7', function (done) {
     var expected = '\uD801\uDC00z'
     ini_set('unicode.semantics', 'on')
     var result = substr('a\uD801\uDC00z\uD801\uDC00', -3, -1)

@@ -7,6 +7,9 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -44,10 +47,9 @@ jobs:
       - name: Release
         if: startsWith(github.ref, 'refs/tags/')
         run: |
+          npm install -g npm@^11.5.1
           cd dist/
-          npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          npm publish --access public --provenance
       - name: Website Build
         if: github.ref == 'refs/heads/main'
         run: |

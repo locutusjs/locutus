@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var ctype_punct = require('../../../../src/php/ctype/ctype_punct.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var ctype_punct = require('../../../../src/php/ctype/ctype_punct.js')
 
 describe('src/php/ctype/ctype_punct.js (tested in test/generated/php/ctype/test-ctype_punct.js)', function () {
   it('should pass example 1', function (done) {

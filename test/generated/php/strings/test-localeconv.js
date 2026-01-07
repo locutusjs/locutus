@@ -5,10 +5,10 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var setlocale = require('../../../../src/php/strings/setlocale') // eslint-disable-line no-unused-vars,camelcase
-var localeconv = require('../../../../src/php/strings/localeconv.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var setlocale = require('../../../../src/php/strings/setlocale')
+var localeconv = require('../../../../src/php/strings/localeconv.js')
 
 describe('src/php/strings/localeconv.js (tested in test/generated/php/strings/test-localeconv.js)', function () {
   it('should pass example 1', function (done) {

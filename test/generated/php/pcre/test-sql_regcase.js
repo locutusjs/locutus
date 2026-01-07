@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var sql_regcase = require('../../../../src/php/pcre/sql_regcase.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var sql_regcase = require('../../../../src/php/pcre/sql_regcase.js')
 
 describe('src/php/pcre/sql_regcase.js (tested in test/generated/php/pcre/test-sql_regcase.js)', function () {
   it('should pass example 1', function (done) {

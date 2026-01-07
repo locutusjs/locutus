@@ -1,0 +1,6 @@
+module.exports.compact = require('./compact')
+module.exports.first = require('./first')
+module.exports.flatten = require('./flatten')
+module.exports.last = require('./last')
+module.exports.sample = require('./sample')
+module.exports.uniq = require('./uniq')

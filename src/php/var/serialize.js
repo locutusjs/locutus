@@ -24,7 +24,9 @@ module.exports = function serialize(mixedValue) {
   //   example 3: serialize( {'ü': 'ü', '四': '四', '𠜎': '𠜎'})
   //   returns 3: 'a:3:{s:2:"ü";s:2:"ü";s:3:"四";s:3:"四";s:4:"𠜎";s:4:"𠜎";}'
 
-  let val, key, okey
+  let val
+  let key
+  let okey
   let ktype = ''
   let vals = ''
   let count = 0

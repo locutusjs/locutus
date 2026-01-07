@@ -17,7 +17,9 @@ module.exports = function hex2bin(s) {
   for (l = s.length; i < l; i += 2) {
     const c = parseInt(s.substr(i, 1), 16)
     const k = parseInt(s.substr(i + 1, 1), 16)
-    if (isNaN(c) || isNaN(k)) return false
+    if (isNaN(c) || isNaN(k)) {
+      return false
+    }
     ret.push((c << 4) | k)
   }
 

@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var Index = require('../../../../src/golang/strings/Index2.js') // eslint-disable-line no-unused-vars,camelcase
+var Index = require('../../../../src/golang/strings/Index2.js')
 
 describe('src/golang/strings/Index2.js (tested in test/generated/golang/strings/test-Index2.js)', function () {
   it('should pass example 1', function (done) {

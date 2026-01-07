@@ -45,8 +45,12 @@ module.exports = function strnatcmp(a, b) {
 
   while (i < a.length && j < b.length) {
     // skip consecutive whitespace
-    while (whitespace.test(a.charAt(i))) i++
-    while (whitespace.test(b.charAt(j))) j++
+    while (whitespace.test(a.charAt(i))) {
+      i++
+    }
+    while (whitespace.test(b.charAt(j))) {
+      j++
+    }
 
     let ac = a.charAt(i)
     let bc = b.charAt(j)

@@ -75,7 +75,11 @@ module.exports = function sprintf() {
 
   // doFormat()
   const doFormat = function (substring, argIndex, modifiers, minWidth, precision, specifier) {
-    let number, prefix, method, textTransform, value
+    let number
+    let prefix
+    let method
+    let textTransform
+    let value
 
     if (substring === '%%') {
       return '%'
@@ -85,7 +89,8 @@ module.exports = function sprintf() {
     let padChar = ' ' // pad with spaces by default
     let leftJustify = false
     let positiveNumberPrefix = ''
-    let j, l
+    let j
+    let l
 
     for (j = 0, l = modifiers.length; j < l; j++) {
       switch (modifiers.charAt(j)) {
@@ -184,7 +189,7 @@ module.exports = function sprintf() {
 
   try {
     return format.replace(regex, doFormat)
-  } catch (err) {
+  } catch (_err) {
     return false
   }
 }

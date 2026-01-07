@@ -2,14 +2,11 @@ module.exports = function get_defined_functions() {
   //  discuss at: https://locutus.io/php/get_defined_functions/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)
-  //      note 1: Test case 1: If get_defined_functions can find
-  //      note 1: itself in the defined functions, it worked :)
-  //   example 1: function test_in_array (array, p_val) {for(var i = 0, l = array.length; i < l; i++) {if (array[i] === p_val) return true} return false}
+  //      note 1: Returns an array of global function names. Unlike PHP,
+  //      note 1: JavaScript doesn't distinguish between user and internal functions.
   //   example 1: var $funcs = get_defined_functions()
-  //   example 1: var $found = test_in_array($funcs, 'get_defined_functions')
-  //   example 1: var $result = $found
+  //   example 1: var $result = Array.isArray($funcs) && $funcs.length > 0
   //   returns 1: true
-  //        test: skip-1
 
   const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}
@@ -35,7 +32,7 @@ module.exports = function get_defined_functions() {
           }
         }
       }
-    } catch (e) {
+    } catch (_e) {
       // Some objects in Firefox throw exceptions when their
       // properties are accessed (e.g., sessionStorage)
     }

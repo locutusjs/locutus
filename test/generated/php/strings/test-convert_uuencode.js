@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var convert_uuencode = require('../../../../src/php/strings/convert_uuencode.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var convert_uuencode = require('../../../../src/php/strings/convert_uuencode.js')
 
 describe('src/php/strings/convert_uuencode.js (tested in test/generated/php/strings/test-convert_uuencode.js)', function () {
   it('should pass example 1', function (done) {

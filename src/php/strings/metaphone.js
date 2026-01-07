@@ -98,7 +98,6 @@ module.exports = function metaphone(word, maxPhonemes) {
       break
   }
 
-  // eslint-disable-next-line no-unmodified-loop-condition,max-len
   for (; i < l && (maxPhonemes === 0 || meta.length < maxPhonemes); i += 1) {
     cc = word.charAt(i)
     nc = word.charAt(i + 1)
