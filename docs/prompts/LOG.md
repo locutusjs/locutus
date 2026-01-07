@@ -174,3 +174,27 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Impact limited since these are devDependencies, not in production bundle
 - Major package updates (async, globby, indent-string) still blocked on ESM migration
 - Backlog status: website search ✓, badges ✓, remaining: ESM migration, TypeScript, Go/Ruby/C verification
+
+### Iteration 19
+
+2026-01-07
+
+- **Area: TypeScript + Modernization**
+- Converted `src/_util/` to TypeScript (PR #502):
+  - `headerSchema.ts` - Zod schema for header validation
+  - `headerFormatter.ts` - Header formatting utilities
+  - `formatHeaders.ts` - CLI for header formatter
+  - `util.ts` - Main utility class (~700 lines)
+  - `cli.ts` - CLI entry point
+- Converted test files to TypeScript:
+  - `test/util/test-util.ts` - Util tests with mocha types
+  - `test/module/module.ts` - Module tests using createRequire for CJS compatibility
+- Removed 9 Babel 6 dependencies (babel-cli, babel-core, babel-register, babel-plugin-*, babel-preset-es2015)
+- Now using Node's native type stripping (`--experimental-strip-types`)
+- Updated Node engine requirement: `>= 10` → `>= 22`
+- Added `lint:no-stray-js` to `yarn check` - catches .js files that should be .ts
+- Added `@types/mocha` for test type definitions
+- Used named exports throughout (`export { Util }`)
+- All 923 tests pass
+- CHANGELOG.md updated with completed backlog items
+- Balance: iterations 14-18 focused on verification, this iteration addressed TypeScript backlog item
