@@ -198,3 +198,28 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - All 923 tests pass
 - CHANGELOG.md updated with completed backlog items
 - Balance: iterations 14-18 focused on verification, this iteration addressed TypeScript backlog item
+
+### Iteration 20
+
+2026-01-07
+
+- **Area: Infrastructure + Modernization (CRITICAL FIX)**
+- Fixed broken website - all functions were missing from https://locutus.io/
+- Root cause: PR #494 changed `q.drain = cb` to `q.drain(cb)` but this doesn't work with async 2.6.4
+  - The callback was never invoked, so `injectweb` silently exited without writing language index files
+  - Language index files contain `inspiration_urls` needed by Hexo templates
+  - Missing `inspiration_urls` caused template error: `Cannot read properties of undefined (reading 'join')`
+- Solution: Replaced `async` library with `p-map` (already in devDependencies):
+  - Converted callback-based code to async/await throughout util.ts
+  - Modern, reliable, and more readable code
+  - Removed `async` dependency from package.json
+- Added safeguards to prevent silent failures:
+  - Verification in `injectweb()`: checks all 5 language index files exist after execution
+  - Verification: minimum index file count (30+) to catch incomplete runs
+  - Explicit error messages when verification fails
+- Fixed additional issues found during refactoring:
+  - `.mocha.js` test files were being processed (added to exclude pattern)
+  - Absolute path handling in `_opener()` needed to check before dot-in-basename
+- Updated test-util.ts to use async/await (matches new API)
+- All 923 tests pass
+- Lesson learned: The `async` library's API is footgun-prone; prefer modern Promise-based alternatives

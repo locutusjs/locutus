@@ -1,12 +1,12 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import async from 'async'
 import Debug from 'debug'
 import esprima from 'esprima'
 import globby from 'globby'
 import indentStringModule from 'indent-string'
 import YAML from 'js-yaml'
 import _ from 'lodash'
+import pMap from 'p-map'
 import { isValidHeaderKey, validateHeaderKeys } from './headerSchema.ts'
 
 const debug = Debug('locutus:utils')
@@ -64,7 +64,7 @@ class Util {
 
     this.globals = {}
 
-    this.pattern = [this.__src + '/**/**/*.js', '!**/index.js', '!**/_util/**']
+    this.pattern = [this.__src + '/**/**/*.js', '!**/index.js', '!**/_util/**', '!**/*.mocha.js']
     this.concurrency = 8
     this.authorKeys = [
       'original by',
@@ -167,64 +167,99 @@ class Util {
     this._injectwebBuffer = {}
   }
 
-  injectweb(cb: Callback): void {
-    const self = this
-    this._runFunctionOnAll(this._injectwebOne.bind(this), function (err) {
-      if (err) {
-        return cb(err)
-      }
-      for (const indexHtml in self._injectwebBuffer) {
+  async injectweb(cb: Callback): Promise<void> {
+    try {
+      this._injectwebBuffer = {}
+      await this._runFunctionOnAll(this._injectwebOne.bind(this))
+
+      // Write all buffered index files
+      let filesWritten = 0
+      for (const indexHtml in this._injectwebBuffer) {
         debug('writing: ' + indexHtml)
-        fs.writeFileSync(indexHtml, self._injectwebBuffer[indexHtml], 'utf-8')
+        fs.writeFileSync(indexHtml, this._injectwebBuffer[indexHtml], 'utf-8')
+        filesWritten++
       }
+
+      // Verification: ensure expected language index files were created
+      const expectedLanguages = Object.keys(this.langDefaults)
+      const missingLanguages: string[] = []
+      for (const lang of expectedLanguages) {
+        const langIndexPath = path.join(this.__root, 'website', 'source', lang, 'index.html')
+        if (!fs.existsSync(langIndexPath)) {
+          missingLanguages.push(lang)
+        }
+      }
+
+      if (missingLanguages.length > 0) {
+        throw new Error(
+          `injectweb verification failed: missing language index files for: ${missingLanguages.join(', ')}`,
+        )
+      }
+
+      // Verify minimum expected index files (5 languages + ~30 categories = ~35)
+      const minExpectedIndexFiles = 30
+      if (filesWritten < minExpectedIndexFiles) {
+        throw new Error(
+          `injectweb verification failed: only ${filesWritten} index files written, expected at least ${minExpectedIndexFiles}`,
+        )
+      }
+
+      debug(`injectweb complete: ${filesWritten} index files written`)
       cb(null)
-    })
+    } catch (err) {
+      cb(err instanceof Error ? err : new Error(String(err)))
+    }
   }
 
-  reindex(cb: Callback): void {
-    const self = this
-    self._reindexBuffer = {}
-    self._runFunctionOnAll(self._reindexOne.bind(this), function (err) {
-      if (err) {
-        return cb(err)
-      }
-      for (const indexJs in self._reindexBuffer) {
-        const requires = self._reindexBuffer[indexJs]
+  async reindex(cb: Callback): Promise<void> {
+    try {
+      this._reindexBuffer = {}
+      await this._runFunctionOnAll(this._reindexOne.bind(this))
+
+      for (const indexJs in this._reindexBuffer) {
+        const requires = this._reindexBuffer[indexJs]
         requires.sort()
         debug('writing: ' + indexJs)
         fs.writeFileSync(indexJs, requires.join('\n') + '\n', 'utf-8')
       }
       cb(null)
-    })
+    } catch (err) {
+      cb(err instanceof Error ? err : new Error(String(err)))
+    }
   }
 
-  writetests(cb: Callback): void {
-    this._runFunctionOnAll(this._writetestOne.bind(this), cb)
+  async writetests(cb: Callback): Promise<void> {
+    try {
+      await this._runFunctionOnAll(this._writetestOne.bind(this))
+      cb(null)
+    } catch (err) {
+      cb(err instanceof Error ? err : new Error(String(err)))
+    }
   }
 
-  _runFunctionOnAll(runFunc: (params: ParsedParams, cb: Callback) => void, cb: Callback): void {
-    const self = this
+  async _runFunctionOnAll(runFunc: (params: ParsedParams) => Promise<void>): Promise<void> {
+    debug({ pattern: this.pattern })
+    const files = globby.sync(this.pattern)
 
-    const q = async.queue(function (fullpath: string, callback: Callback) {
-      self._load(fullpath, {} as ParsedParams, function (err, params) {
-        if (err) {
-          return callback(err)
+    if (files.length === 0) {
+      throw new Error(`No files found matching pattern: ${this.pattern.join(', ')}`)
+    }
+
+    debug(`Processing ${files.length} files with concurrency ${this.concurrency}`)
+
+    await pMap(
+      files,
+      async (fullpath: string) => {
+        const params = await this._load(fullpath, {})
+        if (params) {
+          await runFunc(params)
         }
-        if (!params) {
-          return callback(null)
-        }
-        runFunc(params, callback)
-      })
-    }, self.concurrency)
-
-    debug({ pattern: self.pattern })
-    const files = globby.sync(self.pattern)
-
-    q.push(files)
-    q.drain(cb)
+      },
+      { concurrency: this.concurrency },
+    )
   }
 
-  _reindexOne(params: ParsedParams, cb: Callback): void {
+  _reindexOne(params: ParsedParams): Promise<void> {
     const fullpath = this.__src + '/' + params.filepath
     const dir = path.dirname(fullpath)
     const basefile = path.basename(fullpath, '.js')
@@ -241,10 +276,10 @@ class Util {
 
     const line = 'module.exports.' + module + " = require('./" + basefile + "')"
     this._reindexBuffer[indexJs].push(line)
-    return cb(null)
+    return Promise.resolve()
   }
 
-  _injectwebOne(params: ParsedParams, cb: Callback): void {
+  async _injectwebOne(params: ParsedParams): Promise<void> {
     const authors: Record<string, string[]> = {}
     this.authorKeys.forEach((key) => {
       if (params.headKeys[key]) {
@@ -334,23 +369,15 @@ class Util {
     let buf = '---' + '\n' + YAML.dump(funcData).trim() + '\n' + '---' + '\n'
     buf += `{% codeblock lang:javascript %}${params.code}{% endcodeblock %}`
 
-    fs.promises.mkdir(path.dirname(funcPath), { recursive: true }).then(
-      () => {
-        fs.writeFile(funcPath, buf, 'utf-8', cb)
-      },
-      (err) => {
-        cb(new Error('Could not mkdir for ' + funcPath + '. ' + err))
-      },
-    )
+    await fs.promises.mkdir(path.dirname(funcPath), { recursive: true })
+    await fs.promises.writeFile(funcPath, buf, 'utf-8')
   }
 
   _addRequire(name: string, relativeSrcForTest: string): string {
     return ['var ', name, " = require('", relativeSrcForTest, "')"].join('')
   }
 
-  _writetestOne(params: ParsedParams, cb: Callback): void {
-    const self = this
-
+  async _writetestOne(params: ParsedParams): Promise<void> {
     if (!params.func_name) {
       throw new Error('No func_name in ' + JSON.stringify(params))
     }
@@ -365,8 +392,8 @@ class Util {
     const subdir = path.dirname(params.filepath)
     const testpath = this.__test + '/generated/' + subdir + '/test-' + basename
     const testdir = path.dirname(testpath)
-    const relativeSrcForTestDir = path.relative(testdir, self.__src)
-    const relativeTestFileForRoot = path.relative(self.__root, testpath)
+    const relativeSrcForTestDir = path.relative(testdir, this.__src)
+    const relativeTestFileForRoot = path.relative(this.__root, testpath)
 
     let testProps = ''
     if (params.headKeys.test) {
@@ -374,7 +401,7 @@ class Util {
     }
 
     let describeSkip = ''
-    if (self.allowSkip && testProps.indexOf('skip-all') !== -1) {
+    if (this.allowSkip && testProps.indexOf('skip-all') !== -1) {
       describeSkip = '.skip'
     }
 
@@ -386,27 +413,27 @@ class Util {
     codez.push(`'use strict'`)
     codez.push('')
 
-    for (const global in self.globals) {
-      codez.push('var ' + global + ' = ' + self.globals[global])
+    for (const global in this.globals) {
+      codez.push('var ' + global + ' = ' + this.globals[global])
     }
 
     codez.push("process.env.TZ = 'UTC'")
     codez.push('var ' + 'expect' + " = require('chai').expect")
 
     if (params.language === 'php') {
-      codez.push(self._addRequire('ini_set', relativeSrcForTestDir + '/' + 'php/info/ini_set'))
-      codez.push(self._addRequire('ini_get', relativeSrcForTestDir + '/' + 'php/info/ini_get'))
+      codez.push(this._addRequire('ini_set', relativeSrcForTestDir + '/' + 'php/info/ini_set'))
+      codez.push(this._addRequire('ini_get', relativeSrcForTestDir + '/' + 'php/info/ini_get'))
       if (params.func_name === 'localeconv') {
-        codez.push(self._addRequire('setlocale', relativeSrcForTestDir + '/' + 'php/strings/setlocale'))
+        codez.push(this._addRequire('setlocale', relativeSrcForTestDir + '/' + 'php/strings/setlocale'))
       }
       if (params.func_name === 'i18n_loc_get_default') {
         codez.push(
-          self._addRequire('i18n_loc_set_default', relativeSrcForTestDir + '/' + 'php/i18n/i18n_loc_set_default'),
+          this._addRequire('i18n_loc_set_default', relativeSrcForTestDir + '/' + 'php/i18n/i18n_loc_set_default'),
         )
       }
     }
 
-    codez.push(self._addRequire(params.func_name, relativeSrcForTestDir + '/' + params.filepath))
+    codez.push(this._addRequire(params.func_name, relativeSrcForTestDir + '/' + params.filepath))
     codez.push('')
 
     codez.push(
@@ -428,7 +455,7 @@ class Util {
 
       const humanIndex = parseInt(i, 10) + 1
       let itSkip = ''
-      if (self.allowSkip && testProps.indexOf('skip-' + humanIndex) !== -1) {
+      if (this.allowSkip && testProps.indexOf('skip-' + humanIndex) !== -1) {
         itSkip = '.skip'
       }
 
@@ -459,35 +486,28 @@ class Util {
 
     const code = codez.join('\n')
 
-    fs.promises.mkdir(testdir, { recursive: true }).then(
-      () => {
-        debug('writing: ' + testpath)
-        fs.writeFile(testpath, code, 'utf-8', cb)
-      },
-      (err) => {
-        cb(new Error(String(err)))
-      },
-    )
+    await fs.promises.mkdir(testdir, { recursive: true })
+    debug('writing: ' + testpath)
+    await fs.promises.writeFile(testpath, code, 'utf-8')
   }
 
-  _opener(
+  async _opener(
     fileOrName: string,
     requesterParams: Partial<ParsedParams>,
-    cb: (err: Error | null, fullpath?: string, code?: string) => void,
-  ): void {
-    const self = this
+  ): Promise<{ fullpath: string; code: string } | null> {
     let pattern: string
 
     const language = requesterParams.language || '*'
 
-    if (path.basename(fileOrName, '.js').indexOf('.') !== -1) {
-      pattern = self.__src + '/' + language + '/' + fileOrName.replace(/\./g, '/') + '.js'
-    } else if (fileOrName.indexOf('/') === -1) {
-      pattern = self.__src + '/' + language + '/*/' + fileOrName + '.js'
-    } else if (fileOrName.substr(0, 1) === '/') {
+    // Check for absolute path first (before checking for dots in basename)
+    if (fileOrName.startsWith('/')) {
       pattern = fileOrName
+    } else if (path.basename(fileOrName, '.js').indexOf('.') !== -1) {
+      pattern = this.__src + '/' + language + '/' + fileOrName.replace(/\./g, '/') + '.js'
+    } else if (fileOrName.indexOf('/') === -1) {
+      pattern = this.__src + '/' + language + '/*/' + fileOrName + '.js'
     } else {
-      pattern = self.__src + '/' + fileOrName
+      pattern = this.__src + '/' + fileOrName
     }
 
     pattern = pattern.replace('golang/strings/Index.js', 'golang/strings/Index2.js')
@@ -496,86 +516,62 @@ class Util {
 
     if (files.length !== 1) {
       const msg = `Found ${files.length} occurances of ${fileOrName} via pattern: ${pattern}`
-      return cb(new Error(msg))
+      throw new Error(msg)
     }
 
     const filepath = files[0]
 
     if (path.basename(filepath) === 'index.js') {
-      return cb(null)
+      return null
     }
 
     if (!filepath) {
-      return cb(new Error('Could not find ' + pattern))
+      throw new Error('Could not find ' + pattern)
     }
 
-    fs.readFile(filepath, 'utf-8', function (err, code) {
-      if (err) {
-        return cb(new Error('Error while opening ' + filepath + '. ' + err))
-      }
-      return cb(null, filepath, code)
-    })
+    const code = await fs.promises.readFile(filepath, 'utf-8')
+    return { fullpath: filepath, code }
   }
 
-  _load(fileOrName: string, requesterParams: Partial<ParsedParams>, cb: Callback<ParsedParams>): void {
-    const self = this
-    self._opener(fileOrName, requesterParams, function (err, fullpath, code) {
-      if (err) {
-        return cb(err)
-      }
-      if (!fullpath || !code) {
-        return cb(null)
-      }
+  async _load(fileOrName: string, requesterParams: Partial<ParsedParams>): Promise<ParsedParams | null> {
+    const result = await this._opener(fileOrName, requesterParams)
+    if (!result) {
+      return null
+    }
 
-      const filepath = path.relative(self.__src, fullpath)
-      self._parse(filepath, code, cb)
-    })
+    const filepath = path.relative(this.__src, result.fullpath)
+    return this._parse(filepath, result.code)
   }
 
-  _findDependencies(
+  async _findDependencies(
     _fileOrName: string,
     requesterParams: ParsedParams,
     dependencies: Record<string, ParsedParams>,
-    cb?: Callback<Record<string, ParsedParams>>,
-  ): void {
-    const self = this
-
+  ): Promise<Record<string, ParsedParams>> {
     if (!requesterParams.headKeys['depends on'] || !requesterParams.headKeys['depends on'].length) {
-      if (cb) {
-        cb(null, {})
-      }
-      return
+      return {}
     }
 
-    let loaded = 0
     for (const i in requesterParams.headKeys['depends on']) {
       const depCodePath = requesterParams.headKeys['depends on'][i][0]
 
-      self._load(depCodePath, requesterParams, function (err, params) {
-        if (err) {
-          return cb?.(err)
-        }
-        if (!params) {
-          return
-        }
-
+      const params = await this._load(depCodePath, requesterParams)
+      if (params) {
         dependencies[depCodePath] = params
-        self._findDependencies(depCodePath, params, dependencies)
-
-        if (cb && ++loaded === requesterParams.headKeys['depends on'].length) {
-          cb(null, dependencies)
-        }
-      })
+        await this._findDependencies(depCodePath, params, dependencies)
+      }
     }
+
+    return dependencies
   }
 
-  _parse(filepath: string, code: string, cb: Callback<ParsedParams>): void {
+  async _parse(filepath: string, code: string): Promise<ParsedParams> {
     if (!code) {
-      return cb(new Error('Unable to parse ' + filepath + '. Received no code'))
+      throw new Error('Unable to parse ' + filepath + '. Received no code')
     }
 
     if (filepath.indexOf('/') === -1) {
-      return cb(new Error("Parse only accepts relative filepaths. Received: '" + filepath + "'"))
+      throw new Error("Parse only accepts relative filepaths. Received: '" + filepath + "'")
     }
 
     const parts = filepath.split('/')
@@ -610,7 +606,7 @@ class Util {
     })
 
     if (moduleExports.length !== 1) {
-      return cb(new Error(`File ${filepath} is allowed to contain exactly one module.exports`))
+      throw new Error(`File ${filepath} is allowed to contain exactly one module.exports`)
     }
 
     const exp = moduleExports[0] as {
@@ -642,7 +638,7 @@ class Util {
 
     if (headComments.length === 0) {
       const msg = `Unable to parse ${filepath}. Did not find any comments in function definition`
-      return cb(new Error(msg))
+      throw new Error(msg)
     }
 
     const headKeys = this._headKeys(headComments)
@@ -661,14 +657,9 @@ class Util {
       func_arguments: funcParams,
     }
 
-    this._findDependencies(filepath, params, {}, function (err, dependencies) {
-      if (err) {
-        return cb(err)
-      }
-
-      params.dependencies = dependencies
-      return cb(null, params)
-    })
+    const dependencies = await this._findDependencies(filepath, params, {})
+    params.dependencies = dependencies
+    return params
   }
 
   _headKeys(headLines: string[]): HeadKeys {
