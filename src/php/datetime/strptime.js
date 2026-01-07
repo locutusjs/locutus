@@ -29,7 +29,6 @@ module.exports = function strptime(dateStr, format) {
   const _reset = function (dateObj, realMday) {
     // realMday is to allow for a value of 0 in return results (but without
     // messing up the Date() object)
-    let jan1
     const o = retObj
     const d = dateObj
     o.tm_sec = d.getUTCSeconds()
@@ -39,7 +38,7 @@ module.exports = function strptime(dateStr, format) {
     o.tm_mon = d.getUTCMonth()
     o.tm_year = d.getUTCFullYear() - 1900
     o.tm_wday = realMday === 0 ? (d.getUTCDay() > 0 ? d.getUTCDay() - 1 : 6) : d.getUTCDay()
-    jan1 = new Date(Date.UTC(d.getUTCFullYear(), 0, 1))
+    const jan1 = new Date(Date.UTC(d.getUTCFullYear(), 0, 1))
     o.tm_yday = Math.ceil((d - jan1) / (1000 * 60 * 60 * 24))
   }
   const _date = function () {

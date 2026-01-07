@@ -86,6 +86,7 @@ module.exports = function setlocale(category, locale) {
         // Need to change any of these for English as opposed to C?
         an: /^[A-Za-z\d]+$/g,
         al: /^[A-Za-z]+$/g,
+        // biome-ignore lint/suspicious/noControlCharactersInRegex: intentional for LC_CTYPE control character class
         ct: /^[\u0000-\u001F\u007F]+$/g,
         dg: /^[\d]+$/g,
         gr: /^[\u0021-\u007E]+$/g,

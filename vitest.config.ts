@@ -8,5 +8,7 @@ export default defineConfig({
     env: {
       TZ: 'UTC',
     },
+    // Disable isolation for faster test runs (tests are pure functions, no side effects between files)
+    isolate: false,
   },
 })

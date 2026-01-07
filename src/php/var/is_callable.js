@@ -47,7 +47,6 @@ module.exports = function is_callable(mixedVar, syntaxOnly, callableName) {
     return name[1]
   }
 
-  // biome-ignore lint: escape needed
   if (/(^class|\(this,)/.test(mixedVar.toString())) {
     return false
   }
