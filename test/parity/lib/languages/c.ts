@@ -1,39 +1,45 @@
 /**
  * C language handler for verification
+ *
+ * Header files are inferred from the category (directory):
+ *   c/ctype/isalnum.js → #include <ctype.h>
+ *   c/string/strlen.js → #include <string.h>
+ *
+ * Return types are inferred from function name patterns:
+ *   is* → bool (printed as "true"/"false")
+ *   to* → char (printed as quoted string)
+ *   str* → int (strlen, strcmp) or string (strchr, strstr)
+ *   default → int
  */
 
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
 
-// C function mapping: JS function name → C function info
-interface CFunctionInfo {
-  header: string // e.g., 'ctype.h', 'string.h'
-  cFunc: string // C function name
-  returnType: 'bool' | 'int' | 'double' | 'string' | 'char'
+type ReturnType = 'bool' | 'int' | 'double' | 'string' | 'char'
+
+// Functions whose header differs from their category
+// (e.g., abs is in c/math/ but needs stdlib.h in C)
+const HEADER_OVERRIDES: Record<string, string> = {
+  abs: 'stdlib.h',
 }
 
-const C_FUNCTIONS: Record<string, CFunctionInfo> = {
-  // ctype.h functions (return int, non-zero = true)
-  isalnum: { header: 'ctype.h', cFunc: 'isalnum', returnType: 'bool' },
-  isalpha: { header: 'ctype.h', cFunc: 'isalpha', returnType: 'bool' },
-  isdigit: { header: 'ctype.h', cFunc: 'isdigit', returnType: 'bool' },
-  islower: { header: 'ctype.h', cFunc: 'islower', returnType: 'bool' },
-  isupper: { header: 'ctype.h', cFunc: 'isupper', returnType: 'bool' },
-  isspace: { header: 'ctype.h', cFunc: 'isspace', returnType: 'bool' },
-  tolower: { header: 'ctype.h', cFunc: 'tolower', returnType: 'char' },
-  toupper: { header: 'ctype.h', cFunc: 'toupper', returnType: 'char' },
-  // stdlib.h functions
-  atoi: { header: 'stdlib.h', cFunc: 'atoi', returnType: 'int' },
-  atof: { header: 'stdlib.h', cFunc: 'atof', returnType: 'double' },
-  abs: { header: 'stdlib.h', cFunc: 'abs', returnType: 'int' },
-  // string.h functions
-  strlen: { header: 'string.h', cFunc: 'strlen', returnType: 'int' },
-  strcmp: { header: 'string.h', cFunc: 'strcmp', returnType: 'int' },
-  strchr: { header: 'string.h', cFunc: 'strchr', returnType: 'string' },
-  strstr: { header: 'string.h', cFunc: 'strstr', returnType: 'string' },
-  strcat: { header: 'string.h', cFunc: 'strcat', returnType: 'string' },
-  // math.h functions
-  frexp: { header: 'math.h', cFunc: 'frexp', returnType: 'double' },
+/**
+ * Infer return type from function name
+ */
+function inferReturnType(funcName: string): ReturnType {
+  if (funcName.startsWith('is')) {
+    return 'bool'
+  }
+  if (funcName === 'tolower' || funcName === 'toupper') {
+    return 'char'
+  }
+  if (funcName === 'atof') {
+    return 'double'
+  }
+  if (funcName === 'strchr' || funcName === 'strstr' || funcName === 'strcat') {
+    return 'string'
+  }
+  return 'int'
 }
 
 // Functions to skip
@@ -50,8 +56,6 @@ export const C_SKIP_LIST = new Set<string>([
   'frexp',
   // JS isspace handles strings, C only handles single char
   'isspace',
-  // JS abs handles strings and floats, C abs only handles int
-  'abs',
   // atof output format differs (scientific notation vs decimal)
   'atof',
 ])
@@ -140,13 +144,13 @@ function parseArguments(argsStr: string): string[] {
 /**
  * Convert a JS function call to C
  */
-function convertFunctionCall(code: string, funcName: string, funcInfo: CFunctionInfo): string {
+function convertFunctionCall(code: string, funcName: string): string {
   const funcCallRegex = new RegExp(`\\b${funcName}\\s*\\(([^)]+)\\)`, 'g')
 
   return code.replace(funcCallRegex, (_match, argsStr) => {
     const args = parseArguments(argsStr)
     const convertedArgs = args.map((arg) => convertString(arg.trim()))
-    return `${funcInfo.cFunc}(${convertedArgs.join(', ')})`
+    return `${funcName}(${convertedArgs.join(', ')})`
   })
 }
 
@@ -189,15 +193,19 @@ function stripTrailingComment(code: string): string {
 /**
  * Convert JS example code to C program
  */
-function jsToC(jsCode: string[], funcName: string): string {
-  const funcInfo = C_FUNCTIONS[funcName]
-  if (!funcInfo) {
+function jsToC(jsCode: string[], funcName: string, category?: string): string {
+  if (!category) {
     return ''
   }
 
+  // Infer header from category (e.g., "ctype" → "ctype.h")
+  // Some functions need different headers than their category suggests
+  const header = HEADER_OVERRIDES[funcName] || `${category}.h`
+  const returnType = inferReturnType(funcName)
+
   // Collect needed headers
-  const headers = new Set<string>(['stdio.h', funcInfo.header])
-  if (funcInfo.returnType === 'bool') {
+  const headers = new Set<string>(['stdio.h', header])
+  if (returnType === 'bool') {
     headers.add('stdbool.h')
   }
 
@@ -216,7 +224,7 @@ function jsToC(jsCode: string[], funcName: string): string {
     processed = processed.replace(/^\s*(var|let|const)\s+/, '')
 
     // Convert function calls
-    processed = convertFunctionCall(processed, funcName, funcInfo)
+    processed = convertFunctionCall(processed, funcName)
 
     // Convert JS true/false to C
     processed = processed.replace(/\btrue\b/g, '1')
@@ -238,9 +246,9 @@ function jsToC(jsCode: string[], funcName: string): string {
   if (assignedVar) {
     // Has assignment - declare variable and print it
     let varType: string
-    if (funcInfo.returnType === 'bool' || funcInfo.returnType === 'int' || funcInfo.returnType === 'char') {
+    if (returnType === 'bool' || returnType === 'int' || returnType === 'char') {
       varType = 'int'
-    } else if (funcInfo.returnType === 'double') {
+    } else if (returnType === 'double') {
       varType = 'double'
     } else {
       varType = 'char*'
@@ -248,13 +256,13 @@ function jsToC(jsCode: string[], funcName: string): string {
     bodyLines.push(`  ${varType} ${lastExpr};`)
 
     // Print based on type - char is quoted to match JS string output
-    if (funcInfo.returnType === 'bool') {
+    if (returnType === 'bool') {
       bodyLines.push(`  printf(${assignedVar} ? "true" : "false");`)
-    } else if (funcInfo.returnType === 'int') {
+    } else if (returnType === 'int') {
       bodyLines.push(`  printf("%d", ${assignedVar});`)
-    } else if (funcInfo.returnType === 'double') {
+    } else if (returnType === 'double') {
       bodyLines.push(`  printf("%g", ${assignedVar});`)
-    } else if (funcInfo.returnType === 'char') {
+    } else if (returnType === 'char') {
       // JS returns a quoted string like "a", so we print with quotes
       bodyLines.push(`  printf("\\"%c\\"", ${assignedVar});`)
     } else {
@@ -262,13 +270,13 @@ function jsToC(jsCode: string[], funcName: string): string {
     }
   } else {
     // Direct expression - print it
-    if (funcInfo.returnType === 'bool') {
+    if (returnType === 'bool') {
       bodyLines.push(`  printf((${lastExpr}) ? "true" : "false");`)
-    } else if (funcInfo.returnType === 'int') {
+    } else if (returnType === 'int') {
       bodyLines.push(`  printf("%d", ${lastExpr});`)
-    } else if (funcInfo.returnType === 'double') {
+    } else if (returnType === 'double') {
       bodyLines.push(`  printf("%g", ${lastExpr});`)
-    } else if (funcInfo.returnType === 'char') {
+    } else if (returnType === 'char') {
       // JS returns a quoted string like "a", so we print with quotes
       bodyLines.push(`  printf("\\"%c\\"", ${lastExpr});`)
     } else {
