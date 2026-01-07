@@ -317,3 +317,17 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Website: 2 (17, 22)
   - Dependencies: 1 (11)
   - Next: C verification, dependencies, or website
+
+### Iteration 25
+
+2026-01-07
+
+- **Area: Infrastructure (Parity Tests)**
+- Refactored parity test Docker pull flow (PR #507):
+  - Changed flow to: 1) find functions → 2) pull all containers in parallel → 3) run tests
+  - Previously Docker pulls were interleaved with test discovery (confusing output)
+  - Now all Docker images pulled together before tests start
+  - Version display moved after all pulls complete
+- Added `quiet` option to `ensureDockerImage()` for safety checks during test runs
+- All 924 tests pass, 215 parity tests pass
+- PR #507 updated with Ruby verification + Docker flow improvement
