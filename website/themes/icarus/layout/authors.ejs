@@ -11,17 +11,85 @@
         as well as a more finegrained achievement record below:
       </p>
 
+      <%
+      // Contribution types to track
+      var contributionKeys = ['original by', 'improved by', 'reimplemented by', 'parts by', 'bugfixed by', 'revised by', 'input by'];
+
+      // Helper to format author name as link
+      function formatAuthor(author) {
+        var m;
+        // Skip Kevin (maintainer)
+        if (author.match(/Kevin van Zonneveld/)) {
+          return null;
+        }
+        // Format: "Name (URL)" -> link
+        if ((m = author.match(/^\s*(.+)\s*\(([^\)]+)\)\s*$/))) {
+          return '<a href="' + m[2] + '">' + m[1] + '</a>';
+        }
+        // Format: "https://..." -> link with domain
+        if ((m = author.match(/^\s*(https?:\/\/.+)\s*$/i))) {
+          return '<a href="' + m[1] + '">' + m[1].split('/')[2] + '</a>';
+        }
+        return author.trim();
+      }
+      %>
+
       <% site.pages.find({ type: 'language' }).sort('order').each(function (lang) { %>
+        <%
+        // Aggregate authors for this language
+        var uniqueAuthors = {};
+        site.pages.find({ language: lang.language, type: 'function' }).each(function (func) {
+          for (var typeKey in func.authors) {
+            func.authors[typeKey].forEach(function(authorRaw) {
+              var author = formatAuthor(trim(authorRaw));
+              if (!author) return; // Skip Kevin
+
+              if (!uniqueAuthors[author]) {
+                uniqueAuthors[author] = { author: author, total: 0, functions: [] };
+              }
+              if (!uniqueAuthors[author][typeKey]) {
+                uniqueAuthors[author][typeKey] = 0;
+              }
+              uniqueAuthors[author][typeKey]++;
+              uniqueAuthors[author].total++;
+              if (uniqueAuthors[author].functions.indexOf(func.function) === -1) {
+                uniqueAuthors[author].functions.push(func.function);
+              }
+            });
+          }
+        });
+
+        // Convert to array and sort by total contributions
+        var authorList = [];
+        for (var name in uniqueAuthors) {
+          authorList.push(uniqueAuthors[name]);
+        }
+        authorList.sort(function(a, b) { return b.total - a.total; });
+        %>
+
         <h2>Authors of <a href="<%- url_for(lang.path).replace('index.html', '') %>"><%- lang.title %></a></h2>
         <section class="authors" data-language="<%= lang.language %>">
-          <% site.pages.find({ language: lang.language, type: 'function' }).each(function (func) { %>
-            <% for (var typeKey in func.authors) { %>
-              <% func.authors[typeKey].forEach(function(author) { %>
-                <entry data-function="<%= func.function %>" data-type="<%= typeKey %>"><%- markdown(trim(author)) %></entry>
-              <% }) %>
-            <% } %>
-          <% }) %>
-          <div class="draw"></div>
+          <ol>
+          <% authorList.forEach(function(author) { %>
+            <li>
+              <%- author.author %>
+              <small>
+              <%
+              var contributions = [];
+              contributionKeys.forEach(function(key) {
+                if (author[key]) {
+                  contributions.push(key.replace(' by', '') + ': ' + author[key]);
+                }
+              });
+              %>
+              <%- contributions.join(' / ') %>
+              <% if (author.functions.length === 1) { %>
+                (<a href="/<%= lang.language %>/<%= author.functions[0] %>"><%= author.functions[0] %></a>)
+              <% } %>
+              </small>
+            </li>
+          <% }); %>
+          </ol>
         </section>
       <% }) %>
 
