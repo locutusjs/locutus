@@ -12,11 +12,13 @@ notes:
   - |-
     1.0 is simplified to 1 before it can be accessed by the function, this makes
     it different from the PHP implementation. We can't fix this unfortunately.
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's is_double in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.is-double.php">PHP's is_double</a>
   looks like.
 function: is_double
@@ -30,12 +32,13 @@ alias:
   - /functions/is_double/
 ---
 {% codeblock lang:javascript %}module.exports = function is_double(mixedVar) {
-  //  discuss at: https://locutus.io/php/is_double/
-  // original by: Paulo Freitas
-  //      note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
-  //      note 1: it different from the PHP implementation. We can't fix this unfortunately.
-  //   example 1: is_double(186.31)
-  //   returns 1: true
+  //      discuss at: https://locutus.io/php/is_double/
+  // parity verified: PHP 8.3
+  //     original by: Paulo Freitas
+  //          note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  //       example 1: is_double(186.31)
+  //       returns 1: true
 
   const _isFloat = require('../var/is_float')
   return _isFloat(mixedVar)

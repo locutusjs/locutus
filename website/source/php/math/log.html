@@ -11,11 +11,13 @@ authors:
   improved by:
     - Brett Zamir (https://brett-zamir.me)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's log in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.log.php">PHP's log</a> looks like.
 function: log
 category: math
@@ -28,11 +30,12 @@ alias:
   - /functions/log/
 ---
 {% codeblock lang:javascript %}module.exports = function log(arg, base) {
-  //  discuss at: https://locutus.io/php/log/
-  // original by: Onno Marsman (https://twitter.com/onnomarsman)
-  // improved by: Brett Zamir (https://brett-zamir.me)
-  //   example 1: log(8723321.4, 7)
-  //   returns 1: 8.212871815082147
+  //      discuss at: https://locutus.io/php/log/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: log(8723321.4, 7)
+  //       returns 1: 8.212871815082147
 
   return typeof base === 'undefined' ? Math.log(arg) : Math.log(arg) / Math.log(base)
 }

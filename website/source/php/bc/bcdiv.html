@@ -15,11 +15,12 @@ authors:
   original by:
     - lmeyrick (https://sourceforge.net/projects/bcmath-js/)
 notes: []
+parityVerified: null
 type: function
 layout: function
 title: PHP's bcdiv in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.bcdiv.php">PHP's bcdiv</a> looks
   like.
 function: bcdiv
@@ -47,7 +48,9 @@ alias:
   const _bc = require('../_helpers/_bc')
   const libbcmath = _bc()
 
-  let first, second, result
+  let first
+  let second
+  let result
 
   if (typeof scale === 'undefined') {
     scale = libbcmath.scale

@@ -36,11 +36,13 @@ notes:
     Please be aware that this function
     expects to encode into UTF-8 encoded strings, as found on
     pages served as UTF-8
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's urlencode in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.urlencode.php">PHP's urlencode</a>
   looks like.
 function: urlencode
@@ -55,6 +57,7 @@ alias:
 ---
 {% codeblock lang:javascript %}module.exports = function urlencode(str) {
   //       discuss at: https://locutus.io/php/urlencode/
+  //  parity verified: PHP 8.3
   //      original by: Philip Peterson
   //      improved by: Kevin van Zonneveld (https://kvz.io)
   //      improved by: Kevin van Zonneveld (https://kvz.io)

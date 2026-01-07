@@ -22,11 +22,13 @@ authors:
   input by:
     - Devan Penner-Woelk
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's strnatcasecmp in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.strnatcasecmp.php">PHP's
   strnatcasecmp</a> looks like.
 function: strnatcasecmp
@@ -41,6 +43,7 @@ alias:
 ---
 {% codeblock lang:javascript %}module.exports = function strnatcasecmp(a, b) {
   //       discuss at: https://locutus.io/php/strnatcasecmp/
+  //  parity verified: PHP 8.3
   //      original by: Martin Pool
   // reimplemented by: Pierre-Luc Paour
   // reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))

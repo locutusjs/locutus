@@ -21,11 +21,13 @@ authors:
     - Aman Gupta
     - Brett Zamir (https://brett-zamir.me)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's utf8_decode in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.utf8-decode.php">PHP's
   utf8_decode</a> looks like.
 function: utf8_decode
@@ -39,19 +41,20 @@ alias:
   - /functions/utf8_decode/
 ---
 {% codeblock lang:javascript %}module.exports = function utf8_decode(strData) {
-  //  discuss at: https://locutus.io/php/utf8_decode/
-  // original by: Webtoolkit.info (https://www.webtoolkit.info/)
-  //    input by: Aman Gupta
-  //    input by: Brett Zamir (https://brett-zamir.me)
-  // improved by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: Norman "zEh" Fuchs
-  // bugfixed by: hitwork
-  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
-  // bugfixed by: kirilloid
-  // bugfixed by: w35l3y (https://www.wesley.eti.br)
-  //   example 1: utf8_decode('Kevin van Zonneveld')
-  //   returns 1: 'Kevin van Zonneveld'
+  //      discuss at: https://locutus.io/php/utf8_decode/
+  // parity verified: PHP 8.3
+  //     original by: Webtoolkit.info (https://www.webtoolkit.info/)
+  //        input by: Aman Gupta
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Norman "zEh" Fuchs
+  //     bugfixed by: hitwork
+  //     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //     bugfixed by: kirilloid
+  //     bugfixed by: w35l3y (https://www.wesley.eti.br)
+  //       example 1: utf8_decode('Kevin van Zonneveld')
+  //       returns 1: 'Kevin van Zonneveld'
 
   const tmpArr = []
   let i = 0

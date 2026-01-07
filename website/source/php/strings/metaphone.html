@@ -18,11 +18,13 @@ authors:
     - Brett Zamir (https://brett-zamir.me)
     - Rafał Kukawski (https://blog.kukawski.pl)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's metaphone in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.metaphone.php">PHP's metaphone</a>
   looks like.
 function: metaphone
@@ -36,18 +38,19 @@ alias:
   - /functions/metaphone/
 ---
 {% codeblock lang:javascript %}module.exports = function metaphone(word, maxPhonemes) {
-  //  discuss at: https://locutus.io/php/metaphone/
-  // original by: Greg Frazier
-  // improved by: Brett Zamir (https://brett-zamir.me)
-  // improved by: Rafał Kukawski (https://blog.kukawski.pl)
-  //   example 1: metaphone('Gnu')
-  //   returns 1: 'N'
-  //   example 2: metaphone('bigger')
-  //   returns 2: 'BKR'
-  //   example 3: metaphone('accuracy')
-  //   returns 3: 'AKKRS'
-  //   example 4: metaphone('batch batcher')
-  //   returns 4: 'BXBXR'
+  //      discuss at: https://locutus.io/php/metaphone/
+  // parity verified: PHP 8.3
+  //     original by: Greg Frazier
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Rafał Kukawski (https://blog.kukawski.pl)
+  //       example 1: metaphone('Gnu')
+  //       returns 1: 'N'
+  //       example 2: metaphone('bigger')
+  //       returns 2: 'BKR'
+  //       example 3: metaphone('accuracy')
+  //       returns 3: 'AKKRS'
+  //       example 4: metaphone('batch batcher')
+  //       returns 4: 'BXBXR'
 
   const type = typeof word
 
@@ -135,7 +138,6 @@ alias:
       break
   }
 
-  // eslint-disable-next-line no-unmodified-loop-condition,max-len
   for (; i < l && (maxPhonemes === 0 || meta.length < maxPhonemes); i += 1) {
     cc = word.charAt(i)
     nc = word.charAt(i + 1)

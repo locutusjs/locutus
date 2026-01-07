@@ -33,11 +33,12 @@ notes:
     We feel the main purpose of this function should be to ease
     the transport of data between php & js
     Aiming for PHP-compatibility, we have to translate objects to arrays
+parityVerified: null
 type: function
 layout: function
 title: PHP's serialize in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.serialize.php">PHP's serialize</a>
   looks like.
 function: serialize
@@ -76,7 +77,9 @@ alias:
   //   example 3: serialize( {'ü': 'ü', '四': '四', '𠜎': '𠜎'})
   //   returns 3: 'a:3:{s:2:"ü";s:2:"ü";s:3:"四";s:3:"四";s:4:"𠜎";s:4:"𠜎";}'
 
-  let val, key, okey
+  let val
+  let key
+  let okey
   let ktype = ''
   let vals = ''
   let count = 0

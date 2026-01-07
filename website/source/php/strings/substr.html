@@ -42,11 +42,12 @@ notes:
   - >-
     Handles rare Unicode characters if 'unicode.semantics' ini (PHP6) is set to
     'on'
+parityVerified: null
 type: function
 layout: function
 title: PHP's substr in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.substr.php">PHP's substr</a> looks
   like.
 function: substr
@@ -87,13 +88,12 @@ alias:
   //   example 7: ini_set('unicode.semantics', 'on')
   //   example 7: substr('a\uD801\uDC00z\uD801\uDC00', -3, -1)
   //   returns 7: '\uD801\uDC00z'
-  //        test: skip-3 skip-4 skip-5 skip-6 skip-7
 
-  const _php_cast_string = require('../_helpers/_phpCastString') // eslint-disable-line camelcase
+  const _php_cast_string = require('../_helpers/_phpCastString')
 
   input = _php_cast_string(input)
 
-  const ini_get = require('../info/ini_get') // eslint-disable-line camelcase
+  const ini_get = require('../info/ini_get')
   const multibyte = ini_get('unicode.semantics') === 'on'
 
   if (multibyte) {

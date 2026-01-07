@@ -30,11 +30,13 @@ notes:
     Please be aware that this function expects \
     to encode into UTF-8 encoded strings, as found on
     pages served as UTF-8
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's rawurlencode in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.rawurlencode.php">PHP's
   rawurlencode</a> looks like.
 function: rawurlencode
@@ -49,6 +51,7 @@ alias:
 ---
 {% codeblock lang:javascript %}module.exports = function rawurlencode(str) {
   //       discuss at: https://locutus.io/php/rawurlencode/
+  //  parity verified: PHP 8.3
   //      original by: Brett Zamir (https://brett-zamir.me)
   //         input by: travc
   //         input by: Brett Zamir (https://brett-zamir.me)

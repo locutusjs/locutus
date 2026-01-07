@@ -11,11 +11,13 @@ authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's is_null in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.is-null.php">PHP's is_null</a> looks
   like.
 function: is_null
@@ -29,12 +31,13 @@ alias:
   - /functions/is_null/
 ---
 {% codeblock lang:javascript %}module.exports = function is_null(mixedVar) {
-  //  discuss at: https://locutus.io/php/is_null/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //   example 1: is_null('23')
-  //   returns 1: false
-  //   example 2: is_null(null)
-  //   returns 2: true
+  //      discuss at: https://locutus.io/php/is_null/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: is_null('23')
+  //       returns 1: false
+  //       example 2: is_null(null)
+  //       returns 2: true
 
   return mixedVar === null
 }

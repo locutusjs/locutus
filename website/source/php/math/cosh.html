@@ -9,11 +9,13 @@ authors:
   original by:
     - Onno Marsman (https://twitter.com/onnomarsman)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's cosh in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.cosh.php">PHP's cosh</a> looks like.
 function: cosh
 category: math
@@ -26,10 +28,11 @@ alias:
   - /functions/cosh/
 ---
 {% codeblock lang:javascript %}module.exports = function cosh(arg) {
-  //  discuss at: https://locutus.io/php/cosh/
-  // original by: Onno Marsman (https://twitter.com/onnomarsman)
-  //   example 1: cosh(-0.18127180117607017)
-  //   returns 1: 1.0164747716114113
+  //      discuss at: https://locutus.io/php/cosh/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: cosh(-0.18127180117607017)
+  //       returns 1: 1.0164747716114113
 
   return (Math.exp(arg) + Math.exp(-arg)) / 2
 }

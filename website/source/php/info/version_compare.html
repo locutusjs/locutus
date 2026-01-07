@@ -22,11 +22,13 @@ authors:
   reimplemented by:
     - Kankrelune (https://www.webfaktory.info/)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's version_compare in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.version-compare.php">PHP's
   version_compare</a> looks like.
 function: version_compare
@@ -41,6 +43,7 @@ alias:
 ---
 {% codeblock lang:javascript %}module.exports = function version_compare(v1, v2, operator) {
   //       discuss at: https://locutus.io/php/version_compare/
+  //  parity verified: PHP 8.3
   //      original by: Philippe Jausions (https://pear.php.net/user/jausions)
   //      original by: Aidan Lister (https://aidanlister.com/)
   // reimplemented by: Kankrelune (https://www.webfaktory.info/)

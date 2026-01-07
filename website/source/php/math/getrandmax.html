@@ -9,11 +9,13 @@ authors:
   original by:
     - Onno Marsman (https://twitter.com/onnomarsman)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's getrandmax in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.getrandmax.php">PHP's getrandmax</a>
   looks like.
 function: getrandmax
@@ -27,10 +29,11 @@ alias:
   - /functions/getrandmax/
 ---
 {% codeblock lang:javascript %}module.exports = function getrandmax() {
-  //  discuss at: https://locutus.io/php/getrandmax/
-  // original by: Onno Marsman (https://twitter.com/onnomarsman)
-  //   example 1: getrandmax()
-  //   returns 1: 2147483647
+  //      discuss at: https://locutus.io/php/getrandmax/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: getrandmax()
+  //       returns 1: 2147483647
 
   return 2147483647
 }

@@ -15,11 +15,13 @@ authors:
   original by:
     - Waldo Malqui Silva (https://waldo.malqui.info)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's array_pad in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.array-pad.php">PHP's array_pad</a>
   looks like.
 function: array_pad
@@ -33,16 +35,17 @@ alias:
   - /functions/array_pad/
 ---
 {% codeblock lang:javascript %}module.exports = function array_pad(input, padSize, padValue) {
-  //  discuss at: https://locutus.io/php/array_pad/
-  // original by: Waldo Malqui Silva (https://waldo.malqui.info)
-  //   example 1: array_pad([ 7, 8, 9 ], 2, 'a')
-  //   returns 1: [ 7, 8, 9]
-  //   example 2: array_pad([ 7, 8, 9 ], 5, 'a')
-  //   returns 2: [ 7, 8, 9, 'a', 'a']
-  //   example 3: array_pad([ 7, 8, 9 ], 5, 2)
-  //   returns 3: [ 7, 8, 9, 2, 2]
-  //   example 4: array_pad([ 7, 8, 9 ], -5, 'a')
-  //   returns 4: [ 'a', 'a', 7, 8, 9 ]
+  //      discuss at: https://locutus.io/php/array_pad/
+  // parity verified: PHP 8.3
+  //     original by: Waldo Malqui Silva (https://waldo.malqui.info)
+  //       example 1: array_pad([ 7, 8, 9 ], 2, 'a')
+  //       returns 1: [ 7, 8, 9]
+  //       example 2: array_pad([ 7, 8, 9 ], 5, 'a')
+  //       returns 2: [ 7, 8, 9, 'a', 'a']
+  //       example 3: array_pad([ 7, 8, 9 ], 5, 2)
+  //       returns 3: [ 7, 8, 9, 2, 2]
+  //       example 4: array_pad([ 7, 8, 9 ], -5, 'a')
+  //       returns 4: [ 'a', 'a', 7, 8, 9 ]
 
   let pad = []
   const newArray = []

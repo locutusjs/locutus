@@ -22,11 +22,13 @@ notes:
     directly
 
     in a steaming fashion for faster and more efficient hashing
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's sha1 in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.sha1.php">PHP's sha1</a> looks like.
 function: sha1
 category: strings
@@ -39,16 +41,17 @@ alias:
   - /functions/sha1/
 ---
 {% codeblock lang:javascript %}module.exports = function sha1(str) {
-  //  discuss at: https://locutus.io/php/sha1/
-  // original by: Webtoolkit.info (https://www.webtoolkit.info/)
-  // improved by: Michael White (https://getsprink.com)
-  // improved by: Kevin van Zonneveld (https://kvz.io)
-  //    input by: Brett Zamir (https://brett-zamir.me)
-  //      note 1: Keep in mind that in accordance with PHP, the whole string is buffered and then
-  //      note 1: hashed. If available, we'd recommend using Node's native crypto modules directly
-  //      note 1: in a steaming fashion for faster and more efficient hashing
-  //   example 1: sha1('Kevin van Zonneveld')
-  //   returns 1: '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
+  //      discuss at: https://locutus.io/php/sha1/
+  // parity verified: PHP 8.3
+  //     original by: Webtoolkit.info (https://www.webtoolkit.info/)
+  //     improved by: Michael White (https://getsprink.com)
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: Keep in mind that in accordance with PHP, the whole string is buffered and then
+  //          note 1: hashed. If available, we'd recommend using Node's native crypto modules directly
+  //          note 1: in a steaming fashion for faster and more efficient hashing
+  //       example 1: sha1('Kevin van Zonneveld')
+  //       returns 1: '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
 
   let hash
   try {
@@ -56,7 +59,7 @@ alias:
     const sha1sum = crypto.createHash('sha1')
     sha1sum.update(str)
     hash = sha1sum.digest('hex')
-  } catch (e) {
+  } catch (_e) {
     hash = undefined
   }
 
@@ -82,14 +85,19 @@ alias:
   }
 
   let blockstart
-  let i, j
+  let i
+  let j
   const W = new Array(80)
   let H0 = 0x67452301
   let H1 = 0xefcdab89
   let H2 = 0x98badcfe
   let H3 = 0x10325476
   let H4 = 0xc3d2e1f0
-  let A, B, C, D, E
+  let A
+  let B
+  let C
+  let D
+  let E
   let temp
 
   // utf8_encode

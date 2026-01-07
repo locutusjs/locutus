@@ -9,11 +9,12 @@ authors:
   original by:
     - lmeyrick (https://sourceforge.net/projects/bcmath-js/)
 notes: []
+parityVerified: null
 type: function
 layout: function
 title: PHP's bcround in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.bcround.php">PHP's bcround</a> looks
   like.
 function: bcround
@@ -35,7 +36,9 @@ alias:
   const _bc = require('../_helpers/_bc')
   const libbcmath = _bc()
 
-  let temp, result, digit
+  let temp
+  let result
+  let digit
   let rightOperand
 
   // create number

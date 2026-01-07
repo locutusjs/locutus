@@ -26,11 +26,12 @@ authors:
   input by:
     - Billy
 notes: []
+parityVerified: null
 type: function
 layout: function
 title: PHP's in_array in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.in-array.php">PHP's in_array</a>
   looks like.
 function: in_array
@@ -75,7 +76,7 @@ alias:
     }
   } else {
     for (key in haystack) {
-      // eslint-disable-next-line eqeqeq
+      // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
       if (haystack[key] == needle) {
         return true
       }

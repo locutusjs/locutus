@@ -9,11 +9,13 @@ authors:
   original by:
     - Brett Zamir (https://brett-zamir.me)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's ctype_digit in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.ctype-digit.php">PHP's
   ctype_digit</a> looks like.
 function: ctype_digit
@@ -27,10 +29,11 @@ alias:
   - /functions/ctype_digit/
 ---
 {% codeblock lang:javascript %}module.exports = function ctype_digit(text) {
-  //  discuss at: https://locutus.io/php/ctype_digit/
-  // original by: Brett Zamir (https://brett-zamir.me)
-  //   example 1: ctype_digit('150')
-  //   returns 1: true
+  //      discuss at: https://locutus.io/php/ctype_digit/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: ctype_digit('150')
+  //       returns 1: true
 
   const setlocale = require('../strings/setlocale')
   if (typeof text !== 'string') {

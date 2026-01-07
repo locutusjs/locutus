@@ -18,11 +18,13 @@ notes:
     If node or the browser does not offer JSON.parse,
     this function falls backslash
     to its own implementation using eval, and hence should be considered unsafe
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's json_decode in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.json-decode.php">PHP's
   json_decode</a> looks like.
 function: json_decode
@@ -37,6 +39,7 @@ alias:
 ---
 {% codeblock lang:javascript %}module.exports = function json_decode(strJson) {
   //       discuss at: https://phpjs.org/functions/json_decode/
+  //  parity verified: PHP 8.3
   //      original by: Public Domain (https://www.json.org/json2.js)
   // reimplemented by: Kevin van Zonneveld (https://kevin.vanzonneveld.net)
   //      improved by: T.J. Leahy
@@ -126,7 +129,8 @@ alias:
     // JavaScript structure. The '{' operator is subject to a syntactic ambiguity
     // in JavaScript: it can begin a block or an object literal. We wrap the text
     // in parens to eliminate the ambiguity.
-    j = eval('(' + text + ')') // eslint-disable-line no-eval
+    // biome-ignore lint/security/noGlobalEval: needed for PHP port
+    j = eval('(' + text + ')')
     return j
   }
 

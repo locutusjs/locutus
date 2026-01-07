@@ -9,11 +9,13 @@ authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's join in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.join.php">PHP's join</a> looks like.
 function: join
 category: strings
@@ -26,10 +28,11 @@ alias:
   - /functions/join/
 ---
 {% codeblock lang:javascript %}module.exports = function join(glue, pieces) {
-  //  discuss at: https://locutus.io/php/join/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //   example 1: join(' ', ['Kevin', 'van', 'Zonneveld'])
-  //   returns 1: 'Kevin van Zonneveld'
+  //      discuss at: https://locutus.io/php/join/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: join(' ', ['Kevin', 'van', 'Zonneveld'])
+  //       returns 1: 'Kevin van Zonneveld'
 
   const implode = require('../strings/implode')
   return implode(glue, pieces)

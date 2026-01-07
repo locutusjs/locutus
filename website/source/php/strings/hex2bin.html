@@ -13,11 +13,13 @@ authors:
   original by:
     - Dumitru Uzun (https://duzun.me)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's hex2bin in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.hex2bin.php">PHP's hex2bin</a> looks
   like.
 function: hex2bin
@@ -31,14 +33,15 @@ alias:
   - /functions/hex2bin/
 ---
 {% codeblock lang:javascript %}module.exports = function hex2bin(s) {
-  //  discuss at: https://locutus.io/php/hex2bin/
-  // original by: Dumitru Uzun (https://duzun.me)
-  //   example 1: hex2bin('44696d61')
-  //   returns 1: 'Dima'
-  //   example 2: hex2bin('00')
-  //   returns 2: '\x00'
-  //   example 3: hex2bin('2f1q')
-  //   returns 3: false
+  //      discuss at: https://locutus.io/php/hex2bin/
+  // parity verified: PHP 8.3
+  //     original by: Dumitru Uzun (https://duzun.me)
+  //       example 1: hex2bin('44696d61')
+  //       returns 1: 'Dima'
+  //       example 2: hex2bin('00')
+  //       returns 2: '\x00'
+  //       example 3: hex2bin('2f1q')
+  //       returns 3: false
 
   const ret = []
   let i = 0
@@ -49,7 +52,9 @@ alias:
   for (l = s.length; i < l; i += 2) {
     const c = parseInt(s.substr(i, 1), 16)
     const k = parseInt(s.substr(i + 1, 1), 16)
-    if (isNaN(c) || isNaN(k)) return false
+    if (isNaN(c) || isNaN(k)) {
+      return false
+    }
     ret.push((c << 4) | k)
   }
 

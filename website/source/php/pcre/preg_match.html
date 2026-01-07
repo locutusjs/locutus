@@ -15,11 +15,12 @@ authors:
   original by:
     - Muhammad Humayun (https://github.com/ronypt)
 notes: []
+parityVerified: null
 type: function
 layout: function
 title: PHP's preg_match in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.preg-match.php">PHP's preg_match</a>
   looks like.
 function: preg_match
@@ -33,7 +34,7 @@ alias:
   - /functions/preg_match/
 ---
 {% codeblock lang:javascript %}module.exports = function preg_match(regex, str) {
-  //   original by: Muhammad Humayun (https://github.com/ronypt)
+  // original by: Muhammad Humayun (https://github.com/ronypt)
   //   example 1: preg_match("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", "rony@pharaohtools.com")
   //   returns 1: true
   //   example 2: preg_match("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", "ronypharaohtools.com")

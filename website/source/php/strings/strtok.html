@@ -15,11 +15,12 @@ authors:
     - Brett Zamir (https://brett-zamir.me)
 notes:
   - Use tab and newline as tokenizing characters as well
+parityVerified: null
 type: function
 layout: function
 title: PHP's strtok in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.strtok.php">PHP's strtok</a> looks
   like.
 function: strtok
@@ -58,7 +59,8 @@ alias:
   if (tokens.indexOf(str.charAt(0)) !== -1) {
     return strtok(str.substr(1), tokens)
   }
-  for (var i = 0; i < str.length; i++) {
+  let i = 0
+  for (; i < str.length; i++) {
     if (tokens.indexOf(str.charAt(i)) !== -1) {
       break
     }

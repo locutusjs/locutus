@@ -15,11 +15,13 @@ authors:
     - metjay
     - HKM
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's time in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.time.php">PHP's time</a> looks like.
 function: time
 category: datetime
@@ -32,14 +34,15 @@ alias:
   - /functions/time/
 ---
 {% codeblock lang:javascript %}module.exports = function time() {
-  //  discuss at: https://locutus.io/php/time/
-  // original by: GeekFG (https://geekfg.blogspot.com)
-  // improved by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: metjay
-  // improved by: HKM
-  //   example 1: var $timeStamp = time()
-  //   example 1: var $result = $timeStamp > 1000000000 && $timeStamp < 2000000000
-  //   returns 1: true
+  //      discuss at: https://locutus.io/php/time/
+  // parity verified: PHP 8.3
+  //     original by: GeekFG (https://geekfg.blogspot.com)
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: metjay
+  //     improved by: HKM
+  //       example 1: var $timeStamp = time()
+  //       example 1: var $result = $timeStamp > 1000000000 && $timeStamp < 2000000000
+  //       returns 1: true
 
   return Math.floor(new Date().getTime() / 1000)
 }

@@ -13,11 +13,12 @@ authors:
   reimplemented by:
     - Brett Zamir (https://brett-zamir.me)
 notes: []
+parityVerified: null
 type: function
 layout: function
 title: PHP's create_function in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.create-function.php">PHP's
   create_function</a> looks like.
 function: create_function
@@ -40,7 +41,7 @@ alias:
 
   try {
     return Function.apply(null, args.split(',').concat(code))
-  } catch (e) {
+  } catch (_e) {
     return false
   }
 }

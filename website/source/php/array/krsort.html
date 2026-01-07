@@ -52,11 +52,12 @@ notes:
     if the content is a numeric string, we treat the
 
     "original type" as numeric.
+parityVerified: null
 type: function
 layout: function
 title: PHP's krsort in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.krsort.php">PHP's krsort</a> looks
   like.
 function: krsort
@@ -123,12 +124,13 @@ alias:
         return strnatcmp(b, a)
       }
       break
-    case 'SORT_LOCALE_STRING':
+    case 'SORT_LOCALE_STRING': {
       // compare items as strings, based on the current locale
       // (set with i18n_loc_set_default() as of PHP6)
-      var loc = i18nlgd()
+      const loc = i18nlgd()
       sorter = $locutus.locales[loc].sorting
       break
+    }
     case 'SORT_NUMERIC':
       // compare items numerically
       sorter = function (a, b) {

@@ -11,11 +11,13 @@ authors:
   improved by:
     - Onno Marsman (https://twitter.com/onnomarsman)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's strtolower in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.strtolower.php">PHP's strtolower</a>
   looks like.
 function: strtolower
@@ -29,11 +31,12 @@ alias:
   - /functions/strtolower/
 ---
 {% codeblock lang:javascript %}module.exports = function strtolower(str) {
-  //  discuss at: https://locutus.io/php/strtolower/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: Onno Marsman (https://twitter.com/onnomarsman)
-  //   example 1: strtolower('Kevin van Zonneveld')
-  //   returns 1: 'kevin van zonneveld'
+  //      discuss at: https://locutus.io/php/strtolower/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: strtolower('Kevin van Zonneveld')
+  //       returns 1: 'kevin van zonneveld'
 
   return (str + '').toLowerCase()
 }

@@ -11,11 +11,13 @@ authors:
   revised by:
     - Onno Marsman (https://twitter.com/onnomarsman)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's stripos in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.stripos.php">PHP's stripos</a> looks
   like.
 function: stripos
@@ -29,11 +31,12 @@ alias:
   - /functions/stripos/
 ---
 {% codeblock lang:javascript %}module.exports = function stripos(fHaystack, fNeedle, fOffset) {
-  //  discuss at: https://locutus.io/php/stripos/
-  // original by: Martijn Wieringa
-  //  revised by: Onno Marsman (https://twitter.com/onnomarsman)
-  //   example 1: stripos('ABC', 'a')
-  //   returns 1: 0
+  //      discuss at: https://locutus.io/php/stripos/
+  // parity verified: PHP 8.3
+  //     original by: Martijn Wieringa
+  //      revised by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: stripos('ABC', 'a')
+  //       returns 1: 0
 
   const haystack = (fHaystack + '').toLowerCase()
   const needle = (fNeedle + '').toLowerCase()

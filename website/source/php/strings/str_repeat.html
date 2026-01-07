@@ -12,11 +12,13 @@ authors:
     - Jonas Raoni Soares Silva (https://www.jsfromhell.com)
     - Ian Carter (https://euona.com/)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's str_repeat in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.str-repeat.php">PHP's str_repeat</a>
   looks like.
 function: str_repeat
@@ -30,12 +32,13 @@ alias:
   - /functions/str_repeat/
 ---
 {% codeblock lang:javascript %}module.exports = function str_repeat(input, multiplier) {
-  //  discuss at: https://locutus.io/php/str_repeat/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
-  // improved by: Ian Carter (https://euona.com/)
-  //   example 1: str_repeat('-=', 10)
-  //   returns 1: '-=-=-=-=-=-=-=-=-=-='
+  //      discuss at: https://locutus.io/php/str_repeat/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
+  //     improved by: Ian Carter (https://euona.com/)
+  //       example 1: str_repeat('-=', 10)
+  //       returns 1: '-=-=-=-=-=-=-=-=-=-='
 
   let y = ''
   while (true) {

@@ -28,11 +28,13 @@ notes:
     Please be aware that this function expects to decode
     from UTF-8 encoded strings, as found on
     pages served as UTF-8
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's rawurldecode in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.rawurldecode.php">PHP's
   rawurldecode</a> looks like.
 function: rawurldecode
@@ -47,6 +49,7 @@ alias:
 ---
 {% codeblock lang:javascript %}module.exports = function rawurldecode(str) {
   //       discuss at: https://locutus.io/php/rawurldecode/
+  //  parity verified: PHP 8.3
   //      original by: Brett Zamir (https://brett-zamir.me)
   //         input by: travc
   //         input by: Brett Zamir (https://brett-zamir.me)

@@ -15,11 +15,12 @@ authors:
   original by:
     - lmeyrick (https://sourceforge.net/projects/bcmath-js/)
 notes: []
+parityVerified: null
 type: function
 layout: function
 title: PHP's bccomp in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.bccomp.php">PHP's bccomp</a> looks
   like.
 function: bccomp
@@ -48,7 +49,8 @@ alias:
   const libbcmath = bc()
 
   // bc_num
-  let first, second
+  let first
+  let second
   if (typeof scale === 'undefined') {
     scale = libbcmath.scale
   }

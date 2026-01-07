@@ -18,11 +18,13 @@ authors:
   input by:
     - pilus
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's decoct in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.decoct.php">PHP's decoct</a> looks
   like.
 function: decoct
@@ -36,15 +38,16 @@ alias:
   - /functions/decoct/
 ---
 {% codeblock lang:javascript %}module.exports = function decoct(number) {
-  //  discuss at: https://locutus.io/php/decoct/
-  // original by: Enrique Gonzalez
-  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-  // improved by: https://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
-  //    input by: pilus
-  //   example 1: decoct(15)
-  //   returns 1: '17'
-  //   example 2: decoct(264)
-  //   returns 2: '410'
+  //      discuss at: https://locutus.io/php/decoct/
+  // parity verified: PHP 8.3
+  //     original by: Enrique Gonzalez
+  //     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     improved by: https://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
+  //        input by: pilus
+  //       example 1: decoct(15)
+  //       returns 1: '17'
+  //       example 2: decoct(264)
+  //       returns 2: '410'
 
   if (number < 0) {
     number = 0xffffffff + number + 1

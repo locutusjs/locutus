@@ -18,11 +18,13 @@ authors:
     - Brett Zamir (https://brett-zamir.me)
     - P
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's array_keys in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.array-keys.php">PHP's array_keys</a>
   looks like.
 function: array_keys
@@ -36,16 +38,17 @@ alias:
   - /functions/array_keys/
 ---
 {% codeblock lang:javascript %}module.exports = function array_keys(input, searchValue, argStrict) {
-  //  discuss at: https://locutus.io/php/array_keys/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //    input by: Brett Zamir (https://brett-zamir.me)
-  //    input by: P
-  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
-  // bugfixed by: Brett Zamir (https://brett-zamir.me)
-  // improved by: jd
-  // improved by: Brett Zamir (https://brett-zamir.me)
-  //   example 1: array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} )
-  //   returns 1: [ 'firstname', 'surname' ]
+  //      discuss at: https://locutus.io/php/array_keys/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //        input by: P
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: jd
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} )
+  //       returns 1: [ 'firstname', 'surname' ]
 
   const search = typeof searchValue !== 'undefined'
   const tmpArr = []

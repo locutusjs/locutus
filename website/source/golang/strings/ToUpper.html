@@ -9,6 +9,8 @@ authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
 notes: []
+parityVerified:
+  - Go 1.23
 type: function
 layout: function
 title: Go's strings.ToUpper in JavaScript
@@ -26,10 +28,11 @@ alias:
   - /golang/ToUpper/
 ---
 {% codeblock lang:javascript %}module.exports = function ToUpper(s) {
-  //  discuss at: https://locutus.io/golang/strings/ToUpper
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //   example 1: ToUpper('Gopher')
-  //   returns 1: 'GOPHER'
+  //      discuss at: https://locutus.io/golang/strings/ToUpper
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: ToUpper('Gopher')
+  //       returns 1: 'GOPHER'
 
   return (s + '').toUpperCase()
 }

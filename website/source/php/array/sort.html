@@ -55,11 +55,12 @@ notes:
     if the content is a numeric string, we treat the
 
     "original type" as numeric.
+parityVerified: null
 type: function
 layout: function
 title: PHP's sort in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.sort.php">PHP's sort</a> looks like.
 function: sort
 category: array
@@ -101,7 +102,6 @@ alias:
   //   example 2: sort($fruits)
   //   example 2: var $result = $fruits
   //   returns 2: {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
-  //        test: skip-1
 
   const i18nlgd = require('../i18n/i18n_loc_get_default')
 
@@ -122,10 +122,10 @@ alias:
       // compare items as strings
       // leave sorter undefined, so built-in comparison is used
       break
-    case 'SORT_LOCALE_STRING':
+    case 'SORT_LOCALE_STRING': {
       // compare items as strings, based on the current locale
       // (set with i18n_loc_set_default() as of PHP6)
-      var loc = $locutus.php.locales[i18nlgd()]
+      const loc = $locutus.php.locales[i18nlgd()]
 
       if (loc && loc.sorting) {
         // if sorting exists on locale object, use it
@@ -134,6 +134,7 @@ alias:
         sorter = loc.sorting
       }
       break
+    }
     case 'SORT_NUMERIC':
       // compare items numerically
       sorter = function (a, b) {

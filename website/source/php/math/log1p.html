@@ -12,11 +12,13 @@ authors:
     - Robert Eisele (https://www.xarg.org/)
 notes:
   - Precision 'n' can be adjusted as desired
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's log1p in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.log1p.php">PHP's log1p</a> looks
   like.
 function: log1p
@@ -30,12 +32,13 @@ alias:
   - /functions/log1p/
 ---
 {% codeblock lang:javascript %}module.exports = function log1p(x) {
-  //  discuss at: https://locutus.io/php/log1p/
-  // original by: Brett Zamir (https://brett-zamir.me)
-  // improved by: Robert Eisele (https://www.xarg.org/)
-  //      note 1: Precision 'n' can be adjusted as desired
-  //   example 1: log1p(1e-15)
-  //   returns 1: 9.999999999999995e-16
+  //      discuss at: https://locutus.io/php/log1p/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Robert Eisele (https://www.xarg.org/)
+  //          note 1: Precision 'n' can be adjusted as desired
+  //       example 1: log1p(1e-15)
+  //       returns 1: 9.999999999999995e-16
 
   let ret = 0
   // degree of precision
