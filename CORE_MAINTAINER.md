@@ -20,12 +20,13 @@ Note that for any task, it's important to first get ample context. Search past i
 2. Use `gh` to check on pending PRs. First run `gh auth status` to understand what our GitHub identity is. Make sure all PRs have reviews by other people than our identity (fixable only when PRs are submitted by others), that PRs pass (fixable only if they were submitted by US), fix what can be fixed, then re-check next iteration. If all is green, merge. LLMs should refrain from commenting on PRs, but deep reviews on PRs by others are allowed.
 3. Triage issues. Confirm repro, decide scope, and say no when needed to protect project goals (see `## Vision`, `README.md`, `CHANGELOG.md`, and `website/source/about.md`). LLMs should refrain from commenting on Issues.
 4. To continuously modernize the project, revise the Backlog/Roadmap in `CHANGELOG.md`. Don't forget about the website, which lives in this repo and is deployed via GHA. Check off items and/or move them into releases as appropriate.
-5. Decide an issue to work on. It could come from 
-    - the Backlog/Roadmap in `CHANGELOG.md`, a verified GitHub issue, 
-    - a PR failure, 
+5. Decide an issue to work on. Attempt to balance time spent over different areas. It could come from 
+    - a security concern
+    - the Backlog/Roadmap in `CHANGELOG.md`. Attampt to balance time spent in different parts of this, too
+    - a verified GitHub issue
+    - a PR failure
     - upgrading outdated dependencies, checking release notes, taking care of the potential migration, leveraging new capabilities
     - unfinished business
-    - a security concern
     
     Do what is most important and impactful first. First search what is already available, and what we can already re-use, even if it takes a little refactoring. Define what a successful outcome looks like and how you'll validate it (tests, browser checks, screenshots for design changes, or a working migration). This is imperative: no changes without validation. Anything that can't be validated should not be PR'ed or merged.
 6. **NEVER commit directly to `main`.** Always create or (re-use, see `Batching Related Work`) another branch and open a PR:
