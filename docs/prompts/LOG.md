@@ -80,3 +80,12 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Analyzed remaining 48 verification failures
 - Fixed trailing comment/semicolon stripping in PHP translation (PR #486)
 - Several failures are unavoidable: `money_format`, `convert_cyr_string` removed in PHP 8.0
+
+### Iteration 7
+
+2026-01-07
+
+- Fixed object literal evaluation in verify.ts (PR #487)
+- Object literals `{key: value}` were being interpreted as blocks, not expressions
+- PHP verification: 44/91 passing (was 43/91)
+- Remaining failures are actual implementation differences or removed PHP functions
