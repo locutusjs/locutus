@@ -29,7 +29,7 @@ working 2026-01-07, Insight search)
       - [x] Go: 20 functions verified against Go 1.23
       - [x] Python: 15/17 (88%) - remaining: capwords (impl difference), printable (.length)
       - [x] Ruby: 16/18 (89%) - remaining: sample (random), acos (example incompatible)
-      - [ ] C: 15 functions available, verification not implemented
+      - [x] C: 11/18 (61%) - remaining: sprintf, strchr, strstr, strcat, frexp, isspace, atof (complex/different semantics)
       - [x] Infrastructure: parallel execution, caching, modular architecture, per-language handlers, type-safe config
       - [x] CI integration: `parity verified:` header in function files, Zod validation, `yarn test:parity`
       - [x] Badge: "Verified against PHP 8.3" (added to README, PR #501)

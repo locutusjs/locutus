@@ -91,6 +91,21 @@
         </p>
       <% } %>
 
+      <% if (page.language === 'c') { %>
+        <h2>C types and JavaScript</h2>
+        <p>
+          C is statically typed while JavaScript is dynamically typed. Locutus C functions
+          accept JavaScript's flexible types but are only parity-verified for inputs that would
+          be valid in C.
+        </p>
+        <p>
+          For example, <code>abs()</code> in JavaScript accepts floats (like C's <code>fabs()</code>)
+          and handles strings gracefully, but only integer inputs are verified against native C.
+          This pragmatic approach gives you the expected C behavior for valid inputs while
+          leveraging JavaScript's flexibility for edge cases.
+        </p>
+      <% } %>
+
       <% if (page.notes.length > 0) { %>
         <h2>Notes</h2>
         <ul>

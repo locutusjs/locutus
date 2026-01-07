@@ -26,6 +26,12 @@ export interface ParityLanguageConfig {
  */
 export const PARITY_LANGUAGES: ParityLanguageConfig[] = [
   {
+    id: 'c',
+    displayName: 'C',
+    version: '23',
+    dockerImage: 'gcc:14',
+  },
+  {
     id: 'php',
     displayName: 'PHP',
     version: '8.3',

@@ -3,12 +3,14 @@
  */
 
 import type { LanguageHandler } from '../types.ts'
+import { cHandler } from './c.ts'
 import { golangHandler } from './golang.ts'
 import { phpHandler } from './php.ts'
 import { pythonHandler } from './python.ts'
 import { rubyHandler } from './ruby.ts'
 
 const handlers: Record<string, LanguageHandler> = {
+  c: cHandler,
   golang: golangHandler,
   php: phpHandler,
   python: pythonHandler,

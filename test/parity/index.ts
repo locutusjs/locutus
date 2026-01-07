@@ -180,7 +180,7 @@ async function runParityTest(
     }
 
     // Translate JS to native language
-    const nativeCode = handler.translate(example.code, func.name)
+    const nativeCode = handler.translate(example.code, func.name, func.category)
     if (!nativeCode.trim()) {
       results.push({
         example: example.number,

@@ -140,27 +140,20 @@ yarn build
 yarn test
 ```
 
-This first rewrites mocha test-cases based on `example` and `result` comments found in the functions' headers. This is
-useful if you're changing the tests themselves as well.
+This regenerates Vitest test cases based on `example` and `returns` comments found in the functions' headers, then runs them.
 
 ### Running a single generated test
 
-If that's not needed as you're iterating purely on the implementation, here's a faster way of singeling out a function
-like `natsort` which re-uses an already generated Mocha test in Watch mode, so it gets executed as you change the
-implementation file in `src/`:
+If you're iterating purely on the implementation, here's a faster way to run a single test file in watch mode:
 
 ```bash
-./node_modules/.bin/mocha \
-  --require babel-register \
-  --reporter spec \
-  --watch \
-test/generated/php/array/test-natsort.js
+yarn vitest --watch test/generated/php/array/natsort.vitest.ts
 ```
 
 ### Custom tests
 
-As of v2.0.30 you can also write custom tests, an example can be found in
-[`src/php/var/serialize.mocha.js`](src/php/var/serialize.mocha.js).
+You can write custom Vitest tests by creating a `.vitest.ts` file alongside your function. An example can be found in
+[`src/php/var/serialize.vitest.ts`](src/php/var/serialize.vitest.ts).
 
 ### Browser Playground
 

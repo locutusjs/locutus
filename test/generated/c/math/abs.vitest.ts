@@ -8,23 +8,18 @@ const abs = require('../../../../src/c/math/abs.js')
 
 describe('src/c/math/abs.js (tested in test/generated/c/math/abs.vitest.ts)', function () {
   it('should pass example 1', function () {
-    const expected = 4.2
-    const result = abs(4.2)
-    expect(result).toEqual(expected)
-  })
-  it('should pass example 2', function () {
-    const expected = 4.2
-    const result = abs(-4.2)
-    expect(result).toEqual(expected)
-  })
-  it('should pass example 3', function () {
     const expected = 5
     const result = abs(-5)
     expect(result).toEqual(expected)
   })
-  it('should pass example 4', function () {
+  it('should pass example 2', function () {
+    const expected = 42
+    const result = abs(-42)
+    expect(result).toEqual(expected)
+  })
+  it('should pass example 3', function () {
     const expected = 0
-    const result = abs('_argos')
+    const result = abs(0)
     expect(result).toEqual(expected)
   })
 })
