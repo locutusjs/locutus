@@ -8,7 +8,7 @@ module.exports = function create_function(args, code) {
 
   try {
     return Function.apply(null, args.split(',').concat(code))
-  } catch (e) {
+  } catch (_e) {
     return false
   }
 }

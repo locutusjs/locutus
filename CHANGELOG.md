@@ -26,18 +26,40 @@ Ideas that will be planned and find their way into a release at one point
 - [ ] Investigate if we can have one helper function to resolve
       `Function/'function'/'Class::function'/[$object, 'function']`, and use that in `is_callable`, `array_walk`,
       `call_user_func_array` etc.
-- [ ] Parse `require`s with AST just like Browserify does. Then we can add dependencies back to website
-- [ ] Port a few more tricky/inter-depending Go functions
-- [ ] Port a few more tricky/inter-depending Python functions
-- [ ] Port a few more tricky/inter-depending Ruby functions
+- [ ] Parse `require`s with ts-morph. Then we can add dependencies back to website
 - [ ] website: Render authors server-side
 - [ ] website: Fix the search functionality
+- [ ] Verification: verify examples against native runtimes (PHP/Go/Python/Ruby/C) with Docker
+      - [ ] Docker containers for PHP, Go, Python, Ruby, C
+      - [ ] JS-to-native example transpilation per language
+      - [ ] CI integration: fail if verification diverges
+      - [ ] Badge: "Verified against PHP 8.3"
+- [ ] Modernize, e.g.:
+      - [ ] Migrate Babel 6 → native ESM (Node 20+)
+      - [ ] Migrate Mocha → Vitest
+      - [ ] Dual CJS/ESM exports
+      - [ ] Drop Node < 20 support
+      - [ ] Publish as `locutus@3.0.0` with breaking changes
+      - [ ] ESLint/Prettier → Biome
+      - [ ] CJS → ESM
+      - [ ] Custom CLI releases → Changesets
+      - [ ] JS → TS for infra scripts (use Node v24 native type stripping to run)
+- [ ] TypeScript:
+      - [ ] Convert `src/_util/` to TypeScript
+      - [ ] Generate types from JSDoc in function files
+      - [ ] Per-function type exports
+      - [ ] Strict mode compatible. Node type stripping compatible
+- [ ] Expansion (port more functions to the different languages), we'll go from most feasible + sensible, to least :)
+- [ ] Docs/Website:
+      - [ ] Jekyll → Next.js 16 SSG
+      - [ ] Fix Search by function name or behavior
+      - [ ] "Rosetta Stone" view for cross-language comparison
 
 ## main
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.32...main).
 
-- [ ]
+ 
 
 ## v2.0.32
 

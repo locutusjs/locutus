@@ -13,7 +13,9 @@ module.exports = function bcmul(leftOperand, rightOperand, scale) {
   const _bc = require('../_helpers/_bc')
   const libbcmath = _bc()
 
-  let first, second, result
+  let first
+  let second
+  let result
 
   if (typeof scale === 'undefined') {
     scale = libbcmath.scale

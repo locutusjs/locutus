@@ -19,7 +19,7 @@ module.exports = function array_diff_assoc(arr1) {
       for (k in arr) {
         if (arr[k] === arr1[k1] && k === k1) {
           // If it reaches here, it was found in at least one array, so try next value
-          continue arr1keys // eslint-disable-line no-labels
+          continue arr1keys
         }
       }
       retArr[k1] = arr1[k1]

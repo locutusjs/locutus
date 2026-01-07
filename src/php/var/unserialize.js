@@ -8,7 +8,7 @@ function initCache() {
 
   cache.get = (index) => {
     if (index >= store.length) {
-      throw RangeError(`Can't resolve reference ${index + 1}`)
+      throw new RangeError(`Can't resolve reference ${index + 1}`)
     }
 
     return store[index]
@@ -22,7 +22,7 @@ function expectType(str, cache) {
   const type = (types.exec(str) || [])[0]
 
   if (!type) {
-    throw SyntaxError('Invalid input: ' + str)
+    throw new SyntaxError('Invalid input: ' + str)
   }
 
   switch (type) {
@@ -48,7 +48,7 @@ function expectType(str, cache) {
     case 'R':
       return expectReference(str, cache)
     default:
-      throw SyntaxError(`Invalid or unsupported data type: ${type}`)
+      throw new SyntaxError(`Invalid or unsupported data type: ${type}`)
   }
 }
 
@@ -57,7 +57,7 @@ function expectBool(str) {
   const [match, boolMatch] = reBool.exec(str) || []
 
   if (!boolMatch) {
-    throw SyntaxError('Invalid bool value, expected 0 or 1')
+    throw new SyntaxError('Invalid bool value, expected 0 or 1')
   }
 
   return [boolMatch === '1', match.length]
@@ -68,7 +68,7 @@ function expectInt(str) {
   const [match, intMatch] = reInt.exec(str) || []
 
   if (!intMatch) {
-    throw SyntaxError('Expected an integer value')
+    throw new SyntaxError('Expected an integer value')
   }
 
   return [parseInt(intMatch, 10), match.length]
@@ -79,7 +79,7 @@ function expectFloat(str) {
   const [match, floatMatch] = reFloat.exec(str) || []
 
   if (!floatMatch) {
-    throw SyntaxError('Expected a float value')
+    throw new SyntaxError('Expected a float value')
   }
 
   let floatValue
@@ -157,7 +157,7 @@ function expectString(str) {
   const [match, byteLenMatch] = reStrLength.exec(str) || []
 
   if (!match) {
-    throw SyntaxError('Expected a string value')
+    throw new SyntaxError('Expected a string value')
   }
 
   const len = parseInt(byteLenMatch, 10)
@@ -167,14 +167,14 @@ function expectString(str) {
   const [strMatch, bytes] = readBytes(str, len)
 
   if (bytes !== len) {
-    throw SyntaxError(`Expected string of ${len} bytes, but got ${bytes}`)
+    throw new SyntaxError(`Expected string of ${len} bytes, but got ${bytes}`)
   }
 
   str = str.substr(strMatch.length)
 
   // strict parsing, match closing "; chars
   if (!str.startsWith('";')) {
-    throw SyntaxError('Expected ";')
+    throw new SyntaxError('Expected ";')
   }
 
   return [strMatch, match.length + strMatch.length + 2] // skip last ";
@@ -185,7 +185,7 @@ function expectEscapedString(str) {
   const [match, strLenMatch] = reStrLength.exec(str) || []
 
   if (!match) {
-    throw SyntaxError('Expected an escaped string value')
+    throw new SyntaxError('Expected an escaped string value')
   }
 
   const len = parseInt(strLenMatch, 10)
@@ -195,14 +195,14 @@ function expectEscapedString(str) {
   const [strMatch, bytes, escapedChars] = readBytes(str, len, true)
 
   if (bytes !== len) {
-    throw SyntaxError(`Expected escaped string of ${len} bytes, but got ${bytes}`)
+    throw new SyntaxError(`Expected escaped string of ${len} bytes, but got ${bytes}`)
   }
 
   str = str.substr(strMatch.length + escapedChars * 2)
 
   // strict parsing, match closing "; chars
   if (!str.startsWith('";')) {
-    throw SyntaxError('Expected ";')
+    throw new SyntaxError('Expected ";')
   }
 
   return [strMatch, match.length + strMatch.length + 2] // skip last ";
@@ -211,16 +211,16 @@ function expectEscapedString(str) {
 function expectKeyOrIndex(str) {
   try {
     return expectString(str)
-  } catch (err) {}
+  } catch (_err) {}
 
   try {
     return expectEscapedString(str)
-  } catch (err) {}
+  } catch (_err) {}
 
   try {
     return expectInt(str)
-  } catch (err) {
-    throw SyntaxError('Expected key or index')
+  } catch (_err) {
+    throw new SyntaxError('Expected key or index')
   }
 }
 
@@ -232,11 +232,11 @@ function expectObject(str, cache) {
     reObjectLiteral.exec(str) || []
 
   if (!objectLiteralBeginMatch) {
-    throw SyntaxError('Invalid input')
+    throw new SyntaxError('Invalid input')
   }
 
   if (className !== 'stdClass') {
-    throw SyntaxError(`Unsupported object type: ${className}`)
+    throw new SyntaxError(`Unsupported object type: ${className}`)
   }
 
   let totalOffset = objectLiteralBeginMatch.length
@@ -261,7 +261,7 @@ function expectObject(str, cache) {
 
   // strict parsing, expect } after object literal
   if (str.charAt(0) !== '}') {
-    throw SyntaxError('Expected }')
+    throw new SyntaxError('Expected }')
   }
 
   return [obj, totalOffset + 1] // skip final }
@@ -273,7 +273,7 @@ function expectClass(str, cache) {
   // which is unsafe
   // or assume that constructor is defined in global scope
   // but this is too much limiting
-  throw Error('Not yet implemented')
+  throw new Error('Not yet implemented')
 }
 
 function expectReference(str, cache) {
@@ -281,7 +281,7 @@ function expectReference(str, cache) {
   const [match, refIndex] = reRef.exec(str) || []
 
   if (!match) {
-    throw SyntaxError('Expected reference value')
+    throw new SyntaxError('Expected reference value')
   }
 
   return [cache.get(parseInt(refIndex, 10) - 1), match.length]
@@ -292,7 +292,7 @@ function expectArray(str, cache) {
   const [arrayLiteralBeginMatch, arrayLengthMatch] = reArrayLength.exec(str) || []
 
   if (!arrayLengthMatch) {
-    throw SyntaxError('Expected array length annotation')
+    throw new SyntaxError('Expected array length annotation')
   }
 
   str = str.substr(arrayLiteralBeginMatch.length)
@@ -301,7 +301,7 @@ function expectArray(str, cache) {
 
   // strict parsing, expect closing } brace after array literal
   if (str.charAt(array[1]) !== '}') {
-    throw SyntaxError('Expected }')
+    throw new SyntaxError('Expected }')
   }
 
   return [array[0], arrayLiteralBeginMatch.length + array[1] + 1] // jump over }

@@ -9,16 +9,15 @@ module.exports = function array_splice(arr, offst, lgth, replacement) {
   //      note 1: after being supposedly deleted, so use of this function may produce
   //      note 1: unexpected results in IE if you later attempt to add back properties
   //      note 1: with the same keys that had been deleted
-  //   example 1: var $input = {4: "red", 'abc': "green", 2: "blue", 'dud': "yellow"}
+  //   example 1: var $input = ["red", "green", "blue", "yellow"]
   //   example 1: array_splice($input, 2)
-  //   returns 1: {4: "red", 'abc': "green"}
+  //   returns 1: ["blue", "yellow"]
   //   example 2: var $input = ["red", "green", "blue", "yellow"]
   //   example 2: array_splice($input, 3, 0, "purple")
   //   returns 2: []
   //   example 3: var $input = ["red", "green", "blue", "yellow"]
   //   example 3: array_splice($input, -1, 1, ["black", "maroon"])
   //   returns 3: ["yellow"]
-  //        test: skip-1
 
   const isInt = require('../var/is_int')
 

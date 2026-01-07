@@ -58,12 +58,13 @@ module.exports = function asort(inputArr, sortFlags) {
         return strnatcmp(a, b)
       }
       break
-    case 'SORT_LOCALE_STRING':
+    case 'SORT_LOCALE_STRING': {
       // compare items as strings, based on the current locale
       // (set with i18n_loc_set_default() as of PHP6)
-      var loc = i18nlgd()
+      const loc = i18nlgd()
       sorter = $locutus.php.locales[loc].sorting
       break
+    }
     case 'SORT_NUMERIC':
       // compare items numerically
       sorter = function (a, b) {

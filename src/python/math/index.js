@@ -1,0 +1,7 @@
+module.exports.factorial = require('./factorial')
+module.exports.gcd = require('./gcd')
+module.exports.isfinite = require('./isfinite')
+module.exports.isinf = require('./isinf')
+module.exports.isnan = require('./isnan')
+module.exports.pow = require('./pow')
+module.exports.sqrt = require('./sqrt')

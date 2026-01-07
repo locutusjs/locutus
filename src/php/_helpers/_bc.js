@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: LGPL-2.1-or-later
+// NOTE: This file is LGPL licensed, not MIT like the rest of locutus.
+// See LICENSE file for details.
+
 module.exports = function _bc() {
   //  discuss at: https://locutus.io/php/_helpers/_bc
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
@@ -7,7 +11,7 @@ module.exports = function _bc() {
   //   returns 1: '+'
 
   /**
-   * BC Math Library for Javascript
+   * BC Math Library for Javascript (LGPL-2.1)
    * Ported from the PHP5 bcmath extension source code,
    * which uses the Libbcmath package...
    *    Copyright (C) 1991, 1992, 1993, 1994, 1997 Free Software Foundation, Inc.
@@ -21,10 +25,9 @@ module.exports = function _bc() {
    *               Western Washington University
    *               Bellingham, WA 98226-9062
    *
-   * bcmath-js homepage:
+   * bcmath-js homepage: https://sourceforge.net/projects/bcmath-js/
    *
-   * This code is covered under the LGPL licence, and can be used however you want :)
-   * Be kind and share any decent code changes.
+   * This code is covered under the LGPL-2.1 license.
    */
 
   /**
@@ -52,7 +55,7 @@ module.exports = function _bc() {
    *               Bellingham, WA 98226-9062
    */
 
-  var Libbcmath = {
+  const Libbcmath = {
     PLUS: '+',
     MINUS: '-',
     BASE: 10,
@@ -70,7 +73,8 @@ module.exports = function _bc() {
       // this.n_text = null; // ?? Linked list for available list.
       this.n_value = null // array as value, where 1.23 = [1,2,3]
       this.toString = function () {
-        let r, tmp
+        let r
+        let tmp
         tmp = this.n_value.join('')
 
         // add minus sign (if applicable) then add the integer part
@@ -97,7 +101,9 @@ module.exports = function _bc() {
      * @return bc_num
      */
     bc_add: function (n1, n2, scaleMin) {
-      let sum, cmpRes, resScale
+      let sum
+      let cmpRes
+      let resScale
 
       if (n1.n_sign === n2.n_sign) {
         sum = Libbcmath._bc_do_add(n1, n2, scaleMin)
@@ -139,8 +145,10 @@ module.exports = function _bc() {
     },
 
     _one_mult: function (num, nPtr, size, digit, result, rPtr) {
-      let carry, value // int
-      let nptr, rptr // int pointers
+      let carry
+      let value // int
+      let nptr
+      let rptr // int pointers
       if (digit === 0) {
         Libbcmath.memset(result, 0, 0, size) // memset (result, 0, size);
       } else {
@@ -168,11 +176,24 @@ module.exports = function _bc() {
     bc_divide: function (n1, n2, scale) {
       // var quot // bc_num return
       let qval // bc_num
-      let num1, num2 // string
-      let ptr1, ptr2, n2ptr, qptr // int pointers
-      let scale1, val // int
-      let len1, len2, scale2, qdigits, extra, count // int
-      let qdig, qguess, borrow, carry // int
+      let num1
+      let num2 // string
+      let ptr1
+      let ptr2
+      let n2ptr
+      let qptr // int pointers
+      let scale1
+      let val // int
+      let len1
+      let len2
+      let scale2
+      let qdigits
+      let extra
+      let count // int
+      let qdig
+      let qguess
+      let borrow
+      let carry // int
       let mval // string
       let zero // char
       let norm // int
@@ -424,8 +445,10 @@ module.exports = function _bc() {
      */
     bc_multiply: function (n1, n2, scale) {
       let pval // bc_num
-      let len1, len2 // int
-      let fullScale, prodScale // int
+      let len1
+      let len2 // int
+      let fullScale
+      let prodScale // int
       // Initialize things.
       len1 = n1.n_len + n1.n_scale
       len2 = n2.n_len + n2.n_scale
@@ -450,7 +473,7 @@ module.exports = function _bc() {
     },
 
     new_sub_num: function (length, scale, value, ptr = 0) {
-      const temp = new Libbcmath.bc_num() // eslint-disable-line new-cap
+      const temp = new Libbcmath.bc_num()
       temp.n_sign = Libbcmath.PLUS
       temp.n_len = length
       temp.n_scale = scale
@@ -461,9 +484,14 @@ module.exports = function _bc() {
 
     _bc_simp_mul: function (n1, n1len, n2, n2len, fullScale) {
       let prod // bc_num
-      let n1ptr, n2ptr, pvptr // char *n1ptr, *n2ptr, *pvptr;
-      let n1end, n2end // char *n1end, *n2end;        // To the end of n1 and n2.
-      let indx, sum, prodlen // int indx, sum, prodlen;
+      let n1ptr
+      let n2ptr
+      let pvptr // char *n1ptr, *n2ptr, *pvptr;
+      let n1end
+      let n2end // char *n1end, *n2end;        // To the end of n1 and n2.
+      let indx
+      let sum
+      let prodlen // int indx, sum, prodlen;
       prodlen = n1len + n2len + 1
 
       prod = Libbcmath.bc_new_num(prodlen, 0)
@@ -496,8 +524,10 @@ module.exports = function _bc() {
        be larger that what is being subtracted.  Also, accum and val
        must have n_scale = 0.  (e.g. they must look like integers. *) */
     _bc_shift_addsub: function (accum, val, shift, sub) {
-      let accp, valp // signed char *accp, *valp;
-      let count, carry // int  count, carry;
+      let accp
+      let valp // signed char *accp, *valp;
+      let count
+      let carry // int  count, carry;
       count = val.n_len
       if (val.n_value[0] === 0) {
         count--
@@ -571,12 +601,22 @@ module.exports = function _bc() {
     */
     _bc_rec_mul: function (u, ulen, v, vlen, fullScale) {
       let prod // @return
-      let u0, u1, v0, v1 // bc_num
+      let u0
+      let u1
+      let v0
+      let v1 // bc_num
       // var u0len,
       // var v0len // int
-      let m1, m2, m3, d1, d2 // bc_num
-      let n, prodlen, m1zero // int
-      let d1len, d2len // int
+      let m1
+      let m2
+      let m3
+      let d1
+      let d2 // bc_num
+      let n
+      let prodlen
+      let m1zero // int
+      let d1len
+      let d2len // int
       // Base case?
       if (
         ulen + vlen < Libbcmath.MUL_BASE_DIGITS ||
@@ -677,7 +717,8 @@ module.exports = function _bc() {
      * @return -1, 0, 1 (see bc_compare)
      */
     _bc_do_compare: function (n1, n2, useSign, ignoreLast) {
-      let n1ptr, n2ptr // int
+      let n1ptr
+      let n2ptr // int
       let count // int
       // First, compare signs.
       if (useSign && n1.n_sign !== n2.n_sign) {
@@ -777,7 +818,8 @@ module.exports = function _bc() {
    is the minimum scale for the result. */
     bc_sub: function (n1, n2, scaleMin) {
       let diff // bc_num
-      let cmpRes, resScale // int
+      let cmpRes
+      let resScale // int
       if (n1.n_sign !== n2.n_sign) {
         diff = Libbcmath._bc_do_add(n1, n2, scaleMin)
         diff.n_sign = n1.n_sign
@@ -813,9 +855,14 @@ module.exports = function _bc() {
 
     _bc_do_add: function (n1, n2, scaleMin) {
       let sum // bc_num
-      let sumScale, sumDigits // int
-      let n1ptr, n2ptr, sumptr // int
-      let carry, n1bytes, n2bytes // int
+      let sumScale
+      let sumDigits // int
+      let n1ptr
+      let n2ptr
+      let sumptr // int
+      let carry
+      let n1bytes
+      let n2bytes // int
       let tmp // int
 
       // Prepare sum.
@@ -932,10 +979,16 @@ module.exports = function _bc() {
      */
     _bc_do_sub: function (n1, n2, scaleMin) {
       let diff // bc_num
-      let diffScale, diffLen // int
-      let minScale, minLen // int
-      let n1ptr, n2ptr, diffptr // int
-      let borrow, count, val // int
+      let diffScale
+      let diffLen // int
+      let minScale
+      let minLen // int
+      let n1ptr
+      let n2ptr
+      let diffptr // int
+      let borrow
+      let count
+      let val // int
       // Allocate temporary storage.
       diffLen = Libbcmath.MAX(n1.n_len, n2.n_len)
       diffScale = Libbcmath.MAX(n1.n_scale, n2.n_scale)
@@ -1026,7 +1079,7 @@ module.exports = function _bc() {
      */
     bc_new_num: function (length, scale) {
       let temp // bc_num
-      temp = new Libbcmath.bc_num() // eslint-disable-line new-cap
+      temp = new Libbcmath.bc_num()
       temp.n_sign = Libbcmath.PLUS
       temp.n_len = length
       temp.n_scale = scale
@@ -1036,14 +1089,14 @@ module.exports = function _bc() {
     },
 
     safe_emalloc: function (size, len, extra) {
-      return Array(size * len + extra)
+      return new Array(size * len + extra)
     },
 
     /**
      * Create a new number
      */
     bc_init_num: function () {
-      return new Libbcmath.bc_new_num(1, 0) // eslint-disable-line new-cap
+      return new Libbcmath.bc_new_num(1, 0)
     },
 
     _bc_rm_leading_zeros: function (num) {
@@ -1080,7 +1133,13 @@ module.exports = function _bc() {
     },
 
     bc_str2num: function (strIn, scale) {
-      let str, num, ptr, digits, strscale, zeroInt, nptr
+      let str
+      let num
+      let ptr
+      let digits
+      let strscale
+      let zeroInt
+      let nptr
       // remove any non-expected characters
       // Check for valid number and count digits.
 

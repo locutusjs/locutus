@@ -28,11 +28,11 @@ module.exports = function sprintf(format, ...args) {
     let precision = prec === '*' ? args[index++] : +prec
 
     if (param && !+param) {
-      throw Error('Param index must be greater than 0')
+      throw new Error('Param index must be greater than 0')
     }
 
     if (param && +param > args.length) {
-      throw Error('Too few arguments')
+      throw new Error('Too few arguments')
     }
 
     // compiling with default clang params, mixed positional and non-positional params
@@ -111,7 +111,7 @@ module.exports = function sprintf(format, ...args) {
       }
       case 'p':
       case 'n': {
-        throw Error(`'${modifier}' modifier not supported`)
+        throw new Error(`'${modifier}' modifier not supported`)
       }
       case 's': {
         return pad(String(arg).substr(0, precision), minWidth, padChar, leftJustify)
@@ -123,7 +123,7 @@ module.exports = function sprintf(format, ...args) {
       }
       case 'a':
       case 'A':
-        throw Error(`'${modifier}' modifier not yet implemented`)
+        throw new Error(`'${modifier}' modifier not yet implemented`)
       default:
         // for unknown modifiers, return the modifier char
         return modifier

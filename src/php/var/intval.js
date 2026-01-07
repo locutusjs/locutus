@@ -23,7 +23,8 @@ module.exports = function intval(mixedVar, base) {
   //   example 8: intval('010', 0)
   //   returns 8: 8
 
-  let tmp, match
+  let tmp
+  let match
 
   const type = typeof mixedVar
 

@@ -25,7 +25,12 @@ module.exports = function pack(format) {
   let argument = ''
   let i = 0
   let r = []
-  let instruction, quantifier, word, precisionBits, exponentBits, extraNullCount
+  let instruction
+  let quantifier
+  let word
+  let precisionBits
+  let exponentBits
+  let extraNullCount
 
   // vars used by float encoding
   let bias
@@ -260,7 +265,9 @@ module.exports = function pack(format) {
           for (k = bias + 1; floatPart > 0 && k; --floatPart) {
             bin[++k] = ((floatPart *= 2) >= 1) - 0
           }
-          for (k = -1; ++k < len && !bin[k]; ) {}
+          for (k = -1; ++k < len && !bin[k]; ) {
+            /* skip leading zeros */
+          }
 
           // @todo: Make this more readable:
           const key =
@@ -271,12 +278,18 @@ module.exports = function pack(format) {
 
           if (bin[key]) {
             if (!(rounded = bin[lastBit])) {
-              for (j = lastBit + 2; !rounded && j < len; rounded = bin[j++]) {}
+              for (j = lastBit + 2; !rounded && j < len; rounded = bin[j++]) {
+                /* find if any trailing bit is set */
+              }
             }
-            for (j = lastBit + 1; rounded && --j >= 0; (bin[j] = !bin[j] - 0) && (rounded = 0)) {}
+            for (j = lastBit + 1; rounded && --j >= 0; (bin[j] = !bin[j] - 0) && (rounded = 0)) {
+              /* propagate rounding carry */
+            }
           }
 
-          for (k = k - 2 < 0 ? -1 : k - 3; ++k < len && !bin[k]; ) {}
+          for (k = k - 2 < 0 ? -1 : k - 3; ++k < len && !bin[k]; ) {
+            /* skip leading zeros after rounding */
+          }
 
           if ((exp = bias + 1 - k) >= minExp && exp <= maxExp) {
             ++k

@@ -16,7 +16,7 @@ module.exports = function sha1(str) {
     const sha1sum = crypto.createHash('sha1')
     sha1sum.update(str)
     hash = sha1sum.digest('hex')
-  } catch (e) {
+  } catch (_e) {
     hash = undefined
   }
 
@@ -42,14 +42,19 @@ module.exports = function sha1(str) {
   }
 
   let blockstart
-  let i, j
+  let i
+  let j
   const W = new Array(80)
   let H0 = 0x67452301
   let H1 = 0xefcdab89
   let H2 = 0x98badcfe
   let H3 = 0x10325476
   let H4 = 0xc3d2e1f0
-  let A, B, C, D, E
+  let A
+  let B
+  let C
+  let D
+  let E
   let temp
 
   // utf8_encode

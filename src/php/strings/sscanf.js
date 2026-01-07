@@ -36,11 +36,12 @@ module.exports = function sscanf(str, format) {
     return _finish()
   }
 
-  var _finish = function () {
+  const _finish = function () {
     if (args.length === 2) {
       return retArr
     }
-    for (var i = 0; i < retArr.length; ++i) {
+    let i = 0
+    for (; i < retArr.length; ++i) {
       args[i + 2].value = retArr[i]
     }
     return i
@@ -66,10 +67,14 @@ module.exports = function sscanf(str, format) {
     throw new Error('Not enough arguments passed to sscanf')
   }
 
+  // These need to be in outer scope for _addNext closure
+  let width = 0
+  let assign = true
+
   // PROCESS
   for (let i = 0, j = 0; i < format.length; i++) {
-    var width = 0
-    var assign = true
+    width = 0
+    assign = true
 
     if (format.charAt(i) === '%') {
       if (format.charAt(i + 1) === '%') {
@@ -145,13 +150,14 @@ module.exports = function sscanf(str, format) {
             // and presented as a binary number
             // Not supported - couldn't distinguish from other integers
             break
-          case 'i':
+          case 'i': {
             // Integer with base detection (Equivalent of 'd', but base 0 instead of 10)
-            var pattern = /([+-])?(?:(?:0x([\da-fA-F]+))|(?:0([0-7]+))|(\d+))/
+            const pattern = /([+-])?(?:(?:0x([\da-fA-F]+))|(?:0([0-7]+))|(\d+))/
             j = _addNext(j, pattern, function (num, sign, hex, oct, dec) {
               return hex ? parseInt(num, 16) : oct ? parseInt(num, 8) : parseInt(num, 10)
             })
             break
+          }
           case 'n':
             // Number of characters processed so far
             retArr[digit !== undefined ? digit : retArr.length - 1] = j

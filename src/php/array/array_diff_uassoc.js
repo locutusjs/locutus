@@ -4,8 +4,7 @@ module.exports = function array_diff_uassoc(arr1) {
   //   example 1: var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
   //   example 1: var $array2 = {a: 'GREEN', B: 'brown', 0: 'yellow', 1: 'red'}
   //   example 1: array_diff_uassoc($array1, $array2, function (key1, key2) { return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)) })
-  //   returns 1: {b: 'brown', c: 'blue', 0: 'red'}
-  //        test: skip-1
+  //   returns 1: {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
 
   const retArr = {}
   const arglm1 = arguments.length - 1
@@ -30,7 +29,7 @@ module.exports = function array_diff_uassoc(arr1) {
       for (k in arr) {
         if (arr[k] === arr1[k1] && cb(k, k1) === 0) {
           // If it reaches here, it was found in at least one array, so try next value
-          continue arr1keys // eslint-disable-line no-labels
+          continue arr1keys
         }
       }
       retArr[k1] = arr1[k1]

@@ -34,7 +34,7 @@ module.exports = function array_walk_recursive(array, funcname, userdata) {
       } else {
         funcname(array[key], key)
       }
-    } catch (e) {
+    } catch (_e) {
       return false
     }
   }
