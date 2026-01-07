@@ -4,30 +4,47 @@
 
 import { execSync, spawnSync } from 'node:child_process'
 
+// Track which images have been pulled this session
+const pulledImages = new Set<string>()
+
 /**
  * Ensure Docker image is available and up-to-date
- * Always pulls to ensure we have the latest version
+ * Only pulls once per session - subsequent calls just verify image exists
  */
-export function ensureDockerImage(image: string): boolean {
-  console.log(`  Pulling ${image}...`)
+export function ensureDockerImage(image: string, options: { quiet?: boolean } = {}): boolean {
+  // Already pulled this session, skip
+  if (pulledImages.has(image)) {
+    return true
+  }
+
+  if (!options.quiet) {
+    console.log(`  Pulling ${image}...`)
+  }
+
   try {
     execSync(`docker pull ${image}`, { stdio: 'pipe' })
-    // Log the actual image digest and version for debugging
-    try {
-      const digest = execSync(`docker inspect ${image} --format '{{index .RepoDigests 0}}'`, {
-        encoding: 'utf8',
-        stdio: 'pipe',
-      }).trim()
-      console.log(`    Digest: ${digest}`)
-    } catch {
-      // Ignore
+    pulledImages.add(image)
+    // Log the actual image digest for debugging
+    if (!options.quiet) {
+      try {
+        const digest = execSync(`docker inspect ${image} --format '{{index .RepoDigests 0}}'`, {
+          encoding: 'utf8',
+          stdio: 'pipe',
+        }).trim()
+        console.log(`    Digest: ${digest}`)
+      } catch {
+        // Ignore
+      }
     }
     return true
   } catch {
     // Pull failed, check if we have a local copy as fallback
     try {
       execSync(`docker image inspect ${image}`, { stdio: 'pipe' })
-      console.log(`    (using cached image)`)
+      pulledImages.add(image)
+      if (!options.quiet) {
+        console.log(`    (using cached image)`)
+      }
       return true
     } catch {
       return false
