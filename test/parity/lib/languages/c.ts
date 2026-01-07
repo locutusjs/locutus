@@ -56,8 +56,6 @@ export const C_SKIP_LIST = new Set<string>([
   'frexp',
   // JS isspace handles strings, C only handles single char
   'isspace',
-  // atof output format differs (scientific notation vs decimal)
-  'atof',
 ])
 
 /**
