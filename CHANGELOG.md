@@ -39,7 +39,7 @@ Ideas that will be planned and find their way into a release at one point
       - [x] Badge: "Verified against PHP 8.3" (added to README, PR #501)
 - [ ] Modernize, e.g.:
       - [x] Migrate Babel 6 → TS (Node 22+ typestripping) - removed Babel, using `node --experimental-strip-types`
-      - [ ] Migrate Mocha → Vitest
+      - [x] Migrate Mocha → Vitest (PR #506)
       - [ ] Migrate custom `test/browser/app.js` and `yarn browser:watch`/browserify → Vitest with Playwright support, running a few generated test in a real browser
       - [x] Drop Node < 22 support (now requires Node >= 22)
       - [x] ESLint/Prettier → Biome (done in v2.0.33)
