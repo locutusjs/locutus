@@ -5,7 +5,8 @@ const fsPromises = fs.promises
 const async = require('async')
 const YAML = require('js-yaml')
 const debug = require('debug')('locutus:utils')
-const indentString = require('indent-string')
+const indentStringModule = require('indent-string')
+const indentString = indentStringModule.default || indentStringModule
 const _ = require('lodash')
 const esprima = require('esprima')
 
@@ -181,7 +182,7 @@ class Util {
 
     q.push(files)
 
-    q.drain = cb
+    q.drain(cb)
   }
 
   _reindexOne(params, cb) {
