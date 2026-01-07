@@ -12,7 +12,9 @@
       "!website",
       "!dist",
       "!node_modules",
-      "!.yarn"
+      "!.yarn",
+      "!src/php/_helpers/_bc.js",
+      "!src/php/bc"
     ]
   },
   "formatter": {

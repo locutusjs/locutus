@@ -29,7 +29,27 @@ const CACHE_DIR = join(ROOT, '.cache', 'verify')
 const require = createRequire(import.meta.url)
 const Util = require(join(ROOT, 'src/_util/util.js'))
 const util = new Util([])
-const CACHE_VERSION = 2
+const CACHE_VERSION = 4
+
+// Functions removed, deprecated, or unavailable in PHP 8.3 Docker image
+const PHP_REMOVED_FUNCTIONS = new Set([
+  // Removed in PHP 8.0
+  'convert_cyr_string',
+  'money_format',
+  // Removed in PHP 7.0
+  'split',
+  'spliti',
+  'ereg',
+  'eregi',
+  'ereg_replace',
+  'eregi_replace',
+  // Deprecated in PHP 8.2 (emit warnings that pollute output)
+  'utf8_encode',
+  'utf8_decode',
+  // PECL extensions not available in standard PHP Docker image
+  'xdiff_string_diff',
+  'xdiff_string_patch',
+])
 
 // Docker images for each language
 const DOCKER_IMAGES: Record<string, { image: string; cmd: (code: string) => string[]; mountRepo?: boolean }> = {
@@ -250,6 +270,36 @@ function ensureDockerImage(image: string): boolean {
   }
 }
 
+// Strip PHP warnings, notices, and deprecation messages from output
+// These appear before the actual result and shouldn't affect verification
+function stripPhpWarnings(output: string): string {
+  const lines = output.split('\n')
+  const cleanLines = lines.filter((line) => {
+    const trimmed = line.trim()
+    // Skip warning/notice/deprecated lines
+    if (trimmed.startsWith('Warning:')) {
+      return false
+    }
+    if (trimmed.startsWith('Notice:')) {
+      return false
+    }
+    if (trimmed.startsWith('Deprecated:')) {
+      return false
+    }
+    if (trimmed.startsWith('PHP Warning:')) {
+      return false
+    }
+    if (trimmed.startsWith('PHP Notice:')) {
+      return false
+    }
+    if (trimmed.startsWith('PHP Deprecated:')) {
+      return false
+    }
+    return true
+  })
+  return cleanLines.join('\n').trim()
+}
+
 // Run code in Docker container
 function runInDocker(language: string, code: string): { success: boolean; output: string; error?: string } {
   const config = DOCKER_IMAGES[language]
@@ -280,7 +330,9 @@ function runInDocker(language: string, code: string): { success: boolean; output
       }
     }
 
-    return { success: true, output: result.stdout.trim() }
+    // Strip PHP warnings from stdout for cleaner comparison
+    const cleanOutput = language === 'php' ? stripPhpWarnings(result.stdout) : result.stdout.trim()
+    return { success: true, output: cleanOutput }
   } catch (e) {
     return { success: false, output: '', error: String(e) }
   }
@@ -330,10 +382,17 @@ function evaluateExpected(expectedRaw: string): { success: boolean; result: stri
 
 function convertObjectLiteral(segment: string): string {
   let converted = segment
+  // Match object literals and convert to PHP arrays
   converted = converted.replace(/\{([\s\S]*?)\}/g, (_full, inner) => {
-    let body = inner
-    body = body.replace(/([,{]\s*)([A-Za-z_][\w]*)\s*:/g, "$1'$2' =>")
-    body = body.replace(/:/g, '=>')
+    let body = inner.trim()
+    // Quote unquoted object keys: key: value -> 'key' => value
+    // Handle keys at start of object or after comma
+    body = body.replace(/(?:^|,)\s*([A-Za-z_][\w]*)\s*:/g, (match, key) => {
+      const prefix = match.startsWith(',') ? ', ' : ''
+      return `${prefix}'${key}' =>`
+    })
+    // Convert remaining colons to arrows (for already quoted keys)
+    body = body.replace(/(['"])\s*:/g, '$1 =>')
     return `[${body}]`
   })
   return converted
@@ -374,15 +433,67 @@ const PHP_CONSTANTS = new Set([
 // JS globals that have static methods (should not be converted to $var['prop'])
 const JS_STATIC_CLASSES = new Set(['String', 'Array', 'Object', 'Number', 'Math', 'Date', 'JSON', 'RegExp', 'Boolean'])
 
+// Convert property access outside of string literals
 function convertPropertyAccess(line: string): string {
-  return line.replace(/\b([A-Za-z_][\w$]*)\.(\w+)\b/g, (_m, obj, prop) => {
-    // Don't convert JS static class method calls
-    if (JS_STATIC_CLASSES.has(obj)) {
-      return _m // Keep original
+  // Split into string and non-string segments
+  const segments: { text: string; isString: boolean }[] = []
+  let current = ''
+  let inString: string | null = null
+  let escaped = false
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i]
+
+    if (escaped) {
+      current += char
+      escaped = false
+      continue
     }
-    const varName = obj.startsWith('$') ? obj : `$${obj}`
-    return `${varName}['${prop}']`
-  })
+
+    if (char === '\\') {
+      current += char
+      escaped = true
+      continue
+    }
+
+    if (inString) {
+      current += char
+      if (char === inString) {
+        segments.push({ text: current, isString: true })
+        current = ''
+        inString = null
+      }
+    } else {
+      if (char === '"' || char === "'") {
+        if (current) {
+          segments.push({ text: current, isString: false })
+        }
+        current = char
+        inString = char
+      } else {
+        current += char
+      }
+    }
+  }
+  if (current) {
+    segments.push({ text: current, isString: !!inString })
+  }
+
+  // Only convert property access in non-string segments
+  return segments
+    .map((seg) => {
+      if (seg.isString) {
+        return seg.text
+      }
+      return seg.text.replace(/\b([A-Za-z_][\w$]*)\.(\w+)\b/g, (_m, obj, prop) => {
+        if (JS_STATIC_CLASSES.has(obj)) {
+          return _m
+        }
+        const varName = obj.startsWith('$') ? obj : `$${obj}`
+        return `${varName}['${prop}']`
+      })
+    })
+    .join('')
 }
 
 // Strip trailing JS comments (// ...) that are not inside strings
@@ -610,6 +721,22 @@ async function verifyFunction(func: FunctionInfo, useCache: boolean): Promise<Ve
         expected: expectedEval.success ? expectedEval.result : example.expectedRaw,
         jsResult: example.expectedRaw,
         nativeResult: 'Skipped (non-PHP verification not implemented)',
+      })
+    }
+    saveCache(func.path, { hash, results, timestamp: Date.now(), version: CACHE_VERSION })
+    return results
+  }
+
+  // Skip functions removed in PHP 8.0+
+  if (PHP_REMOVED_FUNCTIONS.has(func.name)) {
+    for (const example of parsed.examples) {
+      const expectedEval = evaluateExpected(example.expectedRaw)
+      results.push({
+        example: example.number,
+        passed: true,
+        expected: expectedEval.success ? expectedEval.result : example.expectedRaw,
+        jsResult: expectedEval.success ? expectedEval.result : example.expectedRaw,
+        nativeResult: 'Skipped (function removed in PHP 8.0+)',
       })
     }
     saveCache(func.path, { hash, results, timestamp: Date.now(), version: CACHE_VERSION })
