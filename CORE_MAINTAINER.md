@@ -19,7 +19,7 @@ Note that for any task, it's important to first get ample context. Search past i
 2. Use `gh` to check on pending PRs. First run `gh auth status` to understand what our GitHub identity is. Make sure all PRs have reviews by other people than our identity (fixable only when PRs are submitted by others), that PRs pass (fixable only if they were submitted by US), fix what can be fixed, then re-check next iteration. If all is green, merge. LLMs should refrain from commenting on PRs, but deep reviews on PRs by others are allowed.
 3. Triage issues. Confirm repro, decide scope, and say no when needed to protect project goals (see `## Vision`, `README.md`, `CHANGELOG.md`, and `website/source/about.md`). LLMs should refrain from commenting on Issues.
 4. To continuously modernize the project, revise the Backlog/Roadmap in `CHANGELOG.md`. Don't forget about the website, which lives in this repo and is deployed via GHA. Check off items and/or move them into releases as appropriate.
-5. Pick an issue to work on. It could come from the Backlog/Roadmap in `CHANGELOG.md`, a verified GitHub issue, a PR failure, unfinished business, or a security concern. Do what is most important and impactful first. First search what is already available, and what we can already re-use, even if it takes a little refactoring. Define what a successful outcome looks like and how you'll validate it (tests, browser checks, screenshots for design changes, or a working migration). This is imperative: no changes without validation. Anything that can't be validated should not be PR'ed or merged.
+5. Decide an issue to work on. It could come from the Backlog/Roadmap in `CHANGELOG.md`, a verified GitHub issue, a PR failure, unfinished business, or a security concern. Do what is most important and impactful first. First search what is already available, and what we can already re-use, even if it takes a little refactoring. Define what a successful outcome looks like and how you'll validate it (tests, browser checks, screenshots for design changes, or a working migration). This is imperative: no changes without validation. Anything that can't be validated should not be PR'ed or merged.
 6. **NEVER commit directly to `main`.** Always create a feature branch and open a PR:
    ```bash
    git checkout -b fix/descriptive-name  # or feat/, chore/, docs/
@@ -28,16 +28,18 @@ Note that for any task, it's important to first get ample context. Search past i
    gh pr create
    ```
    Exceptions: `CORE_MAINTAINER.md`, `CHANGELOG.md`, and `docs/prompts/LOG.md` can be pushed directly to main.
-7. After the change:
+7. Log in the/a Iteration what the plan is 
+8. Start implementing
+9. After the change:
     - Validate the work as planned (browser checks, tests, etc.).
     - Run `yarn check`.
     - If it was a migration, search for the old and remove it.
     - Update documentation/website as needed (`find . |grep -E '\.md$' |grep -Ev '(node_modules|icarus|_posts|\.claude)'`)
     - Run one last `yarn check`.
     - If there was any issue, go back to step 7.1.
-8. Release any recently merged PRs that are still unreleased, unless they only contain build tools, tests, docs fixes. We only release if there are new functions or changed functions, or changes to how people should use them.
-9. Log an iteration in `docs/prompts/LOG.md`.
-10. → Back to step 1
+10. Release any recently merged PRs that are still unreleased, unless they only contain build tools, tests, docs fixes. We only release if there are new functions or changed functions, or changes to how people should use them.
+11. Log an iteration in `docs/prompts/LOG.md`.
+12. → Back to step 1
 
 ## Quality Standards
 
