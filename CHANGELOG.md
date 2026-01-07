@@ -32,7 +32,7 @@ Ideas that will be planned and find their way into a release at one point
       - [x] PHP: 164 functions verified against PHP 8.3
       - [x] Go: 20 functions verified against Go 1.23
       - [x] Python: 15/17 (88%) - remaining: capwords (impl difference), printable (.length)
-      - [ ] Ruby: 17 functions available, verification not implemented
+      - [x] Ruby: 16/18 (89%) - remaining: sample (random), acos (example incompatible)
       - [ ] C: 15 functions available, verification not implemented
       - [x] Infrastructure: parallel execution, caching, modular architecture, per-language handlers, type-safe config
       - [x] CI integration: `parity verified:` header in function files, Zod validation, `yarn test:parity`

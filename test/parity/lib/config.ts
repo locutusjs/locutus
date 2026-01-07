@@ -43,6 +43,12 @@ export const PARITY_LANGUAGES: ParityLanguageConfig[] = [
     version: '1.23',
     dockerImage: 'golang:1.23',
   },
+  {
+    id: 'ruby',
+    displayName: 'Ruby',
+    version: '3.3',
+    dockerImage: 'ruby:3.3',
+  },
 ]
 
 /**

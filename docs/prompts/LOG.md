@@ -293,3 +293,27 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - All 924 tests pass (399 test files, 1 skipped)
 - Benefits: Modern ESM-native test runner, faster execution, better TypeScript support
 - Balance: Modernization (addresses long-standing tech debt item "Mocha → Vitest")
+
+### Iteration 24
+
+2026-01-07
+
+- **Area: Verification (Ruby)**
+- Added Ruby parity verification support:
+  - Created `test/parity/lib/languages/ruby.ts` handler
+  - 16/18 Ruby functions verified against `ruby:3.3` Docker image
+  - Skip list: `sample` (random), `acos` (example code incompatible)
+- Ruby nil ↔ JS undefined equivalence:
+  - Ruby's `nil` serializes to JSON `null`, but JS uses `undefined` for "no value"
+  - Added normalization: when expected is `undefined` and native returns `null`, treat as match
+  - Documented in website function template alongside PHP's `objectsAsArrays` caveat
+- Updated `test/parity/lib/config.ts` to include Ruby 3.3 as parity language
+- Added `parity verified: Ruby 3.3` headers to 16 verified functions
+- Total verified functions: 215 (164 PHP + 15 Python + 20 Go + 16 Ruby)
+- Balance review (iterations 11-24):
+  - Verification: 7 (12, 13, 14, 16, 18, 21, 24)
+  - Modernization: 4 (14, 19, 20, 23)
+  - TypeScript: 3 (15, 19, 21)
+  - Website: 2 (17, 22)
+  - Dependencies: 1 (11)
+  - Next: C verification, dependencies, or website
