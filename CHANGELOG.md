@@ -29,8 +29,9 @@ Ideas that will be planned and find their way into a release at one point
 - [ ] website: Render authors server-side
 - [ ] website: Fix the search functionality
 - [ ] Verification: verify examples against native runtimes (PHP/Go/Python/Ruby/C) with Docker
-      - [ ] Docker containers for PHP, Go, Python, Ruby, C
-      - [ ] JS-to-native example transpilation per language
+      - [x] `yarn verify` and `yarn verify:php` scripts added
+      - [x] Docker-based PHP verification working (41/91 string functions pass)
+      - [ ] Improve JS→PHP translation (many failures due to syntax issues)
       - [ ] CI integration: fail if verification diverges
       - [ ] Badge: "Verified against PHP 8.3"
 - [ ] Modernize, e.g.:
