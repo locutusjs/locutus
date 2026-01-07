@@ -76,6 +76,21 @@
         </p>
       <% } %>
 
+      <% if (page.language === 'ruby') { %>
+        <h2>Ruby nil and JavaScript undefined</h2>
+        <p>
+          Ruby's <code>nil</code> and JavaScript's <code>undefined</code> are semantically equivalent—both
+          represent "no value" or "nothing here". However, they serialize differently:
+          <code>nil</code> becomes <code>null</code> in JSON, while <code>undefined</code> is typically
+          omitted or becomes <code>undefined</code>.
+        </p>
+        <p>
+          Locutus Ruby functions return <code>undefined</code> (idiomatic JavaScript) where Ruby would
+          return <code>nil</code>. Our parity tests treat these as equivalent when verifying against
+          native Ruby.
+        </p>
+      <% } %>
+
       <% if (page.notes.length > 0) { %>
         <h2>Notes</h2>
         <ul>
