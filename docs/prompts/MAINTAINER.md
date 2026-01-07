@@ -25,3 +25,10 @@ A 10-step loop of the most important maintainer tasks. When you finish step 10, 
 10. Grow and sustain the contributor community
 11. At the start of everyrun, make sure the last iteration contains key learnings progress, and open a new iteration with Next steps in `docs/prompts/ITERATIONS.md`
 12. → Back to step 1
+
+## Iterations
+
+LLMs log key learnings, progress, next steps in one `### Iteration ${incrementing number}` for every invocation. An itertion can only contain bullet points. Every 10 iterations must summarizied and consolidated into one list of bullet points in e.g. `### Iterations 1-10`.
+
+### Iteration 1
+
