@@ -104,3 +104,14 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Added LGPL files to Biome ignore: `_bc.js`, `src/php/bc/` (reduces warnings from 25 to 13)
 - Followed batching workflow: accumulated changes on `feat/verification-to-66-percent` branch
 - Remaining 35 failures are mostly implementation differences (Unicode, pass-by-reference)
+
+### Iteration 9
+
+2026-01-07
+
+- Merged PR #488 (verification improvements)
+- Updated CHANGELOG backlog to reflect 56/91 verification progress
+- Updated 6 minor dependencies via PR #489: browserify, debug, js-yaml, mocha, remark-cli, rimraf
+- All tests pass (925 passing)
+- No release needed (internal tooling changes only)
+- PR #477 (external) still awaiting author response
