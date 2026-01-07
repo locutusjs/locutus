@@ -89,3 +89,18 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Object literals `{key: value}` were being interpreted as blocks, not expressions
 - PHP verification: 44/91 passing (was 43/91)
 - Remaining failures are actual implementation differences or removed PHP functions
+
+### Iteration 8
+
+2026-01-07
+
+- Batched verification improvements into single PR #488 (per user feedback to reduce PR noise)
+- PHP verification improved: 44/91 (48%) → 56/91 (61.5%) for string functions
+- Key fixes in `scripts/verify.ts`:
+  - Strip PHP warnings/notices/deprecated messages from output comparison
+  - Fix object literal translation: quote keys (`{key: val}` → `['key' => val]`)
+  - String-aware property access: don't convert `.com` inside string literals
+  - Added skip list: utf8_encode/decode (deprecated), xdiff_* (PECL)
+- Added LGPL files to Biome ignore: `_bc.js`, `src/php/bc/` (reduces warnings from 25 to 13)
+- Followed batching workflow: accumulated changes on `feat/verification-to-66-percent` branch
+- Remaining 35 failures are mostly implementation differences (Unicode, pass-by-reference)
