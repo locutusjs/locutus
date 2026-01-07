@@ -36,7 +36,7 @@ Note that for any task, it's important to first get ample context. Search past i
 
 - Zero tolerance: failing tests, Biome errors, unverified implementations (eventually).
 - Acceptable warnings: LGPL code (`src/php/_helpers/_bc.js`, `src/php/bc/*`) that can't be modified; intentional `eval`/`new Function` with `biome-ignore` + explanation; style warnings in complex algorithms.
-- Keep one plan: update existing docs (like `CHANGELOG.md` and `docs/prompts/MAINTAINER.md`) instead of creating new plans.
+- Keep one plan: update existing docs (like `CHANGELOG.md` and `CORE_MAINTAINER.md`) instead of creating new plans.
 
 ## Lessons Learned
 
