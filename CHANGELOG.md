@@ -57,9 +57,43 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.32...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.33...main).
 
- 
+## v2.0.33
+
+Released: 2026-01-07. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.32...v2.0.33).
+
+### Bug Fixes
+- [x] `quoted_printable_encode`: Fixed soft line break stripping logic
+- [x] `get_defined_functions`: Updated unrealistic test expectation
+- [x] `array_diff_uassoc`: Corrected expected return value to match PHP
+- [x] `array_merge_recursive`: Reimplemented to properly merge arrays recursively
+- [x] `array_splice`: Fixed test to use arrays instead of objects
+
+### Tooling Updates
+- [x] Updated Yarn from 4.0.1 to 4.12.0
+- [x] Added Knip for unused code detection
+- [x] Added TypeScript and @types/node as devDependencies
+- [x] Created initial TypeScript type definitions (index.d.ts)
+- [x] Added cross-language verification script (scripts/verify.ts)
+- [x] Migrated from ESLint/Prettier to Biome
+- [x] Introduced `yarn check` command
+
+### Documentation
+- [x] Added CORE_MAINTAINER.md maintenance workflow
+- [x] Documents LGPL licensing for bc functions (closes #473)
+- [x] Added CONTRIBUTING.md improvements
+
+### Expanded Coverage
+- [x] Go strings: +10 functions (HasPrefix, HasSuffix, ToLower, ToUpper, Trim, TrimSpace, Replace, Split, Join, Repeat)
+- [x] Go strconv: +6 functions (Atoi, Itoa, ParseBool, ParseInt, FormatBool, FormatInt)
+- [x] Python string: +5 functions (digits, hexdigits, octdigits, printable, whitespace)
+- [x] Python math: +7 functions (factorial, gcd, isfinite, isinf, isnan, pow, sqrt)
+- [x] Ruby String: +11 functions (capitalize, chomp, chop, downcase, upcase, include, length, reverse, start_with, end_with, strip)
+- [x] Ruby Array: +6 functions (compact, first, last, flatten, sample, uniq)
+- [x] C ctype.h: +8 functions (isalnum, isalpha, isdigit, islower, isupper, isspace, tolower, toupper)
+- [x] C stdlib.h: +2 functions (atoi, atof)
+- [x] C string.h: +5 functions (strlen, strcmp, strchr, strstr, strcat)
 
 ## v2.0.32
 
