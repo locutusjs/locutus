@@ -1,5 +1,6 @@
 module.exports = function Itoa(i) {
   //  discuss at: https://locutus.io/golang/strconv/Itoa
+  //    verified: 1.23
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Converts an integer to its decimal string representation.
   //   example 1: Itoa(42)

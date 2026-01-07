@@ -1,5 +1,6 @@
 module.exports = function ParseInt(s, base, bitSize) {
   //  discuss at: https://locutus.io/golang/strconv/ParseInt
+  //    verified: 1.23
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Interprets a string s in the given base (0, 2 to 36).
   //      note 1: Returns [value, null] on success, [0, error] on failure.

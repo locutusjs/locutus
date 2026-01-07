@@ -1,5 +1,6 @@
 module.exports = function Replace(s, old, newStr, n) {
   //  discuss at: https://locutus.io/golang/strings/Replace
+  //    verified: 1.23
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: n is the number of replacements. If n < 0, no limit on replacements.
   //   example 1: Replace('oink oink oink', 'k', 'ky', 2)

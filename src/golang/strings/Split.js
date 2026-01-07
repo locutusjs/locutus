@@ -1,5 +1,6 @@
 module.exports = function Split(s, sep) {
   //  discuss at: https://locutus.io/golang/strings/Split
+  //    verified: 1.23
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Returns an array of substrings split by sep
   //   example 1: Split('a,b,c', ',')

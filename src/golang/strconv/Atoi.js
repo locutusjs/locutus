@@ -1,5 +1,6 @@
 module.exports = function Atoi(s) {
   //  discuss at: https://locutus.io/golang/strconv/Atoi
+  //    verified: 1.23
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Parses a decimal string and returns the integer value.
   //      note 1: Returns [value, null] on success, [0, error] on failure.

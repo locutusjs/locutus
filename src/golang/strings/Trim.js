@@ -1,5 +1,6 @@
 module.exports = function Trim(s, cutset) {
   //  discuss at: https://locutus.io/golang/strings/Trim
+  //    verified: 1.23
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Unlike Go's strings.Trim which removes characters in cutset,
   //      note 1: this implementation removes exact matches of cutset from both ends

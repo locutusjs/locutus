@@ -1,5 +1,6 @@
 module.exports = function ParseBool(str) {
   //  discuss at: https://locutus.io/golang/strconv/ParseBool
+  //    verified: 1.23
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Parses a boolean string value.
   //      note 1: Returns [value, null] on success, [false, error] on failure.

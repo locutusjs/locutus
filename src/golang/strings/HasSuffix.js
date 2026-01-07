@@ -1,5 +1,6 @@
 module.exports = function HasSuffix(s, suffix) {
   //  discuss at: https://locutus.io/golang/strings/HasSuffix
+  //    verified: 1.23
   // original by: Kevin van Zonneveld (https://kvz.io)
   //   example 1: HasSuffix('Amigo', 'go')
   //   returns 1: true

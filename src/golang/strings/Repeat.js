@@ -1,5 +1,6 @@
 module.exports = function Repeat(s, count) {
   //  discuss at: https://locutus.io/golang/strings/Repeat
+  //    verified: 1.23
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Returns a new string consisting of count copies of s
   //   example 1: Repeat('na', 2)
