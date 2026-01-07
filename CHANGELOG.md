@@ -44,7 +44,7 @@ Ideas that will be planned and find their way into a release at one point
       - [ ] Publish as `locutus@3.0.0` with breaking changes
       - [x] ESLint/Prettier → Biome (done in v2.0.33)
       - [ ] CJS → ESM
-      - [ ] Custom CLI releases → Changesets
+      - [ ] Custom tagged releases (`CONTRIBUTING.md`) → Changesets bundled in PRs
       - [ ] JS → TS for infra scripts (use Node v24 native type stripping to run)
 - [ ] TypeScript:
       - [ ] Convert `src/_util/` to TypeScript
