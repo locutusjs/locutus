@@ -20,7 +20,14 @@ Note that for any task, it's important to first get ample context. Search past i
 3. Triage issues. Confirm repro, decide scope, and say no when needed to protect project goals (see `## Vision`, `README.md`, `CHANGELOG.md`, and `website/source/about.md`). LLMs should refrain from commenting on Issues.
 4. To continuously modernize the project, revise the Backlog/Roadmap in `CHANGELOG.md`. Don't forget about the website, which lives in this repo and is deployed via GHA. Check off items and/or move them into releases as appropriate.
 5. Pick an issue to work on. It could come from the Backlog/Roadmap in `CHANGELOG.md`, a verified GitHub issue, a PR failure, unfinished business, or a security concern. Do what is most important and impactful first. First search what is already available, and what we can already re-use, even if it takes a little refactoring. Define what a successful outcome looks like and how you'll validate it (tests, browser checks, screenshots for design changes, or a working migration). This is imperative: no changes without validation. Anything that can't be validated should not be PR'ed or merged.
-6. Start a new branch for any sufficiently new change. No committing to `main`.
+6. **NEVER commit directly to `main`.** Always create a feature branch and open a PR:
+   ```bash
+   git checkout -b fix/descriptive-name  # or feat/, chore/, docs/
+   # ... make changes ...
+   git push -u origin HEAD
+   gh pr create
+   ```
+   The only exception is updating `docs/prompts/LOG.md` which can be pushed directly.
 7. After the change:
     - Validate the work as planned (browser checks, tests, etc.).
     - Run `yarn check`.
@@ -40,6 +47,7 @@ Note that for any task, it's important to first get ample context. Search past i
 
 ## Lessons Learned
 
+- **Always use branches**: Never push to `main` directly. Create a branch, open a PR, let CI run, then merge. This applies even for "small fixes" - they often aren't.
 - Verify against reality: unit tests aren't enough; run actual PHP/Go/Python/Ruby/C when possible.
 - Don't duplicate infrastructure: check `src/_util/` before creating new tools.
 - Document in the right place: LICENSE, README, SPDX headers, not just issues.
