@@ -52,3 +52,14 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Root cause: node_modules had incorrect indent-string 5.0.0 (should be 2.1.0) - reinstall fixed
 - All 925 tests pass on Node v25.2.1
 - PR #477 (composer.json) was merged - now part of main
+
+### Iteration 13
+
+2026-01-07
+
+- Improved PHP string verification: 56/91 → 62/91 (68.1%) (PR #495, merged)
+  - Fixed chr.js: separated malformed examples, documented Unicode extension
+  - Fixed nl2br.js: use double quotes so PHP interprets `\n`
+  - Fixed ord.js: removed Unicode-specific example (not in PHP)
+  - Added `echo` to skip list (PHP language construct, not a function)
+  - Added JSON forward slash normalization (`\/` → `/`) to verify.ts
