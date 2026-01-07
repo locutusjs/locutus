@@ -44,6 +44,9 @@ jobs:
       - name: Test
         run: |
           corepack yarn test
+      - name: Verify against native runtimes
+        run: |
+          corepack yarn verify
       - name: Release
         if: startsWith(github.ref, 'refs/tags/')
         run: |
