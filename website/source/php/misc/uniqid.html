@@ -22,11 +22,12 @@ authors:
     - Kankrelune (https://www.webfaktory.info/)
 notes:
   - Uses an internal counter (in locutus global) to avoid collision
+parityVerified: null
 type: function
 layout: function
 title: PHP's uniqid in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.uniqid.php">PHP's uniqid</a> looks
   like.
 function: uniqid
@@ -67,7 +68,7 @@ alias:
     }
     if (reqWidth > seed.length) {
       // so short we pad
-      return Array(1 + (reqWidth - seed.length)).join('0') + seed
+      return new Array(1 + (reqWidth - seed.length)).join('0') + seed
     }
     return seed
   }

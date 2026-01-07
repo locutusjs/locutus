@@ -9,11 +9,13 @@ authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's split in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.split.php">PHP's split</a> looks
   like.
 function: split
@@ -27,10 +29,11 @@ alias:
   - /functions/split/
 ---
 {% codeblock lang:javascript %}module.exports = function split(delimiter, string) {
-  //  discuss at: https://locutus.io/php/split/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //   example 1: split(' ', 'Kevin van Zonneveld')
-  //   returns 1: ['Kevin', 'van', 'Zonneveld']
+  //      discuss at: https://locutus.io/php/split/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: split(' ', 'Kevin van Zonneveld')
+  //       returns 1: ['Kevin', 'van', 'Zonneveld']
 
   const explode = require('../strings/explode')
   return explode(delimiter, string)

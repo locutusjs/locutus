@@ -25,11 +25,13 @@ notes:
     directly
 
     in a steaming fashion for faster and more efficient hashing
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's md5 in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.md5.php">PHP's md5</a> looks like.
 function: md5
 category: strings
@@ -42,18 +44,19 @@ alias:
   - /functions/md5/
 ---
 {% codeblock lang:javascript %}module.exports = function md5(str) {
-  //  discuss at: https://locutus.io/php/md5/
-  // original by: Webtoolkit.info (https://www.webtoolkit.info/)
-  // improved by: Michael White (https://getsprink.com)
-  // improved by: Jack
-  // improved by: Kevin van Zonneveld (https://kvz.io)
-  //    input by: Brett Zamir (https://brett-zamir.me)
-  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
-  //      note 1: Keep in mind that in accordance with PHP, the whole string is buffered and then
-  //      note 1: hashed. If available, we'd recommend using Node's native crypto modules directly
-  //      note 1: in a steaming fashion for faster and more efficient hashing
-  //   example 1: md5('Kevin van Zonneveld')
-  //   returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'
+  //      discuss at: https://locutus.io/php/md5/
+  // parity verified: PHP 8.3
+  //     original by: Webtoolkit.info (https://www.webtoolkit.info/)
+  //     improved by: Michael White (https://getsprink.com)
+  //     improved by: Jack
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Keep in mind that in accordance with PHP, the whole string is buffered and then
+  //          note 1: hashed. If available, we'd recommend using Node's native crypto modules directly
+  //          note 1: in a steaming fashion for faster and more efficient hashing
+  //       example 1: md5('Kevin van Zonneveld')
+  //       returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'
 
   let hash
   try {
@@ -61,7 +64,7 @@ alias:
     const md5sum = crypto.createHash('md5')
     md5sum.update(str)
     hash = md5sum.digest('hex')
-  } catch (e) {
+  } catch (_e) {
     hash = undefined
   }
 
@@ -77,7 +80,11 @@ alias:
   }
 
   const _addUnsigned = function (lX, lY) {
-    let lX4, lY4, lX8, lY8, lResult
+    let lX4
+    let lY4
+    let lX8
+    let lY8
+    let lResult
     lX8 = lX & 0x80000000
     lY8 = lY & 0x80000000
     lX4 = lX & 0x40000000

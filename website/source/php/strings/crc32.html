@@ -11,11 +11,13 @@ authors:
   improved by:
     - T0bsn
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's crc32 in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.crc32.php">PHP's crc32</a> looks
   like.
 function: crc32
@@ -29,11 +31,12 @@ alias:
   - /functions/crc32/
 ---
 {% codeblock lang:javascript %}module.exports = function crc32(str) {
-  //  discuss at: https://locutus.io/php/crc32/
-  // original by: Webtoolkit.info (https://www.webtoolkit.info/)
-  // improved by: T0bsn
-  //   example 1: crc32('Kevin van Zonneveld')
-  //   returns 1: 1249991249
+  //      discuss at: https://locutus.io/php/crc32/
+  // parity verified: PHP 8.3
+  //     original by: Webtoolkit.info (https://www.webtoolkit.info/)
+  //     improved by: T0bsn
+  //       example 1: crc32('Kevin van Zonneveld')
+  //       returns 1: 1249991249
 
   const utf8Encode = require('../xml/utf8_encode')
   str = utf8Encode(str)

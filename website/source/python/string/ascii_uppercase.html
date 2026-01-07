@@ -9,11 +9,13 @@ authors:
   original by:
     - Yury Shapkarin (https://shapkarin.me)
 notes: []
+parityVerified:
+  - Python 3.12
 type: function
 layout: function
 title: Python's string.ascii_uppercase in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://docs.python.org/3/library/string.html#string.ascii_uppercase">Python's
   string.ascii_uppercase</a> looks like.
 function: ascii_uppercase
@@ -26,14 +28,15 @@ alias:
   - /python/ascii_uppercase/
 ---
 {% codeblock lang:javascript %}module.exports = function ascii_uppercase() {
-  //   original by: Yury Shapkarin (https://shapkarin.me)
-  //   example 1: ascii_uppercase()
-  //   returns 1: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  // parity verified: Python 3.12
+  //     original by: Yury Shapkarin (https://shapkarin.me)
+  //       example 1: ascii_uppercase()
+  //       returns 1: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
   const length = 26
   let i = 65
 
-  return [...Array(length)].reduce(function (accumulator) {
+  return [...new Array(length)].reduce(function (accumulator) {
     return accumulator + String.fromCharCode(i++)
   }, '')
 }

@@ -28,11 +28,13 @@ authors:
   bugfixed by:
     - Onno Marsman (https://twitter.com/onnomarsman)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's strnatcmp in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.strnatcmp.php">PHP's strnatcmp</a>
   looks like.
 function: strnatcmp
@@ -47,6 +49,7 @@ alias:
 ---
 {% codeblock lang:javascript %}module.exports = function strnatcmp(a, b) {
   //       discuss at: https://locutus.io/php/strnatcmp/
+  //  parity verified: PHP 8.3
   //      original by: Martijn Wieringa
   //      improved by: Michael White (https://getsprink.com)
   //      improved by: Jack
@@ -92,8 +95,12 @@ alias:
 
   while (i < a.length && j < b.length) {
     // skip consecutive whitespace
-    while (whitespace.test(a.charAt(i))) i++
-    while (whitespace.test(b.charAt(j))) j++
+    while (whitespace.test(a.charAt(i))) {
+      i++
+    }
+    while (whitespace.test(b.charAt(j))) {
+      j++
+    }
 
     let ac = a.charAt(i)
     let bc = b.charAt(j)

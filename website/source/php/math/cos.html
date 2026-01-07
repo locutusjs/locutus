@@ -9,11 +9,13 @@ authors:
   original by:
     - Onno Marsman (https://twitter.com/onnomarsman)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's cos in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.cos.php">PHP's cos</a> looks like.
 function: cos
 category: math
@@ -26,10 +28,11 @@ alias:
   - /functions/cos/
 ---
 {% codeblock lang:javascript %}module.exports = function cos(arg) {
-  //  discuss at: https://locutus.io/php/cos/
-  // original by: Onno Marsman (https://twitter.com/onnomarsman)
-  //   example 1: Math.ceil(cos(8723321.4) * 10000000)
-  //   returns 1: -1812718
+  //      discuss at: https://locutus.io/php/cos/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: Math.ceil(cos(8723321.4) * 10000000)
+  //       returns 1: -1812718
 
   return Math.cos(arg)
 }

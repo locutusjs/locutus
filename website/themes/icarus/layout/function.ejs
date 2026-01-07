@@ -7,6 +7,15 @@
   <div class="article-inner">
     <header class="article-header">
       <h1 class="article-title"><%= page.title %></h1>
+      <% if (page.parityVerified && page.parityVerified.length > 0) { %>
+        <div style="margin-top: 8px;">
+          <% page.parityVerified.forEach(function(verified) { %>
+            <span style="display: inline-block; background-color: #4c1; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-right: 6px;">
+              ✓ Verified: <%= verified %>
+            </span>
+          <% }) %>
+        </div>
+      <% } %>
     </header>
 
     <div class="article-entry">

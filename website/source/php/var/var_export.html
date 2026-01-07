@@ -33,11 +33,12 @@ authors:
     - Brian Tafoya (https://www.premasolutions.com/)
     - Hans Henrik (https://hanshenrik.tk/)
 notes: []
+parityVerified: null
 type: function
 layout: function
 title: PHP's var_export in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.var-export.php">PHP's var_export</a>
   looks like.
 function: var_export
@@ -179,7 +180,7 @@ alias:
     retstr =
       typeof mixedExpression !== 'string'
         ? mixedExpression
-        : "'" + mixedExpression.replace(/(["'])/g, '\\$1').replace(/\0/g, '\\0') + "'"
+        : "'" + mixedExpression.replace(/([\\'])/g, '\\$1').replace(/\0/g, '\\0') + "'"
   }
 
   if (!boolReturn) {

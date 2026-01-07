@@ -9,11 +9,13 @@ authors:
   original by:
     - Onno Marsman (https://twitter.com/onnomarsman)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's ceil in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.ceil.php">PHP's ceil</a> looks like.
 function: ceil
 category: math
@@ -26,10 +28,11 @@ alias:
   - /functions/ceil/
 ---
 {% codeblock lang:javascript %}module.exports = function ceil(value) {
-  //  discuss at: https://locutus.io/php/ceil/
-  // original by: Onno Marsman (https://twitter.com/onnomarsman)
-  //   example 1: ceil(8723321.4)
-  //   returns 1: 8723322
+  //      discuss at: https://locutus.io/php/ceil/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: ceil(8723321.4)
+  //       returns 1: 8723322
 
   return Math.ceil(value)
 }

@@ -11,11 +11,13 @@ authors:
   original by:
     - Philippe Baumann
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's hexdec in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.hexdec.php">PHP's hexdec</a> looks
   like.
 function: hexdec
@@ -29,12 +31,13 @@ alias:
   - /functions/hexdec/
 ---
 {% codeblock lang:javascript %}module.exports = function hexdec(hexString) {
-  //  discuss at: https://locutus.io/php/hexdec/
-  // original by: Philippe Baumann
-  //   example 1: hexdec('that')
-  //   returns 1: 10
-  //   example 2: hexdec('a0')
-  //   returns 2: 160
+  //      discuss at: https://locutus.io/php/hexdec/
+  // parity verified: PHP 8.3
+  //     original by: Philippe Baumann
+  //       example 1: hexdec('that')
+  //       returns 1: 10
+  //       example 2: hexdec('a0')
+  //       returns 2: 160
 
   hexString = (hexString + '').replace(/[^a-f0-9]/gi, '')
   return parseInt(hexString, 16)

@@ -248,3 +248,23 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - TypeScript: 15, 19, 21
   - Critical fixes: 20
   - Next iteration should focus on: website, dependencies, or non-verification modernization
+
+### Iteration 22
+
+2026-01-07
+
+- **Area: Website (badges on function pages)**
+- Added verification badges to individual function pages on the website:
+  - Updated `src/_util/util.ts` to include `parityVerified` field in website front matter
+  - Updated `website/themes/icarus/layout/function.ejs` to display green badges
+  - Badge shows "✓ Verified: PHP 8.3" / "Python 3.12" / "Go 1.23" below title
+  - Non-verified functions show no badge (`parityVerified: null`)
+- Regenerated all website source files with `yarn injectweb`
+- Verified changes across all three languages:
+  - PHP: `trim.html` shows `parityVerified: PHP 8.3`
+  - Python: `factorial.html` shows `parityVerified: Python 3.12`
+  - Go: `HasPrefix.html` shows `parityVerified: Go 1.23`
+  - Ruby: `strip.html` shows `parityVerified: null` (not yet verified)
+- All 923 tests pass, no new lint errors
+- Balance: Website improvement (addresses backlog item "Function pages badges")
+- Updated CHANGELOG.md backlog: Ruby/C verification entries now show function counts

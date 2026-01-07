@@ -16,11 +16,13 @@ authors:
     - Riddler (https://www.frontierwebdev.com/)
 notes:
   - 'Uses global: locutus to store the array pointer'
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's key in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.key.php">PHP's key</a> looks like.
 function: key
 category: array
@@ -33,14 +35,15 @@ alias:
   - /functions/key/
 ---
 {% codeblock lang:javascript %}module.exports = function key(arr) {
-  //  discuss at: https://locutus.io/php/key/
-  // original by: Brett Zamir (https://brett-zamir.me)
-  //    input by: Riddler (https://www.frontierwebdev.com/)
-  // bugfixed by: Brett Zamir (https://brett-zamir.me)
-  //      note 1: Uses global: locutus to store the array pointer
-  //   example 1: var $array = {fruit1: 'apple', 'fruit2': 'orange'}
-  //   example 1: key($array)
-  //   returns 1: 'fruit1'
+  //      discuss at: https://locutus.io/php/key/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //        input by: Riddler (https://www.frontierwebdev.com/)
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: Uses global: locutus to store the array pointer
+  //       example 1: var $array = {fruit1: 'apple', 'fruit2': 'orange'}
+  //       example 1: key($array)
+  //       returns 1: 'fruit1'
 
   const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}

@@ -13,11 +13,12 @@ authors:
     - Legaev Andrey
     - Brett Zamir (https://brett-zamir.me)
 notes: []
+parityVerified: null
 type: function
 layout: function
 title: PHP's function_exists in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.function-exists.php">PHP's
   function_exists</a> looks like.
 function: function_exists
@@ -38,7 +39,6 @@ alias:
   // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: function_exists('isFinite')
   //   returns 1: true
-  //        test: skip-1
 
   const $global = typeof window !== 'undefined' ? window : global
 

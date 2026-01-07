@@ -40,11 +40,12 @@ notes:
     The eval input is however checked to only allow valid function names,
     So it should not be unsafer than uses without eval (seeing as you can)
     already pass any function to be executed here.
+parityVerified: null
 type: function
 layout: function
 title: PHP's is_callable in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.is-callable.php">PHP's
   is_callable</a> looks like.
 function: is_callable
@@ -106,8 +107,8 @@ alias:
     return name[1]
   }
 
-  // eslint-disable-next-line no-useless-escape
-  if (/(^class|\(this\,)/.test(mixedVar.toString())) {
+  // biome-ignore lint: escape needed
+  if (/(^class|\(this,)/.test(mixedVar.toString())) {
     return false
   }
 
@@ -137,7 +138,7 @@ alias:
   }
 
   // validFunctionName avoids exploits
-  // eslint-disable-next-line no-eval
+  // biome-ignore lint/security/noGlobalEval: needed for PHP port
   if (validFunctionName && typeof eval(method) === 'function') {
     if (callableName) {
       $global[callableName] = name

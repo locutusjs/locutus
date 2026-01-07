@@ -9,11 +9,13 @@ authors:
   original by:
     - Onno Marsman (https://twitter.com/onnomarsman)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's floor in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.floor.php">PHP's floor</a> looks
   like.
 function: floor
@@ -27,10 +29,11 @@ alias:
   - /functions/floor/
 ---
 {% codeblock lang:javascript %}module.exports = function floor(value) {
-  //  discuss at: https://locutus.io/php/floor/
-  // original by: Onno Marsman (https://twitter.com/onnomarsman)
-  //   example 1: floor(8723321.4)
-  //   returns 1: 8723321
+  //      discuss at: https://locutus.io/php/floor/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: floor(8723321.4)
+  //       returns 1: 8723321
 
   return Math.floor(value)
 }

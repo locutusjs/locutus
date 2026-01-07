@@ -9,11 +9,13 @@ authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's explode in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.explode.php">PHP's explode</a> looks
   like.
 function: explode
@@ -27,10 +29,11 @@ alias:
   - /functions/explode/
 ---
 {% codeblock lang:javascript %}module.exports = function explode(delimiter, string, limit) {
-  //  discuss at: https://locutus.io/php/explode/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //   example 1: explode(' ', 'Kevin van Zonneveld')
-  //   returns 1: [ 'Kevin', 'van', 'Zonneveld' ]
+  //      discuss at: https://locutus.io/php/explode/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: explode(' ', 'Kevin van Zonneveld')
+  //       returns 1: [ 'Kevin', 'van', 'Zonneveld' ]
 
   if (arguments.length < 2 || typeof delimiter === 'undefined' || typeof string === 'undefined') {
     return null
@@ -58,10 +61,14 @@ alias:
 
   const s = string.split(delimiter)
 
-  if (typeof limit === 'undefined') return s
+  if (typeof limit === 'undefined') {
+    return s
+  }
 
   // Support for limit
-  if (limit === 0) limit = 1
+  if (limit === 0) {
+    limit = 1
+  }
 
   // Positive limit
   if (limit > 0) {

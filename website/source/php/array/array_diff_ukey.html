@@ -15,11 +15,12 @@ authors:
   original by:
     - Brett Zamir (https://brett-zamir.me)
 notes: []
+parityVerified: null
 type: function
 layout: function
 title: PHP's array_diff_ukey in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.array-diff-ukey.php">PHP's
   array_diff_ukey</a> looks like.
 function: array_diff_ukey
@@ -64,7 +65,7 @@ alias:
       for (k in arr) {
         if (cb(k, k1) === 0) {
           // If it reaches here, it was found in at least one array, so try next value
-          continue arr1keys // eslint-disable-line no-labels
+          continue arr1keys
         }
       }
       retArr[k1] = arr1[k1]

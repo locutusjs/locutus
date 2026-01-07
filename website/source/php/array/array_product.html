@@ -9,11 +9,13 @@ authors:
   original by:
     - Waldo Malqui Silva (https://waldo.malqui.info)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's array_product in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.array-product.php">PHP's
   array_product</a> looks like.
 function: array_product
@@ -27,10 +29,11 @@ alias:
   - /functions/array_product/
 ---
 {% codeblock lang:javascript %}module.exports = function array_product(input) {
-  //  discuss at: https://locutus.io/php/array_product/
-  // original by: Waldo Malqui Silva (https://waldo.malqui.info)
-  //   example 1: array_product([ 2, 4, 6, 8 ])
-  //   returns 1: 384
+  //      discuss at: https://locutus.io/php/array_product/
+  // parity verified: PHP 8.3
+  //     original by: Waldo Malqui Silva (https://waldo.malqui.info)
+  //       example 1: array_product([ 2, 4, 6, 8 ])
+  //       returns 1: 384
 
   let idx = 0
   let product = 1

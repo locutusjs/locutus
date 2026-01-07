@@ -11,11 +11,13 @@ authors:
   improved by:
     - Onno Marsman (https://twitter.com/onnomarsman)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's strtoupper in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.strtoupper.php">PHP's strtoupper</a>
   looks like.
 function: strtoupper
@@ -29,11 +31,12 @@ alias:
   - /functions/strtoupper/
 ---
 {% codeblock lang:javascript %}module.exports = function strtoupper(str) {
-  //  discuss at: https://locutus.io/php/strtoupper/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: Onno Marsman (https://twitter.com/onnomarsman)
-  //   example 1: strtoupper('Kevin van Zonneveld')
-  //   returns 1: 'KEVIN VAN ZONNEVELD'
+  //      discuss at: https://locutus.io/php/strtoupper/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: strtoupper('Kevin van Zonneveld')
+  //       returns 1: 'KEVIN VAN ZONNEVELD'
 
   return (str + '').toUpperCase()
 }

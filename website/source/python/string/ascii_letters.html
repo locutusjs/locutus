@@ -9,11 +9,13 @@ authors:
   original by:
     - Yury Shapkarin (https://shapkarin.me)
 notes: []
+parityVerified:
+  - Python 3.12
 type: function
 layout: function
 title: Python's string.ascii_letters in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://docs.python.org/3/library/string.html#string.ascii_letters">Python's
   string.ascii_letters</a> looks like.
 function: ascii_letters
@@ -26,14 +28,15 @@ alias:
   - /python/ascii_letters/
 ---
 {% codeblock lang:javascript %}module.exports = function ascii_letters() {
-  //   original by: Yury Shapkarin (https://shapkarin.me)
-  //   example 1: ascii_letters()
-  //   returns 1: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  // parity verified: Python 3.12
+  //     original by: Yury Shapkarin (https://shapkarin.me)
+  //       example 1: ascii_letters()
+  //       returns 1: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
   const length = 26
   let i = 65
 
-  return [...Array(length + 6 + length)]
+  return [...new Array(length + 6 + length)]
     .reduce(function (accumulator) {
       return accumulator + String.fromCharCode(i++)
     }, '')

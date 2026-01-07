@@ -31,11 +31,12 @@ authors:
   revised by:
     - Jonas Raoni Soares Silva (https://www.jsfromhell.com)
 notes: []
+parityVerified: null
 type: function
 layout: function
 title: PHP's wordwrap in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.wordwrap.php">PHP's wordwrap</a>
   looks like.
 function: wordwrap
@@ -69,7 +70,9 @@ alias:
   strBreak = arguments.length >= 3 ? '' + strBreak : '\n'
   cut = arguments.length >= 4 ? !!cut : false
 
-  let i, j, line
+  let i
+  let j
+  let line
 
   str += ''
 

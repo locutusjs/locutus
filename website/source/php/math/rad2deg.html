@@ -11,11 +11,13 @@ authors:
   improved by:
     - Brett Zamir (https://brett-zamir.me)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's rad2deg in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.rad2deg.php">PHP's rad2deg</a> looks
   like.
 function: rad2deg
@@ -29,11 +31,12 @@ alias:
   - /functions/rad2deg/
 ---
 {% codeblock lang:javascript %}module.exports = function rad2deg(angle) {
-  //  discuss at: https://locutus.io/php/rad2deg/
-  // original by: Enrique Gonzalez
-  // improved by: Brett Zamir (https://brett-zamir.me)
-  //   example 1: rad2deg(3.141592653589793)
-  //   returns 1: 180
+  //      discuss at: https://locutus.io/php/rad2deg/
+  // parity verified: PHP 8.3
+  //     original by: Enrique Gonzalez
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: rad2deg(3.141592653589793)
+  //       returns 1: 180
 
   return angle * 57.29577951308232 // angle / Math.PI * 180
 }

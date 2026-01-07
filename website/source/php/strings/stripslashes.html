@@ -17,17 +17,20 @@ authors:
   reimplemented by:
     - Brett Zamir (https://brett-zamir.me)
   bugfixed by:
+    - Mick@el
     - Onno Marsman (https://twitter.com/onnomarsman)
     - Brett Zamir (https://brett-zamir.me)
   input by:
     - Rick Waldron
     - Brant Messenger (https://www.brantmessenger.com/)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's stripslashes in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.stripslashes.php">PHP's
   stripslashes</a> looks like.
 function: stripslashes
@@ -42,11 +45,12 @@ alias:
 ---
 {% codeblock lang:javascript %}module.exports = function stripslashes(str) {
   //       discuss at: https://locutus.io/php/stripslashes/
+  //  parity verified: PHP 8.3
   //      original by: Kevin van Zonneveld (https://kvz.io)
   //      improved by: Ates Goral (https://magnetiq.com)
   //      improved by: marrtins
   //      improved by: rezna
-  //         fixed by: Mick@el
+  //      bugfixed by: Mick@el
   //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //      bugfixed by: Brett Zamir (https://brett-zamir.me)
   //         input by: Rick Waldron

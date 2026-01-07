@@ -33,11 +33,12 @@ notes:
     behavior by default if IE ever does allow it; only gives shallow copy since
 
     is by reference in PHP anyways
+parityVerified: null
 type: function
 layout: function
 title: PHP's usort in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.usort.php">PHP's usort</a> looks
   like.
 function: usort
@@ -96,7 +97,7 @@ alias:
   }
   try {
     valArr.sort(sorter)
-  } catch (e) {
+  } catch (_e) {
     return false
   }
   for (i = 0; i < valArr.length; i++) {

@@ -14,11 +14,13 @@ authors:
   bugfixed by:
     - Daniel Esteban
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's strpos in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.strpos.php">PHP's strpos</a> looks
   like.
 function: strpos
@@ -32,13 +34,14 @@ alias:
   - /functions/strpos/
 ---
 {% codeblock lang:javascript %}module.exports = function strpos(haystack, needle, offset) {
-  //  discuss at: https://locutus.io/php/strpos/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: Onno Marsman (https://twitter.com/onnomarsman)
-  // improved by: Brett Zamir (https://brett-zamir.me)
-  // bugfixed by: Daniel Esteban
-  //   example 1: strpos('Kevin van Zonneveld', 'e', 5)
-  //   returns 1: 14
+  //      discuss at: https://locutus.io/php/strpos/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //     bugfixed by: Daniel Esteban
+  //       example 1: strpos('Kevin van Zonneveld', 'e', 5)
+  //       returns 1: 14
 
   const i = (haystack + '').indexOf(needle, offset || 0)
   return i === -1 ? false : i

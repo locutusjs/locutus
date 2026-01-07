@@ -15,11 +15,12 @@ authors:
   original by:
     - Brett Zamir (https://brett-zamir.me)
 notes: []
+parityVerified: null
 type: function
 layout: function
 title: PHP's array_intersect_ukey in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.array-intersect-ukey.php">PHP's
   array_intersect_ukey</a> looks like.
 function: array_intersect_ukey
@@ -75,11 +76,11 @@ alias:
           }
           // If the innermost loop always leads at least once to an equal value,
           // continue the loop until done
-          continue arrs // eslint-disable-line no-labels
+          continue arrs
         }
       }
       // If it reaches here, it wasn't found in at least one array, so try next value
-      continue arr1keys // eslint-disable-line no-labels
+      continue arr1keys
     }
   }
 

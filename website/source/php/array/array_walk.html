@@ -18,11 +18,12 @@ authors:
     - David
 notes:
   - Only works with user-defined functions, not built-in functions like void()
+parityVerified: null
 type: function
 layout: function
 title: PHP's array_walk in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.array-walk.php">PHP's array_walk</a>
   looks like.
 function: array_walk
@@ -64,7 +65,7 @@ alias:
     } else {
       return false
     }
-  } catch (e) {
+  } catch (_e) {
     return false
   }
 

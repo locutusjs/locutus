@@ -11,11 +11,13 @@ authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
 notes: []
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's is_string in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.is-string.php">PHP's is_string</a>
   looks like.
 function: is_string
@@ -29,12 +31,13 @@ alias:
   - /functions/is_string/
 ---
 {% codeblock lang:javascript %}module.exports = function is_string(mixedVar) {
-  //  discuss at: https://locutus.io/php/is_string/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //   example 1: is_string('23')
-  //   returns 1: true
-  //   example 2: is_string(23.5)
-  //   returns 2: false
+  //      discuss at: https://locutus.io/php/is_string/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: is_string('23')
+  //       returns 1: true
+  //       example 2: is_string(23.5)
+  //       returns 2: false
 
   return typeof mixedVar === 'string'
 }

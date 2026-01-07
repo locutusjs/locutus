@@ -30,12 +30,12 @@ Ideas that will be planned and find their way into a release at one point
 - [x] website: Fix the search functionality (verified working 2026-01-07, Insight search)
 - [ ] Verification: verify examples against native runtimes with Docker (balance efforts across languages)
       - [x] PHP: 164 functions verified against PHP 8.3
-      - [ ] Go: not implemented (Docker image configured but verification skipped)
+      - [x] Go: 20 functions verified against Go 1.23
       - [x] Python: 15/17 (88%) - remaining: capwords (impl difference), printable (.length)
-      - [ ] Ruby: not implemented
-      - [ ] C: not implemented
-      - [x] Infrastructure: parallel execution, caching, modular architecture, per-language handlers
-      - [x] CI integration: `verified:` header in function files, `yarn test:parity` for CI
+      - [ ] Ruby: 17 functions available, verification not implemented
+      - [ ] C: 15 functions available, verification not implemented
+      - [x] Infrastructure: parallel execution, caching, modular architecture, per-language handlers, type-safe config
+      - [x] CI integration: `parity verified:` header in function files, Zod validation, `yarn test:parity`
       - [x] Badge: "Verified against PHP 8.3" (added to README, PR #501)
 - [ ] Modernize, e.g.:
       - [x] Migrate Babel 6 → TS (Node 22+ typestripping) - removed Babel, using `node --experimental-strip-types`
@@ -53,7 +53,7 @@ Ideas that will be planned and find their way into a release at one point
       - [x] Strict mode compatible. Node type stripping compatible
 - [ ] Expansion (port more functions to the different languages), we'll go from most feasible + sensible, to least :)
 - [ ] Docs/Website:
-      - [ ] The function pages could have a badge themselves in which language version they were parity checked (similar to what was added in the README.md)
+      - [x] The function pages could have a badge themselves in which language version they were parity checked (similar to what was added in the README.md)
       - [ ] Hexo → Next.js 16 SSG
       - [x] Fix Search by function name or behavior (verified working 2026-01-07)
       - [ ] "Rosetta Stone" view for cross-language comparison

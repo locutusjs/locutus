@@ -12,6 +12,8 @@ authors:
     - Kevin van Zonneveld (https://kvz.io)
 notes:
   - Returns a new string consisting of count copies of s
+parityVerified:
+  - Go 1.23
 type: function
 layout: function
 title: Go's strings.Repeat in JavaScript
@@ -29,13 +31,14 @@ alias:
   - /golang/Repeat/
 ---
 {% codeblock lang:javascript %}module.exports = function Repeat(s, count) {
-  //  discuss at: https://locutus.io/golang/strings/Repeat
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //      note 1: Returns a new string consisting of count copies of s
-  //   example 1: Repeat('na', 2)
-  //   returns 1: 'nana'
-  //   example 2: Repeat('ba', 3)
-  //   returns 2: 'bababa'
+  //      discuss at: https://locutus.io/golang/strings/Repeat
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns a new string consisting of count copies of s
+  //       example 1: Repeat('na', 2)
+  //       returns 1: 'nana'
+  //       example 2: Repeat('ba', 3)
+  //       returns 2: 'bababa'
 
   s = s + ''
   count = parseInt(count, 10)

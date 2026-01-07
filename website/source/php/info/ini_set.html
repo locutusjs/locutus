@@ -12,11 +12,13 @@ authors:
     - Brett Zamir (https://brett-zamir.me)
 notes:
   - This will not set a global_value or access level for the ini item
+parityVerified:
+  - PHP 8.3
 type: function
 layout: function
 title: PHP's ini_set in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.ini-set.php">PHP's ini_set</a> looks
   like.
 function: ini_set
@@ -30,12 +32,13 @@ alias:
   - /functions/ini_set/
 ---
 {% codeblock lang:javascript %}module.exports = function ini_set(varname, newvalue) {
-  //  discuss at: https://locutus.io/php/ini_set/
-  // original by: Brett Zamir (https://brett-zamir.me)
-  //      note 1: This will not set a global_value or access level for the ini item
-  //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
-  //   example 1: ini_set('date.timezone', 'America/Chicago')
-  //   returns 1: 'Asia/Hong_Kong'
+  //      discuss at: https://locutus.io/php/ini_set/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: This will not set a global_value or access level for the ini item
+  //       example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
+  //       example 1: ini_set('date.timezone', 'America/Chicago')
+  //       returns 1: 'Asia/Hong_Kong'
 
   const $global = typeof window !== 'undefined' ? window : global
   $global.$locutus = $global.$locutus || {}

@@ -55,11 +55,12 @@ notes:
     When a particular argument has been passed, and the
     returned value is different parse_str of PHP.
     For example, a=b=c&d====c
+parityVerified: null
 type: function
 layout: function
 title: PHP's parse_str in JavaScript
 description: >-
-  Here’s what our current JavaScript equivalent to <a
+  Here's what our current JavaScript equivalent to <a
   href="https://php.net/manual/en/function.parse-str.php">PHP's parse_str</a>
   looks like.
 function: parse_str
@@ -221,7 +222,7 @@ alias:
         }
 
         // if primitive value, replace with object
-        if (Object(obj[key]) !== obj[key]) {
+        if (new Object(obj[key]) !== obj[key]) {
           obj[key] = {}
         }
 
