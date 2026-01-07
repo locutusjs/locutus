@@ -228,14 +228,23 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 
 2026-01-07
 
-- **Area: Verification (Go)**
-- Added Go parity verification support (PR #504):
+- **Area: Verification (Go) + TypeScript/Infrastructure**
+- Added Go parity verification support (PR #504, merged):
   - Created `test/parity/lib/languages/golang.ts` handler
   - All 20 Go functions verified against `golang:1.23` Docker image
-  - Added `verified: 1.23` headers to all Go functions
   - Fixed Count.js discuss URL (was incorrectly pointing to `php/printf`)
-- Functions verified:
-  - strconv (6): Atoi, FormatBool, FormatInt, Itoa, ParseBool, ParseInt
-  - strings (14): Contains, Count, HasPrefix, HasSuffix, Index, Join, LastIndex, Repeat, Replace, Split, ToLower, ToUpper, Trim, TrimSpace
-- Total verified functions now: 179 PHP + 15 Python + 20 Go = 214 functions
-- Balance check: iterations 14-20 heavily focused on verification; this continues verification but for a new language
+- **Refactored header format** for type safety:
+  - Changed `verified: 8.3` → `parity verified: PHP 8.3` (more explicit)
+  - Created `test/parity/lib/config.ts` as source of truth for parity languages
+  - Added Zod validation in `headerSchema.ts` against parity config
+  - Added `displayName` and `parityValue` to `LanguageHandler` interface
+  - Updated 199 function files (164 PHP, 15 Python, 20 Go)
+- Total verified functions: 199 (164 PHP + 15 Python + 20 Go)
+- Balance: verification + TypeScript/infrastructure improvements
+- Iterations 11-21 balance review:
+  - Dependencies: 11
+  - Verification: 12, 13, 14, 16, 18, 21
+  - Website: 17
+  - TypeScript: 15, 19, 21
+  - Critical fixes: 20
+  - Next iteration should focus on: website, dependencies, or non-verification modernization
