@@ -39,7 +39,7 @@ working 2026-01-07, Insight search)
       - [ ] Migrate custom `test/browser/app.js` and `yarn browser:watch`/browserify → Vitest with Playwright support (blocked on ESM migration - Vite browser mode requires ESM, but source functions are CJS)
       - [x] Drop Node < 22 support (now requires Node >= 22)
       - [x] ESLint/Prettier → Biome (done in v2.0.33)
-      - [ ] Migrate CJS → ESM (should we do this for all source functions? think so, but with Dual CJS/ESM exports. With https://github.com/colinhacks/zshy? What's best these days?)
+      - [ ] Migrate CJS → ESM (should we do this for all source functions? think so, but with Dual CJS/ESM exports. With https://github.com/colinhacks/zshy? What's best these days?) (for direct browser use via jsdlvr maybe add a note on the website on a relevant place that/how ESM imports in the browser work these days)
       - [ ] Migrate Custom tagged releases (`CONTRIBUTING.md`) → Changesets bundled in PRs
       - [x] Migrate JS → TS for infra scripts (use Node v22+ native type stripping to run)
 - [x] TypeScript:
