@@ -30,8 +30,10 @@ Ideas that will be planned and find their way into a release at one point
 - [ ] website: Fix the search functionality
 - [ ] Verification: verify examples against native runtimes (PHP/Go/Python/Ruby/C) with Docker
       - [x] `yarn verify` and `yarn verify:php` scripts added
-      - [x] Docker-based PHP verification working (41/91 string functions pass)
-      - [ ] Improve JS→PHP translation (many failures due to syntax issues)
+      - [x] Docker-based PHP verification working (43/91 string functions pass)
+      - [x] Parallel execution with p-map (8x concurrency)
+      - [x] Cache invalidation when verify.ts changes
+      - [ ] Continue improving JS→PHP translation (48 remaining failures)
       - [ ] CI integration: fail if verification diverges
       - [ ] Badge: "Verified against PHP 8.3"
 - [ ] Modernize, e.g.:
