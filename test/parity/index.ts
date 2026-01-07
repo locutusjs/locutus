@@ -450,7 +450,9 @@ async function main() {
   // Step 2: Pull all required Docker images in parallel
   const requiredImages = new Set<string>()
   for (const { func, category } of functionsToTest) {
-    if (category === 'impossible') continue
+    if (category === 'impossible') {
+      continue
+    }
     const handler = getLanguageHandler(func.language)
     if (handler) {
       requiredImages.add(handler.dockerImage)
@@ -476,16 +478,24 @@ async function main() {
     for (const image of requiredImages) {
       if (image.startsWith('php:')) {
         const ver = runInDocker(image, ['php', '-v'], {})
-        if (ver.success) console.log(`  PHP: ${ver.output.split('\n')[0]}`)
+        if (ver.success) {
+          console.log(`  PHP: ${ver.output.split('\n')[0]}`)
+        }
       } else if (image.startsWith('python:')) {
         const ver = runInDocker(image, ['python', '--version'], {})
-        if (ver.success) console.log(`  Python: ${ver.output.trim()}`)
+        if (ver.success) {
+          console.log(`  Python: ${ver.output.trim()}`)
+        }
       } else if (image.startsWith('golang:')) {
         const ver = runInDocker(image, ['go', 'version'], {})
-        if (ver.success) console.log(`  Go: ${ver.output.trim()}`)
+        if (ver.success) {
+          console.log(`  Go: ${ver.output.trim()}`)
+        }
       } else if (image.startsWith('ruby:')) {
         const ver = runInDocker(image, ['ruby', '--version'], {})
-        if (ver.success) console.log(`  Ruby: ${ver.output.trim()}`)
+        if (ver.success) {
+          console.log(`  Ruby: ${ver.output.trim()}`)
+        }
       }
     }
     console.log('')
