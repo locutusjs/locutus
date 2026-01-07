@@ -166,3 +166,11 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - CI status, npm version, Verified: PHP 8.3, Verified: Python 3.12
   - Addresses backlog item "Badge: Verified against PHP 8.3"
 - Balance: after 5 iterations of verification focus, this iteration touched documentation/visual
+- Investigated security vulnerabilities (96 total):
+  - Most in hexo (website) and browserify (browser testing) - dev dependencies
+  - Critical vulns from transitive deps: sha.js, cipher-base, pbkdf2 (via browserify crypto polyfills)
+  - form-data vuln from request@2.79.0 → node-pre-gyp → old fsevents
+  - Fix requires major refactoring: browserify removal or hexo upgrade
+  - Impact limited since these are devDependencies, not in production bundle
+- Major package updates (async, globby, indent-string) still blocked on ESM migration
+- Backlog status: website search ✓, badges ✓, remaining: ESM migration, TypeScript, Go/Ruby/C verification
