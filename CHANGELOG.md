@@ -38,20 +38,19 @@ Ideas that will be planned and find their way into a release at one point
       - [x] CI integration: `verified:` header in function files, `yarn test:parity` for CI
       - [x] Badge: "Verified against PHP 8.3" (added to README, PR #501)
 - [ ] Modernize, e.g.:
-      - [ ] Migrate Babel 6 → native ESM (Node 20+)
+      - [x] Migrate Babel 6 → TS (Node 22+ typestripping) - removed Babel, using `node --experimental-strip-types`
       - [ ] Migrate Mocha → Vitest
-      - [ ] Dual CJS/ESM exports
-      - [ ] Drop Node < 20 support
-      - [ ] Publish as `locutus@3.0.0` with breaking changes
+      - [ ] Migrate custom `test/browser/app.js` and `yarn browser:watch`/browserify → Vitest with Playwright support, running a few generated test in a real browser
+      - [x] Drop Node < 22 support (now requires Node >= 22)
       - [x] ESLint/Prettier → Biome (done in v2.0.33)
-      - [ ] CJS → ESM
-      - [ ] Custom tagged releases (`CONTRIBUTING.md`) → Changesets bundled in PRs
-      - [ ] JS → TS for infra scripts (use Node v24 native type stripping to run)
+      - [ ] Migrate CJS → ESM (should we do this for all source functions? think so, but with Dual CJS/ESM exports. With https://github.com/colinhacks/zshy? What's best these days?)
+      - [ ] Migrate Custom tagged releases (`CONTRIBUTING.md`) → Changesets bundled in PRs
+      - [x] Migrate JS → TS for infra scripts (use Node v22+ native type stripping to run)
 - [ ] TypeScript:
-      - [ ] Convert `src/_util/` to TypeScript
+      - [x] Convert `src/_util/` to TypeScript
       - [ ] Generate types from JSDoc in function files
       - [ ] Per-function type exports
-      - [ ] Strict mode compatible. Node type stripping compatible
+      - [x] Strict mode compatible. Node type stripping compatible
 - [ ] Expansion (port more functions to the different languages), we'll go from most feasible + sensible, to least :)
 - [ ] Docs/Website:
       - [ ] Jekyll → Next.js 16 SSG
@@ -61,6 +60,12 @@ Ideas that will be planned and find their way into a release at one point
 ## main
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.33...main).
+
+### Infrastructure
+- [x] Converted `src/_util/` to TypeScript (headerSchema.ts, headerFormatter.ts, formatHeaders.ts, util.ts, cli.ts)
+- [x] Removed Babel 6 dependencies, now using Node's native type stripping (`--experimental-strip-types`)
+- [x] Updated Node engine requirement from >= 10 to >= 22
+- [x] Updated test files to use ESM imports
 
 ## v2.0.33
 

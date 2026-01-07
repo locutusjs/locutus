@@ -4,13 +4,15 @@
  * CLI for header formatter
  *
  * Usage:
- *   node formatHeaders.js check  - Check if all headers are properly formatted
- *   node formatHeaders.js fix    - Fix all header formatting issues
+ *   node formatHeaders.ts check  - Check if all headers are properly formatted
+ *   node formatHeaders.ts fix    - Fix all header formatting issues
  */
 
-const path = require('path')
-const { checkAll, formatAll } = require('./headerFormatter')
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { checkAll, formatAll } from './headerFormatter.ts'
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const srcDir = path.dirname(__dirname)
 const command = process.argv[2]
 
@@ -47,6 +49,6 @@ if (command === 'check') {
   }
   process.exit(0)
 } else {
-  console.error('Usage: node formatHeaders.js [check|fix]')
+  console.error('Usage: node formatHeaders.ts [check|fix]')
   process.exit(1)
 }

@@ -1,6 +1,5 @@
-// var fs = require('fs')
-const expect = require('chai').expect
-const Util = require('../../src/_util/util')
+import { expect } from 'chai'
+import { Util } from '../../src/_util/util.ts'
 
 describe('util', function () {
   describe('_load', function () {
@@ -11,7 +10,7 @@ describe('util', function () {
 
       util._load(relative, {}, function (err, params) {
         expect(err).to.deep.equal(null)
-        expect(params.headKeys.example[0][0]).to.deep.equal('array_change_key_case(42)')
+        expect(params?.headKeys.example[0][0]).to.deep.equal('array_change_key_case(42)')
         done()
       })
     })

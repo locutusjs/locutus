@@ -1,24 +1,66 @@
-const globby = require('globby')
-const path = require('path')
-const fs = require('fs')
-const fsPromises = fs.promises
-const async = require('async')
-const YAML = require('js-yaml')
-const debug = require('debug')('locutus:utils')
-const indentStringModule = require('indent-string')
-const indentString = indentStringModule.default || indentStringModule
-const _ = require('lodash')
-const esprima = require('esprima')
-const { validateHeaderKeys, isValidHeaderKey } = require('./headerSchema')
+import fs from 'node:fs'
+import path from 'node:path'
+import async from 'async'
+import Debug from 'debug'
+import esprima from 'esprima'
+import globby from 'globby'
+import indentStringModule from 'indent-string'
+import YAML from 'js-yaml'
+import _ from 'lodash'
+import { isValidHeaderKey, validateHeaderKeys } from './headerSchema.ts'
+
+const debug = Debug('locutus:utils')
+const indentString = (indentStringModule as { default?: typeof indentStringModule }).default || indentStringModule
+
+interface LangDefaults {
+  order: number
+  function_title_template: string
+  human: string
+  packageType: string
+  inspiration_urls: string[]
+  function_description_template: string
+  alias?: string[]
+}
+
+interface HeadKeys {
+  [key: string]: string[][]
+}
+
+interface ParsedParams {
+  headKeys: HeadKeys
+  name: string
+  filepath: string
+  codepath: string
+  code: string
+  language: string
+  category: string
+  func_name: string
+  func_arguments: string[]
+  dependencies?: Record<string, ParsedParams>
+}
+
+type Callback<T = void> = (err: Error | null, result?: T) => void
 
 class Util {
-  constructor(argv) {
+  __src: string
+  __root: string
+  __test: string
+  globals: Record<string, unknown>
+  pattern: string[]
+  concurrency: number
+  authorKeys: string[]
+  langDefaults: Record<string, LangDefaults>
+  allowSkip: boolean
+  _reindexBuffer: Record<string, string[]>
+  _injectwebBuffer: Record<string, string>
+
+  constructor(argv?: string[]) {
     if (!argv) {
       argv = []
     }
-    this.__src = path.dirname(__dirname)
-    this.__root = path.dirname(path.dirname(__dirname))
-    this.__test = path.dirname(path.dirname(__dirname)) + '/test'
+    this.__src = path.dirname(path.dirname(new URL(import.meta.url).pathname))
+    this.__root = path.dirname(this.__src)
+    this.__test = path.join(this.__root, 'test')
 
     this.globals = {}
 
@@ -44,8 +86,7 @@ class Util {
           '<a href="https://en.cppreference.com/w/c/numeric/math">the C math.h documentation</a>',
           '<a href="https://sourceware.org/git/?p=glibc.git;a=tree;f=math;hb=HEAD">the C math.h source</a>',
         ],
-        function_description_template:
-          'Here’s what our current JavaScript equivalent to <a href="https://en.cppreference.com/w/c/numeric/[category]/[function]">[language]\'s [function] found in the [category].h header file</a> looks like.',
+        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://en.cppreference.com/w/c/numeric/[category]/[function]">[language]'s [function] found in the [category].h header file</a> looks like.`,
       },
       golang: {
         order: 2,
@@ -58,8 +99,7 @@ class Util {
           '<a href="https://golang.org/src/strings/example_test.go">Go strings examples source</a>',
           '<a href="https://gophersjs.com">GopherJS</a>',
         ],
-        function_description_template:
-          'Here’s what our current JavaScript equivalent to <a href="https://golang.org/pkg/[category]/#[function]">[language]\'s [category].[function]</a> looks like.',
+        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://golang.org/pkg/[category]/#[function]">[language]'s [category].[function]</a> looks like.`,
       },
       python: {
         order: 3,
@@ -69,8 +109,7 @@ class Util {
         inspiration_urls: [
           '<a href="https://docs.python.org/3/library/string.html">the Python 3 standard library string page</a>',
         ],
-        function_description_template:
-          'Here’s what our current JavaScript equivalent to <a href="https://docs.python.org/3/library/[category].html#[category].[function]">[language]\'s [category].[function]</a> looks like.',
+        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://docs.python.org/3/library/[category].html#[category].[function]">[language]'s [category].[function]</a> looks like.`,
       },
       ruby: {
         order: 4,
@@ -78,8 +117,7 @@ class Util {
         human: 'Ruby',
         packageType: 'module',
         inspiration_urls: ['<a href="https://ruby-doc.org/core-2.2.2/Math.html">the Ruby core documentation</a>'],
-        function_description_template:
-          'Here’s what our current JavaScript equivalent to <a href="https://ruby-doc.org/core-2.2.2/[category].html#method-c-[function]">[language]\'s [category].[function]</a> looks like.',
+        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://ruby-doc.org/core-2.2.2/[category].html#method-c-[function]">[language]'s [category].[function]</a> looks like.`,
       },
       php: {
         order: 5,
@@ -91,8 +129,7 @@ class Util {
           '<a href="https://github.com/php/php-src/blob/master/ext/standard/string.c#L5338">the PHP string source</a>',
           '<a href="https://github.com/php/php-src/blob/master/ext/standard/tests/strings/str_pad_variation1.phpt">a PHP str_pad test</a>',
         ],
-        function_description_template:
-          'Here’s what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.[functiondashed].php">[language]\'s [function]</a> looks like.',
+        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.[functiondashed].php">[language]'s [function]</a> looks like.`,
         alias: [
           '/categories/',
           '/categories/array/',
@@ -130,9 +167,9 @@ class Util {
     this._injectwebBuffer = {}
   }
 
-  injectweb(cb) {
+  injectweb(cb: Callback): void {
     const self = this
-    this._runFunctionOnAll(this._injectwebOne, function (err) {
+    this._runFunctionOnAll(this._injectwebOne.bind(this), function (err) {
       if (err) {
         return cb(err)
       }
@@ -140,13 +177,14 @@ class Util {
         debug('writing: ' + indexHtml)
         fs.writeFileSync(indexHtml, self._injectwebBuffer[indexHtml], 'utf-8')
       }
+      cb(null)
     })
   }
 
-  reindex(cb) {
+  reindex(cb: Callback): void {
     const self = this
     self._reindexBuffer = {}
-    self._runFunctionOnAll(self._reindexOne, function (err) {
+    self._runFunctionOnAll(self._reindexOne.bind(this), function (err) {
       if (err) {
         return cb(err)
       }
@@ -156,37 +194,37 @@ class Util {
         debug('writing: ' + indexJs)
         fs.writeFileSync(indexJs, requires.join('\n') + '\n', 'utf-8')
       }
+      cb(null)
     })
   }
 
-  writetests(cb) {
-    this._runFunctionOnAll(this._writetestOne, cb)
+  writetests(cb: Callback): void {
+    this._runFunctionOnAll(this._writetestOne.bind(this), cb)
   }
 
-  _runFunctionOnAll(runFunc, cb) {
+  _runFunctionOnAll(runFunc: (params: ParsedParams, cb: Callback) => void, cb: Callback): void {
     const self = this
 
-    const q = async.queue(function (fullpath, callback) {
-      self._load.bind(self, fullpath, {}, function (err, params) {
+    const q = async.queue(function (fullpath: string, callback: Callback) {
+      self._load(fullpath, {} as ParsedParams, function (err, params) {
         if (err) {
           return callback(err)
         }
-
-        runFunc.bind(self, params, callback)()
-      })()
+        if (!params) {
+          return callback(null)
+        }
+        runFunc(params, callback)
+      })
     }, self.concurrency)
 
-    debug({
-      pattern: self.pattern,
-    })
+    debug({ pattern: self.pattern })
     const files = globby.sync(self.pattern)
 
     q.push(files)
-
     q.drain(cb)
   }
 
-  _reindexOne(params, cb) {
+  _reindexOne(params: ParsedParams, cb: Callback): void {
     const fullpath = this.__src + '/' + params.filepath
     const dir = path.dirname(fullpath)
     const basefile = path.basename(fullpath, '.js')
@@ -206,9 +244,9 @@ class Util {
     return cb(null)
   }
 
-  _injectwebOne(params, cb) {
-    const authors = {}
-    this.authorKeys.forEach(function (key) {
+  _injectwebOne(params: ParsedParams, cb: Callback): void {
+    const authors: Record<string, string[]> = {}
+    this.authorKeys.forEach((key) => {
       if (params.headKeys[key]) {
         authors[key] = _.flattenDeep(params.headKeys[key])
       }
@@ -267,19 +305,13 @@ class Util {
       .replace(/\[function]/g, params.func_name)
       .replace(/\[functiondashed]/g, params.func_name.replace(/_/g, '-'))
 
-    const funcData = {
+    const funcData: Record<string, unknown> = {
       warning: 'This file is auto generated by `yarn web:inject`, do not edit by hand',
-      examples: (params.headKeys.example || []).map(function (lines, i) {
-        return lines.join('\n')
-      }),
-      returns: (params.headKeys.returns || []).map(function (lines, i) {
-        return lines.join('\n')
-      }),
+      examples: (params.headKeys.example || []).map((lines) => lines.join('\n')),
+      returns: (params.headKeys.returns || []).map((lines) => lines.join('\n')),
       dependencies: [],
       authors: authors || {},
-      notes: (params.headKeys.note || []).map(function (lines, i) {
-        return lines.join('\n')
-      }),
+      notes: (params.headKeys.note || []).map((lines) => lines.join('\n')),
       type: 'function',
       layout: 'function',
       title: functionTitle,
@@ -296,28 +328,27 @@ class Util {
     }
 
     if (params.language === 'php') {
-      funcData.alias.push('/functions/' + params.func_name + '/')
+      ;(funcData.alias as string[]).push('/functions/' + params.func_name + '/')
     }
 
     let buf = '---' + '\n' + YAML.dump(funcData).trim() + '\n' + '---' + '\n'
-
     buf += `{% codeblock lang:javascript %}${params.code}{% endcodeblock %}`
 
-    fsPromises.mkdir(path.dirname(funcPath), { recursive: true }).then(
-      function () {
+    fs.promises.mkdir(path.dirname(funcPath), { recursive: true }).then(
+      () => {
         fs.writeFile(funcPath, buf, 'utf-8', cb)
       },
-      function (err) {
-        throw new Error('Could not mkdir  for ' + funcPath + '. ' + err)
+      (err) => {
+        cb(new Error('Could not mkdir for ' + funcPath + '. ' + err))
       },
     )
   }
 
-  _addRequire(name, relativeSrcForTest) {
+  _addRequire(name: string, relativeSrcForTest: string): string {
     return ['var ', name, " = require('", relativeSrcForTest, "')"].join('')
   }
 
-  _writetestOne(params, cb) {
+  _writetestOne(params: ParsedParams, cb: Callback): void {
     const self = this
 
     if (!params.func_name) {
@@ -337,9 +368,6 @@ class Util {
     const relativeSrcForTestDir = path.relative(testdir, self.__src)
     const relativeTestFileForRoot = path.relative(self.__root, testpath)
 
-    // console.log(relativeSrcForTestDir)
-    // process.exit(1)
-
     let testProps = ''
     if (params.headKeys.test) {
       testProps = params.headKeys.test[0][0]
@@ -350,7 +378,7 @@ class Util {
       describeSkip = '.skip'
     }
 
-    const codez = []
+    const codez: string[] = []
 
     codez.push('// warning: This file is auto generated by `yarn build:tests`')
     codez.push('// Do not edit by hand!')
@@ -358,19 +386,13 @@ class Util {
     codez.push(`'use strict'`)
     codez.push('')
 
-    // Add globals
     for (const global in self.globals) {
       codez.push('var ' + global + ' = ' + self.globals[global])
     }
 
-    // Set timezone for testing dates
-    // Not ideal: https://stackoverflow.com/questions/8083410/how-to-set-default-timezone-in-node-js
     codez.push("process.env.TZ = 'UTC'")
-
     codez.push('var ' + 'expect' + " = require('chai').expect")
 
-    // Add language-wide dependencies
-    // @todo: It would be great if we could remove this
     if (params.language === 'php') {
       codez.push(self._addRequire('ini_set', relativeSrcForTestDir + '/' + 'php/info/ini_set'))
       codez.push(self._addRequire('ini_get', relativeSrcForTestDir + '/' + 'php/info/ini_get'))
@@ -384,9 +406,7 @@ class Util {
       }
     }
 
-    // Add the main function to test
     codez.push(self._addRequire(params.func_name, relativeSrcForTestDir + '/' + params.filepath))
-
     codez.push('')
 
     codez.push(
@@ -401,10 +421,9 @@ class Util {
       ].join(''),
     )
 
-    // Run each example
     for (const i in params.headKeys.example) {
       if (!params.headKeys.returns[i] || !params.headKeys.returns[i].length) {
-        throw new Error('There is no return for example ' + i, test, params)
+        throw new Error(`There is no return for example ${i} in ${params.filepath}`)
       }
 
       const humanIndex = parseInt(i, 10) + 1
@@ -415,17 +434,13 @@ class Util {
 
       codez.push(['  it', itSkip, "('should pass example ", humanIndex, "', function (done) {"].join(''))
 
-      const body = []
-
+      const body: string[] = []
       const testExpected = params.headKeys.returns[i].join('\n')
 
       body.push('var expected = ' + testExpected)
 
-      // Execute line by line (see date.js why)
-      // We need result be the last result of the example code
       for (const j in params.headKeys.example[i]) {
         if (parseInt(j, 10) === params.headKeys.example[i].length - 1) {
-          // last action gets saved
           body.push('var result = ' + params.headKeys.example[i][j].replace('var $result = ', ''))
         } else {
           body.push(params.headKeys.example[i][j])
@@ -436,7 +451,6 @@ class Util {
       body.push('done()')
 
       codez.push(indentString(body.join('\n'), ' ', 4))
-
       codez.push('  })')
     }
 
@@ -445,38 +459,34 @@ class Util {
 
     const code = codez.join('\n')
 
-    // Write to disk
-    fsPromises.mkdir(testdir, { recursive: true }).then(
-      function () {
+    fs.promises.mkdir(testdir, { recursive: true }).then(
+      () => {
         debug('writing: ' + testpath)
         fs.writeFile(testpath, code, 'utf-8', cb)
       },
-      function (err) {
-        throw new Error(err)
+      (err) => {
+        cb(new Error(String(err)))
       },
     )
   }
 
-  // Environment-specific file opener. function name needs to
-  // be translated to code. The difficulty is in finding the
-  // category.
-  _opener(fileOrName, requesterParams, cb) {
+  _opener(
+    fileOrName: string,
+    requesterParams: Partial<ParsedParams>,
+    cb: (err: Error | null, fullpath?: string, code?: string) => void,
+  ): void {
     const self = this
-    let pattern
+    let pattern: string
 
     const language = requesterParams.language || '*'
 
     if (path.basename(fileOrName, '.js').indexOf('.') !== -1) {
-      // periods in the basename, like: unicode.utf8.RuneCountInString or strings.sprintf
       pattern = self.__src + '/' + language + '/' + fileOrName.replace(/\./g, '/') + '.js'
     } else if (fileOrName.indexOf('/') === -1) {
-      // no slashes, like: sprintf
       pattern = self.__src + '/' + language + '/*/' + fileOrName + '.js'
     } else if (fileOrName.substr(0, 1) === '/') {
-      // absolute path, like: /Users/john/code/locutus/php/strings/sprintf.js
       pattern = fileOrName
     } else {
-      // relative path, like: php/strings/sprintf.js
       pattern = self.__src + '/' + fileOrName
     }
 
@@ -507,11 +517,14 @@ class Util {
     })
   }
 
-  _load(fileOrName, requesterParams, cb) {
+  _load(fileOrName: string, requesterParams: Partial<ParsedParams>, cb: Callback<ParsedParams>): void {
     const self = this
     self._opener(fileOrName, requesterParams, function (err, fullpath, code) {
       if (err) {
         return cb(err)
+      }
+      if (!fullpath || !code) {
+        return cb(null)
       }
 
       const filepath = path.relative(self.__src, fullpath)
@@ -519,7 +532,12 @@ class Util {
     })
   }
 
-  _findDependencies(fileOrName, requesterParams, dependencies, cb) {
+  _findDependencies(
+    _fileOrName: string,
+    requesterParams: ParsedParams,
+    dependencies: Record<string, ParsedParams>,
+    cb?: Callback<Record<string, ParsedParams>>,
+  ): void {
     const self = this
 
     if (!requesterParams.headKeys['depends on'] || !requesterParams.headKeys['depends on'].length) {
@@ -529,15 +547,16 @@ class Util {
       return
     }
 
-    let i
-    let depCodePath
     let loaded = 0
-    for (i in requesterParams.headKeys['depends on']) {
-      depCodePath = requesterParams.headKeys['depends on'][i][0]
+    for (const i in requesterParams.headKeys['depends on']) {
+      const depCodePath = requesterParams.headKeys['depends on'][i][0]
 
       self._load(depCodePath, requesterParams, function (err, params) {
         if (err) {
-          return cb(err)
+          return cb?.(err)
+        }
+        if (!params) {
+          return
         }
 
         dependencies[depCodePath] = params
@@ -550,7 +569,7 @@ class Util {
     }
   }
 
-  _parse(filepath, code, cb) {
+  _parse(filepath: string, code: string, cb: Callback<ParsedParams>): void {
     if (!code) {
       return cb(new Error('Unable to parse ' + filepath + '. Received no code'))
     }
@@ -560,18 +579,23 @@ class Util {
     }
 
     const parts = filepath.split('/')
-    const language = parts.shift()
+    const language = parts.shift() as string
     const codepath = parts.join('.')
-    const name = parts.pop()
+    const name = parts.pop() as string
     const category = parts.join('.')
 
     const ast = esprima.parseScript(code, { comment: true, loc: true, range: true })
 
-    // find module.exports in the code
-    const moduleExports = ast.body.filter((node) => {
+    const moduleExports = ast.body.filter((node: unknown) => {
       try {
-        const leftArg = node.expression.left
-        const rightArg = node.expression.right
+        const n = node as {
+          expression: {
+            left: { object: { name: string }; property: { name: string } }
+            right: { type: string; id: { type: string; name: string } }
+          }
+        }
+        const leftArg = n.expression.left
+        const rightArg = n.expression.right
 
         return (
           leftArg.object.name === 'module' &&
@@ -585,29 +609,29 @@ class Util {
       }
     })
 
-    // if file contains more than one export, fail
     if (moduleExports.length !== 1) {
       return cb(new Error(`File ${filepath} is allowed to contain exactly one module.exports`))
     }
 
-    // get the only export
-    const exp = moduleExports[0]
+    const exp = moduleExports[0] as {
+      expression: {
+        right: {
+          id: { name: string }
+          params: Array<{ name: string }>
+          loc: { start: { line: number }; end: { line: number } }
+          body: { body: Array<{ loc: { start: { line: number } } }> }
+        }
+      }
+    }
 
-    // look for function name and param list
     const funcName = exp.expression.right.id.name
     const funcParams = exp.expression.right.params.map((p) => p.name)
-
-    // remember the lines where the function is defined
     const funcLoc = exp.expression.right.loc
-
-    // since comments are not included in the AST
-    // but are offered in ast.comments
-    // remember the location of first function body statement/expression
     const firstFuncBodyElementLoc = exp.expression.right.body.body[0].loc
 
-    // get all line comments which are located between function signature definition
-    // and first function body element
-    const headComments = ast.comments
+    const headComments = (
+      ast.comments as Array<{ type: string; loc: { start: { line: number }; end: { line: number } }; value: string }>
+    )
       .filter(
         (c) =>
           c.type === 'Line' &&
@@ -623,10 +647,9 @@ class Util {
 
     const headKeys = this._headKeys(headComments)
 
-    // Validate header keys against schema - will throw if invalid/unrecognized keys found
     validateHeaderKeys(headKeys, filepath)
 
-    const params = {
+    const params: ParsedParams = {
       headKeys,
       name,
       filepath,
@@ -648,31 +671,30 @@ class Util {
     })
   }
 
-  _headKeys(headLines) {
-    let i
-    const keys = {}
-    let match = []
-    let dmatch = []
+  _headKeys(headLines: string[]): HeadKeys {
+    const keys: HeadKeys = {}
+    let match: RegExpMatchArray | null = null
+    let dmatch: RegExpMatchArray | null = null
     let key = ''
     let val = ''
     let num = 0
 
-    for (i in headLines) {
-      if (!(match = headLines[i].match(/^\s*\W?\s*([a-z 0-9]+)\s*:\s*(.*)\s*$/))) {
+    for (const i in headLines) {
+      match = headLines[i].match(/^\s*\W?\s*([a-z 0-9]+)\s*:\s*(.*)\s*$/)
+      if (!match) {
         continue
       }
       key = match[1]
       val = match[2]
 
-      if ((dmatch = key.match(/^(\w+)\s+(\d+)$/))) {
-        // Things like examples and notes can be grouped
+      dmatch = key.match(/^(\w+)\s+(\d+)$/)
+      if (dmatch) {
         key = dmatch[1]
-        num = dmatch[2] - 1
+        num = parseInt(dmatch[2], 10) - 1
       } else {
         num = 0
       }
 
-      // Skip keys that aren't recognized header keys (e.g. "https" from URL patterns)
       if (!isValidHeaderKey(key)) {
         continue
       }
@@ -690,4 +712,4 @@ class Util {
   }
 }
 
-module.exports = Util
+export { Util }
