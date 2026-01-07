@@ -29,7 +29,7 @@ const CACHE_DIR = join(ROOT, '.cache', 'verify')
 const require = createRequire(import.meta.url)
 const Util = require(join(ROOT, 'src/_util/util.js'))
 const util = new Util([])
-const CACHE_VERSION = 4
+const CACHE_VERSION = 5
 
 // Functions removed, deprecated, or unavailable in PHP 8.3 Docker image
 const PHP_REMOVED_FUNCTIONS = new Set([
@@ -609,6 +609,97 @@ function jsToPhp(jsCode: string[], funcName: string): string {
   return result
 }
 
+// Python module mapping: function name → Python import path
+const PYTHON_MODULES: Record<string, { module: string; isConstant?: boolean }> = {
+  // string module constants
+  ascii_letters: { module: 'string', isConstant: true },
+  ascii_lowercase: { module: 'string', isConstant: true },
+  ascii_uppercase: { module: 'string', isConstant: true },
+  digits: { module: 'string', isConstant: true },
+  hexdigits: { module: 'string', isConstant: true },
+  octdigits: { module: 'string', isConstant: true },
+  printable: { module: 'string', isConstant: true },
+  punctuation: { module: 'string', isConstant: true },
+  whitespace: { module: 'string', isConstant: true },
+  // string module functions
+  capwords: { module: 'string' },
+  // math module functions
+  factorial: { module: 'math' },
+  gcd: { module: 'math' },
+  isfinite: { module: 'math' },
+  isinf: { module: 'math' },
+  isnan: { module: 'math' },
+  pow: { module: 'math' },
+  sqrt: { module: 'math' },
+}
+
+// Convert JS line to Python
+function convertJsLineToPython(line: string, funcName: string): string {
+  let py = line.trim()
+  if (!py) {
+    return ''
+  }
+
+  py = stripTrailingComment(py)
+  py = py.replace(/;+$/, '')
+  py = py.replace(/^\s*(var|let|const)\s+/, '')
+
+  // JS → Python boolean/null conversions
+  py = py.replace(/\btrue\b/g, 'True')
+  py = py.replace(/\bfalse\b/g, 'False')
+  py = py.replace(/\bnull\b/g, 'None')
+  py = py.replace(/\bundefined\b/g, 'None')
+
+  // JS special values → Python
+  py = py.replace(/\bInfinity\b/g, "float('inf')")
+  py = py.replace(/-\s*float\('inf'\)/g, "float('-inf')")
+  py = py.replace(/\bNaN\b/g, "float('nan')")
+
+  // .length → len()
+  py = py.replace(/(\w+)\.length\b/g, 'len($1)')
+
+  // Handle function calls - prefix with module
+  const mapping = PYTHON_MODULES[funcName]
+  if (mapping) {
+    if (mapping.isConstant) {
+      // Constants like string.digits - replace funcName() with module.funcName
+      py = py.replace(new RegExp(`\\b${funcName}\\s*\\(\\s*\\)`, 'g'), `${mapping.module}.${funcName}`)
+    } else {
+      // Functions like math.factorial - replace funcName( with module.funcName(
+      py = py.replace(new RegExp(`\\b${funcName}\\s*\\(`, 'g'), `${mapping.module}.${funcName}(`)
+    }
+  }
+
+  return py
+}
+
+// Convert JS example to Python code
+function jsToPython(jsCode: string[], funcName: string): string {
+  const lines = jsCode.map((line) => convertJsLineToPython(line, funcName)).filter(Boolean)
+  if (!lines.length) {
+    return ''
+  }
+
+  // Determine which module to import
+  const mapping = PYTHON_MODULES[funcName]
+  const imports = mapping ? `import ${mapping.module}\nimport json\n` : 'import json\n'
+
+  const originalLastLine = jsCode[jsCode.length - 1]
+  const assignedVar = extractAssignedVar(originalLastLine)
+
+  let result: string
+  if (assignedVar) {
+    result = `${imports}${lines.join('\n')}\nprint(json.dumps(${assignedVar}))`
+  } else {
+    const setup = lines.slice(0, -1)
+    const lastExpr = lines[lines.length - 1]
+    const prefix = setup.length ? `${setup.join('\n')}\n` : ''
+    result = `${imports}${prefix}print(json.dumps(${lastExpr}))`
+  }
+
+  return result
+}
+
 // Run JS implementation and get result
 function runJs(
   filePath: string,
@@ -714,6 +805,96 @@ async function verifyFunction(func: FunctionInfo, useCache: boolean): Promise<Ve
 
   const results: VerifyResult[] = []
 
+  // Handle Python verification
+  if (func.language === 'python') {
+    if (!ensureDockerImage(DOCKER_IMAGES.python.image)) {
+      for (const example of func.examples) {
+        results.push({
+          example: example.number,
+          passed: false,
+          jsResult: 'N/A',
+          nativeResult: 'N/A',
+          error: 'Failed to pull Python Docker image',
+        })
+      }
+      saveCache(func.path, { hash, results, timestamp: Date.now(), version: CACHE_VERSION })
+      return results
+    }
+
+    for (const example of parsed.examples) {
+      const expectedEval = evaluateExpected(example.expectedRaw)
+      if (!expectedEval.success) {
+        results.push({
+          example: example.number,
+          passed: false,
+          expected: example.expectedRaw,
+          jsResult: '',
+          nativeResult: '',
+          error: `Expected eval error: ${expectedEval.error}`,
+        })
+        continue
+      }
+
+      const jsRun = runJs(fullPath, func.name, example)
+      if (!jsRun.success) {
+        results.push({
+          example: example.number,
+          passed: false,
+          expected: expectedEval.result,
+          jsResult: '',
+          nativeResult: '',
+          error: jsRun.error,
+        })
+        continue
+      }
+
+      const pythonCode = jsToPython(example.code, func.name)
+      if (!pythonCode.trim()) {
+        results.push({
+          example: example.number,
+          passed: false,
+          expected: expectedEval.result,
+          jsResult: jsRun.result,
+          nativeResult: '',
+          error: 'Failed to convert JS to Python',
+        })
+        continue
+      }
+
+      const pythonRun = runInDocker('python', pythonCode)
+      if (!pythonRun.success) {
+        results.push({
+          example: example.number,
+          passed: false,
+          expected: expectedEval.result,
+          jsResult: jsRun.result,
+          nativeResult: '',
+          error: pythonRun.error,
+        })
+        continue
+      }
+
+      // Normalize Python output: strip trailing .0 from floats for integer comparison
+      let nativeResult = pythonRun.output.trim()
+      if (/^-?\d+\.0$/.test(nativeResult)) {
+        nativeResult = nativeResult.replace(/\.0$/, '')
+      }
+      const passedExample = expectedEval.result.trim() === nativeResult
+      results.push({
+        example: example.number,
+        passed: passedExample,
+        expected: expectedEval.result,
+        jsResult: jsRun.result,
+        nativeResult,
+        error: passedExample ? undefined : 'Python result mismatch',
+      })
+    }
+
+    saveCache(func.path, { hash, results, timestamp: Date.now(), version: CACHE_VERSION })
+    return results
+  }
+
+  // Skip other non-PHP languages (not yet implemented)
   if (func.language !== 'php') {
     for (const example of parsed.examples) {
       const expectedEval = evaluateExpected(example.expectedRaw)
@@ -722,7 +903,7 @@ async function verifyFunction(func: FunctionInfo, useCache: boolean): Promise<Ve
         passed: true,
         expected: expectedEval.success ? expectedEval.result : example.expectedRaw,
         jsResult: example.expectedRaw,
-        nativeResult: 'Skipped (non-PHP verification not implemented)',
+        nativeResult: 'Skipped (verification not implemented)',
       })
     }
     saveCache(func.path, { hash, results, timestamp: Date.now(), version: CACHE_VERSION })
