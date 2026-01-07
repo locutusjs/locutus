@@ -1,5 +1,6 @@
 module.exports = function count_chars(str, mode) {
   //  discuss at: https://locutus.io/php/count_chars/
+  //    verified: 8.3
   // original by: Ates Goral (https://magnetiq.com)
   // improved by: Jack
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)

@@ -1,5 +1,6 @@
 module.exports = function ctype_upper(text) {
   //  discuss at: https://locutus.io/php/ctype_upper/
+  //    verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: ctype_upper('AZ')
   //   returns 1: true

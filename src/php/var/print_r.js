@@ -1,5 +1,6 @@
 module.exports = function print_r(array, returnVal) {
   //  discuss at: https://locutus.io/php/print_r/
+  //    verified: 8.3
   // original by: Michael White (https://getsprink.com)
   // improved by: Ben Bryan
   // improved by: Brett Zamir (https://brett-zamir.me)

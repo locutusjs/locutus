@@ -1,5 +1,6 @@
 module.exports = function json_last_error() {
   //  discuss at: https://phpjs.org/functions/json_last_error/
+  //    verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: json_last_error()
   //   returns 1: 0

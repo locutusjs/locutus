@@ -1,5 +1,6 @@
 module.exports = function gcd(a, b) {
   //  discuss at: https://locutus.io/python/gcd/
+  //    verified: 3.12
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Returns the greatest common divisor of a and b
   //   example 1: gcd(48, 18)

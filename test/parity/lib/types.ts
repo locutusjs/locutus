@@ -1,5 +1,8 @@
 /**
- * Shared types for the verification system
+ * Shared types for the parity test system
+ *
+ * Parity tests verify that locutus JS implementations produce identical
+ * output to native language runtimes (PHP, Python, etc.) via Docker.
  */
 
 export interface Example {
@@ -8,6 +11,13 @@ export interface Example {
   expectedRaw: string
 }
 
+/**
+ * Verification status for a function:
+ * - version string (e.g., "8.3"): verified against that runtime version
+ * - "impossible": cannot be tested (pass-by-ref, side effects, etc.)
+ */
+export type VerifiedStatus = string
+
 export interface FunctionInfo {
   path: string
   language: string
@@ -15,7 +25,8 @@ export interface FunctionInfo {
   name: string
   examples: Example[]
   dependsOn: string[]
-  verified: string[] // Runtime versions this function is verified against
+  verified: VerifiedStatus[] // Runtime versions or "impossible"
+  isImpossible: boolean // True if verified: impossible
 }
 
 export interface CacheEntry {
@@ -43,8 +54,8 @@ export interface DockerConfig {
 export interface LanguageHandler {
   /** Translate JS example code to native language code */
   translate(jsCode: string[], funcName: string): string
-  /** Normalize native output for comparison */
-  normalize(output: string): string
+  /** Normalize native output for comparison. Expected value provided for context-aware normalization. */
+  normalize(output: string, expected?: string): string
   /** Functions to skip (removed, deprecated, etc.) */
   skipList: Set<string>
   /** Docker image for this language */
@@ -61,11 +72,14 @@ export interface VerifyOptions {
   useCache: boolean
   includeUnverified: boolean
   filter?: string
+  /** Docker image digests for cache invalidation */
+  dockerDigests: Record<string, string>
 }
 
-export interface VerifySummary {
+export interface ParitySummary {
   passed: number
   failed: number
   skipped: number
+  impossible: number
   unverified: number
 }

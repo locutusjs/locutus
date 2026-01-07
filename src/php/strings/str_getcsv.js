@@ -1,6 +1,7 @@
 // biome-ignore lint/suspicious/noShadowRestrictedNames: escape is PHP parameter name
 module.exports = function str_getcsv(input, delimiter, enclosure, escape) {
   //  discuss at: https://locutus.io/php/str_getcsv/
+  //    verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: str_getcsv('"abc","def","ghi"')
   //   returns 1: ['abc', 'def', 'ghi']

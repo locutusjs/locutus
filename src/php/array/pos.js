@@ -1,5 +1,6 @@
 module.exports = function pos(arr) {
   //  discuss at: https://locutus.io/php/pos/
+  //    verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Uses global: locutus to store the array pointer
   //   example 1: var $transport = ['foot', 'bike', 'car', 'plane']

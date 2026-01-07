@@ -1,5 +1,6 @@
 module.exports = function intval(mixedVar, base) {
   //  discuss at: https://locutus.io/php/intval/
+  //    verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: stensi
   // bugfixed by: Kevin van Zonneveld (https://kvz.io)

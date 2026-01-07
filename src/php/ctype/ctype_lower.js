@@ -1,5 +1,6 @@
 module.exports = function ctype_lower(text) {
   //  discuss at: https://locutus.io/php/ctype_lower/
+  //    verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: ctype_lower('abc')
   //   returns 1: true

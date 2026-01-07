@@ -1,5 +1,6 @@
 module.exports = function strpbrk(haystack, charList) {
   //  discuss at: https://locutus.io/php/strpbrk/
+  //    verified: 8.3
   // original by: Alfonso Jimenez (https://www.alfonsojimenez.com)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //  revised by: Christoph

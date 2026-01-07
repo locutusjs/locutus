@@ -1,5 +1,6 @@
 module.exports = function ctype_alpha(text) {
   //  discuss at: https://locutus.io/php/ctype_alpha/
+  //    verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: ctype_alpha('Az')
   //   returns 1: true

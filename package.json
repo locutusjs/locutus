@@ -34,8 +34,11 @@
     "build:tests": "rimraf test/generated && babel-node src/_util/cli.js writetests",
     "build": "npm-run-all 'build:*'",
     "injectweb": "rimraf website/source/{c,golang,php,python,ruby} && babel-node src/_util/cli.js injectweb",
-    "check": "npm-run-all --serial fix:biome lint test:languages",
+    "check": "npm-run-all --serial fix:biome lint lint:ts lint:headers test:languages",
     "fix:biome": "biome check --write .",
+    "fix:headers": "babel-node src/_util/formatHeaders.js fix",
+    "lint:headers": "babel-node src/_util/formatHeaders.js check",
+    "lint:ts": "tsc --noEmit -p tsconfig.json",
     "fix:markdown": "remark {README,CONTRIBUTING}.md --output",
     "fix": "npm-run-all --serial 'fix:**'",
     "lint": "biome check .",
@@ -43,8 +46,8 @@
     "test:languages:noskip": "yarn build:tests:noskip && cross-env DEBUG='locutus:*' mocha --require babel-register --reporter spec 'src/**/*.mocha.js' 'test/**/test-*.js'",
     "test:languages": "yarn build:tests && cross-env DEBUG='locutus:*' mocha --require babel-register --reporter spec 'src/**/*.mocha.js' 'test/**/test-*.js'",
     "test:module": "babel-node test/module/module.js",
-    "verify": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify.ts",
-    "verify:php": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify.ts php",
+    "test:parity": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON test/parity/index.ts",
+    "test:parity:php": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON test/parity/index.ts php",
     "test:util": "mocha --require babel-register --reporter spec test/util/",
     "test": "npm-run-all test:languages test:util test:module",
     "website:install": "cd website && yarn",
@@ -84,7 +87,8 @@
     "remark-cli": "^12.0.1",
     "remark-toc": "^9.0.0",
     "rimraf": "6",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "zod": "^4.3.5"
   },
   "packageManager": "yarn@4.12.0",
   "engines": {

@@ -35,7 +35,7 @@ Ideas that will be planned and find their way into a release at one point
       - [ ] Ruby: not implemented
       - [ ] C: not implemented
       - [x] Infrastructure: parallel execution, caching, modular architecture, per-language handlers
-      - [x] CI integration: `verified:` header in function files, `yarn verify` for CI
+      - [x] CI integration: `verified:` header in function files, `yarn test:parity` for CI
       - [ ] Badge: "Verified against PHP 8.3"
 - [ ] Modernize, e.g.:
       - [ ] Migrate Babel 6 → native ESM (Node 20+)

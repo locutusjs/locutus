@@ -1,5 +1,6 @@
 module.exports = function idate(format, timestamp) {
   //  discuss at: https://locutus.io/php/idate/
+  //    verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   // original by: date
   // original by: gettimeofday

@@ -1,5 +1,6 @@
 module.exports = function chr(codePt) {
   //  discuss at: https://locutus.io/php/chr/
+  //    verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Unlike PHP (which wraps at 256), this implementation

@@ -1,5 +1,6 @@
 module.exports = function implode(glue, pieces) {
   //  discuss at: https://locutus.io/php/implode/
+  //    verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Waldo Malqui Silva (https://waldo.malqui.info)
   // improved by: Itsacon (https://www.itsacon.net/)

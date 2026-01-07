@@ -1,5 +1,6 @@
 module.exports = function strnatcmp(a, b) {
   //       discuss at: https://locutus.io/php/strnatcmp/
+  //         verified: 8.3
   //      original by: Martijn Wieringa
   //      improved by: Michael White (https://getsprink.com)
   //      improved by: Jack

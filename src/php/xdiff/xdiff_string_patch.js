@@ -1,5 +1,6 @@
 module.exports = function xdiff_string_patch(originalStr, patch, flags, errorObj) {
   //  discuss at: https://locutus.io/php/xdiff_string_patch/
+  //    verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Steven Levithan (stevenlevithan.com)
   //      note 1: The XDIFF_PATCH_IGNORESPACE flag and the error argument are not

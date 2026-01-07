@@ -1,5 +1,6 @@
 module.exports = function strcasecmp(fString1, fString2) {
   //  discuss at: https://locutus.io/php/strcasecmp/
+  //    verified: 8.3
   // original by: Martijn Wieringa
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: strcasecmp('Hello', 'hello')

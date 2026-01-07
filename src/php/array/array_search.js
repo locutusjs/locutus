@@ -1,5 +1,6 @@
 module.exports = function array_search(needle, haystack, argStrict) {
   //  discuss at: https://locutus.io/php/array_search/
+  //    verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   //    input by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (https://kvz.io)

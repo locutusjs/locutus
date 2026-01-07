@@ -1,5 +1,6 @@
 module.exports = function rawurlencode(str) {
   //       discuss at: https://locutus.io/php/rawurlencode/
+  //         verified: 8.3
   //      original by: Brett Zamir (https://brett-zamir.me)
   //         input by: travc
   //         input by: Brett Zamir (https://brett-zamir.me)

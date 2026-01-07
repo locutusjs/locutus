@@ -1,5 +1,6 @@
 module.exports = function is_bool(mixedVar) {
   //  discuss at: https://locutus.io/php/is_bool/
+  //    verified: 8.3
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: CoursesWeb (https://www.coursesweb.net/)
   //   example 1: is_bool(false)

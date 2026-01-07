@@ -1,5 +1,6 @@
 module.exports = function hex2bin(s) {
   //  discuss at: https://locutus.io/php/hex2bin/
+  //    verified: 8.3
   // original by: Dumitru Uzun (https://duzun.me)
   //   example 1: hex2bin('44696d61')
   //   returns 1: 'Dima'

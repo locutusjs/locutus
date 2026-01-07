@@ -145,7 +145,7 @@ function jsToPython(jsCode: string[], funcName: string): string {
 /**
  * Normalize Python output for comparison
  */
-function normalizePythonOutput(output: string): string {
+function normalizePythonOutput(output: string, _expected?: string): string {
   let result = output.trim()
   // Strip trailing .0 from floats for integer comparison
   if (/^-?\d+\.0$/.test(result)) {

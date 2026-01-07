@@ -1,5 +1,6 @@
 module.exports = function sqrt(x) {
   //  discuss at: https://locutus.io/python/sqrt/
+  //    verified: 3.12
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Returns the square root of x
   //   example 1: sqrt(4)

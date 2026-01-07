@@ -1,5 +1,6 @@
 module.exports = function json_encode(mixedVal) {
   //       discuss at: https://phpjs.org/functions/json_encode/
+  //         verified: 8.3
   //      original by: Public Domain (https://www.json.org/json2.js)
   // reimplemented by: Kevin van Zonneveld (https://kevin.vanzonneveld.net)
   //      improved by: Michael White

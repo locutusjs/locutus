@@ -734,7 +734,7 @@ const formats = {
   },
 
   pgTextReverse: {
-    // note: allowed years are from 32-9999
+    //             note: allowed years are from 32-9999
     // years below 32 should be treated as days in datefull
     regex: new RegExp('^' + '(\\d{3,4}|[4-9]\\d|3[2-9])-(' + reMonthAbbr + ')-' + reDaylz, 'i'),
     name: 'pgtextreverse',
@@ -1279,7 +1279,7 @@ const resultProto = {
     result.setFullYear(this.y, this.m, this.d)
     result.setHours(this.h, this.i, this.s, this.f)
 
-    // note: this is done twice in PHP
+    //             note: this is done twice in PHP
     // early when processing special relatives
     // and late
     // todo: check if the logic can be reduced

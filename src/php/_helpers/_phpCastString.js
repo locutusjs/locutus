@@ -18,14 +18,14 @@ module.exports = function _phpCastString(value) {
   //   returns 8: ''
   //   example 9: _phpCastString([])
   //   returns 9: 'Array'
-  //   example 10: _phpCastString({})
-  //   returns 10: 'Object'
-  //   example 11: _phpCastString(0)
-  //   returns 11: '0'
-  //   example 12: _phpCastString(1)
-  //   returns 12: '1'
-  //   example 13: _phpCastString(3.14)
-  //   returns 13: '3.14'
+  //  example 10: _phpCastString({})
+  //  returns 10: 'Object'
+  //  example 11: _phpCastString(0)
+  //  returns 11: '0'
+  //  example 12: _phpCastString(1)
+  //  returns 12: '1'
+  //  example 13: _phpCastString(3.14)
+  //  returns 13: '3.14'
 
   const type = typeof value
 

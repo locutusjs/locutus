@@ -1,5 +1,6 @@
 module.exports = function utf8_encode(argString) {
   //  discuss at: https://locutus.io/php/utf8_encode/
+  //    verified: 8.3
   // original by: Webtoolkit.info (https://www.webtoolkit.info/)
   // improved by: Kevin van Zonneveld (https://kvz.io)
   // improved by: sowberry

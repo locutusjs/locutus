@@ -5,16 +5,29 @@
 import { execSync, spawnSync } from 'node:child_process'
 
 /**
- * Check if Docker image exists, pull if not
+ * Ensure Docker image is available and up-to-date
+ * Always pulls to ensure we have the latest version
  */
 export function ensureDockerImage(image: string): boolean {
+  console.log(`  Pulling ${image}...`)
   try {
-    execSync(`docker image inspect ${image}`, { stdio: 'pipe' })
+    execSync(`docker pull ${image}`, { stdio: 'pipe' })
+    // Log the actual image digest and version for debugging
+    try {
+      const digest = execSync(`docker inspect ${image} --format '{{index .RepoDigests 0}}'`, {
+        encoding: 'utf8',
+        stdio: 'pipe',
+      }).trim()
+      console.log(`    Digest: ${digest}`)
+    } catch {
+      // Ignore
+    }
     return true
   } catch {
-    console.log(`  Pulling ${image}...`)
+    // Pull failed, check if we have a local copy as fallback
     try {
-      execSync(`docker pull ${image}`, { stdio: 'pipe' })
+      execSync(`docker image inspect ${image}`, { stdio: 'pipe' })
+      console.log(`    (using cached image)`)
       return true
     } catch {
       return false
@@ -38,6 +51,22 @@ export interface DockerRunResult {
   success: boolean
   output: string
   error?: string
+}
+
+/**
+ * Get the digest of a Docker image
+ * Returns empty string if image not found or digest unavailable
+ */
+export function getDockerDigest(image: string): string {
+  try {
+    const digest = execSync(`docker inspect ${image} --format '{{index .RepoDigests 0}}'`, {
+      encoding: 'utf8',
+      stdio: 'pipe',
+    }).trim()
+    return digest
+  } catch {
+    return ''
+  }
 }
 
 /**

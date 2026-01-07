@@ -1,4 +1,5 @@
 module.exports = function boolval(mixedVar) {
+  //    verified: 8.3
   // original by: Will Rowe
   //   example 1: boolval(true)
   //   returns 1: true
@@ -18,10 +19,10 @@ module.exports = function boolval(mixedVar) {
   //   returns 8: false
   //   example 9: boolval(null)
   //   returns 9: false
-  //   example 10: boolval(undefined)
-  //   returns 10: false
-  //   example 11: boolval('true')
-  //   returns 11: true
+  //  example 10: boolval(undefined)
+  //  returns 10: false
+  //  example 11: boolval('true')
+  //  returns 11: true
 
   if (mixedVar === false) {
     return false

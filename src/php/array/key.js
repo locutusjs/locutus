@@ -1,5 +1,6 @@
 module.exports = function key(arr) {
   //  discuss at: https://locutus.io/php/key/
+  //    verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: Riddler (https://www.frontierwebdev.com/)
   // bugfixed by: Brett Zamir (https://brett-zamir.me)
