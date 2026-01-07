@@ -356,9 +356,9 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - **Area: Verification (C)**
 - Added C parity verification support (PR #509):
   - Created `test/parity/lib/languages/c.ts` handler
-  - 10/18 C functions verified against `gcc:14` (C23 standard)
-  - Skip list: sprintf, strchr, strstr, strcat, frexp, isspace, abs, atof (complex semantics)
-- Total verified functions: 225 (164 PHP + 15 Python + 20 Go + 16 Ruby + 10 C)
+  - 11/18 C functions verified against `gcc:14` (C23 standard)
+  - Skip list: sprintf, strchr, strstr, strcat, frexp, isspace, atof (complex semantics)
+- Total verified functions: 226 (164 PHP + 15 Python + 20 Go + 16 Ruby + 11 C)
 - Updated CONTRIBUTING.md: Mocha → Vitest references fixed
 - Balance review (iterations 21-27):
   - Verification: 21, 24, 27
@@ -366,3 +366,30 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Website: 22
   - Modernization: 23
   - Good balance across areas
+
+### Iteration 28
+
+2026-01-07
+
+- **Area: Verification (C) + Website**
+- Simplified C handler to infer headers from category (e.g., `ctype` → `ctype.h`)
+- Added `abs()` to C parity verification (now 11/18, 61%):
+  - Changed examples to integers only (parity-testable with C's `stdlib.h abs()`)
+  - Added `HEADER_OVERRIDES` for functions needing different headers than their category
+  - Created custom Vitest test (`test/custom/c-abs-edge-cases.vitest.ts`) for float/string edge cases
+- Added C disclaimer to website function template (`function.ejs`):
+  - Explains that C functions accept JS's flexible types but only verify valid C inputs
+  - Similar to existing PHP array and Ruby nil disclaimers
+- Total verified functions: 226 (164 PHP + 15 Python + 20 Go + 16 Ruby + 11 C)
+
+### Iteration 29
+
+2026-01-07
+
+- **Area: Verification (C) - investigation**
+- Attempted to add `atof` to C verification - PR #510
+- Passed locally (stale cache) but failed CI: scientific notation mismatch
+  - JS outputs `-25000000000` for `-2.5e10`
+  - C outputs `-2.5e+10` (printf `%g` format)
+- Closed PR, keeping atof in skip list
+- Lesson learned: always clear cache or use `--all` when testing new functions
