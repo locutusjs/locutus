@@ -121,8 +121,8 @@ async function runParityTest(
     return { results, cached: false }
   }
 
-  // Ensure Docker image is available
-  if (!ensureDockerImage(handler.dockerImage)) {
+  // Docker image should already be pulled - this is just a safety check
+  if (!ensureDockerImage(handler.dockerImage, { quiet: true })) {
     for (const example of parsed.examples) {
       results.push({
         example: example.number,
@@ -130,7 +130,7 @@ async function runParityTest(
         expected: example.expectedRaw,
         jsResult: 'N/A',
         nativeResult: 'N/A',
-        error: `Failed to pull Docker image: ${handler.dockerImage}`,
+        error: `Docker image not available: ${handler.dockerImage}`,
       })
     }
     saveCache(func.path, { hash, results, timestamp: Date.now(), version: CACHE_VERSION }, CACHE_DIR)
@@ -338,29 +338,7 @@ async function main() {
     process.exit(1)
   }
 
-  // Pull images, collect digests for cache invalidation, and show versions
-  const dockerDigests: Record<string, string> = {}
-  console.log('Docker images:')
-  if (ensureDockerImage('php:8.3-cli')) {
-    dockerDigests['php:8.3-cli'] = getDockerDigest('php:8.3-cli')
-    const phpVersion = runInDocker('php:8.3-cli', ['php', '-v'], {})
-    if (phpVersion.success) {
-      console.log(`  PHP: ${phpVersion.output.split('\n')[0]}`)
-    }
-  }
-  if (ensureDockerImage('python:3.12')) {
-    dockerDigests['python:3.12'] = getDockerDigest('python:3.12')
-    const pyVersion = runInDocker('python:3.12', ['python', '--version'], {})
-    if (pyVersion.success) {
-      console.log(`  Python: ${pyVersion.output.trim()}`)
-    }
-  }
-  console.log('')
-
-  // Assign collected digests to options for cache invalidation
-  options.dockerDigests = dockerDigests
-
-  // Find all functions
+  // Step 1: Find all functions first
   const allFunctions = findFunctions(SRC, options.filter)
 
   // Categorize functions
@@ -469,7 +447,54 @@ async function main() {
   }
   console.log('')
 
-  // Run parity tests in parallel
+  // Step 2: Pull all required Docker images in parallel
+  const requiredImages = new Set<string>()
+  for (const { func, category } of functionsToTest) {
+    if (category === 'impossible') continue
+    const handler = getLanguageHandler(func.language)
+    if (handler) {
+      requiredImages.add(handler.dockerImage)
+    }
+  }
+
+  if (requiredImages.size > 0) {
+    console.log('Docker images:')
+    const dockerDigests: Record<string, string> = {}
+
+    // Pull all images in parallel
+    await pMap(
+      Array.from(requiredImages),
+      async (image) => {
+        if (ensureDockerImage(image)) {
+          dockerDigests[image] = getDockerDigest(image)
+        }
+      },
+      { concurrency: requiredImages.size }, // Pull all in parallel
+    )
+
+    // Show versions after all images are pulled
+    for (const image of requiredImages) {
+      if (image.startsWith('php:')) {
+        const ver = runInDocker(image, ['php', '-v'], {})
+        if (ver.success) console.log(`  PHP: ${ver.output.split('\n')[0]}`)
+      } else if (image.startsWith('python:')) {
+        const ver = runInDocker(image, ['python', '--version'], {})
+        if (ver.success) console.log(`  Python: ${ver.output.trim()}`)
+      } else if (image.startsWith('golang:')) {
+        const ver = runInDocker(image, ['go', 'version'], {})
+        if (ver.success) console.log(`  Go: ${ver.output.trim()}`)
+      } else if (image.startsWith('ruby:')) {
+        const ver = runInDocker(image, ['ruby', '--version'], {})
+        if (ver.success) console.log(`  Ruby: ${ver.output.trim()}`)
+      }
+    }
+    console.log('')
+
+    // Assign collected digests to options for cache invalidation
+    options.dockerDigests = dockerDigests
+  }
+
+  // Step 3: Run parity tests in parallel
   const allResults = await pMap(
     functionsToTest,
     async ({ func, category }): Promise<TestResult> => {
