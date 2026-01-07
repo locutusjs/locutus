@@ -27,9 +27,9 @@ Ideas that will be planned and find their way into a release at one point
       `call_user_func_array` etc.
 - [ ] Parse `require`s with ts-morph. Then we can add dependencies back to website
 - [ ] website: Render authors server-side
-- [ ] website: Fix the search functionality
+- [x] website: Fix the search functionality (verified working 2026-01-07, Insight search)
 - [ ] Verification: verify examples against native runtimes with Docker (balance efforts across languages)
-      - [x] PHP: 62/91 (68%) - remaining: Unicode, pass-by-ref, complex edge cases
+      - [x] PHP: 164 functions verified against PHP 8.3
       - [ ] Go: not implemented (Docker image configured but verification skipped)
       - [x] Python: 15/17 (88%) - remaining: capwords (impl difference), printable (.length)
       - [ ] Ruby: not implemented

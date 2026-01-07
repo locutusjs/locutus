@@ -135,3 +135,17 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Added `expected` parameter to `normalize()` for context-aware normalization
 - Merged PR #499 (includes all changes from PR #498 + above fixes)
 - All 179 verified functions now pass on both arm64 and amd64
+
+### Iteration 17
+
+2026-01-07
+
+- **Area: Website (neglected)**
+- Balance check: iterations 12-16 focused heavily on verification, website neglected
+- Investigated website search functionality:
+  - Search IS working (Insight search with hexo-generator-json-content)
+  - Tested: typing "trim" correctly finds trim, ltrim, rtrim functions
+  - Shows verified badge in search results (e.g., "verified: 8.3")
+  - Backlog item "Fix search functionality" appears outdated - marking as done
+- Website stack: Hexo 7.1.1 with icarus theme, deployed to gh-pages
+- Remaining website items: Jekyll → Next.js migration, Rosetta Stone view
