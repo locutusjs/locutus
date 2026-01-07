@@ -1,4 +1,4 @@
-import { expect } from 'chai'
+import { describe, expect, it } from 'vitest'
 import { Util } from '../../src/_util/util.ts'
 
 describe('util', function () {
@@ -9,8 +9,8 @@ describe('util', function () {
       const relative = 'php/array/array_change_key_case.js'
 
       const params = await util._load(relative, {})
-      expect(params).to.not.be.null
-      expect(params?.headKeys.example[0][0]).to.deep.equal('array_change_key_case(42)')
+      expect(params).not.toBeNull()
+      expect(params?.headKeys.example[0][0]).toEqual('array_change_key_case(42)')
     })
   })
 })
