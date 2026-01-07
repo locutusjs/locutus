@@ -27,7 +27,7 @@ Note that for any task, it's important to first get ample context. Search past i
    git push -u origin HEAD
    gh pr create
    ```
-   The only exception is updating `docs/prompts/LOG.md` which can be pushed directly.
+   Exceptions: `CORE_MAINTAINER.md`, `CHANGELOG.md`, and `docs/prompts/LOG.md` can be pushed directly to main.
 7. After the change:
     - Validate the work as planned (browser checks, tests, etc.).
     - Run `yarn check`.
