@@ -1,4 +1,3 @@
-// var fs = require('fs')
 import { expect } from 'chai'
 import { Util } from '../../src/_util/util.ts'
 
@@ -11,7 +10,7 @@ describe('util', function () {
 
       util._load(relative, {}, function (err, params) {
         expect(err).to.deep.equal(null)
-        expect(params.headKeys.example[0][0]).to.deep.equal('array_change_key_case(42)')
+        expect(params?.headKeys.example[0][0]).to.deep.equal('array_change_key_case(42)')
         done()
       })
     })
