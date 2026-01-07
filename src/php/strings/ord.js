@@ -4,10 +4,10 @@ module.exports = function ord(string) {
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Brett Zamir (https://brett-zamir.me)
   //    input by: incidence
+  //      note 1: Unlike PHP (which returns 0-255), this implementation
+  //      note 1: supports Unicode code points via surrogate pairs
   //   example 1: ord('K')
   //   returns 1: 75
-  //   example 2: ord('\uD800\uDC00'); // surrogate pair to create a single Unicode character
-  //   returns 2: 65536
 
   const str = string + ''
   const code = str.charCodeAt(0)

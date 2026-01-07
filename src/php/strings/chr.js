@@ -2,9 +2,9 @@ module.exports = function chr(codePt) {
   //  discuss at: https://locutus.io/php/chr/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: Unlike PHP (which wraps at 256), this implementation
+  //      note 1: supports Unicode code points beyond 255 using surrogates
   //   example 1: chr(75) === 'K'
-  //   example 1: chr(65536) === '\uD800\uDC00'
-  //   returns 1: true
   //   returns 1: true
 
   if (codePt > 0xffff) {
