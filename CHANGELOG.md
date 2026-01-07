@@ -40,7 +40,7 @@ Ideas that will be planned and find their way into a release at one point
 - [ ] Modernize, e.g.:
       - [x] Migrate Babel 6 → TS (Node 22+ typestripping) - removed Babel, using `node --experimental-strip-types`
       - [x] Migrate Mocha → Vitest (PR #506)
-      - [ ] Migrate custom `test/browser/app.js` and `yarn browser:watch`/browserify → Vitest with Playwright support, running a few generated test in a real browser
+      - [ ] Migrate custom `test/browser/app.js` and `yarn browser:watch`/browserify → Vitest with Playwright support (blocked on ESM migration - Vite browser mode requires ESM, but source functions are CJS)
       - [x] Drop Node < 22 support (now requires Node >= 22)
       - [x] ESLint/Prettier → Biome (done in v2.0.33)
       - [ ] Migrate CJS → ESM (should we do this for all source functions? think so, but with Dual CJS/ESM exports. With https://github.com/colinhacks/zshy? What's best these days?)
