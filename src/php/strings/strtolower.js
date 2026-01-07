@@ -1,6 +1,6 @@
 module.exports = function strtolower(str) {
   //  discuss at: https://locutus.io/php/strtolower/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: strtolower('Kevin van Zonneveld')

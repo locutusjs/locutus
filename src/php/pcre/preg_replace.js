@@ -1,5 +1,5 @@
 module.exports = function preg_replace(pattern, replacement, string) {
-  //   original by: rony2k6 (https://github.com/rony2k6)
+  // original by: rony2k6 (https://github.com/rony2k6)
   //   example 1: preg_replace('/xmas/i', 'Christmas', 'It was the night before Xmas.')
   //   returns 1: "It was the night before Christmas."
   //   example 2: preg_replace('/xmas/ig', 'Christmas', 'xMas: It was the night before Xmas.')

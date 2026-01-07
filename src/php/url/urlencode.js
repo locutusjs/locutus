@@ -1,6 +1,6 @@
 module.exports = function urlencode(str) {
   //       discuss at: https://locutus.io/php/urlencode/
-  //   verified: 8.3
+  //         verified: 8.3
   //      original by: Philip Peterson
   //      improved by: Kevin van Zonneveld (https://kvz.io)
   //      improved by: Kevin van Zonneveld (https://kvz.io)

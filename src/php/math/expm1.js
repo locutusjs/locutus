@@ -1,6 +1,6 @@
 module.exports = function expm1(x) {
   //  discuss at: https://locutus.io/php/expm1/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Robert Eisele (https://www.xarg.org/)
   //      note 1: Precision 'n' can be adjusted as desired

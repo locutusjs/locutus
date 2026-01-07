@@ -1,6 +1,6 @@
 module.exports = function rawurldecode(str) {
   //       discuss at: https://locutus.io/php/rawurldecode/
-  //   verified: 8.3
+  //         verified: 8.3
   //      original by: Brett Zamir (https://brett-zamir.me)
   //         input by: travc
   //         input by: Brett Zamir (https://brett-zamir.me)

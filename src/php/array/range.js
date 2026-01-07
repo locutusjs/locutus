@@ -1,6 +1,6 @@
 module.exports = function range(low, high, step) {
   //  discuss at: https://locutus.io/php/range/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Waldo Malqui Silva (https://waldo.malqui.info)
   //   example 1: range ( 0, 12 )
   //   returns 1: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]

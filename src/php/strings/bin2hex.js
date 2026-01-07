@@ -1,6 +1,6 @@
 module.exports = function bin2hex(s) {
   //  discuss at: https://locutus.io/php/bin2hex/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Linuxworld

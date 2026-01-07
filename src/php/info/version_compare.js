@@ -1,6 +1,6 @@
 module.exports = function version_compare(v1, v2, operator) {
   //       discuss at: https://locutus.io/php/version_compare/
-  //   verified: 8.3
+  //         verified: 8.3
   //      original by: Philippe Jausions (https://pear.php.net/user/jausions)
   //      original by: Aidan Lister (https://aidanlister.com/)
   // reimplemented by: Kankrelune (https://www.webfaktory.info/)

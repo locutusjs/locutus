@@ -1,6 +1,6 @@
 module.exports = function gmdate(format, timestamp) {
   //  discuss at: https://locutus.io/php/gmdate/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: Alex
   // bugfixed by: Brett Zamir (https://brett-zamir.me)

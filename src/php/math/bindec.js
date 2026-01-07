@@ -1,6 +1,6 @@
 module.exports = function bindec(binaryString) {
   //  discuss at: https://locutus.io/php/bindec/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Philippe Baumann
   //   example 1: bindec('110011')
   //   returns 1: 51

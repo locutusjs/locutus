@@ -1,6 +1,6 @@
 module.exports = function fmod(x, y) {
   //  discuss at: https://locutus.io/php/fmod/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //    input by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (https://kvz.io)

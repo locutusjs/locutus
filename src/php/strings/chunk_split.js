@@ -1,6 +1,6 @@
 module.exports = function chunk_split(body, chunklen, end) {
   //  discuss at: https://locutus.io/php/chunk_split/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Paulo Freitas
   //    input by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (https://kvz.io)

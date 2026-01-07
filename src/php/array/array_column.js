@@ -1,6 +1,6 @@
 module.exports = function array_column(input, ColumnKey, IndexKey = null) {
-  //   discuss at: https://locutus.io/php/array_column/
-  //   original by: Enzo Dañobeytía
+  //  discuss at: https://locutus.io/php/array_column/
+  // original by: Enzo Dañobeytía
   //   example 1: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], 'name')
   //   returns 1: {0: "Alex", 1: "Elvis", 2: "Michael"}
   //   example 2: array_column({0: {name: 'Alex', value: 1}, 1: {name: 'Elvis', value: 2}, 2: {name: 'Michael', value: 3}}, 'name')

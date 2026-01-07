@@ -9,6 +9,7 @@ const indentStringModule = require('indent-string')
 const indentString = indentStringModule.default || indentStringModule
 const _ = require('lodash')
 const esprima = require('esprima')
+const { validateHeaderKeys, isValidHeaderKey } = require('./headerSchema')
 
 class Util {
   constructor(argv) {
@@ -622,6 +623,9 @@ class Util {
 
     const headKeys = this._headKeys(headComments)
 
+    // Validate header keys against schema - will throw if invalid/unrecognized keys found
+    validateHeaderKeys(headKeys, filepath)
+
     const params = {
       headKeys,
       name,
@@ -666,6 +670,11 @@ class Util {
         num = dmatch[2] - 1
       } else {
         num = 0
+      }
+
+      // Skip keys that aren't recognized header keys (e.g. "https" from URL patterns)
+      if (!isValidHeaderKey(key)) {
+        continue
       }
 
       if (!keys[key]) {

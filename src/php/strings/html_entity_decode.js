@@ -1,6 +1,6 @@
 module.exports = function html_entity_decode(string, quoteStyle) {
   //  discuss at: https://locutus.io/php/html_entity_decode/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: john (https://www.jd-tech.net)
   //    input by: ger
   //    input by: Ratheous

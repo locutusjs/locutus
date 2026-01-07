@@ -1,6 +1,6 @@
 module.exports = function strncasecmp(argStr1, argStr2, len) {
   //  discuss at: https://locutus.io/php/strncasecmp/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Saulo Vallory
   //    input by: Nate
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)

@@ -1,6 +1,6 @@
 module.exports = function similar_text(first, second, percent) {
   //  discuss at: https://locutus.io/php/similar_text/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Rafał Kukawski (https://blog.kukawski.pl)
   // bugfixed by: Chris McMacken
   // bugfixed by: Jarkko Rantavuori original by findings in stackoverflow (https://stackoverflow.com/questions/14136349/how-does-similar-text-work)

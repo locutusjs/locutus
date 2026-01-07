@@ -1,6 +1,6 @@
 module.exports = function inet_pton(a) {
   //  discuss at: https://locutus.io/php/inet_pton/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Theriault (https://github.com/Theriault)
   // improved by: alromh87 and JamieSlome
   //   example 1: inet_pton('::')

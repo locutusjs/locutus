@@ -1,6 +1,6 @@
 module.exports = function octdigits() {
   //  discuss at: https://locutus.io/python/octdigits/
-  //   verified: 3.12
+  //    verified: 3.12
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Returns the string '01234567'
   //   example 1: octdigits()

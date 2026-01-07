@@ -1,6 +1,6 @@
 module.exports = function strstr(haystack, needle, bool) {
   //  discuss at: https://locutus.io/php/strstr/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Kevin van Zonneveld (https://kvz.io)

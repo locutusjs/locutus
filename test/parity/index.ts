@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /**
  * Parity tests for locutus functions
  *
@@ -16,9 +17,9 @@
  *   yarn verify --summary             # Show counts only, don't run tests
  */
 
-import { performance } from 'node:perf_hooks'
 import { availableParallelism } from 'node:os'
 import { dirname, join } from 'node:path'
+import { performance } from 'node:perf_hooks'
 import { fileURLToPath } from 'node:url'
 import pMap from 'p-map'
 
@@ -64,7 +65,12 @@ async function runParityTest(
   try {
     parsed = await parseFunctionWithUtil(func.path, SRC, ROOT)
   } catch {
-    parsed = { examples: func.examples, dependsOn: func.dependsOn, verified: func.verified, isImpossible: func.isImpossible }
+    parsed = {
+      examples: func.examples,
+      dependsOn: func.dependsOn,
+      verified: func.verified,
+      isImpossible: func.isImpossible,
+    }
   }
 
   const hash = calculateHash(fullPath, parsed.dependsOn, SRC, PARITY_SCRIPT_PATH)
@@ -296,8 +302,12 @@ function printResults(allResults: TestResult[], options: VerifyOptions): ParityS
  * Format duration in human-readable format
  */
 function formatDuration(ms: number): string {
-  if (ms < 1000) return `${Math.round(ms)}ms`
-  if (ms < 60000) return `${(ms / 1000).toFixed(1)}s`
+  if (ms < 1000) {
+    return `${Math.round(ms)}ms`
+  }
+  if (ms < 60000) {
+    return `${(ms / 1000).toFixed(1)}s`
+  }
   return `${Math.floor(ms / 60000)}m ${Math.round((ms % 60000) / 1000)}s`
 }
 
@@ -384,7 +394,9 @@ async function main() {
     console.log('\nBy language:')
     for (const [lang, counts] of Object.entries(byLanguage).sort()) {
       const supported = isLanguageSupported(lang) ? '' : ' (not supported)'
-      console.log(`  ${lang}: ${counts.verified} verified, ${counts.impossible} impossible, ${counts.unverified} unverified${supported}`)
+      console.log(
+        `  ${lang}: ${counts.verified} verified, ${counts.impossible} impossible, ${counts.unverified} unverified${supported}`,
+      )
     }
 
     // List unverified functions
@@ -402,7 +414,7 @@ async function main() {
   }
 
   // Determine which functions to test
-  let functionsToTest: Array<{ func: FunctionInfo; category: 'verified' | 'impossible' | 'unverified' }> = []
+  const functionsToTest: Array<{ func: FunctionInfo; category: 'verified' | 'impossible' | 'unverified' }> = []
 
   // Always include verified functions
   for (const func of verifiedFunctions) {
@@ -460,7 +472,9 @@ async function main() {
 
   // Print summary line
   console.log('')
-  console.log(`Results: ${summary.passed} ${EMOJI.pass}, ${summary.failed} ${EMOJI.fail}, ${summary.impossible} ${EMOJI.impossible}, ${summary.unverified} ${EMOJI.unverified}`)
+  console.log(
+    `Results: ${summary.passed} ${EMOJI.pass}, ${summary.failed} ${EMOJI.fail}, ${summary.impossible} ${EMOJI.impossible}, ${summary.unverified} ${EMOJI.unverified}`,
+  )
   console.log(`Cache: ${cacheHits} ${EMOJI.cached} hits, ${cacheMisses} misses`)
   console.log(`Time: ${formatDuration(duration)}`)
 

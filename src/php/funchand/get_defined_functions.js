@@ -1,6 +1,6 @@
 module.exports = function get_defined_functions() {
   //  discuss at: https://locutus.io/php/get_defined_functions/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Returns an array of global function names. Unlike PHP,

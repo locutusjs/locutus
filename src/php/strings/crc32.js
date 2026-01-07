@@ -1,6 +1,6 @@
 module.exports = function crc32(str) {
   //  discuss at: https://locutus.io/php/crc32/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Webtoolkit.info (https://www.webtoolkit.info/)
   // improved by: T0bsn
   //   example 1: crc32('Kevin van Zonneveld')

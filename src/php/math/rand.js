@@ -1,6 +1,6 @@
 module.exports = function rand(min, max) {
   //  discuss at: https://locutus.io/php/rand/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Leslie Hoare
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //      note 1: See the commented out code below for a version which

@@ -1,6 +1,6 @@
 module.exports = function strcmp(str1, str2) {
   //  discuss at: https://locutus.io/php/strcmp/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Waldo Malqui Silva (https://waldo.malqui.info)
   //    input by: Steve Hilder
   // improved by: Kevin van Zonneveld (https://kvz.io)

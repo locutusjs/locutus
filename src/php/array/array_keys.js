@@ -1,6 +1,6 @@
 module.exports = function array_keys(input, searchValue, argStrict) {
   //  discuss at: https://locutus.io/php/array_keys/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   //    input by: Brett Zamir (https://brett-zamir.me)
   //    input by: P

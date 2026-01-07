@@ -1,6 +1,6 @@
 module.exports = function strnatcasecmp(a, b) {
   //       discuss at: https://locutus.io/php/strnatcasecmp/
-  //   verified: 8.3
+  //         verified: 8.3
   //      original by: Martin Pool
   // reimplemented by: Pierre-Luc Paour
   // reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))

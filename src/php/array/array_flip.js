@@ -1,6 +1,6 @@
 module.exports = function array_flip(trans) {
   //  discuss at: https://locutus.io/php/array_flip/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Pier Paolo Ramon (https://www.mastersoup.com/)
   // improved by: Brett Zamir (https://brett-zamir.me)

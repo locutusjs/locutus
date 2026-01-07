@@ -1,6 +1,6 @@
 module.exports = function json_decode(strJson) {
   //       discuss at: https://phpjs.org/functions/json_decode/
-  //   verified: 8.3
+  //         verified: 8.3
   //      original by: Public Domain (https://www.json.org/json2.js)
   // reimplemented by: Kevin van Zonneveld (https://kevin.vanzonneveld.net)
   //      improved by: T.J. Leahy

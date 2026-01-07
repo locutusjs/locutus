@@ -1,6 +1,6 @@
 module.exports = function metaphone(word, maxPhonemes) {
   //  discuss at: https://locutus.io/php/metaphone/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Greg Frazier
   // improved by: Brett Zamir (https://brett-zamir.me)
   // improved by: Rafał Kukawski (https://blog.kukawski.pl)

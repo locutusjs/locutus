@@ -19,8 +19,12 @@ export function stripForHashing(content: string): string {
     .filter((line) => {
       const trimmed = line.trim()
       // Keep lines that have actual code (not just comments or blank)
-      if (!trimmed) return false
-      if (trimmed.startsWith('//')) return false
+      if (!trimmed) {
+        return false
+      }
+      if (trimmed.startsWith('//')) {
+        return false
+      }
       // Keep lines even if they have inline comments
       return true
     })

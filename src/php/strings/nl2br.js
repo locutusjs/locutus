@@ -1,6 +1,6 @@
 module.exports = function nl2br(str, isXhtml) {
   //  discuss at: https://locutus.io/php/nl2br/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Philip Peterson
   // improved by: Onno Marsman (https://twitter.com/onnomarsman)

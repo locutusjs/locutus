@@ -1,6 +1,6 @@
 module.exports = function octdec(octString) {
   //  discuss at: https://locutus.io/php/octdec/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Philippe Baumann
   //   example 1: octdec('77')
   //   returns 1: 63

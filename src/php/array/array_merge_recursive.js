@@ -1,14 +1,14 @@
 module.exports = function array_merge_recursive(arr1, arr2) {
-  //  discuss at: https://locutus.io/php/array_merge_recursive/
-  // original by: Subhasis Deb
-  //    input by: Brett Zamir (https://brett-zamir.me)
-  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //       discuss at: https://locutus.io/php/array_merge_recursive/
+  //      original by: Subhasis Deb
+  //         input by: Brett Zamir (https://brett-zamir.me)
+  //      bugfixed by: Kevin van Zonneveld (https://kvz.io)
   // reimplemented by: Kevin van Zonneveld (https://kvz.io)
-  //      note 1: Numeric keys are renumbered starting from 0, string keys are preserved
-  //   example 1: var $arr1 = {'color': {'favorite': 'red'}, 0: 5}
-  //   example 1: var $arr2 = {0: 10, 'color': {'favorite': 'green', 0: 'blue'}}
-  //   example 1: array_merge_recursive($arr1, $arr2)
-  //   returns 1: {'color': {'favorite': ['red', 'green'], 0: 'blue'}, 0: 5, 1: 10}
+  //           note 1: Numeric keys are renumbered starting from 0, string keys are preserved
+  //        example 1: var $arr1 = {'color': {'favorite': 'red'}, 0: 5}
+  //        example 1: var $arr2 = {0: 10, 'color': {'favorite': 'green', 0: 'blue'}}
+  //        example 1: array_merge_recursive($arr1, $arr2)
+  //        returns 1: {'color': {'favorite': ['red', 'green'], 0: 'blue'}, 0: 5, 1: 10}
 
   const result = {}
   const toStr = Object.prototype.toString

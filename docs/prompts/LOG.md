@@ -90,3 +90,23 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Added demo verified headers: trim.js (8.3), factorial.js (3.12)
 - Balance check: iterations 11-14 focused on dependencies (11) and verification (12-14)
   - Next iteration should address different areas (TypeScript, website, or modernization)
+
+### Iteration 15
+
+2026-01-07
+
+- **Area: Verification + Modernization + TypeScript**
+- Added `verified:` headers to all 179 passing functions (164 PHP, 15 Python) (PR #498)
+- Moved scripts/verify → test/parity (better organization)
+- Added Zod schema validation for header comments:
+  - `src/_util/headerSchema.js` - Validates header keys, catches typos early
+  - Fixed typos found: "imprived by" → "improved by", "fixed by" → "bugfixed by"
+  - Added "based on" as valid attribution key
+  - util.js now filters invalid header patterns (e.g., "https:" from URLs)
+- Added header formatter for vertical alignment:
+  - `src/_util/headerFormatter.js` - Per-file alignment based on longest key
+  - `yarn lint:headers` - Check alignment (tied into `yarn check`)
+  - `yarn fix:headers` - Auto-fix alignment
+- Added cache hit reporting with lightning emoji (⚡) and performance timing
+- Added `yarn lint:ts` script (tsc --noEmit) tied into `yarn check`
+- Fixed Biome lint errors in parity test files (block statements)

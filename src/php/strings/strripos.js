@@ -1,6 +1,6 @@
 module.exports = function strripos(haystack, needle, offset) {
   //  discuss at: https://locutus.io/php/strripos/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // bugfixed by: Brett Zamir (https://brett-zamir.me)

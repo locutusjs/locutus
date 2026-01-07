@@ -1,6 +1,6 @@
 module.exports = function log(arg, base) {
   //  discuss at: https://locutus.io/php/log/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: log(8723321.4, 7)

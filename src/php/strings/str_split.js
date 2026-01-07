@@ -1,6 +1,6 @@
 module.exports = function str_split(string, splitLength) {
   //  discuss at: https://locutus.io/php/str_split/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Martijn Wieringa
   // improved by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)

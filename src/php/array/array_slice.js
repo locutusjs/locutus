@@ -1,6 +1,6 @@
 module.exports = function array_slice(arr, offst, lgth, preserveKeys) {
   //  discuss at: https://locutus.io/php/array_slice/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (https://kvz.io)

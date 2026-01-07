@@ -1,6 +1,6 @@
 module.exports = function sha1(str) {
   //  discuss at: https://locutus.io/php/sha1/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Webtoolkit.info (https://www.webtoolkit.info/)
   // improved by: Michael White (https://getsprink.com)
   // improved by: Kevin van Zonneveld (https://kvz.io)

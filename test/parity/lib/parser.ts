@@ -110,7 +110,10 @@ export function parseDependsOnFromHeadKeys(headKeys: Record<string, string[][]>)
 /**
  * Parse verified versions from headKeys (util.js output)
  */
-export function parseVerifiedFromHeadKeys(headKeys: Record<string, string[][]>): { verified: string[]; isImpossible: boolean } {
+export function parseVerifiedFromHeadKeys(headKeys: Record<string, string[][]>): {
+  verified: string[]
+  isImpossible: boolean
+} {
   const verifiedRaw = headKeys.verified || []
   const verified: string[] = []
   let isImpossible = false

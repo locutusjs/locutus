@@ -1,6 +1,6 @@
 module.exports = function str_rot13(str) {
   //  discuss at: https://locutus.io/php/str_rot13/
-  //   verified: 8.3
+  //    verified: 8.3
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   // improved by: Ates Goral (https://magnetiq.com)
   // improved by: Rafał Kukawski (https://blog.kukawski.pl)

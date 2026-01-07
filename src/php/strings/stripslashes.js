@@ -1,11 +1,11 @@
 module.exports = function stripslashes(str) {
   //       discuss at: https://locutus.io/php/stripslashes/
-  //   verified: 8.3
+  //         verified: 8.3
   //      original by: Kevin van Zonneveld (https://kvz.io)
   //      improved by: Ates Goral (https://magnetiq.com)
   //      improved by: marrtins
   //      improved by: rezna
-  //         fixed by: Mick@el
+  //      bugfixed by: Mick@el
   //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //      bugfixed by: Brett Zamir (https://brett-zamir.me)
   //         input by: Rick Waldron
