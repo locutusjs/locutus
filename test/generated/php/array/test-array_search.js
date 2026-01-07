@@ -9,7 +9,7 @@ var ini_set = require('../../../../src/php/info/ini_set')
 var ini_get = require('../../../../src/php/info/ini_get')
 var array_search = require('../../../../src/php/array/array_search.js')
 
-describe.skip('src/php/array/array_search.js (tested in test/generated/php/array/test-array_search.js)', function () {
+describe('src/php/array/array_search.js (tested in test/generated/php/array/test-array_search.js)', function () {
   it('should pass example 1', function (done) {
     var expected = 'surname'
     var result = array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'})
