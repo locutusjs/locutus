@@ -31,10 +31,13 @@ Ideas that will be planned and find their way into a release at one point
 - [ ] website: Fix the search functionality
 - [ ] Verification: verify examples against native runtimes (PHP/Go/Python/Ruby/C) with docker
 - [ ] Modernize, e.g.:
+      - [ ] Babel → TypeScript / Native ESM
       - [ ] Mocha → Vitest
-      - [ ] CJS → ESM
       - [ ] ESLint/Prettier → Biome
+      - [ ] CJS → ESM
+      - [ ] Custom CLI releases → Changesets
       - [ ] JS → TS, for starters for all infra scripts (use Node v24 native type stripping to run)
+      - [ ] Jekyll → Next.js 16 SSG
 - [ ] Expansion (port more functions to the different languages)
       - [ ] Port a few more tricky/inter-depending Go functions
       - [ ] Port a few more tricky/inter-depending Python functions
