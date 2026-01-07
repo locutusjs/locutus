@@ -53,7 +53,7 @@ Ideas that will be planned and find their way into a release at one point
       - [x] Strict mode compatible. Node type stripping compatible
 - [ ] Expansion (port more functions to the different languages), we'll go from most feasible + sensible, to least :)
 - [ ] Docs/Website:
-      - [ ] Jekyll → Next.js 16 SSG
+      - [ ] Hexo → Next.js 16 SSG
       - [x] Fix Search by function name or behavior (verified working 2026-01-07)
       - [ ] "Rosetta Stone" view for cross-language comparison
 
