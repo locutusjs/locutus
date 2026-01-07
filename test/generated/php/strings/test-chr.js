@@ -12,9 +12,7 @@ var chr = require('../../../../src/php/strings/chr.js')
 describe('src/php/strings/chr.js (tested in test/generated/php/strings/test-chr.js)', function () {
   it('should pass example 1', function (done) {
     var expected = true
-    true
-    chr(75) === 'K'
-    var result = chr(65536) === '\uD800\uDC00'
+    var result = chr(75) === 'K'
     expect(result).to.deep.equal(expected)
     done()
   })

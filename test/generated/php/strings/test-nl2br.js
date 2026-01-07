@@ -11,19 +11,19 @@ var nl2br = require('../../../../src/php/strings/nl2br.js')
 
 describe('src/php/strings/nl2br.js (tested in test/generated/php/strings/test-nl2br.js)', function () {
   it('should pass example 1', function (done) {
-    var expected = 'Kevin<br />\nvan<br />\nZonneveld'
-    var result = nl2br('Kevin\nvan\nZonneveld')
+    var expected = "Kevin<br />\nvan<br />\nZonneveld"
+    var result = nl2br("Kevin\nvan\nZonneveld")
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 2', function (done) {
-    var expected = '<br>\nOne<br>\nTwo<br>\n<br>\nThree<br>\n'
+    var expected = "<br>\nOne<br>\nTwo<br>\n<br>\nThree<br>\n"
     var result = nl2br("\nOne\nTwo\n\nThree\n", false)
     expect(result).to.deep.equal(expected)
     done()
   })
   it('should pass example 3', function (done) {
-    var expected = '<br />\nOne<br />\nTwo<br />\n<br />\nThree<br />\n'
+    var expected = "<br />\nOne<br />\nTwo<br />\n<br />\nThree<br />\n"
     var result = nl2br("\nOne\nTwo\n\nThree\n", true)
     expect(result).to.deep.equal(expected)
     done()

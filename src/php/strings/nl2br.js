@@ -10,12 +10,12 @@ module.exports = function nl2br(str, isXhtml) {
   // bugfixed by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Reynier de la Rosa (https://scriptinside.blogspot.com.es/)
   //    input by: Brett Zamir (https://brett-zamir.me)
-  //   example 1: nl2br('Kevin\nvan\nZonneveld')
-  //   returns 1: 'Kevin<br />\nvan<br />\nZonneveld'
+  //   example 1: nl2br("Kevin\nvan\nZonneveld")
+  //   returns 1: "Kevin<br />\nvan<br />\nZonneveld"
   //   example 2: nl2br("\nOne\nTwo\n\nThree\n", false)
-  //   returns 2: '<br>\nOne<br>\nTwo<br>\n<br>\nThree<br>\n'
+  //   returns 2: "<br>\nOne<br>\nTwo<br>\n<br>\nThree<br>\n"
   //   example 3: nl2br("\nOne\nTwo\n\nThree\n", true)
-  //   returns 3: '<br />\nOne<br />\nTwo<br />\n<br />\nThree<br />\n'
+  //   returns 3: "<br />\nOne<br />\nTwo<br />\n<br />\nThree<br />\n"
   //   example 4: nl2br(null)
   //   returns 4: ''
 

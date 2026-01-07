@@ -49,6 +49,8 @@ const PHP_REMOVED_FUNCTIONS = new Set([
   // PECL extensions not available in standard PHP Docker image
   'xdiff_string_diff',
   'xdiff_string_patch',
+  // PHP language constructs (not callable as functions)
+  'echo',
 ])
 
 // Docker images for each language
@@ -822,7 +824,8 @@ async function verifyFunction(func: FunctionInfo, useCache: boolean): Promise<Ve
       continue
     }
 
-    const nativeResult = phpRun.output.trim()
+    // Normalize PHP output: unescape forward slashes (PHP's json_encode escapes / as \/)
+    const nativeResult = phpRun.output.trim().replace(/\\\//g, '/')
     const passedExample = expectedEval.result.trim() === nativeResult
     results.push({
       example: example.number,
