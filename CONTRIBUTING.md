@@ -190,11 +190,14 @@ Make changes if needed, until there are no more errors. Then commit, push, and s
 
 After PRs have been approved and merged it's time to cut a release.
 
-Any Core contributor can let our GHA CI create an NPM release, by pushing a new version and Git tag, like so:
+Any Core contributor can let our GHA CI create an npm release via OIDC Trusted Publishing (no npm token required),
+by pushing a new version and Git tag, like so:
 
 ```bash
 npm version patch -m "Release v%s" && git push --tags
 ```
+
+The publish workflow is `.github/workflows/ci.yml` and triggers on tags that point at `main`.
 
 Locutus does not adhere to Semver, so typically you would just use `patch` level upgrades for changes. If we change
 something dramatic to how Locutus works across functions (ship ESM, move to TypeScript, etc), that's when we'll involve
