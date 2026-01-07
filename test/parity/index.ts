@@ -335,6 +335,22 @@ async function main() {
     process.exit(1)
   }
 
+  // Pull images and show versions for debugging
+  console.log('Docker images:')
+  if (ensureDockerImage('php:8.3-cli')) {
+    const phpVersion = runInDocker('php:8.3-cli', ['php', '-v'], {})
+    if (phpVersion.success) {
+      console.log(`  PHP: ${phpVersion.output.split('\n')[0]}`)
+    }
+  }
+  if (ensureDockerImage('python:3.12')) {
+    const pyVersion = runInDocker('python:3.12', ['python', '--version'], {})
+    if (pyVersion.success) {
+      console.log(`  Python: ${pyVersion.output.trim()}`)
+    }
+  }
+  console.log('')
+
   // Find all functions
   const allFunctions = findFunctions(SRC, options.filter)
 

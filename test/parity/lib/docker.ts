@@ -12,6 +12,16 @@ export function ensureDockerImage(image: string): boolean {
   console.log(`  Pulling ${image}...`)
   try {
     execSync(`docker pull ${image}`, { stdio: 'pipe' })
+    // Log the actual image digest and version for debugging
+    try {
+      const digest = execSync(`docker inspect ${image} --format '{{index .RepoDigests 0}}'`, {
+        encoding: 'utf8',
+        stdio: 'pipe',
+      }).trim()
+      console.log(`    Digest: ${digest}`)
+    } catch {
+      // Ignore
+    }
     return true
   } catch {
     // Pull failed, check if we have a local copy as fallback
