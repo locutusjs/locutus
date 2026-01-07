@@ -35,7 +35,7 @@ Note that for any task, it's important to first get ample context. Search past i
     - Update documentation/website as needed (`find . |grep -E '\.md$' |grep -Ev '(node_modules|icarus|_posts|\.claude)'`)
     - Run one last `yarn check`.
     - If there was any issue, go back to step 7.1.
-8. Release any recently merged PRs that are still unreleased.
+8. Release any recently merged PRs that are still unreleased, unless they only contain build tools, tests, docs fixes. We only release if there are new functions or changed functions, or changes to how people should use them.
 9. Log an iteration in `docs/prompts/LOG.md`.
 10. → Back to step 1
 
