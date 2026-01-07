@@ -1,5 +1,10 @@
 # Locutus
 
+[![CI](https://github.com/locutusjs/locutus/actions/workflows/ci.yml/badge.svg)](https://github.com/locutusjs/locutus/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/locutus.svg)](https://www.npmjs.com/package/locutus)
+[![Verified: PHP 8.3](https://img.shields.io/badge/verified-PHP%208.3-777BB4.svg)](https://locutus.io/php/)
+[![Verified: Python 3.12](https://img.shields.io/badge/verified-Python%203.12-3776AB.svg)](https://locutus.io/python/)
+
 > All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.
 
 Welcome to Locutus, where the boundaries of coding languages blur. We're a dedicated collective developers on a mission
