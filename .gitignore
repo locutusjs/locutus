@@ -28,3 +28,4 @@ website/vendor/cache/
 .history
 .cache/
 .claude/ralph-loop.local.md
+.playwright-mcp/
