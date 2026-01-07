@@ -133,3 +133,5 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - See: https://github.com/php/php-src/issues/17119
   - Fix: Normalize comparison results when expected is -1/0/1
   - Added `expected` parameter to `normalize()` for context-aware normalization
+- Merged PR #499 (includes all changes from PR #498 + above fixes)
+- All 179 verified functions now pass on both arm64 and amd64
