@@ -15,19 +15,29 @@
 import { execSync, spawnSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs'
-import { basename, dirname, join, relative } from 'node:path'
+import { createRequire } from 'node:module'
+import { basename, dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import vm from 'node:vm'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const SRC = join(ROOT, 'src')
 const CACHE_DIR = join(ROOT, '.cache', 'verify')
+const require = createRequire(import.meta.url)
+const Util = require(join(ROOT, 'src/_util/util.js'))
+const util = new Util([])
+const CACHE_VERSION = 2
 
 // Docker images for each language
-const DOCKER_IMAGES: Record<string, { image: string; cmd: (code: string) => string[] }> = {
+const DOCKER_IMAGES: Record<
+  string,
+  { image: string; cmd: (code: string) => string[]; mountRepo?: boolean }
+> = {
   php: {
     image: 'php:8.3-cli',
     cmd: (code) => ['php', '-r', code],
+    mountRepo: true,
   },
   golang: {
     image: 'golang:1.22',
@@ -50,7 +60,7 @@ const DOCKER_IMAGES: Record<string, { image: string; cmd: (code: string) => stri
 interface Example {
   number: number
   code: string[]
-  expected: string
+  expectedRaw: string
 }
 
 interface FunctionInfo {
@@ -66,11 +76,13 @@ interface CacheEntry {
   hash: string
   results: VerifyResult[]
   timestamp: number
+  version: number
 }
 
 interface VerifyResult {
   example: number
   passed: boolean
+  expected: string
   jsResult: string
   nativeResult?: string
   error?: string
@@ -108,7 +120,7 @@ function parseExamples(filePath: string): Example[] {
       examples.push({
         number: num,
         code: exampleMatches[num],
-        expected: returnsMatches[num],
+        expectedRaw: returnsMatches[num],
       })
     }
   }
@@ -116,7 +128,7 @@ function parseExamples(filePath: string): Example[] {
   return examples
 }
 
-// Parse depends on from function file
+// Parse depends on from function file (fallback for cache hashing)
 function parseDependsOn(filePath: string): string[] {
   const content = readFileSync(filePath, 'utf8')
   const deps: string[] = []
@@ -130,6 +142,47 @@ function parseDependsOn(filePath: string): string[] {
   }
 
   return deps
+}
+
+function parseDependsOnFromHeadKeys(headKeys: Record<string, string[][]>): string[] {
+  const depends = headKeys['depends on'] || []
+  return depends.map((lines) => lines.join('\n').trim()).filter(Boolean)
+}
+
+function parseExamplesFromHeadKeys(headKeys: Record<string, string[][]>): Example[] {
+  const examples = headKeys.example || []
+  const returns = headKeys.returns || []
+  const parsed: Example[] = []
+
+  for (let i = 0; i < examples.length; i++) {
+    if (!returns[i]) continue
+    parsed.push({
+      number: i + 1,
+      code: examples[i],
+      expectedRaw: returns[i].join('\n'),
+    })
+  }
+
+  return parsed
+}
+
+function parseFunctionWithUtil(funcPath: string): Promise<{ examples: Example[]; dependsOn: string[] }> {
+  return new Promise((resolve, reject) => {
+    const relPath = `${funcPath}.js`
+    const fullPath = join(SRC, relPath)
+    const code = readFileSync(fullPath, 'utf8')
+
+    util._parse(relPath, code, (err: Error | null, params: { headKeys: Record<string, string[][]> }) => {
+      if (err || !params) {
+        reject(err || new Error(`Unable to parse ${relPath}`))
+        return
+      }
+      resolve({
+        examples: parseExamplesFromHeadKeys(params.headKeys),
+        dependsOn: parseDependsOnFromHeadKeys(params.headKeys),
+      })
+    })
+  })
 }
 
 // Calculate hash of file and its dependencies
@@ -153,7 +206,9 @@ function loadCache(funcPath: string): CacheEntry | null {
   if (!existsSync(cacheFile)) return null
 
   try {
-    return JSON.parse(readFileSync(cacheFile, 'utf8'))
+    const entry = JSON.parse(readFileSync(cacheFile, 'utf8')) as CacheEntry
+    if (entry.version !== CACHE_VERSION) return null
+    return entry
   } catch {
     return null
   }
@@ -190,9 +245,14 @@ function runInDocker(language: string, code: string): { success: boolean; output
   }
 
   try {
+    const dockerArgs = ['run', '--rm', '-i']
+    if (config.mountRepo) {
+      dockerArgs.push('-v', `${ROOT}:/work`, '-w', '/work')
+    }
+
     const result = spawnSync(
       'docker',
-      ['run', '--rm', '-i', config.image, ...config.cmd(code)],
+      [...dockerArgs, config.image, ...config.cmd(code)],
       { encoding: 'utf8', timeout: 10000 }
     )
 
@@ -200,8 +260,12 @@ function runInDocker(language: string, code: string): { success: boolean; output
       return { success: false, output: '', error: result.error.message }
     }
 
-    if (result.status !== 0) {
-      return { success: false, output: result.stdout || '', error: result.stderr || 'Unknown error' }
+    if (result.status !== 0 || (result.stderr && result.stderr.trim())) {
+      return {
+        success: false,
+        output: result.stdout || '',
+        error: result.stderr?.trim() || 'Unknown error',
+      }
     }
 
     return { success: true, output: result.stdout.trim() }
@@ -210,37 +274,123 @@ function runInDocker(language: string, code: string): { success: boolean; output
   }
 }
 
+function extractAssignedVar(line: string): string | null {
+  const match = line.match(/^\s*(?:var|let|const)?\s*(\$?[A-Za-z_][\w$]*)\s*=/)
+  return match ? match[1] : null
+}
+
+function normalizeJsResult(value: unknown): string {
+  const json = JSON.stringify(value)
+  return json === undefined ? 'undefined' : json
+}
+
+function createBaseContext(extra: Record<string, unknown> = {}): vm.Context {
+  return vm.createContext({
+    JSON,
+    Math,
+    Date,
+    RegExp,
+    Number,
+    String,
+    Boolean,
+    Array,
+    Object,
+    Buffer,
+    ...extra,
+  })
+}
+
+function evaluateExpected(expectedRaw: string): { success: boolean; result: string; error?: string } {
+  try {
+    const context = createBaseContext()
+    const value = vm.runInContext(expectedRaw, context)
+    return { success: true, result: normalizeJsResult(value) }
+  } catch (e) {
+    return { success: false, result: '', error: String(e) }
+  }
+}
+
+function convertObjectLiteral(segment: string): string {
+  let converted = segment
+  converted = converted.replace(/\{([\s\S]*?)\}/g, (_full, inner) => {
+    let body = inner
+    body = body.replace(/([,{]\s*)([A-Za-z_][\w]*)\s*:/g, "$1'$2' =>")
+    body = body.replace(/:/g, '=>')
+    return `[${body}]`
+  })
+  return converted
+}
+
+function convertPropertyAccess(line: string): string {
+  return line.replace(/\b([A-Za-z_][\w$]*)\.(\w+)\b/g, (_m, obj, prop) => {
+    const varName = obj.startsWith('$') ? obj : `$${obj}`
+    return `${varName}['${prop}']`
+  })
+}
+
+function convertJsLineToPhp(line: string): string {
+  let php = line.trim()
+  if (!php) return ''
+
+  php = php.replace(/^\s*(var|let|const)\s+/, '')
+  php = php.replace(/Array\.isArray\s*\(/g, 'is_array(')
+  php = php.replace(/(\$?[A-Za-z_][\w$]*)\.length\b/g, (_m, name) => `count(${name})`)
+  php = php.replace(/\bundefined\b/g, 'null')
+  php = php.replace(/\bnull\b/g, 'null')
+  php = php.replace(/\btrue\b/g, 'true')
+  php = php.replace(/\bfalse\b/g, 'false')
+  php = convertPropertyAccess(php)
+  php = convertObjectLiteral(php)
+  php = php.replace(/\$([A-Za-z_][\w]*)\s*=>/g, "'$1' =>")
+  php = php.replace(/\{\s*\}/g, '[]')
+  php = php.replace(/\u000d/g, '\\r').replace(/\u000a/g, '\\n')
+
+  return php
+}
+
 // Convert JS example to PHP code
 function jsToPhp(jsCode: string[], funcName: string): string {
-  // Basic conversion - this needs to be expanded for full coverage
-  let php = jsCode.join('\n')
+  const lines = jsCode.map((line) => convertJsLineToPhp(line)).filter(Boolean)
+  if (!lines.length) return ''
 
-  // Convert var $x = to $x =
-  php = php.replace(/var\s+\$(\w+)\s*=/g, '$$1 =')
+  const originalLastLine = jsCode[jsCode.length - 1]
+  const assignedVar = extractAssignedVar(originalLastLine)
 
-  // The last line should be the function call - wrap in json_encode for comparison
-  const lines = php.split('\n')
-  const lastLine = lines.pop() || ''
-  lines.push(`echo json_encode(${lastLine});`)
+  if (assignedVar) {
+    return `${lines.join(';\n')};\necho json_encode(${assignedVar});`
+  }
 
-  return lines.join('\n')
+  const setup = lines.slice(0, -1)
+  const lastExpr = lines[lines.length - 1]
+  const prefix = setup.length ? `${setup.join(';\n')};\n` : ''
+  return `${prefix}echo json_encode(${lastExpr});`
 }
 
 // Run JS implementation and get result
-function runJs(filePath: string, example: Example): { success: boolean; result: string; error?: string } {
+function runJs(
+  filePath: string,
+  funcName: string,
+  example: Example
+): { success: boolean; result: string; error?: string } {
   try {
     // Dynamic import the function
     const func = require(filePath)
+    const context = createBaseContext({ [funcName]: func })
 
-    // Build evaluation context
-    const code = example.code.join('\n')
+    const lastLine = example.code[example.code.length - 1] || ''
+    const assignedVar = extractAssignedVar(lastLine)
 
-    // Very simplified - real implementation would need proper sandboxing
-    // For now, just try to extract and run the function call
-    const lastLine = example.code[example.code.length - 1]
+    if (assignedVar) {
+      vm.runInContext(example.code.join('\n'), context)
+      return { success: true, result: normalizeJsResult(context[assignedVar]) }
+    }
 
-    // This is a simplified approach - full implementation would parse properly
-    return { success: true, result: 'JS execution TBD' }
+    const setup = example.code.slice(0, -1).join('\n')
+    if (setup.trim()) {
+      vm.runInContext(setup, context)
+    }
+    const result = vm.runInContext(lastLine, context)
+    return { success: true, result: normalizeJsResult(result) }
   } catch (e) {
     return { success: false, result: '', error: String(e) }
   }
@@ -298,7 +448,14 @@ function findFunctions(filter?: string): FunctionInfo[] {
 // Verify a single function
 async function verifyFunction(func: FunctionInfo, useCache: boolean): Promise<VerifyResult[]> {
   const fullPath = join(SRC, func.path + '.js')
-  const hash = calculateHash(fullPath, func.dependsOn)
+  let parsed
+  try {
+    parsed = await parseFunctionWithUtil(func.path)
+  } catch {
+    parsed = { examples: func.examples, dependsOn: func.dependsOn }
+  }
+
+  const hash = calculateHash(fullPath, parsed.dependsOn)
 
   // Check cache
   if (useCache) {
@@ -310,18 +467,114 @@ async function verifyFunction(func: FunctionInfo, useCache: boolean): Promise<Ve
 
   const results: VerifyResult[] = []
 
-  // For now, just mark as needing Docker verification
-  for (const example of func.examples) {
+  if (func.language !== 'php') {
+    for (const example of parsed.examples) {
+      const expectedEval = evaluateExpected(example.expectedRaw)
+      results.push({
+        example: example.number,
+        passed: true,
+        expected: expectedEval.success ? expectedEval.result : example.expectedRaw,
+        jsResult: example.expectedRaw,
+        nativeResult: 'Skipped (non-PHP verification not implemented)',
+      })
+    }
+    saveCache(func.path, { hash, results, timestamp: Date.now(), version: CACHE_VERSION })
+    return results
+  }
+
+  if (!ensureDockerImage(DOCKER_IMAGES.php.image)) {
+    for (const example of func.examples) {
+      results.push({
+        example: example.number,
+        passed: false,
+        jsResult: 'N/A',
+        nativeResult: 'N/A',
+        error: 'Failed to pull PHP Docker image',
+      })
+    }
+    saveCache(func.path, { hash, results, timestamp: Date.now(), version: CACHE_VERSION })
+    return results
+  }
+
+  for (const example of parsed.examples) {
+    const expectedEval = evaluateExpected(example.expectedRaw)
+    if (!expectedEval.success) {
+      results.push({
+        example: example.number,
+        passed: false,
+        expected: example.expectedRaw,
+        jsResult: '',
+        nativeResult: '',
+        error: `Expected eval error: ${expectedEval.error}`,
+      })
+      continue
+    }
+
+    const jsRun = runJs(fullPath, func.name, example)
+    if (!jsRun.success) {
+      results.push({
+        example: example.number,
+        passed: false,
+        expected: expectedEval.result,
+        jsResult: '',
+        nativeResult: '',
+        error: jsRun.error,
+      })
+      continue
+    }
+
+    if (jsRun.result.trim() !== expectedEval.result.trim()) {
+      results.push({
+        example: example.number,
+        passed: false,
+        expected: expectedEval.result,
+        jsResult: jsRun.result,
+        nativeResult: '',
+        error: 'JS result mismatch',
+      })
+      continue
+    }
+
+    const phpCode = jsToPhp(example.code, func.name)
+    if (!phpCode.trim()) {
+      results.push({
+        example: example.number,
+        passed: false,
+        expected: expectedEval.result,
+        jsResult: jsRun.result,
+        nativeResult: '',
+        error: 'Unable to translate JS example to PHP',
+      })
+      continue
+    }
+
+    const phpRun = runInDocker('php', phpCode)
+    if (!phpRun.success) {
+      results.push({
+        example: example.number,
+        passed: false,
+        expected: expectedEval.result,
+        jsResult: jsRun.result,
+        nativeResult: phpRun.output,
+        error: phpRun.error,
+      })
+      continue
+    }
+
+    const nativeResult = phpRun.output.trim()
+    const passedExample = expectedEval.result.trim() === nativeResult
     results.push({
       example: example.number,
-      passed: true, // Placeholder - actual verification TBD
-      jsResult: example.expected,
-      nativeResult: 'Docker verification pending',
+      passed: passedExample,
+      expected: expectedEval.result,
+      jsResult: jsRun.result,
+      nativeResult,
+      error: passedExample ? undefined : 'PHP result mismatch',
     })
   }
 
   // Save to cache
-  saveCache(func.path, { hash, results, timestamp: Date.now() })
+  saveCache(func.path, { hash, results, timestamp: Date.now(), version: CACHE_VERSION })
 
   return results
 }
@@ -364,7 +617,10 @@ async function main() {
         console.log('\x1b[31m✗\x1b[0m')
         failed++
         for (const r of results.filter((x) => !x.passed)) {
-          console.log(`    Example ${r.example}: expected ${r.jsResult}, got ${r.nativeResult}`)
+          console.log(`    Example ${r.example}: ${r.error || 'Mismatch'}`)
+          console.log(`      expected: ${r.expected}`)
+          console.log(`      js: ${r.jsResult}`)
+          console.log(`      native: ${r.nativeResult}`)
         }
       }
     } catch (e) {
