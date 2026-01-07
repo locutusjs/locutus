@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>PHP&#39;s json_encode in JavaScript | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Here&#39;s what our current JavaScript equivalent to PHP&#39;s json_encode looks like.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP&#39;s json_encode in JavaScript">
+<meta property="og:url" content="https://locutus.io/php/json/json_encode/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="Here&#39;s what our current JavaScript equivalent to PHP&#39;s json_encode looks like.">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-01-07T16:54:44.870Z">
+<meta property="article:modified_time" content="2026-01-07T16:54:44.870Z">
+<meta property="article:author" content="Kevin van Zonneveld">
+<meta name="twitter:card" content="summary">
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/vendor/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/locutus.css">
+
+
+    
+<script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="Locutus" type="application/atom+xml">
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <nav id="main-nav">
+                
+                  <a class="main-nav-link" href="/c">C</a>
+                
+                  <a class="main-nav-link" href="/golang">Go</a>
+                
+                  <a class="main-nav-link" href="/python">Python</a>
+                
+                  <a class="main-nav-link" href="/ruby">Ruby</a>
+                
+                  <a class="main-nav-link" href="/php">PHP</a>
+                
+                <span class="main-nav-link">|</span>
+                
+                  <a class="main-nav-link" href="/archives">Blog</a>
+                
+                  <a class="main-nav-link" href="/authors">Authors</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+        x: 'en',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    console.log(INSIGHT_CONFIG)
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                  <td><a class="main-nav-link" href="/c">C</a></td>
+                
+                  <td><a class="main-nav-link" href="/golang">Go</a></td>
+                
+                  <td><a class="main-nav-link" href="/python">Python</a></td>
+                
+                  <td><a class="main-nav-link" href="/ruby">Ruby</a></td>
+                
+                  <td><a class="main-nav-link" href="/php">PHP</a></td>
+                
+                <td><span class="main-nav-link">|</span></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Blog</a></td>
+                
+                    <td><a class="main-nav-link" href="/authors">Authors</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">PHP&#39;s json_encode in JavaScript</h1>
+    </header>
+
+    <div class="article-entry">
+      <h2>How to use</h2>
+      <p>
+        You you can install via <code>yarn add locutus</code> and
+        require this function via <code>const json_encode = require('locutus/php/json/json_encode')</code>.
+      </p>
+      <p>
+        It is important to use a bundler that supports tree-shaking
+        so that you only ship the functions that you actually use to your browser,
+        instead of all of Locutus, which is massive. Examples are:
+        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
+        <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+
+        For server-side use this is typically less of a concern.
+      </p>
+
+      
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>json_encode(&#39;Kevin&#39;)</code></td><td><code>&#39;&#34;Kevin&#34;&#39;</code></td></tr>
+        
+        </table>
+      
+
+      
+
+      
+
+      
+
+      <p>
+        Here's what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.json-encode.php">PHP's json_encode</a> looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">json_encode</span>(<span class="params">mixedVal</span>) &#123;</span><br><span class="line">  <span class="comment">//       discuss at: https://phpjs.org/functions/json_encode/</span></span><br><span class="line">  <span class="comment">//         verified: 8.3</span></span><br><span class="line">  <span class="comment">//      original by: Public Domain (https://www.json.org/json2.js)</span></span><br><span class="line">  <span class="comment">// reimplemented by: Kevin van Zonneveld (https://kevin.vanzonneveld.net)</span></span><br><span class="line">  <span class="comment">//      improved by: Michael White</span></span><br><span class="line">  <span class="comment">//         input by: felix</span></span><br><span class="line">  <span class="comment">//      bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//        example 1: json_encode(&#x27;Kevin&#x27;)</span></span><br><span class="line">  <span class="comment">//        returns 1: &#x27;&quot;Kevin&quot;&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">    https://www.JSON.org/json2.js</span></span><br><span class="line"><span class="comment">    2008-11-19</span></span><br><span class="line"><span class="comment">    Public Domain.</span></span><br><span class="line"><span class="comment">    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.</span></span><br><span class="line"><span class="comment">    See https://www.JSON.org/js.html</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> $global = <span class="keyword">typeof</span> <span class="variable language_">window</span> !== <span class="string">&#x27;undefined&#x27;</span> ? <span class="variable language_">window</span> : <span class="variable language_">global</span></span><br><span class="line">  $global.<span class="property">$locutus</span> = $global.<span class="property">$locutus</span> || &#123;&#125;</span><br><span class="line">  <span class="keyword">const</span> $locutus = $global.<span class="property">$locutus</span></span><br><span class="line">  $locutus.<span class="property">php</span> = $locutus.<span class="property">php</span> || &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> json = $global.<span class="property">JSON</span></span><br><span class="line">  <span class="keyword">let</span> retVal</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> json === <span class="string">&#x27;object&#x27;</span> &amp;&amp; <span class="keyword">typeof</span> json.<span class="property">stringify</span> === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">      <span class="comment">// Errors will not be caught here if our own equivalent to resource</span></span><br><span class="line">      retVal = json.<span class="title function_">stringify</span>(mixedVal)</span><br><span class="line">      <span class="keyword">if</span> (retVal === <span class="literal">undefined</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">SyntaxError</span>(<span class="string">&#x27;json_encode&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> retVal</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> value = mixedVal</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> quote = <span class="keyword">function</span> (<span class="params">string</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> escapeChars = [</span><br><span class="line">        <span class="string">&#x27;\u0000-\u001f&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;\u007f-\u009f&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;\u00ad&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;\u0600-\u0604&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;\u070f&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;\u17b4&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;\u17b5&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;\u200c-\u200f&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;\u2028-\u202f&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;\u2060-\u206f&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;\ufeff&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;\ufff0-\uffff&#x27;</span>,</span><br><span class="line">      ].<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">      <span class="keyword">const</span> escapable = <span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">&#x27;[\\&quot;&#x27;</span> + escapeChars + <span class="string">&#x27;]&#x27;</span>, <span class="string">&#x27;g&#x27;</span>)</span><br><span class="line">      <span class="keyword">const</span> meta = &#123;</span><br><span class="line">        <span class="comment">// table of character substitutions</span></span><br><span class="line">        <span class="string">&#x27;\b&#x27;</span>: <span class="string">&#x27;\\b&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;\t&#x27;</span>: <span class="string">&#x27;\\t&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;\n&#x27;</span>: <span class="string">&#x27;\\n&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;\f&#x27;</span>: <span class="string">&#x27;\\f&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;\r&#x27;</span>: <span class="string">&#x27;\\r&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;&quot;&#x27;</span>: <span class="string">&#x27;\\&quot;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;\\&#x27;</span>: <span class="string">&#x27;\\\\&#x27;</span>,</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      escapable.<span class="property">lastIndex</span> = <span class="number">0</span></span><br><span class="line">      <span class="keyword">return</span> escapable.<span class="title function_">test</span>(string)</span><br><span class="line">        ? <span class="string">&#x27;&quot;&#x27;</span> +</span><br><span class="line">            string.<span class="title function_">replace</span>(escapable, <span class="keyword">function</span> (<span class="params">a</span>) &#123;</span><br><span class="line">              <span class="keyword">const</span> c = meta[a]</span><br><span class="line">              <span class="keyword">return</span> <span class="keyword">typeof</span> c === <span class="string">&#x27;string&#x27;</span> ? c : <span class="string">&#x27;\\u&#x27;</span> + (<span class="string">&#x27;0000&#x27;</span> + a.<span class="title function_">charCodeAt</span>(<span class="number">0</span>).<span class="title function_">toString</span>(<span class="number">16</span>)).<span class="title function_">slice</span>(-<span class="number">4</span>)</span><br><span class="line">            &#125;) +</span><br><span class="line">            <span class="string">&#x27;&quot;&#x27;</span></span><br><span class="line">        : <span class="string">&#x27;&quot;&#x27;</span> + string + <span class="string">&#x27;&quot;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> _str = <span class="keyword">function</span> (<span class="params">key, holder</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> gap = <span class="string">&#x27;&#x27;</span></span><br><span class="line">      <span class="keyword">const</span> indent = <span class="string">&#x27;    &#x27;</span></span><br><span class="line">      <span class="comment">// The loop counter.</span></span><br><span class="line">      <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">      <span class="comment">// The member key.</span></span><br><span class="line">      <span class="keyword">let</span> k = <span class="string">&#x27;&#x27;</span></span><br><span class="line">      <span class="comment">// The member value.</span></span><br><span class="line">      <span class="keyword">let</span> v = <span class="string">&#x27;&#x27;</span></span><br><span class="line">      <span class="keyword">let</span> length = <span class="number">0</span></span><br><span class="line">      <span class="keyword">const</span> mind = gap</span><br><span class="line">      <span class="keyword">let</span> partial = []</span><br><span class="line">      <span class="keyword">let</span> value = holder[key]</span><br><span class="line"></span><br><span class="line">      <span class="comment">// If the value has a toJSON method, call it to obtain a replacement value.</span></span><br><span class="line">      <span class="keyword">if</span> (value &amp;&amp; <span class="keyword">typeof</span> value === <span class="string">&#x27;object&#x27;</span> &amp;&amp; <span class="keyword">typeof</span> value.<span class="property">toJSON</span> === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">        value = value.<span class="title function_">toJSON</span>(key)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// What happens next depends on the value&#x27;s type.</span></span><br><span class="line">      <span class="keyword">switch</span> (<span class="keyword">typeof</span> value) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;string&#x27;</span>:</span><br><span class="line">          <span class="keyword">return</span> <span class="title function_">quote</span>(value)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;number&#x27;</span>:</span><br><span class="line">          <span class="comment">// JSON numbers must be finite. Encode non-finite numbers as null.</span></span><br><span class="line">          <span class="keyword">return</span> <span class="built_in">isFinite</span>(value) ? <span class="title class_">String</span>(value) : <span class="string">&#x27;null&#x27;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;boolean&#x27;</span>:</span><br><span class="line">          <span class="comment">// If the value is a boolean or null, convert it to a string.</span></span><br><span class="line">          <span class="keyword">return</span> <span class="title class_">String</span>(value)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;object&#x27;</span>:</span><br><span class="line">          <span class="comment">// If the type is &#x27;object&#x27;, we might be dealing with an object or an array or</span></span><br><span class="line">          <span class="comment">// null.</span></span><br><span class="line">          <span class="comment">// Due to a specification blunder in ECMAScript, typeof null is &#x27;object&#x27;,</span></span><br><span class="line">          <span class="comment">// so watch out for that case.</span></span><br><span class="line">          <span class="keyword">if</span> (!value) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;null&#x27;</span></span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// Make an array to hold the partial results of stringifying this object value.</span></span><br><span class="line">          gap += indent</span><br><span class="line">          partial = []</span><br><span class="line"></span><br><span class="line">          <span class="comment">// Is the value an array?</span></span><br><span class="line">          <span class="keyword">if</span> (<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">apply</span>(value) === <span class="string">&#x27;[object Array]&#x27;</span>) &#123;</span><br><span class="line">            <span class="comment">// The value is an array. Stringify every element. Use null as a placeholder</span></span><br><span class="line">            <span class="comment">// for non-JSON values.</span></span><br><span class="line">            length = value.<span class="property">length</span></span><br><span class="line">            <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; length; i += <span class="number">1</span>) &#123;</span><br><span class="line">              partial[i] = <span class="title function_">_str</span>(i, value) || <span class="string">&#x27;null&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Join all of the elements together, separated with commas, and wrap them in</span></span><br><span class="line">            <span class="comment">// brackets.</span></span><br><span class="line">            v =</span><br><span class="line">              partial.<span class="property">length</span> === <span class="number">0</span></span><br><span class="line">                ? <span class="string">&#x27;[]&#x27;</span></span><br><span class="line">                : gap</span><br><span class="line">                  ? <span class="string">&#x27;[\n&#x27;</span> + gap + partial.<span class="title function_">join</span>(<span class="string">&#x27;,\n&#x27;</span> + gap) + <span class="string">&#x27;\n&#x27;</span> + mind + <span class="string">&#x27;]&#x27;</span></span><br><span class="line">                  : <span class="string">&#x27;[&#x27;</span> + partial.<span class="title function_">join</span>(<span class="string">&#x27;,&#x27;</span>) + <span class="string">&#x27;]&#x27;</span></span><br><span class="line">            <span class="comment">// gap = mind // not used</span></span><br><span class="line">            <span class="keyword">return</span> v</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// Iterate through all of the keys in the object.</span></span><br><span class="line">          <span class="keyword">for</span> (k <span class="keyword">in</span> value) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="title class_">Object</span>.<span class="property">hasOwnProperty</span>.<span class="title function_">call</span>(value, k)) &#123;</span><br><span class="line">              v = <span class="title function_">_str</span>(k, value)</span><br><span class="line">              <span class="keyword">if</span> (v) &#123;</span><br><span class="line">                partial.<span class="title function_">push</span>(<span class="title function_">quote</span>(k) + (gap ? <span class="string">&#x27;: &#x27;</span> : <span class="string">&#x27;:&#x27;</span>) + v)</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// Join all of the member texts together, separated with commas,</span></span><br><span class="line">          <span class="comment">// and wrap them in braces.</span></span><br><span class="line">          v =</span><br><span class="line">            partial.<span class="property">length</span> === <span class="number">0</span></span><br><span class="line">              ? <span class="string">&#x27;&#123;&#125;&#x27;</span></span><br><span class="line">              : gap</span><br><span class="line">                ? <span class="string">&#x27;&#123;\n&#x27;</span> + gap + partial.<span class="title function_">join</span>(<span class="string">&#x27;,\n&#x27;</span> + gap) + <span class="string">&#x27;\n&#x27;</span> + mind + <span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line">                : <span class="string">&#x27;&#123;&#x27;</span> + partial.<span class="title function_">join</span>(<span class="string">&#x27;,&#x27;</span>) + <span class="string">&#x27;&#125;&#x27;</span></span><br><span class="line">          <span class="comment">// gap = mind // Not used</span></span><br><span class="line">          <span class="keyword">return</span> v</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;undefined&#x27;</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;function&#x27;</span>:</span><br><span class="line">        <span class="attr">default</span>:</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">SyntaxError</span>(<span class="string">&#x27;json_encode&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Make a fake root object containing our value under the key of &#x27;&#x27;.</span></span><br><span class="line">    <span class="comment">// Return the result of stringifying the value.</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">_str</span>(<span class="string">&#x27;&#x27;</span>, &#123;</span><br><span class="line">      <span class="string">&#x27;&#x27;</span>: value,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="comment">// @todo: ensure error handling above throws a SyntaxError in all cases where it could</span></span><br><span class="line">    <span class="comment">// (i.e., when the JSON global is not available and there is an error)</span></span><br><span class="line">    <span class="keyword">if</span> (!(err <span class="keyword">instanceof</span> <span class="title class_">SyntaxError</span>)) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Unexpected error type in json_encode()&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// usable by json_last_error()</span></span><br><span class="line">    $locutus.<span class="property">php</span>.<span class="property">last_error_json</span> = <span class="number">4</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      <div class="clearfix"></div>
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we assimilate first iterations with imperfections,
+        hoping for others to take issue with-and improve them.
+
+        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
+        but please be reminded to use our creations at your own risk.
+        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+      </p>
+      <p>
+        Now go and:
+        [
+        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/php/json/json_encode.js">View on GitHub</a></strong>
+        |
+        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/php/json/json_encode.js">Edit on GitHub</a></strong>
+        |
+        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/json/json_encode.js">View Raw</a></strong>
+        ]
+      </p>
+
+
+      <hr />
+      
+
+      <p>
+        <a href="/php/json/">&laquo; More PHP json functions</a>
+      </p>
+
+      <center>
+        <br>
+        <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+        <br>
+        <br>
+      </center>
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/locutus-alpha.png" />
+            <h2 id="name">Locutus</h2>
+            <h3 id="title">All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.</h3>
+            <!-- <span id="location"><i class="fa fa-map-marker"></i>GitHub</span> -->
+            <!-- <a id="follow" target="_blank" href="https://github.com/locutusjs/locutus/stargazers">FOLLOW</a> -->
+
+            <br />
+            <div class="Social">
+              <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
+              <br />
+              <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+            </div>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+              5
+              <span>languages marked</span>
+            </div>
+            <div class="article-info-block">
+                394
+                <span>functions assimilated</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="https://github.com/locutusjs/locutus" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://twitter.com/locutus_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    
+                    <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+<div class="clear"></div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget widget-on_the_githubs">
+    <div class="on-the-githubs" data-event-source="repos/locutusjs/locutus">Loading...</div>
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (18)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/ctype/">
+            ctype
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/stdio/">
+            stdio
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/stdlib/">
+            stdlib
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/string/">
+            string
+            (5)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (20)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strconv/">
+            strconv
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/strings/">
+            strings
+            (14)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (17)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/math/">
+            math
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (10)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (18)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Array/">
+            Array
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/ruby/String/">
+            String
+            (11)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (321)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (73)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (4)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (30)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/04/24-update/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/bunnies.webp)" alt="Easter Update" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/04/24-update/" class="title">Easter Update</a></p>
+                            <p class="item-date"><time datetime="2024-04-05T00:00:00.000Z" itemprop="datePublished">2024-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-05-02T00:00:00.000Z" itemprop="datePublished">2016-05-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/breaking-bc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2026 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
+
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+
+    
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+<script src="/js/locutus.js"></script>
+
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- Twitter follow button script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    </div>
+</body>
+</html>

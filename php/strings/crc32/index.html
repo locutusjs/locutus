@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>PHP&#39;s crc32 in JavaScript | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Here&#39;s what our current JavaScript equivalent to PHP&#39;s crc32 looks like.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP&#39;s crc32 in JavaScript">
+<meta property="og:url" content="https://locutus.io/php/strings/crc32/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="Here&#39;s what our current JavaScript equivalent to PHP&#39;s crc32 looks like.">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-01-07T16:54:44.917Z">
+<meta property="article:modified_time" content="2026-01-07T16:54:44.917Z">
+<meta property="article:author" content="Kevin van Zonneveld">
+<meta name="twitter:card" content="summary">
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/vendor/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/locutus.css">
+
+
+    
+<script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="Locutus" type="application/atom+xml">
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <nav id="main-nav">
+                
+                  <a class="main-nav-link" href="/c">C</a>
+                
+                  <a class="main-nav-link" href="/golang">Go</a>
+                
+                  <a class="main-nav-link" href="/python">Python</a>
+                
+                  <a class="main-nav-link" href="/ruby">Ruby</a>
+                
+                  <a class="main-nav-link" href="/php">PHP</a>
+                
+                <span class="main-nav-link">|</span>
+                
+                  <a class="main-nav-link" href="/archives">Blog</a>
+                
+                  <a class="main-nav-link" href="/authors">Authors</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+        x: 'en',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    console.log(INSIGHT_CONFIG)
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                  <td><a class="main-nav-link" href="/c">C</a></td>
+                
+                  <td><a class="main-nav-link" href="/golang">Go</a></td>
+                
+                  <td><a class="main-nav-link" href="/python">Python</a></td>
+                
+                  <td><a class="main-nav-link" href="/ruby">Ruby</a></td>
+                
+                  <td><a class="main-nav-link" href="/php">PHP</a></td>
+                
+                <td><span class="main-nav-link">|</span></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Blog</a></td>
+                
+                    <td><a class="main-nav-link" href="/authors">Authors</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">PHP&#39;s crc32 in JavaScript</h1>
+    </header>
+
+    <div class="article-entry">
+      <h2>How to use</h2>
+      <p>
+        You you can install via <code>yarn add locutus</code> and
+        require this function via <code>const crc32 = require('locutus/php/strings/crc32')</code>.
+      </p>
+      <p>
+        It is important to use a bundler that supports tree-shaking
+        so that you only ship the functions that you actually use to your browser,
+        instead of all of Locutus, which is massive. Examples are:
+        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
+        <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+
+        For server-side use this is typically less of a concern.
+      </p>
+
+      
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>crc32(&#39;Kevin van Zonneveld&#39;)</code></td><td><code>1249991249</code></td></tr>
+        
+        </table>
+      
+
+      
+
+      
+
+      
+
+      <p>
+        Here's what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.crc32.php">PHP's crc32</a> looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">crc32</span>(<span class="params">str</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/crc32/</span></span><br><span class="line">  <span class="comment">//    verified: 8.3</span></span><br><span class="line">  <span class="comment">// original by: Webtoolkit.info (https://www.webtoolkit.info/)</span></span><br><span class="line">  <span class="comment">// improved by: T0bsn</span></span><br><span class="line">  <span class="comment">//   example 1: crc32(&#x27;Kevin van Zonneveld&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 1: 1249991249</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> utf8Encode = <span class="built_in">require</span>(<span class="string">&#x27;../xml/utf8_encode&#x27;</span>)</span><br><span class="line">  str = <span class="title function_">utf8Encode</span>(str)</span><br><span class="line">  <span class="keyword">const</span> table = [</span><br><span class="line">    <span class="string">&#x27;00000000&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;77073096&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;EE0E612C&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;990951BA&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;076DC419&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;706AF48F&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;E963A535&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;9E6495A3&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;0EDB8832&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;79DCB8A4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;E0D5E91E&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;97D2D988&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;09B64C2B&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;7EB17CBD&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;E7B82D07&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;90BF1D91&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;1DB71064&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;6AB020F2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;F3B97148&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;84BE41DE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;1ADAD47D&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;6DDDE4EB&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;F4D4B551&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;83D385C7&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;136C9856&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;646BA8C0&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;FD62F97A&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;8A65C9EC&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;14015C4F&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;63066CD9&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;FA0F3D63&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;8D080DF5&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;3B6E20C8&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;4C69105E&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;D56041E4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;A2677172&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;3C03E4D1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;4B04D447&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;D20D85FD&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;A50AB56B&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;35B5A8FA&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;42B2986C&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;DBBBC9D6&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ACBCF940&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;32D86CE3&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;45DF5C75&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;DCD60DCF&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ABD13D59&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;26D930AC&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;51DE003A&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;C8D75180&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;BFD06116&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;21B4F4B5&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;56B3C423&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;CFBA9599&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;B8BDA50F&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;2802B89E&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;5F058808&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;C60CD9B2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;B10BE924&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;2F6F7C87&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;58684C11&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;C1611DAB&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;B6662D3D&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;76DC4190&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;01DB7106&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;98D220BC&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;EFD5102A&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;71B18589&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;06B6B51F&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;9FBFE4A5&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;E8B8D433&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;7807C9A2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;0F00F934&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;9609A88E&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;E10E9818&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;7F6A0DBB&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;086D3D2D&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;91646C97&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;E6635C01&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;6B6B51F4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;1C6C6162&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;856530D8&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;F262004E&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;6C0695ED&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;1B01A57B&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;8208F4C1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;F50FC457&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;65B0D9C6&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;12B7E950&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;8BBEB8EA&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;FCB9887C&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;62DD1DDF&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;15DA2D49&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;8CD37CF3&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;FBD44C65&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;4DB26158&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;3AB551CE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;A3BC0074&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;D4BB30E2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;4ADFA541&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;3DD895D7&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;A4D1C46D&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;D3D6F4FB&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;4369E96A&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;346ED9FC&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;AD678846&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;DA60B8D0&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;44042D73&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;33031DE5&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;AA0A4C5F&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;DD0D7CC9&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;5005713C&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;270241AA&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;BE0B1010&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;C90C2086&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;5768B525&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;206F85B3&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;B966D409&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;CE61E49F&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;5EDEF90E&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;29D9C998&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;B0D09822&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;C7D7A8B4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;59B33D17&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;2EB40D81&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;B7BD5C3B&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;C0BA6CAD&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;EDB88320&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;9ABFB3B6&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;03B6E20C&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;74B1D29A&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;EAD54739&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;9DD277AF&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;04DB2615&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;73DC1683&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;E3630B12&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;94643B84&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;0D6D6A3E&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;7A6A5AA8&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;E40ECF0B&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;9309FF9D&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;0A00AE27&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;7D079EB1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;F00F9344&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;8708A3D2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;1E01F268&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;6906C2FE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;F762575D&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;806567CB&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;196C3671&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;6E6B06E7&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;FED41B76&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;89D32BE0&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;10DA7A5A&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;67DD4ACC&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;F9B9DF6F&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;8EBEEFF9&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;17B7BE43&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;60B08ED5&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;D6D6A3E8&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;A1D1937E&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;38D8C2C4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;4FDFF252&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;D1BB67F1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;A6BC5767&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;3FB506DD&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;48B2364B&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;D80D2BDA&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;AF0A1B4C&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;36034AF6&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;41047A60&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;DF60EFC3&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;A867DF55&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;316E8EEF&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;4669BE79&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;CB61B38C&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;BC66831A&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;256FD2A0&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;5268E236&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;CC0C7795&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;BB0B4703&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;220216B9&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;5505262F&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;C5BA3BBE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;B2BD0B28&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;2BB45A92&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;5CB36A04&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;C2D7FFA7&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;B5D0CF31&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;2CD99E8B&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;5BDEAE1D&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;9B64C2B0&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;EC63F226&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;756AA39C&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;026D930A&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;9C0906A9&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;EB0E363F&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;72076785&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;05005713&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;95BF4A82&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;E2B87A14&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;7BB12BAE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;0CB61B38&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;92D28E9B&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;E5D5BE0D&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;7CDCEFB7&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;0BDBDF21&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;86D3D2D4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;F1D4E242&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;68DDB3F8&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;1FDA836E&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;81BE16CD&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;F6B9265B&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;6FB077E1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;18B74777&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;88085AE6&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;FF0F6A70&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;66063BCA&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;11010B5C&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;8F659EFF&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;F862AE69&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;616BFFD3&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;166CCF45&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;A00AE278&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;D70DD2EE&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;4E048354&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;3903B3C2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;A7672661&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;D06016F7&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;4969474D&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;3E6E77DB&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;AED16A4A&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;D9D65ADC&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;40DF0B66&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;37D83BF0&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;A9BCAE53&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;DEBB9EC5&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;47B2CF7F&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;30B5FFE9&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;BDBDF21C&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;CABAC28A&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;53B39330&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;24B4A3A6&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;BAD03605&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;CDD70693&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;54DE5729&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;23D967BF&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;B3667A2E&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;C4614AB8&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;5D681B02&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;2A6F2B94&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;B40BBE37&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;C30C8EA1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;5A05DF1B&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;2D02EF8D&#x27;</span>,</span><br><span class="line">  ].<span class="title function_">join</span>(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">  <span class="comment">// @todo: ^-- Now that `table` is an array, maybe we can use that directly using slices,</span></span><br><span class="line">  <span class="comment">// instead of converting it to a string and substringing</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> crc = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> x = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> y = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  crc = crc ^ -<span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, iTop = str.<span class="property">length</span>; i &lt; iTop; i++) &#123;</span><br><span class="line">    y = (crc ^ str.<span class="title function_">charCodeAt</span>(i)) &amp; <span class="number">0xff</span></span><br><span class="line">    x = <span class="string">&#x27;0x&#x27;</span> + table.<span class="title function_">substr</span>(y * <span class="number">9</span>, <span class="number">8</span>)</span><br><span class="line">    crc = (crc &gt;&gt;&gt; <span class="number">8</span>) ^ x</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> crc ^ -<span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      <div class="clearfix"></div>
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we assimilate first iterations with imperfections,
+        hoping for others to take issue with-and improve them.
+
+        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
+        but please be reminded to use our creations at your own risk.
+        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+      </p>
+      <p>
+        Now go and:
+        [
+        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/php/strings/crc32.js">View on GitHub</a></strong>
+        |
+        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/php/strings/crc32.js">Edit on GitHub</a></strong>
+        |
+        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/strings/crc32.js">View Raw</a></strong>
+        ]
+      </p>
+
+
+      <hr />
+      
+
+      <p>
+        <a href="/php/strings/">&laquo; More PHP strings functions</a>
+      </p>
+
+      <center>
+        <br>
+        <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+        <br>
+        <br>
+      </center>
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/locutus-alpha.png" />
+            <h2 id="name">Locutus</h2>
+            <h3 id="title">All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.</h3>
+            <!-- <span id="location"><i class="fa fa-map-marker"></i>GitHub</span> -->
+            <!-- <a id="follow" target="_blank" href="https://github.com/locutusjs/locutus/stargazers">FOLLOW</a> -->
+
+            <br />
+            <div class="Social">
+              <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
+              <br />
+              <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+            </div>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+              5
+              <span>languages marked</span>
+            </div>
+            <div class="article-info-block">
+                394
+                <span>functions assimilated</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="https://github.com/locutusjs/locutus" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://twitter.com/locutus_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    
+                    <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+<div class="clear"></div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget widget-on_the_githubs">
+    <div class="on-the-githubs" data-event-source="repos/locutusjs/locutus">Loading...</div>
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (18)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/ctype/">
+            ctype
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/stdio/">
+            stdio
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/stdlib/">
+            stdlib
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/string/">
+            string
+            (5)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (20)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strconv/">
+            strconv
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/strings/">
+            strings
+            (14)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (17)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/math/">
+            math
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (10)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (18)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Array/">
+            Array
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/ruby/String/">
+            String
+            (11)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (321)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (73)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (4)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (30)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/04/24-update/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/bunnies.webp)" alt="Easter Update" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/04/24-update/" class="title">Easter Update</a></p>
+                            <p class="item-date"><time datetime="2024-04-05T00:00:00.000Z" itemprop="datePublished">2024-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-05-02T00:00:00.000Z" itemprop="datePublished">2016-05-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/breaking-bc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2026 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
+
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+
+    
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+<script src="/js/locutus.js"></script>
+
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- Twitter follow button script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    </div>
+</body>
+</html>

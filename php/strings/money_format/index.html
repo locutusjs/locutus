@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>PHP&#39;s money_format in JavaScript | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Here&#39;s what our current JavaScript equivalent to PHP&#39;s money_format looks like.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP&#39;s money_format in JavaScript">
+<meta property="og:url" content="https://locutus.io/php/strings/money_format/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="Here&#39;s what our current JavaScript equivalent to PHP&#39;s money_format looks like.">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-01-07T16:54:44.930Z">
+<meta property="article:modified_time" content="2026-01-07T16:54:44.930Z">
+<meta property="article:author" content="Kevin van Zonneveld">
+<meta name="twitter:card" content="summary">
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/vendor/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/locutus.css">
+
+
+    
+<script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="Locutus" type="application/atom+xml">
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <nav id="main-nav">
+                
+                  <a class="main-nav-link" href="/c">C</a>
+                
+                  <a class="main-nav-link" href="/golang">Go</a>
+                
+                  <a class="main-nav-link" href="/python">Python</a>
+                
+                  <a class="main-nav-link" href="/ruby">Ruby</a>
+                
+                  <a class="main-nav-link" href="/php">PHP</a>
+                
+                <span class="main-nav-link">|</span>
+                
+                  <a class="main-nav-link" href="/archives">Blog</a>
+                
+                  <a class="main-nav-link" href="/authors">Authors</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+        x: 'en',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    console.log(INSIGHT_CONFIG)
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                  <td><a class="main-nav-link" href="/c">C</a></td>
+                
+                  <td><a class="main-nav-link" href="/golang">Go</a></td>
+                
+                  <td><a class="main-nav-link" href="/python">Python</a></td>
+                
+                  <td><a class="main-nav-link" href="/ruby">Ruby</a></td>
+                
+                  <td><a class="main-nav-link" href="/php">PHP</a></td>
+                
+                <td><span class="main-nav-link">|</span></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Blog</a></td>
+                
+                    <td><a class="main-nav-link" href="/authors">Authors</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">PHP&#39;s money_format in JavaScript</h1>
+    </header>
+
+    <div class="article-entry">
+      <h2>How to use</h2>
+      <p>
+        You you can install via <code>yarn add locutus</code> and
+        require this function via <code>const money_format = require('locutus/php/strings/money_format')</code>.
+      </p>
+      <p>
+        It is important to use a bundler that supports tree-shaking
+        so that you only ship the functions that you actually use to your browser,
+        instead of all of Locutus, which is massive. Examples are:
+        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
+        <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+
+        For server-side use this is typically less of a concern.
+      </p>
+
+      
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>money_format(&#39;%i&#39;, 1234.56)</code></td><td><code>&#39; USD 1,234.56&#39;</code></td></tr>
+        
+          <tr><td>2</td><td><code>money_format(&#39;%14#8.2n&#39;, 1234.5678)</code></td><td><code>&#39; $     1,234.57&#39;</code></td></tr>
+        
+          <tr><td>3</td><td><code>money_format(&#39;%14#8.2n&#39;, -1234.5678)</code></td><td><code>&#39;-$     1,234.57&#39;</code></td></tr>
+        
+          <tr><td>4</td><td><code>money_format(&#39;%(14#8.2n&#39;, 1234.5678)</code></td><td><code>&#39; $     1,234.57 &#39;</code></td></tr>
+        
+          <tr><td>5</td><td><code>money_format(&#39;%(14#8.2n&#39;, -1234.5678)</code></td><td><code>&#39;($     1,234.57)&#39;</code></td></tr>
+        
+          <tr><td>6</td><td><code>money_format(&#39;%=014#8.2n&#39;, 1234.5678)</code></td><td><code>&#39; $000001,234.57&#39;</code></td></tr>
+        
+          <tr><td>7</td><td><code>money_format(&#39;%=014#8.2n&#39;, -1234.5678)</code></td><td><code>&#39;-$000001,234.57&#39;</code></td></tr>
+        
+          <tr><td>8</td><td><code>money_format(&#39;%=*14#8.2n&#39;, 1234.5678)</code></td><td><code>&#39; $*****1,234.57&#39;</code></td></tr>
+        
+          <tr><td>9</td><td><code>money_format(&#39;%=*14#8.2n&#39;, -1234.5678)</code></td><td><code>&#39;-$*****1,234.57&#39;</code></td></tr>
+        
+          <tr><td>10</td><td><code>money_format(&#39;%=*^14#8.2n&#39;, 1234.5678)</code></td><td><code>&#39;  $****1234.57&#39;</code></td></tr>
+        
+          <tr><td>11</td><td><code>money_format(&#39;%=*^14#8.2n&#39;, -1234.5678)</code></td><td><code>&#39; -$****1234.57&#39;</code></td></tr>
+        
+          <tr><td>12</td><td><code>money_format(&#39;%=*!14#8.2n&#39;, 1234.5678)</code></td><td><code>&#39; *****1,234.57&#39;</code></td></tr>
+        
+          <tr><td>13</td><td><code>money_format(&#39;%=*!14#8.2n&#39;, -1234.5678)</code></td><td><code>&#39;-*****1,234.57&#39;</code></td></tr>
+        
+          <tr><td>14</td><td><code>money_format(&#39;%i&#39;, 3590)</code></td><td><code>&#39; USD 3,590.00&#39;</code></td></tr>
+        
+        </table>
+      
+
+      
+
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>This depends on setlocale having the appropriate
+locale (these examples use ‘en_US’)</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      <p>
+        Here's what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.money-format.php">PHP's money_format</a> looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">money_format</span>(<span class="params">format, number</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/money_format/</span></span><br><span class="line">  <span class="comment">//    verified: 8.3</span></span><br><span class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: daniel airton wermann (https://wermann.com.br)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//      note 1: This depends on setlocale having the appropriate</span></span><br><span class="line">  <span class="comment">//      note 1: locale (these examples use &#x27;en_US&#x27;)</span></span><br><span class="line">  <span class="comment">//   example 1: money_format(&#x27;%i&#x27;, 1234.56)</span></span><br><span class="line">  <span class="comment">//   returns 1: &#x27; USD 1,234.56&#x27;</span></span><br><span class="line">  <span class="comment">//   example 2: money_format(&#x27;%14#8.2n&#x27;, 1234.5678)</span></span><br><span class="line">  <span class="comment">//   returns 2: &#x27; $     1,234.57&#x27;</span></span><br><span class="line">  <span class="comment">//   example 3: money_format(&#x27;%14#8.2n&#x27;, -1234.5678)</span></span><br><span class="line">  <span class="comment">//   returns 3: &#x27;-$     1,234.57&#x27;</span></span><br><span class="line">  <span class="comment">//   example 4: money_format(&#x27;%(14#8.2n&#x27;, 1234.5678)</span></span><br><span class="line">  <span class="comment">//   returns 4: &#x27; $     1,234.57 &#x27;</span></span><br><span class="line">  <span class="comment">//   example 5: money_format(&#x27;%(14#8.2n&#x27;, -1234.5678)</span></span><br><span class="line">  <span class="comment">//   returns 5: &#x27;($     1,234.57)&#x27;</span></span><br><span class="line">  <span class="comment">//   example 6: money_format(&#x27;%=014#8.2n&#x27;, 1234.5678)</span></span><br><span class="line">  <span class="comment">//   returns 6: &#x27; $000001,234.57&#x27;</span></span><br><span class="line">  <span class="comment">//   example 7: money_format(&#x27;%=014#8.2n&#x27;, -1234.5678)</span></span><br><span class="line">  <span class="comment">//   returns 7: &#x27;-$000001,234.57&#x27;</span></span><br><span class="line">  <span class="comment">//   example 8: money_format(&#x27;%=*14#8.2n&#x27;, 1234.5678)</span></span><br><span class="line">  <span class="comment">//   returns 8: &#x27; $*****1,234.57&#x27;</span></span><br><span class="line">  <span class="comment">//   example 9: money_format(&#x27;%=*14#8.2n&#x27;, -1234.5678)</span></span><br><span class="line">  <span class="comment">//   returns 9: &#x27;-$*****1,234.57&#x27;</span></span><br><span class="line">  <span class="comment">//  example 10: money_format(&#x27;%=*^14#8.2n&#x27;, 1234.5678)</span></span><br><span class="line">  <span class="comment">//  returns 10: &#x27;  $****1234.57&#x27;</span></span><br><span class="line">  <span class="comment">//  example 11: money_format(&#x27;%=*^14#8.2n&#x27;, -1234.5678)</span></span><br><span class="line">  <span class="comment">//  returns 11: &#x27; -$****1234.57&#x27;</span></span><br><span class="line">  <span class="comment">//  example 12: money_format(&#x27;%=*!14#8.2n&#x27;, 1234.5678)</span></span><br><span class="line">  <span class="comment">//  returns 12: &#x27; *****1,234.57&#x27;</span></span><br><span class="line">  <span class="comment">//  example 13: money_format(&#x27;%=*!14#8.2n&#x27;, -1234.5678)</span></span><br><span class="line">  <span class="comment">//  returns 13: &#x27;-*****1,234.57&#x27;</span></span><br><span class="line">  <span class="comment">//  example 14: money_format(&#x27;%i&#x27;, 3590)</span></span><br><span class="line">  <span class="comment">//  returns 14: &#x27; USD 3,590.00&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> setlocale = <span class="built_in">require</span>(<span class="string">&#x27;../strings/setlocale&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Per PHP behavior, there seems to be no extra padding</span></span><br><span class="line">  <span class="comment">// for sign when there is a positive number, though my</span></span><br><span class="line">  <span class="comment">// understanding of the description is that there should be padding;</span></span><br><span class="line">  <span class="comment">// need to revisit examples</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Helpful info at https://ftp.gnu.org/pub/pub/old-gnu/Manuals/glibc-2.2.3/html_chapter/libc_7.html</span></span><br><span class="line">  <span class="comment">// and https://publib.boulder.ibm.com/infocenter/zos/v1r10/index.jsp?topic=/com.ibm.zos.r10.bpxbd00/strfmp.htm</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> number !== <span class="string">&#x27;number&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 1: flags, 3: width, 5: left, 7: right, 8: conversion</span></span><br><span class="line">  <span class="keyword">const</span> regex = <span class="regexp">/%((=.|[+^(!-])*?)(\d*?)(#(\d+))?(\.(\d+))?([in%])/g</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Ensure the locale data we need is set up</span></span><br><span class="line">  <span class="title function_">setlocale</span>(<span class="string">&#x27;LC_ALL&#x27;</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> $global = <span class="keyword">typeof</span> <span class="variable language_">window</span> !== <span class="string">&#x27;undefined&#x27;</span> ? <span class="variable language_">window</span> : <span class="variable language_">global</span></span><br><span class="line">  $global.<span class="property">$locutus</span> = $global.<span class="property">$locutus</span> || &#123;&#125;</span><br><span class="line">  <span class="keyword">const</span> $locutus = $global.<span class="property">$locutus</span></span><br><span class="line">  $locutus.<span class="property">php</span> = $locutus.<span class="property">php</span> || &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> monetary = $locutus.<span class="property">php</span>.<span class="property">locales</span>[$locutus.<span class="property">php</span>.<span class="property">localeCategories</span>.<span class="property">LC_MONETARY</span>].<span class="property">LC_MONETARY</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> doReplace = <span class="keyword">function</span> (<span class="params">n0, flags, n2, width, n4, left, n6, right, conversion</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> value = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">let</span> repl = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> (conversion === <span class="string">&#x27;%&#x27;</span>) &#123;</span><br><span class="line">      <span class="comment">// Percent does not seem to be allowed with intervening content</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;%&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> fill = flags &amp;&amp; <span class="regexp">/=./</span>.<span class="title function_">test</span>(flags) ? flags.<span class="title function_">match</span>(<span class="regexp">/=(.)/</span>)[<span class="number">1</span>] : <span class="string">&#x27; &#x27;</span> <span class="comment">// flag: =f (numeric fill)</span></span><br><span class="line">    <span class="comment">// flag: ! (suppress currency symbol)</span></span><br><span class="line">    <span class="keyword">const</span> showCurrSymbol = !flags || flags.<span class="title function_">indexOf</span>(<span class="string">&#x27;!&#x27;</span>) === -<span class="number">1</span></span><br><span class="line">    <span class="comment">// field width: w (minimum field width)</span></span><br><span class="line">    width = <span class="built_in">parseInt</span>(width, <span class="number">10</span>) || <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> neg = number &lt; <span class="number">0</span></span><br><span class="line">    <span class="comment">// Convert to string</span></span><br><span class="line">    number = number + <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="comment">// We don&#x27;t want negative symbol represented here yet</span></span><br><span class="line">    number = neg ? number.<span class="title function_">slice</span>(<span class="number">1</span>) : number</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> decpos = number.<span class="title function_">indexOf</span>(<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">    <span class="comment">// Get integer portion</span></span><br><span class="line">    <span class="keyword">let</span> integer = decpos !== -<span class="number">1</span> ? number.<span class="title function_">slice</span>(<span class="number">0</span>, decpos) : number</span><br><span class="line">    <span class="comment">// Get decimal portion</span></span><br><span class="line">    <span class="keyword">let</span> fraction = decpos !== -<span class="number">1</span> ? number.<span class="title function_">slice</span>(decpos + <span class="number">1</span>) : <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> _strSplice = <span class="keyword">function</span> (<span class="params">integerStr, idx, thouSep</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> integerArr = integerStr.<span class="title function_">split</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">      integerArr.<span class="title function_">splice</span>(idx, <span class="number">0</span>, thouSep)</span><br><span class="line">      <span class="keyword">return</span> integerArr.<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> intLen = integer.<span class="property">length</span></span><br><span class="line">    left = <span class="built_in">parseInt</span>(left, <span class="number">10</span>)</span><br><span class="line">    <span class="keyword">const</span> filler = intLen &lt; left</span><br><span class="line">    <span class="keyword">const</span> fillnum = filler ? left - intLen : <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> (filler) &#123;</span><br><span class="line">      integer = <span class="keyword">new</span> <span class="title class_">Array</span>(fillnum + <span class="number">1</span>).<span class="title function_">join</span>(fill) + integer</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (flags.<span class="title function_">indexOf</span>(<span class="string">&#x27;^&#x27;</span>) === -<span class="number">1</span>) &#123;</span><br><span class="line">      <span class="comment">// flag: ^ (disable grouping characters (of locale))</span></span><br><span class="line">      <span class="comment">// use grouping characters</span></span><br><span class="line">      <span class="comment">// &#x27;,&#x27;</span></span><br><span class="line">      <span class="keyword">let</span> thouSep = monetary.<span class="property">mon_thousands_sep</span></span><br><span class="line">      <span class="comment">// [3] (every 3 digits in U.S.A. locale)</span></span><br><span class="line">      <span class="keyword">const</span> monGrouping = monetary.<span class="property">mon_grouping</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">      <span class="keyword">let</span> idx = integer.<span class="property">length</span></span><br><span class="line">      <span class="keyword">if</span> (monGrouping[<span class="number">0</span>] &lt; integer.<span class="property">length</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (; i &lt; monGrouping.<span class="property">length</span>; i++) &#123;</span><br><span class="line">          <span class="comment">// e.g., 3</span></span><br><span class="line">          idx -= monGrouping[i]</span><br><span class="line">          <span class="keyword">if</span> (idx &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">if</span> (filler &amp;&amp; idx &lt; fillnum) &#123;</span><br><span class="line">            thouSep = fill</span><br><span class="line">          &#125;</span><br><span class="line">          integer = <span class="title function_">_strSplice</span>(integer, idx, thouSep)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (monGrouping[i - <span class="number">1</span>] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// Repeating last grouping (may only be one) until highest portion of integer reached</span></span><br><span class="line">        <span class="keyword">while</span> (idx &gt; monGrouping[i - <span class="number">1</span>]) &#123;</span><br><span class="line">          idx -= monGrouping[i - <span class="number">1</span>]</span><br><span class="line">          <span class="keyword">if</span> (filler &amp;&amp; idx &lt; fillnum) &#123;</span><br><span class="line">            thouSep = fill</span><br><span class="line">          &#125;</span><br><span class="line">          integer = <span class="title function_">_strSplice</span>(integer, idx, thouSep)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// left, right</span></span><br><span class="line">    <span class="keyword">if</span> (right === <span class="string">&#x27;0&#x27;</span>) &#123;</span><br><span class="line">      <span class="comment">// No decimal or fractional digits</span></span><br><span class="line">      value = integer</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// &#x27;.&#x27;</span></span><br><span class="line">      <span class="keyword">let</span> decPt = monetary.<span class="property">mon_decimal_point</span></span><br><span class="line">      <span class="keyword">if</span> (right === <span class="string">&#x27;&#x27;</span> || right === <span class="literal">undefined</span>) &#123;</span><br><span class="line">        right = conversion === <span class="string">&#x27;i&#x27;</span> ? monetary.<span class="property">int_frac_digits</span> : monetary.<span class="property">frac_digits</span></span><br><span class="line">      &#125;</span><br><span class="line">      right = <span class="built_in">parseInt</span>(right, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (right === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// Only remove fractional portion if explicitly set to zero digits</span></span><br><span class="line">        fraction = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        decPt = <span class="string">&#x27;&#x27;</span></span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (right &lt; fraction.<span class="property">length</span>) &#123;</span><br><span class="line">        fraction = <span class="title class_">Math</span>.<span class="title function_">round</span>(<span class="built_in">parseFloat</span>(fraction.<span class="title function_">slice</span>(<span class="number">0</span>, right) + <span class="string">&#x27;.&#x27;</span> + fraction.<span class="title function_">substr</span>(right, <span class="number">1</span>)))</span><br><span class="line">        <span class="keyword">if</span> (right &gt; fraction.<span class="property">length</span>) &#123;</span><br><span class="line">          fraction = <span class="keyword">new</span> <span class="title class_">Array</span>(right - fraction.<span class="property">length</span> + <span class="number">1</span>).<span class="title function_">join</span>(<span class="string">&#x27;0&#x27;</span>) + fraction <span class="comment">// prepend with 0&#x27;s</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (right &gt; fraction.<span class="property">length</span>) &#123;</span><br><span class="line">        fraction += <span class="keyword">new</span> <span class="title class_">Array</span>(right - fraction.<span class="property">length</span> + <span class="number">1</span>).<span class="title function_">join</span>(<span class="string">&#x27;0&#x27;</span>) <span class="comment">// pad with 0&#x27;s</span></span><br><span class="line">      &#125;</span><br><span class="line">      value = integer + decPt + fraction</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> symbol = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> (showCurrSymbol) &#123;</span><br><span class="line">      <span class="comment">// &#x27;i&#x27; vs. &#x27;n&#x27; (&#x27;USD&#x27; vs. &#x27;$&#x27;)</span></span><br><span class="line">      symbol = conversion === <span class="string">&#x27;i&#x27;</span> ? monetary.<span class="property">int_curr_symbol</span> : monetary.<span class="property">currency_symbol</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> signPosn = neg ? monetary.<span class="property">n_sign_posn</span> : monetary.<span class="property">p_sign_posn</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 0: no space between curr. symbol and value</span></span><br><span class="line">    <span class="comment">// 1: space sep. them unless symb. and sign are adjacent then space sep. them from value</span></span><br><span class="line">    <span class="comment">// 2: space sep. sign and value unless symb. and sign are adjacent then space separates</span></span><br><span class="line">    <span class="keyword">const</span> sepBySpace = neg ? monetary.<span class="property">n_sep_by_space</span> : monetary.<span class="property">p_sep_by_space</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// p_cs_precedes, n_cs_precedes</span></span><br><span class="line">    <span class="comment">// positive currency symbol follows value = 0; precedes value = 1</span></span><br><span class="line">    <span class="keyword">const</span> csPrecedes = neg ? monetary.<span class="property">n_cs_precedes</span> : monetary.<span class="property">p_cs_precedes</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Assemble symbol/value/sign and possible space as appropriate</span></span><br><span class="line">    <span class="keyword">if</span> (flags.<span class="title function_">indexOf</span>(<span class="params"><span class="string">&#x27;(&#x27;</span></span>) !== -<span class="number">1</span>) &#123;</span><br><span class="line">      <span class="comment">// flag: parenth. for negative</span></span><br><span class="line">      <span class="comment">// @todo: unclear on whether and how sepBySpace, signPosn, or csPrecedes have</span></span><br><span class="line">      <span class="comment">// an impact here (as they do below), but assuming for now behaves as signPosn 0 as</span></span><br><span class="line">      <span class="comment">// far as localized sepBySpace and signPosn behavior</span></span><br><span class="line">      repl =</span><br><span class="line">        (csPrecedes ? symbol + (sepBySpace === <span class="number">1</span> ? <span class="string">&#x27; &#x27;</span> : <span class="string">&#x27;&#x27;</span>) : <span class="string">&#x27;&#x27;</span>) +</span><br><span class="line">        value +</span><br><span class="line">        (!csPrecedes ? (sepBySpace === <span class="number">1</span> ? <span class="string">&#x27; &#x27;</span> : <span class="string">&#x27;&#x27;</span>) + symbol : <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">      <span class="keyword">if</span> (neg) &#123;</span><br><span class="line">        repl = <span class="string">&#x27;(&#x27;</span> + repl + <span class="string">&#x27;)&#x27;</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        repl = <span class="string">&#x27; &#x27;</span> + repl + <span class="string">&#x27; &#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// &#x27;+&#x27; is default</span></span><br><span class="line">      <span class="comment">// &#x27;&#x27;</span></span><br><span class="line">      <span class="keyword">const</span> posSign = monetary.<span class="property">positive_sign</span></span><br><span class="line">      <span class="comment">// &#x27;-&#x27;</span></span><br><span class="line">      <span class="keyword">const</span> negSign = monetary.<span class="property">negative_sign</span></span><br><span class="line">      <span class="keyword">const</span> sign = neg ? negSign : posSign</span><br><span class="line">      <span class="keyword">const</span> otherSign = neg ? posSign : negSign</span><br><span class="line">      <span class="keyword">let</span> signPadding = <span class="string">&#x27;&#x27;</span></span><br><span class="line">      <span class="keyword">if</span> (signPosn) &#123;</span><br><span class="line">        <span class="comment">// has a sign</span></span><br><span class="line">        signPadding = <span class="keyword">new</span> <span class="title class_">Array</span>(otherSign.<span class="property">length</span> - sign.<span class="property">length</span> + <span class="number">1</span>).<span class="title function_">join</span>(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">let</span> valueAndCS = <span class="string">&#x27;&#x27;</span></span><br><span class="line">      <span class="keyword">switch</span> (signPosn) &#123;</span><br><span class="line">        <span class="comment">// 0: parentheses surround value and curr. symbol;</span></span><br><span class="line">        <span class="comment">// 1: sign precedes them;</span></span><br><span class="line">        <span class="comment">// 2: sign follows them;</span></span><br><span class="line">        <span class="comment">// 3: sign immed. precedes curr. symbol; (but may be space between)</span></span><br><span class="line">        <span class="comment">// 4: sign immed. succeeds curr. symbol; (but may be space between)</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">          valueAndCS = csPrecedes</span><br><span class="line">            ? symbol + (sepBySpace === <span class="number">1</span> ? <span class="string">&#x27; &#x27;</span> : <span class="string">&#x27;&#x27;</span>) + value</span><br><span class="line">            : value + (sepBySpace === <span class="number">1</span> ? <span class="string">&#x27; &#x27;</span> : <span class="string">&#x27;&#x27;</span>) + symbol</span><br><span class="line">          repl = <span class="string">&#x27;(&#x27;</span> + valueAndCS + <span class="string">&#x27;)&#x27;</span></span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">          valueAndCS = csPrecedes</span><br><span class="line">            ? symbol + (sepBySpace === <span class="number">1</span> ? <span class="string">&#x27; &#x27;</span> : <span class="string">&#x27;&#x27;</span>) + value</span><br><span class="line">            : value + (sepBySpace === <span class="number">1</span> ? <span class="string">&#x27; &#x27;</span> : <span class="string">&#x27;&#x27;</span>) + symbol</span><br><span class="line">          repl = signPadding + sign + (sepBySpace === <span class="number">2</span> ? <span class="string">&#x27; &#x27;</span> : <span class="string">&#x27;&#x27;</span>) + valueAndCS</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">          valueAndCS = csPrecedes</span><br><span class="line">            ? symbol + (sepBySpace === <span class="number">1</span> ? <span class="string">&#x27; &#x27;</span> : <span class="string">&#x27;&#x27;</span>) + value</span><br><span class="line">            : value + (sepBySpace === <span class="number">1</span> ? <span class="string">&#x27; &#x27;</span> : <span class="string">&#x27;&#x27;</span>) + symbol</span><br><span class="line">          repl = valueAndCS + (sepBySpace === <span class="number">2</span> ? <span class="string">&#x27; &#x27;</span> : <span class="string">&#x27;&#x27;</span>) + sign + signPadding</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">          repl = csPrecedes</span><br><span class="line">            ? signPadding + sign + (sepBySpace === <span class="number">2</span> ? <span class="string">&#x27; &#x27;</span> : <span class="string">&#x27;&#x27;</span>) + symbol + (sepBySpace === <span class="number">1</span> ? <span class="string">&#x27; &#x27;</span> : <span class="string">&#x27;&#x27;</span>) + value</span><br><span class="line">            : value + (sepBySpace === <span class="number">1</span> ? <span class="string">&#x27; &#x27;</span> : <span class="string">&#x27;&#x27;</span>) + sign + signPadding + (sepBySpace === <span class="number">2</span> ? <span class="string">&#x27; &#x27;</span> : <span class="string">&#x27;&#x27;</span>) + symbol</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">          repl = csPrecedes</span><br><span class="line">            ? symbol + (sepBySpace === <span class="number">2</span> ? <span class="string">&#x27; &#x27;</span> : <span class="string">&#x27;&#x27;</span>) + signPadding + sign + (sepBySpace === <span class="number">1</span> ? <span class="string">&#x27; &#x27;</span> : <span class="string">&#x27;&#x27;</span>) + value</span><br><span class="line">            : value + (sepBySpace === <span class="number">1</span> ? <span class="string">&#x27; &#x27;</span> : <span class="string">&#x27;&#x27;</span>) + symbol + (sepBySpace === <span class="number">2</span> ? <span class="string">&#x27; &#x27;</span> : <span class="string">&#x27;&#x27;</span>) + sign + signPadding</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> padding = width - repl.<span class="property">length</span></span><br><span class="line">    <span class="keyword">if</span> (padding &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      padding = <span class="keyword">new</span> <span class="title class_">Array</span>(padding + <span class="number">1</span>).<span class="title function_">join</span>(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">      <span class="comment">// @todo: How does p_sep_by_space affect the count if there is a space?</span></span><br><span class="line">      <span class="comment">// Included in count presumably?</span></span><br><span class="line">      <span class="keyword">if</span> (flags.<span class="title function_">indexOf</span>(<span class="string">&#x27;-&#x27;</span>) !== -<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="comment">// left-justified (pad to right)</span></span><br><span class="line">        repl += padding</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// right-justified (pad to left)</span></span><br><span class="line">        repl = padding + repl</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> repl</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> format.<span class="title function_">replace</span>(regex, doReplace)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      <div class="clearfix"></div>
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we assimilate first iterations with imperfections,
+        hoping for others to take issue with-and improve them.
+
+        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
+        but please be reminded to use our creations at your own risk.
+        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+      </p>
+      <p>
+        Now go and:
+        [
+        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/php/strings/money_format.js">View on GitHub</a></strong>
+        |
+        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/php/strings/money_format.js">Edit on GitHub</a></strong>
+        |
+        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/strings/money_format.js">View Raw</a></strong>
+        ]
+      </p>
+
+
+      <hr />
+      
+
+      <p>
+        <a href="/php/strings/">&laquo; More PHP strings functions</a>
+      </p>
+
+      <center>
+        <br>
+        <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+        <br>
+        <br>
+      </center>
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/locutus-alpha.png" />
+            <h2 id="name">Locutus</h2>
+            <h3 id="title">All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.</h3>
+            <!-- <span id="location"><i class="fa fa-map-marker"></i>GitHub</span> -->
+            <!-- <a id="follow" target="_blank" href="https://github.com/locutusjs/locutus/stargazers">FOLLOW</a> -->
+
+            <br />
+            <div class="Social">
+              <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
+              <br />
+              <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+            </div>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+              5
+              <span>languages marked</span>
+            </div>
+            <div class="article-info-block">
+                394
+                <span>functions assimilated</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="https://github.com/locutusjs/locutus" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://twitter.com/locutus_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    
+                    <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+<div class="clear"></div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget widget-on_the_githubs">
+    <div class="on-the-githubs" data-event-source="repos/locutusjs/locutus">Loading...</div>
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (18)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/ctype/">
+            ctype
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/stdio/">
+            stdio
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/stdlib/">
+            stdlib
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/string/">
+            string
+            (5)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (20)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strconv/">
+            strconv
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/strings/">
+            strings
+            (14)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (17)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/math/">
+            math
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (10)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (18)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Array/">
+            Array
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/ruby/String/">
+            String
+            (11)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (321)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (73)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (4)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (30)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/04/24-update/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/bunnies.webp)" alt="Easter Update" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/04/24-update/" class="title">Easter Update</a></p>
+                            <p class="item-date"><time datetime="2024-04-05T00:00:00.000Z" itemprop="datePublished">2024-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-05-02T00:00:00.000Z" itemprop="datePublished">2016-05-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/breaking-bc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2026 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
+
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+
+    
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+<script src="/js/locutus.js"></script>
+
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- Twitter follow button script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    </div>
+</body>
+</html>

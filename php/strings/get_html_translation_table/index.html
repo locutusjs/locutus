@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>PHP&#39;s get_html_translation_table in JavaScript | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Here&#39;s what our current JavaScript equivalent to PHP&#39;s get_html_translation_table looks like.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP&#39;s get_html_translation_table in JavaScript">
+<meta property="og:url" content="https://locutus.io/php/strings/get_html_translation_table/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="Here&#39;s what our current JavaScript equivalent to PHP&#39;s get_html_translation_table looks like.">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-01-07T16:54:44.918Z">
+<meta property="article:modified_time" content="2026-01-07T16:54:44.918Z">
+<meta property="article:author" content="Kevin van Zonneveld">
+<meta name="twitter:card" content="summary">
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/vendor/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/locutus.css">
+
+
+    
+<script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="Locutus" type="application/atom+xml">
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <nav id="main-nav">
+                
+                  <a class="main-nav-link" href="/c">C</a>
+                
+                  <a class="main-nav-link" href="/golang">Go</a>
+                
+                  <a class="main-nav-link" href="/python">Python</a>
+                
+                  <a class="main-nav-link" href="/ruby">Ruby</a>
+                
+                  <a class="main-nav-link" href="/php">PHP</a>
+                
+                <span class="main-nav-link">|</span>
+                
+                  <a class="main-nav-link" href="/archives">Blog</a>
+                
+                  <a class="main-nav-link" href="/authors">Authors</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+        x: 'en',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    console.log(INSIGHT_CONFIG)
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                  <td><a class="main-nav-link" href="/c">C</a></td>
+                
+                  <td><a class="main-nav-link" href="/golang">Go</a></td>
+                
+                  <td><a class="main-nav-link" href="/python">Python</a></td>
+                
+                  <td><a class="main-nav-link" href="/ruby">Ruby</a></td>
+                
+                  <td><a class="main-nav-link" href="/php">PHP</a></td>
+                
+                <td><span class="main-nav-link">|</span></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Blog</a></td>
+                
+                    <td><a class="main-nav-link" href="/authors">Authors</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">PHP&#39;s get_html_translation_table in JavaScript</h1>
+    </header>
+
+    <div class="article-entry">
+      <h2>How to use</h2>
+      <p>
+        You you can install via <code>yarn add locutus</code> and
+        require this function via <code>const get_html_translation_table = require('locutus/php/strings/get_html_translation_table')</code>.
+      </p>
+      <p>
+        It is important to use a bundler that supports tree-shaking
+        so that you only ship the functions that you actually use to your browser,
+        instead of all of Locutus, which is massive. Examples are:
+        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
+        <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+
+        For server-side use this is typically less of a concern.
+      </p>
+
+      
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>get_html_translation_table(&#39;HTML_SPECIALCHARS&#39;)</code></td><td><code>{&#39;&#34;&#39;: &#39;&amp;quot;&#39;, &#39;&amp;&#39;: &#39;&amp;amp;&#39;, &#39;&lt;&#39;: &#39;&amp;lt;&#39;, &#39;&gt;&#39;: &#39;&amp;gt;&#39;}</code></td></tr>
+        
+        </table>
+      
+
+      
+
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>It has been decided that we’re not going to add global
+dependencies to Locutus, meaning the constants are not
+real constants, but strings instead. Integers are also supported if someone
+chooses to create the constants themselves.</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      <p>
+        Here's what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.get-html-translation-table.php">PHP's get_html_translation_table</a> looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">get_html_translation_table</span>(<span class="params">table, quoteStyle</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/get_html_translation_table/</span></span><br><span class="line">  <span class="comment">// original by: Philip Peterson</span></span><br><span class="line">  <span class="comment">//  revised by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: noname</span></span><br><span class="line">  <span class="comment">// bugfixed by: Alex</span></span><br><span class="line">  <span class="comment">// bugfixed by: Marco</span></span><br><span class="line">  <span class="comment">// bugfixed by: madipta</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: T.Wild</span></span><br><span class="line">  <span class="comment">// improved by: KELAN</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Frank Forte</span></span><br><span class="line">  <span class="comment">//    input by: Ratheous</span></span><br><span class="line">  <span class="comment">//      note 1: It has been decided that we&#x27;re not going to add global</span></span><br><span class="line">  <span class="comment">//      note 1: dependencies to Locutus, meaning the constants are not</span></span><br><span class="line">  <span class="comment">//      note 1: real constants, but strings instead. Integers are also supported if someone</span></span><br><span class="line">  <span class="comment">//      note 1: chooses to create the constants themselves.</span></span><br><span class="line">  <span class="comment">//   example 1: get_html_translation_table(&#x27;HTML_SPECIALCHARS&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 1: &#123;&#x27;&quot;&#x27;: &#x27;&amp;quot;&#x27;, &#x27;&amp;&#x27;: &#x27;&amp;amp;&#x27;, &#x27;&lt;&#x27;: &#x27;&amp;lt;&#x27;, &#x27;&gt;&#x27;: &#x27;&amp;gt;&#x27;&#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> entities = &#123;&#125;</span><br><span class="line">  <span class="keyword">const</span> hashMap = &#123;&#125;</span><br><span class="line">  <span class="keyword">let</span> decimal</span><br><span class="line">  <span class="keyword">const</span> constMappingTable = &#123;&#125;</span><br><span class="line">  <span class="keyword">const</span> constMappingQuoteStyle = &#123;&#125;</span><br><span class="line">  <span class="keyword">let</span> useTable = &#123;&#125;</span><br><span class="line">  <span class="keyword">let</span> useQuoteStyle = &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Translate arguments</span></span><br><span class="line">  constMappingTable[<span class="number">0</span>] = <span class="string">&#x27;HTML_SPECIALCHARS&#x27;</span></span><br><span class="line">  constMappingTable[<span class="number">1</span>] = <span class="string">&#x27;HTML_ENTITIES&#x27;</span></span><br><span class="line">  constMappingQuoteStyle[<span class="number">0</span>] = <span class="string">&#x27;ENT_NOQUOTES&#x27;</span></span><br><span class="line">  constMappingQuoteStyle[<span class="number">2</span>] = <span class="string">&#x27;ENT_COMPAT&#x27;</span></span><br><span class="line">  constMappingQuoteStyle[<span class="number">3</span>] = <span class="string">&#x27;ENT_QUOTES&#x27;</span></span><br><span class="line"></span><br><span class="line">  useTable = !<span class="built_in">isNaN</span>(table) ? constMappingTable[table] : table ? table.<span class="title function_">toUpperCase</span>() : <span class="string">&#x27;HTML_SPECIALCHARS&#x27;</span></span><br><span class="line"></span><br><span class="line">  useQuoteStyle = !<span class="built_in">isNaN</span>(quoteStyle)</span><br><span class="line">    ? constMappingQuoteStyle[quoteStyle]</span><br><span class="line">    : quoteStyle</span><br><span class="line">      ? quoteStyle.<span class="title function_">toUpperCase</span>()</span><br><span class="line">      : <span class="string">&#x27;ENT_COMPAT&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (useTable !== <span class="string">&#x27;HTML_SPECIALCHARS&#x27;</span> &amp;&amp; useTable !== <span class="string">&#x27;HTML_ENTITIES&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Table: &#x27;</span> + useTable + <span class="string">&#x27; not supported&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  entities[<span class="string">&#x27;38&#x27;</span>] = <span class="string">&#x27;&amp;amp;&#x27;</span></span><br><span class="line">  <span class="keyword">if</span> (useTable === <span class="string">&#x27;HTML_ENTITIES&#x27;</span>) &#123;</span><br><span class="line">    entities[<span class="string">&#x27;160&#x27;</span>] = <span class="string">&#x27;&amp;nbsp;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;161&#x27;</span>] = <span class="string">&#x27;&amp;iexcl;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;162&#x27;</span>] = <span class="string">&#x27;&amp;cent;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;163&#x27;</span>] = <span class="string">&#x27;&amp;pound;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;164&#x27;</span>] = <span class="string">&#x27;&amp;curren;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;165&#x27;</span>] = <span class="string">&#x27;&amp;yen;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;166&#x27;</span>] = <span class="string">&#x27;&amp;brvbar;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;167&#x27;</span>] = <span class="string">&#x27;&amp;sect;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;168&#x27;</span>] = <span class="string">&#x27;&amp;uml;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;169&#x27;</span>] = <span class="string">&#x27;&amp;copy;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;170&#x27;</span>] = <span class="string">&#x27;&amp;ordf;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;171&#x27;</span>] = <span class="string">&#x27;&amp;laquo;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;172&#x27;</span>] = <span class="string">&#x27;&amp;not;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;173&#x27;</span>] = <span class="string">&#x27;&amp;shy;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;174&#x27;</span>] = <span class="string">&#x27;&amp;reg;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;175&#x27;</span>] = <span class="string">&#x27;&amp;macr;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;176&#x27;</span>] = <span class="string">&#x27;&amp;deg;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;177&#x27;</span>] = <span class="string">&#x27;&amp;plusmn;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;178&#x27;</span>] = <span class="string">&#x27;&amp;sup2;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;179&#x27;</span>] = <span class="string">&#x27;&amp;sup3;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;180&#x27;</span>] = <span class="string">&#x27;&amp;acute;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;181&#x27;</span>] = <span class="string">&#x27;&amp;micro;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;182&#x27;</span>] = <span class="string">&#x27;&amp;para;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;183&#x27;</span>] = <span class="string">&#x27;&amp;middot;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;184&#x27;</span>] = <span class="string">&#x27;&amp;cedil;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;185&#x27;</span>] = <span class="string">&#x27;&amp;sup1;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;186&#x27;</span>] = <span class="string">&#x27;&amp;ordm;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;187&#x27;</span>] = <span class="string">&#x27;&amp;raquo;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;188&#x27;</span>] = <span class="string">&#x27;&amp;frac14;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;189&#x27;</span>] = <span class="string">&#x27;&amp;frac12;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;190&#x27;</span>] = <span class="string">&#x27;&amp;frac34;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;191&#x27;</span>] = <span class="string">&#x27;&amp;iquest;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;192&#x27;</span>] = <span class="string">&#x27;&amp;Agrave;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;193&#x27;</span>] = <span class="string">&#x27;&amp;Aacute;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;194&#x27;</span>] = <span class="string">&#x27;&amp;Acirc;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;195&#x27;</span>] = <span class="string">&#x27;&amp;Atilde;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;196&#x27;</span>] = <span class="string">&#x27;&amp;Auml;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;197&#x27;</span>] = <span class="string">&#x27;&amp;Aring;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;198&#x27;</span>] = <span class="string">&#x27;&amp;AElig;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;199&#x27;</span>] = <span class="string">&#x27;&amp;Ccedil;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;200&#x27;</span>] = <span class="string">&#x27;&amp;Egrave;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;201&#x27;</span>] = <span class="string">&#x27;&amp;Eacute;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;202&#x27;</span>] = <span class="string">&#x27;&amp;Ecirc;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;203&#x27;</span>] = <span class="string">&#x27;&amp;Euml;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;204&#x27;</span>] = <span class="string">&#x27;&amp;Igrave;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;205&#x27;</span>] = <span class="string">&#x27;&amp;Iacute;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;206&#x27;</span>] = <span class="string">&#x27;&amp;Icirc;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;207&#x27;</span>] = <span class="string">&#x27;&amp;Iuml;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;208&#x27;</span>] = <span class="string">&#x27;&amp;ETH;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;209&#x27;</span>] = <span class="string">&#x27;&amp;Ntilde;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;210&#x27;</span>] = <span class="string">&#x27;&amp;Ograve;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;211&#x27;</span>] = <span class="string">&#x27;&amp;Oacute;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;212&#x27;</span>] = <span class="string">&#x27;&amp;Ocirc;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;213&#x27;</span>] = <span class="string">&#x27;&amp;Otilde;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;214&#x27;</span>] = <span class="string">&#x27;&amp;Ouml;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;215&#x27;</span>] = <span class="string">&#x27;&amp;times;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;216&#x27;</span>] = <span class="string">&#x27;&amp;Oslash;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;217&#x27;</span>] = <span class="string">&#x27;&amp;Ugrave;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;218&#x27;</span>] = <span class="string">&#x27;&amp;Uacute;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;219&#x27;</span>] = <span class="string">&#x27;&amp;Ucirc;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;220&#x27;</span>] = <span class="string">&#x27;&amp;Uuml;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;221&#x27;</span>] = <span class="string">&#x27;&amp;Yacute;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;222&#x27;</span>] = <span class="string">&#x27;&amp;THORN;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;223&#x27;</span>] = <span class="string">&#x27;&amp;szlig;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;224&#x27;</span>] = <span class="string">&#x27;&amp;agrave;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;225&#x27;</span>] = <span class="string">&#x27;&amp;aacute;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;226&#x27;</span>] = <span class="string">&#x27;&amp;acirc;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;227&#x27;</span>] = <span class="string">&#x27;&amp;atilde;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;228&#x27;</span>] = <span class="string">&#x27;&amp;auml;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;229&#x27;</span>] = <span class="string">&#x27;&amp;aring;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;230&#x27;</span>] = <span class="string">&#x27;&amp;aelig;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;231&#x27;</span>] = <span class="string">&#x27;&amp;ccedil;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;232&#x27;</span>] = <span class="string">&#x27;&amp;egrave;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;233&#x27;</span>] = <span class="string">&#x27;&amp;eacute;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;234&#x27;</span>] = <span class="string">&#x27;&amp;ecirc;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;235&#x27;</span>] = <span class="string">&#x27;&amp;euml;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;236&#x27;</span>] = <span class="string">&#x27;&amp;igrave;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;237&#x27;</span>] = <span class="string">&#x27;&amp;iacute;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;238&#x27;</span>] = <span class="string">&#x27;&amp;icirc;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;239&#x27;</span>] = <span class="string">&#x27;&amp;iuml;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;240&#x27;</span>] = <span class="string">&#x27;&amp;eth;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;241&#x27;</span>] = <span class="string">&#x27;&amp;ntilde;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;242&#x27;</span>] = <span class="string">&#x27;&amp;ograve;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;243&#x27;</span>] = <span class="string">&#x27;&amp;oacute;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;244&#x27;</span>] = <span class="string">&#x27;&amp;ocirc;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;245&#x27;</span>] = <span class="string">&#x27;&amp;otilde;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;246&#x27;</span>] = <span class="string">&#x27;&amp;ouml;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;247&#x27;</span>] = <span class="string">&#x27;&amp;divide;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;248&#x27;</span>] = <span class="string">&#x27;&amp;oslash;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;249&#x27;</span>] = <span class="string">&#x27;&amp;ugrave;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;250&#x27;</span>] = <span class="string">&#x27;&amp;uacute;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;251&#x27;</span>] = <span class="string">&#x27;&amp;ucirc;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;252&#x27;</span>] = <span class="string">&#x27;&amp;uuml;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;253&#x27;</span>] = <span class="string">&#x27;&amp;yacute;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;254&#x27;</span>] = <span class="string">&#x27;&amp;thorn;&#x27;</span></span><br><span class="line">    entities[<span class="string">&#x27;255&#x27;</span>] = <span class="string">&#x27;&amp;yuml;&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (useQuoteStyle !== <span class="string">&#x27;ENT_NOQUOTES&#x27;</span>) &#123;</span><br><span class="line">    entities[<span class="string">&#x27;34&#x27;</span>] = <span class="string">&#x27;&amp;quot;&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (useQuoteStyle === <span class="string">&#x27;ENT_QUOTES&#x27;</span>) &#123;</span><br><span class="line">    entities[<span class="string">&#x27;39&#x27;</span>] = <span class="string">&#x27;&amp;#39;&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">  entities[<span class="string">&#x27;60&#x27;</span>] = <span class="string">&#x27;&amp;lt;&#x27;</span></span><br><span class="line">  entities[<span class="string">&#x27;62&#x27;</span>] = <span class="string">&#x27;&amp;gt;&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// ascii decimals to real symbols</span></span><br><span class="line">  <span class="keyword">for</span> (decimal <span class="keyword">in</span> entities) &#123;</span><br><span class="line">    <span class="keyword">if</span> (entities.<span class="title function_">hasOwnProperty</span>(decimal)) &#123;</span><br><span class="line">      hashMap[<span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(decimal)] = entities[decimal]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> hashMap</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      <div class="clearfix"></div>
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we assimilate first iterations with imperfections,
+        hoping for others to take issue with-and improve them.
+
+        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
+        but please be reminded to use our creations at your own risk.
+        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+      </p>
+      <p>
+        Now go and:
+        [
+        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/php/strings/get_html_translation_table.js">View on GitHub</a></strong>
+        |
+        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/php/strings/get_html_translation_table.js">Edit on GitHub</a></strong>
+        |
+        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/strings/get_html_translation_table.js">View Raw</a></strong>
+        ]
+      </p>
+
+
+      <hr />
+      
+
+      <p>
+        <a href="/php/strings/">&laquo; More PHP strings functions</a>
+      </p>
+
+      <center>
+        <br>
+        <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+        <br>
+        <br>
+      </center>
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/locutus-alpha.png" />
+            <h2 id="name">Locutus</h2>
+            <h3 id="title">All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.</h3>
+            <!-- <span id="location"><i class="fa fa-map-marker"></i>GitHub</span> -->
+            <!-- <a id="follow" target="_blank" href="https://github.com/locutusjs/locutus/stargazers">FOLLOW</a> -->
+
+            <br />
+            <div class="Social">
+              <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
+              <br />
+              <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+            </div>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+              5
+              <span>languages marked</span>
+            </div>
+            <div class="article-info-block">
+                394
+                <span>functions assimilated</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="https://github.com/locutusjs/locutus" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://twitter.com/locutus_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    
+                    <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+<div class="clear"></div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget widget-on_the_githubs">
+    <div class="on-the-githubs" data-event-source="repos/locutusjs/locutus">Loading...</div>
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (18)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/ctype/">
+            ctype
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/stdio/">
+            stdio
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/stdlib/">
+            stdlib
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/string/">
+            string
+            (5)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (20)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strconv/">
+            strconv
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/strings/">
+            strings
+            (14)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (17)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/math/">
+            math
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (10)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (18)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Array/">
+            Array
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/ruby/String/">
+            String
+            (11)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (321)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (73)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (4)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (30)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/04/24-update/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/bunnies.webp)" alt="Easter Update" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/04/24-update/" class="title">Easter Update</a></p>
+                            <p class="item-date"><time datetime="2024-04-05T00:00:00.000Z" itemprop="datePublished">2024-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-05-02T00:00:00.000Z" itemprop="datePublished">2016-05-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/breaking-bc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2026 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
+
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+
+    
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+<script src="/js/locutus.js"></script>
+
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- Twitter follow button script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    </div>
+</body>
+</html>

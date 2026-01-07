@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>PHP&#39;s strval in JavaScript | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Here&#39;s what our current JavaScript equivalent to PHP&#39;s strval looks like.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP&#39;s strval in JavaScript">
+<meta property="og:url" content="https://locutus.io/php/var/strval/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="Here&#39;s what our current JavaScript equivalent to PHP&#39;s strval looks like.">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-01-07T16:54:44.988Z">
+<meta property="article:modified_time" content="2026-01-07T16:54:44.988Z">
+<meta property="article:author" content="Kevin van Zonneveld">
+<meta name="twitter:card" content="summary">
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/vendor/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/locutus.css">
+
+
+    
+<script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+
+    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="Locutus" type="application/atom+xml">
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <nav id="main-nav">
+                
+                  <a class="main-nav-link" href="/c">C</a>
+                
+                  <a class="main-nav-link" href="/golang">Go</a>
+                
+                  <a class="main-nav-link" href="/python">Python</a>
+                
+                  <a class="main-nav-link" href="/ruby">Ruby</a>
+                
+                  <a class="main-nav-link" href="/php">PHP</a>
+                
+                <span class="main-nav-link">|</span>
+                
+                  <a class="main-nav-link" href="/archives">Blog</a>
+                
+                  <a class="main-nav-link" href="/authors">Authors</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+        x: 'en',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    console.log(INSIGHT_CONFIG)
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                  <td><a class="main-nav-link" href="/c">C</a></td>
+                
+                  <td><a class="main-nav-link" href="/golang">Go</a></td>
+                
+                  <td><a class="main-nav-link" href="/python">Python</a></td>
+                
+                  <td><a class="main-nav-link" href="/ruby">Ruby</a></td>
+                
+                  <td><a class="main-nav-link" href="/php">PHP</a></td>
+                
+                <td><span class="main-nav-link">|</span></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Blog</a></td>
+                
+                    <td><a class="main-nav-link" href="/authors">Authors</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">PHP&#39;s strval in JavaScript</h1>
+    </header>
+
+    <div class="article-entry">
+      <h2>How to use</h2>
+      <p>
+        You you can install via <code>yarn add locutus</code> and
+        require this function via <code>const strval = require('locutus/php/var/strval')</code>.
+      </p>
+      <p>
+        It is important to use a bundler that supports tree-shaking
+        so that you only ship the functions that you actually use to your browser,
+        instead of all of Locutus, which is massive. Examples are:
+        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
+        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
+        <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
+
+        For server-side use this is typically less of a concern.
+      </p>
+
+      
+        <h2>Examples</h2>
+        <p>
+          Please note that these examples are distilled from test cases that automatically verify
+          our functions still work correctly. This could explain some quirky ones.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>strval({red: 1, green: 2, blue: 3, white: 4})</code></td><td><code>&#39;Object&#39;</code></td></tr>
+        
+        </table>
+      
+
+      
+
+      
+
+      
+
+      <p>
+        Here's what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.strval.php">PHP's strval</a> looks like.
+      </p>
+
+      <!-- Code -->
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">strval</span>(<span class="params">str</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/strval/</span></span><br><span class="line">  <span class="comment">// original by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//   example 1: strval(&#123;red: 1, green: 2, blue: 3, white: 4&#125;)</span></span><br><span class="line">  <span class="comment">//   returns 1: &#x27;Object&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> gettype = <span class="built_in">require</span>(<span class="string">&#x27;../var/gettype&#x27;</span>)</span><br><span class="line">  <span class="keyword">let</span> type = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (str === <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  type = <span class="title function_">gettype</span>(str)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Comment out the entire switch if you want JS-like</span></span><br><span class="line">  <span class="comment">// behavior instead of PHP behavior</span></span><br><span class="line">  <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;boolean&#x27;</span>:</span><br><span class="line">      <span class="keyword">if</span> (str === <span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;1&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;array&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;Array&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;object&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;Object&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> str</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      <div class="clearfix"></div>
+
+      <h2>A community effort</h2>
+      <p>
+        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        This means that we assimilate first iterations with imperfections,
+        hoping for others to take issue with-and improve them.
+
+        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
+        but please be reminded to use our creations at your own risk.
+        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+      </p>
+      <p>
+        Now go and:
+        [
+        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/php/var/strval.js">View on GitHub</a></strong>
+        |
+        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/php/var/strval.js">Edit on GitHub</a></strong>
+        |
+        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/var/strval.js">View Raw</a></strong>
+        ]
+      </p>
+
+
+      <hr />
+      
+
+      <p>
+        <a href="/php/var/">&laquo; More PHP var functions</a>
+      </p>
+
+      <center>
+        <br>
+        <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+        <br>
+        <br>
+      </center>
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/locutus-alpha.png" />
+            <h2 id="name">Locutus</h2>
+            <h3 id="title">All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.</h3>
+            <!-- <span id="location"><i class="fa fa-map-marker"></i>GitHub</span> -->
+            <!-- <a id="follow" target="_blank" href="https://github.com/locutusjs/locutus/stargazers">FOLLOW</a> -->
+
+            <br />
+            <div class="Social">
+              <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
+              <br />
+              <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+            </div>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+              5
+              <span>languages marked</span>
+            </div>
+            <div class="article-info-block">
+                394
+                <span>functions assimilated</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="https://github.com/locutusjs/locutus" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                    <td><a href="https://twitter.com/locutus_io" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+                    
+                    <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+<div class="clear"></div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget widget-on_the_githubs">
+    <div class="on-the-githubs" data-event-source="repos/locutusjs/locutus">Loading...</div>
+  </div>
+</div>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (18)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/ctype/">
+            ctype
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/stdio/">
+            stdio
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/stdlib/">
+            stdlib
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/string/">
+            string
+            (5)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (20)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/strconv/">
+            strconv
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/strings/">
+            strings
+            (14)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (17)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/math/">
+            math
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (10)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (18)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Array/">
+            Array
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/ruby/String/">
+            String
+            (11)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (321)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (73)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (4)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (30)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/04/24-update/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/bunnies.webp)" alt="Easter Update" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/04/24-update/" class="title">Easter Update</a></p>
+                            <p class="item-date"><time datetime="2024-04-05T00:00:00.000Z" itemprop="datePublished">2024-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-05-02T00:00:00.000Z" itemprop="datePublished">2016-05-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/04/breaking-bc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
+                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2026 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
+
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+
+    
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+<script src="/js/locutus.js"></script>
+
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- Twitter follow button script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    </div>
+</body>
+</html>
