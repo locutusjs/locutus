@@ -7,7 +7,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import type { CacheEntry } from './types.ts'
 
-export const CACHE_VERSION = 8
+export const CACHE_VERSION = 9
 
 /**
  * Strip comments and blank lines from code for hashing
@@ -32,11 +32,24 @@ export function stripForHashing(content: string): string {
 }
 
 /**
- * Calculate hash of file, its dependencies, and parity scripts
+ * Calculate hash of file, its dependencies, parity scripts, and Docker image digests
  * Strips comments/whitespace so trivial changes don't invalidate cache
+ * Docker digests ensure cache invalidates when the underlying Docker image changes
  */
-export function calculateHash(filePath: string, deps: string[], srcDir: string, verifyScriptPath: string): string {
+export function calculateHash(
+  filePath: string,
+  deps: string[],
+  srcDir: string,
+  verifyScriptPath: string,
+  dockerDigests: Record<string, string> = {},
+): string {
   const hash = createHash('sha256')
+
+  // Include Docker image digests so cache invalidates when images update
+  // Sort keys for deterministic hash
+  for (const [image, digest] of Object.entries(dockerDigests).sort()) {
+    hash.update(`${image}:${digest}`)
+  }
 
   // Include parity script directory content so translation changes invalidate cache
   const verifyDir = dirname(verifyScriptPath)

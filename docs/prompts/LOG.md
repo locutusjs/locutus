@@ -112,3 +112,23 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Fixed Biome lint errors in parity test files (block statements)
 - Fixed Docker image caching: always pull latest to avoid stale PHP versions
 - Fixed cache hash path for language handlers (lib/languages not verify/languages)
+
+### Iteration 16
+
+2026-01-07
+
+- **Area: Verification (Infrastructure)**
+- Improved parity test cache invalidation:
+  - Added Docker image digests to cache hash calculation
+  - Cache now invalidates when Docker Hub updates images (e.g., PHP security patches)
+  - Added `getDockerDigest()` function to docker.ts
+  - Digests collected after image pulls, passed through to cache hash
+- Renamed scripts for consistency:
+  - `yarn verify` → `yarn test:parity`
+  - `yarn verify:php` → `yarn test:parity:php`
+  - Updated CI workflow, README, CONTRIBUTING, and CHANGELOG
+- Bumped CACHE_VERSION to 9 (hash algorithm changed)
+- Investigation ongoing: CI strcmp failure (returns 8 instead of 1)
+  - Root cause: Docker image digest differs between arm64 (local) and amd64 (CI)
+  - PHP 8.0 changed strcmp from returning character difference to -1/0/1
+  - Added debug output to show exact PHP version and digest in CI

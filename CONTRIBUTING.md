@@ -61,7 +61,7 @@ Here are a few pointers that could save us from disappointment, we'll try to kee
 
 Verification steps (for new or changed functions):
 
-- `yarn verify php/<category>/<function>` (or the relevant language)
+- `yarn test:parity php/<category>/<function>` (or the relevant language)
 - `yarn build:tests && yarn test`
 - `yarn check`
 
@@ -82,7 +82,7 @@ Skip:
 ## Quick Commands
 
 - `yarn check` - format + lint + test (run after changes)
-- `yarn verify` - cross-language verification
+- `yarn test:parity` - cross-language verification
 - `yarn test` - full test suite
 - `yarn lint` - Biome check
 - `yarn fix:biome` - auto-fix

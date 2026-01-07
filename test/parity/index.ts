@@ -6,15 +6,16 @@
  * Tests that JS implementations produce identical output to native language
  * runtimes (PHP, Python, etc.) via Docker.
  *
- * Caches results based on file content hashes for fast subsequent runs.
+ * Caches results based on file content hashes and Docker image digests
+ * for fast subsequent runs. Cache invalidates when Docker images update.
  *
  * Usage:
- *   yarn verify                       # Test functions with 'verified:' header (CI mode)
- *   yarn verify --all                 # Include unverified functions
- *   yarn verify php                   # Filter to PHP only
- *   yarn verify php/strings/sprintf   # Test specific function
- *   yarn verify --no-cache            # Skip cache
- *   yarn verify --summary             # Show counts only, don't run tests
+ *   yarn test:parity                       # Test functions with 'verified:' header (CI mode)
+ *   yarn test:parity --all                 # Include unverified functions
+ *   yarn test:parity php                   # Filter to PHP only
+ *   yarn test:parity php/strings/sprintf   # Test specific function
+ *   yarn test:parity --no-cache            # Skip cache
+ *   yarn test:parity --summary             # Show counts only, don't run tests
  */
 
 import { availableParallelism } from 'node:os'
@@ -24,7 +25,7 @@ import { fileURLToPath } from 'node:url'
 import pMap from 'p-map'
 
 import { CACHE_VERSION, calculateHash, loadCache, saveCache } from './lib/cache.ts'
-import { checkDockerAvailable, ensureDockerImage, runInDocker } from './lib/docker.ts'
+import { checkDockerAvailable, ensureDockerImage, getDockerDigest, runInDocker } from './lib/docker.ts'
 import { getLanguageHandler, isLanguageSupported } from './lib/languages/index.ts'
 import { findFunctions, parseFunctionWithUtil } from './lib/parser.ts'
 import { evaluateExpected, runJs } from './lib/runner.ts'
@@ -73,7 +74,7 @@ async function runParityTest(
     }
   }
 
-  const hash = calculateHash(fullPath, parsed.dependsOn, SRC, PARITY_SCRIPT_PATH)
+  const hash = calculateHash(fullPath, parsed.dependsOn, SRC, PARITY_SCRIPT_PATH, options.dockerDigests)
 
   // Check cache
   if (options.useCache) {
@@ -318,10 +319,12 @@ async function main() {
   const startTime = performance.now()
   const args = process.argv.slice(2)
 
+  // Parse options (dockerDigests will be populated after image pulls)
   const options: VerifyOptions = {
     useCache: !args.includes('--no-cache'),
     includeUnverified: args.includes('--all') || args.includes('--include-unverified'),
     filter: args.find((a) => !a.startsWith('-')),
+    dockerDigests: {}, // Will be populated after image pulls
   }
 
   const summaryOnly = args.includes('--summary')
@@ -335,21 +338,27 @@ async function main() {
     process.exit(1)
   }
 
-  // Pull images and show versions for debugging
+  // Pull images, collect digests for cache invalidation, and show versions
+  const dockerDigests: Record<string, string> = {}
   console.log('Docker images:')
   if (ensureDockerImage('php:8.3-cli')) {
+    dockerDigests['php:8.3-cli'] = getDockerDigest('php:8.3-cli')
     const phpVersion = runInDocker('php:8.3-cli', ['php', '-v'], {})
     if (phpVersion.success) {
       console.log(`  PHP: ${phpVersion.output.split('\n')[0]}`)
     }
   }
   if (ensureDockerImage('python:3.12')) {
+    dockerDigests['python:3.12'] = getDockerDigest('python:3.12')
     const pyVersion = runInDocker('python:3.12', ['python', '--version'], {})
     if (pyVersion.success) {
       console.log(`  Python: ${pyVersion.output.trim()}`)
     }
   }
   console.log('')
+
+  // Assign collected digests to options for cache invalidation
+  options.dockerDigests = dockerDigests
 
   // Find all functions
   const allFunctions = findFunctions(SRC, options.filter)

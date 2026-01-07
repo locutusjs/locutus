@@ -47,7 +47,7 @@ jobs:
           corepack yarn test
       - name: Parity tests
         run: |
-          corepack yarn verify
+          corepack yarn test:parity
       - name: Release
         if: startsWith(github.ref, 'refs/tags/')
         run: |

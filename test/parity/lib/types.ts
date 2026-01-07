@@ -72,6 +72,8 @@ export interface VerifyOptions {
   useCache: boolean
   includeUnverified: boolean
   filter?: string
+  /** Docker image digests for cache invalidation */
+  dockerDigests: Record<string, string>
 }
 
 export interface ParitySummary {

@@ -54,6 +54,22 @@ export interface DockerRunResult {
 }
 
 /**
+ * Get the digest of a Docker image
+ * Returns empty string if image not found or digest unavailable
+ */
+export function getDockerDigest(image: string): string {
+  try {
+    const digest = execSync(`docker inspect ${image} --format '{{index .RepoDigests 0}}'`, {
+      encoding: 'utf8',
+      stdio: 'pipe',
+    }).trim()
+    return digest
+  } catch {
+    return ''
+  }
+}
+
+/**
  * Run code in a Docker container
  */
 export function runInDocker(
