@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var whitespace = require('../../../../src/python/string/whitespace.js') // eslint-disable-line no-unused-vars,camelcase
+var whitespace = require('../../../../src/python/string/whitespace.js')
 
 describe('src/python/string/whitespace.js (tested in test/generated/python/string/test-whitespace.js)', function () {
   it('should pass example 1', function (done) {

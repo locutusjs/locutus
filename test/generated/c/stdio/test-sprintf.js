@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var sprintf = require('../../../../src/c/stdio/sprintf.js') // eslint-disable-line no-unused-vars,camelcase
+var sprintf = require('../../../../src/c/stdio/sprintf.js')
 
 describe('src/c/stdio/sprintf.js (tested in test/generated/c/stdio/test-sprintf.js)', function () {
   it('should pass example 1', function (done) {

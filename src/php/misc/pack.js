@@ -17,7 +17,6 @@ module.exports = function pack(format) {
   //   returns 3: 'Õ'
   //   example 4: pack('d', -100.876)
   //   returns 4: "\u0000\u0000\u0000\u0000\u00008YÀ"
-  //        test: skip-1
 
   let formatPointer = 0
   let argumentPointer = 1

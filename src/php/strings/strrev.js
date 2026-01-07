@@ -9,7 +9,6 @@ module.exports = function strrev(string) {
   //        returns 2: 'Baha\u0301' // combining
   //        example 3: strrev('A\uD87E\uDC04Z')
   //        returns 3: 'Z\uD87E\uDC04A' // surrogates
-  //             test: 'skip-3'
 
   string = string + ''
 

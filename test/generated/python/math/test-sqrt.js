@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var sqrt = require('../../../../src/python/math/sqrt.js') // eslint-disable-line no-unused-vars,camelcase
+var sqrt = require('../../../../src/python/math/sqrt.js')
 
 describe('src/python/math/sqrt.js (tested in test/generated/python/math/test-sqrt.js)', function () {
   it('should pass example 1', function (done) {

@@ -5,12 +5,12 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var arsort = require('../../../../src/php/array/arsort.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var arsort = require('../../../../src/php/array/arsort.js')
 
 describe('src/php/array/arsort.js (tested in test/generated/php/array/test-arsort.js)', function () {
-  it.skip('should pass example 1', function (done) {
+  it('should pass example 1', function (done) {
     var expected = {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
     var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
     arsort($data)

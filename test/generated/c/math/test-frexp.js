@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var frexp = require('../../../../src/c/math/frexp.js') // eslint-disable-line no-unused-vars,camelcase
+var frexp = require('../../../../src/c/math/frexp.js')
 
 describe('src/c/math/frexp.js (tested in test/generated/c/math/test-frexp.js)', function () {
   it('should pass example 1', function (done) {

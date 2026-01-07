@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var atoi = require('../../../../src/c/stdlib/atoi.js') // eslint-disable-line no-unused-vars,camelcase
+var atoi = require('../../../../src/c/stdlib/atoi.js')
 
 describe('src/c/stdlib/atoi.js (tested in test/generated/c/stdlib/test-atoi.js)', function () {
   it('should pass example 1', function (done) {

@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var Trim = require('../../../../src/golang/strings/Trim.js') // eslint-disable-line no-unused-vars,camelcase
+var Trim = require('../../../../src/golang/strings/Trim.js')
 
 describe('src/golang/strings/Trim.js (tested in test/generated/golang/strings/test-Trim.js)', function () {
   it('should pass example 1', function (done) {

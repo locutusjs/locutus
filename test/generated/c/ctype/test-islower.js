@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var islower = require('../../../../src/c/ctype/islower.js') // eslint-disable-line no-unused-vars,camelcase
+var islower = require('../../../../src/c/ctype/islower.js')
 
 describe('src/c/ctype/islower.js (tested in test/generated/c/ctype/test-islower.js)', function () {
   it('should pass example 1', function (done) {

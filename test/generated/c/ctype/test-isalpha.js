@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var isalpha = require('../../../../src/c/ctype/isalpha.js') // eslint-disable-line no-unused-vars,camelcase
+var isalpha = require('../../../../src/c/ctype/isalpha.js')
 
 describe('src/c/ctype/isalpha.js (tested in test/generated/c/ctype/test-isalpha.js)', function () {
   it('should pass example 1', function (done) {

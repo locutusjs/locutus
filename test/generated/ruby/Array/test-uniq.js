@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var uniq = require('../../../../src/ruby/Array/uniq.js') // eslint-disable-line no-unused-vars,camelcase
+var uniq = require('../../../../src/ruby/Array/uniq.js')
 
 describe('src/ruby/Array/uniq.js (tested in test/generated/ruby/Array/test-uniq.js)', function () {
   it('should pass example 1', function (done) {

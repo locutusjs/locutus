@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var hexdigits = require('../../../../src/python/string/hexdigits.js') // eslint-disable-line no-unused-vars,camelcase
+var hexdigits = require('../../../../src/python/string/hexdigits.js')
 
 describe('src/python/string/hexdigits.js (tested in test/generated/python/string/test-hexdigits.js)', function () {
   it('should pass example 1', function (done) {

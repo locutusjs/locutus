@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ascii_letters = require('../../../../src/python/string/ascii_letters.js') // eslint-disable-line no-unused-vars,camelcase
+var ascii_letters = require('../../../../src/python/string/ascii_letters.js')
 
 describe('src/python/string/ascii_letters.js (tested in test/generated/python/string/test-ascii_letters.js)', function () {
   it('should pass example 1', function (done) {

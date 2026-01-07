@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var printable = require('../../../../src/python/string/printable.js') // eslint-disable-line no-unused-vars,camelcase
+var printable = require('../../../../src/python/string/printable.js')
 
 describe('src/python/string/printable.js (tested in test/generated/python/string/test-printable.js)', function () {
   it('should pass example 1', function (done) {

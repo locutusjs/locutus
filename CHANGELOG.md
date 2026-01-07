@@ -40,7 +40,7 @@ Ideas that will be planned and find their way into a release at one point
       - [ ] Dual CJS/ESM exports
       - [ ] Drop Node < 20 support
       - [ ] Publish as `locutus@3.0.0` with breaking changes
-      - [ ] ESLint/Prettier → Biome
+      - [x] ESLint/Prettier → Biome (done in v2.0.33)
       - [ ] CJS → ESM
       - [ ] Custom CLI releases → Changesets
       - [ ] JS → TS for infra scripts (use Node v24 native type stripping to run)

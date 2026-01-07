@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var base64_encode = require('../../../../src/php/url/base64_encode.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var base64_encode = require('../../../../src/php/url/base64_encode.js')
 
 describe('src/php/url/base64_encode.js (tested in test/generated/php/url/test-base64_encode.js)', function () {
   it('should pass example 1', function (done) {

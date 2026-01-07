@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var tolower = require('../../../../src/c/ctype/tolower.js') // eslint-disable-line no-unused-vars,camelcase
+var tolower = require('../../../../src/c/ctype/tolower.js')
 
 describe('src/c/ctype/tolower.js (tested in test/generated/c/ctype/test-tolower.js)', function () {
   it('should pass example 1', function (done) {

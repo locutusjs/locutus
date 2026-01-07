@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var include = require('../../../../src/ruby/String/include.js') // eslint-disable-line no-unused-vars,camelcase
+var include = require('../../../../src/ruby/String/include.js')
 
 describe('src/ruby/String/include.js (tested in test/generated/ruby/String/test-include.js)', function () {
   it('should pass example 1', function (done) {

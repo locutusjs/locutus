@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var array_change_key_case = require('../../../../src/php/array/array_change_key_case.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var array_change_key_case = require('../../../../src/php/array/array_change_key_case.js')
 
 describe('src/php/array/array_change_key_case.js (tested in test/generated/php/array/test-array_change_key_case.js)', function () {
   it('should pass example 1', function (done) {

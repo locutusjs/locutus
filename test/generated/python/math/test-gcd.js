@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var gcd = require('../../../../src/python/math/gcd.js') // eslint-disable-line no-unused-vars,camelcase
+var gcd = require('../../../../src/python/math/gcd.js')
 
 describe('src/python/math/gcd.js (tested in test/generated/python/math/test-gcd.js)', function () {
   it('should pass example 1', function (done) {

@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var is_nan = require('../../../../src/php/math/is_nan.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var is_nan = require('../../../../src/php/math/is_nan.js')
 
 describe('src/php/math/is_nan.js (tested in test/generated/php/math/test-is_nan.js)', function () {
   it('should pass example 1', function (done) {

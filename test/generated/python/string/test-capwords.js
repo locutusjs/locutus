@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var capwords = require('../../../../src/python/string/capwords.js') // eslint-disable-line no-unused-vars,camelcase
+var capwords = require('../../../../src/python/string/capwords.js')
 
 describe('src/python/string/capwords.js (tested in test/generated/python/string/test-capwords.js)', function () {
   it('should pass example 1', function (done) {

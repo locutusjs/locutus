@@ -5,12 +5,12 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var pack = require('../../../../src/php/misc/pack.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var pack = require('../../../../src/php/misc/pack.js')
 
 describe('src/php/misc/pack.js (tested in test/generated/php/misc/test-pack.js)', function () {
-  it.skip('should pass example 1', function (done) {
+  it('should pass example 1', function (done) {
     var expected = '\u00124xVAB'
     var result = pack('nvc*', 0x1234, 0x5678, 65, 66)
     expect(result).to.deep.equal(expected)

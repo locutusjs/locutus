@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var start_with = require('../../../../src/ruby/String/start_with.js') // eslint-disable-line no-unused-vars,camelcase
+var start_with = require('../../../../src/ruby/String/start_with.js')
 
 describe('src/ruby/String/start_with.js (tested in test/generated/ruby/String/test-start_with.js)', function () {
   it('should pass example 1', function (done) {

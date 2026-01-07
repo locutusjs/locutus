@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var strlen = require('../../../../src/c/string/strlen.js') // eslint-disable-line no-unused-vars,camelcase
+var strlen = require('../../../../src/c/string/strlen.js')
 
 describe('src/c/string/strlen.js (tested in test/generated/c/string/test-strlen.js)', function () {
   it('should pass example 1', function (done) {

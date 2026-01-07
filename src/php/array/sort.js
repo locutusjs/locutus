@@ -28,7 +28,6 @@ module.exports = function sort(inputArr, sortFlags) {
   //   example 2: sort($fruits)
   //   example 2: var $result = $fruits
   //   returns 2: {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
-  //        test: skip-1
 
   const i18nlgd = require('../i18n/i18n_loc_get_default')
 

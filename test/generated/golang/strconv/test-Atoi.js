@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var Atoi = require('../../../../src/golang/strconv/Atoi.js') // eslint-disable-line no-unused-vars,camelcase
+var Atoi = require('../../../../src/golang/strconv/Atoi.js')
 
 describe('src/golang/strconv/Atoi.js (tested in test/generated/golang/strconv/test-Atoi.js)', function () {
   it('should pass example 1', function (done) {

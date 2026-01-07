@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var reverse = require('../../../../src/ruby/String/reverse.js') // eslint-disable-line no-unused-vars,camelcase
+var reverse = require('../../../../src/ruby/String/reverse.js')
 
 describe('src/ruby/String/reverse.js (tested in test/generated/ruby/String/test-reverse.js)', function () {
   it('should pass example 1', function (done) {

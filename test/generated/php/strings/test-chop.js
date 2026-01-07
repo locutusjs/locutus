@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var chop = require('../../../../src/php/strings/chop.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var chop = require('../../../../src/php/strings/chop.js')
 
 describe('src/php/strings/chop.js (tested in test/generated/php/strings/test-chop.js)', function () {
   it('should pass example 1', function (done) {

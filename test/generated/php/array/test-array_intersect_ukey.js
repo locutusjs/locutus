@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var array_intersect_ukey = require('../../../../src/php/array/array_intersect_ukey.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var array_intersect_ukey = require('../../../../src/php/array/array_intersect_ukey.js')
 
 describe('src/php/array/array_intersect_ukey.js (tested in test/generated/php/array/test-array_intersect_ukey.js)', function () {
   it('should pass example 1', function (done) {

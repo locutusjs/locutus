@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var isinf = require('../../../../src/python/math/isinf.js') // eslint-disable-line no-unused-vars,camelcase
+var isinf = require('../../../../src/python/math/isinf.js')
 
 describe('src/python/math/isinf.js (tested in test/generated/python/math/test-isinf.js)', function () {
   it('should pass example 1', function (done) {

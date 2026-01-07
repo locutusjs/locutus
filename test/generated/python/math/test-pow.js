@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var pow = require('../../../../src/python/math/pow.js') // eslint-disable-line no-unused-vars,camelcase
+var pow = require('../../../../src/python/math/pow.js')
 
 describe('src/python/math/pow.js (tested in test/generated/python/math/test-pow.js)', function () {
   it('should pass example 1', function (done) {

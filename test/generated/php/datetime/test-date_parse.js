@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var date_parse = require('../../../../src/php/datetime/date_parse.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var date_parse = require('../../../../src/php/datetime/date_parse.js')
 
 describe('src/php/datetime/date_parse.js (tested in test/generated/php/datetime/test-date_parse.js)', function () {
   it('should pass example 1', function (done) {

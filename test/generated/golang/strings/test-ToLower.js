@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ToLower = require('../../../../src/golang/strings/ToLower.js') // eslint-disable-line no-unused-vars,camelcase
+var ToLower = require('../../../../src/golang/strings/ToLower.js')
 
 describe('src/golang/strings/ToLower.js (tested in test/generated/golang/strings/test-ToLower.js)', function () {
   it('should pass example 1', function (done) {

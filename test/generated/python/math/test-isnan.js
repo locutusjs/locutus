@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var isnan = require('../../../../src/python/math/isnan.js') // eslint-disable-line no-unused-vars,camelcase
+var isnan = require('../../../../src/python/math/isnan.js')
 
 describe('src/python/math/isnan.js (tested in test/generated/python/math/test-isnan.js)', function () {
   it('should pass example 1', function (done) {

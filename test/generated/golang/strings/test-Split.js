@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var Split = require('../../../../src/golang/strings/Split.js') // eslint-disable-line no-unused-vars,camelcase
+var Split = require('../../../../src/golang/strings/Split.js')
 
 describe('src/golang/strings/Split.js (tested in test/generated/golang/strings/test-Split.js)', function () {
   it('should pass example 1', function (done) {

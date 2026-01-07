@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var HasPrefix = require('../../../../src/golang/strings/HasPrefix.js') // eslint-disable-line no-unused-vars,camelcase
+var HasPrefix = require('../../../../src/golang/strings/HasPrefix.js')
 
 describe('src/golang/strings/HasPrefix.js (tested in test/generated/golang/strings/test-HasPrefix.js)', function () {
   it('should pass example 1', function (done) {

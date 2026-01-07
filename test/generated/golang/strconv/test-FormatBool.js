@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var FormatBool = require('../../../../src/golang/strconv/FormatBool.js') // eslint-disable-line no-unused-vars,camelcase
+var FormatBool = require('../../../../src/golang/strconv/FormatBool.js')
 
 describe('src/golang/strconv/FormatBool.js (tested in test/generated/golang/strconv/test-FormatBool.js)', function () {
   it('should pass example 1', function (done) {

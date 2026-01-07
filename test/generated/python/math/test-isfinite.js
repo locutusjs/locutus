@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var isfinite = require('../../../../src/python/math/isfinite.js') // eslint-disable-line no-unused-vars,camelcase
+var isfinite = require('../../../../src/python/math/isfinite.js')
 
 describe('src/python/math/isfinite.js (tested in test/generated/python/math/test-isfinite.js)', function () {
   it('should pass example 1', function (done) {

@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ToUpper = require('../../../../src/golang/strings/ToUpper.js') // eslint-disable-line no-unused-vars,camelcase
+var ToUpper = require('../../../../src/golang/strings/ToUpper.js')
 
 describe('src/golang/strings/ToUpper.js (tested in test/generated/golang/strings/test-ToUpper.js)', function () {
   it('should pass example 1', function (done) {

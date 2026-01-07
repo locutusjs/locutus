@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var isupper = require('../../../../src/c/ctype/isupper.js') // eslint-disable-line no-unused-vars,camelcase
+var isupper = require('../../../../src/c/ctype/isupper.js')
 
 describe('src/c/ctype/isupper.js (tested in test/generated/c/ctype/test-isupper.js)', function () {
   it('should pass example 1', function (done) {

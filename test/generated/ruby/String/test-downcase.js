@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var downcase = require('../../../../src/ruby/String/downcase.js') // eslint-disable-line no-unused-vars,camelcase
+var downcase = require('../../../../src/ruby/String/downcase.js')
 
 describe('src/ruby/String/downcase.js (tested in test/generated/ruby/String/test-downcase.js)', function () {
   it('should pass example 1', function (done) {

@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var isspace = require('../../../../src/c/ctype/isspace.js') // eslint-disable-line no-unused-vars,camelcase
+var isspace = require('../../../../src/c/ctype/isspace.js')
 
 describe('src/c/ctype/isspace.js (tested in test/generated/c/ctype/test-isspace.js)', function () {
   it('should pass example 1', function (done) {

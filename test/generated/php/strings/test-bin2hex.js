@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var bin2hex = require('../../../../src/php/strings/bin2hex.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var bin2hex = require('../../../../src/php/strings/bin2hex.js')
 
 describe('src/php/strings/bin2hex.js (tested in test/generated/php/strings/test-bin2hex.js)', function () {
   it('should pass example 1', function (done) {

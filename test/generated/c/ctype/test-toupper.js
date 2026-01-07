@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var toupper = require('../../../../src/c/ctype/toupper.js') // eslint-disable-line no-unused-vars,camelcase
+var toupper = require('../../../../src/c/ctype/toupper.js')
 
 describe('src/c/ctype/toupper.js (tested in test/generated/c/ctype/test-toupper.js)', function () {
   it('should pass example 1', function (done) {

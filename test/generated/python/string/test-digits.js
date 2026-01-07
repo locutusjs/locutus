@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var digits = require('../../../../src/python/string/digits.js') // eslint-disable-line no-unused-vars,camelcase
+var digits = require('../../../../src/python/string/digits.js')
 
 describe('src/python/string/digits.js (tested in test/generated/python/string/test-digits.js)', function () {
   it('should pass example 1', function (done) {

@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var flatten = require('../../../../src/ruby/Array/flatten.js') // eslint-disable-line no-unused-vars,camelcase
+var flatten = require('../../../../src/ruby/Array/flatten.js')
 
 describe('src/ruby/Array/flatten.js (tested in test/generated/ruby/Array/test-flatten.js)', function () {
   it('should pass example 1', function (done) {

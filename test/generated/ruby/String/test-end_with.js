@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var end_with = require('../../../../src/ruby/String/end_with.js') // eslint-disable-line no-unused-vars,camelcase
+var end_with = require('../../../../src/ruby/String/end_with.js')
 
 describe('src/ruby/String/end_with.js (tested in test/generated/ruby/String/test-end_with.js)', function () {
   it('should pass example 1', function (done) {

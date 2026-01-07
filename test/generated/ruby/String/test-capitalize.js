@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var capitalize = require('../../../../src/ruby/String/capitalize.js') // eslint-disable-line no-unused-vars,camelcase
+var capitalize = require('../../../../src/ruby/String/capitalize.js')
 
 describe('src/ruby/String/capitalize.js (tested in test/generated/ruby/String/test-capitalize.js)', function () {
   it('should pass example 1', function (done) {

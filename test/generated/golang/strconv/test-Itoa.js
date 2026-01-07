@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var Itoa = require('../../../../src/golang/strconv/Itoa.js') // eslint-disable-line no-unused-vars,camelcase
+var Itoa = require('../../../../src/golang/strconv/Itoa.js')
 
 describe('src/golang/strconv/Itoa.js (tested in test/generated/golang/strconv/test-Itoa.js)', function () {
   it('should pass example 1', function (done) {

@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var compact = require('../../../../src/ruby/Array/compact.js') // eslint-disable-line no-unused-vars,camelcase
+var compact = require('../../../../src/ruby/Array/compact.js')
 
 describe('src/ruby/Array/compact.js (tested in test/generated/ruby/Array/test-compact.js)', function () {
   it('should pass example 1', function (done) {

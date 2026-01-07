@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var octdigits = require('../../../../src/python/string/octdigits.js') // eslint-disable-line no-unused-vars,camelcase
+var octdigits = require('../../../../src/python/string/octdigits.js')
 
 describe('src/python/string/octdigits.js (tested in test/generated/python/string/test-octdigits.js)', function () {
   it('should pass example 1', function (done) {

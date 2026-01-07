@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var last = require('../../../../src/ruby/Array/last.js') // eslint-disable-line no-unused-vars,camelcase
+var last = require('../../../../src/ruby/Array/last.js')
 
 describe('src/ruby/Array/last.js (tested in test/generated/ruby/Array/test-last.js)', function () {
   it('should pass example 1', function (done) {

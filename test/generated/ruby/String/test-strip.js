@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var strip = require('../../../../src/ruby/String/strip.js') // eslint-disable-line no-unused-vars,camelcase
+var strip = require('../../../../src/ruby/String/strip.js')
 
 describe('src/ruby/String/strip.js (tested in test/generated/ruby/String/test-strip.js)', function () {
   it('should pass example 1', function (done) {

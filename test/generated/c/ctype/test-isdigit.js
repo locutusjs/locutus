@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var isdigit = require('../../../../src/c/ctype/isdigit.js') // eslint-disable-line no-unused-vars,camelcase
+var isdigit = require('../../../../src/c/ctype/isdigit.js')
 
 describe('src/c/ctype/isdigit.js (tested in test/generated/c/ctype/test-isdigit.js)', function () {
   it('should pass example 1', function (done) {

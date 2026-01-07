@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var pow = require('../../../../src/php/math/pow.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var pow = require('../../../../src/php/math/pow.js')
 
 describe('src/php/math/pow.js (tested in test/generated/php/math/test-pow.js)', function () {
   it('should pass example 1', function (done) {

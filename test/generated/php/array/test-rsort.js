@@ -5,12 +5,12 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var rsort = require('../../../../src/php/array/rsort.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var rsort = require('../../../../src/php/array/rsort.js')
 
 describe('src/php/array/rsort.js (tested in test/generated/php/array/test-rsort.js)', function () {
-  it.skip('should pass example 1', function (done) {
+  it('should pass example 1', function (done) {
     var expected = ['van', 'Zonneveld', 'Kevin']
     var $arr = ['Kevin', 'van', 'Zonneveld']
     rsort($arr)

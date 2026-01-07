@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var atof = require('../../../../src/c/stdlib/atof.js') // eslint-disable-line no-unused-vars,camelcase
+var atof = require('../../../../src/c/stdlib/atof.js')
 
 describe('src/c/stdlib/atof.js (tested in test/generated/c/stdlib/test-atof.js)', function () {
   it('should pass example 1', function (done) {

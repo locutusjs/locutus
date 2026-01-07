@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var HasSuffix = require('../../../../src/golang/strings/HasSuffix.js') // eslint-disable-line no-unused-vars,camelcase
+var HasSuffix = require('../../../../src/golang/strings/HasSuffix.js')
 
 describe('src/golang/strings/HasSuffix.js (tested in test/generated/golang/strings/test-HasSuffix.js)', function () {
   it('should pass example 1', function (done) {

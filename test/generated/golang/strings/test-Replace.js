@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var Replace = require('../../../../src/golang/strings/Replace.js') // eslint-disable-line no-unused-vars,camelcase
+var Replace = require('../../../../src/golang/strings/Replace.js')
 
 describe('src/golang/strings/Replace.js (tested in test/generated/golang/strings/test-Replace.js)', function () {
   it('should pass example 1', function (done) {

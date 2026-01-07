@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var TrimSpace = require('../../../../src/golang/strings/TrimSpace.js') // eslint-disable-line no-unused-vars,camelcase
+var TrimSpace = require('../../../../src/golang/strings/TrimSpace.js')
 
 describe('src/golang/strings/TrimSpace.js (tested in test/generated/golang/strings/test-TrimSpace.js)', function () {
   it('should pass example 1', function (done) {

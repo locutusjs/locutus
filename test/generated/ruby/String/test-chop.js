@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var chop = require('../../../../src/ruby/String/chop.js') // eslint-disable-line no-unused-vars,camelcase
+var chop = require('../../../../src/ruby/String/chop.js')
 
 describe('src/ruby/String/chop.js (tested in test/generated/ruby/String/test-chop.js)', function () {
   it('should pass example 1', function (done) {

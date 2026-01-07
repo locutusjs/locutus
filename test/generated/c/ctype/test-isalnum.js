@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var isalnum = require('../../../../src/c/ctype/isalnum.js') // eslint-disable-line no-unused-vars,camelcase
+var isalnum = require('../../../../src/c/ctype/isalnum.js')
 
 describe('src/c/ctype/isalnum.js (tested in test/generated/c/ctype/test-isalnum.js)', function () {
   it('should pass example 1', function (done) {

@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var wordwrap = require('../../../../src/php/strings/wordwrap.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var wordwrap = require('../../../../src/php/strings/wordwrap.js')
 
 describe('src/php/strings/wordwrap.js (tested in test/generated/php/strings/test-wordwrap.js)', function () {
   it('should pass example 1', function (done) {

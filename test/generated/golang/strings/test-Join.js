@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var Join = require('../../../../src/golang/strings/Join.js') // eslint-disable-line no-unused-vars,camelcase
+var Join = require('../../../../src/golang/strings/Join.js')
 
 describe('src/golang/strings/Join.js (tested in test/generated/golang/strings/test-Join.js)', function () {
   it('should pass example 1', function (done) {

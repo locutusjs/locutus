@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var strstr = require('../../../../src/c/string/strstr.js') // eslint-disable-line no-unused-vars,camelcase
+var strstr = require('../../../../src/c/string/strstr.js')
 
 describe('src/c/string/strstr.js (tested in test/generated/c/string/test-strstr.js)', function () {
   it('should pass example 1', function (done) {

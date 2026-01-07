@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var acos = require('../../../../src/ruby/Math/acos.js') // eslint-disable-line no-unused-vars,camelcase
+var acos = require('../../../../src/ruby/Math/acos.js')
 
 describe('src/ruby/Math/acos.js (tested in test/generated/ruby/Math/test-acos.js)', function () {
   it('should pass example 1', function (done) {

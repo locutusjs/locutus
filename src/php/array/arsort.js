@@ -30,7 +30,6 @@ module.exports = function arsort(inputArr, sortFlags) {
   //   example 2: arsort($data)
   //   example 2: var $result = $data
   //   returns 2: {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
-  //        test: skip-1
 
   const i18lgd = require('../i18n/i18n_loc_get_default')
   const strnatcmp = require('../strings/strnatcmp')

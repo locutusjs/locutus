@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var Repeat = require('../../../../src/golang/strings/Repeat.js') // eslint-disable-line no-unused-vars,camelcase
+var Repeat = require('../../../../src/golang/strings/Repeat.js')
 
 describe('src/golang/strings/Repeat.js (tested in test/generated/golang/strings/test-Repeat.js)', function () {
   it('should pass example 1', function (done) {

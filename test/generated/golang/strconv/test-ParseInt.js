@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ParseInt = require('../../../../src/golang/strconv/ParseInt.js') // eslint-disable-line no-unused-vars,camelcase
+var ParseInt = require('../../../../src/golang/strconv/ParseInt.js')
 
 describe('src/golang/strconv/ParseInt.js (tested in test/generated/golang/strconv/test-ParseInt.js)', function () {
   it('should pass example 1', function (done) {

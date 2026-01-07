@@ -5,10 +5,10 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var i18n_loc_set_default = require('../../../../src/php/i18n/i18n_loc_set_default') // eslint-disable-line no-unused-vars,camelcase
-var i18n_loc_get_default = require('../../../../src/php/i18n/i18n_loc_get_default.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var i18n_loc_set_default = require('../../../../src/php/i18n/i18n_loc_set_default')
+var i18n_loc_get_default = require('../../../../src/php/i18n/i18n_loc_get_default.js')
 
 describe('src/php/i18n/i18n_loc_get_default.js (tested in test/generated/php/i18n/test-i18n_loc_get_default.js)', function () {
   it('should pass example 1', function (done) {

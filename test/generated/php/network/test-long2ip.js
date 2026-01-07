@@ -5,9 +5,9 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ini_set = require('../../../../src/php/info/ini_set') // eslint-disable-line no-unused-vars,camelcase
-var ini_get = require('../../../../src/php/info/ini_get') // eslint-disable-line no-unused-vars,camelcase
-var long2ip = require('../../../../src/php/network/long2ip.js') // eslint-disable-line no-unused-vars,camelcase
+var ini_set = require('../../../../src/php/info/ini_set')
+var ini_get = require('../../../../src/php/info/ini_get')
+var long2ip = require('../../../../src/php/network/long2ip.js')
 
 describe('src/php/network/long2ip.js (tested in test/generated/php/network/test-long2ip.js)', function () {
   it('should pass example 1', function (done) {

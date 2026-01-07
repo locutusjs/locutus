@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var ParseBool = require('../../../../src/golang/strconv/ParseBool.js') // eslint-disable-line no-unused-vars,camelcase
+var ParseBool = require('../../../../src/golang/strconv/ParseBool.js')
 
 describe('src/golang/strconv/ParseBool.js (tested in test/generated/golang/strconv/test-ParseBool.js)', function () {
   it('should pass example 1', function (done) {

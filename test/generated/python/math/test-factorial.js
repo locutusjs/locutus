@@ -5,7 +5,7 @@
 
 process.env.TZ = 'UTC'
 var expect = require('chai').expect
-var factorial = require('../../../../src/python/math/factorial.js') // eslint-disable-line no-unused-vars,camelcase
+var factorial = require('../../../../src/python/math/factorial.js')
 
 describe('src/python/math/factorial.js (tested in test/generated/python/math/test-factorial.js)', function () {
   it('should pass example 1', function (done) {
