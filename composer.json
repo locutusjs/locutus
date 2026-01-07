@@ -1,35 +1,24 @@
 {
-    "name": "locutusjs/locutus",
-    "description": "Locutus other languages' standard libraries to JavaScript for fun and educational purposes",
-    "type": "library",
-    "keywords": [
-        "php",
-        "golang",
-        "c",
-        "ruby",
-        "python",
-        "js",
-        "locutus",
-        "javascript",
-        "polyfill",
-        "standard-library"
-    ],
-    "homepage": "https://locutus.io",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Kevin van Zonneveld",
-            "email": "kevin@vanzonneveld.net"
-        }
-    ],
-    "support": {
-        "issues": "https://github.com/locutusjs/locutus/issues",
-        "source": "https://github.com/locutusjs/locutus"
-    },
-    "require": {
-        "php": ">=8.0"
-    },
-    "config": {
-        "sort-packages": true
+  "name": "locutusjs/locutus",
+  "description": "Locutus other languages' standard libraries to JavaScript for fun and educational purposes",
+  "type": "library",
+  "keywords": ["php", "golang", "c", "ruby", "python", "js", "locutus", "javascript", "polyfill", "standard-library"],
+  "homepage": "https://locutus.io",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Kevin van Zonneveld",
+      "email": "kevin@vanzonneveld.net"
     }
+  ],
+  "support": {
+    "issues": "https://github.com/locutusjs/locutus/issues",
+    "source": "https://github.com/locutusjs/locutus"
+  },
+  "require": {
+    "php": ">=8.0"
+  },
+  "config": {
+    "sort-packages": true
+  }
 }
