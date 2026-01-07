@@ -28,14 +28,13 @@ Ideas that will be planned and find their way into a release at one point
 - [ ] Parse `require`s with ts-morph. Then we can add dependencies back to website
 - [ ] website: Render authors server-side
 - [ ] website: Fix the search functionality
-- [ ] Verification: verify examples against native runtimes (PHP/Go/Python/Ruby/C) with Docker
-      - [x] `yarn verify` and `yarn verify:php` scripts added
-      - [x] Docker-based PHP verification working (62/91 string functions pass, 68.1%)
-      - [x] Parallel execution with p-map (8x concurrency)
-      - [x] Cache invalidation when verify.ts changes
-      - [x] Strip PHP warnings from output, fix object literal translation, string-aware property access
-      - [x] JSON forward slash normalization, skip language constructs (echo)
-      - [ ] Remaining 29 failures: Unicode handling, pass-by-ref patterns, implementation differences
+- [ ] Verification: verify examples against native runtimes with Docker (balance efforts across languages)
+      - [x] PHP: 62/91 (68%) - remaining: Unicode, pass-by-ref, complex edge cases
+      - [ ] Go: not implemented (Docker image configured but verification skipped)
+      - [ ] Python: not implemented
+      - [ ] Ruby: not implemented
+      - [ ] C: not implemented
+      - [x] Infrastructure: parallel execution, caching, PHP warning stripping
       - [ ] CI integration: fail if verification diverges
       - [ ] Badge: "Verified against PHP 8.3"
 - [ ] Modernize, e.g.:

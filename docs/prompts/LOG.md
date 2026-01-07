@@ -6,6 +6,8 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 
 - An iteration starts with a level 3 heading: `### Iteration ${incrementing number}`
 - An iteration contains the datetime, and a list of bullet points
+- Each iteration should note which backlog area was touched (e.g., verification, modernization, TypeScript, website, dependencies)
+- Every 10 iterations, review balance: have different backlog areas been addressed, or has one area dominated?
 - Every 10 iterations must be summarized and compacted into one list of bullet points, e.g. `### Iterations 1-10`.
 - If you write to this file and find any violation, revise this document to make it adhere
 
