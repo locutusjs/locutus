@@ -110,3 +110,5 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Added cache hit reporting with lightning emoji (⚡) and performance timing
 - Added `yarn lint:ts` script (tsc --noEmit) tied into `yarn check`
 - Fixed Biome lint errors in parity test files (block statements)
+- Fixed Docker image caching: always pull latest to avoid stale PHP versions
+- Fixed cache hash path for language handlers (lib/languages not verify/languages)
