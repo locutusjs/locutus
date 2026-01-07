@@ -315,7 +315,13 @@ function createBaseContext(extra: Record<string, unknown> = {}): vm.Context {
 function evaluateExpected(expectedRaw: string): { success: boolean; result: string; error?: string } {
   try {
     const context = createBaseContext()
-    const value = vm.runInContext(expectedRaw, context)
+    // Wrap object literals in parentheses to make them expressions, not blocks
+    // e.g., {key: value} -> ({key: value})
+    let code = expectedRaw.trim()
+    if (code.startsWith('{') && !code.startsWith('{"')) {
+      code = `(${code})`
+    }
+    const value = vm.runInContext(code, context)
     return { success: true, result: normalizeJsResult(value) }
   } catch (e) {
     return { success: false, result: '', error: String(e) }
