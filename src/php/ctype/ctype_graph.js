@@ -1,5 +1,6 @@
 module.exports = function ctype_graph(text) {
   //  discuss at: https://locutus.io/php/ctype_graph/
+  //   verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: ctype_graph('!%')
   //   returns 1: true

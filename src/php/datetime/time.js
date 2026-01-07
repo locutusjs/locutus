@@ -1,5 +1,6 @@
 module.exports = function time() {
   //  discuss at: https://locutus.io/php/time/
+  //   verified: 8.3
   // original by: GeekFG (https://geekfg.blogspot.com)
   // improved by: Kevin van Zonneveld (https://kvz.io)
   // improved by: metjay

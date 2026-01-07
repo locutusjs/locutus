@@ -1,5 +1,6 @@
 module.exports = function natcasesort(inputArr) {
   //  discuss at: https://locutus.io/php/natcasesort/
+  //   verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)
   // improved by: Theriault (https://github.com/Theriault)

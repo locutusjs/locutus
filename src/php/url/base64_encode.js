@@ -1,5 +1,6 @@
 module.exports = function base64_encode(stringToEncode) {
   //  discuss at: https://locutus.io/php/base64_encode/
+  //   verified: 8.3
   // original by: Tyler Akins (https://rumkin.com)
   // improved by: Bayron Guevara
   // improved by: Thunder.m

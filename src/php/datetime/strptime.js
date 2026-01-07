@@ -1,5 +1,6 @@
 module.exports = function strptime(dateStr, format) {
   //  discuss at: https://locutus.io/php/strptime/
+  //   verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   // original by: strftime
   //   example 1: strptime('20091112222135', '%Y%m%d%H%M%S') // Return value will depend on date and locale

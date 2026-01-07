@@ -1,5 +1,6 @@
 module.exports = function setcookie(name, value, expires, path, domain, secure) {
   //  discuss at: https://locutus.io/php/setcookie/
+  //   verified: 8.3
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   // bugfixed by: Andreas
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)

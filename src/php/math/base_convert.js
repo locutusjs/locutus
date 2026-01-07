@@ -1,5 +1,6 @@
 module.exports = function base_convert(number, frombase, tobase) {
   //  discuss at: https://locutus.io/php/base_convert/
+  //   verified: 8.3
   // original by: Philippe Baumann
   // improved by: Rafał Kukawski (https://blog.kukawski.pl)
   //   example 1: base_convert('A37334', 16, 2)

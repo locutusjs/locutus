@@ -1,5 +1,6 @@
 module.exports = function ctype_digit(text) {
   //  discuss at: https://locutus.io/php/ctype_digit/
+  //   verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: ctype_digit('150')
   //   returns 1: true

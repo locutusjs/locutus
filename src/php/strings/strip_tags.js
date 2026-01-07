@@ -1,5 +1,6 @@
 module.exports = function strip_tags(input, allowed) {
   //  discuss at: https://locutus.io/php/strip_tags/
+  //   verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Luke Godfrey
   // improved by: Kevin van Zonneveld (https://kvz.io)

@@ -1,5 +1,6 @@
 module.exports = function sha1_file(str_filename) {
   //  discuss at: https://locutus.io/php/sha1_file/
+  //   verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Relies on file_get_contents which does not work in the browser, so Node only.
   //      note 2: Keep in mind that in accordance with PHP, the whole file is buffered and then

@@ -14,6 +14,7 @@ function roundToInt(value, mode) {
 
 module.exports = function round(value, precision = 0, mode = 'PHP_ROUND_HALF_UP') {
   //  discuss at: https://locutus.io/php/round/
+  //   verified: 8.3
   // original by: Philip Peterson
   //  revised by: Onno Marsman (https://twitter.com/onnomarsman)
   //  revised by: T.Wild

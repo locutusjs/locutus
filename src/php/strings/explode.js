@@ -1,5 +1,6 @@
 module.exports = function explode(delimiter, string, limit) {
   //  discuss at: https://locutus.io/php/explode/
+  //   verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   //   example 1: explode(' ', 'Kevin van Zonneveld')
   //   returns 1: [ 'Kevin', 'van', 'Zonneveld' ]

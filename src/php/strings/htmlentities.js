@@ -1,5 +1,6 @@
 module.exports = function htmlentities(string, quoteStyle, charset, doubleEncode) {
   //  discuss at: https://locutus.io/php/htmlentities/
+  //   verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   //  revised by: Kevin van Zonneveld (https://kvz.io)
   //  revised by: Kevin van Zonneveld (https://kvz.io)

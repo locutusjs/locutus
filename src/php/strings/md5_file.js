@@ -1,5 +1,6 @@
 module.exports = function md5_file(str_filename) {
   //  discuss at: https://locutus.io/php/md5_file/
+  //   verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   //    input by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Kevin van Zonneveld (https://kvz.io)

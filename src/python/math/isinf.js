@@ -1,5 +1,6 @@
 module.exports = function isinf(x) {
   //  discuss at: https://locutus.io/python/isinf/
+  //   verified: 3.12
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Returns True if x is positive or negative infinity
   //   example 1: isinf(Infinity)

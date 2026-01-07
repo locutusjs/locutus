@@ -1,5 +1,6 @@
 module.exports = function soundex(str) {
   //  discuss at: https://locutus.io/php/soundex/
+  //   verified: 8.3
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   // original by: Arnout Kazemier (https://www.3rd-Eden.com)
   // improved by: Jack

@@ -1,5 +1,6 @@
 module.exports = function checkdate(m, d, y) {
   //  discuss at: https://locutus.io/php/checkdate/
+  //   verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Pyerre
   // improved by: Theriault (https://github.com/Theriault)

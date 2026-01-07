@@ -1,5 +1,6 @@
 module.exports = function dirname(path) {
   //  discuss at: https://locutus.io/php/dirname/
+  //   verified: 8.3
   // original by: Ozh
   // improved by: XoraX (https://www.xorax.info)
   //   example 1: dirname('/etc/passwd')

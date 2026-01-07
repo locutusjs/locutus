@@ -1,5 +1,6 @@
 module.exports = function array_replace_recursive(arr) {
   //  discuss at: https://locutus.io/php/array_replace_recursive/
+  //   verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: array_replace_recursive({'citrus' : ['orange'], 'berries' : ['blackberry', 'raspberry']}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']})
   //   returns 1: {citrus : ['pineapple'], berries : ['blueberry', 'raspberry']}

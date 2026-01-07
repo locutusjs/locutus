@@ -1,5 +1,6 @@
 module.exports = function addcslashes(str, charlist) {
   //  discuss at: https://locutus.io/php/addcslashes/
+  //   verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: We show double backslashes in the return value example
   //      note 1: code below because a JavaScript string will not

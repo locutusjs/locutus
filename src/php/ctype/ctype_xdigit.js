@@ -1,5 +1,6 @@
 module.exports = function ctype_xdigit(text) {
   //  discuss at: https://locutus.io/php/ctype_xdigit/
+  //   verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: ctype_xdigit('01dF')
   //   returns 1: true

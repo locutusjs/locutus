@@ -1,5 +1,6 @@
 module.exports = function array_splice(arr, offst, lgth, replacement) {
   //  discuss at: https://locutus.io/php/array_splice/
+  //   verified: 8.3
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: Theriault (https://github.com/Theriault)
   //      note 1: Order does get shifted in associative array input with numeric indices,

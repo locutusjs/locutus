@@ -1,5 +1,6 @@
 module.exports = function htmlspecialchars_decode(string, quoteStyle) {
   //       discuss at: https://locutus.io/php/htmlspecialchars_decode/
+  //   verified: 8.3
   //      original by: Mirek Slugen
   //      improved by: Kevin van Zonneveld (https://kvz.io)
   //      bugfixed by: Mateusz "loonquawl" Zalega

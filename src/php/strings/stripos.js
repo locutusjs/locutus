@@ -1,5 +1,6 @@
 module.exports = function stripos(fHaystack, fNeedle, fOffset) {
   //  discuss at: https://locutus.io/php/stripos/
+  //   verified: 8.3
   // original by: Martijn Wieringa
   //  revised by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: stripos('ABC', 'a')

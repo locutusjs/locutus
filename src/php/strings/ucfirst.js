@@ -1,5 +1,6 @@
 module.exports = function ucfirst(str) {
   //  discuss at: https://locutus.io/php/ucfirst/
+  //   verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Brett Zamir (https://brett-zamir.me)
