@@ -268,3 +268,28 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - All 923 tests pass, no new lint errors
 - Balance: Website improvement (addresses backlog item "Function pages badges")
 - Updated CHANGELOG.md backlog: Ruby/C verification entries now show function counts
+
+### Iteration 23
+
+2026-01-07
+
+- **Area: Modernization (Test Framework)**
+- Migrated test framework from Mocha 11 + Chai 6 → Vitest 4.0.16 (PR pending):
+  - Removed dependencies: `mocha`, `chai`, `@types/mocha`
+  - Added: `vitest` ^4.0.16
+  - Created `vitest.config.ts` with timezone configuration
+- Updated test generation (`src/_util/util.ts`):
+  - Changed from `test-*.js` (globals) → `*.vitest.ts` (explicit imports)
+  - Added `import { describe, it, expect } from 'vitest'` to generated tests
+  - Changed `expect().to.deep.equal()` → `expect().toEqual()` (Vitest syntax)
+  - Removed `done()` callbacks (deprecated in Vitest 4)
+  - Fixed duplicate declaration bug when testing `ini_set`/`ini_get` helpers
+- Updated supporting files:
+  - `tsconfig.json`: Removed `mocha` from types array
+  - `biome.json`: Added `expect` to globals
+  - Renamed `src/php/var/serialize.mocha.js` → `src/php/var/serialize.vitest.ts`
+  - Updated `lint:no-stray-js` to no longer exclude `test/generated/`
+- Consistent `.vitest.ts` naming across all test files (generated + manual)
+- All 924 tests pass (399 test files, 1 skipped)
+- Benefits: Modern ESM-native test runner, faster execution, better TypeScript support
+- Balance: Modernization (addresses long-standing tech debt item "Mocha → Vitest")

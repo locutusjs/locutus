@@ -121,6 +121,6 @@
       "attributePosition": "auto",
       "bracketSpacing": true
     },
-    "globals": ["navigator", "document", "window", "describe", "it", "test", "global", "escape"]
+    "globals": ["navigator", "document", "window", "describe", "it", "test", "expect", "global", "escape"]
   }
 }

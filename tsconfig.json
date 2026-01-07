@@ -12,7 +12,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "lib": ["ES2022"],
-    "types": ["node", "mocha"],
+    "types": ["node"],
     "noImplicitAny": false
   },
   "include": ["src/_util/**/*.ts", "test/parity/**/*.ts", "test/util/**/*.ts", "test/module/**/*.ts"],
