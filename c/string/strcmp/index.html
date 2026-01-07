@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here&#39;s what our current JavaScript equivalent to C&#39;s strcmp found in the string.h header file looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-01-07T21:08:36.690Z">
-<meta property="article:modified_time" content="2026-01-07T21:08:36.690Z">
+<meta property="article:published_time" content="2026-01-07T21:16:34.954Z">
+<meta property="article:modified_time" content="2026-01-07T21:16:34.954Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -185,6 +185,14 @@ ga('send', 'pageview');
     <header class="article-header">
       <h1 class="article-title">C&#39;s string.strcmp in JavaScript</h1>
       
+        <div style="margin-top: 8px;">
+          
+            <span style="display: inline-block; background-color: #4c1; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-right: 6px;">
+              ✓ Verified: C 23
+            </span>
+          
+        </div>
+      
     </header>
 
     <div class="article-entry">
@@ -228,6 +236,21 @@ ga('send', 'pageview');
       
 
       
+        <h2>C types and JavaScript</h2>
+        <p>
+          C is statically typed while JavaScript is dynamically typed. Locutus C functions
+          accept JavaScript's flexible types but are only parity-verified for inputs that would
+          be valid in C.
+        </p>
+        <p>
+          For example, <code>abs()</code> in JavaScript accepts floats (like C's <code>fabs()</code>)
+          and handles strings gracefully, but only integer inputs are verified against native C.
+          This pragmatic approach gives you the expected C behavior for valid inputs while
+          leveraging JavaScript's flexibility for edge cases.
+        </p>
+      
+
+      
         <h2>Notes</h2>
         <ul>
         
@@ -245,7 +268,7 @@ Returns &lt; 0 if str1 &lt; str2, 0 if equal, &gt; 0 if str1 &gt; str2.</p>
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">strcmp</span>(<span class="params">str1, str2</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/c/string/strcmp/</span></span><br><span class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//      note 1: Compares two strings lexicographically.</span></span><br><span class="line">  <span class="comment">//      note 1: Returns &lt; 0 if str1 &lt; str2, 0 if equal, &gt; 0 if str1 &gt; str2.</span></span><br><span class="line">  <span class="comment">//   example 1: strcmp(&#x27;abc&#x27;, &#x27;abc&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 1: 0</span></span><br><span class="line">  <span class="comment">//   example 2: strcmp(&#x27;abc&#x27;, &#x27;abd&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 2: -1</span></span><br><span class="line">  <span class="comment">//   example 3: strcmp(&#x27;abd&#x27;, &#x27;abc&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 3: 1</span></span><br><span class="line"></span><br><span class="line">  str1 = str1 + <span class="string">&#x27;&#x27;</span></span><br><span class="line">  str2 = str2 + <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (str1 === str2) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> str1 &lt; str2 ? -<span class="number">1</span> : <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">strcmp</span>(<span class="params">str1, str2</span>) &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/c/string/strcmp/</span></span><br><span class="line">  <span class="comment">// parity verified: C 23</span></span><br><span class="line">  <span class="comment">//     original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//          note 1: Compares two strings lexicographically.</span></span><br><span class="line">  <span class="comment">//          note 1: Returns &lt; 0 if str1 &lt; str2, 0 if equal, &gt; 0 if str1 &gt; str2.</span></span><br><span class="line">  <span class="comment">//       example 1: strcmp(&#x27;abc&#x27;, &#x27;abc&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 1: 0</span></span><br><span class="line">  <span class="comment">//       example 2: strcmp(&#x27;abc&#x27;, &#x27;abd&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 2: -1</span></span><br><span class="line">  <span class="comment">//       example 3: strcmp(&#x27;abd&#x27;, &#x27;abc&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 3: 1</span></span><br><span class="line"></span><br><span class="line">  str1 = str1 + <span class="string">&#x27;&#x27;</span></span><br><span class="line">  str2 = str2 + <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (str1 === str2) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> str1 &lt; str2 ? -<span class="number">1</span> : <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       <div class="clearfix"></div>
