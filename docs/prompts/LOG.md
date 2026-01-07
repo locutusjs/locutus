@@ -27,3 +27,11 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Lesson learned: always use branches for code changes, even "small fixes"
 - PR #477 (external composer.json) still awaiting author response
 - Vulnerabilities reduced: 98 → 96 via dependency updates
+
+### Iteration 11
+
+2026-01-07
+
+- Updated chai 4 → 6 (PR #491) - all tests pass
+- Mocha 11 + chai 6 = modernized test stack
+- Continuing dependency updates to reduce vulnerabilities
