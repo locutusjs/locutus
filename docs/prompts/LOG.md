@@ -77,4 +77,6 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 
 - Merged PR #485 (verification improvements)
 - Updated CHANGELOG backlog with verification progress
-- Analyzing remaining 48 verification failures for next improvements
+- Analyzed remaining 48 verification failures
+- Fixed trailing comment/semicolon stripping in PHP translation (PR #486)
+- Several failures are unavoidable: `money_format`, `convert_cyr_string` removed in PHP 8.0
