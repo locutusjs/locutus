@@ -14,7 +14,7 @@
 
 import { execSync, spawnSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
-import { existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs'
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { basename, dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -30,10 +30,7 @@ const util = new Util([])
 const CACHE_VERSION = 2
 
 // Docker images for each language
-const DOCKER_IMAGES: Record<
-  string,
-  { image: string; cmd: (code: string) => string[]; mountRepo?: boolean }
-> = {
+const DOCKER_IMAGES: Record<string, { image: string; cmd: (code: string) => string[]; mountRepo?: boolean }> = {
   php: {
     image: 'php:8.3-cli',
     cmd: (code) => ['php', '-r', code],
@@ -102,7 +99,9 @@ function parseExamples(filePath: string): Example[] {
     const exampleMatch = line.match(/\/\/\s+example\s+(\d+):\s*(.+)/)
     if (exampleMatch) {
       const num = parseInt(exampleMatch[1])
-      if (!exampleMatches[num]) exampleMatches[num] = []
+      if (!exampleMatches[num]) {
+        exampleMatches[num] = []
+      }
       exampleMatches[num].push(exampleMatch[2].trim())
     }
 
@@ -155,7 +154,9 @@ function parseExamplesFromHeadKeys(headKeys: Record<string, string[][]>): Exampl
   const parsed: Example[] = []
 
   for (let i = 0; i < examples.length; i++) {
-    if (!returns[i]) continue
+    if (!returns[i]) {
+      continue
+    }
     parsed.push({
       number: i + 1,
       code: examples[i],
@@ -203,11 +204,15 @@ function calculateHash(filePath: string, deps: string[]): string {
 // Load cache for a function
 function loadCache(funcPath: string): CacheEntry | null {
   const cacheFile = join(CACHE_DIR, funcPath.replace(/\//g, '_') + '.json')
-  if (!existsSync(cacheFile)) return null
+  if (!existsSync(cacheFile)) {
+    return null
+  }
 
   try {
     const entry = JSON.parse(readFileSync(cacheFile, 'utf8')) as CacheEntry
-    if (entry.version !== CACHE_VERSION) return null
+    if (entry.version !== CACHE_VERSION) {
+      return null
+    }
     return entry
   } catch {
     return null
@@ -250,11 +255,10 @@ function runInDocker(language: string, code: string): { success: boolean; output
       dockerArgs.push('-v', `${ROOT}:/work`, '-w', '/work')
     }
 
-    const result = spawnSync(
-      'docker',
-      [...dockerArgs, config.image, ...config.cmd(code)],
-      { encoding: 'utf8', timeout: 10000 }
-    )
+    const result = spawnSync('docker', [...dockerArgs, config.image, ...config.cmd(code)], {
+      encoding: 'utf8',
+      timeout: 10000,
+    })
 
     if (result.error) {
       return { success: false, output: '', error: result.error.message }
@@ -330,7 +334,9 @@ function convertPropertyAccess(line: string): string {
 
 function convertJsLineToPhp(line: string): string {
   let php = line.trim()
-  if (!php) return ''
+  if (!php) {
+    return ''
+  }
 
   php = php.replace(/^\s*(var|let|const)\s+/, '')
   php = php.replace(/Array\.isArray\s*\(/g, 'is_array(')
@@ -351,7 +357,9 @@ function convertJsLineToPhp(line: string): string {
 // Convert JS example to PHP code
 function jsToPhp(jsCode: string[], funcName: string): string {
   const lines = jsCode.map((line) => convertJsLineToPhp(line)).filter(Boolean)
-  if (!lines.length) return ''
+  if (!lines.length) {
+    return ''
+  }
 
   const originalLastLine = jsCode[jsCode.length - 1]
   const assignedVar = extractAssignedVar(originalLastLine)
@@ -370,7 +378,7 @@ function jsToPhp(jsCode: string[], funcName: string): string {
 function runJs(
   filePath: string,
   funcName: string,
-  example: Example
+  example: Example,
 ): { success: boolean; result: string; error?: string } {
   try {
     // Dynamic import the function
@@ -406,7 +414,9 @@ function findFunctions(filter?: string): FunctionInfo[] {
   })
 
   for (const language of languages) {
-    if (filter && !filter.startsWith(language) && filter !== language) continue
+    if (filter && !filter.startsWith(language) && filter !== language) {
+      continue
+    }
 
     const langDir = join(SRC, language)
     const categories = readdirSync(langDir).filter((d) => {
@@ -422,7 +432,9 @@ function findFunctions(filter?: string): FunctionInfo[] {
         const funcName = basename(file, '.js')
         const funcPath = `${language}/${category}/${funcName}`
 
-        if (filter && filter.length > language.length && !funcPath.startsWith(filter)) continue
+        if (filter && filter.length > language.length && !funcPath.startsWith(filter)) {
+          continue
+        }
 
         const fullPath = join(catDir, file)
         const examples = parseExamples(fullPath)
@@ -623,7 +635,7 @@ async function main() {
           console.log(`      native: ${r.nativeResult}`)
         }
       }
-    } catch (e) {
+    } catch {
       console.log('\x1b[33m?\x1b[0m')
       skipped++
     }
