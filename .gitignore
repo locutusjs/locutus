@@ -25,5 +25,6 @@ website/node_modules/
 website/public
 website/vendor/bundle/
 website/vendor/cache/
+.history
 .cache/
 .claude/ralph-loop.local.md
