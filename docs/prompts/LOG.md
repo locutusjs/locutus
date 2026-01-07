@@ -36,3 +36,13 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Created PR #482 to clarify branch requirements in CORE_MAINTAINER.md
 - Updated CORE_MAINTAINER.md: exceptions for direct-to-main are now `CORE_MAINTAINER.md`, `CHANGELOG.md`, `LOG.md`
 - Lesson learned: always use branches for code changes, even "small fixes"
+
+### Iteration 3
+
+2026-01-07
+
+- Enabled `array_search` tests (was skip-all, now passes) via PR #483
+- Test count: 925 passing, 1 pending (only `set_time_limit` which is intentionally untestable)
+- Updated CHANGELOG backlog: marked test failures item as complete
+- Followed branch workflow correctly this time: created branch → PR → CI → merge
+- PR #477 (composer.json) still awaiting external author response
