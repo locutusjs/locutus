@@ -29,6 +29,7 @@ jobs:
             .yarn
             website/.yarn
             dist/.yarn
+            .cache
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
@@ -44,7 +45,7 @@ jobs:
       - name: Test
         run: |
           corepack yarn test
-      - name: Verify against native runtimes
+      - name: Parity tests
         run: |
           corepack yarn verify
       - name: Release

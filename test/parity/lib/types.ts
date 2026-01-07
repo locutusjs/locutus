@@ -1,5 +1,8 @@
 /**
- * Shared types for the verification system
+ * Shared types for the parity test system
+ *
+ * Parity tests verify that locutus JS implementations produce identical
+ * output to native language runtimes (PHP, Python, etc.) via Docker.
  */
 
 export interface Example {
@@ -8,6 +11,13 @@ export interface Example {
   expectedRaw: string
 }
 
+/**
+ * Verification status for a function:
+ * - version string (e.g., "8.3"): verified against that runtime version
+ * - "impossible": cannot be tested (pass-by-ref, side effects, etc.)
+ */
+export type VerifiedStatus = string
+
 export interface FunctionInfo {
   path: string
   language: string
@@ -15,7 +25,8 @@ export interface FunctionInfo {
   name: string
   examples: Example[]
   dependsOn: string[]
-  verified: string[] // Runtime versions this function is verified against
+  verified: VerifiedStatus[] // Runtime versions or "impossible"
+  isImpossible: boolean // True if verified: impossible
 }
 
 export interface CacheEntry {
@@ -63,9 +74,10 @@ export interface VerifyOptions {
   filter?: string
 }
 
-export interface VerifySummary {
+export interface ParitySummary {
   passed: number
   failed: number
   skipped: number
+  impossible: number
   unverified: number
 }

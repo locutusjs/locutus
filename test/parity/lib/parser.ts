@@ -1,5 +1,5 @@
 /**
- * Function file parsing utilities
+ * Function file parsing utilities for parity tests
  */
 
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
@@ -73,11 +73,12 @@ export function parseDependsOn(filePath: string): string[] {
 
 /**
  * Parse verified versions from function file
- * Format: // verified: 8.3 or // verified: 8.3, 8.2
+ * Format: // verified: 8.3 or // verified: 8.3, 8.2 or // verified: impossible
  */
-export function parseVerified(filePath: string): string[] {
+export function parseVerified(filePath: string): { verified: string[]; isImpossible: boolean } {
   const content = readFileSync(filePath, 'utf8')
   const verified: string[] = []
+  let isImpossible = false
 
   const lines = content.split('\n')
   for (const line of lines) {
@@ -85,11 +86,17 @@ export function parseVerified(filePath: string): string[] {
     if (match) {
       // Split by comma and trim each version
       const versions = match[1].split(',').map((v) => v.trim())
-      verified.push(...versions)
+      for (const v of versions) {
+        if (v === 'impossible') {
+          isImpossible = true
+        } else {
+          verified.push(v)
+        }
+      }
     }
   }
 
-  return verified
+  return { verified, isImpossible }
 }
 
 /**
@@ -103,10 +110,13 @@ export function parseDependsOnFromHeadKeys(headKeys: Record<string, string[][]>)
 /**
  * Parse verified versions from headKeys (util.js output)
  */
-export function parseVerifiedFromHeadKeys(headKeys: Record<string, string[][]>): string[] {
-  const verified = headKeys.verified || []
+export function parseVerifiedFromHeadKeys(headKeys: Record<string, string[][]>): { verified: string[]; isImpossible: boolean } {
+  const verifiedRaw = headKeys.verified || []
+  const verified: string[] = []
+  let isImpossible = false
+
   // Each entry is an array of lines, but verified should be single values
-  return verified
+  const allVersions = verifiedRaw
     .flatMap((lines) =>
       lines
         .join(',')
@@ -114,6 +124,16 @@ export function parseVerifiedFromHeadKeys(headKeys: Record<string, string[][]>):
         .map((v) => v.trim()),
     )
     .filter(Boolean)
+
+  for (const v of allVersions) {
+    if (v === 'impossible') {
+      isImpossible = true
+    } else {
+      verified.push(v)
+    }
+  }
+
+  return { verified, isImpossible }
 }
 
 /**
@@ -145,7 +165,7 @@ export function parseFunctionWithUtil(
   funcPath: string,
   srcDir: string,
   rootDir: string,
-): Promise<{ examples: Example[]; dependsOn: string[]; verified: string[] }> {
+): Promise<{ examples: Example[]; dependsOn: string[]; verified: string[]; isImpossible: boolean }> {
   const Util = require(join(rootDir, 'src/_util/util.js'))
   const util = new Util([])
 
@@ -159,10 +179,12 @@ export function parseFunctionWithUtil(
         reject(err || new Error(`Unable to parse ${relPath}`))
         return
       }
+      const { verified, isImpossible } = parseVerifiedFromHeadKeys(params.headKeys)
       resolve({
         examples: parseExamplesFromHeadKeys(params.headKeys),
         dependsOn: parseDependsOnFromHeadKeys(params.headKeys),
-        verified: parseVerifiedFromHeadKeys(params.headKeys),
+        verified,
+        isImpossible,
       })
     })
   })
@@ -205,7 +227,7 @@ export function findFunctions(srcDir: string, filter?: string): FunctionInfo[] {
         const fullPath = join(catDir, file)
         const examples = parseExamples(fullPath)
         const dependsOn = parseDependsOn(fullPath)
-        const verified = parseVerified(fullPath)
+        const { verified, isImpossible } = parseVerified(fullPath)
 
         if (examples.length > 0) {
           functions.push({
@@ -216,6 +238,7 @@ export function findFunctions(srcDir: string, filter?: string): FunctionInfo[] {
             examples,
             dependsOn,
             verified,
+            isImpossible,
           })
         }
       }
