@@ -1,5 +1,6 @@
 module.exports = function trim(str, charlist) {
   //  discuss at: https://locutus.io/php/trim/
+  //   verified: 8.3
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: mdsjack (https://www.mdsjack.bo.it)
   // improved by: Alexander Ermolaev (https://snippets.dzone.com/user/AlexanderErmolaev)

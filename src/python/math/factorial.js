@@ -1,5 +1,6 @@
 module.exports = function factorial(n) {
   //  discuss at: https://locutus.io/python/factorial/
+  //   verified: 3.12
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Returns n! (n factorial)
   //   example 1: factorial(5)
