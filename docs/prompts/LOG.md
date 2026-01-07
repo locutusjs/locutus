@@ -331,3 +331,20 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Added `quiet` option to `ensureDockerImage()` for safety checks during test runs
 - All 924 tests pass, 215 parity tests pass
 - PR #507 updated with Ruby verification + Docker flow improvement
+
+### Iteration 26
+
+2026-01-07
+
+- **Area: Infrastructure + Dependencies**
+- Vitest test speed: 10x improvement (20s → 2s) via `isolate: false` (PR #508)
+  - Tests are pure functions, no isolation needed between files
+  - CI will also benefit from this optimization
+- Biome zero warnings achieved (13 fixed):
+  - `useConst`: Changed `let` to `const` in range.js, strptime.js, md5.js, xdiff_string_diff.js
+  - `noControlCharactersInRegex`: Added biome-ignore to setlocale.js (intentional for LC_CTYPE)
+  - `noEmptyBlockStatements`: Added biome-ignore to unserialize.js (fallthrough pattern)
+  - `suppressions/unused`: Removed stale ignore in is_callable.js
+- All Biome rules now "error" (no more warnings) - zero tolerance policy
+- Added note to CHANGELOG: browserify removal blocked on ESM migration
+- Balance: Dependencies (1), Infrastructure (1) in last 5 iterations - good balance
