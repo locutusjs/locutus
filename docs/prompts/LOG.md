@@ -65,3 +65,28 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Fixed ord.js: removed Unicode-specific example (not in PHP)
   - Added `echo` to skip list (PHP language construct, not a function)
   - Added JSON forward slash normalization (`\/` → `/`) to verify.ts
+
+### Iteration 14
+
+2026-01-07
+
+- **Area: Verification (Python) + Modernization**
+- Added Python verification support (PR #496):
+  - 15/17 Python functions pass against Docker Python 3.12
+  - Added JS→Python conversions: True/False, None, float('inf'), len()
+  - Remaining failures: capwords (implementation difference), printable (.length conversion)
+- Refactored verify.ts from 1000+ lines to modular architecture:
+  - scripts/verify/types.ts - Shared interfaces
+  - scripts/verify/cache.ts - Caching utilities
+  - scripts/verify/docker.ts - Docker utilities
+  - scripts/verify/runner.ts - JS execution
+  - scripts/verify/parser.ts - Function file parsing
+  - scripts/verify/languages/ - Per-language handlers (PHP, Python)
+- Added `verified: X.Y` header support for CI integration:
+  - Default mode only runs verified functions
+  - `--all` flag includes unverified functions
+  - `--summary` flag shows verification counts
+  - Exit code 1 only for verified function failures
+- Added demo verified headers: trim.js (8.3), factorial.js (3.12)
+- Balance check: iterations 11-14 focused on dependencies (11) and verification (12-14)
+  - Next iteration should address different areas (TypeScript, website, or modernization)
