@@ -820,15 +820,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"async@npm:2.6.4":
-  version: 2.6.4
-  resolution: "async@npm:2.6.4"
-  dependencies:
-    lodash: "npm:^4.17.14"
-  checksum: 10/df8e52817d74677ab50c438d618633b9450aff26deb274da6dfedb8014130909482acdc7753bce9b72e6171ce9a9f6a92566c4ced34c3cb3714d57421d58ad27
-  languageName: node
-  linkType: hard
-
 "available-typed-arrays@npm:^1.0.2":
   version: 1.0.3
   resolution: "available-typed-arrays@npm:1.0.3"
@@ -3386,7 +3377,6 @@ __metadata:
     "@biomejs/biome": "npm:^2.3.11"
     "@types/mocha": "npm:^10.0.10"
     "@types/node": "npm:^25.0.3"
-    async: "npm:2.6.4"
     browserify: "npm:17.0.1"
     budo: "npm:11.8.4"
     chai: "npm:6"
@@ -3416,7 +3406,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:4.17.21, lodash@npm:^4.17.14":
+"lodash@npm:4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: 10/c08619c038846ea6ac754abd6dd29d2568aa705feb69339e836dfa8d8b09abbb2f859371e86863eda41848221f9af43714491467b5b0299122431e202bb0c532
