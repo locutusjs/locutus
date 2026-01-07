@@ -1,6 +1,5 @@
 # Maintainer Cycle
 
-
 ## Vision
 
 Locutus is **the** reference implementation for cross-language standard library functions in JavaScript. Every function should be:
@@ -10,6 +9,7 @@ Locutus is **the** reference implementation for cross-language standard library 
 3. **Typed** - Full TypeScript definitions
 4. **Modern** - ESM, tree-shakeable, zero dependencies
 
+## Workflow
 
 A 10-step loop of the most important maintainer tasks. When you finish step 10, start again at step 1.
 
