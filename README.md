@@ -66,6 +66,14 @@ true
 
 Some guidelines and instructions can be found in [CONTRIBUTING.md](CONTRIBUTING.md)
 
+Quick commands:
+
+- `yarn check` - format + lint + test
+- `yarn verify` - cross-language verification
+- `yarn test` - full test suite
+- `yarn lint` - Biome check
+- `yarn fix:biome` - auto-fix
+
 ## License
 
 MIT, except for `src/php/bc/` and `src/php/_helpers/_bc.js` which are LGPL-2.1 (derived from PHP's bcmath/Libbcmath). See [LICENSE](LICENSE) for details.

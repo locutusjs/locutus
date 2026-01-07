@@ -31,3 +31,18 @@ Note that for any task, it's important to first get ample context. Search past i
 8. Release any recently merged PRs that are still unreleased.
 9. Log an iteration in `docs/prompts/LOG.md`.
 10. → Back to step 1
+
+## Quality Standards
+
+- Zero tolerance: failing tests, Biome errors, unverified implementations (eventually).
+- Acceptable warnings: LGPL code (`src/php/_helpers/_bc.js`, `src/php/bc/*`) that can't be modified; intentional `eval`/`new Function` with `biome-ignore` + explanation; style warnings in complex algorithms.
+- Keep one plan: update existing docs (like `CHANGELOG.md` and `docs/prompts/MAINTAINER.md`) instead of creating new plans.
+
+## Lessons Learned
+
+- Verify against reality: unit tests aren't enough; run actual PHP/Go/Python/Ruby/C when possible.
+- Don't duplicate infrastructure: check `src/_util/` before creating new tools.
+- Document in the right place: LICENSE, README, SPDX headers, not just issues.
+- Biome unsafe fixes can break code: always test after auto-fix.
+- `eval()` is sometimes necessary: suppress with explanation, don't fight it.
+- Merge often: small PRs, fast iteration.
