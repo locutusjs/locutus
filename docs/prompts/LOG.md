@@ -46,3 +46,14 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Updated CHANGELOG backlog: marked test failures item as complete
 - Followed branch workflow correctly this time: created branch → PR → CI → merge
 - PR #477 (composer.json) still awaiting external author response
+
+### Iteration 4
+
+2026-01-07
+
+- Investigated PHP verification capability - `scripts/verify.ts` exists and works
+- Fixed `yarn verify` scripts to use Node 25+ type stripping (PR #484)
+- PHP verification status: 41/91 string functions pass against Docker PHP 8.3
+- Most failures are JS→PHP translation issues, not actual bugs
+- Updated CHANGELOG backlog with verification progress
+- Proper branch workflow followed: branch → PR → CI → merge
