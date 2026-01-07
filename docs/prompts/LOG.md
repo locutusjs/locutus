@@ -223,3 +223,19 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Updated test-util.ts to use async/await (matches new API)
 - All 923 tests pass
 - Lesson learned: The `async` library's API is footgun-prone; prefer modern Promise-based alternatives
+
+### Iteration 21
+
+2026-01-07
+
+- **Area: Verification (Go)**
+- Added Go parity verification support (PR #504):
+  - Created `test/parity/lib/languages/golang.ts` handler
+  - All 20 Go functions verified against `golang:1.23` Docker image
+  - Added `verified: 1.23` headers to all Go functions
+  - Fixed Count.js discuss URL (was incorrectly pointing to `php/printf`)
+- Functions verified:
+  - strconv (6): Atoi, FormatBool, FormatInt, Itoa, ParseBool, ParseInt
+  - strings (14): Contains, Count, HasPrefix, HasSuffix, Index, Join, LastIndex, Repeat, Replace, Split, ToLower, ToUpper, Trim, TrimSpace
+- Total verified functions now: 179 PHP + 15 Python + 20 Go = 214 functions
+- Balance check: iterations 14-20 heavily focused on verification; this continues verification but for a new language
