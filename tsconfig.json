@@ -15,6 +15,6 @@
     "types": ["node"],
     "noImplicitAny": false
   },
-  "include": ["test/parity/**/*.ts"],
+  "include": ["src/_util/**/*.ts", "test/parity/**/*.ts"],
   "exclude": ["node_modules", "dist", "website"]
 }

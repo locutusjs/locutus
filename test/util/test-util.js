@@ -1,6 +1,6 @@
 // var fs = require('fs')
-const expect = require('chai').expect
-const Util = require('../../src/_util/util')
+import { expect } from 'chai'
+import { Util } from '../../src/_util/util.ts'
 
 describe('util', function () {
   describe('_load', function () {

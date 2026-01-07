@@ -5,10 +5,10 @@
  * Any unrecognized header key will cause validation to fail early.
  */
 
-const { z } = require('zod')
+import { z } from 'zod'
 
 // Valid header keys and their descriptions
-const VALID_HEADER_KEYS = {
+export const VALID_HEADER_KEYS: Record<string, string> = {
   // Metadata
   'discuss at': 'URL to the function documentation page',
   estarget: 'ECMAScript target version (e.g., es2015)',
@@ -36,7 +36,7 @@ const VALID_HEADER_KEYS = {
 const HeaderValueSchema = z.array(z.array(z.string()))
 
 // Schema for all header keys
-const HeaderKeysSchema = z
+export const HeaderKeysSchema = z
   .object({
     'discuss at': HeaderValueSchema.optional(),
     estarget: HeaderValueSchema.optional(),
@@ -57,25 +57,22 @@ const HeaderKeysSchema = z
     example: HeaderValueSchema.optional(),
     returns: HeaderValueSchema.optional(),
   })
-  .strict() // This makes it fail on unknown keys
+  .strict()
+
+export type HeaderKeys = z.infer<typeof HeaderKeysSchema>
 
 /**
  * Validate header keys against the schema
- * @param {object} headKeys - Parsed header keys from util._headKeys()
- * @param {string} filepath - File path for error messages
- * @returns {object} - Validated header keys
- * @throws {Error} - If validation fails
  */
-function validateHeaderKeys(headKeys, filepath) {
+export function validateHeaderKeys(headKeys: unknown, filepath: string): HeaderKeys {
   const result = HeaderKeysSchema.safeParse(headKeys)
 
   if (!result.success) {
-    // Zod 4.x uses 'issues' instead of 'errors'
-    const issues = result.error.issues || JSON.parse(result.error.message)
+    const issues = result.error.issues
     const errors = issues
       .map((e) => {
         if (e.code === 'unrecognized_keys') {
-          return `Unrecognized header key(s): ${e.keys.join(', ')}`
+          return `Unrecognized header key(s): ${(e as { keys: string[] }).keys.join(', ')}`
         }
         return `${e.path.join('.')}: ${e.message}`
       })
@@ -91,31 +88,19 @@ function validateHeaderKeys(headKeys, filepath) {
 
 /**
  * Get the list of valid header keys
- * @returns {string[]}
  */
-function getValidHeaderKeys() {
+export function getValidHeaderKeys(): string[] {
   return Object.keys(VALID_HEADER_KEYS)
 }
 
 /**
  * Check if a key is a valid header key (including numbered variants)
- * @param {string} key - The key to check
- * @returns {boolean}
  */
-function isValidHeaderKey(key) {
-  // Check for numbered keys like "example 1", "returns 2"
+export function isValidHeaderKey(key: string): boolean {
   const numberedMatch = key.match(/^(\w+)\s+\d+$/)
   if (numberedMatch) {
     const baseKey = numberedMatch[1]
     return baseKey === 'example' || baseKey === 'returns' || baseKey === 'note'
   }
   return key in VALID_HEADER_KEYS
-}
-
-module.exports = {
-  VALID_HEADER_KEYS,
-  HeaderKeysSchema,
-  validateHeaderKeys,
-  getValidHeaderKeys,
-  isValidHeaderKey,
 }
