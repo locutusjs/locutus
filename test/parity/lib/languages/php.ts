@@ -312,7 +312,9 @@ export const phpHandler: LanguageHandler = {
   translate: jsToPhp,
   normalize: normalizePhpOutput,
   skipList: PHP_SKIP_LIST,
-  dockerImage: 'php:8.3-cli',
+  // Pin to specific digest to ensure consistent PHP version across all environments
+  // PHP 8.3.29 - strcmp returns -1/0/1 (changed in PHP 8.0)
+  dockerImage: 'php@sha256:923d8c7f348a16137f879b6f49589f00e104bf3b2bbf7d22f03430fea0fc5f67',
   version: '8.3',
   dockerCmd: (code: string) => ['php', '-r', code],
   mountRepo: true,
