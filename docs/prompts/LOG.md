@@ -33,5 +33,21 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 2026-01-07
 
 - Updated chai 4 → 6 (PR #491) - all tests pass
-- Mocha 11 + chai 6 = modernized test stack
-- Continuing dependency updates to reduce vulnerabilities
+- Updated rimraf 5 → 6 (PR #492) - all tests pass
+- Updated cross-env 7 → 10 (PR #493) - all tests pass
+- Failed updates (break tests, reverted):
+  - async 2.6.4 → 3.2.6 (API changes)
+  - indent-string 2.1.0 → 5.0.0 (ESM-only, CJS compatibility issues)
+- Modernized test stack: Mocha 11 + chai 6
+- Remaining 96 vulnerabilities are in transitive deps (hexo, browserify) - needs major refactoring
+
+### Iteration 12
+
+2026-01-07
+
+- Fixed Node 25 compatibility issues (PR #494):
+  - `q.drain = cb` → `q.drain(cb)` for async 2.6.4 on Node 25
+  - Added ESM default export fallback for indent-string
+- Root cause: node_modules had incorrect indent-string 5.0.0 (should be 2.1.0) - reinstall fixed
+- All 925 tests pass on Node v25.2.1
+- PR #477 still awaiting author response (external composer.json)
