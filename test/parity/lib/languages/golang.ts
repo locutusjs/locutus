@@ -139,8 +139,12 @@ function convertJsLineToGo(line: string, funcName: string): string {
 function getRequiredImports(goCode: string): string[] {
   const imports: Set<string> = new Set(['fmt', 'encoding/json'])
 
-  if (goCode.includes('strings.')) imports.add('strings')
-  if (goCode.includes('strconv.')) imports.add('strconv')
+  if (goCode.includes('strings.')) {
+    imports.add('strings')
+  }
+  if (goCode.includes('strconv.')) {
+    imports.add('strconv')
+  }
 
   return Array.from(imports)
 }
@@ -168,8 +172,7 @@ function jsToGo(jsCode: string[], funcName: string): string {
   }
 
   const imports = getRequiredImports(mainBody)
-  const importBlock =
-    imports.length === 1 ? `import "${imports[0]}"` : `import (\n\t"${imports.join('"\n\t"')}"\n)`
+  const importBlock = imports.length === 1 ? `import "${imports[0]}"` : `import (\n\t"${imports.join('"\n\t"')}"\n)`
 
   return `package main
 
@@ -199,6 +202,10 @@ export const golangHandler: LanguageHandler = {
   skipList: GO_SKIP_LIST,
   dockerImage: 'golang:1.23',
   version: '1.23',
-  dockerCmd: (code: string) => ['sh', '-c', `echo '${code.replace(/'/g, "'\\''")}' > /tmp/main.go && go run /tmp/main.go`],
+  dockerCmd: (code: string) => [
+    'sh',
+    '-c',
+    `echo '${code.replace(/'/g, "'\\''")}' > /tmp/main.go && go run /tmp/main.go`,
+  ],
   mountRepo: false,
 }
