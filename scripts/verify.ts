@@ -16,9 +16,11 @@ import { execSync, spawnSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
+import { availableParallelism } from 'node:os'
 import { basename, dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import vm from 'node:vm'
+import pMap from 'p-map'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -186,9 +188,15 @@ function parseFunctionWithUtil(funcPath: string): Promise<{ examples: Example[];
   })
 }
 
-// Calculate hash of file and its dependencies
+// Calculate hash of file, its dependencies, and verify.ts itself
+// Including verify.ts ensures cache invalidation when translation logic changes
+const VERIFY_SCRIPT_PATH = fileURLToPath(import.meta.url)
+
 function calculateHash(filePath: string, deps: string[]): string {
   const hash = createHash('sha256')
+
+  // Include verify.ts content so translation changes invalidate cache
+  hash.update(readFileSync(VERIFY_SCRIPT_PATH))
   hash.update(readFileSync(filePath))
 
   for (const dep of deps) {
@@ -325,8 +333,47 @@ function convertObjectLiteral(segment: string): string {
   return converted
 }
 
+// PHP constants that should not be quoted when passed as string arguments
+const PHP_CONSTANTS = new Set([
+  'ENT_QUOTES',
+  'ENT_COMPAT',
+  'ENT_NOQUOTES',
+  'ENT_HTML401',
+  'ENT_HTML5',
+  'ENT_XHTML',
+  'ENT_XML1',
+  'ENT_DISALLOWED',
+  'ENT_SUBSTITUTE',
+  'ENT_IGNORE',
+  'HTML_ENTITIES',
+  'HTML_SPECIALCHARS',
+  'SORT_REGULAR',
+  'SORT_NUMERIC',
+  'SORT_STRING',
+  'SORT_LOCALE_STRING',
+  'SORT_NATURAL',
+  'SORT_FLAG_CASE',
+  'STR_PAD_LEFT',
+  'STR_PAD_RIGHT',
+  'STR_PAD_BOTH',
+  'CASE_LOWER',
+  'CASE_UPPER',
+  'PREG_PATTERN_ORDER',
+  'PREG_SET_ORDER',
+  'PREG_OFFSET_CAPTURE',
+  'PREG_SPLIT_NO_EMPTY',
+  'PREG_SPLIT_DELIM_CAPTURE',
+])
+
+// JS globals that have static methods (should not be converted to $var['prop'])
+const JS_STATIC_CLASSES = new Set(['String', 'Array', 'Object', 'Number', 'Math', 'Date', 'JSON', 'RegExp', 'Boolean'])
+
 function convertPropertyAccess(line: string): string {
   return line.replace(/\b([A-Za-z_][\w$]*)\.(\w+)\b/g, (_m, obj, prop) => {
+    // Don't convert JS static class method calls
+    if (JS_STATIC_CLASSES.has(obj)) {
+      return _m // Keep original
+    }
     const varName = obj.startsWith('$') ? obj : `$${obj}`
     return `${varName}['${prop}']`
   })
@@ -339,16 +386,41 @@ function convertJsLineToPhp(line: string): string {
   }
 
   php = php.replace(/^\s*(var|let|const)\s+/, '')
+
+  // JS static method conversions to PHP equivalents
+  php = php.replace(/String\.fromCharCode\s*\(/g, 'chr(')
   php = php.replace(/Array\.isArray\s*\(/g, 'is_array(')
+  php = php.replace(/Math\.floor\s*\(/g, 'floor(')
+  php = php.replace(/Math\.ceil\s*\(/g, 'ceil(')
+  php = php.replace(/Math\.round\s*\(/g, 'round(')
+  php = php.replace(/Math\.abs\s*\(/g, 'abs(')
+  php = php.replace(/Math\.min\s*\(/g, 'min(')
+  php = php.replace(/Math\.max\s*\(/g, 'max(')
+  php = php.replace(/Math\.pow\s*\(/g, 'pow(')
+  php = php.replace(/Math\.sqrt\s*\(/g, 'sqrt(')
+  php = php.replace(/parseInt\s*\(/g, 'intval(')
+  php = php.replace(/parseFloat\s*\(/g, 'floatval(')
+
   php = php.replace(/(\$?[A-Za-z_][\w$]*)\.length\b/g, (_m, name) => `count(${name})`)
   php = php.replace(/\bundefined\b/g, 'null')
   php = php.replace(/\bnull\b/g, 'null')
   php = php.replace(/\btrue\b/g, 'true')
   php = php.replace(/\bfalse\b/g, 'false')
+
+  // Convert quoted PHP constants to bare constants
+  // e.g., 'ENT_QUOTES' or "ENT_QUOTES" → ENT_QUOTES
+  php = php.replace(/(['"])([A-Z][A-Z0-9_]+)\1/g, (_m, _q, name) => {
+    if (PHP_CONSTANTS.has(name)) {
+      return name
+    }
+    return _m
+  })
+
   php = convertPropertyAccess(php)
   php = convertObjectLiteral(php)
   php = php.replace(/\$([A-Za-z_][\w]*)\s*=>/g, "'$1' =>")
   php = php.replace(/\{\s*\}/g, '[]')
+  // biome-ignore lint/suspicious/noControlCharactersInRegex: intentional CR/LF matching
   php = php.replace(/\u000d/g, '\\r').replace(/\u000a/g, '\\n')
 
   return php
@@ -364,14 +436,17 @@ function jsToPhp(jsCode: string[], funcName: string): string {
   const originalLastLine = jsCode[jsCode.length - 1]
   const assignedVar = extractAssignedVar(originalLastLine)
 
+  let result: string
   if (assignedVar) {
-    return `${lines.join(';\n')};\necho json_encode(${assignedVar});`
+    result = `${lines.join(';\n')};\necho json_encode(${assignedVar});`
+  } else {
+    const setup = lines.slice(0, -1)
+    const lastExpr = lines[lines.length - 1]
+    const prefix = setup.length ? `${setup.join(';\n')};\n` : ''
+    result = `${prefix}echo json_encode(${lastExpr});`
   }
 
-  const setup = lines.slice(0, -1)
-  const lastExpr = lines[lines.length - 1]
-  const prefix = setup.length ? `${setup.join(';\n')};\n` : ''
-  return `${prefix}echo json_encode(${lastExpr});`
+  return result
 }
 
 // Run JS implementation and get result
@@ -609,35 +684,50 @@ async function main() {
   }
 
   const functions = findFunctions(filter)
-  console.log(`Found ${functions.length} functions with examples\n`)
+  const concurrency = Math.min(availableParallelism(), 8) // Cap at 8 to avoid Docker overload
+  console.log(`Found ${functions.length} functions with examples (concurrency: ${concurrency})\n`)
 
+  // Run verifications in parallel
+  const allResults = await pMap(
+    functions,
+    async (func) => {
+      try {
+        const results = await verifyFunction(func, useCache)
+        return { func, results, error: null }
+      } catch (e) {
+        return { func, results: [], error: e }
+      }
+    },
+    { concurrency },
+  )
+
+  // Print results
   let passed = 0
   let failed = 0
   let skipped = 0
 
-  for (const func of functions) {
+  for (const { func, results, error } of allResults) {
     process.stdout.write(`  ${func.path}... `)
 
-    try {
-      const results = await verifyFunction(func, useCache)
-      const allPassed = results.every((r) => r.passed)
-
-      if (allPassed) {
-        console.log('\x1b[32m✓\x1b[0m')
-        passed++
-      } else {
-        console.log('\x1b[31m✗\x1b[0m')
-        failed++
-        for (const r of results.filter((x) => !x.passed)) {
-          console.log(`    Example ${r.example}: ${r.error || 'Mismatch'}`)
-          console.log(`      expected: ${r.expected}`)
-          console.log(`      js: ${r.jsResult}`)
-          console.log(`      native: ${r.nativeResult}`)
-        }
-      }
-    } catch {
+    if (error) {
       console.log('\x1b[33m?\x1b[0m')
       skipped++
+      continue
+    }
+
+    const allPassed = results.every((r) => r.passed)
+    if (allPassed) {
+      console.log('\x1b[32m✓\x1b[0m')
+      passed++
+    } else {
+      console.log('\x1b[31m✗\x1b[0m')
+      failed++
+      for (const r of results.filter((x) => !x.passed)) {
+        console.log(`    Example ${r.example}: ${r.error || 'Mismatch'}`)
+        console.log(`      expected: ${r.expected}`)
+        console.log(`      js: ${r.jsResult}`)
+        console.log(`      native: ${r.nativeResult}`)
+      }
     }
   }
 

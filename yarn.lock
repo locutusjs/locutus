@@ -4928,6 +4928,7 @@ __metadata:
     lodash: "npm:4.17.21"
     mocha: "npm:10.4.0"
     npm-run-all: "npm:^4.1.5"
+    p-map: "npm:^7.0.4"
     remark-cli: "npm:^12.0.0"
     remark-toc: "npm:^9.0.0"
     rimraf: "npm:5.0.5"
@@ -6149,6 +6150,13 @@ __metadata:
   dependencies:
     aggregate-error: "npm:^3.0.0"
   checksum: 10/7ba4a2b1e24c05e1fc14bbaea0fc6d85cf005ae7e9c9425d4575550f37e2e584b1af97bcde78eacd7559208f20995988d52881334db16cf77bc1bcf68e48ed7c
+  languageName: node
+  linkType: hard
+
+"p-map@npm:^7.0.4":
+  version: 7.0.4
+  resolution: "p-map@npm:7.0.4"
+  checksum: 10/ef48c3b2e488f31c693c9fcc0df0ef76518cf6426a495cf9486ebbb0fd7f31aef7f90e96f72e0070c0ff6e3177c9318f644b512e2c29e3feee8d7153fcb6782e
   languageName: node
   linkType: hard
 
