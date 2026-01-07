@@ -57,3 +57,16 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Most failures are JS→PHP translation issues, not actual bugs
 - Updated CHANGELOG backlog with verification progress
 - Proper branch workflow followed: branch → PR → CI → merge
+
+### Iteration 5
+
+2026-01-07
+
+- Improved JS→PHP translation in `scripts/verify.ts` (PR #485):
+  - `String.fromCharCode()` → `chr()`, `Math.*` → PHP equivalents
+  - Quoted PHP constants → bare constants (`'ENT_QUOTES'` → `ENT_QUOTES`)
+  - Don't convert JS static class calls to PHP property access
+- Added `verify.ts` hash to cache key - translation changes now invalidate cache
+- Parallelized verification with `p-map` (8x concurrency)
+- PHP verification improved: 43/91 passing (was 41/91)
+- Proper branch workflow followed
