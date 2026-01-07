@@ -5,16 +5,19 @@
 import { execSync, spawnSync } from 'node:child_process'
 
 /**
- * Check if Docker image exists, pull if not
+ * Ensure Docker image is available and up-to-date
+ * Always pulls to ensure we have the latest version
  */
 export function ensureDockerImage(image: string): boolean {
+  console.log(`  Pulling ${image}...`)
   try {
-    execSync(`docker image inspect ${image}`, { stdio: 'pipe' })
+    execSync(`docker pull ${image}`, { stdio: 'pipe' })
     return true
   } catch {
-    console.log(`  Pulling ${image}...`)
+    // Pull failed, check if we have a local copy as fallback
     try {
-      execSync(`docker pull ${image}`, { stdio: 'pipe' })
+      execSync(`docker image inspect ${image}`, { stdio: 'pipe' })
+      console.log(`    (using cached image)`)
       return true
     } catch {
       return false
