@@ -45,9 +45,10 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 
 2026-01-07
 
-- Fixed Node 25 compatibility issues (PR #494):
+- Fixed Node 25 compatibility issues (PR #494, merged):
   - `q.drain = cb` → `q.drain(cb)` for async 2.6.4 on Node 25
   - Added ESM default export fallback for indent-string
+  - Fixed composer.json formatting (2-space indent per Biome)
 - Root cause: node_modules had incorrect indent-string 5.0.0 (should be 2.1.0) - reinstall fixed
 - All 925 tests pass on Node v25.2.1
-- PR #477 still awaiting author response (external composer.json)
+- PR #477 (composer.json) was merged - now part of main
