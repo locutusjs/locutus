@@ -61,6 +61,9 @@ function convertJsLineToJulia(line: string, funcName: string): string {
   // Remove var/let/const - Julia just uses name = value
   jl = jl.replace(/^\s*(var|let|const)\s+/, '')
 
+  // Convert single-quoted strings to double-quoted (Julia uses single quotes only for chars)
+  jl = jl.replace(/'([^'\\]*(\\.[^'\\]*)*)'/g, '"$1"')
+
   // JS → Julia conversions
   jl = jl.replace(/\btrue\b/g, 'true')
   jl = jl.replace(/\bfalse\b/g, 'false')
@@ -117,6 +120,12 @@ function normalizeJuliaOutput(output: string, expected?: string): string {
   if (expected && /^-?\d+$/.test(expected) && /^-?\d+\.0$/.test(result)) {
     result = result.replace(/\.0$/, '')
   }
+
+  // String quoting: Julia's print() doesn't add quotes, but expected values have them
+  if (expected && /^".*"$/.test(expected) && !/^".*"$/.test(result)) {
+    result = `"${result}"`
+  }
+
   return result
 }
 
