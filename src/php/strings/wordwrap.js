@@ -1,19 +1,20 @@
 module.exports = function wordwrap(str, intWidth, strBreak, cut) {
-  //  discuss at: https://locutus.io/php/wordwrap/
-  // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
-  // improved by: Nick Callen
-  // improved by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: Sakimori
-  //  revised by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
-  // bugfixed by: Michael Grier
-  // bugfixed by: Feras ALHAEK
-  // improved by: Rafał Kukawski (https://kukawski.net)
-  //   example 1: wordwrap('Kevin van Zonneveld', 6, '|', true)
-  //   returns 1: 'Kevin|van|Zonnev|eld'
-  //   example 2: wordwrap('The quick brown fox jumped over the lazy dog.', 20, '<br />\n')
-  //   returns 2: 'The quick brown fox<br />\njumped over the lazy<br />\ndog.'
-  //   example 3: wordwrap('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.')
-  //   returns 3: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim\nveniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea\ncommodo consequat.'
+  //      discuss at: https://locutus.io/php/wordwrap/
+  // parity verified: PHP 8.3
+  //     original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
+  //     improved by: Nick Callen
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Sakimori
+  //      revised by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
+  //     bugfixed by: Michael Grier
+  //     bugfixed by: Feras ALHAEK
+  //     improved by: Rafał Kukawski (https://kukawski.net)
+  //       example 1: wordwrap('Kevin van Zonneveld', 6, '|', true)
+  //       returns 1: 'Kevin|van|Zonnev|eld'
+  //       example 2: wordwrap('The quick brown fox jumped over the lazy dog.', 20, '<br />\n')
+  //       returns 2: 'The quick brown fox<br />\njumped over the lazy<br />\ndog.'
+  //       example 3: wordwrap('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.')
+  //       returns 3: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim\nveniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea\ncommodo consequat.'
 
   intWidth = arguments.length >= 2 ? +intWidth : 75
   strBreak = arguments.length >= 3 ? '' + strBreak : '\n'

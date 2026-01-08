@@ -1,5 +1,6 @@
 module.exports = function quoted_printable_decode(str) {
   //       discuss at: https://locutus.io/php/quoted_printable_decode/
+  //  parity verified: PHP 8.3
   //      original by: Ole Vrijenhoek
   //      bugfixed by: Brett Zamir (https://brett-zamir.me)
   //      bugfixed by: Theriault (https://github.com/Theriault)

@@ -186,6 +186,108 @@ function convertPropertyAccess(line: string): string {
 }
 
 /**
+ * Convert JS Unicode escape sequence to actual character
+ * \uXXXX -> actual Unicode character
+ */
+function convertUnicodeEscape(hex: string): string {
+  return String.fromCharCode(parseInt(hex, 16))
+}
+
+/**
+ * Convert JS single-quoted strings with escape sequences to PHP double-quoted strings
+ * In JS, 'hello\nworld' interprets \n as newline
+ * In PHP, 'hello\nworld' is literal backslash-n (no escape interpretation)
+ * So we need to convert to double quotes when escape sequences are present
+ *
+ * Also handles Unicode escapes like \uXXXX by converting to actual characters
+ */
+function convertJsStringsToPhp(code: string): string {
+  let result = ''
+  let i = 0
+
+  while (i < code.length) {
+    // Skip double-quoted strings (don't process them)
+    if (code[i] === '"') {
+      result += code[i]
+      i++
+      while (i < code.length && code[i] !== '"') {
+        if (code[i] === '\\' && i + 1 < code.length) {
+          result += code[i] + code[i + 1]
+          i += 2
+        } else {
+          result += code[i]
+          i++
+        }
+      }
+      if (i < code.length) {
+        result += code[i] // closing quote
+        i++
+      }
+      continue
+    }
+
+    // Check for single-quoted string
+    if (code[i] === "'") {
+      let str = ''
+      i++
+      let hasEscapeSequence = false
+      let hasUnicodeEscape = false
+
+      while (i < code.length) {
+        if (code[i] === '\\' && i + 1 < code.length) {
+          const nextChar = code[i + 1]
+          // Handle escaped single quote - don't end string
+          if (nextChar === "'") {
+            str += "\\'"
+            i += 2
+            continue
+          }
+          // Check for Unicode escape sequence \uXXXX
+          if (nextChar === 'u' && i + 5 < code.length) {
+            const hex = code.slice(i + 2, i + 6)
+            if (/^[0-9A-Fa-f]{4}$/.test(hex)) {
+              // Convert Unicode escape to actual character
+              str += convertUnicodeEscape(hex)
+              i += 6
+              hasUnicodeEscape = true
+              continue
+            }
+          }
+          // Check for common escape sequences that need double quotes in PHP
+          if ('nrtv0\\'.includes(nextChar)) {
+            hasEscapeSequence = true
+          }
+          str += code[i] + code[i + 1]
+          i += 2
+        } else if (code[i] === "'") {
+          // End of string
+          break
+        } else {
+          str += code[i]
+          i++
+        }
+      }
+      i++ // skip closing quote
+
+      // If the string has escape sequences, convert to double quotes
+      if (hasEscapeSequence || hasUnicodeEscape) {
+        // Escape any existing double quotes in content, and convert \' to just '
+        let escapedContent = str.replace(/(?<!\\)"/g, '\\"')
+        escapedContent = escapedContent.replace(/\\'/g, "'") // In double quotes, ' doesn't need escaping
+        result += '"' + escapedContent + '"'
+      } else {
+        result += "'" + str + "'"
+      }
+    } else {
+      result += code[i]
+      i++
+    }
+  }
+
+  return result
+}
+
+/**
  * Convert a single JS line to PHP
  */
 function convertJsLineToPhp(line: string): string {
@@ -199,6 +301,9 @@ function convertJsLineToPhp(line: string): string {
 
   // Strip trailing semicolons (we add them when building the full PHP)
   php = php.replace(/;+$/, '')
+
+  // Convert JS single-quoted strings with escapes to PHP double-quoted
+  php = convertJsStringsToPhp(php)
 
   php = php.replace(/^\s*(var|let|const)\s+/, '')
 
