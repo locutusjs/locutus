@@ -538,3 +538,20 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Expansion: 4 (32, 33, 34, 36)
   - Website: 2 (31, 37)
   - Modernization: 1 (35)
+
+### Iteration 38
+
+2026-01-08
+
+- **Area: Website (Verified badge tooltip)**
+- Added hover tooltip to "Verified" badges on function pages (PR #521):
+  - Explains what "Verified" means: examples tested against actual runtime
+  - Notes CI re-verifies continuously
+  - Clarifies only documented examples are tested, not all inputs
+  - Smooth slide-in animation below badge
+  - Responsive on mobile (text wraps properly)
+- Also included in PR: generated test files for Python/Ruby Math functions
+- Balance (iterations 31-38):
+  - Expansion: 4 (32, 33, 34, 36)
+  - Website: 3 (31, 37, 38)
+  - Modernization: 1 (35)
