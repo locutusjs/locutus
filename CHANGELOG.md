@@ -62,7 +62,14 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.35...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.36...main).
+
+## v2.0.36
+
+Released: 2026-01-08. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.35...v2.0.36).
+
+- Perl string functions: `uc` (uppercase), `lc` (lowercase), `substr` (with negative offset support)
+- Fixed parity test string normalization for Perl
 
 ## v2.0.35
 

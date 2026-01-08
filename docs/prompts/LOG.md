@@ -690,3 +690,4 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Added Perl core functions: `uc` (uppercase), `lc` (lowercase), `substr` (substring with negative offset support)
 - Fixed Perl parity test string normalization (native print doesn't quote strings)
 - All parity tests passing for Perl (6 functions)
+- PR #526 merged
