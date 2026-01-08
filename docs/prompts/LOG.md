@@ -403,3 +403,23 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Infrastructure: 2 (25, 26)
   - Modernization: 1 (23)
 - Should summarize iterations 21-30 per LOG.md rules
+
+### Iteration 31
+
+2026-01-08
+
+- **Area: Website (Modernization) + Infrastructure**
+- Upgraded Hexo 7.1.1 → 8.1.1 (PR #512):
+  - Upgraded hexo, hexo-cli, hexo-renderer-marked
+  - Fixed breaking change: `external_link` config from boolean to object format
+  - Removed unused ESLint devDependencies (project uses Biome)
+  - Updated Node engine requirement and packageManager
+- Tested with Playwright MCP: home page, authors page, function pages all render correctly
+- All 927 tests pass
+- Updated CORE_MAINTAINER.md: added website deployment verification rule
+- Updated CHANGELOG backlog status:
+  - Marked "Compare example test cases for PHP" as complete (parity verification does this)
+  - Marked "Verification" parent as complete (226 functions verified across 5 languages)
+  - Fixed stray text and incomplete lines
+- Verified live site at https://locutus.io - authors page renders correctly (PR #511 verified)
+- Remaining backlog items: array standardization, callable helper, ts-morph, CJS→ESM, Changesets, Expansion, Rosetta Stone
