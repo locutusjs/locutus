@@ -280,10 +280,12 @@ function expectEscapedString(str) {
 function expectKeyOrIndex(str) {
   try {
     return expectString(str)
+    // biome-ignore lint/suspicious/noEmptyBlockStatements: fallthrough to next parser
   } catch (_err) {}
 
   try {
     return expectEscapedString(str)
+    // biome-ignore lint/suspicious/noEmptyBlockStatements: fallthrough to next parser
   } catch (_err) {}
 
   try {

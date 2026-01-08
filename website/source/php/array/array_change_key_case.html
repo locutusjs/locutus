@@ -62,7 +62,7 @@ alias:
   let key
   const tmpArr = {}
 
-  if (Object.prototype.toString.call(array) === '[object Array]') {
+  if (Array.isArray(array)) {
     return array
   }
 
