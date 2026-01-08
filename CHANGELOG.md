@@ -39,15 +39,19 @@ Ideas that will be planned and find their way into a release at one point
       - [x] Convert `src/_util/` to TypeScript
       - [x] Strict mode compatible. Node type stripping compatible
 - [ ] Expansion (port more functions to the different languages) we'll go from most feasible + sensible, to least :) Also: improve header comment driven test coverage to expose more edge cases. And finally another way to expand is on parity test coverage, and fixing issues found by doing that.
-      - **New language candidates** (ranked by suitability for Locutus):
-        1. **Perl** (Excellent) - PHP's spiritual ancestor, dynamically typed, function-based stdlib. Functions: `join`, `split`, `grep`, `map`, `sort`, `reverse`, `substr`, `index`, `uc`, `lc`, `chomp`. Module structure: core + `List::Util`, `File::Basename`, etc.
+      - **New language candidates** (missing from `src/`, ranked by suitability for Locutus):
+        1. **Perl** (Excellent) - PHP's spiritual ancestor, dynamically typed, function-first stdlib. Functions: `join`, `split`, `grep`, `map`, `sort`, `reverse`, `substr`, `index`, `uc`, `lc`, `chomp`. Module structure: core + `List::Util`, `File::Basename`.
         2. **Lua** (Excellent) - Simple, clean, educational. Small but organized stdlib. Functions: `string.sub`, `string.upper`, `string.lower`, `table.insert`, `table.sort`, `math.floor`. Module structure: `string`, `table`, `math`, `io`, `os`.
-        3. **AWK** (Good) - Text processing powerhouse, function-based. Functions: `length`, `substr`, `index`, `split`, `gsub`, `sub`, `tolower`, `toupper`, `sprintf`. Could be single category or split by type.
-        4. **Bash** (Moderate) - Useful for CLI, but command-based nature challenging. Built-ins: `echo`, `printf`, `test`, string operations via parameter expansion.
-        5. **Java** (Moderate) - Popular but OOP-heavy. Static methods only: `Math.max`, `Math.min`, `Math.abs`, `Arrays.sort`, `String.format`. Package structure: `java.lang`, `java.util`.
-        6. **Rust** (Lower) - Complex ownership model, but stable stdlib. Functions: `chars`, `contains`, `starts_with`, `trim`, `split`. Module structure: `std::string`, `std::collections`.
-        7. **Haskell** (Lower) - Different paradigm but educational. Functions: `map`, `filter`, `fold`, `zip`. Module structure: `Data.List`, `Data.Char`.
-      - **Selection criteria**: (1) Type compatibility with JS, (2) Stdlib organized in modules/categories, (3) Function-oriented (not method-heavy), (4) Popularity/demand, (5) Semantic compatibility with JS
+        3. **R** (Good) - Vectorized but function-centric; strong text + math. Functions: `nchar`, `substr`, `toupper`, `tolower`, `paste`, `grep`, `gsub`, `sprintf`, `sort`.
+        4. **Julia** (Good) - Multiple dispatch and rich stdlib, great for math-heavy functions. Functions: `split`, `join`, `replace`, `lowercase`, `uppercase`, `sort`, `floor`, `round`. Modules: `Base`, `Printf`, `Statistics`.
+        5. **Elixir** (Good) - Module/function oriented; `String` and `Enum` map well to `strings`/`array`. Functions: `String.split`, `String.replace`, `String.downcase`, `String.upcase`, `Enum.map`, `Enum.filter`.
+        6. **Clojure** (Good) - Strong function-first stdlib; `clojure.string` mirrors JS string ops. Functions: `clojure.string/split`, `join`, `replace`, `lower-case`, `upper-case`, plus core `map`/`filter`/`reduce`.
+        7. **AWK** (Good) - Text processing powerhouse, function-based. Functions: `length`, `substr`, `index`, `split`, `gsub`, `sub`, `tolower`, `toupper`, `sprintf`. Could be single category or split by type.
+        8. **Bash** (Moderate) - Useful for CLI, but command-based nature challenging. Built-ins: `printf`, `test`, string ops via parameter expansion (substring, replace, case conversion).
+        9. **Java** (Moderate) - Popular but OOP-heavy. Static methods only: `Math.max`, `Math.min`, `Math.abs`, `Arrays.sort`, `String.format`. Package structure: `java.lang`, `java.util`.
+        10. **Rust** (Lower) - Ownership model + method-heavy, but solid stdlib. Methods: `trim`, `split`, `chars`. Modules: `std::string`, `std::collections`.
+        11. **Haskell** (Lower) - Different paradigm but educational. Functions: `map`, `filter`, `foldl`, `foldr`, `zip`. Modules: `Data.List`, `Data.Char`.
+      - **Selection criteria**: (1) Type compatibility with JS, (2) Stdlib organized in modules/categories, (3) Function-oriented (or easy to wrap methods as functions), (4) Popularity/demand, (5) Semantic compatibility with JS, (6) Clean mapping to existing `src` module layout (strings/array/math/pcre/etc.)
 - [ ] Docs/Website:
       - [x] The function pages could have a badge themselves in which language version they were parity checked (similar to what was added in the README.md)
       - [x] website: Render authors server-side (PR #511)
