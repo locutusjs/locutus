@@ -1,0 +1,301 @@
+# Rosetta Stone Mappings
+# Maps semantically equivalent functions across languages.
+# When adding a new function, check if an equivalent exists and add it here.
+# Format: group_name -> list of "language/category/function" paths
+#
+# IMPORTANT: Keep this file updated when adding functions!
+# See CONTRIBUTING.md for details.
+
+# =============================================================================
+# STRING OPERATIONS
+# =============================================================================
+
+string_length:
+  - php/strings/strlen
+  - c/string/strlen
+  - ruby/String/length
+
+string_lowercase:
+  - php/strings/strtolower
+  - ruby/String/downcase
+  - golang/strings/ToLower
+
+string_uppercase:
+  - php/strings/strtoupper
+  - ruby/String/upcase
+  - golang/strings/ToUpper
+
+string_trim:
+  - php/strings/trim
+  - ruby/String/strip
+  - golang/strings/TrimSpace
+  - golang/strings/Trim
+
+string_rtrim:
+  - php/strings/rtrim
+  - php/strings/chop
+  - ruby/String/chop
+  - ruby/String/chomp
+
+string_contains:
+  - golang/strings/Contains
+  - ruby/String/include
+
+string_starts_with:
+  - golang/strings/HasPrefix
+  - ruby/String/start_with
+
+string_ends_with:
+  - golang/strings/HasSuffix
+  - ruby/String/end_with
+
+string_reverse:
+  - php/strings/strrev
+  - ruby/String/reverse
+
+string_split:
+  - php/strings/explode
+  - golang/strings/Split
+
+string_join:
+  - php/strings/implode
+  - golang/strings/Join
+
+string_replace:
+  - php/strings/str_replace
+  - golang/strings/Replace
+
+string_index:
+  - php/strings/strpos
+  - golang/strings/Index
+  - golang/strings/Index2
+
+string_last_index:
+  - php/strings/strrpos
+  - golang/strings/LastIndex
+
+string_repeat:
+  - php/strings/str_repeat
+  - golang/strings/Repeat
+
+string_capitalize:
+  - php/strings/ucfirst
+  - ruby/String/capitalize
+
+string_compare:
+  - php/strings/strcmp
+  - c/string/strcmp
+  - golang/strings/Compare
+
+string_substring_search:
+  - php/strings/strstr
+  - c/string/strstr
+
+string_char_search:
+  - php/strings/strchr
+  - c/string/strchr
+
+string_count:
+  - php/strings/substr_count
+  - golang/strings/Count
+
+# =============================================================================
+# MATH OPERATIONS
+# =============================================================================
+
+math_sqrt:
+  - php/math/sqrt
+  - python/math/sqrt
+  - ruby/Math/sqrt
+
+math_exp:
+  - php/math/exp
+  - python/math/exp
+  - ruby/Math/exp
+
+math_log:
+  - php/math/log
+  - python/math/log
+  - ruby/Math/log
+
+math_log10:
+  - php/math/log10
+  - python/math/log10
+  - ruby/Math/log10
+
+math_log2:
+  - python/math/log2
+  - ruby/Math/log2
+
+math_sin:
+  - php/math/sin
+  - ruby/Math/sin
+
+math_cos:
+  - php/math/cos
+  - ruby/Math/cos
+
+math_tan:
+  - php/math/tan
+  - ruby/Math/tan
+
+math_asin:
+  - php/math/asin
+  - ruby/Math/asin
+
+math_acos:
+  - php/math/acos
+  - ruby/Math/acos
+
+math_atan:
+  - php/math/atan
+  - ruby/Math/atan
+
+math_sinh:
+  - php/math/sinh
+  - ruby/Math/sinh
+
+math_cosh:
+  - php/math/cosh
+  - ruby/Math/cosh
+
+math_tanh:
+  - php/math/tanh
+  - ruby/Math/tanh
+
+math_ceil:
+  - php/math/ceil
+  - python/math/ceil
+
+math_floor:
+  - php/math/floor
+  - python/math/floor
+
+math_abs:
+  - php/math/abs
+  - c/math/abs
+
+math_fabs:
+  - python/math/fabs
+
+math_pow:
+  - php/math/pow
+  - python/math/pow
+
+math_cbrt:
+  - ruby/Math/cbrt
+
+math_trunc:
+  - python/math/trunc
+
+math_factorial:
+  - python/math/factorial
+
+math_gcd:
+  - python/math/gcd
+
+math_isfinite:
+  - php/math/is_finite
+  - python/math/isfinite
+
+math_isinf:
+  - php/math/is_infinite
+  - python/math/isinf
+
+math_isnan:
+  - php/math/is_nan
+  - python/math/isnan
+
+# =============================================================================
+# CHARACTER TYPE CHECKING
+# =============================================================================
+
+char_isalnum:
+  - php/ctype/ctype_alnum
+  - c/ctype/isalnum
+
+char_isalpha:
+  - php/ctype/ctype_alpha
+  - c/ctype/isalpha
+
+char_isdigit:
+  - php/ctype/ctype_digit
+  - c/ctype/isdigit
+
+char_islower:
+  - php/ctype/ctype_lower
+  - c/ctype/islower
+
+char_isupper:
+  - php/ctype/ctype_upper
+  - c/ctype/isupper
+
+char_isspace:
+  - php/ctype/ctype_space
+  - c/ctype/isspace
+
+char_tolower:
+  - c/ctype/tolower
+
+char_toupper:
+  - c/ctype/toupper
+
+# =============================================================================
+# TYPE CONVERSION
+# =============================================================================
+
+string_to_int:
+  - php/var/intval
+  - c/stdlib/atoi
+  - golang/strconv/Atoi
+
+int_to_string:
+  - golang/strconv/Itoa
+
+string_to_float:
+  - c/stdlib/atof
+
+parse_int:
+  - golang/strconv/ParseInt
+
+format_int:
+  - golang/strconv/FormatInt
+
+parse_bool:
+  - golang/strconv/ParseBool
+
+format_bool:
+  - golang/strconv/FormatBool
+
+# =============================================================================
+# ARRAY/COLLECTION OPERATIONS
+# =============================================================================
+
+array_first:
+  - php/array/reset
+  - ruby/Array/first
+
+array_last:
+  - php/array/end
+  - ruby/Array/last
+
+array_unique:
+  - php/array/array_unique
+  - ruby/Array/uniq
+
+array_flatten:
+  - ruby/Array/flatten
+
+array_compact:
+  - ruby/Array/compact
+
+array_sample:
+  - ruby/Array/sample
+
+# =============================================================================
+# FORMATTING
+# =============================================================================
+
+sprintf:
+  - php/strings/sprintf
+  - c/stdio/sprintf

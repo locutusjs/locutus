@@ -59,6 +59,8 @@ Here are a few pointers that could save us from disappointment, we'll try to kee
 //   returns 1: "bar"
 ```
 
+11. **Rosetta Stone mappings**: If your function has semantic equivalents in other languages (e.g., PHP's `strlen` ↔ C's `strlen` ↔ Ruby's `length`), add it to `website/source/_data/rosetta.yml`. This enables cross-language navigation on the website.
+
 Verification steps (for new or changed functions):
 
 - `yarn test:parity php/<category>/<function>` (or the relevant language)
