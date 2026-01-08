@@ -224,6 +224,22 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - All 923 tests pass
 - Lesson learned: The `async` library's API is footgun-prone; prefer modern Promise-based alternatives
 
+### Iterations 11-20
+
+2026-01-07
+
+- **Dependencies updated**: chai 4→6, rimraf 5→6, cross-env 7→10 (PRs #491-493)
+  - Failed updates: async 2→3 (API changes), indent-string 2→5 (ESM-only)
+- **Node 25 compatibility**: Fixed `q.drain` API issue (PR #494)
+- **Verification expanded**:
+  - PHP improved: 56/91 → 62/91 (68.1%) - chr, nl2br, ord fixes
+  - Python added: 15/17 functions (Docker Python 3.12) - modular handler architecture
+  - Added `verified:` headers to 179 functions (164 PHP + 15 Python)
+- **TypeScript migration**: Moved verify scripts to test/parity, Zod validation
+- **Infrastructure**: Removed async library in favor of p-map, added silent failure safeguards
+- **Critical fix**: Website broken (missing language index files) - fixed with injectweb verification
+- Balance: Verification (5), Infrastructure (3), Dependencies (2), Modernization (2)
+
 ### Iterations 21-30
 
 2026-01-07
