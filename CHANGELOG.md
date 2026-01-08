@@ -23,7 +23,6 @@ Ideas that will be planned and find their way into a release at one point
       `Function/'function'/'Class::function'/[$object, 'function']`, and use that in `is_callable`, `array_walk`,
       `call_user_func_array` etc.
 - [ ] Parse `require`s with ts-morph and add them to the function params and types. Then we can add show internal dependencies on website, with links to them
-working 2026-01-07, Insight search)
 - [ ] Verification: verify examples against native runtimes with Docker (balance efforts across languages)
       - [x] PHP: 164 functions verified against PHP 8.3
       - [x] Go: 20 functions verified against Go 1.23
@@ -49,8 +48,8 @@ working 2026-01-07, Insight search)
 - [ ] Docs/Website:
       - [x] The function pages could have a badge themselves in which language version they were parity checked (similar to what was added in the README.md)
       - [x] website: Render authors server-side (PR #511)
-      - [x] website: Fix the search functionality (verified       
-      - [ ] Hexo → Next.js 16 SSG(?) Or just a Hexo upgrade. Maybe it's fine.
+      - [x] website: Fix the search functionality (verified working 2026-01-07)
+      - [x] Hexo upgrade to 8.1.1 (PR #512) - Next.js migration deferred
       - [x] Fix Search by function name or behavior (verified working 2026-01-07)
       - [ ] "Rosetta Stone" view for cross-language comparison
 

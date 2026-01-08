@@ -403,3 +403,24 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Infrastructure: 2 (25, 26)
   - Modernization: 1 (23)
 - Should summarize iterations 21-30 per LOG.md rules
+
+### Iteration 31
+
+2026-01-08
+
+- **Area: Website (Modernization)**
+- Upgraded Hexo 7.1.1 → 8.1.1 (PR #512):
+  - Upgraded hexo from 7.1.1 to 8.1.1
+  - Upgraded hexo-cli from 4.3.1 to 4.3.2
+  - Upgraded hexo-renderer-marked from 6.3.0 to 7.0.1
+  - Fixed breaking change: `external_link` config from boolean to object format
+  - Removed unused ESLint devDependencies (project uses Biome)
+  - Updated Node engine requirement from >= 10 to >= 22
+  - Updated packageManager to yarn 4.12.0
+- Tested with Playwright MCP:
+  - Home page renders correctly
+  - PHP function list page works
+  - Individual function pages display "✓ Verified: PHP 8.3" badges
+- All 927 tests pass
+- Fixed CHANGELOG.md typos (stray text, incomplete line)
+- Addresses backlog item "Hexo → Next.js or upgrade" (partial - upgrade done)
