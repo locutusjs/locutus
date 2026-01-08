@@ -428,3 +428,17 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Python math module now has 9 functions (up from 7)
   - Total Python functions: 19 (up from 17)
 - Hexo 8 upgrade reduced vulnerabilities from 69 to 29
+
+### Iteration 32
+
+2026-01-08
+
+- **Area: Expansion (Ruby Math functions)**
+- Added Ruby Math.sqrt, Math.sin, Math.cos functions (PR #515):
+  - All 3 functions pass parity verification against Ruby 3.3
+  - Updated examples to avoid JS-specific string coercion patterns
+- Refactored Ruby parity handler to infer category from directory path:
+  - Mirrors Python handler refactoring approach
+  - New Math functions now work automatically without RUBY_METHODS mapping
+- Ruby parity: 19/21 verified (up from 16/18)
+- All 940 tests pass
