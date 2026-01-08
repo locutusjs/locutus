@@ -678,3 +678,4 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Added AWK builtin functions: `tolower`, `toupper`
 - Fixed parity test string normalization for Lua and AWK (native print doesn't quote strings)
 - All parity tests passing for Lua (6 functions) and AWK (5 functions)
+- PR #525 merged, released v2.0.35
