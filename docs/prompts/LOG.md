@@ -452,3 +452,19 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - All 3 functions pass parity verification against Ruby 3.3
 - Ruby parity: 22/24 verified (up from 19/21)
 - All 946 tests pass
+
+### Iteration 34
+
+2026-01-08
+
+- **Area: Expansion (major batch) + Documentation**
+- Added 14 math functions in single substantial PR (PR #517):
+  - Ruby Math (+8): atan, log10, log2, asin, cbrt, sinh, cosh, tanh
+  - Python math (+6): fabs, exp, log, log10, log2, trunc
+- Updated CORE_MAINTAINER.md: integrated batching guidance into main workflow
+  - Removed separate "Batching Related Work" section
+  - Clarified that PRs should target ~10+ functions for expansion
+- Ruby parity: 30/32 verified (94%)
+- Python parity: 23/25 verified (92%)
+- Total verified: 248 functions (up from 234, ~6% increase)
+- All 981 tests pass
