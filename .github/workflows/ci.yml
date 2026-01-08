@@ -39,6 +39,15 @@ jobs:
       - name: Lint
         run: |
           corepack yarn lint
+      - name: TypeScript Check
+        run: |
+          corepack yarn lint:ts
+      - name: Header Format Check
+        run: |
+          corepack yarn lint:headers
+      - name: No Stray JS Check
+        run: |
+          corepack yarn lint:no-stray-js
       - name: Build
         run: |
           corepack yarn build

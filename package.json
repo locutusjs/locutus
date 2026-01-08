@@ -38,7 +38,7 @@
     "fix:biome": "biome check --write .",
     "fix:headers": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON src/_util/formatHeaders.ts fix",
     "lint:headers": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON src/_util/formatHeaders.ts check",
-    "lint:no-stray-js": "bash -c 'found=$(find src test -name \"*.js\" | grep -vE \"^src/(c|golang|php|python|ruby)/|/index\\.js$|^test/browser/\"); if [ -n \"$found\" ]; then echo \"Stray .js files found (should be .ts):\"; echo \"$found\"; exit 1; fi'",
+    "lint:no-stray-js": "bash -c 'found=$(find src test -name \"*.js\" | grep -vE \"^src/(awk|c|clojure|elixir|golang|julia|lua|perl|php|python|r|ruby)/|/index\\.js$|^test/browser/\"); if [ -n \"$found\" ]; then echo \"Stray .js files found (should be .ts):\"; echo \"$found\"; exit 1; fi'",
     "lint:ts": "tsc --noEmit -p tsconfig.json",
     "fix:markdown": "remark {README,CONTRIBUTING}.md --output",
     "fix": "npm-run-all --serial 'fix:**'",
