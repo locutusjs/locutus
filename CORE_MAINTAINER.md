@@ -47,6 +47,7 @@ Note that for any task, it's important to first get ample context. Search past i
     - Validate the work (tests, browser checks, etc.)
     - Run `yarn check`
     - Update documentation if needed
+    - **For new functions**: Check if semantic equivalents exist in other languages and update `website/source/_data/rosetta.yml`
     - **For website changes**: After merge, verify the live site at https://locutus.io using Playwright MCP
 10. Release recently merged PRs that contain new/changed functions (not just build tools, tests, or docs).
 11. Log iteration results in `docs/prompts/LOG.md`.
@@ -67,3 +68,4 @@ Note that for any task, it's important to first get ample context. Search past i
 - Biome unsafe fixes can break code: always test after auto-fix.
 - `eval()` is sometimes necessary: suppress with explanation, don't fight it.
 - **Batch related work**: Accumulate related changes before creating a PR. For expansion, aim for 10+ functions per PR to avoid noise.
+- **Rosetta Stone mappings**: When adding functions, check `website/source/_data/rosetta.yml` for semantic equivalents (e.g., PHP `strtolower` ↔ Ruby `downcase` ↔ Go `ToLower`). This enables cross-language discovery on the website.

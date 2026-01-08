@@ -16,6 +16,66 @@
           <% }) %>
         </div>
       <% } %>
+
+      <%
+      // Rosetta Stone: Find equivalent functions in other languages
+      // 1. Exact name matches (same function name across languages)
+      // 2. Semantic equivalents from website/source/_data/rosetta.yml
+      var rosettaLinks = [];
+      var currentPath = page.language + '/' + page.category + '/' + page.function;
+      var seenPaths = {};
+      seenPaths[currentPath] = true;
+
+      // Helper to add a link if not already seen
+      function addLink(path) {
+        if (seenPaths[path]) return;
+        seenPaths[path] = true;
+        var parts = path.split('/');
+        if (parts.length === 3) {
+          site.pages.find({ type: 'function', language: parts[0], category: parts[1], function: parts[2] }).each(function(fn) {
+            rosettaLinks.push({ page: fn, path: path });
+          });
+        }
+      }
+
+      // 1. Find exact name matches
+      site.pages.find({ type: 'function', function: page.function }).each(function(fn) {
+        if (fn.language !== page.language) {
+          addLink(fn.language + '/' + fn.category + '/' + fn.function);
+        }
+      });
+
+      // 2. Find semantic equivalents from rosetta.yml mappings
+      if (site.data && site.data.rosetta) {
+        Object.keys(site.data.rosetta).forEach(function(group) {
+          var paths = site.data.rosetta[group];
+          if (paths && paths.indexOf(currentPath) !== -1) {
+            paths.forEach(function(path) {
+              addLink(path);
+            });
+          }
+        });
+      }
+
+      // Sort by language order for consistent display
+      rosettaLinks.sort(function(a, b) {
+        var orderA = 99, orderB = 99;
+        site.pages.find({ type: 'language', language: a.page.language }).each(function(l) { orderA = l.order || 99; });
+        site.pages.find({ type: 'language', language: b.page.language }).each(function(l) { orderB = l.order || 99; });
+        if (orderA !== orderB) return orderA - orderB;
+        return a.page.function.localeCompare(b.page.function);
+      });
+      %>
+      <% if (rosettaLinks.length > 0) { %>
+        <div style="margin-top: 12px; padding: 10px 14px; background: #f8f9fa; border-left: 4px solid #007acc; border-radius: 4px;">
+          <span style="font-size: 13px; color: #555;">
+            <strong>Rosetta Stone:</strong>
+            <% rosettaLinks.forEach(function(link, idx) { %>
+              <a href="/<%= link.path %>/" style="margin-left: 8px;" title="<%= link.page.title %>"><%= link.page.language %>/<%= link.page.function %></a><% if (idx < rosettaLinks.length - 1) { %> ·<% } %>
+            <% }); %>
+          </span>
+        </div>
+      <% } %>
     </header>
 
     <div class="article-entry">
