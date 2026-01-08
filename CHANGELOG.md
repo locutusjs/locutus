@@ -15,9 +15,7 @@ Ideas that will be planned and find their way into a release at one point
 - [x] ~~Address the 25 remaining test failures~~ → reduced to 1 (`set_time_limit` is intentionally untestable)
 - [x] Compare example test cases for PHP against `php -r` → implemented via parity verification system (`yarn test:parity`)
 - [x] ~~Have _one_ way of checking pure JS arrays~~ → standardized to `Array.isArray()` in 43 files (PR #518). Object checking patterns remain varied (acceptable - different use cases).
-- [ ] Investigate if we can have one helper function to resolve
-      `Function/'function'/'Class::function'/[$object, 'function']`, and use that in `is_callable`, `array_walk`,
-      `call_user_func_array` etc.
+- [x] ~~Investigate callable helper~~ → Only 2 files use complex resolution (`is_callable.js`, `call_user_func_array.js`). Low ROI for abstraction. `array_walk` only accepts functions directly.
 - [ ] Parse `require`s with ts-morph and add them to the function params and types. Then we can add show internal dependencies on website, with links to them
 - [x] Verification: verify examples against native runtimes with Docker (248 functions verified across 5 languages)
       - [x] PHP: 164 functions verified against PHP 8.3
