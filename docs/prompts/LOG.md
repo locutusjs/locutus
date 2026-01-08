@@ -712,3 +712,10 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Fixed Perl reverse() to use scalar context
 - Moved rosetta.yml from src/_data/ to src/ for cleaner structure
 - Updated website with new language pages via injectweb
+- Fixed parity test handlers for new languages:
+  - Julia: single→double quotes for strings, string output normalization
+  - Elixir: single→double quotes, fixed String module output (no trunc for strings)
+  - Clojure: clojure.string namespace instead of Math, underscore→hyphen conversion, blank?
+  - R: single→double quotes, string quoting + float precision normalization
+- PR #527: CI passed, awaiting human review per branch policy
+
