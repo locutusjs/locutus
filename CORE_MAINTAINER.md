@@ -48,6 +48,7 @@ Note that for any task, it's important to first get ample context. Search past i
     - Update documentation/website as needed (`find . |grep -E '\.md$' |grep -Ev '(node_modules|icarus|_posts|\.claude)'`)
     - Run one last `yarn check`.
     - If there was any issue, go back to step 7.1.
+    - **For website changes**: After the PR is merged, monitor the GitHub Pages Action that deploys to gh-pages. Once complete, verify the live site at https://locutus.io using a browser (Playwright MCP) to confirm the expected changes are visible and the site is functioning correctly.
 10. Release any recently merged PRs that are still unreleased, unless they only contain build tools, tests, docs fixes. We only release if there are new functions or changed functions, or changes to how people should use them.
 11. Log an iteration in `docs/prompts/LOG.md`.
 12. → Back to step 1
