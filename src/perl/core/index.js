@@ -1,1 +1,4 @@
+module.exports.lc = require('./lc')
 module.exports.length = require('./length')
+module.exports.substr = require('./substr')
+module.exports.uc = require('./uc')

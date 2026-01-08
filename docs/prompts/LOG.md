@@ -679,3 +679,14 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Fixed parity test string normalization for Lua and AWK (native print doesn't quote strings)
 - All parity tests passing for Lua (6 functions) and AWK (5 functions)
 - PR #525 merged, released v2.0.35
+
+### Iteration 45
+
+2026-01-08
+
+- **Area: Expansion**
+- Balance: Expansion (6), Modernization (4, blocked - ESM migration deferred, globby/indent-string ESM-only)
+- Plan: Add more Perl functions - Perl ranked #1 candidate, currently only has POSIX::ceil/floor and core::length
+- Added Perl core functions: `uc` (uppercase), `lc` (lowercase), `substr` (substring with negative offset support)
+- Fixed Perl parity test string normalization (native print doesn't quote strings)
+- All parity tests passing for Perl (6 functions)
