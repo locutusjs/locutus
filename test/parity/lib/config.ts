@@ -26,10 +26,52 @@ export interface ParityLanguageConfig {
  */
 export const PARITY_LANGUAGES: ParityLanguageConfig[] = [
   {
+    id: 'awk',
+    displayName: 'GNU AWK',
+    version: '5.3',
+    dockerImage: 'alpine:3.21',
+  },
+  {
     id: 'c',
     displayName: 'C',
     version: '23',
     dockerImage: 'gcc:14',
+  },
+  {
+    id: 'clojure',
+    displayName: 'Clojure',
+    version: '1.12',
+    dockerImage: 'clojure:temurin-21-tools-deps',
+  },
+  {
+    id: 'elixir',
+    displayName: 'Elixir',
+    version: '1.18',
+    dockerImage: 'elixir:1.18',
+  },
+  {
+    id: 'golang',
+    displayName: 'Go',
+    version: '1.23',
+    dockerImage: 'golang:1.23',
+  },
+  {
+    id: 'julia',
+    displayName: 'Julia',
+    version: '1.11',
+    dockerImage: 'julia:1.11',
+  },
+  {
+    id: 'lua',
+    displayName: 'Lua',
+    version: '5.4',
+    dockerImage: 'nickblah/lua:5.4-alpine',
+  },
+  {
+    id: 'perl',
+    displayName: 'Perl',
+    version: '5.40',
+    dockerImage: 'perl:5.40',
   },
   {
     id: 'php',
@@ -44,10 +86,10 @@ export const PARITY_LANGUAGES: ParityLanguageConfig[] = [
     dockerImage: 'python:3.12',
   },
   {
-    id: 'golang',
-    displayName: 'Go',
-    version: '1.23',
-    dockerImage: 'golang:1.23',
+    id: 'r',
+    displayName: 'R',
+    version: '4.4',
+    dockerImage: 'r-base:4.4.2',
   },
   {
     id: 'ruby',

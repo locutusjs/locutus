@@ -160,6 +160,64 @@ class Util {
           '/packages/index/',
         ],
       },
+      perl: {
+        order: 6,
+        function_title_template: "[language]'s [category]::[function] in JavaScript",
+        human: 'Perl',
+        packageType: 'module',
+        inspiration_urls: ['<a href="https://perldoc.perl.org/">the Perl documentation</a>'],
+        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://perldoc.perl.org/[category]">[language]'s [category]::[function]</a> looks like.`,
+      },
+      lua: {
+        order: 7,
+        function_title_template: "[language]'s [category].[function] in JavaScript",
+        human: 'Lua',
+        packageType: 'library',
+        inspiration_urls: ['<a href="https://www.lua.org/manual/5.4/">the Lua 5.4 manual</a>'],
+        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://www.lua.org/manual/5.4/manual.html#pdf-[category].[function]">[language]'s [category].[function]</a> looks like.`,
+      },
+      r: {
+        order: 8,
+        function_title_template: "[language]'s [function] in JavaScript",
+        human: 'R',
+        packageType: 'function',
+        inspiration_urls: [
+          '<a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html">the R base documentation</a>',
+        ],
+        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://stat.ethz.ch/R-manual/R-devel/library/[category]/html/[function].html">[language]'s [function]</a> looks like.`,
+      },
+      julia: {
+        order: 9,
+        function_title_template: "[language]'s [function] in JavaScript",
+        human: 'Julia',
+        packageType: 'function',
+        inspiration_urls: ['<a href="https://docs.julialang.org/en/v1/">the Julia documentation</a>'],
+        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://docs.julialang.org/en/v1/base/math/#Base.[function]">[language]'s [function]</a> looks like.`,
+      },
+      elixir: {
+        order: 10,
+        function_title_template: "[language]'s [category].[function] in JavaScript",
+        human: 'Elixir',
+        packageType: 'module',
+        inspiration_urls: ['<a href="https://hexdocs.pm/elixir/">the Elixir documentation</a>'],
+        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://hexdocs.pm/elixir/[category].html#[function]/1">[language]'s [category].[function]</a> looks like.`,
+      },
+      clojure: {
+        order: 11,
+        function_title_template: "[language]'s [category]/[function] in JavaScript",
+        human: 'Clojure',
+        packageType: 'function',
+        inspiration_urls: ['<a href="https://clojuredocs.org/">ClojureDocs</a>'],
+        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://clojuredocs.org/clojure.core/[function]">[language]'s [category]/[function]</a> looks like.`,
+      },
+      awk: {
+        order: 12,
+        function_title_template: "[language]'s [function] in JavaScript",
+        human: 'AWK',
+        packageType: 'function',
+        inspiration_urls: ['<a href="https://www.gnu.org/software/gawk/manual/gawk.html">the GNU AWK manual</a>'],
+        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://www.gnu.org/software/gawk/manual/gawk.html#String-Functions">[language]'s [function]</a> looks like.`,
+      },
     }
 
     this.allowSkip = argv.indexOf('--noskip') === -1
@@ -172,6 +230,15 @@ class Util {
     try {
       this._injectwebBuffer = {}
       await this._runFunctionOnAll(this._injectwebOne.bind(this))
+
+      // Copy rosetta.yml from src/_data/ to website/source/_data/
+      const rosettaSrc = path.join(this.__src, '_data', 'rosetta.yml')
+      const rosettaDest = path.join(this.__root, 'website', 'source', '_data', 'rosetta.yml')
+      if (fs.existsSync(rosettaSrc)) {
+        await fs.promises.mkdir(path.dirname(rosettaDest), { recursive: true })
+        await fs.promises.copyFile(rosettaSrc, rosettaDest)
+        debug('copied rosetta.yml to website')
+      }
 
       // Write all buffered index files
       let filesWritten = 0

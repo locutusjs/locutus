@@ -14,6 +14,8 @@ string_length:
   - php/strings/strlen
   - c/string/strlen
   - ruby/String/length
+  - perl/core/length
+  - awk/builtin/length
 
 string_lowercase:
   - php/strings/strtolower
@@ -99,6 +101,10 @@ string_count:
   - php/strings/substr_count
   - golang/strings/Count
 
+string_substring:
+  - php/strings/substr
+  - awk/builtin/substr
+
 # =============================================================================
 # MATH OPERATIONS
 # =============================================================================
@@ -166,14 +172,31 @@ math_tanh:
 math_ceil:
   - php/math/ceil
   - python/math/ceil
+  - perl/POSIX/ceil
+  - lua/math/ceil
+  - r/base/ceiling
+  - julia/Base/ceil
+  - elixir/Float/ceil
+  - clojure/Math/ceil
 
 math_floor:
   - php/math/floor
   - python/math/floor
+  - perl/POSIX/floor
+  - lua/math/floor
+  - r/base/floor
+  - julia/Base/floor
+  - elixir/Float/floor
+  - clojure/Math/floor
 
 math_abs:
   - php/math/abs
   - c/math/abs
+  - lua/math/abs
+  - r/base/abs
+  - julia/Base/abs
+  - elixir/Kernel/abs
+  - clojure/Math/abs
 
 math_fabs:
   - python/math/fabs
@@ -187,6 +210,7 @@ math_cbrt:
 
 math_trunc:
   - python/math/trunc
+  - awk/builtin/int
 
 math_factorial:
   - python/math/factorial

@@ -122,5 +122,17 @@
       "bracketSpacing": true
     },
     "globals": ["navigator", "document", "window", "describe", "it", "test", "expect", "global", "escape"]
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.ts"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noCommonJs": "error"
+          }
+        }
+      }
+    }
+  ]
 }

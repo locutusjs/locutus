@@ -59,7 +59,9 @@ Here are a few pointers that could save us from disappointment, we'll try to kee
 //   returns 1: "bar"
 ```
 
-11. **Rosetta Stone mappings**: If your function has semantic equivalents in other languages (e.g., PHP's `strlen` ↔ C's `strlen` ↔ Ruby's `length`), add it to `website/source/_data/rosetta.yml`. This enables cross-language navigation on the website.
+- use `note` comments sparingly—only for **non-obvious behavior**: indexing quirks (e.g., "AWK uses 1-based indexing"), platform differences, or edge cases. Skip notes that restate the function name ("returns the absolute value of x") or the obvious ("mimics Lua's math.ceil").
+
+11. **Rosetta Stone mappings**: If your function has semantic equivalents in other languages (e.g., PHP's `strlen` ↔ C's `strlen` ↔ Ruby's `length`), add it to `src/_data/rosetta.yml`. This enables cross-language navigation on the website.
 
 Verification steps (for new or changed functions):
 
@@ -172,6 +174,7 @@ Commit guidelines:
 - Keep PRs small and focused
 - Run `yarn check` before committing
 - Merge early, iterate often
+- PRs are squash-merged for a clean main history—no need for force-push rebasing
 
 Now it's time to apply linting & formatting fixes, and report on unfixable issues:
 
