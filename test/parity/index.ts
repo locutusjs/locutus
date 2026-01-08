@@ -475,7 +475,7 @@ async function main() {
     // Pull all images in parallel
     await pMap(
       Array.from(requiredImages),
-      async (image) => {
+      (image) => {
         if (ensureDockerImage(image)) {
           dockerDigests[image] = getDockerDigest(image)
         }

@@ -64,6 +64,9 @@
         "useIsNan": "error",
         "useValidTypeof": "error"
       },
+      "performance": {
+        "noAccumulatingSpread": "error"
+      },
       "security": { "noGlobalEval": "error" },
       "style": {
         "noYodaExpression": "error",
@@ -104,8 +107,12 @@
         "noUselessRegexBackrefs": "error",
         "noVar": "error",
         "noWith": "error",
+        "useAwait": "error",
         "useDefaultSwitchClauseLast": "error",
         "useIterableCallbackReturn": "error"
+      },
+      "nursery": {
+        "noFloatingPromises": "error"
       }
     }
   },
