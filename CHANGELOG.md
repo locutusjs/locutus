@@ -62,13 +62,35 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.33...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.34...main).
+
+## v2.0.34
+
+Released: 2026-01-08. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.33...v2.0.34).
+
+### New Languages (7)
+- Perl 5.40: `POSIX::ceil`, `POSIX::floor`, `core::length`
+- Lua 5.4: `math.ceil`, `math.floor`, `math.abs`
+- R 4.4: `ceiling`, `floor`, `abs`
+- Julia 1.11: `Base.ceil`, `Base.floor`, `Base.abs`
+- Elixir 1.18: `Float.ceil`, `Float.floor`, `Kernel.abs`
+- Clojure 1.12: `Math/ceil`, `Math/floor`, `Math/abs`
+- GNU AWK 5.3: `length`, `int`, `substr`
+
+### New Functions
+- Go: 11 new strings functions (`Contains`, `ContainsAny`, `Count`, `EqualFold`, `HasPrefix`, `HasSuffix`, `Index`, `LastIndex`, `Repeat`, `ReplaceAll`, `Split`)
+
+### Website
+- Rosetta Stone: Cross-language function links on each function page
+- Hover tooltips on verified badges showing exact version
+- Internal dependencies shown with clickable links
 
 ### Infrastructure
-- [x] Converted `src/_util/` to TypeScript (headerSchema.ts, headerFormatter.ts, formatHeaders.ts, util.ts, cli.ts)
-- [x] Removed Babel 6 dependencies, now using Node's native type stripping (`--experimental-strip-types`)
-- [x] Updated Node engine requirement from >= 10 to >= 22
-- [x] Updated test files to use ESM imports
+- Converted `src/_util/` to TypeScript
+- Removed Babel 6 dependencies, using Node's native type stripping
+- Updated Node engine requirement from >= 10 to >= 22
+- Added stricter Biome rules: `noAccumulatingSpread`, `useAwait`, `noFloatingPromises`
+- CI now runs full lint checks (`lint:ts`, `lint:headers`, `lint:no-stray-js`)
 
 ## v2.0.33
 
