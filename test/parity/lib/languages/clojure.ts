@@ -48,18 +48,31 @@ function stripTrailingComment(code: string): string {
 
 /**
  * Convert JS function call to Clojure S-expression
- * e.g., ceil(4.2) -> (Math/ceil 4.2)
+ * e.g., ceil(4.2) -> (Math/ceil 4.2) for Math functions
+ * e.g., lower_case("HELLO") -> (clojure.string/lower-case "HELLO") for string functions
  */
-function convertFunctionCall(code: string, funcName: string): string {
+function convertFunctionCall(code: string, funcName: string, category?: string): string {
   // Simple regex to match funcName(args)
   const regex = new RegExp(`${funcName}\\s*\\(([^)]+)\\)`, 'g')
+
+  // Determine the namespace and convert function name
+  if (category === 'string') {
+    // String functions use clojure.string namespace and hyphens instead of underscores
+    let cljFuncName = funcName.replace(/_/g, '-')
+    // Clojure predicate functions use ? suffix (e.g., blank -> blank?)
+    if (funcName === 'blank') {
+      cljFuncName = 'blank?'
+    }
+    return code.replace(regex, `(clojure.string/${cljFuncName} $1)`)
+  }
+  // Default to Math namespace
   return code.replace(regex, `(Math/${funcName} $1)`)
 }
 
 /**
  * Convert a single JS line to Clojure
  */
-function convertJsLineToClojure(line: string, funcName: string): string {
+function convertJsLineToClojure(line: string, funcName: string, category?: string): string {
   let clj = line.trim()
   if (!clj) {
     return ''
@@ -67,6 +80,9 @@ function convertJsLineToClojure(line: string, funcName: string): string {
 
   clj = stripTrailingComment(clj)
   clj = clj.replace(/;+$/, '')
+
+  // Convert single-quoted strings to double-quoted (Clojure uses double quotes for strings)
+  clj = clj.replace(/'([^'\\]*(\\.[^'\\]*)*)'/g, '"$1"')
 
   // JS → Clojure conversions
   clj = clj.replace(/\btrue\b/g, 'true')
@@ -79,7 +95,7 @@ function convertJsLineToClojure(line: string, funcName: string): string {
   clj = clj.replace(/\bNaN\b/g, 'Double/NaN')
 
   // Convert function calls
-  clj = convertFunctionCall(clj, funcName)
+  clj = convertFunctionCall(clj, funcName, category)
 
   return clj
 }
@@ -87,8 +103,8 @@ function convertJsLineToClojure(line: string, funcName: string): string {
 /**
  * Convert JS example code to Clojure
  */
-function jsToClojure(jsCode: string[], funcName: string, _category?: string): string {
-  const lines = jsCode.map((line) => convertJsLineToClojure(line, funcName)).filter(Boolean)
+function jsToClojure(jsCode: string[], funcName: string, category?: string): string {
+  const lines = jsCode.map((line) => convertJsLineToClojure(line, funcName, category)).filter(Boolean)
   if (!lines.length) {
     return ''
   }
@@ -136,6 +152,12 @@ function normalizeClojureOutput(output: string, expected?: string): string {
       result = result.replace(/\.0$/, '')
     }
   }
+
+  // String quoting: Clojure's println doesn't add quotes, but expected values have them
+  if (expected && /^".*"$/.test(expected) && !/^".*"$/.test(result)) {
+    result = `"${result}"`
+  }
+
   return result
 }
 

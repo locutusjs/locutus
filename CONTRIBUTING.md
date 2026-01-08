@@ -61,7 +61,7 @@ Here are a few pointers that could save us from disappointment, we'll try to kee
 
 - use `note` comments sparingly—only for **non-obvious behavior**: indexing quirks (e.g., "AWK uses 1-based indexing"), platform differences, or edge cases. Skip notes that restate the function name ("returns the absolute value of x") or the obvious ("mimics Lua's math.ceil").
 
-11. **Rosetta Stone mappings**: If your function has semantic equivalents in other languages (e.g., PHP's `strlen` ↔ C's `strlen` ↔ Ruby's `length`), add it to `src/_data/rosetta.yml`. This enables cross-language navigation on the website.
+11. **Rosetta Stone mappings**: If your function has semantic equivalents in other languages (e.g., PHP's `strlen` ↔ C's `strlen` ↔ Ruby's `length`), add it to `src/rosetta.yml`. This enables cross-language navigation on the website.
 
 Verification steps (for new or changed functions):
 

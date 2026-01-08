@@ -231,8 +231,8 @@ class Util {
       this._injectwebBuffer = {}
       await this._runFunctionOnAll(this._injectwebOne.bind(this))
 
-      // Copy rosetta.yml from src/_data/ to website/source/_data/
-      const rosettaSrc = path.join(this.__src, '_data', 'rosetta.yml')
+      // Copy rosetta.yml from src/ to website/source/_data/
+      const rosettaSrc = path.join(this.__src, 'rosetta.yml')
       const rosettaDest = path.join(this.__root, 'website', 'source', '_data', 'rosetta.yml')
       if (fs.existsSync(rosettaSrc)) {
         await fs.promises.mkdir(path.dirname(rosettaDest), { recursive: true })

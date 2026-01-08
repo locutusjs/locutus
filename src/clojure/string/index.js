@@ -1,0 +1,5 @@
+module.exports.blank = require('./blank')
+module.exports.lower_case = require('./lower_case')
+module.exports.reverse = require('./reverse')
+module.exports.trim = require('./trim')
+module.exports.upper_case = require('./upper_case')

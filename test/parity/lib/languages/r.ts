@@ -62,6 +62,9 @@ function convertJsLineToR(line: string, funcName: string): string {
   r = r.replace(/^\s*(var|let|const)\s+/, '')
   r = r.replace(/\s*=\s*/, ' <- ')
 
+  // Convert single-quoted strings to double-quoted (R uses double quotes for strings)
+  r = r.replace(/'([^'\\]*(\\.[^'\\]*)*)'/g, '"$1"')
+
   // JS → R conversions
   r = r.replace(/\btrue\b/g, 'TRUE')
   r = r.replace(/\bfalse\b/g, 'FALSE')
@@ -106,7 +109,7 @@ function jsToR(jsCode: string[], funcName: string, _category?: string): string {
 /**
  * Normalize R output for comparison
  */
-function normalizeROutput(output: string, _expected?: string): string {
+function normalizeROutput(output: string, expected?: string): string {
   let result = output.trim()
   // R sometimes outputs "[1] value" format - strip the prefix
   result = result.replace(/^\[\d+\]\s*/, '')
@@ -114,6 +117,21 @@ function normalizeROutput(output: string, _expected?: string): string {
   if (/^-?\d+\.?0*$/.test(result)) {
     result = result.replace(/\.0*$/, '')
   }
+
+  // Float precision: R may print fewer decimal places
+  if (expected && /^-?\d+\.\d+$/.test(expected) && /^-?\d+\.\d+$/.test(result)) {
+    const expectedNum = parseFloat(expected)
+    const resultNum = parseFloat(result)
+    if (Math.abs(expectedNum - resultNum) < 1e-6) {
+      result = expected
+    }
+  }
+
+  // String quoting: R's cat() doesn't add quotes, but expected values have them
+  if (expected && /^".*"$/.test(expected) && !/^".*"$/.test(result)) {
+    result = `"${result}"`
+  }
+
   return result
 }
 

@@ -1,3 +1,5 @@
 module.exports.abs = require('./abs')
 module.exports.ceil = require('./ceil')
 module.exports.floor = require('./floor')
+module.exports.lowercase = require('./lowercase')
+module.exports.uppercase = require('./uppercase')

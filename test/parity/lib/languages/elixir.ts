@@ -61,6 +61,9 @@ function convertJsLineToElixir(line: string, funcName: string, module: string): 
   // Remove var/let/const - Elixir just uses name = value
   ex = ex.replace(/^\s*(var|let|const)\s+/, '')
 
+  // Convert single-quoted strings to double-quoted (Elixir uses single quotes for charlists)
+  ex = ex.replace(/'([^'\\]*(\\.[^'\\]*)*)'/g, '"$1"')
+
   // JS → Elixir conversions
   ex = ex.replace(/\btrue\b/g, 'true')
   ex = ex.replace(/\bfalse\b/g, 'false')
@@ -99,10 +102,11 @@ function jsToElixir(jsCode: string[], funcName: string, category?: string): stri
   const originalLastLine = jsCode[jsCode.length - 1]
   const assignedVar = extractAssignedVar(originalLastLine)
 
-  // For Kernel functions, don't use trunc() as they may return floats
   // For Float functions like ceil/floor, use trunc() to get integer output
-  const outputFn = module === 'Kernel' ? 'IO.puts' : 'IO.puts(trunc'
-  const outputEnd = module === 'Kernel' ? ')' : '))'
+  // For Kernel and String functions, don't use trunc()
+  const usesTrunc = module === 'Float'
+  const outputFn = usesTrunc ? 'IO.puts(trunc' : 'IO.puts'
+  const outputEnd = usesTrunc ? '))' : ')'
 
   let result: string
   if (assignedVar) {
@@ -120,11 +124,15 @@ function jsToElixir(jsCode: string[], funcName: string, category?: string): stri
 /**
  * Normalize Elixir output for comparison
  */
-function normalizeElixirOutput(output: string, _expected?: string): string {
+function normalizeElixirOutput(output: string, expected?: string): string {
   let result = output.trim()
   // Strip trailing .0 from floats for integer comparison
   if (/^-?\d+\.0$/.test(result)) {
     result = result.replace(/\.0$/, '')
+  }
+  // String quoting: Elixir's IO.puts doesn't add quotes, but expected values have them
+  if (expected && /^".*"$/.test(expected) && !/^".*"$/.test(result)) {
+    result = `"${result}"`
   }
   return result
 }

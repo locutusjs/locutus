@@ -1,3 +1,8 @@
 module.exports.abs = require('./abs')
 module.exports.ceil = require('./ceil')
+module.exports.cos = require('./cos')
 module.exports.floor = require('./floor')
+module.exports.max = require('./max')
+module.exports.min = require('./min')
+module.exports.sin = require('./sin')
+module.exports.sqrt = require('./sqrt')

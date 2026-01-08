@@ -103,7 +103,17 @@ function jsToAwk(jsCode: string[], funcName: string, _category?: string): string
  * Normalize AWK output for comparison
  */
 function normalizeAwkOutput(output: string, expected?: string): string {
-  const result = output.trim()
+  let result = output.trim()
+
+  // Normalize float precision differences (AWK prints fewer digits)
+  // If both are floats, compare with tolerance
+  if (expected && /^-?\d+\.\d+$/.test(expected) && /^-?\d+\.\d+$/.test(result)) {
+    const expectedNum = parseFloat(expected)
+    const resultNum = parseFloat(result)
+    if (Math.abs(expectedNum - resultNum) < 1e-5) {
+      result = expected // Use expected if values match within precision
+    }
+  }
 
   // If expected is a quoted string, wrap the native output in quotes
   // AWK print outputs strings without quotes, but JS JSON.stringify adds them

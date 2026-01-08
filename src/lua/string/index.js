@@ -1,3 +1,6 @@
+module.exports.len = require('./len')
 module.exports.lower = require('./lower')
+module.exports.rep = require('./rep')
+module.exports.reverse = require('./reverse')
 module.exports.sub = require('./sub')
 module.exports.upper = require('./upper')
