@@ -20,7 +20,7 @@ module.exports = function array_slice(arr, offst, lgth, preserveKeys) {
 
   let key = ''
 
-  if (Object.prototype.toString.call(arr) !== '[object Array]' || (preserveKeys && offst !== 0)) {
+  if (!Array.isArray(arr) || (preserveKeys && offst !== 0)) {
     // Assoc. array as input or if required as output
     let lgt = 0
     const newAssoc = {}

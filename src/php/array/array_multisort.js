@@ -91,7 +91,7 @@ module.exports = function array_multisort(arr) {
   // Store first argument into sortArrs and sortKeys if an Object.
   // First Argument should be either a Javascript Array or an Object,
   // otherwise function would return FALSE like in PHP
-  if (Object.prototype.toString.call(arr) === '[object Array]') {
+  if (Array.isArray(arr)) {
     sortArrs[0] = arr
   } else if (arr && typeof arr === 'object') {
     for (i in arr) {
@@ -115,7 +115,7 @@ module.exports = function array_multisort(arr) {
   // of arrays and adding them to the above variables.
   const argl = arguments.length
   for (j = 1; j < argl; j++) {
-    if (Object.prototype.toString.call(arguments[j]) === '[object Array]') {
+    if (Array.isArray(arguments[j])) {
       sortArrs[j] = arguments[j]
       sortFlag[j] = 0
       if (arguments[j].length !== arrMainLength) {
@@ -163,7 +163,7 @@ module.exports = function array_multisort(arr) {
       // If there are no sortComponents, then no more sorting is neeeded.
       // Copy the array back to the argument.
       if (sortComponents.length === 0) {
-        if (Object.prototype.toString.call(arguments[i]) === '[object Array]') {
+        if (Array.isArray(arguments[i])) {
           args[i] = sortArrs[i]
         } else {
           for (k in arguments[i]) {
@@ -274,7 +274,7 @@ module.exports = function array_multisort(arr) {
       if (sortComponents.length & 1) {
         sortComponents.push(j)
       }
-      if (Object.prototype.toString.call(arguments[i]) === '[object Array]') {
+      if (Array.isArray(arguments[i])) {
         args[i] = sortArrs[i]
       } else {
         for (j in arguments[i]) {

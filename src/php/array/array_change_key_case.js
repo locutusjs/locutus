@@ -20,7 +20,7 @@ module.exports = function array_change_key_case(array, cs) {
   let key
   const tmpArr = {}
 
-  if (Object.prototype.toString.call(array) === '[object Array]') {
+  if (Array.isArray(array)) {
     return array
   }
 

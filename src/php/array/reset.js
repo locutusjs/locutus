@@ -30,7 +30,7 @@ module.exports = function reset(arr) {
     pointers.push(arr, 0)
   }
   const arrpos = pointers.indexOf(arr)
-  if (Object.prototype.toString.call(arr) !== '[object Array]') {
+  if (!Array.isArray(arr)) {
     for (const k in arr) {
       if (pointers.indexOf(arr) === -1) {
         pointers.push(arr, 0)

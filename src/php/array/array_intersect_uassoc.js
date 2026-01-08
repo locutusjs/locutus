@@ -18,16 +18,11 @@ module.exports = function array_intersect_uassoc(arr1) {
 
   const $global = typeof window !== 'undefined' ? window : global
 
-  cb =
-    typeof cb === 'string'
-      ? $global[cb]
-      : Object.prototype.toString.call(cb) === '[object Array]'
-        ? $global[cb[0]][cb[1]]
-        : cb
+  cb = typeof cb === 'string' ? $global[cb] : Array.isArray(cb) ? $global[cb[0]][cb[1]] : cb
 
   // cb0 = (typeof cb0 === 'string')
   //   ? $global[cb0]
-  //   : (Object.prototype.toString.call(cb0) === '[object Array]')
+  //   : (Array.isArray(cb0))
   //     ? $global[cb0[0]][cb0[1]]
   //     : cb0
 

@@ -17,7 +17,7 @@ module.exports = function array_pad(input, padSize, padValue) {
   let diff = 0
   let i = 0
 
-  if (Object.prototype.toString.call(input) === '[object Array]' && !isNaN(padSize)) {
+  if (Array.isArray(input) && !isNaN(padSize)) {
     newLength = padSize < 0 ? padSize * -1 : padSize
     diff = newLength - input.length
 

@@ -26,7 +26,7 @@ module.exports = function uasort(inputArr, sorter) {
 
   if (typeof sorter === 'string') {
     sorter = this[sorter]
-  } else if (Object.prototype.toString.call(sorter) === '[object Array]') {
+  } else if (Array.isArray(sorter)) {
     sorter = this[sorter[0]][sorter[1]]
   }
 

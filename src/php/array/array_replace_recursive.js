@@ -17,7 +17,7 @@ module.exports = function array_replace_recursive(arr) {
   // Although docs state that the arguments are passed in by reference,
   // it seems they are not altered, but rather the copy that is returned
   // So we make a copy here, instead of acting on arr itself
-  if (Object.prototype.toString.call(arr) === '[object Array]') {
+  if (Array.isArray(arr)) {
     retObj = []
     for (p in arr) {
       retObj.push(arr[p])

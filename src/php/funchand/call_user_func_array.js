@@ -27,7 +27,7 @@ module.exports = function call_user_func_array(cb, parameters) {
     } else if (cb.match(validJSFunctionNamePattern)) {
       func = new Function(null, 'return ' + cb)()
     }
-  } else if (Object.prototype.toString.call(cb) === '[object Array]') {
+  } else if (Array.isArray(cb)) {
     if (typeof cb[0] === 'string') {
       if (cb[0].match(validJSFunctionNamePattern)) {
         // biome-ignore lint/security/noGlobalEval: needed for PHP port

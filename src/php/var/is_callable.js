@@ -59,7 +59,7 @@ module.exports = function is_callable(mixedVar, syntaxOnly, callableName) {
   } else if (typeof mixedVar === 'function') {
     return true
   } else if (
-    Object.prototype.toString.call(mixedVar) === '[object Array]' &&
+    Array.isArray(mixedVar) &&
     mixedVar.length === 2 &&
     typeof mixedVar[0] === 'object' &&
     typeof mixedVar[1] === 'string'

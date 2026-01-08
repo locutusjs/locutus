@@ -23,7 +23,7 @@ module.exports = function array_filter(arr, func) {
     }
 
   // @todo: Issue #73
-  if (Object.prototype.toString.call(arr) === '[object Array]') {
+  if (Array.isArray(arr)) {
     retObj = []
   }
 

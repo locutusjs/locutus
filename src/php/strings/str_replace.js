@@ -41,8 +41,8 @@ module.exports = function str_replace(search, replace, subject, countObj) {
   const f = [].concat(search)
   let r = [].concat(replace)
   let s = subject
-  let ra = Object.prototype.toString.call(r) === '[object Array]'
-  const sa = Object.prototype.toString.call(s) === '[object Array]'
+  let ra = Array.isArray(r)
+  const sa = Array.isArray(s)
   s = [].concat(s)
 
   const $global = typeof window !== 'undefined' ? window : global
@@ -58,7 +58,7 @@ module.exports = function str_replace(search, replace, subject, countObj) {
     }
     temp = ''
     r = [].concat(replace)
-    ra = Object.prototype.toString.call(r) === '[object Array]'
+    ra = Array.isArray(r)
   }
 
   if (typeof countObj !== 'undefined') {

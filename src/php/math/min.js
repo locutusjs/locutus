@@ -24,7 +24,7 @@ module.exports = function min() {
   const argv = arguments
   const argc = argv.length
   const _obj2Array = function (obj) {
-    if (Object.prototype.toString.call(obj) === '[object Array]') {
+    if (Array.isArray(obj)) {
       return obj
     }
     const ar = []

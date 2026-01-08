@@ -20,7 +20,7 @@ module.exports = function implode(glue, pieces) {
   }
 
   if (typeof pieces === 'object') {
-    if (Object.prototype.toString.call(pieces) === '[object Array]') {
+    if (Array.isArray(pieces)) {
       return pieces.join(glue)
     }
     for (i in pieces) {

@@ -18,19 +18,9 @@ module.exports = function array_udiff_uassoc(arr1) {
 
   const $global = typeof window !== 'undefined' ? window : global
 
-  cb =
-    typeof cb === 'string'
-      ? $global[cb]
-      : Object.prototype.toString.call(cb) === '[object Array]'
-        ? $global[cb[0]][cb[1]]
-        : cb
+  cb = typeof cb === 'string' ? $global[cb] : Array.isArray(cb) ? $global[cb[0]][cb[1]] : cb
 
-  cb0 =
-    typeof cb0 === 'string'
-      ? $global[cb0]
-      : Object.prototype.toString.call(cb0) === '[object Array]'
-        ? $global[cb0[0]][cb0[1]]
-        : cb0
+  cb0 = typeof cb0 === 'string' ? $global[cb0] : Array.isArray(cb0) ? $global[cb0[0]][cb0[1]] : cb0
 
   arr1keys: for (k1 in arr1) {
     for (i = 1; i < arglm2; i++) {

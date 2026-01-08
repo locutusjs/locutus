@@ -24,7 +24,7 @@ module.exports = function array_chunk(input, size, preserveKeys) {
     return null
   }
 
-  if (Object.prototype.toString.call(input) === '[object Array]') {
+  if (Array.isArray(input)) {
     if (preserveKeys) {
       while (i < l) {
         ;(x = i % size) ? (n[c][i] = input[i]) : (n[++c] = {})
