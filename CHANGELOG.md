@@ -13,8 +13,7 @@ the hundreds of contributions across the many languages that Locutus is assimila
 Ideas that will be planned and find their way into a release at one point
 
 - [x] ~~Address the 25 remaining test failures~~ → reduced to 1 (`set_time_limit` is intentionally untestable)
-- [ ] Compare example test cases for PHP against `php -r` to make sure they are correctly mimicking the most recent
-      stable behavior
+- [x] Compare example test cases for PHP against `php -r` → implemented via parity verification system (`yarn test:parity`)
 - [ ] Have _one_ way of checking pure JS arrays vs PHP arrays (vs:
       `Object.prototype.toString.call(arr1) === '[object Array]'`, `typeof retObj[p] === 'object'`,
       `var asString = Object.prototype.toString.call(mixedVar) var asFunc = _getFuncName(mixedVar.constructor) if (asString === '[object Object]' && asFunc === 'Object') {`
@@ -23,8 +22,7 @@ Ideas that will be planned and find their way into a release at one point
       `Function/'function'/'Class::function'/[$object, 'function']`, and use that in `is_callable`, `array_walk`,
       `call_user_func_array` etc.
 - [ ] Parse `require`s with ts-morph and add them to the function params and types. Then we can add show internal dependencies on website, with links to them
-working 2026-01-07, Insight search)
-- [ ] Verification: verify examples against native runtimes with Docker (balance efforts across languages)
+- [x] Verification: verify examples against native runtimes with Docker (226 functions verified across 5 languages)
       - [x] PHP: 164 functions verified against PHP 8.3
       - [x] Go: 20 functions verified against Go 1.23
       - [x] Python: 15/17 (88%) - remaining: capwords (impl difference), printable (.length)
@@ -49,8 +47,8 @@ working 2026-01-07, Insight search)
 - [ ] Docs/Website:
       - [x] The function pages could have a badge themselves in which language version they were parity checked (similar to what was added in the README.md)
       - [x] website: Render authors server-side (PR #511)
-      - [x] website: Fix the search functionality (verified       
-      - [ ] Hexo → Next.js 16 SSG(?) Or just a Hexo upgrade. Maybe it's fine.
+      - [x] website: Fix the search functionality (verified working 2026-01-07)
+      - [x] Hexo upgrade to 8.1.1 (PR #512) - Next.js migration deferred
       - [x] Fix Search by function name or behavior (verified working 2026-01-07)
       - [ ] "Rosetta Stone" view for cross-language comparison
 
