@@ -667,3 +667,14 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Complexity: High - affects all consumers, needs careful testing
   - Recommendation: Keep source as CJS, use tsup to generate ESM bundle
   - Deferred: This is a breaking change requiring major version bump
+
+### Iteration 44
+
+2026-01-08
+
+- **Area: Expansion**
+- Balance: Expansion (5), Website (4 done), Modernization (4, blocked)
+- Added Lua string functions: `upper`, `lower`, `sub` with 1-based indexing and negative index support
+- Added AWK builtin functions: `tolower`, `toupper`
+- Fixed parity test string normalization for Lua and AWK (native print doesn't quote strings)
+- All parity tests passing for Lua (6 functions) and AWK (5 functions)

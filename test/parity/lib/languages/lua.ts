@@ -106,11 +106,16 @@ function jsToLua(jsCode: string[], funcName: string, category?: string): string 
 /**
  * Normalize Lua output for comparison
  */
-function normalizeLuaOutput(output: string, _expected?: string): string {
+function normalizeLuaOutput(output: string, expected?: string): string {
   let result = output.trim()
   // Strip trailing .0 from floats for integer comparison
   if (/^-?\d+\.0$/.test(result)) {
     result = result.replace(/\.0$/, '')
+  }
+  // If expected is a quoted string, wrap the native output in quotes
+  // Lua print() outputs strings without quotes, but JS JSON.stringify adds them
+  if (expected && /^".*"$/.test(expected) && !/^".*"$/.test(result)) {
+    result = `"${result}"`
   }
   return result
 }

@@ -105,8 +105,9 @@ function jsToAwk(jsCode: string[], funcName: string, _category?: string): string
 function normalizeAwkOutput(output: string, expected?: string): string {
   const result = output.trim()
 
-  // If expected is a quoted string, add quotes to the result
-  if (expected && /^".*"$/.test(expected)) {
+  // If expected is a quoted string, wrap the native output in quotes
+  // AWK print outputs strings without quotes, but JS JSON.stringify adds them
+  if (expected && /^".*"$/.test(expected) && !/^".*"$/.test(result)) {
     return `"${result}"`
   }
 
