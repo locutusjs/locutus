@@ -14,10 +14,7 @@ Ideas that will be planned and find their way into a release at one point
 
 - [x] ~~Address the 25 remaining test failures~~ → reduced to 1 (`set_time_limit` is intentionally untestable)
 - [x] Compare example test cases for PHP against `php -r` → implemented via parity verification system (`yarn test:parity`)
-- [ ] Have _one_ way of checking pure JS arrays vs PHP arrays (vs:
-      `Object.prototype.toString.call(arr1) === '[object Array]'`, `typeof retObj[p] === 'object'`,
-      `var asString = Object.prototype.toString.call(mixedVar) var asFunc = _getFuncName(mixedVar.constructor) if (asString === '[object Object]' && asFunc === 'Object') {`
-      )
+- [x] ~~Have _one_ way of checking pure JS arrays~~ → standardized to `Array.isArray()` in 43 files (PR #518). Object checking patterns remain varied (acceptable - different use cases).
 - [ ] Investigate if we can have one helper function to resolve
       `Function/'function'/'Class::function'/[$object, 'function']`, and use that in `is_callable`, `array_walk`,
       `call_user_func_array` etc.
