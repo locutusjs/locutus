@@ -8,21 +8,31 @@ import type { LanguageHandler } from '../types.ts'
 // Go package mapping: function name → Go package
 const GO_PACKAGES: Record<string, string> = {
   // strings package
+  Compare: 'strings',
   Contains: 'strings',
+  ContainsAny: 'strings',
   Count: 'strings',
+  EqualFold: 'strings',
+  Fields: 'strings',
   HasPrefix: 'strings',
   HasSuffix: 'strings',
   Index: 'strings',
   Index2: 'strings', // Our alias for Index
+  IndexAny: 'strings',
   Join: 'strings',
   LastIndex: 'strings',
+  LastIndexAny: 'strings',
   Repeat: 'strings',
   Replace: 'strings',
   Split: 'strings',
   ToLower: 'strings',
   ToUpper: 'strings',
   Trim: 'strings',
+  TrimLeft: 'strings',
+  TrimPrefix: 'strings',
+  TrimRight: 'strings',
   TrimSpace: 'strings',
+  TrimSuffix: 'strings',
   // strconv package
   Atoi: 'strconv',
   FormatBool: 'strconv',
