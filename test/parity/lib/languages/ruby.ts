@@ -34,6 +34,9 @@ const RUBY_METHODS: Record<string, RubyMethodInfo> = {
   uniq: { rubyMethod: 'uniq', category: 'Array', isInstanceMethod: true },
   // Math methods (module methods)
   acos: { rubyMethod: 'acos', category: 'Math', isInstanceMethod: false },
+  cos: { rubyMethod: 'cos', category: 'Math', isInstanceMethod: false },
+  sin: { rubyMethod: 'sin', category: 'Math', isInstanceMethod: false },
+  sqrt: { rubyMethod: 'sqrt', category: 'Math', isInstanceMethod: false },
 }
 
 // Functions to skip (implementation differences, non-deterministic, etc.)
@@ -181,8 +184,9 @@ function parseArguments(argsStr: string): string[] {
 
 /**
  * Convert a single JS line to Ruby
+ * Category is inferred from directory path (Math, String, Array)
  */
-function convertJsLineToRuby(line: string, funcName: string): string {
+function convertJsLineToRuby(line: string, funcName: string, category: string): string {
   let ruby = line.trim()
   if (!ruby) {
     return ''
@@ -207,9 +211,28 @@ function convertJsLineToRuby(line: string, funcName: string): string {
   ruby = ruby.replace(/'([^'\\]*(\\.[^'\\]*)*)'/g, '"$1"')
 
   // Convert function calls to Ruby method calls
+  // Category from directory determines the call style
   const methodInfo = RUBY_METHODS[funcName]
   if (methodInfo) {
     ruby = convertFunctionCall(ruby, funcName, methodInfo)
+  } else if (category === 'Math') {
+    // Math module methods: funcName(args) → Math.funcName(args)
+    ruby = ruby.replace(new RegExp(`\\b${funcName}\\s*\\(`, 'g'), `Math.${funcName}(`)
+  } else if (category === 'String' || category === 'Array') {
+    // Instance methods: funcName(obj, ...) → obj.funcName(...)
+    const funcCallRegex = new RegExp(`\\b${funcName}\\s*\\(([^)]+)\\)`, 'g')
+    ruby = ruby.replace(funcCallRegex, (match, argsStr) => {
+      const args = parseArguments(argsStr)
+      if (args.length === 0) {
+        return match
+      }
+      const receiver = args[0].trim()
+      const restArgs = args.slice(1)
+      if (restArgs.length > 0) {
+        return `${receiver}.${funcName}(${restArgs.join(', ')})`
+      }
+      return `${receiver}.${funcName}`
+    })
   }
 
   return ruby
@@ -217,9 +240,11 @@ function convertJsLineToRuby(line: string, funcName: string): string {
 
 /**
  * Convert JS example code to Ruby
+ * Category is inferred from directory path (Math, String, Array)
  */
-function jsToRuby(jsCode: string[], funcName: string): string {
-  const lines = jsCode.map((line) => convertJsLineToRuby(line, funcName)).filter(Boolean)
+function jsToRuby(jsCode: string[], funcName: string, category?: string): string {
+  const cat = category || 'String' // default to String for backward compat
+  const lines = jsCode.map((line) => convertJsLineToRuby(line, funcName, cat)).filter(Boolean)
   if (!lines.length) {
     return ''
   }
