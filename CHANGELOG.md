@@ -62,7 +62,15 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.34...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.35...main).
+
+## v2.0.35
+
+Released: 2026-01-08. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.34...v2.0.35).
+
+- Lua string functions: `upper`, `lower`, `sub` (with 1-based indexing and negative index support)
+- AWK builtin functions: `tolower`, `toupper`
+- Fixed parity test string normalization for Lua and AWK
 
 ## v2.0.34
 
