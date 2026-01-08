@@ -515,3 +515,26 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Expansion: 4 (32, 33, 34, 36)
   - Modernization: 1 (35)
   - Website/Infrastructure: 1 (31)
+
+### Iteration 37
+
+2026-01-08
+
+- **Area: Website (Rosetta Stone)**
+- Implemented Rosetta Stone cross-language navigation (PR #520):
+  - Dual lookup: exact name matches + semantic equivalents
+  - Created `website/source/_data/rosetta.yml` with ~55 semantic groups
+  - Updated `website/themes/icarus/layout/function.ejs` template
+  - Updated CONTRIBUTING.md (step 11) and CORE_MAINTAINER.md (PR checklist, lessons)
+- Semantic groups include:
+  - String operations: strtolower ↔ downcase ↔ ToLower, strlen ↔ length, etc.
+  - Math functions: sqrt, exp, log across PHP/Python/Ruby
+  - Character type: ctype_alnum ↔ isalnum, etc.
+  - Type conversion: intval ↔ atoi ↔ Atoi
+  - Array operations: reset ↔ first, end ↔ last
+- Links auto-update: template queries at build time, no hardcoded lists
+- Addresses backlog item "Rosetta Stone view for cross-language comparison"
+- Balance (iterations 31-37):
+  - Expansion: 4 (32, 33, 34, 36)
+  - Website: 2 (31, 37)
+  - Modernization: 1 (35)
