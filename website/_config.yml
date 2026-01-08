@@ -52,7 +52,10 @@ categories: 0
 new_post_name: :year-:month-:day-:title.md
 default_layout: page
 titlecase: false # Transform title into titlecase
-external_link: true # Open external links in new tab
+external_link:
+  enable: true
+  field: site
+  exclude: []
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
