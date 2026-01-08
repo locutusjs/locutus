@@ -45,7 +45,7 @@ working 2026-01-07, Insight search)
 - [x] TypeScript:
       - [x] Convert `src/_util/` to TypeScript
       - [x] Strict mode compatible. Node type stripping compatible
-- [ ] Expansion (port more functions to the different languages) we'll go from most feasible + sensible, to least :) Also: improve header comment driven test coverage to expose more edge cases, 
+- [ ] Expansion (port more functions to the different languages) we'll go from most feasible + sensible, to least :) Also: improve header comment driven test coverage to expose more edge cases. And finally another way to expand is on parity test coverage, and fixing issues found by doing that.
 - [ ] Docs/Website:
       - [x] The function pages could have a badge themselves in which language version they were parity checked (similar to what was added in the README.md)
       - [x] website: Render authors server-side (PR #511)
