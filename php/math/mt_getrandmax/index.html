@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here&#39;s what our current JavaScript equivalent to PHP&#39;s mt_getrandmax looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-01-08T10:41:36.129Z">
-<meta property="article:modified_time" content="2026-01-08T10:41:36.129Z">
+<meta property="article:published_time" content="2026-01-08T10:54:40.427Z">
+<meta property="article:modified_time" content="2026-01-08T10:54:40.427Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -185,12 +185,49 @@ ga('send', 'pageview');
     <header class="article-header">
       <h1 class="article-title">PHP&#39;s mt_getrandmax in JavaScript</h1>
       
-        <div style="margin-top: 8px;">
-          
-            <span style="display: inline-block; background-color: #4c1; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-right: 6px;">
-              ✓ Verified: PHP 8.3
-            </span>
-          
+        <style>
+          .verified-container {
+            margin-top: 8px;
+          }
+          .verified-badges {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+          }
+          .verified-badge {
+            display: inline-block;
+            background-color: #4c1;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: help;
+          }
+          .verified-tooltip {
+            display: block;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+            transition: max-height 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
+          }
+          .verified-container:hover .verified-tooltip {
+            max-height: 60px;
+            opacity: 1;
+            margin-top: 6px;
+          }
+        </style>
+        <div class="verified-container">
+          <div class="verified-badges">
+            
+              <span class="verified-badge">✓ Verified: PHP 8.3</span>
+            
+          </div>
+          <div class="verified-tooltip">Examples tested against actual runtime. CI re-verifies continuously. Only documented examples are tested.</div>
         </div>
       
 
