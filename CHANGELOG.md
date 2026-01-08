@@ -16,7 +16,7 @@ Ideas that will be planned and find their way into a release at one point
 - [x] Compare example test cases for PHP against `php -r` → implemented via parity verification system (`yarn test:parity`)
 - [x] ~~Have _one_ way of checking pure JS arrays~~ → standardized to `Array.isArray()` in 43 files (PR #518). Object checking patterns remain varied (acceptable - different use cases).
 - [x] ~~Investigate callable helper~~ → Only 2 files use complex resolution (`is_callable.js`, `call_user_func_array.js`). Low ROI for abstraction. `array_walk` only accepts functions directly.
-- [ ] Parse `require`s with ts-morph and add them to the function params and types. Then we can add show internal dependencies on website, with links to them
+- [x] ~~Parse `require`s with ts-morph~~ → used existing esprima AST parsing to extract require() calls. 85 PHP functions now show internal dependencies on website with links
 - [x] Verification: verify examples against native runtimes with Docker (248 functions verified across 5 languages)
       - [x] PHP: 164 functions verified against PHP 8.3
       - [x] Go: 20 functions verified against Go 1.23
@@ -45,7 +45,7 @@ Ideas that will be planned and find their way into a release at one point
       - [x] website: Fix the search functionality (verified working 2026-01-07)
       - [x] Hexo upgrade to 8.1.1 (PR #512) - Next.js migration deferred
       - [x] Fix Search by function name or behavior (verified working 2026-01-07)
-      - [ ] "Rosetta Stone" view for cross-language comparison
+      - [x] "Rosetta Stone" view for cross-language comparison (PR #520)
 
 ## main
 

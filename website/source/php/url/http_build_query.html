@@ -15,7 +15,9 @@ returns:
   - >-
     'myvar_0=foo&myvar_1=bar&myvar_2=baz&myvar_3=boom&php=hypertext+processor&cow=milk'
   - '''foo=bar&amp;php=hypertext%20processor&amp;baz=boom&amp;cow=milk'''
-dependencies: []
+dependencies:
+  - php/url/rawurlencode
+  - php/url/urlencode
 authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)

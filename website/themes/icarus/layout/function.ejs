@@ -212,12 +212,17 @@
         </ul>
       <% } %>
 
-      <% if (page.dependencies.length > 0) { %><code><%= page.category %></code>
+      <% if (page.dependencies.length > 0) { %>
         <h2>Dependencies</h2>
-
+        <p>This function uses the following Locutus functions:</p>
         <ul>
         <% page.dependencies.forEach(function(dependency) { %>
-          <li><a href="/functions/<%= dependency %>"><%= dependency %></a></li>
+          <%
+          // dependency is in format "php/strings/echo" - extract parts for display
+          var parts = dependency.split('/');
+          var depFunc = parts[parts.length - 1];
+          %>
+          <li><a href="/<%= dependency %>/"><%= depFunc %></a> (<%= parts[0] %>/<%= parts[1] %>)</li>
         <% }) %>
         </ul>
       <% } %>

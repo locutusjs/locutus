@@ -4,7 +4,9 @@ examples:
   - sha1_file('test/never-change.txt')
 returns:
   - '''0ea65a1f4b4d69712affc58240932f3eb8a2af66'''
-dependencies: []
+dependencies:
+  - php/filesystem/file_get_contents
+  - php/strings/sha1
 authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
