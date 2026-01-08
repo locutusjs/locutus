@@ -636,3 +636,15 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Fixed 1 lint violation: removed unnecessary `async` from pMap callback
 - Added squash-merge guideline to CONTRIBUTING.md
 - Released v2.0.34: 7 new languages (32 functions), 11 Go functions, website improvements, infrastructure updates
+
+### Iteration 42
+
+2026-01-08
+
+- **Area: Modernization (Release process)**
+- Improved release instructions in CONTRIBUTING.md:
+  - Added clear step-by-step process
+  - Added GitHub release creation step with CHANGELOG notes
+- Created GitHub releases retroactively for all versions with changelog entries:
+  - v2.0.34, v2.0.33, v2.0.32, v2.0.31, v2.0.30, v2.0.29, v2.0.16, v2.0.11, v2.0.10
+- Deferred Changesets migration - current manual process is sufficient for single-package repo
