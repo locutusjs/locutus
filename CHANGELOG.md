@@ -62,7 +62,25 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.36...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.37...main).
+
+## v2.0.37
+
+Released: 2026-01-08. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.36...v2.0.37).
+
+### New Functions (32 across 7 languages)
+- R: `toupper`, `tolower`, `nchar`, `sqrt`, `round`, `max`, `min` (7)
+- Lua: `string.len`, `string.rep`, `string.reverse`, `math.sqrt`, `math.sin`, `math.cos`, `math.max`, `math.min` (8)
+- AWK: `cos`, `exp`, `log`, `sin`, `sqrt` (5)
+- Elixir: `String.downcase`, `String.upcase`, `String.length`, `String.reverse` (4)
+- Clojure: `string/lower-case`, `string/upper-case`, `string/reverse`, `string/trim`, `string/blank?` (5)
+- Julia: `lowercase`, `uppercase` (2)
+- Perl: `reverse` (1)
+
+### Infrastructure
+- Moved `rosetta.yml` from `src/_data/` to `src/` for cleaner structure
+- Fixed parity test handlers for Julia, Elixir, Clojure, R (string quoting, float precision)
+- Updated cross-language mappings in rosetta.yml
 
 ## v2.0.36
 
