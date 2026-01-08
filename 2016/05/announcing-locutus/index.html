@@ -14,15 +14,15 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://locutus.io/css/images/locutus-alpha.png">
 <meta property="article:published_time" content="2016-05-02T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-08T08:12:58.105Z">
+<meta property="article:modified_time" content="2026-01-08T08:13:59.044Z">
 <meta property="article:author" content="Kevin van Zonneveld">
+<meta property="article:tag" content="c">
 <meta property="article:tag" content="future">
-<meta property="article:tag" content="js">
 <meta property="article:tag" content="golang">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="php">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="ruby">
-<meta property="article:tag" content="php">
-<meta property="article:tag" content="c">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://locutus.io/css/images/locutus-alpha.png">
     
@@ -74,7 +74,7 @@ ga('send', 'pageview');
     
     
 
-<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="Locutus" type="application/atom+xml">
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Locutus" type="application/atom+xml">
 </head>
 
 <body>
@@ -213,7 +213,7 @@ ga('send', 'pageview');
         
             
             <p>As was briefly mentioned in <a href="/blog/2016/04/20/breaking-bc/">Breaking Backwards Compatibility</a>, 
-I am launching a big iteration of php.js today. It includes so <a href="https://github.com/locutusjs/locutus/pull/291">many</a> breaking <a href="https://github.com/locutusjs/locutus/blob/main/CHANGELOG.md#v200">changes</a> that it is safe to say that, after 
+I am launching a big iteration of php.js today. It includes so <a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/pull/291">many</a> breaking <a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/blob/main/CHANGELOG.md#v200">changes</a> that it is safe to say that, after 
 9 years, php.js is dead. And, like a phoenix, <strong>Locutus</strong> has risen from its ashes.</p>
 <p>Locutus will largely have the same mission: </p>
 <blockquote>
@@ -225,7 +225,7 @@ to functions from other languages, for fun and educational purposes.</p>
 <li>Expanding to other languages, such as C, Go, Python and Ruby</li>
 <li>Hack-free porting, meaning we will only port individual functions from the standard libraries, while avoiding language features, environment, data-types and configuration</li>
 <li>The educational aspect and the intellectual challenge</li>
-<li>Using npm as the distribution platform of choice, so you can do <code>var strings = require(&#39;golang/strings&#39;)</code> and, in case the browser is your target platform, bundle this via <a href="https://browserify.org/">Browserify</a>, <a href="https://rollupjs.org/">rollup.js</a> or <a href="https://webpack.github.io/">webpack</a>.</li>
+<li>Using npm as the distribution platform of choice, so you can do <code>var strings = require(&#39;golang/strings&#39;)</code> and, in case the browser is your target platform, bundle this via <a target="_blank" rel="noopener" href="https://browserify.org/">Browserify</a>, <a target="_blank" rel="noopener" href="https://rollupjs.org/">rollup.js</a> or <a target="_blank" rel="noopener" href="https://webpack.github.io/">webpack</a>.</li>
 <li>Trying to deliver functions that are interoperable between browsers and Node.js, but also allowing to target just one platform when that saves us from writing overly wieldy code. These cases will be documented with a <code>note</code>. An example of this would be opening a file from disk. We would then state it is Node.js-only.</li>
 </ul>
 <p>While it is still very much a work in progress, I have already deprecated and updated many functions that did not adhere to this renewed focus. If you spot a function I overlooked, please let me know on GitHub.</p>
@@ -235,7 +235,7 @@ to functions from other languages, for fun and educational purposes.</p>
 <li>The things that could reasonably be ported, had already been ported. The things that probably should not have been ported, had been ported too - and were now mostly good for provoking purists and inducing maintenance load. Not very rewarding.</li>
 <li>Misuse of the project. I shed approximately 451 tears when some people started using the project so they would not have to learn JavaScript and could continue PHP-ing in the browser, using 2.1MB, 451-function, ready-to-rock spaceship bundles in the browser. I made efforts to <a href="/blog/2013/05/a-word-on-the-focus-of-php-dot-js/">stop newcomers from doing that</a>. I shed approximately 2.1 tears from the angry notes they then sent me.</li>
 <li>I started a new company and protocol, which took much time by itself, but also meant I spent my time writing exclusively in other programming languages. You won’t find any bitterness about that here, but it did mean I had less time and use for PHP oriented projects</li>
-<li>9 years ago, the tech world was a different place. Node.js did not exist, <a href="https://www.w3counter.com/globalstats.php?date=2007-05-30">everyone was on IE6</a>, and JavaScript’s main use was opening popups. Going from age 23 to 32, I have changed my stance on pretty much everything. One of these things that I have now abandoned is the idea that our project could perhaps one day be used as an interactive debugging tool, or run entire scripts from other languages in Node. I pursued that goal for some time with the thirst of a youngster, and while we had some success doing so, it drove me to write and accept hacks that, in retrospect, have probably secured me a special place in hell. Projects like <a href="https://github.com/gopherjs/gopherjs">GopherJS</a> or <a href="https://kripken.github.io/emscripten-site/">Emscripten</a> offer far better means to that end. Our approach isn’t suitable for it.</li>
+<li>9 years ago, the tech world was a different place. Node.js did not exist, <a target="_blank" rel="noopener" href="https://www.w3counter.com/globalstats.php?date=2007-05-30">everyone was on IE6</a>, and JavaScript’s main use was opening popups. Going from age 23 to 32, I have changed my stance on pretty much everything. One of these things that I have now abandoned is the idea that our project could perhaps one day be used as an interactive debugging tool, or run entire scripts from other languages in Node. I pursued that goal for some time with the thirst of a youngster, and while we had some success doing so, it drove me to write and accept hacks that, in retrospect, have probably secured me a special place in hell. Projects like <a target="_blank" rel="noopener" href="https://github.com/gopherjs/gopherjs">GopherJS</a> or <a target="_blank" rel="noopener" href="https://kripken.github.io/emscripten-site/">Emscripten</a> offer far better means to that end. Our approach isn’t suitable for it.</li>
 </ul>
 <p>Knowing that I was beginning to fall short as a project lead, I tried to recruit fresh blood to replace me. However, even though there is still an active community of contributors, I couldn’t find any volunteers for taking the lead. For a while, I considered declaring <code>[UNMAINTAINED]</code>, but I felt - and still feel - too great a deal of duty and responsibility towards past and present contributors.</p>
 <p>So instead, I started thinking about what it would take for me to get my mojo back. Having analyzed 
@@ -250,9 +250,9 @@ working on in order to clean up our codebase and breathe new life into this proj
 <li>Added native JSON, base64, sha1 and md5 support where available</li>
 <li>Added npm versioning and releases</li>
 <li>Added support for ES6, any function can be written in this JavaScript version and it will be transpiled to ES5 before we publish to npm to ensure compatability.</li>
-<li>Asked <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a> if we could use his stunning Locutus artwork to be our avatar (and he said yes!)</li>
+<li>Asked <a target="_blank" rel="noopener" href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a> if we could use his stunning Locutus artwork to be our avatar (and he said yes!)</li>
 <li>Assimilated a dozen of example functions that showcase how we could port four new languages to JavaScript</li>
-<li>Changed all functions to make them adhere to the <a href="https://standardjs.com/">JavaScript Standard Style</a> and have a max line length of 100. Travis CI will fail when new additions do not adhere</li>
+<li>Changed all functions to make them adhere to the <a target="_blank" rel="noopener" href="https://standardjs.com/">JavaScript Standard Style</a> and have a max line length of 100. Travis CI will fail when new additions do not adhere</li>
 <li>Deprecated&#x2F;documented all functions using <code>eval</code>, <code>new Function</code> and other bad practices</li>
 <li>Fixed  around 50 failed tests that were previously marked as skipped (still a few to go)</li>
 <li>Made it so that all functions can be required individually via npm</li>
@@ -264,7 +264,7 @@ working on in order to clean up our codebase and breathe new life into this proj
 <p>I understand this all can feel like a radical shift, since functions have different locations and there is talk of deprecating functions. Perhaps you wrote these functions with your own blood, sweat and tears. To make matters worse, I will also be deprecating many GitHub Issues and Pull Requests that have become invalid due to this new major push.</p>
 <p>I hope you can agree that this project found itself in a dead-end street and that I had to undo some of our work to back out and get us on the road again. I am doing this not to hurt past contributors, but to honor them. I have spent many nights and weekends modernizing this project, so that our work could be given new life. I would also like to voice a word of appreciation to you as a contributor, for the hard work that went into crafting this project. Rewriting a language in another language is no small task, and people tend to forget that in order to port an alien language to JavaScript, we had to write a lot of JavaScript. </p>
 <p>In failing to restrain myself and having tried to port the entire language, I may have ventured into the darker engineering arts. And in the end, it did not even let me fully realize my goal in return. I accept defeat here. However, I am also proud that we have built a welcoming and friendly community together where over the course of 9 years, hundreds of developers from all over the world have helped each other to improve their code, to learn JavaScript, and help others learn it. I, for one, have become much more familiar with JavaScript’s delicacies because of it, and I like to think the same goes for many of you as well. Therefore, I accept both defeat and victory.</p>
-<p>As a contributor to this project, I hope Locutus brings the changes that can spark your interest again, just as it has for me. I hope you will join me on this new adventure to a magical land of standard libraries full of functions that are just <a href="https://golang.org/pkg/strings/">screaming to be ported</a>. I am looking at you, rainy Sunday afternoon..</p>
+<p>As a contributor to this project, I hope Locutus brings the changes that can spark your interest again, just as it has for me. I hope you will join me on this new adventure to a magical land of standard libraries full of functions that are just <a target="_blank" rel="noopener" href="https://golang.org/pkg/strings/">screaming to be ported</a>. I am looking at you, rainy Sunday afternoon..</p>
 <p>This time we will be a little bit older, a little bit wiser, and hopefully have the resolve to steer clear of the darker areas. Nevertheless, we will have just as much fun in challenging ourselves and each other, as well as by learning other languages. I promise! : )</p>
 <p>For those that can forgive me for my past mistakes and for deprecating some of our previous work in this new major release: 
 you can try Locutus right now if you want:</p>
@@ -275,9 +275,9 @@ you can try Locutus right now if you want:</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ node index.js</span><br><span class="line">Locutus</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">1.266103672779499</span><br><span class="line">5</span><br></pre></td></tr></table></figure>
 
 <p>If you want to help Locutus, our newly added languages don’t have much meat on the bones yet and it would be fantastic to see if you can think of ways to assimilate a function that Locutus currently does not harbor.</p>
-<p>Also, there are plenty project-wide ideas in our <a href="https://github.com/locutusjs/locutus/blob/main/CHANGELOG.md#Backlog">Backlog</a> that we would love help with, so I guess there is just one thing left to say..</p>
-<p><a href="https://github.com/locutusjs/locutus">To the GitHubs</a>!</p>
-<p><a href="https://twitter.com/kvz">Kevin</a></p>
+<p>Also, there are plenty project-wide ideas in our <a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/blob/main/CHANGELOG.md#Backlog">Backlog</a> that we would love help with, so I guess there is just one thing left to say..</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus">To the GitHubs</a>!</p>
+<p><a target="_blank" rel="noopener" href="https://twitter.com/kvz">Kevin</a></p>
 
         
         </div>
@@ -288,7 +288,7 @@ you can try Locutus right now if you want:</p>
 
 </div>
 
-    <a data-url="https://locutus.io/2016/05/announcing-locutus/" data-id="cmk56d9pz000fp31k3tvdbh7g" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://locutus.io/2016/05/announcing-locutus/" data-id="cuid2ezAMxoiPNa7HB1Mwy3L0" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -408,9 +408,9 @@ you can try Locutus right now if you want:</p>
 
             <br />
             <div class="Social">
-              <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
+              <a target="_blank" rel="noopener" href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
               <br />
-              <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+              <a class="github-button" target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
             </div>
         </div>
         <div class="article-info profile-block">
@@ -793,7 +793,7 @@ you can try Locutus right now if you want:</p>
     <div class="outer">
         <div id="footer-info" class="inner">
             &copy; 2007-2026 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
-            Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
+            Arwork by <a target="_blank" rel="noopener" href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>
     </div>

@@ -14,7 +14,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://mobilemarketingwatch.com/wp-content/uploads/2016/03/Focus.jpg">
 <meta property="article:published_time" content="2013-05-03T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-08T08:12:58.105Z">
+<meta property="article:modified_time" content="2026-01-08T08:13:59.044Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta property="article:tag" content="focus">
 <meta name="twitter:card" content="summary">
@@ -68,7 +68,7 @@ ga('send', 'pageview');
     
     
 
-<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="Locutus" type="application/atom+xml">
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Locutus" type="application/atom+xml">
 </head>
 
 <body>
@@ -208,16 +208,16 @@ ga('send', 'pageview');
             
             <p>Hi everybody,</p>
 <p>The <a href="/blog/2012/09/26/new-site/">new site</a> has no server-side code. Instead
-we generate HTML <a href="https://kvz.io/blog/2012/09/25/blog-with-octopress/">using Octopress</a>
-and push to GitHub Pages, all from one <a href="https://github.com/locutusjs/locutus">repository</a>.</p>
+we generate HTML <a target="_blank" rel="noopener" href="https://kvz.io/blog/2012/09/25/blog-with-octopress/">using Octopress</a>
+and push to GitHub Pages, all from one <a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus">repository</a>.</p>
 <p>This saves hosting costs&#x2F;overhead and makes it really easy for people to submit
-pull requests and for <a href="https://github.com/locutusjs/locutus/contributors">contributors</a>
+pull requests and for <a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/contributors">contributors</a>
 to make changes that I don’t always have time
 for. It makes the project less dependent on me and more a community effort.</p>
 <p>To move forward, sometimes you have to cut features.
 In this case I had to lose our compiler, a webtool that relied on server-side code
 to generate minified packages from php.js functions.</p>
-<p>Understandibly this has <a href="https://github.com/locutusjs/locutus/issues/75">raised</a> <a href="https://locutus.io/about/index.html#comment-861825612">questions</a>.
+<p>Understandibly this has <a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/issues/75">raised</a> <a href="https://locutus.io/about/index.html#comment-861825612">questions</a>.
 It is still possible to bundle 4 useful functions:</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># - Note that this combined 4 php.js functions into a file called: myLocutus</span></span><br><span class="line"><span class="comment"># and minified version: myphp.min.js in the current directory.</span></span><br><span class="line"><span class="comment"># - Note that this throws all functions into the</span></span><br><span class="line"><span class="comment"># global scope. It would be better to put them in a dedicated locutus object.</span></span><br><span class="line">curl -sk https://raw.github.com/locutusjs/locutus/31bf3129f08672f8c1d6d0dcad2368ebc4ac57f2/functions/\</span><br><span class="line">&#123;datetime/date\</span><br><span class="line">,datetime/strtotime\</span><br><span class="line">,strings/md5\</span><br><span class="line">,strings/vsprintf\</span><br><span class="line">&#125;.js |<span class="built_in">tee</span> ./myLocutus &amp;&amp; \</span><br><span class="line">curl -vo ./myphp.min.js \</span><br><span class="line">    -X POST \</span><br><span class="line">    -H <span class="string">&#x27;Expect: &#x27;</span> \</span><br><span class="line">    --data-urlencode compilation_level=<span class="string">&quot;SIMPLE_OPTIMIZATIONS&quot;</span> \</span><br><span class="line">    --data-urlencode output_format=<span class="string">&quot;text&quot;</span> \</span><br><span class="line">    --data-urlencode output_info=<span class="string">&quot;compiled_code&quot;</span> \</span><br><span class="line">    --data-urlencode js_code@myLocutus \</span><br><span class="line">    https://closure-compiler.appspot.com/compile</span><br></pre></td></tr></table></figure>
 
@@ -255,7 +255,7 @@ it’s cool for anybody to fork this project and run with it.</p>
 <p>If anything, knowing that the php.js repository will focus on the raw <code>./functions</code>
 makes this easier.</p>
 <p>Best wishes,</p>
-<p><a href="https://twitter.com/kvz">Kevin</a></p>
+<p><a target="_blank" rel="noopener" href="https://twitter.com/kvz">Kevin</a></p>
 
         
         </div>
@@ -266,7 +266,7 @@ makes this easier.</p>
 
 </div>
 
-    <a data-url="https://locutus.io/2013/05/a-word-on-the-focus-of-php-dot-js/" data-id="cmk56d9pw000ap31k7s23cijo" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://locutus.io/2013/05/a-word-on-the-focus-of-php-dot-js/" data-id="cuidxkgRc2EshLcm3GGmVuxSI" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -386,9 +386,9 @@ makes this easier.</p>
 
             <br />
             <div class="Social">
-              <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
+              <a target="_blank" rel="noopener" href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
               <br />
-              <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+              <a class="github-button" target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
             </div>
         </div>
         <div class="article-info profile-block">
@@ -771,7 +771,7 @@ makes this easier.</p>
     <div class="outer">
         <div id="footer-info" class="inner">
             &copy; 2007-2026 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
-            Arwork by <a href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
+            Arwork by <a target="_blank" rel="noopener" href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>
     </div>
