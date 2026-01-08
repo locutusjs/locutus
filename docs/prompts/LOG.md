@@ -423,3 +423,8 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Fixed stray text and incomplete lines
 - Verified live site at https://locutus.io - authors page renders correctly (PR #511 verified)
 - Remaining backlog items: array standardization, callable helper, ts-morph, CJS→ESM, Changesets, Expansion, Rosetta Stone
+- Expansion: Added Python math.ceil and math.floor (PR #514)
+  - Refactored Python parity handler to infer module from directory instead of hardcoding
+  - Python math module now has 9 functions (up from 7)
+  - Total Python functions: 19 (up from 17)
+- Hexo 8 upgrade reduced vulnerabilities from 69 to 29
