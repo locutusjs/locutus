@@ -484,3 +484,17 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Python parity: 23/25 verified (92%)
 - Total verified: 248 functions (up from 234, ~6% increase)
 - All 981 tests pass
+
+### Iteration 35
+
+2026-01-08
+
+- **Area: Modernization (Code Quality)**
+- Standardized array checking across 43 PHP files (PR #518):
+  - Replaced `Object.prototype.toString.call(x) === '[object Array]'` with `Array.isArray(x)`
+  - ES5+ standard method, more readable and semantically correct
+  - Addresses partial backlog item "Have _one_ way of checking pure JS arrays"
+- Verified `objectsAsArrays` setting unaffected (checks for `[object Object]`, not arrays)
+- Added missing iterations 11-20 summary to LOG.md
+- All 981 tests pass
+- Balance: Expansion (3 recent), now Modernization (1)
