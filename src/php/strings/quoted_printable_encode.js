@@ -1,14 +1,15 @@
 module.exports = function quoted_printable_encode(str) {
-  //  discuss at: https://locutus.io/php/quoted_printable_encode/
-  // original by: Theriault (https://github.com/Theriault)
-  // improved by: Brett Zamir (https://brett-zamir.me)
-  // improved by: Theriault (https://github.com/Theriault)
-  //   example 1: quoted_printable_encode('a=b=c')
-  //   returns 1: 'a=3Db=3Dc'
-  //   example 2: quoted_printable_encode('abc   \r\n123   \r\n')
-  //   returns 2: 'abc  =20\r\n123  =20\r\n'
-  //   example 3: quoted_printable_encode('0123456789012345678901234567890123456789012345678901234567890123456789012345')
-  //   returns 3: '012345678901234567890123456789012345678901234567890123456789012345678901234=\r\n5'
+  //      discuss at: https://locutus.io/php/quoted_printable_encode/
+  // parity verified: PHP 8.3
+  //     original by: Theriault (https://github.com/Theriault)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Theriault (https://github.com/Theriault)
+  //       example 1: quoted_printable_encode('a=b=c')
+  //       returns 1: 'a=3Db=3Dc'
+  //       example 2: quoted_printable_encode('abc   \r\n123   \r\n')
+  //       returns 2: 'abc  =20\r\n123  =20\r\n'
+  //       example 3: quoted_printable_encode('0123456789012345678901234567890123456789012345678901234567890123456789012345')
+  //       returns 3: '012345678901234567890123456789012345678901234567890123456789012345678901234=\r\n5'
 
   const hexChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']
   const RFC2045Encode1IN = / \r\n|\r\n|[^!-<>-~ ]/gm

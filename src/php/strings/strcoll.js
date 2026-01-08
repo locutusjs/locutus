@@ -1,9 +1,10 @@
 module.exports = function strcoll(str1, str2) {
-  //  discuss at: https://locutus.io/php/strcoll/
-  // original by: Brett Zamir (https://brett-zamir.me)
-  // improved by: Brett Zamir (https://brett-zamir.me)
-  //   example 1: strcoll('a', 'b')
-  //   returns 1: -1
+  //      discuss at: https://locutus.io/php/strcoll/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: strcoll('a', 'b')
+  //       returns 1: -1
 
   const setlocale = require('../strings/setlocale')
 

@@ -1,10 +1,11 @@
 module.exports = function ctype_cntrl(text) {
-  //  discuss at: https://locutus.io/php/ctype_cntrl/
-  // original by: Brett Zamir (https://brett-zamir.me)
-  //   example 1: ctype_cntrl('\u0020')
-  //   returns 1: false
-  //   example 2: ctype_cntrl('\u001F')
-  //   returns 2: true
+  //      discuss at: https://locutus.io/php/ctype_cntrl/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: ctype_cntrl('\u0020')
+  //       returns 1: false
+  //       example 2: ctype_cntrl('\u001F')
+  //       returns 2: true
 
   const setlocale = require('../strings/setlocale')
   if (typeof text !== 'string') {
