@@ -499,3 +499,19 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - All 981 tests pass
 - Balance: Expansion (3 recent), now Modernization (1)
 - Investigated callable helper backlog item → marked complete (low ROI, only 2 files)
+
+### Iteration 36
+
+2026-01-08
+
+- **Area: Expansion (Go strings package)**
+- Added 11 Go strings functions (PR #519):
+  - Compare, ContainsAny, EqualFold, Fields, Index
+  - IndexAny, LastIndexAny, TrimLeft, TrimPrefix, TrimRight, TrimSuffix
+- Updated Go parity handler with new function mappings
+- Go parity: 20 → 31 functions (55% increase)
+- All 31 Go functions pass parity verification against Go 1.23
+- Balance (iterations 31-36):
+  - Expansion: 4 (32, 33, 34, 36)
+  - Modernization: 1 (35)
+  - Website/Infrastructure: 1 (31)
