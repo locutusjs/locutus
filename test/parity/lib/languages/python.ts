@@ -5,29 +5,18 @@
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
 
-// Python module mapping: function name → Python import path
-const PYTHON_MODULES: Record<string, { module: string; isConstant?: boolean }> = {
-  // string module constants
-  ascii_letters: { module: 'string', isConstant: true },
-  ascii_lowercase: { module: 'string', isConstant: true },
-  ascii_uppercase: { module: 'string', isConstant: true },
-  digits: { module: 'string', isConstant: true },
-  hexdigits: { module: 'string', isConstant: true },
-  octdigits: { module: 'string', isConstant: true },
-  printable: { module: 'string', isConstant: true },
-  punctuation: { module: 'string', isConstant: true },
-  whitespace: { module: 'string', isConstant: true },
-  // string module functions
-  capwords: { module: 'string' },
-  // math module functions
-  factorial: { module: 'math' },
-  gcd: { module: 'math' },
-  isfinite: { module: 'math' },
-  isinf: { module: 'math' },
-  isnan: { module: 'math' },
-  pow: { module: 'math' },
-  sqrt: { module: 'math' },
-}
+// String module constants (called without parentheses in Python)
+const STRING_CONSTANTS = new Set([
+  'ascii_letters',
+  'ascii_lowercase',
+  'ascii_uppercase',
+  'digits',
+  'hexdigits',
+  'octdigits',
+  'printable',
+  'punctuation',
+  'whitespace',
+])
 
 // Functions to skip (implementation differences, etc.)
 export const PYTHON_SKIP_LIST = new Set<string>([
@@ -73,8 +62,11 @@ function stripTrailingComment(code: string): string {
 
 /**
  * Convert a single JS line to Python
+ * @param line - The JS line to convert
+ * @param funcName - The function name (e.g., "ceil")
+ * @param module - The Python module (inferred from category, e.g., "math")
  */
-function convertJsLineToPython(line: string, funcName: string): string {
+function convertJsLineToPython(line: string, funcName: string, module: string): string {
   let py = line.trim()
   if (!py) {
     return ''
@@ -98,16 +90,13 @@ function convertJsLineToPython(line: string, funcName: string): string {
   // .length → len()
   py = py.replace(/(\w+)\.length\b/g, 'len($1)')
 
-  // Handle function calls - prefix with module
-  const mapping = PYTHON_MODULES[funcName]
-  if (mapping) {
-    if (mapping.isConstant) {
-      // Constants like string.digits - replace funcName() with module.funcName
-      py = py.replace(new RegExp(`\\b${funcName}\\s*\\(\\s*\\)`, 'g'), `${mapping.module}.${funcName}`)
-    } else {
-      // Functions like math.factorial - replace funcName( with module.funcName(
-      py = py.replace(new RegExp(`\\b${funcName}\\s*\\(`, 'g'), `${mapping.module}.${funcName}(`)
-    }
+  // Handle function calls - prefix with module (inferred from category/directory)
+  if (STRING_CONSTANTS.has(funcName)) {
+    // Constants like string.digits - replace funcName() with module.funcName
+    py = py.replace(new RegExp(`\\b${funcName}\\s*\\(\\s*\\)`, 'g'), `${module}.${funcName}`)
+  } else {
+    // Functions like math.factorial - replace funcName( with module.funcName(
+    py = py.replace(new RegExp(`\\b${funcName}\\s*\\(`, 'g'), `${module}.${funcName}(`)
   }
 
   return py
@@ -115,16 +104,20 @@ function convertJsLineToPython(line: string, funcName: string): string {
 
 /**
  * Convert JS example code to Python
+ * @param jsCode - Array of JS code lines
+ * @param funcName - The function name (e.g., "ceil")
+ * @param category - The category/directory (e.g., "math") - used as Python module name
  */
-function jsToPython(jsCode: string[], funcName: string): string {
-  const lines = jsCode.map((line) => convertJsLineToPython(line, funcName)).filter(Boolean)
+function jsToPython(jsCode: string[], funcName: string, category?: string): string {
+  // Category is the Python module (e.g., "math" from src/python/math/ceil.js)
+  const module = category || 'builtins'
+  const lines = jsCode.map((line) => convertJsLineToPython(line, funcName, module)).filter(Boolean)
   if (!lines.length) {
     return ''
   }
 
-  // Determine which module to import
-  const mapping = PYTHON_MODULES[funcName]
-  const imports = mapping ? `import ${mapping.module}\nimport json\n` : 'import json\n'
+  // Import the module (category name = Python module name)
+  const imports = `import ${module}\nimport json\n`
 
   const originalLastLine = jsCode[jsCode.length - 1]
   const assignedVar = extractAssignedVar(originalLastLine)
