@@ -648,3 +648,5 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Created GitHub releases retroactively for all versions with changelog entries:
   - v2.0.34, v2.0.33, v2.0.32, v2.0.31, v2.0.30, v2.0.29, v2.0.16, v2.0.11, v2.0.10
 - Deferred Changesets migration - current manual process is sufficient for single-package repo
+- Fixed v2.0.34 release notes - expanded to include all 114 commits worth of features
+- Set v2.0.34 as "Latest" release on GitHub
