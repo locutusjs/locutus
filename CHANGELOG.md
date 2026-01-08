@@ -22,11 +22,11 @@ Ideas that will be planned and find their way into a release at one point
       `Function/'function'/'Class::function'/[$object, 'function']`, and use that in `is_callable`, `array_walk`,
       `call_user_func_array` etc.
 - [ ] Parse `require`s with ts-morph and add them to the function params and types. Then we can add show internal dependencies on website, with links to them
-- [x] Verification: verify examples against native runtimes with Docker (231 functions verified across 5 languages)
+- [x] Verification: verify examples against native runtimes with Docker (234 functions verified across 5 languages)
       - [x] PHP: 164 functions verified against PHP 8.3
       - [x] Go: 20 functions verified against Go 1.23
       - [x] Python: 17/19 (89%) - remaining: capwords (impl difference), printable (.length)
-      - [x] Ruby: 19/21 (90%) - remaining: sample (random), acos (example incompatible)
+      - [x] Ruby: 22/24 (92%) - remaining: sample (random), acos (example incompatible)
       - [x] C: 11/18 (61%) - remaining: sprintf, strchr, strstr, strcat, frexp, isspace, atof (complex/different semantics)
       - [x] Infrastructure: parallel execution, caching, modular architecture, per-language handlers, type-safe config
       - [x] CI integration: `parity verified:` header in function files, Zod validation, `yarn test:parity`

@@ -442,3 +442,13 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - New Math functions now work automatically without RUBY_METHODS mapping
 - Ruby parity: 19/21 verified (up from 16/18)
 - All 940 tests pass
+
+### Iteration 33
+
+2026-01-08
+
+- **Area: Expansion (Ruby Math functions continued)**
+- Added Ruby Math.exp, Math.log, Math.tan functions (PR #516):
+  - All 3 functions pass parity verification against Ruby 3.3
+- Ruby parity: 22/24 verified (up from 19/21)
+- All 946 tests pass
