@@ -112,6 +112,15 @@ function normalizeLuaOutput(output: string, expected?: string): string {
   if (/^-?\d+\.0$/.test(result)) {
     result = result.replace(/\.0$/, '')
   }
+  // Normalize float precision differences (Lua prints fewer digits)
+  // If both are floats, round to 10 decimal places for comparison
+  if (expected && /^-?\d+\.\d+$/.test(expected) && /^-?\d+\.\d+$/.test(result)) {
+    const expectedNum = parseFloat(expected)
+    const resultNum = parseFloat(result)
+    if (Math.abs(expectedNum - resultNum) < 1e-10) {
+      result = expected // Use expected if values match within precision
+    }
+  }
   // If expected is a quoted string, wrap the native output in quotes
   // Lua print() outputs strings without quotes, but JS JSON.stringify adds them
   if (expected && /^".*"$/.test(expected) && !/^".*"$/.test(result)) {

@@ -691,3 +691,24 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Fixed Perl parity test string normalization (native print doesn't quote strings)
 - All parity tests passing for Perl (6 functions)
 - PR #526 merged, released v2.0.36
+
+### Iteration 46
+
+2026-01-08
+
+- **Area: Expansion**
+- Balance: Expansion (7), Modernization (4, blocked)
+- Plan: Add string functions to R, Julia, Elixir, Clojure (each only has 3 math functions)
+- Added 32 new functions across 7 languages:
+  - R: toupper, tolower, nchar, sqrt, round, max, min (7)
+  - Julia: lowercase, uppercase (2)
+  - Elixir/String: downcase, upcase, length, reverse (4)
+  - Clojure/string: lower_case, upper_case, reverse, trim, blank (5)
+  - Lua: string/len, rep, reverse + math/sqrt, sin, cos, max, min (8)
+  - AWK: cos, exp, log, sin, sqrt (5)
+  - Perl: reverse (1)
+- Updated rosetta.yml with cross-language mappings
+- Fixed parity test float precision normalization for Lua and AWK
+- Fixed Perl reverse() to use scalar context
+- Moved rosetta.yml from src/_data/ to src/ for cleaner structure
+- Updated website with new language pages via injectweb

@@ -81,6 +81,11 @@ function convertJsLineToPerl(line: string, funcName: string, module: string): st
     pl = pl.replace(new RegExp(`\\b${funcName}\\s*\\(`, 'g'), `${module}::${funcName}(`)
   }
 
+  // reverse() needs scalar context for string reversal in Perl
+  if (funcName === 'reverse') {
+    pl = pl.replace(/\breverse\s*\(([^)]+)\)/g, 'scalar(reverse($1))')
+  }
+
   return pl
 }
 

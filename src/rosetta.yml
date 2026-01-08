@@ -16,22 +16,40 @@ string_length:
   - ruby/String/length
   - perl/core/length
   - awk/builtin/length
+  - lua/string/len
+  - elixir/String/length
+  - r/base/nchar
 
 string_lowercase:
   - php/strings/strtolower
   - ruby/String/downcase
   - golang/strings/ToLower
+  - lua/string/lower
+  - perl/core/lc
+  - awk/builtin/tolower
+  - r/base/tolower
+  - julia/Base/lowercase
+  - elixir/String/downcase
+  - clojure/string/lower_case
 
 string_uppercase:
   - php/strings/strtoupper
   - ruby/String/upcase
   - golang/strings/ToUpper
+  - lua/string/upper
+  - perl/core/uc
+  - awk/builtin/toupper
+  - r/base/toupper
+  - julia/Base/uppercase
+  - elixir/String/upcase
+  - clojure/string/upper_case
 
 string_trim:
   - php/strings/trim
   - ruby/String/strip
   - golang/strings/TrimSpace
   - golang/strings/Trim
+  - clojure/string/trim
 
 string_rtrim:
   - php/strings/rtrim
@@ -54,6 +72,10 @@ string_ends_with:
 string_reverse:
   - php/strings/strrev
   - ruby/String/reverse
+  - lua/string/reverse
+  - perl/core/reverse
+  - elixir/String/reverse
+  - clojure/string/reverse
 
 string_split:
   - php/strings/explode
@@ -79,6 +101,7 @@ string_last_index:
 string_repeat:
   - php/strings/str_repeat
   - golang/strings/Repeat
+  - lua/string/rep
 
 string_capitalize:
   - php/strings/ucfirst
@@ -104,6 +127,8 @@ string_count:
 string_substring:
   - php/strings/substr
   - awk/builtin/substr
+  - lua/string/sub
+  - perl/core/substr
 
 # =============================================================================
 # MATH OPERATIONS
@@ -113,16 +138,21 @@ math_sqrt:
   - php/math/sqrt
   - python/math/sqrt
   - ruby/Math/sqrt
+  - lua/math/sqrt
+  - awk/builtin/sqrt
+  - r/base/sqrt
 
 math_exp:
   - php/math/exp
   - python/math/exp
   - ruby/Math/exp
+  - awk/builtin/exp
 
 math_log:
   - php/math/log
   - python/math/log
   - ruby/Math/log
+  - awk/builtin/log
 
 math_log10:
   - php/math/log10
@@ -136,10 +166,14 @@ math_log2:
 math_sin:
   - php/math/sin
   - ruby/Math/sin
+  - lua/math/sin
+  - awk/builtin/sin
 
 math_cos:
   - php/math/cos
   - ruby/Math/cos
+  - lua/math/cos
+  - awk/builtin/cos
 
 math_tan:
   - php/math/tan
@@ -197,6 +231,20 @@ math_abs:
   - julia/Base/abs
   - elixir/Kernel/abs
   - clojure/Math/abs
+
+math_max:
+  - php/math/max
+  - lua/math/max
+  - r/base/max
+
+math_min:
+  - php/math/min
+  - lua/math/min
+  - r/base/min
+
+math_round:
+  - php/math/round
+  - r/base/round
 
 math_fabs:
   - python/math/fabs
