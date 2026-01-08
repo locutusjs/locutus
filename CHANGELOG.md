@@ -17,8 +17,8 @@ Ideas that will be planned and find their way into a release at one point
 - [x] ~~Have _one_ way of checking pure JS arrays~~ → standardized to `Array.isArray()` in 43 files (PR #518). Object checking patterns remain varied (acceptable - different use cases).
 - [x] ~~Investigate callable helper~~ → Only 2 files use complex resolution (`is_callable.js`, `call_user_func_array.js`). Low ROI for abstraction. `array_walk` only accepts functions directly.
 - [x] ~~Parse `require`s with ts-morph~~ → used existing esprima AST parsing to extract require() calls. 85 PHP functions now show internal dependencies on website with links
-- [x] Verification: verify examples against native runtimes with Docker (248 functions verified across 5 languages)
-      - [x] PHP: 164 functions verified against PHP 8.3
+- [x] Verification: verify examples against native runtimes with Docker (254 functions verified across 5 languages)
+      - [x] PHP: 170 functions verified against PHP 8.3
       - [x] Go: 20 functions verified against Go 1.23
       - [x] Python: 23/25 (92%) - remaining: capwords (impl difference), printable (.length)
       - [x] Ruby: 30/32 (94%) - remaining: sample (random), acos (example incompatible)
