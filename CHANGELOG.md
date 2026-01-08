@@ -52,7 +52,7 @@ Ideas that will be planned and find their way into a release at one point
         10. **Rust** (Lower) - Ownership model + method-heavy, but solid stdlib. Methods: `trim`, `split`, `chars`. Modules: `std::string`, `std::collections`.
         11. **Haskell** (Lower) - Different paradigm but educational. Functions: `map`, `filter`, `foldl`, `foldr`, `zip`. Modules: `Data.List`, `Data.Char`.
       - **Selection criteria**: (1) Type compatibility with JS, (2) Stdlib organized in modules/categories, (3) Function-oriented (or easy to wrap methods as functions), (4) Popularity/demand, (5) Semantic compatibility with JS, (6) Clean mapping to existing `src` module layout (strings/array/math/pcre/etc.)
-- [ ] Docs/Website:
+- [x] Docs/Website:
       - [x] The function pages could have a badge themselves in which language version they were parity checked (similar to what was added in the README.md)
       - [x] website: Render authors server-side (PR #511)
       - [x] website: Fix the search functionality (verified working 2026-01-07)
