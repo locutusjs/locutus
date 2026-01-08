@@ -561,7 +561,7 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 2026-01-08
 
 - **Area: Website + TypeScript (Dependency Links)**
-- Implemented internal dependency links on function pages (PR #522):
+- Implemented internal dependency links on function pages (PR #522, merged):
   - Added `_extractRequires()` method to util.ts to parse require() calls from AST
   - Uses existing esprima parsing instead of adding ts-morph dependency
   - Dependencies now populated in website front matter (previously always empty `[]`)
@@ -569,6 +569,15 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Fixed stray `<code>` tag bug in dependencies section
 - 85 PHP functions now show their internal dependencies with links
 - Example: `sort()` shows links to `i18n_loc_get_default` and `ini_get`
+- Renamed "A community effort" to "Think you can do better?" section heading
+- Added expansion language candidates to CHANGELOG backlog (ranked by suitability):
+  1. Perl (Excellent) - PHP's ancestor, function-based stdlib
+  2. Lua (Excellent) - Simple, clean, educational
+  3. AWK (Good) - Text processing powerhouse
+  4. Bash (Moderate) - CLI useful but command-based
+  5. Java (Moderate) - Popular but OOP-heavy
+  6. Rust (Lower) - Complex ownership model
+  7. Haskell (Lower) - Different paradigm
 - Marked CHANGELOG backlog item "Parse `require`s with ts-morph" as complete
 - Balance (iterations 31-39):
   - Expansion: 4 (32, 33, 34, 36)
