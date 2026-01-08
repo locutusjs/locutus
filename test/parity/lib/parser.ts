@@ -3,11 +3,8 @@
  */
 
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
-import { createRequire } from 'node:module'
 import { basename, join } from 'node:path'
 import type { Example, FunctionInfo } from './types.ts'
-
-const require = createRequire(import.meta.url)
 
 /**
  * Parse example/returns from function file comments (fallback parser)
@@ -164,33 +161,27 @@ export function parseExamplesFromHeadKeys(headKeys: Record<string, string[][]>):
 /**
  * Parse function using util.js (more accurate than regex)
  */
-export function parseFunctionWithUtil(
+export async function parseFunctionWithUtil(
   funcPath: string,
   srcDir: string,
   rootDir: string,
 ): Promise<{ examples: Example[]; dependsOn: string[]; verified: string[]; isImpossible: boolean }> {
-  const Util = require(join(rootDir, 'src/_util/util.js'))
+  // Dynamic import for runtime path resolution (ESM-compatible)
+  const { Util } = await import(join(rootDir, 'src/_util/util.ts'))
   const util = new Util([])
 
-  return new Promise((resolve, reject) => {
-    const relPath = `${funcPath}.js`
-    const fullPath = join(srcDir, relPath)
-    const code = readFileSync(fullPath, 'utf8')
+  const relPath = `${funcPath}.js`
+  const fullPath = join(srcDir, relPath)
+  const code = readFileSync(fullPath, 'utf8')
 
-    util._parse(relPath, code, (err: Error | null, params: { headKeys: Record<string, string[][]> }) => {
-      if (err || !params) {
-        reject(err || new Error(`Unable to parse ${relPath}`))
-        return
-      }
-      const { verified, isImpossible } = parseVerifiedFromHeadKeys(params.headKeys)
-      resolve({
-        examples: parseExamplesFromHeadKeys(params.headKeys),
-        dependsOn: parseDependsOnFromHeadKeys(params.headKeys),
-        verified,
-        isImpossible,
-      })
-    })
-  })
+  const params = await util._parse(relPath, code)
+  const { verified, isImpossible } = parseVerifiedFromHeadKeys(params.headKeys)
+  return {
+    examples: parseExamplesFromHeadKeys(params.headKeys),
+    dependsOn: parseDependsOnFromHeadKeys(params.headKeys),
+    verified,
+    isImpossible,
+  }
 }
 
 /**

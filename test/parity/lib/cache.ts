@@ -3,7 +3,7 @@
  */
 
 import { createHash } from 'node:crypto'
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import type { CacheEntry } from './types.ts'
 
@@ -61,14 +61,15 @@ export function calculateHash(
     }
   }
 
-  // Include language handlers
+  // Include ALL language handlers (glob for *.ts files)
   const langDir = join(verifyDir, 'lib', 'languages')
   if (existsSync(langDir)) {
-    for (const file of ['index.ts', 'php.ts', 'python.ts']) {
+    const langFiles = readdirSync(langDir)
+      .filter((f: string) => f.endsWith('.ts'))
+      .sort() // Sort for deterministic hash
+    for (const file of langFiles) {
       const fullPath = join(langDir, file)
-      if (existsSync(fullPath)) {
-        hash.update(stripForHashing(readFileSync(fullPath, 'utf8')))
-      }
+      hash.update(stripForHashing(readFileSync(fullPath, 'utf8')))
     }
   }
 

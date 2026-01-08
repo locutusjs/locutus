@@ -257,10 +257,19 @@ function printResults(allResults: TestResult[], options: VerifyOptions): ParityS
       continue
     }
 
-    // Handle errors
+    // Handle errors - these are infrastructure failures, not test failures
+    // Show the actual error and count as failed so CI catches them
     if (error) {
-      console.log(` ${EMOJI.error}`)
-      summary.skipped++
+      console.log(` ${EMOJI.fail} (ERROR)`)
+      console.log(`    ${error instanceof Error ? error.message : String(error)}`)
+      if (error instanceof Error && error.stack) {
+        // Show just the first line of the stack trace
+        const stackLine = error.stack.split('\n')[1]?.trim()
+        if (stackLine) {
+          console.log(`    ${stackLine}`)
+        }
+      }
+      summary.failed++
       continue
     }
 
