@@ -55,12 +55,15 @@ Note that for any task, it's important to first get ample context. Search past i
 
 ## Batching Related Work
 
-When working on iterative improvements toward a single goal (verification, modernization, refactoring), use a single feature branch and accumulate changes:
+When working on iterative improvements toward a single goal (verification, modernization, refactoring, expansion), use a single feature branch and accumulate changes:
 
 1. Create a goal-oriented branch: `git checkout -b feat/verification-to-70-percent`
 2. Make incremental commits as you work across multiple iterations
 3. Track progress in `LOG.md` iterations, but don't create a PR yet
-4. Only create a PR when you've made **significant progress** (e.g., 10+ functions fixed, 20%+ improvement) or hit diminishing returns
+4. Only create a PR when you've made **significant progress**:
+   - **Expansion**: Aim for 10-15% increase in coverage or ~10+ functions per PR
+   - **Verification**: 10+ functions fixed or 10-20% improvement
+   - **Refactoring**: Complete a coherent unit of work
 5. The PR title should reflect the cumulative achievement, not individual fixes
 
 This keeps related changes together and avoids PR noise. Reserve individual PRs for discrete, independent changes (bug reports, security fixes, new features).
