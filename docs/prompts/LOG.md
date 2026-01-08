@@ -583,3 +583,38 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Expansion: 4 (32, 33, 34, 36)
   - Website: 4 (31, 37, 38, 39)
   - Modernization: 1 (35)
+
+### Iteration 40
+
+2026-01-08
+
+- **Area: Expansion (7 new languages)**
+- Added 7 new languages with parity verification (PR #523):
+  - Perl 5.40: POSIX::ceil, POSIX::floor, core::length
+  - Lua 5.4: math.ceil, math.floor, math.abs
+  - R 4.4: ceiling, floor, abs
+  - Julia 1.11: Base.ceil, Base.floor, Base.abs
+  - Elixir 1.18: Float.ceil, Float.floor, Kernel.abs
+  - Clojure 1.12: Math/ceil, Math/floor, Math/abs
+  - GNU AWK 5.3: length, int, substr
+- Total: 21 new parity-verified functions (3 per language)
+- Infrastructure improvements:
+  - Moved `rosetta.yml` to `src/_data/` with build-time injection to website
+  - Added `langDefaults` for auto-generated website index pages
+  - Fixed parity test parser for ESM compatibility (util.ts → named export)
+  - Fixed cache.ts to use ESM imports (removed stray `require`)
+- Updated rosetta.yml with cross-language mappings:
+  - math_ceil: 8 languages, math_floor: 8 languages, math_abs: 7 languages
+  - string_length: 5 languages, math_trunc: 2 languages, string_substring: 2 languages
+- Locutus now supports 12 languages (up from 5)
+- Total verified: 280 functions (up from 259)
+- Additional improvements based on feedback:
+  - Added Biome `noCommonJs` rule for TypeScript files (catches stray require())
+  - Parity test errors now fail hard with error details instead of silent "?"
+  - Converted parser.ts from require() to dynamic import() for ESM compatibility
+  - Removed redundant "Mimics X's Y function" notes from all new functions
+  - Updated CONTRIBUTING.md: note guidelines, rosetta.yml path
+- Balance (iterations 31-40):
+  - Expansion: 5 (32, 33, 34, 36, 40)
+  - Website: 4 (31, 37, 38, 39)
+  - Modernization: 1 (35)
