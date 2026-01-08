@@ -212,12 +212,17 @@
         </ul>
       <% } %>
 
-      <% if (page.dependencies.length > 0) { %><code><%= page.category %></code>
+      <% if (page.dependencies.length > 0) { %>
         <h2>Dependencies</h2>
-
+        <p>This function uses the following Locutus functions:</p>
         <ul>
         <% page.dependencies.forEach(function(dependency) { %>
-          <li><a href="/functions/<%= dependency %>"><%= dependency %></a></li>
+          <%
+          // dependency is in format "php/strings/echo" - extract parts for display
+          var parts = dependency.split('/');
+          var depFunc = parts[parts.length - 1];
+          %>
+          <li><a href="/<%= dependency %>/"><%= depFunc %></a> (<%= parts[0] %>/<%= parts[1] %>)</li>
         <% }) %>
         </ul>
       <% } %>
@@ -232,7 +237,7 @@
 
       <div class="clearfix"></div>
 
-      <h2>A community effort</h2>
+      <h2>Think you can do better?</h2>
       <p>
         Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
         <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.

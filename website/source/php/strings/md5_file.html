@@ -4,7 +4,9 @@ examples:
   - md5_file('test/never-change.txt')
 returns:
   - '''bc3aa724b0ec7dce4c26e7f4d0d9b064'''
-dependencies: []
+dependencies:
+  - php/filesystem/file_get_contents
+  - php/strings/md5
 authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
