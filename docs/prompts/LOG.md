@@ -498,3 +498,4 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Added missing iterations 11-20 summary to LOG.md
 - All 981 tests pass
 - Balance: Expansion (3 recent), now Modernization (1)
+- Investigated callable helper backlog item → marked complete (low ROI, only 2 files)
