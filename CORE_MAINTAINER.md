@@ -31,42 +31,26 @@ Note that for any task, it's important to first get ample context. Search past i
     - unfinished business
 
     Do what is most important and impactful first. First search what is already available, and what we can already re-use, even if it takes a little refactoring. Define what a successful outcome looks like and how you'll validate it (tests, browser checks, screenshots for design changes, or a working migration). This is imperative: no changes without validation. Anything that can't be validated should not be PR'ed or merged.
-6. **NEVER commit directly to `main`.** Always create or (re-use, see `Batching Related Work`) another branch and open a PR:
+6. **NEVER commit directly to `main`.** Always create or re-use a goal-oriented branch:
     ```bash
-    git checkout [-]b fix/descriptive-name  # or feat/, chore/, docs/
-    # ... make changes ...
-    git push -u origin HEAD
-    gh pr create
+    git checkout [-]b feat/descriptive-goal  # or fix/, chore/, docs/
     ```
     Exceptions: `CORE_MAINTAINER.md`, `CHANGELOG.md`, and `docs/prompts/LOG.md` can be pushed directly to main.
-7. Log in the/a Iteration what the plan is 
-8. Start implementing
-9. After the change:
-    - Validate the work as planned (browser checks, tests, etc.).
-    - Run `yarn check`.
-    - If it was a migration, search for the old and remove it.
-    - Update documentation/website as needed (`find . |grep -E '\.md$' |grep -Ev '(node_modules|icarus|_posts|\.claude)'`)
-    - Run one last `yarn check`.
-    - If there was any issue, go back to step 7.1.
-    - **For website changes**: After the PR is merged, monitor the GitHub Pages Action that deploys to gh-pages. Once complete, verify the live site at https://locutus.io using a browser (Playwright MCP) to confirm the expected changes are visible and the site is functioning correctly.
-10. Release any recently merged PRs that are still unreleased, unless they only contain build tools, tests, docs fixes. We only release if there are new functions or changed functions, or changes to how people should use them.
-11. Log an iteration in `docs/prompts/LOG.md`.
+7. Log the plan in `docs/prompts/LOG.md`. Work can span multiple iterations on the same branch.
+8. Start implementing. Make incremental commits as you go.
+9. **Create a PR only when you've made significant progress** (not after each small change):
+    - **Expansion**: ~10-15% coverage increase or ~10+ functions
+    - **Verification/Refactoring**: 10+ functions fixed or complete a coherent unit
+    - **Bug fixes/security**: Individual PRs are fine for discrete issues
+
+    Before creating the PR:
+    - Validate the work (tests, browser checks, etc.)
+    - Run `yarn check`
+    - Update documentation if needed
+    - **For website changes**: After merge, verify the live site at https://locutus.io using Playwright MCP
+10. Release recently merged PRs that contain new/changed functions (not just build tools, tests, or docs).
+11. Log iteration results in `docs/prompts/LOG.md`.
 12. → Back to step 1
-
-## Batching Related Work
-
-When working on iterative improvements toward a single goal (verification, modernization, refactoring, expansion), use a single feature branch and accumulate changes:
-
-1. Create a goal-oriented branch: `git checkout -b feat/verification-to-70-percent`
-2. Make incremental commits as you work across multiple iterations
-3. Track progress in `LOG.md` iterations, but don't create a PR yet
-4. Only create a PR when you've made **significant progress**:
-   - **Expansion**: Aim for 10-15% increase in coverage or ~10+ functions per PR
-   - **Verification**: 10+ functions fixed or 10-20% improvement
-   - **Refactoring**: Complete a coherent unit of work
-5. The PR title should reflect the cumulative achievement, not individual fixes
-
-This keeps related changes together and avoids PR noise. Reserve individual PRs for discrete, independent changes (bug reports, security fixes, new features).
 
 ## Quality Standards
 
@@ -82,4 +66,4 @@ This keeps related changes together and avoids PR noise. Reserve individual PRs 
 - Document in the right place: LICENSE, README, SPDX headers, not just issues.
 - Biome unsafe fixes can break code: always test after auto-fix.
 - `eval()` is sometimes necessary: suppress with explanation, don't fight it.
-- Merge often: small PRs, fast iteration.
+- **Batch related work**: Accumulate related changes before creating a PR. For expansion, aim for 10+ functions per PR to avoid noise.
