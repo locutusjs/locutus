@@ -334,7 +334,7 @@ module.exports = function setlocale(category, locale) {
 
   if (locale === null || locale === '') {
     locale = getenv(category) || getenv('LANG')
-  } else if (Object.prototype.toString.call(locale) === '[object Array]') {
+  } else if (Array.isArray(locale)) {
     for (i = 0; i < locale.length; i++) {
       if (!(locale[i] in $locutus.php.locales)) {
         if (i === locale.length - 1) {

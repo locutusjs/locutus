@@ -35,7 +35,7 @@ module.exports = function end(arr) {
     pointers.push(arr, 0)
   }
   const arrpos = pointers.indexOf(arr)
-  if (Object.prototype.toString.call(arr) !== '[object Array]') {
+  if (!Array.isArray(arr)) {
     let ct = 0
     let val
     for (const k in arr) {

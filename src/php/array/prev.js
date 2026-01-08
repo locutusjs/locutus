@@ -31,7 +31,7 @@ module.exports = function prev(arr) {
   if (pointers.indexOf(arr) === -1 || cursor === 0) {
     return false
   }
-  if (Object.prototype.toString.call(arr) !== '[object Array]') {
+  if (!Array.isArray(arr)) {
     let ct = 0
     for (const k in arr) {
       if (ct === cursor - 1) {

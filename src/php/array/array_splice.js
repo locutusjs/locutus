@@ -49,7 +49,7 @@ module.exports = function array_splice(arr, offst, lgth, replacement) {
     lgth = (offst >= 0 ? arr.length - offst : -offst) + lgth
   }
 
-  if (Object.prototype.toString.call(arr) !== '[object Array]') {
+  if (!Array.isArray(arr)) {
     /* if (arr.length !== undefined) {
      // Deal with array-like objects as input
     delete arr.length;

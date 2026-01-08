@@ -32,7 +32,7 @@ module.exports = function next(arr) {
   }
   const arrpos = pointers.indexOf(arr)
   const cursor = pointers[arrpos + 1]
-  if (Object.prototype.toString.call(arr) !== '[object Array]') {
+  if (!Array.isArray(arr)) {
     let ct = 0
     for (const k in arr) {
       if (ct === cursor + 1) {

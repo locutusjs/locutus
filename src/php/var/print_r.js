@@ -34,7 +34,7 @@ module.exports = function print_r(array, returnVal) {
     if (typeof obj === 'object' && obj !== null && obj.constructor) {
       str += 'Array\n' + basePad + '(\n'
       for (const key in obj) {
-        if (Object.prototype.toString.call(obj[key]) === '[object Array]') {
+        if (Array.isArray(obj[key])) {
           str += thickPad
           str += '['
           str += key

@@ -36,7 +36,7 @@ module.exports = function is_array(mixedVar) {
     return name[1]
   }
   const _isArray = function (mixedVar) {
-    // return Object.prototype.toString.call(mixedVar) === '[object Array]';
+    // return Array.isArray(mixedVar);
     // The above works, but let's do the even more stringent approach:
     // (since Object.prototype.toString could be overridden)
     // Null, Not an object, no length property so couldn't be an Array (or String)

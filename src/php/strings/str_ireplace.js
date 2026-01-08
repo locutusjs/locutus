@@ -30,7 +30,7 @@ module.exports = function str_ireplace(search, replace, subject, countObj) {
   let oi = ''
   let ofjl = ''
   let os = subject
-  const osa = Object.prototype.toString.call(os) === '[object Array]'
+  const osa = Array.isArray(os)
   // var sa = ''
 
   if (typeof search === 'object') {
@@ -64,9 +64,9 @@ module.exports = function str_ireplace(search, replace, subject, countObj) {
   temp = ''
   f = [].concat(search)
   r = [].concat(replace)
-  ra = Object.prototype.toString.call(r) === '[object Array]'
+  ra = Array.isArray(r)
   s = subject
-  // sa = Object.prototype.toString.call(s) === '[object Array]'
+  // sa = Array.isArray(s)
   s = [].concat(s)
   os = [].concat(os)
 

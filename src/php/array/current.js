@@ -30,7 +30,7 @@ module.exports = function current(arr) {
   }
   const arrpos = pointers.indexOf(arr)
   const cursor = pointers[arrpos + 1]
-  if (Object.prototype.toString.call(arr) === '[object Array]') {
+  if (Array.isArray(arr)) {
     return arr[cursor] || false
   }
   let ct = 0

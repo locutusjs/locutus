@@ -9,7 +9,7 @@ module.exports = function array_product(input) {
   let product = 1
   let il = 0
 
-  if (Object.prototype.toString.call(input) !== '[object Array]') {
+  if (!Array.isArray(input)) {
     return null
   }
 

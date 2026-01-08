@@ -10,7 +10,7 @@ module.exports = function is_object(mixedVar) {
   //   example 3: is_object(null)
   //   returns 3: false
 
-  if (Object.prototype.toString.call(mixedVar) === '[object Array]') {
+  if (Array.isArray(mixedVar)) {
     return false
   }
   return mixedVar !== null && typeof mixedVar === 'object'

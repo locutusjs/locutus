@@ -5,7 +5,7 @@ module.exports = function array_reverse(array, preserveKeys) {
   //   example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
   //   returns 1: { 2: ['green', 'red'], 1: '4.0', 0: 'php'}
 
-  const isArray = Object.prototype.toString.call(array) === '[object Array]'
+  const isArray = Array.isArray(array)
   const tmpArr = preserveKeys ? {} : []
   let key
 
