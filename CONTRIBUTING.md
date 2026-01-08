@@ -188,18 +188,39 @@ Make changes if needed, until there are no more errors. Then commit, push, and s
 
 After PRs have been approved and merged it's time to cut a release.
 
-Any Core contributor can let our GHA CI create an npm release via OIDC Trusted Publishing (no npm token required),
-by pushing a new version and Git tag, like so:
+Any Core contributor can let our GHA CI create an npm release via OIDC Trusted Publishing (no npm token required).
 
-```bash
-npm version patch -m "Release v%s" && git push --tags
-```
+### Steps
 
-The publish workflow is `.github/workflows/ci.yml` and triggers on tags that point at `main`.
+1. **Update CHANGELOG.md**: Move items from `## main` to a new version section (e.g., `## v2.0.35`)
+
+2. **Bump version and push tag**:
+   ```bash
+   npm version patch -m "Release v%s" && git push origin main --tags
+   ```
+
+3. **Create GitHub Release**: After CI publishes to npm, create a GitHub release with notes from CHANGELOG:
+   ```bash
+   # Extract notes for version from CHANGELOG.md, then:
+   gh release create v2.0.35 --title "v2.0.35" --notes "$(cat <<'EOF'
+   ### New Features
+   - Feature description here
+
+   ### Bug Fixes
+   - Fix description here
+
+   Full changelog: https://github.com/locutusjs/locutus/blob/main/CHANGELOG.md
+   EOF
+   )"
+   ```
+
+### Versioning
 
 Locutus does not adhere to Semver, so typically you would just use `patch` level upgrades for changes. If we change
 something dramatic to how Locutus works across functions (ship ESM, move to TypeScript, etc), that's when we'll involve
 `minor` and `major` levels.
+
+The publish workflow is `.github/workflows/ci.yml` and triggers on tags that point at `main`.
 
 ## Website Development
 
