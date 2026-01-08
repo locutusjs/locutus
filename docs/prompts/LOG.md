@@ -555,3 +555,22 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Expansion: 4 (32, 33, 34, 36)
   - Website: 3 (31, 37, 38)
   - Modernization: 1 (35)
+
+### Iteration 39
+
+2026-01-08
+
+- **Area: Website + TypeScript (Dependency Links)**
+- Implemented internal dependency links on function pages (PR #522):
+  - Added `_extractRequires()` method to util.ts to parse require() calls from AST
+  - Uses existing esprima parsing instead of adding ts-morph dependency
+  - Dependencies now populated in website front matter (previously always empty `[]`)
+  - Updated function.ejs template to display dependencies as clickable links
+  - Fixed stray `<code>` tag bug in dependencies section
+- 85 PHP functions now show their internal dependencies with links
+- Example: `sort()` shows links to `i18n_loc_get_default` and `ini_get`
+- Marked CHANGELOG backlog item "Parse `require`s with ts-morph" as complete
+- Balance (iterations 31-39):
+  - Expansion: 4 (32, 33, 34, 36)
+  - Website: 4 (31, 37, 38, 39)
+  - Modernization: 1 (35)
