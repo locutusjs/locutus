@@ -719,3 +719,22 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - R: single→double quotes, string quoting + float precision normalization
 - PR #527 merged, released v2.0.37
 
+### Iteration 47
+
+2026-01-08
+
+- **Area: Verification**
+- Balance: Expansion (7), Modernization (4, blocked), Verification (neglected)
+- Improved PHP parity test handler (escape sequences, Unicode)
+- Verified 6 new PHP functions: wordwrap, strcoll, quoted_printable_*, ctype_cntrl, ctype_space
+- PHP verification: 164 → 170 (53%)
+- PR #528 submitted, awaiting human review
+
+### Iteration 48
+
+2026-01-08
+
+- **Area: Expansion**
+- Balance: Expansion (4), Modernization (blocked), Verification (1, PR pending)
+- Plan: Expand Julia functions (currently only 6)
+
