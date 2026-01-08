@@ -78,19 +78,42 @@ Released: 2026-01-08. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.3
 - GNU AWK 5.3: `length`, `int`, `substr`
 
 ### New Functions
-- Go: 11 new strings functions (`Contains`, `ContainsAny`, `Count`, `EqualFold`, `HasPrefix`, `HasSuffix`, `Index`, `LastIndex`, `Repeat`, `ReplaceAll`, `Split`)
+- Go: 11 strings functions (`Contains`, `ContainsAny`, `Count`, `EqualFold`, `HasPrefix`, `HasSuffix`, `Index`, `LastIndex`, `Repeat`, `ReplaceAll`, `Split`)
+- Ruby: 14 Math functions (`sqrt`, `sin`, `cos`, `exp`, `log`, `tan`, `asin`, `atan`, `cbrt`, `cosh`, `log10`, `log2`, `sinh`, `tanh`)
+- Python: 8 math functions (`ceil`, `floor`, `exp`, `fabs`, `log`, `log10`, `log2`, `trunc`)
+
+### Parity Verification
+- New cross-language verification system with Docker
+- PHP: 164 functions verified against PHP 8.3
+- Python: 23/25 functions verified against Python 3.12
+- Go: 20 functions verified against Go 1.23
+- Ruby: 30/32 functions verified against Ruby 3.3
+- C: 11/18 functions verified against GCC
+- `parity verified:` header in function files for CI integration
+- Parallel execution with caching for fast test runs
 
 ### Website
 - Rosetta Stone: Cross-language function links on each function page
 - Hover tooltips on verified badges showing exact version
 - Internal dependencies shown with clickable links
+- Authors rendered server-side instead of client-side JS
+- Hexo upgrade 7.1.1 → 8.1.1
 
 ### Infrastructure
-- Converted `src/_util/` to TypeScript
-- Removed Babel 6 dependencies, using Node's native type stripping
+- Converted `src/_util/` to TypeScript, removed Babel 6
+- Migrated from Mocha/Chai to Vitest
 - Updated Node engine requirement from >= 10 to >= 22
 - Added stricter Biome rules: `noAccumulatingSpread`, `useAwait`, `noFloatingPromises`
-- CI now runs full lint checks (`lint:ts`, `lint:headers`, `lint:no-stray-js`)
+- CI runs full lint checks (`lint:ts`, `lint:headers`, `lint:no-stray-js`)
+- Standardized array checking to `Array.isArray()` across 43 files
+- Added `composer.json` for PHP project integration
+
+### Dependencies
+- mocha 10 → 11, chai 4 → 6, rimraf 5 → 6, cross-env 7 → 10
+
+### Bug Fixes
+- Node 25 compatibility: async queue drain, indentString
+- Docker image pull optimization (once at init, not per-function)
 
 ## v2.0.33
 
