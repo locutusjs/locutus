@@ -174,6 +174,7 @@ Commit guidelines:
 - Keep PRs small and focused
 - Run `yarn check` before committing
 - Merge early, iterate often
+- PRs are squash-merged for a clean main history—no need for force-push rebasing
 
 Now it's time to apply linting & formatting fixes, and report on unfixable issues:
 

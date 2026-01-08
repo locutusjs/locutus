@@ -608,6 +608,12 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - string_length: 5 languages, math_trunc: 2 languages, string_substring: 2 languages
 - Locutus now supports 12 languages (up from 5)
 - Total verified: 280 functions (up from 259)
+- Additional improvements based on feedback:
+  - Added Biome `noCommonJs` rule for TypeScript files (catches stray require())
+  - Parity test errors now fail hard with error details instead of silent "?"
+  - Converted parser.ts from require() to dynamic import() for ESM compatibility
+  - Removed redundant "Mimics X's Y function" notes from all new functions
+  - Updated CONTRIBUTING.md: note guidelines, rosetta.yml path
 - Balance (iterations 31-40):
   - Expansion: 5 (32, 33, 34, 36, 40)
   - Website: 4 (31, 37, 38, 39)
