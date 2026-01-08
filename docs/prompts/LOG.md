@@ -618,3 +618,20 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Expansion: 5 (32, 33, 34, 36, 40)
   - Website: 4 (31, 37, 38, 39)
   - Modernization: 1 (35)
+
+### Iteration 41
+
+2026-01-08
+
+- **Area: Modernization (Biome rules)**
+- Balance check: Modernization heavily neglected (1/10 iterations). Focusing there.
+- Added 3 new Biome linter rules (PR #524):
+  - `noAccumulatingSpread` (performance) - catches O(n²) reduce patterns
+  - `useAwait` (suspicious) - flags pointless async functions
+  - `noFloatingPromises` (nursery) - catches unhandled promises
+- CI improvements:
+  - Added missing lint checks: `lint:ts`, `lint:headers`, `lint:no-stray-js`
+  - CI was previously only running `yarn lint`, not the full `yarn check`
+  - Fixed `lint:no-stray-js` to exclude new language directories
+- Fixed 1 lint violation: removed unnecessary `async` from pMap callback
+- Added squash-merge guideline to CONTRIBUTING.md
