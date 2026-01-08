@@ -650,3 +650,20 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Deferred Changesets migration - current manual process is sufficient for single-package repo
 - Fixed v2.0.34 release notes - expanded to include all 114 commits worth of features
 - Set v2.0.34 as "Latest" release on GitHub
+- Marked Changesets as done, Docs/Website backlog as complete
+
+### Iteration 43
+
+2026-01-08
+
+- **Area: Modernization (ESM research)**
+- Balance: Expansion (5), Website (4 complete), Modernization (3)
+- Remaining backlog: CJS→ESM migration (blocks browser tests), Expansion
+- Plan: Research ESM migration approach for source functions
+- Research findings:
+  - 448 function files using `module.exports = function name() {}`
+  - Best practice: Use tsup to build dual CJS/ESM from single source
+  - Would need: `"type": "module"`, `"exports"` field in package.json
+  - Complexity: High - affects all consumers, needs careful testing
+  - Recommendation: Keep source as CJS, use tsup to generate ESM bundle
+  - Deferred: This is a breaking change requiring major version bump
