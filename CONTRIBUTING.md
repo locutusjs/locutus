@@ -193,6 +193,7 @@ Any Core contributor can let our GHA CI create an npm release via OIDC Trusted P
 ### Steps
 
 1. **Update CHANGELOG.md**: Move items from `## main` to a new version section (e.g., `## v2.0.35`)
+   - If `engines.node` changed, add a short callout in the release notes (CHANGELOG + GitHub release)
 
 2. **Bump version and push tag**:
    ```bash
@@ -219,6 +220,11 @@ Any Core contributor can let our GHA CI create an npm release via OIDC Trusted P
 Locutus does not adhere to Semver, so typically you would just use `patch` level upgrades for changes. If we change
 something dramatic to how Locutus works across functions (ship ESM, move to TypeScript, etc), that's when we'll involve
 `minor` and `major` levels.
+
+Engine policy:
+
+- Increasing `engines.node` is treated as a breaking change and requires a **major** version bump.
+- Keep development tooling on Node 22+ if needed, but the published `engines.node` must reflect runtime compatibility.
 
 The publish workflow is `.github/workflows/ci.yml` and triggers on tags that point at `main`.
 

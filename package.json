@@ -81,7 +81,7 @@
   },
   "packageManager": "yarn@4.12.0",
   "engines": {
-    "node": ">= 22",
+    "node": ">= 10",
     "yarn": ">= 1"
   },
   "readmeFilename": "README.md"

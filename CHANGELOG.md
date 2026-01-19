@@ -30,7 +30,7 @@ Ideas that will be planned and find their way into a release at one point
       - [x] Migrate Babel 6 → TS (Node 22+ typestripping) - removed Babel, using `node --experimental-strip-types`
       - [x] Migrate Mocha → Vitest (PR #506)
       - [ ] Migrate custom `test/browser/app.js` and `yarn browser:watch`/browserify → Vitest with Playwright support (blocked on ESM migration - Vite browser mode requires ESM, but source functions are CJS)
-      - [x] Drop Node < 22 support (now requires Node >= 22)
+      - [ ] Drop Node < 22 support (planned for v3; requires Node >= 22)
       - [x] ESLint/Prettier → Biome (done in v2.0.33)
       - [ ] Migrate CJS → ESM (v3.0 candidate - 448 files, use tsup for dual exports, breaking change for consumers)
       - [x] ~~Migrate Custom tagged releases → Changesets~~ (current process works well: npm version + gh release)
@@ -63,6 +63,10 @@ Ideas that will be planned and find their way into a release at one point
 ## main
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.37...main).
+
+### Infrastructure
+- Restore published Node engine range to >= 10 for 2.x releases (engine bumps now treated as major changes)
+- Add CI guardrail to block raising `engines.node` without a major version bump
 
 ## v2.0.37
 
