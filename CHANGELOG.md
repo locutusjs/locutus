@@ -62,7 +62,11 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.37...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.38...main).
+
+## v2.0.38
+
+Released: 2026-01-19. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.37...v2.0.38).
 
 ### Infrastructure
 - Restore published Node engine range to >= 10 for 2.x releases (engine bumps now treated as major changes)
