@@ -74,7 +74,7 @@ module.exports = function parse_str(str, array) {
     key = _fixStr(tmp[0])
     value = tmp.length < 2 ? '' : _fixStr(tmp[1])
 
-    if (key.includes('__proto__') || key.includes('constructor') || key.includes('prototype')) {
+    if (/__proto__|constructor|prototype/.test(key)) {
       break
     }
 

@@ -64,6 +64,9 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.38...main).
 
+### Security
+- Fix prototype pollution bypass in `parse_str` where overriding `String.prototype.includes` could defeat the guard ([GHSA-rxrv-835q-v5mh](https://github.com/locutusjs/locutus/security/advisories/GHSA-rxrv-835q-v5mh))
+
 ## v2.0.38
 
 Released: 2026-01-19. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.37...v2.0.38).
