@@ -5,7 +5,7 @@
  * See: https://github.com/locutusjs/locutus/issues/...
  */
 
-import { describe, expect, it, afterEach } from 'vitest'
+import { afterEach, describe, expect, it } from 'vitest'
 // @ts-expect-error - CJS module
 import parse_str from '../../src/php/strings/parse_str.js'
 
