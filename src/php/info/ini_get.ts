@@ -1,4 +1,4 @@
-module.exports = function ini_get(varname) {
+export default function ini_get(varname: string): string {
   //  discuss at: https://locutus.io/php/ini_get/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: The ini values must be set by ini_set or manually within an ini file
@@ -6,17 +6,19 @@ module.exports = function ini_get(varname) {
   //   example 1: ini_get('date.timezone')
   //   returns 1: 'Asia/Hong_Kong'
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
+  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
+    $locutus: { php: { ini: Record<string, { local_value?: unknown }> } }
+  }
+  $global.$locutus = $global.$locutus || ({} as typeof $global.$locutus)
   const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
+  $locutus.php = $locutus.php || ({} as typeof $locutus.php)
   $locutus.php.ini = $locutus.php.ini || {}
 
   if ($locutus.php.ini[varname] && $locutus.php.ini[varname].local_value !== undefined) {
     if ($locutus.php.ini[varname].local_value === null) {
       return ''
     }
-    return $locutus.php.ini[varname].local_value
+    return $locutus.php.ini[varname].local_value as string
   }
 
   return ''

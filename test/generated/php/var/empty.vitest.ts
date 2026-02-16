@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 const empty = require('../../../../src/php/var/empty.js')
 
 describe('src/php/var/empty.js (tested in test/generated/php/var/empty.vitest.ts)', function () {

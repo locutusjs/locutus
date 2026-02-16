@@ -1,4 +1,6 @@
-module.exports = function parse_url(str, component) {
+import ini_get from '../info/ini_get.ts'
+
+export default function parse_url(str: string, component?: string): Record<string, unknown> | string {
   //       discuss at: https://locutus.io/php/parse_url/
   //      original by: Steven Levithan (https://blog.stevenlevithan.com)
   // reimplemented by: Brett Zamir (https://brett-zamir.me)
@@ -23,10 +25,9 @@ module.exports = function parse_url(str, component) {
   //        example 4: parse_url('https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar')
   //        returns 4: { scheme: 'https', host: 'www.example.com', path: '/a@b.c/folder', query: 'foo=bar', user: 'gooduser', pass: 'secretpassword' }
 
-  let query
+  let query: string
 
-  const mode =
-    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.mode') : undefined) || 'php'
+  const mode = ini_get('locutus.parse_url.mode') || 'php'
 
   const key = [
     'source',
@@ -46,7 +47,7 @@ module.exports = function parse_url(str, component) {
   ]
 
   // For loose we added one optional slash to post-scheme to catch file:/// (should restrict this)
-  let parser = {
+  const parser: Record<string, RegExp> = {
     php: new RegExp(
       [
         '(?:([^:\\/?#]+):)?',
@@ -74,30 +75,29 @@ module.exports = function parse_url(str, component) {
   }
 
   const m = parser[mode].exec(str)
-  const uri = {}
+  const uri: Record<string, unknown> = {}
   let i = 14
 
   while (i--) {
-    if (m[i]) {
-      uri[key[i]] = m[i]
+    if (m![i]) {
+      uri[key[i]] = m![i]
     }
   }
 
   if (component) {
-    return uri[component.replace('PHP_URL_', '').toLowerCase()]
+    return uri[component.replace('PHP_URL_', '').toLowerCase()] as string
   }
 
   if (mode !== 'php') {
-    const name =
-      (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.queryKey') : undefined) ||
-      'queryKey'
-    parser = /(?:^|&)([^&=]*)=?([^&]*)/g
+    const name = ini_get('locutus.parse_url.queryKey') || 'queryKey'
+    const queryParser = /(?:^|&)([^&=]*)=?([^&]*)/g
     uri[name] = {}
-    query = uri[key[12]] || ''
-    query.replace(parser, function ($0, $1, $2) {
+    query = (uri[key[12]] || '') as string
+    query.replace(queryParser, function ($0: string, $1: string, $2: string): string {
       if ($1) {
-        uri[name][$1] = $2
+        ;(uri[name] as Record<string, string>)[$1] = $2
       }
+      return $0
     })
   }
 

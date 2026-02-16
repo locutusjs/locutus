@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 const json_last_error = require('../../../../src/php/json/json_last_error.js')
 
 describe('src/php/json/json_last_error.js (tested in test/generated/php/json/json_last_error.vitest.ts)', function () {

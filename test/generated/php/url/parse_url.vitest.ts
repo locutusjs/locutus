@@ -5,10 +5,10 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
-const parse_url = require('../../../../src/php/url/parse_url.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
+const parse_url = require('../../../../src/php/url/parse_url.ts').default
 
-describe('src/php/url/parse_url.js (tested in test/generated/php/url/parse_url.vitest.ts)', function () {
+describe('src/php/url/parse_url.ts (tested in test/generated/php/url/parse_url.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = {scheme: 'https', host: 'host', user: 'user', pass: 'pass', path: '/path', query: 'a=v', fragment: 'a'}
     const result = parse_url('https://user:pass@host/path?a=v#a')

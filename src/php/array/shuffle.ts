@@ -1,4 +1,6 @@
-module.exports = function shuffle(inputArr) {
+import ini_get from '../info/ini_get.ts'
+
+export default function shuffle(inputArr: Record<string, unknown>): boolean | Record<string, unknown> | unknown[] {
   //  discuss at: https://locutus.io/php/shuffle/
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   //  revised by: Kevin van Zonneveld (https://kvz.io)
@@ -10,11 +12,11 @@ module.exports = function shuffle(inputArr) {
   //   example 1: var $result = $data.q
   //   returns 1: 5
 
-  const valArr = []
+  const valArr: unknown[] = []
   let k = ''
   let i = 0
   let sortByReference = false
-  let populateArr = []
+  let populateArr: Record<string, unknown> | unknown[] = []
 
   for (k in inputArr) {
     // Get key and value arrays
@@ -29,8 +31,7 @@ module.exports = function shuffle(inputArr) {
     return 0.5 - Math.random()
   })
 
-  const iniVal =
-    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal = ini_get('locutus.sortByReference') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

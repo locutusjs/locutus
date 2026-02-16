@@ -1,4 +1,6 @@
-module.exports = function is_array(mixedVar) {
+import ini_get from '../info/ini_get.ts'
+
+export default function is_array(mixedVar: unknown): boolean {
   //  discuss at: https://locutus.io/php/is_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Legaev Andrey
@@ -28,14 +30,14 @@ module.exports = function is_array(mixedVar) {
   //   example 5: is_array(function tmp_a (){ this.name = 'Kevin' })
   //   returns 5: false
 
-  const _getFuncName = function (fn) {
-    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn)
+  const _getFuncName = function (fn: unknown): string {
+    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn as string)
     if (!name) {
       return '(Anonymous)'
     }
     return name[1]
   }
-  const _isArray = function (mixedVar) {
+  const _isArray = function (mixedVar: any): boolean {
     // return Array.isArray(mixedVar);
     // The above works, but let's do the even more stringent approach:
     // (since Object.prototype.toString could be overridden)
@@ -77,11 +79,10 @@ module.exports = function is_array(mixedVar) {
     return true
   }
 
-  const iniVal =
-    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.objectsAsArrays') : undefined) || 'on'
+  const iniVal = ini_get('locutus.objectsAsArrays') || 'on'
   if (iniVal === 'on') {
     const asString = Object.prototype.toString.call(mixedVar)
-    const asFunc = _getFuncName(mixedVar.constructor)
+    const asFunc = _getFuncName((mixedVar as Record<string, unknown>).constructor)
 
     if (asString === '[object Object]' && asFunc === 'Object') {
       // Most likely a literal and intended as assoc. array

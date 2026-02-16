@@ -1,4 +1,4 @@
-import ini_get from '../info/ini_get.js'
+import ini_get from '../info/ini_get.ts'
 
 export default function strlen(string: string): number {
   //  discuss at: https://locutus.io/php/strlen/

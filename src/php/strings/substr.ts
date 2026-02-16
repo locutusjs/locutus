@@ -1,4 +1,7 @@
-module.exports = function substr(input, start, len) {
+import _php_cast_string from '../_helpers/_phpCastString.js'
+import ini_get from '../info/ini_get.ts'
+
+export default function substr(input: string | number, start: number, len?: number): string | false {
   //  discuss at: https://locutus.io/php/substr/
   // original by: Martijn Wieringa
   // bugfixed by: T.Wild
@@ -27,18 +30,15 @@ module.exports = function substr(input, start, len) {
   //   example 7: substr('a\uD801\uDC00z\uD801\uDC00', -3, -1)
   //   returns 7: '\uD801\uDC00z'
 
-  const _php_cast_string = require('../_helpers/_phpCastString')
+  let str: string | string[] = _php_cast_string(input)
 
-  input = _php_cast_string(input)
-
-  const ini_get = require('../info/ini_get')
   const multibyte = ini_get('unicode.semantics') === 'on'
 
   if (multibyte) {
-    input = input.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[\s\S]/g) || []
+    str = (str as string).match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[\s\S]/g) || []
   }
 
-  const inputLength = input.length
+  const inputLength = str.length
   let end = inputLength
 
   if (start < 0) {
@@ -58,8 +58,8 @@ module.exports = function substr(input, start, len) {
   }
 
   if (multibyte) {
-    return input.slice(start, end).join('')
+    return (str as string[]).slice(start, end).join('')
   }
 
-  return input.slice(start, end)
+  return (str as string).slice(start, end)
 }

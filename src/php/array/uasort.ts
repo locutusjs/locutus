@@ -1,4 +1,10 @@
-module.exports = function uasort(inputArr, sorter) {
+import ini_get from '../info/ini_get.ts'
+
+export default function uasort(
+  this: Record<string, any>,
+  inputArr: Record<string, unknown>,
+  sorter: ((a: unknown, b: unknown) => number) | string | string[],
+): boolean | Record<string, unknown> {
   //  discuss at: https://locutus.io/php/uasort/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -18,11 +24,11 @@ module.exports = function uasort(inputArr, sorter) {
   //   example 1: var $result = $fruits
   //   returns 1: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
 
-  const valArr = []
+  const valArr: [string, unknown][] = []
   let k = ''
   let i = 0
   let sortByReference = false
-  let populateArr = {}
+  let populateArr: Record<string, unknown> = {}
 
   if (typeof sorter === 'string') {
     sorter = this[sorter]
@@ -30,8 +36,7 @@ module.exports = function uasort(inputArr, sorter) {
     sorter = this[sorter[0]][sorter[1]]
   }
 
-  const iniVal =
-    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal = ini_get('locutus.sortByReference') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 
@@ -45,7 +50,7 @@ module.exports = function uasort(inputArr, sorter) {
     }
   }
   valArr.sort(function (a, b) {
-    return sorter(a[1], b[1])
+    return (sorter as (a: unknown, b: unknown) => number)(a[1], b[1])
   })
 
   for (i = 0; i < valArr.length; i++) {

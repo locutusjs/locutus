@@ -1,11 +1,13 @@
-module.exports = function assert_options(what, value) {
+import ini_get from '../info/ini_get.ts'
+
+export default function assert_options(what: string, value?: unknown): unknown {
   //  discuss at: https://locutus.io/php/assert_options/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: assert_options('ASSERT_CALLBACK')
   //   returns 1: null
 
-  let iniKey
-  let defaultVal
+  let iniKey: string
+  let defaultVal: number | null
   switch (what) {
     case 'ASSERT_ACTIVE':
       iniKey = 'assert.active'
@@ -35,7 +37,7 @@ module.exports = function assert_options(what, value) {
   }
 
   // I presume this is to be the most recent value, instead of the default value
-  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')(iniKey) : undefined) || defaultVal
+  const iniVal = ini_get(iniKey) || defaultVal
 
   return iniVal
 }

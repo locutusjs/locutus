@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 const array_intersect_assoc = require('../../../../src/php/array/array_intersect_assoc.js')
 
 describe('src/php/array/array_intersect_assoc.js (tested in test/generated/php/array/array_intersect_assoc.vitest.ts)', function () {

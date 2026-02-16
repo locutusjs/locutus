@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 const array_pop = require('../../../../src/php/array/array_pop.ts').default
 
 describe('src/php/array/array_pop.ts (tested in test/generated/php/array/array_pop.vitest.ts)', function () {

@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 const is_infinite = require('../../../../src/php/math/is_infinite.js')
 
 describe('src/php/math/is_infinite.js (tested in test/generated/php/math/is_infinite.vitest.ts)', function () {

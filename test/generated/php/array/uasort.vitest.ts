@@ -5,10 +5,10 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
-const uasort = require('../../../../src/php/array/uasort.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
+const uasort = require('../../../../src/php/array/uasort.ts').default
 
-describe('src/php/array/uasort.js (tested in test/generated/php/array/uasort.vitest.ts)', function () {
+describe('src/php/array/uasort.ts (tested in test/generated/php/array/uasort.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
     var $sorter = function (a, b) { if (a > b) {return 1;}if (a < b) {return -1;} return 0;}

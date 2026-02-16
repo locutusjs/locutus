@@ -5,10 +5,10 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
-const substr = require('../../../../src/php/strings/substr.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
+const substr = require('../../../../src/php/strings/substr.ts').default
 
-describe('src/php/strings/substr.js (tested in test/generated/php/strings/substr.vitest.ts)', function () {
+describe('src/php/strings/substr.ts (tested in test/generated/php/strings/substr.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'abcde'
     const result = substr('abcdef', 0, -1)

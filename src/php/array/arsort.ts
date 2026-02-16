@@ -1,11 +1,15 @@
-module.exports = function asort(inputArr, sortFlags) {
-  //  discuss at: https://locutus.io/php/asort/
+import i18lgd from '../i18n/i18n_loc_get_default.js'
+import ini_get from '../info/ini_get.ts'
+import strnatcmp from '../strings/strnatcmp.js'
+
+export default function arsort(
+  inputArr: Record<string, unknown>,
+  sortFlags?: string,
+): boolean | Record<string, unknown> {
+  //  discuss at: https://locutus.io/php/arsort/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)
-  // improved by: Brett Zamir (https://brett-zamir.me)
   // improved by: Theriault (https://github.com/Theriault)
-  //    input by: paulo kuong
-  // bugfixed by: Adam Wallner (https://web2.bitbaro.hu/)
   //      note 1: SORT_STRING (as well as natsort and natcasesort) might also be
   //      note 1: integrated into all of these functions by adapting the code at
   //      note 1: https://sourcefrog.net/projects/natsort/natcompare.js
@@ -25,61 +29,61 @@ module.exports = function asort(inputArr, sortFlags) {
   //      note 1: if the content is a numeric string, we treat the
   //      note 1: "original type" as numeric.
   //   example 1: var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-  //   example 1: asort($data)
+  //   example 1: arsort($data)
   //   example 1: var $result = $data
-  //   returns 1: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
+  //   returns 1: {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
   //   example 2: ini_set('locutus.sortByReference', true)
   //   example 2: var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-  //   example 2: asort($data)
+  //   example 2: arsort($data)
   //   example 2: var $result = $data
-  //   returns 2: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
+  //   returns 2: {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
 
-  const strnatcmp = require('../strings/strnatcmp')
-  const i18nlgd = require('../i18n/i18n_loc_get_default')
-
-  const valArr = []
+  const valArr: [string, unknown][] = []
   let valArrLen = 0
-  let k
-  let i
-  let sorter
+  let k: string
+  let i: number
+  let sorter: ((a: unknown, b: unknown) => number) | undefined
   let sortByReference = false
-  let populateArr = {}
+  const populateArr: Record<string, unknown> = {}
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
+  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
+    $locutus: { php: { locales: Record<string, { sorting: (a: unknown, b: unknown) => number }> } }
+  }
+  $global.$locutus = $global.$locutus || ({} as typeof $global.$locutus)
   const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
+  $locutus.php = $locutus.php || ({} as typeof $locutus.php)
   $locutus.php.locales = $locutus.php.locales || {}
 
   switch (sortFlags) {
     case 'SORT_STRING':
       // compare items as strings
       sorter = function (a, b) {
-        return strnatcmp(a, b)
+        return strnatcmp(b, a)
       }
       break
     case 'SORT_LOCALE_STRING': {
       // compare items as strings, based on the current locale
       // (set with i18n_loc_set_default() as of PHP6)
-      const loc = i18nlgd()
+      const loc = i18lgd()
       sorter = $locutus.php.locales[loc].sorting
       break
     }
     case 'SORT_NUMERIC':
       // compare items numerically
       sorter = function (a, b) {
-        return a - b
+        return (a as number) - (b as number)
       }
       break
     case 'SORT_REGULAR':
       // compare items normally (don't change types)
       break
     default:
-      sorter = function (a, b) {
-        const aFloat = parseFloat(a)
-        const bFloat = parseFloat(b)
+      sorter = function (b, a) {
+        const aFloat = parseFloat(a as string)
+        const bFloat = parseFloat(b as string)
         const aNumeric = aFloat + '' === a
         const bNumeric = bFloat + '' === b
+
         if (aNumeric && bNumeric) {
           return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0
         } else if (aNumeric && !bNumeric) {
@@ -87,15 +91,14 @@ module.exports = function asort(inputArr, sortFlags) {
         } else if (!aNumeric && bNumeric) {
           return -1
         }
-        return a > b ? 1 : a < b ? -1 : 0
+
+        return (a as string) > (b as string) ? 1 : (a as string) < (b as string) ? -1 : 0
       }
       break
   }
 
-  const iniVal =
-    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal = ini_get('locutus.sortByReference') || 'on'
   sortByReference = iniVal === 'on'
-  populateArr = sortByReference ? inputArr : populateArr
 
   // Get key and value arrays
   for (k in inputArr) {
@@ -106,14 +109,16 @@ module.exports = function asort(inputArr, sortFlags) {
       }
     }
   }
-
   valArr.sort(function (a, b) {
-    return sorter(a[1], b[1])
+    return sorter!(a[1], b[1])
   })
 
   // Repopulate the old array
   for (i = 0, valArrLen = valArr.length; i < valArrLen; i++) {
     populateArr[valArr[i][0]] = valArr[i][1]
+    if (sortByReference) {
+      inputArr[valArr[i][0]] = valArr[i][1]
+    }
   }
 
   return sortByReference || populateArr

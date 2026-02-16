@@ -5,10 +5,10 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
-const shuffle = require('../../../../src/php/array/shuffle.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
+const shuffle = require('../../../../src/php/array/shuffle.ts').default
 
-describe('src/php/array/shuffle.js (tested in test/generated/php/array/shuffle.vitest.ts)', function () {
+describe('src/php/array/shuffle.ts (tested in test/generated/php/array/shuffle.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 5
     var $data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5}

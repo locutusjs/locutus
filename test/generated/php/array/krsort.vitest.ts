@@ -5,10 +5,10 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
-const krsort = require('../../../../src/php/array/krsort.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
+const krsort = require('../../../../src/php/array/krsort.ts').default
 
-describe('src/php/array/krsort.js (tested in test/generated/php/array/krsort.vitest.ts)', function () {
+describe('src/php/array/krsort.ts (tested in test/generated/php/array/krsort.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = {d: 'lemon', c: 'apple', b: 'banana', a: 'orange'}
     var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}

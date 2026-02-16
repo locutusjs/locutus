@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 const get_html_translation_table = require('../../../../src/php/strings/get_html_translation_table.js')
 
 describe('src/php/strings/get_html_translation_table.js (tested in test/generated/php/strings/get_html_translation_table.vitest.ts)', function () {

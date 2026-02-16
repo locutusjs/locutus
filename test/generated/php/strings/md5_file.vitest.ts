@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 const md5_file = require('../../../../src/php/strings/md5_file.js')
 
 describe('src/php/strings/md5_file.js (tested in test/generated/php/strings/md5_file.vitest.ts)', function () {

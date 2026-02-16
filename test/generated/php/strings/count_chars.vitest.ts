@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 const count_chars = require('../../../../src/php/strings/count_chars.js')
 
 describe('src/php/strings/count_chars.js (tested in test/generated/php/strings/count_chars.vitest.ts)', function () {

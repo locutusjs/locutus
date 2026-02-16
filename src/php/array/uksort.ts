@@ -1,4 +1,10 @@
-module.exports = function uksort(inputArr, sorter) {
+import ini_get from '../info/ini_get.ts'
+
+export default function uksort(
+  this: Record<string, any>,
+  inputArr: Record<string, unknown>,
+  sorter: ((a: string, b: string) => number) | string,
+): boolean | Record<string, unknown> {
   //  discuss at: https://locutus.io/php/uksort/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -17,12 +23,12 @@ module.exports = function uksort(inputArr, sorter) {
   //   example 1: var $result = $data
   //   returns 1: {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
 
-  const tmpArr = {}
-  const keys = []
+  const tmpArr: Record<string, unknown> = {}
+  const keys: string[] = []
   let i = 0
   let k = ''
   let sortByReference = false
-  let populateArr = {}
+  let populateArr: Record<string, unknown> = {}
 
   if (typeof sorter === 'string') {
     sorter = this.window[sorter]
@@ -38,7 +44,7 @@ module.exports = function uksort(inputArr, sorter) {
   // Sort key names
   try {
     if (sorter) {
-      keys.sort(sorter)
+      keys.sort(sorter as (a: string, b: string) => number)
     } else {
       keys.sort()
     }
@@ -46,8 +52,7 @@ module.exports = function uksort(inputArr, sorter) {
     return false
   }
 
-  const iniVal =
-    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
+  const iniVal = ini_get('locutus.sortByReference') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 
@@ -59,7 +64,7 @@ module.exports = function uksort(inputArr, sorter) {
       delete inputArr[k]
     }
   }
-  for (i in tmpArr) {
+  for (const i in tmpArr) {
     if (tmpArr.hasOwnProperty(i)) {
       populateArr[i] = tmpArr[i]
     }

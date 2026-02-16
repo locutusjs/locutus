@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 const inet_ntop = require('../../../../src/php/network/inet_ntop.js')
 
 describe('src/php/network/inet_ntop.js (tested in test/generated/php/network/inet_ntop.vitest.ts)', function () {

@@ -1,11 +1,17 @@
-module.exports = function rsort(inputArr, sortFlags) {
-  //  discuss at: https://locutus.io/php/rsort/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //  revised by: Brett Zamir (https://brett-zamir.me)
+import i18nlgd from '../i18n/i18n_loc_get_default.js'
+import ini_get from '../info/ini_get.ts'
+import strnatcmp from '../strings/strnatcmp.js'
+
+export default function krsort(
+  inputArr: Record<string, unknown>,
+  sortFlags?: string,
+): boolean | Record<string, unknown> {
+  //  discuss at: https://locutus.io/php/krsort/
+  // original by: GeekFG (https://geekfg.blogspot.com)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Brett Zamir (https://brett-zamir.me)
-  //      note 1: SORT_STRING (as well as natsort and natcasesort) might also be
-  //      note 1: integrated into all of these functions by adapting the code at
-  //      note 1: https://sourcefrog.net/projects/natsort/natcompare.js
+  // bugfixed by: pseudaria (https://github.com/pseudaria)
+  //      note 1: The examples are correct, this is a new way
   //      note 1: This function deviates from PHP in returning a copy of the array instead
   //      note 1: of acting by reference and returning true; this was necessary because
   //      note 1: IE does not allow deleting and re-adding of properties without caching
@@ -19,29 +25,33 @@ module.exports = function rsort(inputArr, sortFlags) {
   //      note 1: default) SORT_REGULAR flag distinguishes by key type,
   //      note 1: if the content is a numeric string, we treat the
   //      note 1: "original type" as numeric.
-  //   example 1: var $arr = ['Kevin', 'van', 'Zonneveld']
-  //   example 1: rsort($arr)
-  //   example 1: var $result = $arr
-  //   returns 1: ['van', 'Zonneveld', 'Kevin']
+  //   example 1: var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+  //   example 1: krsort($data)
+  //   example 1: var $result = $data
+  //   returns 1: {d: 'lemon', c: 'apple', b: 'banana', a: 'orange'}
   //   example 2: ini_set('locutus.sortByReference', true)
-  //   example 2: var $fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-  //   example 2: rsort($fruits)
-  //   example 2: var $result = $fruits
-  //   returns 2: {0: 'orange', 1: 'lemon', 2: 'banana', 3: 'apple'}
+  //   example 2: var $data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}
+  //   example 2: krsort($data)
+  //   example 2: var $result = $data
+  //   returns 2: {3: 'Zonneveld', 2: 'van', 1: 'Kevin'}
 
-  const i18nlgd = require('../i18n/i18n_loc_get_default')
-  const strnatcmp = require('../strings/strnatcmp')
-
-  let sorter
-  let i
-  let k
+  const tmpArr: Record<string, unknown> = {}
+  const keys: string[] = []
+  let sorter: ((a: string, b: string) => number) | undefined
+  let i: number
+  let k: string
   let sortByReference = false
-  let populateArr = {}
+  let populateArr: Record<string, unknown> = {}
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
+  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
+    $locutus: {
+      php: { locales: Record<string, { sorting: (a: string, b: string) => number }> }
+      locales: Record<string, { sorting: (a: string, b: string) => number }>
+    }
+  }
+  $global.$locutus = $global.$locutus || ({} as typeof $global.$locutus)
   const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
+  $locutus.php = $locutus.php || ({} as typeof $locutus.php)
   $locutus.php.locales = $locutus.php.locales || {}
 
   switch (sortFlags) {
@@ -61,7 +71,7 @@ module.exports = function rsort(inputArr, sortFlags) {
     case 'SORT_NUMERIC':
       // compare items numerically
       sorter = function (a, b) {
-        return b - a
+        return (b as unknown as number) - (a as unknown as number)
       }
       break
     case 'SORT_REGULAR':
@@ -84,27 +94,30 @@ module.exports = function rsort(inputArr, sortFlags) {
       break
   }
 
-  const iniVal =
-    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
-  sortByReference = iniVal === 'on'
-  populateArr = sortByReference ? inputArr : populateArr
-  const valArr = []
-
+  // Make a list of key names
   for (k in inputArr) {
-    // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push(inputArr[k])
-      if (sortByReference) {
-        delete inputArr[k]
-      }
+      keys.push(k)
     }
   }
+  keys.sort(sorter)
 
-  valArr.sort(sorter)
+  const iniVal = ini_get('locutus.sortByReference') || 'on'
+  sortByReference = iniVal === 'on'
+  populateArr = sortByReference ? inputArr : populateArr
 
-  for (i = 0; i < valArr.length; i++) {
-    // Repopulate the old array
-    populateArr[i] = valArr[i]
+  // Rebuild array with sorted key names
+  for (i = 0; i < keys.length; i++) {
+    k = keys[i]
+    tmpArr[k] = inputArr[k]
+    if (sortByReference) {
+      delete inputArr[k]
+    }
+  }
+  for (const i in tmpArr) {
+    if (tmpArr.hasOwnProperty(i)) {
+      populateArr[i] = tmpArr[i]
+    }
   }
 
   return sortByReference || populateArr

@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 const sql_regcase = require('../../../../src/php/pcre/sql_regcase.js')
 
 describe('src/php/pcre/sql_regcase.js (tested in test/generated/php/pcre/sql_regcase.vitest.ts)', function () {

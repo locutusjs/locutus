@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 const wordwrap = require('../../../../src/php/strings/wordwrap.js')
 
 describe('src/php/strings/wordwrap.js (tested in test/generated/php/strings/wordwrap.vitest.ts)', function () {

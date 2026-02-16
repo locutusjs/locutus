@@ -5,10 +5,10 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
-const natcasesort = require('../../../../src/php/array/natcasesort.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
+const natcasesort = require('../../../../src/php/array/natcasesort.ts').default
 
-describe('src/php/array/natcasesort.js (tested in test/generated/php/array/natcasesort.vitest.ts)', function () {
+describe('src/php/array/natcasesort.ts (tested in test/generated/php/array/natcasesort.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = {a: 'IMG0.png', e: 'img1.png', d: 'img2.png', f: 'IMG3.png', c: 'img10.png', b: 'img12.png'}
     var $array1 = {a:'IMG0.png', b:'img12.png', c:'img10.png', d:'img2.png', e:'img1.png', f:'IMG3.png'}

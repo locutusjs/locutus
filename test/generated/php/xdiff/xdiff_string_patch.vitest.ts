@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 const xdiff_string_patch = require('../../../../src/php/xdiff/xdiff_string_patch.js')
 
 describe('src/php/xdiff/xdiff_string_patch.js (tested in test/generated/php/xdiff/xdiff_string_patch.vitest.ts)', function () {

@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 const long2ip = require('../../../../src/php/network/long2ip.js')
 
 describe('src/php/network/long2ip.js (tested in test/generated/php/network/long2ip.vitest.ts)', function () {

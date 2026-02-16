@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 const realpath = require('../../../../src/php/filesystem/realpath.js')
 
 describe('src/php/filesystem/realpath.js (tested in test/generated/php/filesystem/realpath.vitest.ts)', function () {

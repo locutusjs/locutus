@@ -5,9 +5,9 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 
-describe('src/php/info/ini_get.js (tested in test/generated/php/info/ini_get.vitest.ts)', function () {
+describe('src/php/info/ini_get.ts (tested in test/generated/php/info/ini_get.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Asia/Hong_Kong'
     ini_set('date.timezone', 'Asia/Hong_Kong')

@@ -1,4 +1,11 @@
-module.exports = function strtr(str, trFrom, trTo) {
+import krsort from '../array/krsort.ts'
+import iniSet from '../info/ini_set.js'
+
+export default function strtr(
+  str: string,
+  trFrom: string | Record<string, unknown> | string[],
+  trTo?: string | unknown[],
+): string {
   //  discuss at: https://locutus.io/php/strtr/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: uestla
@@ -23,20 +30,17 @@ module.exports = function strtr(str, trFrom, trTo) {
   //   example 6: strtr('aa', {'a':1,'aa':2})
   //   returns 6: '2'
 
-  const krsort = require('../array/krsort')
-  const iniSet = require('../info/ini_set')
-
   let fr = ''
   let i = 0
   let j = 0
   let lenStr = 0
   let lenFrom = 0
-  let sortByReference = false
-  let fromTypeStr = ''
-  let toTypeStr = ''
+  let sortByReference: unknown = false
+  let fromTypeStr: boolean | string = false
+  let toTypeStr: boolean | string = false
   let istr = ''
-  const tmpFrom = []
-  const tmpTo = []
+  const tmpFrom: string[] = []
+  const tmpTo: unknown[] = []
   let ret = ''
   let match = false
 
@@ -46,7 +50,7 @@ module.exports = function strtr(str, trFrom, trTo) {
     // Not thread-safe; temporarily set to true
     // @todo: Don't rely on ini here, use internal krsort instead
     sortByReference = iniSet('locutus.sortByReference', false)
-    trFrom = krsort(trFrom)
+    trFrom = krsort(trFrom as Record<string, unknown>) as Record<string, unknown>
     iniSet('locutus.sortByReference', sortByReference)
 
     for (fr in trFrom) {
@@ -62,7 +66,7 @@ module.exports = function strtr(str, trFrom, trTo) {
 
   // Walk through subject and replace chars when needed
   lenStr = str.length
-  lenFrom = trFrom.length
+  lenFrom = (trFrom as string | string[]).length
   fromTypeStr = typeof trFrom === 'string'
   toTypeStr = typeof trTo === 'string'
 
@@ -71,23 +75,23 @@ module.exports = function strtr(str, trFrom, trTo) {
     if (fromTypeStr) {
       istr = str.charAt(i)
       for (j = 0; j < lenFrom; j++) {
-        if (istr === trFrom.charAt(j)) {
+        if (istr === (trFrom as string).charAt(j)) {
           match = true
           break
         }
       }
     } else {
       for (j = 0; j < lenFrom; j++) {
-        if (str.substr(i, trFrom[j].length) === trFrom[j]) {
+        if (str.substr(i, (trFrom as unknown as string[])[j].length) === (trFrom as unknown as string[])[j]) {
           match = true
           // Fast forward
-          i = i + trFrom[j].length - 1
+          i = i + (trFrom as unknown as string[])[j].length - 1
           break
         }
       }
     }
     if (match) {
-      ret += toTypeStr ? trTo.charAt(j) : trTo[j]
+      ret += toTypeStr ? (trTo as string).charAt(j) : (trTo as unknown[])[j]
     } else {
       ret += str.charAt(i)
     }

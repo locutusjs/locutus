@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 const money_format = require('../../../../src/php/strings/money_format.js')
 
 describe('src/php/strings/money_format.js (tested in test/generated/php/strings/money_format.vitest.ts)', function () {

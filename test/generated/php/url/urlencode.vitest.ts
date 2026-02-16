@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 const urlencode = require('../../../../src/php/url/urlencode.js')
 
 describe('src/php/url/urlencode.js (tested in test/generated/php/url/urlencode.vitest.ts)', function () {

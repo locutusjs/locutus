@@ -1,13 +1,15 @@
-module.exports = function arsort(inputArr, sortFlags) {
-  //  discuss at: https://locutus.io/php/arsort/
-  // original by: Brett Zamir (https://brett-zamir.me)
+import i18nlgd from '../i18n/i18n_loc_get_default.js'
+import ini_get from '../info/ini_get.ts'
+import strnatcmp from '../strings/strnatcmp.js'
+
+export default function ksort(
+  inputArr: Record<string, unknown>,
+  sortFlags?: string,
+): boolean | Record<string, unknown> {
+  //  discuss at: https://locutus.io/php/ksort/
+  // original by: GeekFG (https://geekfg.blogspot.com)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Brett Zamir (https://brett-zamir.me)
-  // improved by: Theriault (https://github.com/Theriault)
-  //      note 1: SORT_STRING (as well as natsort and natcasesort) might also be
-  //      note 1: integrated into all of these functions by adapting the code at
-  //      note 1: https://sourcefrog.net/projects/natsort/natcompare.js
-  //      note 1: The examples are correct, this is a new way
-  //      note 1: Credits to: https://javascript.internet.com/math-related/bubble-sort.html
   //      note 1: This function deviates from PHP in returning a copy of the array instead
   //      note 1: of acting by reference and returning true; this was necessary because
   //      note 1: IE does not allow deleting and re-adding of properties without caching
@@ -22,29 +24,32 @@ module.exports = function arsort(inputArr, sortFlags) {
   //      note 1: if the content is a numeric string, we treat the
   //      note 1: "original type" as numeric.
   //   example 1: var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-  //   example 1: arsort($data)
+  //   example 1: ksort($data)
   //   example 1: var $result = $data
-  //   returns 1: {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
+  //   returns 1: {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
   //   example 2: ini_set('locutus.sortByReference', true)
-  //   example 2: var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
-  //   example 2: arsort($data)
+  //   example 2: var $data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}
+  //   example 2: ksort($data)
   //   example 2: var $result = $data
-  //   returns 2: {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
+  //   returns 2: {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
 
-  const i18lgd = require('../i18n/i18n_loc_get_default')
-  const strnatcmp = require('../strings/strnatcmp')
-  const valArr = []
-  let valArrLen = 0
-  let k
-  let i
-  let sorter
+  const tmpArr: Record<string, unknown> = {}
+  const keys: string[] = []
+  let sorter: ((a: string, b: string) => number) | undefined
+  let i: number
+  let k: string
   let sortByReference = false
-  const populateArr = {}
+  let populateArr: Record<string, unknown> = {}
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
+  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
+    $locutus: {
+      php: { locales: Record<string, { sorting: (a: string, b: string) => number }> }
+      locales: Record<string, { sorting: (a: string, b: string) => number }>
+    }
+  }
+  $global.$locutus = $global.$locutus || ({} as typeof $global.$locutus)
   const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
+  $locutus.php = $locutus.php || ({} as typeof $locutus.php)
   $locutus.php.locales = $locutus.php.locales || {}
 
   switch (sortFlags) {
@@ -57,26 +62,23 @@ module.exports = function arsort(inputArr, sortFlags) {
     case 'SORT_LOCALE_STRING': {
       // compare items as strings, based on the current locale
       // (set with i18n_loc_set_default() as of PHP6)
-      const loc = i18lgd()
-      sorter = $locutus.php.locales[loc].sorting
+      const loc = i18nlgd()
+      sorter = $locutus.locales[loc].sorting
       break
     }
     case 'SORT_NUMERIC':
       // compare items numerically
       sorter = function (a, b) {
-        return a - b
+        return (a as unknown as number) + 0 - ((b as unknown as number) + 0)
       }
       break
-    case 'SORT_REGULAR':
-      // compare items normally (don't change types)
-      break
     default:
-      sorter = function (b, a) {
+      // case 'SORT_REGULAR': // compare items normally (don't change types)
+      sorter = function (a, b) {
         const aFloat = parseFloat(a)
         const bFloat = parseFloat(b)
         const aNumeric = aFloat + '' === a
         const bNumeric = bFloat + '' === b
-
         if (aNumeric && bNumeric) {
           return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0
         } else if (aNumeric && !bNumeric) {
@@ -84,34 +86,34 @@ module.exports = function arsort(inputArr, sortFlags) {
         } else if (!aNumeric && bNumeric) {
           return -1
         }
-
         return a > b ? 1 : a < b ? -1 : 0
       }
       break
   }
 
-  const iniVal =
-    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.sortByReference') : undefined) || 'on'
-  sortByReference = iniVal === 'on'
-
-  // Get key and value arrays
+  // Make a list of key names
   for (k in inputArr) {
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push([k, inputArr[k]])
-      if (sortByReference) {
-        delete inputArr[k]
-      }
+      keys.push(k)
     }
   }
-  valArr.sort(function (a, b) {
-    return sorter(a[1], b[1])
-  })
+  keys.sort(sorter)
 
-  // Repopulate the old array
-  for (i = 0, valArrLen = valArr.length; i < valArrLen; i++) {
-    populateArr[valArr[i][0]] = valArr[i][1]
+  const iniVal = ini_get('locutus.sortByReference') || 'on'
+  sortByReference = iniVal === 'on'
+  populateArr = sortByReference ? inputArr : populateArr
+
+  // Rebuild array with sorted key names
+  for (i = 0; i < keys.length; i++) {
+    k = keys[i]
+    tmpArr[k] = inputArr[k]
     if (sortByReference) {
-      inputArr[valArr[i][0]] = valArr[i][1]
+      delete inputArr[k]
+    }
+  }
+  for (const i in tmpArr) {
+    if (tmpArr.hasOwnProperty(i)) {
+      populateArr[i] = tmpArr[i]
     }
   }
 

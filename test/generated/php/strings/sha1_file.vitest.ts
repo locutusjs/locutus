@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 const sha1_file = require('../../../../src/php/strings/sha1_file.js')
 
 describe('src/php/strings/sha1_file.js (tested in test/generated/php/strings/sha1_file.vitest.ts)', function () {

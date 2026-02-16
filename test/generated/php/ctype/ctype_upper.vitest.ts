@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.js')
+const ini_get = require('../../../../src/php/info/ini_get.ts').default
 const ctype_upper = require('../../../../src/php/ctype/ctype_upper.js')
 
 describe('src/php/ctype/ctype_upper.js (tested in test/generated/php/ctype/ctype_upper.vitest.ts)', function () {
