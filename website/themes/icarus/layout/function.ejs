@@ -3,6 +3,8 @@
   <% curLang = lang %>
 <% }) %>
 
+<% var srcExt = page.isTypescript ? '.ts' : '.js' %>
+
 <article class="article article-type-<%= page.layout %>" >
   <div class="article-inner">
     <header class="article-header">
@@ -117,10 +119,20 @@
 
     <div class="article-entry">
       <h2>How to use</h2>
-      <p>
-        You you can install via <code>yarn add locutus</code> and
-        require this function via <code>const <%= page.function %> = require('locutus/<%= page.language %>/<%= page.category %>/<%= page.function %>')</code>.
-      </p>
+      <% if (page.isTypescript) { %>
+        <p>
+          Install via <code>yarn add locutus</code>, then import:
+        </p>
+        <pre style="margin: 8px 0 12px; padding: 10px 14px; background: #2d2d2d; border-radius: 6px; overflow-x: auto;"><code style="color: #ccc; font-size: 13px;"><span style="color: #cc99cd;">import</span> { <span style="color: #f8c555;"><%= page.function %></span> } <span style="color: #cc99cd;">from</span> <span style="color: #7ec699;">'locutus/<%= page.language %>/<%= page.category %>/<%= page.function %>'</span></code></pre>
+        <p style="margin-top: 4px; font-size: 13px; color: #888;">
+          Or with CommonJS: <code>const { <%= page.function %> } = require('locutus/<%= page.language %>/<%= page.category %>/<%= page.function %>')</code>
+        </p>
+      <% } else { %>
+        <p>
+          You you can install via <code>yarn add locutus</code> and
+          require this function via <code>const <%= page.function %> = require('locutus/<%= page.language %>/<%= page.category %>/<%= page.function %>')</code>.
+        </p>
+      <% } %>
       <p>
         It is important to use a bundler that supports tree-shaking
         so that you only ship the functions that you actually use to your browser,
@@ -232,7 +244,137 @@
       </p>
 
       <!-- Code -->
-      <%- page.content %>
+      <% if (page.isTypescript) { %>
+        <style>
+          .code-tabs-header {
+            display: flex;
+            gap: 0;
+            margin-bottom: -1px;
+            position: relative;
+            z-index: 1;
+          }
+          .code-tab-btn {
+            position: relative;
+            padding: 10px 24px;
+            border: none;
+            background: transparent;
+            color: #888;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            cursor: pointer;
+            transition: color 0.2s ease, background 0.2s ease;
+            border-radius: 8px 8px 0 0;
+            letter-spacing: 0.3px;
+          }
+          .code-tab-btn:hover {
+            color: #ccc;
+            background: rgba(255, 255, 255, 0.04);
+          }
+          .code-tab-btn.active {
+            color: #fff;
+            background: #2d2d2d;
+          }
+          .code-tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 60%;
+            height: 2px;
+            border-radius: 2px 2px 0 0;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          .code-tab-btn.active::after {
+            transform: translateX(-50%) scaleX(1);
+          }
+          .code-tab-btn[data-tab="ts"].active::after {
+            background: #3178c6;
+          }
+          .code-tab-btn[data-tab="js"].active::after {
+            background: #f0db4f;
+          }
+          .code-tab-btn .tab-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            font-size: 9px;
+            font-weight: 900;
+            line-height: 16px;
+            text-align: center;
+            margin-right: 6px;
+            vertical-align: -2px;
+            letter-spacing: -0.5px;
+          }
+          .code-tab-btn[data-tab="ts"] .tab-icon {
+            background: #3178c6;
+            color: #fff;
+          }
+          .code-tab-btn[data-tab="js"] .tab-icon {
+            background: #f0db4f;
+            color: #323330;
+          }
+          .code-tab-panel {
+            display: none;
+          }
+          .code-tab-panel.active {
+            display: block;
+          }
+          .code-tab-panel figure.highlight {
+            border-radius: 0 8px 8px 8px;
+            margin-top: 0 !important;
+          }
+        </style>
+        <div class="code-tabs">
+          <div class="code-tabs-header">
+            <button class="code-tab-btn active" data-tab="ts" type="button">
+              <span class="tab-icon">TS</span>TypeScript
+            </button>
+            <button class="code-tab-btn" data-tab="js" type="button">
+              <span class="tab-icon">JS</span>JavaScript
+            </button>
+          </div>
+          <%- page.content %>
+        </div>
+        <script>
+        (function() {
+          var STORAGE_KEY = 'locutus-code-lang';
+          var saved = null;
+          try { saved = localStorage.getItem(STORAGE_KEY); } catch(e) {}
+
+          var buttons = document.querySelectorAll('.code-tab-btn');
+          var panels = document.querySelectorAll('.code-tab-panel');
+
+          function switchTab(lang) {
+            buttons.forEach(function(btn) {
+              btn.classList.toggle('active', btn.getAttribute('data-tab') === lang);
+            });
+            panels.forEach(function(panel) {
+              panel.classList.toggle('active', panel.getAttribute('data-lang') === lang);
+              panel.style.display = panel.getAttribute('data-lang') === lang ? '' : 'none';
+            });
+            try { localStorage.setItem(STORAGE_KEY, lang); } catch(e) {}
+          }
+
+          buttons.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+              switchTab(this.getAttribute('data-tab'));
+            });
+          });
+
+          // Restore saved preference, default to TypeScript
+          if (saved && (saved === 'ts' || saved === 'js')) {
+            switchTab(saved);
+          } else {
+            switchTab('ts');
+          }
+        })();
+        </script>
+      <% } else { %>
+        <%- page.content %>
+      <% } %>
 
 
       <div class="clearfix"></div>
@@ -240,7 +382,7 @@
       <h2>Think you can do better?</h2>
       <p>
         Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
-        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald's Theory</a>.
         This means that we assimilate first iterations with imperfections,
         hoping for others to take issue with-and improve them.
 
@@ -251,11 +393,11 @@
       <p>
         Now go and:
         [
-        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/<%= page.language %>/<%= page.category %>/<%= page.function %>.js">View on GitHub</a></strong>
+        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/<%= page.language %>/<%= page.category %>/<%= page.function %><%= srcExt %>">View on GitHub</a></strong>
         |
-        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/<%= page.language %>/<%= page.category %>/<%= page.function %>.js">Edit on GitHub</a></strong>
+        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/<%= page.language %>/<%= page.category %>/<%= page.function %><%= srcExt %>">Edit on GitHub</a></strong>
         |
-        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/<%= page.language %>/<%= page.category %>/<%= page.function %>.js">View Raw</a></strong>
+        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/<%= page.language %>/<%= page.category %>/<%= page.function %><%= srcExt %>">View Raw</a></strong>
         ]
       </p>
 

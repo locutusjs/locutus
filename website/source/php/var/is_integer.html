@@ -17,6 +17,7 @@ notes:
     it different from the PHP implementation. We can't fix this unfortunately.
 parityVerified:
   - PHP 8.3
+isTypescript: false
 type: function
 layout: function
 title: PHP's is_integer in JavaScript
@@ -45,7 +46,7 @@ alias:
   //       example 2: is_integer(12)
   //       returns 2: true
 
-  const _isInt = require('../var/is_int')
+  const _isInt = require('../var/is_int.ts').is_int
   return _isInt(mixedVar)
 }
 {% endcodeblock %}

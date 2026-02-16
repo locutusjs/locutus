@@ -13,6 +13,7 @@ authors:
 notes:
   - The ini values must be set by ini_set or manually within an ini file
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
 title: PHP's ini_get in JavaScript
@@ -30,7 +31,8 @@ alias:
   - /php/ini_get/
   - /functions/ini_get/
 ---
-{% codeblock lang:javascript %}module.exports = function ini_get(varname) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function ini_get(varname: string): string {
   //  discuss at: https://locutus.io/php/ini_get/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: The ini values must be set by ini_set or manually within an ini file
@@ -38,19 +40,44 @@ alias:
   //   example 1: ini_get('date.timezone')
   //   returns 1: 'Asia/Hong_Kong'
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
+  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
+    $locutus: { php: { ini: Record<string, { local_value?: unknown }> } }
+  }
+  $global.$locutus = $global.$locutus || ({} as typeof $global.$locutus)
   const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
+  $locutus.php = $locutus.php || ({} as typeof $locutus.php)
   $locutus.php.ini = $locutus.php.ini || {}
 
   if ($locutus.php.ini[varname] && $locutus.php.ini[varname].local_value !== undefined) {
     if ($locutus.php.ini[varname].local_value === null) {
       return ''
     }
-    return $locutus.php.ini[varname].local_value
+    return $locutus.php.ini[varname].local_value as string
   }
 
   return ''
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function ini_get(varname) {
+  //  discuss at: https://locutus.io/php/ini_get/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: The ini values must be set by ini_set or manually within an ini file
+  //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
+  //   example 1: ini_get('date.timezone')
+  //   returns 1: 'Asia/Hong_Kong'
+  const $global = (typeof window !== 'undefined' ? window : global);
+  $global.$locutus = $global.$locutus || {};
+  const $locutus = $global.$locutus;
+  $locutus.php = $locutus.php || {};
+  $locutus.php.ini = $locutus.php.ini || {};
+  if ($locutus.php.ini[varname] && $locutus.php.ini[varname].local_value !== undefined) {
+    if ($locutus.php.ini[varname].local_value === null) {
+      return '';
+    }
+    return $locutus.php.ini[varname].local_value;
+  }
+  return '';
+}{% endcodeblock %}
+</div>

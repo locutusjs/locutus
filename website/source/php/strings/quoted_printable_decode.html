@@ -26,7 +26,9 @@ authors:
     - Brett Zamir (https://brett-zamir.me)
     - Theriault (https://github.com/Theriault)
 notes: []
-parityVerified: null
+parityVerified:
+  - PHP 8.3
+isTypescript: false
 type: function
 layout: function
 title: PHP's quoted_printable_decode in JavaScript
@@ -46,6 +48,7 @@ alias:
 ---
 {% codeblock lang:javascript %}module.exports = function quoted_printable_decode(str) {
   //       discuss at: https://locutus.io/php/quoted_printable_decode/
+  //  parity verified: PHP 8.3
   //      original by: Ole Vrijenhoek
   //      bugfixed by: Brett Zamir (https://brett-zamir.me)
   //      bugfixed by: Theriault (https://github.com/Theriault)
