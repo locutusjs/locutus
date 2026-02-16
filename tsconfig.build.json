@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "noImplicitAny": false
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/_util/**", "src/**/*.vitest.ts"]
+}

@@ -4,8 +4,8 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set')
-const ini_get = require('../../../../src/php/info/ini_get')
+const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_get = require('../../../../src/php/info/ini_get.js')
 const end = require('../../../../src/php/array/end.js')
 
 describe('src/php/array/end.js (tested in test/generated/php/array/end.vitest.ts)', function () {

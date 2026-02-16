@@ -1,4 +1,4 @@
-module.exports = function json_encode(mixedVal) {
+export default function json_encode(mixedVal: unknown): string | null {
   //       discuss at: https://phpjs.org/functions/json_encode/
   //  parity verified: PHP 8.3
   //      original by: Public Domain (https://www.json.org/json2.js)
@@ -17,8 +17,11 @@ module.exports = function json_encode(mixedVal) {
     See https://www.JSON.org/js.html
   */
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
+  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
+    $locutus: { php: Record<string, unknown> }
+    JSON: typeof JSON
+  }
+  $global.$locutus = $global.$locutus || ({} as { php: Record<string, unknown> })
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 
@@ -36,7 +39,7 @@ module.exports = function json_encode(mixedVal) {
 
     const value = mixedVal
 
-    const quote = function (string) {
+    const quote = function (string: string): string {
       const escapeChars = [
         '\u0000-\u001f',
         '\u007f-\u009f',
@@ -52,7 +55,7 @@ module.exports = function json_encode(mixedVal) {
         '\ufff0-\uffff',
       ].join('')
       const escapable = new RegExp('[\\"' + escapeChars + ']', 'g')
-      const meta = {
+      const meta: Record<string, string> = {
         // table of character substitutions
         '\b': '\\b',
         '\t': '\\t',
@@ -74,7 +77,7 @@ module.exports = function json_encode(mixedVal) {
         : '"' + string + '"'
     }
 
-    const _str = function (key, holder) {
+    const _str = function (key: string | number, holder: Record<string, unknown>): string | undefined {
       let gap = ''
       const indent = '    '
       // The loop counter.
@@ -85,12 +88,12 @@ module.exports = function json_encode(mixedVal) {
       let v = ''
       let length = 0
       const mind = gap
-      let partial = []
-      let value = holder[key]
+      let partial: string[] = []
+      let value = holder[key] as unknown
 
       // If the value has a toJSON method, call it to obtain a replacement value.
-      if (value && typeof value === 'object' && typeof value.toJSON === 'function') {
-        value = value.toJSON(key)
+      if (value && typeof value === 'object' && typeof (value as Record<string, unknown>).toJSON === 'function') {
+        value = (value as Record<string, (...args: unknown[]) => unknown>).toJSON(key)
       }
 
       // What happens next depends on the value's type.
@@ -123,9 +126,9 @@ module.exports = function json_encode(mixedVal) {
           if (Object.prototype.toString.apply(value) === '[object Array]') {
             // The value is an array. Stringify every element. Use null as a placeholder
             // for non-JSON values.
-            length = value.length
+            length = (value as unknown[]).length
             for (i = 0; i < length; i += 1) {
-              partial[i] = _str(i, value) || 'null'
+              partial[i] = _str(i, value as Record<string, unknown>) || 'null'
             }
 
             // Join all of the elements together, separated with commas, and wrap them in
@@ -141,9 +144,9 @@ module.exports = function json_encode(mixedVal) {
           }
 
           // Iterate through all of the keys in the object.
-          for (k in value) {
+          for (k in value as Record<string, unknown>) {
             if (Object.hasOwnProperty.call(value, k)) {
-              v = _str(k, value)
+              v = _str(k, value as Record<string, unknown>) as string
               if (v) {
                 partial.push(quote(k) + (gap ? ': ' : ':') + v)
               }
@@ -171,7 +174,7 @@ module.exports = function json_encode(mixedVal) {
     // Return the result of stringifying the value.
     return _str('', {
       '': value,
-    })
+    }) as string
   } catch (err) {
     // @todo: ensure error handling above throws a SyntaxError in all cases where it could
     // (i.e., when the JSON global is not available and there is an error)

@@ -4,8 +4,8 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set')
-const ini_get = require('../../../../src/php/info/ini_get')
+const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_get = require('../../../../src/php/info/ini_get.js')
 const floatval = require('../../../../src/php/var/floatval.js')
 
 describe('src/php/var/floatval.js (tested in test/generated/php/var/floatval.vitest.ts)', function () {

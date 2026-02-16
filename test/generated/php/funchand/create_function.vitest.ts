@@ -4,8 +4,8 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set')
-const ini_get = require('../../../../src/php/info/ini_get')
+const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_get = require('../../../../src/php/info/ini_get.js')
 const create_function = require('../../../../src/php/funchand/create_function.js')
 
 describe('src/php/funchand/create_function.js (tested in test/generated/php/funchand/create_function.vitest.ts)', function () {

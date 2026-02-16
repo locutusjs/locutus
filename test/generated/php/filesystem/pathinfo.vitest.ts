@@ -4,8 +4,8 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set')
-const ini_get = require('../../../../src/php/info/ini_get')
+const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_get = require('../../../../src/php/info/ini_get.js')
 const pathinfo = require('../../../../src/php/filesystem/pathinfo.js')
 
 describe('src/php/filesystem/pathinfo.js (tested in test/generated/php/filesystem/pathinfo.vitest.ts)', function () {

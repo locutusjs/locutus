@@ -4,8 +4,8 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set')
-const ini_get = require('../../../../src/php/info/ini_get')
+const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_get = require('../../../../src/php/info/ini_get.js')
 const ip2long = require('../../../../src/php/network/ip2long.js')
 
 describe('src/php/network/ip2long.js (tested in test/generated/php/network/ip2long.vitest.ts)', function () {

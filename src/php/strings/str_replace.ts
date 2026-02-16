@@ -1,4 +1,13 @@
-module.exports = function str_replace(search, replace, subject, countObj) {
+interface CountObj {
+  value: number
+}
+
+export default function str_replace(
+  search: string | string[],
+  replace: string | string[],
+  subject: string | string[],
+  countObj?: CountObj,
+): string | string[] {
   //  discuss at: https://locutus.io/php/str_replace/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Gabriel Paderni
@@ -38,26 +47,20 @@ module.exports = function str_replace(search, replace, subject, countObj) {
   let repl = ''
   let sl = 0
   let fl = 0
-  const f = [].concat(search)
-  let r = [].concat(replace)
-  let s = subject
+  const f = ([] as string[]).concat(search as string[])
+  let r = ([] as string[]).concat(replace as string[])
+  const s = ([] as string[]).concat(subject as string[])
   let ra = Array.isArray(r)
-  const sa = Array.isArray(s)
-  s = [].concat(s)
-
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
+  const sa = Array.isArray(subject)
 
   if (typeof search === 'object' && typeof replace === 'string') {
     temp = replace
-    replace = []
+    const replaceArr: string[] = []
     for (i = 0; i < search.length; i += 1) {
-      replace[i] = temp
+      replaceArr[i] = temp
     }
     temp = ''
-    r = [].concat(replace)
+    r = ([] as string[]).concat(replaceArr)
     ra = Array.isArray(r)
   }
 

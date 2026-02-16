@@ -1,4 +1,4 @@
-module.exports = function array_pop(inputArr) {
+export default function array_pop(inputArr: Record<string, unknown> | unknown[]): unknown {
   //  discuss at: https://locutus.io/php/array_pop/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Kevin van Zonneveld (https://kvz.io)
@@ -24,11 +24,11 @@ module.exports = function array_pop(inputArr) {
 
   if (inputArr.hasOwnProperty('length')) {
     // Indexed
-    if (!inputArr.length) {
+    if (!(inputArr as unknown[]).length) {
       // Done popping, are we?
       return null
     }
-    return inputArr.pop()
+    return (inputArr as unknown[]).pop()
   } else {
     // Associative
     for (key in inputArr) {
@@ -37,8 +37,8 @@ module.exports = function array_pop(inputArr) {
       }
     }
     if (lastKey) {
-      const tmp = inputArr[lastKey]
-      delete inputArr[lastKey]
+      const tmp = (inputArr as Record<string, unknown>)[lastKey]
+      delete (inputArr as Record<string, unknown>)[lastKey]
       return tmp
     } else {
       return null

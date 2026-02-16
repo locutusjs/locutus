@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set')
-const ini_get = require('../../../../src/php/info/ini_get')
-const setlocale = require('../../../../src/php/strings/setlocale')
+const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_get = require('../../../../src/php/info/ini_get.js')
+const setlocale = require('../../../../src/php/strings/setlocale.js')
 const localeconv = require('../../../../src/php/strings/localeconv.js')
 
 describe('src/php/strings/localeconv.js (tested in test/generated/php/strings/localeconv.vitest.ts)', function () {

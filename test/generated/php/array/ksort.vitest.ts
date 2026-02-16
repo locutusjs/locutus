@@ -4,8 +4,8 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set')
-const ini_get = require('../../../../src/php/info/ini_get')
+const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_get = require('../../../../src/php/info/ini_get.js')
 const ksort = require('../../../../src/php/array/ksort.js')
 
 describe('src/php/array/ksort.js (tested in test/generated/php/array/ksort.vitest.ts)', function () {

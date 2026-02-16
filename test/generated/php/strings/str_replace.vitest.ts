@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set')
-const ini_get = require('../../../../src/php/info/ini_get')
-const str_replace = require('../../../../src/php/strings/str_replace.js')
+const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_get = require('../../../../src/php/info/ini_get.js')
+const str_replace = require('../../../../src/php/strings/str_replace.ts').default
 
-describe('src/php/strings/str_replace.js (tested in test/generated/php/strings/str_replace.vitest.ts)', function () {
+describe('src/php/strings/str_replace.ts (tested in test/generated/php/strings/str_replace.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Kevin.van.Zonneveld'
     const result = str_replace(' ', '.', 'Kevin van Zonneveld')

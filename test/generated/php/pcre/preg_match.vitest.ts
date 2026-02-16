@@ -4,8 +4,8 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set')
-const ini_get = require('../../../../src/php/info/ini_get')
+const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_get = require('../../../../src/php/info/ini_get.js')
 const preg_match = require('../../../../src/php/pcre/preg_match.js')
 
 describe('src/php/pcre/preg_match.js (tested in test/generated/php/pcre/preg_match.vitest.ts)', function () {

@@ -134,7 +134,7 @@ export function formatFile(filepath: string): FormatFileResult {
  * Check all function files for proper header formatting
  */
 export function checkAll(srcDir: string): CheckAllResult {
-  const pattern = [path.join(srcDir, '**/*.js'), '!**/index.js', '!**/_util/**']
+  const pattern = [path.join(srcDir, '**/*.{js,ts}'), '!**/index.js', '!**/_util/**', '!**/*.vitest.ts']
   const files = globby.sync(pattern)
   const badFiles: string[] = []
 
@@ -155,7 +155,7 @@ export function checkAll(srcDir: string): CheckAllResult {
  * Format all function files
  */
 export function formatAll(srcDir: string): FormatAllResult {
-  const pattern = [path.join(srcDir, '**/*.js'), '!**/index.js', '!**/_util/**']
+  const pattern = [path.join(srcDir, '**/*.{js,ts}'), '!**/index.js', '!**/_util/**', '!**/*.vitest.ts']
   const files = globby.sync(pattern)
   const formattedFiles: string[] = []
 

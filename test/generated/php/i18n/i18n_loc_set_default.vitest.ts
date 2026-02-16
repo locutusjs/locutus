@@ -4,8 +4,8 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set')
-const ini_get = require('../../../../src/php/info/ini_get')
+const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_get = require('../../../../src/php/info/ini_get.js')
 const i18n_loc_set_default = require('../../../../src/php/i18n/i18n_loc_set_default.js')
 
 describe('src/php/i18n/i18n_loc_set_default.js (tested in test/generated/php/i18n/i18n_loc_set_default.vitest.ts)', function () {

@@ -1,12 +1,12 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import Debug from 'debug'
-import esprima from 'esprima'
 import globby from 'globby'
 import indentStringModule from 'indent-string'
 import YAML from 'js-yaml'
 import _ from 'lodash'
 import pMap from 'p-map'
+import ts from 'typescript'
 import { isValidHeaderKey, validateHeaderKeys } from './headerSchema.ts'
 
 const debug = Debug('locutus:utils')
@@ -65,7 +65,13 @@ class Util {
 
     this.globals = {}
 
-    this.pattern = [this.__src + '/**/**/*.js', '!**/index.js', '!**/_util/**', '!**/*.mocha.js']
+    this.pattern = [
+      this.__src + '/**/**/*.{js,ts}',
+      '!**/index.js',
+      '!**/_util/**',
+      '!**/*.mocha.js',
+      '!**/*.vitest.ts',
+    ]
     this.concurrency = 8
     this.authorKeys = [
       'original by',
@@ -330,7 +336,8 @@ class Util {
   _reindexOne(params: ParsedParams): Promise<void> {
     const fullpath = this.__src + '/' + params.filepath
     const dir = path.dirname(fullpath)
-    const basefile = path.basename(fullpath, '.js')
+    const ext = path.extname(fullpath)
+    const basefile = path.basename(fullpath, ext)
     const indexJs = dir + '/index.js'
 
     let module = basefile
@@ -342,7 +349,14 @@ class Util {
       this._reindexBuffer[indexJs] = []
     }
 
-    const line = 'module.exports.' + module + " = require('./" + basefile + "')"
+    let line: string
+    if (ext === '.ts') {
+      // TS files use `export default`, so require().default is needed.
+      // The .ts extension is required for Node's --experimental-strip-types.
+      line = 'module.exports.' + module + " = require('./" + basefile + ".ts').default"
+    } else {
+      line = 'module.exports.' + module + " = require('./" + basefile + "')"
+    }
     this._reindexBuffer[indexJs].push(line)
     return Promise.resolve()
   }
@@ -446,7 +460,16 @@ class Util {
   }
 
   _addRequire(name: string, relativeSrcForTest: string): string {
-    return ['const ', name, " = require('", relativeSrcForTest, "')"].join('')
+    const needsDefault = relativeSrcForTest.endsWith('.ts')
+    const suffix = needsDefault ? '.default' : ''
+    return ['const ', name, " = require('", relativeSrcForTest, "')", suffix].join('')
+  }
+
+  _resolveSourceExt(subpath: string): string {
+    if (fs.existsSync(path.join(this.__src, subpath + '.ts'))) {
+      return subpath + '.ts'
+    }
+    return subpath + '.js'
   }
 
   async _writetestOne(params: ParsedParams): Promise<void> {
@@ -460,7 +483,8 @@ class Util {
       throw new Error('No example in ' + params.func_name)
     }
 
-    const basename = path.basename(params.filepath, '.js') + '.vitest.ts'
+    const srcExt = path.extname(params.filepath)
+    const basename = path.basename(params.filepath, srcExt) + '.vitest.ts'
     const subdir = path.dirname(params.filepath)
     const testpath = this.__test + '/generated/' + subdir + '/' + basename
     const testdir = path.dirname(testpath)
@@ -494,17 +518,26 @@ class Util {
     if (params.language === 'php') {
       // Add PHP helpers, but skip if we're testing that helper itself
       if (params.func_name !== 'ini_set') {
-        codez.push(this._addRequire('ini_set', relativeSrcForTestDir + '/' + 'php/info/ini_set'))
+        codez.push(
+          this._addRequire('ini_set', relativeSrcForTestDir + '/' + this._resolveSourceExt('php/info/ini_set')),
+        )
       }
       if (params.func_name !== 'ini_get') {
-        codez.push(this._addRequire('ini_get', relativeSrcForTestDir + '/' + 'php/info/ini_get'))
+        codez.push(
+          this._addRequire('ini_get', relativeSrcForTestDir + '/' + this._resolveSourceExt('php/info/ini_get')),
+        )
       }
       if (params.func_name === 'localeconv') {
-        codez.push(this._addRequire('setlocale', relativeSrcForTestDir + '/' + 'php/strings/setlocale'))
+        codez.push(
+          this._addRequire('setlocale', relativeSrcForTestDir + '/' + this._resolveSourceExt('php/strings/setlocale')),
+        )
       }
       if (params.func_name === 'i18n_loc_get_default') {
         codez.push(
-          this._addRequire('i18n_loc_set_default', relativeSrcForTestDir + '/' + 'php/i18n/i18n_loc_set_default'),
+          this._addRequire(
+            'i18n_loc_set_default',
+            relativeSrcForTestDir + '/' + this._resolveSourceExt('php/i18n/i18n_loc_set_default'),
+          ),
         )
       }
     }
@@ -578,16 +611,24 @@ class Util {
     if (fileOrName.startsWith('/')) {
       pattern = fileOrName
     } else if (path.basename(fileOrName, '.js').indexOf('.') !== -1) {
-      pattern = this.__src + '/' + language + '/' + fileOrName.replace(/\./g, '/') + '.js'
+      pattern = this.__src + '/' + language + '/' + fileOrName.replace(/\./g, '/') + '.{js,ts}'
     } else if (fileOrName.indexOf('/') === -1) {
-      pattern = this.__src + '/' + language + '/*/' + fileOrName + '.js'
+      pattern = this.__src + '/' + language + '/*/' + fileOrName + '.{js,ts}'
     } else {
       pattern = this.__src + '/' + fileOrName
     }
 
-    pattern = pattern.replace('golang/strings/Index.js', 'golang/strings/Index2.js')
+    pattern = pattern.replace(/golang\/strings\/Index\.(js|ts|\{js,ts\})/, 'golang/strings/Index2.$1')
     debug('loading: ' + pattern)
-    const files = globby.sync(pattern, {})
+    let files = globby.sync(pattern, {})
+
+    // If both .js and .ts exist for the same function, prefer .ts
+    if (files.length === 2) {
+      const tsFile = files.find((f) => f.endsWith('.ts'))
+      if (tsFile) {
+        files = [tsFile]
+      }
+    }
 
     if (files.length !== 1) {
       const msg = `Found ${files.length} occurances of ${fileOrName} via pattern: ${pattern}`
@@ -641,62 +682,46 @@ class Util {
   }
 
   /**
-   * Extract require() calls from AST that reference other locutus functions
+   * Extract require() calls and import declarations from AST that reference other locutus functions
    * Returns array of resolved function paths (e.g., "php/strings/echo")
    */
-  _extractRequires(ast: { body: unknown[] }, filepath: string): string[] {
+  _extractDependencies(sourceFile: ts.SourceFile, filepath: string): string[] {
     const requires: string[] = []
     const seen = new Set<string>()
 
-    // Recursive AST walker to find require() calls
-    const walk = (node: unknown): void => {
-      if (!node || typeof node !== 'object') {
-        return
-      }
-
-      const n = node as Record<string, unknown>
-
-      // Check if this is a require() call
-      if (
-        n.type === 'CallExpression' &&
-        n.callee &&
-        (n.callee as { type?: string; name?: string }).type === 'Identifier' &&
-        (n.callee as { name: string }).name === 'require' &&
-        Array.isArray(n.arguments) &&
-        n.arguments.length > 0
-      ) {
-        const arg = n.arguments[0] as { type?: string; value?: string }
-        if (arg.type === 'Literal' && typeof arg.value === 'string') {
-          const requirePath = arg.value
-          // Only process relative requires that reference locutus functions
-          if (requirePath.startsWith('../') || requirePath.startsWith('./')) {
-            // Resolve the path relative to the current file
-            const dir = path.dirname(filepath)
-            const resolved = path.normalize(path.join(dir, requirePath))
-            // Remove leading slashes and convert to locutus path format
-            const locutusPath = resolved.replace(/^\/+/, '').replace(/\.js$/, '')
-            if (!seen.has(locutusPath)) {
-              seen.add(locutusPath)
-              requires.push(locutusPath)
-            }
-          }
-        }
-      }
-
-      // Recursively walk child nodes
-      for (const key of Object.keys(n)) {
-        const child = n[key]
-        if (Array.isArray(child)) {
-          for (const item of child) {
-            walk(item)
-          }
-        } else if (child && typeof child === 'object') {
-          walk(child)
+    const addDep = (depPath: string): void => {
+      if (depPath.startsWith('../') || depPath.startsWith('./')) {
+        const dir = path.dirname(filepath)
+        const resolved = path.normalize(path.join(dir, depPath))
+        const locutusPath = resolved.replace(/^\/+/, '').replace(/\.(js|ts)$/, '')
+        if (!seen.has(locutusPath)) {
+          seen.add(locutusPath)
+          requires.push(locutusPath)
         }
       }
     }
 
-    walk(ast)
+    const walk = (node: ts.Node): void => {
+      // ESM: import foo from '../path/to/func.js'
+      if (ts.isImportDeclaration(node) && node.moduleSpecifier && ts.isStringLiteral(node.moduleSpecifier)) {
+        addDep(node.moduleSpecifier.text)
+      }
+
+      // CJS: require('../path/to/func')
+      if (
+        ts.isCallExpression(node) &&
+        ts.isIdentifier(node.expression) &&
+        node.expression.text === 'require' &&
+        node.arguments.length > 0 &&
+        ts.isStringLiteral(node.arguments[0])
+      ) {
+        addDep(node.arguments[0].text)
+      }
+
+      ts.forEachChild(node, walk)
+    }
+
+    walk(sourceFile)
     return requires
   }
 
@@ -711,65 +736,80 @@ class Util {
 
     const parts = filepath.split('/')
     const language = parts.shift() as string
+    // Strip file extension from the last part
+    parts[parts.length - 1] = parts[parts.length - 1].replace(/\.(js|ts)$/, '')
     const codepath = parts.join('.')
     const name = parts.pop() as string
     const category = parts.join('.')
 
-    const ast = esprima.parseScript(code, { comment: true, loc: true, range: true })
+    const isTS = filepath.endsWith('.ts')
+    const scriptKind = isTS ? ts.ScriptKind.TS : ts.ScriptKind.JS
+    const sourceFile = ts.createSourceFile(filepath, code, ts.ScriptTarget.ES2022, true, scriptKind)
 
-    const moduleExports = ast.body.filter((node: unknown) => {
-      try {
-        const n = node as {
-          expression: {
-            left: { object: { name: string }; property: { name: string } }
-            right: { type: string; id: { type: string; name: string } }
-          }
+    // Find the exported function: either `module.exports = function name(` or `export default function name(`
+    let funcNode: ts.FunctionExpression | ts.FunctionDeclaration | undefined
+
+    ts.forEachChild(sourceFile, (node) => {
+      if (funcNode) {
+        return
+      }
+
+      // CJS: module.exports = function name(...) { ... }
+      if (ts.isExpressionStatement(node) && ts.isBinaryExpression(node.expression)) {
+        const expr = node.expression
+        if (
+          expr.operatorToken.kind === ts.SyntaxKind.EqualsToken &&
+          ts.isPropertyAccessExpression(expr.left) &&
+          ts.isIdentifier(expr.left.expression) &&
+          expr.left.expression.text === 'module' &&
+          ts.isIdentifier(expr.left.name) &&
+          expr.left.name.text === 'exports' &&
+          ts.isFunctionExpression(expr.right) &&
+          expr.right.name
+        ) {
+          funcNode = expr.right
         }
-        const leftArg = n.expression.left
-        const rightArg = n.expression.right
+      }
 
-        return (
-          leftArg.object.name === 'module' &&
-          leftArg.property.name === 'exports' &&
-          rightArg.type === 'FunctionExpression' &&
-          rightArg.id.type === 'Identifier' &&
-          !!rightArg.id.name
-        )
-      } catch (_err) {
-        return false
+      // ESM: export default function name(...) { ... }
+      if (ts.isFunctionDeclaration(node) && node.name) {
+        const modifiers = ts.getModifiers(node)
+        const hasExport = modifiers?.some((m) => m.kind === ts.SyntaxKind.ExportKeyword)
+        const hasDefault = modifiers?.some((m) => m.kind === ts.SyntaxKind.DefaultKeyword)
+        if (hasExport && hasDefault) {
+          funcNode = node
+        }
       }
     })
 
-    if (moduleExports.length !== 1) {
-      throw new Error(`File ${filepath} is allowed to contain exactly one module.exports`)
+    if (!funcNode) {
+      throw new Error(`File ${filepath} must contain exactly one module.exports or export default function`)
     }
 
-    const exp = moduleExports[0] as {
-      expression: {
-        right: {
-          id: { name: string }
-          params: Array<{ name: string }>
-          loc: { start: { line: number }; end: { line: number } }
-          body: { body: Array<{ loc: { start: { line: number } } }> }
-        }
+    const funcName = funcNode.name!.text
+    const funcParams = funcNode.parameters.map((p) => {
+      if (ts.isIdentifier(p.name)) {
+        return p.name.text
+      }
+      return p.name.getText(sourceFile)
+    })
+
+    // Extract head comments: // lines between function start and first body statement
+    const funcStartLine = sourceFile.getLineAndCharacterOfPosition(funcNode.getStart(sourceFile)).line
+    const bodyStatements = funcNode.body ? (funcNode.body as ts.Block).statements : undefined
+    const firstStmtLine =
+      bodyStatements && bodyStatements.length > 0
+        ? sourceFile.getLineAndCharacterOfPosition(bodyStatements[0].getStart(sourceFile)).line
+        : funcStartLine + 1
+
+    const lines = code.split('\n')
+    const headComments: string[] = []
+    for (let lineIdx = funcStartLine; lineIdx < firstStmtLine; lineIdx++) {
+      const line = lines[lineIdx].trim()
+      if (line.startsWith('//')) {
+        headComments.push(line.slice(2).trim())
       }
     }
-
-    const funcName = exp.expression.right.id.name
-    const funcParams = exp.expression.right.params.map((p) => p.name)
-    const funcLoc = exp.expression.right.loc
-    const firstFuncBodyElementLoc = exp.expression.right.body.body[0].loc
-
-    const headComments = (
-      ast.comments as Array<{ type: string; loc: { start: { line: number }; end: { line: number } }; value: string }>
-    )
-      .filter(
-        (c) =>
-          c.type === 'Line' &&
-          c.loc.start.line >= funcLoc.start.line &&
-          c.loc.end.line <= firstFuncBodyElementLoc.start.line,
-      )
-      .map((c) => c.value.trim())
 
     if (headComments.length === 0) {
       const msg = `Unable to parse ${filepath}. Did not find any comments in function definition`
@@ -780,8 +820,8 @@ class Util {
 
     validateHeaderKeys(headKeys, filepath)
 
-    // Extract require() calls that reference other locutus functions
-    const codeDependencies = this._extractRequires(ast, filepath)
+    // Extract require() calls and import declarations that reference other locutus functions
+    const codeDependencies = this._extractDependencies(sourceFile, filepath)
 
     const params: ParsedParams = {
       headKeys,

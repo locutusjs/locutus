@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set')
-const ini_get = require('../../../../src/php/info/ini_get')
-const parse_str = require('../../../../src/php/strings/parse_str.js')
+const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_get = require('../../../../src/php/info/ini_get.js')
+const parse_str = require('../../../../src/php/strings/parse_str.ts').default
 
-describe('src/php/strings/parse_str.js (tested in test/generated/php/strings/parse_str.vitest.ts)', function () {
+describe('src/php/strings/parse_str.ts (tested in test/generated/php/strings/parse_str.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = { first: 'foo', second: 'bar' }
     var $arr = {}

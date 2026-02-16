@@ -4,8 +4,8 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set')
-const ini_get = require('../../../../src/php/info/ini_get')
+const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_get = require('../../../../src/php/info/ini_get.js')
 const is_long = require('../../../../src/php/var/is_long.js')
 
 describe('src/php/var/is_long.js (tested in test/generated/php/var/is_long.vitest.ts)', function () {

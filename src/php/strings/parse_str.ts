@@ -1,4 +1,4 @@
-module.exports = function parse_str(str, array) {
+export default function parse_str(str: string, array?: Record<string, unknown>): void {
   //       discuss at: https://locutus.io/php/parse_str/
   //      original by: Cagri Ekin
   //      improved by: Michael White (https://getsprink.com)
@@ -56,18 +56,17 @@ module.exports = function parse_str(str, array) {
   let keys
   let keysLen
 
-  const _fixStr = function (str) {
+  const _fixStr = function (str: string): string {
     return decodeURIComponent(str.replace(/\+/g, '%20'))
   }
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
+  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & Record<string, unknown>
+  ;($global as Record<string, Record<string, unknown>>).$locutus =
+    ($global as Record<string, Record<string, unknown>>).$locutus || {}
+  const $locutus = ($global as Record<string, Record<string, unknown>>).$locutus
   $locutus.php = $locutus.php || {}
 
-  if (!array) {
-    array = $global
-  }
+  const target = array || $global
 
   for (i = 0; i < sal; i++) {
     tmp = strArr[i].split('=')
@@ -125,7 +124,7 @@ module.exports = function parse_str(str, array) {
         }
       }
 
-      obj = array
+      obj = target
 
       for (j = 0, keysLen = keys.length; j < keysLen; j++) {
         key = keys[j].replace(/^['"]/, '').replace(/['"]$/, '')

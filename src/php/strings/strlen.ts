@@ -1,4 +1,6 @@
-module.exports = function strlen(string) {
+import ini_get from '../info/ini_get.js'
+
+export default function strlen(string: string): number {
   //  discuss at: https://locutus.io/php/strlen/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Sakimori
@@ -17,7 +19,7 @@ module.exports = function strlen(string) {
 
   const str = string + ''
 
-  const iniVal = (typeof require !== 'undefined' ? require('../info/ini_get')('unicode.semantics') : undefined) || 'off'
+  const iniVal = ini_get('unicode.semantics') || 'off'
   if (iniVal === 'off') {
     return str.length
   }
@@ -25,7 +27,7 @@ module.exports = function strlen(string) {
   let i = 0
   let lgth = 0
 
-  const getWholeChar = function (str, i) {
+  const getWholeChar = function (str: string, i: number): string | false {
     const code = str.charCodeAt(i)
     let next = ''
     let prev = ''
@@ -35,8 +37,8 @@ module.exports = function strlen(string) {
       if (str.length <= i + 1) {
         throw new Error('High surrogate without following low surrogate')
       }
-      next = str.charCodeAt(i + 1)
-      if (next < 0xdc00 || next > 0xdfff) {
+      next = str.charCodeAt(i + 1) as unknown as string
+      if ((next as unknown as number) < 0xdc00 || (next as unknown as number) > 0xdfff) {
         throw new Error('High surrogate without following low surrogate')
       }
       return str.charAt(i) + str.charAt(i + 1)
@@ -45,8 +47,8 @@ module.exports = function strlen(string) {
       if (i === 0) {
         throw new Error('Low surrogate without preceding high surrogate')
       }
-      prev = str.charCodeAt(i - 1)
-      if (prev < 0xd800 || prev > 0xdbff) {
+      prev = str.charCodeAt(i - 1) as unknown as string
+      if ((prev as unknown as number) < 0xd800 || (prev as unknown as number) > 0xdbff) {
         // (could change last hex to 0xDB7F to treat high private surrogates
         // as single characters)
         throw new Error('Low surrogate without preceding high surrogate')

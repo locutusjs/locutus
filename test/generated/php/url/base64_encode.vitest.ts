@@ -4,8 +4,8 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set')
-const ini_get = require('../../../../src/php/info/ini_get')
+const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_get = require('../../../../src/php/info/ini_get.js')
 const base64_encode = require('../../../../src/php/url/base64_encode.js')
 
 describe('src/php/url/base64_encode.js (tested in test/generated/php/url/base64_encode.vitest.ts)', function () {

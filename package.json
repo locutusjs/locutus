@@ -28,7 +28,7 @@
   "scripts": {
     "browser:bundle": "browserify test/browser/app.js --outfile test/browser/bundle.js",
     "browser:watch": "budo test/browser/app.js --live --serve test/browser/bundle.js",
-    "build:dist": "rimraf dist && cp -r src dist && rm -rf dist/_util && cp package.json README.md dist/",
+    "build:dist": "rimraf dist && cp -r src dist && tsc -p tsconfig.build.json --outDir dist && find dist -name '*.ts' ! -name '*.d.ts' -delete && node scripts/fix-cjs-exports.mjs dist && rm -rf dist/_util && cp package.json README.md dist/",
     "build:indices": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON src/_util/cli.ts reindex",
     "build:tests:noskip": "rimraf test/generated && node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON src/_util/cli.ts writetests --noskip",
     "build:tests": "rimraf test/generated && node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON src/_util/cli.ts writetests",

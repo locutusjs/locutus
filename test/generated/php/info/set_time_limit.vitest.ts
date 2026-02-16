@@ -4,8 +4,8 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set')
-const ini_get = require('../../../../src/php/info/ini_get')
+const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_get = require('../../../../src/php/info/ini_get.js')
 const set_time_limit = require('../../../../src/php/info/set_time_limit.js')
 
 describe.skip('src/php/info/set_time_limit.js (tested in test/generated/php/info/set_time_limit.vitest.ts)', function () {

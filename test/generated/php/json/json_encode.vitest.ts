@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set')
-const ini_get = require('../../../../src/php/info/ini_get')
-const json_encode = require('../../../../src/php/json/json_encode.js')
+const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_get = require('../../../../src/php/info/ini_get.js')
+const json_encode = require('../../../../src/php/json/json_encode.ts').default
 
-describe('src/php/json/json_encode.js (tested in test/generated/php/json/json_encode.vitest.ts)', function () {
+describe('src/php/json/json_encode.ts (tested in test/generated/php/json/json_encode.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '"Kevin"'
     const result = json_encode('Kevin')

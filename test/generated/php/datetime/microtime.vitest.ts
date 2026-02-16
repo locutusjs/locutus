@@ -4,8 +4,8 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set')
-const ini_get = require('../../../../src/php/info/ini_get')
+const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_get = require('../../../../src/php/info/ini_get.js')
 const microtime = require('../../../../src/php/datetime/microtime.js')
 
 describe('src/php/datetime/microtime.js (tested in test/generated/php/datetime/microtime.vitest.ts)', function () {

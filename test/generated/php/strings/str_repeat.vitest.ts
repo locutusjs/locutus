@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set')
-const ini_get = require('../../../../src/php/info/ini_get')
-const str_repeat = require('../../../../src/php/strings/str_repeat.js')
+const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_get = require('../../../../src/php/info/ini_get.js')
+const str_repeat = require('../../../../src/php/strings/str_repeat.ts').default
 
-describe('src/php/strings/str_repeat.js (tested in test/generated/php/strings/str_repeat.vitest.ts)', function () {
+describe('src/php/strings/str_repeat.ts (tested in test/generated/php/strings/str_repeat.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '-=-=-=-=-=-=-=-=-=-='
     const result = str_repeat('-=', 10)
