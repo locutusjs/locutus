@@ -11,7 +11,7 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's quotemeta in JavaScript
@@ -29,7 +29,8 @@ alias:
   - /php/quotemeta/
   - /functions/quotemeta/
 ---
-{% codeblock lang:javascript %}module.exports = function quotemeta(str) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function quotemeta(str) {
   //      discuss at: https://locutus.io/php/quotemeta/
   // parity verified: PHP 8.3
   //     original by: Paulo Freitas
@@ -39,3 +40,14 @@ alias:
   return (str + '').replace(/([.\\+*?[^\]$()])/g, '\\$1')
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function quotemeta(str) {
+  //      discuss at: https://locutus.io/php/quotemeta/
+  // parity verified: PHP 8.3
+  //     original by: Paulo Freitas
+  //       example 1: quotemeta(". + * ? ^ ( $ )")
+  //       returns 1: '\\. \\+ \\* \\? \\^ \\( \\$ \\)'
+  return (str + '').replace(/([.\\+*?[^\]$()])/g, '\\$1');
+}{% endcodeblock %}
+</div>

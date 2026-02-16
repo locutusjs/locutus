@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const strip = require('../../../../src/ruby/String/strip.js')
+const strip = require('../../../../src/ruby/String/strip.ts').strip
 
-describe('src/ruby/String/strip.js (tested in test/generated/ruby/String/strip.vitest.ts)', function () {
+describe('src/ruby/String/strip.ts (tested in test/generated/ruby/String/strip.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'hello'
     const result = strip('    hello    ')

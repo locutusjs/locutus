@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const acos = require('../../../../src/ruby/Math/acos.js')
+const acos = require('../../../../src/ruby/Math/acos.ts').acos
 
-describe('src/ruby/Math/acos.js (tested in test/generated/ruby/Math/acos.vitest.ts)', function () {
+describe('src/ruby/Math/acos.ts (tested in test/generated/ruby/Math/acos.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '1.266103672779499'
     const result = (acos(0.3) + '').substr(0, 17)

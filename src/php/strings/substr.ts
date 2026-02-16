@@ -1,4 +1,4 @@
-import _php_cast_string from '../_helpers/_phpCastString.js'
+import { _phpCastString as _php_cast_string } from '../_helpers/_phpCastString.ts'
 
 export function substr(input: string | number, start: number, len?: number): string | false {
   //  discuss at: https://locutus.io/php/substr/

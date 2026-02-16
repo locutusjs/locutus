@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const Index = require('../../../../src/golang/strings/Index2.js')
+const Index = require('../../../../src/golang/strings/Index2.ts').Index
 
-describe('src/golang/strings/Index2.js (tested in test/generated/golang/strings/Index2.vitest.ts)', function () {
+describe('src/golang/strings/Index2.ts (tested in test/generated/golang/strings/Index2.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 0
     const result = Index('Kevin', 'K')

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const uppercase = require('../../../../src/julia/Base/uppercase.js')
+const uppercase = require('../../../../src/julia/Base/uppercase.ts').uppercase
 
-describe('src/julia/Base/uppercase.js (tested in test/generated/julia/Base/uppercase.vitest.ts)', function () {
+describe('src/julia/Base/uppercase.ts (tested in test/generated/julia/Base/uppercase.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'HELLO'
     const result = uppercase('hello')

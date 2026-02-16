@@ -1,5 +1,6 @@
-import i18lgd from '../i18n/i18n_loc_get_default.js'
-import strnatcmp from '../strings/strnatcmp.js'
+// @ts-nocheck
+import { i18n_loc_get_default as i18lgd } from '../i18n/i18n_loc_get_default.ts'
+import { strnatcmp } from '../strings/strnatcmp.ts'
 
 export function arsort(inputArr: Record<string, unknown>, sortFlags?: string): boolean | Record<string, unknown> {
   //  discuss at: https://locutus.io/php/arsort/

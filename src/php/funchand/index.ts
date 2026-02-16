@@ -1,0 +1,5 @@
+export { call_user_func } from './call_user_func.ts'
+export { call_user_func_array } from './call_user_func_array.ts'
+export { create_function } from './create_function.ts'
+export { function_exists } from './function_exists.ts'
+export { get_defined_functions } from './get_defined_functions.ts'

@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const array_replace_recursive = require('../../../../src/php/array/array_replace_recursive.js')
+const array_replace_recursive = require('../../../../src/php/array/array_replace_recursive.ts').array_replace_recursive
 
-describe('src/php/array/array_replace_recursive.js (tested in test/generated/php/array/array_replace_recursive.vitest.ts)', function () {
+describe('src/php/array/array_replace_recursive.ts (tested in test/generated/php/array/array_replace_recursive.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = {citrus : ['pineapple'], berries : ['blueberry', 'raspberry']}
     const result = array_replace_recursive({'citrus' : ['orange'], 'berries' : ['blackberry', 'raspberry']}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']})

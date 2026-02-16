@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const min = require('../../../../src/r/base/min.js')
+const min = require('../../../../src/r/base/min.ts').min
 
-describe('src/r/base/min.js (tested in test/generated/r/base/min.vitest.ts)', function () {
+describe('src/r/base/min.ts (tested in test/generated/r/base/min.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 1
     const result = min(1, 5, 3)

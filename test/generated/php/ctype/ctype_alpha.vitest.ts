@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const ctype_alpha = require('../../../../src/php/ctype/ctype_alpha.js')
+const ctype_alpha = require('../../../../src/php/ctype/ctype_alpha.ts').ctype_alpha
 
-describe('src/php/ctype/ctype_alpha.js (tested in test/generated/php/ctype/ctype_alpha.vitest.ts)', function () {
+describe('src/php/ctype/ctype_alpha.ts (tested in test/generated/php/ctype/ctype_alpha.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = ctype_alpha('Az')

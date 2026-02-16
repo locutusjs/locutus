@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const bcmul = require('../../../../src/php/bc/bcmul.js')
+const bcmul = require('../../../../src/php/bc/bcmul.ts').bcmul
 
-describe('src/php/bc/bcmul.js (tested in test/generated/php/bc/bcmul.vitest.ts)', function () {
+describe('src/php/bc/bcmul.ts (tested in test/generated/php/bc/bcmul.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '2'
     const result = bcmul('1', '2')

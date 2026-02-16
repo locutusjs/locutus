@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const chunk_split = require('../../../../src/php/strings/chunk_split.js')
+const chunk_split = require('../../../../src/php/strings/chunk_split.ts').chunk_split
 
-describe('src/php/strings/chunk_split.js (tested in test/generated/php/strings/chunk_split.vitest.ts)', function () {
+describe('src/php/strings/chunk_split.ts (tested in test/generated/php/strings/chunk_split.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'H*e*l*l*o* *w*o*r*l*d*!*'
     const result = chunk_split('Hello world!', 1, '*')

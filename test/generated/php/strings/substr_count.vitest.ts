@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const substr_count = require('../../../../src/php/strings/substr_count.js')
+const substr_count = require('../../../../src/php/strings/substr_count.ts').substr_count
 
-describe('src/php/strings/substr_count.js (tested in test/generated/php/strings/substr_count.vitest.ts)', function () {
+describe('src/php/strings/substr_count.ts (tested in test/generated/php/strings/substr_count.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 3
     const result = substr_count('Kevin van Zonneveld', 'e')

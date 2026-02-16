@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const bindec = require('../../../../src/php/math/bindec.js')
+const bindec = require('../../../../src/php/math/bindec.ts').bindec
 
-describe('src/php/math/bindec.js (tested in test/generated/php/math/bindec.vitest.ts)', function () {
+describe('src/php/math/bindec.ts (tested in test/generated/php/math/bindec.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 51
     const result = bindec('110011')

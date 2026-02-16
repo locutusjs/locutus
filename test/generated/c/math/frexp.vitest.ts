@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const frexp = require('../../../../src/c/math/frexp.js')
+const frexp = require('../../../../src/c/math/frexp.ts').frexp
 
-describe('src/c/math/frexp.js (tested in test/generated/c/math/frexp.vitest.ts)', function () {
+describe('src/c/math/frexp.ts (tested in test/generated/c/math/frexp.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = [0.5, 1]
     const result = frexp(1)

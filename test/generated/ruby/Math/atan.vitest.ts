@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const atan = require('../../../../src/ruby/Math/atan.js')
+const atan = require('../../../../src/ruby/Math/atan.ts').atan
 
-describe('src/ruby/Math/atan.js (tested in test/generated/ruby/Math/atan.vitest.ts)', function () {
+describe('src/ruby/Math/atan.ts (tested in test/generated/ruby/Math/atan.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 0
     const result = atan(0)

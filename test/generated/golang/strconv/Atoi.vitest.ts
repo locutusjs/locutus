@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const Atoi = require('../../../../src/golang/strconv/Atoi.js')
+const Atoi = require('../../../../src/golang/strconv/Atoi.ts').Atoi
 
-describe('src/golang/strconv/Atoi.js (tested in test/generated/golang/strconv/Atoi.vitest.ts)', function () {
+describe('src/golang/strconv/Atoi.ts (tested in test/generated/golang/strconv/Atoi.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 42
     const result = Atoi('42')[0]

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const cos = require('../../../../src/lua/math/cos.js')
+const cos = require('../../../../src/lua/math/cos.ts').cos
 
-describe('src/lua/math/cos.js (tested in test/generated/lua/math/cos.vitest.ts)', function () {
+describe('src/lua/math/cos.ts (tested in test/generated/lua/math/cos.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 1
     const result = cos(0)

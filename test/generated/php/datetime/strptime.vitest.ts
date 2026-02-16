@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const strptime = require('../../../../src/php/datetime/strptime.js')
+const strptime = require('../../../../src/php/datetime/strptime.ts').strptime
 
-describe('src/php/datetime/strptime.js (tested in test/generated/php/datetime/strptime.vitest.ts)', function () {
+describe('src/php/datetime/strptime.ts (tested in test/generated/php/datetime/strptime.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = {tm_sec: 35, tm_min: 21, tm_hour: 22, tm_mday: 12, tm_mon: 10, tm_year: 109, tm_wday: 4, tm_yday: 315, unparsed: ''}
     const result = strptime('20091112222135', '%Y%m%d%H%M%S') // Return value will depend on date and locale

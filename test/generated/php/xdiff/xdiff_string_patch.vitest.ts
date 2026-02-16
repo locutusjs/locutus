@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const xdiff_string_patch = require('../../../../src/php/xdiff/xdiff_string_patch.js')
+const xdiff_string_patch = require('../../../../src/php/xdiff/xdiff_string_patch.ts').xdiff_string_patch
 
-describe('src/php/xdiff/xdiff_string_patch.js (tested in test/generated/php/xdiff/xdiff_string_patch.vitest.ts)', function () {
+describe('src/php/xdiff/xdiff_string_patch.ts (tested in test/generated/php/xdiff/xdiff_string_patch.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Hello world!'
     const result = xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!')

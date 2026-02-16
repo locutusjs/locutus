@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const tolower = require('../../../../src/c/ctype/tolower.js')
+const tolower = require('../../../../src/c/ctype/tolower.ts').tolower
 
-describe('src/c/ctype/tolower.js (tested in test/generated/c/ctype/tolower.vitest.ts)', function () {
+describe('src/c/ctype/tolower.ts (tested in test/generated/c/ctype/tolower.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'a'
     const result = tolower('A')

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const Replace = require('../../../../src/golang/strings/Replace.js')
+const Replace = require('../../../../src/golang/strings/Replace.ts').Replace
 
-describe('src/golang/strings/Replace.js (tested in test/generated/golang/strings/Replace.vitest.ts)', function () {
+describe('src/golang/strings/Replace.ts (tested in test/generated/golang/strings/Replace.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'oinky oinky oink'
     const result = Replace('oink oink oink', 'k', 'ky', 2)

@@ -12,7 +12,7 @@ notes:
   - Returns the string '0123456789abcdefABCDEF'
 parityVerified:
   - Python 3.12
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: Python's string.hexdigits in JavaScript
@@ -29,7 +29,8 @@ alias:
   - /functions/string/hexdigits/
   - /python/hexdigits/
 ---
-{% codeblock lang:javascript %}module.exports = function hexdigits() {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function hexdigits() {
   //      discuss at: https://locutus.io/python/hexdigits/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -40,3 +41,15 @@ alias:
   return '0123456789abcdefABCDEF'
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function hexdigits() {
+  //      discuss at: https://locutus.io/python/hexdigits/
+  // parity verified: Python 3.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns the string '0123456789abcdefABCDEF'
+  //       example 1: hexdigits()
+  //       returns 1: '0123456789abcdefABCDEF'
+  return '0123456789abcdefABCDEF';
+}{% endcodeblock %}
+</div>

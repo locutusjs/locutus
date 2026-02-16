@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const sizeof = require('../../../../src/php/array/sizeof.js')
+const sizeof = require('../../../../src/php/array/sizeof.ts').sizeof
 
-describe('src/php/array/sizeof.js (tested in test/generated/php/array/sizeof.vitest.ts)', function () {
+describe('src/php/array/sizeof.ts (tested in test/generated/php/array/sizeof.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 6
     const result = sizeof([[0,0],[0,-4]], 'COUNT_RECURSIVE')

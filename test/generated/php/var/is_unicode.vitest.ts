@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const is_unicode = require('../../../../src/php/var/is_unicode.js')
+const is_unicode = require('../../../../src/php/var/is_unicode.ts').is_unicode
 
-describe('src/php/var/is_unicode.js (tested in test/generated/php/var/is_unicode.vitest.ts)', function () {
+describe('src/php/var/is_unicode.ts (tested in test/generated/php/var/is_unicode.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = is_unicode('We the peoples of the United Nations...!')

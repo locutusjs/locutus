@@ -12,7 +12,7 @@ authors:
     - Felix Geisendoerfer (https://www.debuggable.com/felix)
 notes: []
 parityVerified: null
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's array_key_exists in JavaScript
@@ -30,7 +30,8 @@ alias:
   - /php/array_key_exists/
   - /functions/array_key_exists/
 ---
-{% codeblock lang:javascript %}module.exports = function array_key_exists(key, search) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function array_key_exists(key, search) {
   //  discuss at: https://locutus.io/php/array_key_exists/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Felix Geisendoerfer (https://www.debuggable.com/felix)
@@ -44,3 +45,17 @@ alias:
   return key in search
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function array_key_exists(key, search) {
+  //  discuss at: https://locutus.io/php/array_key_exists/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Felix Geisendoerfer (https://www.debuggable.com/felix)
+  //   example 1: array_key_exists('kevin', {'kevin': 'van Zonneveld'})
+  //   returns 1: true
+  if (!search || (search.constructor !== Array && search.constructor !== Object)) {
+    return false;
+  }
+  return key in search;
+}{% endcodeblock %}
+</div>

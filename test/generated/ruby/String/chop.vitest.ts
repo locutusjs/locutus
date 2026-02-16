@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const chop = require('../../../../src/ruby/String/chop.js')
+const chop = require('../../../../src/ruby/String/chop.ts').chop
 
-describe('src/ruby/String/chop.js (tested in test/generated/ruby/String/chop.vitest.ts)', function () {
+describe('src/ruby/String/chop.ts (tested in test/generated/ruby/String/chop.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'strin'
     const result = chop('string')

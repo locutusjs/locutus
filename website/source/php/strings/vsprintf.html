@@ -12,7 +12,7 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's vsprintf in JavaScript
@@ -30,15 +30,30 @@ alias:
   - /php/vsprintf/
   - /functions/vsprintf/
 ---
-{% codeblock lang:javascript %}module.exports = function vsprintf(format, args) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}// @ts-nocheck
+import { sprintf } from '../strings/sprintf.ts'
+
+export function vsprintf(format, args) {
   //      discuss at: https://locutus.io/php/vsprintf/
   // parity verified: PHP 8.3
   //     original by: ejsanders
   //       example 1: vsprintf('%04d-%02d-%02d', [1988, 8, 1])
   //       returns 1: '1988-08-01'
 
-  const sprintf = require('../strings/sprintf')
-
   return sprintf.apply(this, [format].concat(args))
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}// @ts-nocheck
+import { sprintf } from '../strings/sprintf.ts';
+export function vsprintf(format, args) {
+  //      discuss at: https://locutus.io/php/vsprintf/
+  // parity verified: PHP 8.3
+  //     original by: ejsanders
+  //       example 1: vsprintf('%04d-%02d-%02d', [1988, 8, 1])
+  //       returns 1: '1988-08-01'
+  return sprintf.apply(this, [format].concat(args));
+}{% endcodeblock %}
+</div>

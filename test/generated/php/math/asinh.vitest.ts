@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const asinh = require('../../../../src/php/math/asinh.js')
+const asinh = require('../../../../src/php/math/asinh.ts').asinh
 
-describe('src/php/math/asinh.js (tested in test/generated/php/math/asinh.vitest.ts)', function () {
+describe('src/php/math/asinh.ts (tested in test/generated/php/math/asinh.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 16.67465779841863
     const result = asinh(8723321.4)

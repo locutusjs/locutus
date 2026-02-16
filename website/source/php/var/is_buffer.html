@@ -10,7 +10,7 @@ authors:
     - Brett Zamir (https://brett-zamir.me)
 notes: []
 parityVerified: null
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's is_buffer in JavaScript
@@ -28,7 +28,8 @@ alias:
   - /php/is_buffer/
   - /functions/is_buffer/
 ---
-{% codeblock lang:javascript %}module.exports = function is_buffer(vr) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function is_buffer(vr) {
   //  discuss at: https://locutus.io/php/is_buffer/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: is_buffer('This could be binary or a regular string...')
@@ -37,3 +38,13 @@ alias:
   return typeof vr === 'string'
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function is_buffer(vr) {
+  //  discuss at: https://locutus.io/php/is_buffer/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: is_buffer('This could be binary or a regular string...')
+  //   returns 1: true
+  return typeof vr === 'string';
+}{% endcodeblock %}
+</div>

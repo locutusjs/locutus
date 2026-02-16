@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const cosh = require('../../../../src/php/math/cosh.js')
+const cosh = require('../../../../src/php/math/cosh.ts').cosh
 
-describe('src/php/math/cosh.js (tested in test/generated/php/math/cosh.vitest.ts)', function () {
+describe('src/php/math/cosh.ts (tested in test/generated/php/math/cosh.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 1.0164747716114113
     const result = cosh(-0.18127180117607017)

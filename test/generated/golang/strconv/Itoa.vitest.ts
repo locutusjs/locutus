@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const Itoa = require('../../../../src/golang/strconv/Itoa.js')
+const Itoa = require('../../../../src/golang/strconv/Itoa.ts').Itoa
 
-describe('src/golang/strconv/Itoa.js (tested in test/generated/golang/strconv/Itoa.vitest.ts)', function () {
+describe('src/golang/strconv/Itoa.ts (tested in test/generated/golang/strconv/Itoa.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '42'
     const result = Itoa(42)

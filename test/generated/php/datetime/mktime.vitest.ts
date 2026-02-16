@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const mktime = require('../../../../src/php/datetime/mktime.js')
+const mktime = require('../../../../src/php/datetime/mktime.ts').mktime
 
-describe('src/php/datetime/mktime.js (tested in test/generated/php/datetime/mktime.vitest.ts)', function () {
+describe('src/php/datetime/mktime.ts (tested in test/generated/php/datetime/mktime.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 1201875002
     const result = mktime(14, 10, 2, 2, 1, 2008)

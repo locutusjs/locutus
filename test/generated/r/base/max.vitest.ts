@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const max = require('../../../../src/r/base/max.js')
+const max = require('../../../../src/r/base/max.ts').max
 
-describe('src/r/base/max.js (tested in test/generated/r/base/max.vitest.ts)', function () {
+describe('src/r/base/max.ts (tested in test/generated/r/base/max.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 5
     const result = max(1, 5, 3)

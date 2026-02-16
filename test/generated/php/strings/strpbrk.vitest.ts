@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const strpbrk = require('../../../../src/php/strings/strpbrk.js')
+const strpbrk = require('../../../../src/php/strings/strpbrk.ts').strpbrk
 
-describe('src/php/strings/strpbrk.js (tested in test/generated/php/strings/strpbrk.vitest.ts)', function () {
+describe('src/php/strings/strpbrk.ts (tested in test/generated/php/strings/strpbrk.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'is is a Simple text.'
     const result = strpbrk('This is a Simple text.', 'is')

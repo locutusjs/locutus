@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const log10 = require('../../../../src/php/math/log10.js')
+const log10 = require('../../../../src/php/math/log10.ts').log10
 
-describe('src/php/math/log10.js (tested in test/generated/php/math/log10.vitest.ts)', function () {
+describe('src/php/math/log10.ts (tested in test/generated/php/math/log10.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 1
     const result = log10(10)

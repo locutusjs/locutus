@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const array_fill = require('../../../../src/php/array/array_fill.js')
+const array_fill = require('../../../../src/php/array/array_fill.ts').array_fill
 
-describe('src/php/array/array_fill.js (tested in test/generated/php/array/array_fill.vitest.ts)', function () {
+describe('src/php/array/array_fill.ts (tested in test/generated/php/array/array_fill.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = { 5: 'banana', 6: 'banana', 7: 'banana', 8: 'banana', 9: 'banana', 10: 'banana' }
     const result = array_fill(5, 6, 'banana')

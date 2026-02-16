@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const cbrt = require('../../../../src/ruby/Math/cbrt.js')
+const cbrt = require('../../../../src/ruby/Math/cbrt.ts').cbrt
 
-describe('src/ruby/Math/cbrt.js (tested in test/generated/ruby/Math/cbrt.vitest.ts)', function () {
+describe('src/ruby/Math/cbrt.ts (tested in test/generated/ruby/Math/cbrt.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 2
     const result = cbrt(8)

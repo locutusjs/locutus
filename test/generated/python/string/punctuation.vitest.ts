@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const punctuation = require('../../../../src/python/string/punctuation.js')
+const punctuation = require('../../../../src/python/string/punctuation.ts').punctuation
 
-describe('src/python/string/punctuation.js (tested in test/generated/python/string/punctuation.vitest.ts)', function () {
+describe('src/python/string/punctuation.ts (tested in test/generated/python/string/punctuation.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
     const result = punctuation()

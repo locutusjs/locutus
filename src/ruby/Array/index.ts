@@ -1,0 +1,6 @@
+export { compact } from './compact.ts'
+export { first } from './first.ts'
+export { flatten } from './flatten.ts'
+export { last } from './last.ts'
+export { sample } from './sample.ts'
+export { uniq } from './uniq.ts'

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const Compare = require('../../../../src/golang/strings/Compare.js')
+const Compare = require('../../../../src/golang/strings/Compare.ts').Compare
 
-describe('src/golang/strings/Compare.js (tested in test/generated/golang/strings/Compare.vitest.ts)', function () {
+describe('src/golang/strings/Compare.ts (tested in test/generated/golang/strings/Compare.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = -1
     const result = Compare('a', 'b')

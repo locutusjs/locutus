@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ToLower = require('../../../../src/golang/strings/ToLower.js')
+const ToLower = require('../../../../src/golang/strings/ToLower.ts').ToLower
 
-describe('src/golang/strings/ToLower.js (tested in test/generated/golang/strings/ToLower.vitest.ts)', function () {
+describe('src/golang/strings/ToLower.ts (tested in test/generated/golang/strings/ToLower.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'gopher'
     const result = ToLower('Gopher')

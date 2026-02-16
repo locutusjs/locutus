@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const cos = require('../../../../src/ruby/Math/cos.js')
+const cos = require('../../../../src/ruby/Math/cos.ts').cos
 
-describe('src/ruby/Math/cos.js (tested in test/generated/ruby/Math/cos.vitest.ts)', function () {
+describe('src/ruby/Math/cos.ts (tested in test/generated/ruby/Math/cos.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 1
     const result = cos(0)

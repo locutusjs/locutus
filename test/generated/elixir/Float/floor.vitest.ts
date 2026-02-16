@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const floor = require('../../../../src/elixir/Float/floor.js')
+const floor = require('../../../../src/elixir/Float/floor.ts').floor
 
-describe('src/elixir/Float/floor.js (tested in test/generated/elixir/Float/floor.vitest.ts)', function () {
+describe('src/elixir/Float/floor.ts (tested in test/generated/elixir/Float/floor.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 4
     const result = floor(4.7)

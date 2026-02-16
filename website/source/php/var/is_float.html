@@ -19,7 +19,7 @@ notes:
     it different from the PHP implementation. We can't fix this unfortunately.
 parityVerified:
   - PHP 8.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's is_float in JavaScript
@@ -37,7 +37,8 @@ alias:
   - /php/is_float/
   - /functions/is_float/
 ---
-{% codeblock lang:javascript %}module.exports = function is_float(mixedVar) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function is_float(mixedVar) {
   //      discuss at: https://locutus.io/php/is_float/
   // parity verified: PHP 8.3
   //     original by: Paulo Freitas
@@ -52,3 +53,19 @@ alias:
   return +mixedVar === mixedVar && (!isFinite(mixedVar) || !!(mixedVar % 1))
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function is_float(mixedVar) {
+  //      discuss at: https://locutus.io/php/is_float/
+  // parity verified: PHP 8.3
+  //     original by: Paulo Freitas
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: WebDevHobo (https://webdevhobo.blogspot.com/)
+  //     improved by: Rafał Kukawski (https://blog.kukawski.pl)
+  //          note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  //       example 1: is_float(186.31)
+  //       returns 1: true
+  return +mixedVar === mixedVar && (!isFinite(mixedVar) || !!(mixedVar % 1));
+}{% endcodeblock %}
+</div>

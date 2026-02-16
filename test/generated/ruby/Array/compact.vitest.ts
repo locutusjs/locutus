@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const compact = require('../../../../src/ruby/Array/compact.js')
+const compact = require('../../../../src/ruby/Array/compact.ts').compact
 
-describe('src/ruby/Array/compact.js (tested in test/generated/ruby/Array/compact.vitest.ts)', function () {
+describe('src/ruby/Array/compact.ts (tested in test/generated/ruby/Array/compact.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = ['a', 'b', 'c']
     const result = compact(['a', null, 'b', undefined, 'c'])

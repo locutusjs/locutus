@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const nl2br = require('../../../../src/php/strings/nl2br.js')
+const nl2br = require('../../../../src/php/strings/nl2br.ts').nl2br
 
-describe('src/php/strings/nl2br.js (tested in test/generated/php/strings/nl2br.vitest.ts)', function () {
+describe('src/php/strings/nl2br.ts (tested in test/generated/php/strings/nl2br.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = "Kevin<br />\nvan<br />\nZonneveld"
     const result = nl2br("Kevin\nvan\nZonneveld")

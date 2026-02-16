@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const sinh = require('../../../../src/ruby/Math/sinh.js')
+const sinh = require('../../../../src/ruby/Math/sinh.ts').sinh
 
-describe('src/ruby/Math/sinh.js (tested in test/generated/ruby/Math/sinh.vitest.ts)', function () {
+describe('src/ruby/Math/sinh.ts (tested in test/generated/ruby/Math/sinh.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 0
     const result = sinh(0)

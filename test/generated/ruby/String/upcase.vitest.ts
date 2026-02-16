@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const upcase = require('../../../../src/ruby/String/upcase.js')
+const upcase = require('../../../../src/ruby/String/upcase.ts').upcase
 
-describe('src/ruby/String/upcase.js (tested in test/generated/ruby/String/upcase.vitest.ts)', function () {
+describe('src/ruby/String/upcase.ts (tested in test/generated/ruby/String/upcase.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'HELLO'
     const result = upcase('hELLo')

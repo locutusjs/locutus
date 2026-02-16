@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const gettype = require('../../../../src/php/var/gettype.js')
+const gettype = require('../../../../src/php/var/gettype.ts').gettype
 
-describe('src/php/var/gettype.js (tested in test/generated/php/var/gettype.vitest.ts)', function () {
+describe('src/php/var/gettype.ts (tested in test/generated/php/var/gettype.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'integer'
     const result = gettype(1)

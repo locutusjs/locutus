@@ -1,5 +1,0 @@
-module.exports.strcat = require('./strcat')
-module.exports.strchr = require('./strchr')
-module.exports.strcmp = require('./strcmp')
-module.exports.strlen = require('./strlen')
-module.exports.strstr = require('./strstr')

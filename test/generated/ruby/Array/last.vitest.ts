@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const last = require('../../../../src/ruby/Array/last.js')
+const last = require('../../../../src/ruby/Array/last.ts').last
 
-describe('src/ruby/Array/last.js (tested in test/generated/ruby/Array/last.vitest.ts)', function () {
+describe('src/ruby/Array/last.ts (tested in test/generated/ruby/Array/last.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'c'
     const result = last(['a', 'b', 'c'])

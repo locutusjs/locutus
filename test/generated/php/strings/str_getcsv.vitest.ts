@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const str_getcsv = require('../../../../src/php/strings/str_getcsv.js')
+const str_getcsv = require('../../../../src/php/strings/str_getcsv.ts').str_getcsv
 
-describe('src/php/strings/str_getcsv.js (tested in test/generated/php/strings/str_getcsv.vitest.ts)', function () {
+describe('src/php/strings/str_getcsv.ts (tested in test/generated/php/strings/str_getcsv.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = ['abc', 'def', 'ghi']
     const result = str_getcsv('"abc","def","ghi"')

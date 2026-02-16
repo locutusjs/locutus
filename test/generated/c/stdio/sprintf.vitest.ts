@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const sprintf = require('../../../../src/c/stdio/sprintf.js')
+const sprintf = require('../../../../src/c/stdio/sprintf.ts').sprintf
 
-describe('src/c/stdio/sprintf.js (tested in test/generated/c/stdio/sprintf.vitest.ts)', function () {
+describe('src/c/stdio/sprintf.ts (tested in test/generated/c/stdio/sprintf.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '    +00001'
     const result = sprintf('%+10.*d', 5, 1)

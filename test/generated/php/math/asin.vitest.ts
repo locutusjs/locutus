@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const asin = require('../../../../src/php/math/asin.js')
+const asin = require('../../../../src/php/math/asin.ts').asin
 
-describe('src/php/math/asin.js (tested in test/generated/php/math/asin.vitest.ts)', function () {
+describe('src/php/math/asin.ts (tested in test/generated/php/math/asin.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = "0.304692654015397"
     const result = (asin(0.3) + '').substr(0, 17)

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const sqrt = require('../../../../src/python/math/sqrt.js')
+const sqrt = require('../../../../src/python/math/sqrt.ts').sqrt
 
-describe('src/python/math/sqrt.js (tested in test/generated/python/math/sqrt.vitest.ts)', function () {
+describe('src/python/math/sqrt.ts (tested in test/generated/python/math/sqrt.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 2
     const result = sqrt(4)

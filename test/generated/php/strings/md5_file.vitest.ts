@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const md5_file = require('../../../../src/php/strings/md5_file.js')
+const md5_file = require('../../../../src/php/strings/md5_file.ts').md5_file
 
-describe('src/php/strings/md5_file.js (tested in test/generated/php/strings/md5_file.vitest.ts)', function () {
+describe('src/php/strings/md5_file.ts (tested in test/generated/php/strings/md5_file.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'bc3aa724b0ec7dce4c26e7f4d0d9b064'
     const result = md5_file('test/never-change.txt')

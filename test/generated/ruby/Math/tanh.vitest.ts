@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const tanh = require('../../../../src/ruby/Math/tanh.js')
+const tanh = require('../../../../src/ruby/Math/tanh.ts').tanh
 
-describe('src/ruby/Math/tanh.js (tested in test/generated/ruby/Math/tanh.vitest.ts)', function () {
+describe('src/ruby/Math/tanh.ts (tested in test/generated/ruby/Math/tanh.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 0
     const result = tanh(0)

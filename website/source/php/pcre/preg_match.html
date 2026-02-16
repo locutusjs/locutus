@@ -16,7 +16,7 @@ authors:
     - Muhammad Humayun (https://github.com/ronypt)
 notes: []
 parityVerified: null
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's preg_match in JavaScript
@@ -34,7 +34,8 @@ alias:
   - /php/preg_match/
   - /functions/preg_match/
 ---
-{% codeblock lang:javascript %}module.exports = function preg_match(regex, str) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function preg_match(regex, str) {
   // original by: Muhammad Humayun (https://github.com/ronypt)
   //   example 1: preg_match("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", "rony@pharaohtools.com")
   //   returns 1: true
@@ -43,3 +44,14 @@ alias:
   return new RegExp(regex).test(str)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function preg_match(regex, str) {
+  // original by: Muhammad Humayun (https://github.com/ronypt)
+  //   example 1: preg_match("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", "rony@pharaohtools.com")
+  //   returns 1: true
+  //   example 2: preg_match("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", "ronypharaohtools.com")
+  //   returns 2: false
+  return new RegExp(regex).test(str);
+}{% endcodeblock %}
+</div>

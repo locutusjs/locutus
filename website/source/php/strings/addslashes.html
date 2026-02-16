@@ -20,7 +20,7 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's addslashes in JavaScript
@@ -38,7 +38,8 @@ alias:
   - /php/addslashes/
   - /functions/addslashes/
 ---
-{% codeblock lang:javascript %}module.exports = function addslashes(str) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function addslashes(str) {
   //      discuss at: https://locutus.io/php/addslashes/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -56,3 +57,22 @@ alias:
   return (str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0')
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function addslashes(str) {
+  //      discuss at: https://locutus.io/php/addslashes/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Ates Goral (https://magnetiq.com)
+  //     improved by: marrtins
+  //     improved by: Nate
+  //     improved by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Oskar Larsson Högfeldt (https://oskar-lh.name/)
+  //        input by: Denny Wardhana
+  //       example 1: addslashes("kevin's birthday")
+  //       returns 1: "kevin\\'s birthday"
+  // biome-ignore lint/suspicious/noControlCharactersInRegex: null byte escaping is intentional
+  return (str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
+}{% endcodeblock %}
+</div>

@@ -14,7 +14,7 @@ notes:
   - Precision 'n' can be adjusted as desired
 parityVerified:
   - PHP 8.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's expm1 in JavaScript
@@ -32,7 +32,8 @@ alias:
   - /php/expm1/
   - /functions/expm1/
 ---
-{% codeblock lang:javascript %}module.exports = function expm1(x) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function expm1(x) {
   //      discuss at: https://locutus.io/php/expm1/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -44,3 +45,16 @@ alias:
   return x < 1e-5 && x > -1e-5 ? x + 0.5 * x * x : Math.exp(x) - 1
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function expm1(x) {
+  //      discuss at: https://locutus.io/php/expm1/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Robert Eisele (https://www.xarg.org/)
+  //          note 1: Precision 'n' can be adjusted as desired
+  //       example 1: expm1(1e-15)
+  //       returns 1: 1.0000000000000007e-15
+  return x < 1e-5 && x > -1e-5 ? x + 0.5 * x * x : Math.exp(x) - 1;
+}{% endcodeblock %}
+</div>

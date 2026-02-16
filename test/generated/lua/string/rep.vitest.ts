@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const rep = require('../../../../src/lua/string/rep.js')
+const rep = require('../../../../src/lua/string/rep.ts').rep
 
-describe('src/lua/string/rep.js (tested in test/generated/lua/string/rep.vitest.ts)', function () {
+describe('src/lua/string/rep.ts (tested in test/generated/lua/string/rep.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'ababab'
     const result = rep('ab', 3)

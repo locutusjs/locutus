@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const array_walk_recursive = require('../../../../src/php/array/array_walk_recursive.js')
+const array_walk_recursive = require('../../../../src/php/array/array_walk_recursive.ts').array_walk_recursive
 
-describe('src/php/array/array_walk_recursive.js (tested in test/generated/php/array/array_walk_recursive.vitest.ts)', function () {
+describe('src/php/array/array_walk_recursive.ts (tested in test/generated/php/array/array_walk_recursive.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = array_walk_recursive([3, 4], function () {}, 'userdata')

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const pow = require('../../../../src/python/math/pow.js')
+const pow = require('../../../../src/python/math/pow.ts').pow
 
-describe('src/python/math/pow.js (tested in test/generated/python/math/pow.vitest.ts)', function () {
+describe('src/python/math/pow.ts (tested in test/generated/python/math/pow.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 1024
     const result = pow(2, 10)

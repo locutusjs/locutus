@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const FormatBool = require('../../../../src/golang/strconv/FormatBool.js')
+const FormatBool = require('../../../../src/golang/strconv/FormatBool.ts').FormatBool
 
-describe('src/golang/strconv/FormatBool.js (tested in test/generated/golang/strconv/FormatBool.vitest.ts)', function () {
+describe('src/golang/strconv/FormatBool.ts (tested in test/generated/golang/strconv/FormatBool.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'true'
     const result = FormatBool(true)

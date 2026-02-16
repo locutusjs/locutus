@@ -13,7 +13,7 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's strcasecmp in JavaScript
@@ -31,7 +31,8 @@ alias:
   - /php/strcasecmp/
   - /functions/strcasecmp/
 ---
-{% codeblock lang:javascript %}module.exports = function strcasecmp(fString1, fString2) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function strcasecmp(fString1, fString2) {
   //      discuss at: https://locutus.io/php/strcasecmp/
   // parity verified: PHP 8.3
   //     original by: Martijn Wieringa
@@ -51,3 +52,23 @@ alias:
   return -1
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function strcasecmp(fString1, fString2) {
+  //      discuss at: https://locutus.io/php/strcasecmp/
+  // parity verified: PHP 8.3
+  //     original by: Martijn Wieringa
+  //     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: strcasecmp('Hello', 'hello')
+  //       returns 1: 0
+  const string1 = (fString1 + '').toLowerCase();
+  const string2 = (fString2 + '').toLowerCase();
+  if (string1 > string2) {
+    return 1;
+  }
+  else if (string1 === string2) {
+    return 0;
+  }
+  return -1;
+}{% endcodeblock %}
+</div>

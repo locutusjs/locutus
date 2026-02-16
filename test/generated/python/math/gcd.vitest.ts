@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const gcd = require('../../../../src/python/math/gcd.js')
+const gcd = require('../../../../src/python/math/gcd.ts').gcd
 
-describe('src/python/math/gcd.js (tested in test/generated/python/math/gcd.vitest.ts)', function () {
+describe('src/python/math/gcd.ts (tested in test/generated/python/math/gcd.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 6
     const result = gcd(48, 18)

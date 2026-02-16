@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const factorial = require('../../../../src/python/math/factorial.js')
+const factorial = require('../../../../src/python/math/factorial.ts').factorial
 
-describe('src/python/math/factorial.js (tested in test/generated/python/math/factorial.vitest.ts)', function () {
+describe('src/python/math/factorial.ts (tested in test/generated/python/math/factorial.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 120
     const result = factorial(5)

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const capwords = require('../../../../src/python/string/capwords.js')
+const capwords = require('../../../../src/python/string/capwords.ts').capwords
 
-describe('src/python/string/capwords.js (tested in test/generated/python/string/capwords.vitest.ts)', function () {
+describe('src/python/string/capwords.ts (tested in test/generated/python/string/capwords.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Kevin Van  Zonneveld'
     const result = capwords('kevin van  zonneveld')

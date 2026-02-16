@@ -6,8 +6,7 @@
  */
 
 import { describe, expect, it } from 'vitest'
-// @ts-expect-error - CJS module
-import abs from '../../src/c/math/abs.js'
+import { abs } from '../../src/c/math/abs.ts'
 
 describe('c/math/abs edge cases', () => {
   it('handles positive floats', () => {

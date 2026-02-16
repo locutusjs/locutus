@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const abs = require('../../../../src/r/base/abs.js')
+const abs = require('../../../../src/r/base/abs.ts').abs
 
-describe('src/r/base/abs.js (tested in test/generated/r/base/abs.vitest.ts)', function () {
+describe('src/r/base/abs.ts (tested in test/generated/r/base/abs.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 5
     const result = abs(-5)

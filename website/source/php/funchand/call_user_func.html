@@ -25,7 +25,7 @@ notes:
 
     already pass any function to be executed here.
 parityVerified: null
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's call_user_func in JavaScript
@@ -43,7 +43,10 @@ alias:
   - /php/call_user_func/
   - /functions/call_user_func/
 ---
-{% codeblock lang:javascript %}module.exports = function call_user_func(cb, parameters) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { call_user_func_array as callUserFuncArray } from '../funchand/call_user_func_array.ts'
+
+export function call_user_func(cb, parameters) {
   //  discuss at: https://locutus.io/php/call_user_func/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Diplom@t (https://difane.com/)
@@ -56,8 +59,26 @@ alias:
   //   example 1: call_user_func('isNaN', 'a')
   //   returns 1: true
 
-  const callUserFuncArray = require('../funchand/call_user_func_array')
   parameters = Array.prototype.slice.call(arguments, 1)
   return callUserFuncArray(cb, parameters)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { call_user_func_array as callUserFuncArray } from '../funchand/call_user_func_array.ts';
+export function call_user_func(cb, parameters) {
+  //  discuss at: https://locutus.io/php/call_user_func/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Diplom@t (https://difane.com/)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: Depends on call_user_func_array which in turn depends on the `cb` that is passed,
+  //      note 1: this function can use `eval`.
+  //      note 1: The `eval` input is however checked to only allow valid function names,
+  //      note 1: So it should not be unsafer than uses without eval (seeing as you can)
+  //      note 1: already pass any function to be executed here.
+  //   example 1: call_user_func('isNaN', 'a')
+  //   returns 1: true
+  parameters = Array.prototype.slice.call(arguments, 1);
+  return callUserFuncArray(cb, parameters);
+}{% endcodeblock %}
+</div>

@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const str_pad = require('../../../../src/php/strings/str_pad.js')
+const str_pad = require('../../../../src/php/strings/str_pad.ts').str_pad
 
-describe('src/php/strings/str_pad.js (tested in test/generated/php/strings/str_pad.vitest.ts)', function () {
+describe('src/php/strings/str_pad.ts (tested in test/generated/php/strings/str_pad.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '-=-=-=-=-=-Kevin van Zonneveld'
     const result = str_pad('Kevin van Zonneveld', 30, '-=', 'STR_PAD_LEFT')

@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const get_defined_functions = require('../../../../src/php/funchand/get_defined_functions.js')
+const get_defined_functions = require('../../../../src/php/funchand/get_defined_functions.ts').get_defined_functions
 
-describe('src/php/funchand/get_defined_functions.js (tested in test/generated/php/funchand/get_defined_functions.vitest.ts)', function () {
+describe('src/php/funchand/get_defined_functions.ts (tested in test/generated/php/funchand/get_defined_functions.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     var $funcs = get_defined_functions()

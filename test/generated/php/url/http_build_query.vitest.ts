@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const http_build_query = require('../../../../src/php/url/http_build_query.js')
+const http_build_query = require('../../../../src/php/url/http_build_query.ts').http_build_query
 
-describe('src/php/url/http_build_query.js (tested in test/generated/php/url/http_build_query.vitest.ts)', function () {
+describe('src/php/url/http_build_query.ts (tested in test/generated/php/url/http_build_query.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'foo=bar&amp;php=hypertext+processor&amp;baz=boom&amp;cow=milk'
     const result = http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;')

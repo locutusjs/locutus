@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const sha1_file = require('../../../../src/php/strings/sha1_file.js')
+const sha1_file = require('../../../../src/php/strings/sha1_file.ts').sha1_file
 
-describe('src/php/strings/sha1_file.js (tested in test/generated/php/strings/sha1_file.vitest.ts)', function () {
+describe('src/php/strings/sha1_file.ts (tested in test/generated/php/strings/sha1_file.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '0ea65a1f4b4d69712affc58240932f3eb8a2af66'
     const result = sha1_file('test/never-change.txt')

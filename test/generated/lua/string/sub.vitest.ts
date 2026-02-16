@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const sub = require('../../../../src/lua/string/sub.js')
+const sub = require('../../../../src/lua/string/sub.ts').sub
 
-describe('src/lua/string/sub.js (tested in test/generated/lua/string/sub.vitest.ts)', function () {
+describe('src/lua/string/sub.ts (tested in test/generated/lua/string/sub.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Hel'
     const result = sub('Hello', 1, 3)

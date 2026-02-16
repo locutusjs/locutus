@@ -54,7 +54,7 @@ alias:
 ---
 <div class="code-tab-panel" data-lang="ts">
 {% codeblock lang:typescript %}import { krsort } from '../array/krsort.ts'
-import iniSet from '../info/ini_set.js'
+import { ini_set as iniSet } from '../info/ini_set.ts'
 
 export function strtr(
   str: string,
@@ -160,7 +160,7 @@ export function strtr(
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { krsort } from '../array/krsort.ts';
-import iniSet from '../info/ini_set.js';
+import { ini_set as iniSet } from '../info/ini_set.ts';
 export function strtr(str, trFrom, trTo) {
   //  discuss at: https://locutus.io/php/strtr/
   // original by: Brett Zamir (https://brett-zamir.me)

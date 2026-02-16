@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const count_chars = require('../../../../src/php/strings/count_chars.js')
+const count_chars = require('../../../../src/php/strings/count_chars.ts').count_chars
 
-describe('src/php/strings/count_chars.js (tested in test/generated/php/strings/count_chars.vitest.ts)', function () {
+describe('src/php/strings/count_chars.ts (tested in test/generated/php/strings/count_chars.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = " !HWdelor"
     const result = count_chars("Hello World!", 3)

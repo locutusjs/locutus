@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const isset = require('../../../../src/php/var/isset.js')
+const isset = require('../../../../src/php/var/isset.ts').isset
 
-describe('src/php/var/isset.js (tested in test/generated/php/var/isset.vitest.ts)', function () {
+describe('src/php/var/isset.ts (tested in test/generated/php/var/isset.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = false
     const result = isset( undefined, true)

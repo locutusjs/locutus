@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const abs = require('../../../../src/lua/math/abs.js')
+const abs = require('../../../../src/lua/math/abs.ts').abs
 
-describe('src/lua/math/abs.js (tested in test/generated/lua/math/abs.vitest.ts)', function () {
+describe('src/lua/math/abs.ts (tested in test/generated/lua/math/abs.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 5
     const result = abs(-5)

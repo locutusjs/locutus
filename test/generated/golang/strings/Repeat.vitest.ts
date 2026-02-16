@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const Repeat = require('../../../../src/golang/strings/Repeat.js')
+const Repeat = require('../../../../src/golang/strings/Repeat.ts').Repeat
 
-describe('src/golang/strings/Repeat.js (tested in test/generated/golang/strings/Repeat.vitest.ts)', function () {
+describe('src/golang/strings/Repeat.ts (tested in test/generated/golang/strings/Repeat.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'nana'
     const result = Repeat('na', 2)

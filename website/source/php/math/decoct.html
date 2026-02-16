@@ -20,7 +20,7 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's decoct in JavaScript
@@ -38,7 +38,8 @@ alias:
   - /php/decoct/
   - /functions/decoct/
 ---
-{% codeblock lang:javascript %}module.exports = function decoct(number) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function decoct(number) {
   //      discuss at: https://locutus.io/php/decoct/
   // parity verified: PHP 8.3
   //     original by: Enrique Gonzalez
@@ -56,3 +57,22 @@ alias:
   return parseInt(number, 10).toString(8)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function decoct(number) {
+  //      discuss at: https://locutus.io/php/decoct/
+  // parity verified: PHP 8.3
+  //     original by: Enrique Gonzalez
+  //     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     improved by: https://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
+  //        input by: pilus
+  //       example 1: decoct(15)
+  //       returns 1: '17'
+  //       example 2: decoct(264)
+  //       returns 2: '410'
+  if (number < 0) {
+    number = 0xffffffff + number + 1;
+  }
+  return parseInt(number, 10).toString(8);
+}{% endcodeblock %}
+</div>

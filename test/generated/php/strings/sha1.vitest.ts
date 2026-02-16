@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const sha1 = require('../../../../src/php/strings/sha1.js')
+const sha1 = require('../../../../src/php/strings/sha1.ts').sha1
 
-describe('src/php/strings/sha1.js (tested in test/generated/php/strings/sha1.vitest.ts)', function () {
+describe('src/php/strings/sha1.ts (tested in test/generated/php/strings/sha1.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
     const result = sha1('Kevin van Zonneveld')

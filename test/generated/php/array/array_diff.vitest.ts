@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const array_diff = require('../../../../src/php/array/array_diff.js')
+const array_diff = require('../../../../src/php/array/array_diff.ts').array_diff
 
-describe('src/php/array/array_diff.js (tested in test/generated/php/array/array_diff.vitest.ts)', function () {
+describe('src/php/array/array_diff.ts (tested in test/generated/php/array/array_diff.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = {0:'Kevin'}
     const result = array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld'])

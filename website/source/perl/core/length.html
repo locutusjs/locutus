@@ -15,7 +15,7 @@ authors:
 notes: []
 parityVerified:
   - Perl 5.40
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: Perl's core::length in JavaScript
@@ -31,7 +31,8 @@ alias:
   - /functions/core/length/
   - /perl/length/
 ---
-{% codeblock lang:javascript %}module.exports = function length(str) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function length(str) {
   //      discuss at: https://locutus.io/perl/length/
   // parity verified: Perl 5.40
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -48,3 +49,21 @@ alias:
   return String(str).length
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function length(str) {
+  //      discuss at: https://locutus.io/perl/length/
+  // parity verified: Perl 5.40
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: length('hello')
+  //       returns 1: 5
+  //       example 2: length('')
+  //       returns 2: 0
+  //       example 3: length('hello world')
+  //       returns 3: 11
+  if (str === undefined || str === null) {
+    return undefined;
+  }
+  return String(str).length;
+}{% endcodeblock %}
+</div>

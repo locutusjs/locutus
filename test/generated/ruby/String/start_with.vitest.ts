@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const start_with = require('../../../../src/ruby/String/start_with.js')
+const start_with = require('../../../../src/ruby/String/start_with.ts').start_with
 
-describe('src/ruby/String/start_with.js (tested in test/generated/ruby/String/start_with.vitest.ts)', function () {
+describe('src/ruby/String/start_with.ts (tested in test/generated/ruby/String/start_with.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = start_with('hello', 'hell')

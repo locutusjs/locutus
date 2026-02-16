@@ -75,7 +75,7 @@ alias:
   - /functions/sort/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import i18nlgd from '../i18n/i18n_loc_get_default.js'
+{% codeblock lang:typescript %}import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
 
 export function sort(inputArr: Record<string, unknown>, sortFlags?: string): boolean | Record<string, unknown> {
   //  discuss at: https://locutus.io/php/sort/
@@ -198,7 +198,7 @@ export function sort(inputArr: Record<string, unknown>, sortFlags?: string): boo
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import i18nlgd from '../i18n/i18n_loc_get_default.js';
+{% codeblock lang:javascript %}import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts';
 export function sort(inputArr, sortFlags) {
   //  discuss at: https://locutus.io/php/sort/
   // original by: Kevin van Zonneveld (https://kvz.io)

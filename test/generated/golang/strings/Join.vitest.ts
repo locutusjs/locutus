@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const Join = require('../../../../src/golang/strings/Join.js')
+const Join = require('../../../../src/golang/strings/Join.ts').Join
 
-describe('src/golang/strings/Join.js (tested in test/generated/golang/strings/Join.vitest.ts)', function () {
+describe('src/golang/strings/Join.ts (tested in test/generated/golang/strings/Join.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'foo, bar, baz'
     const result = Join(['foo', 'bar', 'baz'], ', ')

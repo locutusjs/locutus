@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const lc = require('../../../../src/perl/core/lc.js')
+const lc = require('../../../../src/perl/core/lc.ts').lc
 
-describe('src/perl/core/lc.js (tested in test/generated/perl/core/lc.vitest.ts)', function () {
+describe('src/perl/core/lc.ts (tested in test/generated/perl/core/lc.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'hello'
     const result = lc('HELLO')

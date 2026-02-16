@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const upper = require('../../../../src/lua/string/upper.js')
+const upper = require('../../../../src/lua/string/upper.ts').upper
 
-describe('src/lua/string/upper.js (tested in test/generated/lua/string/upper.vitest.ts)', function () {
+describe('src/lua/string/upper.ts (tested in test/generated/lua/string/upper.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'HELLO'
     const result = upper('hello')

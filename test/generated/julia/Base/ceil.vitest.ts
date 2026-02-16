@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ceil = require('../../../../src/julia/Base/ceil.js')
+const ceil = require('../../../../src/julia/Base/ceil.ts').ceil
 
-describe('src/julia/Base/ceil.js (tested in test/generated/julia/Base/ceil.vitest.ts)', function () {
+describe('src/julia/Base/ceil.ts (tested in test/generated/julia/Base/ceil.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 5
     const result = ceil(4.2)

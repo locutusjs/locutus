@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const pack = require('../../../../src/php/misc/pack.js')
+const pack = require('../../../../src/php/misc/pack.ts').pack
 
-describe('src/php/misc/pack.js (tested in test/generated/php/misc/pack.vitest.ts)', function () {
+describe('src/php/misc/pack.ts (tested in test/generated/php/misc/pack.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '\u00124xVAB'
     const result = pack('nvc*', 0x1234, 0x5678, 65, 66)

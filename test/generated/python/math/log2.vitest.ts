@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const log2 = require('../../../../src/python/math/log2.js')
+const log2 = require('../../../../src/python/math/log2.ts').log2
 
-describe('src/python/math/log2.js (tested in test/generated/python/math/log2.vitest.ts)', function () {
+describe('src/python/math/log2.ts (tested in test/generated/python/math/log2.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 0
     const result = log2(1)

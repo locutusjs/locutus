@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const pathinfo = require('../../../../src/php/filesystem/pathinfo.js')
+const pathinfo = require('../../../../src/php/filesystem/pathinfo.ts').pathinfo
 
-describe('src/php/filesystem/pathinfo.js (tested in test/generated/php/filesystem/pathinfo.vitest.ts)', function () {
+describe('src/php/filesystem/pathinfo.ts (tested in test/generated/php/filesystem/pathinfo.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '/www/htdocs'
     const result = pathinfo('/www/htdocs/index.html', 1)

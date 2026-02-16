@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const utf8_encode = require('../../../../src/php/xml/utf8_encode.js')
+const utf8_encode = require('../../../../src/php/xml/utf8_encode.ts').utf8_encode
 
-describe('src/php/xml/utf8_encode.js (tested in test/generated/php/xml/utf8_encode.vitest.ts)', function () {
+describe('src/php/xml/utf8_encode.ts (tested in test/generated/php/xml/utf8_encode.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Kevin van Zonneveld'
     const result = utf8_encode('Kevin van Zonneveld')

@@ -14,7 +14,7 @@ notes:
   - Clojure uses lower-case, JS uses lower_case
 parityVerified:
   - Clojure 1.12
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: Clojure's string/lower_case in JavaScript
@@ -31,7 +31,8 @@ alias:
   - /functions/string/lower_case/
   - /clojure/lower_case/
 ---
-{% codeblock lang:javascript %}module.exports = function lower_case(s) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function lower_case(s) {
   //      discuss at: https://locutus.io/clojure/lower_case/
   // parity verified: Clojure 1.12
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -44,3 +45,17 @@ alias:
   return String(s).toLowerCase()
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function lower_case(s) {
+  //      discuss at: https://locutus.io/clojure/lower_case/
+  // parity verified: Clojure 1.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Clojure uses lower-case, JS uses lower_case
+  //       example 1: lower_case('HELLO')
+  //       returns 1: 'hello'
+  //       example 2: lower_case('Hello World')
+  //       returns 2: 'hello world'
+  return String(s).toLowerCase();
+}{% endcodeblock %}
+</div>

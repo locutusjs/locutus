@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const date_parse = require('../../../../src/php/datetime/date_parse.js')
+const date_parse = require('../../../../src/php/datetime/date_parse.ts').date_parse
 
-describe('src/php/datetime/date_parse.js (tested in test/generated/php/datetime/date_parse.vitest.ts)', function () {
+describe('src/php/datetime/date_parse.ts (tested in test/generated/php/datetime/date_parse.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = {year : 2006, month: 12, day: 12, hour: 10, minute: 0, second: 0, fraction: 0, is_localtime: false}
     const result = date_parse('2006-12-12 10:00:00')

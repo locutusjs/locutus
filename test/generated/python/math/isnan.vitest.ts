@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const isnan = require('../../../../src/python/math/isnan.js')
+const isnan = require('../../../../src/python/math/isnan.ts').isnan
 
-describe('src/python/math/isnan.js (tested in test/generated/python/math/isnan.vitest.ts)', function () {
+describe('src/python/math/isnan.ts (tested in test/generated/python/math/isnan.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = isnan(NaN)

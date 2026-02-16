@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const upper_case = require('../../../../src/clojure/string/upper_case.js')
+const upper_case = require('../../../../src/clojure/string/upper_case.ts').upper_case
 
-describe('src/clojure/string/upper_case.js (tested in test/generated/clojure/string/upper_case.vitest.ts)', function () {
+describe('src/clojure/string/upper_case.ts (tested in test/generated/clojure/string/upper_case.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'HELLO'
     const result = upper_case('hello')

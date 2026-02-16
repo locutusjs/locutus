@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const isspace = require('../../../../src/c/ctype/isspace.js')
+const isspace = require('../../../../src/c/ctype/isspace.ts').isspace
 
-describe('src/c/ctype/isspace.js (tested in test/generated/c/ctype/isspace.vitest.ts)', function () {
+describe('src/c/ctype/isspace.ts (tested in test/generated/c/ctype/isspace.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = isspace(' ')

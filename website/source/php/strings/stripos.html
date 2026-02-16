@@ -13,7 +13,7 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's stripos in JavaScript
@@ -31,7 +31,8 @@ alias:
   - /php/stripos/
   - /functions/stripos/
 ---
-{% codeblock lang:javascript %}module.exports = function stripos(fHaystack, fNeedle, fOffset) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function stripos(fHaystack, fNeedle, fOffset) {
   //      discuss at: https://locutus.io/php/stripos/
   // parity verified: PHP 8.3
   //     original by: Martijn Wieringa
@@ -50,3 +51,21 @@ alias:
   return false
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function stripos(fHaystack, fNeedle, fOffset) {
+  //      discuss at: https://locutus.io/php/stripos/
+  // parity verified: PHP 8.3
+  //     original by: Martijn Wieringa
+  //      revised by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: stripos('ABC', 'a')
+  //       returns 1: 0
+  const haystack = (fHaystack + '').toLowerCase();
+  const needle = (fNeedle + '').toLowerCase();
+  let index = 0;
+  if ((index = haystack.indexOf(needle, fOffset)) !== -1) {
+    return index;
+  }
+  return false;
+}{% endcodeblock %}
+</div>

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const cosh = require('../../../../src/ruby/Math/cosh.js')
+const cosh = require('../../../../src/ruby/Math/cosh.ts').cosh
 
-describe('src/ruby/Math/cosh.js (tested in test/generated/ruby/Math/cosh.vitest.ts)', function () {
+describe('src/ruby/Math/cosh.ts (tested in test/generated/ruby/Math/cosh.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 1
     const result = cosh(0)

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const atof = require('../../../../src/c/stdlib/atof.js')
+const atof = require('../../../../src/c/stdlib/atof.ts').atof
 
-describe('src/c/stdlib/atof.js (tested in test/generated/c/stdlib/atof.vitest.ts)', function () {
+describe('src/c/stdlib/atof.ts (tested in test/generated/c/stdlib/atof.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 3.14
     const result = atof('3.14')

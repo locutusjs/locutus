@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const ltrim = require('../../../../src/php/strings/ltrim.js')
+const ltrim = require('../../../../src/php/strings/ltrim.ts').ltrim
 
-describe('src/php/strings/ltrim.js (tested in test/generated/php/strings/ltrim.vitest.ts)', function () {
+describe('src/php/strings/ltrim.ts (tested in test/generated/php/strings/ltrim.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Kevin van Zonneveld    '
     const result = ltrim('    Kevin van Zonneveld    ')

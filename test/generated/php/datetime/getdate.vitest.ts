@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const getdate = require('../../../../src/php/datetime/getdate.js')
+const getdate = require('../../../../src/php/datetime/getdate.ts').getdate
 
-describe('src/php/datetime/getdate.js (tested in test/generated/php/datetime/getdate.vitest.ts)', function () {
+describe('src/php/datetime/getdate.ts (tested in test/generated/php/datetime/getdate.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = {'seconds': 40, 'minutes': 58, 'hours': 1, 'mday': 18, 'wday': 3, 'mon': 6, 'year': 2003, 'yday': 168, 'weekday': 'Wednesday', 'month': 'June', '0': 1055901520}
     const result = getdate(1055901520)

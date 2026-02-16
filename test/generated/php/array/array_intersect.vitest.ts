@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const array_intersect = require('../../../../src/php/array/array_intersect.js')
+const array_intersect = require('../../../../src/php/array/array_intersect.ts').array_intersect
 
-describe('src/php/array/array_intersect.js (tested in test/generated/php/array/array_intersect.vitest.ts)', function () {
+describe('src/php/array/array_intersect.ts (tested in test/generated/php/array/array_intersect.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = {0: 'red', a: 'green'}
     var $array1 = {'a' : 'green', 0:'red', 1: 'blue'}

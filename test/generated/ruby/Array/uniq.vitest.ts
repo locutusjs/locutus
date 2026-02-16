@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const uniq = require('../../../../src/ruby/Array/uniq.js')
+const uniq = require('../../../../src/ruby/Array/uniq.ts').uniq
 
-describe('src/ruby/Array/uniq.js (tested in test/generated/ruby/Array/uniq.vitest.ts)', function () {
+describe('src/ruby/Array/uniq.ts (tested in test/generated/ruby/Array/uniq.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = [1, 2, 3]
     const result = uniq([1, 2, 2, 3, 3, 3])

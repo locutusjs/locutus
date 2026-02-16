@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const var_dump = require('../../../../src/php/var/var_dump.js')
+const var_dump = require('../../../../src/php/var/var_dump.ts').var_dump
 
-describe('src/php/var/var_dump.js (tested in test/generated/php/var/var_dump.vitest.ts)', function () {
+describe('src/php/var/var_dump.ts (tested in test/generated/php/var/var_dump.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'int(1)'
     const result = var_dump(1)

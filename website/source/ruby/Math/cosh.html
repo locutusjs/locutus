@@ -13,7 +13,7 @@ authors:
 notes: []
 parityVerified:
   - Ruby 3.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: Ruby's Math.cosh in JavaScript
@@ -30,7 +30,8 @@ alias:
   - /functions/Math/cosh/
   - /ruby/cosh/
 ---
-{% codeblock lang:javascript %}module.exports = function cosh(x) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function cosh(x) {
   //      discuss at: https://locutus.io/ruby/Math/cosh/
   // parity verified: Ruby 3.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -42,3 +43,16 @@ alias:
   return Math.cosh(x)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function cosh(x) {
+  //      discuss at: https://locutus.io/ruby/Math/cosh/
+  // parity verified: Ruby 3.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: cosh(0)
+  //       returns 1: 1
+  //       example 2: cosh(1)
+  //       returns 2: 1.5430806348152437
+  return Math.cosh(x);
+}{% endcodeblock %}
+</div>

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const reverse = require('../../../../src/perl/core/reverse.js')
+const reverse = require('../../../../src/perl/core/reverse.ts').reverse
 
-describe('src/perl/core/reverse.js (tested in test/generated/perl/core/reverse.vitest.ts)', function () {
+describe('src/perl/core/reverse.ts (tested in test/generated/perl/core/reverse.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'olleh'
     const result = reverse('hello')

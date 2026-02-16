@@ -20,7 +20,7 @@ authors:
 notes:
   - Numeric keys are renumbered starting from 0, string keys are preserved
 parityVerified: null
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's array_merge_recursive in JavaScript
@@ -38,7 +38,8 @@ alias:
   - /php/array_merge_recursive/
   - /functions/array_merge_recursive/
 ---
-{% codeblock lang:javascript %}module.exports = function array_merge_recursive(arr1, arr2) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function array_merge_recursive(arr1, arr2) {
   //       discuss at: https://locutus.io/php/array_merge_recursive/
   //      original by: Subhasis Deb
   //         input by: Brett Zamir (https://brett-zamir.me)
@@ -102,3 +103,68 @@ alias:
   return result
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function array_merge_recursive(arr1, arr2) {
+  //       discuss at: https://locutus.io/php/array_merge_recursive/
+  //      original by: Subhasis Deb
+  //         input by: Brett Zamir (https://brett-zamir.me)
+  //      bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // reimplemented by: Kevin van Zonneveld (https://kvz.io)
+  //           note 1: Numeric keys are renumbered starting from 0, string keys are preserved
+  //        example 1: var $arr1 = {'color': {'favorite': 'red'}, 0: 5}
+  //        example 1: var $arr2 = {0: 10, 'color': {'favorite': 'green', 0: 'blue'}}
+  //        example 1: array_merge_recursive($arr1, $arr2)
+  //        returns 1: {'color': {'favorite': ['red', 'green'], 0: 'blue'}, 0: 5, 1: 10}
+  const result = {};
+  const toStr = Object.prototype.toString;
+  let numericIdx = 0;
+  // Helper to check if a key is numeric (PHP integer-indexed)
+  const isNumericKey = function (key) {
+    return parseInt(key, 10) + '' === key + '';
+  };
+  // Helper to check if value is a plain object (not array)
+  const isPlainObject = function (val) {
+    return val && typeof val === 'object' && toStr.call(val) !== '[object Array]';
+  };
+  // Process arr1
+  for (const key in arr1) {
+    if (arr1.hasOwnProperty(key)) {
+      if (isNumericKey(key)) {
+        result[numericIdx++] = arr1[key];
+      }
+      else {
+        result[key] = arr1[key];
+      }
+    }
+  }
+  // Process arr2
+  for (const key in arr2) {
+    if (arr2.hasOwnProperty(key)) {
+      if (isNumericKey(key)) {
+        // Numeric keys always append
+        result[numericIdx++] = arr2[key];
+      }
+      else if (key in result) {
+        // String key exists in both - need to merge
+        if (isPlainObject(result[key]) && isPlainObject(arr2[key])) {
+          // Both are objects - recurse
+          result[key] = array_merge_recursive(result[key], arr2[key]);
+        }
+        else if (toStr.call(result[key]) === '[object Array]') {
+          // Result is already an array, push new value
+          result[key].push(arr2[key]);
+        }
+        else {
+          // Create array with both values
+          result[key] = [result[key], arr2[key]];
+        }
+      }
+      else {
+        result[key] = arr2[key];
+      }
+    }
+  }
+  return result;
+}{% endcodeblock %}
+</div>

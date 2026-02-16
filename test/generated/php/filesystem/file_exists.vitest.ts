@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const file_exists = require('../../../../src/php/filesystem/file_exists.js')
+const file_exists = require('../../../../src/php/filesystem/file_exists.ts').file_exists
 
-describe('src/php/filesystem/file_exists.js (tested in test/generated/php/filesystem/file_exists.vitest.ts)', function () {
+describe('src/php/filesystem/file_exists.ts (tested in test/generated/php/filesystem/file_exists.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = file_exists('test/never-change.txt')

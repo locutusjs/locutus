@@ -13,7 +13,7 @@ notes:
     Sorry about the crippled test. Needed because precision differs accross
     platforms.
 parityVerified: null
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's acos in JavaScript
@@ -30,7 +30,8 @@ alias:
   - /php/acos/
   - /functions/acos/
 ---
-{% codeblock lang:javascript %}module.exports = function acos(arg) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function acos(arg) {
   //  discuss at: https://locutus.io/php/acos/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //      note 1: Sorry about the crippled test. Needed because precision differs accross platforms.
@@ -40,3 +41,14 @@ alias:
   return Math.acos(arg)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function acos(arg) {
+  //  discuss at: https://locutus.io/php/acos/
+  // original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //      note 1: Sorry about the crippled test. Needed because precision differs accross platforms.
+  //   example 1: (acos(0.3) + '').substr(0, 17)
+  //   returns 1: "1.266103672779499"
+  return Math.acos(arg);
+}{% endcodeblock %}
+</div>

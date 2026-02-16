@@ -14,7 +14,7 @@ authors:
     - Brett Zamir (https://brett-zamir.me)
 notes: []
 parityVerified: null
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's function_exists in JavaScript
@@ -32,7 +32,8 @@ alias:
   - /php/function_exists/
   - /functions/function_exists/
 ---
-{% codeblock lang:javascript %}module.exports = function function_exists(funcName) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function function_exists(funcName) {
   //  discuss at: https://locutus.io/php/function_exists/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Steve Clay
@@ -50,3 +51,20 @@ alias:
   return typeof funcName === 'function'
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function function_exists(funcName) {
+  //  discuss at: https://locutus.io/php/function_exists/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Steve Clay
+  // improved by: Legaev Andrey
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: function_exists('isFinite')
+  //   returns 1: true
+  const $global = typeof window !== 'undefined' ? window : global;
+  if (typeof funcName === 'string') {
+    funcName = $global[funcName];
+  }
+  return typeof funcName === 'function';
+}{% endcodeblock %}
+</div>

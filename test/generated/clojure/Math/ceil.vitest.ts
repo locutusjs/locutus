@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ceil = require('../../../../src/clojure/Math/ceil.js')
+const ceil = require('../../../../src/clojure/Math/ceil.ts').ceil
 
-describe('src/clojure/Math/ceil.js (tested in test/generated/clojure/Math/ceil.vitest.ts)', function () {
+describe('src/clojure/Math/ceil.ts (tested in test/generated/clojure/Math/ceil.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 5.0
     const result = ceil(4.2)

@@ -15,7 +15,7 @@ notes:
   - 'Uses global: locutus to store the array pointer'
 parityVerified:
   - PHP 8.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's pos in JavaScript
@@ -32,7 +32,10 @@ alias:
   - /php/pos/
   - /functions/pos/
 ---
-{% codeblock lang:javascript %}module.exports = function pos(arr) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { current } from '../array/current.ts'
+
+export function pos(arr) {
   //      discuss at: https://locutus.io/php/pos/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -41,7 +44,20 @@ alias:
   //       example 1: pos($transport)
   //       returns 1: 'foot'
 
-  const current = require('../array/current')
   return current(arr)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { current } from '../array/current.ts';
+export function pos(arr) {
+  //      discuss at: https://locutus.io/php/pos/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: Uses global: locutus to store the array pointer
+  //       example 1: var $transport = ['foot', 'bike', 'car', 'plane']
+  //       example 1: pos($transport)
+  //       returns 1: 'foot'
+  return current(arr);
+}{% endcodeblock %}
+</div>

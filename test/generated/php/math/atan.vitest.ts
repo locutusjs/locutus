@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const atan = require('../../../../src/php/math/atan.js')
+const atan = require('../../../../src/php/math/atan.ts').atan
 
-describe('src/php/math/atan.js (tested in test/generated/php/math/atan.vitest.ts)', function () {
+describe('src/php/math/atan.ts (tested in test/generated/php/math/atan.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 1.5707962121596615
     const result = atan(8723321.4)

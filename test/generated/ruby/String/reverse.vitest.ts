@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const reverse = require('../../../../src/ruby/String/reverse.js')
+const reverse = require('../../../../src/ruby/String/reverse.ts').reverse
 
-describe('src/ruby/String/reverse.js (tested in test/generated/ruby/String/reverse.vitest.ts)', function () {
+describe('src/ruby/String/reverse.ts (tested in test/generated/ruby/String/reverse.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'desserts'
     const result = reverse('stressed')

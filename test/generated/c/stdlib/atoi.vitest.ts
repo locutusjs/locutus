@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const atoi = require('../../../../src/c/stdlib/atoi.js')
+const atoi = require('../../../../src/c/stdlib/atoi.ts').atoi
 
-describe('src/c/stdlib/atoi.js (tested in test/generated/c/stdlib/atoi.vitest.ts)', function () {
+describe('src/c/stdlib/atoi.ts (tested in test/generated/c/stdlib/atoi.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 42
     const result = atoi('42')

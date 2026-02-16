@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const trim = require('../../../../src/php/strings/trim.js')
+const trim = require('../../../../src/php/strings/trim.ts').trim
 
-describe('src/php/strings/trim.js (tested in test/generated/php/strings/trim.vitest.ts)', function () {
+describe('src/php/strings/trim.ts (tested in test/generated/php/strings/trim.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Kevin van Zonneveld'
     const result = trim('    Kevin van Zonneveld    ')

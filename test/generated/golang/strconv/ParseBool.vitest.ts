@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ParseBool = require('../../../../src/golang/strconv/ParseBool.js')
+const ParseBool = require('../../../../src/golang/strconv/ParseBool.ts').ParseBool
 
-describe('src/golang/strconv/ParseBool.js (tested in test/generated/golang/strconv/ParseBool.vitest.ts)', function () {
+describe('src/golang/strconv/ParseBool.ts (tested in test/generated/golang/strconv/ParseBool.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = ParseBool('true')[0]

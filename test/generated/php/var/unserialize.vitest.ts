@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const unserialize = require('../../../../src/php/var/unserialize.js')
+const unserialize = require('../../../../src/php/var/unserialize.ts').unserialize
 
-describe('src/php/var/unserialize.js (tested in test/generated/php/var/unserialize.vitest.ts)', function () {
+describe('src/php/var/unserialize.ts (tested in test/generated/php/var/unserialize.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = ['Kevin', 'van', 'Zonneveld']
     const result = unserialize('a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}')

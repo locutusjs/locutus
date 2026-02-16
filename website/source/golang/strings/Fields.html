@@ -13,7 +13,7 @@ authors:
 notes: []
 parityVerified:
   - Go 1.23
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: Go's strings.Fields in JavaScript
@@ -30,7 +30,8 @@ alias:
   - /functions/strings/Fields/
   - /golang/Fields/
 ---
-{% codeblock lang:javascript %}module.exports = function Fields(s) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function Fields(s) {
   //      discuss at: https://locutus.io/golang/strings/Fields/
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -43,3 +44,17 @@ alias:
   return s.split(/\s+/).filter((field) => field !== '')
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function Fields(s) {
+  //      discuss at: https://locutus.io/golang/strings/Fields/
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: Fields('  foo bar  baz   ')
+  //       returns 1: ['foo', 'bar', 'baz']
+  //       example 2: Fields('')
+  //       returns 2: []
+  // Split by whitespace and filter empty strings
+  return s.split(/\s+/).filter((field) => field !== '');
+}{% endcodeblock %}
+</div>

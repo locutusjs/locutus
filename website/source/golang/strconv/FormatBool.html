@@ -14,7 +14,7 @@ notes:
   - Returns "true" or "false" according to the value of b.
 parityVerified:
   - Go 1.23
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: Go's strconv.FormatBool in JavaScript
@@ -31,7 +31,8 @@ alias:
   - /functions/strconv/FormatBool/
   - /golang/FormatBool/
 ---
-{% codeblock lang:javascript %}module.exports = function FormatBool(b) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function FormatBool(b) {
   //      discuss at: https://locutus.io/golang/strconv/FormatBool
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -44,3 +45,17 @@ alias:
   return b ? 'true' : 'false'
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function FormatBool(b) {
+  //      discuss at: https://locutus.io/golang/strconv/FormatBool
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns "true" or "false" according to the value of b.
+  //       example 1: FormatBool(true)
+  //       returns 1: 'true'
+  //       example 2: FormatBool(false)
+  //       returns 2: 'false'
+  return b ? 'true' : 'false';
+}{% endcodeblock %}
+</div>

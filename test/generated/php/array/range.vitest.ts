@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const range = require('../../../../src/php/array/range.js')
+const range = require('../../../../src/php/array/range.ts').range
 
-describe('src/php/array/range.js (tested in test/generated/php/array/range.vitest.ts)', function () {
+describe('src/php/array/range.ts (tested in test/generated/php/array/range.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     const result = range ( 0, 12 )

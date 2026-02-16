@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const exp = require('../../../../src/ruby/Math/exp.js')
+const exp = require('../../../../src/ruby/Math/exp.ts').exp
 
-describe('src/ruby/Math/exp.js (tested in test/generated/ruby/Math/exp.vitest.ts)', function () {
+describe('src/ruby/Math/exp.ts (tested in test/generated/ruby/Math/exp.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 1
     const result = exp(0)

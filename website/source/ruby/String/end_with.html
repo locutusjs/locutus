@@ -14,7 +14,7 @@ notes:
   - Returns true if str ends with one of the suffixes given.
 parityVerified:
   - Ruby 3.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: Ruby's String.end_with in JavaScript
@@ -31,7 +31,8 @@ alias:
   - /functions/String/end_with/
   - /ruby/end_with/
 ---
-{% codeblock lang:javascript %}module.exports = function end_with(str, suffix) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function end_with(str, suffix) {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/String/end_with/
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -49,3 +50,22 @@ alias:
   return str.slice(-suffix.length) === suffix
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function end_with(str, suffix) {
+  // parity verified: Ruby 3.3
+  //      discuss at: https://locutus.io/ruby/String/end_with/
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns true if str ends with one of the suffixes given.
+  //       example 1: end_with('hello', 'ello')
+  //       returns 1: true
+  //       example 2: end_with('hello', 'heaven')
+  //       returns 2: false
+  str = str + '';
+  suffix = suffix + '';
+  if (suffix.length === 0) {
+    return true;
+  }
+  return str.slice(-suffix.length) === suffix;
+}{% endcodeblock %}
+</div>

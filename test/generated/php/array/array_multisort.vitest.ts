@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const array_multisort = require('../../../../src/php/array/array_multisort.js')
+const array_multisort = require('../../../../src/php/array/array_multisort.ts').array_multisort
 
-describe('src/php/array/array_multisort.js (tested in test/generated/php/array/array_multisort.vitest.ts)', function () {
+describe('src/php/array/array_multisort.ts (tested in test/generated/php/array/array_multisort.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = array_multisort([1, 2, 1, 2, 1, 2], [1, 2, 3, 4, 5, 6])

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const trim = require('../../../../src/clojure/string/trim.js')
+const trim = require('../../../../src/clojure/string/trim.ts').trim
 
-describe('src/clojure/string/trim.js (tested in test/generated/clojure/string/trim.vitest.ts)', function () {
+describe('src/clojure/string/trim.ts (tested in test/generated/clojure/string/trim.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'hello'
     const result = trim('  hello  ')

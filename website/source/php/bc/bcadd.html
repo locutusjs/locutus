@@ -15,7 +15,7 @@ authors:
     - lmeyrick (https://sourceforge.net/projects/bcmath-js/)
 notes: []
 parityVerified: null
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's bcadd in JavaScript
@@ -33,7 +33,10 @@ alias:
   - /php/bcadd/
   - /functions/bcadd/
 ---
-{% codeblock lang:javascript %}module.exports = function bcadd(leftOperand, rightOperand, scale) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { _bc as bc } from '../_helpers/_bc.ts'
+
+export function bcadd(leftOperand, rightOperand, scale) {
   //  discuss at: https://locutus.io/php/bcadd/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcadd('1', '2')
@@ -43,7 +46,6 @@ alias:
   //   example 3: bcadd('1928372132132819737213', '8728932001983192837219398127471', 2)
   //   returns 3: '8728932003911564969352217864684.00'
 
-  const bc = require('../_helpers/_bc')
   const libbcmath = bc()
 
   let first
@@ -72,3 +74,36 @@ alias:
   return result.toString()
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { _bc as bc } from '../_helpers/_bc.ts';
+export function bcadd(leftOperand, rightOperand, scale) {
+  //  discuss at: https://locutus.io/php/bcadd/
+  // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
+  //   example 1: bcadd('1', '2')
+  //   returns 1: '3'
+  //   example 2: bcadd('-1', '5', 4)
+  //   returns 2: '4.0000'
+  //   example 3: bcadd('1928372132132819737213', '8728932001983192837219398127471', 2)
+  //   returns 3: '8728932003911564969352217864684.00'
+  const libbcmath = bc();
+  let first;
+  let second;
+  let result;
+  if (typeof scale === 'undefined') {
+    scale = libbcmath.scale;
+  }
+  scale = scale < 0 ? 0 : scale;
+  // create objects
+  first = libbcmath.bc_init_num();
+  second = libbcmath.bc_init_num();
+  result = libbcmath.bc_init_num();
+  first = libbcmath.php_str2num(leftOperand.toString());
+  second = libbcmath.php_str2num(rightOperand.toString());
+  result = libbcmath.bc_add(first, second, scale);
+  if (result.n_scale > scale) {
+    result.n_scale = scale;
+  }
+  return result.toString();
+}{% endcodeblock %}
+</div>

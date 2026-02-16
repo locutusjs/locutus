@@ -13,7 +13,7 @@ notes:
     Sorry about the crippled test. Needed because precision differs accross
     platforms.
 parityVerified: null
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's asin in JavaScript
@@ -30,7 +30,8 @@ alias:
   - /php/asin/
   - /functions/asin/
 ---
-{% codeblock lang:javascript %}module.exports = function asin(arg) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function asin(arg) {
   //  discuss at: https://locutus.io/php/asin/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //      note 1: Sorry about the crippled test. Needed because precision differs accross platforms.
@@ -40,3 +41,14 @@ alias:
   return Math.asin(arg)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function asin(arg) {
+  //  discuss at: https://locutus.io/php/asin/
+  // original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //      note 1: Sorry about the crippled test. Needed because precision differs accross platforms.
+  //   example 1: (asin(0.3) + '').substr(0, 17)
+  //   returns 1: "0.304692654015397"
+  return Math.asin(arg);
+}{% endcodeblock %}
+</div>

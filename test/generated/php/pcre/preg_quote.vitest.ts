@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const preg_quote = require('../../../../src/php/pcre/preg_quote.js')
+const preg_quote = require('../../../../src/php/pcre/preg_quote.ts').preg_quote
 
-describe('src/php/pcre/preg_quote.js (tested in test/generated/php/pcre/preg_quote.vitest.ts)', function () {
+describe('src/php/pcre/preg_quote.ts (tested in test/generated/php/pcre/preg_quote.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '\\$40'
     const result = preg_quote("$40")

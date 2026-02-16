@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const setrawcookie = require('../../../../src/php/network/setrawcookie.js')
+const setrawcookie = require('../../../../src/php/network/setrawcookie.ts').setrawcookie
 
-describe('src/php/network/setrawcookie.js (tested in test/generated/php/network/setrawcookie.vitest.ts)', function () {
+describe('src/php/network/setrawcookie.ts (tested in test/generated/php/network/setrawcookie.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = setrawcookie('author_name', 'Kevin van Zonneveld')

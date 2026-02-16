@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const reverse = require('../../../../src/clojure/string/reverse.js')
+const reverse = require('../../../../src/clojure/string/reverse.ts').reverse
 
-describe('src/clojure/string/reverse.js (tested in test/generated/clojure/string/reverse.vitest.ts)', function () {
+describe('src/clojure/string/reverse.ts (tested in test/generated/clojure/string/reverse.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'olleh'
     const result = reverse('hello')

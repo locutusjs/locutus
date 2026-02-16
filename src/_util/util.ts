@@ -68,6 +68,7 @@ class Util {
     this.pattern = [
       this.__src + '/**/**/*.{js,ts}',
       '!**/index.js',
+      '!**/index.ts',
       '!**/_util/**',
       '!**/*.mocha.js',
       '!**/*.vitest.ts',
@@ -338,26 +339,17 @@ class Util {
     const dir = path.dirname(fullpath)
     const ext = path.extname(fullpath)
     const basefile = path.basename(fullpath, ext)
-    const indexJs = dir + '/index.js'
+    const indexTs = dir + '/index.ts'
 
-    let module = basefile
-    if (basefile === 'Index2') {
-      module = 'Index'
+    // Use the actual function name from the source (may differ from filename, e.g. Index2.ts exports Index)
+    const funcName = params.func_name
+
+    if (!this._reindexBuffer[indexTs]) {
+      this._reindexBuffer[indexTs] = []
     }
 
-    if (!this._reindexBuffer[indexJs]) {
-      this._reindexBuffer[indexJs] = []
-    }
-
-    let line: string
-    if (ext === '.ts') {
-      // TS files use named exports. The .ts extension is required for
-      // Node's --experimental-strip-types.
-      line = 'module.exports.' + module + " = require('./" + basefile + ".ts')." + module
-    } else {
-      line = 'module.exports.' + module + " = require('./" + basefile + "')"
-    }
-    this._reindexBuffer[indexJs].push(line)
+    const line = `export { ${funcName} } from './${basefile}.ts'`
+    this._reindexBuffer[indexTs].push(line)
     return Promise.resolve()
   }
 
@@ -642,7 +634,12 @@ class Util {
     // Check for absolute path first (before checking for dots in basename)
     if (fileOrName.startsWith('/')) {
       pattern = fileOrName
-    } else if (path.basename(fileOrName, '.js').indexOf('.') !== -1) {
+    } else if (
+      path
+        .basename(fileOrName)
+        .replace(/\.(js|ts)$/, '')
+        .indexOf('.') !== -1
+    ) {
       pattern = this.__src + '/' + language + '/' + fileOrName.replace(/\./g, '/') + '.{js,ts}'
     } else if (fileOrName.indexOf('/') === -1) {
       pattern = this.__src + '/' + language + '/*/' + fileOrName + '.{js,ts}'
@@ -669,7 +666,7 @@ class Util {
 
     const filepath = files[0]
 
-    if (path.basename(filepath) === 'index.js') {
+    if (path.basename(filepath) === 'index.js' || path.basename(filepath) === 'index.ts') {
       return null
     }
 

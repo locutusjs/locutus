@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const similar_text = require('../../../../src/php/strings/similar_text.js')
+const similar_text = require('../../../../src/php/strings/similar_text.ts').similar_text
 
-describe('src/php/strings/similar_text.js (tested in test/generated/php/strings/similar_text.vitest.ts)', function () {
+describe('src/php/strings/similar_text.ts (tested in test/generated/php/strings/similar_text.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 8
     const result = similar_text('Hello World!', 'Hello locutus!')

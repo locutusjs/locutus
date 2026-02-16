@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const sql_regcase = require('../../../../src/php/pcre/sql_regcase.js')
+const sql_regcase = require('../../../../src/php/pcre/sql_regcase.ts').sql_regcase
 
-describe('src/php/pcre/sql_regcase.js (tested in test/generated/php/pcre/sql_regcase.vitest.ts)', function () {
+describe('src/php/pcre/sql_regcase.ts (tested in test/generated/php/pcre/sql_regcase.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '[Ff][Oo][Oo] - [Bb][Aa][Rr].'
     const result = sql_regcase('Foo - bar.')

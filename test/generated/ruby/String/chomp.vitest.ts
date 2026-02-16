@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const chomp = require('../../../../src/ruby/String/chomp.js')
+const chomp = require('../../../../src/ruby/String/chomp.ts').chomp
 
-describe('src/ruby/String/chomp.js (tested in test/generated/ruby/String/chomp.vitest.ts)', function () {
+describe('src/ruby/String/chomp.ts (tested in test/generated/ruby/String/chomp.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'hello'
     const result = chomp("hello\n")

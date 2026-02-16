@@ -1,5 +1,5 @@
 import { krsort } from '../array/krsort.ts'
-import iniSet from '../info/ini_set.js'
+import { ini_set as iniSet } from '../info/ini_set.ts'
 
 export function strtr(
   str: string,

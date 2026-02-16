@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const log = require('../../../../src/awk/builtin/log.js')
+const log = require('../../../../src/awk/builtin/log.ts').log
 
-describe('src/awk/builtin/log.js (tested in test/generated/awk/builtin/log.vitest.ts)', function () {
+describe('src/awk/builtin/log.ts (tested in test/generated/awk/builtin/log.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 0
     const result = log(1)

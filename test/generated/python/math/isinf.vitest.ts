@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const isinf = require('../../../../src/python/math/isinf.js')
+const isinf = require('../../../../src/python/math/isinf.ts').isinf
 
-describe('src/python/math/isinf.js (tested in test/generated/python/math/isinf.vitest.ts)', function () {
+describe('src/python/math/isinf.ts (tested in test/generated/python/math/isinf.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = isinf(Infinity)

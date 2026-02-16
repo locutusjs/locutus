@@ -13,7 +13,7 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's array_values in JavaScript
@@ -31,7 +31,9 @@ alias:
   - /php/array_values/
   - /functions/array_values/
 ---
-{% codeblock lang:javascript %}module.exports = function array_values(input) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}// @ts-nocheck
+export function array_values(input) {
   //      discuss at: https://locutus.io/php/array_values/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -49,3 +51,21 @@ alias:
   return tmpArr
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}// @ts-nocheck
+export function array_values(input) {
+  //      discuss at: https://locutus.io/php/array_values/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} )
+  //       returns 1: [ 'Kevin', 'van Zonneveld' ]
+  const tmpArr = [];
+  let key = '';
+  for (key in input) {
+    tmpArr[tmpArr.length] = input[key];
+  }
+  return tmpArr;
+}{% endcodeblock %}
+</div>

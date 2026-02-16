@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const length = require('../../../../src/elixir/String/length.js')
+const length = require('../../../../src/elixir/String/length.ts').length
 
-describe('src/elixir/String/length.js (tested in test/generated/elixir/String/length.vitest.ts)', function () {
+describe('src/elixir/String/length.ts (tested in test/generated/elixir/String/length.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 5
     const result = length('hello')

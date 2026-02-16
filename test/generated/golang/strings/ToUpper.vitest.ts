@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ToUpper = require('../../../../src/golang/strings/ToUpper.js')
+const ToUpper = require('../../../../src/golang/strings/ToUpper.ts').ToUpper
 
-describe('src/golang/strings/ToUpper.js (tested in test/generated/golang/strings/ToUpper.vitest.ts)', function () {
+describe('src/golang/strings/ToUpper.ts (tested in test/generated/golang/strings/ToUpper.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'GOPHER'
     const result = ToUpper('Gopher')

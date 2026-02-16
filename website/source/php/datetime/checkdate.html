@@ -20,7 +20,7 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's checkdate in JavaScript
@@ -38,7 +38,8 @@ alias:
   - /php/checkdate/
   - /functions/checkdate/
 ---
-{% codeblock lang:javascript %}module.exports = function checkdate(m, d, y) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function checkdate(m, d, y) {
   //      discuss at: https://locutus.io/php/checkdate/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -56,3 +57,22 @@ alias:
   return m > 0 && m < 13 && y > 0 && y < 32768 && d > 0 && d <= new Date(y, m, 0).getDate()
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function checkdate(m, d, y) {
+  //      discuss at: https://locutus.io/php/checkdate/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Pyerre
+  //     improved by: Theriault (https://github.com/Theriault)
+  //       example 1: checkdate(12, 31, 2000)
+  //       returns 1: true
+  //       example 2: checkdate(2, 29, 2001)
+  //       returns 2: false
+  //       example 3: checkdate(3, 31, 2008)
+  //       returns 3: true
+  //       example 4: checkdate(1, 390, 2000)
+  //       returns 4: false
+  return m > 0 && m < 13 && y > 0 && y < 32768 && d > 0 && d <= new Date(y, m, 0).getDate();
+}{% endcodeblock %}
+</div>

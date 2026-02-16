@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const levenshtein = require('../../../../src/php/strings/levenshtein.js')
+const levenshtein = require('../../../../src/php/strings/levenshtein.ts').levenshtein
 
-describe('src/php/strings/levenshtein.js (tested in test/generated/php/strings/levenshtein.vitest.ts)', function () {
+describe('src/php/strings/levenshtein.ts (tested in test/generated/php/strings/levenshtein.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 3
     const result = levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld')

@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const pos = require('../../../../src/php/array/pos.js')
+const pos = require('../../../../src/php/array/pos.ts').pos
 
-describe('src/php/array/pos.js (tested in test/generated/php/array/pos.vitest.ts)', function () {
+describe('src/php/array/pos.ts (tested in test/generated/php/array/pos.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'foot'
     var $transport = ['foot', 'bike', 'car', 'plane']

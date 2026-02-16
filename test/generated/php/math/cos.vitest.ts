@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const cos = require('../../../../src/php/math/cos.js')
+const cos = require('../../../../src/php/math/cos.ts').cos
 
-describe('src/php/math/cos.js (tested in test/generated/php/math/cos.vitest.ts)', function () {
+describe('src/php/math/cos.ts (tested in test/generated/php/math/cos.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = -1812718
     const result = Math.ceil(cos(8723321.4) * 10000000)

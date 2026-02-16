@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const capitalize = require('../../../../src/ruby/String/capitalize.js')
+const capitalize = require('../../../../src/ruby/String/capitalize.ts').capitalize
 
-describe('src/ruby/String/capitalize.js (tested in test/generated/ruby/String/capitalize.vitest.ts)', function () {
+describe('src/ruby/String/capitalize.ts (tested in test/generated/ruby/String/capitalize.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Hello'
     const result = capitalize('hello')

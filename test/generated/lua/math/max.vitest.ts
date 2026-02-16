@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const max = require('../../../../src/lua/math/max.js')
+const max = require('../../../../src/lua/math/max.ts').max
 
-describe('src/lua/math/max.js (tested in test/generated/lua/math/max.vitest.ts)', function () {
+describe('src/lua/math/max.ts (tested in test/generated/lua/math/max.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 5
     const result = max(1, 5, 3)

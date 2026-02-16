@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const tolower = require('../../../../src/awk/builtin/tolower.js')
+const tolower = require('../../../../src/awk/builtin/tolower.ts').tolower
 
-describe('src/awk/builtin/tolower.js (tested in test/generated/awk/builtin/tolower.vitest.ts)', function () {
+describe('src/awk/builtin/tolower.ts (tested in test/generated/awk/builtin/tolower.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'hello'
     const result = tolower('HELLO')

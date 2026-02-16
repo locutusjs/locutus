@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const strripos = require('../../../../src/php/strings/strripos.js')
+const strripos = require('../../../../src/php/strings/strripos.ts').strripos
 
-describe('src/php/strings/strripos.js (tested in test/generated/php/strings/strripos.vitest.ts)', function () {
+describe('src/php/strings/strripos.ts (tested in test/generated/php/strings/strripos.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 16
     const result = strripos('Kevin van Zonneveld', 'E')

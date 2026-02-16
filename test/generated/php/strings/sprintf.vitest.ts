@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const sprintf = require('../../../../src/php/strings/sprintf.js')
+const sprintf = require('../../../../src/php/strings/sprintf.ts').sprintf
 
-describe('src/php/strings/sprintf.js (tested in test/generated/php/strings/sprintf.vitest.ts)', function () {
+describe('src/php/strings/sprintf.ts (tested in test/generated/php/strings/sprintf.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '123.10'
     const result = sprintf("%01.2f", 123.1)

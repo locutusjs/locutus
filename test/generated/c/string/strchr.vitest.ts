@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const strchr = require('../../../../src/c/string/strchr.js')
+const strchr = require('../../../../src/c/string/strchr.ts').strchr
 
-describe('src/c/string/strchr.js (tested in test/generated/c/string/strchr.vitest.ts)', function () {
+describe('src/c/string/strchr.ts (tested in test/generated/c/string/strchr.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'o, World!'
     const result = strchr('Hello, World!', 'o')

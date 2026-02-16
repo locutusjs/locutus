@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const upcase = require('../../../../src/elixir/String/upcase.js')
+const upcase = require('../../../../src/elixir/String/upcase.ts').upcase
 
-describe('src/elixir/String/upcase.js (tested in test/generated/elixir/String/upcase.vitest.ts)', function () {
+describe('src/elixir/String/upcase.ts (tested in test/generated/elixir/String/upcase.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'HELLO'
     const result = upcase('hello')

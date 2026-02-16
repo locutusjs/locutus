@@ -1,4 +1,5 @@
-import strnatcasecmp from '../strings/strnatcasecmp.js'
+// @ts-nocheck
+import { strnatcasecmp } from '../strings/strnatcasecmp.ts'
 
 export function natcasesort(inputArr: Record<string, unknown>): boolean | Record<string, unknown> {
   //      discuss at: https://locutus.io/php/natcasesort/

@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const addcslashes = require('../../../../src/php/strings/addcslashes.js')
+const addcslashes = require('../../../../src/php/strings/addcslashes.ts').addcslashes
 
-describe('src/php/strings/addcslashes.js (tested in test/generated/php/strings/addcslashes.vitest.ts)', function () {
+describe('src/php/strings/addcslashes.ts (tested in test/generated/php/strings/addcslashes.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = "\\f\\o\\o\\[ \\]"
     const result = addcslashes('foo[ ]', 'A..z'); // Escape all ASCII within capital A to lower z range, including square brackets

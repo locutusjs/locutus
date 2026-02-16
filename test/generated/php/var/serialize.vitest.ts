@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const serialize = require('../../../../src/php/var/serialize.js')
+const serialize = require('../../../../src/php/var/serialize.ts').serialize
 
-describe('src/php/var/serialize.js (tested in test/generated/php/var/serialize.vitest.ts)', function () {
+describe('src/php/var/serialize.ts (tested in test/generated/php/var/serialize.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}'
     const result = serialize(['Kevin', 'van', 'Zonneveld'])

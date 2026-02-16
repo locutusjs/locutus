@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ceil = require('../../../../src/lua/math/ceil.js')
+const ceil = require('../../../../src/lua/math/ceil.ts').ceil
 
-describe('src/lua/math/ceil.js (tested in test/generated/lua/math/ceil.vitest.ts)', function () {
+describe('src/lua/math/ceil.ts (tested in test/generated/lua/math/ceil.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 5
     const result = ceil(4.2)

@@ -17,7 +17,7 @@ authors:
     - Michael White (https://getsprink.com)
 notes: []
 parityVerified: null
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's is_object in JavaScript
@@ -35,7 +35,8 @@ alias:
   - /php/is_object/
   - /functions/is_object/
 ---
-{% codeblock lang:javascript %}module.exports = function is_object(mixedVar) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function is_object(mixedVar) {
   //  discuss at: https://locutus.io/php/is_object/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Legaev Andrey
@@ -53,3 +54,22 @@ alias:
   return mixedVar !== null && typeof mixedVar === 'object'
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function is_object(mixedVar) {
+  //  discuss at: https://locutus.io/php/is_object/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Legaev Andrey
+  // improved by: Michael White (https://getsprink.com)
+  //   example 1: is_object('23')
+  //   returns 1: false
+  //   example 2: is_object({foo: 'bar'})
+  //   returns 2: true
+  //   example 3: is_object(null)
+  //   returns 3: false
+  if (Array.isArray(mixedVar)) {
+    return false;
+  }
+  return mixedVar !== null && typeof mixedVar === 'object';
+}{% endcodeblock %}
+</div>

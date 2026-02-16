@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const abs = require('../../../../src/elixir/Kernel/abs.js')
+const abs = require('../../../../src/elixir/Kernel/abs.ts').abs
 
-describe('src/elixir/Kernel/abs.js (tested in test/generated/elixir/Kernel/abs.vitest.ts)', function () {
+describe('src/elixir/Kernel/abs.ts (tested in test/generated/elixir/Kernel/abs.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 5
     const result = abs(-5)

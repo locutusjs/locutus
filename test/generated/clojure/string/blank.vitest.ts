@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const blank = require('../../../../src/clojure/string/blank.js')
+const blank = require('../../../../src/clojure/string/blank.ts').blank
 
-describe('src/clojure/string/blank.js (tested in test/generated/clojure/string/blank.vitest.ts)', function () {
+describe('src/clojure/string/blank.ts (tested in test/generated/clojure/string/blank.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = blank('')

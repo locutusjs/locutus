@@ -11,7 +11,7 @@ authors:
 notes: []
 parityVerified:
   - Go 1.23
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: Go's strings.ToUpper in JavaScript
@@ -28,7 +28,8 @@ alias:
   - /functions/strings/ToUpper/
   - /golang/ToUpper/
 ---
-{% codeblock lang:javascript %}module.exports = function ToUpper(s) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function ToUpper(s) {
   //      discuss at: https://locutus.io/golang/strings/ToUpper
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -38,3 +39,14 @@ alias:
   return (s + '').toUpperCase()
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function ToUpper(s) {
+  //      discuss at: https://locutus.io/golang/strings/ToUpper
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: ToUpper('Gopher')
+  //       returns 1: 'GOPHER'
+  return (s + '').toUpperCase();
+}{% endcodeblock %}
+</div>

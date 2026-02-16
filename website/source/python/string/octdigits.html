@@ -12,7 +12,7 @@ notes:
   - Returns the string '01234567'
 parityVerified:
   - Python 3.12
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: Python's string.octdigits in JavaScript
@@ -29,7 +29,8 @@ alias:
   - /functions/string/octdigits/
   - /python/octdigits/
 ---
-{% codeblock lang:javascript %}module.exports = function octdigits() {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function octdigits() {
   //      discuss at: https://locutus.io/python/octdigits/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -40,3 +41,15 @@ alias:
   return '01234567'
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function octdigits() {
+  //      discuss at: https://locutus.io/python/octdigits/
+  // parity verified: Python 3.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns the string '01234567'
+  //       example 1: octdigits()
+  //       returns 1: '01234567'
+  return '01234567';
+}{% endcodeblock %}
+</div>

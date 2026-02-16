@@ -17,7 +17,7 @@ authors:
     - lmeyrick (https://sourceforge.net/projects/bcmath-js/)
 notes: []
 parityVerified: null
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's bcdiv in JavaScript
@@ -35,7 +35,11 @@ alias:
   - /php/bcdiv/
   - /functions/bcdiv/
 ---
-{% codeblock lang:javascript %}module.exports = function bcdiv(leftOperand, rightOperand, scale) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}// @ts-nocheck
+import { _bc } from '../_helpers/_bc.ts'
+
+export function bcdiv(leftOperand, rightOperand, scale) {
   //  discuss at: https://locutus.io/php/bcdiv/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcdiv('1', '2')
@@ -47,7 +51,6 @@ alias:
   //   example 4: bcdiv('8728932001983192837219398127471', '1928372132132819737213', 2)
   //   returns 4: '4526580661.75'
 
-  const _bc = require('../_helpers/_bc')
   const libbcmath = _bc()
 
   let first
@@ -79,3 +82,43 @@ alias:
   return result.toString()
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}// @ts-nocheck
+import { _bc } from '../_helpers/_bc.ts';
+export function bcdiv(leftOperand, rightOperand, scale) {
+  //  discuss at: https://locutus.io/php/bcdiv/
+  // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
+  //   example 1: bcdiv('1', '2')
+  //   returns 1: '0'
+  //   example 2: bcdiv('1', '2', 2)
+  //   returns 2: '0.50'
+  //   example 3: bcdiv('-1', '5', 4)
+  //   returns 3: '-0.2000'
+  //   example 4: bcdiv('8728932001983192837219398127471', '1928372132132819737213', 2)
+  //   returns 4: '4526580661.75'
+  const libbcmath = _bc();
+  let first;
+  let second;
+  let result;
+  if (typeof scale === 'undefined') {
+    scale = libbcmath.scale;
+  }
+  scale = scale < 0 ? 0 : scale;
+  // create objects
+  first = libbcmath.bc_init_num();
+  second = libbcmath.bc_init_num();
+  result = libbcmath.bc_init_num();
+  first = libbcmath.php_str2num(leftOperand.toString());
+  second = libbcmath.php_str2num(rightOperand.toString());
+  result = libbcmath.bc_divide(first, second, scale);
+  if (result === -1) {
+    // error
+    throw new Error(11, '(BC) Division by zero');
+  }
+  if (result.n_scale > scale) {
+    result.n_scale = scale;
+  }
+  return result.toString();
+}{% endcodeblock %}
+</div>

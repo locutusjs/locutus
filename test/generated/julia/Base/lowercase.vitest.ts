@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const lowercase = require('../../../../src/julia/Base/lowercase.js')
+const lowercase = require('../../../../src/julia/Base/lowercase.ts').lowercase
 
-describe('src/julia/Base/lowercase.js (tested in test/generated/julia/Base/lowercase.vitest.ts)', function () {
+describe('src/julia/Base/lowercase.ts (tested in test/generated/julia/Base/lowercase.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'hello'
     const result = lowercase('HELLO')

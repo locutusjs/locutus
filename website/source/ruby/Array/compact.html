@@ -14,7 +14,7 @@ notes:
   - Returns a new array with all nil (null/undefined) values removed.
 parityVerified:
   - Ruby 3.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: Ruby's Array.compact in JavaScript
@@ -31,7 +31,8 @@ alias:
   - /functions/Array/compact/
   - /ruby/compact/
 ---
-{% codeblock lang:javascript %}module.exports = function compact(arr) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function compact(arr) {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/Array/compact/
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -50,3 +51,22 @@ alias:
   })
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function compact(arr) {
+  // parity verified: Ruby 3.3
+  //      discuss at: https://locutus.io/ruby/Array/compact/
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns a new array with all nil (null/undefined) values removed.
+  //       example 1: compact(['a', null, 'b', undefined, 'c'])
+  //       returns 1: ['a', 'b', 'c']
+  //       example 2: compact([1, 2, 3])
+  //       returns 2: [1, 2, 3]
+  if (!Array.isArray(arr)) {
+    return [];
+  }
+  return arr.filter(function (item) {
+    return item != null;
+  });
+}{% endcodeblock %}
+</div>

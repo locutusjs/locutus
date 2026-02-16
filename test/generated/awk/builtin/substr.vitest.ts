@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const substr = require('../../../../src/awk/builtin/substr.js')
+const substr = require('../../../../src/awk/builtin/substr.ts').substr
 
-describe('src/awk/builtin/substr.js (tested in test/generated/awk/builtin/substr.vitest.ts)', function () {
+describe('src/awk/builtin/substr.ts (tested in test/generated/awk/builtin/substr.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'ell'
     const result = substr('hello', 2, 3)

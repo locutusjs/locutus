@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const exp = require('../../../../src/php/math/exp.js')
+const exp = require('../../../../src/php/math/exp.ts').exp
 
-describe('src/php/math/exp.js (tested in test/generated/php/math/exp.vitest.ts)', function () {
+describe('src/php/math/exp.ts (tested in test/generated/php/math/exp.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 1.3498588075760032
     const result = exp(0.3)

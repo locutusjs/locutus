@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const ctype_alnum = require('../../../../src/php/ctype/ctype_alnum.js')
+const ctype_alnum = require('../../../../src/php/ctype/ctype_alnum.ts').ctype_alnum
 
-describe('src/php/ctype/ctype_alnum.js (tested in test/generated/php/ctype/ctype_alnum.vitest.ts)', function () {
+describe('src/php/ctype/ctype_alnum.ts (tested in test/generated/php/ctype/ctype_alnum.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = ctype_alnum('AbC12')

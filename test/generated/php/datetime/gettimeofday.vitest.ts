@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const gettimeofday = require('../../../../src/php/datetime/gettimeofday.js')
+const gettimeofday = require('../../../../src/php/datetime/gettimeofday.ts').gettimeofday
 
-describe('src/php/datetime/gettimeofday.js (tested in test/generated/php/datetime/gettimeofday.vitest.ts)', function () {
+describe('src/php/datetime/gettimeofday.ts (tested in test/generated/php/datetime/gettimeofday.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     var $obj = gettimeofday()

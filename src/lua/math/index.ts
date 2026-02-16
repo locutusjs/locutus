@@ -1,0 +1,8 @@
+export { abs } from './abs.ts'
+export { ceil } from './ceil.ts'
+export { cos } from './cos.ts'
+export { floor } from './floor.ts'
+export { max } from './max.ts'
+export { min } from './min.ts'
+export { sin } from './sin.ts'
+export { sqrt } from './sqrt.ts'

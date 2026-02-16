@@ -63,7 +63,7 @@ alias:
   - /functions/substr/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import _php_cast_string from '../_helpers/_phpCastString.js'
+{% codeblock lang:typescript %}import { _phpCastString as _php_cast_string } from '../_helpers/_phpCastString.ts'
 
 export function substr(input: string | number, start: number, len?: number): string | false {
   //  discuss at: https://locutus.io/php/substr/
@@ -129,7 +129,7 @@ export function substr(input: string | number, start: number, len?: number): str
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import _php_cast_string from '../_helpers/_phpCastString.js';
+{% codeblock lang:javascript %}import { _phpCastString as _php_cast_string } from '../_helpers/_phpCastString.ts';
 export function substr(input, start, len) {
   //  discuss at: https://locutus.io/php/substr/
   // original by: Martijn Wieringa

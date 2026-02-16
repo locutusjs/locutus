@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const preg_match = require('../../../../src/php/pcre/preg_match.js')
+const preg_match = require('../../../../src/php/pcre/preg_match.ts').preg_match
 
-describe('src/php/pcre/preg_match.js (tested in test/generated/php/pcre/preg_match.vitest.ts)', function () {
+describe('src/php/pcre/preg_match.ts (tested in test/generated/php/pcre/preg_match.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = preg_match("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", "rony@pharaohtools.com")

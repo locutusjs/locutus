@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const strip_tags = require('../../../../src/php/strings/strip_tags.js')
+const strip_tags = require('../../../../src/php/strings/strip_tags.ts').strip_tags
 
-describe('src/php/strings/strip_tags.js (tested in test/generated/php/strings/strip_tags.vitest.ts)', function () {
+describe('src/php/strings/strip_tags.ts (tested in test/generated/php/strings/strip_tags.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Kevin <b>van</b> <i>Zonneveld</i>'
     const result = strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i><b>')

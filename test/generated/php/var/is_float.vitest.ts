@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const is_float = require('../../../../src/php/var/is_float.js')
+const is_float = require('../../../../src/php/var/is_float.ts').is_float
 
-describe('src/php/var/is_float.js (tested in test/generated/php/var/is_float.vitest.ts)', function () {
+describe('src/php/var/is_float.ts (tested in test/generated/php/var/is_float.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = is_float(186.31)

@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const ucwords = require('../../../../src/php/strings/ucwords.js')
+const ucwords = require('../../../../src/php/strings/ucwords.ts').ucwords
 
-describe('src/php/strings/ucwords.js (tested in test/generated/php/strings/ucwords.vitest.ts)', function () {
+describe('src/php/strings/ucwords.ts (tested in test/generated/php/strings/ucwords.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Kevin Van  Zonneveld'
     const result = ucwords('kevin van  zonneveld')

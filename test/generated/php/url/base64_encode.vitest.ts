@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const base64_encode = require('../../../../src/php/url/base64_encode.js')
+const base64_encode = require('../../../../src/php/url/base64_encode.ts').base64_encode
 
-describe('src/php/url/base64_encode.js (tested in test/generated/php/url/base64_encode.vitest.ts)', function () {
+describe('src/php/url/base64_encode.ts (tested in test/generated/php/url/base64_encode.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
     const result = base64_encode('Kevin van Zonneveld')

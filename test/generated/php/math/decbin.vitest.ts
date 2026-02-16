@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const decbin = require('../../../../src/php/math/decbin.js')
+const decbin = require('../../../../src/php/math/decbin.ts').decbin
 
-describe('src/php/math/decbin.js (tested in test/generated/php/math/decbin.vitest.ts)', function () {
+describe('src/php/math/decbin.ts (tested in test/generated/php/math/decbin.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '1100'
     const result = decbin(12)

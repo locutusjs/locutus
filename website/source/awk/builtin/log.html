@@ -13,7 +13,7 @@ authors:
 notes: []
 parityVerified:
   - GNU AWK 5.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: AWK's log in JavaScript
@@ -30,7 +30,8 @@ alias:
   - /functions/builtin/log/
   - /awk/log/
 ---
-{% codeblock lang:javascript %}module.exports = function log(x) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function log(x) {
   //      discuss at: https://locutus.io/awk/log/
   // parity verified: GNU AWK 5.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -42,3 +43,16 @@ alias:
   return Math.log(x)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function log(x) {
+  //      discuss at: https://locutus.io/awk/log/
+  // parity verified: GNU AWK 5.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: log(1)
+  //       returns 1: 0
+  //       example 2: log(2.718281828459045)
+  //       returns 2: 1
+  return Math.log(x);
+}{% endcodeblock %}
+</div>

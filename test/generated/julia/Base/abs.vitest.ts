@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const abs = require('../../../../src/julia/Base/abs.js')
+const abs = require('../../../../src/julia/Base/abs.ts').abs
 
-describe('src/julia/Base/abs.js (tested in test/generated/julia/Base/abs.vitest.ts)', function () {
+describe('src/julia/Base/abs.ts (tested in test/generated/julia/Base/abs.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 5
     const result = abs(-5)

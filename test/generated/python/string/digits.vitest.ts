@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const digits = require('../../../../src/python/string/digits.js')
+const digits = require('../../../../src/python/string/digits.ts').digits
 
-describe('src/python/string/digits.js (tested in test/generated/python/string/digits.vitest.ts)', function () {
+describe('src/python/string/digits.ts (tested in test/generated/python/string/digits.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '0123456789'
     const result = digits()

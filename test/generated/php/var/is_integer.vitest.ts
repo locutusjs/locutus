@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const is_integer = require('../../../../src/php/var/is_integer.js')
+const is_integer = require('../../../../src/php/var/is_integer.ts').is_integer
 
-describe('src/php/var/is_integer.js (tested in test/generated/php/var/is_integer.vitest.ts)', function () {
+describe('src/php/var/is_integer.ts (tested in test/generated/php/var/is_integer.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = false
     const result = is_integer(186.31)

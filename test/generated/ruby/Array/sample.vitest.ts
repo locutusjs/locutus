@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const sample = require('../../../../src/ruby/Array/sample.js')
+const sample = require('../../../../src/ruby/Array/sample.ts').sample
 
-describe('src/ruby/Array/sample.js (tested in test/generated/ruby/Array/sample.vitest.ts)', function () {
+describe('src/ruby/Array/sample.ts (tested in test/generated/ruby/Array/sample.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = [1, 2, 3].indexOf(sample([1, 2, 3])) !== -1

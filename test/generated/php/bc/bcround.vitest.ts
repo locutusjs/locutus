@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const bcround = require('../../../../src/php/bc/bcround.js')
+const bcround = require('../../../../src/php/bc/bcround.ts').bcround
 
-describe('src/php/bc/bcround.js (tested in test/generated/php/bc/bcround.vitest.ts)', function () {
+describe('src/php/bc/bcround.ts (tested in test/generated/php/bc/bcround.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '1.00'
     const result = bcround(1, 2)

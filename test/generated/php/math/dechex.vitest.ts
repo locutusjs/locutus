@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const dechex = require('../../../../src/php/math/dechex.js')
+const dechex = require('../../../../src/php/math/dechex.ts').dechex
 
-describe('src/php/math/dechex.js (tested in test/generated/php/math/dechex.vitest.ts)', function () {
+describe('src/php/math/dechex.ts (tested in test/generated/php/math/dechex.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'a'
     const result = dechex(10)

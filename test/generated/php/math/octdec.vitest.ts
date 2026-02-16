@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const octdec = require('../../../../src/php/math/octdec.js')
+const octdec = require('../../../../src/php/math/octdec.ts').octdec
 
-describe('src/php/math/octdec.js (tested in test/generated/php/math/octdec.vitest.ts)', function () {
+describe('src/php/math/octdec.ts (tested in test/generated/php/math/octdec.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 63
     const result = octdec('77')

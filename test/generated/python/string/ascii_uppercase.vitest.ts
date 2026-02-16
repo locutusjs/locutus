@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ascii_uppercase = require('../../../../src/python/string/ascii_uppercase.js')
+const ascii_uppercase = require('../../../../src/python/string/ascii_uppercase.ts').ascii_uppercase
 
-describe('src/python/string/ascii_uppercase.js (tested in test/generated/python/string/ascii_uppercase.vitest.ts)', function () {
+describe('src/python/string/ascii_uppercase.ts (tested in test/generated/python/string/ascii_uppercase.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     const result = ascii_uppercase()

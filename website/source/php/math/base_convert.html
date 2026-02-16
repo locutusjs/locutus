@@ -13,7 +13,7 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's base_convert in JavaScript
@@ -31,7 +31,8 @@ alias:
   - /php/base_convert/
   - /functions/base_convert/
 ---
-{% codeblock lang:javascript %}module.exports = function base_convert(number, frombase, tobase) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function base_convert(number, frombase, tobase) {
   //      discuss at: https://locutus.io/php/base_convert/
   // parity verified: PHP 8.3
   //     original by: Philippe Baumann
@@ -42,3 +43,15 @@ alias:
   return parseInt(number + '', frombase | 0).toString(tobase | 0)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function base_convert(number, frombase, tobase) {
+  //      discuss at: https://locutus.io/php/base_convert/
+  // parity verified: PHP 8.3
+  //     original by: Philippe Baumann
+  //     improved by: Rafał Kukawski (https://blog.kukawski.pl)
+  //       example 1: base_convert('A37334', 16, 2)
+  //       returns 1: '101000110111001100110100'
+  return parseInt(number + '', frombase | 0).toString(tobase | 0);
+}{% endcodeblock %}
+</div>

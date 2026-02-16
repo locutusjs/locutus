@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const LastIndexAny = require('../../../../src/golang/strings/LastIndexAny.js')
+const LastIndexAny = require('../../../../src/golang/strings/LastIndexAny.ts').LastIndexAny
 
-describe('src/golang/strings/LastIndexAny.js (tested in test/generated/golang/strings/LastIndexAny.vitest.ts)', function () {
+describe('src/golang/strings/LastIndexAny.ts (tested in test/generated/golang/strings/LastIndexAny.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 4
     const result = LastIndexAny('go gopher', 'go')

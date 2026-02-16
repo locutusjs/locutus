@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const reverse = require('../../../../src/lua/string/reverse.js')
+const reverse = require('../../../../src/lua/string/reverse.ts').reverse
 
-describe('src/lua/string/reverse.js (tested in test/generated/lua/string/reverse.vitest.ts)', function () {
+describe('src/lua/string/reverse.ts (tested in test/generated/lua/string/reverse.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'olleh'
     const result = reverse('hello')

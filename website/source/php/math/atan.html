@@ -11,7 +11,7 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's atan in JavaScript
@@ -28,7 +28,8 @@ alias:
   - /php/atan/
   - /functions/atan/
 ---
-{% codeblock lang:javascript %}module.exports = function atan(arg) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function atan(arg) {
   //      discuss at: https://locutus.io/php/atan/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -38,3 +39,14 @@ alias:
   return Math.atan(arg)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function atan(arg) {
+  //      discuss at: https://locutus.io/php/atan/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: atan(8723321.4)
+  //       returns 1: 1.5707962121596615
+  return Math.atan(arg);
+}{% endcodeblock %}
+</div>

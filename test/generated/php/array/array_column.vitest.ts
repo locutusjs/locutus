@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const array_column = require('../../../../src/php/array/array_column.js')
+const array_column = require('../../../../src/php/array/array_column.ts').array_column
 
-describe('src/php/array/array_column.js (tested in test/generated/php/array/array_column.vitest.ts)', function () {
+describe('src/php/array/array_column.ts (tested in test/generated/php/array/array_column.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = {0: "Alex", 1: "Elvis", 2: "Michael"}
     const result = array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], 'name')

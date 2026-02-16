@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const min = require('../../../../src/php/math/min.js')
+const min = require('../../../../src/php/math/min.ts').min
 
-describe('src/php/math/min.js (tested in test/generated/php/math/min.vitest.ts)', function () {
+describe('src/php/math/min.ts (tested in test/generated/php/math/min.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 1
     const result = min(1, 3, 5, 6, 7)

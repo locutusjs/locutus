@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const HasSuffix = require('../../../../src/golang/strings/HasSuffix.js')
+const HasSuffix = require('../../../../src/golang/strings/HasSuffix.ts').HasSuffix
 
-describe('src/golang/strings/HasSuffix.js (tested in test/generated/golang/strings/HasSuffix.vitest.ts)', function () {
+describe('src/golang/strings/HasSuffix.ts (tested in test/generated/golang/strings/HasSuffix.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = HasSuffix('Amigo', 'go')

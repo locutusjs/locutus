@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const TrimSpace = require('../../../../src/golang/strings/TrimSpace.js')
+const TrimSpace = require('../../../../src/golang/strings/TrimSpace.ts').TrimSpace
 
-describe('src/golang/strings/TrimSpace.js (tested in test/generated/golang/strings/TrimSpace.vitest.ts)', function () {
+describe('src/golang/strings/TrimSpace.ts (tested in test/generated/golang/strings/TrimSpace.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Hello, Gophers'
     const result = TrimSpace(' \t\n Hello, Gophers \n\t\r\n')

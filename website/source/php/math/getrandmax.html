@@ -11,7 +11,7 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's getrandmax in JavaScript
@@ -29,7 +29,8 @@ alias:
   - /php/getrandmax/
   - /functions/getrandmax/
 ---
-{% codeblock lang:javascript %}module.exports = function getrandmax() {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function getrandmax() {
   //      discuss at: https://locutus.io/php/getrandmax/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -39,3 +40,14 @@ alias:
   return 2147483647
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function getrandmax() {
+  //      discuss at: https://locutus.io/php/getrandmax/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: getrandmax()
+  //       returns 1: 2147483647
+  return 2147483647;
+}{% endcodeblock %}
+</div>

@@ -11,7 +11,7 @@ authors:
 notes: []
 parityVerified:
   - Go 1.23
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: Go's strings.ToLower in JavaScript
@@ -28,7 +28,8 @@ alias:
   - /functions/strings/ToLower/
   - /golang/ToLower/
 ---
-{% codeblock lang:javascript %}module.exports = function ToLower(s) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function ToLower(s) {
   //      discuss at: https://locutus.io/golang/strings/ToLower
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -38,3 +39,14 @@ alias:
   return (s + '').toLowerCase()
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function ToLower(s) {
+  //      discuss at: https://locutus.io/golang/strings/ToLower
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: ToLower('Gopher')
+  //       returns 1: 'gopher'
+  return (s + '').toLowerCase();
+}{% endcodeblock %}
+</div>

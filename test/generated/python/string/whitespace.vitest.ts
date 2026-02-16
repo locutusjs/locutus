@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const whitespace = require('../../../../src/python/string/whitespace.js')
+const whitespace = require('../../../../src/python/string/whitespace.ts').whitespace
 
-describe('src/python/string/whitespace.js (tested in test/generated/python/string/whitespace.vitest.ts)', function () {
+describe('src/python/string/whitespace.ts (tested in test/generated/python/string/whitespace.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = ' \t\n\r\x0b\x0c'
     const result = whitespace()

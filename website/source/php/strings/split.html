@@ -12,7 +12,7 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's split in JavaScript
@@ -30,14 +30,30 @@ alias:
   - /php/split/
   - /functions/split/
 ---
-{% codeblock lang:javascript %}module.exports = function split(delimiter, string) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}// @ts-nocheck
+import { explode } from '../strings/explode.ts'
+
+export function split(delimiter, string) {
   //      discuss at: https://locutus.io/php/split/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
   //       example 1: split(' ', 'Kevin van Zonneveld')
   //       returns 1: ['Kevin', 'van', 'Zonneveld']
 
-  const explode = require('../strings/explode')
   return explode(delimiter, string)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}// @ts-nocheck
+import { explode } from '../strings/explode.ts';
+export function split(delimiter, string) {
+  //      discuss at: https://locutus.io/php/split/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: split(' ', 'Kevin van Zonneveld')
+  //       returns 1: ['Kevin', 'van', 'Zonneveld']
+  return explode(delimiter, string);
+}{% endcodeblock %}
+</div>

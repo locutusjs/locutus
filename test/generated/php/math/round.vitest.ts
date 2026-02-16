@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const round = require('../../../../src/php/math/round.js')
+const round = require('../../../../src/php/math/round.ts').round
 
-describe('src/php/math/round.js (tested in test/generated/php/math/round.vitest.ts)', function () {
+describe('src/php/math/round.ts (tested in test/generated/php/math/round.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 1242000
     const result = round(1241757, -3)

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const islower = require('../../../../src/c/ctype/islower.js')
+const islower = require('../../../../src/c/ctype/islower.ts').islower
 
-describe('src/c/ctype/islower.js (tested in test/generated/c/ctype/islower.vitest.ts)', function () {
+describe('src/c/ctype/islower.ts (tested in test/generated/c/ctype/islower.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = islower('a')

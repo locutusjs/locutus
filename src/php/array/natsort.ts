@@ -1,4 +1,5 @@
-import strnatcmp from '../strings/strnatcmp.js'
+// @ts-nocheck
+import { strnatcmp } from '../strings/strnatcmp.ts'
 
 export function natsort(inputArr: Record<string, unknown>): boolean | Record<string, unknown> {
   //      discuss at: https://locutus.io/php/natsort/

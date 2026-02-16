@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const empty = require('../../../../src/php/var/empty.js')
+const empty = require('../../../../src/php/var/empty.ts').empty
 
-describe('src/php/var/empty.js (tested in test/generated/php/var/empty.vitest.ts)', function () {
+describe('src/php/var/empty.ts (tested in test/generated/php/var/empty.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = empty(null)

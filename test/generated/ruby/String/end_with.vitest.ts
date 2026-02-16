@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const end_with = require('../../../../src/ruby/String/end_with.js')
+const end_with = require('../../../../src/ruby/String/end_with.ts').end_with
 
-describe('src/ruby/String/end_with.js (tested in test/generated/ruby/String/end_with.vitest.ts)', function () {
+describe('src/ruby/String/end_with.ts (tested in test/generated/ruby/String/end_with.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = end_with('hello', 'ello')

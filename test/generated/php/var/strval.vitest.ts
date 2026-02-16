@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const strval = require('../../../../src/php/var/strval.js')
+const strval = require('../../../../src/php/var/strval.ts').strval
 
-describe('src/php/var/strval.js (tested in test/generated/php/var/strval.vitest.ts)', function () {
+describe('src/php/var/strval.ts (tested in test/generated/php/var/strval.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Object'
     const result = strval({red: 1, green: 2, blue: 3, white: 4})

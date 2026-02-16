@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const TrimRight = require('../../../../src/golang/strings/TrimRight.js')
+const TrimRight = require('../../../../src/golang/strings/TrimRight.ts').TrimRight
 
-describe('src/golang/strings/TrimRight.js (tested in test/generated/golang/strings/TrimRight.vitest.ts)', function () {
+describe('src/golang/strings/TrimRight.ts (tested in test/generated/golang/strings/TrimRight.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '¡¡¡Hello, Gophers'
     const result = TrimRight('¡¡¡Hello, Gophers!!!', '!¡')

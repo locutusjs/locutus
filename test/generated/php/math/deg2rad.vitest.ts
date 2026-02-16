@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const deg2rad = require('../../../../src/php/math/deg2rad.js')
+const deg2rad = require('../../../../src/php/math/deg2rad.ts').deg2rad
 
-describe('src/php/math/deg2rad.js (tested in test/generated/php/math/deg2rad.vitest.ts)', function () {
+describe('src/php/math/deg2rad.ts (tested in test/generated/php/math/deg2rad.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 0.7853981633974483
     const result = deg2rad(45)

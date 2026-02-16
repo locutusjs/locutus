@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ascii_lowercase = require('../../../../src/python/string/ascii_lowercase.js')
+const ascii_lowercase = require('../../../../src/python/string/ascii_lowercase.ts').ascii_lowercase
 
-describe('src/python/string/ascii_lowercase.js (tested in test/generated/python/string/ascii_lowercase.vitest.ts)', function () {
+describe('src/python/string/ascii_lowercase.ts (tested in test/generated/python/string/ascii_lowercase.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'abcdefghijklmnopqrstuvwxyz'
     const result = ascii_lowercase()

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const isdigit = require('../../../../src/c/ctype/isdigit.js')
+const isdigit = require('../../../../src/c/ctype/isdigit.ts').isdigit
 
-describe('src/c/ctype/isdigit.js (tested in test/generated/c/ctype/isdigit.vitest.ts)', function () {
+describe('src/c/ctype/isdigit.ts (tested in test/generated/c/ctype/isdigit.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = isdigit('5')

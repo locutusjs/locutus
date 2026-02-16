@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const floor = require('../../../../src/julia/Base/floor.js')
+const floor = require('../../../../src/julia/Base/floor.ts').floor
 
-describe('src/julia/Base/floor.js (tested in test/generated/julia/Base/floor.vitest.ts)', function () {
+describe('src/julia/Base/floor.ts (tested in test/generated/julia/Base/floor.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 4
     const result = floor(4.7)

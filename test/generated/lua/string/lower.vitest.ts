@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const lower = require('../../../../src/lua/string/lower.js')
+const lower = require('../../../../src/lua/string/lower.ts').lower
 
-describe('src/lua/string/lower.js (tested in test/generated/lua/string/lower.vitest.ts)', function () {
+describe('src/lua/string/lower.ts (tested in test/generated/lua/string/lower.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'hello'
     const result = lower('HELLO')

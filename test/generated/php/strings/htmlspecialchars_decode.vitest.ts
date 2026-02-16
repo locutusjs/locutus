@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const htmlspecialchars_decode = require('../../../../src/php/strings/htmlspecialchars_decode.js')
+const htmlspecialchars_decode = require('../../../../src/php/strings/htmlspecialchars_decode.ts').htmlspecialchars_decode
 
-describe('src/php/strings/htmlspecialchars_decode.js (tested in test/generated/php/strings/htmlspecialchars_decode.vitest.ts)', function () {
+describe('src/php/strings/htmlspecialchars_decode.ts (tested in test/generated/php/strings/htmlspecialchars_decode.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '<p>this -> &quot;</p>'
     const result = htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES')

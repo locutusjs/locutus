@@ -16,7 +16,7 @@ notes:
   - Returns the absolute value of x as a float
 parityVerified:
   - Python 3.12
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: Python's math.fabs in JavaScript
@@ -33,7 +33,8 @@ alias:
   - /functions/math/fabs/
   - /python/fabs/
 ---
-{% codeblock lang:javascript %}module.exports = function fabs(x) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function fabs(x) {
   //      discuss at: https://locutus.io/python/fabs/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -48,3 +49,19 @@ alias:
   return Math.abs(x)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function fabs(x) {
+  //      discuss at: https://locutus.io/python/fabs/
+  // parity verified: Python 3.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns the absolute value of x as a float
+  //       example 1: fabs(-5)
+  //       returns 1: 5
+  //       example 2: fabs(3.14)
+  //       returns 2: 3.14
+  //       example 3: fabs(-2.5)
+  //       returns 3: 2.5
+  return Math.abs(x);
+}{% endcodeblock %}
+</div>

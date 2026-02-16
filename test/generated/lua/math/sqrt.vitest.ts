@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const sqrt = require('../../../../src/lua/math/sqrt.js')
+const sqrt = require('../../../../src/lua/math/sqrt.ts').sqrt
 
-describe('src/lua/math/sqrt.js (tested in test/generated/lua/math/sqrt.vitest.ts)', function () {
+describe('src/lua/math/sqrt.ts (tested in test/generated/lua/math/sqrt.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 4
     const result = sqrt(16)

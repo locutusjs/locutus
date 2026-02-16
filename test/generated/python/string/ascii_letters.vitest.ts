@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ascii_letters = require('../../../../src/python/string/ascii_letters.js')
+const ascii_letters = require('../../../../src/python/string/ascii_letters.ts').ascii_letters
 
-describe('src/python/string/ascii_letters.js (tested in test/generated/python/string/ascii_letters.vitest.ts)', function () {
+describe('src/python/string/ascii_letters.ts (tested in test/generated/python/string/ascii_letters.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
     const result = ascii_letters()

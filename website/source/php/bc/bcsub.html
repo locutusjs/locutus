@@ -15,7 +15,7 @@ authors:
     - lmeyrick (https://sourceforge.net/projects/bcmath-js/)
 notes: []
 parityVerified: null
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's bcsub in JavaScript
@@ -33,7 +33,10 @@ alias:
   - /php/bcsub/
   - /functions/bcsub/
 ---
-{% codeblock lang:javascript %}module.exports = function bcsub(leftOperand, rightOperand, scale) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { _bc } from '../_helpers/_bc.ts'
+
+export function bcsub(leftOperand, rightOperand, scale) {
   //  discuss at: https://locutus.io/php/bcsub/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcsub('1', '2')
@@ -43,7 +46,6 @@ alias:
   //   example 3: bcsub('8728932001983192837219398127471', '1928372132132819737213', 2)
   //   returns 3: '8728932000054820705086578390258.00'
 
-  const _bc = require('../_helpers/_bc')
   const libbcmath = _bc()
 
   let first
@@ -72,3 +74,36 @@ alias:
   return result.toString()
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { _bc } from '../_helpers/_bc.ts';
+export function bcsub(leftOperand, rightOperand, scale) {
+  //  discuss at: https://locutus.io/php/bcsub/
+  // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
+  //   example 1: bcsub('1', '2')
+  //   returns 1: '-1'
+  //   example 2: bcsub('-1', '5', 4)
+  //   returns 2: '-6.0000'
+  //   example 3: bcsub('8728932001983192837219398127471', '1928372132132819737213', 2)
+  //   returns 3: '8728932000054820705086578390258.00'
+  const libbcmath = _bc();
+  let first;
+  let second;
+  let result;
+  if (typeof scale === 'undefined') {
+    scale = libbcmath.scale;
+  }
+  scale = scale < 0 ? 0 : scale;
+  // create objects
+  first = libbcmath.bc_init_num();
+  second = libbcmath.bc_init_num();
+  result = libbcmath.bc_init_num();
+  first = libbcmath.php_str2num(leftOperand.toString());
+  second = libbcmath.php_str2num(rightOperand.toString());
+  result = libbcmath.bc_sub(first, second, scale);
+  if (result.n_scale > scale) {
+    result.n_scale = scale;
+  }
+  return result.toString();
+}{% endcodeblock %}
+</div>

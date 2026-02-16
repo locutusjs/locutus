@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const downcase = require('../../../../src/ruby/String/downcase.js')
+const downcase = require('../../../../src/ruby/String/downcase.ts').downcase
 
-describe('src/ruby/String/downcase.js (tested in test/generated/ruby/String/downcase.vitest.ts)', function () {
+describe('src/ruby/String/downcase.ts (tested in test/generated/ruby/String/downcase.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'hello'
     const result = downcase('hELLo')

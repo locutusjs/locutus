@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const ord = require('../../../../src/php/strings/ord.js')
+const ord = require('../../../../src/php/strings/ord.ts').ord
 
-describe('src/php/strings/ord.js (tested in test/generated/php/strings/ord.vitest.ts)', function () {
+describe('src/php/strings/ord.ts (tested in test/generated/php/strings/ord.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 75
     const result = ord('K')

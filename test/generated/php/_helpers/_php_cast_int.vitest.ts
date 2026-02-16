@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const _php_cast_int = require('../../../../src/php/_helpers/_php_cast_int.js')
+const _php_cast_int = require('../../../../src/php/_helpers/_php_cast_int.ts')._php_cast_int
 
-describe('src/php/_helpers/_php_cast_int.js (tested in test/generated/php/_helpers/_php_cast_int.vitest.ts)', function () {
+describe('src/php/_helpers/_php_cast_int.ts (tested in test/generated/php/_helpers/_php_cast_int.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 0
     const result = _php_cast_int(false)

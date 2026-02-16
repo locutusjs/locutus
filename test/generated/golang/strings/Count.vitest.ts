@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const Count = require('../../../../src/golang/strings/Count.js')
+const Count = require('../../../../src/golang/strings/Count.ts').Count
 
-describe('src/golang/strings/Count.js (tested in test/generated/golang/strings/Count.vitest.ts)', function () {
+describe('src/golang/strings/Count.ts (tested in test/generated/golang/strings/Count.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 3
     const result = Count("cheese", "e")

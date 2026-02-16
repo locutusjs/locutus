@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const trunc = require('../../../../src/python/math/trunc.js')
+const trunc = require('../../../../src/python/math/trunc.ts').trunc
 
-describe('src/python/math/trunc.js (tested in test/generated/python/math/trunc.vitest.ts)', function () {
+describe('src/python/math/trunc.ts (tested in test/generated/python/math/trunc.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 3
     const result = trunc(3.7)

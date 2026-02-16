@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const uc = require('../../../../src/perl/core/uc.js')
+const uc = require('../../../../src/perl/core/uc.ts').uc
 
-describe('src/perl/core/uc.js (tested in test/generated/perl/core/uc.vitest.ts)', function () {
+describe('src/perl/core/uc.ts (tested in test/generated/perl/core/uc.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'HELLO'
     const result = uc('hello')

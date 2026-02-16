@@ -13,7 +13,7 @@ authors:
 notes: []
 parityVerified:
   - Elixir 1.18
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: Elixir's String.downcase in JavaScript
@@ -30,7 +30,8 @@ alias:
   - /functions/String/downcase/
   - /elixir/downcase/
 ---
-{% codeblock lang:javascript %}module.exports = function downcase(string) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function downcase(string) {
   //      discuss at: https://locutus.io/elixir/downcase/
   // parity verified: Elixir 1.18
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -42,3 +43,16 @@ alias:
   return String(string).toLowerCase()
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function downcase(string) {
+  //      discuss at: https://locutus.io/elixir/downcase/
+  // parity verified: Elixir 1.18
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: downcase('HELLO')
+  //       returns 1: 'hello'
+  //       example 2: downcase('Hello World')
+  //       returns 2: 'hello world'
+  return String(string).toLowerCase();
+}{% endcodeblock %}
+</div>

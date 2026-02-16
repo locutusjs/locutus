@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const urldecode = require('../../../../src/php/url/urldecode.js')
+const urldecode = require('../../../../src/php/url/urldecode.ts').urldecode
 
-describe('src/php/url/urldecode.js (tested in test/generated/php/url/urldecode.vitest.ts)', function () {
+describe('src/php/url/urldecode.ts (tested in test/generated/php/url/urldecode.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Kevin van Zonneveld!'
     const result = urldecode('Kevin+van+Zonneveld%21')

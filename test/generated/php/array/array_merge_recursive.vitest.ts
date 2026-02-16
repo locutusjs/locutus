@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const array_merge_recursive = require('../../../../src/php/array/array_merge_recursive.js')
+const array_merge_recursive = require('../../../../src/php/array/array_merge_recursive.ts').array_merge_recursive
 
-describe('src/php/array/array_merge_recursive.js (tested in test/generated/php/array/array_merge_recursive.vitest.ts)', function () {
+describe('src/php/array/array_merge_recursive.ts (tested in test/generated/php/array/array_merge_recursive.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = {'color': {'favorite': ['red', 'green'], 0: 'blue'}, 0: 5, 1: 10}
     var $arr1 = {'color': {'favorite': 'red'}, 0: 5}

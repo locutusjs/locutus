@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const md5 = require('../../../../src/php/strings/md5.js')
+const md5 = require('../../../../src/php/strings/md5.ts').md5
 
-describe('src/php/strings/md5.js (tested in test/generated/php/strings/md5.vitest.ts)', function () {
+describe('src/php/strings/md5.ts (tested in test/generated/php/strings/md5.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '6e658d4bfcb59cc13f96c14450ac40b9'
     const result = md5('Kevin van Zonneveld')

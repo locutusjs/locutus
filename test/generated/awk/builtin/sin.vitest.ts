@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const sin = require('../../../../src/awk/builtin/sin.js')
+const sin = require('../../../../src/awk/builtin/sin.ts').sin
 
-describe('src/awk/builtin/sin.js (tested in test/generated/awk/builtin/sin.vitest.ts)', function () {
+describe('src/awk/builtin/sin.ts (tested in test/generated/awk/builtin/sin.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 0
     const result = sin(0)

@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const version_compare = require('../../../../src/php/info/version_compare.js')
+const version_compare = require('../../../../src/php/info/version_compare.ts').version_compare
 
-describe('src/php/info/version_compare.js (tested in test/generated/php/info/version_compare.vitest.ts)', function () {
+describe('src/php/info/version_compare.ts (tested in test/generated/php/info/version_compare.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 1
     const result = version_compare('8.2.5rc', '8.2.5a')

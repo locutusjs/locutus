@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const EqualFold = require('../../../../src/golang/strings/EqualFold.js')
+const EqualFold = require('../../../../src/golang/strings/EqualFold.ts').EqualFold
 
-describe('src/golang/strings/EqualFold.js (tested in test/generated/golang/strings/EqualFold.vitest.ts)', function () {
+describe('src/golang/strings/EqualFold.ts (tested in test/generated/golang/strings/EqualFold.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = EqualFold('Go', 'go')

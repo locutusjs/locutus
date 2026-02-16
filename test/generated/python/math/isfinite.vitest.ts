@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const isfinite = require('../../../../src/python/math/isfinite.js')
+const isfinite = require('../../../../src/python/math/isfinite.ts').isfinite
 
-describe('src/python/math/isfinite.js (tested in test/generated/python/math/isfinite.vitest.ts)', function () {
+describe('src/python/math/isfinite.ts (tested in test/generated/python/math/isfinite.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = isfinite(42)

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const Fields = require('../../../../src/golang/strings/Fields.js')
+const Fields = require('../../../../src/golang/strings/Fields.ts').Fields
 
-describe('src/golang/strings/Fields.js (tested in test/generated/golang/strings/Fields.vitest.ts)', function () {
+describe('src/golang/strings/Fields.ts (tested in test/generated/golang/strings/Fields.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = ['foo', 'bar', 'baz']
     const result = Fields('  foo bar  baz   ')

@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const money_format = require('../../../../src/php/strings/money_format.js')
+const money_format = require('../../../../src/php/strings/money_format.ts').money_format
 
-describe('src/php/strings/money_format.js (tested in test/generated/php/strings/money_format.vitest.ts)', function () {
+describe('src/php/strings/money_format.ts (tested in test/generated/php/strings/money_format.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = ' USD 1,234.56'
     const result = money_format('%i', 1234.56)

@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const array_combine = require('../../../../src/php/array/array_combine.js')
+const array_combine = require('../../../../src/php/array/array_combine.ts').array_combine
 
-describe('src/php/array/array_combine.js (tested in test/generated/php/array/array_combine.vitest.ts)', function () {
+describe('src/php/array/array_combine.ts (tested in test/generated/php/array/array_combine.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = {0: 'kevin', 1: 'van', 2: 'zonneveld'}
     const result = array_combine([0,1,2], ['kevin','van','zonneveld'])

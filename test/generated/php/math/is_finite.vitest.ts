@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const is_finite = require('../../../../src/php/math/is_finite.js')
+const is_finite = require('../../../../src/php/math/is_finite.ts').is_finite
 
-describe('src/php/math/is_finite.js (tested in test/generated/php/math/is_finite.vitest.ts)', function () {
+describe('src/php/math/is_finite.ts (tested in test/generated/php/math/is_finite.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = false
     const result = is_finite(Infinity)

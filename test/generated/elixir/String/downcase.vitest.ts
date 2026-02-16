@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const downcase = require('../../../../src/elixir/String/downcase.js')
+const downcase = require('../../../../src/elixir/String/downcase.ts').downcase
 
-describe('src/elixir/String/downcase.js (tested in test/generated/elixir/String/downcase.vitest.ts)', function () {
+describe('src/elixir/String/downcase.ts (tested in test/generated/elixir/String/downcase.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'hello'
     const result = downcase('HELLO')

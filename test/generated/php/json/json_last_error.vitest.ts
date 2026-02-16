@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const json_last_error = require('../../../../src/php/json/json_last_error.js')
+const json_last_error = require('../../../../src/php/json/json_last_error.ts').json_last_error
 
-describe('src/php/json/json_last_error.js (tested in test/generated/php/json/json_last_error.vitest.ts)', function () {
+describe('src/php/json/json_last_error.ts (tested in test/generated/php/json/json_last_error.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 0
     const result = json_last_error()

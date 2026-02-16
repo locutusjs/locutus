@@ -13,7 +13,7 @@ authors:
 notes: []
 parityVerified:
   - GNU AWK 5.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: AWK's sqrt in JavaScript
@@ -30,7 +30,8 @@ alias:
   - /functions/builtin/sqrt/
   - /awk/sqrt/
 ---
-{% codeblock lang:javascript %}module.exports = function sqrt(x) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function sqrt(x) {
   //      discuss at: https://locutus.io/awk/sqrt/
   // parity verified: GNU AWK 5.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -42,3 +43,16 @@ alias:
   return Math.sqrt(x)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function sqrt(x) {
+  //      discuss at: https://locutus.io/awk/sqrt/
+  // parity verified: GNU AWK 5.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: sqrt(16)
+  //       returns 1: 4
+  //       example 2: sqrt(2)
+  //       returns 2: 1.4142135623730951
+  return Math.sqrt(x);
+}{% endcodeblock %}
+</div>

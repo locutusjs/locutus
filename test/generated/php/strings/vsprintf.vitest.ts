@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const vsprintf = require('../../../../src/php/strings/vsprintf.js')
+const vsprintf = require('../../../../src/php/strings/vsprintf.ts').vsprintf
 
-describe('src/php/strings/vsprintf.js (tested in test/generated/php/strings/vsprintf.vitest.ts)', function () {
+describe('src/php/strings/vsprintf.ts (tested in test/generated/php/strings/vsprintf.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '1988-08-01'
     const result = vsprintf('%04d-%02d-%02d', [1988, 8, 1])

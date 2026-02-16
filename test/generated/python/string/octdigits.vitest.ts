@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const octdigits = require('../../../../src/python/string/octdigits.js')
+const octdigits = require('../../../../src/python/string/octdigits.ts').octdigits
 
-describe('src/python/string/octdigits.js (tested in test/generated/python/string/octdigits.vitest.ts)', function () {
+describe('src/python/string/octdigits.ts (tested in test/generated/python/string/octdigits.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '01234567'
     const result = octdigits()

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const log = require('../../../../src/ruby/Math/log.js')
+const log = require('../../../../src/ruby/Math/log.ts').log
 
-describe('src/ruby/Math/log.js (tested in test/generated/ruby/Math/log.vitest.ts)', function () {
+describe('src/ruby/Math/log.ts (tested in test/generated/ruby/Math/log.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 0
     const result = log(1)

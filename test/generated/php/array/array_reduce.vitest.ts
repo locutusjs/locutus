@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const array_reduce = require('../../../../src/php/array/array_reduce.js')
+const array_reduce = require('../../../../src/php/array/array_reduce.ts').array_reduce
 
-describe('src/php/array/array_reduce.js (tested in test/generated/php/array/array_reduce.vitest.ts)', function () {
+describe('src/php/array/array_reduce.ts (tested in test/generated/php/array/array_reduce.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 15
     const result = array_reduce([1, 2, 3, 4, 5], function (v, w){v += w;return v;})

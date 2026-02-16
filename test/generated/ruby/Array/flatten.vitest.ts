@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const flatten = require('../../../../src/ruby/Array/flatten.js')
+const flatten = require('../../../../src/ruby/Array/flatten.ts').flatten
 
-describe('src/ruby/Array/flatten.js (tested in test/generated/ruby/Array/flatten.vitest.ts)', function () {
+describe('src/ruby/Array/flatten.ts (tested in test/generated/ruby/Array/flatten.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = [1, 2, 3, 4, 5]
     const result = flatten([1, [2, 3, [4, 5]]])

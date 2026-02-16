@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const end = require('../../../../src/php/array/end.js')
+const end = require('../../../../src/php/array/end.ts').end
 
-describe('src/php/array/end.js (tested in test/generated/php/array/end.vitest.ts)', function () {
+describe('src/php/array/end.ts (tested in test/generated/php/array/end.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Zonneveld'
     const result = end({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})

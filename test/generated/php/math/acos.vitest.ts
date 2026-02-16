@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const acos = require('../../../../src/php/math/acos.js')
+const acos = require('../../../../src/php/math/acos.ts').acos
 
-describe('src/php/math/acos.js (tested in test/generated/php/math/acos.vitest.ts)', function () {
+describe('src/php/math/acos.ts (tested in test/generated/php/math/acos.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = "1.266103672779499"
     const result = (acos(0.3) + '').substr(0, 17)

@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const strspn = require('../../../../src/php/strings/strspn.js')
+const strspn = require('../../../../src/php/strings/strspn.ts').strspn
 
-describe('src/php/strings/strspn.js (tested in test/generated/php/strings/strspn.vitest.ts)', function () {
+describe('src/php/strings/strspn.ts (tested in test/generated/php/strings/strspn.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 2
     const result = strspn('42 is the answer, what is the question ...', '1234567890')

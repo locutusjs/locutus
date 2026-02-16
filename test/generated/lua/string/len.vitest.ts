@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const len = require('../../../../src/lua/string/len.js')
+const len = require('../../../../src/lua/string/len.ts').len
 
-describe('src/lua/string/len.js (tested in test/generated/lua/string/len.vitest.ts)', function () {
+describe('src/lua/string/len.ts (tested in test/generated/lua/string/len.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 5
     const result = len('hello')

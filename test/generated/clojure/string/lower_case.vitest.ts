@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const lower_case = require('../../../../src/clojure/string/lower_case.js')
+const lower_case = require('../../../../src/clojure/string/lower_case.ts').lower_case
 
-describe('src/clojure/string/lower_case.js (tested in test/generated/clojure/string/lower_case.vitest.ts)', function () {
+describe('src/clojure/string/lower_case.ts (tested in test/generated/clojure/string/lower_case.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'hello'
     const result = lower_case('HELLO')

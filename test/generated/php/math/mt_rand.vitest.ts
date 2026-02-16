@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const mt_rand = require('../../../../src/php/math/mt_rand.js')
+const mt_rand = require('../../../../src/php/math/mt_rand.ts').mt_rand
 
-describe('src/php/math/mt_rand.js (tested in test/generated/php/math/mt_rand.vitest.ts)', function () {
+describe('src/php/math/mt_rand.ts (tested in test/generated/php/math/mt_rand.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 1
     const result = mt_rand(1, 1)

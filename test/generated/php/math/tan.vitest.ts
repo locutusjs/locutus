@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const tan = require('../../../../src/php/math/tan.js')
+const tan = require('../../../../src/php/math/tan.ts').tan
 
-describe('src/php/math/tan.js (tested in test/generated/php/math/tan.vitest.ts)', function () {
+describe('src/php/math/tan.ts (tested in test/generated/php/math/tan.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 54251849
     const result = Math.ceil(tan(8723321.4) * 10000000)

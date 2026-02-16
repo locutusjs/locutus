@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const isalpha = require('../../../../src/c/ctype/isalpha.js')
+const isalpha = require('../../../../src/c/ctype/isalpha.ts').isalpha
 
-describe('src/c/ctype/isalpha.js (tested in test/generated/c/ctype/isalpha.vitest.ts)', function () {
+describe('src/c/ctype/isalpha.ts (tested in test/generated/c/ctype/isalpha.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = isalpha('A')

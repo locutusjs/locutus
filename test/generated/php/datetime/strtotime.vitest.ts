@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const strtotime = require('../../../../src/php/datetime/strtotime.js')
+const strtotime = require('../../../../src/php/datetime/strtotime.ts').strtotime
 
-describe('src/php/datetime/strtotime.js (tested in test/generated/php/datetime/strtotime.vitest.ts)', function () {
+describe('src/php/datetime/strtotime.ts (tested in test/generated/php/datetime/strtotime.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 1129719600
     const result = strtotime('+1 day', 1129633200)

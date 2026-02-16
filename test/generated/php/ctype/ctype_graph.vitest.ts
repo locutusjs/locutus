@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const ctype_graph = require('../../../../src/php/ctype/ctype_graph.js')
+const ctype_graph = require('../../../../src/php/ctype/ctype_graph.ts').ctype_graph
 
-describe('src/php/ctype/ctype_graph.js (tested in test/generated/php/ctype/ctype_graph.vitest.ts)', function () {
+describe('src/php/ctype/ctype_graph.ts (tested in test/generated/php/ctype/ctype_graph.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = ctype_graph('!%')

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ceil = require('../../../../src/elixir/Float/ceil.js')
+const ceil = require('../../../../src/elixir/Float/ceil.ts').ceil
 
-describe('src/elixir/Float/ceil.js (tested in test/generated/elixir/Float/ceil.vitest.ts)', function () {
+describe('src/elixir/Float/ceil.ts (tested in test/generated/elixir/Float/ceil.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 5
     const result = ceil(4.2)

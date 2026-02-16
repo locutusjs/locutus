@@ -15,7 +15,7 @@ authors:
 notes:
   - Only works with user-defined functions, not built-in functions like void()
 parityVerified: null
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: PHP's array_walk_recursive in JavaScript
@@ -33,7 +33,9 @@ alias:
   - /php/array_walk_recursive/
   - /functions/array_walk_recursive/
 ---
-{% codeblock lang:javascript %}module.exports = function array_walk_recursive(array, funcname, userdata) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}// @ts-nocheck
+export function array_walk_recursive(array, funcname, userdata) {
   // original by: Hugues Peccatte
   //      note 1: Only works with user-defined functions, not built-in functions like void()
   //   example 1: array_walk_recursive([3, 4], function () {}, 'userdata')
@@ -77,3 +79,48 @@ alias:
   return true
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}// @ts-nocheck
+export function array_walk_recursive(array, funcname, userdata) {
+  // original by: Hugues Peccatte
+  //      note 1: Only works with user-defined functions, not built-in functions like void()
+  //   example 1: array_walk_recursive([3, 4], function () {}, 'userdata')
+  //   returns 1: true
+  //   example 2: array_walk_recursive([3, [4]], function () {}, 'userdata')
+  //   returns 2: true
+  //   example 3: array_walk_recursive([3, []], function () {}, 'userdata')
+  //   returns 3: true
+  if (!array || typeof array !== 'object') {
+    return false;
+  }
+  if (typeof funcname !== 'function') {
+    return false;
+  }
+  for (const key in array) {
+    // apply "funcname" recursively only on arrays
+    if (Array.isArray(array[key])) {
+      const funcArgs = [array[key], funcname];
+      if (arguments.length > 2) {
+        funcArgs.push(userdata);
+      }
+      if (array_walk_recursive.apply(null, funcArgs) === false) {
+        return false;
+      }
+      continue;
+    }
+    try {
+      if (arguments.length > 2) {
+        funcname(array[key], key, userdata);
+      }
+      else {
+        funcname(array[key], key);
+      }
+    }
+    catch (_e) {
+      return false;
+    }
+  }
+  return true;
+}{% endcodeblock %}
+</div>

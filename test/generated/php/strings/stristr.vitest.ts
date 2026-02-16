@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const stristr = require('../../../../src/php/strings/stristr.js')
+const stristr = require('../../../../src/php/strings/stristr.ts').stristr
 
-describe('src/php/strings/stristr.js (tested in test/generated/php/strings/stristr.vitest.ts)', function () {
+describe('src/php/strings/stristr.ts (tested in test/generated/php/strings/stristr.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'van Zonneveld'
     const result = stristr('Kevin van Zonneveld', 'Van')

@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const convert_cyr_string = require('../../../../src/php/strings/convert_cyr_string.js')
+const convert_cyr_string = require('../../../../src/php/strings/convert_cyr_string.ts').convert_cyr_string
 
-describe('src/php/strings/convert_cyr_string.js (tested in test/generated/php/strings/convert_cyr_string.vitest.ts)', function () {
+describe('src/php/strings/convert_cyr_string.ts (tested in test/generated/php/strings/convert_cyr_string.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = convert_cyr_string(String.fromCharCode(214), 'k', 'w').charCodeAt(0) === 230; // Char. 214 of KOI8-R gives equivalent number value 230 in win1251

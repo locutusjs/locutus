@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const microtime = require('../../../../src/php/datetime/microtime.js')
+const microtime = require('../../../../src/php/datetime/microtime.ts').microtime
 
-describe('src/php/datetime/microtime.js (tested in test/generated/php/datetime/microtime.vitest.ts)', function () {
+describe('src/php/datetime/microtime.ts (tested in test/generated/php/datetime/microtime.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     var $timeStamp = microtime(true)

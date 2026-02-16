@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const floor = require('../../../../src/python/math/floor.js')
+const floor = require('../../../../src/python/math/floor.ts').floor
 
-describe('src/python/math/floor.js (tested in test/generated/python/math/floor.vitest.ts)', function () {
+describe('src/python/math/floor.ts (tested in test/generated/python/math/floor.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 4
     const result = floor(4.9)

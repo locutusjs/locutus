@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ParseInt = require('../../../../src/golang/strconv/ParseInt.js')
+const ParseInt = require('../../../../src/golang/strconv/ParseInt.ts').ParseInt
 
-describe('src/golang/strconv/ParseInt.js (tested in test/generated/golang/strconv/ParseInt.vitest.ts)', function () {
+describe('src/golang/strconv/ParseInt.ts (tested in test/generated/golang/strconv/ParseInt.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 42
     const result = ParseInt('42', 10, 64)[0]

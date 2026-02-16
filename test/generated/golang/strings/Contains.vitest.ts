@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const Contains = require('../../../../src/golang/strings/Contains.js')
+const Contains = require('../../../../src/golang/strings/Contains.ts').Contains
 
-describe('src/golang/strings/Contains.js (tested in test/generated/golang/strings/Contains.vitest.ts)', function () {
+describe('src/golang/strings/Contains.ts (tested in test/generated/golang/strings/Contains.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = Contains('Kevin', 'K')

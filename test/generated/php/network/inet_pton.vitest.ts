@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const inet_pton = require('../../../../src/php/network/inet_pton.js')
+const inet_pton = require('../../../../src/php/network/inet_pton.ts').inet_pton
 
-describe('src/php/network/inet_pton.js (tested in test/generated/php/network/inet_pton.vitest.ts)', function () {
+describe('src/php/network/inet_pton.ts (tested in test/generated/php/network/inet_pton.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0'
     const result = inet_pton('::')

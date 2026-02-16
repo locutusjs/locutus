@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const asin = require('../../../../src/ruby/Math/asin.js')
+const asin = require('../../../../src/ruby/Math/asin.ts').asin
 
-describe('src/ruby/Math/asin.js (tested in test/generated/ruby/Math/asin.vitest.ts)', function () {
+describe('src/ruby/Math/asin.ts (tested in test/generated/ruby/Math/asin.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 0
     const result = asin(0)

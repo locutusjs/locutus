@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const Split = require('../../../../src/golang/strings/Split.js')
+const Split = require('../../../../src/golang/strings/Split.ts').Split
 
-describe('src/golang/strings/Split.js (tested in test/generated/golang/strings/Split.vitest.ts)', function () {
+describe('src/golang/strings/Split.ts (tested in test/generated/golang/strings/Split.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = ['a', 'b', 'c']
     const result = Split('a,b,c', ',')

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const strcmp = require('../../../../src/c/string/strcmp.js')
+const strcmp = require('../../../../src/c/string/strcmp.ts').strcmp
 
-describe('src/c/string/strcmp.js (tested in test/generated/c/string/strcmp.vitest.ts)', function () {
+describe('src/c/string/strcmp.ts (tested in test/generated/c/string/strcmp.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 0
     const result = strcmp('abc', 'abc')

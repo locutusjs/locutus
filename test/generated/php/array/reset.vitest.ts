@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const reset = require('../../../../src/php/array/reset.js')
+const reset = require('../../../../src/php/array/reset.ts').reset
 
-describe('src/php/array/reset.js (tested in test/generated/php/array/reset.vitest.ts)', function () {
+describe('src/php/array/reset.ts (tested in test/generated/php/array/reset.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Kevin'
     const result = reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})

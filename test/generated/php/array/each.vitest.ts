@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const each = require('../../../../src/php/array/each.js')
+const each = require('../../../../src/php/array/each.ts').each
 
-describe('src/php/array/each.js (tested in test/generated/php/array/each.vitest.ts)', function () {
+describe('src/php/array/each.ts (tested in test/generated/php/array/each.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = {0: "a", 1: "apple", key: "a", value: "apple"}
     const result = each({a: "apple", b: "balloon"})

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const printable = require('../../../../src/python/string/printable.js')
+const printable = require('../../../../src/python/string/printable.ts').printable
 
-describe('src/python/string/printable.js (tested in test/generated/python/string/printable.vitest.ts)', function () {
+describe('src/python/string/printable.ts (tested in test/generated/python/string/printable.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 100
     const result = printable().length

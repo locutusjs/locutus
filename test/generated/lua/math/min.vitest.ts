@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const min = require('../../../../src/lua/math/min.js')
+const min = require('../../../../src/lua/math/min.ts').min
 
-describe('src/lua/math/min.js (tested in test/generated/lua/math/min.vitest.ts)', function () {
+describe('src/lua/math/min.ts (tested in test/generated/lua/math/min.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 1
     const result = min(1, 5, 3)

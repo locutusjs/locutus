@@ -4,12 +4,12 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const i18n_loc_set_default = require('../../../../src/php/i18n/i18n_loc_set_default.js')
-const i18n_loc_get_default = require('../../../../src/php/i18n/i18n_loc_get_default.js')
+const i18n_loc_set_default = require('../../../../src/php/i18n/i18n_loc_set_default.ts').i18n_loc_set_default
+const i18n_loc_get_default = require('../../../../src/php/i18n/i18n_loc_get_default.ts').i18n_loc_get_default
 
-describe('src/php/i18n/i18n_loc_get_default.js (tested in test/generated/php/i18n/i18n_loc_get_default.vitest.ts)', function () {
+describe('src/php/i18n/i18n_loc_get_default.ts (tested in test/generated/php/i18n/i18n_loc_get_default.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'en_US_POSIX'
     const result = i18n_loc_get_default()

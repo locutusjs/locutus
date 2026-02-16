@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const pow = require('../../../../src/php/math/pow.js')
+const pow = require('../../../../src/php/math/pow.ts').pow
 
-describe('src/php/math/pow.js (tested in test/generated/php/math/pow.vitest.ts)', function () {
+describe('src/php/math/pow.ts (tested in test/generated/php/math/pow.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 3.8439091680779e+48
     const result = pow(8723321.4, 7)

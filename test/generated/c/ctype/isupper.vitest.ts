@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const isupper = require('../../../../src/c/ctype/isupper.js')
+const isupper = require('../../../../src/c/ctype/isupper.ts').isupper
 
-describe('src/c/ctype/isupper.js (tested in test/generated/c/ctype/isupper.vitest.ts)', function () {
+describe('src/c/ctype/isupper.ts (tested in test/generated/c/ctype/isupper.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = isupper('A')

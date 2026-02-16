@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const isalnum = require('../../../../src/c/ctype/isalnum.js')
+const isalnum = require('../../../../src/c/ctype/isalnum.ts').isalnum
 
-describe('src/c/ctype/isalnum.js (tested in test/generated/c/ctype/isalnum.vitest.ts)', function () {
+describe('src/c/ctype/isalnum.ts (tested in test/generated/c/ctype/isalnum.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = isalnum('A')

@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const str_rot13 = require('../../../../src/php/strings/str_rot13.js')
+const str_rot13 = require('../../../../src/php/strings/str_rot13.ts').str_rot13
 
-describe('src/php/strings/str_rot13.js (tested in test/generated/php/strings/str_rot13.vitest.ts)', function () {
+describe('src/php/strings/str_rot13.ts (tested in test/generated/php/strings/str_rot13.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Xriva ina Mbaariryq'
     const result = str_rot13('Kevin van Zonneveld')

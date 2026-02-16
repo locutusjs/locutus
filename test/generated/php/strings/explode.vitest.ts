@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const explode = require('../../../../src/php/strings/explode.js')
+const explode = require('../../../../src/php/strings/explode.ts').explode
 
-describe('src/php/strings/explode.js (tested in test/generated/php/strings/explode.vitest.ts)', function () {
+describe('src/php/strings/explode.ts (tested in test/generated/php/strings/explode.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = [ 'Kevin', 'van', 'Zonneveld' ]
     const result = explode(' ', 'Kevin van Zonneveld')

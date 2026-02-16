@@ -12,7 +12,7 @@ notes:
   - Returns a copy of str with all lowercase letters replaced with uppercase.
 parityVerified:
   - Ruby 3.3
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: Ruby's String.upcase in JavaScript
@@ -29,7 +29,8 @@ alias:
   - /functions/String/upcase/
   - /ruby/upcase/
 ---
-{% codeblock lang:javascript %}module.exports = function upcase(str) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function upcase(str) {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/String/upcase/
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -40,3 +41,15 @@ alias:
   return (str + '').toUpperCase()
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function upcase(str) {
+  // parity verified: Ruby 3.3
+  //      discuss at: https://locutus.io/ruby/String/upcase/
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns a copy of str with all lowercase letters replaced with uppercase.
+  //       example 1: upcase('hELLo')
+  //       returns 1: 'HELLO'
+  return (str + '').toUpperCase();
+}{% endcodeblock %}
+</div>

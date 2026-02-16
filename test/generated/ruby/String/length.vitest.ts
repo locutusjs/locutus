@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const length = require('../../../../src/ruby/String/length.js')
+const length = require('../../../../src/ruby/String/length.ts').length
 
-describe('src/ruby/String/length.js (tested in test/generated/ruby/String/length.vitest.ts)', function () {
+describe('src/ruby/String/length.ts (tested in test/generated/ruby/String/length.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 5
     const result = length('hello')

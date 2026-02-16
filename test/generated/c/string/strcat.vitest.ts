@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const strcat = require('../../../../src/c/string/strcat.js')
+const strcat = require('../../../../src/c/string/strcat.ts').strcat
 
-describe('src/c/string/strcat.js (tested in test/generated/c/string/strcat.vitest.ts)', function () {
+describe('src/c/string/strcat.ts (tested in test/generated/c/string/strcat.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Hello, World!'
     const result = strcat('Hello, ', 'World!')

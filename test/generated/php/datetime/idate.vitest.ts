@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const idate = require('../../../../src/php/datetime/idate.js')
+const idate = require('../../../../src/php/datetime/idate.ts').idate
 
-describe('src/php/datetime/idate.js (tested in test/generated/php/datetime/idate.vitest.ts)', function () {
+describe('src/php/datetime/idate.ts (tested in test/generated/php/datetime/idate.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 9
     const result = idate('y', 1255633200)

@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const ucfirst = require('../../../../src/php/strings/ucfirst.js')
+const ucfirst = require('../../../../src/php/strings/ucfirst.ts').ucfirst
 
-describe('src/php/strings/ucfirst.js (tested in test/generated/php/strings/ucfirst.vitest.ts)', function () {
+describe('src/php/strings/ucfirst.ts (tested in test/generated/php/strings/ucfirst.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'Kevin van zonneveld'
     const result = ucfirst('kevin van zonneveld')

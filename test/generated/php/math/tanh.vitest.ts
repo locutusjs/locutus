@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const tanh = require('../../../../src/php/math/tanh.js')
+const tanh = require('../../../../src/php/math/tanh.ts').tanh
 
-describe('src/php/math/tanh.js (tested in test/generated/php/math/tanh.vitest.ts)', function () {
+describe('src/php/math/tanh.ts (tested in test/generated/php/math/tanh.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 0.9999612058841574
     const result = tanh(5.4251848798444815)

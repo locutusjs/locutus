@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const gopher_parsedir = require('../../../../src/php/net-gopher/gopher_parsedir.js')
+const gopher_parsedir = require('../../../../src/php/net-gopher/gopher_parsedir.ts').gopher_parsedir
 
-describe('src/php/net-gopher/gopher_parsedir.js (tested in test/generated/php/net-gopher/gopher_parsedir.vitest.ts)', function () {
+describe('src/php/net-gopher/gopher_parsedir.ts (tested in test/generated/php/net-gopher/gopher_parsedir.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'All about my gopher site.'
     var entry = gopher_parsedir('0All about my gopher site.\t/allabout.txt\tgopher.example.com\t70\u000d\u000a')

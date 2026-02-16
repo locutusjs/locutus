@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const TrimPrefix = require('../../../../src/golang/strings/TrimPrefix.js')
+const TrimPrefix = require('../../../../src/golang/strings/TrimPrefix.ts').TrimPrefix
 
-describe('src/golang/strings/TrimPrefix.js (tested in test/generated/golang/strings/TrimPrefix.vitest.ts)', function () {
+describe('src/golang/strings/TrimPrefix.ts (tested in test/generated/golang/strings/TrimPrefix.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'World!'
     const result = TrimPrefix('Hello, World!', 'Hello, ')

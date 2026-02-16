@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const str_word_count = require('../../../../src/php/strings/str_word_count.js')
+const str_word_count = require('../../../../src/php/strings/str_word_count.ts').str_word_count
 
-describe('src/php/strings/str_word_count.js (tested in test/generated/php/strings/str_word_count.vitest.ts)', function () {
+describe('src/php/strings/str_word_count.ts (tested in test/generated/php/strings/str_word_count.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = ['Hello', 'fri', 'nd', "you're", 'looking', 'good', 'today']
     const result = str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 1)

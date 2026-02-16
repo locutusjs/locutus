@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const fabs = require('../../../../src/python/math/fabs.js')
+const fabs = require('../../../../src/python/math/fabs.ts').fabs
 
-describe('src/python/math/fabs.js (tested in test/generated/python/math/fabs.vitest.ts)', function () {
+describe('src/python/math/fabs.ts (tested in test/generated/python/math/fabs.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 5
     const result = fabs(-5)

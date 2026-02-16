@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const nchar = require('../../../../src/r/base/nchar.js')
+const nchar = require('../../../../src/r/base/nchar.ts').nchar
 
-describe('src/r/base/nchar.js (tested in test/generated/r/base/nchar.vitest.ts)', function () {
+describe('src/r/base/nchar.ts (tested in test/generated/r/base/nchar.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 5
     const result = nchar('hello')

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const length = require('../../../../src/perl/core/length.js')
+const length = require('../../../../src/perl/core/length.ts').length
 
-describe('src/perl/core/length.js (tested in test/generated/perl/core/length.vitest.ts)', function () {
+describe('src/perl/core/length.ts (tested in test/generated/perl/core/length.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 5
     const result = length('hello')

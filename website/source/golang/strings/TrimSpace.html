@@ -12,7 +12,7 @@ notes:
   - Removes leading and trailing white space (as defined by Unicode)
 parityVerified:
   - Go 1.23
-isTypescript: false
+isTypescript: true
 type: function
 layout: function
 title: Go's strings.TrimSpace in JavaScript
@@ -29,7 +29,8 @@ alias:
   - /functions/strings/TrimSpace/
   - /golang/TrimSpace/
 ---
-{% codeblock lang:javascript %}module.exports = function TrimSpace(s) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function TrimSpace(s) {
   //      discuss at: https://locutus.io/golang/strings/TrimSpace
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -40,3 +41,15 @@ alias:
   return (s + '').trim()
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function TrimSpace(s) {
+  //      discuss at: https://locutus.io/golang/strings/TrimSpace
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Removes leading and trailing white space (as defined by Unicode)
+  //       example 1: TrimSpace(' \t\n Hello, Gophers \n\t\r\n')
+  //       returns 1: 'Hello, Gophers'
+  return (s + '').trim();
+}{% endcodeblock %}
+</div>

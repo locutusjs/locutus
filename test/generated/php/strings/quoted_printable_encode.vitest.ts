@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const quoted_printable_encode = require('../../../../src/php/strings/quoted_printable_encode.js')
+const quoted_printable_encode = require('../../../../src/php/strings/quoted_printable_encode.ts').quoted_printable_encode
 
-describe('src/php/strings/quoted_printable_encode.js (tested in test/generated/php/strings/quoted_printable_encode.vitest.ts)', function () {
+describe('src/php/strings/quoted_printable_encode.ts (tested in test/generated/php/strings/quoted_printable_encode.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'a=3Db=3Dc'
     const result = quoted_printable_encode('a=b=c')

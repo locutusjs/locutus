@@ -4,11 +4,11 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const ini_set = require('../../../../src/php/info/ini_set.js')
+const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const sqrt = require('../../../../src/php/math/sqrt.js')
+const sqrt = require('../../../../src/php/math/sqrt.ts').sqrt
 
-describe('src/php/math/sqrt.js (tested in test/generated/php/math/sqrt.vitest.ts)', function () {
+describe('src/php/math/sqrt.ts (tested in test/generated/php/math/sqrt.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 2953.5269424875746
     const result = sqrt(8723321.4)

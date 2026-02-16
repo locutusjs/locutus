@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const substr = require('../../../../src/perl/core/substr.js')
+const substr = require('../../../../src/perl/core/substr.ts').substr
 
-describe('src/perl/core/substr.js (tested in test/generated/perl/core/substr.vitest.ts)', function () {
+describe('src/perl/core/substr.ts (tested in test/generated/perl/core/substr.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'hel'
     const result = substr('hello', 0, 3)

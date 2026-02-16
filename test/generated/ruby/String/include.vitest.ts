@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const include = require('../../../../src/ruby/String/include.js')
+const include = require('../../../../src/ruby/String/include.ts').include
 
-describe('src/ruby/String/include.js (tested in test/generated/ruby/String/include.vitest.ts)', function () {
+describe('src/ruby/String/include.ts (tested in test/generated/ruby/String/include.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = include('hello', 'lo')

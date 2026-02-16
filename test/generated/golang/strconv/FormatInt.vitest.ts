@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const FormatInt = require('../../../../src/golang/strconv/FormatInt.js')
+const FormatInt = require('../../../../src/golang/strconv/FormatInt.ts').FormatInt
 
-describe('src/golang/strconv/FormatInt.js (tested in test/generated/golang/strconv/FormatInt.vitest.ts)', function () {
+describe('src/golang/strconv/FormatInt.ts (tested in test/generated/golang/strconv/FormatInt.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '42'
     const result = FormatInt(42, 10)

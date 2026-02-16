@@ -1,4 +1,4 @@
-import date from '../datetime/date.js'
+import { date } from '../datetime/date.ts'
 
 export function gmdate(format: string, timestamp?: string | number | Date): string {
   //      discuss at: https://locutus.io/php/gmdate/

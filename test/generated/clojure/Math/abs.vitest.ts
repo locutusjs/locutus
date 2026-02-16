@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const abs = require('../../../../src/clojure/Math/abs.js')
+const abs = require('../../../../src/clojure/Math/abs.ts').abs
 
-describe('src/clojure/Math/abs.js (tested in test/generated/clojure/Math/abs.vitest.ts)', function () {
+describe('src/clojure/Math/abs.ts (tested in test/generated/clojure/Math/abs.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 5
     const result = abs(-5)

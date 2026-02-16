@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const HasPrefix = require('../../../../src/golang/strings/HasPrefix.js')
+const HasPrefix = require('../../../../src/golang/strings/HasPrefix.ts').HasPrefix
 
-describe('src/golang/strings/HasPrefix.js (tested in test/generated/golang/strings/HasPrefix.vitest.ts)', function () {
+describe('src/golang/strings/HasPrefix.ts (tested in test/generated/golang/strings/HasPrefix.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = HasPrefix('Gopher', 'Go')

@@ -4,9 +4,9 @@
 import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
-const toupper = require('../../../../src/awk/builtin/toupper.js')
+const toupper = require('../../../../src/awk/builtin/toupper.ts').toupper
 
-describe('src/awk/builtin/toupper.js (tested in test/generated/awk/builtin/toupper.vitest.ts)', function () {
+describe('src/awk/builtin/toupper.ts (tested in test/generated/awk/builtin/toupper.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'HELLO'
     const result = toupper('hello')
