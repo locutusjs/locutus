@@ -1,5 +1,3 @@
-import ini_get from '../info/ini_get.ts'
-
 export default function assert_options(what: string, value?: unknown): unknown {
   //  discuss at: https://locutus.io/php/assert_options/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -37,7 +35,8 @@ export default function assert_options(what: string, value?: unknown): unknown {
   }
 
   // I presume this is to be the most recent value, instead of the default value
-  const iniVal = ini_get(iniKey) || defaultVal
+  const $loc = (globalThis as any).$locutus
+  const iniVal = String($loc?.php?.ini?.[iniKey]?.local_value ?? '') || defaultVal
 
   return iniVal
 }

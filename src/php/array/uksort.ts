@@ -1,5 +1,3 @@
-import ini_get from '../info/ini_get.ts'
-
 export default function uksort(
   this: Record<string, any>,
   inputArr: Record<string, unknown>,
@@ -30,8 +28,11 @@ export default function uksort(
   let sortByReference = false
   let populateArr: Record<string, unknown> = {}
 
+  let sortFn: ((a: string, b: string) => number) | undefined
   if (typeof sorter === 'string') {
-    sorter = this.window[sorter]
+    sortFn = this.window[sorter]
+  } else {
+    sortFn = sorter
   }
 
   // Make a list of key names
@@ -44,7 +45,7 @@ export default function uksort(
   // Sort key names
   try {
     if (sorter) {
-      keys.sort(sorter as (a: string, b: string) => number)
+      keys.sort(sortFn)
     } else {
       keys.sort()
     }
@@ -52,7 +53,8 @@ export default function uksort(
     return false
   }
 
-  const iniVal = ini_get('locutus.sortByReference') || 'on'
+  const $loc = (globalThis as any).$locutus
+  const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

@@ -1,4 +1,3 @@
-import ini_get from '../info/ini_get.ts'
 import strnatcmp from '../strings/strnatcmp.js'
 
 export default function natsort(inputArr: Record<string, unknown>): boolean | Record<string, unknown> {
@@ -27,7 +26,8 @@ export default function natsort(inputArr: Record<string, unknown>): boolean | Re
   let sortByReference = false
   let populateArr: Record<string, unknown> = {}
 
-  const iniVal = ini_get('locutus.sortByReference') || 'on'
+  const $loc = (globalThis as any).$locutus
+  const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

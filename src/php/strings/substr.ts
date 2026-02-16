@@ -1,5 +1,4 @@
 import _php_cast_string from '../_helpers/_phpCastString.js'
-import ini_get from '../info/ini_get.ts'
 
 export default function substr(input: string | number, start: number, len?: number): string | false {
   //  discuss at: https://locutus.io/php/substr/
@@ -30,15 +29,14 @@ export default function substr(input: string | number, start: number, len?: numb
   //   example 7: substr('a\uD801\uDC00z\uD801\uDC00', -3, -1)
   //   returns 7: '\uD801\uDC00z'
 
-  let str: string | string[] = _php_cast_string(input)
+  const str = _php_cast_string(input)
 
-  const multibyte = ini_get('unicode.semantics') === 'on'
+  const $loc = (globalThis as any).$locutus
+  const multibyte = String($loc?.php?.ini?.['unicode.semantics']?.local_value ?? '') === 'on'
 
-  if (multibyte) {
-    str = (str as string).match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[\s\S]/g) || []
-  }
+  const chars = multibyte ? str.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[\s\S]/g) || [] : null
 
-  const inputLength = str.length
+  const inputLength = chars ? chars.length : str.length
   let end = inputLength
 
   if (start < 0) {
@@ -57,9 +55,9 @@ export default function substr(input: string | number, start: number, len?: numb
     return false
   }
 
-  if (multibyte) {
-    return (str as string[]).slice(start, end).join('')
+  if (chars) {
+    return chars.slice(start, end).join('')
   }
 
-  return (str as string).slice(start, end)
+  return str.slice(start, end)
 }

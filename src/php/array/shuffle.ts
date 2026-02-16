@@ -1,5 +1,3 @@
-import ini_get from '../info/ini_get.ts'
-
 export default function shuffle(inputArr: Record<string, unknown>): boolean | Record<string, unknown> | unknown[] {
   //  discuss at: https://locutus.io/php/shuffle/
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
@@ -31,7 +29,8 @@ export default function shuffle(inputArr: Record<string, unknown>): boolean | Re
     return 0.5 - Math.random()
   })
 
-  const iniVal = ini_get('locutus.sortByReference') || 'on'
+  const $loc = (globalThis as any).$locutus
+  const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

@@ -1,5 +1,3 @@
-import ini_get from '../info/ini_get.ts'
-
 export default function parse_url(str: string, component?: string): Record<string, unknown> | string {
   //       discuss at: https://locutus.io/php/parse_url/
   //      original by: Steven Levithan (https://blog.stevenlevithan.com)
@@ -27,7 +25,8 @@ export default function parse_url(str: string, component?: string): Record<strin
 
   let query: string
 
-  const mode = ini_get('locutus.parse_url.mode') || 'php'
+  const $loc = (globalThis as any).$locutus
+  const mode = String($loc?.php?.ini?.['locutus.parse_url.mode']?.local_value ?? '') || 'php'
 
   const key = [
     'source',
@@ -76,26 +75,30 @@ export default function parse_url(str: string, component?: string): Record<strin
 
   const m = parser[mode].exec(str)
   const uri: Record<string, unknown> = {}
+  if (!m) {
+    return uri
+  }
   let i = 14
 
   while (i--) {
-    if (m![i]) {
-      uri[key[i]] = m![i]
+    if (m[i]) {
+      uri[key[i]] = m[i]
     }
   }
 
   if (component) {
-    return uri[component.replace('PHP_URL_', '').toLowerCase()] as string
+    return String(uri[component.replace('PHP_URL_', '').toLowerCase()] ?? '')
   }
 
   if (mode !== 'php') {
-    const name = ini_get('locutus.parse_url.queryKey') || 'queryKey'
+    const name = String($loc?.php?.ini?.['locutus.parse_url.queryKey']?.local_value ?? '') || 'queryKey'
     const queryParser = /(?:^|&)([^&=]*)=?([^&]*)/g
-    uri[name] = {}
-    query = (uri[key[12]] || '') as string
+    const queryObj: Record<string, string> = {}
+    uri[name] = queryObj
+    query = String(uri[key[12]] || '')
     query.replace(queryParser, function ($0: string, $1: string, $2: string): string {
       if ($1) {
-        ;(uri[name] as Record<string, string>)[$1] = $2
+        queryObj[$1] = $2
       }
       return $0
     })

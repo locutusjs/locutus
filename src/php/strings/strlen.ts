@@ -1,5 +1,3 @@
-import ini_get from '../info/ini_get.ts'
-
 export default function strlen(string: string): number {
   //  discuss at: https://locutus.io/php/strlen/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -19,7 +17,8 @@ export default function strlen(string: string): number {
 
   const str = string + ''
 
-  const iniVal = ini_get('unicode.semantics') || 'off'
+  const $loc = (globalThis as any).$locutus
+  const iniVal = String($loc?.php?.ini?.['unicode.semantics']?.local_value ?? '') || 'off'
   if (iniVal === 'off') {
     return str.length
   }
@@ -29,16 +28,14 @@ export default function strlen(string: string): number {
 
   const getWholeChar = function (str: string, i: number): string | false {
     const code = str.charCodeAt(i)
-    let next = ''
-    let prev = ''
     if (code >= 0xd800 && code <= 0xdbff) {
       // High surrogate (could change last hex to 0xDB7F to
       // treat high private surrogates as single characters)
       if (str.length <= i + 1) {
         throw new Error('High surrogate without following low surrogate')
       }
-      next = str.charCodeAt(i + 1) as unknown as string
-      if ((next as unknown as number) < 0xdc00 || (next as unknown as number) > 0xdfff) {
+      const next = str.charCodeAt(i + 1)
+      if (next < 0xdc00 || next > 0xdfff) {
         throw new Error('High surrogate without following low surrogate')
       }
       return str.charAt(i) + str.charAt(i + 1)
@@ -47,8 +44,8 @@ export default function strlen(string: string): number {
       if (i === 0) {
         throw new Error('Low surrogate without preceding high surrogate')
       }
-      prev = str.charCodeAt(i - 1) as unknown as string
-      if ((prev as unknown as number) < 0xd800 || (prev as unknown as number) > 0xdbff) {
+      const prev = str.charCodeAt(i - 1)
+      if (prev < 0xd800 || prev > 0xdbff) {
         // (could change last hex to 0xDB7F to treat high private surrogates
         // as single characters)
         throw new Error('Low surrogate without preceding high surrogate')

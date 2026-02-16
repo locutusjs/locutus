@@ -36,8 +36,6 @@ export default function strtr(
   let lenStr = 0
   let lenFrom = 0
   let sortByReference: unknown = false
-  let fromTypeStr: boolean | string = false
-  let toTypeStr: boolean | string = false
   let istr = ''
   const tmpFrom: string[] = []
   const tmpTo: unknown[] = []
@@ -46,17 +44,19 @@ export default function strtr(
 
   // Received replace_pairs?
   // Convert to normal trFrom->trTo chars
-  if (typeof trFrom === 'object') {
+  if (typeof trFrom === 'object' && !Array.isArray(trFrom)) {
     // Not thread-safe; temporarily set to true
     // @todo: Don't rely on ini here, use internal krsort instead
     sortByReference = iniSet('locutus.sortByReference', false)
-    trFrom = krsort(trFrom as Record<string, unknown>) as Record<string, unknown>
+    const sorted = krsort(trFrom)
     iniSet('locutus.sortByReference', sortByReference)
 
-    for (fr in trFrom) {
-      if (trFrom.hasOwnProperty(fr)) {
-        tmpFrom.push(fr)
-        tmpTo.push(trFrom[fr])
+    if (typeof sorted === 'object') {
+      for (fr in sorted) {
+        if (sorted.hasOwnProperty(fr)) {
+          tmpFrom.push(fr)
+          tmpTo.push(sorted[fr])
+        }
       }
     }
 
@@ -66,32 +66,34 @@ export default function strtr(
 
   // Walk through subject and replace chars when needed
   lenStr = str.length
-  lenFrom = (trFrom as string | string[]).length
-  fromTypeStr = typeof trFrom === 'string'
-  toTypeStr = typeof trTo === 'string'
+  lenFrom = typeof trFrom === 'string' ? trFrom.length : trFrom.length
+  const fromStr = typeof trFrom === 'string' ? trFrom : null
+  const fromArr = Array.isArray(trFrom) ? trFrom : null
+  const toStr = typeof trTo === 'string' ? trTo : null
+  const toArr = Array.isArray(trTo) ? trTo : null
 
   for (i = 0; i < lenStr; i++) {
     match = false
-    if (fromTypeStr) {
+    if (fromStr) {
       istr = str.charAt(i)
       for (j = 0; j < lenFrom; j++) {
-        if (istr === (trFrom as string).charAt(j)) {
+        if (istr === fromStr.charAt(j)) {
           match = true
           break
         }
       }
-    } else {
+    } else if (fromArr) {
       for (j = 0; j < lenFrom; j++) {
-        if (str.substr(i, (trFrom as unknown as string[])[j].length) === (trFrom as unknown as string[])[j]) {
+        if (str.substr(i, fromArr[j].length) === fromArr[j]) {
           match = true
           // Fast forward
-          i = i + (trFrom as unknown as string[])[j].length - 1
+          i = i + fromArr[j].length - 1
           break
         }
       }
     }
     if (match) {
-      ret += toTypeStr ? (trTo as string).charAt(j) : (trTo as unknown[])[j]
+      ret += toStr ? toStr.charAt(j) : toArr ? toArr[j] : ''
     } else {
       ret += str.charAt(i)
     }

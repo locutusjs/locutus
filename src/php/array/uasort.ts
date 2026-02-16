@@ -1,5 +1,3 @@
-import ini_get from '../info/ini_get.ts'
-
 export default function uasort(
   this: Record<string, any>,
   inputArr: Record<string, unknown>,
@@ -30,13 +28,17 @@ export default function uasort(
   let sortByReference = false
   let populateArr: Record<string, unknown> = {}
 
+  let sortFn: (a: unknown, b: unknown) => number
   if (typeof sorter === 'string') {
-    sorter = this[sorter]
+    sortFn = this[sorter]
   } else if (Array.isArray(sorter)) {
-    sorter = this[sorter[0]][sorter[1]]
+    sortFn = this[sorter[0]][sorter[1]]
+  } else {
+    sortFn = sorter
   }
 
-  const iniVal = ini_get('locutus.sortByReference') || 'on'
+  const $loc = (globalThis as any).$locutus
+  const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 
@@ -50,7 +52,7 @@ export default function uasort(
     }
   }
   valArr.sort(function (a, b) {
-    return (sorter as (a: unknown, b: unknown) => number)(a[1], b[1])
+    return sortFn(a[1], b[1])
   })
 
   for (i = 0; i < valArr.length; i++) {

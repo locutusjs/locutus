@@ -1,5 +1,3 @@
-import ini_get from '../info/ini_get.ts'
-
 export default function is_array(mixedVar: unknown): boolean {
   //  discuss at: https://locutus.io/php/is_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -31,7 +29,7 @@ export default function is_array(mixedVar: unknown): boolean {
   //   returns 5: false
 
   const _getFuncName = function (fn: unknown): string {
-    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn as string)
+    const name = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
     if (!name) {
       return '(Anonymous)'
     }
@@ -79,7 +77,8 @@ export default function is_array(mixedVar: unknown): boolean {
     return true
   }
 
-  const iniVal = ini_get('locutus.objectsAsArrays') || 'on'
+  const $loc = (globalThis as any).$locutus
+  const iniVal = String($loc?.php?.ini?.['locutus.objectsAsArrays']?.local_value ?? '') || 'on'
   if (iniVal === 'on') {
     const asString = Object.prototype.toString.call(mixedVar)
     const asFunc = _getFuncName((mixedVar as Record<string, unknown>).constructor)

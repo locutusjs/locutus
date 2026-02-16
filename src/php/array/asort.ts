@@ -1,5 +1,4 @@
 import i18nlgd from '../i18n/i18n_loc_get_default.js'
-import ini_get from '../info/ini_get.ts'
 import strnatcmp from '../strings/strnatcmp.js'
 
 export default function asort(
@@ -50,7 +49,12 @@ export default function asort(
   let populateArr: Record<string, unknown> = {}
 
   const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus: { php: { locales: Record<string, { sorting: (a: unknown, b: unknown) => number }> } }
+    $locutus: {
+      php: {
+        locales: Record<string, { sorting: (a: unknown, b: unknown) => number }>
+        ini?: Record<string, { local_value?: unknown }>
+      }
+    }
   }
   $global.$locutus = $global.$locutus || ({} as typeof $global.$locutus)
   const $locutus = $global.$locutus
@@ -74,7 +78,7 @@ export default function asort(
     case 'SORT_NUMERIC':
       // compare items numerically
       sorter = function (a, b) {
-        return (a as number) - (b as number)
+        return Number(a) - Number(b)
       }
       break
     case 'SORT_REGULAR':
@@ -82,8 +86,8 @@ export default function asort(
       break
     default:
       sorter = function (a, b) {
-        const aFloat = parseFloat(a as string)
-        const bFloat = parseFloat(b as string)
+        const aFloat = parseFloat(String(a))
+        const bFloat = parseFloat(String(b))
         const aNumeric = aFloat + '' === a
         const bNumeric = bFloat + '' === b
         if (aNumeric && bNumeric) {
@@ -93,12 +97,12 @@ export default function asort(
         } else if (!aNumeric && bNumeric) {
           return -1
         }
-        return (a as string) > (b as string) ? 1 : (a as string) < (b as string) ? -1 : 0
+        return String(a) > String(b) ? 1 : String(a) < String(b) ? -1 : 0
       }
       break
   }
 
-  const iniVal = ini_get('locutus.sortByReference') || 'on'
+  const iniVal = String($locutus.php.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

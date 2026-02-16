@@ -1,5 +1,4 @@
 import i18nlgd from '../i18n/i18n_loc_get_default.js'
-import ini_get from '../info/ini_get.ts'
 import strnatcmp from '../strings/strnatcmp.js'
 
 export default function krsort(
@@ -45,7 +44,10 @@ export default function krsort(
 
   const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
     $locutus: {
-      php: { locales: Record<string, { sorting: (a: string, b: string) => number }> }
+      php: {
+        locales: Record<string, { sorting: (a: string, b: string) => number }>
+        ini?: Record<string, { local_value?: unknown }>
+      }
       locales: Record<string, { sorting: (a: string, b: string) => number }>
     }
   }
@@ -71,7 +73,7 @@ export default function krsort(
     case 'SORT_NUMERIC':
       // compare items numerically
       sorter = function (a, b) {
-        return (b as unknown as number) - (a as unknown as number)
+        return Number(b) - Number(a)
       }
       break
     case 'SORT_REGULAR':
@@ -102,7 +104,7 @@ export default function krsort(
   }
   keys.sort(sorter)
 
-  const iniVal = ini_get('locutus.sortByReference') || 'on'
+  const iniVal = String($locutus.php.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

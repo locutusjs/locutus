@@ -1,4 +1,3 @@
-import ini_get from '../info/ini_get.ts'
 import strnatcasecmp from '../strings/strnatcasecmp.js'
 
 export default function natcasesort(inputArr: Record<string, unknown>): boolean | Record<string, unknown> {
@@ -29,7 +28,8 @@ export default function natcasesort(inputArr: Record<string, unknown>): boolean 
   let sortByReference = false
   let populateArr: Record<string, unknown> = {}
 
-  const iniVal = ini_get('locutus.sortByReference') || 'on'
+  const $loc = (globalThis as any).$locutus
+  const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 
