@@ -5,8 +5,8 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.ts').default
-const parse_url = require('../../../../src/php/url/parse_url.ts').default
+const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
+const parse_url = require('../../../../src/php/url/parse_url.ts').parse_url
 
 describe('src/php/url/parse_url.ts (tested in test/generated/php/url/parse_url.vitest.ts)', function () {
   it('should pass example 1', function () {

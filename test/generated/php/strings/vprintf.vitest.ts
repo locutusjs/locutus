@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.ts').default
+const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
 const vprintf = require('../../../../src/php/strings/vprintf.js')
 
 describe('src/php/strings/vprintf.js (tested in test/generated/php/strings/vprintf.vitest.ts)', function () {

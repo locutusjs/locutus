@@ -1,4 +1,4 @@
-export default function ceil(value: number): number {
+export function ceil(value: number): number {
   //      discuss at: https://locutus.io/php/ceil/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)

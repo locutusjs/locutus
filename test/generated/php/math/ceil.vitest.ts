@@ -5,8 +5,8 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.ts').default
-const ceil = require('../../../../src/php/math/ceil.ts').default
+const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
+const ceil = require('../../../../src/php/math/ceil.ts').ceil
 
 describe('src/php/math/ceil.ts (tested in test/generated/php/math/ceil.vitest.ts)', function () {
   it('should pass example 1', function () {

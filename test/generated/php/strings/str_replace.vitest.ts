@@ -5,8 +5,8 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.ts').default
-const str_replace = require('../../../../src/php/strings/str_replace.ts').default
+const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
+const str_replace = require('../../../../src/php/strings/str_replace.ts').str_replace
 
 describe('src/php/strings/str_replace.ts (tested in test/generated/php/strings/str_replace.vitest.ts)', function () {
   it('should pass example 1', function () {

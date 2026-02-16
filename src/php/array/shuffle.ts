@@ -1,4 +1,4 @@
-export default function shuffle(inputArr: Record<string, unknown>): boolean | Record<string, unknown> | unknown[] {
+export function shuffle(inputArr: Record<string, unknown>): boolean | Record<string, unknown> | unknown[] {
   //  discuss at: https://locutus.io/php/shuffle/
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   //  revised by: Kevin van Zonneveld (https://kvz.io)

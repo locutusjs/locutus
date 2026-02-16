@@ -1,7 +1,7 @@
-import krsort from '../array/krsort.ts'
+import { krsort } from '../array/krsort.ts'
 import iniSet from '../info/ini_set.js'
 
-export default function strtr(
+export function strtr(
   str: string,
   trFrom: string | Record<string, unknown> | string[],
   trTo?: string | unknown[],

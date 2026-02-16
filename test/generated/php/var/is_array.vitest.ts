@@ -5,8 +5,8 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.ts').default
-const is_array = require('../../../../src/php/var/is_array.ts').default
+const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
+const is_array = require('../../../../src/php/var/is_array.ts').is_array
 
 describe('src/php/var/is_array.ts (tested in test/generated/php/var/is_array.vitest.ts)', function () {
   it('should pass example 1', function () {

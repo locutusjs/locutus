@@ -351,9 +351,9 @@ class Util {
 
     let line: string
     if (ext === '.ts') {
-      // TS files use `export default`, so require().default is needed.
-      // The .ts extension is required for Node's --experimental-strip-types.
-      line = 'module.exports.' + module + " = require('./" + basefile + ".ts').default"
+      // TS files use named exports. The .ts extension is required for
+      // Node's --experimental-strip-types.
+      line = 'module.exports.' + module + " = require('./" + basefile + ".ts')." + module
     } else {
       line = 'module.exports.' + module + " = require('./" + basefile + "')"
     }
@@ -460,8 +460,8 @@ class Util {
   }
 
   _addRequire(name: string, relativeSrcForTest: string): string {
-    const needsDefault = relativeSrcForTest.endsWith('.ts')
-    const suffix = needsDefault ? '.default' : ''
+    const isTs = relativeSrcForTest.endsWith('.ts')
+    const suffix = isTs ? '.' + name : ''
     return ['const ', name, " = require('", relativeSrcForTest, "')", suffix].join('')
   }
 
@@ -746,7 +746,7 @@ class Util {
     const scriptKind = isTS ? ts.ScriptKind.TS : ts.ScriptKind.JS
     const sourceFile = ts.createSourceFile(filepath, code, ts.ScriptTarget.ES2022, true, scriptKind)
 
-    // Find the exported function: either `module.exports = function name(` or `export default function name(`
+    // Find the exported function: `module.exports = function name(`, `export function name(`, or `export default function name(`
     let funcNode: ts.FunctionExpression | ts.FunctionDeclaration | undefined
 
     ts.forEachChild(sourceFile, (node) => {
@@ -771,19 +771,18 @@ class Util {
         }
       }
 
-      // ESM: export default function name(...) { ... }
+      // ESM: export function name(...) { ... } or export default function name(...) { ... }
       if (ts.isFunctionDeclaration(node) && node.name) {
         const modifiers = ts.getModifiers(node)
         const hasExport = modifiers?.some((m) => m.kind === ts.SyntaxKind.ExportKeyword)
-        const hasDefault = modifiers?.some((m) => m.kind === ts.SyntaxKind.DefaultKeyword)
-        if (hasExport && hasDefault) {
+        if (hasExport) {
           funcNode = node
         }
       }
     })
 
     if (!funcNode) {
-      throw new Error(`File ${filepath} must contain exactly one module.exports or export default function`)
+      throw new Error(`File ${filepath} must contain exactly one module.exports or export function`)
     }
 
     const funcName = funcNode.name!.text

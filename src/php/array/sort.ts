@@ -1,6 +1,6 @@
 import i18nlgd from '../i18n/i18n_loc_get_default.js'
 
-export default function sort(inputArr: Record<string, unknown>, sortFlags?: string): boolean | Record<string, unknown> {
+export function sort(inputArr: Record<string, unknown>, sortFlags?: string): boolean | Record<string, unknown> {
   //  discuss at: https://locutus.io/php/sort/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //  revised by: Brett Zamir (https://brett-zamir.me)

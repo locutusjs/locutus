@@ -5,8 +5,8 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.ts').default
-const str_repeat = require('../../../../src/php/strings/str_repeat.ts').default
+const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
+const str_repeat = require('../../../../src/php/strings/str_repeat.ts').str_repeat
 
 describe('src/php/strings/str_repeat.ts (tested in test/generated/php/strings/str_repeat.vitest.ts)', function () {
   it('should pass example 1', function () {

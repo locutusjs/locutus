@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.ts').default
+const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
 const array_diff = require('../../../../src/php/array/array_diff.js')
 
 describe('src/php/array/array_diff.js (tested in test/generated/php/array/array_diff.vitest.ts)', function () {

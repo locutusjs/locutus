@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.ts').default
+const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
 const str_shuffle = require('../../../../src/php/strings/str_shuffle.js')
 
 describe('src/php/strings/str_shuffle.js (tested in test/generated/php/strings/str_shuffle.vitest.ts)', function () {

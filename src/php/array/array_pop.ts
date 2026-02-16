@@ -1,4 +1,4 @@
-export default function array_pop(inputArr: Record<string, unknown> | unknown[]): unknown {
+export function array_pop(inputArr: Record<string, unknown> | unknown[]): unknown {
   //  discuss at: https://locutus.io/php/array_pop/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Kevin van Zonneveld (https://kvz.io)

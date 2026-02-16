@@ -1,4 +1,4 @@
-export default function strlen(string: string): number {
+export function strlen(string: string): number {
   //  discuss at: https://locutus.io/php/strlen/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Sakimori

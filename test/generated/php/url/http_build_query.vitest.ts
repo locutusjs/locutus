@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.ts').default
+const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
 const http_build_query = require('../../../../src/php/url/http_build_query.js')
 
 describe('src/php/url/http_build_query.js (tested in test/generated/php/url/http_build_query.vitest.ts)', function () {

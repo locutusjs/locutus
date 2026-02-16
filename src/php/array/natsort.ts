@@ -1,6 +1,6 @@
 import strnatcmp from '../strings/strnatcmp.js'
 
-export default function natsort(inputArr: Record<string, unknown>): boolean | Record<string, unknown> {
+export function natsort(inputArr: Record<string, unknown>): boolean | Record<string, unknown> {
   //      discuss at: https://locutus.io/php/natsort/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

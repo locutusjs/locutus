@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.ts').default
+const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
 const utf8_decode = require('../../../../src/php/xml/utf8_decode.js')
 
 describe('src/php/xml/utf8_decode.js (tested in test/generated/php/xml/utf8_decode.vitest.ts)', function () {

@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.ts').default
+const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
 const strtotime = require('../../../../src/php/datetime/strtotime.js')
 
 describe('src/php/datetime/strtotime.js (tested in test/generated/php/datetime/strtotime.vitest.ts)', function () {

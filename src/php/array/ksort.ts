@@ -1,10 +1,7 @@
 import i18nlgd from '../i18n/i18n_loc_get_default.js'
 import strnatcmp from '../strings/strnatcmp.js'
 
-export default function ksort(
-  inputArr: Record<string, unknown>,
-  sortFlags?: string,
-): boolean | Record<string, unknown> {
+export function ksort(inputArr: Record<string, unknown>, sortFlags?: string): boolean | Record<string, unknown> {
   //  discuss at: https://locutus.io/php/ksort/
   // original by: GeekFG (https://geekfg.blogspot.com)
   // improved by: Kevin van Zonneveld (https://kvz.io)

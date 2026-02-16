@@ -1,4 +1,4 @@
-export default function parse_str(str: string, array?: Record<string, unknown>): void {
+export function parse_str(str: string, array?: Record<string, unknown>): void {
   //       discuss at: https://locutus.io/php/parse_str/
   //      original by: Cagri Ekin
   //      improved by: Michael White (https://getsprink.com)

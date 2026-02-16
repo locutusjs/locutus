@@ -1,4 +1,4 @@
-export default function str_repeat(input: string, multiplier: number): string {
+export function str_repeat(input: string, multiplier: number): string {
   //      discuss at: https://locutus.io/php/str_repeat/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

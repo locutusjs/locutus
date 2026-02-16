@@ -1,4 +1,4 @@
-export default function json_encode(mixedVal: unknown): string | null {
+export function json_encode(mixedVal: unknown): string | null {
   //       discuss at: https://phpjs.org/functions/json_encode/
   //  parity verified: PHP 8.3
   //      original by: Public Domain (https://www.json.org/json2.js)

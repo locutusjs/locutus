@@ -1,4 +1,4 @@
-export default function parse_url(str: string, component?: string): Record<string, unknown> | string {
+export function parse_url(str: string, component?: string): Record<string, unknown> | string {
   //       discuss at: https://locutus.io/php/parse_url/
   //      original by: Steven Levithan (https://blog.stevenlevithan.com)
   // reimplemented by: Brett Zamir (https://brett-zamir.me)

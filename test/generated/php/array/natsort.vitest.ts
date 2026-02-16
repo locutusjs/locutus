@@ -5,8 +5,8 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.ts').default
-const natsort = require('../../../../src/php/array/natsort.ts').default
+const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
+const natsort = require('../../../../src/php/array/natsort.ts').natsort
 
 describe('src/php/array/natsort.ts (tested in test/generated/php/array/natsort.vitest.ts)', function () {
   it('should pass example 1', function () {

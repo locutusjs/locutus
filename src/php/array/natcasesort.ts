@@ -1,6 +1,6 @@
 import strnatcasecmp from '../strings/strnatcasecmp.js'
 
-export default function natcasesort(inputArr: Record<string, unknown>): boolean | Record<string, unknown> {
+export function natcasesort(inputArr: Record<string, unknown>): boolean | Record<string, unknown> {
   //      discuss at: https://locutus.io/php/natcasesort/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

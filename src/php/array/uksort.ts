@@ -1,4 +1,4 @@
-export default function uksort(
+export function uksort(
   this: Record<string, any>,
   inputArr: Record<string, unknown>,
   sorter: ((a: string, b: string) => number) | string,

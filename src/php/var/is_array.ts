@@ -1,4 +1,4 @@
-export default function is_array(mixedVar: unknown): boolean {
+export function is_array(mixedVar: unknown): boolean {
   //  discuss at: https://locutus.io/php/is_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Legaev Andrey

@@ -1,10 +1,7 @@
 import i18nlgd from '../i18n/i18n_loc_get_default.js'
 import strnatcmp from '../strings/strnatcmp.js'
 
-export default function asort(
-  inputArr: Record<string, unknown>,
-  sortFlags?: string,
-): boolean | Record<string, unknown> {
+export function asort(inputArr: Record<string, unknown>, sortFlags?: string): boolean | Record<string, unknown> {
   //  discuss at: https://locutus.io/php/asort/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)

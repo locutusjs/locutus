@@ -1,4 +1,4 @@
-export default function uasort(
+export function uasort(
   this: Record<string, any>,
   inputArr: Record<string, unknown>,
   sorter: ((a: unknown, b: unknown) => number) | string | string[],

@@ -1,12 +1,16 @@
 /**
- * Post-process tsc CommonJS output to fix default exports.
+ * Post-process tsc CommonJS output so require() returns the function directly.
  *
- * tsc with module:CommonJS produces:
+ * For named exports, tsc produces:
  *   Object.defineProperty(exports, "__esModule", { value: true });
- *   exports.default = foo;
+ *   exports.foo = foo;
  *
- * But require('./foo') returns { default: foo, __esModule: true }, not foo.
- * This script appends `module.exports = exports.default;` so require() works.
+ * But require('./foo') returns { foo: fn, __esModule: true }, not fn.
+ * This script appends `module.exports = exports.foo;` (using the filename
+ * as the export name) so require() works as expected.
+ *
+ * Also fixes index.js files that reference .ts extensions and .funcName
+ * suffixes, since in dist everything is compiled to .js.
  */
 
 import fs from 'node:fs'
@@ -23,19 +27,28 @@ function walk(dir) {
       let content = fs.readFileSync(full, 'utf-8')
       let modified = false
 
-      // Fix compiled TS default exports: exports.default → module.exports
-      // tsc produces: Object.defineProperty(exports, "__esModule", { value: true });
-      if (content.includes('"__esModule"') && content.includes('exports.default')) {
-        content = content + '\nmodule.exports = exports.default;\n'
-        modified = true
+      if (content.includes('"__esModule"') && entry.name !== 'index.js') {
+        const name = path.basename(entry.name, '.js')
+        if (content.includes('exports.' + name)) {
+          // Named export: exports.foo = foo → module.exports = exports.foo
+          content = content + '\nmodule.exports = exports.' + name + ';\n'
+          modified = true
+        } else if (content.includes('exports.default')) {
+          // Legacy default export (not yet migrated)
+          content = content + '\nmodule.exports = exports.default;\n'
+          modified = true
+        }
       }
 
-      // Fix index.js files: require('./foo.ts').default → require('./foo')
+      // Fix index.js files: require('./foo.ts').funcName → require('./foo')
       // In dist, .ts files are compiled to .js, so we strip the .ts extension
-      // and .default (since fix above makes module.exports = the function directly)
-      if (entry.name === 'index.js' && content.includes(".ts').default")) {
-        content = content.replace(/require\('([^']+)\.ts'\)\.default/g, "require('$1')")
-        modified = true
+      // and the .funcName suffix (since the fix above makes module.exports = fn)
+      if (entry.name === 'index.js') {
+        const before = content
+        content = content.replace(/require\('([^']+)\.ts'\)\.\w+/g, "require('$1')")
+        if (content !== before) {
+          modified = true
+        }
       }
 
       if (modified) {

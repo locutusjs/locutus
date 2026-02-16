@@ -1,4 +1,4 @@
-export default function ini_get(varname: string): string {
+export function ini_get(varname: string): string {
   //  discuss at: https://locutus.io/php/ini_get/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: The ini values must be set by ini_set or manually within an ini file

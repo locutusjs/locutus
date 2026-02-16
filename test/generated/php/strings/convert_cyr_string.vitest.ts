@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.ts').default
+const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
 const convert_cyr_string = require('../../../../src/php/strings/convert_cyr_string.js')
 
 describe('src/php/strings/convert_cyr_string.js (tested in test/generated/php/strings/convert_cyr_string.vitest.ts)', function () {

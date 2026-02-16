@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.ts').default
+const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
 const similar_text = require('../../../../src/php/strings/similar_text.js')
 
 describe('src/php/strings/similar_text.js (tested in test/generated/php/strings/similar_text.vitest.ts)', function () {

@@ -1,6 +1,6 @@
 import _php_cast_string from '../_helpers/_phpCastString.js'
 
-export default function substr(input: string | number, start: number, len?: number): string | false {
+export function substr(input: string | number, start: number, len?: number): string | false {
   //  discuss at: https://locutus.io/php/substr/
   // original by: Martijn Wieringa
   // bugfixed by: T.Wild

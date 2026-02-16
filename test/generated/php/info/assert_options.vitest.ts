@@ -5,8 +5,8 @@ import { describe, it, expect } from 'vitest'
 
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
-const ini_get = require('../../../../src/php/info/ini_get.ts').default
-const assert_options = require('../../../../src/php/info/assert_options.ts').default
+const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
+const assert_options = require('../../../../src/php/info/assert_options.ts').assert_options
 
 describe('src/php/info/assert_options.ts (tested in test/generated/php/info/assert_options.vitest.ts)', function () {
   it('should pass example 1', function () {

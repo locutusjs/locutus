@@ -2,7 +2,7 @@ interface CountObj {
   value: number
 }
 
-export default function str_replace(
+export function str_replace(
   search: string | string[],
   replace: string | string[],
   subject: string | string[],
