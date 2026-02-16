@@ -1,26 +1,25 @@
-//  discuss at: https://locutus.io/php/strlen/
-// original by: Kevin van Zonneveld (https://kvz.io)
-// improved by: Sakimori
-// improved by: Kevin van Zonneveld (https://kvz.io)
-//    input by: Kirk Strobeck
-// bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-//  revised by: Brett Zamir (https://brett-zamir.me)
-//      note 1: May look like overkill, but in order to be truly faithful to handling all Unicode
-//      note 1: characters and to this function in PHP which does not count the number of bytes
-//      note 1: but counts the number of characters, something like this is really necessary.
-//   example 1: strlen('Kevin van Zonneveld')
-//   returns 1: 19
-//   example 2: ini_set('unicode.semantics', 'on')
-//   example 2: strlen('A\ud87e\udc04Z')
-//   returns 2: 3
-
-// In real usage: import ini_get from '../info/ini_get'
-declare function ini_get(key: string): string | undefined
+import ini_get from '../info/ini_get.js'
 
 export default function strlen(string: string): number {
+  //  discuss at: https://locutus.io/php/strlen/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Sakimori
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  //    input by: Kirk Strobeck
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: May look like overkill, but in order to be truly faithful to handling all Unicode
+  //      note 1: characters and to this function in PHP which does not count the number of bytes
+  //      note 1: but counts the number of characters, something like this is really necessary.
+  //   example 1: strlen('Kevin van Zonneveld')
+  //   returns 1: 19
+  //   example 2: ini_set('unicode.semantics', 'on')
+  //   example 2: strlen('A\ud87e\udc04Z')
+  //   returns 2: 3
+
   const str: string = string + ''
 
-  const iniVal: string = (typeof ini_get !== 'undefined' ? ini_get('unicode.semantics') : undefined) || 'off'
+  const iniVal: string = ini_get('unicode.semantics') || 'off'
   if (iniVal === 'off') {
     return str.length
   }

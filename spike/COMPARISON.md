@@ -1,137 +1,69 @@
-# TypeScript Migration Spike - Comparison
+# TypeScript Migration Spike — Comparison
 
-## Overview
+## Approach
 
-Converted 3 functions to TypeScript and compiled with `tsc --target ES2020 --module ESNext`:
-- `strlen` - simple function
-- `str_replace` - medium complexity with overloaded types
-- `parse_str` - complex with global state manipulation
+1. Write `.ts` source following `MIGRATE-TO-TS.md` instructions
+2. Compile with `tsc --target ES2020 --module ESNext`
+3. Run `biome format` on both the original JS and the tsc output
+4. Diff the Biome-formatted versions
 
-## Key Differences: Current JS vs tsc Output
+## parse_str — Biome-formatted diff (original JS vs tsc output)
 
-### 1. Module Format
+After Biome-formatting both sides, the diff is **only blank lines + one variable rename**:
 
-| Current (CJS) | tsc Output (ESM) |
-|---------------|------------------|
-| `module.exports = function strlen(string) {` | `export default function strlen(string) {` |
+```diff
+- if (!array) {
+-   array = $global
+- }
++ const target = array || $global
+```
 
-**Decision needed**: The current build already outputs ESM to `dist/`. This is consistent.
+```diff
+- obj = array
++ obj = target
+```
 
-### 2. Semicolons and Formatting
+Every other `-` line in the diff is just a removed blank line — tsc strips blank lines
+from emitted JS ([microsoft/TypeScript#843](https://github.com/microsoft/TypeScript/issues/843),
+open since 2014, won't be fixed).
 
-| Current | tsc Output |
-|---------|------------|
-| No semicolons | Adds semicolons |
-| `} else if` on same line | `}\nelse if` on separate lines |
+## Blank line strategies
 
-**Example** (strlen.js line 40):
+| Approach | Blank lines? | Speed | Complexity |
+|----------|-------------|-------|------------|
+| tsc | Stripped | Baseline | None |
+| Post-process tsc output (re-insert blanks) | Preserved | Baseline + script | Medium (fragile regex) |
+| Accept blank line diff | N/A | N/A | None |
+
+**Recommendation**: Accept it. The TS source has blank lines and is what devs read on GitHub.
+The emitted JS in `dist/` is a build artifact.
+
+## $global/$locutus typing
+
+58 files use this boilerplate:
 ```javascript
-// Current:
-} else if (code >= 0xdc00 && code <= 0xdfff) {
-
-// tsc output:
-}
-else if (code >= 0xdc00 && code <= 0xdfff) {
+const $global = typeof window !== 'undefined' ? window : global
+$global.$locutus = $global.$locutus || {}
 ```
 
-**Impact**: Minor formatting difference. Could configure Biome/Prettier to match either style.
-
-### 3. hasOwnProperty Pattern
-
-| Current | tsc Output |
-|---------|------------|
-| `obj.hasOwnProperty(p)` | `Object.prototype.hasOwnProperty.call(obj, p)` |
-
-**Impact**: tsc output is actually safer (works when object doesn't have hasOwnProperty). This is an improvement.
-
-### 4. Variable Naming (minor)
-
-| Current | tsc Output |
-|---------|------------|
-| `array = $global` | `let targetArray = array \|\| $global` |
-
-**Impact**: The TS version needed a new variable to satisfy type checker (can't reassign parameter with different type). Slightly more readable.
-
-### 5. Global State Typing
-
-The parse_str TS version has verbose casting for the global/$locutus pattern:
+In TypeScript, a single cast is clean enough:
 ```typescript
-const $global: typeof globalThis = typeof window !== 'undefined' ? window : global
-;($global as Record<string, unknown>).$locutus = ...
+const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & Record<string, unknown>
 ```
 
-**Impact**: This is ugly in TS source but disappears in JS output. Could be improved with a shared utility.
+The cast disappears entirely in the JS output — zero runtime impact. The `$locutus` lines
+type-check fine after the cast because `Record<string, unknown>` allows arbitrary property access.
 
-## Declaration Files Generated
+## Subagent workflow test
 
-Excellent `.d.ts` output automatically:
+Fed `MIGRATE-TO-TS.md` + the original `parse_str.js` to a sonnet subagent.
 
-```typescript
-// strlen.d.ts
-export default function strlen(string: string): number;
+**Result**: The subagent produced a clean TypeScript conversion on the first try that:
+- Compiles with zero errors
+- Preserves all comments in place
+- Preserves all blank lines
+- Only changes the `array` → `target` variable (required by TS)
+- Keeps `hasOwnProperty` as-is per instructions
+- Types the `$global` pattern correctly
 
-// str_replace.d.ts
-type SearchType = string | string[];
-type ReplaceType = string | string[];
-type SubjectType = string | string[];
-interface CountObj {
-    value: number;
-}
-export default function str_replace(
-  search: SearchType,
-  replace: ReplaceType,
-  subject: SubjectType,
-  countObj?: CountObj
-): string | string[];
-
-// parse_str.d.ts
-type ParseStrArray = Record<string, unknown>;
-export default function parse_str(str: string, array?: ParseStrArray): void;
-```
-
-**Huge win**: These types are exactly what consumers need. Currently locutus has no .d.ts files.
-
-## Side-by-Side Line Count
-
-| Function | Current JS | TS Source | tsc JS Output | .d.ts |
-|----------|-----------|-----------|---------------|-------|
-| strlen | 73 | 69 | 68 | 1 |
-| str_replace | 85 | 75 | 75 | 8 |
-| parse_str | 160 | 144 | 135 | 3 |
-
-The TS source is slightly shorter (no redundant `let` declarations), and tsc output is comparable.
-
-## Behavioral Differences
-
-1. **parse_str**: Changed `obj.hasOwnProperty(p)` to `Object.prototype.hasOwnProperty.call(obj, p)` - this is actually a safety improvement.
-
-2. **No other runtime differences** - the JS output is functionally equivalent.
-
-## Type Complexity Observations
-
-### Easy to type
-- `strlen(string: string): number` - trivial
-
-### Medium complexity
-- `str_replace` - needs union types for arrays/strings, interface for countObj
-
-### Hard to type cleanly
-- `parse_str` - global state, dynamic object building, key can be string or number
-- Required `as` casts and `Record<string, unknown>` patterns
-
-## Recommendation
-
-**Go forward with TypeScript migration:**
-
-1. **JS output is clean** - tsc produces readable, idiomatic JavaScript
-2. **Free .d.ts files** - major win for TypeScript consumers
-3. **Minor style differences** - can be normalized with formatter config
-4. **Type complexity manageable** - even parse_str (most complex) is typeable
-5. **Some patterns improve** - hasOwnProperty becomes safer
-
-**Migration approach:**
-- Convert `src/**/*.js` → `src/**/*.ts`
-- Build outputs both `.js` and `.d.ts` to `dist/`
-- Use `tsc` for production builds
-- Use Node 22+ type stripping for development
-- Keep comment headers (they survive compilation)
+**Conclusion**: The instructions are good enough for parallel subagent migration.
