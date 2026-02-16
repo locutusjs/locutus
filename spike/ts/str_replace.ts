@@ -42,7 +42,7 @@ export default function str_replace(
   search: SearchType,
   replace: ReplaceType,
   subject: SubjectType,
-  countObj?: CountObj
+  countObj?: CountObj,
 ): string | string[] {
   let i: number = 0
   let j: number = 0
@@ -52,7 +52,7 @@ export default function str_replace(
   let fl: number = 0
   const f: string[] = ([] as string[]).concat(search as string[])
   let r: string[] = ([] as string[]).concat(replace as string[])
-  let s: string[] = ([] as string[]).concat(subject as string[])
+  const s: string[] = ([] as string[]).concat(subject as string[])
   let ra: boolean = Array.isArray(r)
   const sa: boolean = Array.isArray(subject)
 

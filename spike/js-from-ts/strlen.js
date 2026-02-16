@@ -14,55 +14,54 @@
 //   example 2: strlen('A\ud87e\udc04Z')
 //   returns 2: 3
 export default function strlen(string) {
-    const str = string + '';
-    const iniVal = (typeof ini_get !== 'undefined' ? ini_get('unicode.semantics') : undefined) || 'off';
-    if (iniVal === 'off') {
-        return str.length;
+  const str = string + ''
+  const iniVal = (typeof ini_get !== 'undefined' ? ini_get('unicode.semantics') : undefined) || 'off'
+  if (iniVal === 'off') {
+    return str.length
+  }
+  let i = 0
+  let lgth = 0
+  const getWholeChar = function (str, i) {
+    const code = str.charCodeAt(i)
+    let next = ''
+    let prev = ''
+    if (code >= 0xd800 && code <= 0xdbff) {
+      // High surrogate (could change last hex to 0xDB7F to
+      // treat high private surrogates as single characters)
+      if (str.length <= i + 1) {
+        throw new Error('High surrogate without following low surrogate')
+      }
+      next = str.charCodeAt(i + 1)
+      if (next < 0xdc00 || next > 0xdfff) {
+        throw new Error('High surrogate without following low surrogate')
+      }
+      return str.charAt(i) + str.charAt(i + 1)
+    } else if (code >= 0xdc00 && code <= 0xdfff) {
+      // Low surrogate
+      if (i === 0) {
+        throw new Error('Low surrogate without preceding high surrogate')
+      }
+      prev = str.charCodeAt(i - 1)
+      if (prev < 0xd800 || prev > 0xdbff) {
+        // (could change last hex to 0xDB7F to treat high private surrogates
+        // as single characters)
+        throw new Error('Low surrogate without preceding high surrogate')
+      }
+      // We can pass over low surrogates now as the second
+      // component in a pair which we have already processed
+      return false
     }
-    let i = 0;
-    let lgth = 0;
-    const getWholeChar = function (str, i) {
-        const code = str.charCodeAt(i);
-        let next = '';
-        let prev = '';
-        if (code >= 0xd800 && code <= 0xdbff) {
-            // High surrogate (could change last hex to 0xDB7F to
-            // treat high private surrogates as single characters)
-            if (str.length <= i + 1) {
-                throw new Error('High surrogate without following low surrogate');
-            }
-            next = str.charCodeAt(i + 1);
-            if (next < 0xdc00 || next > 0xdfff) {
-                throw new Error('High surrogate without following low surrogate');
-            }
-            return str.charAt(i) + str.charAt(i + 1);
-        }
-        else if (code >= 0xdc00 && code <= 0xdfff) {
-            // Low surrogate
-            if (i === 0) {
-                throw new Error('Low surrogate without preceding high surrogate');
-            }
-            prev = str.charCodeAt(i - 1);
-            if (prev < 0xd800 || prev > 0xdbff) {
-                // (could change last hex to 0xDB7F to treat high private surrogates
-                // as single characters)
-                throw new Error('Low surrogate without preceding high surrogate');
-            }
-            // We can pass over low surrogates now as the second
-            // component in a pair which we have already processed
-            return false;
-        }
-        return str.charAt(i);
-    };
-    for (i = 0, lgth = 0; i < str.length; i++) {
-        if (getWholeChar(str, i) === false) {
-            continue;
-        }
-        // Adapt this line at the top of any loop, passing in the whole string and
-        // the current iteration and returning a variable to represent the individual character;
-        // purpose is to treat the first part of a surrogate pair as the whole character and then
-        // ignore the second part
-        lgth++;
+    return str.charAt(i)
+  }
+  for (i = 0, lgth = 0; i < str.length; i++) {
+    if (getWholeChar(str, i) === false) {
+      continue
     }
-    return lgth;
+    // Adapt this line at the top of any loop, passing in the whole string and
+    // the current iteration and returning a variable to represent the individual character;
+    // purpose is to treat the first part of a surrogate pair as the whole character and then
+    // ignore the second part
+    lgth++
+  }
+  return lgth
 }

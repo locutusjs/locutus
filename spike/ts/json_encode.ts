@@ -21,7 +21,7 @@ export default function json_encode(mixedVal: unknown): string | null {
     $locutus: { php: Record<string, unknown> }
     JSON: typeof JSON
   }
-  $global.$locutus = $global.$locutus || {} as { php: Record<string, unknown> }
+  $global.$locutus = $global.$locutus || ({} as { php: Record<string, unknown> })
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 

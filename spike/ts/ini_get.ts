@@ -6,10 +6,12 @@ export default function ini_get(varname: string): string {
   //   example 1: ini_get('date.timezone')
   //   returns 1: 'Asia/Hong_Kong'
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & { $locutus: { php: { ini: Record<string, { local_value: string | null }> } } }
-  $global.$locutus = $global.$locutus || {} as typeof $global.$locutus
+  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
+    $locutus: { php: { ini: Record<string, { local_value: string | null }> } }
+  }
+  $global.$locutus = $global.$locutus || ({} as typeof $global.$locutus)
   const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {} as typeof $locutus.php
+  $locutus.php = $locutus.php || ({} as typeof $locutus.php)
   $locutus.php.ini = $locutus.php.ini || {}
 
   if ($locutus.php.ini[varname] && $locutus.php.ini[varname].local_value !== undefined) {

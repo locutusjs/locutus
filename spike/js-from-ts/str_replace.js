@@ -31,45 +31,45 @@
 //   example 5: str_replace('', '.', 'aaa')
 //   returns 5: 'aaa'
 export default function str_replace(search, replace, subject, countObj) {
-    let i = 0;
-    let j = 0;
-    let temp = '';
-    let repl = '';
-    let sl = 0;
-    let fl = 0;
-    const f = [].concat(search);
-    let r = [].concat(replace);
-    let s = [].concat(subject);
-    let ra = Array.isArray(r);
-    const sa = Array.isArray(subject);
-    if (typeof search === 'object' && typeof replace === 'string') {
-        temp = replace;
-        const replaceArr = [];
-        for (i = 0; i < search.length; i += 1) {
-            replaceArr[i] = temp;
-        }
-        temp = '';
-        r = [].concat(replaceArr);
-        ra = Array.isArray(r);
+  let i = 0
+  let j = 0
+  let temp = ''
+  let repl = ''
+  let sl = 0
+  let fl = 0
+  const f = [].concat(search)
+  let r = [].concat(replace)
+  const s = [].concat(subject)
+  let ra = Array.isArray(r)
+  const sa = Array.isArray(subject)
+  if (typeof search === 'object' && typeof replace === 'string') {
+    temp = replace
+    const replaceArr = []
+    for (i = 0; i < search.length; i += 1) {
+      replaceArr[i] = temp
     }
-    if (typeof countObj !== 'undefined') {
-        countObj.value = 0;
+    temp = ''
+    r = [].concat(replaceArr)
+    ra = Array.isArray(r)
+  }
+  if (typeof countObj !== 'undefined') {
+    countObj.value = 0
+  }
+  for (i = 0, sl = s.length; i < sl; i++) {
+    if (s[i] === '') {
+      continue
     }
-    for (i = 0, sl = s.length; i < sl; i++) {
-        if (s[i] === '') {
-            continue;
-        }
-        for (j = 0, fl = f.length; j < fl; j++) {
-            if (f[j] === '') {
-                continue;
-            }
-            temp = s[i] + '';
-            repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
-            s[i] = temp.split(f[j]).join(repl);
-            if (typeof countObj !== 'undefined') {
-                countObj.value += temp.split(f[j]).length - 1;
-            }
-        }
+    for (j = 0, fl = f.length; j < fl; j++) {
+      if (f[j] === '') {
+        continue
+      }
+      temp = s[i] + ''
+      repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0]
+      s[i] = temp.split(f[j]).join(repl)
+      if (typeof countObj !== 'undefined') {
+        countObj.value += temp.split(f[j]).length - 1
+      }
     }
-    return sa ? s : s[0];
+  }
+  return sa ? s : s[0]
 }

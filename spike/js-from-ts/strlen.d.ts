@@ -1,1 +1,1 @@
-export default function strlen(string: string): number;
+export default function strlen(string: string): number

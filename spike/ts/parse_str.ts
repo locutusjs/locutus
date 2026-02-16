@@ -61,7 +61,8 @@ export default function parse_str(str: string, array?: Record<string, unknown>):
   }
 
   const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & Record<string, unknown>
-  ;($global as Record<string, Record<string, unknown>>).$locutus = ($global as Record<string, Record<string, unknown>>).$locutus || {}
+  ;($global as Record<string, Record<string, unknown>>).$locutus =
+    ($global as Record<string, Record<string, unknown>>).$locutus || {}
   const $locutus = ($global as Record<string, Record<string, unknown>>).$locutus
   $locutus.php = $locutus.php || {}
 
