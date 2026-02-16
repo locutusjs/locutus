@@ -9,6 +9,6 @@ module.exports = function is_integer(mixedVar) {
   //       example 2: is_integer(12)
   //       returns 2: true
 
-  const _isInt = require('../var/is_int')
+  const _isInt = require('../var/is_int.ts').is_int
   return _isInt(mixedVar)
 }

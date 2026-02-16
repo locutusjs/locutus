@@ -6,9 +6,9 @@ import { describe, it, expect } from 'vitest'
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const is_int = require('../../../../src/php/var/is_int.js')
+const is_int = require('../../../../src/php/var/is_int.ts').is_int
 
-describe('src/php/var/is_int.js (tested in test/generated/php/var/is_int.vitest.ts)', function () {
+describe('src/php/var/is_int.ts (tested in test/generated/php/var/is_int.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
     const result = is_int(23)

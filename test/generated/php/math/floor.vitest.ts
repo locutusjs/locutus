@@ -6,9 +6,9 @@ import { describe, it, expect } from 'vitest'
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const floor = require('../../../../src/php/math/floor.js')
+const floor = require('../../../../src/php/math/floor.ts').floor
 
-describe('src/php/math/floor.js (tested in test/generated/php/math/floor.vitest.ts)', function () {
+describe('src/php/math/floor.ts (tested in test/generated/php/math/floor.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 8723321
     const result = floor(8723321.4)

@@ -1,4 +1,9 @@
-module.exports = function number_format(number, decimals, decPoint, thousandsSep) {
+export function number_format(
+  number: string | number,
+  decimals: number | undefined,
+  decPoint: string | undefined,
+  thousandsSep: string | undefined,
+): string {
   //  discuss at: https://locutus.io/php/number_format/
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   // improved by: Kevin van Zonneveld (https://kvz.io)
@@ -49,23 +54,23 @@ module.exports = function number_format(number, decimals, decPoint, thousandsSep
   //  example 14: number_format(1e-8, 8, '.', '')
   //  returns 14: '0.00000001'
 
-  number = (number + '').replace(/[^0-9+\-Ee.]/g, '')
-  const n = !isFinite(+number) ? 0 : +number
-  const prec = !isFinite(+decimals) ? 0 : Math.abs(decimals)
+  const numStr = (number + '').replace(/[^0-9+\-Ee.]/g, '')
+  const n = !isFinite(+numStr) ? 0 : +numStr
+  const prec = !isFinite(+(decimals || 0)) ? 0 : Math.abs(decimals || 0)
   const sep = typeof thousandsSep === 'undefined' ? ',' : thousandsSep
   const dec = typeof decPoint === 'undefined' ? '.' : decPoint
-  let s = ''
+  let s: string[]
 
-  const toFixedFix = function (n, prec) {
+  const toFixedFix = function (n: number, prec: number): number | string {
     if (('' + n).indexOf('e') === -1) {
-      return +(Math.round(n + 'e+' + prec) + 'e-' + prec)
+      return +(Math.round(+(n + 'e+' + prec)) + 'e-' + prec)
     } else {
       const arr = ('' + n).split('e')
       let sig = ''
       if (+arr[1] + prec > 0) {
         sig = '+'
       }
-      return (+(Math.round(+arr[0] + 'e' + sig + (+arr[1] + prec)) + 'e-' + prec)).toFixed(prec)
+      return (+(Math.round(+(+arr[0] + 'e' + sig + (+arr[1] + prec))) + 'e-' + prec)).toFixed(prec)
     }
   }
 

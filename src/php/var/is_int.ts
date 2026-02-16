@@ -1,4 +1,4 @@
-module.exports = function is_int(mixedVar) {
+export function is_int(mixedVar: unknown): boolean {
   //      discuss at: https://locutus.io/php/is_int/
   // parity verified: PHP 8.3
   //     original by: Alex
@@ -18,5 +18,6 @@ module.exports = function is_int(mixedVar) {
   //       example 4: is_int(true)
   //       returns 4: false
 
-  return mixedVar === +mixedVar && isFinite(mixedVar) && !(mixedVar % 1)
+  const num = Number(mixedVar)
+  return mixedVar === num && isFinite(num) && !(num % 1)
 }

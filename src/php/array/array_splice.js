@@ -20,7 +20,7 @@ module.exports = function array_splice(arr, offst, lgth, replacement) {
   //       example 3: array_splice($input, -1, 1, ["black", "maroon"])
   //       returns 3: ["yellow"]
 
-  const isInt = require('../var/is_int')
+  const isInt = require('../var/is_int.ts').is_int
 
   const _checkToUpIndices = function (arr, ct, key) {
     // Deal with situation, e.g., if encounter index 4 and try

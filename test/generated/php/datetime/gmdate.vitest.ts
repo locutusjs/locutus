@@ -6,9 +6,9 @@ import { describe, it, expect } from 'vitest'
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.js')
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const gmdate = require('../../../../src/php/datetime/gmdate.js')
+const gmdate = require('../../../../src/php/datetime/gmdate.ts').gmdate
 
-describe('src/php/datetime/gmdate.js (tested in test/generated/php/datetime/gmdate.vitest.ts)', function () {
+describe('src/php/datetime/gmdate.ts (tested in test/generated/php/datetime/gmdate.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = '07:09:40 m is month'
     const result = gmdate('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400); // Return will depend on your timezone

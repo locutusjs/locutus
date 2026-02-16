@@ -1,4 +1,4 @@
-module.exports = function wordwrap(str, intWidth, strBreak, cut) {
+export function wordwrap(str: string, intWidth?: number, strBreak?: string, cut?: boolean): string {
   //      discuss at: https://locutus.io/php/wordwrap/
   // parity verified: PHP 8.3
   //     original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
@@ -16,13 +16,13 @@ module.exports = function wordwrap(str, intWidth, strBreak, cut) {
   //       example 3: wordwrap('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.')
   //       returns 3: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim\nveniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea\ncommodo consequat.'
 
-  intWidth = arguments.length >= 2 ? +intWidth : 75
-  strBreak = arguments.length >= 3 ? '' + strBreak : '\n'
+  intWidth = arguments.length >= 2 ? +(intWidth ?? 0) : 75
+  strBreak = arguments.length >= 3 ? '' + (strBreak ?? '') : '\n'
   cut = arguments.length >= 4 ? !!cut : false
 
-  let i
-  let j
-  let line
+  let i: number
+  let j: number
+  let line: string
 
   str += ''
 
@@ -36,7 +36,7 @@ module.exports = function wordwrap(str, intWidth, strBreak, cut) {
 
   const lines = str.split(reLineBreaks)
   const l = lines.length
-  let match
+  let match: RegExpMatchArray | null
 
   // for each line of text
   for (i = 0; i < l; lines[i++] += line) {
@@ -53,6 +53,10 @@ module.exports = function wordwrap(str, intWidth, strBreak, cut) {
       let rtrim = 0
 
       match = slice.match(reLastCharsWithOptionalTrailingWhitespace)
+
+      if (!match) {
+        break
+      }
 
       // if the slice ends with whitespace
       if (match[1]) {

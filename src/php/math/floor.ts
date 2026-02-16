@@ -1,4 +1,4 @@
-module.exports = function floor(value) {
+export function floor(value: number): number {
   //      discuss at: https://locutus.io/php/floor/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)

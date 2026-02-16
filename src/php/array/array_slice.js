@@ -10,7 +10,7 @@ module.exports = function array_slice(arr, offst, lgth, preserveKeys) {
   //       example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true)
   //       returns 2: {2: 'c', 3: 'd'}
 
-  const isInt = require('../var/is_int')
+  const isInt = require('../var/is_int.ts').is_int
 
   /*
     if ('callee' in arr && 'length' in arr) {
