@@ -55,10 +55,11 @@ Convert a single `src/**/*.js` file to `src/**/*.ts` **in place** (same path, ne
 
 ### Preserve behavior exactly
 - Do NOT change any logic, algorithms, or control flow
-- Do NOT rename variables (except where TS requires it, e.g. parameter reassignment with different type)
+- Do NOT rename variables
 - Do NOT add or remove blank lines — keep them exactly as in the original
 - Do NOT change `hasOwnProperty` calls
-- If a parameter is reassigned with a different type in the original, introduce a new `let` variable:
+- Parameters reassigned with the SAME type can stay as-is (TS allows it)
+- Only when a parameter is reassigned with a DIFFERENT type, introduce a new `let` variable:
   ```javascript
   // Original JS:
   if (!array) { array = $global }
