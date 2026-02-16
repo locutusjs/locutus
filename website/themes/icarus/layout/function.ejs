@@ -121,9 +121,9 @@
       <h2>How to use</h2>
       <% if (page.isTypescript) { %>
         <p>
-          Install via <code>yarn add locutus</code>, then import:
+          Install via <code>yarn add locutus</code> and import:
+          <code>import { <%= page.function %> } from 'locutus/<%= page.language %>/<%= page.category %>/<%= page.function %>'</code>.
         </p>
-        <pre style="margin: 8px 0 12px; padding: 10px 14px; background: #2d2d2d; border-radius: 6px; overflow-x: auto;"><code style="color: #ccc; font-size: 13px;"><span style="color: #cc99cd;">import</span> { <span style="color: #f8c555;"><%= page.function %></span> } <span style="color: #cc99cd;">from</span> <span style="color: #7ec699;">'locutus/<%= page.language %>/<%= page.category %>/<%= page.function %>'</span></code></pre>
         <p style="margin-top: 4px; font-size: 13px; color: #888;">
           Or with CommonJS: <code>const { <%= page.function %> } = require('locutus/<%= page.language %>/<%= page.category %>/<%= page.function %>')</code>
         </p>
