@@ -12,7 +12,7 @@ export function str_pad(input: string, padLength: number, padString: string, pad
   let half = ''
   let padToGo
 
-  const _strPadRepeater = function (s: any, len: any) {
+  const _strPadRepeater = function (s: string, len: number): string {
     let collect = ''
 
     while (collect.length < len) {

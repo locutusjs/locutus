@@ -1,4 +1,4 @@
-export function create_function(args: any, code: any): any {
+export function create_function(args: string, code: string): ((...fnArgs: unknown[]) => unknown) | false {
   //       discuss at: https://locutus.io/php/create_function/
   //      original by: Johnny Mast (https://www.phpvrouwen.nl)
   // reimplemented by: Brett Zamir (https://brett-zamir.me)
@@ -7,7 +7,7 @@ export function create_function(args: any, code: any): any {
   //        returns 1: 3
 
   try {
-    return Function.apply(null, args.split(',').concat(code))
+    return Function.apply(null, args.split(',').concat(code)) as (...fnArgs: unknown[]) => unknown
   } catch (_e) {
     return false
   }

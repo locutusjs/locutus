@@ -1,4 +1,17 @@
-export function gopher_parsedir(dirent: any): any {
+type GopherKnownEntry = {
+  type: number
+  title: string
+  path: string
+  host: string
+  port: string
+}
+
+type GopherUnknownEntry = {
+  type: -1
+  data: string
+}
+
+export function gopher_parsedir(dirent: string): GopherKnownEntry | GopherUnknownEntry {
   //  discuss at: https://locutus.io/php/gopher_parsedir/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var entry = gopher_parsedir('0All about my gopher site.\t/allabout.txt\tgopher.example.com\t70\u000d\u000a')
@@ -30,7 +43,7 @@ export function gopher_parsedir(dirent: any): any {
     // return false;
   }
 
-  let type = entry[1]
+  let type: number | string = entry[1] ?? ''
   switch (type) {
     case 'i':
       // GOPHER_INFO
@@ -72,9 +85,9 @@ export function gopher_parsedir(dirent: any): any {
   }
   return {
     type,
-    title: entry[2],
-    path: entry[3],
-    host: entry[4],
-    port: entry[5],
+    title: entry[2] ?? '',
+    path: entry[3] ?? '',
+    host: entry[4] ?? '',
+    port: entry[5] ?? '',
   }
 }

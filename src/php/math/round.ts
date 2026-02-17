@@ -1,4 +1,4 @@
-function roundToInt(value: any, mode: any) {
+function roundToInt(value: number, mode: string): number {
   let tmp = Math.floor(Math.abs(value) + 0.5)
 
   if (

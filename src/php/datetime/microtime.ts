@@ -1,4 +1,4 @@
-export function microtime(getAsFloat: any): any {
+export function microtime(getAsFloat?: boolean): string | number {
   //  discuss at: https://locutus.io/php/microtime/
   // original by: Paulo Freitas
   // improved by: Dumitru Uzun (https://duzun.me)
@@ -8,8 +8,8 @@ export function microtime(getAsFloat: any): any {
   //   example 2: /^0\.[0-9]{1,6} [0-9]{10,10}$/.test(microtime())
   //   returns 2: true
 
-  let s
-  let now
+  let s = 0
+  let now = 0
   if (typeof performance !== 'undefined' && performance.now && performance.timing) {
     now = (performance.now() + performance.timing.navigationStart) / 1e3
     if (getAsFloat) {

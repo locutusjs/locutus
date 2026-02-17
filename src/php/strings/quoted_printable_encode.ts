@@ -13,7 +13,7 @@ export function quoted_printable_encode(str: string): string {
 
   const hexChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']
   const RFC2045Encode1IN = / \r\n|\r\n|[^!-<>-~ ]/gm
-  const RFC2045Encode1OUT = function (sMatch: any) {
+  const RFC2045Encode1OUT = function (sMatch: string): string {
     // Encode space before CRLF sequence to prevent spaces from being stripped
     // Keep hard line breaks intact; CRLF sequences
     if (sMatch.length > 1) {
@@ -30,7 +30,7 @@ export function quoted_printable_encode(str: string): string {
   // anyway; so this function replicates PHP.
 
   const RFC2045Encode2IN = /.{1,72}(?!\r\n)[^=]{0,3}/g
-  const RFC2045Encode2OUT = function (sMatch: any) {
+  const RFC2045Encode2OUT = function (sMatch: string): string {
     if (sMatch.substr(sMatch.length - 2) === '\r\n') {
       return sMatch
     }

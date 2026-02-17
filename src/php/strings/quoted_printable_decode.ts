@@ -22,7 +22,7 @@ export function quoted_printable_decode(str: string): string {
   const RFC2045Decode2IN = /=([0-9A-F]{2})/gim
   // RFC2045Decode2IN = /=([0-9A-F]{2})/gm,
 
-  const RFC2045Decode2OUT = function (sMatch: any, sHex: any) {
+  const RFC2045Decode2OUT = function (_sMatch: string, sHex: string): string {
     return String.fromCharCode(parseInt(sHex, 16))
   }
 

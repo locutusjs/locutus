@@ -1,5 +1,13 @@
-// @ts-nocheck
-export function setrawcookie(name: string, value: string, expires: any, path: any, domain: any, secure: any): boolean {
+type CookieExpires = string | number | Date | null | undefined
+
+export function setrawcookie(
+  name: string,
+  value: string,
+  expires?: CookieExpires,
+  path?: string | null,
+  domain?: string | null,
+  secure?: boolean,
+): boolean {
   //  discuss at: https://locutus.io/php/setrawcookie/
   // original by: Brett Zamir (https://brett-zamir.me)
   // original by: setcookie
@@ -14,35 +22,34 @@ export function setrawcookie(name: string, value: string, expires: any, path: an
     return true
   }
 
-  if (typeof expires === 'string' && /^\d+$/.test(expires)) {
-    expires = parseInt(expires, 10)
+  let normalizedExpires = expires
+
+  if (typeof normalizedExpires === 'string' && /^\d+$/.test(normalizedExpires)) {
+    normalizedExpires = parseInt(normalizedExpires, 10)
   }
 
-  if (expires instanceof Date) {
-    expires = expires.toUTCString()
-  } else if (typeof expires === 'number') {
-    expires = new Date(expires * 1e3).toUTCString()
+  if (normalizedExpires instanceof Date) {
+    normalizedExpires = normalizedExpires.toUTCString()
+  } else if (typeof normalizedExpires === 'number') {
+    normalizedExpires = new Date(normalizedExpires * 1e3).toUTCString()
   }
 
-  const r = [name + '=' + value]
-  let i = ''
-  const s = {
-    expires,
-    path,
-    domain,
+  const parts = [name + '=' + value]
+  if (normalizedExpires) {
+    parts.push('expires=' + normalizedExpires)
   }
-  for (i in s) {
-    if (s.hasOwnProperty(i)) {
-      // Exclude items on Object.prototype
-      s[i] && r.push(i + '=' + s[i])
-    }
+  if (path) {
+    parts.push('path=' + path)
+  }
+  if (domain) {
+    parts.push('domain=' + domain)
   }
 
   if (secure) {
-    r.push('secure')
+    parts.push('secure')
   }
 
-  window.document.cookie = r.join(';')
+  window.document.cookie = parts.join(';')
 
   return true
 }
