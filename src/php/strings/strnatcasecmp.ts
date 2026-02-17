@@ -1,8 +1,7 @@
-// @ts-nocheck
 import { _phpCastString } from '../_helpers/_phpCastString.ts'
 import { strnatcmp } from '../strings/strnatcmp.ts'
 
-export function strnatcasecmp(a: string | number, b: string | number): number {
+export function strnatcasecmp(a: string | number, b: string | number): number | null {
   //       discuss at: https://locutus.io/php/strnatcasecmp/
   //  parity verified: PHP 8.3
   //      original by: Martin Pool

@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function sample(arr, n) {
+export function sample(arr: unknown[], n?: number): unknown | unknown[] | undefined {
   //  discuss at: https://locutus.io/ruby/Array/sample/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Returns a random element, or n random elements, from the array.
@@ -19,7 +18,7 @@ export function sample(arr, n) {
 
   // Fisher-Yates shuffle for selecting n unique elements
   const copy = arr.slice()
-  const result = []
+  const result: unknown[] = []
   const count = Math.min(n, copy.length)
 
   for (let i = 0; i < count; i++) {

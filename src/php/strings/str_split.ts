@@ -1,5 +1,7 @@
-// @ts-nocheck
-export function str_split(string, splitLength) {
+export function str_split(
+  string: string | number | boolean | null,
+  splitLength?: number | string | null,
+): string[] | false {
   //      discuss at: https://locutus.io/php/str_split/
   // parity verified: PHP 8.3
   //     original by: Martijn Wieringa
@@ -11,20 +13,18 @@ export function str_split(string, splitLength) {
   //       example 1: str_split('Hello Friend', 3)
   //       returns 1: ['Hel', 'lo ', 'Fri', 'end']
 
-  if (splitLength === null) {
-    splitLength = 1
-  }
-  if (string === null || splitLength < 1) {
+  const normalizedSplitLength = splitLength === null || typeof splitLength === 'undefined' ? 1 : Number(splitLength)
+  if (string === null || normalizedSplitLength < 1 || Number.isNaN(normalizedSplitLength)) {
     return false
   }
 
-  string += ''
-  const chunks = []
+  const input = String(string)
+  const chunks: string[] = []
   let pos = 0
-  const len = string.length
+  const len = input.length
 
   while (pos < len) {
-    chunks.push(string.slice(pos, (pos += splitLength)))
+    chunks.push(input.slice(pos, (pos += normalizedSplitLength)))
   }
 
   return chunks

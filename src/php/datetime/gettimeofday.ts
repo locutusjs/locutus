@@ -1,5 +1,11 @@
-// @ts-nocheck
-export function gettimeofday(returnFloat) {
+type GetTimeOfDayObject = {
+  sec: number
+  usec: number
+  minuteswest: number
+  dsttime: number
+}
+
+export function gettimeofday(returnFloat?: boolean): number | GetTimeOfDayObject {
   //  discuss at: https://locutus.io/php/gettimeofday/
   // original by: Brett Zamir (https://brett-zamir.me)
   // original by: Josh Fraser (https://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)
@@ -13,19 +19,18 @@ export function gettimeofday(returnFloat) {
   //   returns 2: true
 
   const t = new Date()
-  let y = 0
 
   if (returnFloat) {
     return t.getTime() / 1000
   }
 
   // Store current year.
-  y = t.getFullYear()
+  const y = t.getFullYear()
   return {
     sec: t.getUTCSeconds(),
     usec: t.getUTCMilliseconds() * 1000,
     minuteswest: t.getTimezoneOffset(),
     // Compare Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC to see if DST is observed.
-    dsttime: 0 + (new Date(y, 0) - Date.UTC(y, 0) !== new Date(y, 6) - Date.UTC(y, 6)),
+    dsttime: Number(new Date(y, 0).getTime() - Date.UTC(y, 0) !== new Date(y, 6).getTime() - Date.UTC(y, 6)),
   }
 }

@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function gcd(a: number, b: number): number {
+export function gcd(a: number | string, b: number | string): number {
   //      discuss at: https://locutus.io/python/gcd/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -11,14 +10,14 @@ export function gcd(a: number, b: number): number {
   //       example 3: gcd(7, 0)
   //       returns 3: 7
 
-  a = Math.abs(parseInt(a, 10))
-  b = Math.abs(parseInt(b, 10))
+  let left = Math.abs(Number.parseInt(String(a), 10))
+  let right = Math.abs(Number.parseInt(String(b), 10))
 
-  while (b !== 0) {
-    const temp = b
-    b = a % b
-    a = temp
+  while (right !== 0) {
+    const temp = right
+    right = left % right
+    left = temp
   }
 
-  return a
+  return left
 }
