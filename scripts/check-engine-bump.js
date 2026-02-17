@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 const { execSync } = require('node:child_process')
-const { readFileSync } = require('node:fs')
+const { readdirSync, readFileSync } = require('node:fs')
+const path = require('node:path')
 
 function parseSemver(input) {
   if (!input) {
@@ -35,6 +36,46 @@ function readJson(ref) {
 
   const content = execSync(`git show ${ref}:package.json`, { encoding: 'utf8' })
   return JSON.parse(content)
+}
+
+function hasPendingMajorChangeset(packageName) {
+  const changesetDir = '.changeset'
+  let entries
+
+  try {
+    entries = readdirSync(changesetDir, { withFileTypes: true })
+  } catch {
+    return false
+  }
+
+  const markdownFiles = entries
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
+    .map((entry) => path.join(changesetDir, entry.name))
+
+  for (const filePath of markdownFiles) {
+    let content = ''
+    try {
+      content = readFileSync(filePath, 'utf8')
+    } catch {
+      continue
+    }
+
+    const frontmatterMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/)
+    if (!frontmatterMatch) {
+      continue
+    }
+
+    const frontmatter = frontmatterMatch[1]
+    const packageRegex = new RegExp(
+      String.raw`["']?${packageName}["']?\s*:\s*["']?(major|premajor)["']?\b`,
+      'i',
+    )
+    if (packageRegex.test(frontmatter)) {
+      return true
+    }
+  }
+
+  return false
 }
 
 const baseRef = process.env.GITHUB_BASE_REF
@@ -74,6 +115,11 @@ const baseVersion = parseSemver(basePkg.version) || [0, 0, 0]
 const headVersion = parseSemver(headPkg.version) || [0, 0, 0]
 
 if (headVersion[0] <= baseVersion[0]) {
+  if (hasPendingMajorChangeset('locutus')) {
+    console.log('[engine-bump] engines.node increased with pending major changeset for "locutus"; allowing.')
+    process.exit(0)
+  }
+
   console.error(
     `[engine-bump] engines.node increased from "${baseEngine}" to "${headEngine}" without a major version bump (${basePkg.version} -> ${headPkg.version}).`,
   )
