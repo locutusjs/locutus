@@ -1,5 +1,7 @@
-// @ts-nocheck
-export function implode(glue: string, pieces: any[] | Record<string, any>): string {
+export function implode(
+  glue: unknown[] | Record<string, unknown> | string,
+  pieces?: unknown[] | Record<string, unknown>,
+): string {
   //      discuss at: https://locutus.io/php/implode/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -14,22 +16,24 @@ export function implode(glue: string, pieces: any[] | Record<string, any>): stri
   let i = ''
   let retVal = ''
   let tGlue = ''
+  let actualGlue = glue
+  let actualPieces = pieces
 
   if (arguments.length === 1) {
-    pieces = glue
-    glue = ''
+    actualPieces = glue as unknown[] | Record<string, unknown>
+    actualGlue = ''
   }
 
-  if (typeof pieces === 'object') {
-    if (Array.isArray(pieces)) {
-      return pieces.join(glue)
+  if (typeof actualPieces === 'object' && actualPieces !== null) {
+    if (Array.isArray(actualPieces)) {
+      return actualPieces.join(String(actualGlue))
     }
-    for (i in pieces) {
-      retVal += tGlue + pieces[i]
-      tGlue = glue
+    for (i in actualPieces) {
+      retVal += tGlue + actualPieces[i]
+      tGlue = String(actualGlue)
     }
     return retVal
   }
 
-  return pieces
+  return String(actualPieces)
 }

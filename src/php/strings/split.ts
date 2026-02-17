@@ -1,7 +1,9 @@
-// @ts-nocheck
 import { explode } from '../strings/explode.ts'
 
-export function split(delimiter, string) {
+export function split(
+  delimiter: string | boolean | null | undefined,
+  string: string | Record<string, unknown> | (() => unknown) | undefined,
+): string[] | false | { 0: string } | null {
   //      discuss at: https://locutus.io/php/split/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

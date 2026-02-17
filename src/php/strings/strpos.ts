@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function strpos(haystack: string, needle: string, offset: number): number {
+export function strpos(haystack: string, needle: string, offset: number): number | false {
   //      discuss at: https://locutus.io/php/strpos/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

@@ -1,4 +1,3 @@
-// @ts-nocheck
 export function Atoi(s: any): [number, Error | null] {
   //      discuss at: https://locutus.io/golang/strconv/Atoi
   // parity verified: Go 1.23

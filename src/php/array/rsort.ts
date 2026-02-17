@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
 import { strnatcmp } from '../strings/strnatcmp.ts'
 
@@ -45,7 +44,6 @@ export function rsort(inputArr: Record<string, unknown>, sortFlags?: string): bo
         locales: Record<string, { sorting: (a: unknown, b: unknown) => number }>
         ini?: Record<string, { local_value?: unknown }>
       }
-      locales: Record<string, { sorting: (a: unknown, b: unknown) => number }>
     }
   }
   $global.$locutus = $global.$locutus || ({} as typeof $global.$locutus)
@@ -53,7 +51,7 @@ export function rsort(inputArr: Record<string, unknown>, sortFlags?: string): bo
   $locutus.php = $locutus.php || ({} as typeof $locutus.php)
   $locutus.php.locales = $locutus.php.locales || {}
 
-  const regularSortDesc = function (a: unknown, b: unknown) {
+  const regularSortDesc = function (a: any, b: any) {
     return a < b ? 1 : a > b ? -1 : 0
   }
 
@@ -61,14 +59,17 @@ export function rsort(inputArr: Record<string, unknown>, sortFlags?: string): bo
     case 'SORT_STRING':
       // compare items as strings
       sorter = function (a, b) {
-        return strnatcmp(b, a)
+        return Number(strnatcmp(b, a) ?? 0)
       }
       break
     case 'SORT_LOCALE_STRING': {
       // compare items as strings, based on the current locale
       // (set with i18n_loc_set_default() as of PHP6)
       const loc = i18nlgd()
-      sorter = $locutus.locales[loc].sorting
+      const locale = $locutus.php.locales[loc]
+      if (locale?.sorting) {
+        sorter = locale.sorting
+      }
       break
     }
     case 'SORT_NUMERIC':

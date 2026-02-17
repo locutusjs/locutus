@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { strnatcmp } from '../strings/strnatcmp.ts'
 
 export function natsort(inputArr: Record<string, unknown>): boolean | Record<string, unknown> {
@@ -27,7 +26,11 @@ export function natsort(inputArr: Record<string, unknown>): boolean | Record<str
   let sortByReference = false
   let populateArr: Record<string, unknown> = {}
 
-  const $loc = (globalThis as any).$locutus
+  const $loc = (
+    globalThis as typeof globalThis & {
+      $locutus?: { php?: { ini?: Record<string, { local_value?: unknown }> } }
+    }
+  ).$locutus
   const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
@@ -42,12 +45,16 @@ export function natsort(inputArr: Record<string, unknown>): boolean | Record<str
     }
   }
   valArr.sort(function (a, b) {
-    return strnatcmp(a[1], b[1])
+    return Number(strnatcmp(a[1], b[1]) ?? 0)
   })
 
   // Repopulate the old array
   for (i = 0; i < valArr.length; i++) {
-    populateArr[valArr[i][0]] = valArr[i][1]
+    const pair = valArr[i]
+    if (!pair) {
+      continue
+    }
+    populateArr[pair[0]] = pair[1]
   }
 
   return sortByReference || populateArr

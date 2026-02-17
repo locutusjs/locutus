@@ -1,9 +1,4 @@
-// @ts-nocheck
-export function in_array(
-  needle: string | number,
-  haystack: any[] | Record<string, any>,
-  argStrict?: boolean,
-): boolean | false {
+export function in_array(needle: unknown, haystack: unknown[] | Record<string, unknown>, argStrict?: boolean): boolean {
   //  discuss at: https://locutus.io/php/in_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: vlado houba
@@ -21,22 +16,22 @@ export function in_array(
   //   example 4: in_array(1, ['1', '2', '3'], true)
   //   returns 4: false
 
-  let key = ''
   const strict = !!argStrict
+  const entries = haystack as Record<string, unknown>
 
   // we prevent the double check (strict && arr[key] === ndl) || (!strict && arr[key] === ndl)
   // in just one for, in order to improve the performance
   // deciding wich type of comparation will do before walk array
   if (strict) {
-    for (key in haystack) {
-      if (haystack[key] === needle) {
+    for (const key in entries) {
+      if (entries[key] === needle) {
         return true
       }
     }
   } else {
-    for (key in haystack) {
+    for (const key in entries) {
       // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
-      if (haystack[key] == needle) {
+      if (entries[key] == needle) {
         return true
       }
     }

@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function strripos(haystack: string, needle: string, offset: number): number {
+export function strripos(haystack: string, needle: string, offset?: number): number | false {
   //      discuss at: https://locutus.io/php/strripos/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -13,7 +12,7 @@ export function strripos(haystack: string, needle: string, offset: number): numb
   needle = (needle + '').toLowerCase()
 
   let i = -1
-  if (offset) {
+  if (typeof offset === 'number') {
     i = (haystack + '').slice(offset).lastIndexOf(needle) // strrpos' offset indicates starting point of range till end,
     // while lastIndexOf's optional 2nd argument indicates ending point of range from the beginning
     if (i !== -1) {

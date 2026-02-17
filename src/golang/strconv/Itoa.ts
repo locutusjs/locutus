@@ -1,4 +1,3 @@
-// @ts-nocheck
 export function Itoa(i: number): string {
   //      discuss at: https://locutus.io/golang/strconv/Itoa
   // parity verified: Go 1.23
@@ -11,5 +10,5 @@ export function Itoa(i: number): string {
   //       example 3: Itoa(0)
   //       returns 3: '0'
 
-  return String(parseInt(i, 10))
+  return String(Number.parseInt(String(i), 10))
 }

@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function prev(arr) {
+export function prev(arr: unknown[] | Record<string, unknown>): unknown | false {
   //      discuss at: https://locutus.io/php/prev/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -8,44 +7,48 @@ export function prev(arr) {
   //       example 1: prev($transport)
   //       returns 1: false
 
-  const $global = typeof window !== 'undefined' ? window : global
+  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
+    $locutus?: {
+      php?: {
+        pointers?: unknown[]
+      }
+    }
+  }
   $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
-  $locutus.php.pointers = $locutus.php.pointers || []
-  const pointers = $locutus.php.pointers
+  $global.$locutus.php = $global.$locutus.php || {}
+  $global.$locutus.php.pointers = $global.$locutus.php.pointers || []
+  const pointers = $global.$locutus.php.pointers
 
-  const indexOf = function (value) {
-    for (let i = 0, length = this.length; i < length; i++) {
-      if (this[i] === value) {
+  const indexOf = (list: unknown[], value: unknown): number => {
+    for (let i = 0, length = list.length; i < length; i++) {
+      if (list[i] === value) {
         return i
       }
     }
     return -1
   }
 
-  if (!pointers.indexOf) {
-    pointers.indexOf = indexOf
-  }
-  const arrpos = pointers.indexOf(arr)
-  const cursor = pointers[arrpos + 1]
-  if (pointers.indexOf(arr) === -1 || cursor === 0) {
+  const arrpos = indexOf(pointers, arr)
+  const cursorValue = arrpos >= 0 ? pointers[arrpos + 1] : 0
+  const cursor = typeof cursorValue === 'number' ? cursorValue : 0
+  if (arrpos === -1 || cursor === 0) {
     return false
   }
   if (!Array.isArray(arr)) {
     let ct = 0
     for (const k in arr) {
       if (ct === cursor - 1) {
-        pointers[arrpos + 1] -= 1
+        pointers[arrpos + 1] = cursor - 1
         return arr[k]
       }
       ct++
     }
     // Shouldn't reach here
+    return false
   }
   if (arr.length === 0) {
     return false
   }
-  pointers[arrpos + 1] -= 1
-  return arr[pointers[arrpos + 1]]
+  pointers[arrpos + 1] = cursor - 1
+  return arr[cursor - 1]
 }

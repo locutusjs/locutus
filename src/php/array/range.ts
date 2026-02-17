@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function range(low, high, step) {
+export function range(low: string | number, high: string | number, step?: number): Array<string | number> {
   //      discuss at: https://locutus.io/php/range/
   // parity verified: PHP 8.3
   //     original by: Waldo Malqui Silva (https://waldo.malqui.info)
@@ -12,22 +11,24 @@ export function range(low, high, step) {
   //       example 4: range( 'c', 'a' )
   //       returns 4: ['c', 'b', 'a']
 
-  const matrix = []
-  let iVal
-  let endval
+  const matrix: Array<string | number> = []
+  let iVal: number
+  let endval: number
   const walker = step || 1
   let chars = false
+  const lowIsNumeric = !Number.isNaN(Number(low))
+  const highIsNumeric = !Number.isNaN(Number(high))
 
-  if (!isNaN(low) && !isNaN(high)) {
-    iVal = low
-    endval = high
-  } else if (isNaN(low) && isNaN(high)) {
+  if (lowIsNumeric && highIsNumeric) {
+    iVal = Number(low)
+    endval = Number(high)
+  } else if (!lowIsNumeric && !highIsNumeric) {
     chars = true
-    iVal = low.charCodeAt(0)
-    endval = high.charCodeAt(0)
+    iVal = String(low).charCodeAt(0)
+    endval = String(high).charCodeAt(0)
   } else {
-    iVal = isNaN(low) ? 0 : low
-    endval = isNaN(high) ? 0 : high
+    iVal = lowIsNumeric ? Number(low) : 0
+    endval = highIsNumeric ? Number(high) : 0
   }
 
   const plus = !(iVal > endval)

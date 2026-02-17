@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function key(arr) {
+export function key(arr: unknown[] | Record<string, unknown>): string | number | false {
   //      discuss at: https://locutus.io/php/key/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -10,30 +9,32 @@ export function key(arr) {
   //       example 1: key($array)
   //       returns 1: 'fruit1'
 
-  const $global = typeof window !== 'undefined' ? window : global
+  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
+    $locutus?: {
+      php?: {
+        pointers?: unknown[]
+      }
+    }
+  }
   $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
-  $locutus.php.pointers = $locutus.php.pointers || []
-  const pointers = $locutus.php.pointers
+  $global.$locutus.php = $global.$locutus.php || {}
+  $global.$locutus.php.pointers = $global.$locutus.php.pointers || []
+  const pointers = $global.$locutus.php.pointers
 
-  const indexOf = function (value) {
-    for (let i = 0, length = this.length; i < length; i++) {
-      if (this[i] === value) {
+  const indexOf = (list: unknown[], value: unknown): number => {
+    for (let i = 0, length = list.length; i < length; i++) {
+      if (list[i] === value) {
         return i
       }
     }
     return -1
   }
 
-  if (!pointers.indexOf) {
-    pointers.indexOf = indexOf
-  }
-
-  if (pointers.indexOf(arr) === -1) {
+  if (indexOf(pointers, arr) === -1) {
     pointers.push(arr, 0)
   }
-  const cursor = pointers[pointers.indexOf(arr) + 1]
+  const cursorValue = pointers[indexOf(pointers, arr) + 1]
+  const cursor = typeof cursorValue === 'number' ? cursorValue : 0
   if (!Array.isArray(arr)) {
     let ct = 0
     for (const k in arr) {

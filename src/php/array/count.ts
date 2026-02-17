@@ -1,5 +1,7 @@
-// @ts-nocheck
-export function count(mixedVar: any[] | Record<string, any>, mode: string): number {
+export function count(
+  mixedVar: unknown[] | Record<string, unknown> | null | undefined,
+  mode: string | number = 0,
+): number {
   //  discuss at: https://locutus.io/php/count/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //    input by: Waldo Malqui Silva (https://waldo.malqui.info)
@@ -12,31 +14,32 @@ export function count(mixedVar: any[] | Record<string, any>, mode: string): numb
   //   example 2: count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE')
   //   returns 2: 6
 
-  let key
   let cnt = 0
 
   if (mixedVar === null || typeof mixedVar === 'undefined') {
     return 0
-  } else if (mixedVar.constructor !== Array && mixedVar.constructor !== Object) {
+  }
+  if (typeof mixedVar !== 'object') {
+    return 1
+  }
+  const ctor = (mixedVar as { constructor?: unknown }).constructor
+  if (ctor !== Array && ctor !== Object) {
     return 1
   }
 
-  if (mode === 'COUNT_RECURSIVE') {
-    mode = 1
-  }
-  if (mode !== 1) {
-    mode = 0
-  }
+  const recursiveMode = mode === 'COUNT_RECURSIVE' || mode === 1
 
-  for (key in mixedVar) {
-    if (mixedVar.hasOwnProperty(key)) {
+  const entries = mixedVar as Record<string, unknown>
+  for (const key in entries) {
+    if (Object.prototype.hasOwnProperty.call(entries, key)) {
       cnt++
-      if (
-        mode === 1 &&
-        mixedVar[key] &&
-        (mixedVar[key].constructor === Array || mixedVar[key].constructor === Object)
-      ) {
-        cnt += count(mixedVar[key], 1)
+      const value = entries[key]
+      if (!recursiveMode || !value || typeof value !== 'object') {
+        continue
+      }
+      const valueCtor = (value as { constructor?: unknown }).constructor
+      if (valueCtor === Array || valueCtor === Object) {
+        cnt += count(value as unknown[] | Record<string, unknown>, 1)
       }
     }
   }

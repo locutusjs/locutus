@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function strrpos(haystack: string, needle: string, offset?: boolean | number): number | boolean {
+export function strrpos(haystack: string, needle: string, offset?: boolean | number): number | false {
   //      discuss at: https://locutus.io/php/strrpos/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -16,7 +15,7 @@ export function strrpos(haystack: string, needle: string, offset?: boolean | num
   //       returns 4: 2
 
   let i = -1
-  if (offset) {
+  if (typeof offset === 'number') {
     i = (haystack + '').slice(offset).lastIndexOf(needle) // strrpos' offset indicates starting point of range till end,
     // while lastIndexOf's optional 2nd argument indicates ending point of range from the beginning
     if (i !== -1) {

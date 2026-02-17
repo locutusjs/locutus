@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
 import { strnatcmp } from '../strings/strnatcmp.ts'
 
@@ -59,7 +58,7 @@ export function asort(inputArr: Record<string, unknown>, sortFlags?: string): bo
   $locutus.php = $locutus.php || ({} as typeof $locutus.php)
   $locutus.php.locales = $locutus.php.locales || {}
 
-  const regularSortAsc = function (a: unknown, b: unknown) {
+  const regularSortAsc = function (a: any, b: any) {
     return a > b ? 1 : a < b ? -1 : 0
   }
 
@@ -67,14 +66,17 @@ export function asort(inputArr: Record<string, unknown>, sortFlags?: string): bo
     case 'SORT_STRING':
       // compare items as strings
       sorter = function (a, b) {
-        return strnatcmp(a, b)
+        return Number(strnatcmp(a, b) ?? 0)
       }
       break
     case 'SORT_LOCALE_STRING': {
       // compare items as strings, based on the current locale
       // (set with i18n_loc_set_default() as of PHP6)
       const loc = i18nlgd()
-      sorter = $locutus.php.locales[loc].sorting
+      const locale = $locutus.php.locales[loc]
+      if (locale?.sorting) {
+        sorter = locale.sorting
+      }
       break
     }
     case 'SORT_NUMERIC':
@@ -112,7 +114,11 @@ export function asort(inputArr: Record<string, unknown>, sortFlags?: string): bo
 
   // Repopulate the old array
   for (i = 0, valArrLen = valArr.length; i < valArrLen; i++) {
-    populateArr[valArr[i][0]] = valArr[i][1]
+    const pair = valArr[i]
+    if (!pair) {
+      continue
+    }
+    populateArr[pair[0]] = pair[1]
   }
 
   return sortByReference || populateArr

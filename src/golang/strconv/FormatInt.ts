@@ -1,4 +1,3 @@
-// @ts-nocheck
 export function FormatInt(i: number, base: number): string {
   //      discuss at: https://locutus.io/golang/strconv/FormatInt
   // parity verified: Go 1.23
@@ -11,8 +10,8 @@ export function FormatInt(i: number, base: number): string {
   //       example 3: FormatInt(10, 2)
   //       returns 3: '1010'
 
-  i = parseInt(i, 10)
-  base = parseInt(base, 10) || 10
+  i = Number.parseInt(String(i), 10)
+  base = Number.parseInt(String(base), 10) || 10
 
   if (base < 2 || base > 36) {
     throw new Error('strconv: illegal base ' + base)

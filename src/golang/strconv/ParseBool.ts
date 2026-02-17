@@ -1,4 +1,3 @@
-// @ts-nocheck
 export function ParseBool(str: string): [boolean, Error | null] {
   //      discuss at: https://locutus.io/golang/strconv/ParseBool
   // parity verified: Go 1.23

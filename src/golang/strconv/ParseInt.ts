@@ -1,4 +1,3 @@
-// @ts-nocheck
 export function ParseInt(s: string, base: number, bitSize: any): [number, Error | null] {
   //      discuss at: https://locutus.io/golang/strconv/ParseInt
   // parity verified: Go 1.23
@@ -13,7 +12,7 @@ export function ParseInt(s: string, base: number, bitSize: any): [number, Error 
   //       returns 3: 10
 
   s = (s + '').trim()
-  base = parseInt(base, 10) || 10
+  base = Number.parseInt(String(base), 10) || 10
 
   if (base < 2 || base > 36) {
     return [0, new Error('strconv.ParseInt: invalid base ' + base)]

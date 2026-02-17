@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function reset(arr) {
+export function reset(arr: unknown[] | Record<string, unknown>): unknown | false {
   //  discuss at: https://locutus.io/php/reset/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Legaev Andrey
@@ -8,32 +7,34 @@ export function reset(arr) {
   //   example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
   //   returns 1: 'Kevin'
 
-  const $global = typeof window !== 'undefined' ? window : global
+  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
+    $locutus?: {
+      php?: {
+        pointers?: unknown[]
+      }
+    }
+  }
   $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
-  $locutus.php.pointers = $locutus.php.pointers || []
-  const pointers = $locutus.php.pointers
+  $global.$locutus.php = $global.$locutus.php || {}
+  $global.$locutus.php.pointers = $global.$locutus.php.pointers || []
+  const pointers = $global.$locutus.php.pointers
 
-  const indexOf = function (value) {
-    for (let i = 0, length = this.length; i < length; i++) {
-      if (this[i] === value) {
+  const indexOf = (list: unknown[], value: unknown): number => {
+    for (let i = 0, length = list.length; i < length; i++) {
+      if (list[i] === value) {
         return i
       }
     }
     return -1
   }
 
-  if (!pointers.indexOf) {
-    pointers.indexOf = indexOf
-  }
-  if (pointers.indexOf(arr) === -1) {
+  if (indexOf(pointers, arr) === -1) {
     pointers.push(arr, 0)
   }
-  const arrpos = pointers.indexOf(arr)
+  const arrpos = indexOf(pointers, arr)
   if (!Array.isArray(arr)) {
     for (const k in arr) {
-      if (pointers.indexOf(arr) === -1) {
+      if (indexOf(pointers, arr) === -1) {
         pointers.push(arr, 0)
       } else {
         pointers[arrpos + 1] = 0
@@ -47,5 +48,5 @@ export function reset(arr) {
     return false
   }
   pointers[arrpos + 1] = 0
-  return arr[pointers[arrpos + 1]]
+  return arr[0]
 }

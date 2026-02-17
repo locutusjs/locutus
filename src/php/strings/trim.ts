@@ -1,4 +1,3 @@
-// @ts-nocheck
 export function trim(str: string | number, charlist?: string | number): string {
   //      discuss at: https://locutus.io/php/trim/
   // parity verified: PHP 8.3
@@ -44,27 +43,27 @@ export function trim(str: string | number, charlist?: string | number): string {
   ].join('')
   let l = 0
   let i = 0
-  str += ''
+  let strValue = String(str)
 
   if (charlist) {
     whitespace = (charlist + '').replace(/([[\]().?/*{}+$^:])/g, '$1')
   }
 
-  l = str.length
+  l = strValue.length
   for (i = 0; i < l; i++) {
-    if (whitespace.indexOf(str.charAt(i)) === -1) {
-      str = str.substring(i)
+    if (whitespace.indexOf(strValue.charAt(i)) === -1) {
+      strValue = strValue.substring(i)
       break
     }
   }
 
-  l = str.length
+  l = strValue.length
   for (i = l - 1; i >= 0; i--) {
-    if (whitespace.indexOf(str.charAt(i)) === -1) {
-      str = str.substring(0, i + 1)
+    if (whitespace.indexOf(strValue.charAt(i)) === -1) {
+      strValue = strValue.substring(0, i + 1)
       break
     }
   }
 
-  return whitespace.indexOf(str.charAt(0)) === -1 ? str : ''
+  return whitespace.indexOf(strValue.charAt(0)) === -1 ? strValue : ''
 }

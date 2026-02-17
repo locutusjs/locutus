@@ -1,5 +1,8 @@
-// @ts-nocheck
-export function explode(delimiter: string, string: string, limit: number): any[] | false {
+export function explode(
+  delimiter: string | boolean | null | undefined,
+  string: string | Record<string, unknown> | (() => unknown) | undefined,
+  limit?: number,
+): string[] | false | { 0: string } | null {
   //      discuss at: https://locutus.io/php/explode/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -27,10 +30,10 @@ export function explode(delimiter: string, string: string, limit: number): any[]
   }
 
   // Here we go...
-  delimiter += ''
-  string += ''
+  const normalizedDelimiter = delimiter + ''
+  const normalizedString = string + ''
 
-  const s = string.split(delimiter)
+  const s = normalizedString.split(normalizedDelimiter)
 
   if (typeof limit === 'undefined') {
     return s
@@ -46,7 +49,7 @@ export function explode(delimiter: string, string: string, limit: number): any[]
     if (limit >= s.length) {
       return s
     }
-    return s.slice(0, limit - 1).concat([s.slice(limit - 1).join(delimiter)])
+    return s.slice(0, limit - 1).concat([s.slice(limit - 1).join(normalizedDelimiter)])
   }
 
   // Negative limit
