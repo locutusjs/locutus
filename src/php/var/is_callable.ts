@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function is_callable(mixedVar: unknown, syntaxOnly?: boolean, callableName?: string): boolean | string | false {
+export function is_callable(mixedVar: unknown, syntaxOnly?: boolean, callableName?: string): boolean | false {
   //  discuss at: https://locutus.io/php/is_callable/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: François
@@ -31,29 +30,33 @@ export function is_callable(mixedVar: unknown, syntaxOnly?: boolean, callableNam
   //   example 5: is_callable(class MyClass {})
   //   returns 5: false
 
-  const $global = typeof window !== 'undefined' ? window : global
+  const globalContext = globalThis as typeof globalThis & { [key: string]: unknown }
 
   const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
   let name = ''
-  let obj: { [key: string]: unknown } = {}
+  let obj: { [key: string]: unknown } | null = null
   let method = ''
   let validFunctionName = false
 
-  const getFuncName = function (fn: unknown) {
-    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn)
-    if (!name) {
+  const getFuncName = function (fn: unknown): string {
+    const funcNameMatch = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
+    if (!funcNameMatch) {
       return '(Anonymous)'
     }
-    return name[1]
+    return funcNameMatch[1] ?? '(Anonymous)'
   }
 
-  if (/(^class|\(this,)/.test(mixedVar.toString())) {
+  if (mixedVar == null) {
+    return false
+  }
+
+  if (/(^class|\(this,)/.test(String(mixedVar))) {
     return false
   }
 
   if (typeof mixedVar === 'string') {
-    obj = $global
+    obj = globalContext
     method = mixedVar
     name = mixedVar
     validFunctionName = !!name.match(validJSFunctionNamePattern)
@@ -62,17 +65,20 @@ export function is_callable(mixedVar: unknown, syntaxOnly?: boolean, callableNam
   } else if (
     Array.isArray(mixedVar) &&
     mixedVar.length === 2 &&
+    mixedVar[0] !== null &&
     typeof mixedVar[0] === 'object' &&
     typeof mixedVar[1] === 'string'
   ) {
-    obj = mixedVar[0]
+    const receiver = mixedVar[0] as { [key: string]: unknown; constructor?: unknown }
+    obj = receiver
     method = mixedVar[1]
-    name = (obj.constructor && getFuncName(obj.constructor)) + '::' + method
+    name =
+      (typeof receiver.constructor === 'function' ? getFuncName(receiver.constructor) : '(Anonymous)') + '::' + method
   }
 
-  if (syntaxOnly || typeof obj[method] === 'function') {
+  if (syntaxOnly || (obj && typeof obj[method] === 'function')) {
     if (callableName) {
-      $global[callableName] = name
+      globalContext[callableName] = name
     }
     return true
   }
@@ -81,7 +87,7 @@ export function is_callable(mixedVar: unknown, syntaxOnly?: boolean, callableNam
   // biome-ignore lint/security/noGlobalEval: needed for PHP port
   if (validFunctionName && typeof eval(method) === 'function') {
     if (callableName) {
-      $global[callableName] = name
+      globalContext[callableName] = name
     }
     return true
   }

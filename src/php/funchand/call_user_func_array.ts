@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function call_user_func_array(cb, parameters) {
+export function call_user_func_array(cb: unknown, parameters: unknown[]): unknown {
   //  discuss at: https://locutus.io/php/call_user_func_array/
   // original by: Thiago Mata (https://thiagomata.blog.com)
   //  revised by: Jon Hohle
@@ -16,31 +15,31 @@ export function call_user_func_array(cb, parameters) {
   //   example 2: call_user_func_array('isNaN', [1])
   //   returns 2: false
 
-  const $global = typeof window !== 'undefined' ? window : global
-  let func
-  let scope = null
+  const globalContext = globalThis as typeof globalThis & { [key: string]: unknown }
+  let func: unknown
+  let scope: unknown = null
 
   const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
   if (typeof cb === 'string') {
-    if (typeof $global[cb] === 'function') {
-      func = $global[cb]
+    if (typeof globalContext[cb] === 'function') {
+      func = globalContext[cb]
     } else if (cb.match(validJSFunctionNamePattern)) {
-      func = new Function(null, 'return ' + cb)()
+      func = new Function(`return ${cb}`)()
     }
   } else if (Array.isArray(cb)) {
     if (typeof cb[0] === 'string') {
       if (cb[0].match(validJSFunctionNamePattern)) {
         // biome-ignore lint/security/noGlobalEval: needed for PHP port
-        func = eval(cb[0] + "['" + cb[1] + "']")
+        func = eval(`${cb[0]}['${cb[1]}']`)
       }
-    } else {
-      func = cb[0][cb[1]]
+    } else if ((typeof cb[0] === 'object' && cb[0] !== null) || typeof cb[0] === 'function') {
+      func = (cb[0] as { [key: string]: unknown })[String(cb[1])]
     }
 
     if (typeof cb[0] === 'string') {
-      if (typeof $global[cb[0]] === 'function') {
-        scope = $global[cb[0]]
+      if (typeof globalContext[cb[0]] === 'function') {
+        scope = globalContext[cb[0]]
       } else if (cb[0].match(validJSFunctionNamePattern)) {
         // biome-ignore lint/security/noGlobalEval: needed for PHP port
         scope = eval(cb[0])
@@ -53,8 +52,8 @@ export function call_user_func_array(cb, parameters) {
   }
 
   if (typeof func !== 'function') {
-    throw new Error(func + ' is not a valid function')
+    throw new Error(String(func) + ' is not a valid function')
   }
 
-  return func.apply(scope, parameters)
+  return (func as (...args: unknown[]) => unknown).apply(scope, parameters)
 }
