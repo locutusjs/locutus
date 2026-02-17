@@ -1,4 +1,4 @@
-export function exp(x) {
+export function exp(x: number): number {
   //      discuss at: https://locutus.io/awk/exp/
   // parity verified: GNU AWK 5.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

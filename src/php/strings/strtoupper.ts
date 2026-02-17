@@ -1,4 +1,4 @@
-export function strtoupper(str) {
+export function strtoupper(str: string): string {
   //      discuss at: https://locutus.io/php/strtoupper/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

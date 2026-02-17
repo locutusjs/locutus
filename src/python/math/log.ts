@@ -1,4 +1,4 @@
-export function log(x, base) {
+export function log(x: number, base: number): number {
   //      discuss at: https://locutus.io/python/log/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

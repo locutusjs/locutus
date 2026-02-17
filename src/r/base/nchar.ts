@@ -1,4 +1,4 @@
-export function nchar(x) {
+export function nchar(x: string): number {
   //      discuss at: https://locutus.io/r/nchar/
   // parity verified: R 4.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

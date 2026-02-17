@@ -1,4 +1,5 @@
-export function explode(delimiter, string, limit) {
+// @ts-nocheck
+export function explode(delimiter: string, string: string, limit: number): any[] | false {
   //      discuss at: https://locutus.io/php/explode/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

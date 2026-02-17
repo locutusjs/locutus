@@ -1,4 +1,4 @@
-export function is_null(mixedVar) {
+export function is_null(mixedVar: string | null): boolean {
   //      discuss at: https://locutus.io/php/is_null/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

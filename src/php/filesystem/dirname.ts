@@ -1,4 +1,4 @@
-export function dirname(path) {
+export function dirname(path: string): string {
   //      discuss at: https://locutus.io/php/dirname/
   // parity verified: PHP 8.3
   //     original by: Ozh

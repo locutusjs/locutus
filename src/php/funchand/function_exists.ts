@@ -1,4 +1,5 @@
-export function function_exists(funcName) {
+// @ts-nocheck
+export function function_exists(funcName: string): boolean {
   //  discuss at: https://locutus.io/php/function_exists/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Steve Clay

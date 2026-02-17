@@ -1,4 +1,4 @@
-export function isdigit(c) {
+export function isdigit(c: string): boolean {
   //      discuss at: https://locutus.io/c/ctype/isdigit/
   // parity verified: C 23
   //     original by: Kevin van Zonneveld (https://kvz.io)

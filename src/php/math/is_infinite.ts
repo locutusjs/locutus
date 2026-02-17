@@ -1,4 +1,5 @@
-export function is_infinite(val) {
+// @ts-nocheck
+export function is_infinite(val: number): boolean | false {
   //  discuss at: https://locutus.io/php/is_infinite/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: is_infinite(Infinity)

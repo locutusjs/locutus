@@ -1,4 +1,4 @@
-export function strstr(haystack, needle, bool) {
+export function strstr(haystack: string, needle: string, bool?: boolean): string | false {
   //      discuss at: https://locutus.io/php/strstr/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

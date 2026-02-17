@@ -1,4 +1,4 @@
-export function quoted_printable_decode(str) {
+export function quoted_printable_decode(str: string): string {
   //       discuss at: https://locutus.io/php/quoted_printable_decode/
   //  parity verified: PHP 8.3
   //      original by: Ole Vrijenhoek
@@ -22,7 +22,7 @@ export function quoted_printable_decode(str) {
   const RFC2045Decode2IN = /=([0-9A-F]{2})/gim
   // RFC2045Decode2IN = /=([0-9A-F]{2})/gm,
 
-  const RFC2045Decode2OUT = function (sMatch, sHex) {
+  const RFC2045Decode2OUT = function (sMatch: any, sHex: any) {
     return String.fromCharCode(parseInt(sHex, 16))
   }
 

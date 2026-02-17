@@ -1,4 +1,5 @@
-export function decbin(number) {
+// @ts-nocheck
+export function decbin(number: string | number): string {
   //      discuss at: https://locutus.io/php/decbin/
   // parity verified: PHP 8.3
   //     original by: Enrique Gonzalez

@@ -1,4 +1,4 @@
-export function long2ip(ip) {
+export function long2ip(ip: number): string | false {
   //      discuss at: https://locutus.io/php/long2ip/
   // parity verified: PHP 8.3
   //     original by: Waldo Malqui Silva (https://fayr.us/waldo/)

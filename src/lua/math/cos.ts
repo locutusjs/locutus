@@ -1,4 +1,4 @@
-export function cos(x) {
+export function cos(x: number): number {
   //      discuss at: https://locutus.io/lua/cos/
   // parity verified: Lua 5.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

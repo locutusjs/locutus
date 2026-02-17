@@ -1,4 +1,4 @@
-export function floor(x) {
+export function floor(x: number): number {
   //      discuss at: https://locutus.io/r/floor/
   // parity verified: R 4.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

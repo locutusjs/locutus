@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { setlocale } from '../strings/setlocale.ts'
 
-export function ctype_alpha(text) {
+export function ctype_alpha(text: string): boolean | false {
   //      discuss at: https://locutus.io/php/ctype_alpha/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

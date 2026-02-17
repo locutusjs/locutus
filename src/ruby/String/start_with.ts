@@ -1,4 +1,4 @@
-export function start_with(str, prefix) {
+export function start_with(str: string, prefix: string): boolean {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/String/start_with/
   //     original by: Kevin van Zonneveld (https://kvz.io)

@@ -1,4 +1,4 @@
-export function tanh(x) {
+export function tanh(x: number): number {
   //      discuss at: https://locutus.io/ruby/Math/tanh/
   // parity verified: Ruby 3.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

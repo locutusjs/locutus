@@ -1,4 +1,4 @@
-export function ToLower(s) {
+export function ToLower(s: string): string {
   //      discuss at: https://locutus.io/golang/strings/ToLower
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

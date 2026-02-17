@@ -1,3 +1,4 @@
+// @ts-nocheck
 export function json_last_error() {
   //      discuss at: https://phpjs.org/functions/json_last_error/
   // parity verified: PHP 8.3

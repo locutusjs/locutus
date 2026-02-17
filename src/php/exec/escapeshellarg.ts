@@ -1,4 +1,4 @@
-export function escapeshellarg(arg) {
+export function escapeshellarg(arg: string): string {
   //      discuss at: https://locutus.io/php/escapeshellarg/
   // parity verified: PHP 8.3
   // Warning: this function emulates escapeshellarg() for php-running-on-linux

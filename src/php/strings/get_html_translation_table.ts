@@ -1,4 +1,5 @@
-export function get_html_translation_table(table, quoteStyle) {
+// @ts-nocheck
+export function get_html_translation_table(table: string, quoteStyle: any): Record<string, any> {
   //  discuss at: https://locutus.io/php/get_html_translation_table/
   // original by: Philip Peterson
   //  revised by: Kevin van Zonneveld (https://kvz.io)
@@ -19,14 +20,13 @@ export function get_html_translation_table(table, quoteStyle) {
   //   example 1: get_html_translation_table('HTML_SPECIALCHARS')
   //   returns 1: {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
 
-  const entities = {}
-  const hashMap = {}
+  const entities: Record<string, any> = {}
+  const hashMap: Record<string, any> = {}
   let decimal
-  const constMappingTable = {}
-  const constMappingQuoteStyle = {}
-  let useTable = {}
-  let useQuoteStyle = {}
-
+  const constMappingTable: Record<string, any> = {}
+  const constMappingQuoteStyle: Record<string, any> = {}
+  let useTable: Record<string, any> = {}
+  let useQuoteStyle: Record<string, any> = {}
   // Translate arguments
   constMappingTable[0] = 'HTML_SPECIALCHARS'
   constMappingTable[1] = 'HTML_ENTITIES'

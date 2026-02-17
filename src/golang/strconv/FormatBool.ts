@@ -1,4 +1,4 @@
-export function FormatBool(b) {
+export function FormatBool(b: boolean): string {
   //      discuss at: https://locutus.io/golang/strconv/FormatBool
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

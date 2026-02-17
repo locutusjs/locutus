@@ -1,4 +1,4 @@
-export function reverse(s) {
+export function reverse(s: string): string {
   //      discuss at: https://locutus.io/clojure/reverse/
   // parity verified: Clojure 1.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

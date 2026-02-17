@@ -1,4 +1,4 @@
-export function sqrt(x) {
+export function sqrt(x: number): number {
   //      discuss at: https://locutus.io/ruby/Math/sqrt/
   // parity verified: Ruby 3.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

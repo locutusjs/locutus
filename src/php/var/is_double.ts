@@ -1,6 +1,6 @@
 import { is_float as _isFloat } from '../var/is_float.ts'
 
-export function is_double(mixedVar) {
+export function is_double(mixedVar: number): boolean {
   //      discuss at: https://locutus.io/php/is_double/
   // parity verified: PHP 8.3
   //     original by: Paulo Freitas

@@ -1,4 +1,4 @@
-export function fabs(x) {
+export function fabs(x: number): number {
   //      discuss at: https://locutus.io/python/fabs/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

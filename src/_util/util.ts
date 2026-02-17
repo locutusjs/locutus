@@ -653,7 +653,7 @@ class Util {
 
     // If both .js and .ts exist for the same function, prefer .ts
     if (files.length === 2) {
-      const tsFile = files.find((f) => f.endsWith('.ts'))
+      const tsFile = files.find((f: string) => f.endsWith('.ts'))
       if (tsFile) {
         files = [tsFile]
       }

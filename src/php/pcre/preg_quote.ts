@@ -1,4 +1,4 @@
-export function preg_quote(str, delimiter) {
+export function preg_quote(str: string, delimiter: string): string {
   //  discuss at: https://locutus.io/php/preg_quote/
   // original by: booeyOH
   // improved by: Ates Goral (https://magnetiq.com)

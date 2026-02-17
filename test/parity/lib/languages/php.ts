@@ -109,7 +109,7 @@ function convertObjectLiteral(segment: string): string {
     let body = inner.trim()
     // Quote unquoted object keys: key: value -> 'key' => value
     // Handle keys at start of object or after comma
-    body = body.replace(/(?:^|,)\s*([A-Za-z_][\w]*)\s*:/g, (match, key) => {
+    body = body.replace(/(?:^|,)\s*([A-Za-z_][\w]*)\s*:/g, (match: string, key: string) => {
       const prefix = match.startsWith(',') ? ', ' : ''
       return `${prefix}'${key}' =>`
     })

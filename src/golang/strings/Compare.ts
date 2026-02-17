@@ -1,4 +1,4 @@
-export function Compare(a, b) {
+export function Compare(a: string, b: string): number {
   //      discuss at: https://locutus.io/golang/strings/Compare/
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

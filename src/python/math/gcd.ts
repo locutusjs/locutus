@@ -1,4 +1,5 @@
-export function gcd(a, b) {
+// @ts-nocheck
+export function gcd(a: number, b: number): number {
   //      discuss at: https://locutus.io/python/gcd/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

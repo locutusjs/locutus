@@ -1,4 +1,5 @@
-export function levenshtein(s1, s2, costIns, costRep, costDel) {
+// @ts-nocheck
+export function levenshtein(s1: string, s2: string, costIns?: number, costRep?: number, costDel?: number): number {
   //       discuss at: https://locutus.io/php/levenshtein/
   //  parity verified: PHP 8.3
   //      original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)

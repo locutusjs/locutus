@@ -1,4 +1,4 @@
-export function Trim(s, cutset) {
+export function Trim(s: string, cutset: string): string {
   //      discuss at: https://locutus.io/golang/strings/Trim
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

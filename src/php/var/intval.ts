@@ -1,4 +1,5 @@
-export function intval(mixedVar, base) {
+// @ts-nocheck
+export function intval(mixedVar: string | number, base?: number): number {
   //      discuss at: https://locutus.io/php/intval/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

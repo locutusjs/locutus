@@ -1,4 +1,5 @@
-export function inet_pton(a) {
+// @ts-nocheck
+export function inet_pton(a: string): string | false {
   //      discuss at: https://locutus.io/php/inet_pton/
   // parity verified: PHP 8.3
   //     original by: Theriault (https://github.com/Theriault)
@@ -60,5 +61,5 @@ export function inet_pton(a) {
     m[j] = m[j].join('')
   }
 
-  return m.join('\x00'.repeat(16 - m.reduce((tl, m) => tl + m.length, 0)))
+  return m.join('\x00'.repeat(16 - m.reduce((tl: any, m: any) => tl + m.length, 0)))
 }

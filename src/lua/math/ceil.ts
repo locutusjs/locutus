@@ -1,4 +1,4 @@
-export function ceil(x) {
+export function ceil(x: number): number {
   //      discuss at: https://locutus.io/lua/ceil/
   // parity verified: Lua 5.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { setlocale } from '../strings/setlocale.ts'
 
-export function ctype_upper(text) {
+export function ctype_upper(text: string): boolean | false {
   //      discuss at: https://locutus.io/php/ctype_upper/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

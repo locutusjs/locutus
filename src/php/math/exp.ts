@@ -1,4 +1,4 @@
-export function exp(arg) {
+export function exp(arg: number): number {
   //      discuss at: https://locutus.io/php/exp/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)

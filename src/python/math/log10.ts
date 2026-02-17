@@ -1,4 +1,4 @@
-export function log10(x) {
+export function log10(x: number): number {
   //      discuss at: https://locutus.io/python/log10/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

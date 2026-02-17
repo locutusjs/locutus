@@ -1,4 +1,4 @@
-export function rad2deg(angle) {
+export function rad2deg(angle: number): number {
   //      discuss at: https://locutus.io/php/rad2deg/
   // parity verified: PHP 8.3
   //     original by: Enrique Gonzalez

@@ -1,4 +1,5 @@
-export function array_filter(arr, func) {
+// @ts-nocheck
+export function array_filter(arr: Record<string, any> | any[], func?: Function): Record<string, any> | any[] {
   //  discuss at: https://locutus.io/php/array_filter/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: max4ever
@@ -13,12 +14,12 @@ export function array_filter(arr, func) {
   //   example 3: array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined})
   //   returns 3: {"a":1, "c":-1}
 
-  let retObj = {}
+  let retObj: Record<string, any> = {}
   let k
 
   func =
     func ||
-    function (v) {
+    function (v: any) {
       return v
     }
 

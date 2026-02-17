@@ -1,4 +1,4 @@
-export function stripslashes(str) {
+export function stripslashes(str: string): string {
   //       discuss at: https://locutus.io/php/stripslashes/
   //  parity verified: PHP 8.3
   //      original by: Kevin van Zonneveld (https://kvz.io)

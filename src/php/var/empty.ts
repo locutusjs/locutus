@@ -1,4 +1,5 @@
-export function empty(mixedVar) {
+// @ts-nocheck
+export function empty(mixedVar: null | undefined | any[] | Record<string, any>): boolean | false {
   //  discuss at: https://locutus.io/php/empty/
   // original by: Philippe Baumann
   //    input by: Onno Marsman (https://twitter.com/onnomarsman)

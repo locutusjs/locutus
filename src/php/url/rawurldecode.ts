@@ -1,4 +1,4 @@
-export function rawurldecode(str) {
+export function rawurldecode(str: string): string {
   //       discuss at: https://locutus.io/php/rawurldecode/
   //  parity verified: PHP 8.3
   //      original by: Brett Zamir (https://brett-zamir.me)

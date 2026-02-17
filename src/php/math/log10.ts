@@ -1,4 +1,4 @@
-export function log10(arg) {
+export function log10(arg: number): number {
   //      discuss at: https://locutus.io/php/log10/
   // parity verified: PHP 8.3
   //     original by: Philip Peterson

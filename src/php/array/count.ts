@@ -1,4 +1,5 @@
-export function count(mixedVar, mode) {
+// @ts-nocheck
+export function count(mixedVar: any[] | Record<string, any>, mode: string): number {
   //  discuss at: https://locutus.io/php/count/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //    input by: Waldo Malqui Silva (https://waldo.malqui.info)

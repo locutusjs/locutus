@@ -1,4 +1,4 @@
-export function bin2hex(s) {
+export function bin2hex(s: string): string {
   //      discuss at: https://locutus.io/php/bin2hex/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

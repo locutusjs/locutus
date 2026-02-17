@@ -1,4 +1,4 @@
-export function preg_match(regex, str) {
+export function preg_match(regex: string, str: string): boolean {
   // original by: Muhammad Humayun (https://github.com/ronypt)
   //   example 1: preg_match("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", "rony@pharaohtools.com")
   //   returns 1: true

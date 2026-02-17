@@ -1,4 +1,4 @@
-export function array_flip(trans) {
+export function array_flip(trans: Record<string, any>): Record<string, any> {
   //      discuss at: https://locutus.io/php/array_flip/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -8,8 +8,7 @@ export function array_flip(trans) {
   //       returns 1: {1: 'b', 2: 'c'}
 
   let key
-  const tmpArr = {}
-
+  const tmpArr: Record<string, any> = {}
   for (key in trans) {
     if (!trans.hasOwnProperty(key)) {
       continue

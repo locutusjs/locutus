@@ -1,4 +1,5 @@
-export function hypot(x, y) {
+// @ts-nocheck
+export function hypot(x: number | any[], y: string | number): number | null {
   //  discuss at: https://locutus.io/php/hypot/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Robert Eisele (https://www.xarg.org/)

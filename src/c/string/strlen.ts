@@ -1,4 +1,4 @@
-export function strlen(str) {
+export function strlen(str: string): number {
   //      discuss at: https://locutus.io/c/string/strlen/
   // parity verified: C 23
   //     original by: Kevin van Zonneveld (https://kvz.io)

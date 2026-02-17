@@ -1,4 +1,4 @@
-export function end_with(str, suffix) {
+export function end_with(str: string, suffix: string): boolean {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/String/end_with/
   //     original by: Kevin van Zonneveld (https://kvz.io)

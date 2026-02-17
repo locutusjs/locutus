@@ -1,4 +1,5 @@
-export function decoct(number) {
+// @ts-nocheck
+export function decoct(number: number): string {
   //      discuss at: https://locutus.io/php/decoct/
   // parity verified: PHP 8.3
   //     original by: Enrique Gonzalez

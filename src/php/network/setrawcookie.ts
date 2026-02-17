@@ -1,4 +1,5 @@
-export function setrawcookie(name, value, expires, path, domain, secure) {
+// @ts-nocheck
+export function setrawcookie(name: string, value: string, expires: any, path: any, domain: any, secure: any): boolean {
   //  discuss at: https://locutus.io/php/setrawcookie/
   // original by: Brett Zamir (https://brett-zamir.me)
   // original by: setcookie

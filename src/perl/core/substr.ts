@@ -1,4 +1,4 @@
-export function substr(str, offset, length) {
+export function substr(str: string, offset: number, length?: number): string {
   //      discuss at: https://locutus.io/perl/substr/
   // parity verified: Perl 5.40
   //     original by: Kevin van Zonneveld (https://kvz.io)

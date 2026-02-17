@@ -1,4 +1,4 @@
-export function hexdec(hexString) {
+export function hexdec(hexString: string): number {
   //      discuss at: https://locutus.io/php/hexdec/
   // parity verified: PHP 8.3
   //     original by: Philippe Baumann

@@ -1,4 +1,4 @@
-export function strncmp(str1, str2, lgth) {
+export function strncmp(str1: string, str2: string, lgth: number): number {
   //       discuss at: https://locutus.io/php/strncmp/
   //  parity verified: PHP 8.3
   //      original by: Waldo Malqui Silva (https://waldo.malqui.info)

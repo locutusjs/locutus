@@ -1,4 +1,5 @@
-export function i18n_loc_set_default(name) {
+// @ts-nocheck
+export function i18n_loc_set_default(name: string): boolean {
   //  discuss at: https://locutus.io/php/i18n_loc_set_default/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Renamed in PHP6 from locale_set_default(). Not listed yet at php.net
@@ -14,7 +15,7 @@ export function i18n_loc_set_default(name) {
   $locutus.php.locales = $locutus.php.locales || {}
 
   $locutus.php.locales.en_US_POSIX = {
-    sorting: function (str1, str2) {
+    sorting: function (str1: any, str2: any) {
       // @todo: This one taken from strcmp, but need for other locales;
       // we don't use localeCompare since its locale is not settable
       return str1 === str2 ? 0 : str1 > str2 ? 1 : -1

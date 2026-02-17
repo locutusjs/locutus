@@ -1,4 +1,4 @@
-export function array_fill_keys(keys, value) {
+export function array_fill_keys(keys: any, value: string): Record<string, any> {
   //  discuss at: https://locutus.io/php/array_fill_keys/
   // original by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Brett Zamir (https://brett-zamir.me)
@@ -6,7 +6,7 @@ export function array_fill_keys(keys, value) {
   //   example 1: array_fill_keys($keys, 'banana')
   //   returns 1: {"foo": "banana", 5: "banana", 10: "banana", "bar": "banana"}
 
-  const retObj = {}
+  const retObj: Record<string, any> = {}
   let key = ''
 
   for (key in keys) {

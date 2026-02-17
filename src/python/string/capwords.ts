@@ -1,4 +1,4 @@
-export function capwords(str) {
+export function capwords(str: string): string {
   //  discuss at: https://locutus.io/python/capwords/
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   // improved by: Waldo Malqui Silva (https://waldo.malqui.info)

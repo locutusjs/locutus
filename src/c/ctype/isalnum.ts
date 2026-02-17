@@ -1,4 +1,4 @@
-export function isalnum(c) {
+export function isalnum(c: string): boolean {
   //      discuss at: https://locutus.io/c/ctype/isalnum/
   // parity verified: C 23
   //     original by: Kevin van Zonneveld (https://kvz.io)

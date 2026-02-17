@@ -1,4 +1,4 @@
-export function rawurlencode(str) {
+export function rawurlencode(str: string): string {
   //       discuss at: https://locutus.io/php/rawurlencode/
   //  parity verified: PHP 8.3
   //      original by: Brett Zamir (https://brett-zamir.me)

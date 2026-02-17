@@ -1,4 +1,4 @@
-export function ucwords(str) {
+export function ucwords(str: string): string {
   //  discuss at: https://locutus.io/php/ucwords/
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   // improved by: Waldo Malqui Silva (https://waldo.malqui.info)

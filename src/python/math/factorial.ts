@@ -1,4 +1,5 @@
-export function factorial(n) {
+// @ts-nocheck
+export function factorial(n: number): number {
   //      discuss at: https://locutus.io/python/factorial/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

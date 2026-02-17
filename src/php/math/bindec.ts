@@ -1,4 +1,4 @@
-export function bindec(binaryString) {
+export function bindec(binaryString: string): number {
   //      discuss at: https://locutus.io/php/bindec/
   // parity verified: PHP 8.3
   //     original by: Philippe Baumann

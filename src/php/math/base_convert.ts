@@ -1,4 +1,4 @@
-export function base_convert(number, frombase, tobase) {
+export function base_convert(number: string, frombase: number, tobase: number): string {
   //      discuss at: https://locutus.io/php/base_convert/
   // parity verified: PHP 8.3
   //     original by: Philippe Baumann

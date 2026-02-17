@@ -1,4 +1,4 @@
-export function sqrt(x) {
+export function sqrt(x: number): number {
   //      discuss at: https://locutus.io/r/sqrt/
   // parity verified: R 4.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

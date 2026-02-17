@@ -1,4 +1,5 @@
-export function strrpos(haystack, needle, offset) {
+// @ts-nocheck
+export function strrpos(haystack: string, needle: string, offset?: boolean | number): number | boolean {
   //      discuss at: https://locutus.io/php/strrpos/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

@@ -1,6 +1,6 @@
 import { current } from '../array/current.ts'
 
-export function pos(arr) {
+export function pos(arr: any[]): string {
   //      discuss at: https://locutus.io/php/pos/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

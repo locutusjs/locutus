@@ -1,4 +1,4 @@
-export function sinh(x) {
+export function sinh(x: number): number {
   //      discuss at: https://locutus.io/ruby/Math/sinh/
   // parity verified: Ruby 3.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

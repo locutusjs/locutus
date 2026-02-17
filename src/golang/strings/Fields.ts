@@ -1,4 +1,4 @@
-export function Fields(s) {
+export function Fields(s: string): any[] {
   //      discuss at: https://locutus.io/golang/strings/Fields/
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -8,5 +8,5 @@ export function Fields(s) {
   //       returns 2: []
 
   // Split by whitespace and filter empty strings
-  return s.split(/\s+/).filter((field) => field !== '')
+  return s.split(/\s+/).filter((field: any) => field !== '')
 }

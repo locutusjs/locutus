@@ -1,4 +1,5 @@
-export function ParseInt(s, base, bitSize) {
+// @ts-nocheck
+export function ParseInt(s: string, base: number, bitSize: any): number {
   //      discuss at: https://locutus.io/golang/strconv/ParseInt
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

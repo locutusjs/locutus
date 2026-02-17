@@ -1,4 +1,4 @@
-export function reverse(str) {
+export function reverse(str: string): string {
   //      discuss at: https://locutus.io/perl/reverse/
   // parity verified: Perl 5.40
   //     original by: Kevin van Zonneveld (https://kvz.io)

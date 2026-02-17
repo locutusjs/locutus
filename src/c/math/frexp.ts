@@ -1,4 +1,4 @@
-export function frexp(arg) {
+export function frexp(arg: number): any[] {
   //  discuss at: https://locutus.io/c/frexp/
   // original by: Oskar Larsson Högfeldt (https://oskar-lh.name/)
   //      note 1: Instead of

@@ -1,4 +1,4 @@
-export function octdec(octString) {
+export function octdec(octString: string): number {
   //      discuss at: https://locutus.io/php/octdec/
   // parity verified: PHP 8.3
   //     original by: Philippe Baumann

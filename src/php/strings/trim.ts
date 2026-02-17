@@ -1,4 +1,5 @@
-export function trim(str, charlist) {
+// @ts-nocheck
+export function trim(str: string | number, charlist?: string | number): string {
   //      discuss at: https://locutus.io/php/trim/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

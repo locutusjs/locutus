@@ -1,4 +1,4 @@
-export function addslashes(str) {
+export function addslashes(str: string): string {
   //      discuss at: https://locutus.io/php/addslashes/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

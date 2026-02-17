@@ -1,4 +1,4 @@
-export function ceil(x) {
+export function ceil(x: number): number {
   //      discuss at: https://locutus.io/julia/ceil/
   // parity verified: Julia 1.11
   //     original by: Kevin van Zonneveld (https://kvz.io)

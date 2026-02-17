@@ -1,4 +1,4 @@
-export function strip(str) {
+export function strip(str: string): string {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/String/strip/
   //     original by: Kevin van Zonneveld (https://kvz.io)

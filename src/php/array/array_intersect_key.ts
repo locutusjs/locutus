@@ -1,4 +1,4 @@
-export function array_intersect_key(arr1) {
+export function array_intersect_key(arr1: any): Record<string, any> {
   //  discuss at: https://locutus.io/php/array_intersect_key/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: These only output associative arrays (would need to be
@@ -8,11 +8,11 @@ export function array_intersect_key(arr1) {
   //   example 1: array_intersect_key($array1, $array2)
   //   returns 1: {0: 'red', a: 'green'}
 
-  const retArr = {}
+  const retArr: Record<string, any> = {}
   const argl = arguments.length
   const arglm1 = argl - 1
   let k1 = ''
-  let arr = {}
+  let arr: Record<string, any> = {}
   let i = 0
   let k = ''
 

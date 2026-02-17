@@ -1,4 +1,4 @@
-export function substr(str, start, len) {
+export function substr(str: string, start: number, len?: number): string {
   //      discuss at: https://locutus.io/awk/substr/
   // parity verified: GNU AWK 5.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

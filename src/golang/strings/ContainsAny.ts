@@ -1,4 +1,4 @@
-export function ContainsAny(s, chars) {
+export function ContainsAny(s: string, chars: string): boolean | false {
   //      discuss at: https://locutus.io/golang/strings/ContainsAny/
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

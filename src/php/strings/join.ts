@@ -1,6 +1,6 @@
 import { implode } from '../strings/implode.ts'
 
-export function join(glue, pieces) {
+export function join(glue: string, pieces: any[]): string {
   //      discuss at: https://locutus.io/php/join/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

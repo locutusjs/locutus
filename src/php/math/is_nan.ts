@@ -1,4 +1,5 @@
-export function is_nan(val) {
+// @ts-nocheck
+export function is_nan(val: number): boolean | false {
   //  discuss at: https://locutus.io/php/is_nan/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //    input by: Robin

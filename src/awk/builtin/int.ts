@@ -1,4 +1,4 @@
-export function int(x) {
+export function int(x: number): number {
   //      discuss at: https://locutus.io/awk/int/
   // parity verified: GNU AWK 5.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

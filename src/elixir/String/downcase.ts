@@ -1,4 +1,4 @@
-export function downcase(string) {
+export function downcase(string: string): string {
   //      discuss at: https://locutus.io/elixir/downcase/
   // parity verified: Elixir 1.18
   //     original by: Kevin van Zonneveld (https://kvz.io)

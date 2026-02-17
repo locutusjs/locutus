@@ -1,4 +1,4 @@
-export function abs(mixedNumber) {
+export function abs(mixedNumber: number): number {
   //      discuss at: https://locutus.io/c/abs/
   // parity verified: C 23
   //     original by: Waldo Malqui Silva (https://waldo.malqui.info)

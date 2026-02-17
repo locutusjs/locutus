@@ -1,6 +1,6 @@
 import { _bc } from '../_helpers/_bc.ts'
 
-export function bcround(val, precision) {
+export function bcround(val: number, precision: number): string {
   //  discuss at: https://locutus.io/php/bcround/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcround(1, 2)

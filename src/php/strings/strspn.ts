@@ -1,4 +1,4 @@
-export function strspn(str1, str2, start, lgth) {
+export function strspn(str1: string, str2: string, start?: number, lgth?: number): number {
   //      discuss at: https://locutus.io/php/strspn/
   // parity verified: PHP 8.3
   //     original by: Valentina De Rosa

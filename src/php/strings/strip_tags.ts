@@ -1,6 +1,6 @@
 import { _phpCastString } from '../_helpers/_phpCastString.ts'
 
-export function strip_tags(input, allowed) {
+export function strip_tags(input: string | number, allowed?: string): string {
   //      discuss at: https://locutus.io/php/strip_tags/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -54,7 +54,7 @@ export function strip_tags(input, allowed) {
   // recursively remove tags to ensure that the returned string doesn't contain forbidden tags after previous passes (e.g. '<<bait/>switch/>')
   while (true) {
     const before = after
-    after = before.replace(commentsAndPhpTags, '').replace(tags, function ($0, $1) {
+    after = before.replace(commentsAndPhpTags, '').replace(tags, function ($0: string, $1: string) {
       return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : ''
     })
 

@@ -1,4 +1,4 @@
-export function ceil(x) {
+export function ceil(x: number): number {
   //      discuss at: https://locutus.io/perl/ceil/
   // parity verified: Perl 5.40
   //     original by: Kevin van Zonneveld (https://kvz.io)

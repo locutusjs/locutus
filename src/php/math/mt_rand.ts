@@ -1,4 +1,5 @@
-export function mt_rand(min, max) {
+// @ts-nocheck
+export function mt_rand(min: number, max: number): number {
   //      discuss at: https://locutus.io/php/mt_rand/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)

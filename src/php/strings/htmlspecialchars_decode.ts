@@ -1,4 +1,5 @@
-export function htmlspecialchars_decode(string, quoteStyle) {
+// @ts-nocheck
+export function htmlspecialchars_decode(string: string, quoteStyle?: string): string {
   //       discuss at: https://locutus.io/php/htmlspecialchars_decode/
   //  parity verified: PHP 8.3
   //      original by: Mirek Slugen

@@ -1,4 +1,4 @@
-export function reverse(string) {
+export function reverse(string: string): string {
   //      discuss at: https://locutus.io/elixir/reverse/
   // parity verified: Elixir 1.18
   //     original by: Kevin van Zonneveld (https://kvz.io)

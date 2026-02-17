@@ -1,4 +1,4 @@
-export function max(...args) {
+export function max(...args: number[]): number {
   //      discuss at: https://locutus.io/r/max/
   // parity verified: R 4.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

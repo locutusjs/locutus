@@ -1,4 +1,4 @@
-export function floor(x) {
+export function floor(x: number): number {
   //      discuss at: https://locutus.io/clojure/floor/
   // parity verified: Clojure 1.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

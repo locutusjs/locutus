@@ -1,4 +1,4 @@
-export function abs(x) {
+export function abs(x: number): number {
   //      discuss at: https://locutus.io/r/abs/
   // parity verified: R 4.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

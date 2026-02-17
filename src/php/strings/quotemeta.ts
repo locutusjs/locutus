@@ -1,4 +1,4 @@
-export function quotemeta(str) {
+export function quotemeta(str: string): string {
   //      discuss at: https://locutus.io/php/quotemeta/
   // parity verified: PHP 8.3
   //     original by: Paulo Freitas

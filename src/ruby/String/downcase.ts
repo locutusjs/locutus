@@ -1,4 +1,4 @@
-export function downcase(str) {
+export function downcase(str: string): string {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/String/downcase/
   //     original by: Kevin van Zonneveld (https://kvz.io)

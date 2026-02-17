@@ -1,4 +1,4 @@
-export function ceiling(x) {
+export function ceiling(x: number): number {
   //      discuss at: https://locutus.io/r/ceiling/
   // parity verified: R 4.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

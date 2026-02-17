@@ -1,4 +1,10 @@
-export function substr_compare(mainStr, str, offset, length, caseInsensitivity) {
+export function substr_compare(
+  mainStr: string,
+  str: string,
+  offset: number,
+  length: number,
+  caseInsensitivity: any,
+): number | false {
   //      discuss at: https://locutus.io/php/substr_compare/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

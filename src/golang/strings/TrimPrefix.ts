@@ -1,4 +1,4 @@
-export function TrimPrefix(s, prefix) {
+export function TrimPrefix(s: string, prefix: string): string {
   //      discuss at: https://locutus.io/golang/strings/TrimPrefix/
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

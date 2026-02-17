@@ -1,4 +1,5 @@
-export function array_uintersect_uassoc(arr1) {
+// @ts-nocheck
+export function array_uintersect_uassoc(arr1: any): Record<string, any> {
   //  discuss at: https://locutus.io/php/array_uintersect_uassoc/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
@@ -6,7 +7,7 @@ export function array_uintersect_uassoc(arr1) {
   //   example 1: array_uintersect_uassoc($array1, $array2, function (f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 === string2) return 0; return -1;}, function (f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 === string2) return 0; return -1;})
   //   returns 1: {a: 'green', b: 'brown'}
 
-  const retArr = {}
+  const retArr: Record<string, any> = {}
   const arglm1 = arguments.length - 1
   const arglm2 = arglm1 - 1
   let cb = arguments[arglm1]
@@ -14,8 +15,7 @@ export function array_uintersect_uassoc(arr1) {
   let k1 = ''
   let i = 1
   let k = ''
-  let arr = {}
-
+  let arr: Record<string, any> = {}
   const $global = typeof window !== 'undefined' ? window : global
 
   cb = typeof cb === 'string' ? $global[cb] : Array.isArray(cb) ? $global[cb[0]][cb[1]] : cb

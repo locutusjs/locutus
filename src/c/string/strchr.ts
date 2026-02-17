@@ -1,4 +1,4 @@
-export function strchr(str, c) {
+export function strchr(str: string, c: string): string | null {
   //  discuss at: https://locutus.io/c/string/strchr/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Returns a pointer to the first occurrence of c in str.

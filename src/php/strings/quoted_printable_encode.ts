@@ -1,4 +1,4 @@
-export function quoted_printable_encode(str) {
+export function quoted_printable_encode(str: string): string {
   //      discuss at: https://locutus.io/php/quoted_printable_encode/
   // parity verified: PHP 8.3
   //     original by: Theriault (https://github.com/Theriault)
@@ -13,7 +13,7 @@ export function quoted_printable_encode(str) {
 
   const hexChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']
   const RFC2045Encode1IN = / \r\n|\r\n|[^!-<>-~ ]/gm
-  const RFC2045Encode1OUT = function (sMatch) {
+  const RFC2045Encode1OUT = function (sMatch: any) {
     // Encode space before CRLF sequence to prevent spaces from being stripped
     // Keep hard line breaks intact; CRLF sequences
     if (sMatch.length > 1) {
@@ -30,7 +30,7 @@ export function quoted_printable_encode(str) {
   // anyway; so this function replicates PHP.
 
   const RFC2045Encode2IN = /.{1,72}(?!\r\n)[^=]{0,3}/g
-  const RFC2045Encode2OUT = function (sMatch) {
+  const RFC2045Encode2OUT = function (sMatch: any) {
     if (sMatch.substr(sMatch.length - 2) === '\r\n') {
       return sMatch
     }

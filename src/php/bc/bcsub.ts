@@ -1,6 +1,6 @@
 import { _bc } from '../_helpers/_bc.ts'
 
-export function bcsub(leftOperand, rightOperand, scale) {
+export function bcsub(leftOperand: string, rightOperand: string, scale?: number): string {
   //  discuss at: https://locutus.io/php/bcsub/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcsub('1', '2')

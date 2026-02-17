@@ -1,4 +1,4 @@
-export function sqrt(x) {
+export function sqrt(x: number): number {
   //      discuss at: https://locutus.io/lua/sqrt/
   // parity verified: Lua 5.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

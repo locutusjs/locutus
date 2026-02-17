@@ -1,4 +1,4 @@
-export function log2(x) {
+export function log2(x: number): number {
   //      discuss at: https://locutus.io/python/log2/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

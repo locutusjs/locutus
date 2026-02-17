@@ -1,4 +1,4 @@
-export function HasSuffix(s, suffix) {
+export function HasSuffix(s: string, suffix: string): boolean {
   //      discuss at: https://locutus.io/golang/strings/HasSuffix
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

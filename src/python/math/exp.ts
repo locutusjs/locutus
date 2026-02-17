@@ -1,4 +1,4 @@
-export function exp(x) {
+export function exp(x: number): number {
   //      discuss at: https://locutus.io/python/exp/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

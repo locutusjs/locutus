@@ -1,4 +1,4 @@
-export function reverse(str) {
+export function reverse(str: string): string {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/String/reverse/
   //     original by: Kevin van Zonneveld (https://kvz.io)

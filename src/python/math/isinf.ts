@@ -1,4 +1,4 @@
-export function isinf(x) {
+export function isinf(x: number): boolean {
   //      discuss at: https://locutus.io/python/isinf/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

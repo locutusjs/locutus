@@ -1,4 +1,4 @@
-export function urlencode(str) {
+export function urlencode(str: string): string {
   //       discuss at: https://locutus.io/php/urlencode/
   //  parity verified: PHP 8.3
   //      original by: Philip Peterson

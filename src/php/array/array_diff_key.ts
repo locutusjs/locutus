@@ -1,4 +1,4 @@
-export function array_diff_key(arr1) {
+export function array_diff_key(arr1: Record<string, any>): Record<string, any> {
   //  discuss at: https://locutus.io/php/array_diff_key/
   // original by: Ates Goral (https://magnetiq.com)
   //  revised by: Brett Zamir (https://brett-zamir.me)
@@ -9,12 +9,11 @@ export function array_diff_key(arr1) {
   //   returns 2: {"green":2, "blue":3, "white":4}
 
   const argl = arguments.length
-  const retArr = {}
+  const retArr: Record<string, any> = {}
   let k1 = ''
   let i = 1
   let k = ''
-  let arr = {}
-
+  let arr: Record<string, any> = {}
   arr1keys: for (k1 in arr1) {
     for (i = 1; i < argl; i++) {
       arr = arguments[i]

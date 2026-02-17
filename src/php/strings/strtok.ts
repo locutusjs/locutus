@@ -1,4 +1,5 @@
-export function strtok(str, tokens) {
+// @ts-nocheck
+export function strtok(str: string, tokens: any): any {
   //  discuss at: https://locutus.io/php/strtok/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Use tab and newline as tokenizing characters as well

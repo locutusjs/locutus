@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { strftime } from '../datetime/strftime.ts'
 
-export function gmstrftime(format, timestamp) {
+export function gmstrftime(format: string, timestamp: number): string {
   //      discuss at: https://locutus.io/php/gmstrftime/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

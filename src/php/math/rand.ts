@@ -1,4 +1,4 @@
-export function rand(min, max) {
+export function rand(min: number, max: number): number {
   //      discuss at: https://locutus.io/php/rand/
   // parity verified: PHP 8.3
   //     original by: Leslie Hoare

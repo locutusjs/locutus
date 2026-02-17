@@ -1,4 +1,5 @@
-export function LastIndex(s, sep) {
+// @ts-nocheck
+export function LastIndex(s: string, sep: string): number {
   //      discuss at: https://locutus.io/golang/strings/LastIndex
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

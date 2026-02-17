@@ -1,4 +1,4 @@
-export function uc(str) {
+export function uc(str: string): string {
   //      discuss at: https://locutus.io/perl/uc/
   // parity verified: Perl 5.40
   //     original by: Kevin van Zonneveld (https://kvz.io)

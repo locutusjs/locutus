@@ -1,4 +1,4 @@
-export function chop(str) {
+export function chop(str: string): string {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/String/chop/
   //     original by: Kevin van Zonneveld (https://kvz.io)

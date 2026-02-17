@@ -1,4 +1,4 @@
-export function is_string(mixedVar) {
+export function is_string(mixedVar: string | number): boolean {
   //      discuss at: https://locutus.io/php/is_string/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

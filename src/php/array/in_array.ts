@@ -1,4 +1,9 @@
-export function in_array(needle, haystack, argStrict) {
+// @ts-nocheck
+export function in_array(
+  needle: string | number,
+  haystack: any[] | Record<string, any>,
+  argStrict?: boolean,
+): boolean | false {
   //  discuss at: https://locutus.io/php/in_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: vlado houba

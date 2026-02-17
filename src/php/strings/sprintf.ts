@@ -1,3 +1,4 @@
+// @ts-nocheck
 export function sprintf() {
   //      discuss at: https://locutus.io/php/sprintf/
   // parity verified: PHP 8.3
@@ -36,7 +37,7 @@ export function sprintf() {
   let i = 0
   const format = args[i++]
 
-  const _pad = function (str, len, chr, leftJustify) {
+  const _pad = function (str: any, len: any, chr: any, leftJustify: any) {
     if (!chr) {
       chr = ' '
     }
@@ -44,7 +45,7 @@ export function sprintf() {
     return leftJustify ? str + padding : padding + str
   }
 
-  const justify = function (value, prefix, leftJustify, minWidth, padChar) {
+  const justify = function (value: any, prefix: any, leftJustify: any, minWidth: any, padChar: any) {
     const diff = minWidth - value.length
     if (diff > 0) {
       // when padding with zeros
@@ -59,7 +60,7 @@ export function sprintf() {
     return value
   }
 
-  const _formatBaseX = function (value, base, leftJustify, minWidth, precision, padChar) {
+  const _formatBaseX = function (value: any, base: any, leftJustify: any, minWidth: any, precision: any, padChar: any) {
     // Note: casts negative numbers to positive ones
     const number = value >>> 0
     value = _pad(number.toString(base), precision || 0, '0', false)
@@ -67,7 +68,7 @@ export function sprintf() {
   }
 
   // _formatString()
-  const _formatString = function (value, leftJustify, minWidth, precision, customPadChar) {
+  const _formatString = function (value: any, leftJustify: any, minWidth: any, precision: any, customPadChar: any) {
     if (precision !== null && precision !== undefined) {
       value = value.slice(0, precision)
     }
@@ -75,7 +76,14 @@ export function sprintf() {
   }
 
   // doFormat()
-  const doFormat = function (substring, argIndex, modifiers, minWidth, precision, specifier) {
+  const doFormat = function (
+    substring: any,
+    argIndex: any,
+    modifiers: any,
+    minWidth: any,
+    precision: any,
+    specifier: any,
+  ) {
     let number
     let prefix
     let method

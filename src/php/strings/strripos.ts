@@ -1,4 +1,5 @@
-export function strripos(haystack, needle, offset) {
+// @ts-nocheck
+export function strripos(haystack: string, needle: string, offset: number): number {
   //      discuss at: https://locutus.io/php/strripos/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

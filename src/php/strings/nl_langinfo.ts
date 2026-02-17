@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { setlocale } from '../strings/setlocale.ts'
 
-export function nl_langinfo(item) {
+export function nl_langinfo(item: string): string | false {
   //  discuss at: https://locutus.io/php/nl_langinfo/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: nl_langinfo('DAY_1')

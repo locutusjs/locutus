@@ -1,4 +1,5 @@
-export function implode(glue, pieces) {
+// @ts-nocheck
+export function implode(glue: string, pieces: any[] | Record<string, any>): string {
   //      discuss at: https://locutus.io/php/implode/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

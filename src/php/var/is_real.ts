@@ -1,6 +1,6 @@
 import { is_float as _isFloat } from '../var/is_float.ts'
 
-export function is_real(mixedVar) {
+export function is_real(mixedVar: number): boolean {
   //  discuss at: https://locutus.io/php/is_real/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes

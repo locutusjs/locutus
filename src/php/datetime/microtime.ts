@@ -1,4 +1,4 @@
-export function microtime(getAsFloat) {
+export function microtime(getAsFloat: any): any {
   //  discuss at: https://locutus.io/php/microtime/
   // original by: Paulo Freitas
   // improved by: Dumitru Uzun (https://duzun.me)

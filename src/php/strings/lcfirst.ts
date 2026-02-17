@@ -1,4 +1,4 @@
-export function lcfirst(str) {
+export function lcfirst(str: string): string {
   //      discuss at: https://locutus.io/php/lcfirst/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

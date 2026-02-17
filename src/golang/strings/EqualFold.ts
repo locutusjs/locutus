@@ -1,4 +1,4 @@
-export function EqualFold(s, t) {
+export function EqualFold(s: string, t: string): boolean {
   //      discuss at: https://locutus.io/golang/strings/EqualFold/
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

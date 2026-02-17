@@ -1,4 +1,4 @@
-export function strstr(haystack, needle) {
+export function strstr(haystack: string, needle: string): string | null {
   //  discuss at: https://locutus.io/c/string/strstr/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Finds the first occurrence of needle in haystack.

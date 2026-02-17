@@ -1,4 +1,4 @@
-export function atanh(arg) {
+export function atanh(arg: number): number {
   //  discuss at: https://locutus.io/php/atanh/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: atanh(0.3)

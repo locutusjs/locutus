@@ -1,4 +1,4 @@
-export function trunc(x) {
+export function trunc(x: number): number {
   //      discuss at: https://locutus.io/python/trunc/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

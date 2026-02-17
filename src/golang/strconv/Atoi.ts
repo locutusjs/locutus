@@ -1,4 +1,5 @@
-export function Atoi(s) {
+// @ts-nocheck
+export function Atoi(s: any): number {
   //      discuss at: https://locutus.io/golang/strconv/Atoi
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

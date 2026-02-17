@@ -1,4 +1,4 @@
-export function compact(arr) {
+export function compact(arr: any[]): any[] {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/Array/compact/
   //     original by: Kevin van Zonneveld (https://kvz.io)

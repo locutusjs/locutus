@@ -1,4 +1,4 @@
-export function length(s) {
+export function length(s: string): number {
   //      discuss at: https://locutus.io/awk/length/
   // parity verified: GNU AWK 5.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

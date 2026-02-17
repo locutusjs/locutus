@@ -1,4 +1,4 @@
-export function toupper(x) {
+export function toupper(x: string): string {
   //      discuss at: https://locutus.io/r/toupper/
   // parity verified: R 4.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

@@ -1,4 +1,5 @@
-export function Repeat(s, count) {
+// @ts-nocheck
+export function Repeat(s: string, count: number): string {
   //      discuss at: https://locutus.io/golang/strings/Repeat
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

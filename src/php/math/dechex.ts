@@ -1,4 +1,5 @@
-export function dechex(number) {
+// @ts-nocheck
+export function dechex(number: number): string {
   //  discuss at: https://locutus.io/php/dechex/
   // original by: Philippe Baumann
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)

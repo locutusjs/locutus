@@ -1,4 +1,4 @@
-export function abs(x) {
+export function abs(x: number): number {
   //      discuss at: https://locutus.io/lua/abs/
   // parity verified: Lua 5.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

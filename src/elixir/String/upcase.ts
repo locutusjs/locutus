@@ -1,4 +1,4 @@
-export function upcase(string) {
+export function upcase(string: string): string {
   //      discuss at: https://locutus.io/elixir/upcase/
   // parity verified: Elixir 1.18
   //     original by: Kevin van Zonneveld (https://kvz.io)

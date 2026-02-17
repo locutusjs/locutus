@@ -1,4 +1,4 @@
-export function upper(s) {
+export function upper(s: string): string {
   //      discuss at: https://locutus.io/lua/upper/
   // parity verified: Lua 5.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

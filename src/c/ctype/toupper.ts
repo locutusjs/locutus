@@ -1,4 +1,4 @@
-export function toupper(c) {
+export function toupper(c: string): string {
   //      discuss at: https://locutus.io/c/ctype/toupper/
   // parity verified: C 23
   //     original by: Kevin van Zonneveld (https://kvz.io)

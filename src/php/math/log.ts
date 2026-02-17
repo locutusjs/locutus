@@ -1,4 +1,4 @@
-export function log(arg, base) {
+export function log(arg: number, base: number): number {
   //      discuss at: https://locutus.io/php/log/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)

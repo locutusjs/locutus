@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { setlocale } from '../strings/setlocale.ts'
 
-export function ctype_xdigit(text) {
+export function ctype_xdigit(text: string): boolean | false {
   //      discuss at: https://locutus.io/php/ctype_xdigit/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

@@ -1,4 +1,4 @@
-export function gopher_parsedir(dirent) {
+export function gopher_parsedir(dirent: any): any {
   //  discuss at: https://locutus.io/php/gopher_parsedir/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var entry = gopher_parsedir('0All about my gopher site.\t/allabout.txt\tgopher.example.com\t70\u000d\u000a')

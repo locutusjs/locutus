@@ -1,4 +1,4 @@
-export function checkdate(m, d, y) {
+export function checkdate(m: number, d: number, y: number): boolean {
   //      discuss at: https://locutus.io/php/checkdate/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

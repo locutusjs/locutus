@@ -1,4 +1,4 @@
-export function strcasecmp(fString1, fString2) {
+export function strcasecmp(fString1: string, fString2: string): number {
   //      discuss at: https://locutus.io/php/strcasecmp/
   // parity verified: PHP 8.3
   //     original by: Martijn Wieringa

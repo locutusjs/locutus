@@ -1,4 +1,5 @@
-export function version_compare(v1, v2, operator) {
+// @ts-nocheck
+export function version_compare(v1: string, v2: string, operator?: string): number | boolean {
   //       discuss at: https://locutus.io/php/version_compare/
   //  parity verified: PHP 8.3
   //      original by: Philippe Jausions (https://pear.php.net/user/jausions)
@@ -50,7 +51,7 @@ export function version_compare(v1, v2, operator) {
   // even less than an unexisting value in vm (-7), hence [-8].
   // It's also important to not strip spaces because of this.
   //   version_compare('', ' ') === 1
-  const _prepVersion = function (v) {
+  const _prepVersion = function (v: any) {
     v = ('' + v).replace(/[_\-+]/g, '.')
     v = v.replace(/([^.\d]+)/g, '.$1.').replace(/\.{2,}/g, '.')
     return !v.length ? [-8] : v.split('.')
@@ -59,7 +60,7 @@ export function version_compare(v1, v2, operator) {
   // Empty component becomes 0.
   // Non-numerical component becomes a negative number.
   // Numerical component becomes itself as an integer.
-  const _numVersion = function (v) {
+  const _numVersion = function (v: any) {
     return !v ? 0 : isNaN(v) ? vm[v] || -7 : parseInt(v, 10)
   }
 

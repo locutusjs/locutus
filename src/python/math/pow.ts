@@ -1,4 +1,4 @@
-export function pow(x, y) {
+export function pow(x: number, y: number): number {
   //      discuss at: https://locutus.io/python/pow/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

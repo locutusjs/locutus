@@ -1,4 +1,4 @@
-export function ltrim(str, charlist) {
+export function ltrim(str: string, charlist: string): string {
   //      discuss at: https://locutus.io/php/ltrim/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

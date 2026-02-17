@@ -1,4 +1,4 @@
-export function cosh(x) {
+export function cosh(x: number): number {
   //      discuss at: https://locutus.io/ruby/Math/cosh/
   // parity verified: Ruby 3.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

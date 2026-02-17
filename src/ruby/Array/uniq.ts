@@ -1,4 +1,4 @@
-export function uniq(arr) {
+export function uniq(arr: any[]): any[] {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/Array/uniq/
   //     original by: Kevin van Zonneveld (https://kvz.io)

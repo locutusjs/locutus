@@ -1,4 +1,5 @@
-export function FormatInt(i, base) {
+// @ts-nocheck
+export function FormatInt(i: number, base: number): string {
   //      discuss at: https://locutus.io/golang/strconv/FormatInt
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

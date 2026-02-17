@@ -1,4 +1,4 @@
-export function floor(x) {
+export function floor(x: number): number {
   //      discuss at: https://locutus.io/lua/floor/
   // parity verified: Lua 5.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

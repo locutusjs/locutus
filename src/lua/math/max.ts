@@ -1,4 +1,4 @@
-export function max(...args) {
+export function max(...args: number[]): number {
   //      discuss at: https://locutus.io/lua/max/
   // parity verified: Lua 5.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

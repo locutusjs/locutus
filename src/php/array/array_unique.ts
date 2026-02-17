@@ -1,4 +1,5 @@
-export function array_unique(inputArr) {
+// @ts-nocheck
+export function array_unique(inputArr: any[] | Record<string, any>): Record<string, any> | false {
   //  discuss at: https://locutus.io/php/array_unique/
   // original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)
   //    input by: duncan
@@ -16,10 +17,10 @@ export function array_unique(inputArr) {
   //   returns 2: {a: 'green', 0: 'red', 1: 'blue'}
 
   let key = ''
-  const tmpArr2 = {}
+  const tmpArr2: Record<string, any> = {}
   let val = ''
 
-  const _arraySearch = function (needle, haystack) {
+  const _arraySearch = function (needle: any, haystack: any) {
     let fkey = ''
     for (fkey in haystack) {
       if (haystack.hasOwnProperty(fkey)) {

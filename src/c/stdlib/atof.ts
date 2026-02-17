@@ -1,4 +1,4 @@
-export function atof(str) {
+export function atof(str: string): number {
   //  discuss at: https://locutus.io/c/stdlib/atof/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Converts a string to a floating-point number.

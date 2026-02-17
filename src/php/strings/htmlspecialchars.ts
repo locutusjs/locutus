@@ -1,4 +1,10 @@
-export function htmlspecialchars(string, quoteStyle, charset, doubleEncode) {
+// @ts-nocheck
+export function htmlspecialchars(
+  string: string,
+  quoteStyle: string | any[] | null,
+  charset?: null,
+  doubleEncode?: boolean,
+): string {
   //       discuss at: https://locutus.io/php/htmlspecialchars/
   //      original by: Mirek Slugen
   //      improved by: Kevin van Zonneveld (https://kvz.io)

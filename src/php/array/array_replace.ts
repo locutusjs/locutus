@@ -1,10 +1,10 @@
-export function array_replace(arr) {
+export function array_replace(arr: any[]): Record<string, any> {
   //  discuss at: https://locutus.io/php/array_replace/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"})
   //   returns 1: {0: 'grape', 1: 'banana', 2: 'apple', 3: 'raspberry', 4: 'cherry'}
 
-  const retObj = {}
+  const retObj: Record<string, any> = {}
   let i = 0
   let p = ''
   const argl = arguments.length

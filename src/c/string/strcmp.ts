@@ -1,4 +1,4 @@
-export function strcmp(str1, str2) {
+export function strcmp(str1: string, str2: string): number {
   //      discuss at: https://locutus.io/c/string/strcmp/
   // parity verified: C 23
   //     original by: Kevin van Zonneveld (https://kvz.io)

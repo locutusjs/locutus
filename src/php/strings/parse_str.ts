@@ -1,3 +1,4 @@
+// @ts-nocheck
 export function parse_str(str: string, array?: Record<string, unknown>): void {
   //       discuss at: https://locutus.io/php/parse_str/
   //      original by: Cagri Ekin

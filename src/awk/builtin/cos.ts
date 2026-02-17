@@ -1,4 +1,4 @@
-export function cos(x) {
+export function cos(x: number): number {
   //      discuss at: https://locutus.io/awk/cos/
   // parity verified: GNU AWK 5.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

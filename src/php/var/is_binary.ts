@@ -1,4 +1,4 @@
-export function is_binary(vr) {
+export function is_binary(vr: string): boolean {
   //  discuss at: https://locutus.io/php/is_binary/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: is_binary('This could be binary as far as JavaScript knows...')

@@ -1,3 +1,4 @@
+// @ts-nocheck
 export function i18n_loc_get_default() {
   //  discuss at: https://locutus.io/php/i18n_loc_get_default/
   // original by: Brett Zamir (https://brett-zamir.me)

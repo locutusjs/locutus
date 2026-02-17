@@ -1,4 +1,4 @@
-export function strpbrk(haystack, charList) {
+export function strpbrk(haystack: string, charList: string): string | false {
   //      discuss at: https://locutus.io/php/strpbrk/
   // parity verified: PHP 8.3
   //     original by: Alfonso Jimenez (https://www.alfonsojimenez.com)

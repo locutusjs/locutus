@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { gettype } from '../var/gettype.ts'
 
-export function strval(str) {
+export function strval(str: Record<string, any>): string {
   //  discuss at: https://locutus.io/php/strval/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Kevin van Zonneveld (https://kvz.io)

@@ -1,6 +1,6 @@
 import { _bc as bc } from '../_helpers/_bc.ts'
 
-export function bcadd(leftOperand, rightOperand, scale) {
+export function bcadd(leftOperand: string, rightOperand: string, scale?: number): string {
   //  discuss at: https://locutus.io/php/bcadd/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcadd('1', '2')

@@ -1,4 +1,4 @@
-export function rep(s, n) {
+export function rep(s: string, n: number): string {
   //      discuss at: https://locutus.io/lua/rep/
   // parity verified: Lua 5.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

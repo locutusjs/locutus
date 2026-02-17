@@ -1,4 +1,4 @@
-export function sin(x) {
+export function sin(x: number): number {
   //      discuss at: https://locutus.io/ruby/Math/sin/
   // parity verified: Ruby 3.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

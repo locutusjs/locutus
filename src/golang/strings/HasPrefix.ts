@@ -1,4 +1,4 @@
-export function HasPrefix(s, prefix) {
+export function HasPrefix(s: string, prefix: string): boolean {
   //      discuss at: https://locutus.io/golang/strings/HasPrefix
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

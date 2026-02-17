@@ -1,4 +1,4 @@
-export function sqrt(x) {
+export function sqrt(x: number): number {
   //      discuss at: https://locutus.io/awk/sqrt/
   // parity verified: GNU AWK 5.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

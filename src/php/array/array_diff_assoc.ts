@@ -1,4 +1,4 @@
-export function array_diff_assoc(arr1) {
+export function array_diff_assoc(arr1: Record<string, any>): Record<string, any> {
   //  discuss at: https://locutus.io/php/array_diff_assoc/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: 0m3r
@@ -6,13 +6,12 @@ export function array_diff_assoc(arr1) {
   //   example 1: array_diff_assoc({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'})
   //   returns 1: {1: 'van', 2: 'Zonneveld'}
 
-  const retArr = {}
+  const retArr: Record<string, any> = {}
   const argl = arguments.length
   let k1 = ''
   let i = 1
   let k = ''
-  let arr = {}
-
+  let arr: Record<string, any> = {}
   arr1keys: for (k1 in arr1) {
     for (i = 1; i < argl; i++) {
       arr = arguments[i]

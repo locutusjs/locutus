@@ -1,4 +1,4 @@
-export function array_intersect(arr1) {
+export function array_intersect(arr1: any): any {
   //  discuss at: https://locutus.io/php/array_intersect/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: These only output associative arrays (would need to be
@@ -9,11 +9,11 @@ export function array_intersect(arr1) {
   //   example 1: var $result = array_intersect($array1, $array2, $array3)
   //   returns 1: {0: 'red', a: 'green'}
 
-  const retArr = {}
+  const retArr: Record<string, any> = {}
   const argl = arguments.length
   const arglm1 = argl - 1
   let k1 = ''
-  let arr = {}
+  let arr: Record<string, any> = {}
   let i = 0
   let k = ''
 

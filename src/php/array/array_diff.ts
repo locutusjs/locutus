@@ -1,4 +1,4 @@
-export function array_diff(arr1) {
+export function array_diff(arr1: any[]): Record<string, any> {
   //  discuss at: https://locutus.io/php/array_diff/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Sanjoy Roy
@@ -6,13 +6,12 @@ export function array_diff(arr1) {
   //   example 1: array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld'])
   //   returns 1: {0:'Kevin'}
 
-  const retArr = {}
+  const retArr: Record<string, any> = {}
   const argl = arguments.length
   let k1 = ''
   let i = 1
   let k = ''
-  let arr = {}
-
+  let arr: Record<string, any> = {}
   arr1keys: for (k1 in arr1) {
     for (i = 1; i < argl; i++) {
       arr = arguments[i]

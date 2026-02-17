@@ -1,4 +1,4 @@
-export function log2(x) {
+export function log2(x: number): number {
   //      discuss at: https://locutus.io/ruby/Math/log2/
   // parity verified: Ruby 3.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

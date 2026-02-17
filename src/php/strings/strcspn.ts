@@ -1,4 +1,4 @@
-export function strcspn(str, mask, start, length) {
+export function strcspn(str: string, mask: string, start?: number, length?: number): number {
   //      discuss at: https://locutus.io/php/strcspn/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

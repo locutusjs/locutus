@@ -1,4 +1,4 @@
-export function log(x) {
+export function log(x: number): number {
   //      discuss at: https://locutus.io/awk/log/
   // parity verified: GNU AWK 5.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

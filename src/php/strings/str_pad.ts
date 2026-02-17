@@ -1,4 +1,4 @@
-export function str_pad(input, padLength, padString, padType) {
+export function str_pad(input: string, padLength: number, padString: string, padType: string): string {
   //  discuss at: https://locutus.io/php/str_pad/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Michael White (https://getsprink.com)
@@ -12,7 +12,7 @@ export function str_pad(input, padLength, padString, padType) {
   let half = ''
   let padToGo
 
-  const _strPadRepeater = function (s, len) {
+  const _strPadRepeater = function (s: any, len: any) {
     let collect = ''
 
     while (collect.length < len) {

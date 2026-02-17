@@ -1,4 +1,4 @@
-export function lc(str) {
+export function lc(str: string): string {
   //      discuss at: https://locutus.io/perl/lc/
   // parity verified: Perl 5.40
   //     original by: Kevin van Zonneveld (https://kvz.io)

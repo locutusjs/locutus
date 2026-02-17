@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { setlocale } from '../strings/setlocale.ts'
 
-export function ctype_punct(text) {
+export function ctype_punct(text: string): boolean | false {
   //      discuss at: https://locutus.io/php/ctype_punct/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

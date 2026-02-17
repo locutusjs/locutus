@@ -1,4 +1,4 @@
-export function isupper(c) {
+export function isupper(c: string): boolean {
   //      discuss at: https://locutus.io/c/ctype/isupper/
   // parity verified: C 23
   //     original by: Kevin van Zonneveld (https://kvz.io)

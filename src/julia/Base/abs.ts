@@ -1,4 +1,4 @@
-export function abs(x) {
+export function abs(x: number): number {
   //      discuss at: https://locutus.io/julia/abs/
   // parity verified: Julia 1.11
   //     original by: Kevin van Zonneveld (https://kvz.io)

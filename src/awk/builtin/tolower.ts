@@ -1,4 +1,4 @@
-export function tolower(s) {
+export function tolower(s: string): string {
   //      discuss at: https://locutus.io/awk/tolower/
   // parity verified: GNU AWK 5.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

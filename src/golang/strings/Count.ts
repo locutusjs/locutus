@@ -1,4 +1,4 @@
-export function Count(s, sep) {
+export function Count(s: string, sep: string): number {
   //      discuss at: https://locutus.io/golang/strings/Count
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

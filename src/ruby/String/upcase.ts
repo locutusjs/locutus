@@ -1,4 +1,4 @@
-export function upcase(str) {
+export function upcase(str: string): string {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/String/upcase/
   //     original by: Kevin van Zonneveld (https://kvz.io)

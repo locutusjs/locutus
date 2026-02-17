@@ -1,4 +1,4 @@
-export function isfinite(x) {
+export function isfinite(x: number): boolean {
   //      discuss at: https://locutus.io/python/isfinite/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

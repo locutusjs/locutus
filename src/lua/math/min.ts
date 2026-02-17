@@ -1,4 +1,4 @@
-export function min(...args) {
+export function min(...args: number[]): number {
   //      discuss at: https://locutus.io/lua/min/
   // parity verified: Lua 5.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

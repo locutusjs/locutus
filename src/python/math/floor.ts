@@ -1,4 +1,4 @@
-export function floor(x) {
+export function floor(x: number): number {
   //      discuss at: https://locutus.io/python/floor/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

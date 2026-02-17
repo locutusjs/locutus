@@ -1,4 +1,4 @@
-export function lower(s) {
+export function lower(s: string): string {
   //      discuss at: https://locutus.io/lua/lower/
   // parity verified: Lua 5.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

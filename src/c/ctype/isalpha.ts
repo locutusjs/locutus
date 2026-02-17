@@ -1,4 +1,4 @@
-export function isalpha(c) {
+export function isalpha(c: string): boolean {
   //      discuss at: https://locutus.io/c/ctype/isalpha/
   // parity verified: C 23
   //     original by: Kevin van Zonneveld (https://kvz.io)

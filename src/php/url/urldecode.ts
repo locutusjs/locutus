@@ -1,4 +1,4 @@
-export function urldecode(str) {
+export function urldecode(str: string): string {
   //       discuss at: https://locutus.io/php/urldecode/
   //      original by: Philip Peterson
   //      improved by: Kevin van Zonneveld (https://kvz.io)

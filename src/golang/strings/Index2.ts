@@ -1,4 +1,4 @@
-export function Index(s, sep) {
+export function Index(s: string, sep: string): number {
   //      discuss at: https://locutus.io/golang/strings/Index
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

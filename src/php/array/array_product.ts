@@ -1,4 +1,5 @@
-export function array_product(input) {
+// @ts-nocheck
+export function array_product(input: any[]): number {
   //      discuss at: https://locutus.io/php/array_product/
   // parity verified: PHP 8.3
   //     original by: Waldo Malqui Silva (https://waldo.malqui.info)

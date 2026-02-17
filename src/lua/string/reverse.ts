@@ -1,4 +1,4 @@
-export function reverse(s) {
+export function reverse(s: string): string {
   //      discuss at: https://locutus.io/lua/reverse/
   // parity verified: Lua 5.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

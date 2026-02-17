@@ -1,4 +1,4 @@
-export function pow(base, exp) {
+export function pow(base: number, exp: number): number {
   //  discuss at: https://locutus.io/php/pow/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Waldo Malqui Silva (https://fayr.us/waldo/)

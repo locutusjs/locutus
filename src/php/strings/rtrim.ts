@@ -1,4 +1,4 @@
-export function rtrim(str, charlist) {
+export function rtrim(str: string, charlist: string): string {
   //      discuss at: https://locutus.io/php/rtrim/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

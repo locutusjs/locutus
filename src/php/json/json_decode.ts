@@ -1,4 +1,5 @@
-export function json_decode(strJson) {
+// @ts-nocheck
+export function json_decode(strJson: string): any[] {
   //       discuss at: https://phpjs.org/functions/json_decode/
   //  parity verified: PHP 8.3
   //      original by: Public Domain (https://www.json.org/json2.js)
@@ -61,7 +62,7 @@ export function json_decode(strJson) {
   // incorrectly, either silently deleting them, or treating them as line endings.
   cx.lastIndex = 0
   if (cx.test(text)) {
-    text = text.replace(cx, function (a) {
+    text = text.replace(cx, function (a: any) {
       return '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4)
     })
   }

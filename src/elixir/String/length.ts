@@ -1,4 +1,4 @@
-export function length(string) {
+export function length(string: string): number {
   //      discuss at: https://locutus.io/elixir/length/
   // parity verified: Elixir 1.18
   //     original by: Kevin van Zonneveld (https://kvz.io)

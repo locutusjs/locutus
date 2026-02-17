@@ -1,4 +1,4 @@
-export function strrev(string) {
+export function strrev(string: string): string {
   //       discuss at: https://locutus.io/php/strrev/
   //      original by: Kevin van Zonneveld (https://kvz.io)
   //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)

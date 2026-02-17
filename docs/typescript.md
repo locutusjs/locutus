@@ -4,10 +4,10 @@
 
 All source files in `src/` are TypeScript. The migration from JavaScript was completed in PR #535.
 
-- 488 function files (`.ts`)
-- 98 files still have `// @ts-nocheck` — these compile but have type errors that need manual attention
-- `noImplicitAny` is `false` in tsconfig.json, so many functions still have untyped parameters
-- The long-term goal is to enable `noImplicitAny: true` and remove all `@ts-nocheck` directives
+- 488 function files (`.ts`) with typed function signatures
+- `noImplicitAny: true` — all parameters must have explicit types
+- 191 files still have `// @ts-nocheck` — these need manual type fixes (complex runtime coercions, dynamic indexing, etc.)
+- The long-term goal is to remove all `@ts-nocheck` directives
 
 ## Architecture decisions
 
@@ -54,11 +54,11 @@ Source is ESM TypeScript, but the published package ships CJS for backwards comp
 
 ### `@ts-nocheck` files
 
-98 files have `// @ts-nocheck` because they have legitimate type errors that require careful manual fixes (complex runtime type coercions, loosely typed algorithms, etc.). These files still run correctly — the directive just suppresses the type checker.
+191 files have `// @ts-nocheck` because they have type errors that require careful manual fixes — typically complex runtime type coercions, dynamic object indexing, or loosely typed algorithms. These files still run correctly and have typed function signatures — the directive just suppresses internal type checking.
 
-### `noImplicitAny: false`
+### `noImplicitAny: true`
 
-Most functions were auto-converted from JavaScript and don't have parameter types yet. With `noImplicitAny: false`, TypeScript accepts `function foo(x)` where `x` is implicitly `any`. This avoids hundreds of errors while allowing incremental typing.
+All function parameters must have explicit type annotations. The compiler enforces this for all new code. Types were inferred from example comments during the bulk migration — some use `any` where the actual type is complex.
 
 ## Contributing a function
 
@@ -112,17 +112,17 @@ npm run test:module # ESM import chain test
 
 ## Improving type coverage
 
-The biggest area for contribution is adding types to existing functions. To find untyped functions:
+The biggest area for contribution is removing `@ts-nocheck` from files and fixing their type errors.
 
 ```bash
-# Functions with @ts-nocheck (need type fixes before the directive can be removed)
+# Find files that need type work
 grep -rl '@ts-nocheck' src/ --include='*.ts' | grep -v _util | grep -v _helpers
-
-# Functions with untyped parameters (will error when noImplicitAny is enabled)
-# Look for export function foo(x, y) with no type annotations
 ```
 
-When adding types to a `@ts-nocheck` file:
+To fix a `@ts-nocheck` file:
 1. Remove the `// @ts-nocheck` directive
-2. Fix all type errors using runtime conversions and type guards (no `as` casts)
-3. Run `npm run check` to verify
+2. Run `npx tsc --noEmit` to see the errors
+3. Fix type errors using runtime conversions and type guards (no `as` casts)
+4. Replace `any` parameter types with specific types where possible
+5. Type `= {}` declarations as `Record<string, any>` for dynamic indexing
+6. Run `npm run check` to verify

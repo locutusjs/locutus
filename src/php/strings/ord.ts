@@ -1,4 +1,4 @@
-export function ord(string) {
+export function ord(string: string): number {
   //      discuss at: https://locutus.io/php/ord/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

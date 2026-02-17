@@ -1,4 +1,4 @@
-export function sub(s, i, j) {
+export function sub(s: string, i: number, j?: number): string {
   //      discuss at: https://locutus.io/lua/sub/
   // parity verified: Lua 5.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

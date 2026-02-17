@@ -1,4 +1,4 @@
-export function atoi(str) {
+export function atoi(str: string): number {
   //      discuss at: https://locutus.io/c/stdlib/atoi/
   // parity verified: C 23
   //     original by: Kevin van Zonneveld (https://kvz.io)

@@ -1,4 +1,4 @@
-export function tolower(x) {
+export function tolower(x: string): string {
   //      discuss at: https://locutus.io/r/tolower/
   // parity verified: R 4.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

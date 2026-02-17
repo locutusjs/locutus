@@ -1,4 +1,4 @@
-export function tan(x) {
+export function tan(x: number): number {
   //      discuss at: https://locutus.io/ruby/Math/tan/
   // parity verified: Ruby 3.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

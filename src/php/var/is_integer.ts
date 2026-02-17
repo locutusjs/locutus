@@ -1,6 +1,6 @@
 import { is_int as _isInt } from '../var/is_int.ts'
 
-export function is_integer(mixedVar) {
+export function is_integer(mixedVar: number): boolean {
   //      discuss at: https://locutus.io/php/is_integer/
   // parity verified: PHP 8.3
   //     original by: Paulo Freitas

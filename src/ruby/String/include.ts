@@ -1,4 +1,4 @@
-export function include(str, other) {
+export function include(str: string, other: string): boolean {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/String/include/
   //     original by: Kevin van Zonneveld (https://kvz.io)

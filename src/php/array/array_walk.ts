@@ -1,4 +1,4 @@
-export function array_walk(array, funcname, userdata) {
+export function array_walk(array: any[], funcname: any, userdata: any): any {
   //  discuss at: https://locutus.io/php/array_walk/
   // original by: Johnny Mast (https://www.phpvrouwen.nl)
   // bugfixed by: David

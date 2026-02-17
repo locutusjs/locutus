@@ -1,4 +1,4 @@
-export function basename(path, suffix) {
+export function basename(path: string, suffix?: string): string {
   //      discuss at: https://locutus.io/php/basename/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

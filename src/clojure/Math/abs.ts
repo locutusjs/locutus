@@ -1,4 +1,4 @@
-export function abs(x) {
+export function abs(x: number): number {
   //      discuss at: https://locutus.io/clojure/abs/
   // parity verified: Clojure 1.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

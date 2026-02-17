@@ -1,4 +1,4 @@
-export function nl2br(str, isXhtml) {
+export function nl2br(str: string | null, isXhtml?: boolean): string {
   //      discuss at: https://locutus.io/php/nl2br/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

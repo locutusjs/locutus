@@ -1,4 +1,4 @@
-export function exp(x) {
+export function exp(x: number): number {
   //      discuss at: https://locutus.io/ruby/Math/exp/
   // parity verified: Ruby 3.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

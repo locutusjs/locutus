@@ -1,4 +1,4 @@
-export function isspace(c) {
+export function isspace(c: string): boolean {
   //  discuss at: https://locutus.io/c/ctype/isspace/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Checks if the character is a whitespace character.

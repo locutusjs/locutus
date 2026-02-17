@@ -1,4 +1,4 @@
-export function Contains(s, substr) {
+export function Contains(s: string, substr: string): boolean {
   //      discuss at: https://locutus.io/golang/strings/Contains
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

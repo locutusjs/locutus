@@ -1,4 +1,4 @@
-export function asin(x) {
+export function asin(x: number): number {
   //      discuss at: https://locutus.io/ruby/Math/asin/
   // parity verified: Ruby 3.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

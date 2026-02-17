@@ -1,4 +1,4 @@
-export function is_float(mixedVar) {
+export function is_float(mixedVar: number): boolean {
   //      discuss at: https://locutus.io/php/is_float/
   // parity verified: PHP 8.3
   //     original by: Paulo Freitas

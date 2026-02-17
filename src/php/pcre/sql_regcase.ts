@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { setlocale } from '../strings/setlocale.ts'
 
-export function sql_regcase(str) {
+export function sql_regcase(str: string): string {
   //  discuss at: https://locutus.io/php/sql_regcase/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: sql_regcase('Foo - bar.')

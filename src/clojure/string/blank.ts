@@ -1,4 +1,4 @@
-export function blank(s) {
+export function blank(s: string): boolean {
   //      discuss at: https://locutus.io/clojure/blank/
   // parity verified: Clojure 1.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

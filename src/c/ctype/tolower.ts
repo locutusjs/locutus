@@ -1,4 +1,4 @@
-export function tolower(c) {
+export function tolower(c: string): string {
   //      discuss at: https://locutus.io/c/ctype/tolower/
   // parity verified: C 23
   //     original by: Kevin van Zonneveld (https://kvz.io)

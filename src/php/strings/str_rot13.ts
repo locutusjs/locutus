@@ -1,4 +1,4 @@
-export function str_rot13(str) {
+export function str_rot13(str: string | number): string {
   //      discuss at: https://locutus.io/php/str_rot13/
   // parity verified: PHP 8.3
   //     original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)

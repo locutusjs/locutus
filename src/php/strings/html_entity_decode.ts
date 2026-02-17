@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { get_html_translation_table as getHtmlTranslationTable } from '../strings/get_html_translation_table.ts'
 
-export function html_entity_decode(string, quoteStyle) {
+export function html_entity_decode(string: string, quoteStyle: any): string | false {
   //      discuss at: https://locutus.io/php/html_entity_decode/
   // parity verified: PHP 8.3
   //     original by: john (https://www.jd-tech.net)

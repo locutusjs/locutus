@@ -1,4 +1,10 @@
-export function substr_count(haystack, needle, offset, length) {
+// @ts-nocheck
+export function substr_count(
+  haystack: string,
+  needle: string,
+  offset?: number,
+  length?: number,
+): number | boolean | false {
   //  discuss at: https://locutus.io/php/substr_count/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)

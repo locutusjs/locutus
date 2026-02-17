@@ -1,4 +1,4 @@
-export function Replace(s, old, newStr, n) {
+export function Replace(s: string, old: string, newStr: string, n: number): string {
   //      discuss at: https://locutus.io/golang/strings/Replace
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

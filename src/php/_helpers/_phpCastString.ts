@@ -1,4 +1,4 @@
-export function _phpCastString(value) {
+export function _phpCastString(value: any): string {
   // original by: Rafał Kukawski
   //   example 1: _phpCastString(true)
   //   returns 1: '1'

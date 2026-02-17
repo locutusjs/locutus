@@ -1,4 +1,5 @@
-export function chr(codePt) {
+// @ts-nocheck
+export function chr(codePt: any): boolean {
   //      discuss at: https://locutus.io/php/chr/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

@@ -1,4 +1,4 @@
-export function floatval(mixedVar) {
+export function floatval(mixedVar: string): number {
   //      discuss at: https://locutus.io/php/floatval/
   // parity verified: PHP 8.3
   //     original by: Michael White (https://getsprink.com)

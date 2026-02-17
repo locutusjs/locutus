@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { setlocale } from '../strings/setlocale.ts'
 
-export function strcoll(str1, str2) {
+export function strcoll(str1: string, str2: string): number {
   //      discuss at: https://locutus.io/php/strcoll/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

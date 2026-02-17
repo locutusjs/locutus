@@ -1,4 +1,4 @@
-export function expm1(x) {
+export function expm1(x: number): number {
   //      discuss at: https://locutus.io/php/expm1/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

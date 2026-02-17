@@ -1,4 +1,4 @@
-export function lower_case(s) {
+export function lower_case(s: string): string {
   //      discuss at: https://locutus.io/clojure/lower_case/
   // parity verified: Clojure 1.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

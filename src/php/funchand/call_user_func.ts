@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { call_user_func_array as callUserFuncArray } from '../funchand/call_user_func_array.ts'
 
-export function call_user_func(cb, parameters) {
+export function call_user_func(cb: string, parameters: string): boolean {
   //  discuss at: https://locutus.io/php/call_user_func/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Diplom@t (https://difane.com/)

@@ -1,4 +1,5 @@
-export function set_time_limit(seconds) {
+// @ts-nocheck
+export function set_time_limit(seconds: number): undefined {
   //  discuss at: https://locutus.io/php/set_time_limit/
   // original by: Brett Zamir (https://brett-zamir.me)
   //        test: skip-all

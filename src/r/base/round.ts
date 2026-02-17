@@ -1,4 +1,4 @@
-export function round(x, digits) {
+export function round(x: number, digits?: number): number {
   //      discuss at: https://locutus.io/r/round/
   // parity verified: R 4.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

@@ -1,4 +1,4 @@
-export function acosh(arg) {
+export function acosh(arg: number): number {
   //      discuss at: https://locutus.io/php/acosh/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)

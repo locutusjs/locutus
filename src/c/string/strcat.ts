@@ -1,4 +1,4 @@
-export function strcat(dest, src) {
+export function strcat(dest: string, src: string): string {
   //  discuss at: https://locutus.io/c/string/strcat/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Appends src string to dest string.

@@ -1,4 +1,4 @@
-export function strncasecmp(argStr1, argStr2, len) {
+export function strncasecmp(argStr1: string, argStr2: string, len: number): number {
   //      discuss at: https://locutus.io/php/strncasecmp/
   // parity verified: PHP 8.3
   //     original by: Saulo Vallory

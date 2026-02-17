@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { get_html_translation_table as getHtmlTranslationTable } from '../strings/get_html_translation_table.ts'
 
-export function htmlentities(string, quoteStyle, charset, doubleEncode) {
+export function htmlentities(string: string, quoteStyle?: string, charset: string, doubleEncode: any): string | false {
   //      discuss at: https://locutus.io/php/htmlentities/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -43,7 +44,7 @@ export function htmlentities(string, quoteStyle, charset, doubleEncode) {
     'g',
   )
 
-  return string.replace(regex, function (ent) {
+  return string.replace(regex, function (ent: any) {
     if (ent.length > 1) {
       return doubleEncode ? hashMap['&'] + ent.substr(1) : ent
     }

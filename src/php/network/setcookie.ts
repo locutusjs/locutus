@@ -1,6 +1,6 @@
 import { setrawcookie } from '../network/setrawcookie.ts'
 
-export function setcookie(name, value, expires, path, domain, secure) {
+export function setcookie(name: string, value: string, expires: any, path: any, domain: any, secure: any): boolean {
   //      discuss at: https://locutus.io/php/setcookie/
   // parity verified: PHP 8.3
   //     original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)

@@ -1,4 +1,4 @@
-export function floor(x) {
+export function floor(x: number): number {
   //      discuss at: https://locutus.io/julia/floor/
   // parity verified: Julia 1.11
   //     original by: Kevin van Zonneveld (https://kvz.io)

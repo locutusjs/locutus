@@ -1,4 +1,4 @@
-export function isnan(x) {
+export function isnan(x: number): boolean {
   //      discuss at: https://locutus.io/python/isnan/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

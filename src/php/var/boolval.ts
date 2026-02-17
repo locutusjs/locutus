@@ -1,4 +1,4 @@
-export function boolval(mixedVar) {
+export function boolval(mixedVar: boolean | number | string | any[] | null | undefined): boolean | false {
   // parity verified: PHP 8.3
   //     original by: Will Rowe
   //       example 1: boolval(true)

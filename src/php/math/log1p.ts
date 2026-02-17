@@ -1,4 +1,5 @@
-export function log1p(x) {
+// @ts-nocheck
+export function log1p(x: number): number {
   //      discuss at: https://locutus.io/php/log1p/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

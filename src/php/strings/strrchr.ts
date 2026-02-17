@@ -1,4 +1,4 @@
-export function strrchr(haystack, needle) {
+export function strrchr(haystack: string, needle: string): string | false {
   //  discuss at: https://locutus.io/php/strrchr/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: Jason Wong (https://carrot.org/)

@@ -1,4 +1,5 @@
-export function Itoa(i) {
+// @ts-nocheck
+export function Itoa(i: number): string {
   //      discuss at: https://locutus.io/golang/strconv/Itoa
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

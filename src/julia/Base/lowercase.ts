@@ -1,4 +1,4 @@
-export function lowercase(s) {
+export function lowercase(s: string): string {
   //      discuss at: https://locutus.io/julia/lowercase/
   // parity verified: Julia 1.11
   //     original by: Kevin van Zonneveld (https://kvz.io)

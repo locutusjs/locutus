@@ -1,4 +1,8 @@
-export function array_change_key_case(array, cs) {
+// @ts-nocheck
+export function array_change_key_case(
+  array: number | any[] | Record<string, any>,
+  cs?: string | number,
+): boolean | any[] | Record<string, any> | false {
   //  discuss at: https://locutus.io/php/array_change_key_case/
   // original by: Ates Goral (https://magnetiq.com)
   // improved by: marrtins
@@ -18,8 +22,7 @@ export function array_change_key_case(array, cs) {
 
   let caseFnc
   let key
-  const tmpArr = {}
-
+  const tmpArr: Record<string, any> = {}
   if (Array.isArray(array)) {
     return array
   }

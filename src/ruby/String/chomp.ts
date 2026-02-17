@@ -1,4 +1,4 @@
-export function chomp(str, separator) {
+export function chomp(str: string, separator?: string): string {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/String/chomp/
   //     original by: Kevin van Zonneveld (https://kvz.io)

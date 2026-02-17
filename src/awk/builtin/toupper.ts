@@ -1,4 +1,4 @@
-export function toupper(s) {
+export function toupper(s: string): string {
   //      discuss at: https://locutus.io/awk/toupper/
   // parity verified: GNU AWK 5.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

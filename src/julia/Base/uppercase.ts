@@ -1,4 +1,4 @@
-export function uppercase(s) {
+export function uppercase(s: string): string {
   //      discuss at: https://locutus.io/julia/uppercase/
   // parity verified: Julia 1.11
   //     original by: Kevin van Zonneveld (https://kvz.io)

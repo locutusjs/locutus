@@ -1,4 +1,4 @@
-export function TrimSpace(s) {
+export function TrimSpace(s: string): string {
   //      discuss at: https://locutus.io/golang/strings/TrimSpace
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

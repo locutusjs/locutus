@@ -1,4 +1,4 @@
-export function cos(x) {
+export function cos(x: number): number {
   //      discuss at: https://locutus.io/ruby/Math/cos/
   // parity verified: Ruby 3.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

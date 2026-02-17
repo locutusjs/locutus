@@ -1,4 +1,4 @@
-export function ceil(x) {
+export function ceil(x: number): number {
   //      discuss at: https://locutus.io/clojure/ceil/
   // parity verified: Clojure 1.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

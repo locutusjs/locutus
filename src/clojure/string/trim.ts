@@ -1,4 +1,4 @@
-export function trim(s) {
+export function trim(s: string): string {
   //      discuss at: https://locutus.io/clojure/trim/
   // parity verified: Clojure 1.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

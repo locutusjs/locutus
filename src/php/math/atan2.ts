@@ -1,4 +1,4 @@
-export function atan2(y, x) {
+export function atan2(y: number, x: number): number {
   //      discuss at: https://locutus.io/php/atan2/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

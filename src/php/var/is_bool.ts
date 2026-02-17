@@ -1,4 +1,4 @@
-export function is_bool(mixedVar) {
+export function is_bool(mixedVar: boolean | number): boolean {
   //      discuss at: https://locutus.io/php/is_bool/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)

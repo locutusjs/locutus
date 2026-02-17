@@ -1,4 +1,4 @@
-export function atan(arg) {
+export function atan(arg: number): number {
   //      discuss at: https://locutus.io/php/atan/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)

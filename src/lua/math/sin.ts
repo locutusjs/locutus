@@ -1,4 +1,4 @@
-export function sin(x) {
+export function sin(x: number): number {
   //      discuss at: https://locutus.io/lua/sin/
   // parity verified: Lua 5.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

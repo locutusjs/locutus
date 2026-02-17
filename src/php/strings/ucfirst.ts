@@ -1,4 +1,4 @@
-export function ucfirst(str) {
+export function ucfirst(str: string): string {
   //      discuss at: https://locutus.io/php/ucfirst/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

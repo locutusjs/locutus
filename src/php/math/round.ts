@@ -1,4 +1,4 @@
-function roundToInt(value, mode) {
+function roundToInt(value: any, mode: any) {
   let tmp = Math.floor(Math.abs(value) + 0.5)
 
   if (
@@ -15,7 +15,7 @@ function roundToInt(value, mode) {
 import { _php_cast_float as floatCast } from '../_helpers/_php_cast_float.ts'
 import { _php_cast_int as intCast } from '../_helpers/_php_cast_int.ts'
 
-export function round(value, precision = 0, mode = 'PHP_ROUND_HALF_UP') {
+export function round(value: number, precision = 0, mode = 'PHP_ROUND_HALF_UP'): number {
   //      discuss at: https://locutus.io/php/round/
   // parity verified: PHP 8.3
   //     original by: Philip Peterson

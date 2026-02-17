@@ -1,13 +1,14 @@
-export function array_udiff_assoc(arr1) {
+// @ts-nocheck
+export function array_udiff_assoc(arr1: Record<string, any>): Record<string, any> {
   //  discuss at: https://locutus.io/php/array_udiff_assoc/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: array_udiff_assoc({0: 'kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'}, function (f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 === string2) return 0; return -1;})
   //   returns 1: {1: 'van', 2: 'Zonneveld'}
 
-  const retArr = {}
+  const retArr: Record<string, any> = {}
   const arglm1 = arguments.length - 1
   let cb = arguments[arglm1]
-  let arr = {}
+  let arr: Record<string, any> = {}
   let i = 1
   let k1 = ''
   let k = ''

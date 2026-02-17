@@ -1,6 +1,6 @@
 import { is_float as _isFloat } from '../var/is_float.ts'
 
-export function is_long(mixedVar) {
+export function is_long(mixedVar: number): boolean {
   //  discuss at: https://locutus.io/php/is_long/
   // original by: Paulo Freitas
   //      note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes

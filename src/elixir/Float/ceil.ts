@@ -1,4 +1,4 @@
-export function ceil(x) {
+export function ceil(x: number): number {
   //      discuss at: https://locutus.io/elixir/ceil/
   // parity verified: Elixir 1.18
   //     original by: Kevin van Zonneveld (https://kvz.io)

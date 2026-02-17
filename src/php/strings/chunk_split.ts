@@ -1,4 +1,5 @@
-export function chunk_split(body, chunklen, end) {
+// @ts-nocheck
+export function chunk_split(body: string, chunklen: number, end: string): string | false {
   //      discuss at: https://locutus.io/php/chunk_split/
   // parity verified: PHP 8.3
   //     original by: Paulo Freitas

@@ -1,4 +1,4 @@
-export function islower(c) {
+export function islower(c: string): boolean {
   //      discuss at: https://locutus.io/c/ctype/islower/
   // parity verified: C 23
   //     original by: Kevin van Zonneveld (https://kvz.io)

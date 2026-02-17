@@ -1,4 +1,4 @@
-export function floor(x) {
+export function floor(x: number): number {
   //      discuss at: https://locutus.io/perl/floor/
   // parity verified: Perl 5.40
   //     original by: Kevin van Zonneveld (https://kvz.io)

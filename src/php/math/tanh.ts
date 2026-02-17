@@ -1,4 +1,4 @@
-export function tanh(arg) {
+export function tanh(arg: number): number {
   //      discuss at: https://locutus.io/php/tanh/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)

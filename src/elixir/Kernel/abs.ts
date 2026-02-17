@@ -1,4 +1,4 @@
-export function abs(x) {
+export function abs(x: number): number {
   //      discuss at: https://locutus.io/elixir/abs/
   // parity verified: Elixir 1.18
   //     original by: Kevin van Zonneveld (https://kvz.io)

@@ -1,4 +1,4 @@
-export function strcmp(str1, str2) {
+export function strcmp(str1: string, str2: string): number {
   //      discuss at: https://locutus.io/php/strcmp/
   // parity verified: PHP 8.3
   //     original by: Waldo Malqui Silva (https://waldo.malqui.info)

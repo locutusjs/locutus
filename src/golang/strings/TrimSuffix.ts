@@ -1,4 +1,4 @@
-export function TrimSuffix(s, suffix) {
+export function TrimSuffix(s: string, suffix: string): string {
   //      discuss at: https://locutus.io/golang/strings/TrimSuffix/
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
