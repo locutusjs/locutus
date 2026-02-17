@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function utf8_encode(argString) {
+export function utf8_encode(argString: string | null | undefined): string {
   //      discuss at: https://locutus.io/php/utf8_encode/
   // parity verified: PHP 8.3
   //     original by: Webtoolkit.info (https://www.webtoolkit.info/)
@@ -23,15 +22,15 @@ export function utf8_encode(argString) {
   // .replace(/\r\n/g, "\n").replace(/\r/g, "\n");
   const string = argString + ''
   let utftext = ''
-  let start
-  let end
+  let start: number
+  let end: number
   let stringl = 0
 
   start = end = 0
   stringl = string.length
   for (let n = 0; n < stringl; n++) {
     let c1 = string.charCodeAt(n)
-    let enc = null
+    let enc: string | null = null
 
     if (c1 < 128) {
       end++

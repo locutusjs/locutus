@@ -1,5 +1,10 @@
-// @ts-nocheck
-export function base64_encode(stringToEncode) {
+type Base64BufferEncoder = {
+  from: (input: string) => {
+    toString: (encoding: 'base64') => string
+  }
+}
+
+export function base64_encode(stringToEncode: string | null | undefined): string | null | undefined {
   //      discuss at: https://locutus.io/php/base64_encode/
   // parity verified: PHP 8.3
   //     original by: Tyler Akins (https://rumkin.com)
@@ -20,36 +25,41 @@ export function base64_encode(stringToEncode) {
   // encodeUTF8string()
   // Internal function to encode properly UTF8 string
   // Adapted from Solution #1 at https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
-  const encodeUTF8string = function (str) {
+  const encodeUTF8string = function (str: string): string {
     // first we use encodeURIComponent to get percent-encoded UTF-8,
     // then we convert the percent encodings into raw bytes which
     // can be fed into the base64 encoding algorithm.
-    return encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function toSolidBytes(match, p1) {
-      return String.fromCharCode('0x' + p1)
+    return encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function toSolidBytes(_match, p1: string) {
+      return String.fromCharCode(Number.parseInt(p1, 16))
     })
   }
 
-  if (typeof window !== 'undefined') {
-    if (typeof window.btoa !== 'undefined') {
-      return window.btoa(encodeUTF8string(stringToEncode))
-    }
-  } else {
-    return new Buffer(stringToEncode).toString('base64')
+  const globalContext = globalThis as typeof globalThis & {
+    btoa?: (data: string) => string
+    Buffer?: Base64BufferEncoder
+  }
+
+  if (typeof globalContext.Buffer?.from === 'function') {
+    return globalContext.Buffer.from(String(stringToEncode)).toString('base64')
+  }
+
+  if (typeof globalContext.btoa === 'function') {
+    return globalContext.btoa(encodeUTF8string(String(stringToEncode)))
   }
 
   const b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
-  let o1
-  let o2
-  let o3
-  let h1
-  let h2
-  let h3
-  let h4
-  let bits
+  let o1: number
+  let o2: number
+  let o3: number
+  let h1: number
+  let h2: number
+  let h3: number
+  let h4: number
+  let bits: number
   let i = 0
   let ac = 0
   let enc = ''
-  const tmpArr = []
+  const tmpArr: string[] = []
 
   if (!stringToEncode) {
     return stringToEncode

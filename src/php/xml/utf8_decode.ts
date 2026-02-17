@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function utf8_decode(strData) {
+export function utf8_decode(strData: string | number | boolean | null | undefined): string {
   //      discuss at: https://locutus.io/php/utf8_decode/
   // parity verified: PHP 8.3
   //     original by: Webtoolkit.info (https://www.webtoolkit.info/)
@@ -15,15 +14,14 @@ export function utf8_decode(strData) {
   //       example 1: utf8_decode('Kevin van Zonneveld')
   //       returns 1: 'Kevin van Zonneveld'
 
-  const tmpArr = []
+  const tmpArr: string[] = []
   let i = 0
   let c1 = 0
   let seqlen = 0
+  const source = String(strData)
 
-  strData += ''
-
-  while (i < strData.length) {
-    c1 = strData.charCodeAt(i) & 0xff
+  while (i < source.length) {
+    c1 = source.charCodeAt(i) & 0xff
     seqlen = 0
 
     // https://en.wikipedia.org/wiki/UTF-8#Codepage_layout
@@ -42,7 +40,7 @@ export function utf8_decode(strData) {
     }
 
     for (let ai = 1; ai < seqlen; ++ai) {
-      c1 = (c1 << 0x06) | (strData.charCodeAt(ai + i) & 0x3f)
+      c1 = (c1 << 0x06) | (source.charCodeAt(ai + i) & 0x3f)
     }
 
     if (seqlen === 4) {

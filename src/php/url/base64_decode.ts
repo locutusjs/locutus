@@ -1,5 +1,13 @@
-// @ts-nocheck
-export function base64_decode(encodedData) {
+type Base64BufferDecoder = {
+  from: (
+    input: string,
+    encoding: 'base64',
+  ) => {
+    toString: (encoding: 'utf-8') => string
+  }
+}
+
+export function base64_decode(encodedData: string | null | undefined): string | null | undefined {
   //  discuss at: https://locutus.io/php/base64_decode/
   // original by: Tyler Akins (https://rumkin.com)
   // improved by: Thunder.m
@@ -21,7 +29,7 @@ export function base64_decode(encodedData) {
   // decodeUTF8string()
   // Internal function to decode properly UTF8 string
   // Adapted from Solution #1 at https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
-  const decodeUTF8string = function (str) {
+  const decodeUTF8string = function (str: string): string {
     // Going backwards: from bytestream, to percent-encoding, to original string.
     return decodeURIComponent(
       str
@@ -33,27 +41,32 @@ export function base64_decode(encodedData) {
     )
   }
 
-  if (typeof window !== 'undefined') {
-    if (typeof window.atob !== 'undefined') {
-      return decodeUTF8string(window.atob(encodedData))
-    }
-  } else {
-    return new Buffer(encodedData, 'base64').toString('utf-8')
+  const globalContext = globalThis as typeof globalThis & {
+    atob?: (data: string) => string
+    Buffer?: Base64BufferDecoder
+  }
+
+  if (typeof globalContext.Buffer?.from === 'function') {
+    return globalContext.Buffer.from(String(encodedData), 'base64').toString('utf-8')
+  }
+
+  if (typeof globalContext.atob === 'function') {
+    return decodeUTF8string(globalContext.atob(String(encodedData)))
   }
 
   const b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
-  let o1
-  let o2
-  let o3
-  let h1
-  let h2
-  let h3
-  let h4
-  let bits
+  let o1: number
+  let o2: number
+  let o3: number
+  let h1: number
+  let h2: number
+  let h3: number
+  let h4: number
+  let bits: number
   let i = 0
   let ac = 0
   let dec = ''
-  const tmpArr = []
+  const tmpArr: string[] = []
 
   if (!encodedData) {
     return encodedData
