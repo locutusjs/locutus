@@ -1,4 +1,3 @@
-// @ts-nocheck
 export function abs(mixedNumber: string | number): number {
   //  discuss at: https://locutus.io/php/abs/
   // original by: Waldo Malqui Silva (https://waldo.malqui.info)
@@ -14,5 +13,5 @@ export function abs(mixedNumber: string | number): number {
   //   example 4: abs('_argos')
   //   returns 4: 0
 
-  return Math.abs(mixedNumber) || 0
+  return Math.abs(Number(mixedNumber)) || 0
 }

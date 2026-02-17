@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function length(str: string): number {
+export function length(str: string | null | undefined): number | undefined {
   //      discuss at: https://locutus.io/perl/length/
   // parity verified: Perl 5.40
   //     original by: Kevin van Zonneveld (https://kvz.io)

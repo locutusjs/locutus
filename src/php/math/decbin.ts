@@ -1,4 +1,3 @@
-// @ts-nocheck
 export function decbin(number: string | number): string {
   //      discuss at: https://locutus.io/php/decbin/
   // parity verified: PHP 8.3
@@ -14,8 +13,9 @@ export function decbin(number: string | number): string {
   //       example 3: decbin('26')
   //       returns 3: '11010'
 
-  if (number < 0) {
-    number = 0xffffffff + number + 1
+  let normalized = parseInt(String(number), 10)
+  if (normalized < 0) {
+    normalized = 0xffffffff + normalized + 1
   }
-  return parseInt(number, 10).toString(2)
+  return normalized.toString(2)
 }

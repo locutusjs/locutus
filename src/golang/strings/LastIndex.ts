@@ -1,4 +1,3 @@
-// @ts-nocheck
 export function LastIndex(s: string, sep: string): number {
   //      discuss at: https://locutus.io/golang/strings/LastIndex
   // parity verified: Go 1.23
@@ -9,5 +8,5 @@ export function LastIndex(s: string, sep: string): number {
   //       example 2: LastIndex('go gopher', 'rodent')
   //       returns 2: -1
 
-  return parseInt(s.lastIndexOf(sep), 10) >> 0
+  return s.lastIndexOf(sep)
 }

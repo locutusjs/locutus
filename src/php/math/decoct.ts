@@ -1,4 +1,3 @@
-// @ts-nocheck
 export function decoct(number: number): string {
   //      discuss at: https://locutus.io/php/decoct/
   // parity verified: PHP 8.3
@@ -11,8 +10,9 @@ export function decoct(number: number): string {
   //       example 2: decoct(264)
   //       returns 2: '410'
 
-  if (number < 0) {
-    number = 0xffffffff + number + 1
+  let normalized = parseInt(String(number), 10)
+  if (normalized < 0) {
+    normalized = 0xffffffff + normalized + 1
   }
-  return parseInt(number, 10).toString(8)
+  return normalized.toString(8)
 }

@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { echo } from '../strings/echo.ts'
 import { sprintf } from '../strings/sprintf.ts'
 
@@ -12,6 +10,9 @@ export function printf(format: string, ...args: unknown[]): number {
   //   returns 1: 6
 
   const ret = sprintf(format, ...args)
+  if (ret === false) {
+    return 0
+  }
   echo(ret)
   return ret.length
 }

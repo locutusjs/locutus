@@ -1,4 +1,3 @@
-// @ts-nocheck
 export function dechex(number: number): string {
   //  discuss at: https://locutus.io/php/dechex/
   // original by: Philippe Baumann
@@ -12,8 +11,9 @@ export function dechex(number: number): string {
   //   example 3: dechex(-1415723993)
   //   returns 3: 'ab9dc427'
 
-  if (number < 0) {
-    number = 0xffffffff + number + 1
+  let normalized = parseInt(String(number), 10)
+  if (normalized < 0) {
+    normalized = 0xffffffff + normalized + 1
   }
-  return parseInt(number, 10).toString(16)
+  return normalized.toString(16)
 }

@@ -1,4 +1,3 @@
-// @ts-nocheck
 export function Repeat(s: string, count: number): string {
   //      discuss at: https://locutus.io/golang/strings/Repeat
   // parity verified: Go 1.23
@@ -10,7 +9,7 @@ export function Repeat(s: string, count: number): string {
   //       returns 2: 'bababa'
 
   s = s + ''
-  count = parseInt(count, 10)
+  count = Number.parseInt(String(count), 10)
 
   if (count < 0 || !isFinite(count)) {
     throw new Error('strings: negative Repeat count')

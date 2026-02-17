@@ -1,7 +1,6 @@
-// @ts-nocheck
 import { floatval } from '../var/floatval.ts'
 
-export function doubleval(mixedVar: number): number {
+export function doubleval(mixedVar: unknown): number {
   //      discuss at: https://locutus.io/php/doubleval/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -10,5 +9,5 @@ export function doubleval(mixedVar: number): number {
   //       example 1: doubleval(186)
   //       returns 1: 186.00
 
-  return floatval(mixedVar)
+  return floatval(String(mixedVar ?? ''))
 }

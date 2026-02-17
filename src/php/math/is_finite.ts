@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function is_finite(val: number): boolean | false {
+export function is_finite(val: unknown): boolean {
   //  discuss at: https://locutus.io/php/is_finite/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: is_finite(Infinity)
@@ -18,7 +17,7 @@ export function is_finite(val: number): boolean | false {
   // Some warnings for maximum PHP compatibility
   if (typeof val === 'object') {
     warningType = Array.isArray(val) ? 'array' : 'object'
-  } else if (typeof val === 'string' && !val.match(/^[+-]?\d/)) {
+  } else if (typeof val === 'string' && !/^[+-]?\d/.test(val)) {
     // simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
     warningType = 'string'
   }

@@ -1,7 +1,6 @@
-// @ts-nocheck
 import { call_user_func_array as callUserFuncArray } from '../funchand/call_user_func_array.ts'
 
-export function call_user_func(cb: string, parameters: string): boolean {
+export function call_user_func(cb: unknown, ...parameters: unknown[]): unknown {
   //  discuss at: https://locutus.io/php/call_user_func/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Diplom@t (https://difane.com/)
@@ -14,6 +13,5 @@ export function call_user_func(cb: string, parameters: string): boolean {
   //   example 1: call_user_func('isNaN', 'a')
   //   returns 1: true
 
-  parameters = Array.prototype.slice.call(arguments, 1)
   return callUserFuncArray(cb, parameters)
 }

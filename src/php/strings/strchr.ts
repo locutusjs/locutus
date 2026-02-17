@@ -1,7 +1,6 @@
-// @ts-nocheck
 import { strstr } from '../strings/strstr.ts'
 
-export function strchr(haystack: string, needle: string, bool?: boolean): string {
+export function strchr(haystack: string, needle: string, bool?: boolean): string | false {
   //      discuss at: https://locutus.io/php/strchr/
   // parity verified: PHP 8.3
   //     original by: Philip Peterson
