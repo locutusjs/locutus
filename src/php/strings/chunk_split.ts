@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function chunk_split(body: string, chunklen: number, end: string): string | false {
+export function chunk_split(body: string, chunklen?: number | string, end?: string): string | false {
   //      discuss at: https://locutus.io/php/chunk_split/
   // parity verified: PHP 8.3
   //     original by: Paulo Freitas
@@ -11,12 +10,13 @@ export function chunk_split(body: string, chunklen: number, end: string): string
   //       example 2: chunk_split('Hello world!', 10, '*')
   //       returns 2: 'Hello worl*d!*'
 
-  chunklen = parseInt(chunklen, 10) || 76
-  end = end || '\r\n'
+  const parsedChunklen = Number.parseInt(String(chunklen ?? 76), 10) || 76
+  const splitEnd = end || '\r\n'
 
-  if (chunklen < 1) {
+  if (parsedChunklen < 1) {
     return false
   }
 
-  return body.match(new RegExp('.{0,' + chunklen + '}', 'g')).join(end)
+  const chunks = body.match(new RegExp(`.{0,${parsedChunklen}}`, 'g')) ?? []
+  return chunks.join(splitEnd)
 }

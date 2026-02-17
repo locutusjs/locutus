@@ -1,7 +1,12 @@
-// @ts-nocheck
 import fs from 'fs'
 
-export function file_get_contents(url, flags, context, offset, maxLen) {
+export function file_get_contents(
+  url: string,
+  _flags?: unknown,
+  _context?: unknown,
+  _offset?: number,
+  _maxLen?: number,
+): string | false {
   //       discuss at: https://locutus.io/php/file_get_contents/
   //      original by: Legaev Andrey
   //         input by: Jani Hartikainen

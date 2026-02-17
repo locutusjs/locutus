@@ -1,5 +1,9 @@
-// @ts-nocheck
-export function i18n_loc_get_default() {
+type I18nPhpContext = {
+  locale_default?: string
+  locales?: { [locale: string]: unknown }
+}
+
+export function i18n_loc_get_default(): string {
   //  discuss at: https://locutus.io/php/i18n_loc_get_default/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Renamed in PHP6 from locale_get_default(). Not listed yet at php.net.
@@ -12,11 +16,11 @@ export function i18n_loc_get_default() {
   //   example 2: i18n_loc_get_default()
   //   returns 2: 'pt_PT'
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
-  $locutus.php.locales = $locutus.php.locales || {}
+  const globalContext = globalThis as typeof globalThis & { $locutus?: { php?: I18nPhpContext } }
+  globalContext.$locutus = globalContext.$locutus ?? {}
+  const locutus = globalContext.$locutus
+  locutus.php = locutus.php ?? {}
+  locutus.php.locales = locutus.php.locales ?? {}
 
-  return $locutus.php.locale_default || 'en_US_POSIX'
+  return locutus.php.locale_default ?? 'en_US_POSIX'
 }

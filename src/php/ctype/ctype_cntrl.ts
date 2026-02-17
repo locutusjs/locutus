@@ -1,5 +1,9 @@
-// @ts-nocheck
 import { setlocale } from '../strings/setlocale.ts'
+
+type CTypePhpContext = {
+  locales?: Record<string, { LC_CTYPE?: { [key: string]: RegExp | undefined } }>
+  localeCategories?: { LC_CTYPE: string }
+}
 
 export function ctype_cntrl(text: string): boolean | false {
   //      discuss at: https://locutus.io/php/ctype_cntrl/
@@ -13,13 +17,14 @@ export function ctype_cntrl(text: string): boolean | false {
   if (typeof text !== 'string') {
     return false
   }
-  // ensure setup of localization variables takes place
   setlocale('LC_ALL', 0)
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  const p = $locutus.php
+  const globalContext = globalThis as typeof globalThis & { $locutus?: { php?: CTypePhpContext } }
+  const php = globalContext.$locutus?.php
+  if (!php?.locales || !php.localeCategories) {
+    return false
+  }
 
-  return text.search(p.locales[p.localeCategories.LC_CTYPE].LC_CTYPE.ct) !== -1
+  const pattern = php.locales[php.localeCategories.LC_CTYPE]?.LC_CTYPE?.ct
+  return pattern instanceof RegExp ? text.search(pattern) !== -1 : false
 }

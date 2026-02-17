@@ -1,7 +1,6 @@
-// @ts-nocheck
 import { _bc } from '../_helpers/_bc.ts'
 
-export function bcscale(scale: number): boolean | false {
+export function bcscale(scale: number | string): boolean {
   //  discuss at: https://locutus.io/php/bcscale/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcscale(1)
@@ -9,14 +8,14 @@ export function bcscale(scale: number): boolean | false {
 
   const libbcmath = _bc()
 
-  scale = parseInt(scale, 10)
-  if (isNaN(scale)) {
+  const parsedScale = Number.parseInt(String(scale), 10)
+  if (Number.isNaN(parsedScale)) {
     return false
   }
-  if (scale < 0) {
+  if (parsedScale < 0) {
     return false
   }
-  libbcmath.scale = scale
+  libbcmath.scale = parsedScale
 
   return true
 }

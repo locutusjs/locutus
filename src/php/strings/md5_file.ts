@@ -1,8 +1,7 @@
-// @ts-nocheck
 import { file_get_contents as fileGetContents } from '../filesystem/file_get_contents.ts'
 import { md5 } from '../strings/md5.ts'
 
-export function md5_file(str_filename) {
+export function md5_file(str_filename: string): string | false {
   //      discuss at: https://locutus.io/php/md5_file/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

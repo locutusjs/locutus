@@ -1,5 +1,8 @@
-// @ts-nocheck
-export function json_last_error() {
+type JsonPhpContext = {
+  last_error_json?: number
+}
+
+export function json_last_error(): number {
   //      discuss at: https://phpjs.org/functions/json_last_error/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -16,10 +19,10 @@ export function json_last_error() {
   // but JSON functions auto-escape these, so error not possible in JavaScript
   // JSON_ERROR_SYNTAX = 4
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
+  const globalContext = globalThis as typeof globalThis & { $locutus?: { php?: JsonPhpContext } }
+  globalContext.$locutus = globalContext.$locutus ?? {}
+  const locutus = globalContext.$locutus
+  locutus.php = locutus.php ?? {}
 
-  return $locutus.php && $locutus.php.last_error_json ? $locutus.php.last_error_json : 0
+  return locutus.php.last_error_json ?? 0
 }
