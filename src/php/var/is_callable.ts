@@ -1,9 +1,5 @@
 // @ts-nocheck
-export function is_callable(
-  mixedVar: string | any[],
-  syntaxOnly?: boolean,
-  callableName?: string,
-): boolean | string | false {
+export function is_callable(mixedVar: unknown, syntaxOnly?: boolean, callableName?: string): boolean | string | false {
   //  discuss at: https://locutus.io/php/is_callable/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: François
@@ -40,11 +36,11 @@ export function is_callable(
   const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
   let name = ''
-  let obj: Record<string, any> = {}
+  let obj: { [key: string]: unknown } = {}
   let method = ''
   let validFunctionName = false
 
-  const getFuncName = function (fn: any) {
+  const getFuncName = function (fn: unknown) {
     const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn)
     if (!name) {
       return '(Anonymous)'

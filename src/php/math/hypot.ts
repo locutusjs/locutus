@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function hypot(x: number | any[], y: string | number): number | null {
+export function hypot(x: unknown, y: unknown): number | null {
   //  discuss at: https://locutus.io/php/hypot/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Robert Eisele (https://www.xarg.org/)
@@ -8,12 +7,12 @@ export function hypot(x: number | any[], y: string | number): number | null {
   //   example 2: hypot([], 'a')
   //   returns 2: null
 
-  x = Math.abs(x)
-  y = Math.abs(y)
+  const left = Math.abs(Number(x))
+  const right = Math.abs(Number(y))
 
-  let t = Math.min(x, y)
-  x = Math.max(x, y)
-  t = t / x
+  let t = Math.min(left, right)
+  const max = Math.max(left, right)
+  t = t / max
 
-  return x * Math.sqrt(1 + t * t) || null
+  return max * Math.sqrt(1 + t * t) || null
 }

@@ -1,7 +1,7 @@
 // @ts-nocheck
 export function htmlspecialchars(
   string: string,
-  quoteStyle: string | any[] | null,
+  quoteStyle: string | string[] | null,
   charset?: null,
   doubleEncode?: boolean,
 ): string {

@@ -1,5 +1,5 @@
 // @ts-nocheck
-export function metaphone(word: string, maxPhonemes: any): string | false {
+export function metaphone(word: string, maxPhonemes: unknown): string | false | null {
   //      discuss at: https://locutus.io/php/metaphone/
   // parity verified: PHP 8.3
   //     original by: Greg Frazier
@@ -51,7 +51,7 @@ export function metaphone(word: string, maxPhonemes: any): string | false {
     return ''
   }
 
-  const is = function (p: any, c: any) {
+  const is = function (p: string, c: string) {
     return c !== '' && p.indexOf(c) !== -1
   }
 
