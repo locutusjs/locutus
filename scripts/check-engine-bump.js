@@ -66,10 +66,7 @@ function hasPendingMajorChangeset(packageName) {
     }
 
     const frontmatter = frontmatterMatch[1]
-    const packageRegex = new RegExp(
-      String.raw`["']?${packageName}["']?\s*:\s*["']?(major|premajor)["']?\b`,
-      'i',
-    )
+    const packageRegex = new RegExp(String.raw`["']?${packageName}["']?\s*:\s*["']?(major|premajor)["']?\b`, 'i')
     if (packageRegex.test(frontmatter)) {
       return true
     }
