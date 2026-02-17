@@ -9,11 +9,7 @@ import path from 'node:path'
 import globby from 'globby'
 import { isValidHeaderKey } from './headerSchema.ts'
 
-interface ParsedLine {
-  isHeader: boolean
-  key?: string
-  value?: string
-}
+type ParsedLine = { isHeader: false } | { isHeader: true; key: string; value: string }
 
 interface FormatResult {
   formatted: string
@@ -50,6 +46,9 @@ export function parseHeaderLine(line: string): ParsedLine {
   }
 
   const [, key, value] = match
+  if (typeof key === 'undefined' || typeof value === 'undefined') {
+    return { isHeader: false }
+  }
   const keyLower = key.toLowerCase().trim()
 
   if (!isValidHeaderKey(keyLower)) {
@@ -78,23 +77,29 @@ export function formatHeaders(content: string): FormatResult {
   const lines = content.split('\n')
 
   const parsedLines = lines.map((line) => parseHeaderLine(line))
-  const headerKeys = parsedLines.filter((p) => p.isHeader && p.key).map((p) => p.key as string)
+  const headerKeys = parsedLines
+    .filter((p): p is Extract<ParsedLine, { isHeader: true }> => p.isHeader)
+    .map((p) => p.key)
   const longestKeyLength = headerKeys.length > 0 ? Math.max(...headerKeys.map((k) => k.length)) : 0
 
   let changed = false
   const formattedLines: string[] = []
 
   for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+    if (typeof line === 'undefined') {
+      continue
+    }
     const parsed = parsedLines[i]
 
-    if (parsed.isHeader && parsed.key && parsed.value !== undefined) {
+    if (parsed && parsed.isHeader) {
       const formatted = formatHeaderLine(parsed.key, parsed.value, longestKeyLength)
-      if (formatted !== lines[i]) {
+      if (formatted !== line) {
         changed = true
       }
       formattedLines.push(formatted)
     } else {
-      formattedLines.push(lines[i])
+      formattedLines.push(line)
     }
   }
 
