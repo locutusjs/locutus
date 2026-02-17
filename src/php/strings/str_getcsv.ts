@@ -1,6 +1,9 @@
-// @ts-nocheck
-// biome-ignore lint/suspicious/noShadowRestrictedNames: escape is PHP parameter name
-export function str_getcsv(input, delimiter, enclosure, escape) {
+export function str_getcsv(
+  input: string,
+  delimiter?: string | null,
+  enclosure?: string | null,
+  escapeCharacter?: string | null,
+): string[] {
   //      discuss at: https://locutus.io/php/str_getcsv/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -26,34 +29,34 @@ export function str_getcsv(input, delimiter, enclosure, escape) {
     Should also test newlines within
   */
 
-  let i
-  let inpLen
-  const output = []
-  const _backwards = function (str) {
+  let i = 0
+  let inpLen = 0
+  const output: string[] = []
+  const _backwards = function (str: string): string {
     // We need to go backwards to simulate negative look-behind (don't split on
     // an escaped enclosure even if followed by the delimiter and another enclosure mark)
     return str.split('').reverse().join('')
   }
-  const _pq = function (str) {
+  const _pq = function (str: string): string {
     // preg_quote()
     return String(str).replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1')
   }
 
-  delimiter = delimiter || ','
-  enclosure = enclosure || '"'
-  escape = escape || '\\'
-  const pqEnc = _pq(enclosure)
-  const pqEsc = _pq(escape)
+  const delimiterValue = delimiter || ','
+  const enclosureValue = enclosure || '"'
+  const escapeValue = escapeCharacter || '\\'
+  const pqEnc = _pq(enclosureValue)
+  const pqEsc = _pq(escapeValue)
 
-  input = input.replace(new RegExp('^\\s*' + pqEnc), '').replace(new RegExp(pqEnc + '\\s*$'), '')
+  const trimmedInput = input.replace(new RegExp('^\\s*' + pqEnc), '').replace(new RegExp(pqEnc + '\\s*$'), '')
 
   // PHP behavior may differ by including whitespace even outside of the enclosure
-  input = _backwards(input)
-    .split(new RegExp(pqEnc + '\\s*' + _pq(delimiter) + '\\s*' + pqEnc + '(?!' + pqEsc + ')', 'g'))
+  const entries = _backwards(trimmedInput)
+    .split(new RegExp(pqEnc + '\\s*' + _pq(delimiterValue) + '\\s*' + pqEnc + '(?!' + pqEsc + ')', 'g'))
     .reverse()
 
-  for (i = 0, inpLen = input.length; i < inpLen; i++) {
-    output.push(_backwards(input[i]).replace(new RegExp(pqEsc + pqEnc, 'g'), enclosure))
+  for (i = 0, inpLen = entries.length; i < inpLen; i++) {
+    output.push(_backwards(entries[i] ?? '').replace(new RegExp(pqEsc + pqEnc, 'g'), enclosureValue))
   }
 
   return output

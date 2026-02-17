@@ -1,5 +1,7 @@
-// @ts-nocheck
-export function count_chars(str, mode) {
+export function count_chars(
+  str: string | number | boolean | null | undefined,
+  mode = 0,
+): { [key: string]: number } | string {
   //      discuss at: https://locutus.io/php/count_chars/
   // parity verified: PHP 8.3
   //     original by: Ates Goral (https://magnetiq.com)
@@ -13,15 +15,17 @@ export function count_chars(str, mode) {
   //       example 2: count_chars("Hello World!", 1)
   //       returns 2: {32:1,33:1,72:1,87:1,100:1,101:1,108:3,111:2,114:1}
 
-  const result = {}
-  const resultArr = []
-  let i
+  const result: { [key: string]: number | string } = {}
+  const resultArr: string[] = []
+  let i = 0
+  let key = ''
 
-  str = ('' + str)
-    .split('')
-    .sort()
-    .join('')
-    .match(/(.)\1*/g)
+  const groupedChars =
+    ('' + str)
+      .split('')
+      .sort()
+      .join('')
+      .match(/(.)\1*/g) || []
 
   if ((mode & 1) === 0) {
     for (i = 0; i !== 256; i++) {
@@ -30,27 +34,39 @@ export function count_chars(str, mode) {
   }
 
   if (mode === 2 || mode === 4) {
-    for (i = 0; i !== str.length; i += 1) {
-      delete result[str[i].charCodeAt(0)]
+    for (i = 0; i !== groupedChars.length; i += 1) {
+      const grouped = groupedChars[i]
+      if (grouped === undefined) {
+        continue
+      }
+      delete result[grouped.charCodeAt(0)]
     }
-    for (i in result) {
-      result[i] = mode === 4 ? String.fromCharCode(i) : 0
+    for (key in result) {
+      result[key] = mode === 4 ? String.fromCharCode(Number(key)) : 0
     }
   } else if (mode === 3) {
-    for (i = 0; i !== str.length; i += 1) {
-      result[i] = str[i].slice(0, 1)
+    for (i = 0; i !== groupedChars.length; i += 1) {
+      const grouped = groupedChars[i]
+      if (grouped === undefined) {
+        continue
+      }
+      result[i] = grouped.slice(0, 1)
     }
   } else {
-    for (i = 0; i !== str.length; i += 1) {
-      result[str[i].charCodeAt(0)] = str[i].length
+    for (i = 0; i !== groupedChars.length; i += 1) {
+      const grouped = groupedChars[i]
+      if (grouped === undefined) {
+        continue
+      }
+      result[grouped.charCodeAt(0)] = grouped.length
     }
   }
   if (mode < 3) {
-    return result
+    return result as { [key: string]: number }
   }
 
-  for (i in result) {
-    resultArr.push(result[i])
+  for (key in result) {
+    resultArr.push(String(result[key]))
   }
 
   return resultArr.join('')

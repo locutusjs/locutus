@@ -1,7 +1,6 @@
-// @ts-nocheck
 import { echo } from '../strings/echo.ts'
 
-export function print_r(array, returnVal) {
+export function print_r(array: unknown, returnVal?: boolean): string | true {
   //      discuss at: https://locutus.io/php/print_r/
   // parity verified: PHP 8.3
   //     original by: Michael White (https://getsprink.com)
@@ -16,14 +15,14 @@ export function print_r(array, returnVal) {
   const padChar = ' '
   const padVal = 4
 
-  const _repeatChar = function (len, padChar) {
+  const _repeatChar = function (len: number, padChar: string): string {
     let str = ''
     for (let i = 0; i < len; i++) {
       str += padChar
     }
     return str
   }
-  const _formatArray = function (obj, curDepth, padVal, padChar) {
+  const _formatArray = function (obj: unknown, curDepth: number, padVal: number, padChar: string): string {
     if (curDepth > 0) {
       curDepth++
     }
@@ -33,20 +32,22 @@ export function print_r(array, returnVal) {
     let str = ''
 
     if (typeof obj === 'object' && obj !== null && obj.constructor) {
+      const objectValue = obj as { [key: string]: unknown }
       str += 'Array\n' + basePad + '(\n'
-      for (const key in obj) {
-        if (Array.isArray(obj[key])) {
+      for (const key in objectValue) {
+        const value = objectValue[key]
+        if (Array.isArray(value)) {
           str += thickPad
           str += '['
           str += key
           str += '] => '
-          str += _formatArray(obj[key], curDepth + 1, padVal, padChar)
+          str += _formatArray(value, curDepth + 1, padVal, padChar)
         } else {
           str += thickPad
           str += '['
           str += key
           str += '] => '
-          str += obj[key]
+          str += value
           str += '\n'
         }
       }
@@ -55,7 +56,7 @@ export function print_r(array, returnVal) {
       str = ''
     } else {
       // for our "resource" class
-      str = obj.toString()
+      str = String(obj)
     }
 
     return str
