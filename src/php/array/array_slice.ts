@@ -1,10 +1,9 @@
-// @ts-nocheck
 import { is_int as isInt } from '../var/is_int.ts'
 
 export function array_slice(
-  arr: unknown[],
+  arr: unknown[] | { [key: string]: unknown },
   offst: number,
-  lgth: number,
+  lgth?: number,
   preserveKeys?: boolean,
 ): unknown[] | { [key: string]: unknown } {
   //      discuss at: https://locutus.io/php/array_slice/
@@ -24,20 +23,18 @@ export function array_slice(
     }
   */
 
-  let key = ''
-
   if (!Array.isArray(arr) || (preserveKeys && offst !== 0)) {
     // Assoc. array as input or if required as output
     let lgt = 0
-    const newAssoc: { [key: string]: unknown } = {}
-    for (key in arr) {
+    const sourceAssoc: { [key: string]: unknown } = {}
+    const assocInput = arr as { [key: string]: unknown }
+    for (const key in arr) {
       lgt += 1
-      newAssoc[key] = arr[key]
+      sourceAssoc[key] = assocInput[key]
     }
-    arr = newAssoc
 
     offst = offst < 0 ? lgt + offst : offst
-    lgth = lgth === undefined ? lgt : lgth < 0 ? lgt + lgth - offst : lgth
+    const resolvedLength = lgth === undefined ? lgt : lgth < 0 ? lgt + lgth - offst : lgth
 
     const assoc: { [key: string]: unknown } = {}
     let start = false
@@ -45,9 +42,9 @@ export function array_slice(
     let arrlgth = 0
     let noPkIdx = 0
 
-    for (key in arr) {
+    for (const key in sourceAssoc) {
       ++it
-      if (arrlgth >= lgth) {
+      if (arrlgth >= resolvedLength) {
         break
       }
       if (it === offst) {
@@ -58,9 +55,9 @@ export function array_slice(
       }
       ++arrlgth
       if (isInt(key) && !preserveKeys) {
-        assoc[noPkIdx++] = arr[key]
+        assoc[String(noPkIdx++)] = sourceAssoc[key]
       } else {
-        assoc[key] = arr[key]
+        assoc[key] = sourceAssoc[key]
       }
     }
     // Make as array-like object (though length will not be dynamic)

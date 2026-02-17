@@ -1,7 +1,13 @@
-// @ts-nocheck
 import { is_int as isInt } from '../var/is_int.ts'
 
-export function array_splice(arr, offst, lgth, replacement) {
+type AssocArray = { [key: string]: unknown }
+
+export function array_splice(
+  arr: unknown[] | AssocArray,
+  offst: number,
+  lgth?: number,
+  replacement?: unknown,
+): unknown[] | AssocArray {
   //      discuss at: https://locutus.io/php/array_splice/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -23,31 +29,36 @@ export function array_splice(arr, offst, lgth, replacement) {
   //       example 3: array_splice($input, -1, 1, ["black", "maroon"])
   //       returns 3: ["yellow"]
 
-  const _checkToUpIndices = function (arr, ct, key) {
+  const _checkToUpIndices = function (assoc: AssocArray, ct: number, key: string): number {
     // Deal with situation, e.g., if encounter index 4 and try
     // to set it to 0, but 0 exists later in loop (need to
     // increment all subsequent (skipping current key,
     // since we need its value below) until find unused)
-    if (arr[ct] !== undefined) {
+    if (assoc[String(ct)] !== undefined) {
       const tmp = ct
       ct += 1
-      if (ct === key) {
+      if (ct === Number.parseInt(key, 10)) {
         ct += 1
       }
-      ct = _checkToUpIndices(arr, ct, key)
-      arr[ct] = arr[tmp]
-      delete arr[tmp]
+      ct = _checkToUpIndices(assoc, ct, key)
+      assoc[String(ct)] = assoc[String(tmp)]
+      delete assoc[String(tmp)]
     }
     return ct
   }
 
-  if (replacement && typeof replacement !== 'object') {
-    replacement = [replacement]
+  let replacementValue: unknown = replacement
+  if (replacementValue && typeof replacementValue !== 'object') {
+    replacementValue = [replacementValue]
   }
+  const sourceLength = Array.isArray(arr) ? arr.length : (arr as { length?: number }).length
+  let lengthToRemove: number
   if (lgth === undefined) {
-    lgth = offst >= 0 ? arr.length - offst : -offst
+    lengthToRemove = offst >= 0 ? (sourceLength ?? 0) - offst : -offst
   } else if (lgth < 0) {
-    lgth = (offst >= 0 ? arr.length - offst : -offst) + lgth
+    lengthToRemove = (offst >= 0 ? (sourceLength ?? 0) - offst : -offst) + lgth
+  } else {
+    lengthToRemove = lgth
   }
 
   if (!Array.isArray(arr)) {
@@ -57,21 +68,26 @@ export function array_splice(arr, offst, lgth, replacement) {
     } */
     let lgt = 0
     let ct = -1
-    const rmvd = []
-    const rmvdObj = {}
+    const rmvd: unknown[] = []
+    const rmvdObj: AssocArray = {}
     let replCt = -1
     let intCt = -1
     let returnArr = true
     let rmvdCt = 0
     // var rmvdLngth = 0
     let key = ''
+    const assoc = arr
+    const replacementEntries =
+      replacementValue && typeof replacementValue === 'object'
+        ? (replacementValue as { [index: number]: unknown })
+        : undefined
     // rmvdObj.length = 0;
-    for (key in arr) {
+    for (key in assoc) {
       // Can do arr.__count__ in some browsers
       lgt += 1
     }
     offst = offst >= 0 ? offst : lgt + offst
-    for (key in arr) {
+    for (key in assoc) {
       ct += 1
       if (ct < offst) {
         if (isInt(key)) {
@@ -81,27 +97,27 @@ export function array_splice(arr, offst, lgth, replacement) {
             continue
           }
           // Deal with situation, e.g.,
-          _checkToUpIndices(arr, intCt, key)
+          _checkToUpIndices(assoc, intCt, key)
           // if encounter index 4 and try to set it to 0, but 0 exists later in loop
-          arr[intCt] = arr[key]
-          delete arr[key]
+          assoc[String(intCt)] = assoc[key]
+          delete assoc[key]
         }
         continue
       }
       if (returnArr && isInt(key)) {
-        rmvd.push(arr[key])
+        rmvd.push(assoc[key])
         // PHP starts over here too
-        rmvdObj[rmvdCt++] = arr[key]
+        rmvdObj[String(rmvdCt++)] = assoc[key]
       } else {
-        rmvdObj[key] = arr[key]
+        rmvdObj[key] = assoc[key]
         returnArr = false
       }
       // rmvdLngth += 1
       // rmvdObj.length += 1;
-      if (replacement && replacement[++replCt]) {
-        arr[key] = replacement[replCt]
+      if (replacementEntries && replacementEntries[++replCt]) {
+        assoc[key] = replacementEntries[replCt]
       } else {
-        delete arr[key]
+        delete assoc[key]
       }
     }
     // Make (back) into an array-like object
@@ -109,10 +125,12 @@ export function array_splice(arr, offst, lgth, replacement) {
     return returnArr ? rmvd : rmvdObj
   }
 
-  if (replacement) {
-    replacement.unshift(offst, lgth)
-    return Array.prototype.splice.apply(arr, replacement)
+  const arrayInput = arr
+  if (replacementValue) {
+    const replacementArray = replacementValue as unknown[] & { unshift: (...items: unknown[]) => number }
+    replacementArray.unshift(offst, lengthToRemove)
+    return Array.prototype.splice.call(arrayInput, ...(replacementArray as [number, number, ...unknown[]]))
   }
 
-  return arr.splice(offst, lgth)
+  return arrayInput.splice(offst, lengthToRemove)
 }

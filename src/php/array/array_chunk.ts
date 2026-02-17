@@ -1,5 +1,7 @@
-// @ts-nocheck
-export function array_chunk(input, size, preserveKeys) {
+type ArrayChunkInput = unknown[] | { [key: string]: unknown }
+type ArrayChunkOutput = unknown[] | { [key: string]: unknown }
+
+export function array_chunk(input: ArrayChunkInput, size: number, preserveKeys?: boolean): ArrayChunkOutput[] | null {
   //  discuss at: https://locutus.io/php/array_chunk/
   // original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -14,48 +16,64 @@ export function array_chunk(input, size, preserveKeys) {
   //   example 4: array_chunk({1:'Kevin', 2:'van', 3:'Zonneveld'}, 2, true)
   //   returns 4: [{1: 'Kevin', 2: 'van'}, {3: 'Zonneveld'}]
 
-  let x
-  let p = ''
-  let i = 0
-  let c = -1
-  const l = input.length || 0
-  const n = []
-
   if (size < 1) {
     return null
   }
 
+  const keepKeys = Boolean(preserveKeys)
+
   if (Array.isArray(input)) {
-    if (preserveKeys) {
-      while (i < l) {
-        ;(x = i % size) ? (n[c][i] = input[i]) : (n[++c] = {})
-        n[c][i] = input[i]
-        i++
+    if (keepKeys) {
+      const chunks: { [key: string]: unknown }[] = []
+      for (let i = 0; i < input.length; i++) {
+        const chunkIndex = Math.floor(i / size)
+        if (!chunks[chunkIndex]) {
+          chunks[chunkIndex] = {}
+        }
+        chunks[chunkIndex][String(i)] = input[i]
       }
+      return chunks
     } else {
-      while (i < l) {
-        ;(x = i % size) ? (n[c][x] = input[i]) : (n[++c] = [input[i]])
-        i++
+      const chunks: unknown[][] = []
+      for (let i = 0; i < input.length; i++) {
+        const chunkIndex = Math.floor(i / size)
+        if (!chunks[chunkIndex]) {
+          chunks[chunkIndex] = []
+        }
+        chunks[chunkIndex].push(input[i])
       }
+      return chunks
     }
   } else {
-    if (preserveKeys) {
-      for (p in input) {
-        if (input.hasOwnProperty(p)) {
-          ;(x = i % size) ? (n[c][p] = input[p]) : (n[++c] = {})
-          n[c][p] = input[p]
+    const hasOwn = Object.prototype.hasOwnProperty
+    if (keepKeys) {
+      const chunks: { [key: string]: unknown }[] = []
+      let i = 0
+      for (const p in input) {
+        if (hasOwn.call(input, p)) {
+          const chunkIndex = Math.floor(i / size)
+          if (!chunks[chunkIndex]) {
+            chunks[chunkIndex] = {}
+          }
+          chunks[chunkIndex][p] = input[p]
           i++
         }
       }
+      return chunks
     } else {
-      for (p in input) {
-        if (input.hasOwnProperty(p)) {
-          ;(x = i % size) ? (n[c][x] = input[p]) : (n[++c] = [input[p]])
+      const chunks: unknown[][] = []
+      let i = 0
+      for (const p in input) {
+        if (hasOwn.call(input, p)) {
+          const chunkIndex = Math.floor(i / size)
+          if (!chunks[chunkIndex]) {
+            chunks[chunkIndex] = []
+          }
+          chunks[chunkIndex].push(input[p])
           i++
         }
       }
+      return chunks
     }
   }
-
-  return n
 }
