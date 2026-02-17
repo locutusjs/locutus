@@ -1,5 +1,10 @@
-// @ts-nocheck
-export function ini_set(varname, newvalue) {
+type IniSetLocutusContext = {
+  php?: {
+    ini?: { [key: string]: { local_value?: unknown } }
+  }
+}
+
+export function ini_set(varname: string, newvalue: unknown): unknown {
   //      discuss at: https://locutus.io/php/ini_set/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -8,39 +13,48 @@ export function ini_set(varname, newvalue) {
   //       example 1: ini_set('date.timezone', 'America/Chicago')
   //       returns 1: 'Asia/Hong_Kong'
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
-  $locutus.php.ini = $locutus.php.ini || {}
+  const globalContext = globalThis as typeof globalThis & { $locutus?: IniSetLocutusContext }
+  globalContext.$locutus = globalContext.$locutus ?? {}
+  const locutus = globalContext.$locutus
+  locutus.php = locutus.php ?? {}
+  locutus.php.ini = locutus.php.ini ?? {}
+  locutus.php.ini[varname] = locutus.php.ini[varname] ?? {}
 
-  $locutus.php.ini = $locutus.php.ini || {}
-  $locutus.php.ini[varname] = $locutus.php.ini[varname] || {}
+  const oldval = locutus.php.ini[varname].local_value
 
-  const oldval = $locutus.php.ini[varname].local_value
-
-  const lowerStr = (newvalue + '').toLowerCase().trim()
+  let normalizedValue = newvalue
+  const lowerStr = String(newvalue).toLowerCase().trim()
   if (newvalue === true || lowerStr === 'on' || lowerStr === '1') {
-    newvalue = 'on'
+    normalizedValue = 'on'
   }
   if (newvalue === false || lowerStr === 'off' || lowerStr === '0') {
-    newvalue = 'off'
+    normalizedValue = 'off'
   }
 
-  const _setArr = function (oldval) {
-    // Although these are set individually, they are all accumulated
-    if (typeof oldval === 'undefined') {
-      $locutus.php.ini[varname].local_value = []
+  const setArrayValue = () => {
+    const ini = locutus.php?.ini
+    if (!ini) {
+      return
     }
-    $locutus.php.ini[varname].local_value.push(newvalue)
+    const entry = ini[varname] ?? (ini[varname] = {})
+
+    // Although these are set individually, they are all accumulated.
+    if (typeof entry.local_value === 'undefined') {
+      entry.local_value = []
+    }
+    const currentValue = entry.local_value
+    if (!Array.isArray(currentValue)) {
+      entry.local_value = [currentValue]
+    }
+    ;(entry.local_value as unknown[]).push(normalizedValue)
   }
 
   switch (varname) {
     case 'extension':
-      _setArr(oldval, newvalue)
+      setArrayValue()
       break
     default:
-      $locutus.php.ini[varname].local_value = newvalue
+      locutus.php.ini[varname].local_value = normalizedValue
       break
   }
 

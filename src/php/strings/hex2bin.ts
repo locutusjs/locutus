@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function hex2bin(s) {
+export function hex2bin(s: string | number): string | false {
   //      discuss at: https://locutus.io/php/hex2bin/
   // parity verified: PHP 8.3
   //     original by: Dumitru Uzun (https://duzun.me)
@@ -10,16 +9,14 @@ export function hex2bin(s) {
   //       example 3: hex2bin('2f1q')
   //       returns 3: false
 
-  const ret = []
-  let i = 0
-  let l
+  const ret: number[] = []
 
-  s += ''
+  const input = String(s)
 
-  for (l = s.length; i < l; i += 2) {
-    const c = parseInt(s.substr(i, 1), 16)
-    const k = parseInt(s.substr(i + 1, 1), 16)
-    if (isNaN(c) || isNaN(k)) {
+  for (let i = 0; i < input.length; i += 2) {
+    const c = Number.parseInt(input.substring(i, i + 1), 16)
+    const k = Number.parseInt(input.substring(i + 1, i + 2), 16)
+    if (Number.isNaN(c) || Number.isNaN(k)) {
       return false
     }
     ret.push((c << 4) | k)

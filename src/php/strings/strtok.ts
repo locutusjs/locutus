@@ -1,4 +1,3 @@
-// @ts-nocheck
 export function strtok(str: string, tokens?: string): string | false {
   //  discuss at: https://locutus.io/php/strtok/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -10,20 +9,23 @@ export function strtok(str: string, tokens?: string): string | false {
   //   example 1: var $result = $b
   //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
+  const globalContext = globalThis as typeof globalThis & {
+    $locutus?: { php?: { strtokleftOver?: string } }
+  }
+  globalContext.$locutus = globalContext.$locutus ?? {}
+  const locutus = globalContext.$locutus
+  locutus.php = locutus.php ?? {}
+  const php = locutus.php
 
-  if (tokens === undefined) {
+  if (typeof tokens === 'undefined') {
     tokens = str
-    str = $locutus.php.strtokleftOver
+    str = php.strtokleftOver ?? ''
   }
   if (str.length === 0) {
     return false
   }
   if (tokens.indexOf(str.charAt(0)) !== -1) {
-    return strtok(str.substr(1), tokens)
+    return strtok(str.substring(1), tokens)
   }
   let i = 0
   for (; i < str.length; i++) {
@@ -31,7 +33,7 @@ export function strtok(str: string, tokens?: string): string | false {
       break
     }
   }
-  $locutus.php.strtokleftOver = str.substr(i + 1)
+  php.strtokleftOver = str.substring(i + 1)
 
   return str.substring(0, i)
 }

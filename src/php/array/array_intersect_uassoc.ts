@@ -1,5 +1,35 @@
-// @ts-nocheck
-export function array_intersect_uassoc(arr1: unknown): { [key: string]: unknown } {
+type PhpArray = { [key: string]: unknown }
+type KeyCompareCallback = (left: string, right: string) => number
+
+const toPhpArray = (value: unknown): PhpArray =>
+  typeof value === 'object' && value !== null ? (value as PhpArray) : {}
+
+const resolveKeyCompareCallback = (callback: unknown): KeyCompareCallback => {
+  const globalContext = globalThis as typeof globalThis & { [key: string]: unknown }
+
+  if (typeof callback === 'function') {
+    return callback as KeyCompareCallback
+  }
+  if (typeof callback === 'string') {
+    const candidate = globalContext[callback]
+    if (typeof candidate === 'function') {
+      return candidate as KeyCompareCallback
+    }
+  }
+  if (Array.isArray(callback) && callback.length >= 2) {
+    const target = typeof callback[0] === 'string' ? globalContext[callback[0]] : callback[0]
+    if (target && (typeof target === 'object' || typeof target === 'function') && typeof callback[1] === 'string') {
+      const candidate = (target as { [key: string]: unknown })[callback[1]]
+      if (typeof candidate === 'function') {
+        return candidate as KeyCompareCallback
+      }
+    }
+  }
+
+  throw new Error('array_intersect_uassoc(): Invalid callback')
+}
+
+export function array_intersect_uassoc(arr1: PhpArray): PhpArray {
   //  discuss at: https://locutus.io/php/array_intersect_uassoc/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
@@ -7,29 +37,15 @@ export function array_intersect_uassoc(arr1: unknown): { [key: string]: unknown 
   //   example 1: array_intersect_uassoc($array1, $array2, function (f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 === string2) return 0; return -1;})
   //   returns 1: {b: 'brown'}
 
-  const retArr: { [key: string]: unknown } = {}
+  const retArr: PhpArray = {}
   const arglm1 = arguments.length - 1
   const arglm2 = arglm1 - 1
-  let cb = arguments[arglm1]
-  // var cb0 = arguments[arglm2]
-  let k1 = ''
-  let i = 1
-  let k = ''
-  let arr: { [key: string]: unknown } = {}
-  const $global = typeof window !== 'undefined' ? window : global
+  const cb = resolveKeyCompareCallback(arguments[arglm1])
 
-  cb = typeof cb === 'string' ? $global[cb] : Array.isArray(cb) ? $global[cb[0]][cb[1]] : cb
-
-  // cb0 = (typeof cb0 === 'string')
-  //   ? $global[cb0]
-  //   : (Array.isArray(cb0))
-  //     ? $global[cb0[0]][cb0[1]]
-  //     : cb0
-
-  arr1keys: for (k1 in arr1) {
-    arrs: for (i = 1; i < arglm1; i++) {
-      arr = arguments[i]
-      for (k in arr) {
+  arr1keys: for (const k1 in arr1) {
+    arrs: for (let i = 1; i < arglm1; i++) {
+      const arr = toPhpArray(arguments[i])
+      for (const k in arr) {
         if (arr[k] === arr1[k1] && cb(k, k1) === 0) {
           if (i === arglm2) {
             retArr[k1] = arr1[k1]

@@ -1,5 +1,9 @@
-// @ts-nocheck
-export function get_defined_functions() {
+type GlobalWithLocutus = typeof globalThis & {
+  [key: string]: unknown
+  $locutus?: { php?: { [key: string]: unknown } }
+}
+
+export function get_defined_functions(): string[] {
   //      discuss at: https://locutus.io/php/get_defined_functions/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -10,25 +14,25 @@ export function get_defined_functions() {
   //       example 1: var $result = Array.isArray($funcs) && $funcs.length > 0
   //       returns 1: true
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
+  const globalContext = globalThis as GlobalWithLocutus
+  globalContext.$locutus = globalContext.$locutus ?? {}
+  const locutus = globalContext.$locutus
+  locutus.php = locutus.php ?? {}
 
-  let i = ''
-  const arr = []
-  const already = {}
+  const arr: string[] = []
+  const already: Record<string, 1> = {}
 
-  for (i in $global) {
+  for (const i in globalContext) {
     try {
-      if (typeof $global[i] === 'function') {
+      if (typeof globalContext[i] === 'function') {
         if (!already[i]) {
           already[i] = 1
           arr.push(i)
         }
-      } else if (typeof $global[i] === 'object') {
-        for (const j in $global[i]) {
-          if (typeof $global[j] === 'function' && $global[j] && !already[j]) {
+      } else if (typeof globalContext[i] === 'object' && globalContext[i] !== null) {
+        const nestedObject = globalContext[i] as { [key: string]: unknown }
+        for (const j in nestedObject) {
+          if (typeof globalContext[j] === 'function' && globalContext[j] && !already[j]) {
             already[j] = 1
             arr.push(j)
           }
