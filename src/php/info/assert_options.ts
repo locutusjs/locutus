@@ -35,7 +35,11 @@ export function assert_options(what: string, value?: unknown): unknown {
   }
 
   // I presume this is to be the most recent value, instead of the default value
-  const $loc = (globalThis as any).$locutus
+  const $loc = (
+    globalThis as {
+      $locutus?: { php?: { ini?: { [key: string]: { local_value?: unknown } | undefined } } }
+    }
+  ).$locutus
   const iniVal = String($loc?.php?.ini?.[iniKey]?.local_value ?? '') || defaultVal
 
   return iniVal

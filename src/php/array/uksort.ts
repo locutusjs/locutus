@@ -1,5 +1,5 @@
 export function uksort(
-  this: Record<string, any>,
+  this: { [key: string]: unknown; window?: { [key: string]: unknown } },
   inputArr: Record<string, unknown>,
   sorter: ((a: string, b: string) => number) | string,
 ): boolean | Record<string, unknown> {
@@ -30,7 +30,7 @@ export function uksort(
 
   let sortFn: ((a: string, b: string) => number) | undefined
   if (typeof sorter === 'string') {
-    sortFn = this.window[sorter]
+    sortFn = this.window?.[sorter] as ((a: string, b: string) => number) | undefined
   } else {
     sortFn = sorter
   }
@@ -53,7 +53,11 @@ export function uksort(
     return false
   }
 
-  const $loc = (globalThis as any).$locutus
+  const $loc = (
+    globalThis as {
+      $locutus?: { php?: { ini?: { [key: string]: { local_value?: unknown } | undefined } } }
+    }
+  ).$locutus
   const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr

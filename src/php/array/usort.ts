@@ -1,5 +1,5 @@
 export function usort(
-  this: Record<string, any>,
+  this: { [key: string]: unknown },
   inputArr: Record<string, unknown>,
   sorter: ((a: unknown, b: unknown) => number) | string | string[],
 ): boolean | Record<string, unknown> {
@@ -28,7 +28,11 @@ export function usort(
 
   let sortFn: ((a: unknown, b: unknown) => number) | undefined
   if (typeof sorter === 'string') {
-    sortFn = this[sorter]
+    const method = this[sorter]
+    if (typeof method !== 'function') {
+      return false
+    }
+    sortFn = method as (a: unknown, b: unknown) => number
   } else if (Array.isArray(sorter)) {
     const [objectKey, methodKey] = sorter
     if (objectKey === undefined || methodKey === undefined) {
@@ -47,7 +51,11 @@ export function usort(
     return false
   }
 
-  const $loc = (globalThis as any).$locutus
+  const $loc = (
+    globalThis as {
+      $locutus?: { php?: { ini?: { [key: string]: { local_value?: unknown } | undefined } } }
+    }
+  ).$locutus
   const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr

@@ -35,16 +35,20 @@ export function is_array(mixedVar: unknown): boolean {
     }
     return name[1] ?? '(Anonymous)'
   }
-  const _isArray = function (mixedVar: any): boolean {
+  const _isArray = function (mixedVar: unknown): boolean {
     // return Array.isArray(mixedVar);
     // The above works, but let's do the even more stringent approach:
     // (since Object.prototype.toString could be overridden)
     // Null, Not an object, no length property so couldn't be an Array (or String)
-    if (!mixedVar || typeof mixedVar !== 'object' || typeof mixedVar.length !== 'number') {
+    if (!mixedVar || typeof mixedVar !== 'object') {
       return false
     }
-    const len = mixedVar.length
-    mixedVar[mixedVar.length] = 'bogus'
+    const candidate = mixedVar as { length?: number; [key: string]: unknown }
+    if (typeof candidate.length !== 'number') {
+      return false
+    }
+    const len = candidate.length
+    candidate[candidate.length] = 'bogus'
     // The only way I can think of to get around this (or where there would be trouble)
     // would be to have an object defined
     // with a custom "length" getter which changed behavior on each call
@@ -53,17 +57,17 @@ export function is_array(mixedVar: unknown): boolean {
     // specific indexes; but there should be no false negatives
     // and such a false positive would need to rely on later JavaScript
     // innovations like __defineSetter__
-    if (len !== mixedVar.length) {
+    if (len !== candidate.length) {
       // We know it's an array since length auto-changed with the addition of a
       // numeric property at its length end, so safely get rid of our bogus element
-      mixedVar.length -= 1
+      candidate.length -= 1
       return true
     }
     // Get rid of the property we added onto a non-array object; only possible
     // side-effect is if the user adds back the property later, it will iterate
     // this property in the older order placement in IE (an order which should not
     // be depended on anyways)
-    delete mixedVar[mixedVar.length]
+    delete candidate[candidate.length]
     return false
   }
 
@@ -77,7 +81,11 @@ export function is_array(mixedVar: unknown): boolean {
     return true
   }
 
-  const $loc = (globalThis as any).$locutus
+  const $loc = (
+    globalThis as {
+      $locutus?: { php?: { ini?: { [key: string]: { local_value?: unknown } | undefined } } }
+    }
+  ).$locutus
   const iniVal = String($loc?.php?.ini?.['locutus.objectsAsArrays']?.local_value ?? '') || 'on'
   if (iniVal === 'on') {
     const asString = Object.prototype.toString.call(mixedVar)

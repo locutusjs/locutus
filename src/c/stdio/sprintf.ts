@@ -1,11 +1,11 @@
-function pad(str: any, minLength: any, padChar: any, leftJustify: any) {
+function pad(str: string, minLength: number, padChar: string, leftJustify: boolean) {
   const diff = minLength - str.length
   const padStr = padChar.repeat(Math.max(0, diff))
 
   return leftJustify ? str + padStr : padStr + str
 }
 
-export function sprintf(format: string, ...args: any[]): string {
+export function sprintf(format: string, ...args: unknown[]): string {
   // original by: Rafał Kukawski
   // bugfixed by: Param Siddharth
   //   example 1: sprintf('%+10.*d', 5, 1)
@@ -18,30 +18,39 @@ export function sprintf(format: string, ...args: any[]): string {
 
   return format.replace(
     placeholderRegex,
-    function (match: any, param: any, flags: any, width: any, prec: any, modifier: any) {
+    function (
+      _match: string,
+      param: string | undefined,
+      flags: string,
+      width: string | undefined,
+      prec: string | undefined,
+      modifier: string,
+    ) {
       const leftJustify = flags.includes('-')
 
       // flag '0' is ignored when flag '-' is present
       const padChar = leftJustify
         ? ' '
-        : flags.split('').reduce((pc: any, c: any) => ([' ', '0'].includes(c) ? c : pc), ' ')
+        : flags.split('').reduce((pc: string, c: string) => ([' ', '0'].includes(c) ? c : pc), ' ')
 
       const positiveSign = flags.includes('+') ? '+' : flags.includes(' ') ? ' ' : ''
 
-      const minWidth = width === '*' ? args[index++] : +width || 0
-      let precision = prec === '*' ? args[index++] : +prec
+      const minWidth = width === '*' ? Number(args[index++] ?? 0) : +(width ?? 0) || 0
+      let precision: number | undefined =
+        prec === '*' ? Number(args[index++] ?? 0) : prec === undefined ? Number.NaN : +prec
 
-      if (param && !+param) {
+      const paramIndex = param ? +param : 0
+      if (param && !paramIndex) {
         throw new Error('Param index must be greater than 0')
       }
 
-      if (param && +param > args.length) {
+      if (param && paramIndex > args.length) {
         throw new Error('Too few arguments')
       }
 
       // compiling with default clang params, mixed positional and non-positional params
       // give only a warning
-      const arg = param ? args[param - 1] : args[index]
+      const arg = param ? args[paramIndex - 1] : args[index]
 
       if (modifier !== '%') {
         index++
@@ -56,7 +65,7 @@ export function sprintf(format: string, ...args: any[]): string {
           return '%'
         case 'd':
         case 'i': {
-          const number = Math.trunc(+arg || 0)
+          const number = Math.trunc(Number(arg) || 0)
           const abs = Math.abs(number)
           const prefix = number < 0 ? '-' : positiveSign
 
@@ -74,7 +83,7 @@ export function sprintf(format: string, ...args: any[]): string {
         case 'F':
         case 'g':
         case 'G': {
-          const number = +arg
+          const number = Number(arg)
           const abs = Math.abs(number)
           const prefix = number < 0 ? '-' : positiveSign
           const operationIndex = 'efg'.indexOf(modifier.toLowerCase())
@@ -105,19 +114,24 @@ export function sprintf(format: string, ...args: any[]): string {
         case 'u':
         case 'x':
         case 'X': {
-          const number = +arg || 0
+          const number = Number(arg) || 0
           const intVal = Math.trunc(number) + (number < 0 ? 0xffffffff + 1 : 0)
-          const base = [2, 8, 10, 16, 16]['bouxX'.indexOf(modifier)]
+          const base = [2, 8, 10, 16, 16]['bouxX'.indexOf(modifier)] ?? 10
           const prefix = intVal && flags.includes('#') ? ['', '0', '', '0x', '0X']['bouxXX'.indexOf(modifier)] : ''
 
           if (padChar === '0' && prefix) {
             return (
               prefix +
-              pad(pad(intVal.toString(base), precision, '0', false), minWidth - prefix.length, padChar, leftJustify)
+              pad(
+                pad(intVal.toString(base), precision ?? 0, '0', false),
+                minWidth - prefix.length,
+                padChar,
+                leftJustify,
+              )
             )
           }
 
-          return pad(prefix + pad(intVal.toString(base), precision, '0', false), minWidth, padChar, leftJustify)
+          return pad(prefix + pad(intVal.toString(base), precision ?? 0, '0', false), minWidth, padChar, leftJustify)
         }
         case 'p':
         case 'n': {
@@ -128,7 +142,7 @@ export function sprintf(format: string, ...args: any[]): string {
         }
         case 'c': {
           // extension, if arg is string, take first char
-          const chr = typeof arg === 'string' ? arg.charAt(0) : String.fromCharCode(+arg)
+          const chr = typeof arg === 'string' ? arg.charAt(0) : String.fromCharCode(Number(arg))
           return pad(chr, minWidth, padChar, leftJustify)
         }
         case 'a':

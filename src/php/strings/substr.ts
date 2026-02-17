@@ -31,7 +31,11 @@ export function substr(input: string | number, start: number, len?: number): str
 
   const str = _php_cast_string(input)
 
-  const $loc = (globalThis as any).$locutus
+  const $loc = (
+    globalThis as {
+      $locutus?: { php?: { ini?: { [key: string]: { local_value?: unknown } | undefined } } }
+    }
+  ).$locutus
   const multibyte = String($loc?.php?.ini?.['unicode.semantics']?.local_value ?? '') === 'on'
 
   const chars = multibyte ? str.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[\s\S]/g) || [] : null

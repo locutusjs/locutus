@@ -25,7 +25,11 @@ export function parse_url(str: string, component?: string): Record<string, unkno
 
   let query: string
 
-  const $loc = (globalThis as any).$locutus
+  const $loc = (
+    globalThis as {
+      $locutus?: { php?: { ini?: { [key: string]: { local_value?: unknown } | undefined } } }
+    }
+  ).$locutus
   const mode = String($loc?.php?.ini?.['locutus.parse_url.mode']?.local_value ?? '') || 'php'
 
   const key = [

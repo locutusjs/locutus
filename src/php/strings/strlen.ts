@@ -17,7 +17,11 @@ export function strlen(string: string): number {
 
   const str = string + ''
 
-  const $loc = (globalThis as any).$locutus
+  const $loc = (
+    globalThis as {
+      $locutus?: { php?: { ini?: { [key: string]: { local_value?: unknown } | undefined } } }
+    }
+  ).$locutus
   const iniVal = String($loc?.php?.ini?.['unicode.semantics']?.local_value ?? '') || 'off'
   if (iniVal === 'off') {
     return str.length

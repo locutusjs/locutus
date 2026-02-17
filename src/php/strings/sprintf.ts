@@ -36,7 +36,7 @@ export function sprintf(format: string, ...args: unknown[]): string | false {
   const callArgs = [format, ...args]
   let i = 1
 
-  const _pad = function (str: any, len: any, chr: any, leftJustify: any) {
+  const _pad = function (str: string, len: number, chr: string, leftJustify: boolean) {
     if (!chr) {
       chr = ' '
     }
@@ -44,7 +44,7 @@ export function sprintf(format: string, ...args: unknown[]): string | false {
     return leftJustify ? str + padding : padding + str
   }
 
-  const justify = function (value: any, prefix: any, leftJustify: any, minWidth: any, padChar: any) {
+  const justify = function (value: string, prefix: string, leftJustify: boolean, minWidth: number, padChar: string) {
     const diff = minWidth - value.length
     if (diff > 0) {
       // when padding with zeros
@@ -59,7 +59,14 @@ export function sprintf(format: string, ...args: unknown[]): string | false {
     return value
   }
 
-  const _formatBaseX = function (value: any, base: any, leftJustify: any, minWidth: any, precision: any, padChar: any) {
+  const _formatBaseX = function (
+    value: unknown,
+    base: number,
+    leftJustify: boolean,
+    minWidth: number,
+    precision: number | undefined,
+    padChar: string,
+  ) {
     // Note: casts negative numbers to positive ones
     const number = value >>> 0
     value = _pad(number.toString(base), precision || 0, '0', false)
@@ -67,7 +74,13 @@ export function sprintf(format: string, ...args: unknown[]): string | false {
   }
 
   // _formatString()
-  const _formatString = function (value: any, leftJustify: any, minWidth: any, precision: any, customPadChar: any) {
+  const _formatString = function (
+    value: string,
+    leftJustify: boolean,
+    minWidth: number,
+    precision: number | null | undefined,
+    customPadChar: string,
+  ) {
     if (precision !== null && precision !== undefined) {
       value = value.slice(0, precision)
     }
@@ -76,12 +89,12 @@ export function sprintf(format: string, ...args: unknown[]): string | false {
 
   // doFormat()
   const doFormat = function (
-    substring: any,
-    argIndex: any,
-    modifiers: any,
-    minWidth: any,
-    precision: any,
-    specifier: any,
+    substring: string,
+    argIndex: string | undefined,
+    modifiers: string,
+    minWidth: string | undefined,
+    precision: string | undefined,
+    specifier: string,
   ) {
     let number
     let prefix
