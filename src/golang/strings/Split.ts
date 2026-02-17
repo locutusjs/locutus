@@ -1,4 +1,4 @@
-export function Split(s: string, sep: string): any[] {
+export function Split(s: string, sep: string): string[] {
   //      discuss at: https://locutus.io/golang/strings/Split
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

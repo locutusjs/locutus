@@ -1,4 +1,4 @@
-export function Atoi(s: any): [number, Error | null] {
+export function Atoi(s: unknown): [number, Error | null] {
   //      discuss at: https://locutus.io/golang/strconv/Atoi
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -11,15 +11,15 @@ export function Atoi(s: any): [number, Error | null] {
   //       example 3: Atoi('abc')[0]
   //       returns 3: 0
 
-  s = (s + '').trim()
+  const normalized = String(s).trim()
 
-  if (!/^-?\d+$/.test(s)) {
-    return [0, new Error('strconv.Atoi: parsing "' + s + '": invalid syntax')]
+  if (!/^-?\d+$/.test(normalized)) {
+    return [0, new Error('strconv.Atoi: parsing "' + normalized + '": invalid syntax')]
   }
 
-  const result = parseInt(s, 10)
+  const result = parseInt(normalized, 10)
   if (isNaN(result)) {
-    return [0, new Error('strconv.Atoi: parsing "' + s + '": invalid syntax')]
+    return [0, new Error('strconv.Atoi: parsing "' + normalized + '": invalid syntax')]
   }
 
   return [result, null]

@@ -1,4 +1,4 @@
-export function acos(arg: any): any {
+export function acos(arg: number): number {
   //  discuss at: https://locutus.io/php/acos/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //      note 1: Sorry about the crippled test. Needed because precision differs accross platforms.

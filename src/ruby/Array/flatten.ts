@@ -1,4 +1,4 @@
-export function flatten(arr: any[], depth?: number): any[] {
+export function flatten(arr: unknown[] | unknown, depth?: number): unknown[] {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/Array/flatten/
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -18,5 +18,5 @@ export function flatten(arr: any[], depth?: number): any[] {
     depth = Infinity
   }
 
-  return arr.flat(depth)
+  return (arr as unknown[]).flat(depth)
 }

@@ -1,4 +1,4 @@
-export function frexp(arg: number): any[] {
+export function frexp(arg: number): [number, number] {
   //  discuss at: https://locutus.io/c/frexp/
   // original by: Oskar Larsson Högfeldt (https://oskar-lh.name/)
   //      note 1: Instead of
@@ -40,7 +40,7 @@ export function frexp(arg: number): any[] {
 
   arg = Number(arg)
 
-  const result = [arg, 0]
+  const result: [number, number] = [arg, 0]
 
   if (arg !== 0 && Number.isFinite(arg)) {
     const absArg = Math.abs(arg)

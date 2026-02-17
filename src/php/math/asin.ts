@@ -1,4 +1,4 @@
-export function asin(arg: any): any {
+export function asin(arg: number): number {
   //  discuss at: https://locutus.io/php/asin/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //      note 1: Sorry about the crippled test. Needed because precision differs accross platforms.

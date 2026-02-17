@@ -1,4 +1,4 @@
-export function cos(arg: any): any {
+export function cos(arg: number): number {
   //      discuss at: https://locutus.io/php/cos/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)

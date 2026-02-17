@@ -1,4 +1,4 @@
-export function last(arr: any[], n?: number): string | any[] | undefined {
+export function last<T>(arr: T[] | unknown, n?: number): T | T[] | undefined {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/Array/last/
   //     original by: Kevin van Zonneveld (https://kvz.io)

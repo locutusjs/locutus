@@ -1,4 +1,4 @@
-export function Join(elems: any[], sep: string): string {
+export function Join(elems: unknown[] | unknown, sep: string): string {
   //      discuss at: https://locutus.io/golang/strings/Join
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -12,5 +12,5 @@ export function Join(elems: any[], sep: string): string {
     return ''
   }
 
-  return elems.join(sep + '')
+  return (elems as unknown[]).join(sep + '')
 }

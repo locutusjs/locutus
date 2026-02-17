@@ -1,4 +1,4 @@
-export function compact(arr: any[]): any[] {
+export function compact<T>(arr: Array<T | null | undefined> | unknown): T[] {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/Array/compact/
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -12,7 +12,5 @@ export function compact(arr: any[]): any[] {
     return []
   }
 
-  return arr.filter(function (item) {
-    return item != null
-  })
+  return (arr as Array<T | null | undefined>).filter((item): item is T => item != null)
 }

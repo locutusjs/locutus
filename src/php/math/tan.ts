@@ -1,4 +1,4 @@
-export function tan(arg: any): any {
+export function tan(arg: number): number {
   //      discuss at: https://locutus.io/php/tan/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)

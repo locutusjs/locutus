@@ -1,4 +1,4 @@
-export function first(arr: any[], n?: number): string | any[] | undefined {
+export function first<T>(arr: T[] | unknown, n?: number): T | T[] | undefined {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/Array/first/
   //     original by: Kevin van Zonneveld (https://kvz.io)

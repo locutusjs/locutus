@@ -1,4 +1,4 @@
-export function sin(arg: any): any {
+export function sin(arg: number): number {
   //      discuss at: https://locutus.io/php/sin/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)

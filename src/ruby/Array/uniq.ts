@@ -1,4 +1,4 @@
-export function uniq(arr: any[]): any[] {
+export function uniq<T>(arr: T[] | unknown): T[] {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/Array/uniq/
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -12,5 +12,5 @@ export function uniq(arr: any[]): any[] {
     return []
   }
 
-  return [...new Set(arr)]
+  return [...new Set(arr as T[])]
 }

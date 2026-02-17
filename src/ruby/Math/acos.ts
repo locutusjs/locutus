@@ -1,4 +1,4 @@
-export function acos(arg: any): any {
+export function acos(arg: number): number {
   //  discuss at: https://locutus.io/ruby/Math/acos/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //      note 1: Sorry about the crippled test.
