@@ -58,8 +58,10 @@ export function asort(inputArr: Record<string, unknown>, sortFlags?: string): bo
   $locutus.php = $locutus.php || ({} as typeof $locutus.php)
   $locutus.php.locales = $locutus.php.locales || {}
 
-  const regularSortAsc = function (a: any, b: any) {
-    return a > b ? 1 : a < b ? -1 : 0
+  const regularSortAsc = function (a: unknown, b: unknown) {
+    const left = (a ?? '') as string | number | bigint | boolean
+    const right = (b ?? '') as string | number | bigint | boolean
+    return left > right ? 1 : left < right ? -1 : 0
   }
 
   switch (sortFlags) {

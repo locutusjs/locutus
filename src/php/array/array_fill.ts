@@ -1,4 +1,4 @@
-export function array_fill(startIndex: number, num: number, mixedVal: string): Record<string, any> {
+export function array_fill(startIndex: number, num: number, mixedVal: string): { [key: string]: string } {
   //      discuss at: https://locutus.io/php/array_fill/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -7,7 +7,7 @@ export function array_fill(startIndex: number, num: number, mixedVal: string): R
   //       returns 1: { 5: 'banana', 6: 'banana', 7: 'banana', 8: 'banana', 9: 'banana', 10: 'banana' }
 
   let key
-  const tmpArr: Record<string, any> = {}
+  const tmpArr: { [key: string]: string } = {}
   if (!isNaN(startIndex) && !isNaN(num)) {
     for (key = 0; key < num; key++) {
       tmpArr[key + startIndex] = mixedVal

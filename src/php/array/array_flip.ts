@@ -1,4 +1,4 @@
-export function array_flip(trans: Record<string, any>): Record<string, any> {
+export function array_flip(trans: { [key: string]: unknown }): { [key: string]: string } {
   //      discuss at: https://locutus.io/php/array_flip/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -8,12 +8,12 @@ export function array_flip(trans: Record<string, any>): Record<string, any> {
   //       returns 1: {1: 'b', 2: 'c'}
 
   let key
-  const tmpArr: Record<string, any> = {}
+  const tmpArr: { [key: string]: string } = {}
   for (key in trans) {
     if (!trans.hasOwnProperty(key)) {
       continue
     }
-    tmpArr[trans[key]] = key
+    tmpArr[String(trans[key])] = key
   }
 
   return tmpArr

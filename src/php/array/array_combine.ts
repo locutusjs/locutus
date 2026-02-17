@@ -1,11 +1,11 @@
-export function array_combine(keys: any[], values: any[]): Record<string, any> | false {
+export function array_combine(keys: unknown[], values: unknown[]): { [key: string]: unknown } | false {
   //  discuss at: https://locutus.io/php/array_combine/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: array_combine([0,1,2], ['kevin','van','zonneveld'])
   //   returns 1: {0: 'kevin', 1: 'van', 2: 'zonneveld'}
 
-  const newArray: Record<string, any> = {}
+  const newArray: { [key: string]: unknown } = {}
   let i = 0
 
   // input sanitation
@@ -33,7 +33,7 @@ export function array_combine(keys: any[], values: any[]): Record<string, any> |
   }
 
   for (i = 0; i < keys.length; i++) {
-    newArray[keys[i]] = values[i]
+    newArray[String(keys[i])] = values[i]
   }
 
   return newArray

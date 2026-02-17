@@ -1,4 +1,8 @@
-export function array_walk(array: any[], funcname: any, userdata: any): any {
+export function array_walk(
+  array: unknown[] | { [key: string]: unknown },
+  funcname: ((value: unknown, key: string, userdata?: unknown) => void) | unknown,
+  userdata?: unknown,
+): boolean {
   //  discuss at: https://locutus.io/php/array_walk/
   // original by: Johnny Mast (https://www.phpvrouwen.nl)
   // bugfixed by: David
@@ -17,11 +21,12 @@ export function array_walk(array: any[], funcname: any, userdata: any): any {
 
   try {
     if (typeof funcname === 'function') {
-      for (const key in array) {
+      const target = array as { [key: string]: unknown }
+      for (const key in target) {
         if (arguments.length > 2) {
-          funcname(array[key], key, userdata)
+          funcname(target[key], key, userdata)
         } else {
-          funcname(array[key], key)
+          funcname(target[key], key)
         }
       }
     } else {

@@ -1,4 +1,4 @@
-export function array_unshift(array: any[]): number {
+export function array_unshift(array: unknown[]): number {
   //  discuss at: https://locutus.io/php/array_unshift/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Martijn Wieringa

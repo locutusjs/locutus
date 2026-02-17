@@ -1,6 +1,6 @@
 import { count } from '../array/count.ts'
 
-export function sizeof(mixedVar: any[] | Record<string, any>, mode: string): number {
+export function sizeof(mixedVar: unknown[] | { [key: string]: unknown }, mode?: string): number {
   //  discuss at: https://locutus.io/php/sizeof/
   // original by: Philip Peterson
   //   example 1: sizeof([[0,0],[0,-4]], 'COUNT_RECURSIVE')

@@ -1,4 +1,4 @@
-export function array_intersect_assoc(arr1: any): Record<string, any> {
+export function array_intersect_assoc(arr1: { [key: string]: unknown }): { [key: string]: unknown } {
   //  discuss at: https://locutus.io/php/array_intersect_assoc/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: These only output associative arrays (would need to be
@@ -8,17 +8,17 @@ export function array_intersect_assoc(arr1: any): Record<string, any> {
   //   example 1: array_intersect_assoc($array1, $array2)
   //   returns 1: {a: 'green'}
 
-  const retArr: Record<string, any> = {}
+  const retArr: { [key: string]: unknown } = {}
   const argl = arguments.length
   const arglm1 = argl - 1
   let k1 = ''
-  let arr: Record<string, any> = {}
+  let arr: { [key: string]: unknown } = {}
   let i = 0
   let k = ''
 
   arr1keys: for (k1 in arr1) {
     arrs: for (i = 1; i < argl; i++) {
-      arr = arguments[i]
+      arr = arguments[i] as { [key: string]: unknown }
       for (k in arr) {
         if (arr[k] === arr1[k1] && k === k1) {
           if (i === arglm1) {

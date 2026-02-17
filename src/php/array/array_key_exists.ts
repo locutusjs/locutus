@@ -1,4 +1,4 @@
-export function array_key_exists(key: string, search: Record<string, any>): boolean | false {
+export function array_key_exists(key: string, search: { [key: string]: unknown } | unknown[]): boolean | false {
   //  discuss at: https://locutus.io/php/array_key_exists/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Felix Geisendoerfer (https://www.debuggable.com/felix)

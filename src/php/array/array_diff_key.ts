@@ -1,4 +1,4 @@
-export function array_diff_key(arr1: Record<string, any>): Record<string, any> {
+export function array_diff_key(arr1: { [key: string]: unknown }): { [key: string]: unknown } {
   //  discuss at: https://locutus.io/php/array_diff_key/
   // original by: Ates Goral (https://magnetiq.com)
   //  revised by: Brett Zamir (https://brett-zamir.me)
@@ -9,14 +9,14 @@ export function array_diff_key(arr1: Record<string, any>): Record<string, any> {
   //   returns 2: {"green":2, "blue":3, "white":4}
 
   const argl = arguments.length
-  const retArr: Record<string, any> = {}
+  const retArr: { [key: string]: unknown } = {}
   let k1 = ''
   let i = 1
   let k = ''
-  let arr: Record<string, any> = {}
+  let arr: { [key: string]: unknown } = {}
   arr1keys: for (k1 in arr1) {
     for (i = 1; i < argl; i++) {
-      arr = arguments[i]
+      arr = arguments[i] as { [key: string]: unknown }
       for (k in arr) {
         if (k === k1) {
           // If it reaches here, it was found in at least one array, so try next value

@@ -1,4 +1,4 @@
-export function array_diff(arr1: any[]): Record<string, any> {
+export function array_diff(arr1: unknown[]): { [key: string]: unknown } {
   //  discuss at: https://locutus.io/php/array_diff/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Sanjoy Roy
@@ -6,15 +6,15 @@ export function array_diff(arr1: any[]): Record<string, any> {
   //   example 1: array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld'])
   //   returns 1: {0:'Kevin'}
 
-  const retArr: Record<string, any> = {}
+  const retArr: { [key: string]: unknown } = {}
   const argl = arguments.length
   let k1 = ''
   let i = 1
   let k = ''
-  let arr: Record<string, any> = {}
+  let arr: { [key: string]: unknown } = {}
   arr1keys: for (k1 in arr1) {
     for (i = 1; i < argl; i++) {
-      arr = arguments[i]
+      arr = arguments[i] as { [key: string]: unknown }
       for (k in arr) {
         if (arr[k] === arr1[k1]) {
           // If it reaches here, it was found in at least one array, so try next value
