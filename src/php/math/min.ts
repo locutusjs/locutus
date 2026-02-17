@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function min() {
+export function min(...args: unknown[]): unknown {
   //  discuss at: https://locutus.io/php/min/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //  revised by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -18,26 +17,27 @@ export function min() {
   //   example 6: min([2, 4, 8], [2, 5, 7])
   //   returns 6: [2, 4, 8]
 
-  let ar
-  let retVal
+  let ar: unknown[]
+  let retVal: unknown
   let i = 0
   let n = 0
-  const argv = arguments
+  const argv: IArguments = arguments
   const argc = argv.length
-  const _obj2Array = function (obj) {
+  const _obj2Array = function (obj: unknown): unknown[] {
     if (Array.isArray(obj)) {
       return obj
     }
-    const ar = []
-    for (const i in obj) {
-      if (obj.hasOwnProperty(i)) {
-        ar.push(obj[i])
+    const converted: unknown[] = []
+    const record = obj as { [key: string]: unknown }
+    for (const i in record) {
+      if (Object.prototype.hasOwnProperty.call(record, i)) {
+        converted.push(record[i])
       }
     }
-    return ar
+    return converted
   }
 
-  const _compare = function (current, next) {
+  const _compare = function (current: unknown, next: unknown): number {
     let i = 0
     let n = 0
     let tmp = 0
@@ -48,17 +48,17 @@ export function min() {
       return 0
     } else if (typeof current === 'object') {
       if (typeof next === 'object') {
-        current = _obj2Array(current)
-        next = _obj2Array(next)
-        cl = current.length
-        nl = next.length
+        const currentArray = _obj2Array(current)
+        const nextArray = _obj2Array(next)
+        cl = currentArray.length
+        nl = nextArray.length
         if (nl > cl) {
           return 1
         } else if (nl < cl) {
           return -1
         }
         for (i = 0, n = cl; i < n; ++i) {
-          tmp = _compare(current[i], next[i])
+          tmp = _compare(currentArray[i], nextArray[i])
           if (tmp === 1) {
             return 1
           } else if (tmp === -1) {
@@ -70,23 +70,23 @@ export function min() {
       return -1
     } else if (typeof next === 'object') {
       return 1
-    } else if (isNaN(next) && !isNaN(current)) {
+    } else if (isNaN(next as number) && !isNaN(current as number)) {
       if (current === 0) {
         return 0
       }
-      return current < 0 ? 1 : -1
-    } else if (isNaN(current) && !isNaN(next)) {
+      return (current as number) < 0 ? 1 : -1
+    } else if (isNaN(current as number) && !isNaN(next as number)) {
       if (next === 0) {
         return 0
       }
-      return next > 0 ? 1 : -1
+      return (next as number) > 0 ? 1 : -1
     }
 
     if (next === current) {
       return 0
     }
 
-    return next > current ? 1 : -1
+    return (next as number) > (current as number) ? 1 : -1
   }
 
   if (argc === 0) {
@@ -102,7 +102,7 @@ export function min() {
       throw new Error('Array must contain at least one element for min()')
     }
   } else {
-    ar = argv
+    ar = Array.from(argv)
   }
 
   retVal = ar[0]
