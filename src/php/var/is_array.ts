@@ -33,7 +33,7 @@ export function is_array(mixedVar: unknown): boolean {
     if (!name) {
       return '(Anonymous)'
     }
-    return name[1]
+    return name[1] ?? '(Anonymous)'
   }
   const _isArray = function (mixedVar: any): boolean {
     // return Array.isArray(mixedVar);

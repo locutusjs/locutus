@@ -38,9 +38,9 @@ export function createBaseContext(extra: Record<string, unknown> = {}): vm.Conte
 /**
  * Extract variable name from assignment (e.g., "var foo = ..." → "foo")
  */
-export function extractAssignedVar(line: string): string | null {
-  const match = line.match(/^\s*(?:var|let|const)?\s*(\$?[A-Za-z_][\w$]*)\s*=/)
-  return match ? match[1] : null
+export function extractAssignedVar(line?: string): string | null {
+  const match = line?.match(/^\s*(?:var|let|const)?\s*(\$?[A-Za-z_][\w$]*)\s*=/)
+  return match?.[1] ?? null
 }
 
 /**

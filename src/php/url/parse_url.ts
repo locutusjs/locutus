@@ -73,7 +73,11 @@ export function parse_url(str: string, component?: string): Record<string, unkno
     ),
   }
 
-  const m = parser[mode].exec(str)
+  const selectedParser = parser[mode] ?? parser.php
+  if (!selectedParser) {
+    return {}
+  }
+  const m = selectedParser.exec(str)
   const uri: Record<string, unknown> = {}
   if (!m) {
     return uri
@@ -81,8 +85,9 @@ export function parse_url(str: string, component?: string): Record<string, unkno
   let i = 14
 
   while (i--) {
-    if (m[i]) {
-      uri[key[i]] = m[i]
+    const keyName = key[i]
+    if (keyName && m[i]) {
+      uri[keyName] = m[i]
     }
   }
 
@@ -95,7 +100,8 @@ export function parse_url(str: string, component?: string): Record<string, unkno
     const queryParser = /(?:^|&)([^&=]*)=?([^&]*)/g
     const queryObj: Record<string, string> = {}
     uri[name] = queryObj
-    query = String(uri[key[12]] || '')
+    const queryKeyName = key[12]
+    query = String((queryKeyName ? uri[queryKeyName] : '') || '')
     query.replace(queryParser, function ($0: string, $1: string, $2: string): string {
       if ($1) {
         queryObj[$1] = $2

@@ -66,18 +66,21 @@ export function number_format(
       return +(Math.round(+(n + 'e+' + prec)) + 'e-' + prec)
     } else {
       const arr = ('' + n).split('e')
+      const mantissa = arr[0] ?? '0'
+      const exponent = Number(arr[1] ?? 0)
       let sig = ''
-      if (+arr[1] + prec > 0) {
+      if (exponent + prec > 0) {
         sig = '+'
       }
-      return (+(Math.round(+(+arr[0] + 'e' + sig + (+arr[1] + prec))) + 'e-' + prec)).toFixed(prec)
+      return (+(Math.round(+(+mantissa + 'e' + sig + (exponent + prec))) + 'e-' + prec)).toFixed(prec)
     }
   }
 
   // @todo: for IE parseFloat(0.55).toFixed(0) = 0;
   s = (prec ? toFixedFix(n, prec).toString() : '' + Math.round(n)).split('.')
-  if (s[0].length > 3) {
-    s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep)
+  const whole = s[0] ?? ''
+  if (whole.length > 3) {
+    s[0] = whole.replace(/\B(?=(?:\d{3})+(?!\d))/g, sep)
   }
   if ((s[1] || '').length < prec) {
     s[1] = s[1] || ''

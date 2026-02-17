@@ -60,7 +60,11 @@ export function uksort(
 
   // Rebuild array with sorted key names
   for (i = 0; i < keys.length; i++) {
-    k = keys[i]
+    const key = keys[i]
+    if (key === undefined) {
+      continue
+    }
+    k = key
     tmpArr[k] = inputArr[k]
     if (sortByReference) {
       delete inputArr[k]

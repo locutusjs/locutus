@@ -77,22 +77,28 @@ export function sprintf(format: string, ...args: any[]): string {
           const number = +arg
           const abs = Math.abs(number)
           const prefix = number < 0 ? '-' : positiveSign
-
-          const op = [Number.prototype.toExponential, Number.prototype.toFixed, Number.prototype.toPrecision][
-            'efg'.indexOf(modifier.toLowerCase())
-          ]
-
-          const tr = [String.prototype.toLowerCase, String.prototype.toUpperCase]['eEfFgG'.indexOf(modifier) % 2]
+          const operationIndex = 'efg'.indexOf(modifier.toLowerCase())
+          const operation = [
+            (value: number, fractionDigits?: number) => value.toExponential(fractionDigits),
+            (value: number, digits?: number) => value.toFixed(digits),
+            (value: number, precisionDigits?: number) => value.toPrecision(precisionDigits),
+          ][operationIndex]
+          const transform =
+            [(value: string) => value.toLowerCase(), (value: string) => value.toUpperCase()][
+              'eEfFgG'.indexOf(modifier) % 2
+            ] ?? ((value: string) => value)
 
           const isSpecial = isNaN(abs) || !isFinite(abs)
 
-          const str = isSpecial ? abs.toString().substr(0, 3) : op.call(abs, precision)
+          const str = isSpecial
+            ? abs.toString().substr(0, 3)
+            : (operation || ((value: number) => value.toString()))(abs, precision)
 
           if (padChar === '0' && !isSpecial) {
-            return prefix + pad(tr.call(str), minWidth - prefix.length, padChar, leftJustify)
+            return prefix + pad(transform(str), minWidth - prefix.length, padChar, leftJustify)
           }
 
-          return pad(tr.call(prefix + str), minWidth, isSpecial ? ' ' : padChar, leftJustify)
+          return pad(transform(prefix + str), minWidth, isSpecial ? ' ' : padChar, leftJustify)
         }
         case 'b':
         case 'o':

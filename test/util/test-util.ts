@@ -10,7 +10,7 @@ describe('util', function () {
 
       const params = await util._load(relative, {})
       expect(params).not.toBeNull()
-      expect(params?.headKeys.example[0][0]).toEqual('array_change_key_case(42)')
+      expect(params?.headKeys.example?.[0]?.[0]).toEqual('array_change_key_case(42)')
     })
   })
 })

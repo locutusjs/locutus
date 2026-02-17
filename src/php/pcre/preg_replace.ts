@@ -10,9 +10,11 @@ export function preg_replace(pattern: string, replacement: string, string: strin
   //   returns 4: "TheDevelopmentofcodehttpwww"
   //   example 5: preg_replace('/[^A-Za-z0-9_\\s]/', '', 'D"usseldorfer H"auptstrasse')
   //   returns 5: "Dusseldorfer Hauptstrasse"
-  let _flag = pattern.substr(pattern.lastIndexOf(pattern[0]) + 1)
+  const delimiter = pattern.charAt(0)
+  const lastDelimiterIndex = pattern.lastIndexOf(delimiter)
+  let _flag = pattern.substr(lastDelimiterIndex + 1)
   _flag = _flag !== '' ? _flag : 'g'
-  const _pattern = pattern.substr(1, pattern.lastIndexOf(pattern[0]) - 1)
+  const _pattern = pattern.substr(1, lastDelimiterIndex - 1)
   const regex = new RegExp(_pattern, _flag)
   const result = string.replace(regex, replacement)
 

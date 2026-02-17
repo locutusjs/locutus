@@ -8,7 +8,7 @@ export function TrimRight(s: string, cutset: string): string {
   //       returns 2: '  hello'
 
   let end = s.length
-  while (end > 0 && cutset.includes(s[end - 1])) {
+  while (end > 0 && cutset.includes(s.charAt(end - 1))) {
     end--
   }
   return s.slice(0, end)

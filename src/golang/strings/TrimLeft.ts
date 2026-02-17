@@ -8,7 +8,7 @@ export function TrimLeft(s: string, cutset: string): string {
   //       returns 2: 'hello  '
 
   let start = 0
-  while (start < s.length && cutset.includes(s[start])) {
+  while (start < s.length && cutset.includes(s.charAt(start))) {
     start++
   }
   return s.slice(start)

@@ -69,20 +69,26 @@ export function str_replace(
   }
 
   for (i = 0, sl = s.length; i < sl; i++) {
-    if (s[i] === '') {
+    if (s[i] === undefined || s[i] === '') {
       continue
     }
     for (j = 0, fl = f.length; j < fl; j++) {
-      if (f[j] === '') {
+      const findValue = f[j]
+      if (findValue === undefined || findValue === '') {
         continue
       }
-      temp = s[i] + ''
-      repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0]
-      s[i] = temp.split(f[j]).join(repl)
+      temp = (s[i] ?? '') + ''
+      if (ra) {
+        const replacement = r[j]
+        repl = replacement ?? ''
+      } else {
+        repl = r[0] ?? ''
+      }
+      s[i] = temp.split(findValue).join(repl)
       if (typeof countObj !== 'undefined') {
-        countObj.value += temp.split(f[j]).length - 1
+        countObj.value += temp.split(findValue).length - 1
       }
     }
   }
-  return sa ? s : s[0]
+  return sa ? s : (s[0] ?? '')
 }

@@ -212,7 +212,7 @@ function convertJsStringsToPhp(code: string): string {
       i++
       while (i < code.length && code[i] !== '"') {
         if (code[i] === '\\' && i + 1 < code.length) {
-          result += code[i] + code[i + 1]
+          result += code.charAt(i) + code.charAt(i + 1)
           i += 2
         } else {
           result += code[i]
@@ -235,7 +235,7 @@ function convertJsStringsToPhp(code: string): string {
 
       while (i < code.length) {
         if (code[i] === '\\' && i + 1 < code.length) {
-          const nextChar = code[i + 1]
+          const nextChar = code.charAt(i + 1)
           // Handle escaped single quote - don't end string
           if (nextChar === "'") {
             str += "\\'"
@@ -257,7 +257,7 @@ function convertJsStringsToPhp(code: string): string {
           if ('nrtv0\\'.includes(nextChar)) {
             hasEscapeSequence = true
           }
-          str += code[i] + code[i + 1]
+          str += code.charAt(i) + code.charAt(i + 1)
           i += 2
         } else if (code[i] === "'") {
           // End of string

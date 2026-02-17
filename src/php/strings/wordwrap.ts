@@ -40,7 +40,7 @@ export function wordwrap(str: string, intWidth?: number, strBreak?: string, cut?
 
   // for each line of text
   for (i = 0; i < l; lines[i++] += line) {
-    line = lines[i]
+    line = lines[i] ?? ''
     lines[i] = ''
 
     while (line.length > intWidth) {

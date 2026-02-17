@@ -92,8 +92,11 @@ export function json_encode(mixedVal: unknown): string | null {
       let value = holder[key] as unknown
 
       // If the value has a toJSON method, call it to obtain a replacement value.
-      if (value && typeof value === 'object' && typeof (value as Record<string, unknown>).toJSON === 'function') {
-        value = (value as Record<string, (...args: unknown[]) => unknown>).toJSON(key)
+      if (value && typeof value === 'object') {
+        const toJSON = (value as { toJSON?: (key: string | number) => unknown }).toJSON
+        if (typeof toJSON === 'function') {
+          value = toJSON.call(value, key)
+        }
       }
 
       // What happens next depends on the value's type.

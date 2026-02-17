@@ -84,10 +84,14 @@ export function strtr(
       }
     } else if (fromArr) {
       for (j = 0; j < lenFrom; j++) {
-        if (str.substr(i, fromArr[j].length) === fromArr[j]) {
+        const fromVal = fromArr[j]
+        if (fromVal === undefined) {
+          continue
+        }
+        if (str.substr(i, fromVal.length) === fromVal) {
           match = true
           // Fast forward
-          i = i + fromArr[j].length - 1
+          i = i + fromVal.length - 1
           break
         }
       }

@@ -28,13 +28,25 @@ export function uasort(
   let sortByReference = false
   let populateArr: Record<string, unknown> = {}
 
-  let sortFn: (a: unknown, b: unknown) => number
+  let sortFn: ((a: unknown, b: unknown) => number) | undefined
   if (typeof sorter === 'string') {
     sortFn = this[sorter]
   } else if (Array.isArray(sorter)) {
-    sortFn = this[sorter[0]][sorter[1]]
+    const [objectKey, methodKey] = sorter
+    if (objectKey === undefined || methodKey === undefined) {
+      return false
+    }
+    const objectValue = this[objectKey] as { [key: string]: unknown } | undefined
+    const method = objectValue?.[methodKey]
+    if (typeof method !== 'function') {
+      return false
+    }
+    sortFn = method as (a: unknown, b: unknown) => number
   } else {
     sortFn = sorter
+  }
+  if (typeof sortFn !== 'function') {
+    return false
   }
 
   const $loc = (globalThis as any).$locutus
@@ -57,7 +69,11 @@ export function uasort(
 
   for (i = 0; i < valArr.length; i++) {
     // Repopulate the old array
-    populateArr[valArr[i][0]] = valArr[i][1]
+    const entry = valArr[i]
+    if (!entry) {
+      continue
+    }
+    populateArr[entry[0]] = entry[1]
   }
 
   return sortByReference || populateArr
