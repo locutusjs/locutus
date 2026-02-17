@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function array_pad(input, padSize, padValue) {
+export function array_pad(input: unknown, padSize: number, padValue: unknown): unknown[] {
   //      discuss at: https://locutus.io/php/array_pad/
   // parity verified: PHP 8.3
   //     original by: Waldo Malqui Silva (https://waldo.malqui.info)
@@ -12,13 +11,13 @@ export function array_pad(input, padSize, padValue) {
   //       example 4: array_pad([ 7, 8, 9 ], -5, 'a')
   //       returns 4: [ 'a', 'a', 7, 8, 9 ]
 
-  let pad = []
-  const newArray = []
-  let newLength
+  let pad: unknown[] = []
+  const newArray: unknown[] = []
+  let newLength = 0
   let diff = 0
   let i = 0
 
-  if (Array.isArray(input) && !isNaN(padSize)) {
+  if (Array.isArray(input) && !Number.isNaN(padSize)) {
     newLength = padSize < 0 ? padSize * -1 : padSize
     diff = newLength - input.length
 

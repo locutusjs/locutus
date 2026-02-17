@@ -1,5 +1,18 @@
-// @ts-nocheck
-export function getdate(timestamp) {
+type GetDateResult = {
+  seconds: number
+  minutes: number
+  hours: number
+  mday: number
+  wday: number
+  mon: number
+  year: number
+  yday: number
+  weekday: string
+  month: string
+  '0': number
+}
+
+export function getdate(timestamp?: number | string | Date): GetDateResult {
   //  discuss at: https://locutus.io/php/getdate/
   // original by: Paulo Freitas
   //    input by: Alex
@@ -27,23 +40,23 @@ export function getdate(timestamp) {
       ? new Date()
       : timestamp instanceof Date
         ? new Date(timestamp) // Not provided
-        : new Date(timestamp * 1000) // Javascript Date() // UNIX timestamp (auto-convert to int)
+        : new Date(Number(timestamp) * 1000) // Javascript Date() // UNIX timestamp (auto-convert to int)
   const w = d.getDay()
   const m = d.getMonth()
   const y = d.getFullYear()
-  const r = {}
-
-  r.seconds = d.getSeconds()
-  r.minutes = d.getMinutes()
-  r.hours = d.getHours()
-  r.mday = d.getDate()
-  r.wday = w
-  r.mon = m + 1
-  r.year = y
-  r.yday = Math.floor((d - new Date(y, 0, 1)) / 86400000)
-  r.weekday = _w[w] + 'day'
-  r.month = _m[m]
-  r['0'] = parseInt(d.getTime() / 1000, 10)
+  const r: GetDateResult = {
+    seconds: d.getSeconds(),
+    minutes: d.getMinutes(),
+    hours: d.getHours(),
+    mday: d.getDate(),
+    wday: w,
+    mon: m + 1,
+    year: y,
+    yday: Math.floor((d.getTime() - new Date(y, 0, 1).getTime()) / 86400000),
+    weekday: (_w[w] ?? '') + 'day',
+    month: _m[m] ?? '',
+    '0': Number.parseInt(String(d.getTime() / 1000), 10),
+  }
 
   return r
 }

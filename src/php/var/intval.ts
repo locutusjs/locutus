@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function intval(mixedVar: string | number, base?: number): number {
+export function intval(mixedVar: unknown, base?: number): number {
   //      discuss at: https://locutus.io/php/intval/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -25,22 +24,23 @@ export function intval(mixedVar: string | number, base?: number): number {
   //       example 8: intval('010', 0)
   //       returns 8: 8
 
-  let tmp
-  let match
+  let tmp = 0
 
   const type = typeof mixedVar
 
   if (type === 'boolean') {
-    return +mixedVar
+    return Number(mixedVar)
   } else if (type === 'string') {
+    const stringValue = mixedVar as string
     if (base === 0) {
-      match = mixedVar.match(/^\s*0(x?)/i)
+      const match = stringValue.match(/^\s*0(x?)/i)
       base = match ? (match[1] ? 16 : 8) : 10
     }
-    tmp = parseInt(mixedVar, base || 10)
-    return isNaN(tmp) || !isFinite(tmp) ? 0 : tmp
-  } else if (type === 'number' && isFinite(mixedVar)) {
-    return mixedVar < 0 ? Math.ceil(mixedVar) : Math.floor(mixedVar)
+    tmp = Number.parseInt(stringValue, base || 10)
+    return Number.isNaN(tmp) || !Number.isFinite(tmp) ? 0 : tmp
+  } else if (type === 'number' && Number.isFinite(mixedVar)) {
+    const numberValue = mixedVar as number
+    return numberValue < 0 ? Math.ceil(numberValue) : Math.floor(numberValue)
   } else {
     return 0
   }

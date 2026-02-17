@@ -1,10 +1,4 @@
-// @ts-nocheck
-export function substr_count(
-  haystack: string,
-  needle: string,
-  offset?: number,
-  length?: number,
-): number | boolean | false {
+export function substr_count(haystack: string, needle: string, offset?: number, length?: number): number | false {
   //  discuss at: https://locutus.io/php/substr_count/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -19,21 +13,17 @@ export function substr_count(
 
   let cnt = 0
 
-  haystack += ''
-  needle += ''
-  if (isNaN(offset)) {
-    offset = 0
-  }
-  if (isNaN(length)) {
-    length = 0
-  }
-  if (needle.length === 0) {
+  const normalizedHaystack = String(haystack)
+  const normalizedNeedle = String(needle)
+  const normalizedOffset = Number.isNaN(Number(offset)) ? 0 : Number(offset)
+  const normalizedLength = Number.isNaN(Number(length)) ? 0 : Number(length)
+  if (normalizedNeedle.length === 0) {
     return false
   }
-  offset--
+  let position = normalizedOffset - 1
 
-  while ((offset = haystack.indexOf(needle, offset + 1)) !== -1) {
-    if (length > 0 && offset + needle.length > length) {
+  while ((position = normalizedHaystack.indexOf(normalizedNeedle, position + 1)) !== -1) {
+    if (normalizedLength > 0 && position + normalizedNeedle.length > normalizedLength) {
       return false
     }
     cnt++

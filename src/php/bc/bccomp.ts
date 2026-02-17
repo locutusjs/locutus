@@ -1,7 +1,6 @@
-// @ts-nocheck
 import { _bc as bc } from '../_helpers/_bc.ts'
 
-export function bccomp(leftOperand, rightOperand, scale) {
+export function bccomp(leftOperand: string | number, rightOperand: string | number, scale?: number): number {
   //  discuss at: https://locutus.io/php/bccomp/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bccomp('-1', '5', 4)
@@ -13,11 +12,16 @@ export function bccomp(leftOperand, rightOperand, scale) {
   //   example 4: bccomp('97321', '2321')
   //   returns 4: 1
 
-  const libbcmath = bc()
+  const libbcmath = bc() as {
+    scale: number
+    bc_init_num: () => unknown
+    bc_str2num: (value: string, scale: number) => unknown
+    bc_compare: (left: unknown, right: unknown, scale: number) => number
+  }
 
   // bc_num
-  let first
-  let second
+  let first: unknown
+  let second: unknown
   if (typeof scale === 'undefined') {
     scale = libbcmath.scale
   }
