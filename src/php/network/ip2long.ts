@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function ip2long(argIP) {
+export function ip2long(argIP: string): number | false {
   //  discuss at: https://locutus.io/php/ip2long/
   // original by: Waldo Malqui Silva (https://waldo.malqui.info)
   // improved by: Victor
@@ -13,7 +12,6 @@ export function ip2long(argIP) {
   //   example 3: ip2long('255.255.255.256')
   //   returns 3: false
 
-  let i = 0
   // PHP allows decimal, octal, and hexadecimal IP components.
   // PHP allows between 1 (e.g. 127) to 4 (e.g 127.0.0.1) components.
 
@@ -27,30 +25,55 @@ export function ip2long(argIP) {
     'i',
   )
 
-  argIP = argIP.match(pattern) // Verify argIP format.
-  if (!argIP) {
+  const matchedParts = argIP.match(pattern) // Verify argIP format.
+  if (!matchedParts) {
     // Invalid format.
     return false
   }
-  // Reuse argIP variable for component counter.
-  argIP[0] = 0
-  for (i = 1; i < 5; i += 1) {
-    argIP[0] += !!(argIP[i] || '').length
-    argIP[i] = parseInt(argIP[i]) || 0
+
+  let partCount = 0
+  const values: [number, number, number, number] = [0, 0, 0, 0]
+
+  for (let i = 0; i < 4; i += 1) {
+    const part = matchedParts[i + 1] ?? ''
+    partCount += part.length > 0 ? 1 : 0
+    values[i] = Number.parseInt(part) || 0
   }
-  // Continue to use argIP for overflow values.
+
+  // Continue to use overflow values.
   // PHP does not allow any component to overflow.
-  argIP.push(256, 256, 256, 256)
+  const overflow: [number, number, number, number, number, number, number, number] = [
+    values[0],
+    values[1],
+    values[2],
+    values[3],
+    256,
+    256,
+    256,
+    256,
+  ]
   // Recalculate overflow of last component supplied to make up for missing components.
-  argIP[4 + argIP[0]] *= Math.pow(256, 4 - argIP[0])
-  if (argIP[1] >= argIP[5] || argIP[2] >= argIP[6] || argIP[3] >= argIP[7] || argIP[4] >= argIP[8]) {
+  if (partCount === 1) {
+    overflow[4] *= Math.pow(256, 3)
+  } else if (partCount === 2) {
+    overflow[5] *= Math.pow(256, 2)
+  } else if (partCount === 3) {
+    overflow[6] *= 256
+  }
+
+  if (
+    overflow[0] >= overflow[4] ||
+    overflow[1] >= overflow[5] ||
+    overflow[2] >= overflow[6] ||
+    overflow[3] >= overflow[7]
+  ) {
     return false
   }
 
   return (
-    argIP[1] * (argIP[0] === 1 || 16777216) +
-    argIP[2] * (argIP[0] <= 2 || 65536) +
-    argIP[3] * (argIP[0] <= 3 || 256) +
-    argIP[4] * 1
+    values[0] * (partCount === 1 ? 1 : 16777216) +
+    values[1] * (partCount <= 2 ? 1 : 65536) +
+    values[2] * (partCount <= 3 ? 1 : 256) +
+    values[3]
   )
 }

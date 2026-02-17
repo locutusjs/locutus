@@ -1,7 +1,6 @@
-// @ts-nocheck
 import { is_float as isFloat } from '../var/is_float.ts'
 
-export function gettype(mixedVar) {
+export function gettype(mixedVar: unknown): string {
   //  discuss at: https://locutus.io/php/gettype/
   // original by: Paulo Freitas
   // improved by: Kevin van Zonneveld (https://kvz.io)
@@ -25,28 +24,35 @@ export function gettype(mixedVar) {
   //   example 7: gettype(['test'])
   //   returns 7: 'array'
 
-  let s = typeof mixedVar
-  let name
-  const _getFuncName = function (fn) {
-    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn)
-    if (!name) {
+  let s: string = typeof mixedVar
+  let name = ''
+  const _getFuncName = function (fn: unknown): string {
+    const funcNameMatch = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
+    if (!funcNameMatch) {
       return '(Anonymous)'
     }
-    return name[1]
+    return funcNameMatch[1] ?? '(Anonymous)'
   }
 
   if (s === 'object') {
     if (mixedVar !== null) {
+      const objectLike = mixedVar as {
+        [key: string]: unknown
+        length?: unknown
+        splice?: unknown
+        propertyIsEnumerable: (property: string) => boolean
+        constructor?: unknown
+      }
       // From: https://javascript.crockford.com/remedial.html
       // @todo: Break up this lengthy if statement
       if (
-        typeof mixedVar.length === 'number' &&
-        !mixedVar.propertyIsEnumerable('length') &&
-        typeof mixedVar.splice === 'function'
+        typeof objectLike.length === 'number' &&
+        !objectLike.propertyIsEnumerable('length') &&
+        typeof objectLike.splice === 'function'
       ) {
         s = 'array'
-      } else if (mixedVar.constructor && _getFuncName(mixedVar.constructor)) {
-        name = _getFuncName(mixedVar.constructor)
+      } else if (objectLike.constructor && _getFuncName(objectLike.constructor)) {
+        name = _getFuncName(objectLike.constructor)
         if (name === 'Date') {
           // not in PHP
           s = 'date'
@@ -62,7 +68,7 @@ export function gettype(mixedVar) {
       s = 'null'
     }
   } else if (s === 'number') {
-    s = isFloat(mixedVar) ? 'double' : 'integer'
+    s = isFloat(mixedVar as number) ? 'double' : 'integer'
   }
 
   return s

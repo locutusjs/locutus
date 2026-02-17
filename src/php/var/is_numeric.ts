@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function is_numeric(mixedVar) {
+export function is_numeric(mixedVar: unknown): boolean {
   //  discuss at: https://locutus.io/php/is_numeric/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: David
@@ -47,9 +46,13 @@ export function is_numeric(mixedVar) {
   ].join('')
 
   // @todo: Break this up using many single conditions with early returns
-  return (
-    (typeof mixedVar === 'number' || (typeof mixedVar === 'string' && whitespace.indexOf(mixedVar.slice(-1)) === -1)) &&
-    mixedVar !== '' &&
-    !isNaN(mixedVar)
-  )
+  if (typeof mixedVar === 'number') {
+    return !Number.isNaN(mixedVar)
+  }
+
+  if (typeof mixedVar !== 'string') {
+    return false
+  }
+
+  return mixedVar !== '' && whitespace.indexOf(mixedVar.slice(-1)) === -1 && !Number.isNaN(Number(mixedVar))
 }

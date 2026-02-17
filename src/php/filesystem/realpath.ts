@@ -1,7 +1,6 @@
-// @ts-nocheck
 import nodePath from 'path'
 
-export function realpath(path) {
+export function realpath(path: string): string {
   //  discuss at: https://locutus.io/php/realpath/
   // original by: mk.keck
   // improved by: Kevin van Zonneveld (https://kvz.io)
@@ -13,47 +12,47 @@ export function realpath(path) {
     return nodePath.normalize(path)
   }
 
-  let p = 0
-  let arr = [] // Save the root, if not given
-  const r = this.window.location.href // Avoid input failures
+  let hasProtocol = false
+  let parts: string[] = [] // Save the root, if not given
+  const href = window.location.href // Avoid input failures
 
   // Check if there's a port in path (like 'https://')
-  path = (path + '').replace('\\', '/')
-  if (path.indexOf('://') !== -1) {
-    p = 1
+  let normalizedPath = String(path).replace('\\', '/')
+  if (normalizedPath.indexOf('://') !== -1) {
+    hasProtocol = true
   }
 
   // Ok, there's not a port in path, so let's take the root
-  if (!p) {
-    path = r.substring(0, r.lastIndexOf('/') + 1) + path
+  if (!hasProtocol) {
+    normalizedPath = href.substring(0, href.lastIndexOf('/') + 1) + normalizedPath
   }
 
   // Explode the given path into it's parts
-  arr = path.split('/') // The path is an array now
-  path = [] // Foreach part make a check
-  for (const k in arr) {
+  parts = normalizedPath.split('/') // The path is an array now
+  const resolvedParts: string[] = [] // Foreach part make a check
+  for (const part of parts) {
     // This is'nt really interesting
-    if (arr[k] === '.') {
+    if (part === '.') {
       continue
     }
     // This reduces the realpath
-    if (arr[k] === '..') {
+    if (part === '..') {
       /* But only if there more than 3 parts in the path-array.
        * The first three parts are for the uri */
-      if (path.length > 3) {
-        path.pop()
+      if (resolvedParts.length > 3) {
+        resolvedParts.pop()
       }
     } else {
       // This adds parts to the realpath
       // But only if the part is not empty or the uri
       // (the first three parts ar needed) was not
       // saved
-      if (path.length < 2 || arr[k] !== '') {
-        path.push(arr[k])
+      if (resolvedParts.length < 2 || part !== '') {
+        resolvedParts.push(part)
       }
     }
   }
 
   // Returns the absloute path as a string
-  return path.join('/')
+  return resolvedParts.join('/')
 }
