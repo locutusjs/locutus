@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function json_decode(strJson: string): any[] {
+export function json_decode(strJson: string): unknown | null {
   //       discuss at: https://phpjs.org/functions/json_decode/
   //  parity verified: PHP 8.3
   //      original by: Public Domain (https://www.json.org/json2.js)
@@ -20,7 +19,10 @@ export function json_decode(strJson: string): any[] {
     See https://www.JSON.org/js.html
   */
 
-  const $global = typeof window !== 'undefined' ? window : global
+  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
+    $locutus?: { php?: { last_error_json?: number } }
+    JSON: typeof JSON
+  }
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
@@ -54,7 +56,7 @@ export function json_decode(strJson: string): any[] {
     '\ufff0-\uffff',
   ].join('')
   const cx = new RegExp('[' + chars + ']', 'g')
-  let j
+  let j: unknown
   let text = strJson
 
   // Parsing happens in four stages. In the first stage, we replace certain
@@ -62,7 +64,7 @@ export function json_decode(strJson: string): any[] {
   // incorrectly, either silently deleting them, or treating them as line endings.
   cx.lastIndex = 0
   if (cx.test(text)) {
-    text = text.replace(cx, function (a: any) {
+    text = text.replace(cx, function (a: string): string {
       return '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4)
     })
   }

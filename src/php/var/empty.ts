@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function empty(mixedVar: null | undefined | any[] | Record<string, any>): boolean | false {
+export function empty(mixedVar: unknown): boolean {
   //  discuss at: https://locutus.io/php/empty/
   // original by: Philippe Baumann
   //    input by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -21,21 +20,17 @@ export function empty(mixedVar: null | undefined | any[] | Record<string, any>):
   //   example 5: empty({'aFunc' : function () { alert('humpty'); } })
   //   returns 5: false
 
-  let undef
-  let key
-  let i
-  let len
-  const emptyValues = [undef, null, false, 0, '', '0']
+  const emptyValues: unknown[] = [undefined, null, false, 0, '', '0']
 
-  for (i = 0, len = emptyValues.length; i < len; i++) {
-    if (mixedVar === emptyValues[i]) {
+  for (const emptyValue of emptyValues) {
+    if (mixedVar === emptyValue) {
       return true
     }
   }
 
-  if (typeof mixedVar === 'object') {
-    for (key in mixedVar) {
-      if (mixedVar.hasOwnProperty(key)) {
+  if (typeof mixedVar === 'object' && mixedVar !== null) {
+    for (const key in mixedVar as Record<string, unknown>) {
+      if (Object.prototype.hasOwnProperty.call(mixedVar, key)) {
         return false
       }
     }

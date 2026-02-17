@@ -1,4 +1,3 @@
-// @ts-nocheck
 export function i18n_loc_set_default(name: string): boolean {
   //  discuss at: https://locutus.io/php/i18n_loc_set_default/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -8,14 +7,23 @@ export function i18n_loc_set_default(name: string): boolean {
   //   example 1: i18n_loc_set_default('pt_PT')
   //   returns 1: true
 
-  const $global = typeof window !== 'undefined' ? window : global
+  type LocutusGlobal = typeof globalThis & {
+    $locutus?: {
+      php?: {
+        locales?: Record<string, { sorting: (str1: string, str2: string) => number }>
+        locale_default?: string
+      }
+    }
+  }
+
+  const $global = (typeof window !== 'undefined' ? window : global) as LocutusGlobal
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
   $locutus.php.locales = $locutus.php.locales || {}
 
   $locutus.php.locales.en_US_POSIX = {
-    sorting: function (str1: any, str2: any) {
+    sorting: function (str1: string, str2: string): number {
       // @todo: This one taken from strcmp, but need for other locales;
       // we don't use localeCompare since its locale is not settable
       return str1 === str2 ? 0 : str1 > str2 ? 1 : -1

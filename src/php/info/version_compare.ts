@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function version_compare(v1: string, v2: string, operator?: string): number | boolean {
+export function version_compare(v1: string, v2: string, operator?: string): number | boolean | null {
   //       discuss at: https://locutus.io/php/version_compare/
   //  parity verified: PHP 8.3
   //      original by: Philippe Jausions (https://pear.php.net/user/jausions)
@@ -18,8 +17,6 @@ export function version_compare(v1: string, v2: string, operator?: string): numb
   //        returns 4: 1
 
   // Important: compare must be initialized at 0.
-  let i
-  let x
   let compare = 0
 
   // vm maps textual PHP versions to negatives so they're less than 0.
@@ -29,7 +26,7 @@ export function version_compare(v1: string, v2: string, operator?: string): numb
   // (1alpha is < 1 and < 1.1 but > 1dev1)
   // If a non-numerical value can't be mapped to this table, it receives
   // -7 as its value.
-  const vm = {
+  const vm: Record<string, number> = {
     dev: -6,
     alpha: -5,
     a: -5,
@@ -51,32 +48,35 @@ export function version_compare(v1: string, v2: string, operator?: string): numb
   // even less than an unexisting value in vm (-7), hence [-8].
   // It's also important to not strip spaces because of this.
   //   version_compare('', ' ') === 1
-  const _prepVersion = function (v: any) {
-    v = ('' + v).replace(/[_\-+]/g, '.')
-    v = v.replace(/([^.\d]+)/g, '.$1.').replace(/\.{2,}/g, '.')
-    return !v.length ? [-8] : v.split('.')
+  const _prepVersion = function (v: unknown): string[] {
+    let normalized = String(v).replace(/[_\-+]/g, '.')
+    normalized = normalized.replace(/([^.\d]+)/g, '.$1.').replace(/\.{2,}/g, '.')
+    return !normalized.length ? ['-8'] : normalized.split('.')
   }
   // This converts a version component to a number.
   // Empty component becomes 0.
   // Non-numerical component becomes a negative number.
   // Numerical component becomes itself as an integer.
-  const _numVersion = function (v: any) {
-    return !v ? 0 : isNaN(v) ? vm[v] || -7 : parseInt(v, 10)
+  const _numVersion = function (v: string | undefined): number {
+    if (!v) {
+      return 0
+    }
+    return isNaN(Number(v)) ? (vm[v] ?? -7) : parseInt(v, 10)
   }
 
-  v1 = _prepVersion(v1)
-  v2 = _prepVersion(v2)
-  x = Math.max(v1.length, v2.length)
-  for (i = 0; i < x; i++) {
-    if (v1[i] === v2[i]) {
+  const leftParts = _prepVersion(v1)
+  const rightParts = _prepVersion(v2)
+  const maxLength = Math.max(leftParts.length, rightParts.length)
+  for (let i = 0; i < maxLength; i++) {
+    if (leftParts[i] === rightParts[i]) {
       continue
     }
-    v1[i] = _numVersion(v1[i])
-    v2[i] = _numVersion(v2[i])
-    if (v1[i] < v2[i]) {
+    const left = _numVersion(leftParts[i])
+    const right = _numVersion(rightParts[i])
+    if (left < right) {
       compare = -1
       break
-    } else if (v1[i] > v2[i]) {
+    } else if (left > right) {
       compare = 1
       break
     }

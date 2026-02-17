@@ -1,4 +1,3 @@
-// @ts-nocheck
 export function inet_pton(a: string): string | false {
   //      discuss at: https://locutus.io/php/inet_pton/
   // parity verified: PHP 8.3
@@ -9,18 +8,28 @@ export function inet_pton(a: string): string | false {
   //       example 2: inet_pton('127.0.0.1')
   //       returns 2: '\x7F\x00\x00\x01'
 
-  let m
-  let i
-  let j
   const f = String.fromCharCode
 
   // IPv4
-  m = a.match(/^(?:\d{1,3}(?:\.|$)){4}/)
-  if (m) {
-    m = m[0].split('.')
-    m = f(m[0], m[1], m[2], m[3])
+  const ipv4Match = a.match(/^(?:\d{1,3}(?:\.|$)){4}/)
+  if (ipv4Match) {
+    const octets = ipv4Match[0]
+      .split('.')
+      .slice(0, 4)
+      .map((part) => Number.parseInt(part, 10))
+    const [a0, a1, a2, a3] = octets
+    if (
+      a0 === undefined ||
+      a1 === undefined ||
+      a2 === undefined ||
+      a3 === undefined ||
+      octets.some((octet) => Number.isNaN(octet) || octet < 0 || octet > 255)
+    ) {
+      return false
+    }
+    const packed = f(a0, a1, a2, a3)
     // Return if 4 bytes, otherwise false.
-    return m.length === 4 ? m : false
+    return packed.length === 4 ? packed : false
   }
 
   // IPv6
@@ -28,38 +37,49 @@ export function inet_pton(a: string): string | false {
     return false
   }
 
-  m = a.split('::')
+  const segments = a.split('::')
 
-  if (m.length > 2) {
+  if (segments.length > 2) {
     return false
   } // :: can't be used more than once in IPv6.
 
   const reHexDigits = /^[\da-f]{1,4}$/i
 
-  for (j = 0; j < m.length; j++) {
-    if (m[j].length === 0) {
-      // Skip if empty.
+  const packedSegments: string[] = []
+  for (const segment of segments) {
+    if (segment.length === 0) {
+      packedSegments.push('')
       continue
     }
-    m[j] = m[j].split(':')
-    for (i = 0; i < m[j].length; i++) {
-      let hextet = m[j][i]
+    const hextets = segment.split(':')
+    let packed = ''
+    for (const hextetSource of hextets) {
+      const hextet = hextetSource
       // check if valid hex string up to 4 chars
       if (!reHexDigits.test(hextet)) {
         return false
       }
 
-      hextet = parseInt(hextet, 16)
+      const parsedHextet = parseInt(hextet, 16)
 
       // Would be NaN if it was blank, return false.
-      if (isNaN(hextet)) {
+      if (Number.isNaN(parsedHextet)) {
         // Invalid IP.
         return false
       }
-      m[j][i] = f(hextet >> 8, hextet & 0xff)
+      packed += f(parsedHextet >> 8, parsedHextet & 0xff)
     }
-    m[j] = m[j].join('')
+    packedSegments.push(packed)
   }
 
-  return m.join('\x00'.repeat(16 - m.reduce((tl: any, m: any) => tl + m.length, 0)))
+  const bytesLength = packedSegments.reduce((total, part) => total + part.length, 0)
+  if (bytesLength > 16) {
+    return false
+  }
+
+  if (segments.length === 1 && bytesLength !== 16) {
+    return false
+  }
+
+  return packedSegments.join('\x00'.repeat(16 - bytesLength))
 }
