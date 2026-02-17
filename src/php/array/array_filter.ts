@@ -1,5 +1,7 @@
-// @ts-nocheck
-export function array_filter(arr: Record<string, any> | any[], func?: Function): Record<string, any> | any[] {
+export function array_filter<T>(
+  arr: { [key: string]: T } | T[],
+  func?: (value: T) => unknown,
+): { [key: string]: T } | T[] {
   //  discuss at: https://locutus.io/php/array_filter/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: max4ever
@@ -14,12 +16,12 @@ export function array_filter(arr: Record<string, any> | any[], func?: Function):
   //   example 3: array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined})
   //   returns 3: {"a":1, "c":-1}
 
-  let retObj: Record<string, any> = {}
-  let k
+  let retObj: { [key: string]: T } | T[] = {}
+  let k = ''
 
-  func =
+  const callback =
     func ||
-    function (v: any) {
+    function (v: T) {
       return v
     }
 
@@ -29,8 +31,16 @@ export function array_filter(arr: Record<string, any> | any[], func?: Function):
   }
 
   for (k in arr) {
-    if (func(arr[k])) {
-      retObj[k] = arr[k]
+    if (!Object.prototype.hasOwnProperty.call(arr, k)) {
+      continue
+    }
+    const value = (arr as { [key: string]: T })[k] as T
+    if (callback(value)) {
+      if (Array.isArray(retObj)) {
+        retObj[Number(k)] = value
+      } else {
+        retObj[k] = value
+      }
     }
   }
 

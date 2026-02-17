@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function array_unique(inputArr: any[] | Record<string, any>): Record<string, any> | false {
+export function array_unique(inputArr: unknown[] | { [key: string]: unknown }): { [key: string]: unknown } | false {
   //  discuss at: https://locutus.io/php/array_unique/
   // original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)
   //    input by: duncan
@@ -17,14 +16,14 @@ export function array_unique(inputArr: any[] | Record<string, any>): Record<stri
   //   returns 2: {a: 'green', 0: 'red', 1: 'blue'}
 
   let key = ''
-  const tmpArr2: Record<string, any> = {}
-  let val = ''
+  const tmpArr2: { [key: string]: unknown } = {}
+  let val: unknown
 
-  const _arraySearch = function (needle: any, haystack: any) {
+  const _arraySearch = function (needle: unknown, haystack: { [key: string]: unknown }): string | false {
     let fkey = ''
     for (fkey in haystack) {
-      if (haystack.hasOwnProperty(fkey)) {
-        if (haystack[fkey] + '' === needle + '') {
+      if (Object.prototype.hasOwnProperty.call(haystack, fkey)) {
+        if (String(haystack[fkey]) === String(needle)) {
           return fkey
         }
       }
@@ -33,8 +32,8 @@ export function array_unique(inputArr: any[] | Record<string, any>): Record<stri
   }
 
   for (key in inputArr) {
-    if (inputArr.hasOwnProperty(key)) {
-      val = inputArr[key]
+    if (Object.prototype.hasOwnProperty.call(inputArr, key)) {
+      val = (inputArr as { [key: string]: unknown })[key]
       if (_arraySearch(val, tmpArr2) === false) {
         tmpArr2[key] = val
       }

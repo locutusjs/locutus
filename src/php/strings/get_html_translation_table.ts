@@ -1,5 +1,7 @@
-// @ts-nocheck
-export function get_html_translation_table(table: string, quoteStyle: any): Record<string, any> {
+export function get_html_translation_table(
+  table: string | number = 'HTML_SPECIALCHARS',
+  quoteStyle: string | number = 'ENT_COMPAT',
+): Record<string, string> {
   //  discuss at: https://locutus.io/php/get_html_translation_table/
   // original by: Philip Peterson
   //  revised by: Kevin van Zonneveld (https://kvz.io)
@@ -20,13 +22,13 @@ export function get_html_translation_table(table: string, quoteStyle: any): Reco
   //   example 1: get_html_translation_table('HTML_SPECIALCHARS')
   //   returns 1: {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
 
-  const entities: Record<string, any> = {}
-  const hashMap: Record<string, any> = {}
-  let decimal
-  const constMappingTable: Record<string, any> = {}
-  const constMappingQuoteStyle: Record<string, any> = {}
-  let useTable: Record<string, any> = {}
-  let useQuoteStyle: Record<string, any> = {}
+  const entities: { [key: string]: string } = {}
+  const hashMap: { [key: string]: string } = {}
+  let decimal = ''
+  const constMappingTable: { [key: number]: string } = {}
+  const constMappingQuoteStyle: { [key: number]: string } = {}
+  let useTable = ''
+  let useQuoteStyle = ''
   // Translate arguments
   constMappingTable[0] = 'HTML_SPECIALCHARS'
   constMappingTable[1] = 'HTML_ENTITIES'
@@ -34,12 +36,16 @@ export function get_html_translation_table(table: string, quoteStyle: any): Reco
   constMappingQuoteStyle[2] = 'ENT_COMPAT'
   constMappingQuoteStyle[3] = 'ENT_QUOTES'
 
-  useTable = !isNaN(table) ? constMappingTable[table] : table ? table.toUpperCase() : 'HTML_SPECIALCHARS'
+  useTable = !isNaN(Number(table))
+    ? (constMappingTable[Number(table)] ?? 'HTML_SPECIALCHARS')
+    : table
+      ? String(table).toUpperCase()
+      : 'HTML_SPECIALCHARS'
 
-  useQuoteStyle = !isNaN(quoteStyle)
-    ? constMappingQuoteStyle[quoteStyle]
+  useQuoteStyle = !isNaN(Number(quoteStyle))
+    ? (constMappingQuoteStyle[Number(quoteStyle)] ?? 'ENT_COMPAT')
     : quoteStyle
-      ? quoteStyle.toUpperCase()
+      ? String(quoteStyle).toUpperCase()
       : 'ENT_COMPAT'
 
   if (useTable !== 'HTML_SPECIALCHARS' && useTable !== 'HTML_ENTITIES') {
@@ -157,8 +163,8 @@ export function get_html_translation_table(table: string, quoteStyle: any): Reco
 
   // ascii decimals to real symbols
   for (decimal in entities) {
-    if (entities.hasOwnProperty(decimal)) {
-      hashMap[String.fromCharCode(decimal)] = entities[decimal]
+    if (Object.prototype.hasOwnProperty.call(entities, decimal)) {
+      hashMap[String.fromCharCode(Number(decimal))] = entities[decimal] ?? ''
     }
   }
 
