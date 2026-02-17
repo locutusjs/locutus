@@ -1,5 +1,5 @@
 // @ts-nocheck
-export function array_sum(array: any[]): number {
+export function array_sum(array: unknown[]): number {
   //  discuss at: https://locutus.io/php/array_sum/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Nate

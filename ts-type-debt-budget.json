@@ -1,6 +1,6 @@
 {
   "tsNoCheckFileBudget": 157,
-  "explicitAnyBudget": 191,
+  "explicitAnyBudget": 143,
   "asAnyBudget": 0,
   "nonNullAssertionBudget": 3,
   "recordStringUnknownBudget": 78,

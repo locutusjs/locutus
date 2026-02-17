@@ -1,5 +1,5 @@
 // @ts-nocheck
-export function array_diff_ukey(arr1: any): Record<string, any> {
+export function array_diff_ukey(arr1: unknown): { [key: string]: unknown } {
   //  discuss at: https://locutus.io/php/array_diff_ukey/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {blue: 1, red: 2, green: 3, purple: 4}
@@ -7,13 +7,13 @@ export function array_diff_ukey(arr1: any): Record<string, any> {
   //   example 1: array_diff_ukey($array1, $array2, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })
   //   returns 1: {red: 2, purple: 4}
 
-  const retArr: Record<string, any> = {}
+  const retArr: { [key: string]: unknown } = {}
   const arglm1 = arguments.length - 1
   // var arglm2 = arglm1 - 1
   let cb = arguments[arglm1]
   let k1 = ''
   let i = 1
-  let arr: Record<string, any> = {}
+  let arr: { [key: string]: unknown } = {}
   let k = ''
 
   const $global = typeof window !== 'undefined' ? window : global

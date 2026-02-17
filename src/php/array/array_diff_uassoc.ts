@@ -1,5 +1,5 @@
 // @ts-nocheck
-export function array_diff_uassoc(arr1: any): Record<string, any> {
+export function array_diff_uassoc(arr1: unknown): { [key: string]: unknown } {
   //  discuss at: https://locutus.io/php/array_diff_uassoc/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
@@ -7,10 +7,10 @@ export function array_diff_uassoc(arr1: any): Record<string, any> {
   //   example 1: array_diff_uassoc($array1, $array2, function (key1, key2) { return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)) })
   //   returns 1: {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
 
-  const retArr: Record<string, any> = {}
+  const retArr: { [key: string]: unknown } = {}
   const arglm1 = arguments.length - 1
   let cb = arguments[arglm1]
-  let arr: Record<string, any> = {}
+  let arr: { [key: string]: unknown } = {}
   let i = 1
   let k1 = ''
   let k = ''

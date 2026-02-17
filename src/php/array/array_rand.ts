@@ -1,5 +1,5 @@
 // @ts-nocheck
-export function array_rand(array: any[], num: number): string {
+export function array_rand(array: unknown[], num: number): string {
   //       discuss at: https://locutus.io/php/array_rand/
   //      original by: Waldo Malqui Silva (https://waldo.malqui.info)
   // reimplemented by: Rafał Kukawski

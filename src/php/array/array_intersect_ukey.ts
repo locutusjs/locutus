@@ -1,5 +1,5 @@
 // @ts-nocheck
-export function array_intersect_ukey(arr1: any): any {
+export function array_intersect_ukey(arr1: unknown): unknown {
   //  discuss at: https://locutus.io/php/array_intersect_ukey/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {blue: 1, red: 2, green: 3, purple: 4}
@@ -7,7 +7,7 @@ export function array_intersect_ukey(arr1: any): any {
   //   example 1: array_intersect_ukey ($array1, $array2, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })
   //   returns 1: {blue: 1, green: 3}
 
-  const retArr: Record<string, any> = {}
+  const retArr: { [key: string]: unknown } = {}
   const arglm1 = arguments.length - 1
   const arglm2 = arglm1 - 1
   let cb = arguments[arglm1]
@@ -15,7 +15,7 @@ export function array_intersect_ukey(arr1: any): any {
   let k1 = ''
   let i = 1
   let k = ''
-  let arr: Record<string, any> = {}
+  let arr: { [key: string]: unknown } = {}
   const $global = typeof window !== 'undefined' ? window : global
 
   cb = typeof cb === 'string' ? $global[cb] : Array.isArray(cb) ? $global[cb[0]][cb[1]] : cb

@@ -1,5 +1,5 @@
 // @ts-nocheck
-export function array_uintersect(arr1: any): Record<string, any> {
+export function array_uintersect(arr1: unknown): { [key: string]: unknown } {
   //  discuss at: https://locutus.io/php/array_uintersect/
   // original by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Demosthenes Koptsis
@@ -8,13 +8,13 @@ export function array_uintersect(arr1: any): Record<string, any> {
   //   example 1: array_uintersect($array1, $array2, function( f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 === string2) return 0; return -1;})
   //   returns 1: {a: 'green', b: 'brown', 0: 'red'}
 
-  const retArr: Record<string, any> = {}
+  const retArr: { [key: string]: unknown } = {}
   const arglm1 = arguments.length - 1
   const arglm2 = arglm1 - 1
   let cb = arguments[arglm1]
   let k1 = ''
   let i = 1
-  let arr: Record<string, any> = {}
+  let arr: { [key: string]: unknown } = {}
   let k = ''
 
   const $global = typeof window !== 'undefined' ? window : global

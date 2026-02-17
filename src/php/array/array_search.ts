@@ -1,5 +1,5 @@
 // @ts-nocheck
-export function array_search(needle: string, haystack: Record<string, any>, argStrict: any): string | false {
+export function array_search(needle: string, haystack: { [key: string]: unknown }, argStrict: unknown): string | false {
   //      discuss at: https://locutus.io/php/array_search/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

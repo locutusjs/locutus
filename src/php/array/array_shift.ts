@@ -1,5 +1,5 @@
 // @ts-nocheck
-export function array_shift(inputArr: any[]): string {
+export function array_shift(inputArr: unknown[]): string {
   //  discuss at: https://locutus.io/php/array_shift/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Martijn Wieringa

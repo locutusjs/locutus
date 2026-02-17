@@ -2,11 +2,11 @@
 import { is_int as isInt } from '../var/is_int.ts'
 
 export function array_slice(
-  arr: any[],
+  arr: unknown[],
   offst: number,
   lgth: number,
   preserveKeys?: boolean,
-): any[] | Record<string, any> {
+): unknown[] | { [key: string]: unknown } {
   //      discuss at: https://locutus.io/php/array_slice/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -29,7 +29,7 @@ export function array_slice(
   if (!Array.isArray(arr) || (preserveKeys && offst !== 0)) {
     // Assoc. array as input or if required as output
     let lgt = 0
-    const newAssoc: Record<string, any> = {}
+    const newAssoc: { [key: string]: unknown } = {}
     for (key in arr) {
       lgt += 1
       newAssoc[key] = arr[key]
@@ -39,7 +39,7 @@ export function array_slice(
     offst = offst < 0 ? lgt + offst : offst
     lgth = lgth === undefined ? lgt : lgth < 0 ? lgt + lgth - offst : lgth
 
-    const assoc: Record<string, any> = {}
+    const assoc: { [key: string]: unknown } = {}
     let start = false
     let it = -1
     let arrlgth = 0
