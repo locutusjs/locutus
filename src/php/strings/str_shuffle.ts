@@ -1,4 +1,4 @@
-export function str_shuffle(str: string): any {
+export function str_shuffle(str: string | null): string {
   //  discuss at: https://locutus.io/php/str_shuffle/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $shuffled = str_shuffle("abcdef")

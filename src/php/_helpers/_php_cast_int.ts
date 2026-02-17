@@ -1,4 +1,4 @@
-export function _php_cast_int(value: any): number {
+export function _php_cast_int(value: unknown): number {
   // original by: Rafał Kukawski
   //   example 1: _php_cast_int(false)
   //   returns 1: 0
@@ -27,26 +27,22 @@ export function _php_cast_int(value: any): number {
   //  example 13: _php_cast_int(0x200000001)
   //  returns 13: 8589934593
 
-  const type = typeof value
+  if (typeof value === 'number') {
+    if (isNaN(value) || !isFinite(value)) {
+      // from PHP 7, NaN and Infinity are casted to 0
+      return 0
+    }
 
-  switch (type) {
-    case 'number':
-      if (isNaN(value) || !isFinite(value)) {
-        // from PHP 7, NaN and Infinity are casted to 0
-        return 0
-      }
-
-      return value < 0 ? Math.ceil(value) : Math.floor(value)
-    case 'string':
-      return parseInt(value, 10) || 0
-    case 'boolean':
-    // fall through
-    default:
-      // Behaviour for types other than float, string, boolean
-      // is undefined and can change any time.
-      // To not invent complex logic
-      // that mimics PHP 7.0 behaviour
-      // casting value->bool->number is used
-      return +!!value
+    return value < 0 ? Math.ceil(value) : Math.floor(value)
   }
+  if (typeof value === 'string') {
+    return parseInt(value, 10) || 0
+  }
+
+  // Behaviour for types other than float, string, boolean
+  // is undefined and can change any time.
+  // To not invent complex logic
+  // that mimics PHP 7.0 behaviour
+  // casting value->bool->number is used
+  return +!!value
 }

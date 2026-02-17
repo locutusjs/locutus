@@ -1,4 +1,4 @@
-export function is_scalar(mixedVar: number | Record<string, any>): boolean {
+export function is_scalar(mixedVar: unknown): boolean {
   //  discuss at: https://locutus.io/php/is_scalar/
   // original by: Paulo Freitas
   //   example 1: is_scalar(186.31)

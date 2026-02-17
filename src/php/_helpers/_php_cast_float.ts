@@ -1,6 +1,6 @@
 import { _php_cast_int as __php_cast_int } from './_php_cast_int.ts'
 
-export function _php_cast_float(value: any): number {
+export function _php_cast_float(value: unknown): number {
   // original by: Rafał Kukawski
   //   example 1: _php_cast_float(false)
   //   returns 1: 0
@@ -31,18 +31,14 @@ export function _php_cast_float(value: any): number {
   //  example 14: _php_cast_float('3.14abc')
   //  returns 14: 3.14
 
-  const type = typeof value
-
-  switch (type) {
-    case 'number':
-      return value
-    case 'string':
-      return parseFloat(value) || 0
-    case 'boolean':
-    // fall through
-    default:
-      // PHP docs state, that for types other than string
-      // conversion is {input type}->int->float
-      return __php_cast_int(value)
+  if (typeof value === 'number') {
+    return value
   }
+  if (typeof value === 'string') {
+    return parseFloat(value) || 0
+  }
+
+  // PHP docs state, that for types other than string
+  // conversion is {input type}->int->float
+  return __php_cast_int(value)
 }

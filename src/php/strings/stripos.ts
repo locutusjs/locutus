@@ -1,4 +1,4 @@
-export function stripos(fHaystack: string, fNeedle: string, fOffset: any): number | false {
+export function stripos(fHaystack: string, fNeedle: string, fOffset?: number): number | false {
   //      discuss at: https://locutus.io/php/stripos/
   // parity verified: PHP 8.3
   //     original by: Martijn Wieringa

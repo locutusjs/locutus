@@ -1,4 +1,4 @@
-export function is_object(mixedVar: string | Record<string, any> | null): boolean | false {
+export function is_object(mixedVar: unknown): boolean {
   //  discuss at: https://locutus.io/php/is_object/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Legaev Andrey

@@ -3,7 +3,7 @@ export function substr_compare(
   str: string,
   offset: number,
   length: number,
-  caseInsensitivity: any,
+  caseInsensitivity?: boolean,
 ): number | false {
   //      discuss at: https://locutus.io/php/substr_compare/
   // parity verified: PHP 8.3
