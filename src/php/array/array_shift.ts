@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function array_shift(inputArr: unknown[]): string {
+export function array_shift(inputArr: unknown[]): unknown | null {
   //  discuss at: https://locutus.io/php/array_shift/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Martijn Wieringa
@@ -13,4 +12,6 @@ export function array_shift(inputArr: unknown[]): string {
   if (inputArr.length > 0) {
     return inputArr.shift()
   }
+
+  return null
 }

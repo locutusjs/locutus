@@ -1,5 +1,8 @@
-// @ts-nocheck
-export function array_search(needle: string, haystack: { [key: string]: unknown }, argStrict: unknown): string | false {
+export function array_search(
+  needle: unknown,
+  haystack: { [key: string]: unknown },
+  argStrict?: unknown,
+): string | false {
   //      discuss at: https://locutus.io/php/array_search/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -12,10 +15,10 @@ export function array_search(needle: string, haystack: { [key: string]: unknown 
   //       returns 2: 'a'
 
   const strict = !!argStrict
-  let key = ''
 
-  if (typeof needle === 'object' && needle.exec) {
+  if (needle instanceof RegExp) {
     // Duck-type for RegExp
+    let regex = needle
     if (!strict) {
       // Let's consider case sensitive searches as strict
       const flags =
@@ -24,11 +27,11 @@ export function array_search(needle: string, haystack: { [key: string]: unknown 
         (needle.multiline ? 'm' : '') +
         // sticky is FF only
         (needle.sticky ? 'y' : '')
-      needle = new RegExp(needle.source, flags)
+      regex = new RegExp(needle.source, flags)
     }
-    for (key in haystack) {
-      if (haystack.hasOwnProperty(key)) {
-        if (needle.test(haystack[key])) {
+    for (const key in haystack) {
+      if (Object.prototype.hasOwnProperty.call(haystack, key)) {
+        if (regex.test(String(haystack[key]))) {
           return key
         }
       }
@@ -36,8 +39,8 @@ export function array_search(needle: string, haystack: { [key: string]: unknown 
     return false
   }
 
-  for (key in haystack) {
-    if (haystack.hasOwnProperty(key)) {
+  for (const key in haystack) {
+    if (Object.prototype.hasOwnProperty.call(haystack, key)) {
       // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
       if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
         return key

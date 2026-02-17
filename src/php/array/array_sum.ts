@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function array_sum(array: unknown[]): number {
+export function array_sum(array: unknown[] | { [key: string]: unknown } | null): number | null {
   //  discuss at: https://locutus.io/php/array_sum/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Nate
@@ -14,17 +13,18 @@ export function array_sum(array: unknown[]): number {
   //   example 2: array_sum($total)
   //   returns 2: 67.2
 
-  let key
   let sum = 0
 
   // input sanitation
-  if (typeof array !== 'object') {
+  if (array === null || typeof array !== 'object') {
     return null
   }
+  const values = array as { [key: string]: unknown }
 
-  for (key in array) {
-    if (!isNaN(parseFloat(array[key]))) {
-      sum += parseFloat(array[key])
+  for (const key in values) {
+    const parsed = parseFloat(String(values[key]))
+    if (!isNaN(parsed)) {
+      sum += parsed
     }
   }
 

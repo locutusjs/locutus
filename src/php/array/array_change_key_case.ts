@@ -1,6 +1,5 @@
-// @ts-nocheck
 export function array_change_key_case(
-  array: number | unknown[] | { [key: string]: unknown },
+  array: number | unknown[] | { [key: string]: unknown } | null,
   cs?: string | number,
 ): boolean | unknown[] | { [key: string]: unknown } | false {
   //  discuss at: https://locutus.io/php/array_change_key_case/
@@ -20,8 +19,7 @@ export function array_change_key_case(
   //   example 6: array_change_key_case({ FuBaR: 42 }, 2)
   //   returns 6: {"FUBAR": 42}
 
-  let caseFnc
-  let key
+  let caseFnc: 'toLowerCase' | 'toUpperCase'
   const tmpArr: { [key: string]: unknown } = {}
   if (Array.isArray(array)) {
     return array
@@ -29,8 +27,9 @@ export function array_change_key_case(
 
   if (array && typeof array === 'object') {
     caseFnc = !cs || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase'
-    for (key in array) {
-      tmpArr[key[caseFnc]()] = array[key]
+    const source = array as { [key: string]: unknown }
+    for (const key in source) {
+      tmpArr[key[caseFnc]()] = source[key]
     }
     return tmpArr
   }

@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function array_product(input: unknown[]): number {
+export function array_product(input: unknown): number | null {
   //      discuss at: https://locutus.io/php/array_product/
   // parity verified: PHP 8.3
   //     original by: Waldo Malqui Silva (https://waldo.malqui.info)
@@ -16,7 +15,8 @@ export function array_product(input: unknown[]): number {
 
   il = input.length
   while (idx < il) {
-    product *= !isNaN(input[idx]) ? input[idx] : 0
+    const numeric = Number(input[idx])
+    product *= Number.isNaN(numeric) ? 0 : numeric
     idx++
   }
 

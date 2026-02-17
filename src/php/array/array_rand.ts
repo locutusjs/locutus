@@ -1,5 +1,7 @@
-// @ts-nocheck
-export function array_rand(array: unknown[], num: number): string {
+export function array_rand(
+  array: unknown[] | { [key: string]: unknown },
+  num?: number | null,
+): string | string[] | null {
   //       discuss at: https://locutus.io/php/array_rand/
   //      original by: Waldo Malqui Silva (https://waldo.malqui.info)
   // reimplemented by: Rafał Kukawski
@@ -8,7 +10,7 @@ export function array_rand(array: unknown[], num: number): string {
 
   // By using Object.keys we support both, arrays and objects
   // which phpjs wants to support
-  const keys = Object.keys(array)
+  const keys = Object.keys(array as { [key: string]: unknown })
 
   if (typeof num === 'undefined' || num === null) {
     num = 1
@@ -25,9 +27,13 @@ export function array_rand(array: unknown[], num: number): string {
     const j = Math.floor(Math.random() * (i + 1)) // 0 ≤ j ≤ i
 
     const tmp = keys[j]
-    keys[j] = keys[i]
+    const current = keys[i]
+    if (tmp === undefined || current === undefined) {
+      return null
+    }
+    keys[j] = current
     keys[i] = tmp
   }
 
-  return num === 1 ? keys[0] : keys.slice(0, num)
+  return num === 1 ? (keys[0] ?? null) : keys.slice(0, num)
 }

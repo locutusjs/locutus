@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function array_count_values(array) {
+export function array_count_values(array: unknown): { [key: string]: number } {
   //      discuss at: https://locutus.io/php/array_count_values/
   // parity verified: PHP 8.3
   //     original by: Ates Goral (https://magnetiq.com)
@@ -15,13 +14,12 @@ export function array_count_values(array) {
   //       example 3: array_count_values([ true, 4.2, 42, "fubar" ])
   //       returns 3: {42:1, "fubar":1}
 
-  const tmpArr = {}
-  let key = ''
+  const tmpArr: { [key: string]: number } = {}
   let t = ''
 
-  const _getType = function (obj) {
+  const _getType = function (obj: unknown): string {
     // Objects are php associative arrays.
-    let t = typeof obj
+    let t: string = typeof obj
     t = t.toLowerCase()
     if (t === 'object') {
       t = 'array'
@@ -29,27 +27,32 @@ export function array_count_values(array) {
     return t
   }
 
-  const _countValue = function (tmpArr, value) {
+  const _countValue = function (tmpArr: { [key: string]: number }, value: unknown): void {
+    let normalized = ''
     if (typeof value === 'number') {
       if (Math.floor(value) !== value) {
         return
       }
+      normalized = String(value)
     } else if (typeof value !== 'string') {
       return
+    } else {
+      normalized = value
     }
 
-    if (value in tmpArr && tmpArr.hasOwnProperty(value)) {
-      ++tmpArr[value]
+    if (normalized in tmpArr && Object.prototype.hasOwnProperty.call(tmpArr, normalized)) {
+      tmpArr[normalized] = (tmpArr[normalized] ?? 0) + 1
     } else {
-      tmpArr[value] = 1
+      tmpArr[normalized] = 1
     }
   }
 
   t = _getType(array)
   if (t === 'array') {
-    for (key in array) {
-      if (array.hasOwnProperty(key)) {
-        _countValue.call(this, tmpArr, array[key])
+    const source = array as { [key: string]: unknown }
+    for (const key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        _countValue(tmpArr, source[key])
       }
     }
   }
