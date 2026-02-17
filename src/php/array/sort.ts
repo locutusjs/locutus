@@ -1,4 +1,3 @@
-import { getLocutusPhpContext } from '../_helpers/_locutus.ts'
 import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
 
 export function sort(inputArr: Record<string, unknown>, sortFlags?: string): boolean | Record<string, unknown> {
@@ -38,7 +37,18 @@ export function sort(inputArr: Record<string, unknown>, sortFlags?: string): boo
   let sortByReference = false
   let populateArr: Record<string, unknown> = {}
 
-  const { ini, locales } = getLocutusPhpContext()
+  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
+    $locutus: {
+      php: {
+        locales: Record<string, { sorting: (a: unknown, b: unknown) => number }>
+        ini?: Record<string, { local_value?: unknown }>
+      }
+    }
+  }
+  $global.$locutus = $global.$locutus || ({} as typeof $global.$locutus)
+  const $locutus = $global.$locutus
+  $locutus.php = $locutus.php || ({} as typeof $locutus.php)
+  $locutus.php.locales = $locutus.php.locales || {}
 
   const regularSortAsc = function (a: any, b: any) {
     return a > b ? 1 : a < b ? -1 : 0
@@ -52,7 +62,7 @@ export function sort(inputArr: Record<string, unknown>, sortFlags?: string): boo
     case 'SORT_LOCALE_STRING': {
       // compare items as strings, based on the current locale
       // (set with i18n_loc_set_default() as of PHP6)
-      const loc = locales[i18nlgd()]
+      const loc = $locutus.php.locales[i18nlgd()]
 
       if (loc && loc.sorting) {
         // if sorting exists on locale object, use it
@@ -76,7 +86,7 @@ export function sort(inputArr: Record<string, unknown>, sortFlags?: string): boo
       break
   }
 
-  const iniVal = String(ini['locutus.sortByReference']?.local_value ?? '') || 'on'
+  const iniVal = String($locutus.php.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

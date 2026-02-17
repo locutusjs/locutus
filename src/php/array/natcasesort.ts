@@ -1,4 +1,3 @@
-import { getLocutusPhpContext } from '../_helpers/_locutus.ts'
 import { strnatcasecmp } from '../strings/strnatcasecmp.ts'
 
 export function natcasesort(inputArr: Record<string, unknown>): boolean | Record<string, unknown> {
@@ -29,8 +28,12 @@ export function natcasesort(inputArr: Record<string, unknown>): boolean | Record
   let sortByReference = false
   let populateArr: Record<string, unknown> = {}
 
-  const { ini } = getLocutusPhpContext()
-  const iniVal = String(ini['locutus.sortByReference']?.local_value ?? '') || 'on'
+  const $loc = (
+    globalThis as typeof globalThis & {
+      $locutus?: { php?: { ini?: Record<string, { local_value?: unknown }> } }
+    }
+  ).$locutus
+  const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

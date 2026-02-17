@@ -1,5 +1,3 @@
-import { getLocutusPhpContext } from '../_helpers/_locutus.ts'
-
 export function key(arr: unknown[] | Record<string, unknown>): string | number | false {
   //      discuss at: https://locutus.io/php/key/
   // parity verified: PHP 8.3
@@ -11,7 +9,17 @@ export function key(arr: unknown[] | Record<string, unknown>): string | number |
   //       example 1: key($array)
   //       returns 1: 'fruit1'
 
-  const { pointers } = getLocutusPhpContext()
+  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
+    $locutus?: {
+      php?: {
+        pointers?: unknown[]
+      }
+    }
+  }
+  $global.$locutus = $global.$locutus || {}
+  $global.$locutus.php = $global.$locutus.php || {}
+  $global.$locutus.php.pointers = $global.$locutus.php.pointers || []
+  const pointers = $global.$locutus.php.pointers
 
   const indexOf = (list: unknown[], value: unknown): number => {
     for (let i = 0, length = list.length; i < length; i++) {

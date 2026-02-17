@@ -1,5 +1,3 @@
-import { getLocutusPhpContext } from '../_helpers/_locutus.ts'
-
 export function current(arr: unknown[] | Record<string, unknown>): unknown | false {
   //      discuss at: https://locutus.io/php/current/
   // parity verified: PHP 8.3
@@ -9,7 +7,17 @@ export function current(arr: unknown[] | Record<string, unknown>): unknown | fal
   //       example 1: current($transport)
   //       returns 1: 'foot'
 
-  const { pointers } = getLocutusPhpContext()
+  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
+    $locutus?: {
+      php?: {
+        pointers?: unknown[]
+      }
+    }
+  }
+  $global.$locutus = $global.$locutus || {}
+  $global.$locutus.php = $global.$locutus.php || {}
+  $global.$locutus.php.pointers = $global.$locutus.php.pointers || []
+  const pointers = $global.$locutus.php.pointers
 
   const indexOf = (list: unknown[], value: unknown): number => {
     for (let i = 0, length = list.length; i < length; i++) {
