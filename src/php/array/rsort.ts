@@ -1,3 +1,4 @@
+import { getLocutusPhpContext } from '../_helpers/_locutus.ts'
 import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
 import { strnatcmp } from '../strings/strnatcmp.ts'
 
@@ -38,18 +39,7 @@ export function rsort(inputArr: Record<string, unknown>, sortFlags?: string): bo
   let sortByReference = false
   let populateArr: Record<string, unknown> = {}
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus: {
-      php: {
-        locales: Record<string, { sorting: (a: unknown, b: unknown) => number }>
-        ini?: Record<string, { local_value?: unknown }>
-      }
-    }
-  }
-  $global.$locutus = $global.$locutus || ({} as typeof $global.$locutus)
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || ({} as typeof $locutus.php)
-  $locutus.php.locales = $locutus.php.locales || {}
+  const { ini, locales } = getLocutusPhpContext()
 
   const regularSortDesc = function (a: any, b: any) {
     return a < b ? 1 : a > b ? -1 : 0
@@ -66,7 +56,7 @@ export function rsort(inputArr: Record<string, unknown>, sortFlags?: string): bo
       // compare items as strings, based on the current locale
       // (set with i18n_loc_set_default() as of PHP6)
       const loc = i18nlgd()
-      const locale = $locutus.php.locales[loc]
+      const locale = locales[loc]
       if (locale?.sorting) {
         sorter = locale.sorting
       }
@@ -87,7 +77,7 @@ export function rsort(inputArr: Record<string, unknown>, sortFlags?: string): bo
       break
   }
 
-  const iniVal = String($locutus.php.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
+  const iniVal = String(ini['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
   const valArr: unknown[] = []

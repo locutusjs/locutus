@@ -1,3 +1,5 @@
+import { getLocutusPhpContext } from '../_helpers/_locutus.ts'
+
 interface EachResultObject {
   0: string | number
   1: unknown
@@ -15,13 +17,7 @@ export function each(arr: unknown[] | Record<string, unknown>): EachResult {
   //   example 1: each({a: "apple", b: "balloon"})
   //   returns 1: {0: "a", 1: "apple", key: "a", value: "apple"}
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus?: { php?: { pointers?: unknown[] } }
-  }
-  $global.$locutus = $global.$locutus || {}
-  $global.$locutus.php = $global.$locutus.php || {}
-  $global.$locutus.php.pointers = $global.$locutus.php.pointers || []
-  const pointers = $global.$locutus.php.pointers
+  const { pointers } = getLocutusPhpContext()
 
   const indexOf = (list: unknown[], value: unknown): number => {
     for (let i = 0, length = list.length; i < length; i++) {

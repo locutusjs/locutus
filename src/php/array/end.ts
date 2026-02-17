@@ -1,3 +1,5 @@
+import { getLocutusPhpContext } from '../_helpers/_locutus.ts'
+
 export function end(arr: unknown[] | Record<string, unknown>): unknown | false {
   //  discuss at: https://locutus.io/php/end/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -12,17 +14,7 @@ export function end(arr: unknown[] | Record<string, unknown>): unknown | false {
   //   example 2: end(['Kevin', 'van', 'Zonneveld'])
   //   returns 2: 'Zonneveld'
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus?: {
-      php?: {
-        pointers?: unknown[]
-      }
-    }
-  }
-  $global.$locutus = $global.$locutus || {}
-  $global.$locutus.php = $global.$locutus.php || {}
-  $global.$locutus.php.pointers = $global.$locutus.php.pointers || []
-  const pointers = $global.$locutus.php.pointers
+  const { pointers } = getLocutusPhpContext()
 
   const indexOf = (list: unknown[], value: unknown): number => {
     for (let i = 0, length = list.length; i < length; i++) {

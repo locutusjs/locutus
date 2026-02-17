@@ -1,3 +1,5 @@
+import { getLocutusPhpContext } from '../_helpers/_locutus.ts'
+
 export function shuffle(inputArr: Record<string, unknown>): boolean | Record<string, unknown> | unknown[] {
   //  discuss at: https://locutus.io/php/shuffle/
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
@@ -29,12 +31,8 @@ export function shuffle(inputArr: Record<string, unknown>): boolean | Record<str
     return 0.5 - Math.random()
   })
 
-  const $loc = (
-    globalThis as typeof globalThis & {
-      $locutus?: { php?: { ini?: Record<string, { local_value?: unknown }> } }
-    }
-  ).$locutus
-  const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
+  const { ini } = getLocutusPhpContext()
+  const iniVal = String(ini['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 
