@@ -46,7 +46,8 @@
     "playground:start": "cd test/browser && node server.js",
     "test:languages:noskip": "yarn build:tests:noskip && vitest run",
     "test:languages": "yarn build:tests && vitest run",
-    "test:module": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON test/module/module.ts",
+    "test:module:smoke": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON test/module/module.ts",
+    "test:module": "npm-run-all --serial build:dist test:module:smoke",
     "test:parity": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON test/parity/index.ts",
     "test:parity:php": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON test/parity/index.ts php",
     "test:util": "vitest run test/util/",
@@ -64,7 +65,6 @@
     "budo": "11.8.4",
     "cross-env": "10",
     "debug": "^4.4.3",
-    "esprima": "4.0.1",
     "globby": "4.1.0",
     "indent-string": "2.1.0",
     "js-yaml": "4.1.1",
@@ -81,7 +81,7 @@
   },
   "packageManager": "yarn@4.12.0",
   "engines": {
-    "node": ">= 10",
+    "node": ">= 14",
     "yarn": ">= 1"
   },
   "readmeFilename": "README.md"

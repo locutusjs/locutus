@@ -50,6 +50,10 @@ export function sort(inputArr: Record<string, unknown>, sortFlags?: string): boo
   $locutus.php = $locutus.php || ({} as typeof $locutus.php)
   $locutus.php.locales = $locutus.php.locales || {}
 
+  const regularSortAsc = function (a: any, b: any) {
+    return a > b ? 1 : a < b ? -1 : 0
+  }
+
   switch (sortFlags) {
     case 'SORT_STRING':
       // compare items as strings
@@ -75,23 +79,10 @@ export function sort(inputArr: Record<string, unknown>, sortFlags?: string): boo
       }
       break
     case 'SORT_REGULAR':
+      sorter = regularSortAsc
+      break
     default:
-      sorter = function (a, b) {
-        const aFloat = parseFloat(String(a))
-        const bFloat = parseFloat(String(b))
-        const aNumeric = aFloat + '' === a
-        const bNumeric = bFloat + '' === b
-
-        if (aNumeric && bNumeric) {
-          return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0
-        } else if (aNumeric && !bNumeric) {
-          return 1
-        } else if (!aNumeric && bNumeric) {
-          return -1
-        }
-
-        return String(a) > String(b) ? 1 : String(a) < String(b) ? -1 : 0
-      }
+      sorter = regularSortAsc
       break
   }
 

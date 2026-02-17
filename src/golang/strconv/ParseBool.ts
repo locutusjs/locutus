@@ -1,5 +1,5 @@
 // @ts-nocheck
-export function ParseBool(str: string): boolean {
+export function ParseBool(str: string): [boolean, Error | null] {
   //      discuss at: https://locutus.io/golang/strconv/ParseBool
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

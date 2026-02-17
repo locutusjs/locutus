@@ -1,4 +1,4 @@
-export function echo() {
+export function echo(...args: unknown[]) {
   //      discuss at: https://locutus.io/php/echo/
   // parity verified: PHP 8.3
   //     original by: Philip Peterson
@@ -25,6 +25,5 @@ export function echo() {
   //       example 1: echo('Hello world')
   //       returns 1: undefined
 
-  const args = Array.prototype.slice.call(arguments)
   return console.log(args.join(' '))
 }

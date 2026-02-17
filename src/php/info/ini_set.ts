@@ -30,9 +30,9 @@ export function ini_set(varname, newvalue) {
   const _setArr = function (oldval) {
     // Although these are set individually, they are all accumulated
     if (typeof oldval === 'undefined') {
-      $locutus.ini[varname].local_value = []
+      $locutus.php.ini[varname].local_value = []
     }
-    $locutus.ini[varname].local_value.push(newvalue)
+    $locutus.php.ini[varname].local_value.push(newvalue)
   }
 
   switch (varname) {

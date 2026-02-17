@@ -4,7 +4,10 @@
 // This file tests that the library works when imported via ESM
 export {}
 
+import { createRequire } from 'node:module'
+
 const effectiveness = 'futile'
+const require = createRequire(import.meta.url)
 
 // Test ESM import chain at various depths
 const locutus = await import('../../src/index.ts')
@@ -40,3 +43,40 @@ console.log(mathMod.acos(0.3))
 
 strings.echo(php.url.parse_url('mysql://kevin:abcd1234@example.com/databasename').pass)
 strings.echo(php.datetime.strtotime('2 januari 2012, 11:12:13 GMT'))
+
+// Smoke-test published CommonJS shape from dist
+const distLocutus = require('../../dist/index.js')
+const distPhpStrings = require('../../dist/php/strings/index.js')
+const distGolangStrings = require('../../dist/golang/strings/index.js')
+const distSprintf = require('../../dist/php/strings/sprintf.js')
+const distCompare = require('../../dist/golang/strings/Compare.js')
+const distIndex = require('../../dist/golang/strings/Index2.js')
+const distLegacyIndex = require('../../dist/golang/strings/Index.js')
+
+if (typeof distSprintf !== 'function') {
+  throw new Error('dist/php/strings/sprintf.js should export a function')
+}
+if (distSprintf('Resistance is %s', effectiveness) !== 'Resistance is futile') {
+  throw new Error('dist/php/strings/sprintf.js deep require should be callable')
+}
+if (typeof distPhpStrings.sprintf !== 'function') {
+  throw new Error('dist/php/strings/index.js should expose strings.sprintf')
+}
+if (typeof distCompare !== 'function') {
+  throw new Error('dist/golang/strings/Compare.js should export a function')
+}
+if (typeof distIndex !== 'function') {
+  throw new Error('dist/golang/strings/Index2.js should export a function')
+}
+if (typeof distLegacyIndex !== 'function') {
+  throw new Error('dist/golang/strings/Index.js should export a function')
+}
+if (typeof distGolangStrings.Compare !== 'function') {
+  throw new Error('dist/golang/strings/index.js should expose strings.Compare')
+}
+if (typeof distGolangStrings.Index !== 'function') {
+  throw new Error('dist/golang/strings/index.js should expose strings.Index')
+}
+if (typeof distLocutus.php?.strings?.sprintf !== 'function') {
+  throw new Error('dist/index.js should expose php.strings.sprintf')
+}

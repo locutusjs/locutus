@@ -450,6 +450,7 @@ class Util {
     let buf = '---' + '\n' + YAML.dump(funcData).trim() + '\n' + '---' + '\n'
 
     if (isTS) {
+      // website/source snippets are generated snapshots; refresh with `yarn injectweb` after signature changes.
       // Generate clean JS by stripping type annotations via TypeScript compiler
       const jsResult = ts.transpileModule(params.code, {
         compilerOptions: {

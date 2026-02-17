@@ -1,5 +1,5 @@
 // @ts-nocheck
-export function sprintf() {
+export function sprintf(format: string, ...args: unknown[]): string | false {
   //      discuss at: https://locutus.io/php/sprintf/
   // parity verified: PHP 8.3
   //     original by: Ash Searle (https://hexmen.com/blog/)
@@ -33,9 +33,8 @@ export function sprintf() {
   //       returns 9: '% 2'
 
   const regex = /%%|%(?:(\d+)\$)?((?:[-+#0 ]|'[\s\S])*)(\d+)?(?:\.(\d*))?([\s\S])/g
-  const args = arguments
-  let i = 0
-  const format = args[i++]
+  const callArgs = [format, ...args]
+  let i = 1
 
   const _pad = function (str: any, len: any, chr: any, leftJustify: any) {
     if (!chr) {
@@ -142,11 +141,11 @@ export function sprintf() {
       throw new Error('Argument number must be greater than zero')
     }
 
-    if (argIndex && +argIndex >= args.length) {
+    if (argIndex && +argIndex >= callArgs.length) {
       throw new Error('Too few arguments')
     }
 
-    value = argIndex ? args[+argIndex] : args[i++]
+    value = argIndex ? callArgs[+argIndex] : callArgs[i++]
 
     switch (specifier) {
       case '%':
