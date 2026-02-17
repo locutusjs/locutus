@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function array_keys(input, searchValue, argStrict) {
+export function array_keys(input: { [key: string]: unknown }, searchValue?: unknown, argStrict?: boolean): string[] {
   //      discuss at: https://locutus.io/php/array_keys/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -13,13 +12,12 @@ export function array_keys(input, searchValue, argStrict) {
   //       returns 1: [ 'firstname', 'surname' ]
 
   const search = typeof searchValue !== 'undefined'
-  const tmpArr = []
+  const tmpArr: string[] = []
   const strict = !!argStrict
   let include = true
-  let key = ''
 
-  for (key in input) {
-    if (input.hasOwnProperty(key)) {
+  for (const key in input) {
+    if (Object.prototype.hasOwnProperty.call(input, key)) {
       include = true
       if (search) {
         if (strict && input[key] !== searchValue) {

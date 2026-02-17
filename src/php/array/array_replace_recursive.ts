@@ -1,17 +1,13 @@
-// @ts-nocheck
-export function array_replace_recursive(arr) {
+export function array_replace_recursive(arr: unknown, ...replacements: unknown[]): unknown {
   //      discuss at: https://locutus.io/php/array_replace_recursive/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
   //       example 1: array_replace_recursive({'citrus' : ['orange'], 'berries' : ['blackberry', 'raspberry']}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']})
   //       returns 1: {citrus : ['pineapple'], berries : ['blueberry', 'raspberry']}
 
-  let i = 0
-  let p = ''
-  const argl = arguments.length
-  let retObj
+  let retObj: unknown[] | { [key: string]: unknown }
 
-  if (argl < 2) {
+  if (replacements.length < 1) {
     throw new Error('There should be at least 2 arguments passed to array_replace_recursive()')
   }
 
@@ -20,22 +16,29 @@ export function array_replace_recursive(arr) {
   // So we make a copy here, instead of acting on arr itself
   if (Array.isArray(arr)) {
     retObj = []
-    for (p in arr) {
+    for (const p in arr) {
       retObj.push(arr[p])
     }
   } else {
     retObj = {}
-    for (p in arr) {
-      retObj[p] = arr[p]
+    if (arr && typeof arr === 'object') {
+      for (const p in arr as { [key: string]: unknown }) {
+        retObj[p] = (arr as { [key: string]: unknown })[p]
+      }
     }
   }
 
-  for (i = 1; i < argl; i++) {
-    for (p in arguments[i]) {
-      if (retObj[p] && typeof retObj[p] === 'object') {
-        retObj[p] = array_replace_recursive(retObj[p], arguments[i][p])
+  const retObjLike = retObj as { [key: string]: unknown }
+  for (const replacement of replacements) {
+    if (!replacement || typeof replacement !== 'object') {
+      continue
+    }
+    for (const p in replacement as { [key: string]: unknown }) {
+      const replacementObj = replacement as { [key: string]: unknown }
+      if (retObjLike[p] && typeof retObjLike[p] === 'object') {
+        retObjLike[p] = array_replace_recursive(retObjLike[p], replacementObj[p])
       } else {
-        retObj[p] = arguments[i][p]
+        retObjLike[p] = replacementObj[p]
       }
     }
   }

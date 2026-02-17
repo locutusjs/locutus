@@ -1,5 +1,5 @@
 {
-  "tsNoCheckFileBudget": 65,
+  "tsNoCheckFileBudget": 60,
   "explicitAnyBudget": 0,
   "asAnyBudget": 0,
   "nonNullAssertionBudget": 3,
