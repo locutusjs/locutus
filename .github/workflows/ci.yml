@@ -20,7 +20,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Engine bump guardrail
         run: |
-          node scripts/check-engine-bump.js
+          node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-engine-bump.ts
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT

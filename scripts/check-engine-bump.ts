@@ -1,10 +1,17 @@
-#!/usr/bin/env node
+import { execSync } from 'node:child_process'
+import { readdirSync, readFileSync } from 'node:fs'
+import path from 'node:path'
 
-const { execSync } = require('node:child_process')
-const { readdirSync, readFileSync } = require('node:fs')
-const path = require('node:path')
+type Semver = [number, number, number]
 
-function parseSemver(input) {
+interface PackageJsonShape {
+  version?: string
+  engines?: {
+    node?: string
+  }
+}
+
+const parseSemver = (input: unknown): Semver | null => {
   if (!input) {
     return null
   }
@@ -17,30 +24,32 @@ function parseSemver(input) {
   return [Number(match[1]), Number(match[2] || 0), Number(match[3] || 0)]
 }
 
-function compareSemver(a, b) {
+const compareSemver = (left: Semver, right: Semver): number => {
   for (let i = 0; i < 3; i += 1) {
-    if (a[i] > b[i]) {
+    if (left[i] > right[i]) {
       return 1
     }
-    if (a[i] < b[i]) {
+    if (left[i] < right[i]) {
       return -1
     }
   }
   return 0
 }
 
-function readJson(ref) {
+const readJson = (ref?: string): PackageJsonShape => {
   if (!ref) {
-    return JSON.parse(readFileSync('package.json', 'utf8'))
+    return JSON.parse(readFileSync('package.json', 'utf8')) as PackageJsonShape
   }
 
   const content = execSync(`git show ${ref}:package.json`, { encoding: 'utf8' })
-  return JSON.parse(content)
+  return JSON.parse(content) as PackageJsonShape
 }
 
-function hasPendingMajorChangeset(packageName) {
+const escapeRegex = (value: string): string => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+
+const hasPendingMajorChangeset = (packageName: string): boolean => {
   const changesetDir = '.changeset'
-  let entries
+  let entries: ReturnType<typeof readdirSync>
 
   try {
     entries = readdirSync(changesetDir, { withFileTypes: true })
@@ -66,7 +75,10 @@ function hasPendingMajorChangeset(packageName) {
     }
 
     const frontmatter = frontmatterMatch[1]
-    const packageRegex = new RegExp(String.raw`["']?${packageName}["']?\s*:\s*["']?(major|premajor)["']?\b`, 'i')
+    const packageRegex = new RegExp(
+      String.raw`["']?${escapeRegex(packageName)}["']?\s*:\s*["']?(major|premajor)["']?\b`,
+      'i',
+    )
     if (packageRegex.test(frontmatter)) {
       return true
     }
@@ -82,10 +94,10 @@ if (!baseRef) {
 }
 
 const basePkg = readJson(`origin/${baseRef}`)
-const headPkg = readJson(null)
+const headPkg = readJson()
 
-const baseEngine = basePkg.engines && basePkg.engines.node
-const headEngine = headPkg.engines && headPkg.engines.node
+const baseEngine = basePkg.engines?.node
+const headEngine = headPkg.engines?.node
 
 if (baseEngine === headEngine) {
   process.exit(0)

@@ -2,6 +2,11 @@ import fs from 'node:fs'
 import path from 'node:path'
 import ts from 'typescript'
 
+interface Finding {
+  file: string
+  count: number
+}
+
 const cwd = process.cwd()
 const srcDir = path.join(cwd, 'src')
 
@@ -9,9 +14,9 @@ const sourceFiles = ts.sys
   .readDirectory(srcDir, ['.ts'], undefined, undefined)
   .filter((filePath) => !filePath.endsWith('.d.ts'))
 
-const tsNoCheckFiles = []
-const tsExpectErrorFindings = []
-const recordStringUnknownFindings = []
+const tsNoCheckFiles: string[] = []
+const tsExpectErrorFindings: Finding[] = []
+const recordStringUnknownFindings: Finding[] = []
 
 for (const filePath of sourceFiles) {
   const sourceText = fs.readFileSync(filePath, 'utf8')

@@ -19,8 +19,8 @@ import path from 'node:path'
 const distDir = process.argv[2] || 'dist'
 const PATCH_MARKER = '// locutus-cjs-export-fix'
 
-function extractMainExportName(content, fallbackName) {
-  const names = new Set()
+const extractMainExportName = (content: string, fallbackName: string): string | null => {
+  const names = new Set<string>()
 
   for (const match of content.matchAll(/exports\.([A-Za-z_$][\w$]*)\s*=/g)) {
     const name = match[1]
@@ -37,7 +37,7 @@ function extractMainExportName(content, fallbackName) {
   }
 
   if (names.size === 1) {
-    return names.values().next().value
+    return names.values().next().value || null
   }
   if (fallbackName && names.has(fallbackName)) {
     return fallbackName
@@ -49,7 +49,7 @@ function extractMainExportName(content, fallbackName) {
   return null
 }
 
-function walk(dir) {
+const walk = (dir: string): void => {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name)
     if (entry.isDirectory()) {
@@ -85,7 +85,7 @@ function walk(dir) {
         }
       }
 
-      // Fix index.js files: require('./foo.ts').funcName → require('./foo')
+      // Fix index.js files: require('./foo.ts').funcName -> require('./foo')
       // In dist, .ts files are compiled to .js, so we strip the .ts extension
       // and the .funcName suffix (since the fix above makes module.exports = fn)
       if (entry.name === 'index.js') {
@@ -103,7 +103,7 @@ function walk(dir) {
   }
 }
 
-function writeGolangIndexCompatShim(rootDir) {
+const writeGolangIndexCompatShim = (rootDir: string): void => {
   const golangStringsDir = path.join(rootDir, 'golang', 'strings')
   const index2JsPath = path.join(golangStringsDir, 'Index2.js')
   const indexJsPath = path.join(golangStringsDir, 'Index.js')
