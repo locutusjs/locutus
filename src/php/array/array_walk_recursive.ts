@@ -1,11 +1,15 @@
 import { isObjectLike, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type ArrayWalkRecursiveCallback = (value: unknown, key: string | number, userdata?: unknown) => unknown
+type ArrayWalkRecursiveCallback<TValue, TUserdata> = (
+  value: TValue,
+  key: string | number,
+  userdata?: TUserdata,
+) => unknown
 
-export function array_walk_recursive(
+export function array_walk_recursive<TValue = unknown, TUserdata = unknown>(
   array: unknown,
-  funcname: ArrayWalkRecursiveCallback,
-  userdata?: unknown,
+  funcname: ArrayWalkRecursiveCallback<TValue, TUserdata>,
+  userdata?: TUserdata,
 ): boolean {
   // original by: Hugues Peccatte
   //      note 1: Only works with user-defined functions, not built-in functions like void()
@@ -24,7 +28,7 @@ export function array_walk_recursive(
     return false
   }
 
-  const target = toPhpArrayObject(array)
+  const target = toPhpArrayObject<unknown>(array)
   const hasOwn = Object.prototype.hasOwnProperty
   for (const key in target) {
     if (!hasOwn.call(target, key)) {
@@ -40,9 +44,9 @@ export function array_walk_recursive(
     }
     try {
       if (typeof userdata !== 'undefined') {
-        funcname(value, key, userdata)
+        funcname(value as TValue, key, userdata)
       } else {
-        funcname(value, key)
+        funcname(value as TValue, key)
       }
     } catch (_e) {
       return false

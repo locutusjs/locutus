@@ -1,11 +1,14 @@
-type JsonKeyedValue = { [key: string]: unknown }
+type JsonPrimitive = string | number | boolean | null
+type JsonValue = JsonPrimitive | JsonValue[] | { [key: string]: JsonValue }
+type JsonObject = { [key: string]: JsonValue }
 type JsonGlobal = typeof globalThis & {
-  $locutus?: { php?: JsonKeyedValue }
+  $locutus?: { php?: { [key: string]: unknown } }
   JSON?: typeof JSON
 }
 
 const hasOwn = Object.prototype.hasOwnProperty
-const isJsonKeyedValue = (value: unknown): value is JsonKeyedValue => typeof value === 'object' && value !== null
+const isJsonObject = (value: unknown): value is JsonObject =>
+  typeof value === 'object' && value !== null && !Array.isArray(value)
 
 export function json_encode(mixedVal: unknown): string | null {
   //       discuss at: https://phpjs.org/functions/json_encode/
@@ -83,7 +86,7 @@ export function json_encode(mixedVal: unknown): string | null {
         : '"' + string + '"'
     }
 
-    const _str = function (key: string | number, holder: JsonKeyedValue | unknown[]): string | undefined {
+    const _str = function (key: string | number, holder: { [key: string]: unknown } | unknown[]): string | undefined {
       let gap = ''
       const indent = '    '
       // The loop counter.
@@ -98,7 +101,7 @@ export function json_encode(mixedVal: unknown): string | null {
       let value = Array.isArray(holder) ? holder[Number(key)] : holder[String(key)]
 
       // If the value has a toJSON method, call it to obtain a replacement value.
-      if (isJsonKeyedValue(value)) {
+      if (typeof value === 'object' && value !== null) {
         const toJSON = Reflect.get(value, 'toJSON')
         if (typeof toJSON === 'function') {
           value = toJSON.call(value, key)
@@ -153,7 +156,7 @@ export function json_encode(mixedVal: unknown): string | null {
           }
 
           // Iterate through all of the keys in the object.
-          if (!isJsonKeyedValue(value)) {
+          if (!isJsonObject(value)) {
             throw new SyntaxError('json_encode')
           }
           for (k in value) {

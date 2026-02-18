@@ -1,5 +1,3 @@
-import type { PhpCallable } from './_phpTypes.ts'
-
 interface CallbackResolverOptions {
   invalidMessage: string
   missingScopeMessage?: (scopeName: string) => string
@@ -7,27 +5,32 @@ interface CallbackResolverOptions {
 
 type GlobalCallableContext = typeof globalThis & { [key: string]: unknown }
 
-interface ResolvedCallback {
-  fn: PhpCallable
+interface ResolvedCallback<TArgs extends unknown[] = unknown[], TResult = unknown> {
+  fn: (...args: TArgs) => TResult
   scope: unknown
 }
 
-const isCallable = (value: unknown): value is PhpCallable => typeof value === 'function'
+const isCallable = <TArgs extends unknown[] = unknown[], TResult = unknown>(
+  value: unknown,
+): value is (...args: TArgs) => TResult => typeof value === 'function'
 
-export function resolvePhpCallable(callback: unknown, options: CallbackResolverOptions): ResolvedCallback {
+export function resolvePhpCallable<TArgs extends unknown[] = unknown[], TResult = unknown>(
+  callback: unknown,
+  options: CallbackResolverOptions,
+): ResolvedCallback<TArgs, TResult> {
   // discuss at: https://locutus.io/php/_helpers/resolvePhpCallable/
   //     note 1: Resolves PHP-style callbacks: function, global name, or [scope, method].
   //  example 1: typeof resolvePhpCallable('isNaN', { invalidMessage: 'x' }).fn
   //  returns 1: 'function'
   const globalContext = globalThis as GlobalCallableContext
 
-  if (isCallable(callback)) {
+  if (isCallable<TArgs, TResult>(callback)) {
     return { fn: callback, scope: null }
   }
 
   if (typeof callback === 'string') {
     const candidate = globalContext[callback]
-    if (isCallable(candidate)) {
+    if (isCallable<TArgs, TResult>(candidate)) {
       return { fn: candidate, scope: null }
     }
     throw new Error(options.invalidMessage)
@@ -47,7 +50,7 @@ export function resolvePhpCallable(callback: unknown, options: CallbackResolverO
       scope = scopeDescriptor
     }
 
-    if (isCallable(callableDescriptor)) {
+    if (isCallable<TArgs, TResult>(callableDescriptor)) {
       return { fn: callableDescriptor, scope }
     }
 
@@ -56,7 +59,7 @@ export function resolvePhpCallable(callback: unknown, options: CallbackResolverO
       ((typeof scope === 'object' && scope !== null) || typeof scope === 'function')
     ) {
       const candidate = Reflect.get(scope, callableDescriptor)
-      if (isCallable(candidate)) {
+      if (isCallable<TArgs, TResult>(candidate)) {
         return { fn: candidate, scope }
       }
     }

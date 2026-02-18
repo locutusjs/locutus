@@ -1,7 +1,4 @@
-type I18nPhpContext = {
-  locale_default?: string
-  locales?: { [locale: string]: unknown }
-}
+import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
 
 export function i18n_loc_get_default(): string {
   //  discuss at: https://locutus.io/php/i18n_loc_get_default/
@@ -16,11 +13,6 @@ export function i18n_loc_get_default(): string {
   //   example 2: i18n_loc_get_default()
   //   returns 2: 'pt_PT'
 
-  const globalContext = globalThis as typeof globalThis & { $locutus?: { php?: I18nPhpContext } }
-  globalContext.$locutus = globalContext.$locutus ?? {}
-  const locutus = globalContext.$locutus
-  locutus.php = locutus.php ?? {}
-  locutus.php.locales = locutus.php.locales ?? {}
-
-  return locutus.php.locale_default ?? 'en_US_POSIX'
+  const runtime = ensurePhpRuntimeState()
+  return runtime.locale_default ?? 'en_US_POSIX'
 }

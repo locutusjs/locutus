@@ -10,12 +10,19 @@ import { array_fill_keys } from '../../src/php/array/array_fill_keys.ts'
 import { array_keys } from '../../src/php/array/array_keys.ts'
 import { array_map } from '../../src/php/array/array_map.ts'
 import { array_merge } from '../../src/php/array/array_merge.ts'
+import { array_pad } from '../../src/php/array/array_pad.ts'
+import { array_push } from '../../src/php/array/array_push.ts'
+import { array_rand } from '../../src/php/array/array_rand.ts'
 import { array_reduce } from '../../src/php/array/array_reduce.ts'
+import { array_replace } from '../../src/php/array/array_replace.ts'
 import { array_replace_recursive } from '../../src/php/array/array_replace_recursive.ts'
 import { array_reverse } from '../../src/php/array/array_reverse.ts'
+import { array_shift } from '../../src/php/array/array_shift.ts'
 import { array_slice } from '../../src/php/array/array_slice.ts'
 import { array_unique } from '../../src/php/array/array_unique.ts'
 import { array_values } from '../../src/php/array/array_values.ts'
+import { array_walk } from '../../src/php/array/array_walk.ts'
+import { array_walk_recursive } from '../../src/php/array/array_walk_recursive.ts'
 import { call_user_func } from '../../src/php/funchand/call_user_func.ts'
 import { getenv } from '../../src/php/info/getenv.ts'
 import { json_decode } from '../../src/php/json/json_decode.ts'
@@ -43,6 +50,16 @@ const replaceRecursiveTyped: unknown[] | { [key: string]: unknown } = array_repl
 const callUserFuncTyped: boolean = call_user_func<boolean>('isNaN', 'value')
 const isCallableTyped: boolean | false = is_callable('is_callable')
 const arrayMapTyped: unknown[] = array_map((v: unknown) => Number(v) * 2, [1, 2])
+const shiftedTyped: number | null = array_shift([3, 4])
+const paddedTyped: Array<number | string> = array_pad([7, 8], 4, 'x')
+const pushTarget = [1, 2]
+const pushedTyped: number = array_push(pushTarget, 3)
+const randTyped: string | null = array_rand(['only']) as string | null
+const replacedTyped: { [key: string]: number | undefined } = array_replace({ 0: 1, 1: 2 }, { 1: 9, 2: 5 })
+const walked: number[] = []
+const walkTyped: boolean = array_walk([1, 2], (value: number) => walked.push(value))
+const walkedRecursive: number[] = []
+const walkRecursiveTyped: boolean = array_walk_recursive([1, [2]], (value: number) => walkedRecursive.push(value))
 const arrayReduceTyped: number = array_reduce([1, 2, 3, 4], (left, right) => Number(left) + Number(right))
 const arrayKeysTyped: string[] = array_keys({ one: 1, two: 2 })
 const arrayFillKeysTyped: { [key: string]: string } = array_fill_keys({ first: 'a', second: 'b' }, 'x')
@@ -74,6 +91,16 @@ describe('public type signatures', () => {
     expect(callUserFuncTyped).toBe(true)
     expect(isCallableTyped).toBe(true)
     expect(arrayMapTyped).toEqual([2, 4])
+    expect(shiftedTyped).toBe(3)
+    expect(paddedTyped).toEqual([7, 8, 'x', 'x'])
+    expect(pushedTyped).toBe(3)
+    expect(pushTarget).toEqual([1, 2, 3])
+    expect(randTyped).toBe('0')
+    expect(replacedTyped).toEqual({ 0: 1, 1: 9, 2: 5 })
+    expect(walkTyped).toBe(true)
+    expect(walked).toEqual([1, 2])
+    expect(walkRecursiveTyped).toBe(true)
+    expect(walkedRecursive).toEqual([1, 2])
     expect(arrayReduceTyped).toBe(10)
     expect(arrayKeysTyped).toEqual(['one', 'two'])
     expect(arrayFillKeysTyped).toEqual({ a: 'x', b: 'x' })

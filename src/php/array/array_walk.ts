@@ -1,11 +1,11 @@
-import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type ArrayWalkCallback = (value: unknown, key: string, userdata?: unknown) => void
+type ArrayWalkCallback<TValue, TUserdata> = (value: TValue, key: string, userdata?: TUserdata) => void
 
-export function array_walk(
-  array: unknown[] | { [key: string]: unknown },
-  funcname: ArrayWalkCallback | unknown,
-  userdata?: unknown,
+export function array_walk<TValue = unknown, TUserdata = unknown>(
+  array: TValue[] | PhpAssoc<TValue>,
+  funcname: ArrayWalkCallback<TValue, TUserdata> | unknown,
+  userdata?: TUserdata,
 ): boolean {
   //  discuss at: https://locutus.io/php/array_walk/
   // original by: Johnny Mast (https://www.phpvrouwen.nl)
@@ -28,7 +28,7 @@ export function array_walk(
       return false
     }
 
-    const target = toPhpArrayObject(array)
+    const target = toPhpArrayObject<TValue>(array)
     const hasUserdata = typeof userdata !== 'undefined'
     for (const key in target) {
       if (hasUserdata) {

@@ -7,7 +7,8 @@ interface Finding {
   count: number
 }
 
-const MAX_SRC_PHP_RAW_INDEX_SIGNATURE_UNKNOWN = 54
+const MAX_SRC_PHP_RAW_INDEX_SIGNATURE_UNKNOWN = 32
+const MAX_SRC_PHP_EXPORTED_UNKNOWN_RETURN_TYPES = 1
 
 const cwd = process.cwd()
 const srcDir = path.join(cwd, 'src')
@@ -23,7 +24,9 @@ const recordStringUnknownFindings: Finding[] = []
 const functionTypeFindings: Finding[] = []
 const asUnknownAsFindings: Finding[] = []
 const argumentsIdentifierFindings: Finding[] = []
+const exportedUnknownReturnTypeFindings: Finding[] = []
 let srcPhpRawIndexSignatureUnknownCount = 0
+let srcPhpExportedUnknownReturnTypeCount = 0
 
 const countFunctionTypeReferences = (sourceFile: ts.SourceFile): number => {
   let count = 0
@@ -44,6 +47,40 @@ const countArgumentsIdentifiers = (sourceFile: ts.SourceFile): number => {
 
   const visit = (node: ts.Node): void => {
     if (ts.isIdentifier(node) && node.text === 'arguments') {
+      count += 1
+    }
+    ts.forEachChild(node, visit)
+  }
+
+  visit(sourceFile)
+  return count
+}
+
+const hasExportModifier = (node: ts.Node): boolean =>
+  !!node.modifiers?.some((modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword)
+
+const isUnknownTopLevelReturnType = (typeNode: ts.TypeNode): boolean => {
+  if (typeNode.kind === ts.SyntaxKind.UnknownKeyword) {
+    return true
+  }
+
+  if (ts.isUnionTypeNode(typeNode)) {
+    return typeNode.types.some((member) => member.kind === ts.SyntaxKind.UnknownKeyword)
+  }
+
+  return false
+}
+
+const countExportedUnknownReturnTypes = (sourceFile: ts.SourceFile): number => {
+  let count = 0
+
+  const visit = (node: ts.Node): void => {
+    if (
+      ts.isFunctionDeclaration(node) &&
+      hasExportModifier(node) &&
+      node.type &&
+      isUnknownTopLevelReturnType(node.type)
+    ) {
       count += 1
     }
     ts.forEachChild(node, visit)
@@ -111,6 +148,15 @@ for (const filePath of sourceFiles) {
       argumentsIdentifierFindings.push({
         file: path.relative(cwd, filePath),
         count: argumentsIdentifierCount,
+      })
+    }
+
+    const exportedUnknownReturnTypeCount = countExportedUnknownReturnTypes(sourceFile)
+    srcPhpExportedUnknownReturnTypeCount += exportedUnknownReturnTypeCount
+    if (exportedUnknownReturnTypeCount > 0) {
+      exportedUnknownReturnTypeFindings.push({
+        file: path.relative(cwd, filePath),
+        count: exportedUnknownReturnTypeCount,
       })
     }
   }
@@ -187,10 +233,20 @@ if (srcPhpRawIndexSignatureUnknownCount > MAX_SRC_PHP_RAW_INDEX_SIGNATURE_UNKNOW
   )
 }
 
+if (srcPhpExportedUnknownReturnTypeCount > MAX_SRC_PHP_EXPORTED_UNKNOWN_RETURN_TYPES) {
+  hasFailure = true
+  console.error(
+    `src/php exported unknown return-type count increased: ${srcPhpExportedUnknownReturnTypeCount} > ${MAX_SRC_PHP_EXPORTED_UNKNOWN_RETURN_TYPES}`,
+  )
+  for (const finding of exportedUnknownReturnTypeFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
 if (hasFailure) {
   process.exit(1)
 }
 
 console.log(
-  "ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, 'as unknown as' 0, src/php arguments 0, src/php raw index-signature unknown not increased",
+  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased',
 )

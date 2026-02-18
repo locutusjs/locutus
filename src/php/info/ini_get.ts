@@ -1,3 +1,5 @@
+import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
+
 export function ini_get(varname: string): string {
   //  discuss at: https://locutus.io/php/ini_get/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -6,19 +8,14 @@ export function ini_get(varname: string): string {
   //   example 1: ini_get('date.timezone')
   //   returns 1: 'Asia/Hong_Kong'
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus: { php: { ini: Record<string, { local_value?: unknown }> } }
-  }
-  $global.$locutus = $global.$locutus || ({} as typeof $global.$locutus)
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || ({} as typeof $locutus.php)
-  $locutus.php.ini = $locutus.php.ini || {}
+  const runtime = ensurePhpRuntimeState()
+  const entry = runtime.ini[varname]
 
-  if ($locutus.php.ini[varname] && $locutus.php.ini[varname].local_value !== undefined) {
-    if ($locutus.php.ini[varname].local_value === null) {
+  if (entry && entry.local_value !== undefined) {
+    if (entry.local_value === null) {
       return ''
     }
-    return $locutus.php.ini[varname].local_value as string
+    return String(entry.local_value)
   }
 
   return ''

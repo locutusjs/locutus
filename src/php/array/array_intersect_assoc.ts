@@ -1,9 +1,9 @@
-import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpArrayLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 export function array_intersect_assoc(
-  arr1: { [key: string]: unknown } | unknown[],
-  ...arrays: Array<{ [key: string]: unknown } | unknown[]>
-): { [key: string]: unknown } {
+  arr1: PhpArrayLike<unknown>,
+  ...arrays: Array<PhpArrayLike<unknown>>
+): PhpAssoc<unknown> {
   //  discuss at: https://locutus.io/php/array_intersect_assoc/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: These only output associative arrays (would need to be
@@ -13,7 +13,7 @@ export function array_intersect_assoc(
   //   example 1: array_intersect_assoc($array1, $array2)
   //   returns 1: {a: 'green'}
 
-  const retArr: { [key: string]: unknown } = {}
+  const retArr: PhpAssoc<unknown> = {}
   if (arrays.length < 1) {
     return retArr
   }

@@ -1,7 +1,5 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
 
-type ArrayMapResolvedCallback<TResult> = (...args: unknown[]) => TResult
-
 export function array_map<TResult = unknown>(callback: unknown, ...inputArrays: unknown[][]): TResult[] | unknown[][] {
   //  discuss at: https://locutus.io/php/array_map/
   // original by: Andrea Giammarchi (https://webreflection.blogspot.com)
@@ -16,13 +14,10 @@ export function array_map<TResult = unknown>(callback: unknown, ...inputArrays: 
   const argc = inputArrays.length + 1
   const itemCount = inputArrays[0]?.length ?? 0
 
-  const resolved: {
-    fn: ArrayMapResolvedCallback<unknown>
-    scope: unknown
-  } | null =
+  const resolved =
     callback === null || typeof callback === 'undefined'
       ? null
-      : resolvePhpCallable(callback, {
+      : resolvePhpCallable<unknown[], TResult>(callback, {
           invalidMessage: 'array_map(): Invalid callback',
           missingScopeMessage: (scopeName: string) => 'Object not found: ' + scopeName,
         })
@@ -34,7 +29,7 @@ export function array_map<TResult = unknown>(callback: unknown, ...inputArrays: 
       for (let arrayIndex = 0; arrayIndex < argc - 1; arrayIndex++) {
         args.push(inputArrays[arrayIndex]?.[itemIndex])
       }
-      mapped[itemIndex] = resolved.fn.apply(resolved.scope, args) as TResult
+      mapped[itemIndex] = resolved.fn.apply(resolved.scope, args)
     }
     return mapped
   }

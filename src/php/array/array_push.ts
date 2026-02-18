@@ -1,6 +1,6 @@
-import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpArrayLike, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-export function array_push(inputArr: unknown[] | { [key: string]: unknown }, ...values: unknown[]): number {
+export function array_push<TValue>(inputArr: PhpArrayLike<TValue>, ...values: TValue[]): number {
   //  discuss at: https://locutus.io/php/array_push/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -25,7 +25,7 @@ export function array_push(inputArr: unknown[] | { [key: string]: unknown }, ...
   }
 
   // Associative (object)
-  const target = toPhpArrayObject(inputArr)
+  const target = toPhpArrayObject<TValue>(inputArr)
   const hasOwn = Object.prototype.hasOwnProperty
   for (const pr in target) {
     if (hasOwn.call(target, pr)) {

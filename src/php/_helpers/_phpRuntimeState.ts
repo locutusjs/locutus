@@ -10,6 +10,7 @@ interface PhpRuntime {
   ini?: { [key: string]: IniEntry | undefined }
   locales?: { [key: string]: LocaleEntry | undefined }
   pointers?: Array<unknown | number>
+  locale_default?: string
 }
 
 type GlobalWithLocutus = typeof globalThis & {
@@ -22,6 +23,7 @@ export interface PhpRuntimeState {
   ini: { [key: string]: IniEntry | undefined }
   locales: { [key: string]: LocaleEntry | undefined }
   pointers: Array<unknown | number>
+  locale_default: string | undefined
 }
 
 export function ensurePhpRuntimeState(): PhpRuntimeState {
@@ -42,5 +44,13 @@ export function ensurePhpRuntimeState(): PhpRuntimeState {
     ini: php.ini,
     locales: php.locales,
     pointers: php.pointers,
+    locale_default: php.locale_default,
   }
+}
+
+export function setPhpLocaleDefault(localeDefault: string): void {
+  const globalContext = globalThis as GlobalWithLocutus
+  globalContext.$locutus = globalContext.$locutus || {}
+  globalContext.$locutus.php = globalContext.$locutus.php || {}
+  globalContext.$locutus.php.locale_default = localeDefault
 }

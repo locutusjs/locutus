@@ -1,3 +1,5 @@
+import { ensurePhpRuntimeState, setPhpLocaleDefault } from '../_helpers/_phpRuntimeState.ts'
+
 export function i18n_loc_set_default(name: string): boolean {
   //  discuss at: https://locutus.io/php/i18n_loc_set_default/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -7,29 +9,19 @@ export function i18n_loc_set_default(name: string): boolean {
   //   example 1: i18n_loc_set_default('pt_PT')
   //   returns 1: true
 
-  type LocutusGlobal = typeof globalThis & {
-    $locutus?: {
-      php?: {
-        locales?: Record<string, { sorting: (str1: string, str2: string) => number }>
-        locale_default?: string
-      }
-    }
-  }
+  const runtime = ensurePhpRuntimeState()
 
-  const $global = (typeof window !== 'undefined' ? window : global) as LocutusGlobal
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
-  $locutus.php.locales = $locutus.php.locales || {}
-
-  $locutus.php.locales.en_US_POSIX = {
-    sorting: function (str1: string, str2: string): number {
+  runtime.locales.en_US_POSIX = {
+    sorting: function (left: unknown, right: unknown): number {
       // @todo: This one taken from strcmp, but need for other locales;
       // we don't use localeCompare since its locale is not settable
+      const str1 = String(left)
+      const str2 = String(right)
       return str1 === str2 ? 0 : str1 > str2 ? 1 : -1
     },
   }
 
-  $locutus.php.locale_default = name
+  setPhpLocaleDefault(name)
+
   return true
 }

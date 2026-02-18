@@ -1,9 +1,6 @@
-export function array_merge_recursive(
-  arr1: { [key: string]: unknown },
-  arr2: { [key: string]: unknown },
-): {
-  [key: string]: unknown
-} {
+import { isObjectLike, type PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+export function array_merge_recursive(arr1: PhpAssoc<unknown>, arr2: PhpAssoc<unknown>): PhpAssoc<unknown> {
   //       discuss at: https://locutus.io/php/array_merge_recursive/
   //      original by: Subhasis Deb
   //         input by: Brett Zamir (https://brett-zamir.me)
@@ -15,8 +12,7 @@ export function array_merge_recursive(
   //        example 1: array_merge_recursive($arr1, $arr2)
   //        returns 1: {'color': {'favorite': ['red', 'green'], 0: 'blue'}, 0: 5, 1: 10}
 
-  const result: { [key: string]: unknown } = {}
-  const toStr = Object.prototype.toString
+  const result: PhpAssoc<unknown> = {}
   let numericIdx = 0
 
   // Helper to check if a key is numeric (PHP integer-indexed)
@@ -25,8 +21,8 @@ export function array_merge_recursive(
   }
 
   // Helper to check if value is a plain object (not array)
-  const isPlainObject = function (val: unknown): val is { [key: string]: unknown } {
-    return !!val && typeof val === 'object' && toStr.call(val) !== '[object Array]'
+  const isPlainObject = function (val: unknown): val is PhpAssoc<unknown> {
+    return isObjectLike(val) && !Array.isArray(val)
   }
 
   // Process arr1

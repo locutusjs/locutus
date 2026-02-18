@@ -1,3 +1,4 @@
+import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
 import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
 import { strnatcmp } from '../strings/strnatcmp.ts'
 
@@ -39,18 +40,7 @@ export function krsort<T>(inputArr: Record<string, T>, sortFlags?: string): bool
   let sortByReference = false
   let populateArr: Record<string, T> = {}
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus: {
-      php: {
-        locales: Record<string, { sorting: (a: string, b: string) => number }>
-        ini?: Record<string, { local_value?: unknown }>
-      }
-    }
-  }
-  $global.$locutus = $global.$locutus || ({} as typeof $global.$locutus)
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || ({} as typeof $locutus.php)
-  $locutus.php.locales = $locutus.php.locales || {}
+  const runtime = ensurePhpRuntimeState()
 
   switch (sortFlags) {
     case 'SORT_STRING':
@@ -63,7 +53,7 @@ export function krsort<T>(inputArr: Record<string, T>, sortFlags?: string): bool
       // compare items as strings, based on the current locale
       // (set with i18n_loc_set_default() as of PHP6)
       const loc = i18nlgd()
-      const locale = $locutus.php.locales[loc]
+      const locale = runtime.locales[loc]
       if (locale?.sorting) {
         sorter = locale.sorting
       }
@@ -103,7 +93,7 @@ export function krsort<T>(inputArr: Record<string, T>, sortFlags?: string): bool
   }
   keys.sort(sorter)
 
-  const iniVal = String($locutus.php.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
+  const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

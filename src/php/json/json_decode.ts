@@ -1,4 +1,7 @@
-export function json_decode<T = unknown>(strJson: string): T | null {
+type JsonPrimitive = string | number | boolean | null
+type JsonValue = JsonPrimitive | JsonValue[] | { [key: string]: JsonValue }
+
+export function json_decode<T = JsonValue>(strJson: string): T | null {
   //       discuss at: https://phpjs.org/functions/json_decode/
   //  parity verified: PHP 8.3
   //      original by: Public Domain (https://www.json.org/json2.js)
