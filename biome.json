@@ -70,6 +70,7 @@
       },
       "security": { "noGlobalEval": "error" },
       "style": {
+        "noNonNullAssertion": "error",
         "noYodaExpression": "error",
         "useArrayLiterals": "error",
         "useBlockStatements": "error",
@@ -91,6 +92,7 @@
         "noDuplicateObjectKeys": "error",
         "noDuplicateParameters": "error",
         "noEmptyBlockStatements": "error",
+        "noExplicitAny": "error",
         "noFallthroughSwitchClause": "error",
         "noFunctionAssign": "error",
         "noGlobalAssign": "error",
@@ -104,6 +106,7 @@
         "noShadowRestrictedNames": "error",
         "noSparseArray": "error",
         "noTemplateCurlyInString": "error",
+        "noTsIgnore": "error",
         "noUnsafeNegation": "error",
         "noUselessRegexBackrefs": "error",
         "noVar": "error",

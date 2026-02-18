@@ -1,8 +1,0 @@
-{
-  "tsNoCheckFileBudget": 0,
-  "explicitAnyBudget": 0,
-  "asAnyBudget": 0,
-  "nonNullAssertionBudget": 0,
-  "recordStringUnknownBudget": 0,
-  "tsExpectErrorBudget": 0
-}
