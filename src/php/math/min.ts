@@ -43,6 +43,8 @@ export function min(...args: unknown[]): unknown {
     let tmp = 0
     let nl = 0
     let cl = 0
+    const currentNum = Number(current)
+    const nextNum = Number(next)
 
     if (current === next) {
       return 0
@@ -70,23 +72,23 @@ export function min(...args: unknown[]): unknown {
       return -1
     } else if (typeof next === 'object') {
       return 1
-    } else if (isNaN(next as number) && !isNaN(current as number)) {
+    } else if (isNaN(nextNum) && !isNaN(currentNum)) {
       if (current === 0) {
         return 0
       }
-      return (current as number) < 0 ? 1 : -1
-    } else if (isNaN(current as number) && !isNaN(next as number)) {
+      return currentNum < 0 ? 1 : -1
+    } else if (isNaN(currentNum) && !isNaN(nextNum)) {
       if (next === 0) {
         return 0
       }
-      return (next as number) > 0 ? 1 : -1
+      return nextNum > 0 ? 1 : -1
     }
 
     if (next === current) {
       return 0
     }
 
-    return (next as number) > (current as number) ? 1 : -1
+    return nextNum > currentNum ? 1 : -1
   }
 
   if (argc === 0) {
