@@ -158,12 +158,12 @@ export function var_export(mixedExpression: PhpValue, boolReturn?: PhpValue, idt
   } else {
     if (typeof mixedExpression === 'string') {
       retstr = "'" + mixedExpression.replace(/([\\'])/g, '\\$1').replace(/\0/g, '\\0') + "'"
-    } else if (
-      mixedExpression === null ||
-      typeof mixedExpression === 'number' ||
-      typeof mixedExpression === 'boolean'
-    ) {
-      retstr = mixedExpression
+    } else if (mixedExpression === null) {
+      retstr = null
+    } else if (typeof mixedExpression === 'number') {
+      retstr = Number(mixedExpression)
+    } else if (typeof mixedExpression === 'boolean') {
+      retstr = Boolean(mixedExpression)
     } else {
       retstr = String(mixedExpression)
     }
