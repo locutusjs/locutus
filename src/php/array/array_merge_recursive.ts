@@ -1,6 +1,5 @@
-import { isObjectLike, type PhpAssoc } from '../_helpers/_phpTypes.ts'
+import { isObjectLike, type PhpAssoc, type PhpValue } from '../_helpers/_phpTypes.ts'
 
-type PhpValue = {} | null | undefined
 interface MergeObject extends PhpAssoc<MergeValue> {}
 type MergeValue = PhpValue | MergeValue[] | MergeObject
 

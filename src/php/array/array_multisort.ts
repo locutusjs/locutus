@@ -1,6 +1,5 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 
-type PhpValue = {} | null | undefined
 type SortableObject = PhpAssoc<PhpValue>
 type SortComparator = (a: PhpValue, b: PhpValue) => number
 type ComparablePrimitive = string | number | bigint | boolean | Date

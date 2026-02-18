@@ -1,6 +1,4 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
-
-type PhpValue = {} | null | undefined
+import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 
 export function array_search(needle: PhpValue, haystack: PhpAssoc<PhpValue>, argStrict?: PhpValue): string | false {
   //      discuss at: https://locutus.io/php/array_search/

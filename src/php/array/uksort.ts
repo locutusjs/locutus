@@ -1,7 +1,5 @@
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
-
-type PhpValue = {} | null | undefined
+import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 
 export function uksort<T>(
   this: PhpAssoc<PhpValue> & { window?: PhpAssoc<PhpValue> },

@@ -1,4 +1,4 @@
-type PhpValue = {} | null | undefined
+import type { PhpValue } from '../_helpers/_phpTypes.ts'
 
 export function array_pad<TInput = PhpValue, TPad = PhpValue>(
   input: TInput[] | PhpValue,

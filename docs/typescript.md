@@ -174,3 +174,24 @@ To fix a `@ts-nocheck` file:
   - Moving callback semantics into shared generic helper types reduces repeated local alias churn.
   - Ratcheting policy on broad alias patterns keeps migration pressure high without requiring all-or-nothing rewrites.
   - Standalone dependency inlining plus stricter helper typing are complementary: we can centralize more behavior without fear of copy-paste breakage.
+
+## Iteration 3
+
+- Plans
+  - Burn down remaining local `type PhpValue = {} | null | undefined` aliases in `src/php/array/**`.
+  - Replace with shared `PhpValue` imports from `_phpTypes.ts`.
+  - Ratchet debt-policy baseline down again and verify full checks.
+- Progress
+  - Removed all local `type PhpValue = {} | null | undefined` aliases from `src/php/array/**`.
+  - Migrated affected array functions to import shared `PhpValue` from `src/php/_helpers/_phpTypes.ts`.
+  - Reduced repository-wide local alias count (excluding `_phpTypes.ts`) from 35 to 11.
+  - Lowered debt-policy ratchet in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_LOCAL_PHPVALUE_ALIAS`: `35 -> 11`
+  - Validation passed:
+    - `corepack yarn biome check --write docs/typescript.md src/php/array/*.ts`
+    - `corepack yarn lint`
+    - `corepack yarn lint:ts`
+    - `corepack yarn lint:ts:debt:policy`
+- Key learnings
+  - Systematic alias removal works best as scoped directory passes (`array/**`, then next family), with ratchets tightened immediately after each pass.
+  - Shared lattice imports (`PhpValue` from `_phpTypes.ts`) improve consistency and make follow-up narrowing safer.

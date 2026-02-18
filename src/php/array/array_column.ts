@@ -1,6 +1,4 @@
-import { isObjectLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
-
-type PhpValue = {} | null | undefined
+import { isObjectLike, type PhpAssoc, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 export function array_column(
   input: PhpValue,

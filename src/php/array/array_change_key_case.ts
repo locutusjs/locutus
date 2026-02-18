@@ -1,6 +1,5 @@
-import type { PhpArrayLike, PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpArrayLike, PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 
-type PhpValue = {} | null | undefined
 type ArrayChangeInput = number | PhpArrayLike<PhpValue> | null
 
 type ArrayChangeKeyCaseResult<TInput> = TInput extends (infer TValue)[]

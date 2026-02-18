@@ -1,6 +1,4 @@
-import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
-
-type PhpValue = {} | null | undefined
+import { type PhpAssoc, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 type ArrayWalkCallback<TValue, TUserdata> = (value: TValue, key: string, userdata?: TUserdata) => void
 

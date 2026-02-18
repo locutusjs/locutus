@@ -1,7 +1,6 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 import { is_int as isInt } from '../var/is_int.ts'
 
-type PhpValue = {} | null | undefined
 type AssocArray<T = PhpValue> = PhpAssoc<T | undefined>
 type ReplacementValue<T = PhpValue> = T[] | AssocArray<T> | T
 

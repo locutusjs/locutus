@@ -1,6 +1,5 @@
-import { isObjectLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { isObjectLike, type PhpAssoc, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type PhpValue = {} | null | undefined
 interface RecursiveReplaceObject extends PhpAssoc<RecursiveReplaceValue> {}
 type RecursiveReplaceValue = PhpValue | RecursiveReplaceValue[] | RecursiveReplaceObject
 type RecursiveReplaceTarget = RecursiveReplaceValue[] | RecursiveReplaceObject

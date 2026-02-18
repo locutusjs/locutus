@@ -1,6 +1,4 @@
-import { type PhpArrayLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
-
-type PhpValue = {} | null | undefined
+import { type PhpArrayLike, type PhpAssoc, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 export function array_intersect_key<TValue = PhpValue>(
   arr1: PhpArrayLike<TValue>,

@@ -1,6 +1,4 @@
-import { isObjectLike, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
-
-type PhpValue = {} | null | undefined
+import { isObjectLike, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 type ArrayWalkRecursiveCallback<TValue, TUserdata> = (
   value: TValue,
