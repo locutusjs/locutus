@@ -1,3 +1,5 @@
+type JsonKeyedValue = { [key: string]: unknown }
+
 export function json_encode(mixedVal: unknown): string | null {
   //       discuss at: https://phpjs.org/functions/json_encode/
   //  parity verified: PHP 8.3
@@ -18,10 +20,10 @@ export function json_encode(mixedVal: unknown): string | null {
   */
 
   const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus: { php: Record<string, unknown> }
+    $locutus: { php: JsonKeyedValue }
     JSON: typeof JSON
   }
-  $global.$locutus = $global.$locutus || ({} as { php: Record<string, unknown> })
+  $global.$locutus = $global.$locutus || ({} as { php: JsonKeyedValue })
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 
@@ -77,7 +79,7 @@ export function json_encode(mixedVal: unknown): string | null {
         : '"' + string + '"'
     }
 
-    const _str = function (key: string | number, holder: Record<string, unknown>): string | undefined {
+    const _str = function (key: string | number, holder: JsonKeyedValue): string | undefined {
       let gap = ''
       const indent = '    '
       // The loop counter.
@@ -131,7 +133,7 @@ export function json_encode(mixedVal: unknown): string | null {
             // for non-JSON values.
             length = (value as unknown[]).length
             for (i = 0; i < length; i += 1) {
-              partial[i] = _str(i, value as Record<string, unknown>) || 'null'
+              partial[i] = _str(i, value as JsonKeyedValue) || 'null'
             }
 
             // Join all of the elements together, separated with commas, and wrap them in
@@ -147,9 +149,9 @@ export function json_encode(mixedVal: unknown): string | null {
           }
 
           // Iterate through all of the keys in the object.
-          for (k in value as Record<string, unknown>) {
+          for (k in value as JsonKeyedValue) {
             if (Object.hasOwnProperty.call(value, k)) {
-              v = _str(k, value as Record<string, unknown>) as string
+              v = _str(k, value as JsonKeyedValue) as string
               if (v) {
                 partial.push(quote(k) + (gap ? ': ' : ':') + v)
               }

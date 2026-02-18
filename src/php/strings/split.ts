@@ -1,8 +1,10 @@
 import { explode } from '../strings/explode.ts'
 
+type KeyedValues = { [key: string]: unknown }
+
 export function split(
   delimiter: string | boolean | null | undefined,
-  string: string | Record<string, unknown> | (() => unknown) | undefined,
+  string: string | KeyedValues | (() => unknown) | undefined,
 ): string[] | false | { 0: string } | null {
   //      discuss at: https://locutus.io/php/split/
   // parity verified: PHP 8.3

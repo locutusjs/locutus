@@ -1,4 +1,4 @@
-type SortableObject = Record<string, unknown>
+type SortableObject = { [key: string]: unknown }
 type SortComparator = (a: unknown, b: unknown) => number
 
 const hasOwn = Object.prototype.hasOwnProperty

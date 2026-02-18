@@ -2,6 +2,7 @@ type ParsedResult = [value: unknown, offset: number]
 type CacheEntry = [value: unknown, offset?: number]
 type CacheFn = (<T extends CacheEntry>(value: T) => T) & { get: (index: number) => unknown }
 type ErrorMode = 'throw' | 'log' | 'silent'
+type UnserializedObject = { [key: string]: unknown }
 
 function initCache(): CacheFn {
   const store: unknown[] = []
@@ -249,7 +250,7 @@ function expectObject(str: string, cache: CacheFn): ParsedResult {
   let totalOffset = objectLiteralBeginMatch.length
 
   const propCount = parseInt(propCountMatch, 10)
-  const obj: Record<string, unknown> = {}
+  const obj: UnserializedObject = {}
   cache([obj])
 
   str = str.substr(totalOffset)
@@ -314,17 +315,13 @@ function expectArray(str: string, cache: CacheFn): ParsedResult {
   return [array[0], arrayLiteralBeginMatch.length + array[1] + 1] // jump over }
 }
 
-function expectArrayItems(
-  str: string,
-  expectedItems = 0,
-  cache: CacheFn,
-): [Record<string, unknown> | unknown[], number] {
+function expectArrayItems(str: string, expectedItems = 0, cache: CacheFn): [UnserializedObject | unknown[], number] {
   let key: [string | number, number]
   let item: ParsedResult
   let totalOffset = 0
   let hasContinousIndexes = true
   let lastIndex = -1
-  let items: Record<string, unknown> | unknown[] = {}
+  let items: UnserializedObject | unknown[] = {}
   cache([items])
 
   for (let i = 0; i < expectedItems; i++) {
@@ -343,7 +340,7 @@ function expectArrayItems(
     str = str.substr(item[1])
     totalOffset += item[1]
 
-    ;(items as Record<string, unknown>)[String(key[0])] = item[0]
+    ;(items as UnserializedObject)[String(key[0])] = item[0]
   }
 
   if (hasContinousIndexes) {

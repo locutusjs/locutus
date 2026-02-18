@@ -1,6 +1,8 @@
+type KeyedValues = { [key: string]: unknown }
+
 export function explode(
   delimiter: string | boolean | null | undefined,
-  string: string | Record<string, unknown> | (() => unknown) | undefined,
+  string: string | KeyedValues | (() => unknown) | undefined,
   limit?: number,
 ): string[] | false | { 0: string } | null {
   //      discuss at: https://locutus.io/php/explode/

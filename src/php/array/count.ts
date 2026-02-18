@@ -1,7 +1,7 @@
-export function count(
-  mixedVar: unknown[] | Record<string, unknown> | null | undefined,
-  mode: string | number = 0,
-): number {
+type CountableObject = { [key: string]: unknown }
+type Countable = unknown[] | CountableObject
+
+export function count(mixedVar: Countable | null | undefined, mode: string | number = 0): number {
   //  discuss at: https://locutus.io/php/count/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //    input by: Waldo Malqui Silva (https://waldo.malqui.info)
@@ -29,7 +29,7 @@ export function count(
 
   const recursiveMode = mode === 'COUNT_RECURSIVE' || mode === 1
 
-  const entries = mixedVar as Record<string, unknown>
+  const entries = mixedVar as CountableObject
   for (const key in entries) {
     if (Object.prototype.hasOwnProperty.call(entries, key)) {
       cnt++
@@ -39,7 +39,7 @@ export function count(
       }
       const valueCtor = (value as { constructor?: unknown }).constructor
       if (valueCtor === Array || valueCtor === Object) {
-        cnt += count(value as unknown[] | Record<string, unknown>, 1)
+        cnt += count(value as Countable, 1)
       }
     }
   }

@@ -1,11 +1,9 @@
 import { krsort } from '../array/krsort.ts'
 import { ini_set as iniSet } from '../info/ini_set.ts'
 
-export function strtr(
-  str: string,
-  trFrom: string | Record<string, unknown> | string[],
-  trTo?: string | unknown[],
-): string {
+type ReplacementMap = { [key: string]: unknown }
+
+export function strtr(str: string, trFrom: string | ReplacementMap | string[], trTo?: string | unknown[]): string {
   //  discuss at: https://locutus.io/php/strtr/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: uestla

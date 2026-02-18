@@ -1,3 +1,5 @@
+type KeyedUnknown = { [key: string]: unknown }
+
 export function empty(mixedVar: unknown): boolean {
   //  discuss at: https://locutus.io/php/empty/
   // original by: Philippe Baumann
@@ -29,7 +31,7 @@ export function empty(mixedVar: unknown): boolean {
   }
 
   if (typeof mixedVar === 'object' && mixedVar !== null) {
-    for (const key in mixedVar as Record<string, unknown>) {
+    for (const key in mixedVar as KeyedUnknown) {
       if (Object.prototype.hasOwnProperty.call(mixedVar, key)) {
         return false
       }

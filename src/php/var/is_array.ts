@@ -1,3 +1,5 @@
+type KeyedUnknown = { [key: string]: unknown }
+
 export function is_array(mixedVar: unknown): boolean {
   //  discuss at: https://locutus.io/php/is_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -89,7 +91,7 @@ export function is_array(mixedVar: unknown): boolean {
   const iniVal = String($loc?.php?.ini?.['locutus.objectsAsArrays']?.local_value ?? '') || 'on'
   if (iniVal === 'on') {
     const asString = Object.prototype.toString.call(mixedVar)
-    const asFunc = _getFuncName((mixedVar as Record<string, unknown>).constructor)
+    const asFunc = _getFuncName((mixedVar as KeyedUnknown).constructor)
 
     if (asString === '[object Object]' && asFunc === 'Object') {
       // Most likely a literal and intended as assoc. array

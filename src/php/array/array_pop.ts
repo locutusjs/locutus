@@ -1,4 +1,4 @@
-export function array_pop(inputArr: Record<string, unknown> | unknown[]): unknown {
+export function array_pop<T>(inputArr: Record<string, T> | T[]): T | null {
   //  discuss at: https://locutus.io/php/array_pop/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Kevin van Zonneveld (https://kvz.io)
@@ -24,11 +24,11 @@ export function array_pop(inputArr: Record<string, unknown> | unknown[]): unknow
 
   if (inputArr.hasOwnProperty('length')) {
     // Indexed
-    if (!(inputArr as unknown[]).length) {
+    if (!(inputArr as T[]).length) {
       // Done popping, are we?
       return null
     }
-    return (inputArr as unknown[]).pop()
+    return (inputArr as T[]).pop() ?? null
   } else {
     // Associative
     for (key in inputArr) {
@@ -37,8 +37,8 @@ export function array_pop(inputArr: Record<string, unknown> | unknown[]): unknow
       }
     }
     if (lastKey) {
-      const tmp = (inputArr as Record<string, unknown>)[lastKey]
-      delete (inputArr as Record<string, unknown>)[lastKey]
+      const tmp = (inputArr as Record<string, T>)[lastKey] as T
+      delete (inputArr as Record<string, T>)[lastKey]
       return tmp
     } else {
       return null

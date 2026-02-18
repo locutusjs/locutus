@@ -1,7 +1,6 @@
-export function implode(
-  glue: unknown[] | Record<string, unknown> | string,
-  pieces?: unknown[] | Record<string, unknown>,
-): string {
+type KeyedValues = { [key: string]: unknown }
+
+export function implode(glue: unknown[] | KeyedValues | string, pieces?: unknown[] | KeyedValues): string {
   //      discuss at: https://locutus.io/php/implode/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -20,7 +19,7 @@ export function implode(
   let actualPieces = pieces
 
   if (arguments.length === 1) {
-    actualPieces = glue as unknown[] | Record<string, unknown>
+    actualPieces = glue as unknown[] | KeyedValues
     actualGlue = ''
   }
 
