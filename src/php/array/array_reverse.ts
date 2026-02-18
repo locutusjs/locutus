@@ -1,5 +1,7 @@
 import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
+type PhpValue = {} | null | undefined
+
 type ArrayReverseResult<TInput, TPreserve extends boolean> = TInput extends (infer TValue)[]
   ? TPreserve extends true
     ? PhpAssoc<TValue>
@@ -10,7 +12,7 @@ type ArrayReverseResult<TInput, TPreserve extends boolean> = TInput extends (inf
       : PhpAssoc<TValue> | TValue[]
     : never
 
-export function array_reverse<TInput extends unknown[] | PhpAssoc<unknown>, TPreserve extends boolean = false>(
+export function array_reverse<TInput extends PhpValue[] | PhpAssoc<PhpValue>, TPreserve extends boolean = false>(
   array: TInput,
   preserveKeys = false as TPreserve,
 ): ArrayReverseResult<TInput, TPreserve> {
@@ -28,7 +30,7 @@ export function array_reverse<TInput extends unknown[] | PhpAssoc<unknown>, TPre
 
   if (preserveKeys) {
     const keys = Object.keys(source)
-    const reversed: PhpAssoc<unknown> = {}
+    const reversed: PhpAssoc<PhpValue> = {}
 
     for (let index = keys.length - 1; index >= 0; index -= 1) {
       const key = keys[index]
@@ -40,7 +42,7 @@ export function array_reverse<TInput extends unknown[] | PhpAssoc<unknown>, TPre
     return reversed as ArrayReverseResult<TInput, TPreserve>
   }
 
-  const reversed: unknown[] = []
+  const reversed: PhpValue[] = []
   for (const key in source) {
     if (Object.prototype.hasOwnProperty.call(source, key)) {
       reversed.unshift(source[key])

@@ -1,6 +1,10 @@
 import { isObjectLike, type PhpAssoc } from '../_helpers/_phpTypes.ts'
 
-export function array_merge_recursive(arr1: PhpAssoc<unknown>, arr2: PhpAssoc<unknown>): PhpAssoc<unknown> {
+type PhpValue = {} | null | undefined
+interface MergeObject extends PhpAssoc<MergeValue> {}
+type MergeValue = PhpValue | MergeValue[] | MergeObject
+
+export function array_merge_recursive(arr1: MergeObject, arr2: MergeObject): MergeObject {
   //       discuss at: https://locutus.io/php/array_merge_recursive/
   //      original by: Subhasis Deb
   //         input by: Brett Zamir (https://brett-zamir.me)
@@ -12,7 +16,7 @@ export function array_merge_recursive(arr1: PhpAssoc<unknown>, arr2: PhpAssoc<un
   //        example 1: array_merge_recursive($arr1, $arr2)
   //        returns 1: {'color': {'favorite': ['red', 'green'], 0: 'blue'}, 0: 5, 1: 10}
 
-  const result: PhpAssoc<unknown> = {}
+  const result: MergeObject = {}
   let numericIdx = 0
 
   // Helper to check if a key is numeric (PHP integer-indexed)
@@ -21,7 +25,7 @@ export function array_merge_recursive(arr1: PhpAssoc<unknown>, arr2: PhpAssoc<un
   }
 
   // Helper to check if value is a plain object (not array)
-  const isPlainObject = function (val: unknown): val is PhpAssoc<unknown> {
+  const isPlainObject = function (val: PhpValue): val is MergeObject {
     return isObjectLike(val) && !Array.isArray(val)
   }
 

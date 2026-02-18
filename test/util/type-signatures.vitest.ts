@@ -6,10 +6,14 @@ import { array_change_key_case } from '../../src/php/array/array_change_key_case
 import { array_chunk } from '../../src/php/array/array_chunk.ts'
 import { array_column } from '../../src/php/array/array_column.ts'
 import { array_combine } from '../../src/php/array/array_combine.ts'
+import { array_diff } from '../../src/php/array/array_diff.ts'
+import { array_diff_assoc } from '../../src/php/array/array_diff_assoc.ts'
+import { array_diff_key } from '../../src/php/array/array_diff_key.ts'
 import { array_fill_keys } from '../../src/php/array/array_fill_keys.ts'
 import { array_keys } from '../../src/php/array/array_keys.ts'
 import { array_map } from '../../src/php/array/array_map.ts'
 import { array_merge } from '../../src/php/array/array_merge.ts'
+import { array_merge_recursive } from '../../src/php/array/array_merge_recursive.ts'
 import { array_multisort } from '../../src/php/array/array_multisort.ts'
 import { array_pad } from '../../src/php/array/array_pad.ts'
 import { array_push } from '../../src/php/array/array_push.ts'
@@ -53,6 +57,16 @@ const reversedKeysTyped: { [key: string]: string } = array_reverse(['php', 'ts']
 const slicedValuesTyped: string[] = array_slice(['a', 'b', 'c'], 1)
 const slicedKeysTyped = array_slice(['a', 'b', 'c'], 1, 1, true)
 const casedKeysTyped: { [key: string]: number } = array_change_key_case({ Foo: 1 })
+const diffTyped: { [key: string]: string } = array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld'])
+const diffAssocTyped: { [key: string]: string } = array_diff_assoc(
+  { 0: 'Kevin', 1: 'van', 2: 'Zonneveld' },
+  { 0: 'Kevin', 4: 'van', 5: 'Zonneveld' },
+)
+const diffKeyTyped: { [key: string]: number } = array_diff_key({ red: 1, green: 2, blue: 3 }, { red: 5 })
+const mergeRecursiveTyped = array_merge_recursive(
+  { color: { favorite: 'red' }, 0: 5 },
+  { 0: 10, color: { favorite: 'green', 0: 'blue' } },
+)
 const arrayValuesTyped: number[] = array_values({ one: 1, two: 2 })
 const chunkTyped: Array<number[] | { [key: string]: number }> = array_chunk([1, 2, 3], 2) || []
 const columnTyped: { [key: string]: unknown } | undefined = array_column([{ id: 1, label: 'a' }], 'label', 'id')
@@ -106,6 +120,10 @@ describe('public type signatures', () => {
     expect(slicedValuesTyped).toEqual(['b', 'c'])
     expect(slicedKeysTyped).toEqual({ 1: 'b' })
     expect(casedKeysTyped).toEqual({ foo: 1 })
+    expect(diffTyped).toEqual({ 0: 'Kevin' })
+    expect(diffAssocTyped).toEqual({ 1: 'van', 2: 'Zonneveld' })
+    expect(diffKeyTyped).toEqual({ green: 2, blue: 3 })
+    expect(mergeRecursiveTyped).toEqual({ color: { 0: 'blue', favorite: ['red', 'green'] }, 0: 5, 1: 10 })
     expect(arrayValuesTyped).toEqual([1, 2])
     expect(chunkTyped).toEqual([[1, 2], [3]])
     expect(columnTyped).toEqual({ 1: 'a' })

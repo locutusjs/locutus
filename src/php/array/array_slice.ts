@@ -1,6 +1,8 @@
 import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 import { is_int as isInt } from '../var/is_int.ts'
 
+type PhpValue = {} | null | undefined
+
 type ArraySliceResult<TInput, TPreserve extends boolean> = TInput extends (infer TValue)[]
   ? TPreserve extends true
     ? TValue[] | PhpAssoc<TValue>
@@ -9,7 +11,7 @@ type ArraySliceResult<TInput, TPreserve extends boolean> = TInput extends (infer
     ? PhpAssoc<TValue>
     : never
 
-export function array_slice<TInput extends unknown[] | PhpAssoc<unknown>, TPreserve extends boolean = false>(
+export function array_slice<TInput extends PhpValue[] | PhpAssoc<PhpValue>, TPreserve extends boolean = false>(
   arr: TInput,
   offst: number,
   lgth?: number,
@@ -36,8 +38,8 @@ export function array_slice<TInput extends unknown[] | PhpAssoc<unknown>, TPrese
     return arr.slice(offst, lgth) as ArraySliceResult<TInput, TPreserve>
   }
 
-  const assocInput = arr as PhpAssoc<unknown>
-  const sourceAssoc: PhpAssoc<unknown> = {}
+  const assocInput = arr as PhpAssoc<PhpValue>
+  const sourceAssoc: PhpAssoc<PhpValue> = {}
 
   let sourceLength = 0
   for (const key in assocInput) {
@@ -48,7 +50,7 @@ export function array_slice<TInput extends unknown[] | PhpAssoc<unknown>, TPrese
   const normalizedOffset = offst < 0 ? sourceLength + offst : offst
   const resolvedLength = lgth === undefined ? sourceLength : lgth < 0 ? sourceLength + lgth - normalizedOffset : lgth
 
-  const sliced: PhpAssoc<unknown> = {}
+  const sliced: PhpAssoc<PhpValue> = {}
   let started = false
   let sourceIndex = -1
   let collected = 0

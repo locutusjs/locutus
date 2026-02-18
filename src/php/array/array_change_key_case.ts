@@ -1,4 +1,7 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpArrayLike, PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+type PhpValue = {} | null | undefined
+type ArrayChangeInput = number | PhpArrayLike<PhpValue> | null
 
 type ArrayChangeKeyCaseResult<TInput> = TInput extends (infer TValue)[]
   ? TValue[]
@@ -6,11 +9,10 @@ type ArrayChangeKeyCaseResult<TInput> = TInput extends (infer TValue)[]
     ? PhpAssoc<TValue>
     : false
 
-const castArrayChangeResult = <TInput>(
-  value: unknown[] | PhpAssoc<unknown> | false,
-): ArrayChangeKeyCaseResult<TInput> => value as ArrayChangeKeyCaseResult<TInput>
+const castArrayChangeResult = <TInput>(value: PhpArrayLike<PhpValue> | false): ArrayChangeKeyCaseResult<TInput> =>
+  value as ArrayChangeKeyCaseResult<TInput>
 
-export function array_change_key_case<TInput extends number | unknown[] | PhpAssoc<unknown> | null>(
+export function array_change_key_case<TInput extends ArrayChangeInput>(
   array: TInput,
   cs?: string | number,
 ): ArrayChangeKeyCaseResult<TInput> {
@@ -40,8 +42,8 @@ export function array_change_key_case<TInput extends number | unknown[] | PhpAss
   }
 
   const caseFunction: 'toLowerCase' | 'toUpperCase' = !cs || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase'
-  const source = array as PhpAssoc<unknown>
-  const transformed: PhpAssoc<unknown> = {}
+  const source = array as PhpAssoc<PhpValue>
+  const transformed: PhpAssoc<PhpValue> = {}
 
   for (const key in source) {
     if (Object.prototype.hasOwnProperty.call(source, key)) {
