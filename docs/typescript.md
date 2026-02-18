@@ -551,3 +551,23 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Tightening shared helper surfaces gives broad strictness gains with low regression risk when behavior is preserved.
   - Reflective initialization and callback resolution patterns scale well across dynamic runtime boundaries without relying on assertions.
+
+## Iteration 23
+
+- Plans
+  - Remove remaining cast hotspots in `src/php/url/**` and lock that area with a ratchet.
+  - Keep helper-generated tests deterministic after runtime helper tightening.
+- Progress
+  - Refactored `src/php/url/base64_decode.ts` and `src/php/url/base64_encode.ts` to replace casted global Buffer/atob/btoa access with guarded reflective paths.
+  - Refactored `src/php/url/http_build_query.ts` to remove casted object projections by splitting array/object traversal flows.
+  - Refactored `src/php/url/parse_url.ts` to remove parser-mode key cast via explicit mode narrowing.
+  - Extended `scripts/check-ts-debt-policy.ts` with:
+    - `MAX_SRC_PHP_URL_AS_EXPRESSION = 0`
+    - enforcement and findings output for `src/php/url/**` cast expressions.
+  - Stabilized generated helper test behavior:
+    - changed `_ctypePattern` example to a guaranteed-missing key and updated `test/generated/php/_helpers/_ctypePattern.vitest.ts` accordingly.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Reflective access plus explicit mode/shape branching removes most global/runtime casts without changing public API signatures.
+  - Generated example tests should avoid state-dependent values to remain stable as runtime typing gets stricter.

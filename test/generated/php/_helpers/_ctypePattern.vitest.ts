@@ -11,7 +11,7 @@ const getCtypePattern = require('../../../../src/php/_helpers/_ctypePattern.ts')
 describe('src/php/_helpers/_ctypePattern.ts (tested in test/generated/php/_helpers/_ctypePattern.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = 'undefined'
-    const result = typeof getCtypePattern('an')
+    const result = typeof getCtypePattern('missing')
     expect(result).toEqual(expected)
   })
 })

@@ -1,9 +1,3 @@
-type Base64BufferEncoder = {
-  from: (input: string) => {
-    toString: (encoding: 'base64') => string
-  }
-}
-
 export function base64_encode(stringToEncode: string | null | undefined): string | null | undefined {
   //      discuss at: https://locutus.io/php/base64_encode/
   // parity verified: PHP 8.3
@@ -34,17 +28,29 @@ export function base64_encode(stringToEncode: string | null | undefined): string
     })
   }
 
-  const globalContext = globalThis as typeof globalThis & {
-    btoa?: (data: string) => string
-    Buffer?: Base64BufferEncoder
+  const bufferValue = Reflect.get(globalThis, 'Buffer')
+  if (typeof bufferValue === 'object' && bufferValue !== null) {
+    const bufferFrom = Reflect.get(bufferValue, 'from')
+    if (typeof bufferFrom === 'function') {
+      const encoded = Reflect.apply(bufferFrom, bufferValue, [String(stringToEncode)])
+      if (typeof encoded === 'object' && encoded !== null) {
+        const encodedToString = Reflect.get(encoded, 'toString')
+        if (typeof encodedToString === 'function') {
+          const base64Value = Reflect.apply(encodedToString, encoded, ['base64'])
+          if (typeof base64Value === 'string') {
+            return base64Value
+          }
+        }
+      }
+    }
   }
 
-  if (typeof globalContext.Buffer?.from === 'function') {
-    return globalContext.Buffer.from(String(stringToEncode)).toString('base64')
-  }
-
-  if (typeof globalContext.btoa === 'function') {
-    return globalContext.btoa(encodeUTF8string(String(stringToEncode)))
+  const btoaValue = Reflect.get(globalThis, 'btoa')
+  if (typeof btoaValue === 'function') {
+    const encoded = Reflect.apply(btoaValue, globalThis, [encodeUTF8string(String(stringToEncode))])
+    if (typeof encoded === 'string') {
+      return encoded
+    }
   }
 
   const b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='

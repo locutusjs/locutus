@@ -1,12 +1,3 @@
-type Base64BufferDecoder = {
-  from: (
-    input: string,
-    encoding: 'base64',
-  ) => {
-    toString: (encoding: 'utf-8') => string
-  }
-}
-
 export function base64_decode(encodedData: string | null | undefined): string | null | undefined {
   //  discuss at: https://locutus.io/php/base64_decode/
   // original by: Tyler Akins (https://rumkin.com)
@@ -41,17 +32,29 @@ export function base64_decode(encodedData: string | null | undefined): string | 
     )
   }
 
-  const globalContext = globalThis as typeof globalThis & {
-    atob?: (data: string) => string
-    Buffer?: Base64BufferDecoder
+  const bufferValue = Reflect.get(globalThis, 'Buffer')
+  if (typeof bufferValue === 'object' && bufferValue !== null) {
+    const bufferFrom = Reflect.get(bufferValue, 'from')
+    if (typeof bufferFrom === 'function') {
+      const decoded = Reflect.apply(bufferFrom, bufferValue, [String(encodedData), 'base64'])
+      if (typeof decoded === 'object' && decoded !== null) {
+        const decodedToString = Reflect.get(decoded, 'toString')
+        if (typeof decodedToString === 'function') {
+          const utf8Value = Reflect.apply(decodedToString, decoded, ['utf-8'])
+          if (typeof utf8Value === 'string') {
+            return utf8Value
+          }
+        }
+      }
+    }
   }
 
-  if (typeof globalContext.Buffer?.from === 'function') {
-    return globalContext.Buffer.from(String(encodedData), 'base64').toString('utf-8')
-  }
-
-  if (typeof globalContext.atob === 'function') {
-    return decodeUTF8string(globalContext.atob(String(encodedData)))
+  const atobValue = Reflect.get(globalThis, 'atob')
+  if (typeof atobValue === 'function') {
+    const decoded = Reflect.apply(atobValue, globalThis, [String(encodedData)])
+    if (typeof decoded === 'string') {
+      return decodeUTF8string(decoded)
+    }
   }
 
   const b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='

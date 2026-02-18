@@ -95,7 +95,8 @@ export function parse_url(str: string, component?: string): ParseUrlResult | str
     ),
   }
 
-  const selectedParser = parser[mode as keyof typeof parser] ?? parser.php
+  const parserMode = mode === 'php' || mode === 'strict' || mode === 'loose' ? mode : 'php'
+  const selectedParser = parser[parserMode]
   const m = selectedParser.exec(str)
   const uri: ParseUrlResult = {}
   if (!m) {

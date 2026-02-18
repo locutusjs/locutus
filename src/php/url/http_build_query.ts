@@ -56,12 +56,20 @@ export function http_build_query(
     }
     if (val !== null) {
       if (typeof val === 'object') {
-        const valueObject = val as QueryObject
-        for (const nestedKey in valueObject) {
-          if (Object.prototype.hasOwnProperty.call(valueObject, nestedKey)) {
-            const nestedValue = valueObject[nestedKey]
+        if (Array.isArray(val)) {
+          for (let nestedIndex = 0; nestedIndex < val.length; nestedIndex += 1) {
+            const nestedValue = val[nestedIndex]
             if (typeof nestedValue !== 'undefined' && nestedValue !== null) {
-              nested.push(_httpBuildQueryHelper(key + '[' + nestedKey + ']', nestedValue, separator))
+              nested.push(_httpBuildQueryHelper(key + '[' + nestedIndex + ']', nestedValue, separator))
+            }
+          }
+        } else {
+          for (const nestedKey in val) {
+            if (Object.prototype.hasOwnProperty.call(val, nestedKey)) {
+              const nestedValue = val[nestedKey]
+              if (typeof nestedValue !== 'undefined' && nestedValue !== null) {
+                nested.push(_httpBuildQueryHelper(key + '[' + nestedKey + ']', nestedValue, separator))
+              }
             }
           }
         }
@@ -76,22 +84,38 @@ export function http_build_query(
 
   const separator = argSeparator || '&'
 
-  const formObject = formdata as QueryObject
-  for (const key in formObject) {
-    if (!Object.prototype.hasOwnProperty.call(formObject, key)) {
-      continue
+  if (Array.isArray(formdata)) {
+    for (let index = 0; index < formdata.length; index += 1) {
+      const value = formdata[index]
+      if (typeof value === 'undefined') {
+        continue
+      }
+      let queryKey = String(index)
+      if (numericPrefix) {
+        queryKey = String(numericPrefix) + queryKey
+      }
+      const query = _httpBuildQueryHelper(queryKey, value, separator)
+      if (query !== '') {
+        tmp.push(query)
+      }
     }
-    const value = formObject[key]
-    if (typeof value === 'undefined') {
-      continue
-    }
-    let queryKey = key
-    if (numericPrefix && !Number.isNaN(Number(queryKey))) {
-      queryKey = String(numericPrefix) + queryKey
-    }
-    const query = _httpBuildQueryHelper(queryKey, value, separator)
-    if (query !== '') {
-      tmp.push(query)
+  } else {
+    for (const key in formdata) {
+      if (!Object.prototype.hasOwnProperty.call(formdata, key)) {
+        continue
+      }
+      const value = formdata[key]
+      if (typeof value === 'undefined') {
+        continue
+      }
+      let queryKey = key
+      if (numericPrefix && !Number.isNaN(Number(queryKey))) {
+        queryKey = String(numericPrefix) + queryKey
+      }
+      const query = _httpBuildQueryHelper(queryKey, value, separator)
+      if (query !== '') {
+        tmp.push(query)
+      }
     }
   }
 

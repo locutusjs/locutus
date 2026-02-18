@@ -1,7 +1,7 @@
 export function getCtypePattern(key: string): RegExp | undefined {
   // discuss at: https://locutus.io/php/_helpers/getCtypePattern/
   //     note 1: Reads the active LC_CTYPE regex bag from the locutus runtime state.
-  //  example 1: typeof getCtypePattern('an')
+  //  example 1: typeof getCtypePattern('missing')
   //  returns 1: 'undefined'
   const locutus = Reflect.get(globalThis, '$locutus')
   if (typeof locutus !== 'object' || locutus === null) {
