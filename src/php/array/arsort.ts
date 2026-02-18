@@ -2,7 +2,9 @@ import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
 import { i18n_loc_get_default as i18lgd } from '../i18n/i18n_loc_get_default.ts'
 import { strnatcmp } from '../strings/strnatcmp.ts'
 
-const toSortablePrimitive = (value: unknown): string | number | bigint | boolean => {
+type PhpValue = {} | null | undefined
+
+const toSortablePrimitive = (value: PhpValue): string | number | bigint | boolean => {
   if (
     typeof value === 'string' ||
     typeof value === 'number' ||
@@ -15,7 +17,10 @@ const toSortablePrimitive = (value: unknown): string | number | bigint | boolean
   return String(value ?? '')
 }
 
-export function arsort<T>(inputArr: Record<string, T>, sortFlags?: string): boolean | Record<string, T> {
+export function arsort<T extends PhpValue>(
+  inputArr: Record<string, T>,
+  sortFlags?: string,
+): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/arsort/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -51,13 +56,13 @@ export function arsort<T>(inputArr: Record<string, T>, sortFlags?: string): bool
   const runtime = ensurePhpRuntimeState()
   const valArr: [string, T][] = []
 
-  const regularSortDesc = (leftValue: unknown, rightValue: unknown): number => {
+  const regularSortDesc = (leftValue: T, rightValue: T): number => {
     const left = toSortablePrimitive(leftValue)
     const right = toSortablePrimitive(rightValue)
     return left < right ? 1 : left > right ? -1 : 0
   }
 
-  let sorter: (a: unknown, b: unknown) => number = regularSortDesc
+  let sorter: (a: T, b: T) => number = regularSortDesc
 
   switch (sortFlags) {
     case 'SORT_STRING':
