@@ -1,8 +1,17 @@
-// @ts-nocheck
 import { rawurlencode as _rawurlencode } from '../url/rawurlencode.ts'
 import { urlencode as _urlencode } from '../url/urlencode.ts'
 
-export function http_build_query(formdata, numericPrefix, argSeparator, encType) {
+type HttpBuildQueryEncType = 'PHP_QUERY_RFC1738' | 'PHP_QUERY_RFC3986'
+type QueryScalar = string | number | boolean | null
+type QueryValue = QueryScalar | QueryObject | QueryValue[]
+type QueryObject = { [key: string]: QueryValue }
+
+export function http_build_query(
+  formdata: QueryObject | QueryValue[],
+  numericPrefix?: string | number,
+  argSeparator?: string,
+  encType?: HttpBuildQueryEncType,
+): string {
   //  discuss at: https://locutus.io/php/http_build_query/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Legaev Andrey
@@ -23,7 +32,7 @@ export function http_build_query(formdata, numericPrefix, argSeparator, encType)
   //   example 3: http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;', 'PHP_QUERY_RFC3986')
   //   returns 3: 'foo=bar&amp;php=hypertext%20processor&amp;baz=boom&amp;cow=milk'
 
-  let encodeFunc
+  let encodeFunc: (value: string) => string
 
   switch (encType) {
     case 'PHP_QUERY_RFC3986':
@@ -36,13 +45,10 @@ export function http_build_query(formdata, numericPrefix, argSeparator, encType)
       break
   }
 
-  let value
-  let key
-  const tmp = []
+  const tmp: string[] = []
 
-  const _httpBuildQueryHelper = function (key, val, argSeparator) {
-    let k
-    const tmp = []
+  const _httpBuildQueryHelper = function (key: string, val: QueryValue, separator: string): string {
+    const nested: string[] = []
     if (val === true) {
       val = '1'
     } else if (val === false) {
@@ -50,35 +56,44 @@ export function http_build_query(formdata, numericPrefix, argSeparator, encType)
     }
     if (val !== null) {
       if (typeof val === 'object') {
-        for (k in val) {
-          if (val[k] !== null) {
-            tmp.push(_httpBuildQueryHelper(key + '[' + k + ']', val[k], argSeparator))
+        const valueObject = val as QueryObject
+        for (const nestedKey in valueObject) {
+          if (Object.prototype.hasOwnProperty.call(valueObject, nestedKey)) {
+            const nestedValue = valueObject[nestedKey]
+            if (typeof nestedValue !== 'undefined' && nestedValue !== null) {
+              nested.push(_httpBuildQueryHelper(key + '[' + nestedKey + ']', nestedValue, separator))
+            }
           }
         }
-        return tmp.join(argSeparator)
-      } else if (typeof val !== 'function') {
-        return encodeFunc(key) + '=' + encodeFunc(val)
+        return nested.join(separator)
       } else {
-        throw new Error('There was an error processing for http_build_query().')
+        return encodeFunc(key) + '=' + encodeFunc(String(val))
       }
     } else {
       return ''
     }
   }
 
-  if (!argSeparator) {
-    argSeparator = '&'
-  }
-  for (key in formdata) {
-    value = formdata[key]
-    if (numericPrefix && !isNaN(key)) {
-      key = String(numericPrefix) + key
+  const separator = argSeparator || '&'
+
+  const formObject = formdata as QueryObject
+  for (const key in formObject) {
+    if (!Object.prototype.hasOwnProperty.call(formObject, key)) {
+      continue
     }
-    const query = _httpBuildQueryHelper(key, value, argSeparator)
+    const value = formObject[key]
+    if (typeof value === 'undefined') {
+      continue
+    }
+    let queryKey = key
+    if (numericPrefix && !Number.isNaN(Number(queryKey))) {
+      queryKey = String(numericPrefix) + queryKey
+    }
+    const query = _httpBuildQueryHelper(queryKey, value, separator)
     if (query !== '') {
       tmp.push(query)
     }
   }
 
-  return tmp.join(argSeparator)
+  return tmp.join(separator)
 }

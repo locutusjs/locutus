@@ -1,7 +1,20 @@
-// @ts-nocheck
 import { basename } from '../filesystem/basename.ts'
 
-export function pathinfo(path, options) {
+type PathInfoOptionName =
+  | 'PATHINFO_DIRNAME'
+  | 'PATHINFO_BASENAME'
+  | 'PATHINFO_EXTENSION'
+  | 'PATHINFO_FILENAME'
+  | 'PATHINFO_ALL'
+type PathInfoOptions = number | PathInfoOptionName | PathInfoOptionName[]
+type PathInfoMap = {
+  dirname?: string
+  basename?: string
+  extension?: string
+  filename?: string
+}
+
+export function pathinfo(path: string, options?: PathInfoOptions): PathInfoMap | string | false {
   //  discuss at: https://locutus.io/php/pathinfo/
   // original by: Nate
   //  revised by: Kevin van Zonneveld (https://kvz.io)
@@ -36,111 +49,100 @@ export function pathinfo(path, options) {
   //   example 7: pathinfo('/www/htdocs/index.html')
   //   returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
 
-  let opt = ''
-  let realOpt = ''
-  let optName = ''
-  let optTemp = 0
-  const tmpArr = {}
-  let cnt = 0
-  let i = 0
-  let haveBasename = false
-  let haveExtension = false
-  let haveFilename = false
+  let realOpt: keyof PathInfoMap | '' = ''
+  const tmpArr: PathInfoMap = {}
+  let basenameValue: string | null = null
+  let extensionValue: string | false | null = null
+  let filenameValue: string | null = null
 
   // Input defaulting & sanitation
   if (!path) {
     return false
   }
-  if (!options) {
-    options = 'PATHINFO_ALL'
-  }
+  const optionsInput = options ?? 'PATHINFO_ALL'
 
   // Initialize binary arguments. Both the string & integer (constant) input is
   // allowed
-  const OPTS = {
+  const OPTS: { [key in PathInfoOptionName]: number } = {
     PATHINFO_DIRNAME: 1,
     PATHINFO_BASENAME: 2,
     PATHINFO_EXTENSION: 4,
     PATHINFO_FILENAME: 8,
-    PATHINFO_ALL: 0,
+    PATHINFO_ALL: 15,
   }
-  // PATHINFO_ALL sums up all previously defined PATHINFOs (could just pre-calculate)
-  for (optName in OPTS) {
-    if (OPTS.hasOwnProperty(optName)) {
-      OPTS.PATHINFO_ALL = OPTS.PATHINFO_ALL | OPTS[optName]
-    }
-  }
-  if (typeof options !== 'number') {
-    // Allow for a single string or an array of string flags
-    options = [].concat(options)
-    for (i = 0; i < options.length; i++) {
-      // Resolve string input to bitwise e.g. 'PATHINFO_EXTENSION' becomes 4
-      if (OPTS[options[i]]) {
-        optTemp = optTemp | OPTS[options[i]]
+
+  let resolvedOptions = 0
+  if (typeof optionsInput === 'number') {
+    resolvedOptions = optionsInput
+  } else {
+    const optionList = Array.isArray(optionsInput) ? optionsInput : [optionsInput]
+    for (const option of optionList) {
+      const flag = OPTS[option]
+      if (flag) {
+        resolvedOptions = resolvedOptions | flag
       }
     }
-    options = optTemp
   }
 
   // Internal Functions
-  const _getExt = function (path) {
-    const str = path + ''
+  const _getExt = function (pathValue: string): string | false {
+    const str = pathValue + ''
     const dotP = str.lastIndexOf('.') + 1
     return !dotP ? false : dotP !== str.length ? str.substr(dotP) : ''
   }
 
   // Gather path infos
-  if (options & OPTS.PATHINFO_DIRNAME) {
+  if (resolvedOptions & OPTS.PATHINFO_DIRNAME) {
     const dirName = path.replace(/\\/g, '/').replace(/\/[^/]*\/?$/, '') // dirname
     tmpArr.dirname = dirName === path ? '.' : dirName
   }
 
-  if (options & OPTS.PATHINFO_BASENAME) {
-    if (haveBasename === false) {
-      haveBasename = basename(path)
+  if (resolvedOptions & OPTS.PATHINFO_BASENAME) {
+    if (basenameValue === null) {
+      basenameValue = basename(path)
     }
-    tmpArr.basename = haveBasename
+    tmpArr.basename = basenameValue
   }
 
-  if (options & OPTS.PATHINFO_EXTENSION) {
-    if (haveBasename === false) {
-      haveBasename = basename(path)
+  if (resolvedOptions & OPTS.PATHINFO_EXTENSION) {
+    if (basenameValue === null) {
+      basenameValue = basename(path)
     }
-    if (haveExtension === false) {
-      haveExtension = _getExt(haveBasename)
+    if (extensionValue === null) {
+      extensionValue = _getExt(basenameValue)
     }
-    if (haveExtension !== false) {
-      tmpArr.extension = haveExtension
+    if (extensionValue !== false) {
+      tmpArr.extension = extensionValue
     }
   }
 
-  if (options & OPTS.PATHINFO_FILENAME) {
-    if (haveBasename === false) {
-      haveBasename = basename(path)
+  if (resolvedOptions & OPTS.PATHINFO_FILENAME) {
+    if (basenameValue === null) {
+      basenameValue = basename(path)
     }
-    if (haveExtension === false) {
-      haveExtension = _getExt(haveBasename)
+    if (extensionValue === null) {
+      extensionValue = _getExt(basenameValue)
     }
-    if (haveFilename === false) {
-      haveFilename = haveBasename.slice(
+    if (filenameValue === null) {
+      filenameValue = basenameValue.slice(
         0,
-        haveBasename.length - (haveExtension ? haveExtension.length + 1 : haveExtension === false ? 0 : 1),
+        basenameValue.length - (extensionValue ? extensionValue.length + 1 : extensionValue === false ? 0 : 1),
       )
     }
 
-    tmpArr.filename = haveFilename
+    tmpArr.filename = filenameValue
   }
 
   // If array contains only 1 element: return string
-  cnt = 0
-  for (opt in tmpArr) {
-    if (tmpArr.hasOwnProperty(opt)) {
-      cnt++
-      realOpt = opt
+  let count = 0
+  for (const option in tmpArr) {
+    if (Object.prototype.hasOwnProperty.call(tmpArr, option)) {
+      count++
+      realOpt = option as keyof PathInfoMap
     }
   }
-  if (cnt === 1) {
-    return tmpArr[realOpt]
+  if (count === 1 && realOpt !== '') {
+    return tmpArr[realOpt] ?? ''
   }
 
   // Return full-blown array
