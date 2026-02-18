@@ -1,5 +1,45 @@
-// @ts-nocheck
-export function date(format, timestamp) {
+type DateFormatToken =
+  | 'd'
+  | 'D'
+  | 'j'
+  | 'l'
+  | 'N'
+  | 'S'
+  | 'w'
+  | 'z'
+  | 'W'
+  | 'F'
+  | 'm'
+  | 'M'
+  | 'n'
+  | 't'
+  | 'L'
+  | 'o'
+  | 'Y'
+  | 'y'
+  | 'a'
+  | 'A'
+  | 'B'
+  | 'g'
+  | 'G'
+  | 'h'
+  | 'H'
+  | 'i'
+  | 's'
+  | 'u'
+  | 'e'
+  | 'I'
+  | 'O'
+  | 'P'
+  | 'T'
+  | 'Z'
+  | 'c'
+  | 'r'
+  | 'U'
+
+type DateFormatterMap = { [K in DateFormatToken]: () => string | number }
+
+export function date(format: string, timestamp?: number | Date | string): string {
   //  discuss at: https://locutus.io/php/date/
   // original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)
   // original by: gettimeofday
@@ -60,8 +100,8 @@ export function date(format, timestamp) {
   //   example 9: date('W Y-m-d', 1293974054); // 2011-01-02
   //   returns 9: '52 2011-01-02'
 
-  let jsdate
-  let f
+  let jsdate = new Date()
+  let f = {} as DateFormatterMap
   // Keep this here (works, but for code commented-out below for file size reasons)
   // var tal= [];
   const txtWords = [
@@ -89,15 +129,16 @@ export function date(format, timestamp) {
   // a backslash followed by any character (including backslash) -> the character
   // empty string -> empty string
   const formatChr = /\\?(.?)/gi
-  const formatChrCb = function (t, s) {
-    return f[t] ? f[t]() : s
+  const formatChrCb = function (t: string, s: string): string {
+    const formatter = (f as Partial<Record<string, () => string | number>>)[t]
+    return formatter ? String(formatter()) : s
   }
-  const _pad = function (n, c) {
-    n = String(n)
-    while (n.length < c) {
-      n = '0' + n
+  const _pad = function (n: string | number, c: number): string {
+    let str = String(n)
+    while (str.length < c) {
+      str = '0' + str
     }
-    return n
+    return str
   }
   f = {
     // Day
@@ -107,7 +148,7 @@ export function date(format, timestamp) {
     },
     D: function () {
       // Shorthand day name; Mon...Sun
-      return f.l().slice(0, 3)
+      return String(f.l()).slice(0, 3)
     },
     j: function () {
       // Day of month; 1..31
@@ -115,17 +156,17 @@ export function date(format, timestamp) {
     },
     l: function () {
       // Full day name; Monday...Sunday
-      return txtWords[f.w()] + 'day'
+      return (txtWords[Number(f.w())] ?? '') + 'day'
     },
     N: function () {
       // ISO-8601 day of week; 1[Mon]..7[Sun]
-      return f.w() || 7
+      return Number(f.w()) || 7
     },
     S: function () {
       // Ordinal suffix for day of month; st, nd, rd, th
-      const j = f.j()
+      const j = Number(f.j())
       let i = j % 10
-      if (i <= 3 && parseInt((j % 100) / 10, 10) === 1) {
+      if (i <= 3 && Number.parseInt(String((j % 100) / 10), 10) === 1) {
         i = 0
       }
       return ['st', 'nd', 'rd'][i - 1] || 'th'
@@ -136,23 +177,23 @@ export function date(format, timestamp) {
     },
     z: function () {
       // Day of year; 0..365
-      const a = new Date(f.Y(), f.n() - 1, f.j())
-      const b = new Date(f.Y(), 0, 1)
-      return Math.round((a - b) / 864e5)
+      const a = new Date(Number(f.Y()), Number(f.n()) - 1, Number(f.j()))
+      const b = new Date(Number(f.Y()), 0, 1)
+      return Math.round((a.getTime() - b.getTime()) / 864e5)
     },
 
     // Week
     W: function () {
       // ISO-8601 week number
-      const a = new Date(f.Y(), f.n() - 1, f.j() - f.N() + 3)
+      const a = new Date(Number(f.Y()), Number(f.n()) - 1, Number(f.j()) - Number(f.N()) + 3)
       const b = new Date(a.getFullYear(), 0, 4)
-      return _pad(1 + Math.round((a - b) / 864e5 / 7), 2)
+      return _pad(1 + Math.round((a.getTime() - b.getTime()) / 864e5 / 7), 2)
     },
 
     // Month
     F: function () {
       // Full month name; January...December
-      return txtWords[6 + f.n()]
+      return txtWords[6 + Number(f.n())] ?? ''
     },
     m: function () {
       // Month w/leading 0; 01...12
@@ -160,7 +201,7 @@ export function date(format, timestamp) {
     },
     M: function () {
       // Shorthand month name; Jan...Dec
-      return f.F().slice(0, 3)
+      return String(f.F()).slice(0, 3)
     },
     n: function () {
       // Month; 1...12
@@ -168,20 +209,20 @@ export function date(format, timestamp) {
     },
     t: function () {
       // Days in month; 28...31
-      return new Date(f.Y(), f.n(), 0).getDate()
+      return new Date(Number(f.Y()), Number(f.n()), 0).getDate()
     },
 
     // Year
     L: function () {
       // Is leap year?; 0 or 1
-      const j = f.Y()
-      return ((j % 4 === 0) & (j % 100 !== 0)) | (j % 400 === 0)
+      const j = Number(f.Y())
+      return (j % 4 === 0 && j % 100 !== 0) || j % 400 === 0 ? 1 : 0
     },
     o: function () {
       // ISO-8601 year
-      const n = f.n()
-      const W = f.W()
-      const Y = f.Y()
+      const n = Number(f.n())
+      const W = Number(f.W())
+      const Y = Number(f.Y())
       return Y + (n === 12 && W < 9 ? 1 : n === 1 && W > 9 ? -1 : 0)
     },
     Y: function () {
@@ -190,7 +231,7 @@ export function date(format, timestamp) {
     },
     y: function () {
       // Last two digits of year; 00...99
-      return f.Y().toString().slice(-2)
+      return String(f.Y()).slice(-2)
     },
 
     // Time
@@ -200,7 +241,7 @@ export function date(format, timestamp) {
     },
     A: function () {
       // AM or PM
-      return f.a().toUpperCase()
+      return String(f.a()).toUpperCase()
     },
     B: function () {
       // Swatch Internet time; 000..999
@@ -214,7 +255,7 @@ export function date(format, timestamp) {
     },
     g: function () {
       // 12-Hours; 1..12
-      return f.G() % 12 || 12
+      return Number(f.G()) % 12 || 12
     },
     G: function () {
       // 24-Hours; 0..23
@@ -255,15 +296,15 @@ export function date(format, timestamp) {
       // DST observed?; 0 or 1
       // Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.
       // If they are not equal, then DST is observed.
-      const a = new Date(f.Y(), 0)
+      const a = new Date(Number(f.Y()), 0)
       // Jan 1
-      const c = Date.UTC(f.Y(), 0)
+      const c = Date.UTC(Number(f.Y()), 0)
       // Jan 1 UTC
-      const b = new Date(f.Y(), 6)
+      const b = new Date(Number(f.Y()), 6)
       // Jul 1
       // Jul 1 UTC
-      const d = Date.UTC(f.Y(), 6)
-      return a - c !== b - d ? 1 : 0
+      const d = Date.UTC(Number(f.Y()), 6)
+      return a.getTime() - c !== b.getTime() - d ? 1 : 0
     },
     O: function () {
       // Difference to GMT in hour format; e.g. +0200
@@ -273,8 +314,8 @@ export function date(format, timestamp) {
     },
     P: function () {
       // Difference to GMT w/colon; e.g. +02:00
-      const O = f.O()
-      return O.substr(0, 3) + ':' + O.substr(3, 2)
+      const O = String(f.O())
+      return O.slice(0, 3) + ':' + O.slice(3, 5)
     },
     T: function () {
       // The following works, but requires inclusion of the very
@@ -320,18 +361,18 @@ export function date(format, timestamp) {
     },
     U: function () {
       // Seconds since UNIX epoch
-      return (jsdate / 1000) | 0
+      return (jsdate.getTime() / 1000) | 0
     },
   }
 
-  const _date = function (format, timestamp) {
+  const _date = function (formatStr: string, timestampValue?: number | Date | string): string {
     jsdate =
-      timestamp === undefined
+      timestampValue === undefined
         ? new Date() // Not provided
-        : timestamp instanceof Date
-          ? new Date(timestamp) // JS Date()
-          : new Date(timestamp * 1000) // UNIX timestamp (auto-convert to int)
-    return format.replace(formatChr, formatChrCb)
+        : timestampValue instanceof Date
+          ? new Date(timestampValue) // JS Date()
+          : new Date(Number(timestampValue) * 1000) // UNIX timestamp (auto-convert to int)
+    return formatStr.replace(formatChr, formatChrCb)
   }
 
   return _date(format, timestamp)
