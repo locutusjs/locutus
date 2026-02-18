@@ -38,7 +38,6 @@ export function arsort<T>(inputArr: Record<string, T>, sortFlags?: string): bool
   let valArrLen = 0
   let k: string
   let i: number
-  let sorter: ((a: unknown, b: unknown) => number) | undefined
   let sortByReference = false
   const populateArr: Record<string, T> = {}
 
@@ -60,6 +59,7 @@ export function arsort<T>(inputArr: Record<string, T>, sortFlags?: string): bool
     const right = (b ?? '') as string | number | bigint | boolean
     return left < right ? 1 : left > right ? -1 : 0
   }
+  let sorter: (a: unknown, b: unknown) => number = regularSortDesc
 
   switch (sortFlags) {
     case 'SORT_STRING':
@@ -106,7 +106,7 @@ export function arsort<T>(inputArr: Record<string, T>, sortFlags?: string): bool
     }
   }
   valArr.sort(function (a, b) {
-    return sorter!(a[1], b[1])
+    return sorter(a[1], b[1])
   })
 
   // Repopulate the old array

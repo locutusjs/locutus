@@ -854,7 +854,10 @@ class Util {
       throw new Error(`File ${filepath} must contain exactly one module.exports or export function`)
     }
 
-    const funcName = funcNode.name!.text
+    if (!funcNode.name) {
+      throw new Error(`File ${filepath} must export a named function`)
+    }
+    const funcName = funcNode.name.text
     const funcParams = funcNode.parameters.map((p) => {
       if (ts.isIdentifier(p.name)) {
         return p.name.text

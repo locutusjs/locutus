@@ -39,17 +39,17 @@ export function end<T>(arr: T[] | Record<string, T>): T | false {
   const arrpos = indexOf(pointers, arr)
   if (!Array.isArray(arr)) {
     let ct = 0
-    let val!: T
+    let lastKey: string | undefined
     for (const k in arr) {
       ct++
-      val = arr[k] as T
+      lastKey = k
     }
-    if (ct === 0) {
+    if (ct === 0 || lastKey === undefined) {
       // Empty
       return false
     }
     pointers[arrpos + 1] = ct - 1
-    return val
+    return arr[lastKey] as T
   }
   if (arr.length === 0) {
     return false

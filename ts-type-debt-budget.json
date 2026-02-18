@@ -2,7 +2,7 @@
   "tsNoCheckFileBudget": 60,
   "explicitAnyBudget": 0,
   "asAnyBudget": 0,
-  "nonNullAssertionBudget": 3,
-  "recordStringUnknownBudget": 78,
+  "nonNullAssertionBudget": 0,
+  "recordStringUnknownBudget": 0,
   "tsExpectErrorBudget": 0
 }
