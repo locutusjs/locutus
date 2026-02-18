@@ -12,23 +12,25 @@ type ErrorMode = 'throw' | 'log' | 'silent'
 function initCache(): CacheFn {
   const store: UnserializedValue[] = []
   // cache only first element, second is length to jump ahead for the parser
-  const cache = function cache<T extends CacheEntry>(value: T): T {
+  const cacheBase = function cache<T extends CacheEntry>(value: T): T {
     store.push(value[0])
     return value
-  } as CacheFn
-
-  cache.get = (index: number): UnserializedValue => {
-    if (index >= store.length) {
-      throw new RangeError(`Can't resolve reference ${index + 1}`)
-    }
-
-    const cachedValue = store[index]
-    if (typeof cachedValue === 'undefined') {
-      throw new RangeError(`Can't resolve reference ${index + 1}`)
-    }
-
-    return cachedValue
   }
+
+  const cache: CacheFn = Object.assign(cacheBase, {
+    get: (index: number): UnserializedValue => {
+      if (index >= store.length) {
+        throw new RangeError(`Can't resolve reference ${index + 1}`)
+      }
+
+      const cachedValue = store[index]
+      if (typeof cachedValue === 'undefined') {
+        throw new RangeError(`Can't resolve reference ${index + 1}`)
+      }
+
+      return cachedValue
+    },
+  })
 
   return cache
 }
@@ -335,7 +337,7 @@ function expectArrayItems(
   let totalOffset = 0
   let hasContinousIndexes = true
   let lastIndex = -1
-  let items: UnserializedObject | UnserializedValue[] = {}
+  const items: UnserializedObject = {}
   cache([items])
 
   for (let i = 0; i < expectedItems; i++) {
@@ -354,11 +356,11 @@ function expectArrayItems(
     str = str.substr(item[1])
     totalOffset += item[1]
 
-    ;(items as UnserializedObject)[String(key[0])] = item[0]
+    items[String(key[0])] = item[0]
   }
 
   if (hasContinousIndexes) {
-    items = Object.values(items)
+    return [Object.values(items), totalOffset]
   }
 
   return [items, totalOffset]

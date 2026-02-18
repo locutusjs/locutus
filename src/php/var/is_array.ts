@@ -1,7 +1,10 @@
 import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 import { ini_get } from '../info/ini_get.ts'
 
-type KeyedUnknown = PhpAssoc<PhpValue>
+type ArrayLikeAssoc = PhpAssoc<PhpValue> & { length: number }
+
+const hasNumericLength = (value: PhpValue): value is ArrayLikeAssoc =>
+  value !== null && typeof value === 'object' && typeof Reflect.get(value, 'length') === 'number'
 
 export function is_array(mixedVar: PhpValue): boolean {
   //  discuss at: https://locutus.io/php/is_array/
@@ -45,13 +48,10 @@ export function is_array(mixedVar: PhpValue): boolean {
     // The above works, but let's do the even more stringent approach:
     // (since Object.prototype.toString could be overridden)
     // Null, Not an object, no length property so couldn't be an Array (or String)
-    if (!mixedVar || typeof mixedVar !== 'object') {
+    if (!hasNumericLength(mixedVar)) {
       return false
     }
-    const candidate = mixedVar as { length?: number } & PhpAssoc<PhpValue>
-    if (typeof candidate.length !== 'number') {
-      return false
-    }
+    const candidate = mixedVar
     const len = candidate.length
     candidate[candidate.length] = 'bogus'
     // The only way I can think of to get around this (or where there would be trouble)
@@ -89,7 +89,7 @@ export function is_array(mixedVar: PhpValue): boolean {
   const iniVal = ini_get('locutus.objectsAsArrays') || 'on'
   if (iniVal === 'on') {
     const asString = Object.prototype.toString.call(mixedVar)
-    const asFunc = _getFuncName((mixedVar as KeyedUnknown).constructor)
+    const asFunc = _getFuncName(Reflect.get(mixedVar, 'constructor'))
 
     if (asString === '[object Object]' && asFunc === 'Object') {
       // Most likely a literal and intended as assoc. array

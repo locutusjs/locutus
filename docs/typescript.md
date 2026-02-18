@@ -375,3 +375,28 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Centralized typed-entry helpers remove repetitive cast patterns and avoid `T | undefined` indexed-access regressions.
   - Deep ratchet drops become practical once helper primitives are in place and reused across similar algorithms.
+
+## Iteration 14
+
+- Plans
+  - Keep pushing cast elimination in high-dynamic code (`var/**`) without changing tsconfig.
+  - Remove low-value assertion residue in `array/**` where possible, then ratchet immediately.
+- Progress
+  - Refactored `src/php/var/is_array.ts`:
+    - replaced direct casts with `hasNumericLength` guard and `Reflect.get` constructor access.
+  - Refactored `src/php/var/is_callable.ts`:
+    - removed global-context cast by using `globalThis`/`Reflect.set` with record-typed lookup flow.
+  - Refactored `src/php/var/unserialize.ts`:
+    - replaced cache-function assertion with `Object.assign` typed construction.
+    - removed array-item object assertion by keeping `UnserializedObject` as canonical mutable accumulator.
+  - Refactored `src/php/array/array_multisort.ts`:
+    - removed `as const` flag assertion via explicit readonly type annotation.
+  - Lowered debt-policy ratchets in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_VAR_AS_EXPRESSION`: `5 -> 0`
+    - `MAX_SRC_PHP_ARRAY_AS_EXPRESSION`: `4 -> 3`
+  - Validation passed:
+    - `corepack yarn check`
+    - `corepack yarn lint:ts:debt:policy`
+- Key learnings
+  - Guard-based narrowing (`Reflect.get` + typed predicates) is enough to eliminate most legacy `as` usage in dynamic PHP ports.
+  - Zero-cast policy for `var/**` is achievable incrementally when helper construction patterns are tightened.

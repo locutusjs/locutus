@@ -1,4 +1,4 @@
-import { type PhpAssoc, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 export function is_callable(mixedVar: PhpValue, syntaxOnly?: boolean, callableName?: string): boolean | false {
   //  discuss at: https://locutus.io/php/is_callable/
@@ -32,12 +32,10 @@ export function is_callable(mixedVar: PhpValue, syntaxOnly?: boolean, callableNa
   //   example 5: is_callable(class MyClass {})
   //   returns 5: false
 
-  const globalContext = globalThis as typeof globalThis & PhpAssoc<PhpValue>
-
   const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
   let name = ''
-  let obj: PhpAssoc<PhpValue> | null = null
+  let obj: object | null = null
   let method = ''
   let validFunctionName = false
 
@@ -58,7 +56,7 @@ export function is_callable(mixedVar: PhpValue, syntaxOnly?: boolean, callableNa
   }
 
   if (typeof mixedVar === 'string') {
-    obj = globalContext
+    obj = globalThis
     method = mixedVar
     name = mixedVar
     validFunctionName = !!name.match(validJSFunctionNamePattern)
@@ -78,9 +76,9 @@ export function is_callable(mixedVar: PhpValue, syntaxOnly?: boolean, callableNa
       (typeof receiver.constructor === 'function' ? getFuncName(receiver.constructor) : '(Anonymous)') + '::' + method
   }
 
-  if (syntaxOnly || (obj && typeof obj[method] === 'function')) {
+  if (syntaxOnly || (obj && typeof Reflect.get(obj, method) === 'function')) {
     if (callableName) {
-      globalContext[callableName] = name
+      Reflect.set(globalThis, callableName, name)
     }
     return true
   }
@@ -89,7 +87,7 @@ export function is_callable(mixedVar: PhpValue, syntaxOnly?: boolean, callableNa
   // biome-ignore lint/security/noGlobalEval: needed for PHP port
   if (validFunctionName && typeof eval(method) === 'function') {
     if (callableName) {
-      globalContext[callableName] = name
+      Reflect.set(globalThis, callableName, name)
     }
     return true
   }

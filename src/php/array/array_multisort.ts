@@ -7,13 +7,19 @@ type SortArg = PhpValue[] | SortableObject | SortFlag
 
 const hasOwn = Object.prototype.hasOwnProperty
 
-const flags = {
+const flags: Readonly<{
+  SORT_REGULAR: number
+  SORT_NUMERIC: number
+  SORT_STRING: number
+  SORT_ASC: number
+  SORT_DESC: number
+}> = {
   SORT_REGULAR: 16,
   SORT_NUMERIC: 17,
   SORT_STRING: 18,
   SORT_ASC: 32,
   SORT_DESC: 40,
-} as const
+}
 
 type SortFlag = keyof typeof flags
 
