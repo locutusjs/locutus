@@ -477,3 +477,23 @@ To fix a `@ts-nocheck` file:
     - `corepack yarn lint:ts:debt:policy`
 - Key learnings
   - A small runtime-shape guard layer is enough to remove context casts without sacrificing type-safe property access in locale-heavy functions.
+
+## Iteration 19
+
+- Plans
+  - Eliminate the last `strings/**` cast hotspot (`parse_str.ts`) to complete the strings cast burn-down.
+  - Immediately ratchet strings cast policy to zero after successful refactor and validation.
+- Progress
+  - Refactored `src/php/strings/parse_str.ts`:
+    - replaced casted global/context target setup with guarded reflective access.
+    - replaced casted nested object indexing with `Reflect.get`/`Reflect.set` object-container flow.
+  - Lowered strings debt ratchet in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_STRINGS_AS_EXPRESSION`: `3 -> 0`
+  - Reduced `src/php/strings/**` `as`-expression count:
+    - `3 -> 0`
+  - Validation passed:
+    - `corepack yarn check`
+    - `corepack yarn lint:ts:debt:policy`
+- Key learnings
+  - Reflective container updates are a practical pattern for removing final cast residue in highly dynamic parser-style ports.
+  - Reaching a zero-floor ratchet per directory is feasible with iterative, behavior-preserving rewrites.
