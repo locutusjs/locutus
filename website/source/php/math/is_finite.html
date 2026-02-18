@@ -33,7 +33,9 @@ alias:
   - /functions/is_finite/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function is_finite(val) {
+{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function is_finite(val: PhpMixed): boolean {
   //  discuss at: https://locutus.io/php/is_finite/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: is_finite(Infinity)
@@ -52,7 +54,7 @@ alias:
   // Some warnings for maximum PHP compatibility
   if (typeof val === 'object') {
     warningType = Array.isArray(val) ? 'array' : 'object'
-  } else if (typeof val === 'string' && !val.match(/^[+-]?\d/)) {
+  } else if (typeof val === 'string' && !/^[+-]?\d/.test(val)) {
     // simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
     warningType = 'string'
   }
@@ -83,7 +85,37 @@ alias:
   if (typeof val === 'object') {
     warningType = Array.isArray(val) ? 'array' : 'object';
   }
-  else if (typeof val === 'string' && !val.match(/^[+-]?\d/)) {
+  else if (typeof val === 'string' && !/^[+-]?\d/.test(val)) {
+    // simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
+    warningType = 'string';
+  }
+  if (warningType) {
+    const msg = 'Warning: is_finite() expects parameter 1 to be double, ' + warningType + ' given';
+    throw new Error(msg);
+  }
+  return true;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/math/is_finite
+function is_finite(val) {
+  //  discuss at: https://locutus.io/php/is_finite/
+  // original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //   example 1: is_finite(Infinity)
+  //   returns 1: false
+  //   example 2: is_finite(-Infinity)
+  //   returns 2: false
+  //   example 3: is_finite(0)
+  //   returns 3: true
+  let warningType = '';
+  if (val === Infinity || val === -Infinity) {
+    return false;
+  }
+  // Some warnings for maximum PHP compatibility
+  if (typeof val === 'object') {
+    warningType = Array.isArray(val) ? 'array' : 'object';
+  }
+  else if (typeof val === 'string' && !/^[+-]?\d/.test(val)) {
     // simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
     warningType = 'string';
   }

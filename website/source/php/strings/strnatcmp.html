@@ -50,10 +50,10 @@ alias:
   - /functions/strnatcmp/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}// @ts-nocheck
-import { _phpCastString } from '../_helpers/_phpCastString.ts'
+{% codeblock lang:typescript %}import { _phpCastString } from '../_helpers/_phpCastString.ts'
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 
-export function strnatcmp(a, b) {
+export function strnatcmp(...args: PhpMixed[]): number | null {
   //       discuss at: https://locutus.io/php/strnatcmp/
   //  parity verified: PHP 8.3
   //      original by: Martijn Wieringa
@@ -80,34 +80,35 @@ export function strnatcmp(a, b) {
   const whitespace = /^\s/
   const digit = /^\d/
 
-  if (arguments.length !== 2) {
+  if (args.length !== 2) {
     return null
   }
 
-  a = _phpCastString(a)
-  b = _phpCastString(b)
+  const [a, b] = args
+  let left = _phpCastString(a)
+  let right = _phpCastString(b)
 
-  if (!a.length || !b.length) {
-    return a.length - b.length
+  if (!left.length || !right.length) {
+    return left.length - right.length
   }
 
   let i = 0
   let j = 0
 
-  a = a.replace(leadingZeros, '')
-  b = b.replace(leadingZeros, '')
+  left = left.replace(leadingZeros, '')
+  right = right.replace(leadingZeros, '')
 
-  while (i < a.length && j < b.length) {
+  while (i < left.length && j < right.length) {
     // skip consecutive whitespace
-    while (whitespace.test(a.charAt(i))) {
+    while (whitespace.test(left.charAt(i))) {
       i++
     }
-    while (whitespace.test(b.charAt(j))) {
+    while (whitespace.test(right.charAt(j))) {
       j++
     }
 
-    let ac = a.charAt(i)
-    let bc = b.charAt(j)
+    let ac = left.charAt(i)
+    let bc = right.charAt(j)
     let aIsDigit = digit.test(ac)
     let bIsDigit = digit.test(bc)
 
@@ -138,8 +139,8 @@ export function strnatcmp(a, b) {
           }
         }
 
-        ac = a.charAt(++i)
-        bc = b.charAt(++j)
+        ac = left.charAt(++i)
+        bc = right.charAt(++j)
 
         aIsDigit = digit.test(ac)
         bIsDigit = digit.test(bc)
@@ -164,19 +165,24 @@ export function strnatcmp(a, b) {
     j++
   }
 
-  const iBeforeStrEnd = i < a.length
-  const jBeforeStrEnd = j < b.length
+  const iBeforeStrEnd = i < left.length
+  const jBeforeStrEnd = j < right.length
 
   // Check which string ended first
   // return -1 if a, 1 if b, 0 otherwise
-  return (iBeforeStrEnd > jBeforeStrEnd) - (iBeforeStrEnd < jBeforeStrEnd)
+  if (iBeforeStrEnd && !jBeforeStrEnd) {
+    return 1
+  }
+  if (!iBeforeStrEnd && jBeforeStrEnd) {
+    return -1
+  }
+  return 0
 }
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}// @ts-nocheck
-import { _phpCastString } from '../_helpers/_phpCastString.ts';
-export function strnatcmp(a, b) {
+{% codeblock lang:javascript %}import { _phpCastString } from '../_helpers/_phpCastString.ts';
+export function strnatcmp(...args) {
   //       discuss at: https://locutus.io/php/strnatcmp/
   //  parity verified: PHP 8.3
   //      original by: Martijn Wieringa
@@ -201,28 +207,29 @@ export function strnatcmp(a, b) {
   const leadingZeros = /^0+(?=\d)/;
   const whitespace = /^\s/;
   const digit = /^\d/;
-  if (arguments.length !== 2) {
+  if (args.length !== 2) {
     return null;
   }
-  a = _phpCastString(a);
-  b = _phpCastString(b);
-  if (!a.length || !b.length) {
-    return a.length - b.length;
+  const [a, b] = args;
+  let left = _phpCastString(a);
+  let right = _phpCastString(b);
+  if (!left.length || !right.length) {
+    return left.length - right.length;
   }
   let i = 0;
   let j = 0;
-  a = a.replace(leadingZeros, '');
-  b = b.replace(leadingZeros, '');
-  while (i < a.length && j < b.length) {
+  left = left.replace(leadingZeros, '');
+  right = right.replace(leadingZeros, '');
+  while (i < left.length && j < right.length) {
     // skip consecutive whitespace
-    while (whitespace.test(a.charAt(i))) {
+    while (whitespace.test(left.charAt(i))) {
       i++;
     }
-    while (whitespace.test(b.charAt(j))) {
+    while (whitespace.test(right.charAt(j))) {
       j++;
     }
-    let ac = a.charAt(i);
-    let bc = b.charAt(j);
+    let ac = left.charAt(i);
+    let bc = right.charAt(j);
     let aIsDigit = digit.test(ac);
     let bIsDigit = digit.test(bc);
     if (aIsDigit && bIsDigit) {
@@ -251,8 +258,8 @@ export function strnatcmp(a, b) {
             return 1;
           }
         }
-        ac = a.charAt(++i);
-        bc = b.charAt(++j);
+        ac = left.charAt(++i);
+        bc = right.charAt(++j);
         aIsDigit = digit.test(ac);
         bIsDigit = digit.test(bc);
       } while (aIsDigit || bIsDigit);
@@ -273,10 +280,188 @@ export function strnatcmp(a, b) {
     i++;
     j++;
   }
-  const iBeforeStrEnd = i < a.length;
-  const jBeforeStrEnd = j < b.length;
+  const iBeforeStrEnd = i < left.length;
+  const jBeforeStrEnd = j < right.length;
   // Check which string ended first
   // return -1 if a, 1 if b, 0 otherwise
-  return (iBeforeStrEnd > jBeforeStrEnd) - (iBeforeStrEnd < jBeforeStrEnd);
+  if (iBeforeStrEnd && !jBeforeStrEnd) {
+    return 1;
+  }
+  if (!iBeforeStrEnd && jBeforeStrEnd) {
+    return -1;
+  }
+  return 0;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpCastString
+function _phpCastString(value) {
+  // original by: Rafał Kukawski
+  //   example 1: _phpCastString(true)
+  //   returns 1: '1'
+  //   example 2: _phpCastString(false)
+  //   returns 2: ''
+  //   example 3: _phpCastString('foo')
+  //   returns 3: 'foo'
+  //   example 4: _phpCastString(0/0)
+  //   returns 4: 'NAN'
+  //   example 5: _phpCastString(1/0)
+  //   returns 5: 'INF'
+  //   example 6: _phpCastString(-1/0)
+  //   returns 6: '-INF'
+  //   example 7: _phpCastString(null)
+  //   returns 7: ''
+  //   example 8: _phpCastString(undefined)
+  //   returns 8: ''
+  //   example 9: _phpCastString([])
+  //   returns 9: 'Array'
+  //  example 10: _phpCastString({})
+  //  returns 10: 'Object'
+  //  example 11: _phpCastString(0)
+  //  returns 11: '0'
+  //  example 12: _phpCastString(1)
+  //  returns 12: '1'
+  //  example 13: _phpCastString(3.14)
+  //  returns 13: '3.14'
+  if (typeof value === 'boolean') {
+    return value ? '1' : '';
+  }
+  if (typeof value === 'string') {
+    return value;
+  }
+  if (typeof value === 'number') {
+    if (isNaN(value)) {
+      return 'NAN';
+    }
+    if (!isFinite(value)) {
+      return (value < 0 ? '-' : '') + 'INF';
+    }
+    return value + '';
+  }
+  if (typeof value === 'undefined') {
+    return '';
+  }
+  if (typeof value === 'object') {
+    if (Array.isArray(value)) {
+      return 'Array';
+    }
+    if (value !== null) {
+      return 'Object';
+    }
+    return '';
+  }
+  throw new Error('Unsupported value type');
+}
+
+// php/strings/strnatcmp
+function strnatcmp(...args) {
+  //       discuss at: https://locutus.io/php/strnatcmp/
+  //  parity verified: PHP 8.3
+  //      original by: Martijn Wieringa
+  //      improved by: Michael White (https://getsprink.com)
+  //      improved by: Jack
+  //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  // reimplemented by: Rafał Kukawski
+  //        example 1: strnatcmp('abc', 'abc')
+  //        returns 1: 0
+  //        example 2: strnatcmp('a', 'b')
+  //        returns 2: -1
+  //        example 3: strnatcmp('10', '1')
+  //        returns 3: 1
+  //        example 4: strnatcmp('0000abc', '0abc')
+  //        returns 4: 0
+  //        example 5: strnatcmp('1239', '12345')
+  //        returns 5: -1
+  //        example 6: strnatcmp('t01239', 't012345')
+  //        returns 6: 1
+  //        example 7: strnatcmp('0A', '5N')
+  //        returns 7: -1
+  const leadingZeros = /^0+(?=\d)/;
+  const whitespace = /^\s/;
+  const digit = /^\d/;
+  if (args.length !== 2) {
+    return null;
+  }
+  const [a, b] = args;
+  let left = _phpCastString(a);
+  let right = _phpCastString(b);
+  if (!left.length || !right.length) {
+    return left.length - right.length;
+  }
+  let i = 0;
+  let j = 0;
+  left = left.replace(leadingZeros, '');
+  right = right.replace(leadingZeros, '');
+  while (i < left.length && j < right.length) {
+    // skip consecutive whitespace
+    while (whitespace.test(left.charAt(i))) {
+      i++;
+    }
+    while (whitespace.test(right.charAt(j))) {
+      j++;
+    }
+    let ac = left.charAt(i);
+    let bc = right.charAt(j);
+    let aIsDigit = digit.test(ac);
+    let bIsDigit = digit.test(bc);
+    if (aIsDigit && bIsDigit) {
+      let bias = 0;
+      const fractional = ac === '0' || bc === '0';
+      do {
+        if (!aIsDigit) {
+          return -1;
+        }
+        else if (!bIsDigit) {
+          return 1;
+        }
+        else if (ac < bc) {
+          if (!bias) {
+            bias = -1;
+          }
+          if (fractional) {
+            return -1;
+          }
+        }
+        else if (ac > bc) {
+          if (!bias) {
+            bias = 1;
+          }
+          if (fractional) {
+            return 1;
+          }
+        }
+        ac = left.charAt(++i);
+        bc = right.charAt(++j);
+        aIsDigit = digit.test(ac);
+        bIsDigit = digit.test(bc);
+      } while (aIsDigit || bIsDigit);
+      if (!fractional && bias) {
+        return bias;
+      }
+      continue;
+    }
+    if (!ac || !bc) {
+      continue;
+    }
+    else if (ac < bc) {
+      return -1;
+    }
+    else if (ac > bc) {
+      return 1;
+    }
+    i++;
+    j++;
+  }
+  const iBeforeStrEnd = i < left.length;
+  const jBeforeStrEnd = j < right.length;
+  // Check which string ended first
+  // return -1 if a, 1 if b, 0 otherwise
+  if (iBeforeStrEnd && !jBeforeStrEnd) {
+    return 1;
+  }
+  if (!iBeforeStrEnd && jBeforeStrEnd) {
+    return -1;
+  }
+  return 0;
 }{% endcodeblock %}
 </div>

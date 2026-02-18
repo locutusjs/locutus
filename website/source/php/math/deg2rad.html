@@ -32,7 +32,7 @@ alias:
   - /functions/deg2rad/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function deg2rad(angle) {
+{% codeblock lang:typescript %}export function deg2rad(angle: number): number {
   //      discuss at: https://locutus.io/php/deg2rad/
   // parity verified: PHP 8.3
   //     original by: Enrique Gonzalez
@@ -46,6 +46,18 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function deg2rad(angle) {
+  //      discuss at: https://locutus.io/php/deg2rad/
+  // parity verified: PHP 8.3
+  //     original by: Enrique Gonzalez
+  //     improved by: Thomas Grainger (https://graingert.co.uk)
+  //       example 1: deg2rad(45)
+  //       returns 1: 0.7853981633974483
+  return angle * 0.017453292519943295; // (angle / 180) * Math.PI;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/math/deg2rad
+function deg2rad(angle) {
   //      discuss at: https://locutus.io/php/deg2rad/
   // parity verified: PHP 8.3
   //     original by: Enrique Gonzalez

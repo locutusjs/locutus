@@ -35,7 +35,9 @@ alias:
   - /functions/isset/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function isset() {
+{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function isset(...values: PhpMixed[]): boolean {
   //  discuss at: https://locutus.io/php/isset/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: FremyCompany
@@ -46,20 +48,14 @@ alias:
   //   example 2: isset( 'Kevin van Zonneveld' )
   //   returns 2: true
 
-  const a = arguments
-  const l = a.length
-  let i = 0
-  let undef
-
-  if (l === 0) {
+  if (values.length === 0) {
     throw new Error('Empty isset')
   }
 
-  while (i !== l) {
-    if (a[i] === undef || a[i] === null) {
+  for (const value of values) {
+    if (typeof value === 'undefined' || value === null) {
       return false
     }
-    i++
   }
 
   return true
@@ -67,7 +63,7 @@ alias:
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function isset() {
+{% codeblock lang:javascript %}export function isset(...values) {
   //  discuss at: https://locutus.io/php/isset/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: FremyCompany
@@ -77,18 +73,36 @@ alias:
   //   returns 1: false
   //   example 2: isset( 'Kevin van Zonneveld' )
   //   returns 2: true
-  const a = arguments;
-  const l = a.length;
-  let i = 0;
-  let undef;
-  if (l === 0) {
+  if (values.length === 0) {
     throw new Error('Empty isset');
   }
-  while (i !== l) {
-    if (a[i] === undef || a[i] === null) {
+  for (const value of values) {
+    if (typeof value === 'undefined' || value === null) {
       return false;
     }
-    i++;
+  }
+  return true;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/var/isset
+function isset(...values) {
+  //  discuss at: https://locutus.io/php/isset/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: FremyCompany
+  // improved by: Onno Marsman (https://twitter.com/onnomarsman)
+  // improved by: Rafał Kukawski (https://blog.kukawski.pl)
+  //   example 1: isset( undefined, true)
+  //   returns 1: false
+  //   example 2: isset( 'Kevin van Zonneveld' )
+  //   returns 2: true
+  if (values.length === 0) {
+    throw new Error('Empty isset');
+  }
+  for (const value of values) {
+    if (typeof value === 'undefined' || value === null) {
+      return false;
+    }
   }
   return true;
 }{% endcodeblock %}

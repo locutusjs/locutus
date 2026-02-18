@@ -31,7 +31,7 @@ alias:
   - /golang/TrimRight/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function TrimRight(s, cutset) {
+{% codeblock lang:typescript %}export function TrimRight(s: string, cutset: string): string {
   //      discuss at: https://locutus.io/golang/strings/TrimRight/
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -41,7 +41,7 @@ alias:
   //       returns 2: '  hello'
 
   let end = s.length
-  while (end > 0 && cutset.includes(s[end - 1])) {
+  while (end > 0 && cutset.includes(s.charAt(end - 1))) {
     end--
   }
   return s.slice(0, end)
@@ -58,7 +58,24 @@ alias:
   //       example 2: TrimRight('  hello  ', ' ')
   //       returns 2: '  hello'
   let end = s.length;
-  while (end > 0 && cutset.includes(s[end - 1])) {
+  while (end > 0 && cutset.includes(s.charAt(end - 1))) {
+    end--;
+  }
+  return s.slice(0, end);
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// golang/strings/TrimRight
+function TrimRight(s, cutset) {
+  //      discuss at: https://locutus.io/golang/strings/TrimRight/
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: TrimRight('¡¡¡Hello, Gophers!!!', '!¡')
+  //       returns 1: '¡¡¡Hello, Gophers'
+  //       example 2: TrimRight('  hello  ', ' ')
+  //       returns 2: '  hello'
+  let end = s.length;
+  while (end > 0 && cutset.includes(s.charAt(end - 1))) {
     end--;
   }
   return s.slice(0, end);

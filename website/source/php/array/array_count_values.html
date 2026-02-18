@@ -8,7 +8,8 @@ returns:
   - '{3:2, 5:1, "foo":2, "bar":1}'
   - '{3:2, 5:1, "foo":2, "bar":1}'
   - '{42:1, "fubar":1}'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Ates Goral (https://magnetiq.com)
@@ -42,8 +43,9 @@ alias:
   - /functions/array_count_values/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}// @ts-nocheck
-export function array_count_values(array) {
+{% codeblock lang:typescript %}import { isObjectLike, type PhpAssoc, type PhpMixed, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+export function array_count_values(array: PhpMixed): PhpAssoc<number> {
   //      discuss at: https://locutus.io/php/array_count_values/
   // parity verified: PHP 8.3
   //     original by: Ates Goral (https://magnetiq.com)
@@ -59,42 +61,36 @@ export function array_count_values(array) {
   //       example 3: array_count_values([ true, 4.2, 42, "fubar" ])
   //       returns 3: {42:1, "fubar":1}
 
-  const tmpArr = {}
-  let key = ''
-  let t = ''
+  const tmpArr: PhpAssoc<number> = {}
 
-  const _getType = function (obj) {
-    // Objects are php associative arrays.
-    let t = typeof obj
-    t = t.toLowerCase()
-    if (t === 'object') {
-      t = 'array'
-    }
-    return t
-  }
-
-  const _countValue = function (tmpArr, value) {
+  const _countValue = function (target: PhpAssoc<number>, value: PhpMixed): void {
+    let normalized = ''
     if (typeof value === 'number') {
       if (Math.floor(value) !== value) {
         return
       }
+      normalized = String(value)
     } else if (typeof value !== 'string') {
       return
+    } else {
+      normalized = value
     }
 
-    if (value in tmpArr && tmpArr.hasOwnProperty(value)) {
-      ++tmpArr[value]
+    if (normalized in target && Object.prototype.hasOwnProperty.call(target, normalized)) {
+      target[normalized] = (target[normalized] ?? 0) + 1
     } else {
-      tmpArr[value] = 1
+      target[normalized] = 1
     }
   }
 
-  t = _getType(array)
-  if (t === 'array') {
-    for (key in array) {
-      if (array.hasOwnProperty(key)) {
-        _countValue.call(this, tmpArr, array[key])
-      }
+  if (!isObjectLike(array)) {
+    return tmpArr
+  }
+
+  const source = toPhpArrayObject(array)
+  for (const key in source) {
+    if (Object.prototype.hasOwnProperty.call(source, key)) {
+      _countValue(tmpArr, source[key])
     }
   }
 
@@ -103,7 +99,7 @@ export function array_count_values(array) {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}// @ts-nocheck
+{% codeblock lang:javascript %}import { isObjectLike, toPhpArrayObject } from '../_helpers/_phpTypes.ts';
 export function array_count_values(array) {
   //      discuss at: https://locutus.io/php/array_count_values/
   // parity verified: PHP 8.3
@@ -120,39 +116,103 @@ export function array_count_values(array) {
   //       example 3: array_count_values([ true, 4.2, 42, "fubar" ])
   //       returns 3: {42:1, "fubar":1}
   const tmpArr = {};
-  let key = '';
-  let t = '';
-  const _getType = function (obj) {
-    // Objects are php associative arrays.
-    let t = typeof obj;
-    t = t.toLowerCase();
-    if (t === 'object') {
-      t = 'array';
-    }
-    return t;
-  };
-  const _countValue = function (tmpArr, value) {
+  const _countValue = function (target, value) {
+    let normalized = '';
     if (typeof value === 'number') {
       if (Math.floor(value) !== value) {
         return;
       }
+      normalized = String(value);
     }
     else if (typeof value !== 'string') {
       return;
     }
-    if (value in tmpArr && tmpArr.hasOwnProperty(value)) {
-      ++tmpArr[value];
+    else {
+      normalized = value;
+    }
+    if (normalized in target && Object.prototype.hasOwnProperty.call(target, normalized)) {
+      target[normalized] = (target[normalized] ?? 0) + 1;
     }
     else {
-      tmpArr[value] = 1;
+      target[normalized] = 1;
     }
   };
-  t = _getType(array);
-  if (t === 'array') {
-    for (key in array) {
-      if (array.hasOwnProperty(key)) {
-        _countValue.call(this, tmpArr, array[key]);
+  if (!isObjectLike(array)) {
+    return tmpArr;
+  }
+  const source = toPhpArrayObject(array);
+  for (const key in source) {
+    if (Object.prototype.hasOwnProperty.call(source, key)) {
+      _countValue(tmpArr, source[key]);
+    }
+  }
+  return tmpArr;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isObjectLike(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null;
+}
+function isPhpArrayObject(value) {
+  return isObjectLike(value);
+}
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value;
+  }
+  return {};
+}
+
+// php/array/array_count_values
+function array_count_values(array) {
+  //      discuss at: https://locutus.io/php/array_count_values/
+  // parity verified: PHP 8.3
+  //     original by: Ates Goral (https://magnetiq.com)
+  //     improved by: Michael White (https://getsprink.com)
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //        input by: sankai
+  //        input by: Shingo
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: array_count_values([ 3, 5, 3, "foo", "bar", "foo" ])
+  //       returns 1: {3:2, 5:1, "foo":2, "bar":1}
+  //       example 2: array_count_values({ p1: 3, p2: 5, p3: 3, p4: "foo", p5: "bar", p6: "foo" })
+  //       returns 2: {3:2, 5:1, "foo":2, "bar":1}
+  //       example 3: array_count_values([ true, 4.2, 42, "fubar" ])
+  //       returns 3: {42:1, "fubar":1}
+  const tmpArr = {};
+  const _countValue = function (target, value) {
+    let normalized = '';
+    if (typeof value === 'number') {
+      if (Math.floor(value) !== value) {
+        return;
       }
+      normalized = String(value);
+    }
+    else if (typeof value !== 'string') {
+      return;
+    }
+    else {
+      normalized = value;
+    }
+    if (normalized in target && Object.prototype.hasOwnProperty.call(target, normalized)) {
+      target[normalized] = (target[normalized] ?? 0) + 1;
+    }
+    else {
+      target[normalized] = 1;
+    }
+  };
+  if (!isObjectLike(array)) {
+    return tmpArr;
+  }
+  const source = toPhpArrayObject(array);
+  for (const key in source) {
+    if (Object.prototype.hasOwnProperty.call(source, key)) {
+      _countValue(tmpArr, source[key]);
     }
   }
   return tmpArr;

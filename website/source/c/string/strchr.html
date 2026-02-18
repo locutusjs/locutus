@@ -33,7 +33,7 @@ alias:
   - /c/strchr/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function strchr(str, c) {
+{% codeblock lang:typescript %}export function strchr(str: string, c: string): string | null {
   //  discuss at: https://locutus.io/c/string/strchr/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Returns a pointer to the first occurrence of c in str.
@@ -52,6 +52,23 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function strchr(str, c) {
+  //  discuss at: https://locutus.io/c/string/strchr/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  //      note 1: Returns a pointer to the first occurrence of c in str.
+  //      note 1: In JS, returns the substring starting from the first occurrence, or null.
+  //   example 1: strchr('Hello, World!', 'o')
+  //   returns 1: 'o, World!'
+  //   example 2: strchr('Hello', 'x')
+  //   returns 2: null
+  str = str + '';
+  c = (c + '').charAt(0);
+  const idx = str.indexOf(c);
+  return idx === -1 ? null : str.slice(idx);
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// c/string/strchr
+function strchr(str, c) {
   //  discuss at: https://locutus.io/c/string/strchr/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Returns a pointer to the first occurrence of c in str.

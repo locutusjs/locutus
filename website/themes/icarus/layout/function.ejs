@@ -295,6 +295,9 @@
           .code-tab-btn[data-tab="js"].active::after {
             background: #f0db4f;
           }
+          .code-tab-btn[data-tab="standalone"].active::after {
+            background: #22c55e;
+          }
           .code-tab-btn .tab-icon {
             display: inline-block;
             width: 16px;
@@ -316,6 +319,10 @@
             background: #f0db4f;
             color: #323330;
           }
+          .code-tab-btn[data-tab="standalone"] .tab-icon {
+            background: #22c55e;
+            color: #fff;
+          }
           .code-tab-panel {
             display: none;
           }
@@ -335,19 +342,31 @@
             <button class="code-tab-btn" data-tab="js" type="button">
               <span class="tab-icon">JS</span>JavaScript
             </button>
+            <button class="code-tab-btn" data-tab="standalone" type="button">
+              <span class="tab-icon">1F</span>Standalone
+            </button>
           </div>
           <%- page.content %>
         </div>
         <script>
         (function() {
-          var STORAGE_KEY = 'locutus-code-lang';
+          var STORAGE_KEY = 'locutus-code-variant';
+          var LEGACY_STORAGE_KEY = 'locutus-code-lang';
           var saved = null;
-          try { saved = localStorage.getItem(STORAGE_KEY); } catch(e) {}
+          try {
+            saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
+          } catch(e) {}
 
           var buttons = document.querySelectorAll('.code-tab-btn');
           var panels = document.querySelectorAll('.code-tab-panel');
+          var validTabs = Array.prototype.map.call(buttons, function(btn) {
+            return btn.getAttribute('data-tab');
+          });
 
           function switchTab(lang) {
+            if (validTabs.indexOf(lang) === -1) {
+              return;
+            }
             buttons.forEach(function(btn) {
               btn.classList.toggle('active', btn.getAttribute('data-tab') === lang);
             });
@@ -365,7 +384,7 @@
           });
 
           // Restore saved preference, default to TypeScript
-          if (saved && (saved === 'ts' || saved === 'js')) {
+          if (saved && validTabs.indexOf(saved) !== -1) {
             switchTab(saved);
           } else {
             switchTab('ts');

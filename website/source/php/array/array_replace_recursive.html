@@ -6,7 +6,8 @@ examples:
     'raspberry']}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']})
 returns:
   - '{citrus : [''pineapple''], berries : [''blueberry'', ''raspberry'']}'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Brett Zamir (https://brett-zamir.me)
@@ -32,44 +33,47 @@ alias:
   - /functions/array_replace_recursive/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}// @ts-nocheck
-export function array_replace_recursive(arr) {
+{% codeblock lang:typescript %}import { isObjectLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+type PhpValue = {} | null | undefined
+interface RecursiveReplaceObject extends PhpAssoc<RecursiveReplaceValue> {}
+type RecursiveReplaceValue = PhpValue | RecursiveReplaceValue[] | RecursiveReplaceObject
+type RecursiveReplaceTarget = RecursiveReplaceValue[] | RecursiveReplaceObject
+
+const cloneReplaceTarget = (value: PhpValue): RecursiveReplaceTarget => {
+  if (Array.isArray(value)) {
+    return [...value]
+  }
+
+  return isObjectLike(value) ? { ...toPhpArrayObject<RecursiveReplaceValue>(value) } : {}
+}
+
+export function array_replace_recursive(arr: PhpValue, ...replacements: PhpValue[]): RecursiveReplaceTarget {
   //      discuss at: https://locutus.io/php/array_replace_recursive/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
   //       example 1: array_replace_recursive({'citrus' : ['orange'], 'berries' : ['blackberry', 'raspberry']}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']})
   //       returns 1: {citrus : ['pineapple'], berries : ['blueberry', 'raspberry']}
 
-  let i = 0
-  let p = ''
-  const argl = arguments.length
-  let retObj
-
-  if (argl < 2) {
+  if (replacements.length < 1) {
     throw new Error('There should be at least 2 arguments passed to array_replace_recursive()')
   }
 
   // Although docs state that the arguments are passed in by reference,
   // it seems they are not altered, but rather the copy that is returned
   // So we make a copy here, instead of acting on arr itself
-  if (Array.isArray(arr)) {
-    retObj = []
-    for (p in arr) {
-      retObj.push(arr[p])
+  const retObj = cloneReplaceTarget(arr)
+  const retObjLike = toPhpArrayObject(retObj)
+  for (const replacement of replacements) {
+    if (!isObjectLike(replacement)) {
+      continue
     }
-  } else {
-    retObj = {}
-    for (p in arr) {
-      retObj[p] = arr[p]
-    }
-  }
-
-  for (i = 1; i < argl; i++) {
-    for (p in arguments[i]) {
-      if (retObj[p] && typeof retObj[p] === 'object') {
-        retObj[p] = array_replace_recursive(retObj[p], arguments[i][p])
+    const replacementObj = toPhpArrayObject(replacement)
+    for (const p in replacementObj) {
+      if (isObjectLike(retObjLike[p])) {
+        retObjLike[p] = array_replace_recursive(retObjLike[p], replacementObj[p])
       } else {
-        retObj[p] = arguments[i][p]
+        retObjLike[p] = replacementObj[p]
       }
     }
   }
@@ -79,42 +83,95 @@ export function array_replace_recursive(arr) {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}// @ts-nocheck
-export function array_replace_recursive(arr) {
+{% codeblock lang:javascript %}import { isObjectLike, toPhpArrayObject } from '../_helpers/_phpTypes.ts';
+const cloneReplaceTarget = (value) => {
+  if (Array.isArray(value)) {
+    return [...value];
+  }
+  return isObjectLike(value) ? { ...toPhpArrayObject(value) } : {};
+};
+export function array_replace_recursive(arr, ...replacements) {
   //      discuss at: https://locutus.io/php/array_replace_recursive/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
   //       example 1: array_replace_recursive({'citrus' : ['orange'], 'berries' : ['blackberry', 'raspberry']}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']})
   //       returns 1: {citrus : ['pineapple'], berries : ['blueberry', 'raspberry']}
-  let i = 0;
-  let p = '';
-  const argl = arguments.length;
-  let retObj;
-  if (argl < 2) {
+  if (replacements.length < 1) {
     throw new Error('There should be at least 2 arguments passed to array_replace_recursive()');
   }
   // Although docs state that the arguments are passed in by reference,
   // it seems they are not altered, but rather the copy that is returned
   // So we make a copy here, instead of acting on arr itself
-  if (Array.isArray(arr)) {
-    retObj = [];
-    for (p in arr) {
-      retObj.push(arr[p]);
+  const retObj = cloneReplaceTarget(arr);
+  const retObjLike = toPhpArrayObject(retObj);
+  for (const replacement of replacements) {
+    if (!isObjectLike(replacement)) {
+      continue;
     }
-  }
-  else {
-    retObj = {};
-    for (p in arr) {
-      retObj[p] = arr[p];
-    }
-  }
-  for (i = 1; i < argl; i++) {
-    for (p in arguments[i]) {
-      if (retObj[p] && typeof retObj[p] === 'object') {
-        retObj[p] = array_replace_recursive(retObj[p], arguments[i][p]);
+    const replacementObj = toPhpArrayObject(replacement);
+    for (const p in replacementObj) {
+      if (isObjectLike(retObjLike[p])) {
+        retObjLike[p] = array_replace_recursive(retObjLike[p], replacementObj[p]);
       }
       else {
-        retObj[p] = arguments[i][p];
+        retObjLike[p] = replacementObj[p];
+      }
+    }
+  }
+  return retObj;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isObjectLike(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null;
+}
+function isPhpArrayObject(value) {
+  return isObjectLike(value);
+}
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value;
+  }
+  return {};
+}
+
+// php/array/array_replace_recursive
+const cloneReplaceTarget = (value) => {
+  if (Array.isArray(value)) {
+    return [...value];
+  }
+  return isObjectLike(value) ? { ...toPhpArrayObject(value) } : {};
+};
+function array_replace_recursive(arr, ...replacements) {
+  //      discuss at: https://locutus.io/php/array_replace_recursive/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: array_replace_recursive({'citrus' : ['orange'], 'berries' : ['blackberry', 'raspberry']}, {'citrus' : ['pineapple'], 'berries' : ['blueberry']})
+  //       returns 1: {citrus : ['pineapple'], berries : ['blueberry', 'raspberry']}
+  if (replacements.length < 1) {
+    throw new Error('There should be at least 2 arguments passed to array_replace_recursive()');
+  }
+  // Although docs state that the arguments are passed in by reference,
+  // it seems they are not altered, but rather the copy that is returned
+  // So we make a copy here, instead of acting on arr itself
+  const retObj = cloneReplaceTarget(arr);
+  const retObjLike = toPhpArrayObject(retObj);
+  for (const replacement of replacements) {
+    if (!isObjectLike(replacement)) {
+      continue;
+    }
+    const replacementObj = toPhpArrayObject(replacement);
+    for (const p in replacementObj) {
+      if (isObjectLike(retObjLike[p])) {
+        retObjLike[p] = array_replace_recursive(retObjLike[p], replacementObj[p]);
+      }
+      else {
+        retObjLike[p] = replacementObj[p];
       }
     }
   }

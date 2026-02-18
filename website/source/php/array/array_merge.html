@@ -42,8 +42,11 @@ alias:
   - /functions/array_merge/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}// @ts-nocheck
-export function array_merge() {
+{% codeblock lang:typescript %}import type { PhpAssoc, PhpMixed } from '../_helpers/_phpTypes.ts'
+
+type AssociativeArray<T = PhpMixed> = PhpAssoc<T>
+
+export function array_merge<T>(...args: Array<T[] | AssociativeArray<T>>): T[] | AssociativeArray<T> {
   //  discuss at: https://locutus.io/php/array_merge/
   // original by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Nate
@@ -58,46 +61,46 @@ export function array_merge() {
   //   example 2: array_merge($arr1, $arr2)
   //   returns 2: {0: "data"}
 
-  const args = Array.prototype.slice.call(arguments)
-  const argl = args.length
-  let arg
-  const retObj = {}
-  let k = ''
-  let argil = 0
-  let j = 0
-  let i = 0
-  let ct = 0
-  const toStr = Object.prototype.toString
+  const retObj: AssociativeArray<T> = {}
   let retArr = true
 
-  for (i = 0; i < argl; i++) {
-    if (toStr.call(args[i]) !== '[object Array]') {
+  for (const arg of args) {
+    if (!Array.isArray(arg)) {
       retArr = false
       break
     }
   }
 
   if (retArr) {
-    retArr = []
-    for (i = 0; i < argl; i++) {
-      retArr = retArr.concat(args[i])
+    let merged: T[] = []
+    for (const arg of args) {
+      if (Array.isArray(arg)) {
+        merged = merged.concat(arg)
+      }
     }
-    return retArr
+    return merged
   }
 
-  for (i = 0, ct = 0; i < argl; i++) {
-    arg = args[i]
-    if (toStr.call(arg) === '[object Array]') {
-      for (j = 0, argil = arg.length; j < argil; j++) {
-        retObj[ct++] = arg[j]
+  for (let i = 0, ct = 0; i < args.length; i++) {
+    const arg = args[i]
+    if (Array.isArray(arg)) {
+      for (let j = 0, argil = arg.length; j < argil; j++) {
+        const value = arg[j]
+        if (typeof value !== 'undefined') {
+          retObj[ct++] = value
+        }
       }
     } else {
-      for (k in arg) {
-        if (arg.hasOwnProperty(k)) {
+      for (const k in arg) {
+        if (Object.prototype.hasOwnProperty.call(arg, k)) {
+          const value = arg[k]
+          if (typeof value === 'undefined') {
+            continue
+          }
           if (parseInt(k, 10) + '' === k) {
-            retObj[ct++] = arg[k]
+            retObj[ct++] = value
           } else {
-            retObj[k] = arg[k]
+            retObj[k] = value
           }
         }
       }
@@ -109,8 +112,7 @@ export function array_merge() {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}// @ts-nocheck
-export function array_merge() {
+{% codeblock lang:javascript %}export function array_merge(...args) {
   //  discuss at: https://locutus.io/php/array_merge/
   // original by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Nate
@@ -124,45 +126,108 @@ export function array_merge() {
   //   example 2: var $arr2 = {1: "data"}
   //   example 2: array_merge($arr1, $arr2)
   //   returns 2: {0: "data"}
-  const args = Array.prototype.slice.call(arguments);
-  const argl = args.length;
-  let arg;
   const retObj = {};
-  let k = '';
-  let argil = 0;
-  let j = 0;
-  let i = 0;
-  let ct = 0;
-  const toStr = Object.prototype.toString;
   let retArr = true;
-  for (i = 0; i < argl; i++) {
-    if (toStr.call(args[i]) !== '[object Array]') {
+  for (const arg of args) {
+    if (!Array.isArray(arg)) {
       retArr = false;
       break;
     }
   }
   if (retArr) {
-    retArr = [];
-    for (i = 0; i < argl; i++) {
-      retArr = retArr.concat(args[i]);
+    let merged = [];
+    for (const arg of args) {
+      if (Array.isArray(arg)) {
+        merged = merged.concat(arg);
+      }
     }
-    return retArr;
+    return merged;
   }
-  for (i = 0, ct = 0; i < argl; i++) {
-    arg = args[i];
-    if (toStr.call(arg) === '[object Array]') {
-      for (j = 0, argil = arg.length; j < argil; j++) {
-        retObj[ct++] = arg[j];
+  for (let i = 0, ct = 0; i < args.length; i++) {
+    const arg = args[i];
+    if (Array.isArray(arg)) {
+      for (let j = 0, argil = arg.length; j < argil; j++) {
+        const value = arg[j];
+        if (typeof value !== 'undefined') {
+          retObj[ct++] = value;
+        }
       }
     }
     else {
-      for (k in arg) {
-        if (arg.hasOwnProperty(k)) {
+      for (const k in arg) {
+        if (Object.prototype.hasOwnProperty.call(arg, k)) {
+          const value = arg[k];
+          if (typeof value === 'undefined') {
+            continue;
+          }
           if (parseInt(k, 10) + '' === k) {
-            retObj[ct++] = arg[k];
+            retObj[ct++] = value;
           }
           else {
-            retObj[k] = arg[k];
+            retObj[k] = value;
+          }
+        }
+      }
+    }
+  }
+  return retObj;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/array/array_merge
+function array_merge(...args) {
+  //  discuss at: https://locutus.io/php/array_merge/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Nate
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //    input by: josh
+  //   example 1: var $arr1 = {"color": "red", 0: 2, 1: 4}
+  //   example 1: var $arr2 = {0: "a", 1: "b", "color": "green", "shape": "trapezoid", 2: 4}
+  //   example 1: array_merge($arr1, $arr2)
+  //   returns 1: {"color": "green", 0: 2, 1: 4, 2: "a", 3: "b", "shape": "trapezoid", 4: 4}
+  //   example 2: var $arr1 = []
+  //   example 2: var $arr2 = {1: "data"}
+  //   example 2: array_merge($arr1, $arr2)
+  //   returns 2: {0: "data"}
+  const retObj = {};
+  let retArr = true;
+  for (const arg of args) {
+    if (!Array.isArray(arg)) {
+      retArr = false;
+      break;
+    }
+  }
+  if (retArr) {
+    let merged = [];
+    for (const arg of args) {
+      if (Array.isArray(arg)) {
+        merged = merged.concat(arg);
+      }
+    }
+    return merged;
+  }
+  for (let i = 0, ct = 0; i < args.length; i++) {
+    const arg = args[i];
+    if (Array.isArray(arg)) {
+      for (let j = 0, argil = arg.length; j < argil; j++) {
+        const value = arg[j];
+        if (typeof value !== 'undefined') {
+          retObj[ct++] = value;
+        }
+      }
+    }
+    else {
+      for (const k in arg) {
+        if (Object.prototype.hasOwnProperty.call(arg, k)) {
+          const value = arg[k];
+          if (typeof value === 'undefined') {
+            continue;
+          }
+          if (parseInt(k, 10) + '' === k) {
+            retObj[ct++] = value;
+          }
+          else {
+            retObj[k] = value;
           }
         }
       }

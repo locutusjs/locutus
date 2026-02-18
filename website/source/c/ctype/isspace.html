@@ -35,7 +35,7 @@ alias:
   - /c/isspace/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function isspace(c) {
+{% codeblock lang:typescript %}export function isspace(c: string): boolean {
   //  discuss at: https://locutus.io/c/ctype/isspace/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Checks if the character is a whitespace character.
@@ -54,6 +54,23 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function isspace(c) {
+  //  discuss at: https://locutus.io/c/ctype/isspace/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  //      note 1: Checks if the character is a whitespace character.
+  //      note 1: Includes space, tab, newline, vertical tab, form feed, carriage return.
+  //   example 1: isspace(' ')
+  //   returns 1: true
+  //   example 2: isspace('\t')
+  //   returns 2: true
+  //   example 3: isspace('a')
+  //   returns 3: false
+  c = (c + '').charAt(0);
+  return /^[\s]$/.test(c);
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// c/ctype/isspace
+function isspace(c) {
   //  discuss at: https://locutus.io/c/ctype/isspace/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Checks if the character is a whitespace character.

@@ -32,7 +32,7 @@ alias:
   - /perl/length/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function length(str) {
+{% codeblock lang:typescript %}export function length(str: string | null | undefined): number | undefined {
   //      discuss at: https://locutus.io/perl/length/
   // parity verified: Perl 5.40
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -52,6 +52,24 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function length(str) {
+  //      discuss at: https://locutus.io/perl/length/
+  // parity verified: Perl 5.40
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: length('hello')
+  //       returns 1: 5
+  //       example 2: length('')
+  //       returns 2: 0
+  //       example 3: length('hello world')
+  //       returns 3: 11
+  if (str === undefined || str === null) {
+    return undefined;
+  }
+  return String(str).length;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// perl/core/length
+function length(str) {
   //      discuss at: https://locutus.io/perl/length/
   // parity verified: Perl 5.40
   //     original by: Kevin van Zonneveld (https://kvz.io)

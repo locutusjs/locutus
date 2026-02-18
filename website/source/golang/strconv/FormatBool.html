@@ -32,7 +32,7 @@ alias:
   - /golang/FormatBool/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function FormatBool(b) {
+{% codeblock lang:typescript %}export function FormatBool(b: boolean): string {
   //      discuss at: https://locutus.io/golang/strconv/FormatBool
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -48,6 +48,20 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function FormatBool(b) {
+  //      discuss at: https://locutus.io/golang/strconv/FormatBool
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns "true" or "false" according to the value of b.
+  //       example 1: FormatBool(true)
+  //       returns 1: 'true'
+  //       example 2: FormatBool(false)
+  //       returns 2: 'false'
+  return b ? 'true' : 'false';
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// golang/strconv/FormatBool
+function FormatBool(b) {
   //      discuss at: https://locutus.io/golang/strconv/FormatBool
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

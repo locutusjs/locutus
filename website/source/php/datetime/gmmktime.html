@@ -33,8 +33,14 @@ alias:
   - /functions/gmmktime/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}// @ts-nocheck
-export function gmmktime() {
+{% codeblock lang:typescript %}export function gmmktime(
+  hour?: number | string,
+  minute?: number | string,
+  second?: number | string,
+  month?: number | string,
+  day?: number | string,
+  year?: number | string,
+): number | false {
   //      discuss at: https://locutus.io/php/gmmktime/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -45,44 +51,48 @@ export function gmmktime() {
   //       returns 2: -1
 
   const d = new Date()
-  const r = arguments
-  let i = 0
-  const e = ['Hours', 'Minutes', 'Seconds', 'Month', 'Date', 'FullYear']
+  const resolved: [number, number, number, number, number, number] = [
+    d.getUTCHours(),
+    d.getUTCMinutes(),
+    d.getUTCSeconds(),
+    d.getUTCMonth() + 1, // +1 to fix JS months.
+    d.getUTCDate(),
+    d.getUTCFullYear(),
+  ]
+  const input = [hour, minute, second, month, day, year] as const
 
-  for (i = 0; i < e.length; i++) {
-    if (typeof r[i] === 'undefined') {
-      r[i] = d['getUTC' + e[i]]()
-      // +1 to fix JS months.
-      r[i] += i === 3
-    } else {
-      r[i] = parseInt(r[i], 10)
-      if (isNaN(r[i])) {
+  for (let i = 0; i < input.length; i++) {
+    const value = input[i]
+    if (typeof value !== 'undefined') {
+      const parsed = Number.parseInt(String(value), 10)
+      if (Number.isNaN(parsed)) {
         return false
       }
+      resolved[i] = parsed
     }
   }
 
   // Map years 0-69 to 2000-2069 and years 70-100 to 1970-2000.
-  r[5] += r[5] >= 0 ? (r[5] <= 69 ? 2e3 : r[5] <= 100 ? 1900 : 0) : 0
+  const normalizedYear =
+    resolved[5] + (resolved[5] >= 0 ? (resolved[5] <= 69 ? 2000 : resolved[5] <= 100 ? 1900 : 0) : 0)
 
   // Set year, month (-1 to fix JS months), and date.
   // !This must come before the call to setHours!
-  d.setUTCFullYear(r[5], r[3] - 1, r[4])
+  d.setUTCFullYear(normalizedYear, resolved[3] - 1, resolved[4])
 
   // Set hours, minutes, and seconds.
-  d.setUTCHours(r[0], r[1], r[2])
+  d.setUTCHours(resolved[0], resolved[1], resolved[2])
 
   const time = d.getTime()
 
   // Divide milliseconds by 1000 to return seconds and drop decimal.
   // Add 1 second if negative or it'll be off from PHP by 1 second.
-  return ((time / 1e3) >> 0) - (time < 0)
+  return ((time / 1e3) >> 0) - Number(time < 0)
 }
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}// @ts-nocheck
-export function gmmktime() {
+{% codeblock lang:javascript %}export function gmmktime(hour, minute, second, month, day, year) {
   //      discuss at: https://locutus.io/php/gmmktime/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -92,32 +102,79 @@ export function gmmktime() {
   //       example 2: gmmktime(0, 0, -1, 1, 1, 1970)
   //       returns 2: -1
   const d = new Date();
-  const r = arguments;
-  let i = 0;
-  const e = ['Hours', 'Minutes', 'Seconds', 'Month', 'Date', 'FullYear'];
-  for (i = 0; i < e.length; i++) {
-    if (typeof r[i] === 'undefined') {
-      r[i] = d['getUTC' + e[i]]();
-      // +1 to fix JS months.
-      r[i] += i === 3;
-    }
-    else {
-      r[i] = parseInt(r[i], 10);
-      if (isNaN(r[i])) {
+  const resolved = [
+    d.getUTCHours(),
+    d.getUTCMinutes(),
+    d.getUTCSeconds(),
+    d.getUTCMonth() + 1, // +1 to fix JS months.
+    d.getUTCDate(),
+    d.getUTCFullYear(),
+  ];
+  const input = [hour, minute, second, month, day, year];
+  for (let i = 0; i < input.length; i++) {
+    const value = input[i];
+    if (typeof value !== 'undefined') {
+      const parsed = Number.parseInt(String(value), 10);
+      if (Number.isNaN(parsed)) {
         return false;
       }
+      resolved[i] = parsed;
     }
   }
   // Map years 0-69 to 2000-2069 and years 70-100 to 1970-2000.
-  r[5] += r[5] >= 0 ? (r[5] <= 69 ? 2e3 : r[5] <= 100 ? 1900 : 0) : 0;
+  const normalizedYear = resolved[5] + (resolved[5] >= 0 ? (resolved[5] <= 69 ? 2000 : resolved[5] <= 100 ? 1900 : 0) : 0);
   // Set year, month (-1 to fix JS months), and date.
   // !This must come before the call to setHours!
-  d.setUTCFullYear(r[5], r[3] - 1, r[4]);
+  d.setUTCFullYear(normalizedYear, resolved[3] - 1, resolved[4]);
   // Set hours, minutes, and seconds.
-  d.setUTCHours(r[0], r[1], r[2]);
+  d.setUTCHours(resolved[0], resolved[1], resolved[2]);
   const time = d.getTime();
   // Divide milliseconds by 1000 to return seconds and drop decimal.
   // Add 1 second if negative or it'll be off from PHP by 1 second.
-  return ((time / 1e3) >> 0) - (time < 0);
+  return ((time / 1e3) >> 0) - Number(time < 0);
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/datetime/gmmktime
+function gmmktime(hour, minute, second, month, day, year) {
+  //      discuss at: https://locutus.io/php/gmmktime/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //     original by: mktime
+  //       example 1: gmmktime(14, 10, 2, 2, 1, 2008)
+  //       returns 1: 1201875002
+  //       example 2: gmmktime(0, 0, -1, 1, 1, 1970)
+  //       returns 2: -1
+  const d = new Date();
+  const resolved = [
+    d.getUTCHours(),
+    d.getUTCMinutes(),
+    d.getUTCSeconds(),
+    d.getUTCMonth() + 1, // +1 to fix JS months.
+    d.getUTCDate(),
+    d.getUTCFullYear(),
+  ];
+  const input = [hour, minute, second, month, day, year];
+  for (let i = 0; i < input.length; i++) {
+    const value = input[i];
+    if (typeof value !== 'undefined') {
+      const parsed = Number.parseInt(String(value), 10);
+      if (Number.isNaN(parsed)) {
+        return false;
+      }
+      resolved[i] = parsed;
+    }
+  }
+  // Map years 0-69 to 2000-2069 and years 70-100 to 1970-2000.
+  const normalizedYear = resolved[5] + (resolved[5] >= 0 ? (resolved[5] <= 69 ? 2000 : resolved[5] <= 100 ? 1900 : 0) : 0);
+  // Set year, month (-1 to fix JS months), and date.
+  // !This must come before the call to setHours!
+  d.setUTCFullYear(normalizedYear, resolved[3] - 1, resolved[4]);
+  // Set hours, minutes, and seconds.
+  d.setUTCHours(resolved[0], resolved[1], resolved[2]);
+  const time = d.getTime();
+  // Divide milliseconds by 1000 to return seconds and drop decimal.
+  // Add 1 second if negative or it'll be off from PHP by 1 second.
+  return ((time / 1e3) >> 0) - Number(time < 0);
 }{% endcodeblock %}
 </div>

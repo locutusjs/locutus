@@ -35,7 +35,7 @@ alias:
   - /functions/strtok/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function strtok(str, tokens) {
+{% codeblock lang:typescript %}export function strtok(str: string, tokens?: string): string | false {
   //  discuss at: https://locutus.io/php/strtok/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Use tab and newline as tokenizing characters as well
@@ -46,20 +46,23 @@ alias:
   //   example 1: var $result = $b
   //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
+  const globalContext = globalThis as typeof globalThis & {
+    $locutus?: { php?: { strtokleftOver?: string } }
+  }
+  globalContext.$locutus = globalContext.$locutus ?? {}
+  const locutus = globalContext.$locutus
+  locutus.php = locutus.php ?? {}
+  const php = locutus.php
 
-  if (tokens === undefined) {
+  if (typeof tokens === 'undefined') {
     tokens = str
-    str = $locutus.php.strtokleftOver
+    str = php.strtokleftOver ?? ''
   }
   if (str.length === 0) {
     return false
   }
   if (tokens.indexOf(str.charAt(0)) !== -1) {
-    return strtok(str.substr(1), tokens)
+    return strtok(str.substring(1), tokens)
   }
   let i = 0
   for (; i < str.length; i++) {
@@ -67,7 +70,7 @@ alias:
       break
     }
   }
-  $locutus.php.strtokleftOver = str.substr(i + 1)
+  php.strtokleftOver = str.substring(i + 1)
 
   return str.substring(0, i)
 }
@@ -84,19 +87,20 @@ alias:
   //   example 1: while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
   //   example 1: var $result = $b
   //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
-  const $global = typeof window !== 'undefined' ? window : global;
-  $global.$locutus = $global.$locutus || {};
-  const $locutus = $global.$locutus;
-  $locutus.php = $locutus.php || {};
-  if (tokens === undefined) {
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus ?? {};
+  const locutus = globalContext.$locutus;
+  locutus.php = locutus.php ?? {};
+  const php = locutus.php;
+  if (typeof tokens === 'undefined') {
     tokens = str;
-    str = $locutus.php.strtokleftOver;
+    str = php.strtokleftOver ?? '';
   }
   if (str.length === 0) {
     return false;
   }
   if (tokens.indexOf(str.charAt(0)) !== -1) {
-    return strtok(str.substr(1), tokens);
+    return strtok(str.substring(1), tokens);
   }
   let i = 0;
   for (; i < str.length; i++) {
@@ -104,7 +108,44 @@ alias:
       break;
     }
   }
-  $locutus.php.strtokleftOver = str.substr(i + 1);
+  php.strtokleftOver = str.substring(i + 1);
+  return str.substring(0, i);
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/strings/strtok
+function strtok(str, tokens) {
+  //  discuss at: https://locutus.io/php/strtok/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: Use tab and newline as tokenizing characters as well
+  //   example 1: var $string = "\t\t\t\nThis is\tan example\nstring\n"
+  //   example 1: var $tok = strtok($string, " \n\t")
+  //   example 1: var $b = ''
+  //   example 1: while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
+  //   example 1: var $result = $b
+  //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus ?? {};
+  const locutus = globalContext.$locutus;
+  locutus.php = locutus.php ?? {};
+  const php = locutus.php;
+  if (typeof tokens === 'undefined') {
+    tokens = str;
+    str = php.strtokleftOver ?? '';
+  }
+  if (str.length === 0) {
+    return false;
+  }
+  if (tokens.indexOf(str.charAt(0)) !== -1) {
+    return strtok(str.substring(1), tokens);
+  }
+  let i = 0;
+  for (; i < str.length; i++) {
+    if (tokens.indexOf(str.charAt(i)) !== -1) {
+      break;
+    }
+  }
+  php.strtokleftOver = str.substring(i + 1);
   return str.substring(0, i);
 }{% endcodeblock %}
 </div>

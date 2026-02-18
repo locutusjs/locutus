@@ -53,14 +53,15 @@ alias:
   - /functions/strtr/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import { krsort } from '../array/krsort.ts'
+{% codeblock lang:typescript %}import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import { krsort } from '../array/krsort.ts'
+import type { IniValue } from '../info/ini_set.ts'
 import { ini_set as iniSet } from '../info/ini_set.ts'
 
-export function strtr(
-  str: string,
-  trFrom: string | Record<string, unknown> | string[],
-  trTo?: string | unknown[],
-): string {
+type PhpValue = {} | null | undefined
+type ReplacementMap = PhpAssoc<PhpValue>
+
+export function strtr(str: string, trFrom: string | ReplacementMap | string[], trTo?: string | PhpValue[]): string {
   //  discuss at: https://locutus.io/php/strtr/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: uestla
@@ -90,10 +91,10 @@ export function strtr(
   let j = 0
   let lenStr = 0
   let lenFrom = 0
-  let sortByReference: unknown = false
+  let sortByReference: IniValue | undefined = false
   let istr = ''
   const tmpFrom: string[] = []
-  const tmpTo: unknown[] = []
+  const tmpTo: PhpValue[] = []
   let ret = ''
   let match = false
 
@@ -139,10 +140,14 @@ export function strtr(
       }
     } else if (fromArr) {
       for (j = 0; j < lenFrom; j++) {
-        if (str.substr(i, fromArr[j].length) === fromArr[j]) {
+        const fromVal = fromArr[j]
+        if (fromVal === undefined) {
+          continue
+        }
+        if (str.substr(i, fromVal.length) === fromVal) {
           match = true
           // Fast forward
-          i = i + fromArr[j].length - 1
+          i = i + fromVal.length - 1
           break
         }
       }
@@ -235,10 +240,486 @@ export function strtr(str, trFrom, trTo) {
     }
     else if (fromArr) {
       for (j = 0; j < lenFrom; j++) {
-        if (str.substr(i, fromArr[j].length) === fromArr[j]) {
+        const fromVal = fromArr[j];
+        if (fromVal === undefined) {
+          continue;
+        }
+        if (str.substr(i, fromVal.length) === fromVal) {
           match = true;
           // Fast forward
-          i = i + fromArr[j].length - 1;
+          i = i + fromVal.length - 1;
+          break;
+        }
+      }
+    }
+    if (match) {
+      ret += toStr ? toStr.charAt(j) : toArr ? toArr[j] : '';
+    }
+    else {
+      ret += str.charAt(i);
+    }
+  }
+  return ret;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
+function ensurePhpRuntimeState() {
+  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
+  //     note 1: Ensures the mutable locutus PHP runtime bag exists on globalThis.
+  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
+  //  returns 1: true
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus || {};
+  globalContext.$locutus.php = globalContext.$locutus.php || {};
+  const php = globalContext.$locutus.php;
+  php.ini = php.ini || {};
+  php.locales = php.locales || {};
+  php.pointers = php.pointers || [];
+  return {
+    ini: php.ini,
+    locales: php.locales,
+    pointers: php.pointers,
+    locale_default: php.locale_default,
+  };
+}
+function setPhpLocaleDefault(localeDefault) {
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus || {};
+  globalContext.$locutus.php = globalContext.$locutus.php || {};
+  globalContext.$locutus.php.locale_default = localeDefault;
+}
+
+// php/i18n/i18n_loc_get_default
+function i18n_loc_get_default() {
+  //  discuss at: https://locutus.io/php/i18n_loc_get_default/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: Renamed in PHP6 from locale_get_default(). Not listed yet at php.net.
+  //      note 1: List of locales at <https://demo.icu-project.org/icu-bin/locexp>
+  //      note 1: To be usable with sort() if it is passed the `SORT_LOCALE_STRING`
+  //      note 1: sorting flag: https://php.net/manual/en/function.sort.php
+  //   example 1: i18n_loc_get_default()
+  //   returns 1: 'en_US_POSIX'
+  //   example 2: i18n_loc_set_default('pt_PT')
+  //   example 2: i18n_loc_get_default()
+  //   returns 2: 'pt_PT'
+  const runtime = ensurePhpRuntimeState();
+  return runtime.locale_default ?? 'en_US_POSIX';
+}
+
+// php/_helpers/_phpCastString
+function _phpCastString(value) {
+  // original by: Rafał Kukawski
+  //   example 1: _phpCastString(true)
+  //   returns 1: '1'
+  //   example 2: _phpCastString(false)
+  //   returns 2: ''
+  //   example 3: _phpCastString('foo')
+  //   returns 3: 'foo'
+  //   example 4: _phpCastString(0/0)
+  //   returns 4: 'NAN'
+  //   example 5: _phpCastString(1/0)
+  //   returns 5: 'INF'
+  //   example 6: _phpCastString(-1/0)
+  //   returns 6: '-INF'
+  //   example 7: _phpCastString(null)
+  //   returns 7: ''
+  //   example 8: _phpCastString(undefined)
+  //   returns 8: ''
+  //   example 9: _phpCastString([])
+  //   returns 9: 'Array'
+  //  example 10: _phpCastString({})
+  //  returns 10: 'Object'
+  //  example 11: _phpCastString(0)
+  //  returns 11: '0'
+  //  example 12: _phpCastString(1)
+  //  returns 12: '1'
+  //  example 13: _phpCastString(3.14)
+  //  returns 13: '3.14'
+  if (typeof value === 'boolean') {
+    return value ? '1' : '';
+  }
+  if (typeof value === 'string') {
+    return value;
+  }
+  if (typeof value === 'number') {
+    if (isNaN(value)) {
+      return 'NAN';
+    }
+    if (!isFinite(value)) {
+      return (value < 0 ? '-' : '') + 'INF';
+    }
+    return value + '';
+  }
+  if (typeof value === 'undefined') {
+    return '';
+  }
+  if (typeof value === 'object') {
+    if (Array.isArray(value)) {
+      return 'Array';
+    }
+    if (value !== null) {
+      return 'Object';
+    }
+    return '';
+  }
+  throw new Error('Unsupported value type');
+}
+
+// php/strings/strnatcmp
+function strnatcmp(...args) {
+  //       discuss at: https://locutus.io/php/strnatcmp/
+  //  parity verified: PHP 8.3
+  //      original by: Martijn Wieringa
+  //      improved by: Michael White (https://getsprink.com)
+  //      improved by: Jack
+  //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  // reimplemented by: Rafał Kukawski
+  //        example 1: strnatcmp('abc', 'abc')
+  //        returns 1: 0
+  //        example 2: strnatcmp('a', 'b')
+  //        returns 2: -1
+  //        example 3: strnatcmp('10', '1')
+  //        returns 3: 1
+  //        example 4: strnatcmp('0000abc', '0abc')
+  //        returns 4: 0
+  //        example 5: strnatcmp('1239', '12345')
+  //        returns 5: -1
+  //        example 6: strnatcmp('t01239', 't012345')
+  //        returns 6: 1
+  //        example 7: strnatcmp('0A', '5N')
+  //        returns 7: -1
+  const leadingZeros = /^0+(?=\d)/;
+  const whitespace = /^\s/;
+  const digit = /^\d/;
+  if (args.length !== 2) {
+    return null;
+  }
+  const [a, b] = args;
+  let left = _phpCastString(a);
+  let right = _phpCastString(b);
+  if (!left.length || !right.length) {
+    return left.length - right.length;
+  }
+  let i = 0;
+  let j = 0;
+  left = left.replace(leadingZeros, '');
+  right = right.replace(leadingZeros, '');
+  while (i < left.length && j < right.length) {
+    // skip consecutive whitespace
+    while (whitespace.test(left.charAt(i))) {
+      i++;
+    }
+    while (whitespace.test(right.charAt(j))) {
+      j++;
+    }
+    let ac = left.charAt(i);
+    let bc = right.charAt(j);
+    let aIsDigit = digit.test(ac);
+    let bIsDigit = digit.test(bc);
+    if (aIsDigit && bIsDigit) {
+      let bias = 0;
+      const fractional = ac === '0' || bc === '0';
+      do {
+        if (!aIsDigit) {
+          return -1;
+        }
+        else if (!bIsDigit) {
+          return 1;
+        }
+        else if (ac < bc) {
+          if (!bias) {
+            bias = -1;
+          }
+          if (fractional) {
+            return -1;
+          }
+        }
+        else if (ac > bc) {
+          if (!bias) {
+            bias = 1;
+          }
+          if (fractional) {
+            return 1;
+          }
+        }
+        ac = left.charAt(++i);
+        bc = right.charAt(++j);
+        aIsDigit = digit.test(ac);
+        bIsDigit = digit.test(bc);
+      } while (aIsDigit || bIsDigit);
+      if (!fractional && bias) {
+        return bias;
+      }
+      continue;
+    }
+    if (!ac || !bc) {
+      continue;
+    }
+    else if (ac < bc) {
+      return -1;
+    }
+    else if (ac > bc) {
+      return 1;
+    }
+    i++;
+    j++;
+  }
+  const iBeforeStrEnd = i < left.length;
+  const jBeforeStrEnd = j < right.length;
+  // Check which string ended first
+  // return -1 if a, 1 if b, 0 otherwise
+  if (iBeforeStrEnd && !jBeforeStrEnd) {
+    return 1;
+  }
+  if (!iBeforeStrEnd && jBeforeStrEnd) {
+    return -1;
+  }
+  return 0;
+}
+
+// php/array/krsort
+const i18nlgd = i18n_loc_get_default;
+
+function krsort(inputArr, sortFlags) {
+  //  discuss at: https://locutus.io/php/krsort/
+  // original by: GeekFG (https://geekfg.blogspot.com)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: pseudaria (https://github.com/pseudaria)
+  //      note 1: The examples are correct, this is a new way
+  //      note 1: This function deviates from PHP in returning a copy of the array instead
+  //      note 1: of acting by reference and returning true; this was necessary because
+  //      note 1: IE does not allow deleting and re-adding of properties without caching
+  //      note 1: of property position; you can set the ini of "locutus.sortByReference" to true to
+  //      note 1: get the PHP behavior, but use this only if you are in an environment
+  //      note 1: such as Firefox extensions where for-in iteration order is fixed and true
+  //      note 1: property deletion is supported. Note that we intend to implement the PHP
+  //      note 1: behavior by default if IE ever does allow it; only gives shallow copy since
+  //      note 1: is by reference in PHP anyways
+  //      note 1: Since JS objects' keys are always strings, and (the
+  //      note 1: default) SORT_REGULAR flag distinguishes by key type,
+  //      note 1: if the content is a numeric string, we treat the
+  //      note 1: "original type" as numeric.
+  //   example 1: var $data = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+  //   example 1: krsort($data)
+  //   example 1: var $result = $data
+  //   returns 1: {d: 'lemon', c: 'apple', b: 'banana', a: 'orange'}
+  //   example 2: ini_set('locutus.sortByReference', true)
+  //   example 2: var $data = {2: 'van', 3: 'Zonneveld', 1: 'Kevin'}
+  //   example 2: krsort($data)
+  //   example 2: var $result = $data
+  //   returns 2: {3: 'Zonneveld', 2: 'van', 1: 'Kevin'}
+  const tmpArr = {};
+  const keys = [];
+  let sorter;
+  let i;
+  let k;
+  let sortByReference = false;
+  let populateArr = {};
+  const runtime = ensurePhpRuntimeState();
+  switch (sortFlags) {
+    case 'SORT_STRING':
+      // compare items as strings
+      sorter = function (a, b) {
+        return Number(strnatcmp(b, a) ?? 0);
+      };
+      break;
+    case 'SORT_LOCALE_STRING': {
+      // compare items as strings, based on the current locale
+      // (set with i18n_loc_set_default() as of PHP6)
+      const loc = i18nlgd();
+      const locale = runtime.locales[loc];
+      if (locale?.sorting) {
+        sorter = locale.sorting;
+      }
+      break;
+    }
+    case 'SORT_NUMERIC':
+      // compare items numerically
+      sorter = function (a, b) {
+        return Number(b) - Number(a);
+      };
+      break;
+    case 'SORT_REGULAR':
+    default:
+      // compare items normally (don't change types)
+      sorter = function (b, a) {
+        const aFloat = parseFloat(a);
+        const bFloat = parseFloat(b);
+        const aNumeric = aFloat + '' === a;
+        const bNumeric = bFloat + '' === b;
+        if (aNumeric && bNumeric) {
+          return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0;
+        }
+        else if (aNumeric && !bNumeric) {
+          return 1;
+        }
+        else if (!aNumeric && bNumeric) {
+          return -1;
+        }
+        return a > b ? 1 : a < b ? -1 : 0;
+      };
+      break;
+  }
+  // Make a list of key names
+  for (k in inputArr) {
+    if (inputArr.hasOwnProperty(k)) {
+      keys.push(k);
+    }
+  }
+  keys.sort(sorter);
+  const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on';
+  sortByReference = iniVal === 'on';
+  populateArr = sortByReference ? inputArr : populateArr;
+  // Rebuild array with sorted key names
+  for (i = 0; i < keys.length; i++) {
+    const keyName = keys[i];
+    if (typeof keyName === 'undefined') {
+      continue;
+    }
+    k = keyName;
+    tmpArr[k] = inputArr[k];
+    if (sortByReference) {
+      delete inputArr[k];
+    }
+  }
+  for (const i in tmpArr) {
+    if (tmpArr.hasOwnProperty(i)) {
+      populateArr[i] = tmpArr[i];
+    }
+  }
+  return sortByReference || populateArr;
+}
+
+// php/info/ini_set
+function ini_set(varname, newvalue) {
+  //      discuss at: https://locutus.io/php/ini_set/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: This will not set a global_value or access level for the ini item
+  //       example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
+  //       example 1: ini_set('date.timezone', 'America/Chicago')
+  //       returns 1: 'Asia/Hong_Kong'
+  const runtime = ensurePhpRuntimeState();
+  const entry = runtime.ini[varname] ?? (runtime.ini[varname] = {});
+  const oldval = entry.local_value;
+  let normalizedValue = newvalue;
+  const lowerStr = String(newvalue).toLowerCase().trim();
+  if (newvalue === true || lowerStr === 'on' || lowerStr === '1') {
+    normalizedValue = 'on';
+  }
+  if (newvalue === false || lowerStr === 'off' || lowerStr === '0') {
+    normalizedValue = 'off';
+  }
+  const setArrayValue = () => {
+    // Although these are set individually, they are all accumulated.
+    if (typeof entry.local_value === 'undefined') {
+      entry.local_value = [normalizedValue];
+      return;
+    }
+    if (Array.isArray(entry.local_value)) {
+      entry.local_value.push(normalizedValue);
+      return;
+    }
+    entry.local_value = [entry.local_value, normalizedValue];
+  };
+  switch (varname) {
+    case 'extension':
+      setArrayValue();
+      break;
+    default:
+      entry.local_value = normalizedValue;
+      break;
+  }
+  return oldval;
+}
+
+// php/strings/strtr
+const iniSet = ini_set;
+
+function strtr(str, trFrom, trTo) {
+  //  discuss at: https://locutus.io/php/strtr/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //    input by: uestla
+  //    input by: Alan C
+  //    input by: Taras Bogach
+  //    input by: jpfle
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: var $trans = {'hello' : 'hi', 'hi' : 'hello'}
+  //   example 1: strtr('hi all, I said hello', $trans)
+  //   returns 1: 'hello all, I said hi'
+  //   example 2: strtr('äaabaåccasdeöoo', 'äåö','aao')
+  //   returns 2: 'aaabaaccasdeooo'
+  //   example 3: strtr('ääääääää', 'ä', 'a')
+  //   returns 3: 'aaaaaaaa'
+  //   example 4: strtr('http', 'pthxyz','xyzpth')
+  //   returns 4: 'zyyx'
+  //   example 5: strtr('zyyx', 'pthxyz','xyzpth')
+  //   returns 5: 'http'
+  //   example 6: strtr('aa', {'a':1,'aa':2})
+  //   returns 6: '2'
+  let fr = '';
+  let i = 0;
+  let j = 0;
+  let lenStr = 0;
+  let lenFrom = 0;
+  let sortByReference = false;
+  let istr = '';
+  const tmpFrom = [];
+  const tmpTo = [];
+  let ret = '';
+  let match = false;
+  // Received replace_pairs?
+  // Convert to normal trFrom->trTo chars
+  if (typeof trFrom === 'object' && !Array.isArray(trFrom)) {
+    // Not thread-safe; temporarily set to true
+    // @todo: Don't rely on ini here, use internal krsort instead
+    sortByReference = iniSet('locutus.sortByReference', false);
+    const sorted = krsort(trFrom);
+    iniSet('locutus.sortByReference', sortByReference);
+    if (typeof sorted === 'object') {
+      for (fr in sorted) {
+        if (sorted.hasOwnProperty(fr)) {
+          tmpFrom.push(fr);
+          tmpTo.push(sorted[fr]);
+        }
+      }
+    }
+    trFrom = tmpFrom;
+    trTo = tmpTo;
+  }
+  // Walk through subject and replace chars when needed
+  lenStr = str.length;
+  lenFrom = typeof trFrom === 'string' ? trFrom.length : trFrom.length;
+  const fromStr = typeof trFrom === 'string' ? trFrom : null;
+  const fromArr = Array.isArray(trFrom) ? trFrom : null;
+  const toStr = typeof trTo === 'string' ? trTo : null;
+  const toArr = Array.isArray(trTo) ? trTo : null;
+  for (i = 0; i < lenStr; i++) {
+    match = false;
+    if (fromStr) {
+      istr = str.charAt(i);
+      for (j = 0; j < lenFrom; j++) {
+        if (istr === fromStr.charAt(j)) {
+          match = true;
+          break;
+        }
+      }
+    }
+    else if (fromArr) {
+      for (j = 0; j < lenFrom; j++) {
+        const fromVal = fromArr[j];
+        if (fromVal === undefined) {
+          continue;
+        }
+        if (str.substr(i, fromVal.length) === fromVal) {
+          match = true;
+          // Fast forward
+          i = i + fromVal.length - 1;
           break;
         }
       }

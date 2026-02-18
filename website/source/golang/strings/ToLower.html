@@ -29,7 +29,7 @@ alias:
   - /golang/ToLower/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function ToLower(s) {
+{% codeblock lang:typescript %}export function ToLower(s: string): string {
   //      discuss at: https://locutus.io/golang/strings/ToLower
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -42,6 +42,17 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function ToLower(s) {
+  //      discuss at: https://locutus.io/golang/strings/ToLower
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: ToLower('Gopher')
+  //       returns 1: 'gopher'
+  return (s + '').toLowerCase();
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// golang/strings/ToLower
+function ToLower(s) {
   //      discuss at: https://locutus.io/golang/strings/ToLower
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

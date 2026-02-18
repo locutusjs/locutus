@@ -31,7 +31,7 @@ alias:
   - /julia/uppercase/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function uppercase(s) {
+{% codeblock lang:typescript %}export function uppercase(s: string): string {
   //      discuss at: https://locutus.io/julia/uppercase/
   // parity verified: Julia 1.11
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -46,6 +46,19 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function uppercase(s) {
+  //      discuss at: https://locutus.io/julia/uppercase/
+  // parity verified: Julia 1.11
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: uppercase('hello')
+  //       returns 1: 'HELLO'
+  //       example 2: uppercase('Hello World')
+  //       returns 2: 'HELLO WORLD'
+  return String(s).toUpperCase();
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// julia/Base/uppercase
+function uppercase(s) {
   //      discuss at: https://locutus.io/julia/uppercase/
   // parity verified: Julia 1.11
   //     original by: Kevin van Zonneveld (https://kvz.io)

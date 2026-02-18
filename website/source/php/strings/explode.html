@@ -30,14 +30,24 @@ alias:
   - /functions/explode/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function explode(delimiter, string, limit) {
+{% codeblock lang:typescript %}import type { PhpAssoc, PhpMixed } from '../_helpers/_phpTypes.ts'
+
+type KeyedValues = PhpAssoc<PhpMixed>
+
+export function explode(
+  ...args: [string | boolean | null | undefined, string | KeyedValues | (() => PhpMixed) | undefined, number?]
+): string[] | false | { 0: string } | null {
   //      discuss at: https://locutus.io/php/explode/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
   //       example 1: explode(' ', 'Kevin van Zonneveld')
   //       returns 1: [ 'Kevin', 'van', 'Zonneveld' ]
 
-  if (arguments.length < 2 || typeof delimiter === 'undefined' || typeof string === 'undefined') {
+  let [delimiterRaw, stringRaw, limit] = args
+  let delimiter = delimiterRaw
+  const string = stringRaw
+
+  if (args.length < 2 || typeof delimiter === 'undefined' || typeof string === 'undefined') {
     return null
   }
   if (delimiter === '' || delimiter === false || delimiter === null) {
@@ -58,10 +68,10 @@ alias:
   }
 
   // Here we go...
-  delimiter += ''
-  string += ''
+  const normalizedDelimiter = delimiter + ''
+  const normalizedString = string + ''
 
-  const s = string.split(delimiter)
+  const s = normalizedString.split(normalizedDelimiter)
 
   if (typeof limit === 'undefined') {
     return s
@@ -77,7 +87,7 @@ alias:
     if (limit >= s.length) {
       return s
     }
-    return s.slice(0, limit - 1).concat([s.slice(limit - 1).join(delimiter)])
+    return s.slice(0, limit - 1).concat([s.slice(limit - 1).join(normalizedDelimiter)])
   }
 
   // Negative limit
@@ -91,13 +101,16 @@ alias:
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function explode(delimiter, string, limit) {
+{% codeblock lang:javascript %}export function explode(...args) {
   //      discuss at: https://locutus.io/php/explode/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
   //       example 1: explode(' ', 'Kevin van Zonneveld')
   //       returns 1: [ 'Kevin', 'van', 'Zonneveld' ]
-  if (arguments.length < 2 || typeof delimiter === 'undefined' || typeof string === 'undefined') {
+  let [delimiterRaw, stringRaw, limit] = args;
+  let delimiter = delimiterRaw;
+  const string = stringRaw;
+  if (args.length < 2 || typeof delimiter === 'undefined' || typeof string === 'undefined') {
     return null;
   }
   if (delimiter === '' || delimiter === false || delimiter === null) {
@@ -115,9 +128,9 @@ alias:
     delimiter = '1';
   }
   // Here we go...
-  delimiter += '';
-  string += '';
-  const s = string.split(delimiter);
+  const normalizedDelimiter = delimiter + '';
+  const normalizedString = string + '';
+  const s = normalizedString.split(normalizedDelimiter);
   if (typeof limit === 'undefined') {
     return s;
   }
@@ -130,7 +143,61 @@ alias:
     if (limit >= s.length) {
       return s;
     }
-    return s.slice(0, limit - 1).concat([s.slice(limit - 1).join(delimiter)]);
+    return s.slice(0, limit - 1).concat([s.slice(limit - 1).join(normalizedDelimiter)]);
+  }
+  // Negative limit
+  if (-limit >= s.length) {
+    return [];
+  }
+  s.splice(s.length + limit);
+  return s;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/strings/explode
+function explode(...args) {
+  //      discuss at: https://locutus.io/php/explode/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: explode(' ', 'Kevin van Zonneveld')
+  //       returns 1: [ 'Kevin', 'van', 'Zonneveld' ]
+  let [delimiterRaw, stringRaw, limit] = args;
+  let delimiter = delimiterRaw;
+  const string = stringRaw;
+  if (args.length < 2 || typeof delimiter === 'undefined' || typeof string === 'undefined') {
+    return null;
+  }
+  if (delimiter === '' || delimiter === false || delimiter === null) {
+    return false;
+  }
+  if (typeof delimiter === 'function' ||
+    typeof delimiter === 'object' ||
+    typeof string === 'function' ||
+    typeof string === 'object') {
+    return {
+      0: '',
+    };
+  }
+  if (delimiter === true) {
+    delimiter = '1';
+  }
+  // Here we go...
+  const normalizedDelimiter = delimiter + '';
+  const normalizedString = string + '';
+  const s = normalizedString.split(normalizedDelimiter);
+  if (typeof limit === 'undefined') {
+    return s;
+  }
+  // Support for limit
+  if (limit === 0) {
+    limit = 1;
+  }
+  // Positive limit
+  if (limit > 0) {
+    if (limit >= s.length) {
+      return s;
+    }
+    return s.slice(0, limit - 1).concat([s.slice(limit - 1).join(normalizedDelimiter)]);
   }
   // Negative limit
   if (-limit >= s.length) {

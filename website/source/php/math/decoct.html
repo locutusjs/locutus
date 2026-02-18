@@ -39,7 +39,7 @@ alias:
   - /functions/decoct/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function decoct(number) {
+{% codeblock lang:typescript %}export function decoct(number: number): string {
   //      discuss at: https://locutus.io/php/decoct/
   // parity verified: PHP 8.3
   //     original by: Enrique Gonzalez
@@ -51,10 +51,11 @@ alias:
   //       example 2: decoct(264)
   //       returns 2: '410'
 
-  if (number < 0) {
-    number = 0xffffffff + number + 1
+  let normalized = parseInt(String(number), 10)
+  if (normalized < 0) {
+    normalized = 0xffffffff + normalized + 1
   }
-  return parseInt(number, 10).toString(8)
+  return normalized.toString(8)
 }
 {% endcodeblock %}
 </div>
@@ -70,9 +71,30 @@ alias:
   //       returns 1: '17'
   //       example 2: decoct(264)
   //       returns 2: '410'
-  if (number < 0) {
-    number = 0xffffffff + number + 1;
+  let normalized = parseInt(String(number), 10);
+  if (normalized < 0) {
+    normalized = 0xffffffff + normalized + 1;
   }
-  return parseInt(number, 10).toString(8);
+  return normalized.toString(8);
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/math/decoct
+function decoct(number) {
+  //      discuss at: https://locutus.io/php/decoct/
+  // parity verified: PHP 8.3
+  //     original by: Enrique Gonzalez
+  //     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     improved by: https://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
+  //        input by: pilus
+  //       example 1: decoct(15)
+  //       returns 1: '17'
+  //       example 2: decoct(264)
+  //       returns 2: '410'
+  let normalized = parseInt(String(number), 10);
+  if (normalized < 0) {
+    normalized = 0xffffffff + normalized + 1;
+  }
+  return normalized.toString(8);
 }{% endcodeblock %}
 </div>

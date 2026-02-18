@@ -20,7 +20,8 @@ returns:
   - >-
     {1: {name: 'Alex', value: 1}, 2: {name: 'Elvis', value: 2}, 3: {name:
     'Michael', value: 3}}
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Enzo Dañobeytía
@@ -45,8 +46,15 @@ alias:
   - /functions/array_column/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}// @ts-nocheck
-export function array_column(input, ColumnKey, IndexKey = null) {
+{% codeblock lang:typescript %}import { isObjectLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+type PhpValue = {} | null | undefined
+
+export function array_column(
+  input: PhpValue,
+  columnKey: string | number | null,
+  indexKey: string | number | null = null,
+): PhpAssoc<PhpValue> | undefined {
   //  discuss at: https://locutus.io/php/array_column/
   // original by: Enzo Dañobeytía
   //   example 1: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], 'name')
@@ -58,40 +66,34 @@ export function array_column(input, ColumnKey, IndexKey = null) {
   //   example 4: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], null, 'value')
   //   returns 4: {1: {name: 'Alex', value: 1}, 2: {name: 'Elvis', value: 2}, 3: {name: 'Michael', value: 3}}
 
-  if (input !== null && (typeof input === 'object' || Array.isArray(input))) {
-    const newarray = []
-    if (typeof input === 'object') {
-      const temparray = []
-      for (const key of Object.keys(input)) {
-        temparray.push(input[key])
-      }
-      input = temparray
-    }
-    if (Array.isArray(input)) {
-      for (const key of input.keys()) {
-        if (IndexKey && input[key][IndexKey]) {
-          if (ColumnKey) {
-            newarray[input[key][IndexKey]] = input[key][ColumnKey]
-          } else {
-            newarray[input[key][IndexKey]] = input[key]
-          }
-        } else {
-          if (ColumnKey) {
-            newarray.push(input[key][ColumnKey])
-          } else {
-            newarray.push(input[key])
-          }
-        }
-      }
-    }
-    return Object.assign({}, newarray)
+  if (input === null || typeof input !== 'object') {
+    return undefined
   }
+
+  const normalizedInput = Array.isArray(input) ? input : Object.values(toPhpArrayObject<PhpValue>(input))
+  const result: PhpAssoc<PhpValue> = {}
+  let fallbackIndex = 0
+
+  for (const rowValue of normalizedInput) {
+    const row = isObjectLike(rowValue) ? toPhpArrayObject<PhpValue>(rowValue) : {}
+    const indexCandidate = indexKey === null ? undefined : row[String(indexKey)]
+
+    const value = columnKey === null ? rowValue : row[String(columnKey)]
+    if (indexCandidate !== undefined && indexCandidate !== null) {
+      result[String(indexCandidate)] = value
+    } else {
+      result[String(fallbackIndex)] = value
+      fallbackIndex += 1
+    }
+  }
+
+  return result
 }
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}// @ts-nocheck
-export function array_column(input, ColumnKey, IndexKey = null) {
+{% codeblock lang:javascript %}import { isObjectLike, toPhpArrayObject } from '../_helpers/_phpTypes.ts';
+export function array_column(input, columnKey, indexKey = null) {
   //  discuss at: https://locutus.io/php/array_column/
   // original by: Enzo Dañobeytía
   //   example 1: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], 'name')
@@ -102,36 +104,76 @@ export function array_column(input, ColumnKey, IndexKey = null) {
   //   returns 3: {1: "Alex", 2: "Elvis", 3: "Michael"}
   //   example 4: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], null, 'value')
   //   returns 4: {1: {name: 'Alex', value: 1}, 2: {name: 'Elvis', value: 2}, 3: {name: 'Michael', value: 3}}
-  if (input !== null && (typeof input === 'object' || Array.isArray(input))) {
-    const newarray = [];
-    if (typeof input === 'object') {
-      const temparray = [];
-      for (const key of Object.keys(input)) {
-        temparray.push(input[key]);
-      }
-      input = temparray;
-    }
-    if (Array.isArray(input)) {
-      for (const key of input.keys()) {
-        if (IndexKey && input[key][IndexKey]) {
-          if (ColumnKey) {
-            newarray[input[key][IndexKey]] = input[key][ColumnKey];
-          }
-          else {
-            newarray[input[key][IndexKey]] = input[key];
-          }
-        }
-        else {
-          if (ColumnKey) {
-            newarray.push(input[key][ColumnKey]);
-          }
-          else {
-            newarray.push(input[key]);
-          }
-        }
-      }
-    }
-    return Object.assign({}, newarray);
+  if (input === null || typeof input !== 'object') {
+    return undefined;
   }
+  const normalizedInput = Array.isArray(input) ? input : Object.values(toPhpArrayObject(input));
+  const result = {};
+  let fallbackIndex = 0;
+  for (const rowValue of normalizedInput) {
+    const row = isObjectLike(rowValue) ? toPhpArrayObject(rowValue) : {};
+    const indexCandidate = indexKey === null ? undefined : row[String(indexKey)];
+    const value = columnKey === null ? rowValue : row[String(columnKey)];
+    if (indexCandidate !== undefined && indexCandidate !== null) {
+      result[String(indexCandidate)] = value;
+    }
+    else {
+      result[String(fallbackIndex)] = value;
+      fallbackIndex += 1;
+    }
+  }
+  return result;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isObjectLike(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null;
+}
+function isPhpArrayObject(value) {
+  return isObjectLike(value);
+}
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value;
+  }
+  return {};
+}
+
+// php/array/array_column
+function array_column(input, columnKey, indexKey = null) {
+  //  discuss at: https://locutus.io/php/array_column/
+  // original by: Enzo Dañobeytía
+  //   example 1: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], 'name')
+  //   returns 1: {0: "Alex", 1: "Elvis", 2: "Michael"}
+  //   example 2: array_column({0: {name: 'Alex', value: 1}, 1: {name: 'Elvis', value: 2}, 2: {name: 'Michael', value: 3}}, 'name')
+  //   returns 2: {0: "Alex", 1: "Elvis", 2: "Michael"}
+  //   example 3: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], 'name', 'value')
+  //   returns 3: {1: "Alex", 2: "Elvis", 3: "Michael"}
+  //   example 4: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], null, 'value')
+  //   returns 4: {1: {name: 'Alex', value: 1}, 2: {name: 'Elvis', value: 2}, 3: {name: 'Michael', value: 3}}
+  if (input === null || typeof input !== 'object') {
+    return undefined;
+  }
+  const normalizedInput = Array.isArray(input) ? input : Object.values(toPhpArrayObject(input));
+  const result = {};
+  let fallbackIndex = 0;
+  for (const rowValue of normalizedInput) {
+    const row = isObjectLike(rowValue) ? toPhpArrayObject(rowValue) : {};
+    const indexCandidate = indexKey === null ? undefined : row[String(indexKey)];
+    const value = columnKey === null ? rowValue : row[String(columnKey)];
+    if (indexCandidate !== undefined && indexCandidate !== null) {
+      result[String(indexCandidate)] = value;
+    }
+    else {
+      result[String(fallbackIndex)] = value;
+      fallbackIndex += 1;
+    }
+  }
+  return result;
 }{% endcodeblock %}
 </div>

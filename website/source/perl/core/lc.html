@@ -30,7 +30,7 @@ alias:
   - /perl/lc/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function lc(str) {
+{% codeblock lang:typescript %}export function lc(str: string): string {
   //      discuss at: https://locutus.io/perl/lc/
   // parity verified: Perl 5.40
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -45,6 +45,19 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function lc(str) {
+  //      discuss at: https://locutus.io/perl/lc/
+  // parity verified: Perl 5.40
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: lc('HELLO')
+  //       returns 1: 'hello'
+  //       example 2: lc('Hello World')
+  //       returns 2: 'hello world'
+  return String(str).toLowerCase();
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// perl/core/lc
+function lc(str) {
   //      discuss at: https://locutus.io/perl/lc/
   // parity verified: Perl 5.40
   //     original by: Kevin van Zonneveld (https://kvz.io)

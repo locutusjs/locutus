@@ -6,7 +6,8 @@ examples:
     var $result = Array.isArray($funcs) && $funcs.length > 0
 returns:
   - 'true'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Brett Zamir (https://brett-zamir.me)
@@ -37,8 +38,14 @@ alias:
   - /functions/get_defined_functions/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}// @ts-nocheck
-export function get_defined_functions() {
+{% codeblock lang:typescript %}import { type PhpAssoc, type PhpMixed, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+type GlobalWithLocutus = typeof globalThis &
+  PhpAssoc<PhpMixed> & {
+    $locutus?: { php?: PhpAssoc<PhpMixed> }
+  }
+
+export function get_defined_functions(): string[] {
   //      discuss at: https://locutus.io/php/get_defined_functions/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -49,25 +56,25 @@ export function get_defined_functions() {
   //       example 1: var $result = Array.isArray($funcs) && $funcs.length > 0
   //       returns 1: true
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
+  const globalContext = globalThis as GlobalWithLocutus
+  globalContext.$locutus = globalContext.$locutus ?? {}
+  const locutus = globalContext.$locutus
+  locutus.php = locutus.php ?? {}
 
-  let i = ''
-  const arr = []
-  const already = {}
+  const arr: string[] = []
+  const already: Record<string, 1> = {}
 
-  for (i in $global) {
+  for (const i in globalContext) {
     try {
-      if (typeof $global[i] === 'function') {
+      if (typeof globalContext[i] === 'function') {
         if (!already[i]) {
           already[i] = 1
           arr.push(i)
         }
-      } else if (typeof $global[i] === 'object') {
-        for (const j in $global[i]) {
-          if (typeof $global[j] === 'function' && $global[j] && !already[j]) {
+      } else if (typeof globalContext[i] === 'object' && globalContext[i] !== null) {
+        const nestedObject = toPhpArrayObject(globalContext[i])
+        for (const j in nestedObject) {
+          if (typeof nestedObject[j] === 'function' && !already[j]) {
             already[j] = 1
             arr.push(j)
           }
@@ -84,7 +91,7 @@ export function get_defined_functions() {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}// @ts-nocheck
+{% codeblock lang:javascript %}import { toPhpArrayObject } from '../_helpers/_phpTypes.ts';
 export function get_defined_functions() {
   //      discuss at: https://locutus.io/php/get_defined_functions/
   // parity verified: PHP 8.3
@@ -95,24 +102,86 @@ export function get_defined_functions() {
   //       example 1: var $funcs = get_defined_functions()
   //       example 1: var $result = Array.isArray($funcs) && $funcs.length > 0
   //       returns 1: true
-  const $global = typeof window !== 'undefined' ? window : global;
-  $global.$locutus = $global.$locutus || {};
-  const $locutus = $global.$locutus;
-  $locutus.php = $locutus.php || {};
-  let i = '';
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus ?? {};
+  const locutus = globalContext.$locutus;
+  locutus.php = locutus.php ?? {};
   const arr = [];
   const already = {};
-  for (i in $global) {
+  for (const i in globalContext) {
     try {
-      if (typeof $global[i] === 'function') {
+      if (typeof globalContext[i] === 'function') {
         if (!already[i]) {
           already[i] = 1;
           arr.push(i);
         }
       }
-      else if (typeof $global[i] === 'object') {
-        for (const j in $global[i]) {
-          if (typeof $global[j] === 'function' && $global[j] && !already[j]) {
+      else if (typeof globalContext[i] === 'object' && globalContext[i] !== null) {
+        const nestedObject = toPhpArrayObject(globalContext[i]);
+        for (const j in nestedObject) {
+          if (typeof nestedObject[j] === 'function' && !already[j]) {
+            already[j] = 1;
+            arr.push(j);
+          }
+        }
+      }
+    }
+    catch (_e) {
+      // Some objects in Firefox throw exceptions when their
+      // properties are accessed (e.g., sessionStorage)
+    }
+  }
+  return arr;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isObjectLike(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null;
+}
+function isPhpArrayObject(value) {
+  return isObjectLike(value);
+}
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value;
+  }
+  return {};
+}
+
+// php/funchand/get_defined_functions
+function get_defined_functions() {
+  //      discuss at: https://locutus.io/php/get_defined_functions/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: Returns an array of global function names. Unlike PHP,
+  //          note 1: JavaScript doesn't distinguish between user and internal functions.
+  //       example 1: var $funcs = get_defined_functions()
+  //       example 1: var $result = Array.isArray($funcs) && $funcs.length > 0
+  //       returns 1: true
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus ?? {};
+  const locutus = globalContext.$locutus;
+  locutus.php = locutus.php ?? {};
+  const arr = [];
+  const already = {};
+  for (const i in globalContext) {
+    try {
+      if (typeof globalContext[i] === 'function') {
+        if (!already[i]) {
+          already[i] = 1;
+          arr.push(i);
+        }
+      }
+      else if (typeof globalContext[i] === 'object' && globalContext[i] !== null) {
+        const nestedObject = toPhpArrayObject(globalContext[i]);
+        for (const j in nestedObject) {
+          if (typeof nestedObject[j] === 'function' && !already[j]) {
             already[j] = 1;
             arr.push(j);
           }

@@ -31,7 +31,7 @@ alias:
   - /golang/TrimSuffix/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function TrimSuffix(s, suffix) {
+{% codeblock lang:typescript %}export function TrimSuffix(s: string, suffix: string): string {
   //      discuss at: https://locutus.io/golang/strings/TrimSuffix/
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -49,6 +49,22 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function TrimSuffix(s, suffix) {
+  //      discuss at: https://locutus.io/golang/strings/TrimSuffix/
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: TrimSuffix('Hello, World!', ', World!')
+  //       returns 1: 'Hello'
+  //       example 2: TrimSuffix('Hello, World!', 'Goodbye')
+  //       returns 2: 'Hello, World!'
+  if (s.endsWith(suffix)) {
+    return s.slice(0, s.length - suffix.length);
+  }
+  return s;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// golang/strings/TrimSuffix
+function TrimSuffix(s, suffix) {
   //      discuss at: https://locutus.io/golang/strings/TrimSuffix/
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

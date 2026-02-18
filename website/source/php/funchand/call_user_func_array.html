@@ -6,7 +6,9 @@ examples:
 returns:
   - 'true'
   - 'false'
-dependencies: []
+dependencies:
+  - php/_helpers/_callbackResolver
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Thiago Mata (https://thiagomata.blog.com)
@@ -43,8 +45,18 @@ alias:
   - /functions/call_user_func_array/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}// @ts-nocheck
-export function call_user_func_array(cb, parameters) {
+{% codeblock lang:typescript %}import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
+import { isObjectLike, type PhpAssoc, type PhpCallable } from '../_helpers/_phpTypes.ts'
+
+type PhpValue = {} | null | undefined
+type GlobalCallableContext = typeof globalThis & PhpAssoc<PhpValue>
+
+const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
+
+export function call_user_func_array<TResult = PhpValue, TArgs extends PhpValue[] = PhpValue[]>(
+  cb: PhpValue,
+  parameters: [...TArgs],
+): TResult {
   //  discuss at: https://locutus.io/php/call_user_func_array/
   // original by: Thiago Mata (https://thiagomata.blog.com)
   //  revised by: Jon Hohle
@@ -61,52 +73,69 @@ export function call_user_func_array(cb, parameters) {
   //   example 2: call_user_func_array('isNaN', [1])
   //   returns 2: false
 
-  const $global = typeof window !== 'undefined' ? window : global
-  let func
-  let scope = null
+  const globalContext = globalThis as GlobalCallableContext
+  let func: PhpCallable | undefined
+  let scope: PhpValue = null
 
-  const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
+  try {
+    const resolved = resolvePhpCallable(cb, { invalidMessage: 'invalid' })
+    func = resolved.fn
+    scope = resolved.scope
+  } catch {
+    // Fall back to PHP-compatible eval/new Function paths below.
+  }
 
-  if (typeof cb === 'string') {
-    if (typeof $global[cb] === 'function') {
-      func = $global[cb]
+  if (!func && typeof cb === 'string') {
+    if (typeof globalContext[cb] === 'function') {
+      func = globalContext[cb] as PhpCallable
     } else if (cb.match(validJSFunctionNamePattern)) {
-      func = new Function(null, 'return ' + cb)()
+      const dynamicFn = new Function(`return ${cb}`)()
+      if (typeof dynamicFn === 'function') {
+        func = dynamicFn as PhpCallable
+      }
     }
-  } else if (Array.isArray(cb)) {
+  } else if (!func && Array.isArray(cb)) {
     if (typeof cb[0] === 'string') {
       if (cb[0].match(validJSFunctionNamePattern)) {
         // biome-ignore lint/security/noGlobalEval: needed for PHP port
-        func = eval(cb[0] + "['" + cb[1] + "']")
+        const dynamicFn = eval(`${cb[0]}['${cb[1]}']`)
+        if (typeof dynamicFn === 'function') {
+          func = dynamicFn as PhpCallable
+        }
       }
-    } else {
-      func = cb[0][cb[1]]
+    } else if (isObjectLike(cb[0]) || typeof cb[0] === 'function') {
+      const method = Reflect.get(cb[0], String(cb[1]))
+      if (typeof method === 'function') {
+        func = method as PhpCallable
+      }
     }
 
     if (typeof cb[0] === 'string') {
-      if (typeof $global[cb[0]] === 'function') {
-        scope = $global[cb[0]]
+      if (typeof globalContext[cb[0]] === 'function') {
+        scope = globalContext[cb[0]]
       } else if (cb[0].match(validJSFunctionNamePattern)) {
         // biome-ignore lint/security/noGlobalEval: needed for PHP port
         scope = eval(cb[0])
       }
-    } else if (typeof cb[0] === 'object') {
+    } else if (isObjectLike(cb[0])) {
       scope = cb[0]
     }
-  } else if (typeof cb === 'function') {
-    func = cb
+  } else if (!func && typeof cb === 'function') {
+    func = cb as PhpCallable
   }
 
-  if (typeof func !== 'function') {
-    throw new Error(func + ' is not a valid function')
+  if (!func) {
+    throw new Error(String(cb) + ' is not a valid function')
   }
 
-  return func.apply(scope, parameters)
+  return func.apply(scope, parameters) as TResult
 }
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}// @ts-nocheck
+{% codeblock lang:javascript %}import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts';
+import { isObjectLike } from '../_helpers/_phpTypes.ts';
+const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/;
 export function call_user_func_array(cb, parameters) {
   //  discuss at: https://locutus.io/php/call_user_func_array/
   // original by: Thiago Mata (https://thiagomata.blog.com)
@@ -123,46 +152,208 @@ export function call_user_func_array(cb, parameters) {
   //   returns 1: true
   //   example 2: call_user_func_array('isNaN', [1])
   //   returns 2: false
-  const $global = typeof window !== 'undefined' ? window : global;
+  const globalContext = globalThis;
   let func;
   let scope = null;
-  const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/;
-  if (typeof cb === 'string') {
-    if (typeof $global[cb] === 'function') {
-      func = $global[cb];
+  try {
+    const resolved = resolvePhpCallable(cb, { invalidMessage: 'invalid' });
+    func = resolved.fn;
+    scope = resolved.scope;
+  }
+  catch {
+    // Fall back to PHP-compatible eval/new Function paths below.
+  }
+  if (!func && typeof cb === 'string') {
+    if (typeof globalContext[cb] === 'function') {
+      func = globalContext[cb];
     }
     else if (cb.match(validJSFunctionNamePattern)) {
-      func = new Function(null, 'return ' + cb)();
+      const dynamicFn = new Function(`return ${cb}`)();
+      if (typeof dynamicFn === 'function') {
+        func = dynamicFn;
+      }
     }
   }
-  else if (Array.isArray(cb)) {
+  else if (!func && Array.isArray(cb)) {
     if (typeof cb[0] === 'string') {
       if (cb[0].match(validJSFunctionNamePattern)) {
         // biome-ignore lint/security/noGlobalEval: needed for PHP port
-        func = eval(cb[0] + "['" + cb[1] + "']");
+        const dynamicFn = eval(`${cb[0]}['${cb[1]}']`);
+        if (typeof dynamicFn === 'function') {
+          func = dynamicFn;
+        }
       }
     }
-    else {
-      func = cb[0][cb[1]];
+    else if (isObjectLike(cb[0]) || typeof cb[0] === 'function') {
+      const method = Reflect.get(cb[0], String(cb[1]));
+      if (typeof method === 'function') {
+        func = method;
+      }
     }
     if (typeof cb[0] === 'string') {
-      if (typeof $global[cb[0]] === 'function') {
-        scope = $global[cb[0]];
+      if (typeof globalContext[cb[0]] === 'function') {
+        scope = globalContext[cb[0]];
       }
       else if (cb[0].match(validJSFunctionNamePattern)) {
         // biome-ignore lint/security/noGlobalEval: needed for PHP port
         scope = eval(cb[0]);
       }
     }
-    else if (typeof cb[0] === 'object') {
+    else if (isObjectLike(cb[0])) {
       scope = cb[0];
     }
   }
-  else if (typeof cb === 'function') {
+  else if (!func && typeof cb === 'function') {
     func = cb;
   }
-  if (typeof func !== 'function') {
-    throw new Error(func + ' is not a valid function');
+  if (!func) {
+    throw new Error(String(cb) + ' is not a valid function');
+  }
+  return func.apply(scope, parameters);
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_callbackResolver
+const isCallable = (value) => typeof value === 'function';
+function resolvePhpCallable(callback, options) {
+  // discuss at: https://locutus.io/php/_helpers/resolvePhpCallable/
+  //     note 1: Resolves PHP-style callbacks: function, global name, or [scope, method].
+  //  example 1: typeof resolvePhpCallable('isNaN', { invalidMessage: 'x' }).fn
+  //  returns 1: 'function'
+  const globalContext = globalThis;
+  if (isCallable(callback)) {
+    return { fn: callback, scope: null };
+  }
+  if (typeof callback === 'string') {
+    const candidate = globalContext[callback];
+    if (isCallable(candidate)) {
+      return { fn: candidate, scope: null };
+    }
+    throw new Error(options.invalidMessage);
+  }
+  if (Array.isArray(callback) && callback.length >= 2) {
+    const scopeDescriptor = callback[0];
+    const callableDescriptor = callback[1];
+    let scope;
+    if (typeof scopeDescriptor === 'string') {
+      scope = globalContext[scopeDescriptor];
+      if (typeof scope === 'undefined' && options.missingScopeMessage) {
+        throw new Error(options.missingScopeMessage(scopeDescriptor));
+      }
+    }
+    else {
+      scope = scopeDescriptor;
+    }
+    if (isCallable(callableDescriptor)) {
+      return { fn: callableDescriptor, scope };
+    }
+    if (typeof callableDescriptor === 'string' &&
+      ((typeof scope === 'object' && scope !== null) || typeof scope === 'function')) {
+      const candidate = Reflect.get(scope, callableDescriptor);
+      if (isCallable(candidate)) {
+        return { fn: candidate, scope };
+      }
+    }
+  }
+  throw new Error(options.invalidMessage);
+}
+function resolveNumericComparator(callback, invalidMessage) {
+  const resolved = resolvePhpCallable(callback, { invalidMessage });
+  return (left, right) => Number(resolved.fn.apply(resolved.scope, [left, right]));
+}
+
+// php/_helpers/_phpTypes
+function isObjectLike(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null;
+}
+function isPhpArrayObject(value) {
+  return isObjectLike(value);
+}
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value;
+  }
+  return {};
+}
+
+// php/funchand/call_user_func_array
+const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/;
+function call_user_func_array(cb, parameters) {
+  //  discuss at: https://locutus.io/php/call_user_func_array/
+  // original by: Thiago Mata (https://thiagomata.blog.com)
+  //  revised by: Jon Hohle
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Diplom@t (https://difane.com/)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: Depending on the `cb` that is passed,
+  //      note 1: this function can use `eval` and/or `new Function`.
+  //      note 1: The `eval` input is however checked to only allow valid function names,
+  //      note 1: So it should not be unsafer than uses without eval (seeing as you can)
+  //      note 1: already pass any function to be executed here.
+  //   example 1: call_user_func_array('isNaN', ['a'])
+  //   returns 1: true
+  //   example 2: call_user_func_array('isNaN', [1])
+  //   returns 2: false
+  const globalContext = globalThis;
+  let func;
+  let scope = null;
+  try {
+    const resolved = resolvePhpCallable(cb, { invalidMessage: 'invalid' });
+    func = resolved.fn;
+    scope = resolved.scope;
+  }
+  catch {
+    // Fall back to PHP-compatible eval/new Function paths below.
+  }
+  if (!func && typeof cb === 'string') {
+    if (typeof globalContext[cb] === 'function') {
+      func = globalContext[cb];
+    }
+    else if (cb.match(validJSFunctionNamePattern)) {
+      const dynamicFn = new Function(`return ${cb}`)();
+      if (typeof dynamicFn === 'function') {
+        func = dynamicFn;
+      }
+    }
+  }
+  else if (!func && Array.isArray(cb)) {
+    if (typeof cb[0] === 'string') {
+      if (cb[0].match(validJSFunctionNamePattern)) {
+        // biome-ignore lint/security/noGlobalEval: needed for PHP port
+        const dynamicFn = eval(`${cb[0]}['${cb[1]}']`);
+        if (typeof dynamicFn === 'function') {
+          func = dynamicFn;
+        }
+      }
+    }
+    else if (isObjectLike(cb[0]) || typeof cb[0] === 'function') {
+      const method = Reflect.get(cb[0], String(cb[1]));
+      if (typeof method === 'function') {
+        func = method;
+      }
+    }
+    if (typeof cb[0] === 'string') {
+      if (typeof globalContext[cb[0]] === 'function') {
+        scope = globalContext[cb[0]];
+      }
+      else if (cb[0].match(validJSFunctionNamePattern)) {
+        // biome-ignore lint/security/noGlobalEval: needed for PHP port
+        scope = eval(cb[0]);
+      }
+    }
+    else if (isObjectLike(cb[0])) {
+      scope = cb[0];
+    }
+  }
+  else if (!func && typeof cb === 'function') {
+    func = cb;
+  }
+  if (!func) {
+    throw new Error(String(cb) + ' is not a valid function');
   }
   return func.apply(scope, parameters);
 }{% endcodeblock %}

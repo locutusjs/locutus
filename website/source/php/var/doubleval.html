@@ -34,9 +34,10 @@ alias:
   - /functions/doubleval/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import { floatval } from '../var/floatval.ts'
+{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import { floatval } from '../var/floatval.ts'
 
-export function doubleval(mixedVar) {
+export function doubleval(mixedVar: PhpMixed): number {
   //      discuss at: https://locutus.io/php/doubleval/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -45,7 +46,7 @@ export function doubleval(mixedVar) {
   //       example 1: doubleval(186)
   //       returns 1: 186.00
 
-  return floatval(mixedVar)
+  return floatval(String(mixedVar ?? ''))
 }
 {% endcodeblock %}
 </div>
@@ -59,6 +60,35 @@ export function doubleval(mixedVar) {
   //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
   //       example 1: doubleval(186)
   //       returns 1: 186.00
-  return floatval(mixedVar);
+  return floatval(String(mixedVar ?? ''));
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/var/floatval
+function floatval(mixedVar) {
+  //      discuss at: https://locutus.io/php/floatval/
+  // parity verified: PHP 8.3
+  //     original by: Michael White (https://getsprink.com)
+  //          note 1: The native parseFloat() method of JavaScript returns NaN
+  //          note 1: when it encounters a string before an int or float value.
+  //       example 1: floatval('150.03_page-section')
+  //       returns 1: 150.03
+  //       example 2: floatval('page: 3')
+  //       example 2: floatval('-50 + 8')
+  //       returns 2: 0
+  //       returns 2: -50
+  return parseFloat(String(mixedVar ?? '')) || 0;
+}
+
+// php/var/doubleval
+function doubleval(mixedVar) {
+  //      discuss at: https://locutus.io/php/doubleval/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  //       example 1: doubleval(186)
+  //       returns 1: 186.00
+  return floatval(String(mixedVar ?? ''));
 }{% endcodeblock %}
 </div>

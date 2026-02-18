@@ -32,7 +32,7 @@ alias:
   - /functions/is_string/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function is_string(mixedVar) {
+{% codeblock lang:typescript %}export function is_string(mixedVar: string | number): boolean {
   //      discuss at: https://locutus.io/php/is_string/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -47,6 +47,19 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function is_string(mixedVar) {
+  //      discuss at: https://locutus.io/php/is_string/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: is_string('23')
+  //       returns 1: true
+  //       example 2: is_string(23.5)
+  //       returns 2: false
+  return typeof mixedVar === 'string';
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/var/is_string
+function is_string(mixedVar) {
   //      discuss at: https://locutus.io/php/is_string/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

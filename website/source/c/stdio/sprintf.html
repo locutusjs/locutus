@@ -32,14 +32,14 @@ alias:
   - /c/sprintf/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}function pad(str, minLength, padChar, leftJustify) {
+{% codeblock lang:typescript %}function pad(str: string, minLength: number, padChar: string, leftJustify: boolean) {
   const diff = minLength - str.length
   const padStr = padChar.repeat(Math.max(0, diff))
 
   return leftJustify ? str + padStr : padStr + str
 }
 
-export function sprintf(format, ...args) {
+export function sprintf(format: string, ...args: unknown[]): string {
   // original by: Rafał Kukawski
   // bugfixed by: Param Siddharth
   //   example 1: sprintf('%+10.*d', 5, 1)
@@ -50,119 +50,144 @@ export function sprintf(format, ...args) {
 
   let index = 0
 
-  return format.replace(placeholderRegex, function (match, param, flags, width, prec, modifier) {
-    const leftJustify = flags.includes('-')
+  return format.replace(
+    placeholderRegex,
+    function (
+      _match: string,
+      param: string | undefined,
+      flags: string,
+      width: string | undefined,
+      prec: string | undefined,
+      modifier: string,
+    ) {
+      const leftJustify = flags.includes('-')
 
-    // flag '0' is ignored when flag '-' is present
-    const padChar = leftJustify ? ' ' : flags.split('').reduce((pc, c) => ([' ', '0'].includes(c) ? c : pc), ' ')
+      // flag '0' is ignored when flag '-' is present
+      const padChar = leftJustify
+        ? ' '
+        : flags.split('').reduce((pc: string, c: string) => ([' ', '0'].includes(c) ? c : pc), ' ')
 
-    const positiveSign = flags.includes('+') ? '+' : flags.includes(' ') ? ' ' : ''
+      const positiveSign = flags.includes('+') ? '+' : flags.includes(' ') ? ' ' : ''
 
-    const minWidth = width === '*' ? args[index++] : +width || 0
-    let precision = prec === '*' ? args[index++] : +prec
+      const minWidth = width === '*' ? Number(args[index++] ?? 0) : +(width ?? 0) || 0
+      let precision: number | undefined =
+        prec === '*' ? Number(args[index++] ?? 0) : prec === undefined ? Number.NaN : +prec
 
-    if (param && !+param) {
-      throw new Error('Param index must be greater than 0')
-    }
+      const paramIndex = param ? +param : 0
+      if (param && !paramIndex) {
+        throw new Error('Param index must be greater than 0')
+      }
 
-    if (param && +param > args.length) {
-      throw new Error('Too few arguments')
-    }
+      if (param && paramIndex > args.length) {
+        throw new Error('Too few arguments')
+      }
 
-    // compiling with default clang params, mixed positional and non-positional params
-    // give only a warning
-    const arg = param ? args[param - 1] : args[index]
+      // compiling with default clang params, mixed positional and non-positional params
+      // give only a warning
+      const arg = param ? args[paramIndex - 1] : args[index]
 
-    if (modifier !== '%') {
-      index++
-    }
+      if (modifier !== '%') {
+        index++
+      }
 
-    if (precision === undefined || isNaN(precision)) {
-      precision = 'eEfFgG'.includes(modifier) ? 6 : modifier === 's' ? String(arg).length : undefined
-    }
+      if (precision === undefined || isNaN(precision)) {
+        precision = 'eEfFgG'.includes(modifier) ? 6 : modifier === 's' ? String(arg).length : undefined
+      }
 
-    switch (modifier) {
-      case '%':
-        return '%'
-      case 'd':
-      case 'i': {
-        const number = Math.trunc(+arg || 0)
-        const abs = Math.abs(number)
-        const prefix = number < 0 ? '-' : positiveSign
+      switch (modifier) {
+        case '%':
+          return '%'
+        case 'd':
+        case 'i': {
+          const number = Math.trunc(Number(arg) || 0)
+          const abs = Math.abs(number)
+          const prefix = number < 0 ? '-' : positiveSign
 
-        const str = pad(abs.toString(), precision || 0, '0', false)
+          const str = pad(abs.toString(), precision || 0, '0', false)
 
-        if (padChar === '0') {
-          return prefix + pad(str, minWidth - prefix.length, padChar, leftJustify)
+          if (padChar === '0') {
+            return prefix + pad(str, minWidth - prefix.length, padChar, leftJustify)
+          }
+
+          return pad(prefix + str, minWidth, padChar, leftJustify)
         }
+        case 'e':
+        case 'E':
+        case 'f':
+        case 'F':
+        case 'g':
+        case 'G': {
+          const number = Number(arg)
+          const abs = Math.abs(number)
+          const prefix = number < 0 ? '-' : positiveSign
+          const operationIndex = 'efg'.indexOf(modifier.toLowerCase())
+          const operation = [
+            (value: number, fractionDigits?: number) => value.toExponential(fractionDigits),
+            (value: number, digits?: number) => value.toFixed(digits),
+            (value: number, precisionDigits?: number) => value.toPrecision(precisionDigits),
+          ][operationIndex]
+          const transform =
+            [(value: string) => value.toLowerCase(), (value: string) => value.toUpperCase()][
+              'eEfFgG'.indexOf(modifier) % 2
+            ] ?? ((value: string) => value)
 
-        return pad(prefix + str, minWidth, padChar, leftJustify)
-      }
-      case 'e':
-      case 'E':
-      case 'f':
-      case 'F':
-      case 'g':
-      case 'G': {
-        const number = +arg
-        const abs = Math.abs(number)
-        const prefix = number < 0 ? '-' : positiveSign
+          const isSpecial = isNaN(abs) || !isFinite(abs)
 
-        const op = [Number.prototype.toExponential, Number.prototype.toFixed, Number.prototype.toPrecision][
-          'efg'.indexOf(modifier.toLowerCase())
-        ]
+          const str = isSpecial
+            ? abs.toString().substr(0, 3)
+            : (operation || ((value: number) => value.toString()))(abs, precision)
 
-        const tr = [String.prototype.toLowerCase, String.prototype.toUpperCase]['eEfFgG'.indexOf(modifier) % 2]
+          if (padChar === '0' && !isSpecial) {
+            return prefix + pad(transform(str), minWidth - prefix.length, padChar, leftJustify)
+          }
 
-        const isSpecial = isNaN(abs) || !isFinite(abs)
-
-        const str = isSpecial ? abs.toString().substr(0, 3) : op.call(abs, precision)
-
-        if (padChar === '0' && !isSpecial) {
-          return prefix + pad(tr.call(str), minWidth - prefix.length, padChar, leftJustify)
+          return pad(transform(prefix + str), minWidth, isSpecial ? ' ' : padChar, leftJustify)
         }
+        case 'b':
+        case 'o':
+        case 'u':
+        case 'x':
+        case 'X': {
+          const number = Number(arg) || 0
+          const intVal = Math.trunc(number) + (number < 0 ? 0xffffffff + 1 : 0)
+          const base = [2, 8, 10, 16, 16]['bouxX'.indexOf(modifier)] ?? 10
+          const prefix = intVal && flags.includes('#') ? ['', '0', '', '0x', '0X']['bouxXX'.indexOf(modifier)] : ''
 
-        return pad(tr.call(prefix + str), minWidth, isSpecial ? ' ' : padChar, leftJustify)
-      }
-      case 'b':
-      case 'o':
-      case 'u':
-      case 'x':
-      case 'X': {
-        const number = +arg || 0
-        const intVal = Math.trunc(number) + (number < 0 ? 0xffffffff + 1 : 0)
-        const base = [2, 8, 10, 16, 16]['bouxX'.indexOf(modifier)]
-        const prefix = intVal && flags.includes('#') ? ['', '0', '', '0x', '0X']['bouxXX'.indexOf(modifier)] : ''
+          if (padChar === '0' && prefix) {
+            return (
+              prefix +
+              pad(
+                pad(intVal.toString(base), precision ?? 0, '0', false),
+                minWidth - prefix.length,
+                padChar,
+                leftJustify,
+              )
+            )
+          }
 
-        if (padChar === '0' && prefix) {
-          return (
-            prefix +
-            pad(pad(intVal.toString(base), precision, '0', false), minWidth - prefix.length, padChar, leftJustify)
-          )
+          return pad(prefix + pad(intVal.toString(base), precision ?? 0, '0', false), minWidth, padChar, leftJustify)
         }
-
-        return pad(prefix + pad(intVal.toString(base), precision, '0', false), minWidth, padChar, leftJustify)
+        case 'p':
+        case 'n': {
+          throw new Error(`'${modifier}' modifier not supported`)
+        }
+        case 's': {
+          return pad(String(arg).substr(0, precision), minWidth, padChar, leftJustify)
+        }
+        case 'c': {
+          // extension, if arg is string, take first char
+          const chr = typeof arg === 'string' ? arg.charAt(0) : String.fromCharCode(Number(arg))
+          return pad(chr, minWidth, padChar, leftJustify)
+        }
+        case 'a':
+        case 'A':
+          throw new Error(`'${modifier}' modifier not yet implemented`)
+        default:
+          // for unknown modifiers, return the modifier char
+          return modifier
       }
-      case 'p':
-      case 'n': {
-        throw new Error(`'${modifier}' modifier not supported`)
-      }
-      case 's': {
-        return pad(String(arg).substr(0, precision), minWidth, padChar, leftJustify)
-      }
-      case 'c': {
-        // extension, if arg is string, take first char
-        const chr = typeof arg === 'string' ? arg.charAt(0) : String.fromCharCode(+arg)
-        return pad(chr, minWidth, padChar, leftJustify)
-      }
-      case 'a':
-      case 'A':
-        throw new Error(`'${modifier}' modifier not yet implemented`)
-      default:
-        // for unknown modifiers, return the modifier char
-        return modifier
-    }
-  })
+    },
+  )
 }
 {% endcodeblock %}
 </div>
@@ -181,22 +206,25 @@ export function sprintf(format, ...args) {
   //   returns 2: 'Param is a 90% good boy.'
   const placeholderRegex = /%(?:(\d+)\$)?([-+#0 ]*)(\*|\d+)?(?:\.(\*|\d*))?([\s\S])/g;
   let index = 0;
-  return format.replace(placeholderRegex, function (match, param, flags, width, prec, modifier) {
+  return format.replace(placeholderRegex, function (_match, param, flags, width, prec, modifier) {
     const leftJustify = flags.includes('-');
     // flag '0' is ignored when flag '-' is present
-    const padChar = leftJustify ? ' ' : flags.split('').reduce((pc, c) => ([' ', '0'].includes(c) ? c : pc), ' ');
+    const padChar = leftJustify
+      ? ' '
+      : flags.split('').reduce((pc, c) => ([' ', '0'].includes(c) ? c : pc), ' ');
     const positiveSign = flags.includes('+') ? '+' : flags.includes(' ') ? ' ' : '';
-    const minWidth = width === '*' ? args[index++] : +width || 0;
-    let precision = prec === '*' ? args[index++] : +prec;
-    if (param && !+param) {
+    const minWidth = width === '*' ? Number(args[index++] ?? 0) : +(width ?? 0) || 0;
+    let precision = prec === '*' ? Number(args[index++] ?? 0) : prec === undefined ? Number.NaN : +prec;
+    const paramIndex = param ? +param : 0;
+    if (param && !paramIndex) {
       throw new Error('Param index must be greater than 0');
     }
-    if (param && +param > args.length) {
+    if (param && paramIndex > args.length) {
       throw new Error('Too few arguments');
     }
     // compiling with default clang params, mixed positional and non-positional params
     // give only a warning
-    const arg = param ? args[param - 1] : args[index];
+    const arg = param ? args[paramIndex - 1] : args[index];
     if (modifier !== '%') {
       index++;
     }
@@ -208,7 +236,7 @@ export function sprintf(format, ...args) {
         return '%';
       case 'd':
       case 'i': {
-        const number = Math.trunc(+arg || 0);
+        const number = Math.trunc(Number(arg) || 0);
         const abs = Math.abs(number);
         const prefix = number < 0 ? '-' : positiveSign;
         const str = pad(abs.toString(), precision || 0, '0', false);
@@ -223,32 +251,39 @@ export function sprintf(format, ...args) {
       case 'F':
       case 'g':
       case 'G': {
-        const number = +arg;
+        const number = Number(arg);
         const abs = Math.abs(number);
         const prefix = number < 0 ? '-' : positiveSign;
-        const op = [Number.prototype.toExponential, Number.prototype.toFixed, Number.prototype.toPrecision]['efg'.indexOf(modifier.toLowerCase())];
-        const tr = [String.prototype.toLowerCase, String.prototype.toUpperCase]['eEfFgG'.indexOf(modifier) % 2];
+        const operationIndex = 'efg'.indexOf(modifier.toLowerCase());
+        const operation = [
+          (value, fractionDigits) => value.toExponential(fractionDigits),
+          (value, digits) => value.toFixed(digits),
+          (value, precisionDigits) => value.toPrecision(precisionDigits),
+        ][operationIndex];
+        const transform = [(value) => value.toLowerCase(), (value) => value.toUpperCase()]['eEfFgG'.indexOf(modifier) % 2] ?? ((value) => value);
         const isSpecial = isNaN(abs) || !isFinite(abs);
-        const str = isSpecial ? abs.toString().substr(0, 3) : op.call(abs, precision);
+        const str = isSpecial
+          ? abs.toString().substr(0, 3)
+          : (operation || ((value) => value.toString()))(abs, precision);
         if (padChar === '0' && !isSpecial) {
-          return prefix + pad(tr.call(str), minWidth - prefix.length, padChar, leftJustify);
+          return prefix + pad(transform(str), minWidth - prefix.length, padChar, leftJustify);
         }
-        return pad(tr.call(prefix + str), minWidth, isSpecial ? ' ' : padChar, leftJustify);
+        return pad(transform(prefix + str), minWidth, isSpecial ? ' ' : padChar, leftJustify);
       }
       case 'b':
       case 'o':
       case 'u':
       case 'x':
       case 'X': {
-        const number = +arg || 0;
+        const number = Number(arg) || 0;
         const intVal = Math.trunc(number) + (number < 0 ? 0xffffffff + 1 : 0);
-        const base = [2, 8, 10, 16, 16]['bouxX'.indexOf(modifier)];
+        const base = [2, 8, 10, 16, 16]['bouxX'.indexOf(modifier)] ?? 10;
         const prefix = intVal && flags.includes('#') ? ['', '0', '', '0x', '0X']['bouxXX'.indexOf(modifier)] : '';
         if (padChar === '0' && prefix) {
           return (prefix +
-            pad(pad(intVal.toString(base), precision, '0', false), minWidth - prefix.length, padChar, leftJustify));
+            pad(pad(intVal.toString(base), precision ?? 0, '0', false), minWidth - prefix.length, padChar, leftJustify));
         }
-        return pad(prefix + pad(intVal.toString(base), precision, '0', false), minWidth, padChar, leftJustify);
+        return pad(prefix + pad(intVal.toString(base), precision ?? 0, '0', false), minWidth, padChar, leftJustify);
       }
       case 'p':
       case 'n': {
@@ -259,7 +294,124 @@ export function sprintf(format, ...args) {
       }
       case 'c': {
         // extension, if arg is string, take first char
-        const chr = typeof arg === 'string' ? arg.charAt(0) : String.fromCharCode(+arg);
+        const chr = typeof arg === 'string' ? arg.charAt(0) : String.fromCharCode(Number(arg));
+        return pad(chr, minWidth, padChar, leftJustify);
+      }
+      case 'a':
+      case 'A':
+        throw new Error(`'${modifier}' modifier not yet implemented`);
+      default:
+        // for unknown modifiers, return the modifier char
+        return modifier;
+    }
+  });
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// c/stdio/sprintf
+function pad(str, minLength, padChar, leftJustify) {
+  const diff = minLength - str.length;
+  const padStr = padChar.repeat(Math.max(0, diff));
+  return leftJustify ? str + padStr : padStr + str;
+}
+function sprintf(format, ...args) {
+  // original by: Rafał Kukawski
+  // bugfixed by: Param Siddharth
+  //   example 1: sprintf('%+10.*d', 5, 1)
+  //   returns 1: '    +00001'
+  //   example 2: sprintf('%s is a %d%% %s %s.', 'Param', 90, 'good', 'boy')
+  //   returns 2: 'Param is a 90% good boy.'
+  const placeholderRegex = /%(?:(\d+)\$)?([-+#0 ]*)(\*|\d+)?(?:\.(\*|\d*))?([\s\S])/g;
+  let index = 0;
+  return format.replace(placeholderRegex, function (_match, param, flags, width, prec, modifier) {
+    const leftJustify = flags.includes('-');
+    // flag '0' is ignored when flag '-' is present
+    const padChar = leftJustify
+      ? ' '
+      : flags.split('').reduce((pc, c) => ([' ', '0'].includes(c) ? c : pc), ' ');
+    const positiveSign = flags.includes('+') ? '+' : flags.includes(' ') ? ' ' : '';
+    const minWidth = width === '*' ? Number(args[index++] ?? 0) : +(width ?? 0) || 0;
+    let precision = prec === '*' ? Number(args[index++] ?? 0) : prec === undefined ? Number.NaN : +prec;
+    const paramIndex = param ? +param : 0;
+    if (param && !paramIndex) {
+      throw new Error('Param index must be greater than 0');
+    }
+    if (param && paramIndex > args.length) {
+      throw new Error('Too few arguments');
+    }
+    // compiling with default clang params, mixed positional and non-positional params
+    // give only a warning
+    const arg = param ? args[paramIndex - 1] : args[index];
+    if (modifier !== '%') {
+      index++;
+    }
+    if (precision === undefined || isNaN(precision)) {
+      precision = 'eEfFgG'.includes(modifier) ? 6 : modifier === 's' ? String(arg).length : undefined;
+    }
+    switch (modifier) {
+      case '%':
+        return '%';
+      case 'd':
+      case 'i': {
+        const number = Math.trunc(Number(arg) || 0);
+        const abs = Math.abs(number);
+        const prefix = number < 0 ? '-' : positiveSign;
+        const str = pad(abs.toString(), precision || 0, '0', false);
+        if (padChar === '0') {
+          return prefix + pad(str, minWidth - prefix.length, padChar, leftJustify);
+        }
+        return pad(prefix + str, minWidth, padChar, leftJustify);
+      }
+      case 'e':
+      case 'E':
+      case 'f':
+      case 'F':
+      case 'g':
+      case 'G': {
+        const number = Number(arg);
+        const abs = Math.abs(number);
+        const prefix = number < 0 ? '-' : positiveSign;
+        const operationIndex = 'efg'.indexOf(modifier.toLowerCase());
+        const operation = [
+          (value, fractionDigits) => value.toExponential(fractionDigits),
+          (value, digits) => value.toFixed(digits),
+          (value, precisionDigits) => value.toPrecision(precisionDigits),
+        ][operationIndex];
+        const transform = [(value) => value.toLowerCase(), (value) => value.toUpperCase()]['eEfFgG'.indexOf(modifier) % 2] ?? ((value) => value);
+        const isSpecial = isNaN(abs) || !isFinite(abs);
+        const str = isSpecial
+          ? abs.toString().substr(0, 3)
+          : (operation || ((value) => value.toString()))(abs, precision);
+        if (padChar === '0' && !isSpecial) {
+          return prefix + pad(transform(str), minWidth - prefix.length, padChar, leftJustify);
+        }
+        return pad(transform(prefix + str), minWidth, isSpecial ? ' ' : padChar, leftJustify);
+      }
+      case 'b':
+      case 'o':
+      case 'u':
+      case 'x':
+      case 'X': {
+        const number = Number(arg) || 0;
+        const intVal = Math.trunc(number) + (number < 0 ? 0xffffffff + 1 : 0);
+        const base = [2, 8, 10, 16, 16]['bouxX'.indexOf(modifier)] ?? 10;
+        const prefix = intVal && flags.includes('#') ? ['', '0', '', '0x', '0X']['bouxXX'.indexOf(modifier)] : '';
+        if (padChar === '0' && prefix) {
+          return (prefix +
+            pad(pad(intVal.toString(base), precision ?? 0, '0', false), minWidth - prefix.length, padChar, leftJustify));
+        }
+        return pad(prefix + pad(intVal.toString(base), precision ?? 0, '0', false), minWidth, padChar, leftJustify);
+      }
+      case 'p':
+      case 'n': {
+        throw new Error(`'${modifier}' modifier not supported`);
+      }
+      case 's': {
+        return pad(String(arg).substr(0, precision), minWidth, padChar, leftJustify);
+      }
+      case 'c': {
+        // extension, if arg is string, take first char
+        const chr = typeof arg === 'string' ? arg.charAt(0) : String.fromCharCode(Number(arg));
         return pad(chr, minWidth, padChar, leftJustify);
       }
       case 'a':

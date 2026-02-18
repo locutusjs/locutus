@@ -4,7 +4,8 @@ examples:
   - array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
 returns:
   - '{ 2: [''green'', ''red''], 1: ''4.0'', 0: ''php''}'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
@@ -31,79 +32,140 @@ alias:
   - /functions/array_reverse/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}// @ts-nocheck
-export function array_reverse(array, preserveKeys) {
+{% codeblock lang:typescript %}import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+type PhpValue = {} | null | undefined
+
+type ArrayReverseResult<TInput, TPreserve extends boolean> = TInput extends (infer TValue)[]
+  ? TPreserve extends true
+    ? PhpAssoc<TValue>
+    : TValue[]
+  : TInput extends PhpAssoc<infer TValue>
+    ? TPreserve extends true
+      ? PhpAssoc<TValue>
+      : PhpAssoc<TValue> | TValue[]
+    : never
+
+export function array_reverse<TInput extends PhpValue[] | PhpAssoc<PhpValue>, TPreserve extends boolean = false>(
+  array: TInput,
+  preserveKeys = false as TPreserve,
+): ArrayReverseResult<TInput, TPreserve> {
   //  discuss at: https://locutus.io/php/array_reverse/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Karol Kowalski
   //   example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
   //   returns 1: { 2: ['green', 'red'], 1: '4.0', 0: 'php'}
 
-  const isArray = Array.isArray(array)
-  const tmpArr = preserveKeys ? {} : []
-  let key
-
-  if (isArray && !preserveKeys) {
-    return array.slice(0).reverse()
+  if (Array.isArray(array) && !preserveKeys) {
+    return array.slice(0).reverse() as ArrayReverseResult<TInput, TPreserve>
   }
+
+  const source = toPhpArrayObject(array)
 
   if (preserveKeys) {
-    const keys = []
-    for (key in array) {
-      keys.push(key)
+    const keys = Object.keys(source)
+    const reversed: PhpAssoc<PhpValue> = {}
+
+    for (let index = keys.length - 1; index >= 0; index -= 1) {
+      const key = keys[index]
+      if (typeof key === 'string' && Object.prototype.hasOwnProperty.call(source, key)) {
+        reversed[key] = source[key]
+      }
     }
 
-    let i = keys.length
-    while (i--) {
-      key = keys[i]
-      // @todo: don't rely on browsers keeping keys in insertion order
-      // it's implementation specific
-      // eg. the result will differ from expected in Google Chrome
-      tmpArr[key] = array[key]
-    }
-  } else {
-    for (key in array) {
-      tmpArr.unshift(array[key])
+    return reversed as ArrayReverseResult<TInput, TPreserve>
+  }
+
+  const reversed: PhpValue[] = []
+  for (const key in source) {
+    if (Object.prototype.hasOwnProperty.call(source, key)) {
+      reversed.unshift(source[key])
     }
   }
 
-  return tmpArr
+  return reversed as ArrayReverseResult<TInput, TPreserve>
 }
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}// @ts-nocheck
-export function array_reverse(array, preserveKeys) {
+{% codeblock lang:javascript %}import { toPhpArrayObject } from '../_helpers/_phpTypes.ts';
+export function array_reverse(array, preserveKeys = false) {
   //  discuss at: https://locutus.io/php/array_reverse/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Karol Kowalski
   //   example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
   //   returns 1: { 2: ['green', 'red'], 1: '4.0', 0: 'php'}
-  const isArray = Array.isArray(array);
-  const tmpArr = preserveKeys ? {} : [];
-  let key;
-  if (isArray && !preserveKeys) {
+  if (Array.isArray(array) && !preserveKeys) {
     return array.slice(0).reverse();
   }
+  const source = toPhpArrayObject(array);
   if (preserveKeys) {
-    const keys = [];
-    for (key in array) {
-      keys.push(key);
+    const keys = Object.keys(source);
+    const reversed = {};
+    for (let index = keys.length - 1; index >= 0; index -= 1) {
+      const key = keys[index];
+      if (typeof key === 'string' && Object.prototype.hasOwnProperty.call(source, key)) {
+        reversed[key] = source[key];
+      }
     }
-    let i = keys.length;
-    while (i--) {
-      key = keys[i];
-      // @todo: don't rely on browsers keeping keys in insertion order
-      // it's implementation specific
-      // eg. the result will differ from expected in Google Chrome
-      tmpArr[key] = array[key];
+    return reversed;
+  }
+  const reversed = [];
+  for (const key in source) {
+    if (Object.prototype.hasOwnProperty.call(source, key)) {
+      reversed.unshift(source[key]);
     }
   }
-  else {
-    for (key in array) {
-      tmpArr.unshift(array[key]);
+  return reversed;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isObjectLike(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null;
+}
+function isPhpArrayObject(value) {
+  return isObjectLike(value);
+}
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value;
+  }
+  return {};
+}
+
+// php/array/array_reverse
+function array_reverse(array, preserveKeys = false) {
+  //  discuss at: https://locutus.io/php/array_reverse/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Karol Kowalski
+  //   example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
+  //   returns 1: { 2: ['green', 'red'], 1: '4.0', 0: 'php'}
+  if (Array.isArray(array) && !preserveKeys) {
+    return array.slice(0).reverse();
+  }
+  const source = toPhpArrayObject(array);
+  if (preserveKeys) {
+    const keys = Object.keys(source);
+    const reversed = {};
+    for (let index = keys.length - 1; index >= 0; index -= 1) {
+      const key = keys[index];
+      if (typeof key === 'string' && Object.prototype.hasOwnProperty.call(source, key)) {
+        reversed[key] = source[key];
+      }
+    }
+    return reversed;
+  }
+  const reversed = [];
+  for (const key in source) {
+    if (Object.prototype.hasOwnProperty.call(source, key)) {
+      reversed.unshift(source[key]);
     }
   }
-  return tmpArr;
+  return reversed;
 }{% endcodeblock %}
 </div>

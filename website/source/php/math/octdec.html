@@ -30,7 +30,7 @@ alias:
   - /functions/octdec/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function octdec(octString) {
+{% codeblock lang:typescript %}export function octdec(octString: string): number {
   //      discuss at: https://locutus.io/php/octdec/
   // parity verified: PHP 8.3
   //     original by: Philippe Baumann
@@ -44,6 +44,18 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function octdec(octString) {
+  //      discuss at: https://locutus.io/php/octdec/
+  // parity verified: PHP 8.3
+  //     original by: Philippe Baumann
+  //       example 1: octdec('77')
+  //       returns 1: 63
+  octString = (octString + '').replace(/[^0-7]/gi, '');
+  return parseInt(octString, 8);
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/math/octdec
+function octdec(octString) {
   //      discuss at: https://locutus.io/php/octdec/
   // parity verified: PHP 8.3
   //     original by: Philippe Baumann

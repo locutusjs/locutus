@@ -4,7 +4,8 @@ examples:
   - 'array_key_exists(''kevin'', {''kevin'': ''van Zonneveld''})'
 returns:
   - 'true'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
@@ -31,31 +32,66 @@ alias:
   - /functions/array_key_exists/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function array_key_exists(key, search) {
+{% codeblock lang:typescript %}import { isObjectLike, type PhpAssoc, type PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function array_key_exists(key: string | number, search: PhpAssoc<PhpMixed> | PhpMixed[]): boolean | false {
   //  discuss at: https://locutus.io/php/array_key_exists/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Felix Geisendoerfer (https://www.debuggable.com/felix)
   //   example 1: array_key_exists('kevin', {'kevin': 'van Zonneveld'})
   //   returns 1: true
 
-  if (!search || (search.constructor !== Array && search.constructor !== Object)) {
+  if (!Array.isArray(search) && !isObjectLike(search)) {
     return false
   }
 
-  return key in search
+  return String(key) in search
 }
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function array_key_exists(key, search) {
+{% codeblock lang:javascript %}import { isObjectLike } from '../_helpers/_phpTypes.ts';
+export function array_key_exists(key, search) {
   //  discuss at: https://locutus.io/php/array_key_exists/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Felix Geisendoerfer (https://www.debuggable.com/felix)
   //   example 1: array_key_exists('kevin', {'kevin': 'van Zonneveld'})
   //   returns 1: true
-  if (!search || (search.constructor !== Array && search.constructor !== Object)) {
+  if (!Array.isArray(search) && !isObjectLike(search)) {
     return false;
   }
-  return key in search;
+  return String(key) in search;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isObjectLike(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null;
+}
+function isPhpArrayObject(value) {
+  return isObjectLike(value);
+}
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value;
+  }
+  return {};
+}
+
+// php/array/array_key_exists
+function array_key_exists(key, search) {
+  //  discuss at: https://locutus.io/php/array_key_exists/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Felix Geisendoerfer (https://www.debuggable.com/felix)
+  //   example 1: array_key_exists('kevin', {'kevin': 'van Zonneveld'})
+  //   returns 1: true
+  if (!Array.isArray(search) && !isObjectLike(search)) {
+    return false;
+  }
+  return String(key) in search;
 }{% endcodeblock %}
 </div>

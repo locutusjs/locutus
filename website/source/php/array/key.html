@@ -6,7 +6,8 @@ examples:
     key($array)
 returns:
   - '''fruit1'''
-dependencies: []
+dependencies:
+  - php/_helpers/_arrayPointers
 authors:
   original by:
     - Brett Zamir (https://brett-zamir.me)
@@ -36,8 +37,10 @@ alias:
   - /functions/key/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}// @ts-nocheck
-export function key(arr) {
+{% codeblock lang:typescript %}import { getEntryAtCursor, getPointerState } from '../_helpers/_arrayPointers.ts'
+import type { PhpArrayLike } from '../_helpers/_phpTypes.ts'
+
+export function key<T>(arr: PhpArrayLike<T>): string | number | false {
   //      discuss at: https://locutus.io/php/key/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -48,51 +51,18 @@ export function key(arr) {
   //       example 1: key($array)
   //       returns 1: 'fruit1'
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
-  $locutus.php.pointers = $locutus.php.pointers || []
-  const pointers = $locutus.php.pointers
-
-  const indexOf = function (value) {
-    for (let i = 0, length = this.length; i < length; i++) {
-      if (this[i] === value) {
-        return i
-      }
-    }
-    return -1
-  }
-
-  if (!pointers.indexOf) {
-    pointers.indexOf = indexOf
-  }
-
-  if (pointers.indexOf(arr) === -1) {
-    pointers.push(arr, 0)
-  }
-  const cursor = pointers[pointers.indexOf(arr) + 1]
-  if (!Array.isArray(arr)) {
-    let ct = 0
-    for (const k in arr) {
-      if (ct === cursor) {
-        return k
-      }
-      ct++
-    }
-    // Empty
-    return false
-  }
-  if (arr.length === 0) {
+  const state = getPointerState(arr, true)
+  if (!state) {
     return false
   }
 
-  return cursor
+  const entry = getEntryAtCursor(arr, state.cursor)
+  return entry ? entry[0] : false
 }
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}// @ts-nocheck
+{% codeblock lang:javascript %}import { getEntryAtCursor, getPointerState } from '../_helpers/_arrayPointers.ts';
 export function key(arr) {
   //      discuss at: https://locutus.io/php/key/
   // parity verified: PHP 8.3
@@ -103,41 +73,122 @@ export function key(arr) {
   //       example 1: var $array = {fruit1: 'apple', 'fruit2': 'orange'}
   //       example 1: key($array)
   //       returns 1: 'fruit1'
-  const $global = typeof window !== 'undefined' ? window : global;
-  $global.$locutus = $global.$locutus || {};
-  const $locutus = $global.$locutus;
-  $locutus.php = $locutus.php || {};
-  $locutus.php.pointers = $locutus.php.pointers || [];
-  const pointers = $locutus.php.pointers;
-  const indexOf = function (value) {
-    for (let i = 0, length = this.length; i < length; i++) {
-      if (this[i] === value) {
-        return i;
-      }
-    }
-    return -1;
+  const state = getPointerState(arr, true);
+  if (!state) {
+    return false;
+  }
+  const entry = getEntryAtCursor(arr, state.cursor);
+  return entry ? entry[0] : false;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
+function ensurePhpRuntimeState() {
+  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
+  //     note 1: Ensures the mutable locutus PHP runtime bag exists on globalThis.
+  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
+  //  returns 1: true
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus || {};
+  globalContext.$locutus.php = globalContext.$locutus.php || {};
+  const php = globalContext.$locutus.php;
+  php.ini = php.ini || {};
+  php.locales = php.locales || {};
+  php.pointers = php.pointers || [];
+  return {
+    ini: php.ini,
+    locales: php.locales,
+    pointers: php.pointers,
+    locale_default: php.locale_default,
   };
-  if (!pointers.indexOf) {
-    pointers.indexOf = indexOf;
-  }
-  if (pointers.indexOf(arr) === -1) {
-    pointers.push(arr, 0);
-  }
-  const cursor = pointers[pointers.indexOf(arr) + 1];
-  if (!Array.isArray(arr)) {
-    let ct = 0;
-    for (const k in arr) {
-      if (ct === cursor) {
-        return k;
-      }
-      ct++;
+}
+function setPhpLocaleDefault(localeDefault) {
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus || {};
+  globalContext.$locutus.php = globalContext.$locutus.php || {};
+  globalContext.$locutus.php.locale_default = localeDefault;
+}
+
+// php/_helpers/_arrayPointers
+const findPointerIndex = (pointers, target) => {
+  for (let index = 0; index < pointers.length; index += 1) {
+    if (pointers[index] === target) {
+      return index;
     }
-    // Empty
+  }
+  return -1;
+};
+function getPointerState(target, initialize = true) {
+  // discuss at: https://locutus.io/php/_helpers/getPointerState/
+  //     note 1: Resolves or initializes locutus pointer state for a given array-like target.
+  //  example 1: getPointerState(['a'])?.cursor
+  //  returns 1: 0
+  const runtime = ensurePhpRuntimeState();
+  const pointers = runtime.pointers;
+  const pointerTarget = target;
+  let index = findPointerIndex(pointers, pointerTarget);
+  if (index === -1) {
+    if (!initialize) {
+      return null;
+    }
+    pointers.push(pointerTarget, 0);
+    index = pointers.length - 2;
+  }
+  const cursorValue = pointers[index + 1];
+  const cursor = typeof cursorValue === 'number' ? cursorValue : 0;
+  return {
+    cursor,
+    setCursor: (nextCursor) => {
+      pointers[index + 1] = nextCursor;
+    },
+  };
+}
+function getArrayLikeLength(target) {
+  if (Array.isArray(target)) {
+    return target.length;
+  }
+  let count = 0;
+  for (const _key in target) {
+    count += 1;
+  }
+  return count;
+}
+function getEntryAtCursor(target, cursor) {
+  if (cursor < 0) {
+    return null;
+  }
+  if (Array.isArray(target)) {
+    if (cursor >= target.length) {
+      return null;
+    }
+    return [cursor, target[cursor]];
+  }
+  let index = 0;
+  for (const key in target) {
+    if (index === cursor) {
+      return [key, target[key]];
+    }
+    index += 1;
+  }
+  return null;
+}
+
+// php/array/key
+function key(arr) {
+  //      discuss at: https://locutus.io/php/key/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //        input by: Riddler (https://www.frontierwebdev.com/)
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: Uses global: locutus to store the array pointer
+  //       example 1: var $array = {fruit1: 'apple', 'fruit2': 'orange'}
+  //       example 1: key($array)
+  //       returns 1: 'fruit1'
+  const state = getPointerState(arr, true);
+  if (!state) {
     return false;
   }
-  if (arr.length === 0) {
-    return false;
-  }
-  return cursor;
+  const entry = getEntryAtCursor(arr, state.cursor);
+  return entry ? entry[0] : false;
 }{% endcodeblock %}
 </div>

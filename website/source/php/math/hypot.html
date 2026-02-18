@@ -33,7 +33,9 @@ alias:
   - /functions/hypot/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function hypot(x, y) {
+{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function hypot(x: PhpMixed, y: PhpMixed): number | null {
   //  discuss at: https://locutus.io/php/hypot/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Robert Eisele (https://www.xarg.org/)
@@ -42,14 +44,14 @@ alias:
   //   example 2: hypot([], 'a')
   //   returns 2: null
 
-  x = Math.abs(x)
-  y = Math.abs(y)
+  const left = Math.abs(Number(x))
+  const right = Math.abs(Number(y))
 
-  let t = Math.min(x, y)
-  x = Math.max(x, y)
-  t = t / x
+  let t = Math.min(left, right)
+  const max = Math.max(left, right)
+  t = t / max
 
-  return x * Math.sqrt(1 + t * t) || null
+  return max * Math.sqrt(1 + t * t) || null
 }
 {% endcodeblock %}
 </div>
@@ -62,11 +64,29 @@ alias:
   //   returns 1: 5
   //   example 2: hypot([], 'a')
   //   returns 2: null
-  x = Math.abs(x);
-  y = Math.abs(y);
-  let t = Math.min(x, y);
-  x = Math.max(x, y);
-  t = t / x;
-  return x * Math.sqrt(1 + t * t) || null;
+  const left = Math.abs(Number(x));
+  const right = Math.abs(Number(y));
+  let t = Math.min(left, right);
+  const max = Math.max(left, right);
+  t = t / max;
+  return max * Math.sqrt(1 + t * t) || null;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/math/hypot
+function hypot(x, y) {
+  //  discuss at: https://locutus.io/php/hypot/
+  // original by: Onno Marsman (https://twitter.com/onnomarsman)
+  // improved by: Robert Eisele (https://www.xarg.org/)
+  //   example 1: hypot(3, 4)
+  //   returns 1: 5
+  //   example 2: hypot([], 'a')
+  //   returns 2: null
+  const left = Math.abs(Number(x));
+  const right = Math.abs(Number(y));
+  let t = Math.min(left, right);
+  const max = Math.max(left, right);
+  t = t / max;
+  return max * Math.sqrt(1 + t * t) || null;
 }{% endcodeblock %}
 </div>

@@ -65,10 +65,10 @@ alias:
   - /functions/natcasesort/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}// @ts-nocheck
+{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 import { strnatcasecmp } from '../strings/strnatcasecmp.ts'
 
-export function natcasesort(inputArr: Record<string, unknown>): boolean | Record<string, unknown> {
+export function natcasesort<T>(inputArr: Record<string, T>): boolean | Record<string, T> {
   //      discuss at: https://locutus.io/php/natcasesort/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -90,13 +90,17 @@ export function natcasesort(inputArr: Record<string, unknown>): boolean | Record
   //       example 1: var $result = $array1
   //       returns 1: {a: 'IMG0.png', e: 'img1.png', d: 'img2.png', f: 'IMG3.png', c: 'img10.png', b: 'img12.png'}
 
-  const valArr: [string, unknown][] = []
+  const valArr: [string, T][] = []
   let k: string
   let i: number
   let sortByReference = false
-  let populateArr: Record<string, unknown> = {}
+  let populateArr: Record<string, T> = {}
 
-  const $loc = (globalThis as any).$locutus
+  const $loc = (
+    globalThis as typeof globalThis & {
+      $locutus?: { php?: { ini?: Record<string, { local_value?: PhpMixed }> } }
+    }
+  ).$locutus
   const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
@@ -104,19 +108,23 @@ export function natcasesort(inputArr: Record<string, unknown>): boolean | Record
   // Get key and value arrays
   for (k in inputArr) {
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push([k, inputArr[k]])
+      valArr.push([k, inputArr[k] as T])
       if (sortByReference) {
         delete inputArr[k]
       }
     }
   }
   valArr.sort(function (a, b) {
-    return strnatcasecmp(a[1], b[1])
+    return Number(strnatcasecmp(a[1] as string | number, b[1] as string | number) ?? 0)
   })
 
   // Repopulate the old array
   for (i = 0; i < valArr.length; i++) {
-    populateArr[valArr[i][0]] = valArr[i][1]
+    const pair = valArr[i]
+    if (!pair) {
+      continue
+    }
+    populateArr[pair[0]] = pair[1]
   }
 
   return sortByReference || populateArr
@@ -124,8 +132,7 @@ export function natcasesort(inputArr: Record<string, unknown>): boolean | Record
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}// @ts-nocheck
-import { strnatcasecmp } from '../strings/strnatcasecmp.ts';
+{% codeblock lang:javascript %}import { strnatcasecmp } from '../strings/strnatcasecmp.ts';
 export function natcasesort(inputArr) {
   //      discuss at: https://locutus.io/php/natcasesort/
   // parity verified: PHP 8.3
@@ -166,11 +173,264 @@ export function natcasesort(inputArr) {
     }
   }
   valArr.sort(function (a, b) {
-    return strnatcasecmp(a[1], b[1]);
+    return Number(strnatcasecmp(a[1], b[1]) ?? 0);
   });
   // Repopulate the old array
   for (i = 0; i < valArr.length; i++) {
-    populateArr[valArr[i][0]] = valArr[i][1];
+    const pair = valArr[i];
+    if (!pair) {
+      continue;
+    }
+    populateArr[pair[0]] = pair[1];
+  }
+  return sortByReference || populateArr;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpCastString
+function _phpCastString(value) {
+  // original by: Rafał Kukawski
+  //   example 1: _phpCastString(true)
+  //   returns 1: '1'
+  //   example 2: _phpCastString(false)
+  //   returns 2: ''
+  //   example 3: _phpCastString('foo')
+  //   returns 3: 'foo'
+  //   example 4: _phpCastString(0/0)
+  //   returns 4: 'NAN'
+  //   example 5: _phpCastString(1/0)
+  //   returns 5: 'INF'
+  //   example 6: _phpCastString(-1/0)
+  //   returns 6: '-INF'
+  //   example 7: _phpCastString(null)
+  //   returns 7: ''
+  //   example 8: _phpCastString(undefined)
+  //   returns 8: ''
+  //   example 9: _phpCastString([])
+  //   returns 9: 'Array'
+  //  example 10: _phpCastString({})
+  //  returns 10: 'Object'
+  //  example 11: _phpCastString(0)
+  //  returns 11: '0'
+  //  example 12: _phpCastString(1)
+  //  returns 12: '1'
+  //  example 13: _phpCastString(3.14)
+  //  returns 13: '3.14'
+  if (typeof value === 'boolean') {
+    return value ? '1' : '';
+  }
+  if (typeof value === 'string') {
+    return value;
+  }
+  if (typeof value === 'number') {
+    if (isNaN(value)) {
+      return 'NAN';
+    }
+    if (!isFinite(value)) {
+      return (value < 0 ? '-' : '') + 'INF';
+    }
+    return value + '';
+  }
+  if (typeof value === 'undefined') {
+    return '';
+  }
+  if (typeof value === 'object') {
+    if (Array.isArray(value)) {
+      return 'Array';
+    }
+    if (value !== null) {
+      return 'Object';
+    }
+    return '';
+  }
+  throw new Error('Unsupported value type');
+}
+
+// php/strings/strnatcmp
+function strnatcmp(...args) {
+  //       discuss at: https://locutus.io/php/strnatcmp/
+  //  parity verified: PHP 8.3
+  //      original by: Martijn Wieringa
+  //      improved by: Michael White (https://getsprink.com)
+  //      improved by: Jack
+  //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  // reimplemented by: Rafał Kukawski
+  //        example 1: strnatcmp('abc', 'abc')
+  //        returns 1: 0
+  //        example 2: strnatcmp('a', 'b')
+  //        returns 2: -1
+  //        example 3: strnatcmp('10', '1')
+  //        returns 3: 1
+  //        example 4: strnatcmp('0000abc', '0abc')
+  //        returns 4: 0
+  //        example 5: strnatcmp('1239', '12345')
+  //        returns 5: -1
+  //        example 6: strnatcmp('t01239', 't012345')
+  //        returns 6: 1
+  //        example 7: strnatcmp('0A', '5N')
+  //        returns 7: -1
+  const leadingZeros = /^0+(?=\d)/;
+  const whitespace = /^\s/;
+  const digit = /^\d/;
+  if (args.length !== 2) {
+    return null;
+  }
+  const [a, b] = args;
+  let left = _phpCastString(a);
+  let right = _phpCastString(b);
+  if (!left.length || !right.length) {
+    return left.length - right.length;
+  }
+  let i = 0;
+  let j = 0;
+  left = left.replace(leadingZeros, '');
+  right = right.replace(leadingZeros, '');
+  while (i < left.length && j < right.length) {
+    // skip consecutive whitespace
+    while (whitespace.test(left.charAt(i))) {
+      i++;
+    }
+    while (whitespace.test(right.charAt(j))) {
+      j++;
+    }
+    let ac = left.charAt(i);
+    let bc = right.charAt(j);
+    let aIsDigit = digit.test(ac);
+    let bIsDigit = digit.test(bc);
+    if (aIsDigit && bIsDigit) {
+      let bias = 0;
+      const fractional = ac === '0' || bc === '0';
+      do {
+        if (!aIsDigit) {
+          return -1;
+        }
+        else if (!bIsDigit) {
+          return 1;
+        }
+        else if (ac < bc) {
+          if (!bias) {
+            bias = -1;
+          }
+          if (fractional) {
+            return -1;
+          }
+        }
+        else if (ac > bc) {
+          if (!bias) {
+            bias = 1;
+          }
+          if (fractional) {
+            return 1;
+          }
+        }
+        ac = left.charAt(++i);
+        bc = right.charAt(++j);
+        aIsDigit = digit.test(ac);
+        bIsDigit = digit.test(bc);
+      } while (aIsDigit || bIsDigit);
+      if (!fractional && bias) {
+        return bias;
+      }
+      continue;
+    }
+    if (!ac || !bc) {
+      continue;
+    }
+    else if (ac < bc) {
+      return -1;
+    }
+    else if (ac > bc) {
+      return 1;
+    }
+    i++;
+    j++;
+  }
+  const iBeforeStrEnd = i < left.length;
+  const jBeforeStrEnd = j < right.length;
+  // Check which string ended first
+  // return -1 if a, 1 if b, 0 otherwise
+  if (iBeforeStrEnd && !jBeforeStrEnd) {
+    return 1;
+  }
+  if (!iBeforeStrEnd && jBeforeStrEnd) {
+    return -1;
+  }
+  return 0;
+}
+
+// php/strings/strnatcasecmp
+function strnatcasecmp(...args) {
+  //       discuss at: https://locutus.io/php/strnatcasecmp/
+  //  parity verified: PHP 8.3
+  //      original by: Martin Pool
+  // reimplemented by: Pierre-Luc Paour
+  // reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
+  //      bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //         input by: Devan Penner-Woelk
+  //      improved by: Kevin van Zonneveld (https://kvz.io)
+  // reimplemented by: Rafał Kukawski
+  //        example 1: strnatcasecmp(10, 1)
+  //        returns 1: 1
+  //        example 2: strnatcasecmp('1', '10')
+  //        returns 2: -1
+  if (args.length !== 2) {
+    return null;
+  }
+  const [a, b] = args;
+  return strnatcmp(_phpCastString(a).toLowerCase(), _phpCastString(b).toLowerCase());
+}
+
+// php/array/natcasesort
+function natcasesort(inputArr) {
+  //      discuss at: https://locutus.io/php/natcasesort/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Theriault (https://github.com/Theriault)
+  //          note 1: This function deviates from PHP in returning a copy of the array instead
+  //          note 1: of acting by reference and returning true; this was necessary because
+  //          note 1: IE does not allow deleting and re-adding of properties without caching
+  //          note 1: of property position; you can set the ini of "locutus.sortByReference" to true to
+  //          note 1: get the PHP behavior, but use this only if you are in an environment
+  //          note 1: such as Firefox extensions where for-in iteration order is fixed and true
+  //          note 1: property deletion is supported. Note that we intend to implement the PHP
+  //          note 1: behavior by default if IE ever does allow it; only gives shallow copy since
+  //          note 1: is by reference in PHP anyways
+  //          note 1: We cannot use numbers as keys and have them be reordered since they
+  //          note 1: adhere to numerical order in some implementations
+  //       example 1: var $array1 = {a:'IMG0.png', b:'img12.png', c:'img10.png', d:'img2.png', e:'img1.png', f:'IMG3.png'}
+  //       example 1: natcasesort($array1)
+  //       example 1: var $result = $array1
+  //       returns 1: {a: 'IMG0.png', e: 'img1.png', d: 'img2.png', f: 'IMG3.png', c: 'img10.png', b: 'img12.png'}
+  const valArr = [];
+  let k;
+  let i;
+  let sortByReference = false;
+  let populateArr = {};
+  const $loc = globalThis.$locutus;
+  const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on';
+  sortByReference = iniVal === 'on';
+  populateArr = sortByReference ? inputArr : populateArr;
+  // Get key and value arrays
+  for (k in inputArr) {
+    if (inputArr.hasOwnProperty(k)) {
+      valArr.push([k, inputArr[k]]);
+      if (sortByReference) {
+        delete inputArr[k];
+      }
+    }
+  }
+  valArr.sort(function (a, b) {
+    return Number(strnatcasecmp(a[1], b[1]) ?? 0);
+  });
+  // Repopulate the old array
+  for (i = 0; i < valArr.length; i++) {
+    const pair = valArr[i];
+    if (!pair) {
+      continue;
+    }
+    populateArr[pair[0]] = pair[1];
   }
   return sortByReference || populateArr;
 }{% endcodeblock %}

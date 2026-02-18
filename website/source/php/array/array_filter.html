@@ -44,7 +44,12 @@ alias:
   - /functions/array_filter/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function array_filter(arr, func) {
+{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function array_filter<T>(
+  arr: { [key: string]: T } | T[],
+  func?: (value: T) => PhpMixed,
+): { [key: string]: T } | T[] {
   //  discuss at: https://locutus.io/php/array_filter/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: max4ever
@@ -59,12 +64,12 @@ alias:
   //   example 3: array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined})
   //   returns 3: {"a":1, "c":-1}
 
-  let retObj = {}
-  let k
+  let retObj: { [key: string]: T } | T[] = {}
+  let k = ''
 
-  func =
+  const callback =
     func ||
-    function (v) {
+    function (v: T) {
       return v
     }
 
@@ -74,8 +79,16 @@ alias:
   }
 
   for (k in arr) {
-    if (func(arr[k])) {
-      retObj[k] = arr[k]
+    if (!Object.prototype.hasOwnProperty.call(arr, k)) {
+      continue
+    }
+    const value = (arr as { [key: string]: T })[k] as T
+    if (callback(value)) {
+      if (Array.isArray(retObj)) {
+        retObj[Number(k)] = value
+      } else {
+        retObj[k] = value
+      }
     }
   }
 
@@ -99,19 +112,70 @@ alias:
   //   example 3: array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined})
   //   returns 3: {"a":1, "c":-1}
   let retObj = {};
-  let k;
-  func =
-    func ||
-      function (v) {
-        return v;
-      };
+  let k = '';
+  const callback = func ||
+    function (v) {
+      return v;
+    };
   // @todo: Issue #73
   if (Array.isArray(arr)) {
     retObj = [];
   }
   for (k in arr) {
-    if (func(arr[k])) {
-      retObj[k] = arr[k];
+    if (!Object.prototype.hasOwnProperty.call(arr, k)) {
+      continue;
+    }
+    const value = arr[k];
+    if (callback(value)) {
+      if (Array.isArray(retObj)) {
+        retObj[Number(k)] = value;
+      }
+      else {
+        retObj[k] = value;
+      }
+    }
+  }
+  return retObj;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/array/array_filter
+function array_filter(arr, func) {
+  //  discuss at: https://locutus.io/php/array_filter/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //    input by: max4ever
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: Takes a function as an argument, not a function's name
+  //   example 1: var odd = function (num) {return (num & 1);}
+  //   example 1: array_filter({"a": 1, "b": 2, "c": 3, "d": 4, "e": 5}, odd)
+  //   returns 1: {"a": 1, "c": 3, "e": 5}
+  //   example 2: var even = function (num) {return (!(num & 1));}
+  //   example 2: array_filter([6, 7, 8, 9, 10, 11, 12], even)
+  //   returns 2: [ 6, , 8, , 10, , 12 ]
+  //   example 3: array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined})
+  //   returns 3: {"a":1, "c":-1}
+  let retObj = {};
+  let k = '';
+  const callback = func ||
+    function (v) {
+      return v;
+    };
+  // @todo: Issue #73
+  if (Array.isArray(arr)) {
+    retObj = [];
+  }
+  for (k in arr) {
+    if (!Object.prototype.hasOwnProperty.call(arr, k)) {
+      continue;
+    }
+    const value = arr[k];
+    if (callback(value)) {
+      if (Array.isArray(retObj)) {
+        retObj[Number(k)] = value;
+      }
+      else {
+        retObj[k] = value;
+      }
     }
   }
   return retObj;

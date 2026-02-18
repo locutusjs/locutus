@@ -34,7 +34,7 @@ alias:
   - /functions/bindec/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function bindec(binaryString) {
+{% codeblock lang:typescript %}export function bindec(binaryString: string): number {
   //      discuss at: https://locutus.io/php/bindec/
   // parity verified: PHP 8.3
   //     original by: Philippe Baumann
@@ -53,6 +53,22 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function bindec(binaryString) {
+  //      discuss at: https://locutus.io/php/bindec/
+  // parity verified: PHP 8.3
+  //     original by: Philippe Baumann
+  //       example 1: bindec('110011')
+  //       returns 1: 51
+  //       example 2: bindec('000110011')
+  //       returns 2: 51
+  //       example 3: bindec('111')
+  //       returns 3: 7
+  binaryString = (binaryString + '').replace(/[^01]/gi, '');
+  return parseInt(binaryString, 2);
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/math/bindec
+function bindec(binaryString) {
   //      discuss at: https://locutus.io/php/bindec/
   // parity verified: PHP 8.3
   //     original by: Philippe Baumann

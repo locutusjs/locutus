@@ -30,7 +30,7 @@ alias:
   - /ruby/upcase/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function upcase(str) {
+{% codeblock lang:typescript %}export function upcase(str: string): string {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/String/upcase/
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -44,6 +44,18 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function upcase(str) {
+  // parity verified: Ruby 3.3
+  //      discuss at: https://locutus.io/ruby/String/upcase/
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns a copy of str with all lowercase letters replaced with uppercase.
+  //       example 1: upcase('hELLo')
+  //       returns 1: 'HELLO'
+  return (str + '').toUpperCase();
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// ruby/String/upcase
+function upcase(str) {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/String/upcase/
   //     original by: Kevin van Zonneveld (https://kvz.io)

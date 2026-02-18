@@ -31,7 +31,7 @@ alias:
   - /r/tolower/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function tolower(x) {
+{% codeblock lang:typescript %}export function tolower(x: string): string {
   //      discuss at: https://locutus.io/r/tolower/
   // parity verified: R 4.4
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -46,6 +46,19 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function tolower(x) {
+  //      discuss at: https://locutus.io/r/tolower/
+  // parity verified: R 4.4
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: tolower('HELLO')
+  //       returns 1: 'hello'
+  //       example 2: tolower('Hello World')
+  //       returns 2: 'hello world'
+  return String(x).toLowerCase();
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// r/base/tolower
+function tolower(x) {
   //      discuss at: https://locutus.io/r/tolower/
   // parity verified: R 4.4
   //     original by: Kevin van Zonneveld (https://kvz.io)

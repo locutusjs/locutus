@@ -32,7 +32,7 @@ alias:
   - /functions/hexdec/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function hexdec(hexString) {
+{% codeblock lang:typescript %}export function hexdec(hexString: string): number {
   //      discuss at: https://locutus.io/php/hexdec/
   // parity verified: PHP 8.3
   //     original by: Philippe Baumann
@@ -48,6 +48,20 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function hexdec(hexString) {
+  //      discuss at: https://locutus.io/php/hexdec/
+  // parity verified: PHP 8.3
+  //     original by: Philippe Baumann
+  //       example 1: hexdec('that')
+  //       returns 1: 10
+  //       example 2: hexdec('a0')
+  //       returns 2: 160
+  hexString = (hexString + '').replace(/[^a-f0-9]/gi, '');
+  return parseInt(hexString, 16);
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/math/hexdec
+function hexdec(hexString) {
   //      discuss at: https://locutus.io/php/hexdec/
   // parity verified: PHP 8.3
   //     original by: Philippe Baumann

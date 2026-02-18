@@ -29,7 +29,9 @@ alias:
   - /functions/assert_options/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function assert_options(what: string, value?: unknown): unknown {
+{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function assert_options(what: string, _value?: PhpMixed): string | number | null {
   //  discuss at: https://locutus.io/php/assert_options/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: assert_options('ASSERT_CALLBACK')
@@ -66,7 +68,11 @@ alias:
   }
 
   // I presume this is to be the most recent value, instead of the default value
-  const $loc = (globalThis as any).$locutus
+  const $loc = (
+    globalThis as {
+      $locutus?: { php?: { ini?: { [key: string]: { local_value?: PhpMixed } | undefined } } }
+    }
+  ).$locutus
   const iniVal = String($loc?.php?.ini?.[iniKey]?.local_value ?? '') || defaultVal
 
   return iniVal
@@ -74,7 +80,49 @@ alias:
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function assert_options(what, value) {
+{% codeblock lang:javascript %}export function assert_options(what, _value) {
+  //  discuss at: https://locutus.io/php/assert_options/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: assert_options('ASSERT_CALLBACK')
+  //   returns 1: null
+  let iniKey;
+  let defaultVal;
+  switch (what) {
+    case 'ASSERT_ACTIVE':
+      iniKey = 'assert.active';
+      defaultVal = 1;
+      break;
+    case 'ASSERT_WARNING': {
+      iniKey = 'assert.warning';
+      defaultVal = 1;
+      let msg = 'We have not yet implemented warnings for us to throw ';
+      msg += 'in JavaScript (assert_options())';
+      throw new Error(msg);
+    }
+    case 'ASSERT_BAIL':
+      iniKey = 'assert.bail';
+      defaultVal = 0;
+      break;
+    case 'ASSERT_QUIET_EVAL':
+      iniKey = 'assert.quiet_eval';
+      defaultVal = 0;
+      break;
+    case 'ASSERT_CALLBACK':
+      iniKey = 'assert.callback';
+      defaultVal = null;
+      break;
+    default:
+      throw new Error('Improper type for assert_options()');
+  }
+  // I presume this is to be the most recent value, instead of the default value
+  const $loc = globalThis.$locutus;
+  const iniVal = String($loc?.php?.ini?.[iniKey]?.local_value ?? '') || defaultVal;
+  return iniVal;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/info/assert_options
+function assert_options(what, _value) {
   //  discuss at: https://locutus.io/php/assert_options/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: assert_options('ASSERT_CALLBACK')

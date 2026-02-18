@@ -30,7 +30,7 @@ alias:
   - /golang/TrimSpace/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function TrimSpace(s) {
+{% codeblock lang:typescript %}export function TrimSpace(s: string): string {
   //      discuss at: https://locutus.io/golang/strings/TrimSpace
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -44,6 +44,18 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function TrimSpace(s) {
+  //      discuss at: https://locutus.io/golang/strings/TrimSpace
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Removes leading and trailing white space (as defined by Unicode)
+  //       example 1: TrimSpace(' \t\n Hello, Gophers \n\t\r\n')
+  //       returns 1: 'Hello, Gophers'
+  return (s + '').trim();
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// golang/strings/TrimSpace
+function TrimSpace(s) {
   //      discuss at: https://locutus.io/golang/strings/TrimSpace
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

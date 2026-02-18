@@ -58,4 +58,44 @@ describe('util', function () {
       expect(dependencies).not.toContain('php/_helpers/_phpTypes')
     })
   })
+
+  describe('_buildStandaloneJs', function () {
+    it('should inline transitive locutus dependencies for standalone snippets', async function () {
+      const util = new Util()
+      const params = await util._load('php/strings/printf.ts', {})
+      expect(params).not.toBeNull()
+      if (!params) {
+        return
+      }
+
+      const standaloneCode = await util._buildStandaloneJs(params)
+
+      expect(standaloneCode).toContain('// php/strings/echo')
+      expect(standaloneCode).toContain('// php/strings/sprintf')
+      expect(standaloneCode).toContain('// php/strings/printf')
+      expect(standaloneCode).toContain('function echo(')
+      expect(standaloneCode).toContain('function sprintf(')
+      expect(standaloneCode).toContain('function printf(')
+      expect(standaloneCode).not.toContain("from '../strings/echo.ts'")
+      expect(standaloneCode).not.toContain("from '../strings/sprintf.ts'")
+      expect(standaloneCode).not.toContain('export function printf')
+    })
+
+    it('should preserve local import aliases when inlining dependencies', async function () {
+      const util = new Util()
+      const params = await util._load('php/var/is_long.ts', {})
+      expect(params).not.toBeNull()
+      if (!params) {
+        return
+      }
+
+      const standaloneCode = await util._buildStandaloneJs(params)
+
+      expect(standaloneCode).toContain('// php/var/is_float')
+      expect(standaloneCode).toContain('function is_float(')
+      expect(standaloneCode).toContain('const _isFloat = is_float;')
+      expect(standaloneCode).toContain('function is_long(')
+      expect(standaloneCode).not.toContain("from '../var/is_float.ts'")
+    })
+  })
 })

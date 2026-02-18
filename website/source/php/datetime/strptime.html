@@ -13,7 +13,6 @@ returns:
     {tm_sec:0, tm_min:0, tm_hour:0, tm_mday:0, tm_mon:0, tm_year:109, tm_wday:3,
     tm_yday: -1, unparsed: 'extra'}
 dependencies:
-  - php/array/array_map
   - php/strings/setlocale
 authors:
   original by:
@@ -41,12 +40,42 @@ alias:
   - /functions/strptime/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}// @ts-nocheck
-
-import { array_map as arrayMap } from '../array/array_map.ts'
+{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 import { setlocale } from '../strings/setlocale.ts'
 
-export function strptime(dateStr, format) {
+type StrptimeResult = {
+  tm_sec: number
+  tm_min: number
+  tm_hour: number
+  tm_mday: number
+  tm_mon: number
+  tm_year: number
+  tm_wday: number
+  tm_yday: number
+  unparsed: string
+}
+
+type LcTime = {
+  a: string[]
+  A: string[]
+  b: string[]
+  B: string[]
+  c: string
+  r: string
+  x: string
+  X: string
+  [key: string]: string | string[] | undefined
+}
+
+type PhpContext = {
+  locales?: Record<string, { LC_TIME?: LcTime }>
+  localeCategories?: { LC_TIME?: string }
+}
+
+type GlobalWithLocutus = typeof globalThis & { $locutus?: { php?: PhpContext } }
+type NumericResultKey = Exclude<keyof StrptimeResult, 'unparsed'>
+
+export function strptime(dateStr: string, format: string): StrptimeResult | false {
   //      discuss at: https://locutus.io/php/strptime/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -56,7 +85,7 @@ export function strptime(dateStr, format) {
   //       example 2: strptime('2009extra', '%Y')
   //       returns 2: {tm_sec:0, tm_min:0, tm_hour:0, tm_mday:0, tm_mon:0, tm_year:109, tm_wday:3, tm_yday: -1, unparsed: 'extra'}
 
-  const retObj = {
+  const retObj: StrptimeResult = {
     tm_sec: 0,
     tm_min: 0,
     tm_hour: 0,
@@ -71,7 +100,7 @@ export function strptime(dateStr, format) {
   let j = 0
   let amPmOffset = 0
   let prevHour = false
-  const _reset = function (dateObj, realMday) {
+  const _reset = function (dateObj: Date, realMday: number): void {
     // realMday is to allow for a value of 0 in return results (but without
     // messing up the Date() object)
     const o = retObj
@@ -84,21 +113,18 @@ export function strptime(dateStr, format) {
     o.tm_year = d.getUTCFullYear() - 1900
     o.tm_wday = realMday === 0 ? (d.getUTCDay() > 0 ? d.getUTCDay() - 1 : 6) : d.getUTCDay()
     const jan1 = new Date(Date.UTC(d.getUTCFullYear(), 0, 1))
-    o.tm_yday = Math.ceil((d - jan1) / (1000 * 60 * 60 * 24))
+    o.tm_yday = Math.ceil((d.getTime() - jan1.getTime()) / (1000 * 60 * 60 * 24))
   }
-  const _date = function () {
+  const _date = function (): void {
     const o = retObj
     // We set date to at least 1 to ensure year or month doesn't go backwards
-    return _reset(
-      new Date(Date.UTC(o.tm_year + 1900, o.tm_mon, o.tm_mday || 1, o.tm_hour, o.tm_min, o.tm_sec)),
-      o.tm_mday,
-    )
+    _reset(new Date(Date.UTC(o.tm_year + 1900, o.tm_mon, o.tm_mday || 1, o.tm_hour, o.tm_min, o.tm_sec)), o.tm_mday)
   }
 
   const _NWS = /\S/
   const _WS = /\s/
 
-  const _aggregates = {
+  const _aggregates: Record<string, string> = {
     c: 'locale',
     D: '%m/%d/%y',
     F: '%y-%m-%d',
@@ -127,49 +153,72 @@ export function strptime(dateStr, format) {
     OW
     Oy
   */
-  const _pregQuote = function (str) {
-    return (str + '').replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1')
+  const _pregQuote = function (str: string): string {
+    return str.replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1')
   }
 
   // ensure setup of localization variables takes place
   setlocale('LC_ALL', 0)
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  const locale = $locutus.php.localeCategories.LC_TIME
-  const lcTime = $locutus.php.locales[locale].LC_TIME
+  const globalContext = globalThis as GlobalWithLocutus
+  globalContext.$locutus = globalContext.$locutus ?? {}
+  const locutus = globalContext.$locutus
+  locutus.php = locutus.php ?? {}
+  const php = locutus.php
+  const locale = php.localeCategories?.LC_TIME
+  const lcTime = locale ? php.locales?.[locale]?.LC_TIME : undefined
+  if (!lcTime) {
+    return false
+  }
 
   // First replace aggregates (run in a loop because an agg may be made up of other aggs)
-  while (format.match(/%[cDFhnrRtTxX]/)) {
-    format = format.replace(/%([cDFhnrRtTxX])/g, function (m0, m1) {
+  while (/%[cDFhnrRtTxX]/.test(format)) {
+    format = format.replace(/%([cDFhnrRtTxX])/g, function (_m0, m1: string) {
       const f = _aggregates[m1]
-      return f === 'locale' ? lcTime[m1] : f
+      if (f === undefined) {
+        return m1
+      }
+      return f === 'locale' ? String(lcTime[m1] ?? '') : f
     })
   }
 
-  const _addNext = function (j, regex, cb) {
-    if (typeof regex === 'string') {
-      regex = new RegExp('^' + regex, 'i')
+  const _addNext = function (
+    index: number,
+    regex: RegExp | string,
+    cb: (...matches: string[]) => PhpMixed | void,
+  ): number {
+    const pattern = typeof regex === 'string' ? new RegExp('^' + regex, 'i') : regex
+    const check = dateStr.slice(index)
+    const match = pattern.exec(check)
+    if (!match) {
+      throw new Error('No match in string')
     }
-    const check = dateStr.slice(j)
-    const match = regex.exec(check)
     // Even if the callback returns null after assigning to the
     // return object, the object won't be saved anyways
-    const testNull = match ? cb.apply(null, match) : null
+    const testNull = cb(...match)
     if (testNull === null) {
       throw new Error('No match in string')
     }
-    return j + match[0].length
+    return index + match[0].length
   }
 
-  const _addLocalized = function (j, formatChar, category) {
+  const _addLocalized = function (
+    index: number,
+    formatChar: 'a' | 'A' | 'b' | 'B',
+    category: NumericResultKey,
+  ): number {
     // Could make each parenthesized instead and pass index to callback:
-    return _addNext(j, arrayMap(_pregQuote, lcTime[formatChar]).join('|'), function (m) {
-      const match = lcTime[formatChar].search(new RegExp('^' + _pregQuote(m) + '$', 'i'))
-      if (match) {
-        retObj[category] = match[0]
+    const localized = lcTime[formatChar]
+    if (!Array.isArray(localized)) {
+      throw new Error('No match in string')
+    }
+    return _addNext(index, localized.map((entry) => _pregQuote(entry)).join('|'), function (m) {
+      const matchIndex = localized.findIndex((entry) => new RegExp('^' + _pregQuote(m) + '$', 'i').test(entry))
+      if (matchIndex === -1) {
+        return null
       }
+      retObj[category] = matchIndex
+      return matchIndex
     })
   }
 
@@ -213,26 +262,21 @@ export function strptime(dateStr, format) {
           case 'C':
             // 0+; century (19 for 20th)
             // PHP docs say two-digit, but accepts one-digit (two-digit max):
-            j = _addNext(
-              j,
-              /^\d?\d/,
-
-              function (d) {
-                const year = (parseInt(d, 10) - 19) * 100
-                retObj.tm_year = year
-                _date()
-                if (!retObj.tm_yday) {
-                  retObj.tm_yday = -1
-                }
-                // Also changes wday; and sets yday to -1 (always?)
-              },
-            )
+            j = _addNext(j, /^\d?\d/, function (d) {
+              const year = (Number.parseInt(d, 10) - 19) * 100
+              retObj.tm_year = year
+              _date()
+              if (!retObj.tm_yday) {
+                retObj.tm_yday = -1
+              }
+              // Also changes wday; and sets yday to -1 (always?)
+            })
             break
           case 'd':
           case 'e':
             // 1-31 day
             j = _addNext(j, formatChar === 'd' ? /^(0[1-9]|[1-2]\d|3[0-1])/ : /^([1-2]\d|3[0-1]|[1-9])/, function (d) {
-              const dayMonth = parseInt(d, 10)
+              const dayMonth = Number.parseInt(d, 10)
               retObj.tm_mday = dayMonth
               // Also changes w_day, y_day
               _date()
@@ -247,7 +291,7 @@ export function strptime(dateStr, format) {
           case 'H':
             // 00-23 hours
             j = _addNext(j, /^([0-1]\d|2[0-3])/, function (d) {
-              const hour = parseInt(d, 10)
+              const hour = Number.parseInt(d, 10)
               retObj.tm_hour = hour
               // Changes nothing else
             })
@@ -256,7 +300,7 @@ export function strptime(dateStr, format) {
           case 'I':
             // 01-12 hours
             j = _addNext(j, formatChar === 'l' ? /^([1-9]|1[0-2])/ : /^(0[1-9]|1[0-2])/, function (d) {
-              const hour = parseInt(d, 10) - 1 + amPmOffset
+              const hour = Number.parseInt(d, 10) - 1 + amPmOffset
               retObj.tm_hour = hour
               // Used for coordinating with am-pm
               prevHour = true
@@ -266,7 +310,7 @@ export function strptime(dateStr, format) {
           case 'j':
             // 001-366 day of year
             j = _addNext(j, /^(00[1-9]|0[1-9]\d|[1-2]\d\d|3[0-6][0-6])/, function (d) {
-              const dayYear = parseInt(d, 10) - 1
+              const dayYear = Number.parseInt(d, 10) - 1
               retObj.tm_yday = dayYear
               // Changes nothing else
               // (oddly, since if original by a given year, could calculate other fields)
@@ -275,7 +319,7 @@ export function strptime(dateStr, format) {
           case 'm':
             // 01-12 month
             j = _addNext(j, /^(0[1-9]|1[0-2])/, function (d) {
-              const month = parseInt(d, 10) - 1
+              const month = Number.parseInt(d, 10) - 1
               retObj.tm_mon = month
               // Also sets wday and yday
               _date()
@@ -284,7 +328,7 @@ export function strptime(dateStr, format) {
           case 'M':
             // 00-59 minutes
             j = _addNext(j, /^[0-5]\d/, function (d) {
-              const minute = parseInt(d, 10)
+              const minute = Number.parseInt(d, 10)
               retObj.tm_min = minute
               // Changes nothing else
             })
@@ -307,9 +351,9 @@ export function strptime(dateStr, format) {
           case 's':
             // Unix timestamp (in seconds)
             j = _addNext(j, /^\d+/, function (d) {
-              const timestamp = parseInt(d, 10)
+              const timestamp = Number.parseInt(d, 10)
               const date = new Date(Date.UTC(timestamp * 1000))
-              _reset(date)
+              _reset(date, retObj.tm_mday)
               // Affects all fields, but can't be negative (and initial + not allowed)
             })
             break
@@ -318,9 +362,8 @@ export function strptime(dateStr, format) {
             j = _addNext(
               j,
               /^[0-5]\d/, // strptime also accepts 60-61 for some reason
-
               function (d) {
-                const second = parseInt(d, 10)
+                const second = Number.parseInt(d, 10)
                 retObj.tm_sec = second
                 // Changes nothing else
               },
@@ -330,7 +373,7 @@ export function strptime(dateStr, format) {
           case 'w':
             // 0 (Sunday)-6(Saturday)
             j = _addNext(j, /^\d/, function (d) {
-              retObj.tm_wday = d - (formatChar === 'u')
+              retObj.tm_wday = Number(d) - (formatChar === 'u' ? 1 : 0)
               // Changes nothing else apparently
             })
             break
@@ -342,39 +385,29 @@ export function strptime(dateStr, format) {
           case 'y':
             // 69 (or higher) for 1969+, 68 (or lower) for 2068-
             // PHP docs say two-digit, but accepts one-digit (two-digit max):
-            j = _addNext(
-              j,
-              /^\d?\d/,
-
-              function (d) {
-                d = parseInt(d, 10)
-                const year = d >= 69 ? d : d + 100
-                retObj.tm_year = year
-                _date()
-                if (!retObj.tm_yday) {
-                  retObj.tm_yday = -1
-                }
-                // Also changes wday; and sets yday to -1 (always?)
-              },
-            )
+            j = _addNext(j, /^\d?\d/, function (d) {
+              const parsed = Number.parseInt(d, 10)
+              const year = parsed >= 69 ? parsed : parsed + 100
+              retObj.tm_year = year
+              _date()
+              if (!retObj.tm_yday) {
+                retObj.tm_yday = -1
+              }
+              // Also changes wday; and sets yday to -1 (always?)
+            })
             break
           case 'Y':
             // 2010 (4-digit year)
             // PHP docs say four-digit, but accepts one-digit (four-digit max):
-            j = _addNext(
-              j,
-              /^\d{1,4}/,
-
-              function (d) {
-                const year = parseInt(d, 10) - 1900
-                retObj.tm_year = year
-                _date()
-                if (!retObj.tm_yday) {
-                  retObj.tm_yday = -1
-                }
-                // Also changes wday; and sets yday to -1 (always?)
-              },
-            )
+            j = _addNext(j, /^\d{1,4}/, function (d) {
+              const year = Number.parseInt(d, 10) - 1900
+              retObj.tm_year = year
+              _date()
+              if (!retObj.tm_yday) {
+                retObj.tm_yday = -1
+              }
+              // Also changes wday; and sets yday to -1 (always?)
+            })
             break
           case 'z':
             // Timezone; on my system, strftime gives -0800,
@@ -386,8 +419,8 @@ export function strptime(dateStr, format) {
           default:
             throw new Error('Unrecognized formatting character in strptime()')
         }
-      } catch (e) {
-        if (e === 'No match in string') {
+      } catch (error) {
+        if (error instanceof Error && error.message === 'No match in string') {
           // Allow us to exit
           // There was supposed to be a matching format but there wasn't
           return false
@@ -400,11 +433,11 @@ export function strptime(dateStr, format) {
       // (just a problem when between % and format specifier)
 
       // If the string has white-space, it is ok to ignore
-      if (dateStr.charAt(j).search(_WS) !== -1) {
+      if (_WS.test(dateStr.charAt(j))) {
         j++
         // Let the next iteration try again with the same format character
         i--
-      } else if (format.charAt(i).search(_NWS) !== -1) {
+      } else if (_NWS.test(format.charAt(i))) {
         // Any extra formatting characters besides white-space causes
         // problems (do check after WS though, as may just be WS in string before next character)
         return false
@@ -425,9 +458,7 @@ export function strptime(dateStr, format) {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}// @ts-nocheck
-import { array_map as arrayMap } from '../array/array_map.ts';
-import { setlocale } from '../strings/setlocale.ts';
+{% codeblock lang:javascript %}import { setlocale } from '../strings/setlocale.ts';
 export function strptime(dateStr, format) {
   //      discuss at: https://locutus.io/php/strptime/
   // parity verified: PHP 8.3
@@ -465,12 +496,12 @@ export function strptime(dateStr, format) {
     o.tm_year = d.getUTCFullYear() - 1900;
     o.tm_wday = realMday === 0 ? (d.getUTCDay() > 0 ? d.getUTCDay() - 1 : 6) : d.getUTCDay();
     const jan1 = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-    o.tm_yday = Math.ceil((d - jan1) / (1000 * 60 * 60 * 24));
+    o.tm_yday = Math.ceil((d.getTime() - jan1.getTime()) / (1000 * 60 * 60 * 24));
   };
   const _date = function () {
     const o = retObj;
     // We set date to at least 1 to ensure year or month doesn't go backwards
-    return _reset(new Date(Date.UTC(o.tm_year + 1900, o.tm_mon, o.tm_mday || 1, o.tm_hour, o.tm_min, o.tm_sec)), o.tm_mday);
+    _reset(new Date(Date.UTC(o.tm_year + 1900, o.tm_mon, o.tm_mday || 1, o.tm_hour, o.tm_min, o.tm_sec)), o.tm_mday);
   };
   const _NWS = /\S/;
   const _WS = /\s/;
@@ -503,43 +534,58 @@ export function strptime(dateStr, format) {
    Oy
   */
   const _pregQuote = function (str) {
-    return (str + '').replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1');
+    return str.replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1');
   };
   // ensure setup of localization variables takes place
   setlocale('LC_ALL', 0);
-  const $global = typeof window !== 'undefined' ? window : global;
-  $global.$locutus = $global.$locutus || {};
-  const $locutus = $global.$locutus;
-  const locale = $locutus.php.localeCategories.LC_TIME;
-  const lcTime = $locutus.php.locales[locale].LC_TIME;
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus ?? {};
+  const locutus = globalContext.$locutus;
+  locutus.php = locutus.php ?? {};
+  const php = locutus.php;
+  const locale = php.localeCategories?.LC_TIME;
+  const lcTime = locale ? php.locales?.[locale]?.LC_TIME : undefined;
+  if (!lcTime) {
+    return false;
+  }
   // First replace aggregates (run in a loop because an agg may be made up of other aggs)
-  while (format.match(/%[cDFhnrRtTxX]/)) {
-    format = format.replace(/%([cDFhnrRtTxX])/g, function (m0, m1) {
+  while (/%[cDFhnrRtTxX]/.test(format)) {
+    format = format.replace(/%([cDFhnrRtTxX])/g, function (_m0, m1) {
       const f = _aggregates[m1];
-      return f === 'locale' ? lcTime[m1] : f;
+      if (f === undefined) {
+        return m1;
+      }
+      return f === 'locale' ? String(lcTime[m1] ?? '') : f;
     });
   }
-  const _addNext = function (j, regex, cb) {
-    if (typeof regex === 'string') {
-      regex = new RegExp('^' + regex, 'i');
+  const _addNext = function (index, regex, cb) {
+    const pattern = typeof regex === 'string' ? new RegExp('^' + regex, 'i') : regex;
+    const check = dateStr.slice(index);
+    const match = pattern.exec(check);
+    if (!match) {
+      throw new Error('No match in string');
     }
-    const check = dateStr.slice(j);
-    const match = regex.exec(check);
     // Even if the callback returns null after assigning to the
     // return object, the object won't be saved anyways
-    const testNull = match ? cb.apply(null, match) : null;
+    const testNull = cb(...match);
     if (testNull === null) {
       throw new Error('No match in string');
     }
-    return j + match[0].length;
+    return index + match[0].length;
   };
-  const _addLocalized = function (j, formatChar, category) {
+  const _addLocalized = function (index, formatChar, category) {
     // Could make each parenthesized instead and pass index to callback:
-    return _addNext(j, arrayMap(_pregQuote, lcTime[formatChar]).join('|'), function (m) {
-      const match = lcTime[formatChar].search(new RegExp('^' + _pregQuote(m) + '$', 'i'));
-      if (match) {
-        retObj[category] = match[0];
+    const localized = lcTime[formatChar];
+    if (!Array.isArray(localized)) {
+      throw new Error('No match in string');
+    }
+    return _addNext(index, localized.map((entry) => _pregQuote(entry)).join('|'), function (m) {
+      const matchIndex = localized.findIndex((entry) => new RegExp('^' + _pregQuote(m) + '$', 'i').test(entry));
+      if (matchIndex === -1) {
+        return null;
       }
+      retObj[category] = matchIndex;
+      return matchIndex;
     });
   };
   // BEGIN PROCESSING CHARACTERS
@@ -583,7 +629,7 @@ export function strptime(dateStr, format) {
             // 0+; century (19 for 20th)
             // PHP docs say two-digit, but accepts one-digit (two-digit max):
             j = _addNext(j, /^\d?\d/, function (d) {
-              const year = (parseInt(d, 10) - 19) * 100;
+              const year = (Number.parseInt(d, 10) - 19) * 100;
               retObj.tm_year = year;
               _date();
               if (!retObj.tm_yday) {
@@ -596,7 +642,7 @@ export function strptime(dateStr, format) {
           case 'e':
             // 1-31 day
             j = _addNext(j, formatChar === 'd' ? /^(0[1-9]|[1-2]\d|3[0-1])/ : /^([1-2]\d|3[0-1]|[1-9])/, function (d) {
-              const dayMonth = parseInt(d, 10);
+              const dayMonth = Number.parseInt(d, 10);
               retObj.tm_mday = dayMonth;
               // Also changes w_day, y_day
               _date();
@@ -611,7 +657,7 @@ export function strptime(dateStr, format) {
           case 'H':
             // 00-23 hours
             j = _addNext(j, /^([0-1]\d|2[0-3])/, function (d) {
-              const hour = parseInt(d, 10);
+              const hour = Number.parseInt(d, 10);
               retObj.tm_hour = hour;
               // Changes nothing else
             });
@@ -620,7 +666,7 @@ export function strptime(dateStr, format) {
           case 'I':
             // 01-12 hours
             j = _addNext(j, formatChar === 'l' ? /^([1-9]|1[0-2])/ : /^(0[1-9]|1[0-2])/, function (d) {
-              const hour = parseInt(d, 10) - 1 + amPmOffset;
+              const hour = Number.parseInt(d, 10) - 1 + amPmOffset;
               retObj.tm_hour = hour;
               // Used for coordinating with am-pm
               prevHour = true;
@@ -630,7 +676,7 @@ export function strptime(dateStr, format) {
           case 'j':
             // 001-366 day of year
             j = _addNext(j, /^(00[1-9]|0[1-9]\d|[1-2]\d\d|3[0-6][0-6])/, function (d) {
-              const dayYear = parseInt(d, 10) - 1;
+              const dayYear = Number.parseInt(d, 10) - 1;
               retObj.tm_yday = dayYear;
               // Changes nothing else
               // (oddly, since if original by a given year, could calculate other fields)
@@ -639,7 +685,7 @@ export function strptime(dateStr, format) {
           case 'm':
             // 01-12 month
             j = _addNext(j, /^(0[1-9]|1[0-2])/, function (d) {
-              const month = parseInt(d, 10) - 1;
+              const month = Number.parseInt(d, 10) - 1;
               retObj.tm_mon = month;
               // Also sets wday and yday
               _date();
@@ -648,7 +694,7 @@ export function strptime(dateStr, format) {
           case 'M':
             // 00-59 minutes
             j = _addNext(j, /^[0-5]\d/, function (d) {
-              const minute = parseInt(d, 10);
+              const minute = Number.parseInt(d, 10);
               retObj.tm_min = minute;
               // Changes nothing else
             });
@@ -671,9 +717,9 @@ export function strptime(dateStr, format) {
           case 's':
             // Unix timestamp (in seconds)
             j = _addNext(j, /^\d+/, function (d) {
-              const timestamp = parseInt(d, 10);
+              const timestamp = Number.parseInt(d, 10);
               const date = new Date(Date.UTC(timestamp * 1000));
-              _reset(date);
+              _reset(date, retObj.tm_mday);
               // Affects all fields, but can't be negative (and initial + not allowed)
             });
             break;
@@ -681,7 +727,7 @@ export function strptime(dateStr, format) {
             // 00-59 seconds
             j = _addNext(j, /^[0-5]\d/, // strptime also accepts 60-61 for some reason
             function (d) {
-              const second = parseInt(d, 10);
+              const second = Number.parseInt(d, 10);
               retObj.tm_sec = second;
               // Changes nothing else
             });
@@ -690,7 +736,7 @@ export function strptime(dateStr, format) {
           case 'w':
             // 0 (Sunday)-6(Saturday)
             j = _addNext(j, /^\d/, function (d) {
-              retObj.tm_wday = d - (formatChar === 'u');
+              retObj.tm_wday = Number(d) - (formatChar === 'u' ? 1 : 0);
               // Changes nothing else apparently
             });
             break;
@@ -703,8 +749,8 @@ export function strptime(dateStr, format) {
             // 69 (or higher) for 1969+, 68 (or lower) for 2068-
             // PHP docs say two-digit, but accepts one-digit (two-digit max):
             j = _addNext(j, /^\d?\d/, function (d) {
-              d = parseInt(d, 10);
-              const year = d >= 69 ? d : d + 100;
+              const parsed = Number.parseInt(d, 10);
+              const year = parsed >= 69 ? parsed : parsed + 100;
               retObj.tm_year = year;
               _date();
               if (!retObj.tm_yday) {
@@ -717,7 +763,7 @@ export function strptime(dateStr, format) {
             // 2010 (4-digit year)
             // PHP docs say four-digit, but accepts one-digit (four-digit max):
             j = _addNext(j, /^\d{1,4}/, function (d) {
-              const year = parseInt(d, 10) - 1900;
+              const year = Number.parseInt(d, 10) - 1900;
               retObj.tm_year = year;
               _date();
               if (!retObj.tm_yday) {
@@ -737,8 +783,8 @@ export function strptime(dateStr, format) {
             throw new Error('Unrecognized formatting character in strptime()');
         }
       }
-      catch (e) {
-        if (e === 'No match in string') {
+      catch (error) {
+        if (error instanceof Error && error.message === 'No match in string') {
           // Allow us to exit
           // There was supposed to be a matching format but there wasn't
           return false;
@@ -751,12 +797,785 @@ export function strptime(dateStr, format) {
       // If extra whitespace at beginning or end of either, or between formats, no problem
       // (just a problem when between % and format specifier)
       // If the string has white-space, it is ok to ignore
-      if (dateStr.charAt(j).search(_WS) !== -1) {
+      if (_WS.test(dateStr.charAt(j))) {
         j++;
         // Let the next iteration try again with the same format character
         i--;
       }
-      else if (format.charAt(i).search(_NWS) !== -1) {
+      else if (_NWS.test(format.charAt(i))) {
+        // Any extra formatting characters besides white-space causes
+        // problems (do check after WS though, as may just be WS in string before next character)
+        return false;
+      }
+      // Extra WS in format
+      // Adjust strings when encounter non-matching whitespace, so they align in future checks above
+      // Will check on next iteration (against same (non-WS) string character)
+    }
+    else {
+      j++;
+    }
+  }
+  // POST-PROCESSING
+  // Will also get extra whitespace; empty string if none
+  retObj.unparsed = dateStr.slice(j);
+  return retObj;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/info/getenv
+function getenv(varname) {
+  //      discuss at: https://locutus.io/php/getenv/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: getenv('LC_ALL')
+  //       returns 1: false
+  const globalContext = globalThis;
+  const processLike = globalContext.process;
+  const hasProcessLike = typeof globalContext.process !== 'undefined';
+  if (hasProcessLike) {
+    return false;
+  }
+  if (!processLike?.env || !processLike.env[varname]) {
+    return false;
+  }
+  return processLike.env[varname] ?? false;
+}
+
+// php/strings/setlocale
+const hasOwn = Object.prototype.hasOwnProperty;
+function copyValue(orig) {
+  if (orig instanceof RegExp) {
+    return new RegExp(orig);
+  }
+  if (orig instanceof Date) {
+    return new Date(orig);
+  }
+  if (Array.isArray(orig)) {
+    return orig.map((item) => copyValue(item));
+  }
+  if (orig !== null && typeof orig === 'object') {
+    const newObj = {};
+    for (const [key, value] of Object.entries(orig)) {
+      if (!hasOwn.call(orig, key)) {
+        continue;
+      }
+      newObj[key] = value !== null && typeof value === 'object' ? copyValue(value) : value;
+    }
+    return newObj;
+  }
+  return orig;
+}
+function setlocale(category, locale) {
+  //  discuss at: https://locutus.io/php/setlocale/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // original by: Blues (https://hacks.bluesmoon.info/strftime/strftime.js)
+  // original by: YUI Library (https://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html)
+  //      note 1: Is extensible, but currently only implements locales en,
+  //      note 1: en_US, en_GB, en_AU, fr, and fr_CA for LC_TIME only; C for LC_CTYPE;
+  //      note 1: C and en for LC_MONETARY/LC_NUMERIC; en for LC_COLLATE
+  //      note 1: Uses global: locutus to store locale info
+  //      note 1: Consider using https://demo.icu-project.org/icu-bin/locexp as basis for localization (as in i18n_loc_set_default())
+  //      note 2: This function tries to establish the locale via the `window` global.
+  //      note 2: This feature will not work in Node and hence is Browser-only
+  //   example 1: setlocale('LC_ALL', 'en_US')
+  //   returns 1: 'en_US'
+  let categ = '';
+  const cats = [];
+  let i = 0;
+  // Function usable by a ngettext implementation (apparently not an accessible part of setlocale(),
+  // but locale-specific) See https://www.gnu.org/software/gettext/manual/gettext.html#Plural-forms
+  // though amended with others from https://developer.mozilla.org/En/Localization_and_Plurals (new
+  // categories noted with "MDC" below, though not sure of whether there is a convention for the
+  // relative order of these newer groups as far as ngettext) The function name indicates the number
+  // of plural forms (nplural) Need to look into https://cldr.unicode.org/ (maybe future JavaScript);
+  // Dojo has some functions (under new BSD), including JSON conversions of LDML XML from CLDR:
+  // https://bugs.dojotoolkit.org/browser/dojo/trunk/cldr and docs at
+  // https://api.dojotoolkit.org/jsdoc/HEAD/dojo.cldr
+  // var _nplurals1 = function (n) {
+  //   // e.g., Japanese
+  //   return 0
+  // }
+  const _nplurals2a = function (n) {
+    // e.g., English
+    return n !== 1 ? 1 : 0;
+  };
+  const _nplurals2b = function (n) {
+    // e.g., French
+    return n > 1 ? 1 : 0;
+  };
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus ?? {};
+  const locutus = globalContext.$locutus;
+  locutus.php = locutus.php ?? {};
+  const php = locutus.php;
+  // Reconcile Windows vs. *nix locale names?
+  // Allow different priority orders of languages, esp. if implement gettext as in
+  // LANGUAGE env. var.? (e.g., show German if French is not available)
+  if (!php.locales?.fr_CA?.LC_TIME?.x) {
+    // Can add to the locales
+    const locales = (php.locales = {});
+    locales.en = {
+      LC_COLLATE: function (str1, str2) {
+        // @todo: This one taken from strcmp, but need for other locales; we don't use localeCompare
+        // since its locale is not settable
+        return str1 === str2 ? 0 : str1 > str2 ? 1 : -1;
+      },
+      LC_CTYPE: {
+        // Need to change any of these for English as opposed to C?
+        an: /^[A-Za-z\d]+$/g,
+        al: /^[A-Za-z]+$/g,
+        // biome-ignore lint/suspicious/noControlCharactersInRegex: intentional for LC_CTYPE control character class
+        ct: /^[\u0000-\u001F\u007F]+$/g,
+        dg: /^[\d]+$/g,
+        gr: /^[\u0021-\u007E]+$/g,
+        lw: /^[a-z]+$/g,
+        pr: /^[\u0020-\u007E]+$/g,
+        pu: /^[\u0021-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007E]+$/g,
+        sp: /^[\f\n\r\t\v ]+$/g,
+        up: /^[A-Z]+$/g,
+        xd: /^[A-Fa-f\d]+$/g,
+        CODESET: 'UTF-8',
+        // Used by sql_regcase
+        lower: 'abcdefghijklmnopqrstuvwxyz',
+        upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      },
+      LC_TIME: {
+        // Comments include nl_langinfo() constant equivalents and any
+        // changes from Blues' implementation
+        a: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        // ABDAY_
+        A: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        // DAY_
+        b: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        // ABMON_
+        B: [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December',
+        ],
+        // MON_
+        c: '%a %d %b %Y %r %Z',
+        // D_T_FMT // changed %T to %r per results
+        p: ['AM', 'PM'],
+        // AM_STR/PM_STR
+        P: ['am', 'pm'],
+        // Not available in nl_langinfo()
+        r: '%I:%M:%S %p',
+        // T_FMT_AMPM (Fixed for all locales)
+        x: '%m/%d/%Y',
+        // D_FMT // switched order of %m and %d; changed %y to %Y (C uses %y)
+        X: '%r',
+        // T_FMT // changed from %T to %r  (%T is default for C, not English US)
+        // Following are from nl_langinfo() or https://www.cptec.inpe.br/sx4/sx4man2/g1ab02e/strftime.4.html
+        alt_digits: '',
+        // e.g., ordinal
+        ERA: '',
+        ERA_YEAR: '',
+        ERA_D_T_FMT: '',
+        ERA_D_FMT: '',
+        ERA_T_FMT: '',
+      },
+      // Assuming distinction between numeric and monetary is thus:
+      // See below for C locale
+      LC_MONETARY: {
+        // based on Windows "english" (English_United States.1252) locale
+        int_curr_symbol: 'USD',
+        currency_symbol: '$',
+        mon_decimal_point: '.',
+        mon_thousands_sep: ',',
+        mon_grouping: [3],
+        // use mon_thousands_sep; "" for no grouping; additional array members
+        // indicate successive group lengths after first group
+        // (e.g., if to be 1,23,456, could be [3, 2])
+        positive_sign: '',
+        negative_sign: '-',
+        int_frac_digits: 2,
+        // Fractional digits only for money defaults?
+        frac_digits: 2,
+        p_cs_precedes: 1,
+        // positive currency symbol follows value = 0; precedes value = 1
+        p_sep_by_space: 0,
+        // 0: no space between curr. symbol and value; 1: space sep. them unless symb.
+        // and sign are adjacent then space sep. them from value; 2: space sep. sign
+        // and value unless symb. and sign are adjacent then space separates
+        n_cs_precedes: 1,
+        // see p_cs_precedes
+        n_sep_by_space: 0,
+        // see p_sep_by_space
+        p_sign_posn: 3,
+        // 0: parentheses surround quantity and curr. symbol; 1: sign precedes them;
+        // 2: sign follows them; 3: sign immed. precedes curr. symbol; 4: sign immed.
+        // succeeds curr. symbol
+        n_sign_posn: 0, // see p_sign_posn
+      },
+      LC_NUMERIC: {
+        // based on Windows "english" (English_United States.1252) locale
+        decimal_point: '.',
+        thousands_sep: ',',
+        grouping: [3], // see mon_grouping, but for non-monetary values (use thousands_sep)
+      },
+      LC_MESSAGES: {
+        YESEXPR: '^[yY].*',
+        NOEXPR: '^[nN].*',
+        YESSTR: '',
+        NOSTR: '',
+      },
+      nplurals: _nplurals2a,
+    };
+    locales.en_US = copyValue(locales.en);
+    locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z';
+    locales.en_US.LC_TIME.x = '%D';
+    locales.en_US.LC_TIME.X = '%r';
+    // The following are based on *nix settings
+    locales.en_US.LC_MONETARY.int_curr_symbol = 'USD ';
+    locales.en_US.LC_MONETARY.p_sign_posn = 1;
+    locales.en_US.LC_MONETARY.n_sign_posn = 1;
+    locales.en_US.LC_MONETARY.mon_grouping = [3, 3];
+    locales.en_US.LC_NUMERIC.thousands_sep = '';
+    locales.en_US.LC_NUMERIC.grouping = [];
+    locales.en_GB = copyValue(locales.en);
+    locales.en_GB.LC_TIME.r = '%l:%M:%S %P %Z';
+    locales.en_AU = copyValue(locales.en_GB);
+    // Assume C locale is like English (?) (We need C locale for LC_CTYPE)
+    locales.C = copyValue(locales.en);
+    locales.C.LC_CTYPE.CODESET = 'ANSI_X3.4-1968';
+    locales.C.LC_MONETARY = {
+      int_curr_symbol: '',
+      currency_symbol: '',
+      mon_decimal_point: '',
+      mon_thousands_sep: '',
+      mon_grouping: [],
+      p_cs_precedes: 127,
+      p_sep_by_space: 127,
+      n_cs_precedes: 127,
+      n_sep_by_space: 127,
+      p_sign_posn: 127,
+      n_sign_posn: 127,
+      positive_sign: '',
+      negative_sign: '',
+      int_frac_digits: 127,
+      frac_digits: 127,
+    };
+    locales.C.LC_NUMERIC = {
+      decimal_point: '.',
+      thousands_sep: '',
+      grouping: [],
+    };
+    // D_T_FMT
+    locales.C.LC_TIME.c = '%a %b %e %H:%M:%S %Y';
+    // D_FMT
+    locales.C.LC_TIME.x = '%m/%d/%y';
+    // T_FMT
+    locales.C.LC_TIME.X = '%H:%M:%S';
+    locales.C.LC_MESSAGES.YESEXPR = '^[yY]';
+    locales.C.LC_MESSAGES.NOEXPR = '^[nN]';
+    locales.fr = copyValue(locales.en);
+    locales.fr.nplurals = _nplurals2b;
+    locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'];
+    locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+    locales.fr.LC_TIME.b = [
+      'jan',
+      'f\u00E9v',
+      'mar',
+      'avr',
+      'mai',
+      'jun',
+      'jui',
+      'ao\u00FB',
+      'sep',
+      'oct',
+      'nov',
+      'd\u00E9c',
+    ];
+    locales.fr.LC_TIME.B = [
+      'janvier',
+      'f\u00E9vrier',
+      'mars',
+      'avril',
+      'mai',
+      'juin',
+      'juillet',
+      'ao\u00FBt',
+      'septembre',
+      'octobre',
+      'novembre',
+      'd\u00E9cembre',
+    ];
+    locales.fr.LC_TIME.c = '%a %d %b %Y %T %Z';
+    locales.fr.LC_TIME.p = ['', ''];
+    locales.fr.LC_TIME.P = ['', ''];
+    locales.fr.LC_TIME.x = '%d.%m.%Y';
+    locales.fr.LC_TIME.X = '%T';
+    locales.fr_CA = copyValue(locales.fr);
+    locales.fr_CA.LC_TIME.x = '%Y-%m-%d';
+  }
+  const locales = php.locales ?? {};
+  if (!php.locale) {
+    php.locale = 'en_US';
+    // Try to establish the locale via the `window` global
+    if (typeof window !== 'undefined' && window.document) {
+      const d = window.document;
+      const NS_XHTML = 'https://www.w3.org/1999/xhtml';
+      const NS_XML = 'https://www.w3.org/XML/1998/namespace';
+      const htmlNsElement = d.getElementsByTagNameNS ? d.getElementsByTagNameNS(NS_XHTML, 'html')[0] : undefined;
+      if (htmlNsElement) {
+        const xmlLang = htmlNsElement.getAttributeNS(NS_XML, 'lang');
+        if (xmlLang) {
+          php.locale = xmlLang;
+        }
+        else {
+          const htmlLang = htmlNsElement.getAttribute('lang');
+          if (htmlLang) {
+            php.locale = htmlLang;
+          }
+        }
+      }
+      else {
+        const htmlElement = d.getElementsByTagName('html')[0];
+        const htmlLang = htmlElement?.getAttribute('lang');
+        if (htmlLang) {
+          php.locale = htmlLang;
+        }
+      }
+    }
+  }
+  // PHP-style
+  php.locale = php.locale.replace('-', '_');
+  // @todo: locale if declared locale hasn't been defined
+  if (!(php.locale in locales)) {
+    const languageLocale = php.locale.replace(/_[a-zA-Z]+$/, '');
+    if (languageLocale in locales) {
+      php.locale = languageLocale;
+    }
+  }
+  if (!php.localeCategories) {
+    php.localeCategories = {
+      LC_COLLATE: php.locale,
+      // for string comparison, see strcoll()
+      LC_CTYPE: php.locale,
+      // for character classification and conversion, for example strtoupper()
+      LC_MONETARY: php.locale,
+      // for localeconv()
+      LC_NUMERIC: php.locale,
+      // for decimal separator (See also localeconv())
+      LC_TIME: php.locale,
+      // for date and time formatting with strftime()
+      // for system responses (available if PHP was compiled with libintl):
+      LC_MESSAGES: php.locale,
+    };
+  }
+  const localeCategories = php.localeCategories;
+  let requestedLocale = locale;
+  if (requestedLocale === null || requestedLocale === '') {
+    requestedLocale = getenv(category) || getenv('LANG');
+  }
+  else if (Array.isArray(requestedLocale)) {
+    for (i = 0; i < requestedLocale.length; i++) {
+      const candidate = requestedLocale[i];
+      if (typeof candidate !== 'string') {
+        if (i === requestedLocale.length - 1) {
+          return false;
+        }
+        continue;
+      }
+      if (!(candidate in locales)) {
+        if (i === requestedLocale.length - 1) {
+          // none found
+          return false;
+        }
+        continue;
+      }
+      requestedLocale = candidate;
+      break;
+    }
+  }
+  // Just get the locale
+  if (requestedLocale === '0' || requestedLocale === 0) {
+    if (category === 'LC_ALL') {
+      for (categ in localeCategories) {
+        if (!hasOwn.call(localeCategories, categ)) {
+          continue;
+        }
+        // Add ".UTF-8" or allow ".@latint", etc. to the end?
+        cats.push(categ + '=' + localeCategories[categ]);
+      }
+      return cats.join(';');
+    }
+    return localeCategories[category] ?? false;
+  }
+  if (typeof requestedLocale !== 'string' || !(requestedLocale in locales)) {
+    // Locale not found
+    return false;
+  }
+  // Set and get locale
+  if (category === 'LC_ALL') {
+    for (categ in localeCategories) {
+      if (!hasOwn.call(localeCategories, categ)) {
+        continue;
+      }
+      localeCategories[categ] = requestedLocale;
+    }
+  }
+  else {
+    localeCategories[category] = requestedLocale;
+  }
+  return requestedLocale;
+}
+
+// php/datetime/strptime
+function strptime(dateStr, format) {
+  //      discuss at: https://locutus.io/php/strptime/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //     original by: strftime
+  //       example 1: strptime('20091112222135', '%Y%m%d%H%M%S') // Return value will depend on date and locale
+  //       returns 1: {tm_sec: 35, tm_min: 21, tm_hour: 22, tm_mday: 12, tm_mon: 10, tm_year: 109, tm_wday: 4, tm_yday: 315, unparsed: ''}
+  //       example 2: strptime('2009extra', '%Y')
+  //       returns 2: {tm_sec:0, tm_min:0, tm_hour:0, tm_mday:0, tm_mon:0, tm_year:109, tm_wday:3, tm_yday: -1, unparsed: 'extra'}
+  const retObj = {
+    tm_sec: 0,
+    tm_min: 0,
+    tm_hour: 0,
+    tm_mday: 0,
+    tm_mon: 0,
+    tm_year: 0,
+    tm_wday: 0,
+    tm_yday: 0,
+    unparsed: '',
+  };
+  let i = 0;
+  let j = 0;
+  let amPmOffset = 0;
+  let prevHour = false;
+  const _reset = function (dateObj, realMday) {
+    // realMday is to allow for a value of 0 in return results (but without
+    // messing up the Date() object)
+    const o = retObj;
+    const d = dateObj;
+    o.tm_sec = d.getUTCSeconds();
+    o.tm_min = d.getUTCMinutes();
+    o.tm_hour = d.getUTCHours();
+    o.tm_mday = realMday === 0 ? realMday : d.getUTCDate();
+    o.tm_mon = d.getUTCMonth();
+    o.tm_year = d.getUTCFullYear() - 1900;
+    o.tm_wday = realMday === 0 ? (d.getUTCDay() > 0 ? d.getUTCDay() - 1 : 6) : d.getUTCDay();
+    const jan1 = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    o.tm_yday = Math.ceil((d.getTime() - jan1.getTime()) / (1000 * 60 * 60 * 24));
+  };
+  const _date = function () {
+    const o = retObj;
+    // We set date to at least 1 to ensure year or month doesn't go backwards
+    _reset(new Date(Date.UTC(o.tm_year + 1900, o.tm_mon, o.tm_mday || 1, o.tm_hour, o.tm_min, o.tm_sec)), o.tm_mday);
+  };
+  const _NWS = /\S/;
+  const _WS = /\s/;
+  const _aggregates = {
+    c: 'locale',
+    D: '%m/%d/%y',
+    F: '%y-%m-%d',
+    r: 'locale',
+    R: '%H:%M',
+    T: '%H:%M:%S',
+    x: 'locale',
+    X: 'locale',
+  };
+  /* Fix: Locale alternatives are supported though not documented in PHP; see https://linux.die.net/man/3/strptime
+   Ec
+   EC
+   Ex
+   EX
+   Ey
+   EY
+   Od or Oe
+   OH
+   OI
+   Om
+   OM
+   OS
+   OU
+   Ow
+   OW
+   Oy
+  */
+  const _pregQuote = function (str) {
+    return str.replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1');
+  };
+  // ensure setup of localization variables takes place
+  setlocale('LC_ALL', 0);
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus ?? {};
+  const locutus = globalContext.$locutus;
+  locutus.php = locutus.php ?? {};
+  const php = locutus.php;
+  const locale = php.localeCategories?.LC_TIME;
+  const lcTime = locale ? php.locales?.[locale]?.LC_TIME : undefined;
+  if (!lcTime) {
+    return false;
+  }
+  // First replace aggregates (run in a loop because an agg may be made up of other aggs)
+  while (/%[cDFhnrRtTxX]/.test(format)) {
+    format = format.replace(/%([cDFhnrRtTxX])/g, function (_m0, m1) {
+      const f = _aggregates[m1];
+      if (f === undefined) {
+        return m1;
+      }
+      return f === 'locale' ? String(lcTime[m1] ?? '') : f;
+    });
+  }
+  const _addNext = function (index, regex, cb) {
+    const pattern = typeof regex === 'string' ? new RegExp('^' + regex, 'i') : regex;
+    const check = dateStr.slice(index);
+    const match = pattern.exec(check);
+    if (!match) {
+      throw new Error('No match in string');
+    }
+    // Even if the callback returns null after assigning to the
+    // return object, the object won't be saved anyways
+    const testNull = cb(...match);
+    if (testNull === null) {
+      throw new Error('No match in string');
+    }
+    return index + match[0].length;
+  };
+  const _addLocalized = function (index, formatChar, category) {
+    // Could make each parenthesized instead and pass index to callback:
+    const localized = lcTime[formatChar];
+    if (!Array.isArray(localized)) {
+      throw new Error('No match in string');
+    }
+    return _addNext(index, localized.map((entry) => _pregQuote(entry)).join('|'), function (m) {
+      const matchIndex = localized.findIndex((entry) => new RegExp('^' + _pregQuote(m) + '$', 'i').test(entry));
+      if (matchIndex === -1) {
+        return null;
+      }
+      retObj[category] = matchIndex;
+      return matchIndex;
+    });
+  };
+  // BEGIN PROCESSING CHARACTERS
+  for (i = 0, j = 0; i < format.length; i++) {
+    if (format.charAt(i) === '%') {
+      const literalPos = ['%', 'n', 't'].indexOf(format.charAt(i + 1));
+      if (literalPos !== -1) {
+        if (['%', '\n', '\t'].indexOf(dateStr.charAt(j)) === literalPos) {
+          // a matched literal
+          ++i;
+          // skip beyond
+          ++j;
+          continue;
+        }
+        // Format indicated a percent literal, but not actually present
+        return false;
+      }
+      const formatChar = format.charAt(i + 1);
+      try {
+        switch (formatChar) {
+          case 'a':
+          case 'A':
+            // Sunday-Saturday
+            // Changes nothing else
+            j = _addLocalized(j, formatChar, 'tm_wday');
+            break;
+          case 'h':
+          case 'b':
+            // Jan-Dec
+            j = _addLocalized(j, 'b', 'tm_mon');
+            // Also changes wday, yday
+            _date();
+            break;
+          case 'B':
+            // January-December
+            j = _addLocalized(j, formatChar, 'tm_mon');
+            // Also changes wday, yday
+            _date();
+            break;
+          case 'C':
+            // 0+; century (19 for 20th)
+            // PHP docs say two-digit, but accepts one-digit (two-digit max):
+            j = _addNext(j, /^\d?\d/, function (d) {
+              const year = (Number.parseInt(d, 10) - 19) * 100;
+              retObj.tm_year = year;
+              _date();
+              if (!retObj.tm_yday) {
+                retObj.tm_yday = -1;
+              }
+              // Also changes wday; and sets yday to -1 (always?)
+            });
+            break;
+          case 'd':
+          case 'e':
+            // 1-31 day
+            j = _addNext(j, formatChar === 'd' ? /^(0[1-9]|[1-2]\d|3[0-1])/ : /^([1-2]\d|3[0-1]|[1-9])/, function (d) {
+              const dayMonth = Number.parseInt(d, 10);
+              retObj.tm_mday = dayMonth;
+              // Also changes w_day, y_day
+              _date();
+            });
+            break;
+          case 'g':
+            // No apparent effect; 2-digit year (see 'V')
+            break;
+          case 'G':
+            // No apparent effect; 4-digit year (see 'V')'
+            break;
+          case 'H':
+            // 00-23 hours
+            j = _addNext(j, /^([0-1]\d|2[0-3])/, function (d) {
+              const hour = Number.parseInt(d, 10);
+              retObj.tm_hour = hour;
+              // Changes nothing else
+            });
+            break;
+          case 'l':
+          case 'I':
+            // 01-12 hours
+            j = _addNext(j, formatChar === 'l' ? /^([1-9]|1[0-2])/ : /^(0[1-9]|1[0-2])/, function (d) {
+              const hour = Number.parseInt(d, 10) - 1 + amPmOffset;
+              retObj.tm_hour = hour;
+              // Used for coordinating with am-pm
+              prevHour = true;
+              // Changes nothing else, but affected by prior 'p/P'
+            });
+            break;
+          case 'j':
+            // 001-366 day of year
+            j = _addNext(j, /^(00[1-9]|0[1-9]\d|[1-2]\d\d|3[0-6][0-6])/, function (d) {
+              const dayYear = Number.parseInt(d, 10) - 1;
+              retObj.tm_yday = dayYear;
+              // Changes nothing else
+              // (oddly, since if original by a given year, could calculate other fields)
+            });
+            break;
+          case 'm':
+            // 01-12 month
+            j = _addNext(j, /^(0[1-9]|1[0-2])/, function (d) {
+              const month = Number.parseInt(d, 10) - 1;
+              retObj.tm_mon = month;
+              // Also sets wday and yday
+              _date();
+            });
+            break;
+          case 'M':
+            // 00-59 minutes
+            j = _addNext(j, /^[0-5]\d/, function (d) {
+              const minute = Number.parseInt(d, 10);
+              retObj.tm_min = minute;
+              // Changes nothing else
+            });
+            break;
+          case 'P':
+            // Seems not to work; AM-PM
+            // Could make fall-through instead since supposed to be a synonym despite PHP docs
+            return false;
+          case 'p':
+            // am-pm
+            j = _addNext(j, /^(am|pm)/i, function (d) {
+              // No effect on 'H' since already 24 hours but
+              //   works before or after setting of l/I hour
+              amPmOffset = /a/.test(d) ? 0 : 12;
+              if (prevHour) {
+                retObj.tm_hour += amPmOffset;
+              }
+            });
+            break;
+          case 's':
+            // Unix timestamp (in seconds)
+            j = _addNext(j, /^\d+/, function (d) {
+              const timestamp = Number.parseInt(d, 10);
+              const date = new Date(Date.UTC(timestamp * 1000));
+              _reset(date, retObj.tm_mday);
+              // Affects all fields, but can't be negative (and initial + not allowed)
+            });
+            break;
+          case 'S':
+            // 00-59 seconds
+            j = _addNext(j, /^[0-5]\d/, // strptime also accepts 60-61 for some reason
+            function (d) {
+              const second = Number.parseInt(d, 10);
+              retObj.tm_sec = second;
+              // Changes nothing else
+            });
+            break;
+          case 'u':
+          case 'w':
+            // 0 (Sunday)-6(Saturday)
+            j = _addNext(j, /^\d/, function (d) {
+              retObj.tm_wday = Number(d) - (formatChar === 'u' ? 1 : 0);
+              // Changes nothing else apparently
+            });
+            break;
+          case 'U':
+          case 'V':
+          case 'W':
+            // Apparently ignored (week of year, from 1st Monday)
+            break;
+          case 'y':
+            // 69 (or higher) for 1969+, 68 (or lower) for 2068-
+            // PHP docs say two-digit, but accepts one-digit (two-digit max):
+            j = _addNext(j, /^\d?\d/, function (d) {
+              const parsed = Number.parseInt(d, 10);
+              const year = parsed >= 69 ? parsed : parsed + 100;
+              retObj.tm_year = year;
+              _date();
+              if (!retObj.tm_yday) {
+                retObj.tm_yday = -1;
+              }
+              // Also changes wday; and sets yday to -1 (always?)
+            });
+            break;
+          case 'Y':
+            // 2010 (4-digit year)
+            // PHP docs say four-digit, but accepts one-digit (four-digit max):
+            j = _addNext(j, /^\d{1,4}/, function (d) {
+              const year = Number.parseInt(d, 10) - 1900;
+              retObj.tm_year = year;
+              _date();
+              if (!retObj.tm_yday) {
+                retObj.tm_yday = -1;
+              }
+              // Also changes wday; and sets yday to -1 (always?)
+            });
+            break;
+          case 'z':
+            // Timezone; on my system, strftime gives -0800,
+            // but strptime seems not to alter hour setting
+            break;
+          case 'Z':
+            // Timezone; on my system, strftime gives PST, but strptime treats text as unparsed
+            break;
+          default:
+            throw new Error('Unrecognized formatting character in strptime()');
+        }
+      }
+      catch (error) {
+        if (error instanceof Error && error.message === 'No match in string') {
+          // Allow us to exit
+          // There was supposed to be a matching format but there wasn't
+          return false;
+        }
+        // Calculate skipping beyond initial percent too
+      }
+      ++i;
+    }
+    else if (format.charAt(i) !== dateStr.charAt(j)) {
+      // If extra whitespace at beginning or end of either, or between formats, no problem
+      // (just a problem when between % and format specifier)
+      // If the string has white-space, it is ok to ignore
+      if (_WS.test(dateStr.charAt(j))) {
+        j++;
+        // Let the next iteration try again with the same format character
+        i--;
+      }
+      else if (_NWS.test(format.charAt(i))) {
         // Any extra formatting characters besides white-space causes
         // problems (do check after WS though, as may just be WS in string before next character)
         return false;

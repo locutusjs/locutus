@@ -34,7 +34,7 @@ alias:
   - /python/isinf/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function isinf(x) {
+{% codeblock lang:typescript %}export function isinf(x: number): boolean {
   //      discuss at: https://locutus.io/python/isinf/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -52,6 +52,22 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function isinf(x) {
+  //      discuss at: https://locutus.io/python/isinf/
+  // parity verified: Python 3.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns True if x is positive or negative infinity
+  //       example 1: isinf(Infinity)
+  //       returns 1: true
+  //       example 2: isinf(-Infinity)
+  //       returns 2: true
+  //       example 3: isinf(42)
+  //       returns 3: false
+  return x === Infinity || x === -Infinity;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// python/math/isinf
+function isinf(x) {
   //      discuss at: https://locutus.io/python/isinf/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

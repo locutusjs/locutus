@@ -37,7 +37,7 @@ alias:
   - /c/abs/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function abs(mixedNumber) {
+{% codeblock lang:typescript %}export function abs(mixedNumber: number): number {
   //      discuss at: https://locutus.io/c/abs/
   // parity verified: C 23
   //     original by: Waldo Malqui Silva (https://waldo.malqui.info)
@@ -57,6 +57,24 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function abs(mixedNumber) {
+  //      discuss at: https://locutus.io/c/abs/
+  // parity verified: C 23
+  //     original by: Waldo Malqui Silva (https://waldo.malqui.info)
+  //     improved by: Karol Kowalski
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
+  //       example 1: abs(-5)
+  //       returns 1: 5
+  //       example 2: abs(-42)
+  //       returns 2: 42
+  //       example 3: abs(0)
+  //       returns 3: 0
+  return Math.abs(mixedNumber) || 0;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// c/math/abs
+function abs(mixedNumber) {
   //      discuss at: https://locutus.io/c/abs/
   // parity verified: C 23
   //     original by: Waldo Malqui Silva (https://waldo.malqui.info)

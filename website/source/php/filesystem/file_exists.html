@@ -31,10 +31,9 @@ alias:
   - /functions/file_exists/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}// @ts-nocheck
-import fs from 'fs'
+{% codeblock lang:typescript %}import fs from 'fs'
 
-export function file_exists(filename) {
+export function file_exists(filename: string): boolean {
   //      discuss at: https://locutus.io/php/file_exists/
   // parity verified: PHP 8.3
   //     original by: Erik Niebla
@@ -47,9 +46,21 @@ export function file_exists(filename) {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}// @ts-nocheck
-import fs from 'fs';
+{% codeblock lang:javascript %}import fs from 'fs';
 export function file_exists(filename) {
+  //      discuss at: https://locutus.io/php/file_exists/
+  // parity verified: PHP 8.3
+  //     original by: Erik Niebla
+  //          note 1: so this function is Node-only
+  //       example 1: file_exists('test/never-change.txt')
+  //       returns 1: true
+  return fs.existsSync(filename);
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/filesystem/file_exists
+import fs from 'fs';
+function file_exists(filename) {
   //      discuss at: https://locutus.io/php/file_exists/
   // parity verified: PHP 8.3
   //     original by: Erik Niebla

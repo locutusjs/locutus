@@ -42,8 +42,11 @@ alias:
   - /functions/uniqid/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}// @ts-nocheck
-export function uniqid(prefix, moreEntropy) {
+{% codeblock lang:typescript %}type UniqidLocutusContext = {
+  php?: { uniqidSeed?: number }
+}
+
+export function uniqid(prefix?: string, moreEntropy?: boolean): string {
   //  discuss at: https://locutus.io/php/uniqid/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //  revised by: Kankrelune (https://www.webfaktory.info/)
@@ -58,40 +61,39 @@ export function uniqid(prefix, moreEntropy) {
   //   example 3: var $result = $id.length === (23 + 'bar'.length)
   //   returns 3: true
 
-  if (typeof prefix === 'undefined') {
-    prefix = ''
-  }
+  const normalizedPrefix = prefix ?? ''
 
-  let retId
-  const _formatSeed = function (seed, reqWidth) {
-    seed = parseInt(seed, 10).toString(16) // to hex str
-    if (reqWidth < seed.length) {
+  let retId = ''
+  const formatSeed = (seed: number, reqWidth: number): string => {
+    const hexSeed = Number.parseInt(String(seed), 10).toString(16) // to hex str
+    if (reqWidth < hexSeed.length) {
       // so long we split
-      return seed.slice(seed.length - reqWidth)
+      return hexSeed.slice(hexSeed.length - reqWidth)
     }
-    if (reqWidth > seed.length) {
+    if (reqWidth > hexSeed.length) {
       // so short we pad
-      return new Array(1 + (reqWidth - seed.length)).join('0') + seed
+      return new Array(1 + (reqWidth - hexSeed.length)).join('0') + hexSeed
     }
-    return seed
+    return hexSeed
   }
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
+  const globalContext = globalThis as typeof globalThis & { $locutus?: UniqidLocutusContext }
+  globalContext.$locutus = globalContext.$locutus ?? {}
+  const locutus = globalContext.$locutus
+  locutus.php = locutus.php ?? {}
+  const php = locutus.php
 
-  if (!$locutus.php.uniqidSeed) {
+  if (!php.uniqidSeed) {
     // init seed with big random int
-    $locutus.php.uniqidSeed = Math.floor(Math.random() * 0x75bcd15)
+    php.uniqidSeed = Math.floor(Math.random() * 0x75bcd15)
   }
-  $locutus.php.uniqidSeed++
+  php.uniqidSeed++
 
   // start with prefix, add current milliseconds hex string
-  retId = prefix
-  retId += _formatSeed(parseInt(new Date().getTime() / 1000, 10), 8)
+  retId = normalizedPrefix
+  retId += formatSeed(Number.parseInt(String(new Date().getTime() / 1000), 10), 8)
   // add seed hex string
-  retId += _formatSeed($locutus.php.uniqidSeed, 5)
+  retId += formatSeed(php.uniqidSeed, 5)
   if (moreEntropy) {
     // for more entropy we add a float lower to 10
     retId += (Math.random() * 10).toFixed(8).toString()
@@ -102,8 +104,7 @@ export function uniqid(prefix, moreEntropy) {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}// @ts-nocheck
-export function uniqid(prefix, moreEntropy) {
+{% codeblock lang:javascript %}export function uniqid(prefix, moreEntropy) {
   //  discuss at: https://locutus.io/php/uniqid/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //  revised by: Kankrelune (https://www.webfaktory.info/)
@@ -117,36 +118,87 @@ export function uniqid(prefix, moreEntropy) {
   //   example 3: var $id = uniqid('bar', true)
   //   example 3: var $result = $id.length === (23 + 'bar'.length)
   //   returns 3: true
-  if (typeof prefix === 'undefined') {
-    prefix = '';
-  }
-  let retId;
-  const _formatSeed = function (seed, reqWidth) {
-    seed = parseInt(seed, 10).toString(16); // to hex str
-    if (reqWidth < seed.length) {
+  const normalizedPrefix = prefix ?? '';
+  let retId = '';
+  const formatSeed = (seed, reqWidth) => {
+    const hexSeed = Number.parseInt(String(seed), 10).toString(16); // to hex str
+    if (reqWidth < hexSeed.length) {
       // so long we split
-      return seed.slice(seed.length - reqWidth);
+      return hexSeed.slice(hexSeed.length - reqWidth);
     }
-    if (reqWidth > seed.length) {
+    if (reqWidth > hexSeed.length) {
       // so short we pad
-      return new Array(1 + (reqWidth - seed.length)).join('0') + seed;
+      return new Array(1 + (reqWidth - hexSeed.length)).join('0') + hexSeed;
     }
-    return seed;
+    return hexSeed;
   };
-  const $global = typeof window !== 'undefined' ? window : global;
-  $global.$locutus = $global.$locutus || {};
-  const $locutus = $global.$locutus;
-  $locutus.php = $locutus.php || {};
-  if (!$locutus.php.uniqidSeed) {
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus ?? {};
+  const locutus = globalContext.$locutus;
+  locutus.php = locutus.php ?? {};
+  const php = locutus.php;
+  if (!php.uniqidSeed) {
     // init seed with big random int
-    $locutus.php.uniqidSeed = Math.floor(Math.random() * 0x75bcd15);
+    php.uniqidSeed = Math.floor(Math.random() * 0x75bcd15);
   }
-  $locutus.php.uniqidSeed++;
+  php.uniqidSeed++;
   // start with prefix, add current milliseconds hex string
-  retId = prefix;
-  retId += _formatSeed(parseInt(new Date().getTime() / 1000, 10), 8);
+  retId = normalizedPrefix;
+  retId += formatSeed(Number.parseInt(String(new Date().getTime() / 1000), 10), 8);
   // add seed hex string
-  retId += _formatSeed($locutus.php.uniqidSeed, 5);
+  retId += formatSeed(php.uniqidSeed, 5);
+  if (moreEntropy) {
+    // for more entropy we add a float lower to 10
+    retId += (Math.random() * 10).toFixed(8).toString();
+  }
+  return retId;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/misc/uniqid
+function uniqid(prefix, moreEntropy) {
+  //  discuss at: https://locutus.io/php/uniqid/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  //  revised by: Kankrelune (https://www.webfaktory.info/)
+  //      note 1: Uses an internal counter (in locutus global) to avoid collision
+  //   example 1: var $id = uniqid()
+  //   example 1: var $result = $id.length === 13
+  //   returns 1: true
+  //   example 2: var $id = uniqid('foo')
+  //   example 2: var $result = $id.length === (13 + 'foo'.length)
+  //   returns 2: true
+  //   example 3: var $id = uniqid('bar', true)
+  //   example 3: var $result = $id.length === (23 + 'bar'.length)
+  //   returns 3: true
+  const normalizedPrefix = prefix ?? '';
+  let retId = '';
+  const formatSeed = (seed, reqWidth) => {
+    const hexSeed = Number.parseInt(String(seed), 10).toString(16); // to hex str
+    if (reqWidth < hexSeed.length) {
+      // so long we split
+      return hexSeed.slice(hexSeed.length - reqWidth);
+    }
+    if (reqWidth > hexSeed.length) {
+      // so short we pad
+      return new Array(1 + (reqWidth - hexSeed.length)).join('0') + hexSeed;
+    }
+    return hexSeed;
+  };
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus ?? {};
+  const locutus = globalContext.$locutus;
+  locutus.php = locutus.php ?? {};
+  const php = locutus.php;
+  if (!php.uniqidSeed) {
+    // init seed with big random int
+    php.uniqidSeed = Math.floor(Math.random() * 0x75bcd15);
+  }
+  php.uniqidSeed++;
+  // start with prefix, add current milliseconds hex string
+  retId = normalizedPrefix;
+  retId += formatSeed(Number.parseInt(String(new Date().getTime() / 1000), 10), 8);
+  // add seed hex string
+  retId += formatSeed(php.uniqidSeed, 5);
   if (moreEntropy) {
     // for more entropy we add a float lower to 10
     retId += (Math.random() * 10).toFixed(8).toString();

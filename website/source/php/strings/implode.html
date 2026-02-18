@@ -37,7 +37,12 @@ alias:
   - /functions/implode/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function implode(glue, pieces) {
+{% codeblock lang:typescript %}import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+type PhpValue = {} | null | undefined
+type KeyedValues = PhpAssoc<PhpValue>
+
+export function implode(...args: Array<PhpValue[] | KeyedValues | string | undefined>): string {
   //      discuss at: https://locutus.io/php/implode/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -49,32 +54,33 @@ alias:
   //       example 2: implode(' ', {first:'Kevin', last: 'van Zonneveld'})
   //       returns 2: 'Kevin van Zonneveld'
 
-  let i = ''
   let retVal = ''
   let tGlue = ''
+  let actualGlue = args[0]
+  let actualPieces = args[1]
 
-  if (arguments.length === 1) {
-    pieces = glue
-    glue = ''
+  if (args.length === 1) {
+    actualPieces = args[0] as PhpValue[] | KeyedValues
+    actualGlue = ''
   }
 
-  if (typeof pieces === 'object') {
-    if (Array.isArray(pieces)) {
-      return pieces.join(glue)
+  if (typeof actualPieces === 'object' && actualPieces !== null) {
+    if (Array.isArray(actualPieces)) {
+      return actualPieces.join(String(actualGlue))
     }
-    for (i in pieces) {
-      retVal += tGlue + pieces[i]
-      tGlue = glue
+    for (const key in actualPieces) {
+      retVal += tGlue + actualPieces[key]
+      tGlue = String(actualGlue)
     }
     return retVal
   }
 
-  return pieces
+  return String(actualPieces)
 }
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function implode(glue, pieces) {
+{% codeblock lang:javascript %}export function implode(...args) {
   //      discuss at: https://locutus.io/php/implode/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -85,23 +91,58 @@ alias:
   //       returns 1: 'Kevin van Zonneveld'
   //       example 2: implode(' ', {first:'Kevin', last: 'van Zonneveld'})
   //       returns 2: 'Kevin van Zonneveld'
-  let i = '';
   let retVal = '';
   let tGlue = '';
-  if (arguments.length === 1) {
-    pieces = glue;
-    glue = '';
+  let actualGlue = args[0];
+  let actualPieces = args[1];
+  if (args.length === 1) {
+    actualPieces = args[0];
+    actualGlue = '';
   }
-  if (typeof pieces === 'object') {
-    if (Array.isArray(pieces)) {
-      return pieces.join(glue);
+  if (typeof actualPieces === 'object' && actualPieces !== null) {
+    if (Array.isArray(actualPieces)) {
+      return actualPieces.join(String(actualGlue));
     }
-    for (i in pieces) {
-      retVal += tGlue + pieces[i];
-      tGlue = glue;
+    for (const key in actualPieces) {
+      retVal += tGlue + actualPieces[key];
+      tGlue = String(actualGlue);
     }
     return retVal;
   }
-  return pieces;
+  return String(actualPieces);
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/strings/implode
+function implode(...args) {
+  //      discuss at: https://locutus.io/php/implode/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Waldo Malqui Silva (https://waldo.malqui.info)
+  //     improved by: Itsacon (https://www.itsacon.net/)
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: implode(' ', ['Kevin', 'van', 'Zonneveld'])
+  //       returns 1: 'Kevin van Zonneveld'
+  //       example 2: implode(' ', {first:'Kevin', last: 'van Zonneveld'})
+  //       returns 2: 'Kevin van Zonneveld'
+  let retVal = '';
+  let tGlue = '';
+  let actualGlue = args[0];
+  let actualPieces = args[1];
+  if (args.length === 1) {
+    actualPieces = args[0];
+    actualGlue = '';
+  }
+  if (typeof actualPieces === 'object' && actualPieces !== null) {
+    if (Array.isArray(actualPieces)) {
+      return actualPieces.join(String(actualGlue));
+    }
+    for (const key in actualPieces) {
+      retVal += tGlue + actualPieces[key];
+      tGlue = String(actualGlue);
+    }
+    return retVal;
+  }
+  return String(actualPieces);
 }{% endcodeblock %}
 </div>

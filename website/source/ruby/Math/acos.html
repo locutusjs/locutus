@@ -31,7 +31,7 @@ alias:
   - /ruby/acos/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function acos(arg) {
+{% codeblock lang:typescript %}export function acos(arg: number): number {
   //  discuss at: https://locutus.io/ruby/Math/acos/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //      note 1: Sorry about the crippled test.
@@ -45,6 +45,18 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function acos(arg) {
+  //  discuss at: https://locutus.io/ruby/Math/acos/
+  // original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //      note 1: Sorry about the crippled test.
+  //      note 1: Needed because precision differs accross platforms.
+  //   example 1: (acos(0.3) + '').substr(0, 17)
+  //   returns 1: '1.266103672779499'
+  return Math.acos(arg);
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// ruby/Math/acos
+function acos(arg) {
   //  discuss at: https://locutus.io/ruby/Math/acos/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //      note 1: Sorry about the crippled test.

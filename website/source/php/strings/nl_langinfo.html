@@ -32,7 +32,39 @@ alias:
 <div class="code-tab-panel" data-lang="ts">
 {% codeblock lang:typescript %}import { setlocale } from '../strings/setlocale.ts'
 
-export function nl_langinfo(item) {
+type LocaleTime = {
+  a: string[]
+  A: string[]
+  b: string[]
+  B: string[]
+  p: string[]
+  c: string
+  x: string
+  X: string
+  r: string
+  [key: string]: string | string[] | undefined
+}
+
+type LocaleMonetary = { [key: string]: string | string[] | undefined }
+type LocaleNumeric = { [key: string]: string | string[] | undefined }
+type LocaleMessages = { [key: string]: string | undefined }
+type LocaleCType = { [key: string]: string | undefined }
+type LocaleData = {
+  LC_TIME: LocaleTime
+  LC_MONETARY: LocaleMonetary
+  LC_NUMERIC: LocaleNumeric
+  LC_MESSAGES: LocaleMessages
+  LC_CTYPE: LocaleCType
+}
+type LocaleCategoryName = 'LC_TIME' | 'LC_MONETARY' | 'LC_NUMERIC' | 'LC_MESSAGES' | 'LC_CTYPE'
+type LocaleCategories = { [key in LocaleCategoryName]: string }
+type PhpContext = {
+  locales?: { [key: string]: LocaleData }
+  localeCategories?: Partial<LocaleCategories>
+}
+type GlobalWithLocutus = typeof globalThis & { $locutus?: { php?: PhpContext } }
+
+export function nl_langinfo(item: string): string | string[] | false {
   //  discuss at: https://locutus.io/php/nl_langinfo/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: nl_langinfo('DAY_1')
@@ -40,27 +72,46 @@ export function nl_langinfo(item) {
 
   setlocale('LC_ALL', 0) // Ensure locale data is available
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
+  const globalContext = globalThis as GlobalWithLocutus
+  globalContext.$locutus = globalContext.$locutus || {}
+  const locutus = globalContext.$locutus
+  locutus.php = locutus.php || {}
 
-  let loc = $locutus.php.locales[$locutus.php.localeCategories.LC_TIME]
+  const php = locutus.php
+  const toValue = (value: string | string[] | undefined): string | string[] | false =>
+    typeof value === 'string' || Array.isArray(value) ? value : false
+  const localeFor = (category: LocaleCategoryName): LocaleData | false => {
+    const localeName = php.localeCategories?.[category]
+    if (!php.locales || typeof localeName !== 'string') {
+      return false
+    }
+    return php.locales[localeName] || false
+  }
+
+  let loc = localeFor('LC_TIME')
+  if (!loc) {
+    return false
+  }
+
   if (item.indexOf('ABDAY_') === 0) {
-    return loc.LC_TIME.a[parseInt(item.replace(/^ABDAY_/, ''), 10) - 1]
+    const index = Number.parseInt(item.replace(/^ABDAY_/, ''), 10) - 1
+    return loc.LC_TIME.a[index] ?? false
   } else if (item.indexOf('DAY_') === 0) {
-    return loc.LC_TIME.A[parseInt(item.replace(/^DAY_/, ''), 10) - 1]
+    const index = Number.parseInt(item.replace(/^DAY_/, ''), 10) - 1
+    return loc.LC_TIME.A[index] ?? false
   } else if (item.indexOf('ABMON_') === 0) {
-    return loc.LC_TIME.b[parseInt(item.replace(/^ABMON_/, ''), 10) - 1]
+    const index = Number.parseInt(item.replace(/^ABMON_/, ''), 10) - 1
+    return loc.LC_TIME.b[index] ?? false
   } else if (item.indexOf('MON_') === 0) {
-    return loc.LC_TIME.B[parseInt(item.replace(/^MON_/, ''), 10) - 1]
+    const index = Number.parseInt(item.replace(/^MON_/, ''), 10) - 1
+    return loc.LC_TIME.B[index] ?? false
   } else {
     switch (item) {
       // More LC_TIME
       case 'AM_STR':
-        return loc.LC_TIME.p[0]
+        return loc.LC_TIME.p[0] ?? false
       case 'PM_STR':
-        return loc.LC_TIME.p[1]
+        return loc.LC_TIME.p[1] ?? false
       case 'D_T_FMT':
         return loc.LC_TIME.c
       case 'D_FMT':
@@ -75,14 +126,18 @@ export function nl_langinfo(item) {
       case 'ERA_D_FMT':
       case 'ERA_T_FMT':
         // all fall-throughs
-        return loc.LC_TIME[item]
+        return toValue(loc.LC_TIME[item])
     }
-    loc = $locutus.php.locales[$locutus.php.localeCategories.LC_MONETARY]
-    if (item === 'CRNCYSTR') {
+    loc = localeFor('LC_MONETARY')
+    if (!loc) {
+      return false
+    }
+    let normalizedItem = item
+    if (normalizedItem === 'CRNCYSTR') {
       // alias
-      item = 'CURRENCY_SYMBOL'
+      normalizedItem = 'CURRENCY_SYMBOL'
     }
-    switch (item) {
+    switch (normalizedItem) {
       case 'INT_CURR_SYMBOL':
       case 'CURRENCY_SYMBOL':
       case 'MON_DECIMAL_POINT':
@@ -98,37 +153,46 @@ export function nl_langinfo(item) {
       case 'P_SIGN_POSN':
       case 'N_SIGN_POSN':
         // all fall-throughs
-        return loc.LC_MONETARY[item.toLowerCase()]
+        return toValue(loc.LC_MONETARY[normalizedItem.toLowerCase()])
       case 'MON_GROUPING':
         // Same as above, or return something different since this returns an array?
-        return loc.LC_MONETARY[item.toLowerCase()]
+        return toValue(loc.LC_MONETARY[normalizedItem.toLowerCase()])
     }
-    loc = $locutus.php.locales[$locutus.php.localeCategories.LC_NUMERIC]
+    loc = localeFor('LC_NUMERIC')
+    if (!loc) {
+      return false
+    }
     switch (item) {
       case 'RADIXCHAR':
       case 'DECIMAL_POINT':
         // Fall-through
-        return loc.LC_NUMERIC[item.toLowerCase()]
+        return toValue(loc.LC_NUMERIC[item.toLowerCase()])
       case 'THOUSEP':
       case 'THOUSANDS_SEP':
         // Fall-through
-        return loc.LC_NUMERIC[item.toLowerCase()]
+        return toValue(loc.LC_NUMERIC[item.toLowerCase()])
       case 'GROUPING':
         // Same as above, or return something different since this returns an array?
-        return loc.LC_NUMERIC[item.toLowerCase()]
+        return toValue(loc.LC_NUMERIC[item.toLowerCase()])
     }
-    loc = $locutus.php.locales[$locutus.php.localeCategories.LC_MESSAGES]
+    loc = localeFor('LC_MESSAGES')
+    if (!loc) {
+      return false
+    }
     switch (item) {
       case 'YESEXPR':
       case 'NOEXPR':
       case 'YESSTR':
       case 'NOSTR':
         // all fall-throughs
-        return loc.LC_MESSAGES[item]
+        return toValue(loc.LC_MESSAGES[item])
     }
-    loc = $locutus.php.locales[$locutus.php.localeCategories.LC_CTYPE]
+    loc = localeFor('LC_CTYPE')
+    if (!loc) {
+      return false
+    }
     if (item === 'CODESET') {
-      return loc.LC_CTYPE[item]
+      return toValue(loc.LC_CTYPE[item])
     }
 
     return false
@@ -144,30 +208,46 @@ export function nl_langinfo(item) {
   //   example 1: nl_langinfo('DAY_1')
   //   returns 1: 'Sunday'
   setlocale('LC_ALL', 0); // Ensure locale data is available
-  const $global = typeof window !== 'undefined' ? window : global;
-  $global.$locutus = $global.$locutus || {};
-  const $locutus = $global.$locutus;
-  $locutus.php = $locutus.php || {};
-  let loc = $locutus.php.locales[$locutus.php.localeCategories.LC_TIME];
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus || {};
+  const locutus = globalContext.$locutus;
+  locutus.php = locutus.php || {};
+  const php = locutus.php;
+  const toValue = (value) => typeof value === 'string' || Array.isArray(value) ? value : false;
+  const localeFor = (category) => {
+    const localeName = php.localeCategories?.[category];
+    if (!php.locales || typeof localeName !== 'string') {
+      return false;
+    }
+    return php.locales[localeName] || false;
+  };
+  let loc = localeFor('LC_TIME');
+  if (!loc) {
+    return false;
+  }
   if (item.indexOf('ABDAY_') === 0) {
-    return loc.LC_TIME.a[parseInt(item.replace(/^ABDAY_/, ''), 10) - 1];
+    const index = Number.parseInt(item.replace(/^ABDAY_/, ''), 10) - 1;
+    return loc.LC_TIME.a[index] ?? false;
   }
   else if (item.indexOf('DAY_') === 0) {
-    return loc.LC_TIME.A[parseInt(item.replace(/^DAY_/, ''), 10) - 1];
+    const index = Number.parseInt(item.replace(/^DAY_/, ''), 10) - 1;
+    return loc.LC_TIME.A[index] ?? false;
   }
   else if (item.indexOf('ABMON_') === 0) {
-    return loc.LC_TIME.b[parseInt(item.replace(/^ABMON_/, ''), 10) - 1];
+    const index = Number.parseInt(item.replace(/^ABMON_/, ''), 10) - 1;
+    return loc.LC_TIME.b[index] ?? false;
   }
   else if (item.indexOf('MON_') === 0) {
-    return loc.LC_TIME.B[parseInt(item.replace(/^MON_/, ''), 10) - 1];
+    const index = Number.parseInt(item.replace(/^MON_/, ''), 10) - 1;
+    return loc.LC_TIME.B[index] ?? false;
   }
   else {
     switch (item) {
       // More LC_TIME
       case 'AM_STR':
-        return loc.LC_TIME.p[0];
+        return loc.LC_TIME.p[0] ?? false;
       case 'PM_STR':
-        return loc.LC_TIME.p[1];
+        return loc.LC_TIME.p[1] ?? false;
       case 'D_T_FMT':
         return loc.LC_TIME.c;
       case 'D_FMT':
@@ -182,14 +262,18 @@ export function nl_langinfo(item) {
       case 'ERA_D_FMT':
       case 'ERA_T_FMT':
         // all fall-throughs
-        return loc.LC_TIME[item];
+        return toValue(loc.LC_TIME[item]);
     }
-    loc = $locutus.php.locales[$locutus.php.localeCategories.LC_MONETARY];
-    if (item === 'CRNCYSTR') {
+    loc = localeFor('LC_MONETARY');
+    if (!loc) {
+      return false;
+    }
+    let normalizedItem = item;
+    if (normalizedItem === 'CRNCYSTR') {
       // alias
-      item = 'CURRENCY_SYMBOL';
+      normalizedItem = 'CURRENCY_SYMBOL';
     }
-    switch (item) {
+    switch (normalizedItem) {
       case 'INT_CURR_SYMBOL':
       case 'CURRENCY_SYMBOL':
       case 'MON_DECIMAL_POINT':
@@ -205,37 +289,589 @@ export function nl_langinfo(item) {
       case 'P_SIGN_POSN':
       case 'N_SIGN_POSN':
         // all fall-throughs
-        return loc.LC_MONETARY[item.toLowerCase()];
+        return toValue(loc.LC_MONETARY[normalizedItem.toLowerCase()]);
       case 'MON_GROUPING':
         // Same as above, or return something different since this returns an array?
-        return loc.LC_MONETARY[item.toLowerCase()];
+        return toValue(loc.LC_MONETARY[normalizedItem.toLowerCase()]);
     }
-    loc = $locutus.php.locales[$locutus.php.localeCategories.LC_NUMERIC];
+    loc = localeFor('LC_NUMERIC');
+    if (!loc) {
+      return false;
+    }
     switch (item) {
       case 'RADIXCHAR':
       case 'DECIMAL_POINT':
         // Fall-through
-        return loc.LC_NUMERIC[item.toLowerCase()];
+        return toValue(loc.LC_NUMERIC[item.toLowerCase()]);
       case 'THOUSEP':
       case 'THOUSANDS_SEP':
         // Fall-through
-        return loc.LC_NUMERIC[item.toLowerCase()];
+        return toValue(loc.LC_NUMERIC[item.toLowerCase()]);
       case 'GROUPING':
         // Same as above, or return something different since this returns an array?
-        return loc.LC_NUMERIC[item.toLowerCase()];
+        return toValue(loc.LC_NUMERIC[item.toLowerCase()]);
     }
-    loc = $locutus.php.locales[$locutus.php.localeCategories.LC_MESSAGES];
+    loc = localeFor('LC_MESSAGES');
+    if (!loc) {
+      return false;
+    }
     switch (item) {
       case 'YESEXPR':
       case 'NOEXPR':
       case 'YESSTR':
       case 'NOSTR':
         // all fall-throughs
-        return loc.LC_MESSAGES[item];
+        return toValue(loc.LC_MESSAGES[item]);
     }
-    loc = $locutus.php.locales[$locutus.php.localeCategories.LC_CTYPE];
+    loc = localeFor('LC_CTYPE');
+    if (!loc) {
+      return false;
+    }
     if (item === 'CODESET') {
-      return loc.LC_CTYPE[item];
+      return toValue(loc.LC_CTYPE[item]);
+    }
+    return false;
+  }
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/info/getenv
+function getenv(varname) {
+  //      discuss at: https://locutus.io/php/getenv/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: getenv('LC_ALL')
+  //       returns 1: false
+  const globalContext = globalThis;
+  const processLike = globalContext.process;
+  const hasProcessLike = typeof globalContext.process !== 'undefined';
+  if (hasProcessLike) {
+    return false;
+  }
+  if (!processLike?.env || !processLike.env[varname]) {
+    return false;
+  }
+  return processLike.env[varname] ?? false;
+}
+
+// php/strings/setlocale
+const hasOwn = Object.prototype.hasOwnProperty;
+function copyValue(orig) {
+  if (orig instanceof RegExp) {
+    return new RegExp(orig);
+  }
+  if (orig instanceof Date) {
+    return new Date(orig);
+  }
+  if (Array.isArray(orig)) {
+    return orig.map((item) => copyValue(item));
+  }
+  if (orig !== null && typeof orig === 'object') {
+    const newObj = {};
+    for (const [key, value] of Object.entries(orig)) {
+      if (!hasOwn.call(orig, key)) {
+        continue;
+      }
+      newObj[key] = value !== null && typeof value === 'object' ? copyValue(value) : value;
+    }
+    return newObj;
+  }
+  return orig;
+}
+function setlocale(category, locale) {
+  //  discuss at: https://locutus.io/php/setlocale/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // original by: Blues (https://hacks.bluesmoon.info/strftime/strftime.js)
+  // original by: YUI Library (https://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html)
+  //      note 1: Is extensible, but currently only implements locales en,
+  //      note 1: en_US, en_GB, en_AU, fr, and fr_CA for LC_TIME only; C for LC_CTYPE;
+  //      note 1: C and en for LC_MONETARY/LC_NUMERIC; en for LC_COLLATE
+  //      note 1: Uses global: locutus to store locale info
+  //      note 1: Consider using https://demo.icu-project.org/icu-bin/locexp as basis for localization (as in i18n_loc_set_default())
+  //      note 2: This function tries to establish the locale via the `window` global.
+  //      note 2: This feature will not work in Node and hence is Browser-only
+  //   example 1: setlocale('LC_ALL', 'en_US')
+  //   returns 1: 'en_US'
+  let categ = '';
+  const cats = [];
+  let i = 0;
+  // Function usable by a ngettext implementation (apparently not an accessible part of setlocale(),
+  // but locale-specific) See https://www.gnu.org/software/gettext/manual/gettext.html#Plural-forms
+  // though amended with others from https://developer.mozilla.org/En/Localization_and_Plurals (new
+  // categories noted with "MDC" below, though not sure of whether there is a convention for the
+  // relative order of these newer groups as far as ngettext) The function name indicates the number
+  // of plural forms (nplural) Need to look into https://cldr.unicode.org/ (maybe future JavaScript);
+  // Dojo has some functions (under new BSD), including JSON conversions of LDML XML from CLDR:
+  // https://bugs.dojotoolkit.org/browser/dojo/trunk/cldr and docs at
+  // https://api.dojotoolkit.org/jsdoc/HEAD/dojo.cldr
+  // var _nplurals1 = function (n) {
+  //   // e.g., Japanese
+  //   return 0
+  // }
+  const _nplurals2a = function (n) {
+    // e.g., English
+    return n !== 1 ? 1 : 0;
+  };
+  const _nplurals2b = function (n) {
+    // e.g., French
+    return n > 1 ? 1 : 0;
+  };
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus ?? {};
+  const locutus = globalContext.$locutus;
+  locutus.php = locutus.php ?? {};
+  const php = locutus.php;
+  // Reconcile Windows vs. *nix locale names?
+  // Allow different priority orders of languages, esp. if implement gettext as in
+  // LANGUAGE env. var.? (e.g., show German if French is not available)
+  if (!php.locales?.fr_CA?.LC_TIME?.x) {
+    // Can add to the locales
+    const locales = (php.locales = {});
+    locales.en = {
+      LC_COLLATE: function (str1, str2) {
+        // @todo: This one taken from strcmp, but need for other locales; we don't use localeCompare
+        // since its locale is not settable
+        return str1 === str2 ? 0 : str1 > str2 ? 1 : -1;
+      },
+      LC_CTYPE: {
+        // Need to change any of these for English as opposed to C?
+        an: /^[A-Za-z\d]+$/g,
+        al: /^[A-Za-z]+$/g,
+        // biome-ignore lint/suspicious/noControlCharactersInRegex: intentional for LC_CTYPE control character class
+        ct: /^[\u0000-\u001F\u007F]+$/g,
+        dg: /^[\d]+$/g,
+        gr: /^[\u0021-\u007E]+$/g,
+        lw: /^[a-z]+$/g,
+        pr: /^[\u0020-\u007E]+$/g,
+        pu: /^[\u0021-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007E]+$/g,
+        sp: /^[\f\n\r\t\v ]+$/g,
+        up: /^[A-Z]+$/g,
+        xd: /^[A-Fa-f\d]+$/g,
+        CODESET: 'UTF-8',
+        // Used by sql_regcase
+        lower: 'abcdefghijklmnopqrstuvwxyz',
+        upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      },
+      LC_TIME: {
+        // Comments include nl_langinfo() constant equivalents and any
+        // changes from Blues' implementation
+        a: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        // ABDAY_
+        A: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        // DAY_
+        b: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        // ABMON_
+        B: [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December',
+        ],
+        // MON_
+        c: '%a %d %b %Y %r %Z',
+        // D_T_FMT // changed %T to %r per results
+        p: ['AM', 'PM'],
+        // AM_STR/PM_STR
+        P: ['am', 'pm'],
+        // Not available in nl_langinfo()
+        r: '%I:%M:%S %p',
+        // T_FMT_AMPM (Fixed for all locales)
+        x: '%m/%d/%Y',
+        // D_FMT // switched order of %m and %d; changed %y to %Y (C uses %y)
+        X: '%r',
+        // T_FMT // changed from %T to %r  (%T is default for C, not English US)
+        // Following are from nl_langinfo() or https://www.cptec.inpe.br/sx4/sx4man2/g1ab02e/strftime.4.html
+        alt_digits: '',
+        // e.g., ordinal
+        ERA: '',
+        ERA_YEAR: '',
+        ERA_D_T_FMT: '',
+        ERA_D_FMT: '',
+        ERA_T_FMT: '',
+      },
+      // Assuming distinction between numeric and monetary is thus:
+      // See below for C locale
+      LC_MONETARY: {
+        // based on Windows "english" (English_United States.1252) locale
+        int_curr_symbol: 'USD',
+        currency_symbol: '$',
+        mon_decimal_point: '.',
+        mon_thousands_sep: ',',
+        mon_grouping: [3],
+        // use mon_thousands_sep; "" for no grouping; additional array members
+        // indicate successive group lengths after first group
+        // (e.g., if to be 1,23,456, could be [3, 2])
+        positive_sign: '',
+        negative_sign: '-',
+        int_frac_digits: 2,
+        // Fractional digits only for money defaults?
+        frac_digits: 2,
+        p_cs_precedes: 1,
+        // positive currency symbol follows value = 0; precedes value = 1
+        p_sep_by_space: 0,
+        // 0: no space between curr. symbol and value; 1: space sep. them unless symb.
+        // and sign are adjacent then space sep. them from value; 2: space sep. sign
+        // and value unless symb. and sign are adjacent then space separates
+        n_cs_precedes: 1,
+        // see p_cs_precedes
+        n_sep_by_space: 0,
+        // see p_sep_by_space
+        p_sign_posn: 3,
+        // 0: parentheses surround quantity and curr. symbol; 1: sign precedes them;
+        // 2: sign follows them; 3: sign immed. precedes curr. symbol; 4: sign immed.
+        // succeeds curr. symbol
+        n_sign_posn: 0, // see p_sign_posn
+      },
+      LC_NUMERIC: {
+        // based on Windows "english" (English_United States.1252) locale
+        decimal_point: '.',
+        thousands_sep: ',',
+        grouping: [3], // see mon_grouping, but for non-monetary values (use thousands_sep)
+      },
+      LC_MESSAGES: {
+        YESEXPR: '^[yY].*',
+        NOEXPR: '^[nN].*',
+        YESSTR: '',
+        NOSTR: '',
+      },
+      nplurals: _nplurals2a,
+    };
+    locales.en_US = copyValue(locales.en);
+    locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z';
+    locales.en_US.LC_TIME.x = '%D';
+    locales.en_US.LC_TIME.X = '%r';
+    // The following are based on *nix settings
+    locales.en_US.LC_MONETARY.int_curr_symbol = 'USD ';
+    locales.en_US.LC_MONETARY.p_sign_posn = 1;
+    locales.en_US.LC_MONETARY.n_sign_posn = 1;
+    locales.en_US.LC_MONETARY.mon_grouping = [3, 3];
+    locales.en_US.LC_NUMERIC.thousands_sep = '';
+    locales.en_US.LC_NUMERIC.grouping = [];
+    locales.en_GB = copyValue(locales.en);
+    locales.en_GB.LC_TIME.r = '%l:%M:%S %P %Z';
+    locales.en_AU = copyValue(locales.en_GB);
+    // Assume C locale is like English (?) (We need C locale for LC_CTYPE)
+    locales.C = copyValue(locales.en);
+    locales.C.LC_CTYPE.CODESET = 'ANSI_X3.4-1968';
+    locales.C.LC_MONETARY = {
+      int_curr_symbol: '',
+      currency_symbol: '',
+      mon_decimal_point: '',
+      mon_thousands_sep: '',
+      mon_grouping: [],
+      p_cs_precedes: 127,
+      p_sep_by_space: 127,
+      n_cs_precedes: 127,
+      n_sep_by_space: 127,
+      p_sign_posn: 127,
+      n_sign_posn: 127,
+      positive_sign: '',
+      negative_sign: '',
+      int_frac_digits: 127,
+      frac_digits: 127,
+    };
+    locales.C.LC_NUMERIC = {
+      decimal_point: '.',
+      thousands_sep: '',
+      grouping: [],
+    };
+    // D_T_FMT
+    locales.C.LC_TIME.c = '%a %b %e %H:%M:%S %Y';
+    // D_FMT
+    locales.C.LC_TIME.x = '%m/%d/%y';
+    // T_FMT
+    locales.C.LC_TIME.X = '%H:%M:%S';
+    locales.C.LC_MESSAGES.YESEXPR = '^[yY]';
+    locales.C.LC_MESSAGES.NOEXPR = '^[nN]';
+    locales.fr = copyValue(locales.en);
+    locales.fr.nplurals = _nplurals2b;
+    locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'];
+    locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+    locales.fr.LC_TIME.b = [
+      'jan',
+      'f\u00E9v',
+      'mar',
+      'avr',
+      'mai',
+      'jun',
+      'jui',
+      'ao\u00FB',
+      'sep',
+      'oct',
+      'nov',
+      'd\u00E9c',
+    ];
+    locales.fr.LC_TIME.B = [
+      'janvier',
+      'f\u00E9vrier',
+      'mars',
+      'avril',
+      'mai',
+      'juin',
+      'juillet',
+      'ao\u00FBt',
+      'septembre',
+      'octobre',
+      'novembre',
+      'd\u00E9cembre',
+    ];
+    locales.fr.LC_TIME.c = '%a %d %b %Y %T %Z';
+    locales.fr.LC_TIME.p = ['', ''];
+    locales.fr.LC_TIME.P = ['', ''];
+    locales.fr.LC_TIME.x = '%d.%m.%Y';
+    locales.fr.LC_TIME.X = '%T';
+    locales.fr_CA = copyValue(locales.fr);
+    locales.fr_CA.LC_TIME.x = '%Y-%m-%d';
+  }
+  const locales = php.locales ?? {};
+  if (!php.locale) {
+    php.locale = 'en_US';
+    // Try to establish the locale via the `window` global
+    if (typeof window !== 'undefined' && window.document) {
+      const d = window.document;
+      const NS_XHTML = 'https://www.w3.org/1999/xhtml';
+      const NS_XML = 'https://www.w3.org/XML/1998/namespace';
+      const htmlNsElement = d.getElementsByTagNameNS ? d.getElementsByTagNameNS(NS_XHTML, 'html')[0] : undefined;
+      if (htmlNsElement) {
+        const xmlLang = htmlNsElement.getAttributeNS(NS_XML, 'lang');
+        if (xmlLang) {
+          php.locale = xmlLang;
+        }
+        else {
+          const htmlLang = htmlNsElement.getAttribute('lang');
+          if (htmlLang) {
+            php.locale = htmlLang;
+          }
+        }
+      }
+      else {
+        const htmlElement = d.getElementsByTagName('html')[0];
+        const htmlLang = htmlElement?.getAttribute('lang');
+        if (htmlLang) {
+          php.locale = htmlLang;
+        }
+      }
+    }
+  }
+  // PHP-style
+  php.locale = php.locale.replace('-', '_');
+  // @todo: locale if declared locale hasn't been defined
+  if (!(php.locale in locales)) {
+    const languageLocale = php.locale.replace(/_[a-zA-Z]+$/, '');
+    if (languageLocale in locales) {
+      php.locale = languageLocale;
+    }
+  }
+  if (!php.localeCategories) {
+    php.localeCategories = {
+      LC_COLLATE: php.locale,
+      // for string comparison, see strcoll()
+      LC_CTYPE: php.locale,
+      // for character classification and conversion, for example strtoupper()
+      LC_MONETARY: php.locale,
+      // for localeconv()
+      LC_NUMERIC: php.locale,
+      // for decimal separator (See also localeconv())
+      LC_TIME: php.locale,
+      // for date and time formatting with strftime()
+      // for system responses (available if PHP was compiled with libintl):
+      LC_MESSAGES: php.locale,
+    };
+  }
+  const localeCategories = php.localeCategories;
+  let requestedLocale = locale;
+  if (requestedLocale === null || requestedLocale === '') {
+    requestedLocale = getenv(category) || getenv('LANG');
+  }
+  else if (Array.isArray(requestedLocale)) {
+    for (i = 0; i < requestedLocale.length; i++) {
+      const candidate = requestedLocale[i];
+      if (typeof candidate !== 'string') {
+        if (i === requestedLocale.length - 1) {
+          return false;
+        }
+        continue;
+      }
+      if (!(candidate in locales)) {
+        if (i === requestedLocale.length - 1) {
+          // none found
+          return false;
+        }
+        continue;
+      }
+      requestedLocale = candidate;
+      break;
+    }
+  }
+  // Just get the locale
+  if (requestedLocale === '0' || requestedLocale === 0) {
+    if (category === 'LC_ALL') {
+      for (categ in localeCategories) {
+        if (!hasOwn.call(localeCategories, categ)) {
+          continue;
+        }
+        // Add ".UTF-8" or allow ".@latint", etc. to the end?
+        cats.push(categ + '=' + localeCategories[categ]);
+      }
+      return cats.join(';');
+    }
+    return localeCategories[category] ?? false;
+  }
+  if (typeof requestedLocale !== 'string' || !(requestedLocale in locales)) {
+    // Locale not found
+    return false;
+  }
+  // Set and get locale
+  if (category === 'LC_ALL') {
+    for (categ in localeCategories) {
+      if (!hasOwn.call(localeCategories, categ)) {
+        continue;
+      }
+      localeCategories[categ] = requestedLocale;
+    }
+  }
+  else {
+    localeCategories[category] = requestedLocale;
+  }
+  return requestedLocale;
+}
+
+// php/strings/nl_langinfo
+function nl_langinfo(item) {
+  //  discuss at: https://locutus.io/php/nl_langinfo/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: nl_langinfo('DAY_1')
+  //   returns 1: 'Sunday'
+  setlocale('LC_ALL', 0); // Ensure locale data is available
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus || {};
+  const locutus = globalContext.$locutus;
+  locutus.php = locutus.php || {};
+  const php = locutus.php;
+  const toValue = (value) => typeof value === 'string' || Array.isArray(value) ? value : false;
+  const localeFor = (category) => {
+    const localeName = php.localeCategories?.[category];
+    if (!php.locales || typeof localeName !== 'string') {
+      return false;
+    }
+    return php.locales[localeName] || false;
+  };
+  let loc = localeFor('LC_TIME');
+  if (!loc) {
+    return false;
+  }
+  if (item.indexOf('ABDAY_') === 0) {
+    const index = Number.parseInt(item.replace(/^ABDAY_/, ''), 10) - 1;
+    return loc.LC_TIME.a[index] ?? false;
+  }
+  else if (item.indexOf('DAY_') === 0) {
+    const index = Number.parseInt(item.replace(/^DAY_/, ''), 10) - 1;
+    return loc.LC_TIME.A[index] ?? false;
+  }
+  else if (item.indexOf('ABMON_') === 0) {
+    const index = Number.parseInt(item.replace(/^ABMON_/, ''), 10) - 1;
+    return loc.LC_TIME.b[index] ?? false;
+  }
+  else if (item.indexOf('MON_') === 0) {
+    const index = Number.parseInt(item.replace(/^MON_/, ''), 10) - 1;
+    return loc.LC_TIME.B[index] ?? false;
+  }
+  else {
+    switch (item) {
+      // More LC_TIME
+      case 'AM_STR':
+        return loc.LC_TIME.p[0] ?? false;
+      case 'PM_STR':
+        return loc.LC_TIME.p[1] ?? false;
+      case 'D_T_FMT':
+        return loc.LC_TIME.c;
+      case 'D_FMT':
+        return loc.LC_TIME.x;
+      case 'T_FMT':
+        return loc.LC_TIME.X;
+      case 'T_FMT_AMPM':
+        return loc.LC_TIME.r;
+      case 'ERA':
+      case 'ERA_YEAR':
+      case 'ERA_D_T_FMT':
+      case 'ERA_D_FMT':
+      case 'ERA_T_FMT':
+        // all fall-throughs
+        return toValue(loc.LC_TIME[item]);
+    }
+    loc = localeFor('LC_MONETARY');
+    if (!loc) {
+      return false;
+    }
+    let normalizedItem = item;
+    if (normalizedItem === 'CRNCYSTR') {
+      // alias
+      normalizedItem = 'CURRENCY_SYMBOL';
+    }
+    switch (normalizedItem) {
+      case 'INT_CURR_SYMBOL':
+      case 'CURRENCY_SYMBOL':
+      case 'MON_DECIMAL_POINT':
+      case 'MON_THOUSANDS_SEP':
+      case 'POSITIVE_SIGN':
+      case 'NEGATIVE_SIGN':
+      case 'INT_FRAC_DIGITS':
+      case 'FRAC_DIGITS':
+      case 'P_CS_PRECEDES':
+      case 'P_SEP_BY_SPACE':
+      case 'N_CS_PRECEDES':
+      case 'N_SEP_BY_SPACE':
+      case 'P_SIGN_POSN':
+      case 'N_SIGN_POSN':
+        // all fall-throughs
+        return toValue(loc.LC_MONETARY[normalizedItem.toLowerCase()]);
+      case 'MON_GROUPING':
+        // Same as above, or return something different since this returns an array?
+        return toValue(loc.LC_MONETARY[normalizedItem.toLowerCase()]);
+    }
+    loc = localeFor('LC_NUMERIC');
+    if (!loc) {
+      return false;
+    }
+    switch (item) {
+      case 'RADIXCHAR':
+      case 'DECIMAL_POINT':
+        // Fall-through
+        return toValue(loc.LC_NUMERIC[item.toLowerCase()]);
+      case 'THOUSEP':
+      case 'THOUSANDS_SEP':
+        // Fall-through
+        return toValue(loc.LC_NUMERIC[item.toLowerCase()]);
+      case 'GROUPING':
+        // Same as above, or return something different since this returns an array?
+        return toValue(loc.LC_NUMERIC[item.toLowerCase()]);
+    }
+    loc = localeFor('LC_MESSAGES');
+    if (!loc) {
+      return false;
+    }
+    switch (item) {
+      case 'YESEXPR':
+      case 'NOEXPR':
+      case 'YESSTR':
+      case 'NOSTR':
+        // all fall-throughs
+        return toValue(loc.LC_MESSAGES[item]);
+    }
+    loc = localeFor('LC_CTYPE');
+    if (!loc) {
+      return false;
+    }
+    if (item === 'CODESET') {
+      return toValue(loc.LC_CTYPE[item]);
     }
     return false;
   }

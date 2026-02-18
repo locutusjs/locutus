@@ -34,7 +34,7 @@ alias:
   - /functions/is_bool/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function is_bool(mixedVar) {
+{% codeblock lang:typescript %}export function is_bool(mixedVar: boolean | number): boolean {
   //      discuss at: https://locutus.io/php/is_bool/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -50,6 +50,20 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function is_bool(mixedVar) {
+  //      discuss at: https://locutus.io/php/is_bool/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     improved by: CoursesWeb (https://www.coursesweb.net/)
+  //       example 1: is_bool(false)
+  //       returns 1: true
+  //       example 2: is_bool(0)
+  //       returns 2: false
+  return mixedVar === true || mixedVar === false; // Faster (in FF) than type checking
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/var/is_bool
+function is_bool(mixedVar) {
   //      discuss at: https://locutus.io/php/is_bool/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)

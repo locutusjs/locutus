@@ -32,7 +32,7 @@ alias:
   - /golang/Repeat/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function Repeat(s, count) {
+{% codeblock lang:typescript %}export function Repeat(s: string, count: number): string {
   //      discuss at: https://locutus.io/golang/strings/Repeat
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -43,7 +43,7 @@ alias:
   //       returns 2: 'bababa'
 
   s = s + ''
-  count = parseInt(count, 10)
+  count = Number.parseInt(String(count), 10)
 
   if (count < 0 || !isFinite(count)) {
     throw new Error('strings: negative Repeat count')
@@ -64,7 +64,26 @@ alias:
   //       example 2: Repeat('ba', 3)
   //       returns 2: 'bababa'
   s = s + '';
-  count = parseInt(count, 10);
+  count = Number.parseInt(String(count), 10);
+  if (count < 0 || !isFinite(count)) {
+    throw new Error('strings: negative Repeat count');
+  }
+  return s.repeat(count);
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// golang/strings/Repeat
+function Repeat(s, count) {
+  //      discuss at: https://locutus.io/golang/strings/Repeat
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns a new string consisting of count copies of s
+  //       example 1: Repeat('na', 2)
+  //       returns 1: 'nana'
+  //       example 2: Repeat('ba', 3)
+  //       returns 2: 'bababa'
+  s = s + '';
+  count = Number.parseInt(String(count), 10);
   if (count < 0 || !isFinite(count)) {
     throw new Error('strings: negative Repeat count');
   }

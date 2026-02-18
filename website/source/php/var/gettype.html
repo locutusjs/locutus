@@ -51,10 +51,12 @@ alias:
   - /functions/gettype/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}// @ts-nocheck
+{% codeblock lang:typescript %}import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 import { is_float as isFloat } from '../var/is_float.ts'
 
-export function gettype(mixedVar) {
+type PhpValue = {} | null | undefined
+
+export function gettype(mixedVar: PhpValue): string {
   //  discuss at: https://locutus.io/php/gettype/
   // original by: Paulo Freitas
   // improved by: Kevin van Zonneveld (https://kvz.io)
@@ -78,28 +80,35 @@ export function gettype(mixedVar) {
   //   example 7: gettype(['test'])
   //   returns 7: 'array'
 
-  let s = typeof mixedVar
-  let name
-  const _getFuncName = function (fn) {
-    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn)
-    if (!name) {
+  let s: string = typeof mixedVar
+  let name = ''
+  const _getFuncName = function (fn: PhpValue): string {
+    const funcNameMatch = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
+    if (!funcNameMatch) {
       return '(Anonymous)'
     }
-    return name[1]
+    return funcNameMatch[1] ?? '(Anonymous)'
   }
 
   if (s === 'object') {
     if (mixedVar !== null) {
+      const objectLike = mixedVar as {
+        [key: string]: PhpValue
+        length?: PhpValue
+        splice?: PhpValue
+        propertyIsEnumerable: (property: string) => boolean
+        constructor?: PhpValue
+      } & PhpAssoc<PhpValue>
       // From: https://javascript.crockford.com/remedial.html
       // @todo: Break up this lengthy if statement
       if (
-        typeof mixedVar.length === 'number' &&
-        !mixedVar.propertyIsEnumerable('length') &&
-        typeof mixedVar.splice === 'function'
+        typeof objectLike.length === 'number' &&
+        !objectLike.propertyIsEnumerable('length') &&
+        typeof objectLike.splice === 'function'
       ) {
         s = 'array'
-      } else if (mixedVar.constructor && _getFuncName(mixedVar.constructor)) {
-        name = _getFuncName(mixedVar.constructor)
+      } else if (objectLike.constructor && _getFuncName(objectLike.constructor)) {
+        name = _getFuncName(objectLike.constructor)
         if (name === 'Date') {
           // not in PHP
           s = 'date'
@@ -115,7 +124,7 @@ export function gettype(mixedVar) {
       s = 'null'
     }
   } else if (s === 'number') {
-    s = isFloat(mixedVar) ? 'double' : 'integer'
+    s = isFloat(mixedVar as number) ? 'double' : 'integer'
   }
 
   return s
@@ -123,8 +132,7 @@ export function gettype(mixedVar) {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}// @ts-nocheck
-import { is_float as isFloat } from '../var/is_float.ts';
+{% codeblock lang:javascript %}import { is_float as isFloat } from '../var/is_float.ts';
 export function gettype(mixedVar) {
   //  discuss at: https://locutus.io/php/gettype/
   // original by: Paulo Freitas
@@ -149,25 +157,113 @@ export function gettype(mixedVar) {
   //   example 7: gettype(['test'])
   //   returns 7: 'array'
   let s = typeof mixedVar;
-  let name;
+  let name = '';
   const _getFuncName = function (fn) {
-    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn);
-    if (!name) {
+    const funcNameMatch = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn));
+    if (!funcNameMatch) {
       return '(Anonymous)';
     }
-    return name[1];
+    return funcNameMatch[1] ?? '(Anonymous)';
   };
   if (s === 'object') {
     if (mixedVar !== null) {
+      const objectLike = mixedVar;
       // From: https://javascript.crockford.com/remedial.html
       // @todo: Break up this lengthy if statement
-      if (typeof mixedVar.length === 'number' &&
-        !mixedVar.propertyIsEnumerable('length') &&
-        typeof mixedVar.splice === 'function') {
+      if (typeof objectLike.length === 'number' &&
+        !objectLike.propertyIsEnumerable('length') &&
+        typeof objectLike.splice === 'function') {
         s = 'array';
       }
-      else if (mixedVar.constructor && _getFuncName(mixedVar.constructor)) {
-        name = _getFuncName(mixedVar.constructor);
+      else if (objectLike.constructor && _getFuncName(objectLike.constructor)) {
+        name = _getFuncName(objectLike.constructor);
+        if (name === 'Date') {
+          // not in PHP
+          s = 'date';
+        }
+        else if (name === 'RegExp') {
+          // not in PHP
+          s = 'regexp';
+        }
+        else if (name === 'LOCUTUS_Resource') {
+          // Check against our own resource constructor
+          s = 'resource';
+        }
+      }
+    }
+    else {
+      s = 'null';
+    }
+  }
+  else if (s === 'number') {
+    s = isFloat(mixedVar) ? 'double' : 'integer';
+  }
+  return s;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/var/is_float
+function is_float(mixedVar) {
+  //      discuss at: https://locutus.io/php/is_float/
+  // parity verified: PHP 8.3
+  //     original by: Paulo Freitas
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: WebDevHobo (https://webdevhobo.blogspot.com/)
+  //     improved by: Rafał Kukawski (https://blog.kukawski.pl)
+  //          note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  //       example 1: is_float(186.31)
+  //       returns 1: true
+  return +mixedVar === mixedVar && (!isFinite(mixedVar) || !!(mixedVar % 1));
+}
+
+// php/var/gettype
+const isFloat = is_float;
+
+function gettype(mixedVar) {
+  //  discuss at: https://locutus.io/php/gettype/
+  // original by: Paulo Freitas
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Douglas Crockford (https://javascript.crockford.com)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //    input by: KELAN
+  //      note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //      note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  //   example 1: gettype(1)
+  //   returns 1: 'integer'
+  //   example 2: gettype(undefined)
+  //   returns 2: 'undefined'
+  //   example 3: gettype({0: 'Kevin van Zonneveld'})
+  //   returns 3: 'object'
+  //   example 4: gettype('foo')
+  //   returns 4: 'string'
+  //   example 5: gettype({0: function () {return false;}})
+  //   returns 5: 'object'
+  //   example 6: gettype({0: 'test', length: 1, splice: function () {}})
+  //   returns 6: 'object'
+  //   example 7: gettype(['test'])
+  //   returns 7: 'array'
+  let s = typeof mixedVar;
+  let name = '';
+  const _getFuncName = function (fn) {
+    const funcNameMatch = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn));
+    if (!funcNameMatch) {
+      return '(Anonymous)';
+    }
+    return funcNameMatch[1] ?? '(Anonymous)';
+  };
+  if (s === 'object') {
+    if (mixedVar !== null) {
+      const objectLike = mixedVar;
+      // From: https://javascript.crockford.com/remedial.html
+      // @todo: Break up this lengthy if statement
+      if (typeof objectLike.length === 'number' &&
+        !objectLike.propertyIsEnumerable('length') &&
+        typeof objectLike.splice === 'function') {
+        s = 'array';
+      }
+      else if (objectLike.constructor && _getFuncName(objectLike.constructor)) {
+        name = _getFuncName(objectLike.constructor);
         if (name === 'Date') {
           // not in PHP
           s = 'date';

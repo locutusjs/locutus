@@ -47,10 +47,16 @@ alias:
   - /functions/file_get_contents/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}// @ts-nocheck
-import fs from 'fs'
+{% codeblock lang:typescript %}import fs from 'fs'
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 
-export function file_get_contents(url, flags, context, offset, maxLen) {
+export function file_get_contents(
+  url: string,
+  _flags?: PhpMixed,
+  _context?: PhpMixed,
+  _offset?: number,
+  _maxLen?: number,
+): string | false {
   //       discuss at: https://locutus.io/php/file_get_contents/
   //      original by: Legaev Andrey
   //         input by: Jani Hartikainen
@@ -73,9 +79,31 @@ export function file_get_contents(url, flags, context, offset, maxLen) {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}// @ts-nocheck
+{% codeblock lang:javascript %}import fs from 'fs';
+export function file_get_contents(url, _flags, _context, _offset, _maxLen) {
+  //       discuss at: https://locutus.io/php/file_get_contents/
+  //      original by: Legaev Andrey
+  //         input by: Jani Hartikainen
+  //         input by: Raphael (Ao) RUDLER
+  //      improved by: Kevin van Zonneveld (https://kvz.io)
+  //      improved by: Brett Zamir (https://brett-zamir.me)
+  //      bugfixed by: Brett Zamir (https://brett-zamir.me)
+  // reimplemented by: Kevin van Zonneveld (https://kvz.io)
+  //           note 1: This used to work in the browser via blocking ajax
+  //           note 1: requests in 1.3.2 and earlier
+  //           note 1: but then people started using that for real app,
+  //           note 1: so we deprecated this behavior,
+  //           note 1: so this function is now Node-only
+  //        example 1: var $buf = file_get_contents('test/never-change.txt')
+  //        example 1: var $result = $buf.indexOf('hash') !== -1
+  //        returns 1: true
+  return fs.readFileSync(url, 'utf-8');
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/filesystem/file_get_contents
 import fs from 'fs';
-export function file_get_contents(url, flags, context, offset, maxLen) {
+function file_get_contents(url, _flags, _context, _offset, _maxLen) {
   //       discuss at: https://locutus.io/php/file_get_contents/
   //      original by: Legaev Andrey
   //         input by: Jani Hartikainen

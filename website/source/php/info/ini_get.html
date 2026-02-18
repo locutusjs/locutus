@@ -6,7 +6,8 @@ examples:
     ini_get('date.timezone')
 returns:
   - '''Asia/Hong_Kong'''
-dependencies: []
+dependencies:
+  - php/_helpers/_phpRuntimeState
 authors:
   original by:
     - Brett Zamir (https://brett-zamir.me)
@@ -32,7 +33,9 @@ alias:
   - /functions/ini_get/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function ini_get(varname: string): string {
+{% codeblock lang:typescript %}import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
+
+export function ini_get(varname: string): string {
   //  discuss at: https://locutus.io/php/ini_get/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: The ini values must be set by ini_set or manually within an ini file
@@ -40,19 +43,14 @@ alias:
   //   example 1: ini_get('date.timezone')
   //   returns 1: 'Asia/Hong_Kong'
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus: { php: { ini: Record<string, { local_value?: unknown }> } }
-  }
-  $global.$locutus = $global.$locutus || ({} as typeof $global.$locutus)
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || ({} as typeof $locutus.php)
-  $locutus.php.ini = $locutus.php.ini || {}
+  const runtime = ensurePhpRuntimeState()
+  const entry = runtime.ini[varname]
 
-  if ($locutus.php.ini[varname] && $locutus.php.ini[varname].local_value !== undefined) {
-    if ($locutus.php.ini[varname].local_value === null) {
+  if (entry && entry.local_value !== undefined) {
+    if (entry.local_value === null) {
       return ''
     }
-    return $locutus.php.ini[varname].local_value as string
+    return String(entry.local_value)
   }
 
   return ''
@@ -60,23 +58,68 @@ alias:
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function ini_get(varname) {
+{% codeblock lang:javascript %}import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts';
+export function ini_get(varname) {
   //  discuss at: https://locutus.io/php/ini_get/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: The ini values must be set by ini_set or manually within an ini file
   //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
   //   example 1: ini_get('date.timezone')
   //   returns 1: 'Asia/Hong_Kong'
-  const $global = (typeof window !== 'undefined' ? window : global);
-  $global.$locutus = $global.$locutus || {};
-  const $locutus = $global.$locutus;
-  $locutus.php = $locutus.php || {};
-  $locutus.php.ini = $locutus.php.ini || {};
-  if ($locutus.php.ini[varname] && $locutus.php.ini[varname].local_value !== undefined) {
-    if ($locutus.php.ini[varname].local_value === null) {
+  const runtime = ensurePhpRuntimeState();
+  const entry = runtime.ini[varname];
+  if (entry && entry.local_value !== undefined) {
+    if (entry.local_value === null) {
       return '';
     }
-    return $locutus.php.ini[varname].local_value;
+    return String(entry.local_value);
+  }
+  return '';
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
+function ensurePhpRuntimeState() {
+  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
+  //     note 1: Ensures the mutable locutus PHP runtime bag exists on globalThis.
+  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
+  //  returns 1: true
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus || {};
+  globalContext.$locutus.php = globalContext.$locutus.php || {};
+  const php = globalContext.$locutus.php;
+  php.ini = php.ini || {};
+  php.locales = php.locales || {};
+  php.pointers = php.pointers || [];
+  return {
+    ini: php.ini,
+    locales: php.locales,
+    pointers: php.pointers,
+    locale_default: php.locale_default,
+  };
+}
+function setPhpLocaleDefault(localeDefault) {
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus || {};
+  globalContext.$locutus.php = globalContext.$locutus.php || {};
+  globalContext.$locutus.php.locale_default = localeDefault;
+}
+
+// php/info/ini_get
+function ini_get(varname) {
+  //  discuss at: https://locutus.io/php/ini_get/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: The ini values must be set by ini_set or manually within an ini file
+  //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
+  //   example 1: ini_get('date.timezone')
+  //   returns 1: 'Asia/Hong_Kong'
+  const runtime = ensurePhpRuntimeState();
+  const entry = runtime.ini[varname];
+  if (entry && entry.local_value !== undefined) {
+    if (entry.local_value === null) {
+      return '';
+    }
+    return String(entry.local_value);
   }
   return '';
 }{% endcodeblock %}

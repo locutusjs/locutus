@@ -8,7 +8,8 @@ returns:
   - 'true'
   - 'true'
   - 'true'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Hugues Peccatte
@@ -34,8 +35,21 @@ alias:
   - /functions/array_walk_recursive/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}// @ts-nocheck
-export function array_walk_recursive(array, funcname, userdata) {
+{% codeblock lang:typescript %}import { isObjectLike, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+type PhpValue = {} | null | undefined
+
+type ArrayWalkRecursiveCallback<TValue, TUserdata> = (
+  value: TValue,
+  key: string | number,
+  userdata?: TUserdata,
+) => PhpValue
+
+export function array_walk_recursive<TValue = PhpValue, TUserdata = PhpValue>(
+  array: PhpValue,
+  funcname: ArrayWalkRecursiveCallback<TValue, TUserdata>,
+  userdata?: TUserdata,
+): boolean {
   // original by: Hugues Peccatte
   //      note 1: Only works with user-defined functions, not built-in functions like void()
   //   example 1: array_walk_recursive([3, 4], function () {}, 'userdata')
@@ -45,7 +59,7 @@ export function array_walk_recursive(array, funcname, userdata) {
   //   example 3: array_walk_recursive([3, []], function () {}, 'userdata')
   //   returns 3: true
 
-  if (!array || typeof array !== 'object') {
+  if (!isObjectLike(array)) {
     return false
   }
 
@@ -53,23 +67,25 @@ export function array_walk_recursive(array, funcname, userdata) {
     return false
   }
 
-  for (const key in array) {
+  const target = toPhpArrayObject<PhpValue>(array)
+  const hasOwn = Object.prototype.hasOwnProperty
+  for (const key in target) {
+    if (!hasOwn.call(target, key)) {
+      continue
+    }
+    const value = target[key]
     // apply "funcname" recursively only on arrays
-    if (Array.isArray(array[key])) {
-      const funcArgs = [array[key], funcname]
-      if (arguments.length > 2) {
-        funcArgs.push(userdata)
-      }
-      if (array_walk_recursive.apply(null, funcArgs) === false) {
+    if (Array.isArray(value)) {
+      if (array_walk_recursive(value, funcname, userdata) === false) {
         return false
       }
       continue
     }
     try {
-      if (arguments.length > 2) {
-        funcname(array[key], key, userdata)
+      if (typeof userdata !== 'undefined') {
+        funcname(value as TValue, key, userdata)
       } else {
-        funcname(array[key], key)
+        funcname(value as TValue, key)
       }
     } catch (_e) {
       return false
@@ -81,7 +97,7 @@ export function array_walk_recursive(array, funcname, userdata) {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}// @ts-nocheck
+{% codeblock lang:javascript %}import { isObjectLike, toPhpArrayObject } from '../_helpers/_phpTypes.ts';
 export function array_walk_recursive(array, funcname, userdata) {
   // original by: Hugues Peccatte
   //      note 1: Only works with user-defined functions, not built-in functions like void()
@@ -91,30 +107,96 @@ export function array_walk_recursive(array, funcname, userdata) {
   //   returns 2: true
   //   example 3: array_walk_recursive([3, []], function () {}, 'userdata')
   //   returns 3: true
-  if (!array || typeof array !== 'object') {
+  if (!isObjectLike(array)) {
     return false;
   }
   if (typeof funcname !== 'function') {
     return false;
   }
-  for (const key in array) {
+  const target = toPhpArrayObject(array);
+  const hasOwn = Object.prototype.hasOwnProperty;
+  for (const key in target) {
+    if (!hasOwn.call(target, key)) {
+      continue;
+    }
+    const value = target[key];
     // apply "funcname" recursively only on arrays
-    if (Array.isArray(array[key])) {
-      const funcArgs = [array[key], funcname];
-      if (arguments.length > 2) {
-        funcArgs.push(userdata);
-      }
-      if (array_walk_recursive.apply(null, funcArgs) === false) {
+    if (Array.isArray(value)) {
+      if (array_walk_recursive(value, funcname, userdata) === false) {
         return false;
       }
       continue;
     }
     try {
-      if (arguments.length > 2) {
-        funcname(array[key], key, userdata);
+      if (typeof userdata !== 'undefined') {
+        funcname(value, key, userdata);
       }
       else {
-        funcname(array[key], key);
+        funcname(value, key);
+      }
+    }
+    catch (_e) {
+      return false;
+    }
+  }
+  return true;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isObjectLike(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null;
+}
+function isPhpArrayObject(value) {
+  return isObjectLike(value);
+}
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value;
+  }
+  return {};
+}
+
+// php/array/array_walk_recursive
+function array_walk_recursive(array, funcname, userdata) {
+  // original by: Hugues Peccatte
+  //      note 1: Only works with user-defined functions, not built-in functions like void()
+  //   example 1: array_walk_recursive([3, 4], function () {}, 'userdata')
+  //   returns 1: true
+  //   example 2: array_walk_recursive([3, [4]], function () {}, 'userdata')
+  //   returns 2: true
+  //   example 3: array_walk_recursive([3, []], function () {}, 'userdata')
+  //   returns 3: true
+  if (!isObjectLike(array)) {
+    return false;
+  }
+  if (typeof funcname !== 'function') {
+    return false;
+  }
+  const target = toPhpArrayObject(array);
+  const hasOwn = Object.prototype.hasOwnProperty;
+  for (const key in target) {
+    if (!hasOwn.call(target, key)) {
+      continue;
+    }
+    const value = target[key];
+    // apply "funcname" recursively only on arrays
+    if (Array.isArray(value)) {
+      if (array_walk_recursive(value, funcname, userdata) === false) {
+        return false;
+      }
+      continue;
+    }
+    try {
+      if (typeof userdata !== 'undefined') {
+        funcname(value, key, userdata);
+      }
+      else {
+        funcname(value, key);
       }
     }
     catch (_e) {

@@ -497,36 +497,12 @@ class Util {
     let buf = '---' + '\n' + YAML.dump(funcData).trim() + '\n' + '---' + '\n'
 
     if (isTS) {
-      // website/source snippets are generated snapshots; refresh with `yarn injectweb` after signature changes.
-      // Generate clean JS by stripping type annotations via TypeScript compiler
-      const jsResult = ts.transpileModule(params.code, {
-        compilerOptions: {
-          target: ts.ScriptTarget.ES2022,
-          module: ts.ModuleKind.ESNext,
-          removeComments: false,
-          newLine: ts.NewLineKind.LineFeed,
-        },
-      })
-      // Halve indentation (tsc emits 4 spaces, we use 2) and trim trailing whitespace
-      const jsCode = jsResult.outputText
-        .split('\n')
-        .map((line) => {
-          const match = line.match(/^( +)/)
-          if (!match) {
-            return line
-          }
-          const prefix = match[1]
-          if (!prefix) {
-            return line
-          }
-          const spaces = prefix.length
-          return ' '.repeat(Math.floor(spaces / 2)) + line.slice(spaces)
-        })
-        .join('\n')
-        .trimEnd()
+      const jsCode = this._toWebsiteJs(params.code)
+      const standaloneCode = await this._buildStandaloneJs(params)
 
       buf += `<div class="code-tab-panel" data-lang="ts">\n{% codeblock lang:typescript %}${params.code}{% endcodeblock %}\n</div>\n`
-      buf += `<div class="code-tab-panel" data-lang="js" style="display:none">\n{% codeblock lang:javascript %}${jsCode}{% endcodeblock %}\n</div>`
+      buf += `<div class="code-tab-panel" data-lang="js" style="display:none">\n{% codeblock lang:javascript %}${jsCode}{% endcodeblock %}\n</div>\n`
+      buf += `<div class="code-tab-panel" data-lang="standalone" style="display:none">\n{% codeblock lang:javascript %}${standaloneCode}{% endcodeblock %}\n</div>`
     } else {
       buf += `{% codeblock lang:javascript %}${params.code}{% endcodeblock %}`
     }
@@ -546,6 +522,151 @@ class Util {
       return subpath + '.ts'
     }
     return subpath + '.js'
+  }
+
+  _toWebsiteJs(code: string): string {
+    // website/source snippets are generated snapshots; refresh with `yarn injectweb` after signature changes.
+    const jsResult = ts.transpileModule(code, {
+      compilerOptions: {
+        target: ts.ScriptTarget.ES2022,
+        module: ts.ModuleKind.ESNext,
+        removeComments: false,
+        newLine: ts.NewLineKind.LineFeed,
+      },
+    })
+
+    // Halve indentation (tsc emits 4 spaces, we use 2) and trim trailing whitespace
+    return jsResult.outputText
+      .split('\n')
+      .map((line) => {
+        const match = line.match(/^( +)/)
+        if (!match) {
+          return line
+        }
+        const prefix = match[1]
+        if (!prefix) {
+          return line
+        }
+        const spaces = prefix.length
+        return ' '.repeat(Math.floor(spaces / 2)) + line.slice(spaces)
+      })
+      .join('\n')
+      .trimEnd()
+  }
+
+  _extractRelativeImportAliases(sourceFile: ts.SourceFile): string[] {
+    const aliases = new Set<string>()
+
+    const addAlias = (localName: string, importedName: string): void => {
+      if (localName === importedName) {
+        return
+      }
+      aliases.add(`const ${localName} = ${importedName};`)
+    }
+
+    ts.forEachChild(sourceFile, (node) => {
+      if (!ts.isImportDeclaration(node) || !ts.isStringLiteral(node.moduleSpecifier)) {
+        return
+      }
+
+      const importPath = node.moduleSpecifier.text
+      if (!importPath.startsWith('./') && !importPath.startsWith('../')) {
+        return
+      }
+
+      const importClause = node.importClause
+      if (!importClause || importClause.isTypeOnly) {
+        return
+      }
+
+      if (importClause.namedBindings && ts.isNamedImports(importClause.namedBindings)) {
+        for (const importElement of importClause.namedBindings.elements) {
+          if (importElement.isTypeOnly) {
+            continue
+          }
+          const localName = importElement.name.text
+          const importedName = importElement.propertyName?.text || localName
+          addAlias(localName, importedName)
+        }
+      }
+    })
+
+    return Array.from(aliases)
+  }
+
+  _stripLocutusModuleSyntax(jsCode: string): string {
+    return jsCode
+      .replace(/^\s*import[\s\S]*?from\s+['"](?:\.\.?\/)[^'"]+['"];\s*$/gm, '')
+      .replace(/^\s*export\s+\{[^}]+\};?\s*$/gm, '')
+      .replace(/^(\s*)export\s+(?=(?:async\s+)?function\b|const\b|let\b|var\b|class\b)/gm, '$1')
+      .replace(/^(\s*)export\s+default\s+/gm, '$1')
+      .trim()
+  }
+
+  async _collectStandaloneDependencyParams(
+    params: ParsedParams,
+    seen = new Set<string>(),
+    visiting = new Set<string>(),
+  ): Promise<ParsedParams[]> {
+    const ordered: ParsedParams[] = []
+
+    const visit = async (depCodePath: string): Promise<void> => {
+      const depKey = depCodePath.replace(/\.(js|ts)$/, '')
+      if (seen.has(depKey) || visiting.has(depKey)) {
+        return
+      }
+      visiting.add(depKey)
+
+      const depLoadPath =
+        depCodePath.endsWith('.js') || depCodePath.endsWith('.ts') ? depCodePath : this._resolveSourceExt(depCodePath)
+      const depParams = await this._load(depLoadPath, params)
+      if (depParams) {
+        for (const nestedDep of depParams.codeDependencies || []) {
+          await visit(nestedDep)
+        }
+        ordered.push(depParams)
+        seen.add(depKey)
+      }
+      visiting.delete(depKey)
+    }
+
+    for (const depCodePath of params.codeDependencies || []) {
+      await visit(depCodePath)
+    }
+
+    return ordered
+  }
+
+  async _buildStandaloneJs(params: ParsedParams): Promise<string> {
+    const dependencies = await this._collectStandaloneDependencyParams(params)
+    const modules = [...dependencies, params]
+    const chunks: string[] = []
+
+    for (const moduleParams of modules) {
+      const moduleIsTs = moduleParams.filepath.endsWith('.ts')
+      const scriptKind = moduleIsTs ? ts.ScriptKind.TS : ts.ScriptKind.JS
+      const sourceFile = ts.createSourceFile(
+        moduleParams.filepath,
+        moduleParams.code,
+        ts.ScriptTarget.ES2022,
+        true,
+        scriptKind,
+      )
+
+      const modulePath = moduleParams.filepath.replace(/\.(js|ts)$/, '')
+      const jsCode = this._toWebsiteJs(moduleParams.code)
+      const standaloneModule = this._stripLocutusModuleSyntax(jsCode)
+      const aliases = this._extractRelativeImportAliases(sourceFile)
+
+      let chunk = `// ${modulePath}\n`
+      if (aliases.length > 0) {
+        chunk += aliases.join('\n') + '\n\n'
+      }
+      chunk += standaloneModule
+      chunks.push(chunk.trim())
+    }
+
+    return chunks.join('\n\n').trimEnd()
   }
 
   async _writetestOne(params: ParsedParams): Promise<void> {

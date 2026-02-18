@@ -31,7 +31,7 @@ alias:
   - /elixir/downcase/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function downcase(string) {
+{% codeblock lang:typescript %}export function downcase(string: string): string {
   //      discuss at: https://locutus.io/elixir/downcase/
   // parity verified: Elixir 1.18
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -46,6 +46,19 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function downcase(string) {
+  //      discuss at: https://locutus.io/elixir/downcase/
+  // parity verified: Elixir 1.18
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: downcase('HELLO')
+  //       returns 1: 'hello'
+  //       example 2: downcase('Hello World')
+  //       returns 2: 'hello world'
+  return String(string).toLowerCase();
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// elixir/String/downcase
+function downcase(string) {
   //      discuss at: https://locutus.io/elixir/downcase/
   // parity verified: Elixir 1.18
   //     original by: Kevin van Zonneveld (https://kvz.io)

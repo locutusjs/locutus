@@ -6,7 +6,8 @@ examples:
     ini_set('date.timezone', 'America/Chicago')
 returns:
   - '''Asia/Hong_Kong'''
-dependencies: []
+dependencies:
+  - php/_helpers/_phpRuntimeState
 authors:
   original by:
     - Brett Zamir (https://brett-zamir.me)
@@ -33,8 +34,12 @@ alias:
   - /functions/ini_set/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}// @ts-nocheck
-export function ini_set(varname, newvalue) {
+{% codeblock lang:typescript %}import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
+
+type IniScalar = string | number | boolean | null
+export type IniValue = IniScalar | {} | Array<IniScalar | {}> | undefined
+
+export function ini_set(varname: string, newvalue: IniValue): IniValue | undefined {
   //      discuss at: https://locutus.io/php/ini_set/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -43,39 +48,40 @@ export function ini_set(varname, newvalue) {
   //       example 1: ini_set('date.timezone', 'America/Chicago')
   //       returns 1: 'Asia/Hong_Kong'
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
-  $locutus.php.ini = $locutus.php.ini || {}
+  const runtime = ensurePhpRuntimeState()
+  const entry = runtime.ini[varname] ?? (runtime.ini[varname] = {})
+  const oldval = entry.local_value as IniValue | undefined
 
-  $locutus.php.ini = $locutus.php.ini || {}
-  $locutus.php.ini[varname] = $locutus.php.ini[varname] || {}
-
-  const oldval = $locutus.php.ini[varname].local_value
-
-  const lowerStr = (newvalue + '').toLowerCase().trim()
+  let normalizedValue = newvalue
+  const lowerStr = String(newvalue).toLowerCase().trim()
   if (newvalue === true || lowerStr === 'on' || lowerStr === '1') {
-    newvalue = 'on'
+    normalizedValue = 'on'
   }
   if (newvalue === false || lowerStr === 'off' || lowerStr === '0') {
-    newvalue = 'off'
+    normalizedValue = 'off'
   }
 
-  const _setArr = function (oldval) {
-    // Although these are set individually, they are all accumulated
-    if (typeof oldval === 'undefined') {
-      $locutus.ini[varname].local_value = []
+  const setArrayValue = () => {
+    // Although these are set individually, they are all accumulated.
+    if (typeof entry.local_value === 'undefined') {
+      entry.local_value = [normalizedValue]
+      return
     }
-    $locutus.ini[varname].local_value.push(newvalue)
+
+    if (Array.isArray(entry.local_value)) {
+      entry.local_value.push(normalizedValue)
+      return
+    }
+
+    entry.local_value = [entry.local_value, normalizedValue]
   }
 
   switch (varname) {
     case 'extension':
-      _setArr(oldval, newvalue)
+      setArrayValue()
       break
     default:
-      $locutus.php.ini[varname].local_value = newvalue
+      entry.local_value = normalizedValue
       break
   }
 
@@ -84,7 +90,7 @@ export function ini_set(varname, newvalue) {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}// @ts-nocheck
+{% codeblock lang:javascript %}import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts';
 export function ini_set(varname, newvalue) {
   //      discuss at: https://locutus.io/php/ini_set/
   // parity verified: PHP 8.3
@@ -93,34 +99,106 @@ export function ini_set(varname, newvalue) {
   //       example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
   //       example 1: ini_set('date.timezone', 'America/Chicago')
   //       returns 1: 'Asia/Hong_Kong'
-  const $global = typeof window !== 'undefined' ? window : global;
-  $global.$locutus = $global.$locutus || {};
-  const $locutus = $global.$locutus;
-  $locutus.php = $locutus.php || {};
-  $locutus.php.ini = $locutus.php.ini || {};
-  $locutus.php.ini = $locutus.php.ini || {};
-  $locutus.php.ini[varname] = $locutus.php.ini[varname] || {};
-  const oldval = $locutus.php.ini[varname].local_value;
-  const lowerStr = (newvalue + '').toLowerCase().trim();
+  const runtime = ensurePhpRuntimeState();
+  const entry = runtime.ini[varname] ?? (runtime.ini[varname] = {});
+  const oldval = entry.local_value;
+  let normalizedValue = newvalue;
+  const lowerStr = String(newvalue).toLowerCase().trim();
   if (newvalue === true || lowerStr === 'on' || lowerStr === '1') {
-    newvalue = 'on';
+    normalizedValue = 'on';
   }
   if (newvalue === false || lowerStr === 'off' || lowerStr === '0') {
-    newvalue = 'off';
+    normalizedValue = 'off';
   }
-  const _setArr = function (oldval) {
-    // Although these are set individually, they are all accumulated
-    if (typeof oldval === 'undefined') {
-      $locutus.ini[varname].local_value = [];
+  const setArrayValue = () => {
+    // Although these are set individually, they are all accumulated.
+    if (typeof entry.local_value === 'undefined') {
+      entry.local_value = [normalizedValue];
+      return;
     }
-    $locutus.ini[varname].local_value.push(newvalue);
+    if (Array.isArray(entry.local_value)) {
+      entry.local_value.push(normalizedValue);
+      return;
+    }
+    entry.local_value = [entry.local_value, normalizedValue];
   };
   switch (varname) {
     case 'extension':
-      _setArr(oldval, newvalue);
+      setArrayValue();
       break;
     default:
-      $locutus.php.ini[varname].local_value = newvalue;
+      entry.local_value = normalizedValue;
+      break;
+  }
+  return oldval;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
+function ensurePhpRuntimeState() {
+  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
+  //     note 1: Ensures the mutable locutus PHP runtime bag exists on globalThis.
+  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
+  //  returns 1: true
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus || {};
+  globalContext.$locutus.php = globalContext.$locutus.php || {};
+  const php = globalContext.$locutus.php;
+  php.ini = php.ini || {};
+  php.locales = php.locales || {};
+  php.pointers = php.pointers || [];
+  return {
+    ini: php.ini,
+    locales: php.locales,
+    pointers: php.pointers,
+    locale_default: php.locale_default,
+  };
+}
+function setPhpLocaleDefault(localeDefault) {
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus || {};
+  globalContext.$locutus.php = globalContext.$locutus.php || {};
+  globalContext.$locutus.php.locale_default = localeDefault;
+}
+
+// php/info/ini_set
+function ini_set(varname, newvalue) {
+  //      discuss at: https://locutus.io/php/ini_set/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: This will not set a global_value or access level for the ini item
+  //       example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
+  //       example 1: ini_set('date.timezone', 'America/Chicago')
+  //       returns 1: 'Asia/Hong_Kong'
+  const runtime = ensurePhpRuntimeState();
+  const entry = runtime.ini[varname] ?? (runtime.ini[varname] = {});
+  const oldval = entry.local_value;
+  let normalizedValue = newvalue;
+  const lowerStr = String(newvalue).toLowerCase().trim();
+  if (newvalue === true || lowerStr === 'on' || lowerStr === '1') {
+    normalizedValue = 'on';
+  }
+  if (newvalue === false || lowerStr === 'off' || lowerStr === '0') {
+    normalizedValue = 'off';
+  }
+  const setArrayValue = () => {
+    // Although these are set individually, they are all accumulated.
+    if (typeof entry.local_value === 'undefined') {
+      entry.local_value = [normalizedValue];
+      return;
+    }
+    if (Array.isArray(entry.local_value)) {
+      entry.local_value.push(normalizedValue);
+      return;
+    }
+    entry.local_value = [entry.local_value, normalizedValue];
+  };
+  switch (varname) {
+    case 'extension':
+      setArrayValue();
+      break;
+    default:
+      entry.local_value = normalizedValue;
       break;
   }
   return oldval;

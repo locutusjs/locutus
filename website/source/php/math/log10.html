@@ -36,7 +36,7 @@ alias:
   - /functions/log10/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function log10(arg) {
+{% codeblock lang:typescript %}export function log10(arg: number): number {
   //      discuss at: https://locutus.io/php/log10/
   // parity verified: PHP 8.3
   //     original by: Philip Peterson
@@ -54,6 +54,22 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function log10(arg) {
+  //      discuss at: https://locutus.io/php/log10/
+  // parity verified: PHP 8.3
+  //     original by: Philip Peterson
+  //     improved by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     improved by: Tod Gentille
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: log10(10)
+  //       returns 1: 1
+  //       example 2: log10(1)
+  //       returns 2: 0
+  return Math.log(arg) / 2.302585092994046; // Math.LN10
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/math/log10
+function log10(arg) {
   //      discuss at: https://locutus.io/php/log10/
   // parity verified: PHP 8.3
   //     original by: Philip Peterson

@@ -33,7 +33,9 @@ alias:
   - /functions/array_flip/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function array_flip(trans) {
+{% codeblock lang:typescript %}import type { PhpAssoc, PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function array_flip(trans: PhpAssoc<PhpMixed>): PhpAssoc<string> {
   //      discuss at: https://locutus.io/php/array_flip/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -42,14 +44,13 @@ alias:
   //       example 1: array_flip( {a: 1, b: 1, c: 2} )
   //       returns 1: {1: 'b', 2: 'c'}
 
-  let key
-  const tmpArr = {}
-
-  for (key in trans) {
-    if (!trans.hasOwnProperty(key)) {
+  const tmpArr: PhpAssoc<string> = {}
+  const hasOwn = Object.prototype.hasOwnProperty
+  for (const key in trans) {
+    if (!hasOwn.call(trans, key)) {
       continue
     }
-    tmpArr[trans[key]] = key
+    tmpArr[String(trans[key])] = key
   }
 
   return tmpArr
@@ -65,13 +66,34 @@ alias:
   //     improved by: Brett Zamir (https://brett-zamir.me)
   //       example 1: array_flip( {a: 1, b: 1, c: 2} )
   //       returns 1: {1: 'b', 2: 'c'}
-  let key;
   const tmpArr = {};
-  for (key in trans) {
-    if (!trans.hasOwnProperty(key)) {
+  const hasOwn = Object.prototype.hasOwnProperty;
+  for (const key in trans) {
+    if (!hasOwn.call(trans, key)) {
       continue;
     }
-    tmpArr[trans[key]] = key;
+    tmpArr[String(trans[key])] = key;
+  }
+  return tmpArr;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/array/array_flip
+function array_flip(trans) {
+  //      discuss at: https://locutus.io/php/array_flip/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Pier Paolo Ramon (https://www.mastersoup.com/)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: array_flip( {a: 1, b: 1, c: 2} )
+  //       returns 1: {1: 'b', 2: 'c'}
+  const tmpArr = {};
+  const hasOwn = Object.prototype.hasOwnProperty;
+  for (const key in trans) {
+    if (!hasOwn.call(trans, key)) {
+      continue;
+    }
+    tmpArr[String(trans[key])] = key;
   }
   return tmpArr;
 }{% endcodeblock %}

@@ -14,6 +14,7 @@ returns:
   - '[''Kevin'', ''Zonneveld'', ''van'']'
   - '{0: ''apple'', 1: ''banana'', 2: ''lemon'', 3: ''orange''}'
 dependencies:
+  - php/_helpers/_phpRuntimeState
   - php/i18n/i18n_loc_get_default
 authors:
   original by:
@@ -75,9 +76,25 @@ alias:
   - /functions/sort/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
+{% codeblock lang:typescript %}import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
+import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
 
-export function sort(inputArr: Record<string, unknown>, sortFlags?: string): boolean | Record<string, unknown> {
+type PhpValue = {} | null | undefined
+
+const toSortablePrimitive = (value: PhpValue): string | number | bigint | boolean => {
+  if (
+    typeof value === 'string' ||
+    typeof value === 'number' ||
+    typeof value === 'bigint' ||
+    typeof value === 'boolean'
+  ) {
+    return value
+  }
+
+  return String(value ?? '')
+}
+
+export function sort<T extends PhpValue>(inputArr: Record<string, T>, sortFlags?: string): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/sort/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //  revised by: Brett Zamir (https://brett-zamir.me)
@@ -108,97 +125,72 @@ export function sort(inputArr: Record<string, unknown>, sortFlags?: string): boo
   //   example 2: var $result = $fruits
   //   returns 2: {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
 
-  let sorter: ((a: unknown, b: unknown) => number) | undefined
-  let i: number
-  let k: string
-  let sortByReference = false
-  let populateArr: Record<string, unknown> = {}
+  const runtime = ensurePhpRuntimeState()
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus: {
-      php: {
-        locales: Record<string, { sorting: (a: unknown, b: unknown) => number }>
-        ini?: Record<string, { local_value?: unknown }>
-      }
-    }
+  const regularSortAsc = (leftValue: T, rightValue: T): number => {
+    const left = toSortablePrimitive(leftValue)
+    const right = toSortablePrimitive(rightValue)
+    return left > right ? 1 : left < right ? -1 : 0
   }
-  $global.$locutus = $global.$locutus || ({} as typeof $global.$locutus)
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || ({} as typeof $locutus.php)
-  $locutus.php.locales = $locutus.php.locales || {}
+
+  let sorter: ((a: T, b: T) => number) | undefined
 
   switch (sortFlags) {
     case 'SORT_STRING':
-      // compare items as strings
-      // leave sorter undefined, so built-in comparison is used
+      // compare items as strings via built-in fallback
       break
     case 'SORT_LOCALE_STRING': {
-      // compare items as strings, based on the current locale
-      // (set with i18n_loc_set_default() as of PHP6)
-      const loc = $locutus.php.locales[i18nlgd()]
-
-      if (loc && loc.sorting) {
-        // if sorting exists on locale object, use it
-        // otherwise let sorter be undefined
-        // to fallback to built-in behavior
-        sorter = loc.sorting
+      const locale = runtime.locales[i18nlgd()]
+      if (locale?.sorting) {
+        sorter = locale.sorting
       }
       break
     }
     case 'SORT_NUMERIC':
-      // compare items numerically
-      sorter = function (a, b) {
-        return Number(a) - Number(b)
-      }
+      sorter = (a, b) => Number(a) - Number(b)
       break
     case 'SORT_REGULAR':
+      sorter = regularSortAsc
+      break
     default:
-      sorter = function (a, b) {
-        const aFloat = parseFloat(String(a))
-        const bFloat = parseFloat(String(b))
-        const aNumeric = aFloat + '' === a
-        const bNumeric = bFloat + '' === b
-
-        if (aNumeric && bNumeric) {
-          return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0
-        } else if (aNumeric && !bNumeric) {
-          return 1
-        } else if (!aNumeric && bNumeric) {
-          return -1
-        }
-
-        return String(a) > String(b) ? 1 : String(a) < String(b) ? -1 : 0
-      }
+      sorter = regularSortAsc
       break
   }
 
-  const iniVal = String($locutus.php.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
-  sortByReference = iniVal === 'on'
-  populateArr = sortByReference ? inputArr : populateArr
+  const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on'
+  const sortByReference = iniVal === 'on'
+  const populateArr: Record<string, T> = sortByReference ? inputArr : {}
 
-  const valArr: unknown[] = []
-  for (k in inputArr) {
-    // Get key and value arrays
-    if (inputArr.hasOwnProperty(k)) {
-      valArr.push(inputArr[k])
-      if (sortByReference) {
-        delete inputArr[k]
-      }
+  const values: T[] = []
+  for (const [key, value] of Object.entries(inputArr)) {
+    values.push(value)
+    if (sortByReference) {
+      delete inputArr[key]
     }
   }
 
-  valArr.sort(sorter)
+  values.sort(sorter)
 
-  for (i = 0; i < valArr.length; i++) {
-    // Repopulate the old array
-    populateArr[i] = valArr[i]
+  for (const [index, value] of values.entries()) {
+    populateArr[index] = value
   }
+
   return sortByReference || populateArr
 }
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts';
+{% codeblock lang:javascript %}import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts';
+import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts';
+const toSortablePrimitive = (value) => {
+  if (typeof value === 'string' ||
+    typeof value === 'number' ||
+    typeof value === 'bigint' ||
+    typeof value === 'boolean') {
+    return value;
+  }
+  return String(value ?? '');
+};
 export function sort(inputArr, sortFlags) {
   //  discuss at: https://locutus.io/php/sort/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -229,76 +221,179 @@ export function sort(inputArr, sortFlags) {
   //   example 2: sort($fruits)
   //   example 2: var $result = $fruits
   //   returns 2: {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
+  const runtime = ensurePhpRuntimeState();
+  const regularSortAsc = (leftValue, rightValue) => {
+    const left = toSortablePrimitive(leftValue);
+    const right = toSortablePrimitive(rightValue);
+    return left > right ? 1 : left < right ? -1 : 0;
+  };
   let sorter;
-  let i;
-  let k;
-  let sortByReference = false;
-  let populateArr = {};
-  const $global = (typeof window !== 'undefined' ? window : global);
-  $global.$locutus = $global.$locutus || {};
-  const $locutus = $global.$locutus;
-  $locutus.php = $locutus.php || {};
-  $locutus.php.locales = $locutus.php.locales || {};
   switch (sortFlags) {
     case 'SORT_STRING':
-      // compare items as strings
-      // leave sorter undefined, so built-in comparison is used
+      // compare items as strings via built-in fallback
       break;
     case 'SORT_LOCALE_STRING': {
-      // compare items as strings, based on the current locale
-      // (set with i18n_loc_set_default() as of PHP6)
-      const loc = $locutus.php.locales[i18nlgd()];
-      if (loc && loc.sorting) {
-        // if sorting exists on locale object, use it
-        // otherwise let sorter be undefined
-        // to fallback to built-in behavior
-        sorter = loc.sorting;
+      const locale = runtime.locales[i18nlgd()];
+      if (locale?.sorting) {
+        sorter = locale.sorting;
       }
       break;
     }
     case 'SORT_NUMERIC':
-      // compare items numerically
-      sorter = function (a, b) {
-        return Number(a) - Number(b);
-      };
+      sorter = (a, b) => Number(a) - Number(b);
       break;
     case 'SORT_REGULAR':
+      sorter = regularSortAsc;
+      break;
     default:
-      sorter = function (a, b) {
-        const aFloat = parseFloat(String(a));
-        const bFloat = parseFloat(String(b));
-        const aNumeric = aFloat + '' === a;
-        const bNumeric = bFloat + '' === b;
-        if (aNumeric && bNumeric) {
-          return aFloat > bFloat ? 1 : aFloat < bFloat ? -1 : 0;
-        }
-        else if (aNumeric && !bNumeric) {
-          return 1;
-        }
-        else if (!aNumeric && bNumeric) {
-          return -1;
-        }
-        return String(a) > String(b) ? 1 : String(a) < String(b) ? -1 : 0;
-      };
+      sorter = regularSortAsc;
       break;
   }
-  const iniVal = String($locutus.php.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on';
-  sortByReference = iniVal === 'on';
-  populateArr = sortByReference ? inputArr : populateArr;
-  const valArr = [];
-  for (k in inputArr) {
-    // Get key and value arrays
-    if (inputArr.hasOwnProperty(k)) {
-      valArr.push(inputArr[k]);
-      if (sortByReference) {
-        delete inputArr[k];
-      }
+  const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on';
+  const sortByReference = iniVal === 'on';
+  const populateArr = sortByReference ? inputArr : {};
+  const values = [];
+  for (const [key, value] of Object.entries(inputArr)) {
+    values.push(value);
+    if (sortByReference) {
+      delete inputArr[key];
     }
   }
-  valArr.sort(sorter);
-  for (i = 0; i < valArr.length; i++) {
-    // Repopulate the old array
-    populateArr[i] = valArr[i];
+  values.sort(sorter);
+  for (const [index, value] of values.entries()) {
+    populateArr[index] = value;
+  }
+  return sortByReference || populateArr;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
+function ensurePhpRuntimeState() {
+  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
+  //     note 1: Ensures the mutable locutus PHP runtime bag exists on globalThis.
+  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
+  //  returns 1: true
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus || {};
+  globalContext.$locutus.php = globalContext.$locutus.php || {};
+  const php = globalContext.$locutus.php;
+  php.ini = php.ini || {};
+  php.locales = php.locales || {};
+  php.pointers = php.pointers || [];
+  return {
+    ini: php.ini,
+    locales: php.locales,
+    pointers: php.pointers,
+    locale_default: php.locale_default,
+  };
+}
+function setPhpLocaleDefault(localeDefault) {
+  const globalContext = globalThis;
+  globalContext.$locutus = globalContext.$locutus || {};
+  globalContext.$locutus.php = globalContext.$locutus.php || {};
+  globalContext.$locutus.php.locale_default = localeDefault;
+}
+
+// php/i18n/i18n_loc_get_default
+function i18n_loc_get_default() {
+  //  discuss at: https://locutus.io/php/i18n_loc_get_default/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: Renamed in PHP6 from locale_get_default(). Not listed yet at php.net.
+  //      note 1: List of locales at <https://demo.icu-project.org/icu-bin/locexp>
+  //      note 1: To be usable with sort() if it is passed the `SORT_LOCALE_STRING`
+  //      note 1: sorting flag: https://php.net/manual/en/function.sort.php
+  //   example 1: i18n_loc_get_default()
+  //   returns 1: 'en_US_POSIX'
+  //   example 2: i18n_loc_set_default('pt_PT')
+  //   example 2: i18n_loc_get_default()
+  //   returns 2: 'pt_PT'
+  const runtime = ensurePhpRuntimeState();
+  return runtime.locale_default ?? 'en_US_POSIX';
+}
+
+// php/array/sort
+const i18nlgd = i18n_loc_get_default;
+
+const toSortablePrimitive = (value) => {
+  if (typeof value === 'string' ||
+    typeof value === 'number' ||
+    typeof value === 'bigint' ||
+    typeof value === 'boolean') {
+    return value;
+  }
+  return String(value ?? '');
+};
+function sort(inputArr, sortFlags) {
+  //  discuss at: https://locutus.io/php/sort/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: SORT_STRING (as well as natsort and natcasesort) might also be
+  //      note 1: integrated into all of these functions by adapting the code at
+  //      note 1: https://sourcefrog.net/projects/natsort/natcompare.js
+  //      note 1: This function deviates from PHP in returning a copy of the array instead
+  //      note 1: of acting by reference and returning true; this was necessary because
+  //      note 1: IE does not allow deleting and re-adding of properties without caching
+  //      note 1: of property position; you can set the ini of "locutus.sortByReference" to true to
+  //      note 1: get the PHP behavior, but use this only if you are in an environment
+  //      note 1: such as Firefox extensions where for-in iteration order is fixed and true
+  //      note 1: property deletion is supported. Note that we intend to implement the PHP
+  //      note 1: behavior by default if IE ever does allow it; only gives shallow copy since
+  //      note 1: is by reference in PHP anyways
+  //      note 1: Since JS objects' keys are always strings, and (the
+  //      note 1: default) SORT_REGULAR flag distinguishes by key type,
+  //      note 1: if the content is a numeric string, we treat the
+  //      note 1: "original type" as numeric.
+  //   example 1: var $arr = ['Kevin', 'van', 'Zonneveld']
+  //   example 1: sort($arr)
+  //   example 1: var $result = $arr
+  //   returns 1: ['Kevin', 'Zonneveld', 'van']
+  //   example 2: ini_set('locutus.sortByReference', true)
+  //   example 2: var $fruits = {d: 'lemon', a: 'orange', b: 'banana', c: 'apple'}
+  //   example 2: sort($fruits)
+  //   example 2: var $result = $fruits
+  //   returns 2: {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
+  const runtime = ensurePhpRuntimeState();
+  const regularSortAsc = (leftValue, rightValue) => {
+    const left = toSortablePrimitive(leftValue);
+    const right = toSortablePrimitive(rightValue);
+    return left > right ? 1 : left < right ? -1 : 0;
+  };
+  let sorter;
+  switch (sortFlags) {
+    case 'SORT_STRING':
+      // compare items as strings via built-in fallback
+      break;
+    case 'SORT_LOCALE_STRING': {
+      const locale = runtime.locales[i18nlgd()];
+      if (locale?.sorting) {
+        sorter = locale.sorting;
+      }
+      break;
+    }
+    case 'SORT_NUMERIC':
+      sorter = (a, b) => Number(a) - Number(b);
+      break;
+    case 'SORT_REGULAR':
+      sorter = regularSortAsc;
+      break;
+    default:
+      sorter = regularSortAsc;
+      break;
+  }
+  const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on';
+  const sortByReference = iniVal === 'on';
+  const populateArr = sortByReference ? inputArr : {};
+  const values = [];
+  for (const [key, value] of Object.entries(inputArr)) {
+    values.push(value);
+    if (sortByReference) {
+      delete inputArr[key];
+    }
+  }
+  values.sort(sorter);
+  for (const [index, value] of values.entries()) {
+    populateArr[index] = value;
   }
   return sortByReference || populateArr;
 }{% endcodeblock %}

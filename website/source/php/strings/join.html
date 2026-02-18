@@ -30,9 +30,10 @@ alias:
   - /functions/join/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import { implode } from '../strings/implode.ts'
+{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import { implode } from '../strings/implode.ts'
 
-export function join(glue, pieces) {
+export function join(glue: string, pieces: PhpMixed[]): string {
   //      discuss at: https://locutus.io/php/join/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -46,6 +47,50 @@ export function join(glue, pieces) {
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { implode } from '../strings/implode.ts';
 export function join(glue, pieces) {
+  //      discuss at: https://locutus.io/php/join/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: join(' ', ['Kevin', 'van', 'Zonneveld'])
+  //       returns 1: 'Kevin van Zonneveld'
+  return implode(glue, pieces);
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// php/strings/implode
+function implode(...args) {
+  //      discuss at: https://locutus.io/php/implode/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Waldo Malqui Silva (https://waldo.malqui.info)
+  //     improved by: Itsacon (https://www.itsacon.net/)
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: implode(' ', ['Kevin', 'van', 'Zonneveld'])
+  //       returns 1: 'Kevin van Zonneveld'
+  //       example 2: implode(' ', {first:'Kevin', last: 'van Zonneveld'})
+  //       returns 2: 'Kevin van Zonneveld'
+  let retVal = '';
+  let tGlue = '';
+  let actualGlue = args[0];
+  let actualPieces = args[1];
+  if (args.length === 1) {
+    actualPieces = args[0];
+    actualGlue = '';
+  }
+  if (typeof actualPieces === 'object' && actualPieces !== null) {
+    if (Array.isArray(actualPieces)) {
+      return actualPieces.join(String(actualGlue));
+    }
+    for (const key in actualPieces) {
+      retVal += tGlue + actualPieces[key];
+      tGlue = String(actualGlue);
+    }
+    return retVal;
+  }
+  return String(actualPieces);
+}
+
+// php/strings/join
+function join(glue, pieces) {
   //      discuss at: https://locutus.io/php/join/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

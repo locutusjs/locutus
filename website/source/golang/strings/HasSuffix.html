@@ -35,7 +35,7 @@ alias:
   - /golang/HasSuffix/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function HasSuffix(s, suffix) {
+{% codeblock lang:typescript %}export function HasSuffix(s: string, suffix: string): boolean {
   //      discuss at: https://locutus.io/golang/strings/HasSuffix
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -59,6 +59,28 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function HasSuffix(s, suffix) {
+  //      discuss at: https://locutus.io/golang/strings/HasSuffix
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: HasSuffix('Amigo', 'go')
+  //       returns 1: true
+  //       example 2: HasSuffix('Amigo', 'O')
+  //       returns 2: false
+  //       example 3: HasSuffix('Amigo', 'Amigo')
+  //       returns 3: true
+  //       example 4: HasSuffix('Amigo', '')
+  //       returns 4: true
+  s = s + '';
+  suffix = suffix + '';
+  if (suffix.length === 0) {
+    return true;
+  }
+  return s.slice(-suffix.length) === suffix;
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// golang/strings/HasSuffix
+function HasSuffix(s, suffix) {
   //      discuss at: https://locutus.io/golang/strings/HasSuffix
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)

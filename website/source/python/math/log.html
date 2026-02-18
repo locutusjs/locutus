@@ -33,7 +33,7 @@ alias:
   - /python/log/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function log(x, base) {
+{% codeblock lang:typescript %}export function log(x: number, base: number): number {
   //      discuss at: https://locutus.io/python/log/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -53,6 +53,24 @@ alias:
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}export function log(x, base) {
+  //      discuss at: https://locutus.io/python/log/
+  // parity verified: Python 3.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns the natural logarithm of x (base e)
+  //          note 2: If base is provided, returns log(x) / log(base)
+  //       example 1: log(1)
+  //       returns 1: 0
+  //       example 2: log(2.718281828459045)
+  //       returns 2: 1
+  if (base === undefined) {
+    return Math.log(x);
+  }
+  return Math.log(x) / Math.log(base);
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone" style="display:none">
+{% codeblock lang:javascript %}// python/math/log
+function log(x, base) {
   //      discuss at: https://locutus.io/python/log/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)
