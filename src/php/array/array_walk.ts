@@ -30,7 +30,7 @@ export function array_walk<TValue = PhpValue, TUserdata = PhpValue>(
 
     const target = toPhpArrayObject<TValue>(array)
     const hasUserdata = typeof userdata !== 'undefined'
-    for (const [key, value] of Object.entries(target) as Array<[string, TValue]>) {
+    for (const [key, value] of Object.entries(target)) {
       if (hasUserdata) {
         funcname(value, key, userdata)
       } else {

@@ -32,8 +32,9 @@ export function each<T>(arr: PhpArrayLike<T>): EachResult<T> {
 
   const key = entry[0]
   const value = entry[1]
+  const returnArrayOnly = Reflect.get(each, 'returnArrayOnly') === true
 
-  if ((each as { returnArrayOnly?: boolean }).returnArrayOnly) {
+  if (returnArrayOnly) {
     return [key, value]
   }
 

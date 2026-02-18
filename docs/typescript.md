@@ -340,3 +340,20 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - `Object.entries` plus explicit branch splits can remove assertion-heavy indexed access while preserving behavior.
   - Small, repeatable cleanup slices continue to produce meaningful debt-ratchet gains even late in the migration.
+
+## Iteration 12
+
+- Plans
+  - Continue cast cleanup in low-complexity traversal helpers without tsconfig changes.
+  - Keep callback signature compatibility for generated type-signature tests.
+- Progress
+  - Refactored `src/php/array/each.ts` to remove function-property cast via `Reflect.get(each, 'returnArrayOnly')`.
+  - Refactored `src/php/array/in_array.ts` to remove casted haystack projection by explicit array/object branches.
+  - Refactored `src/php/array/array_walk.ts` to remove casted `Object.entries` tuple typing.
+  - Lowered debt-policy ratchet in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_ARRAY_AS_EXPRESSION`: `16 -> 13`
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Branching on structural variants (`Array.isArray`) is a reliable way to eliminate boundary casts with minimal behavioral risk.
+  - Type-signature tests are a useful guardrail against over-widening callback-heavy APIs during cleanup.

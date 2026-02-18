@@ -19,21 +19,35 @@ export function in_array<T>(needle: PhpMixed, haystack: T[] | Record<string, T>,
   //   returns 4: false
 
   const strict = !!argStrict
-  const entries = haystack as Record<string, T>
 
   // we prevent the double check (strict && arr[key] === ndl) || (!strict && arr[key] === ndl)
   // in just one for, in order to improve the performance
   // deciding wich type of comparation will do before walk array
-  if (strict) {
-    for (const key in entries) {
-      if (entries[key] === needle) {
+  if (Array.isArray(haystack)) {
+    if (strict) {
+      for (const key in haystack) {
+        if (haystack[Number(key)] === needle) {
+          return true
+        }
+      }
+    } else {
+      for (const key in haystack) {
+        // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
+        if (haystack[Number(key)] == needle) {
+          return true
+        }
+      }
+    }
+  } else if (strict) {
+    for (const key in haystack) {
+      if (haystack[key] === needle) {
         return true
       }
     }
   } else {
-    for (const key in entries) {
+    for (const key in haystack) {
       // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
-      if (entries[key] == needle) {
+      if (haystack[key] == needle) {
         return true
       }
     }
