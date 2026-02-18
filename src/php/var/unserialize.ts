@@ -1,13 +1,17 @@
-// @ts-nocheck
-function initCache() {
-  const store = []
+type ParsedResult = [value: unknown, offset: number]
+type CacheEntry = [value: unknown, offset?: number]
+type CacheFn = (<T extends CacheEntry>(value: T) => T) & { get: (index: number) => unknown }
+type ErrorMode = 'throw' | 'log' | 'silent'
+
+function initCache(): CacheFn {
+  const store: unknown[] = []
   // cache only first element, second is length to jump ahead for the parser
-  const cache = function cache(value) {
+  const cache = function cache<T extends CacheEntry>(value: T): T {
     store.push(value[0])
     return value
-  }
+  } as CacheFn
 
-  cache.get = (index) => {
+  cache.get = (index: number): unknown => {
     if (index >= store.length) {
       throw new RangeError(`Can't resolve reference ${index + 1}`)
     }
@@ -18,7 +22,7 @@ function initCache() {
   return cache
 }
 
-function expectType(str, cache) {
+function expectType(str: string, cache: CacheFn): ParsedResult {
   const types = /^(?:N(?=;)|[bidsSaOCrR](?=:)|[^:]+(?=:))/g
   const type = (types.exec(str) || [])[0]
 
@@ -53,37 +57,37 @@ function expectType(str, cache) {
   }
 }
 
-function expectBool(str) {
+function expectBool(str: string): [boolean, number] {
   const reBool = /^b:([01]);/
   const [match, boolMatch] = reBool.exec(str) || []
 
-  if (!boolMatch) {
+  if (!match || !boolMatch) {
     throw new SyntaxError('Invalid bool value, expected 0 or 1')
   }
 
   return [boolMatch === '1', match.length]
 }
 
-function expectInt(str) {
+function expectInt(str: string): [number, number] {
   const reInt = /^i:([+-]?\d+);/
   const [match, intMatch] = reInt.exec(str) || []
 
-  if (!intMatch) {
+  if (!match || !intMatch) {
     throw new SyntaxError('Expected an integer value')
   }
 
   return [parseInt(intMatch, 10), match.length]
 }
 
-function expectFloat(str) {
+function expectFloat(str: string): [number, number] {
   const reFloat = /^d:(NAN|-?INF|(?:\d+\.\d*|\d*\.\d+|\d+)(?:[eE][+-]\d+)?);/
   const [match, floatMatch] = reFloat.exec(str) || []
 
-  if (!floatMatch) {
+  if (!match || !floatMatch) {
     throw new SyntaxError('Expected a float value')
   }
 
-  let floatValue
+  let floatValue = 0
 
   switch (floatMatch) {
     case 'NAN':
@@ -103,7 +107,7 @@ function expectFloat(str) {
   return [floatValue, match.length]
 }
 
-function readBytes(str, len, escapedString = false) {
+function readBytes(str: string, len: number, escapedString = false): [string, number, number] {
   let bytes = 0
   let out = ''
   let c = 0
@@ -150,14 +154,14 @@ function readBytes(str, len, escapedString = false) {
   return [out, bytes, escapedChars]
 }
 
-function expectString(str) {
+function expectString(str: string): [string, number] {
   // PHP strings consist of one-byte characters.
   // JS uses 2 bytes with possible surrogate pairs.
   // Serialized length of 2 is still 1 JS string character
   const reStrLength = /^s:(\d+):"/g // also match the opening " char
   const [match, byteLenMatch] = reStrLength.exec(str) || []
 
-  if (!match) {
+  if (!match || !byteLenMatch) {
     throw new SyntaxError('Expected a string value')
   }
 
@@ -181,11 +185,11 @@ function expectString(str) {
   return [strMatch, match.length + strMatch.length + 2] // skip last ";
 }
 
-function expectEscapedString(str) {
+function expectEscapedString(str: string): [string, number] {
   const reStrLength = /^S:(\d+):"/g // also match the opening " char
   const [match, strLenMatch] = reStrLength.exec(str) || []
 
-  if (!match) {
+  if (!match || !strLenMatch) {
     throw new SyntaxError('Expected an escaped string value')
   }
 
@@ -209,7 +213,7 @@ function expectEscapedString(str) {
   return [strMatch, match.length + strMatch.length + 2] // skip last ";
 }
 
-function expectKeyOrIndex(str) {
+function expectKeyOrIndex(str: string): [string | number, number] {
   try {
     return expectString(str)
     // biome-ignore lint/suspicious/noEmptyBlockStatements: fallthrough to next parser
@@ -227,14 +231,14 @@ function expectKeyOrIndex(str) {
   }
 }
 
-function expectObject(str, cache) {
+function expectObject(str: string, cache: CacheFn): ParsedResult {
   // O:<class name length>:"class name":<prop count>:{<props and values>}
   // O:8:"stdClass":2:{s:3:"foo";s:3:"bar";s:3:"bar";s:3:"baz";}
   const reObjectLiteral = /^O:(\d+):"([^"]+)":(\d+):\{/
   const [objectLiteralBeginMatch /* classNameLengthMatch */, , className, propCountMatch] =
     reObjectLiteral.exec(str) || []
 
-  if (!objectLiteralBeginMatch) {
+  if (!objectLiteralBeginMatch || !propCountMatch) {
     throw new SyntaxError('Invalid input')
   }
 
@@ -245,7 +249,7 @@ function expectObject(str, cache) {
   let totalOffset = objectLiteralBeginMatch.length
 
   const propCount = parseInt(propCountMatch, 10)
-  const obj = {}
+  const obj: Record<string, unknown> = {}
   cache([obj])
 
   str = str.substr(totalOffset)
@@ -259,7 +263,7 @@ function expectObject(str, cache) {
     str = str.substr(value[1])
     totalOffset += value[1]
 
-    obj[prop[0]] = value[0]
+    obj[String(prop[0])] = value[0]
   }
 
   // strict parsing, expect } after object literal
@@ -270,7 +274,7 @@ function expectObject(str, cache) {
   return [obj, totalOffset + 1] // skip final }
 }
 
-function expectClass(str, cache) {
+function expectClass(_str: string, _cache: CacheFn): ParsedResult {
   // can't be well supported, because requires calling eval (or similar)
   // in order to call serialized constructor name
   // which is unsafe
@@ -279,22 +283,22 @@ function expectClass(str, cache) {
   throw new Error('Not yet implemented')
 }
 
-function expectReference(str, cache) {
+function expectReference(str: string, cache: CacheFn): ParsedResult {
   const reRef = /^[rR]:([1-9]\d*);/
   const [match, refIndex] = reRef.exec(str) || []
 
-  if (!match) {
+  if (!match || !refIndex) {
     throw new SyntaxError('Expected reference value')
   }
 
   return [cache.get(parseInt(refIndex, 10) - 1), match.length]
 }
 
-function expectArray(str, cache) {
+function expectArray(str: string, cache: CacheFn): ParsedResult {
   const reArrayLength = /^a:(\d+):{/
   const [arrayLiteralBeginMatch, arrayLengthMatch] = reArrayLength.exec(str) || []
 
-  if (!arrayLengthMatch) {
+  if (!arrayLiteralBeginMatch || !arrayLengthMatch) {
     throw new SyntaxError('Expected array length annotation')
   }
 
@@ -310,20 +314,24 @@ function expectArray(str, cache) {
   return [array[0], arrayLiteralBeginMatch.length + array[1] + 1] // jump over }
 }
 
-function expectArrayItems(str, expectedItems = 0, cache) {
-  let key
-  let item
+function expectArrayItems(
+  str: string,
+  expectedItems = 0,
+  cache: CacheFn,
+): [Record<string, unknown> | unknown[], number] {
+  let key: [string | number, number]
+  let item: ParsedResult
   let totalOffset = 0
   let hasContinousIndexes = true
   let lastIndex = -1
-  let items = {}
+  let items: Record<string, unknown> | unknown[] = {}
   cache([items])
 
   for (let i = 0; i < expectedItems; i++) {
     key = expectKeyOrIndex(str)
 
     hasContinousIndexes = hasContinousIndexes && typeof key[0] === 'number' && key[0] === lastIndex + 1
-    lastIndex = key[0]
+    lastIndex = typeof key[0] === 'number' ? key[0] : lastIndex
 
     str = str.substr(key[1])
     totalOffset += key[1]
@@ -335,7 +343,7 @@ function expectArrayItems(str, expectedItems = 0, cache) {
     str = str.substr(item[1])
     totalOffset += item[1]
 
-    items[key[0]] = item[0]
+    ;(items as Record<string, unknown>)[String(key[0])] = item[0]
   }
 
   if (hasContinousIndexes) {
@@ -346,7 +354,7 @@ function expectArrayItems(str, expectedItems = 0, cache) {
 }
 
 // errorMode: 'throw', 'log', 'silent'
-export function unserialize(str, errorMode = 'log') {
+export function unserialize(str: unknown, errorMode: ErrorMode = 'log'): unknown | false {
   //       discuss at: https://locutus.io/php/unserialize/
   //      original by: Arpad Ray (mailto:arpad@php.net)
   //      improved by: Pedro Tainha (https://www.pedrotainha.com)
