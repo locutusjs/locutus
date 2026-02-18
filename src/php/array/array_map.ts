@@ -1,6 +1,11 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
 
-export function array_map<TResult = unknown>(callback: unknown, ...inputArrays: unknown[][]): TResult[] | unknown[][] {
+type PhpMixed = {} | null | undefined
+
+export function array_map<TResult = PhpMixed>(
+  callback: unknown,
+  ...inputArrays: PhpMixed[][]
+): TResult[] | PhpMixed[][] {
   //  discuss at: https://locutus.io/php/array_map/
   // original by: Andrea Giammarchi (https://webreflection.blogspot.com)
   // improved by: Kevin van Zonneveld (https://kvz.io)
@@ -17,7 +22,7 @@ export function array_map<TResult = unknown>(callback: unknown, ...inputArrays: 
   const resolved =
     callback === null || typeof callback === 'undefined'
       ? null
-      : resolvePhpCallable<unknown[], TResult>(callback, {
+      : resolvePhpCallable<PhpMixed[], TResult>(callback, {
           invalidMessage: 'array_map(): Invalid callback',
           missingScopeMessage: (scopeName: string) => 'Object not found: ' + scopeName,
         })
@@ -25,7 +30,7 @@ export function array_map<TResult = unknown>(callback: unknown, ...inputArrays: 
   if (resolved) {
     const mapped: TResult[] = []
     for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
-      const args: unknown[] = []
+      const args: PhpMixed[] = []
       for (let arrayIndex = 0; arrayIndex < argc - 1; arrayIndex++) {
         args.push(inputArrays[arrayIndex]?.[itemIndex])
       }
@@ -34,9 +39,9 @@ export function array_map<TResult = unknown>(callback: unknown, ...inputArrays: 
     return mapped
   }
 
-  const mapped: unknown[][] = []
+  const mapped: PhpMixed[][] = []
   for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
-    const args: unknown[] = []
+    const args: PhpMixed[] = []
     for (let arrayIndex = 0; arrayIndex < argc - 1; arrayIndex++) {
       args.push(inputArrays[arrayIndex]?.[itemIndex])
     }

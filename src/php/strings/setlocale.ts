@@ -1,3 +1,4 @@
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 import { getenv } from '../info/getenv.ts'
 
 type LocaleDefinition = {
@@ -33,7 +34,7 @@ function copyValue(orig: unknown): unknown {
     return orig.map((item) => copyValue(item))
   }
   if (orig !== null && typeof orig === 'object') {
-    const newObj: { [key: string]: unknown } = {}
+    const newObj: PhpAssoc<unknown> = {}
     for (const [key, value] of Object.entries(orig)) {
       if (!hasOwn.call(orig, key)) {
         continue

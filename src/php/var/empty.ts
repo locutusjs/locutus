@@ -1,4 +1,6 @@
-type KeyedUnknown = { [key: string]: unknown }
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+type KeyedUnknown = PhpAssoc<unknown>
 
 export function empty(mixedVar: unknown): boolean {
   //  discuss at: https://locutus.io/php/empty/

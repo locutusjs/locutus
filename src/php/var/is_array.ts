@@ -1,4 +1,6 @@
-type KeyedUnknown = { [key: string]: unknown }
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+type KeyedUnknown = PhpAssoc<unknown>
 
 export function is_array(mixedVar: unknown): boolean {
   //  discuss at: https://locutus.io/php/is_array/
@@ -45,7 +47,7 @@ export function is_array(mixedVar: unknown): boolean {
     if (!mixedVar || typeof mixedVar !== 'object') {
       return false
     }
-    const candidate = mixedVar as { length?: number; [key: string]: unknown }
+    const candidate = mixedVar as { length?: number } & PhpAssoc<unknown>
     if (typeof candidate.length !== 'number') {
       return false
     }

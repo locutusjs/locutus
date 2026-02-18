@@ -1,4 +1,4 @@
-import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 export function is_callable(mixedVar: unknown, syntaxOnly?: boolean, callableName?: string): boolean | false {
   //  discuss at: https://locutus.io/php/is_callable/
@@ -32,12 +32,12 @@ export function is_callable(mixedVar: unknown, syntaxOnly?: boolean, callableNam
   //   example 5: is_callable(class MyClass {})
   //   returns 5: false
 
-  const globalContext = globalThis as typeof globalThis & { [key: string]: unknown }
+  const globalContext = globalThis as typeof globalThis & PhpAssoc<unknown>
 
   const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
   let name = ''
-  let obj: { [key: string]: unknown } | null = null
+  let obj: PhpAssoc<unknown> | null = null
   let method = ''
   let validFunctionName = false
 

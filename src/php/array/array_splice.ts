@@ -1,12 +1,13 @@
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 import { is_int as isInt } from '../var/is_int.ts'
 
-type AssocArray = { [key: string]: unknown }
-type ReplacementValue = unknown[] | AssocArray | unknown
+type AssocArray<T = unknown> = PhpAssoc<T | undefined>
+type ReplacementValue<T = unknown> = T[] | AssocArray<T> | T
 
-const isAssocArray = (value: unknown): value is AssocArray =>
+const isAssocArray = <T>(value: unknown): value is AssocArray<T> =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 
-const toReplacementItems = (replacement: ReplacementValue | undefined): unknown[] | undefined => {
+const toReplacementItems = <T>(replacement: ReplacementValue<T> | undefined): Array<T | undefined> | undefined => {
   if (typeof replacement === 'undefined') {
     return undefined
   }
@@ -16,17 +17,17 @@ const toReplacementItems = (replacement: ReplacementValue | undefined): unknown[
   }
 
   if (isAssocArray(replacement)) {
-    const values: unknown[] = []
+    const values: Array<T | undefined> = []
     for (const key in replacement) {
-      values.push(replacement[key])
+      values.push(replacement[key] as T | undefined)
     }
     return values
   }
 
-  return [replacement]
+  return [replacement as T | undefined]
 }
 
-const checkToUpIndices = (assoc: AssocArray, cursor: number, key: string): number => {
+const checkToUpIndices = <T>(assoc: AssocArray<T>, cursor: number, key: string): number => {
   // Deal with situation, e.g., if encounter index 4 and try
   // to set it to 0, but 0 exists later in loop (need to
   // increment all subsequent (skipping current key,
@@ -45,11 +46,11 @@ const checkToUpIndices = (assoc: AssocArray, cursor: number, key: string): numbe
 }
 
 export function array_splice(
-  arr: unknown[] | AssocArray,
+  arr: unknown[] | AssocArray<unknown>,
   offst: number,
   lgth?: number,
-  replacement?: ReplacementValue,
-): unknown[] | AssocArray {
+  replacement?: ReplacementValue<unknown>,
+): unknown[] | AssocArray<unknown> {
   //      discuss at: https://locutus.io/php/array_splice/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -100,7 +101,7 @@ export function array_splice(
   let removedNumericCursor = 0
 
   const removedItems: unknown[] = []
-  const removedAssoc: AssocArray = {}
+  const removedAssoc: AssocArray<unknown> = {}
   const assoc = arr
 
   for (const _key in assoc) {

@@ -1,8 +1,10 @@
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
 type JsonPrimitive = string | number | boolean | null
-type JsonValue = JsonPrimitive | JsonValue[] | { [key: string]: JsonValue }
 type JsonObject = { [key: string]: JsonValue }
+type JsonValue = JsonPrimitive | JsonValue[] | JsonObject
 type JsonGlobal = typeof globalThis & {
-  $locutus?: { php?: { [key: string]: unknown } }
+  $locutus?: { php?: PhpAssoc<unknown> }
   JSON?: typeof JSON
 }
 
@@ -86,7 +88,7 @@ export function json_encode(mixedVal: unknown): string | null {
         : '"' + string + '"'
     }
 
-    const _str = function (key: string | number, holder: { [key: string]: unknown } | unknown[]): string | undefined {
+    const _str = function (key: string | number, holder: PhpAssoc<unknown> | unknown[]): string | undefined {
       let gap = ''
       const indent = '    '
       // The loop counter.

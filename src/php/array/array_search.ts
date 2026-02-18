@@ -1,8 +1,6 @@
-export function array_search(
-  needle: unknown,
-  haystack: { [key: string]: unknown },
-  argStrict?: unknown,
-): string | false {
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+export function array_search(needle: unknown, haystack: PhpAssoc<unknown>, argStrict?: unknown): string | false {
   //      discuss at: https://locutus.io/php/array_search/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

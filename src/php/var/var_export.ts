@@ -1,6 +1,7 @@
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
 
-type IndexableUnknown = { [key: string]: unknown }
+type IndexableUnknown = PhpAssoc<unknown>
 type VarExportType =
   | 'resource'
   | 'function'

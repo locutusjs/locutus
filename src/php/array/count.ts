@@ -1,4 +1,6 @@
-type CountableObject = { [key: string]: unknown }
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+type CountableObject = PhpAssoc<unknown>
 type Countable = unknown[] | CountableObject
 
 export function count(mixedVar: Countable | null | undefined, mode: string | number = 0): number {

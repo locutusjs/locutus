@@ -1,4 +1,6 @@
-type UnknownMap = { [key: string]: unknown }
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+type UnknownMap = PhpAssoc<unknown>
 type LocutusType = 'function' | 'boolean' | 'number' | 'string' | 'array' | 'object' | 'undefined' | 'null'
 
 export function serialize(mixedValue: unknown): string {

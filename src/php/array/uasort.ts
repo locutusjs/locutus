@@ -1,7 +1,8 @@
-import { isObjectLike } from '../_helpers/_phpTypes.ts'
+import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
+import { isObjectLike, type PhpAssoc } from '../_helpers/_phpTypes.ts'
 
 export function uasort<T>(
-  this: { [key: string]: unknown },
+  this: PhpAssoc<unknown>,
   inputArr: Record<string, T>,
   sorter: ((a: T, b: T) => number) | string | string[],
 ): boolean | Record<string, T> {
@@ -58,12 +59,8 @@ export function uasort<T>(
     return false
   }
 
-  const $loc = (
-    globalThis as {
-      $locutus?: { php?: { ini?: { [key: string]: { local_value?: unknown } | undefined } } }
-    }
-  ).$locutus
-  const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
+  const runtime = ensurePhpRuntimeState()
+  const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

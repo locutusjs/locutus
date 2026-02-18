@@ -17,14 +17,20 @@ import { array_reduce } from '../../src/php/array/array_reduce.ts'
 import { array_replace } from '../../src/php/array/array_replace.ts'
 import { array_replace_recursive } from '../../src/php/array/array_replace_recursive.ts'
 import { array_reverse } from '../../src/php/array/array_reverse.ts'
+import { array_search } from '../../src/php/array/array_search.ts'
 import { array_shift } from '../../src/php/array/array_shift.ts'
 import { array_slice } from '../../src/php/array/array_slice.ts'
+import { array_splice } from '../../src/php/array/array_splice.ts'
+import { array_sum } from '../../src/php/array/array_sum.ts'
 import { array_unique } from '../../src/php/array/array_unique.ts'
 import { array_values } from '../../src/php/array/array_values.ts'
 import { array_walk } from '../../src/php/array/array_walk.ts'
 import { array_walk_recursive } from '../../src/php/array/array_walk_recursive.ts'
+import { sizeof } from '../../src/php/array/sizeof.ts'
 import { call_user_func } from '../../src/php/funchand/call_user_func.ts'
 import { getenv } from '../../src/php/info/getenv.ts'
+import type { IniValue } from '../../src/php/info/ini_set.ts'
+import { ini_set } from '../../src/php/info/ini_set.ts'
 import { json_decode } from '../../src/php/json/json_decode.ts'
 import { echo } from '../../src/php/strings/echo.ts'
 import { printf } from '../../src/php/strings/printf.ts'
@@ -56,6 +62,12 @@ const pushTarget = [1, 2]
 const pushedTyped: number = array_push(pushTarget, 3)
 const randTyped: string | null = array_rand(['only']) as string | null
 const replacedTyped: { [key: string]: number | undefined } = array_replace({ 0: 1, 1: 2 }, { 1: 9, 2: 5 })
+const spliceInput = ['red', 'green', 'blue']
+const splicedTyped: unknown[] | { [key: string]: unknown } = array_splice(spliceInput, 1, 1, ['purple'])
+const sumTyped: number | null = array_sum({ a: 1, b: '2.5', c: true })
+const sizeofTyped: number = sizeof({ one: [1, 2, 3] }, 'COUNT_RECURSIVE')
+const searchTyped: string | false = array_search('zonneveld', { firstname: 'kevin', surname: 'zonneveld' })
+const iniSetTyped: IniValue | undefined = ini_set('locutus.type-signatures', 'on')
 const walked: number[] = []
 const walkTyped: boolean = array_walk([1, 2], (value: number) => walked.push(value))
 const walkedRecursive: number[] = []
@@ -97,6 +109,12 @@ describe('public type signatures', () => {
     expect(pushTarget).toEqual([1, 2, 3])
     expect(randTyped).toBe('0')
     expect(replacedTyped).toEqual({ 0: 1, 1: 9, 2: 5 })
+    expect(splicedTyped).toEqual(['green'])
+    expect(spliceInput).toEqual(['red', 'purple', 'blue'])
+    expect(sumTyped).toBe(3.5)
+    expect(sizeofTyped).toBe(4)
+    expect(searchTyped).toBe('surname')
+    expect(iniSetTyped).toBeUndefined()
     expect(walkTyped).toBe(true)
     expect(walked).toEqual([1, 2])
     expect(walkRecursiveTyped).toBe(true)

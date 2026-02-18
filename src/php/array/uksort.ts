@@ -1,5 +1,8 @@
+import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
 export function uksort<T>(
-  this: { [key: string]: unknown; window?: { [key: string]: unknown } },
+  this: PhpAssoc<unknown> & { window?: PhpAssoc<unknown> },
   inputArr: Record<string, T>,
   sorter: ((a: string, b: string) => number) | string,
 ): boolean | Record<string, T> {
@@ -53,12 +56,8 @@ export function uksort<T>(
     return false
   }
 
-  const $loc = (
-    globalThis as {
-      $locutus?: { php?: { ini?: { [key: string]: { local_value?: unknown } | undefined } } }
-    }
-  ).$locutus
-  const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
+  const runtime = ensurePhpRuntimeState()
+  const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 

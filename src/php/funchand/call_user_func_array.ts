@@ -1,7 +1,7 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
-import { isObjectLike, type PhpCallable } from '../_helpers/_phpTypes.ts'
+import { isObjectLike, type PhpAssoc, type PhpCallable } from '../_helpers/_phpTypes.ts'
 
-type GlobalCallableContext = typeof globalThis & { [key: string]: unknown }
+type GlobalCallableContext = typeof globalThis & PhpAssoc<unknown>
 
 const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 

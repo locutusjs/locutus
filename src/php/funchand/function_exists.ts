@@ -1,3 +1,5 @@
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
 export function function_exists(funcName: string): boolean {
   //  discuss at: https://locutus.io/php/function_exists/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -7,6 +9,6 @@ export function function_exists(funcName: string): boolean {
   //   example 1: function_exists('isFinite')
   //   returns 1: true
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & { [key: string]: unknown }
+  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & PhpAssoc<unknown>
   return typeof $global[funcName] === 'function'
 }

@@ -1,6 +1,9 @@
-type SortableObject = { [key: string]: unknown }
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+type SortableObject = PhpAssoc<unknown>
 type SortComparator = (a: unknown, b: unknown) => number
 type ComparablePrimitive = string | number | bigint | boolean | Date
+type SortArg = unknown[] | SortableObject | SortFlag
 
 const hasOwn = Object.prototype.hasOwnProperty
 
@@ -61,7 +64,7 @@ const compareRegular = (leftValue: unknown, rightValue: unknown): number => {
   return left > right ? 1 : left < right ? -1 : 0
 }
 
-export function array_multisort(arr: unknown, ...rest: unknown[]): boolean {
+export function array_multisort(arr: unknown[] | SortableObject, ...rest: SortArg[]): boolean {
   //  discuss at: https://locutus.io/php/array_multisort/
   // original by: Theriault (https://github.com/Theriault)
   // improved by: Oleg Andreyev (https://github.com/oleg-andreyev)
@@ -95,7 +98,7 @@ export function array_multisort(arr: unknown, ...rest: unknown[]): boolean {
   const thingsToSort: boolean[] = []
   let nLastSort: number[] = []
   let lastSort: number[] = []
-  const args = [arr, ...rest]
+  const args: SortArg[] = [arr, ...rest]
 
   const sortDuplicator: SortComparator = function () {
     return nLastSort.shift() ?? 0

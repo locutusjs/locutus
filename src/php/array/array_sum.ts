@@ -1,6 +1,6 @@
-import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-export function array_sum(array: unknown[] | { [key: string]: unknown } | null): number | null {
+export function array_sum(array: unknown[] | PhpAssoc<unknown> | null): number | null {
   //  discuss at: https://locutus.io/php/array_sum/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Nate

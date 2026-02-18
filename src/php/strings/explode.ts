@@ -1,4 +1,6 @@
-type KeyedValues = { [key: string]: unknown }
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+type KeyedValues = PhpAssoc<unknown>
 
 export function explode(
   ...args: [string | boolean | null | undefined, string | KeyedValues | (() => unknown) | undefined, number?]

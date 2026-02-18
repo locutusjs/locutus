@@ -7,8 +7,9 @@ interface Finding {
   count: number
 }
 
-const MAX_SRC_PHP_RAW_INDEX_SIGNATURE_UNKNOWN = 32
-const MAX_SRC_PHP_EXPORTED_UNKNOWN_RETURN_TYPES = 1
+const MAX_SRC_PHP_RAW_INDEX_SIGNATURE_UNKNOWN = 0
+const MAX_SRC_PHP_EXPORTED_UNKNOWN_RETURN_TYPES = 0
+const MAX_SRC_PHP_UNKNOWN_KEYWORD = 347
 
 const cwd = process.cwd()
 const srcDir = path.join(cwd, 'src')
@@ -27,6 +28,7 @@ const argumentsIdentifierFindings: Finding[] = []
 const exportedUnknownReturnTypeFindings: Finding[] = []
 let srcPhpRawIndexSignatureUnknownCount = 0
 let srcPhpExportedUnknownReturnTypeCount = 0
+let srcPhpUnknownKeywordCount = 0
 
 const countFunctionTypeReferences = (sourceFile: ts.SourceFile): number => {
   let count = 0
@@ -139,6 +141,9 @@ for (const filePath of sourceFiles) {
   }
 
   if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}`)) {
+    const srcPhpUnknownCount = (sourceText.match(/\bunknown\b/g) || []).length
+    srcPhpUnknownKeywordCount += srcPhpUnknownCount
+
     const rawIndexSignatureUnknownCount = (sourceText.match(/\{\s*\[\s*key\s*:\s*string\s*]\s*:\s*unknown\s*}/g) || [])
       .length
     srcPhpRawIndexSignatureUnknownCount += rawIndexSignatureUnknownCount
@@ -243,10 +248,17 @@ if (srcPhpExportedUnknownReturnTypeCount > MAX_SRC_PHP_EXPORTED_UNKNOWN_RETURN_T
   }
 }
 
+if (srcPhpUnknownKeywordCount > MAX_SRC_PHP_UNKNOWN_KEYWORD) {
+  hasFailure = true
+  console.error(
+    `src/php 'unknown' keyword count increased: ${srcPhpUnknownKeywordCount} > ${MAX_SRC_PHP_UNKNOWN_KEYWORD}`,
+  )
+}
+
 if (hasFailure) {
   process.exit(1)
 }
 
 console.log(
-  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased',
+  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php unknown keyword count not increased',
 )

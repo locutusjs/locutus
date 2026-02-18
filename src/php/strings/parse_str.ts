@@ -1,4 +1,6 @@
-type ParseObject = { [key: string]: unknown }
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+type ParseObject = PhpAssoc<unknown>
 type LocutusGlobal = typeof globalThis & { $locutus?: { php?: ParseObject } }
 
 export function parse_str(str: string, array?: ParseObject): void {

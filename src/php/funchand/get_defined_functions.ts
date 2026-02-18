@@ -1,9 +1,9 @@
-import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type GlobalWithLocutus = typeof globalThis & {
-  [key: string]: unknown
-  $locutus?: { php?: { [key: string]: unknown } }
-}
+type GlobalWithLocutus = typeof globalThis &
+  PhpAssoc<unknown> & {
+    $locutus?: { php?: PhpAssoc<unknown> }
+  }
 
 export function get_defined_functions(): string[] {
   //      discuss at: https://locutus.io/php/get_defined_functions/

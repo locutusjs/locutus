@@ -1,4 +1,6 @@
-type KeyedValues = { [key: string]: unknown }
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+type KeyedValues = PhpAssoc<unknown>
 
 export function implode(...args: Array<unknown[] | KeyedValues | string | undefined>): string {
   //      discuss at: https://locutus.io/php/implode/

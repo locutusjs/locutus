@@ -1,10 +1,9 @@
-type IniSetLocutusContext = {
-  php?: {
-    ini?: { [key: string]: { local_value?: unknown | unknown[] } }
-  }
-}
+import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
 
-export function ini_set(varname: string, newvalue: unknown): unknown | undefined {
+type IniScalar = string | number | boolean | null
+export type IniValue = IniScalar | {} | Array<IniScalar | {}> | undefined
+
+export function ini_set(varname: string, newvalue: IniValue): IniValue | undefined {
   //      discuss at: https://locutus.io/php/ini_set/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -13,14 +12,9 @@ export function ini_set(varname: string, newvalue: unknown): unknown | undefined
   //       example 1: ini_set('date.timezone', 'America/Chicago')
   //       returns 1: 'Asia/Hong_Kong'
 
-  const globalContext = globalThis as typeof globalThis & { $locutus?: IniSetLocutusContext }
-  globalContext.$locutus = globalContext.$locutus ?? {}
-  const locutus = globalContext.$locutus
-  locutus.php = locutus.php ?? {}
-  locutus.php.ini = locutus.php.ini ?? {}
-  locutus.php.ini[varname] = locutus.php.ini[varname] ?? {}
-
-  const oldval = locutus.php.ini[varname].local_value
+  const runtime = ensurePhpRuntimeState()
+  const entry = runtime.ini[varname] ?? (runtime.ini[varname] = {})
+  const oldval = entry.local_value as IniValue | undefined
 
   let normalizedValue = newvalue
   const lowerStr = String(newvalue).toLowerCase().trim()
@@ -32,12 +26,6 @@ export function ini_set(varname: string, newvalue: unknown): unknown | undefined
   }
 
   const setArrayValue = () => {
-    const ini = locutus.php?.ini
-    if (!ini) {
-      return
-    }
-    const entry = ini[varname] ?? (ini[varname] = {})
-
     // Although these are set individually, they are all accumulated.
     if (typeof entry.local_value === 'undefined') {
       entry.local_value = [normalizedValue]
@@ -57,7 +45,7 @@ export function ini_set(varname: string, newvalue: unknown): unknown | undefined
       setArrayValue()
       break
     default:
-      locutus.php.ini[varname].local_value = normalizedValue
+      entry.local_value = normalizedValue
       break
   }
 

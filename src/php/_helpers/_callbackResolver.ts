@@ -1,9 +1,11 @@
+import type { PhpAssoc } from './_phpTypes.ts'
+
 interface CallbackResolverOptions {
   invalidMessage: string
   missingScopeMessage?: (scopeName: string) => string
 }
 
-type GlobalCallableContext = typeof globalThis & { [key: string]: unknown }
+type GlobalCallableContext = typeof globalThis & PhpAssoc<unknown>
 
 interface ResolvedCallback<TArgs extends unknown[] = unknown[], TResult = unknown> {
   fn: (...args: TArgs) => TResult

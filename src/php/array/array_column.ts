@@ -1,10 +1,10 @@
-import { isObjectLike, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { isObjectLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 export function array_column(
   input: unknown,
   columnKey: string | number | null,
   indexKey: string | number | null = null,
-): { [key: string]: unknown } | undefined {
+): PhpAssoc<unknown> | undefined {
   //  discuss at: https://locutus.io/php/array_column/
   // original by: Enzo Dañobeytía
   //   example 1: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], 'name')
@@ -21,7 +21,7 @@ export function array_column(
   }
 
   const normalizedInput = Array.isArray(input) ? input : Object.values(toPhpArrayObject(input))
-  const result: { [key: string]: unknown } = {}
+  const result: PhpAssoc<unknown> = {}
   let fallbackIndex = 0
 
   for (const rowValue of normalizedInput) {

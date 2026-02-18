@@ -1,6 +1,6 @@
-import { isObjectLike, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { isObjectLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type RecursiveReplaceTarget = unknown[] | { [key: string]: unknown }
+type RecursiveReplaceTarget = unknown[] | PhpAssoc<unknown>
 
 const cloneReplaceTarget = (value: unknown): RecursiveReplaceTarget => {
   if (Array.isArray(value)) {
