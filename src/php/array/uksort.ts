@@ -1,8 +1,10 @@
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
 import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 
+type PhpValue = {} | null | undefined
+
 export function uksort<T>(
-  this: PhpAssoc<unknown> & { window?: PhpAssoc<unknown> },
+  this: PhpAssoc<PhpValue> & { window?: PhpAssoc<PhpValue> },
   inputArr: Record<string, T>,
   sorter: ((a: string, b: string) => number) | string,
 ): boolean | Record<string, T> {

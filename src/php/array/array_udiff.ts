@@ -1,9 +1,10 @@
 import { resolveNumericComparator } from '../_helpers/_callbackResolver.ts'
 import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type PhpArray = PhpAssoc<unknown>
+type PhpValue = {} | null | undefined
+type PhpArray = PhpAssoc<PhpValue>
 
-export function array_udiff(arr1: PhpArray, ...arraysAndCallback: unknown[]): PhpArray {
+export function array_udiff(arr1: PhpArray, ...arraysAndCallback: PhpValue[]): PhpArray {
   //  discuss at: https://locutus.io/php/array_udiff/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
@@ -13,12 +14,11 @@ export function array_udiff(arr1: PhpArray, ...arraysAndCallback: unknown[]): Ph
 
   const retArr: PhpArray = {}
   const callback = arraysAndCallback[arraysAndCallback.length - 1]
-  const arrays = arraysAndCallback.slice(0, -1)
+  const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject<PhpValue>(value))
   const cb = resolveNumericComparator(callback, 'array_udiff(): Invalid callback')
 
   arr1keys: for (const k1 in arr1) {
-    for (const nextArray of arrays) {
-      const arr = toPhpArrayObject(nextArray)
+    for (const arr of arrays) {
       for (const k in arr) {
         if (cb(arr[k], arr1[k1]) === 0) {
           // If it reaches here, it was found in at least one array, so try next value
