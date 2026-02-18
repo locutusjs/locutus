@@ -35,9 +35,6 @@ export function arsort<T>(inputArr: Record<string, T>, sortFlags?: string): bool
   //   returns 2: {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
 
   const valArr: [string, T][] = []
-  let valArrLen = 0
-  let k: string
-  let i: number
   let sortByReference = false
   const populateArr: Record<string, T> = {}
 
@@ -97,12 +94,10 @@ export function arsort<T>(inputArr: Record<string, T>, sortFlags?: string): bool
   sortByReference = iniVal === 'on'
 
   // Get key and value arrays
-  for (k in inputArr) {
-    if (inputArr.hasOwnProperty(k)) {
-      valArr.push([k, inputArr[k] as T])
-      if (sortByReference) {
-        delete inputArr[k]
-      }
+  for (const [key, value] of Object.entries(inputArr)) {
+    valArr.push([key, value])
+    if (sortByReference) {
+      delete inputArr[key]
     }
   }
   valArr.sort(function (a, b) {
@@ -110,14 +105,10 @@ export function arsort<T>(inputArr: Record<string, T>, sortFlags?: string): bool
   })
 
   // Repopulate the old array
-  for (i = 0, valArrLen = valArr.length; i < valArrLen; i++) {
-    const pair = valArr[i]
-    if (!pair) {
-      continue
-    }
-    populateArr[pair[0]] = pair[1]
+  for (const [key, value] of valArr) {
+    populateArr[key] = value
     if (sortByReference) {
-      inputArr[pair[0]] = pair[1]
+      inputArr[key] = value
     }
   }
 

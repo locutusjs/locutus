@@ -33,8 +33,6 @@ export function rsort<T>(inputArr: Record<string, T>, sortFlags?: string): boole
   //   returns 2: {0: 'orange', 1: 'lemon', 2: 'banana', 3: 'apple'}
 
   let sorter: ((a: unknown, b: unknown) => number) | undefined
-  let i: number
-  let k: string
   let sortByReference = false
   let populateArr: Record<string, T> = {}
 
@@ -94,21 +92,19 @@ export function rsort<T>(inputArr: Record<string, T>, sortFlags?: string): boole
   populateArr = sortByReference ? inputArr : populateArr
   const valArr: T[] = []
 
-  for (k in inputArr) {
+  for (const [key, value] of Object.entries(inputArr)) {
     // Get key and value arrays
-    if (inputArr.hasOwnProperty(k)) {
-      valArr.push(inputArr[k] as T)
-      if (sortByReference) {
-        delete inputArr[k]
-      }
+    valArr.push(value)
+    if (sortByReference) {
+      delete inputArr[key]
     }
   }
 
   valArr.sort(sorter)
 
-  for (i = 0; i < valArr.length; i++) {
+  for (const [index, value] of valArr.entries()) {
     // Repopulate the old array
-    populateArr[i] = valArr[i] as T
+    populateArr[index] = value
   }
 
   return sortByReference || populateArr

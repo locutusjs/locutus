@@ -38,9 +38,6 @@ export function asort<T>(inputArr: Record<string, T>, sortFlags?: string): boole
   //   returns 2: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
 
   const valArr: [string, T][] = []
-  let valArrLen = 0
-  let k: string
-  let i: number
   let sortByReference = false
   let populateArr: Record<string, T> = {}
 
@@ -101,12 +98,10 @@ export function asort<T>(inputArr: Record<string, T>, sortFlags?: string): boole
   populateArr = sortByReference ? inputArr : populateArr
 
   // Get key and value arrays
-  for (k in inputArr) {
-    if (inputArr.hasOwnProperty(k)) {
-      valArr.push([k, inputArr[k] as T])
-      if (sortByReference) {
-        delete inputArr[k]
-      }
+  for (const [key, value] of Object.entries(inputArr)) {
+    valArr.push([key, value])
+    if (sortByReference) {
+      delete inputArr[key]
     }
   }
 
@@ -115,12 +110,8 @@ export function asort<T>(inputArr: Record<string, T>, sortFlags?: string): boole
   })
 
   // Repopulate the old array
-  for (i = 0, valArrLen = valArr.length; i < valArrLen; i++) {
-    const pair = valArr[i]
-    if (!pair) {
-      continue
-    }
-    populateArr[pair[0]] = pair[1]
+  for (const [key, value] of valArr) {
+    populateArr[key] = value
   }
 
   return sortByReference || populateArr
