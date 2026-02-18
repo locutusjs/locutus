@@ -1,32 +1,6 @@
 import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 import { setlocale } from '../strings/setlocale.ts'
 
-type MonetaryLocale = {
-  mon_thousands_sep: string
-  mon_grouping: number[]
-  mon_decimal_point: string
-  int_frac_digits: number | string
-  frac_digits: number | string
-  int_curr_symbol: string
-  currency_symbol: string
-  n_sign_posn: number
-  p_sign_posn: number
-  n_sep_by_space: number
-  p_sep_by_space: number
-  n_cs_precedes: number
-  p_cs_precedes: number
-  positive_sign: string
-  negative_sign: string
-}
-
-type MonetaryLocaleMap = { [key: string]: { LC_MONETARY: MonetaryLocale } }
-type LocaleCategoryMap = { LC_MONETARY: string }
-type LocutusPhpContext = {
-  locales?: MonetaryLocaleMap
-  localeCategories?: LocaleCategoryMap
-}
-type MoneyGlobal = typeof globalThis & { $locutus?: { php?: LocutusPhpContext } }
-
 export function money_format(format: string, number: PhpMixed): string | null {
   //      discuss at: https://locutus.io/php/money_format/
   // parity verified: PHP 8.3
@@ -82,19 +56,39 @@ export function money_format(format: string, number: PhpMixed): string | null {
   // Ensure the locale data we need is set up
   setlocale('LC_ALL', 0)
 
-  const $global = (typeof window !== 'undefined' ? window : global) as MoneyGlobal
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
-  const phpContext = $locutus.php
-  const localeCategories = phpContext.localeCategories
-  const locales = phpContext.locales
-  if (!localeCategories || !locales) {
+  const locutus = Reflect.get(globalThis, '$locutus')
+  if (typeof locutus !== 'object' || locutus === null) {
     return null
   }
 
-  const monetary = locales[localeCategories.LC_MONETARY]?.LC_MONETARY
-  if (!monetary) {
+  const phpContext = Reflect.get(locutus, 'php')
+  if (typeof phpContext !== 'object' || phpContext === null) {
+    return null
+  }
+
+  const localeCategories = Reflect.get(phpContext, 'localeCategories')
+  const locales = Reflect.get(phpContext, 'locales')
+  if (
+    typeof localeCategories !== 'object' ||
+    localeCategories === null ||
+    typeof locales !== 'object' ||
+    locales === null
+  ) {
+    return null
+  }
+
+  const localeCategory = Reflect.get(localeCategories, 'LC_MONETARY')
+  if (typeof localeCategory !== 'string') {
+    return null
+  }
+
+  const localeEntry = Reflect.get(locales, localeCategory)
+  if (typeof localeEntry !== 'object' || localeEntry === null) {
+    return null
+  }
+
+  const monetary = Reflect.get(localeEntry, 'LC_MONETARY')
+  if (typeof monetary !== 'object' || monetary === null) {
     return null
   }
 
