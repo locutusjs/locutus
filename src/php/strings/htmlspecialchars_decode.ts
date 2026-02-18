@@ -31,14 +31,21 @@ export function htmlspecialchars_decode(string: string, quoteStyle?: HtmlSpecial
   }
 
   let decoded = string.toString().replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-  const OPTS = {
+  const OPTS: Readonly<{
+    ENT_NOQUOTES: number
+    ENT_HTML_QUOTE_SINGLE: number
+    ENT_HTML_QUOTE_DOUBLE: number
+    ENT_COMPAT: number
+    ENT_QUOTES: number
+    ENT_IGNORE: number
+  }> = {
     ENT_NOQUOTES: 0,
     ENT_HTML_QUOTE_SINGLE: 1,
     ENT_HTML_QUOTE_DOUBLE: 2,
     ENT_COMPAT: 2,
     ENT_QUOTES: 3,
     ENT_IGNORE: 4,
-  } as const
+  }
 
   const isOptKey = (value: string): value is keyof typeof OPTS => Object.prototype.hasOwnProperty.call(OPTS, value)
 
@@ -60,7 +67,8 @@ export function htmlspecialchars_decode(string: string, quoteStyle?: HtmlSpecial
     }
     quoteStyleValue = optTemp
   }
-  if ((quoteStyleValue as number) & OPTS.ENT_HTML_QUOTE_SINGLE) {
+  const resolvedQuoteStyle = typeof quoteStyleValue === 'number' ? quoteStyleValue : optTemp
+  if (resolvedQuoteStyle & OPTS.ENT_HTML_QUOTE_SINGLE) {
     // PHP doesn't currently escape if more than one 0, but it should:
     decoded = decoded.replace(/&#0*39;/g, "'")
     // This would also be useful here, but not a part of PHP:

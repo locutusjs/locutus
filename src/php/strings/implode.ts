@@ -16,21 +16,23 @@ export function implode(...args: Array<PhpValue[] | KeyedValues | string | undef
 
   let retVal = ''
   let tGlue = ''
-  let actualGlue = args[0]
-  let actualPieces = args[1]
+  let actualGlue = ''
+  let actualPieces: PhpValue[] | KeyedValues | string | undefined
 
   if (args.length === 1) {
-    actualPieces = args[0] as PhpValue[] | KeyedValues
-    actualGlue = ''
+    actualPieces = args[0]
+  } else {
+    actualGlue = String(args[0] ?? '')
+    actualPieces = args[1]
   }
 
   if (typeof actualPieces === 'object' && actualPieces !== null) {
     if (Array.isArray(actualPieces)) {
-      return actualPieces.join(String(actualGlue))
+      return actualPieces.join(actualGlue)
     }
     for (const key in actualPieces) {
       retVal += tGlue + actualPieces[key]
-      tGlue = String(actualGlue)
+      tGlue = actualGlue
     }
     return retVal
   }

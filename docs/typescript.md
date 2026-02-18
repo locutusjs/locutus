@@ -400,3 +400,25 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Guard-based narrowing (`Reflect.get` + typed predicates) is enough to eliminate most legacy `as` usage in dynamic PHP ports.
   - Zero-cast policy for `var/**` is achievable incrementally when helper construction patterns are tightened.
+
+## Iteration 15
+
+- Plans
+  - Start strictness expansion beyond `array/**` and `var/**` into `strings/**`.
+  - Prioritize low-risk cast removals that preserve runtime behavior and generated test expectations.
+- Progress
+  - Refactored `src/php/strings/implode.ts` to remove argument-shape cast and keep glue/pieces flow explicit.
+  - Refactored `src/php/strings/count_chars.ts` to remove mixed-value result map cast by splitting mode-specific flows.
+  - Refactored `src/php/strings/{htmlspecialchars,htmlspecialchars_decode}.ts`:
+    - replaced `as const` flags with explicit readonly object typing.
+    - removed quote-style numeric casts via `resolvedQuoteStyle` narrowing.
+  - Added a new strings debt ratchet in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_STRINGS_AS_EXPRESSION = 8`
+  - Reduced `src/php/strings/**` `as`-expression count:
+    - `14 -> 8`
+  - Validation passed:
+    - `corepack yarn lint:ts:debt:policy`
+    - `corepack yarn check`
+- Key learnings
+  - Cast-removal momentum remains high when we separate mode-specific return paths instead of relying on mixed intermediate objects.
+  - Adding new directory-level ratchets as soon as a first reduction lands keeps strictness gains from slipping back.
