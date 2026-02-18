@@ -1,4 +1,4 @@
-export function end(arr: unknown[] | Record<string, unknown>): unknown | false {
+export function end<T>(arr: T[] | Record<string, T>): T | false {
   //  discuss at: https://locutus.io/php/end/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Legaev Andrey
@@ -39,10 +39,10 @@ export function end(arr: unknown[] | Record<string, unknown>): unknown | false {
   const arrpos = indexOf(pointers, arr)
   if (!Array.isArray(arr)) {
     let ct = 0
-    let val: unknown
+    let val!: T
     for (const k in arr) {
       ct++
-      val = arr[k]
+      val = arr[k] as T
     }
     if (ct === 0) {
       // Empty
@@ -55,5 +55,5 @@ export function end(arr: unknown[] | Record<string, unknown>): unknown | false {
     return false
   }
   pointers[arrpos + 1] = arr.length - 1
-  return arr[arr.length - 1]
+  return arr[arr.length - 1] as T
 }

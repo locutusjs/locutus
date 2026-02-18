@@ -1,13 +1,13 @@
-interface EachResultObject {
+interface EachResultObject<T> {
   0: string | number
-  1: unknown
+  1: T
   key: string | number
-  value: unknown
+  value: T
 }
 
-type EachResult = [string | number, unknown] | EachResultObject | false
+type EachResult<T> = [string | number, T] | EachResultObject<T> | false
 
-export function each(arr: unknown[] | Record<string, unknown>): EachResult {
+export function each<T>(arr: T[] | Record<string, T>): EachResult<T> {
   //  discuss at: https://locutus.io/php/each/
   // original by: Ates Goral (https://magnetiq.com)
   //  revised by: Brett Zamir (https://brett-zamir.me)
@@ -45,12 +45,13 @@ export function each(arr: unknown[] | Record<string, unknown>): EachResult {
     for (const k in arr) {
       if (ct === cursor) {
         pointers[arrpos + 1] = cursor + 1
+        const value = arr[k] as T
         if ((each as { returnArrayOnly?: boolean }).returnArrayOnly) {
-          return [k, arr[k]]
+          return [k, value]
         } else {
           return {
-            1: arr[k],
-            value: arr[k],
+            1: value,
+            value,
             0: k,
             key: k,
           }
@@ -66,12 +67,13 @@ export function each(arr: unknown[] | Record<string, unknown>): EachResult {
   }
   pos = cursor
   pointers[arrpos + 1] = cursor + 1
+  const value = arr[pos] as T
   if ((each as { returnArrayOnly?: boolean }).returnArrayOnly) {
-    return [pos, arr[pos]]
+    return [pos, value]
   } else {
     return {
-      1: arr[pos],
-      value: arr[pos],
+      1: value,
+      value,
       0: pos,
       key: pos,
     }

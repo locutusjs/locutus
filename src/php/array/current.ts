@@ -1,4 +1,4 @@
-export function current(arr: unknown[] | Record<string, unknown>): unknown | false {
+export function current<T>(arr: T[] | Record<string, T>): T | false {
   //      discuss at: https://locutus.io/php/current/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -35,12 +35,12 @@ export function current(arr: unknown[] | Record<string, unknown>): unknown | fal
   const cursorValue = pointers[arrpos + 1]
   const cursor = typeof cursorValue === 'number' ? cursorValue : 0
   if (Array.isArray(arr)) {
-    return arr[cursor] || false
+    return (arr[cursor] as T) || false
   }
   let ct = 0
   for (const k in arr) {
     if (ct === cursor) {
-      return arr[k]
+      return arr[k] as T
     }
     ct++
   }

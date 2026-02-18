@@ -1,4 +1,4 @@
-export function key(arr: unknown[] | Record<string, unknown>): string | number | false {
+export function key<T>(arr: T[] | Record<string, T>): string | number | false {
   //      discuss at: https://locutus.io/php/key/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

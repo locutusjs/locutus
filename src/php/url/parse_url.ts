@@ -1,4 +1,25 @@
-export function parse_url(str: string, component?: string): Record<string, unknown> | string {
+type ParseUrlQueryMap = Record<string, string>
+type ParseUrlValue = string | ParseUrlQueryMap
+
+type ParseUrlResult = {
+  source?: string
+  scheme?: string
+  authority?: string
+  userInfo?: string
+  user?: string
+  pass?: string
+  host?: string
+  port?: string
+  relative?: string
+  path?: string
+  directory?: string
+  file?: string
+  query?: string
+  fragment?: string
+  [key: string]: ParseUrlValue | undefined
+}
+
+export function parse_url(str: string, component?: string): ParseUrlResult | string {
   //       discuss at: https://locutus.io/php/parse_url/
   //      original by: Steven Levithan (https://blog.stevenlevithan.com)
   // reimplemented by: Brett Zamir (https://brett-zamir.me)
@@ -50,7 +71,7 @@ export function parse_url(str: string, component?: string): Record<string, unkno
   ]
 
   // For loose we added one optional slash to post-scheme to catch file:/// (should restrict this)
-  const parser: Record<string, RegExp> = {
+  const parser = {
     php: new RegExp(
       [
         '(?:([^:\\/?#]+):)?',
@@ -77,12 +98,9 @@ export function parse_url(str: string, component?: string): Record<string, unkno
     ),
   }
 
-  const selectedParser = parser[mode] ?? parser.php
-  if (!selectedParser) {
-    return {}
-  }
+  const selectedParser = parser[mode as keyof typeof parser] ?? parser.php
   const m = selectedParser.exec(str)
-  const uri: Record<string, unknown> = {}
+  const uri: ParseUrlResult = {}
   if (!m) {
     return uri
   }
@@ -102,7 +120,7 @@ export function parse_url(str: string, component?: string): Record<string, unkno
   if (mode !== 'php') {
     const name = String($loc?.php?.ini?.['locutus.parse_url.queryKey']?.local_value ?? '') || 'queryKey'
     const queryParser = /(?:^|&)([^&=]*)=?([^&]*)/g
-    const queryObj: Record<string, string> = {}
+    const queryObj: ParseUrlQueryMap = {}
     uri[name] = queryObj
     const queryKeyName = key[12]
     query = String((queryKeyName ? uri[queryKeyName] : '') || '')

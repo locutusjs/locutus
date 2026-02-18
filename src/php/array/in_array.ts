@@ -1,4 +1,4 @@
-export function in_array(needle: unknown, haystack: unknown[] | Record<string, unknown>, argStrict?: boolean): boolean {
+export function in_array<T>(needle: unknown, haystack: T[] | Record<string, T>, argStrict?: boolean): boolean {
   //  discuss at: https://locutus.io/php/in_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: vlado houba
@@ -17,7 +17,7 @@ export function in_array(needle: unknown, haystack: unknown[] | Record<string, u
   //   returns 4: false
 
   const strict = !!argStrict
-  const entries = haystack as Record<string, unknown>
+  const entries = haystack as Record<string, T>
 
   // we prevent the double check (strict && arr[key] === ndl) || (!strict && arr[key] === ndl)
   // in just one for, in order to improve the performance

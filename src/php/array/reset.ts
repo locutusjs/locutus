@@ -1,4 +1,4 @@
-export function reset(arr: unknown[] | Record<string, unknown>): unknown | false {
+export function reset<T>(arr: T[] | Record<string, T>): T | false {
   //  discuss at: https://locutus.io/php/reset/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Legaev Andrey
@@ -39,7 +39,7 @@ export function reset(arr: unknown[] | Record<string, unknown>): unknown | false
       } else {
         pointers[arrpos + 1] = 0
       }
-      return arr[k]
+      return arr[k] as T
     }
     // Empty
     return false
@@ -48,5 +48,5 @@ export function reset(arr: unknown[] | Record<string, unknown>): unknown | false
     return false
   }
   pointers[arrpos + 1] = 0
-  return arr[0]
+  return arr[0] as T
 }

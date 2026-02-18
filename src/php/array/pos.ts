@@ -1,6 +1,6 @@
 import { current } from '../array/current.ts'
 
-export function pos(arr: unknown[] | Record<string, unknown>): unknown | false {
+export function pos<T>(arr: T[] | Record<string, T>): T | false {
   //      discuss at: https://locutus.io/php/pos/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

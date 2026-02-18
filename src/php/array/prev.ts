@@ -1,4 +1,4 @@
-export function prev(arr: unknown[] | Record<string, unknown>): unknown | false {
+export function prev<T>(arr: T[] | Record<string, T>): T | false {
   //      discuss at: https://locutus.io/php/prev/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -39,7 +39,7 @@ export function prev(arr: unknown[] | Record<string, unknown>): unknown | false 
     for (const k in arr) {
       if (ct === cursor - 1) {
         pointers[arrpos + 1] = cursor - 1
-        return arr[k]
+        return arr[k] as T
       }
       ct++
     }
@@ -50,5 +50,5 @@ export function prev(arr: unknown[] | Record<string, unknown>): unknown | false 
     return false
   }
   pointers[arrpos + 1] = cursor - 1
-  return arr[cursor - 1]
+  return arr[cursor - 1] as T
 }
