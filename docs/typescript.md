@@ -214,3 +214,16 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Once shared base types are in place, repo-wide alias burn-down becomes mostly mechanical and low-risk.
   - Keeping ratchets at the newly achieved floor prevents easy regression from opportunistic local aliases.
+
+## Iteration 5
+
+- Plans
+  - Reduce cast-heavy flows in `src/php/var/**` by using runtime guards/shared helpers instead of local `as` assertions.
+  - Add a debt ratchet for `as`-expression usage in `src/php/var/**`.
+- Progress
+  - Refactored `src/php/var/{empty,var_export,serialize,gettype,var_dump}.ts` to remove targeted local `as` casts and lean on `Reflect`/`toPhpArrayObject`-based narrowing.
+  - Added debt-policy ratchet in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_VAR_AS_EXPRESSION = 5` (current floor, must not increase).
+- Key learnings
+  - In dynamic ports, replacing casts with guard-driven reads (`Reflect.get`, helper conversion) preserves behavior while improving local type soundness.
+  - Ratcheting cast usage by directory is a practical bridge between permissive legacy code and strict long-term type goals.

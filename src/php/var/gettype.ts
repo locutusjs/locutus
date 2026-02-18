@@ -1,4 +1,4 @@
-import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpValue } from '../_helpers/_phpTypes.ts'
 import { is_float as isFloat } from '../var/is_float.ts'
 
 export function gettype(mixedVar: PhpValue): string {
@@ -36,24 +36,24 @@ export function gettype(mixedVar: PhpValue): string {
   }
 
   if (s === 'object') {
-    if (mixedVar !== null) {
-      const objectLike = mixedVar as {
-        [key: string]: PhpValue
-        length?: PhpValue
-        splice?: PhpValue
-        propertyIsEnumerable: (property: string) => boolean
-        constructor?: PhpValue
-      } & PhpAssoc<PhpValue>
+    if (typeof mixedVar === 'object' && mixedVar !== null) {
+      const objectLike = mixedVar
+      const objectLength = Reflect.get(objectLike, 'length')
+      const objectSplice = Reflect.get(objectLike, 'splice')
       // From: https://javascript.crockford.com/remedial.html
       // @todo: Break up this lengthy if statement
       if (
-        typeof objectLike.length === 'number' &&
-        !objectLike.propertyIsEnumerable('length') &&
-        typeof objectLike.splice === 'function'
+        typeof objectLength === 'number' &&
+        !Object.prototype.propertyIsEnumerable.call(objectLike, 'length') &&
+        typeof objectSplice === 'function'
       ) {
         s = 'array'
-      } else if (objectLike.constructor && _getFuncName(objectLike.constructor)) {
-        name = _getFuncName(objectLike.constructor)
+      } else {
+        const constructorValue = Reflect.get(objectLike, 'constructor')
+        if (!constructorValue) {
+          return s
+        }
+        name = _getFuncName(constructorValue)
         if (name === 'Date') {
           // not in PHP
           s = 'date'
@@ -68,8 +68,8 @@ export function gettype(mixedVar: PhpValue): string {
     } else {
       s = 'null'
     }
-  } else if (s === 'number') {
-    s = isFloat(mixedVar as number) ? 'double' : 'integer'
+  } else if (typeof mixedVar === 'number') {
+    s = isFloat(mixedVar) ? 'double' : 'integer'
   }
 
   return s

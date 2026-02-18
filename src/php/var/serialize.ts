@@ -1,6 +1,5 @@
-import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
+import { type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type UnknownMap = PhpAssoc<PhpValue>
 type LocutusType = 'function' | 'boolean' | 'number' | 'string' | 'array' | 'object' | 'undefined' | 'null'
 
 export function serialize(mixedValue: PhpValue): string {
@@ -43,18 +42,27 @@ export function serialize(mixedValue: PhpValue): string {
     let match: RegExpMatchArray | null
     let cons = ''
     const types: Array<'boolean' | 'number' | 'string' | 'array'> = ['boolean', 'number', 'string', 'array']
-    let type: LocutusType = typeof inp as LocutusType
+    const jsType = typeof inp
+    let type: LocutusType =
+      jsType === 'boolean' ||
+      jsType === 'number' ||
+      jsType === 'string' ||
+      jsType === 'function' ||
+      jsType === 'undefined' ||
+      jsType === 'object'
+        ? jsType
+        : 'undefined'
 
     if (type === 'object' && !inp) {
       return 'null'
     }
 
-    if (type === 'object') {
-      const objectInput = inp as { constructor?: { toString: () => string } }
-      if (!objectInput.constructor) {
+    if (type === 'object' && typeof inp === 'object' && inp !== null) {
+      const constructorValue = Reflect.get(inp, 'constructor')
+      if (typeof constructorValue !== 'function') {
         return 'object'
       }
-      cons = objectInput.constructor.toString()
+      cons = constructorValue.toString()
       match = cons.match(/(\w+)\(/)
       if (match) {
         cons = (match[1] ?? '').toLowerCase()
@@ -78,12 +86,16 @@ export function serialize(mixedValue: PhpValue): string {
     case 'boolean':
       val = 'b:' + (mixedValue ? '1' : '0')
       break
-    case 'number':
-      val = (Math.round(mixedValue as number) === mixedValue ? 'i' : 'd') + ':' + mixedValue
+    case 'number': {
+      const numericValue = Number(mixedValue)
+      val = (Math.round(numericValue) === numericValue ? 'i' : 'd') + ':' + numericValue
       break
-    case 'string':
-      val = 's:' + _utf8Size(mixedValue as string) + ':"' + mixedValue + '"'
+    }
+    case 'string': {
+      const stringValue = String(mixedValue)
+      val = 's:' + _utf8Size(stringValue) + ':"' + stringValue + '"'
       break
+    }
     case 'array':
     case 'object': {
       val = 'a'
@@ -97,7 +109,7 @@ export function serialize(mixedValue: PhpValue): string {
         val = 'O' + objname[1].substring(1, objname[1].length - 1);
       }
       */
-      const source = mixedValue as UnknownMap
+      const source = toPhpArrayObject<PhpValue>(mixedValue)
       for (const key in source) {
         if (Object.prototype.hasOwnProperty.call(source, key)) {
           const entry = source[key]

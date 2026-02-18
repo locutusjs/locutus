@@ -1,7 +1,6 @@
-import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
+import { type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
 
-type IndexableUnknown = PhpAssoc<PhpValue>
 type VarExportType =
   | 'resource'
   | 'function'
@@ -71,9 +70,21 @@ export function var_export(mixedExpression: PhpValue, boolReturn?: PhpValue, idt
     let match: RegExpMatchArray | null = null
     let cons = ''
     const types: Array<'boolean' | 'number' | 'string' | 'array'> = ['boolean', 'number', 'string', 'array']
-    let type: VarExportType | null = typeof inp as VarExportType
-    if (type === 'object' && inp && inp.constructor && getFuncName(inp.constructor) === 'LOCUTUS_Resource') {
-      return 'resource'
+    const jsType = typeof inp
+    let type: VarExportType | null =
+      jsType === 'boolean' ||
+      jsType === 'number' ||
+      jsType === 'string' ||
+      jsType === 'function' ||
+      jsType === 'undefined' ||
+      jsType === 'object'
+        ? jsType
+        : null
+    if (type === 'object' && typeof inp === 'object' && inp !== null) {
+      const constructorValue = Reflect.get(inp, 'constructor')
+      if (typeof constructorValue === 'function' && getFuncName(constructorValue) === 'LOCUTUS_Resource') {
+        return 'resource'
+      }
     }
     if (type === 'function') {
       return 'function'
@@ -82,12 +93,12 @@ export function var_export(mixedExpression: PhpValue, boolReturn?: PhpValue, idt
       // Should this be just null?
       return 'null'
     }
-    if (type === 'object') {
-      const objectInput = inp as { constructor?: { toString: () => string } }
-      if (!objectInput.constructor) {
+    if (type === 'object' && typeof inp === 'object' && inp !== null) {
+      const constructorValue = Reflect.get(inp, 'constructor')
+      if (typeof constructorValue !== 'function') {
         return 'object'
       }
-      cons = objectInput.constructor.toString()
+      cons = constructorValue.toString()
       match = cons.match(/(\w+)\(/)
       if (match) {
         cons = (match[1] ?? '').toLowerCase()
@@ -107,7 +118,7 @@ export function var_export(mixedExpression: PhpValue, boolReturn?: PhpValue, idt
   if (type === null) {
     retstr = 'NULL'
   } else if (type === 'array' || type === 'object') {
-    const source = mixedExpression as IndexableUnknown
+    const source = toPhpArrayObject<PhpValue>(mixedExpression)
     outerIndent = _makeIndent(idtLevel - 2)
     innerIndent = _makeIndent(idtLevel)
     for (const key in source) {
@@ -145,10 +156,17 @@ export function var_export(mixedExpression: PhpValue, boolReturn?: PhpValue, idt
     // Resources treated as null for var_export
     retstr = 'NULL'
   } else {
-    retstr =
-      typeof mixedExpression !== 'string'
-        ? (mixedExpression as VarExportResult)
-        : "'" + mixedExpression.replace(/([\\'])/g, '\\$1').replace(/\0/g, '\\0') + "'"
+    if (typeof mixedExpression === 'string') {
+      retstr = "'" + mixedExpression.replace(/([\\'])/g, '\\$1').replace(/\0/g, '\\0') + "'"
+    } else if (
+      mixedExpression === null ||
+      typeof mixedExpression === 'number' ||
+      typeof mixedExpression === 'boolean'
+    ) {
+      retstr = mixedExpression
+    } else {
+      retstr = String(mixedExpression)
+    }
   }
 
   if (!boolReturn) {

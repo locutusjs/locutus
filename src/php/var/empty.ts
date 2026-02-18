@@ -1,6 +1,4 @@
-import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
-
-type KeyedUnknown = PhpAssoc<PhpValue>
+import type { PhpValue } from '../_helpers/_phpTypes.ts'
 
 export function empty(mixedVar: PhpValue): boolean {
   //  discuss at: https://locutus.io/php/empty/
@@ -33,7 +31,7 @@ export function empty(mixedVar: PhpValue): boolean {
   }
 
   if (typeof mixedVar === 'object' && mixedVar !== null) {
-    for (const key in mixedVar as KeyedUnknown) {
+    for (const key in mixedVar) {
       if (Object.prototype.hasOwnProperty.call(mixedVar, key)) {
         return false
       }

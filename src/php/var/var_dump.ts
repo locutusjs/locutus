@@ -1,12 +1,7 @@
 const visitedObjects = new Map<object, true>() // Initialize a map to track visited objects
 
-import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
-
-type DumpableObject = {
-  constructor?: { toString: () => string }
-  [key: string]: PhpValue
-}
 
 type DomLikeNode = {
   nodeName: string
@@ -26,11 +21,13 @@ const isLocutusResource = (
   if (typeof value !== 'object' || value === null || !('var_dump' in value) || !('constructor' in value)) {
     return false
   }
-  const maybeResource = value as { constructor?: { toString: () => string }; var_dump?: PhpValue }
+  const maybeResource = value
+  const varDump = Reflect.get(maybeResource, 'var_dump')
+  const constructorValue = Reflect.get(maybeResource, 'constructor')
   return (
-    typeof maybeResource.var_dump === 'function' &&
-    !!maybeResource.constructor &&
-    getFuncName(maybeResource.constructor) === 'LOCUTUS_Resource'
+    typeof varDump === 'function' &&
+    typeof constructorValue === 'function' &&
+    getFuncName(constructorValue) === 'LOCUTUS_Resource'
   )
 }
 
@@ -172,7 +169,7 @@ export function var_dump(...args: PhpValue[]): string {
         return obj.var_dump()
       }
       let lgth = 0
-      const objRecord = obj as DumpableObject & PhpAssoc<PhpValue>
+      const objRecord = toPhpArrayObject<PhpValue>(obj)
       for (const someProp in objRecord) {
         if (Object.prototype.hasOwnProperty.call(objRecord, someProp)) {
           lgth++

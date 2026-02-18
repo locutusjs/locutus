@@ -12,6 +12,7 @@ const MAX_SRC_PHP_EXPORTED_UNKNOWN_RETURN_TYPES = 0
 const MAX_SRC_PHP_UNKNOWN_KEYWORD = 0
 const MAX_SRC_PHP_ARRAY_UNKNOWN_KEYWORD = 0
 const MAX_SRC_PHP_VAR_UNKNOWN_KEYWORD = 0
+const MAX_SRC_PHP_VAR_AS_EXPRESSION = 5
 const MAX_SRC_PHP_LOCAL_PHPVALUE_ALIAS = 0
 const MAX_SRC_PHP_DIRECT_INI_GLOBAL_READS = 0
 
@@ -32,11 +33,13 @@ const argumentsIdentifierFindings: Finding[] = []
 const exportedUnknownReturnTypeFindings: Finding[] = []
 const localPhpValueAliasFindings: Finding[] = []
 const directIniGlobalReadFindings: Finding[] = []
+const varAsExpressionFindings: Finding[] = []
 let srcPhpRawIndexSignatureUnknownCount = 0
 let srcPhpExportedUnknownReturnTypeCount = 0
 let srcPhpUnknownKeywordCount = 0
 let srcPhpArrayUnknownKeywordCount = 0
 let srcPhpVarUnknownKeywordCount = 0
+let srcPhpVarAsExpressionCount = 0
 let srcPhpLocalPhpValueAliasCount = 0
 let srcPhpDirectIniGlobalReadCount = 0
 
@@ -59,6 +62,20 @@ const countArgumentsIdentifiers = (sourceFile: ts.SourceFile): number => {
 
   const visit = (node: ts.Node): void => {
     if (ts.isIdentifier(node) && node.text === 'arguments') {
+      count += 1
+    }
+    ts.forEachChild(node, visit)
+  }
+
+  visit(sourceFile)
+  return count
+}
+
+const countAsExpressions = (sourceFile: ts.SourceFile): number => {
+  let count = 0
+
+  const visit = (node: ts.Node): void => {
+    if (ts.isAsExpression(node)) {
       count += 1
     }
     ts.forEachChild(node, visit)
@@ -158,6 +175,14 @@ for (const filePath of sourceFiles) {
     }
     if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}var${path.sep}`)) {
       srcPhpVarUnknownKeywordCount += srcPhpUnknownCount
+      const varAsExpressionCount = countAsExpressions(sourceFile)
+      srcPhpVarAsExpressionCount += varAsExpressionCount
+      if (varAsExpressionCount > 0) {
+        varAsExpressionFindings.push({
+          file: path.relative(cwd, filePath),
+          count: varAsExpressionCount,
+        })
+      }
     }
 
     const rawIndexSignatureUnknownCount = (sourceText.match(/\{\s*\[\s*key\s*:\s*string\s*]\s*:\s*unknown\s*}/g) || [])
@@ -307,6 +332,16 @@ if (srcPhpVarUnknownKeywordCount > MAX_SRC_PHP_VAR_UNKNOWN_KEYWORD) {
   )
 }
 
+if (srcPhpVarAsExpressionCount > MAX_SRC_PHP_VAR_AS_EXPRESSION) {
+  hasFailure = true
+  console.error(
+    `src/php/var 'as' expression count increased: ${srcPhpVarAsExpressionCount} > ${MAX_SRC_PHP_VAR_AS_EXPRESSION}`,
+  )
+  for (const finding of varAsExpressionFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
 if (srcPhpLocalPhpValueAliasCount > MAX_SRC_PHP_LOCAL_PHPVALUE_ALIAS) {
   hasFailure = true
   console.error(
@@ -332,5 +367,5 @@ if (hasFailure) {
 }
 
 console.log(
-  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php unknown keyword count not increased, src/php/array unknown keyword count not increased, src/php/var unknown keyword count not increased, src/php local PhpValue alias count not increased, src/php direct $locutus?.php?.ini reads not increased',
+  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php unknown keyword count not increased, src/php/array unknown keyword count not increased, src/php/var unknown keyword count not increased, src/php/var as-expression count not increased, src/php local PhpValue alias count not increased, src/php direct $locutus?.php?.ini reads not increased',
 )
