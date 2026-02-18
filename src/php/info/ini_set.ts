@@ -4,7 +4,7 @@ type IniSetLocutusContext = {
   }
 }
 
-export function ini_set(varname: string, newvalue: unknown): unknown {
+export function ini_set(varname: string, newvalue: unknown): unknown | undefined {
   //      discuss at: https://locutus.io/php/ini_set/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

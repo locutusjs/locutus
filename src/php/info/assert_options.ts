@@ -1,4 +1,4 @@
-export function assert_options(what: string, value?: unknown): unknown {
+export function assert_options(what: string, _value?: unknown): string | number | null {
   //  discuss at: https://locutus.io/php/assert_options/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: assert_options('ASSERT_CALLBACK')

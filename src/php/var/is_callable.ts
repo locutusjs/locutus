@@ -1,3 +1,5 @@
+import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
 export function is_callable(mixedVar: unknown, syntaxOnly?: boolean, callableName?: string): boolean | false {
   //  discuss at: https://locutus.io/php/is_callable/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -69,7 +71,7 @@ export function is_callable(mixedVar: unknown, syntaxOnly?: boolean, callableNam
     typeof mixedVar[0] === 'object' &&
     typeof mixedVar[1] === 'string'
   ) {
-    const receiver = mixedVar[0] as { [key: string]: unknown; constructor?: unknown }
+    const receiver = toPhpArrayObject(mixedVar[0])
     obj = receiver
     method = mixedVar[1]
     name =

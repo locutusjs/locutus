@@ -7,6 +7,8 @@ interface Finding {
   count: number
 }
 
+const MAX_SRC_PHP_RAW_INDEX_SIGNATURE_UNKNOWN = 54
+
 const cwd = process.cwd()
 const srcDir = path.join(cwd, 'src')
 
@@ -21,6 +23,7 @@ const recordStringUnknownFindings: Finding[] = []
 const functionTypeFindings: Finding[] = []
 const asUnknownAsFindings: Finding[] = []
 const argumentsIdentifierFindings: Finding[] = []
+let srcPhpRawIndexSignatureUnknownCount = 0
 
 const countFunctionTypeReferences = (sourceFile: ts.SourceFile): number => {
   let count = 0
@@ -99,6 +102,10 @@ for (const filePath of sourceFiles) {
   }
 
   if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}`)) {
+    const rawIndexSignatureUnknownCount = (sourceText.match(/\{\s*\[\s*key\s*:\s*string\s*]\s*:\s*unknown\s*}/g) || [])
+      .length
+    srcPhpRawIndexSignatureUnknownCount += rawIndexSignatureUnknownCount
+
     const argumentsIdentifierCount = countArgumentsIdentifiers(sourceFile)
     if (argumentsIdentifierCount > 0) {
       argumentsIdentifierFindings.push({
@@ -173,10 +180,17 @@ if (argumentsIdentifierFindings.length > 0) {
   }
 }
 
+if (srcPhpRawIndexSignatureUnknownCount > MAX_SRC_PHP_RAW_INDEX_SIGNATURE_UNKNOWN) {
+  hasFailure = true
+  console.error(
+    `src/php raw '{ [key: string]: unknown }' count increased: ${srcPhpRawIndexSignatureUnknownCount} > ${MAX_SRC_PHP_RAW_INDEX_SIGNATURE_UNKNOWN}`,
+  )
+}
+
 if (hasFailure) {
   process.exit(1)
 }
 
 console.log(
-  "ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, 'as unknown as' 0, src/php arguments 0",
+  "ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, 'as unknown as' 0, src/php arguments 0, src/php raw index-signature unknown not increased",
 )

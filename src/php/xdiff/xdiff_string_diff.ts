@@ -3,10 +3,10 @@ type TypeConstructor = abstract new (...args: never[]) => object
 type TypeDescriptor = BasicType | TypeConstructor
 
 export function xdiff_string_diff(
-  oldData: unknown,
-  newData: unknown,
-  contextLines?: unknown,
-  _minimal?: unknown,
+  oldData: string,
+  newData: string,
+  contextLines?: number,
+  _minimal?: boolean,
 ): string | false {
   //      discuss at: https://locutus.io/php/xdiff_string_diff
   // parity verified: PHP 8.3
@@ -275,12 +275,8 @@ export function xdiff_string_diff(
     return _findLcs(seq2, 0, seq2IsInLcs, seq1)
   }
 
-  // First, check the parameters
-  if (_areTypeOf('string', oldData, newData) === false) {
-    return false
-  }
-  const oldText = oldData as string
-  const newText = newData as string
+  const oldText = oldData
+  const newText = newData
 
   if (oldText === newText) {
     return ''

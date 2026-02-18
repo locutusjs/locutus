@@ -1,6 +1,8 @@
-type AssociativeArray = { [key: string]: unknown }
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 
-export function array_merge(...args: Array<unknown[] | AssociativeArray>): unknown[] | AssociativeArray {
+type AssociativeArray<T = unknown> = PhpAssoc<T>
+
+export function array_merge<T>(...args: Array<T[] | AssociativeArray<T>>): T[] | AssociativeArray<T> {
   //  discuss at: https://locutus.io/php/array_merge/
   // original by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Nate
@@ -15,38 +17,46 @@ export function array_merge(...args: Array<unknown[] | AssociativeArray>): unkno
   //   example 2: array_merge($arr1, $arr2)
   //   returns 2: {0: "data"}
 
-  const argl = args.length
-  const retObj: AssociativeArray = {}
+  const retObj: AssociativeArray<T> = {}
   let retArr = true
 
-  for (let i = 0; i < argl; i++) {
-    if (!Array.isArray(args[i])) {
+  for (const arg of args) {
+    if (!Array.isArray(arg)) {
       retArr = false
       break
     }
   }
 
   if (retArr) {
-    let merged: unknown[] = []
-    for (let i = 0; i < argl; i++) {
-      merged = merged.concat(args[i] as unknown[])
+    let merged: T[] = []
+    for (const arg of args) {
+      if (Array.isArray(arg)) {
+        merged = merged.concat(arg)
+      }
     }
     return merged
   }
 
-  for (let i = 0, ct = 0; i < argl; i++) {
+  for (let i = 0, ct = 0; i < args.length; i++) {
     const arg = args[i]
     if (Array.isArray(arg)) {
       for (let j = 0, argil = arg.length; j < argil; j++) {
-        retObj[ct++] = arg[j]
+        const value = arg[j]
+        if (typeof value !== 'undefined') {
+          retObj[ct++] = value
+        }
       }
     } else {
       for (const k in arg) {
         if (Object.prototype.hasOwnProperty.call(arg, k)) {
+          const value = arg[k]
+          if (typeof value === 'undefined') {
+            continue
+          }
           if (parseInt(k, 10) + '' === k) {
-            retObj[ct++] = arg[k]
+            retObj[ct++] = value
           } else {
-            retObj[k] = arg[k]
+            retObj[k] = value
           }
         }
       }

@@ -12,8 +12,8 @@ type RegExpWithExtras = RegExp & {
 type PatchErrorObject = { value?: string }
 
 export function xdiff_string_patch(
-  originalStr: unknown,
-  patch: unknown,
+  originalStr: string,
+  patch: string,
   flags?: number | string | string[],
   errorObj?: PatchErrorObject,
 ): string | false {
@@ -104,7 +104,7 @@ export function xdiff_string_patch(
   }
 
   // Input defaulting & sanitation
-  if (typeof originalStr !== 'string' || typeof patch !== 'string' || !patch) {
+  if (!patch) {
     return false
   }
 

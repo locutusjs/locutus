@@ -1,3 +1,5 @@
+import { isObjectLike } from '../_helpers/_phpTypes.ts'
+
 export function usort<T>(
   this: { [key: string]: unknown },
   inputArr: Record<string, T>,
@@ -38,8 +40,11 @@ export function usort<T>(
     if (objectKey === undefined || methodKey === undefined) {
       return false
     }
-    const objectValue = this[objectKey] as { [key: string]: unknown } | undefined
-    const method = objectValue?.[methodKey]
+    const objectValue = this[objectKey]
+    if (!isObjectLike(objectValue) && typeof objectValue !== 'function') {
+      return false
+    }
+    const method = Reflect.get(objectValue, methodKey)
     if (typeof method !== 'function') {
       return false
     }
@@ -63,7 +68,10 @@ export function usort<T>(
   for (k in inputArr) {
     // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push(inputArr[k] as T)
+      const value = inputArr[k]
+      if (typeof value !== 'undefined') {
+        valArr.push(value)
+      }
       if (sortByReference) {
         delete inputArr[k]
       }
@@ -76,7 +84,11 @@ export function usort<T>(
   }
   for (i = 0; i < valArr.length; i++) {
     // Repopulate the old array
-    populateArr[i] = valArr[i] as T
+    const value = valArr[i]
+    if (typeof value === 'undefined') {
+      continue
+    }
+    populateArr[i] = value
   }
 
   return sortByReference || populateArr

@@ -1,4 +1,6 @@
-export function create_function(args: string, code: string): ((...fnArgs: unknown[]) => unknown) | false {
+import type { PhpCallable } from '../_helpers/_phpTypes.ts'
+
+export function create_function(args: string, code: string): PhpCallable | false {
   //       discuss at: https://locutus.io/php/create_function/
   //      original by: Johnny Mast (https://www.phpvrouwen.nl)
   // reimplemented by: Brett Zamir (https://brett-zamir.me)
@@ -12,7 +14,7 @@ export function create_function(args: string, code: string): ((...fnArgs: unknow
       .map((param) => param.trim())
       .filter((param) => param.length > 0)
 
-    return new Function(...params, code) as (...fnArgs: unknown[]) => unknown
+    return new Function(...params, code) as PhpCallable
   } catch (_e) {
     return false
   }

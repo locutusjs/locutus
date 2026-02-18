@@ -1,3 +1,5 @@
+import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
 type GlobalWithLocutus = typeof globalThis & {
   [key: string]: unknown
   $locutus?: { php?: { [key: string]: unknown } }
@@ -30,9 +32,9 @@ export function get_defined_functions(): string[] {
           arr.push(i)
         }
       } else if (typeof globalContext[i] === 'object' && globalContext[i] !== null) {
-        const nestedObject = globalContext[i] as { [key: string]: unknown }
+        const nestedObject = toPhpArrayObject(globalContext[i])
         for (const j in nestedObject) {
-          if (typeof globalContext[j] === 'function' && globalContext[j] && !already[j]) {
+          if (typeof nestedObject[j] === 'function' && !already[j]) {
             already[j] = 1
             arr.push(j)
           }

@@ -25,7 +25,7 @@ export function array_replace_recursive(arr: unknown, ...replacements: unknown[]
   // it seems they are not altered, but rather the copy that is returned
   // So we make a copy here, instead of acting on arr itself
   const retObj = cloneReplaceTarget(arr)
-  const retObjLike = retObj as { [key: string]: unknown }
+  const retObjLike = toPhpArrayObject(retObj)
   for (const replacement of replacements) {
     if (!isObjectLike(replacement)) {
       continue

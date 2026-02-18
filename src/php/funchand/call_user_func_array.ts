@@ -5,7 +5,10 @@ type GlobalCallableContext = typeof globalThis & { [key: string]: unknown }
 
 const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
-export function call_user_func_array<TResult = unknown>(cb: unknown, parameters: unknown[]): TResult {
+export function call_user_func_array<TResult = unknown, TArgs extends unknown[] = unknown[]>(
+  cb: unknown,
+  parameters: [...TArgs],
+): TResult {
   //  discuss at: https://locutus.io/php/call_user_func_array/
   // original by: Thiago Mata (https://thiagomata.blog.com)
   //  revised by: Jon Hohle

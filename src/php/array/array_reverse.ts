@@ -1,4 +1,4 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 type ArrayReverseResult<TInput, TPreserve extends boolean> = TInput extends (infer TValue)[]
   ? TPreserve extends true
@@ -24,7 +24,7 @@ export function array_reverse<TInput extends unknown[] | PhpAssoc<unknown>, TPre
     return array.slice(0).reverse() as ArrayReverseResult<TInput, TPreserve>
   }
 
-  const source = array as { [key: string]: unknown }
+  const source = toPhpArrayObject(array)
 
   if (preserveKeys) {
     const keys = Object.keys(source)

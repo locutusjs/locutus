@@ -1,3 +1,5 @@
+import { isObjectLike } from '../_helpers/_phpTypes.ts'
+
 export function uasort<T>(
   this: { [key: string]: unknown },
   inputArr: Record<string, T>,
@@ -40,8 +42,11 @@ export function uasort<T>(
     if (objectKey === undefined || methodKey === undefined) {
       return false
     }
-    const objectValue = this[objectKey] as { [key: string]: unknown } | undefined
-    const method = objectValue?.[methodKey]
+    const objectValue = this[objectKey]
+    if (!isObjectLike(objectValue) && typeof objectValue !== 'function') {
+      return false
+    }
+    const method = Reflect.get(objectValue, methodKey)
     if (typeof method !== 'function') {
       return false
     }
@@ -65,7 +70,10 @@ export function uasort<T>(
   for (k in inputArr) {
     // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push([k, inputArr[k] as T])
+      const value = inputArr[k]
+      if (typeof value !== 'undefined') {
+        valArr.push([k, value])
+      }
       if (sortByReference) {
         delete inputArr[k]
       }

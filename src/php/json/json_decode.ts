@@ -1,4 +1,4 @@
-export function json_decode(strJson: string): unknown | null {
+export function json_decode<T = unknown>(strJson: string): T | null {
   //       discuss at: https://phpjs.org/functions/json_decode/
   //  parity verified: PHP 8.3
   //      original by: Public Domain (https://www.json.org/json2.js)
@@ -30,7 +30,7 @@ export function json_decode(strJson: string): unknown | null {
   const json = $global.JSON
   if (typeof json === 'object' && typeof json.parse === 'function') {
     try {
-      return json.parse(strJson)
+      return json.parse(strJson) as T
     } catch (err) {
       if (!(err instanceof SyntaxError)) {
         throw new Error('Unexpected error type in json_decode()')
@@ -56,7 +56,7 @@ export function json_decode(strJson: string): unknown | null {
     '\ufff0-\uffff',
   ].join('')
   const cx = new RegExp('[' + chars + ']', 'g')
-  let j: unknown
+  let j: T
   let text = strJson
 
   // Parsing happens in four stages. In the first stage, we replace certain
@@ -94,7 +94,7 @@ export function json_decode(strJson: string): unknown | null {
     // in JavaScript: it can begin a block or an object literal. We wrap the text
     // in parens to eliminate the ambiguity.
     // biome-ignore lint/security/noGlobalEval: needed for PHP port
-    j = eval('(' + text + ')')
+    j = eval('(' + text + ')') as T
     return j
   }
 

@@ -1,9 +1,9 @@
-import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 export function array_diff(
-  arr1: unknown[] | { [key: string]: unknown },
-  ...arrays: Array<unknown[] | { [key: string]: unknown }>
-): { [key: string]: unknown } {
+  arr1: unknown[] | PhpAssoc<unknown>,
+  ...arrays: Array<unknown[] | PhpAssoc<unknown>>
+): PhpAssoc<unknown> {
   //  discuss at: https://locutus.io/php/array_diff/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Sanjoy Roy
@@ -11,7 +11,7 @@ export function array_diff(
   //   example 1: array_diff(['Kevin', 'van', 'Zonneveld'], ['van', 'Zonneveld'])
   //   returns 1: {0:'Kevin'}
 
-  const retArr: { [key: string]: unknown } = {}
+  const retArr: PhpAssoc<unknown> = {}
 
   if (arrays.length < 1) {
     return retArr
