@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function metaphone(word: string, maxPhonemes: unknown): string | false | null {
+export function metaphone(word: unknown, maxPhonemes: unknown): string | false | null {
   //      discuss at: https://locutus.io/php/metaphone/
   // parity verified: PHP 8.3
   //     original by: Greg Frazier
@@ -22,19 +21,21 @@ export function metaphone(word: string, maxPhonemes: unknown): string | false | 
   }
 
   // infinity and NaN values are treated as strings
+  let normalizedWord = typeof word === 'string' ? word : ''
   if (type === 'number') {
-    if (isNaN(word)) {
-      word = 'NAN'
-    } else if (!isFinite(word)) {
-      word = 'INF'
+    if (Number.isNaN(word)) {
+      normalizedWord = 'NAN'
+    } else if (!Number.isFinite(word)) {
+      normalizedWord = 'INF'
+    } else {
+      normalizedWord = ''
     }
   }
 
-  if (maxPhonemes < 0) {
+  const maxPhonemeLimit = Math.floor(Number(maxPhonemes)) || 0
+  if (maxPhonemeLimit < 0) {
     return false
   }
-
-  maxPhonemes = Math.floor(+maxPhonemes) || 0
 
   // alpha depends on locale, so this var might need an update
   // or should be turned into a regex
@@ -44,23 +45,22 @@ export function metaphone(word: string, maxPhonemes: unknown): string | false | 
   const soft = 'EIY'
   const leadingNonAlpha = new RegExp('^[^' + alpha + ']+')
 
-  word = typeof word === 'string' ? word : ''
-  word = word.toUpperCase().replace(leadingNonAlpha, '')
+  normalizedWord = normalizedWord.toUpperCase().replace(leadingNonAlpha, '')
 
-  if (!word) {
+  if (!normalizedWord) {
     return ''
   }
 
-  const is = function (p: string, c: string) {
+  const is = function (p: string, c: string): boolean {
     return c !== '' && p.indexOf(c) !== -1
   }
 
   let i = 0
-  let cc = word.charAt(0) // current char. Short name because it's used all over the function
-  let nc = word.charAt(1) // next char
-  let nnc // after next char
-  let pc // previous char
-  const l = word.length
+  let cc = normalizedWord.charAt(0) // current char. Short name because it's used all over the function
+  let nc = normalizedWord.charAt(1) // next char
+  let nnc = '' // after next char
+  let pc = '' // previous char
+  const l = normalizedWord.length
   let meta = ''
   // traditional is an internal param that could be exposed for now let it be a local var
   const traditional = true
@@ -100,11 +100,11 @@ export function metaphone(word: string, maxPhonemes: unknown): string | false | 
       break
   }
 
-  for (; i < l && (maxPhonemes === 0 || meta.length < maxPhonemes); i += 1) {
-    cc = word.charAt(i)
-    nc = word.charAt(i + 1)
-    pc = word.charAt(i - 1)
-    nnc = word.charAt(i + 2)
+  for (; i < l && (maxPhonemeLimit === 0 || meta.length < maxPhonemeLimit); i += 1) {
+    cc = normalizedWord.charAt(i)
+    nc = normalizedWord.charAt(i + 1)
+    pc = normalizedWord.charAt(i - 1)
+    nnc = normalizedWord.charAt(i + 2)
 
     if (cc === pc && cc !== 'C') {
       continue
@@ -140,12 +140,12 @@ export function metaphone(word: string, maxPhonemes: unknown): string | false | 
         break
       case 'G':
         if (nc === 'H') {
-          if (!(is('BDH', word.charAt(i - 3)) || word.charAt(i - 4) === 'H')) {
+          if (!(is('BDH', normalizedWord.charAt(i - 3)) || normalizedWord.charAt(i - 4) === 'H')) {
             meta += 'F'
             i += 1
           }
         } else if (nc === 'N') {
-          if (is(alpha, nnc) && word.substr(i + 1, 3) !== 'NED') {
+          if (is(alpha, nnc) && normalizedWord.substr(i + 1, 3) !== 'NED') {
             meta += 'K'
           }
         } else if (is(soft, nc) && pc !== 'G') {
@@ -176,7 +176,7 @@ export function metaphone(word: string, maxPhonemes: unknown): string | false | 
         } else if (nc === 'H') {
           meta += 'X'
           i += 1
-        } else if (!traditional && word.substr(i + 1, 3) === 'CHW') {
+        } else if (!traditional && normalizedWord.substr(i + 1, 3) === 'CHW') {
           meta += 'X'
           i += 2
         } else {
@@ -189,7 +189,7 @@ export function metaphone(word: string, maxPhonemes: unknown): string | false | 
         } else if (nc === 'H') {
           meta += '0'
           i += 1
-        } else if (word.substr(i + 1, 2) !== 'CH') {
+        } else if (normalizedWord.substr(i + 1, 2) !== 'CH') {
           meta += 'T'
         }
         break
