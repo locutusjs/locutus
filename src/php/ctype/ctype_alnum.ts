@@ -1,9 +1,5 @@
+import { getCtypePattern } from '../_helpers/_ctypePattern.ts'
 import { setlocale } from '../strings/setlocale.ts'
-
-type CTypePhpContext = {
-  locales?: Record<string, { LC_CTYPE?: { an?: RegExp } }>
-  localeCategories?: { LC_CTYPE: string }
-}
 
 export function ctype_alnum(text: string): boolean | false {
   //      discuss at: https://locutus.io/php/ctype_alnum/
@@ -18,12 +14,6 @@ export function ctype_alnum(text: string): boolean | false {
 
   setlocale('LC_ALL', 0)
 
-  const globalContext = globalThis as typeof globalThis & { $locutus?: { php?: CTypePhpContext } }
-  const php = globalContext.$locutus?.php
-  if (!php?.locales || !php.localeCategories) {
-    return false
-  }
-
-  const pattern = php.locales[php.localeCategories.LC_CTYPE]?.LC_CTYPE?.an
+  const pattern = getCtypePattern('an')
   return pattern instanceof RegExp ? text.search(pattern) !== -1 : false
 }

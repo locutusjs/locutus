@@ -497,3 +497,20 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Reflective container updates are a practical pattern for removing final cast residue in highly dynamic parser-style ports.
   - Reaching a zero-floor ratchet per directory is feasible with iterative, behavior-preserving rewrites.
+
+## Iteration 20
+
+- Plans
+  - Expand cast burn-down into `ctype/**` without tsconfig changes.
+  - Add a dedicated debt ratchet for `src/php/ctype/**` cast usage.
+- Progress
+  - Added `src/php/_helpers/_ctypePattern.ts` to centralize guarded LC_CTYPE regex lookup.
+  - Refactored all `src/php/ctype/ctype_*.ts` functions to use `getCtypePattern(...)` and removed local/global cast-based runtime access.
+  - Extended `scripts/check-ts-debt-policy.ts` with:
+    - `MAX_SRC_PHP_CTYPE_AS_EXPRESSION = 0`
+    - enforcement and findings output for `src/php/ctype/**` cast expressions.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - A tiny shared runtime accessor can remove repeated cast-heavy dynamic lookups across an entire category.
+  - New directory ratchets are easiest to land when paired with a helper-first refactor that collapses repeated patterns.
