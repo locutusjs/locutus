@@ -1,7 +1,6 @@
-// @ts-nocheck
 import crypto from 'crypto'
 
-export function sha1(str) {
+export function sha1(str: string): string {
   //      discuss at: https://locutus.io/php/sha1/
   // parity verified: PHP 8.3
   //     original by: Webtoolkit.info (https://www.webtoolkit.info/)
@@ -14,7 +13,7 @@ export function sha1(str) {
   //       example 1: sha1('Kevin van Zonneveld')
   //       returns 1: '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
 
-  let hash
+  let hash: string | undefined
   try {
     const sha1sum = crypto.createHash('sha1')
     sha1sum.update(str)
@@ -27,49 +26,48 @@ export function sha1(str) {
     return hash
   }
 
-  const _rotLeft = function (n, s) {
+  const _rotLeft = function (n: number, s: number): number {
     const t4 = (n << s) | (n >>> (32 - s))
     return t4
   }
 
-  const _cvtHex = function (val) {
+  const _cvtHex = function (val: number): string {
     let str = ''
-    let i
-    let v
+    let v = 0
 
-    for (i = 7; i >= 0; i--) {
+    for (let i = 7; i >= 0; i--) {
       v = (val >>> (i * 4)) & 0x0f
       str += v.toString(16)
     }
     return str
   }
 
-  let blockstart
-  let i
-  let j
-  const W = new Array(80)
+  let blockstart = 0
+  let j = 0
+  const W: number[] = new Array(80).fill(0)
   let H0 = 0x67452301
   let H1 = 0xefcdab89
   let H2 = 0x98badcfe
   let H3 = 0x10325476
   let H4 = 0xc3d2e1f0
-  let A
-  let B
-  let C
-  let D
-  let E
-  let temp
+  let A = 0
+  let B = 0
+  let C = 0
+  let D = 0
+  let E = 0
+  let temp = 0
 
   // utf8_encode
   str = unescape(encodeURIComponent(str))
   const strLen = str.length
 
-  const wordArray = []
-  for (i = 0; i < strLen - 3; i += 4) {
+  const wordArray: number[] = []
+  for (let i = 0; i < strLen - 3; i += 4) {
     j = (str.charCodeAt(i) << 24) | (str.charCodeAt(i + 1) << 16) | (str.charCodeAt(i + 2) << 8) | str.charCodeAt(i + 3)
     wordArray.push(j)
   }
 
+  let i = 0
   switch (strLen % 4) {
     case 0:
       i = 0x080000000
@@ -100,10 +98,10 @@ export function sha1(str) {
 
   for (blockstart = 0; blockstart < wordArray.length; blockstart += 16) {
     for (i = 0; i < 16; i++) {
-      W[i] = wordArray[blockstart + i]
+      W[i] = wordArray[blockstart + i] ?? 0
     }
     for (i = 16; i <= 79; i++) {
-      W[i] = _rotLeft(W[i - 3] ^ W[i - 8] ^ W[i - 14] ^ W[i - 16], 1)
+      W[i] = _rotLeft((W[i - 3] ?? 0) ^ (W[i - 8] ?? 0) ^ (W[i - 14] ?? 0) ^ (W[i - 16] ?? 0), 1)
     }
 
     A = H0
@@ -113,7 +111,7 @@ export function sha1(str) {
     E = H4
 
     for (i = 0; i <= 19; i++) {
-      temp = (_rotLeft(A, 5) + ((B & C) | (~B & D)) + E + W[i] + 0x5a827999) & 0x0ffffffff
+      temp = (_rotLeft(A, 5) + ((B & C) | (~B & D)) + E + (W[i] ?? 0) + 0x5a827999) & 0x0ffffffff
       E = D
       D = C
       C = _rotLeft(B, 30)
@@ -122,7 +120,7 @@ export function sha1(str) {
     }
 
     for (i = 20; i <= 39; i++) {
-      temp = (_rotLeft(A, 5) + (B ^ C ^ D) + E + W[i] + 0x6ed9eba1) & 0x0ffffffff
+      temp = (_rotLeft(A, 5) + (B ^ C ^ D) + E + (W[i] ?? 0) + 0x6ed9eba1) & 0x0ffffffff
       E = D
       D = C
       C = _rotLeft(B, 30)
@@ -131,7 +129,7 @@ export function sha1(str) {
     }
 
     for (i = 40; i <= 59; i++) {
-      temp = (_rotLeft(A, 5) + ((B & C) | (B & D) | (C & D)) + E + W[i] + 0x8f1bbcdc) & 0x0ffffffff
+      temp = (_rotLeft(A, 5) + ((B & C) | (B & D) | (C & D)) + E + (W[i] ?? 0) + 0x8f1bbcdc) & 0x0ffffffff
       E = D
       D = C
       C = _rotLeft(B, 30)
@@ -140,7 +138,7 @@ export function sha1(str) {
     }
 
     for (i = 60; i <= 79; i++) {
-      temp = (_rotLeft(A, 5) + (B ^ C ^ D) + E + W[i] + 0xca62c1d6) & 0x0ffffffff
+      temp = (_rotLeft(A, 5) + (B ^ C ^ D) + E + (W[i] ?? 0) + 0xca62c1d6) & 0x0ffffffff
       E = D
       D = C
       C = _rotLeft(B, 30)
@@ -155,6 +153,6 @@ export function sha1(str) {
     H4 = (H4 + E) & 0x0ffffffff
   }
 
-  temp = _cvtHex(H0) + _cvtHex(H1) + _cvtHex(H2) + _cvtHex(H3) + _cvtHex(H4)
-  return temp.toLowerCase()
+  const hashHex = _cvtHex(H0) + _cvtHex(H1) + _cvtHex(H2) + _cvtHex(H3) + _cvtHex(H4)
+  return hashHex.toLowerCase()
 }

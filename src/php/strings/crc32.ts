@@ -1,7 +1,6 @@
-// @ts-nocheck
 import { utf8_encode as utf8Encode } from '../xml/utf8_encode.ts'
 
-export function crc32(str) {
+export function crc32(str: string): number {
   //      discuss at: https://locutus.io/php/crc32/
   // parity verified: PHP 8.3
   //     original by: Webtoolkit.info (https://www.webtoolkit.info/)
@@ -278,7 +277,7 @@ export function crc32(str) {
   crc = crc ^ -1
   for (let i = 0, iTop = str.length; i < iTop; i++) {
     y = (crc ^ str.charCodeAt(i)) & 0xff
-    x = '0x' + table.substr(y * 9, 8)
+    x = Number.parseInt('0x' + table.substr(y * 9, 8), 16)
     crc = (crc >>> 8) ^ x
   }
 
