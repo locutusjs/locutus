@@ -1,4 +1,9 @@
-export function array_intersect(arr1: { [key: string]: unknown }): { [key: string]: unknown } {
+import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+export function array_intersect(
+  arr1: { [key: string]: unknown } | unknown[],
+  ...arrays: Array<{ [key: string]: unknown } | unknown[]>
+): { [key: string]: unknown } {
   //  discuss at: https://locutus.io/php/array_intersect/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: These only output associative arrays (would need to be
@@ -10,29 +15,27 @@ export function array_intersect(arr1: { [key: string]: unknown }): { [key: strin
   //   returns 1: {0: 'red', a: 'green'}
 
   const retArr: { [key: string]: unknown } = {}
-  const argl = arguments.length
-  const arglm1 = argl - 1
-  let k1 = ''
-  let arr: { [key: string]: unknown } = {}
-  let i = 0
-  let k = ''
+  if (arrays.length < 1) {
+    return retArr
+  }
 
-  arr1keys: for (k1 in arr1) {
-    arrs: for (i = 1; i < argl; i++) {
-      arr = arguments[i] as { [key: string]: unknown }
-      for (k in arr) {
-        if (arr[k] === arr1[k1]) {
-          if (i === arglm1) {
-            retArr[k1] = arr1[k1]
-          }
-          // If the innermost loop always leads at least once to an equal value,
-          // continue the loop until done
-          continue arrs
+  const arr1Object = toPhpArrayObject(arr1)
+  arr1keys: for (const k1 in arr1Object) {
+    const arr1Value = arr1Object[k1]
+    for (const nextArray of arrays) {
+      const arr = toPhpArrayObject(nextArray)
+      let found = false
+      for (const k in arr) {
+        if (arr[k] === arr1Value) {
+          found = true
+          break
         }
       }
-      // If it reaches here, it wasn't found in at least one array, so try next value
-      continue arr1keys
+      if (!found) {
+        continue arr1keys
+      }
     }
+    retArr[k1] = arr1Value
   }
 
   return retArr

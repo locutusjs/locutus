@@ -1,7 +1,13 @@
-type ArrayChunkInput = unknown[] | { [key: string]: unknown }
-type ArrayChunkOutput = unknown[] | { [key: string]: unknown }
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 
-export function array_chunk(input: ArrayChunkInput, size: number, preserveKeys?: boolean): ArrayChunkOutput[] | null {
+type ArrayChunkInput<T> = T[] | PhpAssoc<T>
+type ArrayChunkOutput<T> = T[] | PhpAssoc<T>
+
+export function array_chunk<T>(
+  input: ArrayChunkInput<T>,
+  size: number,
+  preserveKeys?: boolean,
+): ArrayChunkOutput<T>[] | null {
   //  discuss at: https://locutus.io/php/array_chunk/
   // original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -24,54 +30,46 @@ export function array_chunk(input: ArrayChunkInput, size: number, preserveKeys?:
 
   if (Array.isArray(input)) {
     if (keepKeys) {
-      const chunks: { [key: string]: unknown }[] = []
-      for (let i = 0; i < input.length; i++) {
+      const chunks: PhpAssoc<T>[] = []
+      for (const [i, value] of input.entries()) {
         const chunkIndex = Math.floor(i / size)
         if (!chunks[chunkIndex]) {
           chunks[chunkIndex] = {}
         }
-        chunks[chunkIndex][String(i)] = input[i]
+        chunks[chunkIndex][String(i)] = value
       }
       return chunks
     } else {
-      const chunks: unknown[][] = []
-      for (let i = 0; i < input.length; i++) {
+      const chunks: T[][] = []
+      for (const [i, value] of input.entries()) {
         const chunkIndex = Math.floor(i / size)
         if (!chunks[chunkIndex]) {
           chunks[chunkIndex] = []
         }
-        chunks[chunkIndex].push(input[i])
+        chunks[chunkIndex].push(value)
       }
       return chunks
     }
   } else {
-    const hasOwn = Object.prototype.hasOwnProperty
+    const inputEntries = Object.entries(input)
     if (keepKeys) {
-      const chunks: { [key: string]: unknown }[] = []
-      let i = 0
-      for (const p in input) {
-        if (hasOwn.call(input, p)) {
-          const chunkIndex = Math.floor(i / size)
-          if (!chunks[chunkIndex]) {
-            chunks[chunkIndex] = {}
-          }
-          chunks[chunkIndex][p] = input[p]
-          i++
+      const chunks: PhpAssoc<T>[] = []
+      for (const [i, [key, value]] of inputEntries.entries()) {
+        const chunkIndex = Math.floor(i / size)
+        if (!chunks[chunkIndex]) {
+          chunks[chunkIndex] = {}
         }
+        chunks[chunkIndex][key] = value
       }
       return chunks
     } else {
-      const chunks: unknown[][] = []
-      let i = 0
-      for (const p in input) {
-        if (hasOwn.call(input, p)) {
-          const chunkIndex = Math.floor(i / size)
-          if (!chunks[chunkIndex]) {
-            chunks[chunkIndex] = []
-          }
-          chunks[chunkIndex].push(input[p])
-          i++
+      const chunks: T[][] = []
+      for (const [i, [, value]] of inputEntries.entries()) {
+        const chunkIndex = Math.floor(i / size)
+        if (!chunks[chunkIndex]) {
+          chunks[chunkIndex] = []
         }
+        chunks[chunkIndex].push(value)
       }
       return chunks
     }

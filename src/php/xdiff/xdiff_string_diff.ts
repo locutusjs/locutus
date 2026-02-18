@@ -1,5 +1,6 @@
 type BasicType = 'number' | 'boolean' | 'string' | 'function' | 'object' | 'undefined'
-type TypeDescriptor = BasicType | Function
+type TypeConstructor = abstract new (...args: never[]) => object
+type TypeDescriptor = BasicType | TypeConstructor
 
 export function xdiff_string_diff(
   oldData: unknown,

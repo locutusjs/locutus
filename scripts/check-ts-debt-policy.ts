@@ -15,14 +15,38 @@ const sourceFiles = ts.sys
   .filter((filePath) => !filePath.endsWith('.d.ts'))
 
 const tsNoCheckFiles: string[] = []
+const tsIgnoreFindings: Finding[] = []
 const tsExpectErrorFindings: Finding[] = []
 const recordStringUnknownFindings: Finding[] = []
+const functionTypeFindings: Finding[] = []
+
+const countFunctionTypeReferences = (sourceFile: ts.SourceFile): number => {
+  let count = 0
+
+  const visit = (node: ts.Node): void => {
+    if (ts.isTypeReferenceNode(node) && ts.isIdentifier(node.typeName) && node.typeName.text === 'Function') {
+      count += 1
+    }
+    ts.forEachChild(node, visit)
+  }
+
+  visit(sourceFile)
+  return count
+}
 
 for (const filePath of sourceFiles) {
   const sourceText = fs.readFileSync(filePath, 'utf8')
 
   if (/@ts-nocheck\b/.test(sourceText)) {
     tsNoCheckFiles.push(path.relative(cwd, filePath))
+  }
+
+  const tsIgnoreCount = (sourceText.match(/@ts-ignore\b/g) || []).length
+  if (tsIgnoreCount > 0) {
+    tsIgnoreFindings.push({
+      file: path.relative(cwd, filePath),
+      count: tsIgnoreCount,
+    })
   }
 
   const tsExpectErrorCount = (sourceText.match(/@ts-expect-error\b/g) || []).length
@@ -38,6 +62,15 @@ for (const filePath of sourceFiles) {
     recordStringUnknownFindings.push({
       file: path.relative(cwd, filePath),
       count: recordStringUnknownCount,
+    })
+  }
+
+  const sourceFile = ts.createSourceFile(filePath, sourceText, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS)
+  const functionTypeCount = countFunctionTypeReferences(sourceFile)
+  if (functionTypeCount > 0) {
+    functionTypeFindings.push({
+      file: path.relative(cwd, filePath),
+      count: functionTypeCount,
     })
   }
 }
@@ -61,6 +94,15 @@ if (tsExpectErrorFindings.length > 0) {
   }
 }
 
+if (tsIgnoreFindings.length > 0) {
+  hasFailure = true
+  const total = tsIgnoreFindings.reduce((sum, finding) => sum + finding.count, 0)
+  console.error(`Forbidden @ts-ignore directives found: ${total}`)
+  for (const finding of tsIgnoreFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
 if (recordStringUnknownFindings.length > 0) {
   hasFailure = true
   const total = recordStringUnknownFindings.reduce((sum, finding) => sum + finding.count, 0)
@@ -70,8 +112,19 @@ if (recordStringUnknownFindings.length > 0) {
   }
 }
 
+if (functionTypeFindings.length > 0) {
+  hasFailure = true
+  const total = functionTypeFindings.reduce((sum, finding) => sum + finding.count, 0)
+  console.error(`Forbidden Function type usages found: ${total}`)
+  for (const finding of functionTypeFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
 if (hasFailure) {
   process.exit(1)
 }
 
-console.log('ts debt policy ok: @ts-nocheck 0, @ts-expect-error 0, Record<string, unknown> 0')
+console.log(
+  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0',
+)

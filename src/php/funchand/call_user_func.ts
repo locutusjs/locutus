@@ -1,6 +1,6 @@
 import { call_user_func_array as callUserFuncArray } from '../funchand/call_user_func_array.ts'
 
-export function call_user_func(cb: unknown, ...parameters: unknown[]): unknown {
+export function call_user_func<TResult = unknown>(cb: unknown, ...parameters: unknown[]): TResult {
   //  discuss at: https://locutus.io/php/call_user_func/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Diplom@t (https://difane.com/)
@@ -13,5 +13,5 @@ export function call_user_func(cb: unknown, ...parameters: unknown[]): unknown {
   //   example 1: call_user_func('isNaN', 'a')
   //   returns 1: true
 
-  return callUserFuncArray(cb, parameters)
+  return callUserFuncArray<TResult>(cb, parameters)
 }

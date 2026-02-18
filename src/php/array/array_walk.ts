@@ -1,6 +1,10 @@
+import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+type ArrayWalkCallback = (value: unknown, key: string, userdata?: unknown) => void
+
 export function array_walk(
   array: unknown[] | { [key: string]: unknown },
-  funcname: ((value: unknown, key: string, userdata?: unknown) => void) | unknown,
+  funcname: ArrayWalkCallback | unknown,
   userdata?: unknown,
 ): boolean {
   //  discuss at: https://locutus.io/php/array_walk/
@@ -20,17 +24,18 @@ export function array_walk(
   }
 
   try {
-    if (typeof funcname === 'function') {
-      const target = array as { [key: string]: unknown }
-      for (const key in target) {
-        if (arguments.length > 2) {
-          funcname(target[key], key, userdata)
-        } else {
-          funcname(target[key], key)
-        }
-      }
-    } else {
+    if (typeof funcname !== 'function') {
       return false
+    }
+
+    const target = toPhpArrayObject(array)
+    const hasUserdata = typeof userdata !== 'undefined'
+    for (const key in target) {
+      if (hasUserdata) {
+        funcname(target[key], key, userdata)
+      } else {
+        funcname(target[key], key)
+      }
     }
   } catch (_e) {
     return false

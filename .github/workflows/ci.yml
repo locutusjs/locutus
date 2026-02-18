@@ -45,6 +45,12 @@ jobs:
       - name: TypeScript Check
         run: |
           corepack yarn lint:ts
+      - name: TypeScript Strict-Next Check
+        run: |
+          corepack yarn lint:ts:strict-next
+      - name: Type Debt Policy Check
+        run: |
+          corepack yarn lint:ts:debt:policy
       - name: Header Format Check
         run: |
           corepack yarn lint:headers

@@ -1,4 +1,4 @@
-export function array_unshift(array: unknown[]): number {
+export function array_unshift(array: unknown[], ...values: unknown[]): number {
   //  discuss at: https://locutus.io/php/array_unshift/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Martijn Wieringa
@@ -7,11 +7,9 @@ export function array_unshift(array: unknown[]): number {
   //   example 1: array_unshift(['van', 'Zonneveld'], 'Kevin')
   //   returns 1: 3
 
-  let i = arguments.length
-
-  while (--i !== 0) {
-    arguments[0].unshift(arguments[i])
+  for (let i = values.length - 1; i >= 0; i--) {
+    array.unshift(values[i])
   }
 
-  return arguments[0].length
+  return array.length
 }

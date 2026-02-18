@@ -1,4 +1,6 @@
-export function array_push(inputArr: unknown[]): number {
+import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+export function array_push(inputArr: unknown[] | { [key: string]: unknown }, ...values: unknown[]): number {
   //  discuss at: https://locutus.io/php/array_push/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -10,25 +12,23 @@ export function array_push(inputArr: unknown[]): number {
   //   example 1: array_push(['kevin','van'], 'zonneveld')
   //   returns 1: 3
 
-  let i = 0
-  let pr = ''
-  const argv = arguments
-  const argc = argv.length
-  const allDigits = /^\d$/
+  const allDigits = /^\d+$/
   let size = 0
   let highestIdx = 0
   let len = 0
 
-  if (inputArr.hasOwnProperty('length')) {
-    for (i = 1; i < argc; i++) {
-      inputArr[inputArr.length] = argv[i]
+  if (Array.isArray(inputArr)) {
+    for (const value of values) {
+      inputArr[inputArr.length] = value
     }
     return inputArr.length
   }
 
   // Associative (object)
-  for (pr in inputArr) {
-    if (inputArr.hasOwnProperty(pr)) {
+  const target = toPhpArrayObject(inputArr)
+  const hasOwn = Object.prototype.hasOwnProperty
+  for (const pr in target) {
+    if (hasOwn.call(target, pr)) {
       ++len
       if (pr.search(allDigits) !== -1) {
         size = parseInt(pr, 10)
@@ -36,9 +36,9 @@ export function array_push(inputArr: unknown[]): number {
       }
     }
   }
-  for (i = 1; i < argc; i++) {
-    inputArr[++highestIdx] = argv[i]
+  for (const value of values) {
+    target[++highestIdx] = value
   }
 
-  return len + i - 1
+  return len + values.length
 }

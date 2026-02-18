@@ -1,7 +1,9 @@
+import { isObjectLike, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
 export function array_column(
   input: unknown,
-  ColumnKey: string | number | null,
-  IndexKey: string | number | null = null,
+  columnKey: string | number | null,
+  indexKey: string | number | null = null,
 ): { [key: string]: unknown } | undefined {
   //  discuss at: https://locutus.io/php/array_column/
   // original by: Enzo Dañobeytía
@@ -18,30 +20,22 @@ export function array_column(
     return undefined
   }
 
-  const newarray: unknown[] = []
-  const newarrayByKey = newarray as unknown as { [key: string]: unknown }
-  const normalizedInput = Array.isArray(input) ? input : Object.values(input as { [key: string]: unknown })
+  const normalizedInput = Array.isArray(input) ? input : Object.values(toPhpArrayObject(input))
+  const result: { [key: string]: unknown } = {}
+  let fallbackIndex = 0
 
   for (const rowValue of normalizedInput) {
-    const row = rowValue && typeof rowValue === 'object' ? (rowValue as { [key: string]: unknown }) : {}
-    const indexCandidate = IndexKey ? row[String(IndexKey)] : undefined
+    const row = isObjectLike(rowValue) ? toPhpArrayObject(rowValue) : {}
+    const indexCandidate = indexKey === null ? undefined : row[String(indexKey)]
 
-    if (indexCandidate) {
-      if (ColumnKey) {
-        newarrayByKey[String(indexCandidate)] = row[String(ColumnKey)]
-      } else {
-        newarrayByKey[String(indexCandidate)] = rowValue
-      }
-    } else if (ColumnKey) {
-      newarray.push(row[String(ColumnKey)])
+    const value = columnKey === null ? rowValue : row[String(columnKey)]
+    if (indexCandidate !== undefined && indexCandidate !== null) {
+      result[String(indexCandidate)] = value
     } else {
-      newarray.push(rowValue)
+      result[String(fallbackIndex)] = value
+      fallbackIndex += 1
     }
   }
 
-  const result: { [key: string]: unknown } = {}
-  for (const key in newarrayByKey) {
-    result[key] = newarrayByKey[key]
-  }
   return result
 }
