@@ -1,8 +1,8 @@
-export function uksort(
+export function uksort<T>(
   this: { [key: string]: unknown; window?: { [key: string]: unknown } },
-  inputArr: Record<string, unknown>,
+  inputArr: Record<string, T>,
   sorter: ((a: string, b: string) => number) | string,
-): boolean | Record<string, unknown> {
+): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/uksort/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -21,12 +21,12 @@ export function uksort(
   //   example 1: var $result = $data
   //   returns 1: {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
 
-  const tmpArr: Record<string, unknown> = {}
+  const tmpArr: Record<string, T> = {}
   const keys: string[] = []
   let i = 0
   let k = ''
   let sortByReference = false
-  let populateArr: Record<string, unknown> = {}
+  let populateArr: Record<string, T> = {}
 
   let sortFn: ((a: string, b: string) => number) | undefined
   if (typeof sorter === 'string') {
@@ -69,14 +69,14 @@ export function uksort(
       continue
     }
     k = key
-    tmpArr[k] = inputArr[k]
+    tmpArr[k] = inputArr[k] as T
     if (sortByReference) {
       delete inputArr[k]
     }
   }
   for (const i in tmpArr) {
     if (tmpArr.hasOwnProperty(i)) {
-      populateArr[i] = tmpArr[i]
+      populateArr[i] = tmpArr[i] as T
     }
   }
 

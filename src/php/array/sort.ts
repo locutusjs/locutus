@@ -1,6 +1,6 @@
 import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
 
-export function sort(inputArr: Record<string, unknown>, sortFlags?: string): boolean | Record<string, unknown> {
+export function sort<T>(inputArr: Record<string, T>, sortFlags?: string): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/sort/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //  revised by: Brett Zamir (https://brett-zamir.me)
@@ -35,7 +35,7 @@ export function sort(inputArr: Record<string, unknown>, sortFlags?: string): boo
   let i: number
   let k: string
   let sortByReference = false
-  let populateArr: Record<string, unknown> = {}
+  let populateArr: Record<string, T> = {}
 
   const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
     $locutus: {
@@ -92,11 +92,11 @@ export function sort(inputArr: Record<string, unknown>, sortFlags?: string): boo
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 
-  const valArr: unknown[] = []
+  const valArr: T[] = []
   for (k in inputArr) {
     // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push(inputArr[k])
+      valArr.push(inputArr[k] as T)
       if (sortByReference) {
         delete inputArr[k]
       }
@@ -107,7 +107,7 @@ export function sort(inputArr: Record<string, unknown>, sortFlags?: string): boo
 
   for (i = 0; i < valArr.length; i++) {
     // Repopulate the old array
-    populateArr[i] = valArr[i]
+    populateArr[i] = valArr[i] as T
   }
   return sortByReference || populateArr
 }

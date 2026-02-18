@@ -1,4 +1,4 @@
-export function shuffle(inputArr: Record<string, unknown>): boolean | Record<string, unknown> | unknown[] {
+export function shuffle<T>(inputArr: Record<string, T>): boolean | Record<string, T> | T[] {
   //  discuss at: https://locutus.io/php/shuffle/
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   //  revised by: Kevin van Zonneveld (https://kvz.io)
@@ -10,16 +10,16 @@ export function shuffle(inputArr: Record<string, unknown>): boolean | Record<str
   //   example 1: var $result = $data.q
   //   returns 1: 5
 
-  const valArr: unknown[] = []
+  const valArr: T[] = []
   let k = ''
   let i = 0
   let sortByReference = false
-  let populateArr: Record<string, unknown> | unknown[] = []
+  let populateArr: Record<string, T> | T[] = []
 
   for (k in inputArr) {
     // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push(inputArr[k])
+      valArr.push(inputArr[k] as T)
       if (sortByReference) {
         delete inputArr[k]
       }
@@ -41,9 +41,9 @@ export function shuffle(inputArr: Record<string, unknown>): boolean | Record<str
   for (i = 0; i < valArr.length; i++) {
     // Repopulate the old array
     if (Array.isArray(populateArr)) {
-      populateArr[i] = valArr[i]
+      populateArr[i] = valArr[i] as T
     } else {
-      populateArr[String(i)] = valArr[i]
+      populateArr[String(i)] = valArr[i] as T
     }
   }
 

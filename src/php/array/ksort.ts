@@ -1,7 +1,7 @@
 import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
 import { strnatcmp } from '../strings/strnatcmp.ts'
 
-export function ksort(inputArr: Record<string, unknown>, sortFlags?: string): boolean | Record<string, unknown> {
+export function ksort<T>(inputArr: Record<string, T>, sortFlags?: string): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/ksort/
   // original by: GeekFG (https://geekfg.blogspot.com)
   // improved by: Kevin van Zonneveld (https://kvz.io)
@@ -29,13 +29,13 @@ export function ksort(inputArr: Record<string, unknown>, sortFlags?: string): bo
   //   example 2: var $result = $data
   //   returns 2: {1: 'Kevin', 2: 'van', 3: 'Zonneveld'}
 
-  const tmpArr: Record<string, unknown> = {}
+  const tmpArr: Record<string, T> = {}
   const keys: string[] = []
   let sorter: ((a: string, b: string) => number) | undefined
   let i: number
   let k: string
   let sortByReference = false
-  let populateArr: Record<string, unknown> = {}
+  let populateArr: Record<string, T> = {}
 
   const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
     $locutus: {
@@ -111,14 +111,14 @@ export function ksort(inputArr: Record<string, unknown>, sortFlags?: string): bo
       continue
     }
     k = keyName
-    tmpArr[k] = inputArr[k]
+    tmpArr[k] = inputArr[k] as T
     if (sortByReference) {
       delete inputArr[k]
     }
   }
   for (const i in tmpArr) {
     if (tmpArr.hasOwnProperty(i)) {
-      populateArr[i] = tmpArr[i]
+      populateArr[i] = tmpArr[i] as T
     }
   }
 

@@ -1,6 +1,6 @@
 import { strnatcasecmp } from '../strings/strnatcasecmp.ts'
 
-export function natcasesort(inputArr: Record<string, unknown>): boolean | Record<string, unknown> {
+export function natcasesort<T>(inputArr: Record<string, T>): boolean | Record<string, T> {
   //      discuss at: https://locutus.io/php/natcasesort/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -22,11 +22,11 @@ export function natcasesort(inputArr: Record<string, unknown>): boolean | Record
   //       example 1: var $result = $array1
   //       returns 1: {a: 'IMG0.png', e: 'img1.png', d: 'img2.png', f: 'IMG3.png', c: 'img10.png', b: 'img12.png'}
 
-  const valArr: [string, unknown][] = []
+  const valArr: [string, T][] = []
   let k: string
   let i: number
   let sortByReference = false
-  let populateArr: Record<string, unknown> = {}
+  let populateArr: Record<string, T> = {}
 
   const $loc = (
     globalThis as typeof globalThis & {
@@ -40,7 +40,7 @@ export function natcasesort(inputArr: Record<string, unknown>): boolean | Record
   // Get key and value arrays
   for (k in inputArr) {
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push([k, inputArr[k]])
+      valArr.push([k, inputArr[k] as T])
       if (sortByReference) {
         delete inputArr[k]
       }

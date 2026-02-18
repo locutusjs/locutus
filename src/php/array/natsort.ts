@@ -1,6 +1,6 @@
 import { strnatcmp } from '../strings/strnatcmp.ts'
 
-export function natsort(inputArr: Record<string, unknown>): boolean | Record<string, unknown> {
+export function natsort<T>(inputArr: Record<string, T>): boolean | Record<string, T> {
   //      discuss at: https://locutus.io/php/natsort/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -20,11 +20,11 @@ export function natsort(inputArr: Record<string, unknown>): boolean | Record<str
   //       example 1: var $result = $array1
   //       returns 1: {d: 'img1.png', c: 'img2.png', b: 'img10.png', a: 'img12.png'}
 
-  const valArr: [string, unknown][] = []
+  const valArr: [string, T][] = []
   let k: string
   let i: number
   let sortByReference = false
-  let populateArr: Record<string, unknown> = {}
+  let populateArr: Record<string, T> = {}
 
   const $loc = (
     globalThis as typeof globalThis & {
@@ -38,7 +38,7 @@ export function natsort(inputArr: Record<string, unknown>): boolean | Record<str
   // Get key and value arrays
   for (k in inputArr) {
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push([k, inputArr[k]])
+      valArr.push([k, inputArr[k] as T])
       if (sortByReference) {
         delete inputArr[k]
       }

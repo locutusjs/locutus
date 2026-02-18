@@ -1,7 +1,7 @@
 import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
 import { strnatcmp } from '../strings/strnatcmp.ts'
 
-export function asort(inputArr: Record<string, unknown>, sortFlags?: string): boolean | Record<string, unknown> {
+export function asort<T>(inputArr: Record<string, T>, sortFlags?: string): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/asort/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -37,13 +37,13 @@ export function asort(inputArr: Record<string, unknown>, sortFlags?: string): bo
   //   example 2: var $result = $data
   //   returns 2: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
 
-  const valArr: [string, unknown][] = []
+  const valArr: [string, T][] = []
   let valArrLen = 0
   let k: string
   let i: number
   let sorter: ((a: unknown, b: unknown) => number) | undefined
   let sortByReference = false
-  let populateArr: Record<string, unknown> = {}
+  let populateArr: Record<string, T> = {}
 
   const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
     $locutus: {
@@ -103,7 +103,7 @@ export function asort(inputArr: Record<string, unknown>, sortFlags?: string): bo
   // Get key and value arrays
   for (k in inputArr) {
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push([k, inputArr[k]])
+      valArr.push([k, inputArr[k] as T])
       if (sortByReference) {
         delete inputArr[k]
       }

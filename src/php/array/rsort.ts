@@ -1,7 +1,7 @@
 import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
 import { strnatcmp } from '../strings/strnatcmp.ts'
 
-export function rsort(inputArr: Record<string, unknown>, sortFlags?: string): boolean | Record<string, unknown> {
+export function rsort<T>(inputArr: Record<string, T>, sortFlags?: string): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/rsort/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //  revised by: Brett Zamir (https://brett-zamir.me)
@@ -36,7 +36,7 @@ export function rsort(inputArr: Record<string, unknown>, sortFlags?: string): bo
   let i: number
   let k: string
   let sortByReference = false
-  let populateArr: Record<string, unknown> = {}
+  let populateArr: Record<string, T> = {}
 
   const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
     $locutus: {
@@ -92,12 +92,12 @@ export function rsort(inputArr: Record<string, unknown>, sortFlags?: string): bo
   const iniVal = String($locutus.php.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
-  const valArr: unknown[] = []
+  const valArr: T[] = []
 
   for (k in inputArr) {
     // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push(inputArr[k])
+      valArr.push(inputArr[k] as T)
       if (sortByReference) {
         delete inputArr[k]
       }
@@ -108,7 +108,7 @@ export function rsort(inputArr: Record<string, unknown>, sortFlags?: string): bo
 
   for (i = 0; i < valArr.length; i++) {
     // Repopulate the old array
-    populateArr[i] = valArr[i]
+    populateArr[i] = valArr[i] as T
   }
 
   return sortByReference || populateArr

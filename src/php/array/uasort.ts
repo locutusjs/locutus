@@ -1,8 +1,8 @@
-export function uasort(
+export function uasort<T>(
   this: { [key: string]: unknown },
-  inputArr: Record<string, unknown>,
-  sorter: ((a: unknown, b: unknown) => number) | string | string[],
-): boolean | Record<string, unknown> {
+  inputArr: Record<string, T>,
+  sorter: ((a: T, b: T) => number) | string | string[],
+): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/uasort/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -22,19 +22,19 @@ export function uasort(
   //   example 1: var $result = $fruits
   //   returns 1: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
 
-  const valArr: [string, unknown][] = []
+  const valArr: [string, T][] = []
   let k = ''
   let i = 0
   let sortByReference = false
-  let populateArr: Record<string, unknown> = {}
+  let populateArr: Record<string, T> = {}
 
-  let sortFn: ((a: unknown, b: unknown) => number) | undefined
+  let sortFn: ((a: T, b: T) => number) | undefined
   if (typeof sorter === 'string') {
     const method = this[sorter]
     if (typeof method !== 'function') {
       return false
     }
-    sortFn = method as (a: unknown, b: unknown) => number
+    sortFn = method as (a: T, b: T) => number
   } else if (Array.isArray(sorter)) {
     const [objectKey, methodKey] = sorter
     if (objectKey === undefined || methodKey === undefined) {
@@ -45,7 +45,7 @@ export function uasort(
     if (typeof method !== 'function') {
       return false
     }
-    sortFn = method as (a: unknown, b: unknown) => number
+    sortFn = method as (a: T, b: T) => number
   } else {
     sortFn = sorter
   }
@@ -65,7 +65,7 @@ export function uasort(
   for (k in inputArr) {
     // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push([k, inputArr[k]])
+      valArr.push([k, inputArr[k] as T])
       if (sortByReference) {
         delete inputArr[k]
       }

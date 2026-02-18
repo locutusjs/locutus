@@ -1,8 +1,8 @@
-export function usort(
+export function usort<T>(
   this: { [key: string]: unknown },
-  inputArr: Record<string, unknown>,
-  sorter: ((a: unknown, b: unknown) => number) | string | string[],
-): boolean | Record<string, unknown> {
+  inputArr: Record<string, T>,
+  sorter: ((a: T, b: T) => number) | string | string[],
+): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/usort/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -20,19 +20,19 @@ export function usort(
   //   example 1: var $result = $stuff
   //   returns 1: {0: '1', 1: '3', 2: '4', 3: '11'}
 
-  const valArr: unknown[] = []
+  const valArr: T[] = []
   let k = ''
   let i = 0
   let sortByReference = false
-  let populateArr: Record<string, unknown> = {}
+  let populateArr: Record<string, T> = {}
 
-  let sortFn: ((a: unknown, b: unknown) => number) | undefined
+  let sortFn: ((a: T, b: T) => number) | undefined
   if (typeof sorter === 'string') {
     const method = this[sorter]
     if (typeof method !== 'function') {
       return false
     }
-    sortFn = method as (a: unknown, b: unknown) => number
+    sortFn = method as (a: T, b: T) => number
   } else if (Array.isArray(sorter)) {
     const [objectKey, methodKey] = sorter
     if (objectKey === undefined || methodKey === undefined) {
@@ -43,7 +43,7 @@ export function usort(
     if (typeof method !== 'function') {
       return false
     }
-    sortFn = method as (a: unknown, b: unknown) => number
+    sortFn = method as (a: T, b: T) => number
   } else {
     sortFn = sorter
   }
@@ -63,7 +63,7 @@ export function usort(
   for (k in inputArr) {
     // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push(inputArr[k])
+      valArr.push(inputArr[k] as T)
       if (sortByReference) {
         delete inputArr[k]
       }
@@ -76,7 +76,7 @@ export function usort(
   }
   for (i = 0; i < valArr.length; i++) {
     // Repopulate the old array
-    populateArr[i] = valArr[i]
+    populateArr[i] = valArr[i] as T
   }
 
   return sortByReference || populateArr
