@@ -1,4 +1,6 @@
-export function array_fill_keys(keys: { [key: string]: unknown }, value: string): { [key: string]: string } {
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+export function array_fill_keys(keys: PhpAssoc<unknown>, value: string): PhpAssoc<string> {
   //  discuss at: https://locutus.io/php/array_fill_keys/
   // original by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Brett Zamir (https://brett-zamir.me)
@@ -6,10 +8,9 @@ export function array_fill_keys(keys: { [key: string]: unknown }, value: string)
   //   example 1: array_fill_keys($keys, 'banana')
   //   returns 1: {"foo": "banana", 5: "banana", 10: "banana", "bar": "banana"}
 
-  const retObj: { [key: string]: string } = {}
-  let key = ''
+  const retObj: PhpAssoc<string> = {}
 
-  for (key in keys) {
+  for (const key in keys) {
     retObj[String(keys[key])] = value
   }
 

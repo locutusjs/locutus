@@ -1,4 +1,4 @@
-export function isset() {
+export function isset(...values: unknown[]): boolean {
   //  discuss at: https://locutus.io/php/isset/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: FremyCompany
@@ -9,20 +9,14 @@ export function isset() {
   //   example 2: isset( 'Kevin van Zonneveld' )
   //   returns 2: true
 
-  const a = arguments
-  const l = a.length
-  let i = 0
-  let undef
-
-  if (l === 0) {
+  if (values.length === 0) {
     throw new Error('Empty isset')
   }
 
-  while (i !== l) {
-    if (a[i] === undef || a[i] === null) {
+  for (const value of values) {
+    if (typeof value === 'undefined' || value === null) {
       return false
     }
-    i++
   }
 
   return true

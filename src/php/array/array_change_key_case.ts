@@ -6,6 +6,10 @@ type ArrayChangeKeyCaseResult<TInput> = TInput extends (infer TValue)[]
     ? PhpAssoc<TValue>
     : false
 
+const castArrayChangeResult = <TInput>(
+  value: unknown[] | PhpAssoc<unknown> | false,
+): ArrayChangeKeyCaseResult<TInput> => value as ArrayChangeKeyCaseResult<TInput>
+
 export function array_change_key_case<TInput extends number | unknown[] | PhpAssoc<unknown> | null>(
   array: TInput,
   cs?: string | number,
@@ -28,11 +32,11 @@ export function array_change_key_case<TInput extends number | unknown[] | PhpAss
   //   returns 6: {"FUBAR": 42}
 
   if (Array.isArray(array)) {
-    return array as unknown as ArrayChangeKeyCaseResult<TInput>
+    return castArrayChangeResult<TInput>(array)
   }
 
   if (!array || typeof array !== 'object') {
-    return false as ArrayChangeKeyCaseResult<TInput>
+    return castArrayChangeResult<TInput>(false)
   }
 
   const caseFunction: 'toLowerCase' | 'toUpperCase' = !cs || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase'
@@ -45,5 +49,5 @@ export function array_change_key_case<TInput extends number | unknown[] | PhpAss
     }
   }
 
-  return transformed as ArrayChangeKeyCaseResult<TInput>
+  return castArrayChangeResult<TInput>(transformed)
 }

@@ -1,3 +1,4 @@
+import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { get_html_translation_table as getHtmlTranslationTable } from '../strings/get_html_translation_table.ts'
 
 export function html_entity_decode(string: string, quoteStyle?: unknown): string | false {
@@ -21,13 +22,15 @@ export function html_entity_decode(string: string, quoteStyle?: unknown): string
 
   let tmpStr = string.toString()
 
-  const hashMapUnknown = getHtmlTranslationTable('HTML_ENTITIES', quoteStyle as string | number | undefined) as unknown
+  const normalizedQuoteStyle = typeof quoteStyle === 'string' || typeof quoteStyle === 'number' ? quoteStyle : undefined
+  const hashMapUnknown: unknown = getHtmlTranslationTable('HTML_ENTITIES', normalizedQuoteStyle)
   if (hashMapUnknown === false || !hashMapUnknown || typeof hashMapUnknown !== 'object') {
     return false
   }
   const normalizedHashMap: { [key: string]: string } = {}
-  for (const symbol in hashMapUnknown as { [key: string]: unknown }) {
-    const entity = (hashMapUnknown as { [key: string]: unknown })[symbol]
+  const hashMapObject = toPhpArrayObject(hashMapUnknown)
+  for (const symbol in hashMapObject) {
+    const entity = hashMapObject[symbol]
     if (typeof entity === 'string') {
       normalizedHashMap[symbol] = entity
     }

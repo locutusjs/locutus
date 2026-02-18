@@ -1,5 +1,7 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
 
+type ArrayMapResolvedCallback = (...args: unknown[]) => unknown
+
 export function array_map(callback: unknown, ...inputArrays: unknown[][]): unknown[] {
   //  discuss at: https://locutus.io/php/array_map/
   // original by: Andrea Giammarchi (https://webreflection.blogspot.com)
@@ -15,7 +17,10 @@ export function array_map(callback: unknown, ...inputArrays: unknown[][]): unkno
   const itemCount = inputArrays[0]?.length ?? 0
   const mapped: unknown[] = []
 
-  const resolved =
+  const resolved: {
+    fn: ArrayMapResolvedCallback
+    scope: unknown
+  } | null =
     callback === null || typeof callback === 'undefined'
       ? null
       : resolvePhpCallable(callback, {

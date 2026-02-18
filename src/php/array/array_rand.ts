@@ -10,7 +10,7 @@ export function array_rand(
 
   // By using Object.keys we support both, arrays and objects
   // which phpjs wants to support
-  const keys = Object.keys(array as { [key: string]: unknown })
+  const keys = Object.keys(array)
 
   if (typeof num === 'undefined' || num === null) {
     num = 1

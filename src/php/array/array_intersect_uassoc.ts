@@ -3,7 +3,7 @@ import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 type PhpArray = PhpAssoc<unknown>
 
-export function array_intersect_uassoc(arr1: PhpArray): PhpArray {
+export function array_intersect_uassoc(arr1: PhpArray, ...arraysAndCallback: unknown[]): PhpArray {
   //  discuss at: https://locutus.io/php/array_intersect_uassoc/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
@@ -12,19 +12,17 @@ export function array_intersect_uassoc(arr1: PhpArray): PhpArray {
   //   returns 1: {b: 'brown'}
 
   const retArr: PhpArray = {}
-  const arglm1 = arguments.length - 1
-  const arglm2 = arglm1 - 1
-  const keyComparator = resolveNumericComparator<string, string>(
-    arguments[arglm1],
-    'array_intersect_uassoc(): Invalid callback',
-  )
+  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  const arrays = arraysAndCallback.slice(0, -1)
+  const lastArrayIndex = arrays.length - 1
+  const keyComparator = resolveNumericComparator<string, string>(callback, 'array_intersect_uassoc(): Invalid callback')
 
   arr1keys: for (const k1 in arr1) {
-    arrs: for (let i = 1; i < arglm1; i++) {
-      const arr = toPhpArrayObject(arguments[i])
+    arrs: for (const [i, nextArray] of arrays.entries()) {
+      const arr = toPhpArrayObject(nextArray)
       for (const k in arr) {
         if (arr[k] === arr1[k1] && keyComparator(k, k1) === 0) {
-          if (i === arglm2) {
+          if (i === lastArrayIndex) {
             retArr[k1] = arr1[k1]
           }
           // If the innermost loop always leads at least once to an equal value,

@@ -1,4 +1,4 @@
-export function wordwrap(str: string, intWidth?: number, strBreak?: string, cut?: boolean): string {
+export function wordwrap(...rawArgs: [str: string, intWidth?: number, strBreak?: string, cut?: boolean]): string {
   //      discuss at: https://locutus.io/php/wordwrap/
   // parity verified: PHP 8.3
   //     original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
@@ -16,9 +16,11 @@ export function wordwrap(str: string, intWidth?: number, strBreak?: string, cut?
   //       example 3: wordwrap('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.')
   //       returns 3: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim\nveniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea\ncommodo consequat.'
 
-  intWidth = arguments.length >= 2 ? +(intWidth ?? 0) : 75
-  strBreak = arguments.length >= 3 ? '' + (strBreak ?? '') : '\n'
-  cut = arguments.length >= 4 ? !!cut : false
+  let [str, intWidth, strBreak, cut] = rawArgs
+
+  intWidth = rawArgs.length >= 2 ? +(intWidth ?? 0) : 75
+  strBreak = rawArgs.length >= 3 ? '' + (strBreak ?? '') : '\n'
+  cut = rawArgs.length >= 4 ? !!cut : false
 
   let i: number
   let j: number

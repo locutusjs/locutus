@@ -19,12 +19,28 @@ const tsIgnoreFindings: Finding[] = []
 const tsExpectErrorFindings: Finding[] = []
 const recordStringUnknownFindings: Finding[] = []
 const functionTypeFindings: Finding[] = []
+const asUnknownAsFindings: Finding[] = []
+const argumentsIdentifierFindings: Finding[] = []
 
 const countFunctionTypeReferences = (sourceFile: ts.SourceFile): number => {
   let count = 0
 
   const visit = (node: ts.Node): void => {
     if (ts.isTypeReferenceNode(node) && ts.isIdentifier(node.typeName) && node.typeName.text === 'Function') {
+      count += 1
+    }
+    ts.forEachChild(node, visit)
+  }
+
+  visit(sourceFile)
+  return count
+}
+
+const countArgumentsIdentifiers = (sourceFile: ts.SourceFile): number => {
+  let count = 0
+
+  const visit = (node: ts.Node): void => {
+    if (ts.isIdentifier(node) && node.text === 'arguments') {
       count += 1
     }
     ts.forEachChild(node, visit)
@@ -65,6 +81,14 @@ for (const filePath of sourceFiles) {
     })
   }
 
+  const asUnknownAsCount = (sourceText.match(/\bas\s+unknown\s+as\b/g) || []).length
+  if (asUnknownAsCount > 0) {
+    asUnknownAsFindings.push({
+      file: path.relative(cwd, filePath),
+      count: asUnknownAsCount,
+    })
+  }
+
   const sourceFile = ts.createSourceFile(filePath, sourceText, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS)
   const functionTypeCount = countFunctionTypeReferences(sourceFile)
   if (functionTypeCount > 0) {
@@ -72,6 +96,16 @@ for (const filePath of sourceFiles) {
       file: path.relative(cwd, filePath),
       count: functionTypeCount,
     })
+  }
+
+  if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}`)) {
+    const argumentsIdentifierCount = countArgumentsIdentifiers(sourceFile)
+    if (argumentsIdentifierCount > 0) {
+      argumentsIdentifierFindings.push({
+        file: path.relative(cwd, filePath),
+        count: argumentsIdentifierCount,
+      })
+    }
   }
 }
 
@@ -121,10 +155,28 @@ if (functionTypeFindings.length > 0) {
   }
 }
 
+if (asUnknownAsFindings.length > 0) {
+  hasFailure = true
+  const total = asUnknownAsFindings.reduce((sum, finding) => sum + finding.count, 0)
+  console.error(`Forbidden 'as unknown as' casts found: ${total}`)
+  for (const finding of asUnknownAsFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
+if (argumentsIdentifierFindings.length > 0) {
+  hasFailure = true
+  const total = argumentsIdentifierFindings.reduce((sum, finding) => sum + finding.count, 0)
+  console.error(`Forbidden 'arguments' identifier usages in src/php found: ${total}`)
+  for (const finding of argumentsIdentifierFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
 if (hasFailure) {
   process.exit(1)
 }
 
 console.log(
-  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0',
+  "ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, 'as unknown as' 0, src/php arguments 0",
 )

@@ -1,6 +1,6 @@
 import { _phpCastString } from '../_helpers/_phpCastString.ts'
 
-export function strnatcmp(a: unknown, b: unknown): number | null {
+export function strnatcmp(...args: unknown[]): number | null {
   //       discuss at: https://locutus.io/php/strnatcmp/
   //  parity verified: PHP 8.3
   //      original by: Martijn Wieringa
@@ -27,10 +27,11 @@ export function strnatcmp(a: unknown, b: unknown): number | null {
   const whitespace = /^\s/
   const digit = /^\d/
 
-  if (arguments.length !== 2) {
+  if (args.length !== 2) {
     return null
   }
 
+  const [a, b] = args
   let left = _phpCastString(a)
   let right = _phpCastString(b)
 

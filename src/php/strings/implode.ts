@@ -1,6 +1,6 @@
 type KeyedValues = { [key: string]: unknown }
 
-export function implode(glue: unknown[] | KeyedValues | string, pieces?: unknown[] | KeyedValues): string {
+export function implode(...args: Array<unknown[] | KeyedValues | string | undefined>): string {
   //      discuss at: https://locutus.io/php/implode/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -12,14 +12,13 @@ export function implode(glue: unknown[] | KeyedValues | string, pieces?: unknown
   //       example 2: implode(' ', {first:'Kevin', last: 'van Zonneveld'})
   //       returns 2: 'Kevin van Zonneveld'
 
-  let i = ''
   let retVal = ''
   let tGlue = ''
-  let actualGlue = glue
-  let actualPieces = pieces
+  let actualGlue = args[0]
+  let actualPieces = args[1]
 
-  if (arguments.length === 1) {
-    actualPieces = glue as unknown[] | KeyedValues
+  if (args.length === 1) {
+    actualPieces = args[0] as unknown[] | KeyedValues
     actualGlue = ''
   }
 
@@ -27,8 +26,8 @@ export function implode(glue: unknown[] | KeyedValues | string, pieces?: unknown
     if (Array.isArray(actualPieces)) {
       return actualPieces.join(String(actualGlue))
     }
-    for (i in actualPieces) {
-      retVal += tGlue + actualPieces[i]
+    for (const key in actualPieces) {
+      retVal += tGlue + actualPieces[key]
       tGlue = String(actualGlue)
     }
     return retVal

@@ -1,3 +1,4 @@
+import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
 
 export function print_r(array: unknown, returnVal?: boolean): string | true {
@@ -32,7 +33,7 @@ export function print_r(array: unknown, returnVal?: boolean): string | true {
     let str = ''
 
     if (typeof obj === 'object' && obj !== null && obj.constructor) {
-      const objectValue = obj as { [key: string]: unknown }
+      const objectValue = toPhpArrayObject(obj)
       str += 'Array\n' + basePad + '(\n'
       for (const key in objectValue) {
         const value = objectValue[key]

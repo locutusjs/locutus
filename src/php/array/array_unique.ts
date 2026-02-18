@@ -1,4 +1,6 @@
-export function array_unique(inputArr: unknown[] | { [key: string]: unknown }): { [key: string]: unknown } | false {
+import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+export function array_unique<T>(inputArr: T[] | PhpAssoc<T>): PhpAssoc<T> | false {
   //  discuss at: https://locutus.io/php/array_unique/
   // original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)
   //    input by: duncan
@@ -15,11 +17,10 @@ export function array_unique(inputArr: unknown[] | { [key: string]: unknown }): 
   //   example 2: array_unique({'a': 'green', 0: 'red', 'b': 'green', 1: 'blue', 2: 'red'})
   //   returns 2: {a: 'green', 0: 'red', 1: 'blue'}
 
-  let key = ''
-  const tmpArr2: { [key: string]: unknown } = {}
-  let val: unknown
+  const tmpArr2: PhpAssoc<T> = {}
+  const inputObj = toPhpArrayObject<T>(inputArr)
 
-  const _arraySearch = function (needle: unknown, haystack: { [key: string]: unknown }): string | false {
+  const _arraySearch = function (needle: T, haystack: PhpAssoc<T>): string | false {
     let fkey = ''
     for (fkey in haystack) {
       if (Object.prototype.hasOwnProperty.call(haystack, fkey)) {
@@ -31,9 +32,9 @@ export function array_unique(inputArr: unknown[] | { [key: string]: unknown }): 
     return false
   }
 
-  for (key in inputArr) {
-    if (Object.prototype.hasOwnProperty.call(inputArr, key)) {
-      val = (inputArr as { [key: string]: unknown })[key]
+  for (const key in inputObj) {
+    if (Object.prototype.hasOwnProperty.call(inputObj, key)) {
+      const val = inputObj[key] as T
       if (_arraySearch(val, tmpArr2) === false) {
         tmpArr2[key] = val
       }

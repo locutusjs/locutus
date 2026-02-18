@@ -3,7 +3,7 @@ import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 type PhpArray = PhpAssoc<unknown>
 
-export function array_uintersect_uassoc(arr1: PhpArray): PhpArray {
+export function array_uintersect_uassoc(arr1: PhpArray, ...arraysAndComparators: unknown[]): PhpArray {
   //  discuss at: https://locutus.io/php/array_uintersect_uassoc/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
@@ -12,23 +12,22 @@ export function array_uintersect_uassoc(arr1: PhpArray): PhpArray {
   //   returns 1: {a: 'green', b: 'brown'}
 
   const retArr: PhpArray = {}
-  const arglm1 = arguments.length - 1
-  const arglm2 = arglm1 - 1
+  const keyCallback = arraysAndComparators[arraysAndComparators.length - 1]
+  const valueCallback = arraysAndComparators[arraysAndComparators.length - 2]
+  const arrays = arraysAndComparators.slice(0, -2)
+  const lastArrayIndex = arrays.length - 1
   const keyComparator = resolveNumericComparator<string, string>(
-    arguments[arglm1],
+    keyCallback,
     'array_uintersect_uassoc(): Invalid key callback',
   )
-  const valueComparator = resolveNumericComparator(
-    arguments[arglm2],
-    'array_uintersect_uassoc(): Invalid value callback',
-  )
+  const valueComparator = resolveNumericComparator(valueCallback, 'array_uintersect_uassoc(): Invalid value callback')
 
   arr1keys: for (const k1 in arr1) {
-    arrs: for (let i = 1; i < arglm2; i++) {
-      const arr = toPhpArrayObject(arguments[i])
+    arrs: for (const [i, nextArray] of arrays.entries()) {
+      const arr = toPhpArrayObject(nextArray)
       for (const k in arr) {
         if (valueComparator(arr[k], arr1[k1]) === 0 && keyComparator(k, k1) === 0) {
-          if (i === arguments.length - 3) {
+          if (i === lastArrayIndex) {
             retArr[k1] = arr1[k1]
           }
           // If the innermost loop always leads at least once to an equal value,

@@ -1,3 +1,5 @@
+import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
 export function array_sum(array: unknown[] | { [key: string]: unknown } | null): number | null {
   //  discuss at: https://locutus.io/php/array_sum/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -19,7 +21,7 @@ export function array_sum(array: unknown[] | { [key: string]: unknown } | null):
   if (array === null || typeof array !== 'object') {
     return null
   }
-  const values = array as { [key: string]: unknown }
+  const values = toPhpArrayObject(array)
 
   for (const key in values) {
     const parsed = parseFloat(String(values[key]))

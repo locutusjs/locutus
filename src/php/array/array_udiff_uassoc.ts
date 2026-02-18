@@ -3,7 +3,7 @@ import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 type PhpArray = PhpAssoc<unknown>
 
-export function array_udiff_uassoc(arr1: PhpArray): PhpArray {
+export function array_udiff_uassoc(arr1: PhpArray, ...arraysAndComparators: unknown[]): PhpArray {
   //  discuss at: https://locutus.io/php/array_udiff_uassoc/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
@@ -12,17 +12,18 @@ export function array_udiff_uassoc(arr1: PhpArray): PhpArray {
   //   returns 1: {0: 'red', c: 'blue'}
 
   const retArr: PhpArray = {}
-  const arglm1 = arguments.length - 1
-  const arglm2 = arglm1 - 1
+  const keyCallback = arraysAndComparators[arraysAndComparators.length - 1]
+  const valueCallback = arraysAndComparators[arraysAndComparators.length - 2]
+  const arrays = arraysAndComparators.slice(0, -2)
   const keyComparator = resolveNumericComparator<string, string>(
-    arguments[arglm1],
+    keyCallback,
     'array_udiff_uassoc(): Invalid key callback',
   )
-  const valueComparator = resolveNumericComparator(arguments[arglm2], 'array_udiff_uassoc(): Invalid value callback')
+  const valueComparator = resolveNumericComparator(valueCallback, 'array_udiff_uassoc(): Invalid value callback')
 
   arr1keys: for (const k1 in arr1) {
-    for (let i = 1; i < arglm2; i++) {
-      const arr = toPhpArrayObject(arguments[i])
+    for (const nextArray of arrays) {
+      const arr = toPhpArrayObject(nextArray)
       for (const k in arr) {
         if (valueComparator(arr[k], arr1[k1]) === 0 && keyComparator(k, k1) === 0) {
           // If it reaches here, it was found in at least one array, so try next value

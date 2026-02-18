@@ -1,4 +1,4 @@
-export function rand(min: number, max: number): number {
+export function rand(...args: [min?: number, max?: number]): number {
   //      discuss at: https://locutus.io/php/rand/
   // parity verified: PHP 8.3
   //     original by: Leslie Hoare
@@ -9,12 +9,17 @@ export function rand(min: number, max: number): number {
   //       example 1: rand(1, 1)
   //       returns 1: 1
 
-  const argc = arguments.length
+  const argc = args.length
+  let minValue: number
+  let maxValue: number
   if (argc === 0) {
-    min = 0
-    max = 2147483647
+    minValue = 0
+    maxValue = 2147483647
   } else if (argc === 1) {
     throw new Error('Warning: rand() expects exactly 2 parameters, 1 given')
+  } else {
+    minValue = Number(args[0])
+    maxValue = Number(args[1])
   }
-  return Math.floor(Math.random() * (max - min + 1)) + min
+  return Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue
 }

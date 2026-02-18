@@ -3,7 +3,7 @@ import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 type PhpArray = PhpAssoc<unknown>
 
-export function array_diff_ukey(arr1: PhpArray): PhpArray {
+export function array_diff_ukey(arr1: PhpArray, ...arraysAndCallback: unknown[]): PhpArray {
   //  discuss at: https://locutus.io/php/array_diff_ukey/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {blue: 1, red: 2, green: 3, purple: 4}
@@ -12,15 +12,13 @@ export function array_diff_ukey(arr1: PhpArray): PhpArray {
   //   returns 1: {red: 2, purple: 4}
 
   const retArr: PhpArray = {}
-  const arglm1 = arguments.length - 1
-  const keyComparator = resolveNumericComparator<string, string>(
-    arguments[arglm1],
-    'array_diff_ukey(): Invalid callback',
-  )
+  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  const arrays = arraysAndCallback.slice(0, -1)
+  const keyComparator = resolveNumericComparator<string, string>(callback, 'array_diff_ukey(): Invalid callback')
 
   arr1keys: for (const k1 in arr1) {
-    for (let i = 1; i < arglm1; i++) {
-      const arr = toPhpArrayObject(arguments[i])
+    for (const nextArray of arrays) {
+      const arr = toPhpArrayObject(nextArray)
       for (const k in arr) {
         if (keyComparator(k, k1) === 0) {
           // If it reaches here, it was found in at least one array, so try next value

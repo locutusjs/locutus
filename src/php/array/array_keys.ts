@@ -1,4 +1,6 @@
-export function array_keys(input: { [key: string]: unknown }, searchValue?: unknown, argStrict?: boolean): string[] {
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+export function array_keys<T>(input: PhpAssoc<T>, searchValue?: T, argStrict?: boolean): string[] {
   //      discuss at: https://locutus.io/php/array_keys/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

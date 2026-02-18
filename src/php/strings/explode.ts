@@ -1,9 +1,7 @@
 type KeyedValues = { [key: string]: unknown }
 
 export function explode(
-  delimiter: string | boolean | null | undefined,
-  string: string | KeyedValues | (() => unknown) | undefined,
-  limit?: number,
+  ...args: [string | boolean | null | undefined, string | KeyedValues | (() => unknown) | undefined, number?]
 ): string[] | false | { 0: string } | null {
   //      discuss at: https://locutus.io/php/explode/
   // parity verified: PHP 8.3
@@ -11,7 +9,11 @@ export function explode(
   //       example 1: explode(' ', 'Kevin van Zonneveld')
   //       returns 1: [ 'Kevin', 'van', 'Zonneveld' ]
 
-  if (arguments.length < 2 || typeof delimiter === 'undefined' || typeof string === 'undefined') {
+  let [delimiterRaw, stringRaw, limit] = args
+  let delimiter = delimiterRaw
+  const string = stringRaw
+
+  if (args.length < 2 || typeof delimiter === 'undefined' || typeof string === 'undefined') {
     return null
   }
   if (delimiter === '' || delimiter === false || delimiter === null) {

@@ -7,7 +7,12 @@ export function create_function(args: string, code: string): ((...fnArgs: unknow
   //        returns 1: 3
 
   try {
-    return Function.apply(null, args.split(',').concat(code)) as (...fnArgs: unknown[]) => unknown
+    const params = args
+      .split(',')
+      .map((param) => param.trim())
+      .filter((param) => param.length > 0)
+
+    return new Function(...params, code) as (...fnArgs: unknown[]) => unknown
   } catch (_e) {
     return false
   }

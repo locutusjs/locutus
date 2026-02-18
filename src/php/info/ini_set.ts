@@ -1,6 +1,6 @@
 type IniSetLocutusContext = {
   php?: {
-    ini?: { [key: string]: { local_value?: unknown } }
+    ini?: { [key: string]: { local_value?: unknown | unknown[] } }
   }
 }
 
@@ -40,13 +40,16 @@ export function ini_set(varname: string, newvalue: unknown): unknown {
 
     // Although these are set individually, they are all accumulated.
     if (typeof entry.local_value === 'undefined') {
-      entry.local_value = []
+      entry.local_value = [normalizedValue]
+      return
     }
-    const currentValue = entry.local_value
-    if (!Array.isArray(currentValue)) {
-      entry.local_value = [currentValue]
+
+    if (Array.isArray(entry.local_value)) {
+      entry.local_value.push(normalizedValue)
+      return
     }
-    ;(entry.local_value as unknown[]).push(normalizedValue)
+
+    entry.local_value = [entry.local_value, normalizedValue]
   }
 
   switch (varname) {

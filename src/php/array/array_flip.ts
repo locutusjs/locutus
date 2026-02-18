@@ -1,4 +1,6 @@
-export function array_flip(trans: { [key: string]: unknown }): { [key: string]: string } {
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+export function array_flip(trans: PhpAssoc<unknown>): PhpAssoc<string> {
   //      discuss at: https://locutus.io/php/array_flip/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -7,10 +9,10 @@ export function array_flip(trans: { [key: string]: unknown }): { [key: string]: 
   //       example 1: array_flip( {a: 1, b: 1, c: 2} )
   //       returns 1: {1: 'b', 2: 'c'}
 
-  let key
-  const tmpArr: { [key: string]: string } = {}
-  for (key in trans) {
-    if (!trans.hasOwnProperty(key)) {
+  const tmpArr: PhpAssoc<string> = {}
+  const hasOwn = Object.prototype.hasOwnProperty
+  for (const key in trans) {
+    if (!hasOwn.call(trans, key)) {
       continue
     }
     tmpArr[String(trans[key])] = key
