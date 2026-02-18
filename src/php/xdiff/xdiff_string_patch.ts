@@ -1,5 +1,22 @@
-// @ts-nocheck
-export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
+type XRegExpMeta = {
+  source: string
+  captureNames?: string[] | null
+}
+
+type RegExpWithExtras = RegExp & {
+  extended?: boolean
+  sticky?: boolean
+  _xregexp?: XRegExpMeta
+}
+
+type PatchErrorObject = { value?: string }
+
+export function xdiff_string_patch(
+  originalStr: unknown,
+  patch: unknown,
+  flags?: number | string | string[],
+  errorObj?: PatchErrorObject,
+): string | false {
   //      discuss at: https://locutus.io/php/xdiff_string_patch/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -18,7 +35,7 @@ export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
   // MIT License
   // <https://xregexp.com>
 
-  const _getNativeFlags = function (regex) {
+  const _getNativeFlags = function (regex: RegExpWithExtras): string {
     // Proposed for ES4; included in AS3
     return [
       regex.global ? 'g' : '',
@@ -29,23 +46,22 @@ export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
     ].join('')
   }
 
-  const _cbSplit = function (string, sep) {
+  const _cbSplit = function (input: string, sep: RegExp | string): string[] {
     // If separator `s` is not a regex, use the native `split`
     if (!(sep instanceof RegExp)) {
-      // Had problems to get it to work here using prototype test
-      return String.prototype.split.apply(string, arguments)
+      return input.split(sep)
     }
-    const str = String(string)
-    const output = []
+    const str = String(input)
+    const output: string[] = []
     let lastLastIndex = 0
-    let match
-    let lastLength
+    let match: RegExpExecArray | null = null
+    let lastLength = 0
     const limit = Infinity
-    const x = sep._xregexp
+    const x = (sep as RegExpWithExtras)._xregexp
     // This is required if not `s.global`, and it avoids needing to set `s.lastIndex` to zero
     // and restore it to its original value when we're done using the regex
     // Brett paring down
-    const s = new RegExp(sep.source, _getNativeFlags(sep) + 'g')
+    const s = new RegExp(sep.source, _getNativeFlags(sep as RegExpWithExtras) + 'g') as RegExpWithExtras
     if (x) {
       s._xregexp = {
         source: x.source,
@@ -59,7 +75,8 @@ export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
         output.push(str.slice(lastLastIndex, match.index))
 
         if (match.length > 1 && match.index < str.length) {
-          Array.prototype.push.apply(output, match.slice(1))
+          const captures = match.slice(1).filter((capture): capture is string => capture !== undefined)
+          Array.prototype.push.apply(output, captures)
         }
 
         lastLength = match[0].length
@@ -86,16 +103,21 @@ export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
     return output.length > limit ? output.slice(0, limit) : output
   }
 
+  // Input defaulting & sanitation
+  if (typeof originalStr !== 'string' || typeof patch !== 'string' || !patch) {
+    return false
+  }
+
   let i = 0
   let ll = 0
-  let ranges = []
+  let ranges: RegExpMatchArray | null = null
   let lastLinePos = 0
   let firstChar = ''
   const rangeExp = /^@@\s+-(\d+),(\d+)\s+\+(\d+),(\d+)\s+@@$/
   const lineBreaks = /\r?\n/
   const lines = _cbSplit(patch.replace(/(\r?\n)+$/, ''), lineBreaks)
   const origLines = _cbSplit(originalStr, lineBreaks)
-  const newStrArr = []
+  const newStrArr: string[] = []
   let linePos = 0
   const errors = ''
   let optTemp = 0 // Both string & integer (constant) input is allowed
@@ -106,21 +128,21 @@ export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
     XDIFF_PATCH_IGNORESPACE: 4,
   }
 
-  // Input defaulting & sanitation
-  if (typeof originalStr !== 'string' || !patch) {
-    return false
-  }
   if (!flags) {
     flags = 'XDIFF_PATCH_NORMAL'
   }
 
   if (typeof flags !== 'number') {
     // Allow for a single string or an array of string flags
-    flags = [].concat(flags)
-    for (i = 0; i < flags.length; i++) {
+    const flagList = ([] as string[]).concat(flags)
+    for (i = 0; i < flagList.length; i++) {
+      const currentFlag = flagList[i]
+      if (!currentFlag) {
+        continue
+      }
       // Resolve string input to bitwise e.g. 'XDIFF_PATCH_NORMAL' becomes 1
-      if (OPTS[flags[i]]) {
-        optTemp = optTemp | OPTS[flags[i]]
+      if (currentFlag in OPTS) {
+        optTemp = optTemp | OPTS[currentFlag as keyof typeof OPTS]
       }
     }
     flags = optTemp
@@ -128,25 +150,27 @@ export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
 
   if (flags & OPTS.XDIFF_PATCH_NORMAL) {
     for (i = 0, ll = lines.length; i < ll; i++) {
-      ranges = lines[i].match(rangeExp)
-      if (ranges) {
+      const line = lines[i] ?? ''
+      ranges = line.match(rangeExp)
+      if (ranges?.[1]) {
         lastLinePos = linePos
-        linePos = ranges[1] - 1
+        linePos = Number(ranges[1]) - 1
         while (lastLinePos < linePos) {
-          newStrArr[newStrArr.length] = origLines[lastLinePos++]
+          newStrArr.push(origLines[lastLinePos++] ?? '')
         }
-        while (lines[++i] && rangeExp.exec(lines[i]) === null) {
-          firstChar = lines[i].charAt(0)
+        while (lines[++i] !== undefined && rangeExp.exec(lines[i] ?? '') === null) {
+          const patchedLine = lines[i] ?? ''
+          firstChar = patchedLine.charAt(0)
           switch (firstChar) {
             case '-':
               // Skip including that line
               ++linePos
               break
             case '+':
-              newStrArr[newStrArr.length] = lines[i].slice(1)
+              newStrArr.push(patchedLine.slice(1))
               break
             case ' ':
-              newStrArr[newStrArr.length] = origLines[linePos++]
+              newStrArr.push(origLines[linePos++] ?? '')
               break
             default:
               // Reconcile with returning errrors arg?
@@ -159,30 +183,32 @@ export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
       }
     }
     while (linePos > 0 && linePos < origLines.length) {
-      newStrArr[newStrArr.length] = origLines[linePos++]
+      newStrArr.push(origLines[linePos++] ?? '')
     }
   } else if (flags & OPTS.XDIFF_PATCH_REVERSE) {
     // Only differs from above by a few lines
     for (i = 0, ll = lines.length; i < ll; i++) {
-      ranges = lines[i].match(rangeExp)
-      if (ranges) {
+      const line = lines[i] ?? ''
+      ranges = line.match(rangeExp)
+      if (ranges?.[3]) {
         lastLinePos = linePos
-        linePos = ranges[3] - 1
+        linePos = Number(ranges[3]) - 1
         while (lastLinePos < linePos) {
-          newStrArr[newStrArr.length] = origLines[lastLinePos++]
+          newStrArr.push(origLines[lastLinePos++] ?? '')
         }
-        while (lines[++i] && rangeExp.exec(lines[i]) === null) {
-          firstChar = lines[i].charAt(0)
+        while (lines[++i] !== undefined && rangeExp.exec(lines[i] ?? '') === null) {
+          const patchedLine = lines[i] ?? ''
+          firstChar = patchedLine.charAt(0)
           switch (firstChar) {
             case '-':
-              newStrArr[newStrArr.length] = lines[i].slice(1)
+              newStrArr.push(patchedLine.slice(1))
               break
             case '+':
               // Skip including that line
               ++linePos
               break
             case ' ':
-              newStrArr[newStrArr.length] = origLines[linePos++]
+              newStrArr.push(origLines[linePos++] ?? '')
               break
             default:
               // Reconcile with returning errrors arg?
@@ -195,7 +221,7 @@ export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
       }
     }
     while (linePos > 0 && linePos < origLines.length) {
-      newStrArr[newStrArr.length] = origLines[linePos++]
+      newStrArr.push(origLines[linePos++] ?? '')
     }
   }
 
