@@ -25,12 +25,44 @@ type LocaleData = {
   LC_CTYPE: LocaleCType
 }
 type LocaleCategoryName = 'LC_TIME' | 'LC_MONETARY' | 'LC_NUMERIC' | 'LC_MESSAGES' | 'LC_CTYPE'
-type LocaleCategories = { [key in LocaleCategoryName]: string }
-type PhpContext = {
-  locales?: { [key: string]: LocaleData }
-  localeCategories?: Partial<LocaleCategories>
+
+const isStringArray = (value: object, key: string): boolean => {
+  const candidate = Reflect.get(value, key)
+  return Array.isArray(candidate) && candidate.every((item) => typeof item === 'string')
 }
-type GlobalWithLocutus = typeof globalThis & { $locutus?: { php?: PhpContext } }
+
+const isLocaleTime = (value: object): value is LocaleTime =>
+  isStringArray(value, 'a') &&
+  isStringArray(value, 'A') &&
+  isStringArray(value, 'b') &&
+  isStringArray(value, 'B') &&
+  isStringArray(value, 'p') &&
+  typeof Reflect.get(value, 'c') === 'string' &&
+  typeof Reflect.get(value, 'x') === 'string' &&
+  typeof Reflect.get(value, 'X') === 'string' &&
+  typeof Reflect.get(value, 'r') === 'string'
+
+const isLocaleData = (value: object): value is LocaleData => {
+  const lcTime = Reflect.get(value, 'LC_TIME')
+  const lcMonetary = Reflect.get(value, 'LC_MONETARY')
+  const lcNumeric = Reflect.get(value, 'LC_NUMERIC')
+  const lcMessages = Reflect.get(value, 'LC_MESSAGES')
+  const lcCType = Reflect.get(value, 'LC_CTYPE')
+
+  return (
+    typeof lcTime === 'object' &&
+    lcTime !== null &&
+    isLocaleTime(lcTime) &&
+    typeof lcMonetary === 'object' &&
+    lcMonetary !== null &&
+    typeof lcNumeric === 'object' &&
+    lcNumeric !== null &&
+    typeof lcMessages === 'object' &&
+    lcMessages !== null &&
+    typeof lcCType === 'object' &&
+    lcCType !== null
+  )
+}
 
 export function nl_langinfo(item: string): string | string[] | false {
   //  discuss at: https://locutus.io/php/nl_langinfo/
@@ -40,20 +72,36 @@ export function nl_langinfo(item: string): string | string[] | false {
 
   setlocale('LC_ALL', 0) // Ensure locale data is available
 
-  const globalContext = globalThis as GlobalWithLocutus
-  globalContext.$locutus = globalContext.$locutus || {}
-  const locutus = globalContext.$locutus
-  locutus.php = locutus.php || {}
-
-  const php = locutus.php
+  const locutus = Reflect.get(globalThis, '$locutus')
+  if (typeof locutus !== 'object' || locutus === null) {
+    return false
+  }
+  const php = Reflect.get(locutus, 'php')
+  if (typeof php !== 'object' || php === null) {
+    return false
+  }
   const toValue = (value: string | string[] | undefined): string | string[] | false =>
     typeof value === 'string' || Array.isArray(value) ? value : false
   const localeFor = (category: LocaleCategoryName): LocaleData | false => {
-    const localeName = php.localeCategories?.[category]
-    if (!php.locales || typeof localeName !== 'string') {
+    const localeCategories = Reflect.get(php, 'localeCategories')
+    const locales = Reflect.get(php, 'locales')
+    if (
+      typeof localeCategories !== 'object' ||
+      localeCategories === null ||
+      typeof locales !== 'object' ||
+      locales === null
+    ) {
       return false
     }
-    return php.locales[localeName] || false
+    const localeName = Reflect.get(localeCategories, category)
+    if (typeof localeName !== 'string') {
+      return false
+    }
+    const localeValue = Reflect.get(locales, localeName)
+    if (typeof localeValue !== 'object' || localeValue === null || !isLocaleData(localeValue)) {
+      return false
+    }
+    return localeValue
   }
 
   let loc = localeFor('LC_TIME')

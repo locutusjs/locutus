@@ -459,3 +459,21 @@ To fix a `@ts-nocheck` file:
     - `corepack yarn lint:ts:debt:policy`
 - Key learnings
   - Even complex formatting functions can drop boundary casts safely when runtime bag access is normalized through explicit guards.
+
+## Iteration 18
+
+- Plans
+  - Keep chipping away at the remaining `strings/**` cast surfaces while preserving locale behavior.
+  - Focus on single-cast callsites before attempting larger parser-heavy rewrites.
+- Progress
+  - Refactored `src/php/strings/nl_langinfo.ts` global context initialization to guarded reflective access.
+  - Added explicit locale-shape guards (`isLocaleTime`, `isLocaleData`) to preserve safe narrowed reads after removing the cast.
+  - Lowered strings debt ratchet in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_STRINGS_AS_EXPRESSION`: `4 -> 3`
+  - Reduced `src/php/strings/**` `as`-expression count:
+    - `4 -> 3` (remaining cast-only hotspot: `parse_str.ts`)
+  - Validation passed:
+    - `corepack yarn check`
+    - `corepack yarn lint:ts:debt:policy`
+- Key learnings
+  - A small runtime-shape guard layer is enough to remove context casts without sacrificing type-safe property access in locale-heavy functions.
