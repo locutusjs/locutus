@@ -1,5 +1,5 @@
-import { setlocale } from '../strings/setlocale.ts'
 import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import { setlocale } from '../strings/setlocale.ts'
 
 type StrptimeResult = {
   tm_sec: number

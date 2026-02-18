@@ -1,5 +1,5 @@
-import { floatval } from '../var/floatval.ts'
 import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import { floatval } from '../var/floatval.ts'
 
 export function doubleval(mixedVar: PhpMixed): number {
   //      discuss at: https://locutus.io/php/doubleval/

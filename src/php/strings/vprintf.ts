@@ -1,6 +1,6 @@
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
 import { sprintf } from '../strings/sprintf.ts'
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 
 export function vprintf(format: string, ...restArgs: PhpMixed[]): number {
   //       discuss at: https://locutus.io/php/vprintf/

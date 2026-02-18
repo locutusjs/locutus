@@ -1,5 +1,5 @@
-import { sprintf } from '../strings/sprintf.ts'
 import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import { sprintf } from '../strings/sprintf.ts'
 
 export function vsprintf(format: string, args: PhpMixed[]): string | false {
   //      discuss at: https://locutus.io/php/vsprintf/

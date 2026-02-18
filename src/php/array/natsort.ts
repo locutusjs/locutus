@@ -1,5 +1,5 @@
-import { strnatcmp } from '../strings/strnatcmp.ts'
 import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import { strnatcmp } from '../strings/strnatcmp.ts'
 
 export function natsort<T>(inputArr: Record<string, T>): boolean | Record<string, T> {
   //      discuss at: https://locutus.io/php/natsort/

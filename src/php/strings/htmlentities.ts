@@ -1,5 +1,5 @@
-import { get_html_translation_table as getHtmlTranslationTable } from '../strings/get_html_translation_table.ts'
 import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import { get_html_translation_table as getHtmlTranslationTable } from '../strings/get_html_translation_table.ts'
 
 export function htmlentities(
   string: string,

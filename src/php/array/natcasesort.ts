@@ -1,5 +1,5 @@
-import { strnatcasecmp } from '../strings/strnatcasecmp.ts'
 import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import { strnatcasecmp } from '../strings/strnatcasecmp.ts'
 
 export function natcasesort<T>(inputArr: Record<string, T>): boolean | Record<string, T> {
   //      discuss at: https://locutus.io/php/natcasesort/

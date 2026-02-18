@@ -1,4 +1,10 @@
-import { isObjectLike, type PhpArrayLike, type PhpAssoc, type PhpMixed, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import {
+  isObjectLike,
+  type PhpArrayLike,
+  type PhpAssoc,
+  type PhpMixed,
+  toPhpArrayObject,
+} from '../_helpers/_phpTypes.ts'
 
 export function array_replace<TValue = PhpMixed>(
   arr: PhpArrayLike<TValue>,

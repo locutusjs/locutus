@@ -1,5 +1,5 @@
-import { is_scalar as isScalar } from '../var/is_scalar.ts'
 import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import { is_scalar as isScalar } from '../var/is_scalar.ts'
 
 export function convert_uuencode(str: PhpMixed): string | false {
   //       discuss at: https://locutus.io/php/convert_uuencode/

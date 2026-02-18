@@ -1,5 +1,5 @@
-import { implode } from '../strings/implode.ts'
 import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import { implode } from '../strings/implode.ts'
 
 export function join(glue: string, pieces: PhpMixed[]): string {
   //      discuss at: https://locutus.io/php/join/
