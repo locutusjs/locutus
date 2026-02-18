@@ -1,8 +1,8 @@
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
-import { isObjectLike, type PhpAssoc } from '../_helpers/_phpTypes.ts'
+import { isObjectLike, type PhpAssoc, type PhpMixed } from '../_helpers/_phpTypes.ts'
 
 export function usort<T>(
-  this: PhpAssoc<unknown>,
+  this: PhpAssoc<PhpMixed>,
   inputArr: Record<string, T>,
   sorter: ((a: T, b: T) => number) | string | string[],
 ): boolean | Record<string, T> {

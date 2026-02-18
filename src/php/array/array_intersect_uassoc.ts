@@ -1,9 +1,9 @@
 import { resolveNumericComparator } from '../_helpers/_callbackResolver.ts'
-import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, type PhpMixed, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type PhpArray = PhpAssoc<unknown>
+type PhpArray = PhpAssoc<PhpMixed>
 
-export function array_intersect_uassoc(arr1: PhpArray, ...arraysAndCallback: unknown[]): PhpArray {
+export function array_intersect_uassoc(arr1: PhpArray, ...arraysAndCallback: PhpMixed[]): PhpArray {
   //  discuss at: https://locutus.io/php/array_intersect_uassoc/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
