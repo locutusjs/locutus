@@ -1,4 +1,11 @@
 type JsonKeyedValue = { [key: string]: unknown }
+type JsonGlobal = typeof globalThis & {
+  $locutus?: { php?: JsonKeyedValue }
+  JSON?: typeof JSON
+}
+
+const hasOwn = Object.prototype.hasOwnProperty
+const isJsonKeyedValue = (value: unknown): value is JsonKeyedValue => typeof value === 'object' && value !== null
 
 export function json_encode(mixedVal: unknown): string | null {
   //       discuss at: https://phpjs.org/functions/json_encode/
@@ -19,11 +26,8 @@ export function json_encode(mixedVal: unknown): string | null {
     See https://www.JSON.org/js.html
   */
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus: { php: JsonKeyedValue }
-    JSON: typeof JSON
-  }
-  $global.$locutus = $global.$locutus || ({} as { php: JsonKeyedValue })
+  const $global = (typeof window !== 'undefined' ? window : global) as JsonGlobal
+  $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
 
@@ -79,7 +83,7 @@ export function json_encode(mixedVal: unknown): string | null {
         : '"' + string + '"'
     }
 
-    const _str = function (key: string | number, holder: JsonKeyedValue): string | undefined {
+    const _str = function (key: string | number, holder: JsonKeyedValue | unknown[]): string | undefined {
       let gap = ''
       const indent = '    '
       // The loop counter.
@@ -91,11 +95,11 @@ export function json_encode(mixedVal: unknown): string | null {
       let length = 0
       const mind = gap
       let partial: string[] = []
-      let value = holder[key] as unknown
+      let value = Array.isArray(holder) ? holder[Number(key)] : holder[String(key)]
 
       // If the value has a toJSON method, call it to obtain a replacement value.
-      if (value && typeof value === 'object') {
-        const toJSON = (value as { toJSON?: (key: string | number) => unknown }).toJSON
+      if (isJsonKeyedValue(value)) {
+        const toJSON = Reflect.get(value, 'toJSON')
         if (typeof toJSON === 'function') {
           value = toJSON.call(value, key)
         }
@@ -128,12 +132,12 @@ export function json_encode(mixedVal: unknown): string | null {
           partial = []
 
           // Is the value an array?
-          if (Object.prototype.toString.apply(value) === '[object Array]') {
+          if (Array.isArray(value)) {
             // The value is an array. Stringify every element. Use null as a placeholder
             // for non-JSON values.
-            length = (value as unknown[]).length
+            length = value.length
             for (i = 0; i < length; i += 1) {
-              partial[i] = _str(i, value as JsonKeyedValue) || 'null'
+              partial[i] = _str(i, value) || 'null'
             }
 
             // Join all of the elements together, separated with commas, and wrap them in
@@ -149,9 +153,12 @@ export function json_encode(mixedVal: unknown): string | null {
           }
 
           // Iterate through all of the keys in the object.
-          for (k in value as JsonKeyedValue) {
-            if (Object.hasOwnProperty.call(value, k)) {
-              v = _str(k, value as JsonKeyedValue) as string
+          if (!isJsonKeyedValue(value)) {
+            throw new SyntaxError('json_encode')
+          }
+          for (k in value) {
+            if (hasOwn.call(value, k)) {
+              v = _str(k, value) || ''
               if (v) {
                 partial.push(quote(k) + (gap ? ': ' : ':') + v)
               }
@@ -177,9 +184,13 @@ export function json_encode(mixedVal: unknown): string | null {
 
     // Make a fake root object containing our value under the key of ''.
     // Return the result of stringifying the value.
-    return _str('', {
+    const encoded = _str('', {
       '': value,
-    }) as string
+    })
+    if (typeof encoded !== 'string') {
+      throw new SyntaxError('json_encode')
+    }
+    return encoded
   } catch (err) {
     // @todo: ensure error handling above throws a SyntaxError in all cases where it could
     // (i.e., when the JSON global is not available and there is an error)

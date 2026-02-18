@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Execute: test:module
 // To test this in a local terminal
 // This file tests that the library works when imported via ESM
@@ -41,7 +40,9 @@ console.log(sprintf('Resistance is %s', effectiveness))
 console.log(ruby.Math.acos(0.3))
 console.log(mathMod.acos(0.3))
 
-strings.echo(php.url.parse_url('mysql://kevin:abcd1234@example.com/databasename').pass)
+const parsedUrl = php.url.parse_url('mysql://kevin:abcd1234@example.com/databasename')
+const parsedPass = parsedUrl && typeof parsedUrl === 'object' && 'pass' in parsedUrl ? parsedUrl.pass : undefined
+strings.echo(parsedPass)
 strings.echo(php.datetime.strtotime('2 januari 2012, 11:12:13 GMT'))
 
 // Smoke-test published CommonJS shape from dist

@@ -21,27 +21,26 @@ type LocaleInput = string | string[] | number | null
 
 const hasOwn = Object.prototype.hasOwnProperty
 
-const copyValue = <T>(orig: T): T => {
+function copyValue<T>(orig: T): T
+function copyValue(orig: unknown): unknown {
   if (orig instanceof RegExp) {
-    return new RegExp(orig) as T
+    return new RegExp(orig)
   }
   if (orig instanceof Date) {
-    return new Date(orig) as T
+    return new Date(orig)
   }
   if (Array.isArray(orig)) {
-    return orig.map((item) => copyValue(item)) as T
+    return orig.map((item) => copyValue(item))
   }
   if (orig !== null && typeof orig === 'object') {
-    const source = orig as { [key: string]: unknown }
     const newObj: { [key: string]: unknown } = {}
-    for (const key in source) {
-      if (!hasOwn.call(source, key)) {
+    for (const [key, value] of Object.entries(orig)) {
+      if (!hasOwn.call(orig, key)) {
         continue
       }
-      const value = source[key]
       newObj[key] = value !== null && typeof value === 'object' ? copyValue(value) : value
     }
-    return newObj as T
+    return newObj
   }
   return orig
 }
@@ -88,7 +87,7 @@ export function setlocale(category: string, locale: LocaleInput): string | false
     return n > 1 ? 1 : 0
   }
 
-  const globalContext = globalThis as GlobalWithLocutus
+  const globalContext: GlobalWithLocutus = globalThis
   globalContext.$locutus = globalContext.$locutus ?? {}
   const locutus = globalContext.$locutus
   locutus.php = locutus.php ?? {}
@@ -317,20 +316,22 @@ export function setlocale(category: string, locale: LocaleInput): string | false
       const d = window.document
       const NS_XHTML = 'https://www.w3.org/1999/xhtml'
       const NS_XML = 'https://www.w3.org/XML/1998/namespace'
-      const htmlNsElement = (d.getElementsByTagNameNS ? d.getElementsByTagNameNS(NS_XHTML, 'html')[0] : undefined) as
-        | (Element & { lang?: string })
-        | undefined
+      const htmlNsElement = d.getElementsByTagNameNS ? d.getElementsByTagNameNS(NS_XHTML, 'html')[0] : undefined
       if (htmlNsElement) {
-        if (typeof htmlNsElement.getAttributeNS === 'function' && htmlNsElement.getAttributeNS(NS_XML, 'lang')) {
-          php.locale = htmlNsElement.getAttributeNS(NS_XML, 'lang') || php.locale
-        } else if (htmlNsElement.lang) {
-          // XHTML 1.0 only
-          php.locale = htmlNsElement.lang
+        const xmlLang = htmlNsElement.getAttributeNS(NS_XML, 'lang')
+        if (xmlLang) {
+          php.locale = xmlLang
+        } else {
+          const htmlLang = htmlNsElement.getAttribute('lang')
+          if (htmlLang) {
+            php.locale = htmlLang
+          }
         }
       } else {
-        const htmlElement = d.getElementsByTagName('html')[0] as (Element & { lang?: string }) | undefined
-        if (htmlElement?.lang) {
-          php.locale = htmlElement.lang
+        const htmlElement = d.getElementsByTagName('html')[0]
+        const htmlLang = htmlElement?.getAttribute('lang')
+        if (htmlLang) {
+          php.locale = htmlLang
         }
       }
     }

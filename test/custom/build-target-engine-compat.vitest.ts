@@ -2,9 +2,9 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { describe, expect, it } from 'vitest'
 
-function readJson(relativePath: string): any {
+function readJson<T>(relativePath: string): T {
   const absolutePath = path.join(process.cwd(), relativePath)
-  return JSON.parse(fs.readFileSync(absolutePath, 'utf-8'))
+  return JSON.parse(fs.readFileSync(absolutePath, 'utf-8')) as T
 }
 
 function parseMinNodeVersion(range: string): number {
@@ -14,8 +14,16 @@ function parseMinNodeVersion(range: string): number {
 
 describe('build target vs engines', () => {
   it('declares a Node engine compatible with the emitted target', () => {
-    const packageJson = readJson('package.json')
-    const tsconfigBuild = readJson('tsconfig.build.json')
+    const packageJson = readJson<{
+      engines?: {
+        node?: string
+      }
+    }>('package.json')
+    const tsconfigBuild = readJson<{
+      compilerOptions?: {
+        target?: string
+      }
+    }>('tsconfig.build.json')
     const target = String(tsconfigBuild?.compilerOptions?.target || '').toUpperCase()
     const nodeRange = String(packageJson?.engines?.node || '')
     const nodeMin = parseMinNodeVersion(nodeRange)
