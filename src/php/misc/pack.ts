@@ -384,7 +384,7 @@ export function pack(format: string, ...inputArgs: PackArgument[]): string {
       }
 
       default:
-        throw new Error('Warning: pack() Type ' + instruction + ': unknown format code')
+        throw new Error('Warning: pack() Type ' + instruction + ': invalid format code')
     }
   }
   if (argumentPointer < inputArgs.length) {
