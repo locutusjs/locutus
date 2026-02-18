@@ -1,6 +1,4 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
-
-type PhpValue = {} | null | undefined
+import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 
 export function function_exists(funcName: string): boolean {
   //  discuss at: https://locutus.io/php/function_exists/

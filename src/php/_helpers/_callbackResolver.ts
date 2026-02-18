@@ -1,7 +1,11 @@
-import type { PhpAssoc, PhpMixed } from './_phpTypes.ts'
-
-type UnknownValue = PhpMixed
-type PhpValue = {} | null | undefined
+import {
+  isObjectLike,
+  isPhpCallable,
+  type PhpAssoc,
+  type PhpCallable,
+  type PhpCallableDescriptor,
+  type PhpValue,
+} from './_phpTypes.ts'
 
 interface CallbackResolverOptions {
   invalidMessage: string
@@ -10,17 +14,13 @@ interface CallbackResolverOptions {
 
 type GlobalCallableContext = typeof globalThis & PhpAssoc<PhpValue>
 
-interface ResolvedCallback<TArgs extends UnknownValue[] = UnknownValue[], TResult = PhpValue> {
-  fn: (...args: TArgs) => TResult
+interface ResolvedCallback<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue> {
+  fn: PhpCallable<TArgs, TResult>
   scope: PhpValue
 }
 
-const isCallable = <TArgs extends UnknownValue[] = UnknownValue[], TResult = PhpValue>(
-  value: UnknownValue,
-): value is (...args: TArgs) => TResult => typeof value === 'function'
-
-export function resolvePhpCallable<TArgs extends UnknownValue[] = UnknownValue[], TResult = PhpValue>(
-  callback: UnknownValue,
+export function resolvePhpCallable<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue>(
+  callback: PhpCallableDescriptor<TArgs, TResult> | PhpValue,
   options: CallbackResolverOptions,
 ): ResolvedCallback<TArgs, TResult> {
   // discuss at: https://locutus.io/php/_helpers/resolvePhpCallable/
@@ -29,21 +29,21 @@ export function resolvePhpCallable<TArgs extends UnknownValue[] = UnknownValue[]
   //  returns 1: 'function'
   const globalContext = globalThis as GlobalCallableContext
 
-  if (isCallable<TArgs, TResult>(callback)) {
+  if (isPhpCallable<TArgs, TResult>(callback)) {
     return { fn: callback, scope: null }
   }
 
   if (typeof callback === 'string') {
     const candidate = globalContext[callback]
-    if (isCallable<TArgs, TResult>(candidate)) {
+    if (isPhpCallable<TArgs, TResult>(candidate)) {
       return { fn: candidate, scope: null }
     }
     throw new Error(options.invalidMessage)
   }
 
   if (Array.isArray(callback) && callback.length >= 2) {
-    const scopeDescriptor = callback[0]
-    const callableDescriptor = callback[1]
+    const scopeDescriptor = callback[0] as PhpValue
+    const callableDescriptor = callback[1] as PhpValue
 
     let scope: PhpValue
     if (typeof scopeDescriptor === 'string') {
@@ -55,16 +55,13 @@ export function resolvePhpCallable<TArgs extends UnknownValue[] = UnknownValue[]
       scope = scopeDescriptor
     }
 
-    if (isCallable<TArgs, TResult>(callableDescriptor)) {
+    if (isPhpCallable<TArgs, TResult>(callableDescriptor)) {
       return { fn: callableDescriptor, scope }
     }
 
-    if (
-      typeof callableDescriptor === 'string' &&
-      ((typeof scope === 'object' && scope !== null) || typeof scope === 'function')
-    ) {
+    if (typeof callableDescriptor === 'string' && (isObjectLike(scope) || typeof scope === 'function')) {
       const candidate = Reflect.get(scope, callableDescriptor)
-      if (isCallable<TArgs, TResult>(candidate)) {
+      if (isPhpCallable<TArgs, TResult>(candidate)) {
         return { fn: candidate, scope }
       }
     }
@@ -73,11 +70,11 @@ export function resolvePhpCallable<TArgs extends UnknownValue[] = UnknownValue[]
   throw new Error(options.invalidMessage)
 }
 
-export function resolveNumericComparator<TLeft = PhpValue, TRight = PhpValue>(
-  callback: UnknownValue,
+export function resolveNumericComparator<TLeft extends PhpValue = PhpValue, TRight extends PhpValue = PhpValue>(
+  callback: PhpValue,
   invalidMessage: string,
 ): (left: TLeft, right: TRight) => number {
-  const resolved = resolvePhpCallable(callback, { invalidMessage })
+  const resolved = resolvePhpCallable<[TLeft, TRight], PhpValue>(callback, { invalidMessage })
 
   return (left: TLeft, right: TRight): number => Number(resolved.fn.apply(resolved.scope, [left, right]))
 }

@@ -12,6 +12,8 @@ const MAX_SRC_PHP_EXPORTED_UNKNOWN_RETURN_TYPES = 0
 const MAX_SRC_PHP_UNKNOWN_KEYWORD = 0
 const MAX_SRC_PHP_ARRAY_UNKNOWN_KEYWORD = 0
 const MAX_SRC_PHP_VAR_UNKNOWN_KEYWORD = 0
+const MAX_SRC_PHP_LOCAL_PHPVALUE_ALIAS = 35
+const MAX_SRC_PHP_DIRECT_INI_GLOBAL_READS = 0
 
 const cwd = process.cwd()
 const srcDir = path.join(cwd, 'src')
@@ -28,11 +30,15 @@ const functionTypeFindings: Finding[] = []
 const asUnknownAsFindings: Finding[] = []
 const argumentsIdentifierFindings: Finding[] = []
 const exportedUnknownReturnTypeFindings: Finding[] = []
+const localPhpValueAliasFindings: Finding[] = []
+const directIniGlobalReadFindings: Finding[] = []
 let srcPhpRawIndexSignatureUnknownCount = 0
 let srcPhpExportedUnknownReturnTypeCount = 0
 let srcPhpUnknownKeywordCount = 0
 let srcPhpArrayUnknownKeywordCount = 0
 let srcPhpVarUnknownKeywordCount = 0
+let srcPhpLocalPhpValueAliasCount = 0
+let srcPhpDirectIniGlobalReadCount = 0
 
 const countFunctionTypeReferences = (sourceFile: ts.SourceFile): number => {
   let count = 0
@@ -158,6 +164,28 @@ for (const filePath of sourceFiles) {
       .length
     srcPhpRawIndexSignatureUnknownCount += rawIndexSignatureUnknownCount
 
+    const localPhpValueAliasCount = filePath.endsWith(
+      `${path.sep}src${path.sep}php${path.sep}_helpers${path.sep}_phpTypes.ts`,
+    )
+      ? 0
+      : (sourceText.match(/\btype\s+PhpValue\s*=\s*\{\}\s*\|\s*null\s*\|\s*undefined\b/g) || []).length
+    srcPhpLocalPhpValueAliasCount += localPhpValueAliasCount
+    if (localPhpValueAliasCount > 0) {
+      localPhpValueAliasFindings.push({
+        file: path.relative(cwd, filePath),
+        count: localPhpValueAliasCount,
+      })
+    }
+
+    const directIniGlobalReadCount = (sourceText.match(/\$locutus\?\.\s*php\?\.\s*ini\b/g) || []).length
+    srcPhpDirectIniGlobalReadCount += directIniGlobalReadCount
+    if (directIniGlobalReadCount > 0) {
+      directIniGlobalReadFindings.push({
+        file: path.relative(cwd, filePath),
+        count: directIniGlobalReadCount,
+      })
+    }
+
     const argumentsIdentifierCount = countArgumentsIdentifiers(sourceFile)
     if (argumentsIdentifierCount > 0) {
       argumentsIdentifierFindings.push({
@@ -279,10 +307,30 @@ if (srcPhpVarUnknownKeywordCount > MAX_SRC_PHP_VAR_UNKNOWN_KEYWORD) {
   )
 }
 
+if (srcPhpLocalPhpValueAliasCount > MAX_SRC_PHP_LOCAL_PHPVALUE_ALIAS) {
+  hasFailure = true
+  console.error(
+    `src/php local 'type PhpValue = {} | null | undefined' alias count increased: ${srcPhpLocalPhpValueAliasCount} > ${MAX_SRC_PHP_LOCAL_PHPVALUE_ALIAS}`,
+  )
+  for (const finding of localPhpValueAliasFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
+if (srcPhpDirectIniGlobalReadCount > MAX_SRC_PHP_DIRECT_INI_GLOBAL_READS) {
+  hasFailure = true
+  console.error(
+    `src/php direct '$locutus?.php?.ini' read count increased: ${srcPhpDirectIniGlobalReadCount} > ${MAX_SRC_PHP_DIRECT_INI_GLOBAL_READS}`,
+  )
+  for (const finding of directIniGlobalReadFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
 if (hasFailure) {
   process.exit(1)
 }
 
 console.log(
-  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php unknown keyword count not increased, src/php/array unknown keyword count not increased, src/php/var unknown keyword count not increased',
+  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php unknown keyword count not increased, src/php/array unknown keyword count not increased, src/php/var unknown keyword count not increased, src/php local PhpValue alias count not increased, src/php direct $locutus?.php?.ini reads not increased',
 )

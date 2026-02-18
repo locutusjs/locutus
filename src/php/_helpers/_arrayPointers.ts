@@ -1,7 +1,5 @@
 import { ensurePhpRuntimeState } from './_phpRuntimeState.ts'
-import type { PhpArrayLike } from './_phpTypes.ts'
-
-type PhpValue = {} | null | undefined
+import type { PhpArrayLike, PhpValue } from './_phpTypes.ts'
 
 interface PointerState {
   cursor: number

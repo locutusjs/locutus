@@ -1,7 +1,6 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 import { ini_get } from '../info/ini_get.ts'
 
-type PhpValue = {} | null | undefined
 type KeyedUnknown = PhpAssoc<PhpValue>
 
 export function is_array(mixedVar: PhpValue): boolean {

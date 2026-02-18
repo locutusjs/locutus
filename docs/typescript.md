@@ -143,3 +143,34 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Standalone mode de-risks helper dependencies, so code clarity can be prioritized over manual inlining.
   - Centralizing ini reads through `ini_get` makes behavior easier to reason about while preserving runtime parity.
+
+## Iteration 2
+
+- Plans
+  - Expand `_phpTypes` into a reusable lattice (`PhpValue`, scalar/callable descriptors, numeric guards/assertions).
+  - Thread generic callback typing through `_callbackResolver` and callback-heavy consumers.
+  - Add debt policy ratchets for local `PhpValue` alias redefinitions and direct ini-global reads.
+- Progress
+  - Expanded `src/php/_helpers/_phpTypes.ts` with reusable lattice/types:
+    - `PhpValue`, `PhpNullish`, `PhpScalar`, `PhpKey`, `NumericLike`, `StringLike`
+    - generic `PhpCallable<TArgs, TResult>` and `PhpCallableDescriptor<TArgs, TResult>`
+    - guards/assertions: `isPhpScalar`, `isNumericLike`, `isPhpCallable`, `assertIsObjectLike`, `assertIsPhpCallable`
+  - Refactored `src/php/_helpers/_callbackResolver.ts` to use generic callable descriptors and typed callback scope.
+  - Migrated callback-heavy callsites:
+    - `array_map` narrowed callback input to `PhpCallableDescriptor<PhpMixed[], TResult> | null | undefined`
+    - `call_user_func_array` now threads `<TArgs, TResult>` through resolver/guards
+    - comparator users aligned to typed resolver (`array_udiff*`, `array_uintersect*`)
+  - Removed several local `type PhpValue = {} | null | undefined` aliases in touched helper/callback paths by importing shared `PhpValue`.
+  - Added policy ratchets in `scripts/check-ts-debt-policy.ts`:
+    - local `PhpValue` alias redefinition count in `src/php/**` may not increase (excluding canonical `_phpTypes.ts`)
+    - direct `$locutus?.php?.ini` reads in `src/php/**` may not increase
+  - Reduced local `PhpValue` alias redefinitions from 47 to 35 (excluding `_phpTypes.ts`).
+  - Validation passed:
+    - `corepack yarn lint`
+    - `corepack yarn lint:ts`
+    - `corepack yarn lint:ts:debt:policy`
+    - targeted vitest suites for helper/callback and affected array/funchand paths
+- Key learnings
+  - Moving callback semantics into shared generic helper types reduces repeated local alias churn.
+  - Ratcheting policy on broad alias patterns keeps migration pressure high without requiring all-or-nothing rewrites.
+  - Standalone dependency inlining plus stricter helper typing are complementary: we can centralize more behavior without fear of copy-paste breakage.

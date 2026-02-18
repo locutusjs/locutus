@@ -5,4 +5,13 @@ export { _php_cast_float } from './_php_cast_float.ts'
 export { _php_cast_int } from './_php_cast_int.ts'
 export { _phpCastString } from './_phpCastString.ts'
 export { ensurePhpRuntimeState, setPhpLocaleDefault } from './_phpRuntimeState.ts'
-export { isObjectLike, isPhpArrayObject, toPhpArrayObject } from './_phpTypes.ts'
+export {
+  assertIsObjectLike,
+  assertIsPhpCallable,
+  isNumericLike,
+  isObjectLike,
+  isPhpArrayObject,
+  isPhpCallable,
+  isPhpScalar,
+  toPhpArrayObject,
+} from './_phpTypes.ts'

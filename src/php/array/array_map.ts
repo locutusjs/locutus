@@ -1,8 +1,8 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpCallableDescriptor, PhpMixed } from '../_helpers/_phpTypes.ts'
 
 export function array_map<TResult = PhpMixed>(
-  callback: PhpMixed,
+  callback: PhpCallableDescriptor<PhpMixed[], TResult> | null | undefined,
   ...inputArrays: PhpMixed[][]
 ): TResult[] | PhpMixed[][] {
   //  discuss at: https://locutus.io/php/array_map/

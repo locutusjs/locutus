@@ -1,4 +1,4 @@
-type PhpValue = {} | null | undefined
+import type { PhpValue } from './_phpTypes.ts'
 
 interface IniEntry {
   local_value?: PhpValue

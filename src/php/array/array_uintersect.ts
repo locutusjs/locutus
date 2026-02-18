@@ -1,7 +1,6 @@
 import { resolveNumericComparator } from '../_helpers/_callbackResolver.ts'
-import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type PhpValue = {} | null | undefined
 type PhpArray = PhpAssoc<PhpValue>
 
 export function array_uintersect(arr1: PhpArray, ...arraysAndCallback: PhpValue[]): PhpArray {

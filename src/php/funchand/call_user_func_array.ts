@@ -1,7 +1,6 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
-import { isObjectLike, type PhpAssoc, type PhpCallable } from '../_helpers/_phpTypes.ts'
+import { isObjectLike, isPhpCallable, type PhpAssoc, type PhpCallable, type PhpValue } from '../_helpers/_phpTypes.ts'
 
-type PhpValue = {} | null | undefined
 type GlobalCallableContext = typeof globalThis & PhpAssoc<PhpValue>
 
 const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
@@ -27,11 +26,11 @@ export function call_user_func_array<TResult = PhpValue, TArgs extends PhpValue[
   //   returns 2: false
 
   const globalContext = globalThis as GlobalCallableContext
-  let func: PhpCallable | undefined
+  let func: PhpCallable<TArgs, TResult> | undefined
   let scope: PhpValue = null
 
   try {
-    const resolved = resolvePhpCallable(cb, { invalidMessage: 'invalid' })
+    const resolved = resolvePhpCallable<TArgs, TResult>(cb, { invalidMessage: 'invalid' })
     func = resolved.fn
     scope = resolved.scope
   } catch {
@@ -39,12 +38,12 @@ export function call_user_func_array<TResult = PhpValue, TArgs extends PhpValue[
   }
 
   if (!func && typeof cb === 'string') {
-    if (typeof globalContext[cb] === 'function') {
-      func = globalContext[cb] as PhpCallable
+    if (isPhpCallable<TArgs, TResult>(globalContext[cb])) {
+      func = globalContext[cb]
     } else if (cb.match(validJSFunctionNamePattern)) {
       const dynamicFn = new Function(`return ${cb}`)()
-      if (typeof dynamicFn === 'function') {
-        func = dynamicFn as PhpCallable
+      if (isPhpCallable<TArgs, TResult>(dynamicFn)) {
+        func = dynamicFn
       }
     }
   } else if (!func && Array.isArray(cb)) {
@@ -52,14 +51,14 @@ export function call_user_func_array<TResult = PhpValue, TArgs extends PhpValue[
       if (cb[0].match(validJSFunctionNamePattern)) {
         // biome-ignore lint/security/noGlobalEval: needed for PHP port
         const dynamicFn = eval(`${cb[0]}['${cb[1]}']`)
-        if (typeof dynamicFn === 'function') {
-          func = dynamicFn as PhpCallable
+        if (isPhpCallable<TArgs, TResult>(dynamicFn)) {
+          func = dynamicFn
         }
       }
     } else if (isObjectLike(cb[0]) || typeof cb[0] === 'function') {
       const method = Reflect.get(cb[0], String(cb[1]))
-      if (typeof method === 'function') {
-        func = method as PhpCallable
+      if (isPhpCallable<TArgs, TResult>(method)) {
+        func = method
       }
     }
 
@@ -73,8 +72,8 @@ export function call_user_func_array<TResult = PhpValue, TArgs extends PhpValue[
     } else if (isObjectLike(cb[0])) {
       scope = cb[0]
     }
-  } else if (!func && typeof cb === 'function') {
-    func = cb as PhpCallable
+  } else if (!func && isPhpCallable<TArgs, TResult>(cb)) {
+    func = cb
   }
 
   if (!func) {
