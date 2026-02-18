@@ -29,7 +29,7 @@ export function bcround(val: number, precision: number): string {
 
   // get the digit we are checking (1 after the precision)
   // loop through digits after the precision marker
-  digit = temp.n_value[temp.n_len + precision]
+  digit = temp.n_value[temp.n_len + precision] ?? 0
 
   rightOperand = libbcmath.bc_init_num()
   rightOperand = libbcmath.bc_new_num(1, precision)

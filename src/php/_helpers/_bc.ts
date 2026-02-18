@@ -1,4 +1,3 @@
-// @ts-nocheck
 // SPDX-License-Identifier: LGPL-2.1-or-later
 // NOTE: This file is LGPL licensed, not MIT like the rest of locutus.
 // See LICENSE file for details.
@@ -56,6 +55,15 @@ export function _bc() {
    *               Bellingham, WA 98226-9062
    */
 
+  type BcNum = {
+    n_sign: string
+    n_len: number
+    n_scale: number
+    n_value: number[]
+    toString: () => string
+  }
+  const digitAt = (value: number[], index: number): number => value[index] ?? 0
+
   const Libbcmath = {
     PLUS: '+',
     MINUS: '-',
@@ -66,27 +74,30 @@ export function _bc() {
     /**
      * Basic number structure
      */
-    bc_num: function () {
-      this.n_sign = null // sign
-      this.n_len = null // (int) The number of digits before the decimal point.
-      this.n_scale = null // (int) The number of digits after the decimal point.
-      // this.n_refs = null; // (int) The number of pointers to this number.
-      // this.n_text = null; // ?? Linked list for available list.
-      this.n_value = null // array as value, where 1.23 = [1,2,3]
-      this.toString = function () {
-        let r
-        let tmp
-        tmp = this.n_value.join('')
+    bc_num: function (): BcNum {
+      const value: BcNum = {
+        n_sign: Libbcmath.PLUS, // sign
+        n_len: 0, // (int) The number of digits before the decimal point.
+        n_scale: 0, // (int) The number of digits after the decimal point.
+        // this.n_refs = null; // (int) The number of pointers to this number.
+        // this.n_text = null; // ?? Linked list for available list.
+        n_value: [], // array as value, where 1.23 = [1,2,3]
+        toString: function () {
+          let r
+          let tmp
+          tmp = value.n_value.join('')
 
-        // add minus sign (if applicable) then add the integer part
-        r = (this.n_sign === Libbcmath.PLUS ? '' : this.n_sign) + tmp.substr(0, this.n_len)
+          // add minus sign (if applicable) then add the integer part
+          r = (value.n_sign === Libbcmath.PLUS ? '' : value.n_sign) + tmp.substr(0, value.n_len)
 
-        // if decimal places, add a . and the decimal part
-        if (this.n_scale > 0) {
-          r += '.' + tmp.substr(this.n_len, this.n_scale)
-        }
-        return r
+          // if decimal places, add a . and the decimal part
+          if (value.n_scale > 0) {
+            r += '.' + tmp.substr(value.n_len, value.n_scale)
+          }
+          return r
+        },
       }
+      return value
     },
 
     /**
@@ -101,8 +112,8 @@ export function _bc() {
      * @param {int} scaleMin
      * @return bc_num
      */
-    bc_add: function (n1, n2, scaleMin) {
-      let sum
+    bc_add: function (n1: BcNum, n2: BcNum, scaleMin: number): BcNum {
+      let sum: BcNum = Libbcmath.bc_init_num()
       let cmpRes
       let resScale
 
@@ -141,11 +152,11 @@ export function _bc() {
      * @param {bc_num} n2
      * @return int -1, 0, 1  (n1 < n2, ===, n1 > n2)
      */
-    bc_compare: function (n1, n2) {
+    bc_compare: function (n1: BcNum, n2: BcNum): -1 | 0 | 1 {
       return Libbcmath._bc_do_compare(n1, n2, true, false)
     },
 
-    _one_mult: function (num, nPtr, size, digit, result, rPtr) {
+    _one_mult: function (num: number[], nPtr: number, size: number, digit: number, result: number[], rPtr: number) {
       let carry
       let value // int
       let nptr
@@ -162,7 +173,7 @@ export function _bc() {
           carry = 0
 
           while (size-- > 0) {
-            value = num[nptr--] * digit + carry // value = *nptr-- * digit + carry;
+            value = digitAt(num, nptr--) * digit + carry // value = *nptr-- * digit + carry;
             result[rptr--] = value % Libbcmath.BASE // @CHECK cint //*rptr-- = value % BASE;
             carry = Math.floor(value / Libbcmath.BASE) // @CHECK cint //carry = value / BASE;
           }
@@ -174,11 +185,11 @@ export function _bc() {
       }
     },
 
-    bc_divide: function (n1, n2, scale) {
+    bc_divide: function (n1: BcNum, n2: BcNum, scale: number): BcNum | -1 {
       // var quot // bc_num return
       let qval // bc_num
-      let num1
-      let num2 // string
+      let num1: number[]
+      let num2: number[] // string
       let ptr1
       let ptr2
       let n2ptr
@@ -195,7 +206,7 @@ export function _bc() {
       let qguess
       let borrow
       let carry // int
-      let mval // string
+      let mval: number[] // string
       let zero // char
       let norm // int
       // var ptrs // return object from one_mul
@@ -307,7 +318,7 @@ export function _bc() {
         // Normalize
         // norm = Libbcmath.cint(10 / (Libbcmath.cint(n2.n_value[n2ptr]) + 1));
         // norm =  10 / ((int)*n2ptr + 1)
-        norm = Math.floor(10 / (n2.n_value[n2ptr] + 1)) // norm =  10 / ((int)*n2ptr + 1);
+        norm = Math.floor(10 / (digitAt(n2.n_value, n2ptr) + 1)) // norm =  10 / ((int)*n2ptr + 1);
         if (norm !== 1) {
           // Libbcmath._one_mult(num1, len1+scale1+extra+1, norm, num1);
           Libbcmath._one_mult(num1, 0, len1 + scale1 + extra + 1, norm, num1, 0)
@@ -331,19 +342,21 @@ export function _bc() {
           if (n2.n_value[n2ptr] === num1[qdig]) {
             qguess = 9
           } else {
-            qguess = Math.floor((num1[qdig] * 10 + num1[qdig + 1]) / n2.n_value[n2ptr])
+            qguess = Math.floor((digitAt(num1, qdig) * 10 + digitAt(num1, qdig + 1)) / digitAt(n2.n_value, n2ptr))
           }
           // Test qguess.
 
           if (
-            n2.n_value[n2ptr + 1] * qguess >
-            (num1[qdig] * 10 + num1[qdig + 1] - n2.n_value[n2ptr] * qguess) * 10 + num1[qdig + 2]
+            digitAt(n2.n_value, n2ptr + 1) * qguess >
+            (digitAt(num1, qdig) * 10 + digitAt(num1, qdig + 1) - digitAt(n2.n_value, n2ptr) * qguess) * 10 +
+              digitAt(num1, qdig + 2)
           ) {
             qguess--
             // And again.
             if (
-              n2.n_value[n2ptr + 1] * qguess >
-              (num1[qdig] * 10 + num1[qdig + 1] - n2.n_value[n2ptr] * qguess) * 10 + num1[qdig + 2]
+              digitAt(n2.n_value, n2ptr + 1) * qguess >
+              (digitAt(num1, qdig) * 10 + digitAt(num1, qdig + 1) - digitAt(n2.n_value, n2ptr) * qguess) * 10 +
+                digitAt(num1, qdig + 2)
             ) {
               qguess--
             }
@@ -363,12 +376,12 @@ export function _bc() {
               if (ptr2 < 0) {
                 // val = Libbcmath.cint(num1[ptr1]) - 0 - borrow;
                 // val = (int) *ptr1 - (int) *ptr2-- - borrow;
-                val = num1[ptr1] - 0 - borrow // val = (int) *ptr1 - (int) *ptr2-- - borrow;
+                val = digitAt(num1, ptr1) - 0 - borrow // val = (int) *ptr1 - (int) *ptr2-- - borrow;
               } else {
                 // val = Libbcmath.cint(num1[ptr1]) - Libbcmath.cint(mval[ptr2--]) - borrow;
                 // val = (int) *ptr1 - (int) *ptr2-- - borrow;
                 // val = (int) *ptr1 - (int) *ptr2-- - borrow;
-                val = num1[ptr1] - mval[ptr2--] - borrow
+                val = digitAt(num1, ptr1) - digitAt(mval, ptr2--) - borrow
               }
               if (val < 0) {
                 val += 10
@@ -391,12 +404,12 @@ export function _bc() {
                 // val = Libbcmath.cint(num1[ptr1]) + 0 + carry;
                 // val = (int) *ptr1 + (int) *ptr2-- + carry;
                 // val = (int) *ptr1 + (int) *ptr2-- + carry;
-                val = num1[ptr1] + 0 + carry
+                val = digitAt(num1, ptr1) + 0 + carry
               } else {
                 // val = Libbcmath.cint(num1[ptr1]) + Libbcmath.cint(n2.n_value[ptr2--]) + carry;
                 // val = (int) *ptr1 + (int) *ptr2-- + carry;
                 // val = (int) *ptr1 + (int) *ptr2-- + carry;
-                val = num1[ptr1] + n2.n_value[ptr2--] + carry
+                val = digitAt(num1, ptr1) + digitAt(n2.n_value, ptr2--) + carry
               }
               if (val > 9) {
                 val -= 10
@@ -410,7 +423,7 @@ export function _bc() {
               // num1[ptr1] = Libbcmath.cint((num1[ptr1] + 1) % 10);
               // *ptr1 = (*ptr1 + 1) % 10; // @CHECK
               // *ptr1 = (*ptr1 + 1) % 10; // @CHECK
-              num1[ptr1] = (num1[ptr1] + 1) % 10
+              num1[ptr1] = (digitAt(num1, ptr1) + 1) % 10
             }
           }
 
@@ -444,8 +457,8 @@ export function _bc() {
      * @param n2 bc_num
      * @param scale [int] optional
      */
-    bc_multiply: function (n1, n2, scale) {
-      let pval // bc_num
+    bc_multiply: function (n1: BcNum, n2: BcNum, scale: number): BcNum {
+      let pval: BcNum // bc_num
       let len1
       let len2 // int
       let fullScale
@@ -473,8 +486,8 @@ export function _bc() {
       return pval
     },
 
-    new_sub_num: function (length, scale, value, ptr = 0) {
-      const temp = new Libbcmath.bc_num()
+    new_sub_num: function (length: number, scale: number, value: number[], ptr = 0): BcNum {
+      const temp = Libbcmath.bc_num()
       temp.n_sign = Libbcmath.PLUS
       temp.n_len = length
       temp.n_scale = scale
@@ -483,8 +496,8 @@ export function _bc() {
       return temp
     },
 
-    _bc_simp_mul: function (n1, n1len, n2, n2len, fullScale) {
-      let prod // bc_num
+    _bc_simp_mul: function (n1: BcNum, n1len: number, n2: BcNum, n2len: number, fullScale: number): BcNum {
+      let prod: BcNum // bc_num
       let n1ptr
       let n2ptr
       let pvptr // char *n1ptr, *n2ptr, *pvptr;
@@ -510,7 +523,7 @@ export function _bc() {
         n2ptr = n2end - Libbcmath.MIN(indx, n2len - 1)
         while (n1ptr >= 0 && n2ptr <= n2end) {
           // sum += *n1ptr-- * *n2ptr++;
-          sum += n1.n_value[n1ptr--] * n2.n_value[n2ptr++]
+          sum += digitAt(n1.n_value, n1ptr--) * digitAt(n2.n_value, n2ptr++)
         }
         //* pvptr-- = sum % BASE;
         prod.n_value[pvptr--] = Math.floor(sum % Libbcmath.BASE)
@@ -524,7 +537,7 @@ export function _bc() {
        multiply algorithm.  Note: if sub is called, accum must
        be larger that what is being subtracted.  Also, accum and val
        must have n_scale = 0.  (e.g. they must look like integers. *) */
-    _bc_shift_addsub: function (accum, val, shift, sub) {
+    _bc_shift_addsub: function (accum: BcNum, val: BcNum, shift: number, sub: number | boolean) {
       let accp
       let valp // signed char *accp, *valp;
       let count
@@ -547,21 +560,23 @@ export function _bc() {
       if (sub) {
         // Subtraction, carry is really borrow.
         while (count--) {
-          accum.n_value[accp] -= val.n_value[valp--] + carry //* accp -= *valp-- + carry;
-          if (accum.n_value[accp] < 0) {
+          accum.n_value[accp] = digitAt(accum.n_value, accp) - digitAt(val.n_value, valp--) - carry //* accp -= *valp-- + carry;
+          if (digitAt(accum.n_value, accp) < 0) {
             // if (*accp < 0)
             carry = 1
-            accum.n_value[accp--] += Libbcmath.BASE //* accp-- += BASE;
+            accum.n_value[accp] = digitAt(accum.n_value, accp) + Libbcmath.BASE //* accp += BASE;
+            accp--
           } else {
             carry = 0
             accp--
           }
         }
         while (carry) {
-          accum.n_value[accp] -= carry //* accp -= carry;
-          if (accum.n_value[accp] < 0) {
+          accum.n_value[accp] = digitAt(accum.n_value, accp) - carry //* accp -= carry;
+          if (digitAt(accum.n_value, accp) < 0) {
             // if (*accp < 0)
-            accum.n_value[accp--] += Libbcmath.BASE //    *accp-- += BASE;
+            accum.n_value[accp] = digitAt(accum.n_value, accp) + Libbcmath.BASE //    *accp += BASE;
+            accp--
           } else {
             carry = 0
           }
@@ -569,21 +584,23 @@ export function _bc() {
       } else {
         // Addition
         while (count--) {
-          accum.n_value[accp] += val.n_value[valp--] + carry //* accp += *valp-- + carry;
-          if (accum.n_value[accp] > Libbcmath.BASE - 1) {
+          accum.n_value[accp] = digitAt(accum.n_value, accp) + digitAt(val.n_value, valp--) + carry //* accp += *valp-- + carry;
+          if (digitAt(accum.n_value, accp) > Libbcmath.BASE - 1) {
             // if (*accp > (BASE-1))
             carry = 1
-            accum.n_value[accp--] -= Libbcmath.BASE //* accp-- -= BASE;
+            accum.n_value[accp] = digitAt(accum.n_value, accp) - Libbcmath.BASE //* accp -= BASE;
+            accp--
           } else {
             carry = 0
             accp--
           }
         }
         while (carry) {
-          accum.n_value[accp] += carry //* accp += carry;
-          if (accum.n_value[accp] > Libbcmath.BASE - 1) {
+          accum.n_value[accp] = digitAt(accum.n_value, accp) + carry //* accp += carry;
+          if (digitAt(accum.n_value, accp) > Libbcmath.BASE - 1) {
             // if (*accp > (BASE-1))
-            accum.n_value[accp--] -= Libbcmath.BASE //* accp-- -= BASE;
+            accum.n_value[accp] = digitAt(accum.n_value, accp) - Libbcmath.BASE //* accp -= BASE;
+            accp--
           } else {
             carry = 0
           }
@@ -600,19 +617,19 @@ export function _bc() {
 
        B is the base of storage, number of digits in u1,u0 close to equal.
     */
-    _bc_rec_mul: function (u, ulen, v, vlen, fullScale) {
-      let prod // @return
-      let u0
-      let u1
-      let v0
-      let v1 // bc_num
+    _bc_rec_mul: function (u: BcNum, ulen: number, v: BcNum, vlen: number, fullScale: number): BcNum {
+      let prod: BcNum // @return
+      let u0: BcNum
+      let u1: BcNum
+      let v0: BcNum
+      let v1: BcNum // bc_num
       // var u0len,
       // var v0len // int
-      let m1
-      let m2
-      let m3
-      let d1
-      let d2 // bc_num
+      let m1: BcNum = Libbcmath.bc_init_num()
+      let m2: BcNum = Libbcmath.bc_init_num()
+      let m3: BcNum = Libbcmath.bc_init_num()
+      let d1: BcNum = Libbcmath.bc_init_num()
+      let d2: BcNum = Libbcmath.bc_init_num() // bc_num
       let n
       let prodlen
       let m1zero // int
@@ -717,7 +734,7 @@ export function _bc() {
      * @param {boolean} ignoreLast
      * @return -1, 0, 1 (see bc_compare)
      */
-    _bc_do_compare: function (n1, n2, useSign, ignoreLast) {
+    _bc_do_compare: function (n1: BcNum, n2: BcNum, useSign: boolean, ignoreLast: boolean): -1 | 0 | 1 {
       let n1ptr
       let n2ptr // int
       let count // int
@@ -766,7 +783,7 @@ export function _bc() {
       }
 
       if (count !== 0) {
-        if (n1.n_value[n1ptr] > n2.n_value[n2ptr]) {
+        if (digitAt(n1.n_value, n1ptr) > digitAt(n2.n_value, n2ptr)) {
           // Magnitude of n1 > n2.
           if (!useSign || n1.n_sign === Libbcmath.PLUS) {
             return 1
@@ -787,7 +804,7 @@ export function _bc() {
       if (n1.n_scale !== n2.n_scale) {
         if (n1.n_scale > n2.n_scale) {
           for (count = n1.n_scale - n2.n_scale; count > 0; count--) {
-            if (n1.n_value[n1ptr++] !== 0) {
+            if (digitAt(n1.n_value, n1ptr++) !== 0) {
               // Magnitude of n1 > n2.
               if (!useSign || n1.n_sign === Libbcmath.PLUS) {
                 return 1
@@ -798,7 +815,7 @@ export function _bc() {
           }
         } else {
           for (count = n2.n_scale - n1.n_scale; count > 0; count--) {
-            if (n2.n_value[n2ptr++] !== 0) {
+            if (digitAt(n2.n_value, n2ptr++) !== 0) {
               // Magnitude of n1 < n2.
               if (!useSign || n1.n_sign === Libbcmath.PLUS) {
                 return -1
@@ -817,8 +834,8 @@ export function _bc() {
     /* Here is the full subtract routine that takes care of negative numbers.
    N2 is subtracted from N1 and the result placed in RESULT.  SCALE_MIN
    is the minimum scale for the result. */
-    bc_sub: function (n1, n2, scaleMin) {
-      let diff // bc_num
+    bc_sub: function (n1: BcNum, n2: BcNum, scaleMin: number): BcNum {
+      let diff: BcNum = Libbcmath.bc_init_num() // bc_num
       let cmpRes
       let resScale // int
       if (n1.n_sign !== n2.n_sign) {
@@ -854,8 +871,8 @@ export function _bc() {
       return diff
     },
 
-    _bc_do_add: function (n1, n2, scaleMin) {
-      let sum // bc_num
+    _bc_do_add: function (n1: BcNum, n2: BcNum, scaleMin: number): BcNum {
+      let sum: BcNum // bc_num
       let sumScale
       let sumDigits // int
       let n1ptr
@@ -884,14 +901,14 @@ export function _bc() {
         if (n1bytes > n2bytes) {
           // n1 has more dp then n2
           while (n1bytes > n2bytes) {
-            sum.n_value[sumptr--] = n1.n_value[n1ptr--]
+            sum.n_value[sumptr--] = digitAt(n1.n_value, n1ptr--)
             // *sumptr-- = *n1ptr--;
             n1bytes--
           }
         } else {
           // n2 has more dp then n1
           while (n2bytes > n1bytes) {
-            sum.n_value[sumptr--] = n2.n_value[n2ptr--]
+            sum.n_value[sumptr--] = digitAt(n2.n_value, n2ptr--)
             // *sumptr-- = *n2ptr--;
             n2bytes--
           }
@@ -904,7 +921,7 @@ export function _bc() {
       carry = 0
       while (n1bytes > 0 && n2bytes > 0) {
         // add the two numbers together
-        tmp = n1.n_value[n1ptr--] + n2.n_value[n2ptr--] + carry
+        tmp = digitAt(n1.n_value, n1ptr--) + digitAt(n2.n_value, n2ptr--) + carry
         // *sumptr = *n1ptr-- + *n2ptr-- + carry;
         // check if they are >= 10 (impossible to be more then 18)
         if (tmp >= Libbcmath.BASE) {
@@ -923,7 +940,7 @@ export function _bc() {
       if (n1bytes === 0) {
         // n2 is a bigger number then n1
         while (n2bytes-- > 0) {
-          tmp = n2.n_value[n2ptr--] + carry
+          tmp = digitAt(n2.n_value, n2ptr--) + carry
           // *sumptr = *n2ptr-- + carry;
           if (tmp >= Libbcmath.BASE) {
             carry = 1
@@ -936,7 +953,7 @@ export function _bc() {
       } else {
         // n1 is bigger then n2..
         while (n1bytes-- > 0) {
-          tmp = n1.n_value[n1ptr--] + carry
+          tmp = digitAt(n1.n_value, n1ptr--) + carry
           // *sumptr = *n1ptr-- + carry;
           if (tmp >= Libbcmath.BASE) {
             carry = 1
@@ -950,7 +967,7 @@ export function _bc() {
 
       // Set final carry.
       if (carry === 1) {
-        sum.n_value[sumptr] += 1
+        sum.n_value[sumptr] = digitAt(sum.n_value, sumptr) + 1
         // *sumptr += 1;
       }
 
@@ -978,8 +995,8 @@ export function _bc() {
      * @param {int} scaleMin
      * @return bc_num
      */
-    _bc_do_sub: function (n1, n2, scaleMin) {
-      let diff // bc_num
+    _bc_do_sub: function (n1: BcNum, n2: BcNum, scaleMin: number): BcNum {
+      let diff: BcNum // bc_num
       let diffScale
       let diffLen // int
       let minScale
@@ -1019,13 +1036,13 @@ export function _bc() {
       if (n1.n_scale !== minScale) {
         // n1 has the longer scale
         for (count = n1.n_scale - minScale; count > 0; count--) {
-          diff.n_value[diffptr--] = n1.n_value[n1ptr--]
+          diff.n_value[diffptr--] = digitAt(n1.n_value, n1ptr--)
           // *diffptr-- = *n1ptr--;
         }
       } else {
         // n2 has the longer scale
         for (count = n2.n_scale - minScale; count > 0; count--) {
-          val = 0 - n2.n_value[n2ptr--] - borrow
+          val = 0 - digitAt(n2.n_value, n2ptr--) - borrow
           // val = - *n2ptr-- - borrow;
           if (val < 0) {
             val += Libbcmath.BASE
@@ -1040,7 +1057,7 @@ export function _bc() {
 
       // Now do the equal length scale and integer parts.
       for (count = 0; count < minLen + minScale; count++) {
-        val = n1.n_value[n1ptr--] - n2.n_value[n2ptr--] - borrow
+        val = digitAt(n1.n_value, n1ptr--) - digitAt(n2.n_value, n2ptr--) - borrow
         // val = *n1ptr-- - *n2ptr-- - borrow;
         if (val < 0) {
           val += Libbcmath.BASE
@@ -1055,7 +1072,7 @@ export function _bc() {
       // If n1 has more digits then n2, we now do that subtract.
       if (diffLen !== minLen) {
         for (count = diffLen - minLen; count > 0; count--) {
-          val = n1.n_value[n1ptr--] - borrow
+          val = digitAt(n1.n_value, n1ptr--) - borrow
           // val = *n1ptr-- - borrow;
           if (val < 0) {
             val += Libbcmath.BASE
@@ -1078,9 +1095,9 @@ export function _bc() {
      * @param {int} scale
      * @return bc_num
      */
-    bc_new_num: function (length, scale) {
-      let temp // bc_num
-      temp = new Libbcmath.bc_num()
+    bc_new_num: function (length: number, scale: number): BcNum {
+      let temp: BcNum // bc_num
+      temp = Libbcmath.bc_num()
       temp.n_sign = Libbcmath.PLUS
       temp.n_len = length
       temp.n_scale = scale
@@ -1089,18 +1106,18 @@ export function _bc() {
       return temp
     },
 
-    safe_emalloc: function (size, len, extra) {
+    safe_emalloc: function (size: number, len: number, extra: number): number[] {
       return new Array(size * len + extra)
     },
 
     /**
      * Create a new number
      */
-    bc_init_num: function () {
-      return new Libbcmath.bc_new_num(1, 0)
+    bc_init_num: function (): BcNum {
+      return Libbcmath.bc_new_num(1, 0)
     },
 
-    _bc_rm_leading_zeros: function (num) {
+    _bc_rm_leading_zeros: function (num: BcNum) {
       // We can move n_value to point to the first non zero digit!
       while (num.n_value[0] === 0 && num.n_len > 1) {
         num.n_value.shift()
@@ -1111,7 +1128,7 @@ export function _bc() {
     /**
      * Convert to bc_num detecting scale
      */
-    php_str2num: function (str) {
+    php_str2num: function (str: string): BcNum {
       let p
       p = str.indexOf('.')
       if (p === -1) {
@@ -1121,26 +1138,26 @@ export function _bc() {
       }
     },
 
-    CH_VAL: function (c) {
-      return c - '0' // ??
+    CH_VAL: function (c: string) {
+      return Number(c) - 0 // ??
     },
 
-    BCD_CHAR: function (d) {
-      return d + '0' // ??
+    BCD_CHAR: function (d: number) {
+      return String(d) + '0' // ??
     },
 
-    isdigit: function (c) {
+    isdigit: function (c: string) {
       return isNaN(parseInt(c, 10))
     },
 
-    bc_str2num: function (strIn, scale) {
-      let str
-      let num
-      let ptr
-      let digits
-      let strscale
-      let zeroInt
-      let nptr
+    bc_str2num: function (strIn: string, scale: number): BcNum {
+      let str: string[]
+      let num: BcNum
+      let ptr: number
+      let digits: number
+      let strscale: number
+      let zeroInt: boolean
+      let nptr: number
       // remove any non-expected characters
       // Check for valid number and count digits.
 
@@ -1156,7 +1173,7 @@ export function _bc() {
         ptr++ // Skip leading zeros.
       }
       // while (Libbcmath.isdigit(str[ptr])) {
-      while (str[ptr] % 1 === 0) {
+      while (str[ptr] !== undefined && /\d/.test(str[ptr] ?? '')) {
         // Libbcmath.isdigit(str[ptr])) {
         ptr++
         digits++ // digits
@@ -1166,7 +1183,7 @@ export function _bc() {
         ptr++ // decimal point
       }
       // while (Libbcmath.isdigit(str[ptr])) {
-      while (str[ptr] % 1 === 0) {
+      while (str[ptr] !== undefined && /\d/.test(str[ptr] ?? '')) {
         // Libbcmath.isdigit(str[ptr])) {
         ptr++
         strscale++ // digits
@@ -1210,7 +1227,7 @@ export function _bc() {
         digits = 0
       }
       for (; digits > 0; digits--) {
-        num.n_value[nptr++] = Libbcmath.CH_VAL(str[ptr++])
+        num.n_value[nptr++] = Libbcmath.CH_VAL(str[ptr++] ?? '0')
         //* nptr++ = CH_VAL(*ptr++);
       }
 
@@ -1218,18 +1235,18 @@ export function _bc() {
       if (strscale > 0) {
         ptr++ // skip the decimal point!
         for (; strscale > 0; strscale--) {
-          num.n_value[nptr++] = Libbcmath.CH_VAL(str[ptr++])
+          num.n_value[nptr++] = Libbcmath.CH_VAL(str[ptr++] ?? '0')
         }
       }
 
       return num
     },
 
-    cint: function (v) {
+    cint: function (v: unknown) {
       if (typeof v === 'undefined') {
         v = 0
       }
-      let x = parseInt(v, 10)
+      let x = Number.parseInt(String(v), 10)
       if (isNaN(x)) {
         x = 0
       }
@@ -1241,7 +1258,7 @@ export function _bc() {
      * @param {int} a
      * @param {int} b
      */
-    MIN: function (a, b) {
+    MIN: function (a: number, b: number) {
       return a > b ? b : a
     },
 
@@ -1250,7 +1267,7 @@ export function _bc() {
      * @param {int} a
      * @param {int} b
      */
-    MAX: function (a, b) {
+    MAX: function (a: number, b: number) {
       return a > b ? a : b
     },
 
@@ -1258,7 +1275,7 @@ export function _bc() {
      * Basic odd function
      * @param {int} a
      */
-    ODD: function (a) {
+    ODD: function (a: number) {
       return a & 1
     },
 
@@ -1269,7 +1286,7 @@ export function _bc() {
      * @param {string} chr    char to fill
      * @param {int} len       length to fill
      */
-    memset: function (r, ptr, chr, len) {
+    memset: function (r: number[], ptr: number, chr: number, len: number) {
       let i
       for (i = 0; i < len; i++) {
         r[ptr + i] = chr
@@ -1282,10 +1299,10 @@ export function _bc() {
      * param so you could do memcpy(dest+1, src, len) as memcpy(dest, 1, src, len)
      * Also only works on arrays
      */
-    memcpy: function (dest, ptr, src, srcptr, len) {
+    memcpy: function (dest: number[], ptr: number, src: number[], srcptr: number, len: number) {
       let i
       for (i = 0; i < len; i++) {
-        dest[ptr + i] = src[srcptr + i]
+        dest[ptr + i] = src[srcptr + i] ?? 0
       }
       return true
     },
@@ -1295,7 +1312,7 @@ export function _bc() {
      * @param {bc_num} num    number to check
      * @return boolean      true when zero, false when not zero.
      */
-    bc_is_zero: function (num) {
+    bc_is_zero: function (num: BcNum) {
       let count // int
       let nptr // int
       // Quick check.
