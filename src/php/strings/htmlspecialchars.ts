@@ -1,7 +1,8 @@
-// @ts-nocheck
+type HtmlSpecialCharsQuoteStyle = string | string[] | number | null | undefined
+
 export function htmlspecialchars(
   string: string,
-  quoteStyle: string | string[] | null,
+  quoteStyle?: HtmlSpecialCharsQuoteStyle,
   charset?: null,
   doubleEncode?: boolean,
 ): string {
@@ -26,20 +27,21 @@ export function htmlspecialchars(
   //        returns 3: 'my &quot;&entity;&quot; is still here'
 
   let optTemp = 0
-  let i = 0
   let noquotes = false
-  if (typeof quoteStyle === 'undefined' || quoteStyle === null) {
-    quoteStyle = 2
+  let quoteStyleValue: HtmlSpecialCharsQuoteStyle = quoteStyle
+
+  if (typeof quoteStyleValue === 'undefined' || quoteStyleValue === null) {
+    quoteStyleValue = 2
   }
-  string = string || ''
-  string = string.toString()
+  let encoded = string || ''
+  encoded = encoded.toString()
 
   if (doubleEncode !== false) {
     // Put this first to avoid double-encoding
-    string = string.replace(/&/g, '&amp;')
+    encoded = encoded.replace(/&/g, '&amp;')
   }
 
-  string = string.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  encoded = encoded.replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
   const OPTS = {
     ENT_NOQUOTES: 0,
@@ -48,29 +50,34 @@ export function htmlspecialchars(
     ENT_COMPAT: 2,
     ENT_QUOTES: 3,
     ENT_IGNORE: 4,
-  }
-  if (quoteStyle === 0) {
+  } as const
+
+  const isOptKey = (value: string): value is keyof typeof OPTS => Object.prototype.hasOwnProperty.call(OPTS, value)
+
+  if (quoteStyleValue === 0) {
     noquotes = true
   }
-  if (typeof quoteStyle !== 'number') {
+  if (typeof quoteStyleValue !== 'number') {
     // Allow for a single string or an array of string flags
-    quoteStyle = [].concat(quoteStyle)
-    for (i = 0; i < quoteStyle.length; i++) {
+    const quoteStyleFlags = (Array.isArray(quoteStyleValue) ? quoteStyleValue : [quoteStyleValue]).map((flag) =>
+      String(flag),
+    )
+    for (const flag of quoteStyleFlags) {
       // Resolve string input to bitwise e.g. 'ENT_IGNORE' becomes 4
-      if (OPTS[quoteStyle[i]] === 0) {
+      if (flag === 'ENT_NOQUOTES') {
         noquotes = true
-      } else if (OPTS[quoteStyle[i]]) {
-        optTemp = optTemp | OPTS[quoteStyle[i]]
+      } else if (isOptKey(flag) && OPTS[flag]) {
+        optTemp |= OPTS[flag]
       }
     }
-    quoteStyle = optTemp
+    quoteStyleValue = optTemp
   }
-  if (quoteStyle & OPTS.ENT_HTML_QUOTE_SINGLE) {
-    string = string.replace(/'/g, '&#039;')
+  if ((quoteStyleValue as number) & OPTS.ENT_HTML_QUOTE_SINGLE) {
+    encoded = encoded.replace(/'/g, '&#039;')
   }
   if (!noquotes) {
-    string = string.replace(/"/g, '&quot;')
+    encoded = encoded.replace(/"/g, '&quot;')
   }
 
-  return string
+  return encoded
 }

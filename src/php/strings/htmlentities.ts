@@ -1,12 +1,11 @@
-// @ts-nocheck
 import { get_html_translation_table as getHtmlTranslationTable } from '../strings/get_html_translation_table.ts'
 
 export function htmlentities(
   string: string,
-  quoteStyle?: string,
+  quoteStyle?: string | number,
   charset?: string,
   doubleEncode?: unknown,
-): string | false {
+): string {
   //      discuss at: https://locutus.io/php/htmlentities/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -27,17 +26,13 @@ export function htmlentities(
 
   const hashMap = getHtmlTranslationTable('HTML_ENTITIES', quoteStyle)
 
-  string = string === null ? '' : string + ''
-
-  if (!hashMap) {
-    return false
-  }
+  const source = string === null ? '' : string + ''
 
   if (quoteStyle && quoteStyle === 'ENT_QUOTES') {
     hashMap["'"] = '&#039;'
   }
 
-  doubleEncode = doubleEncode === null || !!doubleEncode
+  const shouldDoubleEncode = doubleEncode === null || !!doubleEncode
 
   const regex = new RegExp(
     '&(?:#\\d+|#x[\\da-f]+|[a-zA-Z][\\da-z]*);|[' +
@@ -49,11 +44,11 @@ export function htmlentities(
     'g',
   )
 
-  return string.replace(regex, function (ent: string): string {
+  return source.replace(regex, function (ent: string): string {
     if (ent.length > 1) {
-      return doubleEncode ? hashMap['&'] + ent.substr(1) : ent
+      return shouldDoubleEncode ? hashMap['&'] + ent.substring(1) : ent
     }
 
-    return hashMap[ent]
+    return hashMap[ent] ?? ent
   })
 }
