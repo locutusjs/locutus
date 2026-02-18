@@ -1,4 +1,6 @@
-export function array_product(input: unknown): number | null {
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function array_product(input: PhpMixed): number | null {
   //      discuss at: https://locutus.io/php/array_product/
   // parity verified: PHP 8.3
   //     original by: Waldo Malqui Silva (https://waldo.malqui.info)

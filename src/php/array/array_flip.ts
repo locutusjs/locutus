@@ -1,6 +1,6 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpMixed } from '../_helpers/_phpTypes.ts'
 
-export function array_flip(trans: PhpAssoc<unknown>): PhpAssoc<string> {
+export function array_flip(trans: PhpAssoc<PhpMixed>): PhpAssoc<string> {
   //      discuss at: https://locutus.io/php/array_flip/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

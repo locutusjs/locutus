@@ -1,4 +1,6 @@
-export function array_unshift(array: unknown[], ...values: unknown[]): number {
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function array_unshift(array: PhpMixed[], ...values: PhpMixed[]): number {
   //  discuss at: https://locutus.io/php/array_unshift/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Martijn Wieringa

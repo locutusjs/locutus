@@ -1,4 +1,6 @@
-export function in_array<T>(needle: unknown, haystack: T[] | Record<string, T>, argStrict?: boolean): boolean {
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function in_array<T>(needle: PhpMixed, haystack: T[] | Record<string, T>, argStrict?: boolean): boolean {
   //  discuss at: https://locutus.io/php/in_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: vlado houba

@@ -1,6 +1,6 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpMixed } from '../_helpers/_phpTypes.ts'
 
-type AssociativeArray<T = unknown> = PhpAssoc<T>
+type AssociativeArray<T = PhpMixed> = PhpAssoc<T>
 
 export function array_merge<T>(...args: Array<T[] | AssociativeArray<T>>): T[] | AssociativeArray<T> {
   //  discuss at: https://locutus.io/php/array_merge/

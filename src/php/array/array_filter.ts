@@ -1,6 +1,8 @@
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
 export function array_filter<T>(
   arr: { [key: string]: T } | T[],
-  func?: (value: T) => unknown,
+  func?: (value: T) => PhpMixed,
 ): { [key: string]: T } | T[] {
   //  discuss at: https://locutus.io/php/array_filter/
   // original by: Brett Zamir (https://brett-zamir.me)

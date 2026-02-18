@@ -1,6 +1,6 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpMixed } from '../_helpers/_phpTypes.ts'
 
-export function array_fill_keys(keys: PhpAssoc<unknown>, value: string): PhpAssoc<string> {
+export function array_fill_keys(keys: PhpAssoc<PhpMixed>, value: string): PhpAssoc<string> {
   //  discuss at: https://locutus.io/php/array_fill_keys/
   // original by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Brett Zamir (https://brett-zamir.me)

@@ -1,6 +1,6 @@
-import { isObjectLike, type PhpAssoc } from '../_helpers/_phpTypes.ts'
+import { isObjectLike, type PhpAssoc, type PhpMixed } from '../_helpers/_phpTypes.ts'
 
-export function array_key_exists(key: string | number, search: PhpAssoc<unknown> | unknown[]): boolean | false {
+export function array_key_exists(key: string | number, search: PhpAssoc<PhpMixed> | PhpMixed[]): boolean | false {
   //  discuss at: https://locutus.io/php/array_key_exists/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Felix Geisendoerfer (https://www.debuggable.com/felix)
