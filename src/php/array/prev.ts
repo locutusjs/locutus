@@ -1,4 +1,7 @@
-export function prev<T>(arr: T[] | Record<string, T>): T | false {
+import { getEntryAtCursor, getPointerState } from '../_helpers/_arrayPointers.ts'
+import type { PhpArrayLike } from '../_helpers/_phpTypes.ts'
+
+export function prev<T>(arr: PhpArrayLike<T>): T | false {
   //      discuss at: https://locutus.io/php/prev/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -7,48 +10,17 @@ export function prev<T>(arr: T[] | Record<string, T>): T | false {
   //       example 1: prev($transport)
   //       returns 1: false
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus?: {
-      php?: {
-        pointers?: unknown[]
-      }
-    }
-  }
-  $global.$locutus = $global.$locutus || {}
-  $global.$locutus.php = $global.$locutus.php || {}
-  $global.$locutus.php.pointers = $global.$locutus.php.pointers || []
-  const pointers = $global.$locutus.php.pointers
-
-  const indexOf = (list: unknown[], value: unknown): number => {
-    for (let i = 0, length = list.length; i < length; i++) {
-      if (list[i] === value) {
-        return i
-      }
-    }
-    return -1
+  const state = getPointerState(arr, false)
+  if (!state || state.cursor === 0) {
+    return false
   }
 
-  const arrpos = indexOf(pointers, arr)
-  const cursorValue = arrpos >= 0 ? pointers[arrpos + 1] : 0
-  const cursor = typeof cursorValue === 'number' ? cursorValue : 0
-  if (arrpos === -1 || cursor === 0) {
+  const previousCursor = state.cursor - 1
+  const entry = getEntryAtCursor(arr, previousCursor)
+  if (!entry) {
     return false
   }
-  if (!Array.isArray(arr)) {
-    let ct = 0
-    for (const k in arr) {
-      if (ct === cursor - 1) {
-        pointers[arrpos + 1] = cursor - 1
-        return arr[k] as T
-      }
-      ct++
-    }
-    // Shouldn't reach here
-    return false
-  }
-  if (arr.length === 0) {
-    return false
-  }
-  pointers[arrpos + 1] = cursor - 1
-  return arr[cursor - 1] as T
+
+  state.setCursor(previousCursor)
+  return entry[1]
 }

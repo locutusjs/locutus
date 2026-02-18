@@ -1,3 +1,5 @@
+import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
+
 export function call_user_func_array(cb: unknown, parameters: unknown[]): unknown {
   //  discuss at: https://locutus.io/php/call_user_func_array/
   // original by: Thiago Mata (https://thiagomata.blog.com)
@@ -19,15 +21,23 @@ export function call_user_func_array(cb: unknown, parameters: unknown[]): unknow
   let func: unknown
   let scope: unknown = null
 
+  try {
+    const resolved = resolvePhpCallable(cb, { invalidMessage: 'invalid' })
+    func = resolved.fn
+    scope = resolved.scope
+  } catch {
+    // Fall back to PHP-compatible eval/new Function paths below.
+  }
+
   const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
-  if (typeof cb === 'string') {
+  if (typeof func !== 'function' && typeof cb === 'string') {
     if (typeof globalContext[cb] === 'function') {
       func = globalContext[cb]
     } else if (cb.match(validJSFunctionNamePattern)) {
       func = new Function(`return ${cb}`)()
     }
-  } else if (Array.isArray(cb)) {
+  } else if (typeof func !== 'function' && Array.isArray(cb)) {
     if (typeof cb[0] === 'string') {
       if (cb[0].match(validJSFunctionNamePattern)) {
         // biome-ignore lint/security/noGlobalEval: needed for PHP port
@@ -47,7 +57,7 @@ export function call_user_func_array(cb: unknown, parameters: unknown[]): unknow
     } else if (typeof cb[0] === 'object') {
       scope = cb[0]
     }
-  } else if (typeof cb === 'function') {
+  } else if (typeof func !== 'function' && typeof cb === 'function') {
     func = cb
   }
 
@@ -55,5 +65,5 @@ export function call_user_func_array(cb: unknown, parameters: unknown[]): unknow
     throw new Error(String(func) + ' is not a valid function')
   }
 
-  return (func as (...args: unknown[]) => unknown).apply(scope, parameters)
+  return func.apply(scope, parameters)
 }

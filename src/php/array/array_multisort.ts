@@ -1,5 +1,6 @@
 type SortableObject = { [key: string]: unknown }
 type SortComparator = (a: unknown, b: unknown) => number
+type ComparablePrimitive = string | number | bigint | boolean | Date
 
 const hasOwn = Object.prototype.hasOwnProperty
 
@@ -17,6 +18,13 @@ const isSortableObject = (value: unknown): value is SortableObject =>
   value !== null && typeof value === 'object' && !Array.isArray(value)
 
 const isSortFlag = (value: unknown): value is SortFlag => typeof value === 'string' && value in flags
+
+const isComparablePrimitive = (value: unknown): value is ComparablePrimitive =>
+  typeof value === 'string' ||
+  typeof value === 'number' ||
+  typeof value === 'bigint' ||
+  typeof value === 'boolean' ||
+  value instanceof Date
 
 const copyBackToObject = (target: SortableObject, values: unknown[], keys: string[]): void => {
   for (const key in target) {
@@ -43,9 +51,14 @@ const compareRegular = (leftValue: unknown, rightValue: unknown): number => {
   if (rightValue === null || rightValue === undefined) {
     return 1
   }
-  const left = leftValue as string | number | bigint | boolean | Date
-  const right = rightValue as string | number | bigint | boolean | Date
-  return left === right ? 0 : left > right ? 1 : -1
+
+  if (isComparablePrimitive(leftValue) && isComparablePrimitive(rightValue)) {
+    return leftValue > rightValue ? 1 : -1
+  }
+
+  const left = String(leftValue)
+  const right = String(rightValue)
+  return left > right ? 1 : left < right ? -1 : 0
 }
 
 export function array_multisort(arr: unknown, ...rest: unknown[]): boolean {

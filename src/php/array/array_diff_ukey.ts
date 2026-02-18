@@ -1,41 +1,7 @@
-type PhpArray = { [key: string]: unknown }
-type KeyCompareCallback = (left: string, right: string) => number
+import { resolveNumericComparator } from '../_helpers/_callbackResolver.ts'
+import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-const isPhpArray = (value: unknown): value is PhpArray => typeof value === 'object' && value !== null
-const isCallback = (value: unknown): value is (...args: unknown[]) => unknown => typeof value === 'function'
-
-const toPhpArray = (value: unknown): PhpArray => (isPhpArray(value) ? value : {})
-
-const asKeyCompareCallback = (callback: (...args: unknown[]) => unknown): KeyCompareCallback => {
-  return (left, right) => Number(callback(left, right))
-}
-
-const resolveKeyCompareCallback = (callback: unknown): KeyCompareCallback => {
-  const globalContext = globalThis as typeof globalThis & { [key: string]: unknown }
-
-  if (isCallback(callback)) {
-    return asKeyCompareCallback(callback)
-  }
-
-  if (typeof callback === 'string') {
-    const candidate = globalContext[callback]
-    if (isCallback(candidate)) {
-      return asKeyCompareCallback(candidate)
-    }
-  }
-
-  if (Array.isArray(callback) && callback.length >= 2) {
-    const target = typeof callback[0] === 'string' ? globalContext[callback[0]] : callback[0]
-    if (target && (typeof target === 'object' || typeof target === 'function') && typeof callback[1] === 'string') {
-      const candidate = Reflect.get(target, callback[1])
-      if (isCallback(candidate)) {
-        return asKeyCompareCallback(candidate)
-      }
-    }
-  }
-
-  throw new Error('array_diff_ukey(): Invalid callback')
-}
+type PhpArray = PhpAssoc<unknown>
 
 export function array_diff_ukey(arr1: PhpArray): PhpArray {
   //  discuss at: https://locutus.io/php/array_diff_ukey/
@@ -47,13 +13,16 @@ export function array_diff_ukey(arr1: PhpArray): PhpArray {
 
   const retArr: PhpArray = {}
   const arglm1 = arguments.length - 1
-  const cb = resolveKeyCompareCallback(arguments[arglm1])
+  const keyComparator = resolveNumericComparator<string, string>(
+    arguments[arglm1],
+    'array_diff_ukey(): Invalid callback',
+  )
 
   arr1keys: for (const k1 in arr1) {
     for (let i = 1; i < arglm1; i++) {
-      const arr = toPhpArray(arguments[i])
+      const arr = toPhpArrayObject(arguments[i])
       for (const k in arr) {
-        if (cb(k, k1) === 0) {
+        if (keyComparator(k, k1) === 0) {
           // If it reaches here, it was found in at least one array, so try next value
           continue arr1keys
         }

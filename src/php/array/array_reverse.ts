@@ -1,7 +1,19 @@
-export function array_reverse(
-  array: unknown[] | { [key: string]: unknown },
-  preserveKeys?: boolean,
-): unknown[] | { [key: string]: unknown } {
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+type ArrayReverseResult<TInput, TPreserve extends boolean> = TInput extends (infer TValue)[]
+  ? TPreserve extends true
+    ? PhpAssoc<TValue>
+    : TValue[]
+  : TInput extends PhpAssoc<infer TValue>
+    ? TPreserve extends true
+      ? PhpAssoc<TValue>
+      : PhpAssoc<TValue> | TValue[]
+    : never
+
+export function array_reverse<TInput extends unknown[] | PhpAssoc<unknown>, TPreserve extends boolean = false>(
+  array: TInput,
+  preserveKeys = false as TPreserve,
+): ArrayReverseResult<TInput, TPreserve> {
   //  discuss at: https://locutus.io/php/array_reverse/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Karol Kowalski
@@ -9,35 +21,31 @@ export function array_reverse(
   //   returns 1: { 2: ['green', 'red'], 1: '4.0', 0: 'php'}
 
   if (Array.isArray(array) && !preserveKeys) {
-    return array.slice(0).reverse()
+    return array.slice(0).reverse() as ArrayReverseResult<TInput, TPreserve>
   }
+
+  const source = array as { [key: string]: unknown }
 
   if (preserveKeys) {
-    const keys: string[] = []
-    const source = array as { [key: string]: unknown }
-    const tmpArr: { [key: string]: unknown } = {}
-    for (const key in source) {
-      keys.push(key)
+    const keys = Object.keys(source)
+    const reversed: PhpAssoc<unknown> = {}
+
+    for (let index = keys.length - 1; index >= 0; index -= 1) {
+      const key = keys[index]
+      if (typeof key === 'string' && Object.prototype.hasOwnProperty.call(source, key)) {
+        reversed[key] = source[key]
+      }
     }
 
-    let i = keys.length
-    while (i--) {
-      const key = keys[i]
-      if (key === undefined) {
-        continue
-      }
-      // @todo: don't rely on browsers keeping keys in insertion order
-      // it's implementation specific
-      // eg. the result will differ from expected in Google Chrome
-      tmpArr[key] = source[key]
-    }
-    return tmpArr
-  } else {
-    const source = array as { [key: string]: unknown }
-    const tmpArr: unknown[] = []
-    for (const key in source) {
-      tmpArr.unshift(source[key])
-    }
-    return tmpArr
+    return reversed as ArrayReverseResult<TInput, TPreserve>
   }
+
+  const reversed: unknown[] = []
+  for (const key in source) {
+    if (Object.prototype.hasOwnProperty.call(source, key)) {
+      reversed.unshift(source[key])
+    }
+  }
+
+  return reversed as ArrayReverseResult<TInput, TPreserve>
 }

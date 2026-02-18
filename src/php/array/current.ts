@@ -1,4 +1,7 @@
-export function current<T>(arr: T[] | Record<string, T>): T | false {
+import { getEntryAtCursor, getPointerState } from '../_helpers/_arrayPointers.ts'
+import type { PhpArrayLike } from '../_helpers/_phpTypes.ts'
+
+export function current<T>(arr: PhpArrayLike<T>): T | false {
   //      discuss at: https://locutus.io/php/current/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -7,43 +10,11 @@ export function current<T>(arr: T[] | Record<string, T>): T | false {
   //       example 1: current($transport)
   //       returns 1: 'foot'
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus?: {
-      php?: {
-        pointers?: unknown[]
-      }
-    }
-  }
-  $global.$locutus = $global.$locutus || {}
-  $global.$locutus.php = $global.$locutus.php || {}
-  $global.$locutus.php.pointers = $global.$locutus.php.pointers || []
-  const pointers = $global.$locutus.php.pointers
-
-  const indexOf = (list: unknown[], value: unknown): number => {
-    for (let i = 0, length = list.length; i < length; i++) {
-      if (list[i] === value) {
-        return i
-      }
-    }
-    return -1
+  const state = getPointerState(arr, true)
+  if (!state) {
+    return false
   }
 
-  if (indexOf(pointers, arr) === -1) {
-    pointers.push(arr, 0)
-  }
-  const arrpos = indexOf(pointers, arr)
-  const cursorValue = pointers[arrpos + 1]
-  const cursor = typeof cursorValue === 'number' ? cursorValue : 0
-  if (Array.isArray(arr)) {
-    return (arr[cursor] as T) || false
-  }
-  let ct = 0
-  for (const k in arr) {
-    if (ct === cursor) {
-      return arr[k] as T
-    }
-    ct++
-  }
-  // Empty
-  return false
+  const entry = getEntryAtCursor(arr, state.cursor)
+  return entry ? entry[1] : false
 }

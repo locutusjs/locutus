@@ -1,4 +1,7 @@
-export function next<T>(arr: T[] | Record<string, T>): T | false {
+import { getEntryAtCursor, getPointerState } from '../_helpers/_arrayPointers.ts'
+import type { PhpArrayLike } from '../_helpers/_phpTypes.ts'
+
+export function next<T>(arr: PhpArrayLike<T>): T | false {
   //      discuss at: https://locutus.io/php/next/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -8,48 +11,17 @@ export function next<T>(arr: T[] | Record<string, T>): T | false {
   //       example 1: next($transport)
   //       returns 1: 'car'
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus?: {
-      php?: {
-        pointers?: unknown[]
-      }
-    }
-  }
-  $global.$locutus = $global.$locutus || {}
-  $global.$locutus.php = $global.$locutus.php || {}
-  $global.$locutus.php.pointers = $global.$locutus.php.pointers || []
-  const pointers = $global.$locutus.php.pointers
-
-  const indexOf = (list: unknown[], value: unknown): number => {
-    for (let i = 0, length = list.length; i < length; i++) {
-      if (list[i] === value) {
-        return i
-      }
-    }
-    return -1
-  }
-
-  if (indexOf(pointers, arr) === -1) {
-    pointers.push(arr, 0)
-  }
-  const arrpos = indexOf(pointers, arr)
-  const cursorValue = pointers[arrpos + 1]
-  const cursor = typeof cursorValue === 'number' ? cursorValue : 0
-  if (!Array.isArray(arr)) {
-    let ct = 0
-    for (const k in arr) {
-      if (ct === cursor + 1) {
-        pointers[arrpos + 1] = cursor + 1
-        return arr[k] as T
-      }
-      ct++
-    }
-    // End
+  const state = getPointerState(arr, true)
+  if (!state) {
     return false
   }
-  if (arr.length === 0 || cursor === arr.length - 1) {
+
+  const nextCursor = state.cursor + 1
+  const entry = getEntryAtCursor(arr, nextCursor)
+  if (!entry) {
     return false
   }
-  pointers[arrpos + 1] = cursor + 1
-  return arr[cursor + 1] as T
+
+  state.setCursor(nextCursor)
+  return entry[1]
 }

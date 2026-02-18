@@ -1,4 +1,7 @@
-export function reset<T>(arr: T[] | Record<string, T>): T | false {
+import { getEntryAtCursor, getPointerState } from '../_helpers/_arrayPointers.ts'
+import type { PhpArrayLike } from '../_helpers/_phpTypes.ts'
+
+export function reset<T>(arr: PhpArrayLike<T>): T | false {
   //  discuss at: https://locutus.io/php/reset/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Legaev Andrey
@@ -7,46 +10,16 @@ export function reset<T>(arr: T[] | Record<string, T>): T | false {
   //   example 1: reset({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
   //   returns 1: 'Kevin'
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus?: {
-      php?: {
-        pointers?: unknown[]
-      }
-    }
-  }
-  $global.$locutus = $global.$locutus || {}
-  $global.$locutus.php = $global.$locutus.php || {}
-  $global.$locutus.php.pointers = $global.$locutus.php.pointers || []
-  const pointers = $global.$locutus.php.pointers
-
-  const indexOf = (list: unknown[], value: unknown): number => {
-    for (let i = 0, length = list.length; i < length; i++) {
-      if (list[i] === value) {
-        return i
-      }
-    }
-    return -1
-  }
-
-  if (indexOf(pointers, arr) === -1) {
-    pointers.push(arr, 0)
-  }
-  const arrpos = indexOf(pointers, arr)
-  if (!Array.isArray(arr)) {
-    for (const k in arr) {
-      if (indexOf(pointers, arr) === -1) {
-        pointers.push(arr, 0)
-      } else {
-        pointers[arrpos + 1] = 0
-      }
-      return arr[k] as T
-    }
-    // Empty
+  const state = getPointerState(arr, true)
+  if (!state) {
     return false
   }
-  if (arr.length === 0) {
+
+  const entry = getEntryAtCursor(arr, 0)
+  if (!entry) {
     return false
   }
-  pointers[arrpos + 1] = 0
-  return arr[0] as T
+
+  state.setCursor(0)
+  return entry[1]
 }

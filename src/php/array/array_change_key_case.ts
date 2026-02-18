@@ -1,7 +1,15 @@
-export function array_change_key_case(
-  array: number | unknown[] | { [key: string]: unknown } | null,
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+type ArrayChangeKeyCaseResult<TInput> = TInput extends (infer TValue)[]
+  ? TValue[]
+  : TInput extends PhpAssoc<infer TValue>
+    ? PhpAssoc<TValue>
+    : false
+
+export function array_change_key_case<TInput extends number | unknown[] | PhpAssoc<unknown> | null>(
+  array: TInput,
   cs?: string | number,
-): boolean | unknown[] | { [key: string]: unknown } | false {
+): ArrayChangeKeyCaseResult<TInput> {
   //  discuss at: https://locutus.io/php/array_change_key_case/
   // original by: Ates Goral (https://magnetiq.com)
   // improved by: marrtins
@@ -19,20 +27,23 @@ export function array_change_key_case(
   //   example 6: array_change_key_case({ FuBaR: 42 }, 2)
   //   returns 6: {"FUBAR": 42}
 
-  let caseFnc: 'toLowerCase' | 'toUpperCase'
-  const tmpArr: { [key: string]: unknown } = {}
   if (Array.isArray(array)) {
-    return array
+    return array as unknown as ArrayChangeKeyCaseResult<TInput>
   }
 
-  if (array && typeof array === 'object') {
-    caseFnc = !cs || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase'
-    const source = array as { [key: string]: unknown }
-    for (const key in source) {
-      tmpArr[key[caseFnc]()] = source[key]
+  if (!array || typeof array !== 'object') {
+    return false as ArrayChangeKeyCaseResult<TInput>
+  }
+
+  const caseFunction: 'toLowerCase' | 'toUpperCase' = !cs || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase'
+  const source = array as PhpAssoc<unknown>
+  const transformed: PhpAssoc<unknown> = {}
+
+  for (const key in source) {
+    if (Object.prototype.hasOwnProperty.call(source, key)) {
+      transformed[key[caseFunction]()] = source[key]
     }
-    return tmpArr
   }
 
-  return false
+  return transformed as ArrayChangeKeyCaseResult<TInput>
 }

@@ -1,4 +1,7 @@
-export function end<T>(arr: T[] | Record<string, T>): T | false {
+import { getArrayLikeLength, getEntryAtCursor, getPointerState } from '../_helpers/_arrayPointers.ts'
+import type { PhpArrayLike } from '../_helpers/_phpTypes.ts'
+
+export function end<T>(arr: PhpArrayLike<T>): T | false {
   //  discuss at: https://locutus.io/php/end/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Legaev Andrey
@@ -12,48 +15,21 @@ export function end<T>(arr: T[] | Record<string, T>): T | false {
   //   example 2: end(['Kevin', 'van', 'Zonneveld'])
   //   returns 2: 'Zonneveld'
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus?: {
-      php?: {
-        pointers?: unknown[]
-      }
-    }
-  }
-  $global.$locutus = $global.$locutus || {}
-  $global.$locutus.php = $global.$locutus.php || {}
-  $global.$locutus.php.pointers = $global.$locutus.php.pointers || []
-  const pointers = $global.$locutus.php.pointers
-
-  const indexOf = (list: unknown[], value: unknown): number => {
-    for (let i = 0, length = list.length; i < length; i++) {
-      if (list[i] === value) {
-        return i
-      }
-    }
-    return -1
-  }
-
-  if (indexOf(pointers, arr) === -1) {
-    pointers.push(arr, 0)
-  }
-  const arrpos = indexOf(pointers, arr)
-  if (!Array.isArray(arr)) {
-    let ct = 0
-    let lastKey: string | undefined
-    for (const k in arr) {
-      ct++
-      lastKey = k
-    }
-    if (ct === 0 || lastKey === undefined) {
-      // Empty
-      return false
-    }
-    pointers[arrpos + 1] = ct - 1
-    return arr[lastKey] as T
-  }
-  if (arr.length === 0) {
+  const state = getPointerState(arr, true)
+  if (!state) {
     return false
   }
-  pointers[arrpos + 1] = arr.length - 1
-  return arr[arr.length - 1] as T
+
+  const lastIndex = getArrayLikeLength(arr) - 1
+  if (lastIndex < 0) {
+    return false
+  }
+
+  const entry = getEntryAtCursor(arr, lastIndex)
+  if (!entry) {
+    return false
+  }
+
+  state.setCursor(lastIndex)
+  return entry[1]
 }

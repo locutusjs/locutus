@@ -1,4 +1,18 @@
+import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
 import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
+
+const toSortablePrimitive = (value: unknown): string | number | bigint | boolean => {
+  if (
+    typeof value === 'string' ||
+    typeof value === 'number' ||
+    typeof value === 'bigint' ||
+    typeof value === 'boolean'
+  ) {
+    return value
+  }
+
+  return String(value ?? '')
+}
 
 export function sort<T>(inputArr: Record<string, T>, sortFlags?: string): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/sort/
@@ -31,52 +45,29 @@ export function sort<T>(inputArr: Record<string, T>, sortFlags?: string): boolea
   //   example 2: var $result = $fruits
   //   returns 2: {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
 
-  let sorter: ((a: unknown, b: unknown) => number) | undefined
-  let sortByReference = false
-  let populateArr: Record<string, T> = {}
+  const runtime = ensurePhpRuntimeState()
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus: {
-      php: {
-        locales: Record<string, { sorting: (a: unknown, b: unknown) => number }>
-        ini?: Record<string, { local_value?: unknown }>
-      }
-    }
-  }
-  $global.$locutus = $global.$locutus || ({} as typeof $global.$locutus)
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || ({} as typeof $locutus.php)
-  $locutus.php.locales = $locutus.php.locales || {}
-
-  const regularSortAsc = function (a: unknown, b: unknown) {
-    const left = (a ?? '') as string | number | bigint | boolean
-    const right = (b ?? '') as string | number | bigint | boolean
+  const regularSortAsc = (leftValue: unknown, rightValue: unknown): number => {
+    const left = toSortablePrimitive(leftValue)
+    const right = toSortablePrimitive(rightValue)
     return left > right ? 1 : left < right ? -1 : 0
   }
 
+  let sorter: ((a: unknown, b: unknown) => number) | undefined
+
   switch (sortFlags) {
     case 'SORT_STRING':
-      // compare items as strings
-      // leave sorter undefined, so built-in comparison is used
+      // compare items as strings via built-in fallback
       break
     case 'SORT_LOCALE_STRING': {
-      // compare items as strings, based on the current locale
-      // (set with i18n_loc_set_default() as of PHP6)
-      const loc = $locutus.php.locales[i18nlgd()]
-
-      if (loc && loc.sorting) {
-        // if sorting exists on locale object, use it
-        // otherwise let sorter be undefined
-        // to fallback to built-in behavior
-        sorter = loc.sorting
+      const locale = runtime.locales[i18nlgd()]
+      if (locale?.sorting) {
+        sorter = locale.sorting
       }
       break
     }
     case 'SORT_NUMERIC':
-      // compare items numerically
-      sorter = function (a, b) {
-        return Number(a) - Number(b)
-      }
+      sorter = (a, b) => Number(a) - Number(b)
       break
     case 'SORT_REGULAR':
       sorter = regularSortAsc
@@ -86,24 +77,23 @@ export function sort<T>(inputArr: Record<string, T>, sortFlags?: string): boolea
       break
   }
 
-  const iniVal = String($locutus.php.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
-  sortByReference = iniVal === 'on'
-  populateArr = sortByReference ? inputArr : populateArr
+  const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on'
+  const sortByReference = iniVal === 'on'
+  const populateArr: Record<string, T> = sortByReference ? inputArr : {}
 
-  const valArr: T[] = []
+  const values: T[] = []
   for (const [key, value] of Object.entries(inputArr)) {
-    // Get key and value arrays
-    valArr.push(value)
+    values.push(value)
     if (sortByReference) {
       delete inputArr[key]
     }
   }
 
-  valArr.sort(sorter)
+  values.sort(sorter)
 
-  for (const [index, value] of valArr.entries()) {
-    // Repopulate the old array
+  for (const [index, value] of values.entries()) {
     populateArr[index] = value
   }
+
   return sortByReference || populateArr
 }

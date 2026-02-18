@@ -1,4 +1,6 @@
-export function array_values(input: unknown[] | { [key: string]: unknown }): unknown[] {
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+export function array_values<T>(input: T[] | PhpAssoc<T>): T[] {
   //      discuss at: https://locutus.io/php/array_values/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -6,12 +8,16 @@ export function array_values(input: unknown[] | { [key: string]: unknown }): unk
   //       example 1: array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} )
   //       returns 1: [ 'Kevin', 'van Zonneveld' ]
 
-  const tmpArr: unknown[] = []
-  const source = input as { [key: string]: unknown }
-
-  for (const key in source) {
-    tmpArr[tmpArr.length] = source[key]
+  if (Array.isArray(input)) {
+    return input.slice()
   }
 
-  return tmpArr
+  const values: T[] = []
+  for (const key in input) {
+    if (Object.prototype.hasOwnProperty.call(input, key)) {
+      values.push(input[key] as T)
+    }
+  }
+
+  return values
 }

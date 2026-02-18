@@ -1,5 +1,19 @@
+import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
 import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
 import { strnatcmp } from '../strings/strnatcmp.ts'
+
+const toSortablePrimitive = (value: unknown): string | number | bigint | boolean => {
+  if (
+    typeof value === 'string' ||
+    typeof value === 'number' ||
+    typeof value === 'bigint' ||
+    typeof value === 'boolean'
+  ) {
+    return value
+  }
+
+  return String(value ?? '')
+}
 
 export function asort<T>(inputArr: Record<string, T>, sortFlags?: string): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/asort/
@@ -37,55 +51,32 @@ export function asort<T>(inputArr: Record<string, T>, sortFlags?: string): boole
   //   example 2: var $result = $data
   //   returns 2: {c: 'apple', b: 'banana', d: 'lemon', a: 'orange'}
 
+  const runtime = ensurePhpRuntimeState()
   const valArr: [string, T][] = []
-  let sortByReference = false
-  let populateArr: Record<string, T> = {}
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus: {
-      php: {
-        locales: Record<string, { sorting: (a: unknown, b: unknown) => number }>
-        ini?: Record<string, { local_value?: unknown }>
-      }
-    }
-  }
-  $global.$locutus = $global.$locutus || ({} as typeof $global.$locutus)
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || ({} as typeof $locutus.php)
-  $locutus.php.locales = $locutus.php.locales || {}
-
-  const regularSortAsc = function (a: unknown, b: unknown) {
-    const left = (a ?? '') as string | number | bigint | boolean
-    const right = (b ?? '') as string | number | bigint | boolean
+  const regularSortAsc = (leftValue: unknown, rightValue: unknown): number => {
+    const left = toSortablePrimitive(leftValue)
+    const right = toSortablePrimitive(rightValue)
     return left > right ? 1 : left < right ? -1 : 0
   }
+
   let sorter: (a: unknown, b: unknown) => number = regularSortAsc
 
   switch (sortFlags) {
     case 'SORT_STRING':
-      // compare items as strings
-      sorter = function (a, b) {
-        return Number(strnatcmp(a, b) ?? 0)
-      }
+      sorter = (a, b) => Number(strnatcmp(a, b) ?? 0)
       break
     case 'SORT_LOCALE_STRING': {
-      // compare items as strings, based on the current locale
-      // (set with i18n_loc_set_default() as of PHP6)
-      const loc = i18nlgd()
-      const locale = $locutus.php.locales[loc]
+      const locale = runtime.locales[i18nlgd()]
       if (locale?.sorting) {
         sorter = locale.sorting
       }
       break
     }
     case 'SORT_NUMERIC':
-      // compare items numerically
-      sorter = function (a, b) {
-        return Number(a) - Number(b)
-      }
+      sorter = (a, b) => Number(a) - Number(b)
       break
     case 'SORT_REGULAR':
-      // compare items normally (don't change types)
       sorter = regularSortAsc
       break
     default:
@@ -93,11 +84,10 @@ export function asort<T>(inputArr: Record<string, T>, sortFlags?: string): boole
       break
   }
 
-  const iniVal = String($locutus.php.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
-  sortByReference = iniVal === 'on'
-  populateArr = sortByReference ? inputArr : populateArr
+  const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on'
+  const sortByReference = iniVal === 'on'
+  const populateArr: Record<string, T> = sortByReference ? inputArr : {}
 
-  // Get key and value arrays
   for (const [key, value] of Object.entries(inputArr)) {
     valArr.push([key, value])
     if (sortByReference) {
@@ -105,11 +95,8 @@ export function asort<T>(inputArr: Record<string, T>, sortFlags?: string): boole
     }
   }
 
-  valArr.sort(function (a, b) {
-    return sorter(a[1], b[1])
-  })
+  valArr.sort((a, b) => sorter(a[1], b[1]))
 
-  // Repopulate the old array
   for (const [key, value] of valArr) {
     populateArr[key] = value
   }

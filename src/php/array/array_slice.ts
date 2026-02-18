@@ -1,11 +1,20 @@
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 import { is_int as isInt } from '../var/is_int.ts'
 
-export function array_slice(
-  arr: unknown[] | { [key: string]: unknown },
+type ArraySliceResult<TInput, TPreserve extends boolean> = TInput extends (infer TValue)[]
+  ? TPreserve extends true
+    ? TValue[] | PhpAssoc<TValue>
+    : TValue[]
+  : TInput extends PhpAssoc<infer TValue>
+    ? PhpAssoc<TValue>
+    : never
+
+export function array_slice<TInput extends unknown[] | PhpAssoc<unknown>, TPreserve extends boolean = false>(
+  arr: TInput,
   offst: number,
   lgth?: number,
-  preserveKeys?: boolean,
-): unknown[] | { [key: string]: unknown } {
+  preserveKeys = false as TPreserve,
+): ArraySliceResult<TInput, TPreserve> {
   //      discuss at: https://locutus.io/php/array_slice/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -17,59 +26,58 @@ export function array_slice(
   //       example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true)
   //       returns 2: {2: 'c', 3: 'd'}
 
-  /*
-    if ('callee' in arr && 'length' in arr) {
-      arr = Array.prototype.slice.call(arr);
+  if (Array.isArray(arr) && !(preserveKeys && offst !== 0)) {
+    if (lgth === undefined) {
+      return arr.slice(offst) as ArraySliceResult<TInput, TPreserve>
     }
-  */
-
-  if (!Array.isArray(arr) || (preserveKeys && offst !== 0)) {
-    // Assoc. array as input or if required as output
-    let lgt = 0
-    const sourceAssoc: { [key: string]: unknown } = {}
-    const assocInput = arr as { [key: string]: unknown }
-    for (const key in arr) {
-      lgt += 1
-      sourceAssoc[key] = assocInput[key]
+    if (lgth >= 0) {
+      return arr.slice(offst, offst + lgth) as ArraySliceResult<TInput, TPreserve>
     }
-
-    offst = offst < 0 ? lgt + offst : offst
-    const resolvedLength = lgth === undefined ? lgt : lgth < 0 ? lgt + lgth - offst : lgth
-
-    const assoc: { [key: string]: unknown } = {}
-    let start = false
-    let it = -1
-    let arrlgth = 0
-    let noPkIdx = 0
-
-    for (const key in sourceAssoc) {
-      ++it
-      if (arrlgth >= resolvedLength) {
-        break
-      }
-      if (it === offst) {
-        start = true
-      }
-      if (!start) {
-        continue
-      }
-      ++arrlgth
-      if (isInt(key) && !preserveKeys) {
-        assoc[String(noPkIdx++)] = sourceAssoc[key]
-      } else {
-        assoc[key] = sourceAssoc[key]
-      }
-    }
-    // Make as array-like object (though length will not be dynamic)
-    // assoc.length = arrlgth;
-    return assoc
+    return arr.slice(offst, lgth) as ArraySliceResult<TInput, TPreserve>
   }
 
-  if (lgth === undefined) {
-    return arr.slice(offst)
-  } else if (lgth >= 0) {
-    return arr.slice(offst, offst + lgth)
-  } else {
-    return arr.slice(offst, lgth)
+  const assocInput = arr as PhpAssoc<unknown>
+  const sourceAssoc: PhpAssoc<unknown> = {}
+
+  let sourceLength = 0
+  for (const key in assocInput) {
+    sourceLength += 1
+    sourceAssoc[key] = assocInput[key]
   }
+
+  const normalizedOffset = offst < 0 ? sourceLength + offst : offst
+  const resolvedLength = lgth === undefined ? sourceLength : lgth < 0 ? sourceLength + lgth - normalizedOffset : lgth
+
+  const sliced: PhpAssoc<unknown> = {}
+  let started = false
+  let sourceIndex = -1
+  let collected = 0
+  let sequentialKey = 0
+
+  for (const key in sourceAssoc) {
+    sourceIndex += 1
+
+    if (collected >= resolvedLength) {
+      break
+    }
+
+    if (sourceIndex === normalizedOffset) {
+      started = true
+    }
+
+    if (!started) {
+      continue
+    }
+
+    collected += 1
+
+    if (isInt(key) && !preserveKeys) {
+      sliced[String(sequentialKey)] = sourceAssoc[key]
+      sequentialKey += 1
+    } else {
+      sliced[key] = sourceAssoc[key]
+    }
+  }
+
+  return sliced as ArraySliceResult<TInput, TPreserve>
 }

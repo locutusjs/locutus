@@ -1,4 +1,85 @@
-export function max(...args: unknown[]): unknown {
+type PhpMinMaxScalar = string | number | boolean | null
+type PhpMinMaxObject = { [key: string]: PhpMinMaxValue }
+type PhpMinMaxValue = PhpMinMaxScalar | PhpMinMaxValue[] | PhpMinMaxObject
+
+const isCollection = (value: unknown): value is PhpMinMaxValue[] | PhpMinMaxObject =>
+  typeof value === 'object' && value !== null
+
+const objectToArray = (value: PhpMinMaxValue[] | PhpMinMaxObject): PhpMinMaxValue[] => {
+  if (Array.isArray(value)) {
+    return value
+  }
+
+  const converted: PhpMinMaxValue[] = []
+  for (const key in value) {
+    if (Object.prototype.hasOwnProperty.call(value, key)) {
+      converted.push(value[key] as PhpMinMaxValue)
+    }
+  }
+
+  return converted
+}
+
+const compareValues = (current: PhpMinMaxValue, next: PhpMinMaxValue): number => {
+  const currentNum = Number(current)
+  const nextNum = Number(next)
+
+  if (current === next) {
+    return 0
+  }
+
+  if (isCollection(current)) {
+    if (isCollection(next)) {
+      const currentArray = objectToArray(current)
+      const nextArray = objectToArray(next)
+
+      if (nextArray.length > currentArray.length) {
+        return 1
+      }
+      if (nextArray.length < currentArray.length) {
+        return -1
+      }
+
+      for (let index = 0; index < currentArray.length; index += 1) {
+        const currentItem = currentArray[index]
+        const nextItem = nextArray[index]
+        if (typeof currentItem === 'undefined' || typeof nextItem === 'undefined') {
+          continue
+        }
+        const comparison = compareValues(currentItem, nextItem)
+        if (comparison !== 0) {
+          return comparison
+        }
+      }
+
+      return 0
+    }
+
+    return -1
+  }
+
+  if (isCollection(next)) {
+    return 1
+  }
+
+  if (Number.isNaN(nextNum) && !Number.isNaN(currentNum)) {
+    if (current === 0) {
+      return 0
+    }
+    return currentNum < 0 ? 1 : -1
+  }
+
+  if (Number.isNaN(currentNum) && !Number.isNaN(nextNum)) {
+    if (next === 0) {
+      return 0
+    }
+    return nextNum > 0 ? 1 : -1
+  }
+
+  return nextNum > currentNum ? 1 : -1
+}
+
+export function max(...args: unknown[]): PhpMinMaxValue {
   //  discuss at: https://locutus.io/php/max/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //  revised by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -17,101 +98,36 @@ export function max(...args: unknown[]): unknown {
   //   example 6: max([2, 4, 8], [2, 5, 7])
   //   returns 6: [2, 5, 7]
 
-  let ar: unknown[]
-  let retVal: unknown
-  let i = 0
-  let n = 0
-  const argv: IArguments = arguments
-  const argc = argv.length
-  const _obj2Array = function (obj: unknown): unknown[] {
-    if (Array.isArray(obj)) {
-      return obj
-    } else {
-      const converted: unknown[] = []
-      const record = obj as { [key: string]: unknown }
-      for (const i in record) {
-        if (Object.prototype.hasOwnProperty.call(record, i)) {
-          converted.push(record[i])
-        }
-      }
-      return converted
-    }
-  }
-  const _compare = function (current: unknown, next: unknown): number {
-    let i = 0
-    let n = 0
-    let tmp = 0
-    let nl = 0
-    let cl = 0
-    const currentNum = Number(current)
-    const nextNum = Number(next)
-
-    if (current === next) {
-      return 0
-    } else if (typeof current === 'object') {
-      if (typeof next === 'object') {
-        const currentArray = _obj2Array(current)
-        const nextArray = _obj2Array(next)
-        cl = currentArray.length
-        nl = nextArray.length
-        if (nl > cl) {
-          return 1
-        } else if (nl < cl) {
-          return -1
-        }
-        for (i = 0, n = cl; i < n; ++i) {
-          tmp = _compare(currentArray[i], nextArray[i])
-          if (tmp === 1) {
-            return 1
-          } else if (tmp === -1) {
-            return -1
-          }
-        }
-        return 0
-      }
-      return -1
-    } else if (typeof next === 'object') {
-      return 1
-    } else if (isNaN(nextNum) && !isNaN(currentNum)) {
-      if (current === 0) {
-        return 0
-      }
-      return currentNum < 0 ? 1 : -1
-    } else if (isNaN(currentNum) && !isNaN(nextNum)) {
-      if (next === 0) {
-        return 0
-      }
-      return nextNum > 0 ? 1 : -1
-    }
-
-    if (next === current) {
-      return 0
-    }
-
-    return nextNum > currentNum ? 1 : -1
-  }
-
-  if (argc === 0) {
+  if (args.length === 0) {
     throw new Error('At least one value should be passed to max()')
-  } else if (argc === 1) {
-    if (typeof argv[0] === 'object') {
-      ar = _obj2Array(argv[0])
-    } else {
+  }
+
+  let values: PhpMinMaxValue[]
+
+  if (args.length === 1) {
+    const only = args[0]
+
+    if (!isCollection(only)) {
       throw new Error('Wrong parameter count for max()')
     }
-    if (ar.length === 0) {
+
+    values = objectToArray(only)
+
+    if (values.length === 0) {
       throw new Error('Array must contain at least one element for max()')
     }
   } else {
-    ar = Array.from(argv)
+    values = args as PhpMinMaxValue[]
   }
 
-  retVal = ar[0]
-  for (i = 1, n = ar.length; i < n; ++i) {
-    if (_compare(retVal, ar[i]) === 1) {
-      retVal = ar[i]
+  let result = values[0] as PhpMinMaxValue
+
+  for (let index = 1; index < values.length; index += 1) {
+    const candidate = values[index] as PhpMinMaxValue
+    if (compareValues(result, candidate) === 1) {
+      result = candidate
     }
   }
 
-  return retVal
+  return result
 }

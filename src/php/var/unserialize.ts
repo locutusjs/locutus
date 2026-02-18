@@ -1,23 +1,31 @@
-type ParsedResult = [value: unknown, offset: number]
-type CacheEntry = [value: unknown, offset?: number]
-type CacheFn = (<T extends CacheEntry>(value: T) => T) & { get: (index: number) => unknown }
+type UnserializedScalar = string | number | boolean | null
+type UnserializedObject = { [key: string]: UnserializedValue }
+type UnserializedValue = UnserializedScalar | UnserializedObject | UnserializedValue[]
+
+type ParsedResult = [value: UnserializedValue, offset: number]
+type CacheEntry = [value: UnserializedValue, offset?: number]
+type CacheFn = (<T extends CacheEntry>(value: T) => T) & { get: (index: number) => UnserializedValue }
 type ErrorMode = 'throw' | 'log' | 'silent'
-type UnserializedObject = { [key: string]: unknown }
 
 function initCache(): CacheFn {
-  const store: unknown[] = []
+  const store: UnserializedValue[] = []
   // cache only first element, second is length to jump ahead for the parser
   const cache = function cache<T extends CacheEntry>(value: T): T {
     store.push(value[0])
     return value
   } as CacheFn
 
-  cache.get = (index: number): unknown => {
+  cache.get = (index: number): UnserializedValue => {
     if (index >= store.length) {
       throw new RangeError(`Can't resolve reference ${index + 1}`)
     }
 
-    return store[index]
+    const cachedValue = store[index]
+    if (typeof cachedValue === 'undefined') {
+      throw new RangeError(`Can't resolve reference ${index + 1}`)
+    }
+
+    return cachedValue
   }
 
   return cache
@@ -315,13 +323,17 @@ function expectArray(str: string, cache: CacheFn): ParsedResult {
   return [array[0], arrayLiteralBeginMatch.length + array[1] + 1] // jump over }
 }
 
-function expectArrayItems(str: string, expectedItems = 0, cache: CacheFn): [UnserializedObject | unknown[], number] {
+function expectArrayItems(
+  str: string,
+  expectedItems = 0,
+  cache: CacheFn,
+): [UnserializedObject | UnserializedValue[], number] {
   let key: [string | number, number]
   let item: ParsedResult
   let totalOffset = 0
   let hasContinousIndexes = true
   let lastIndex = -1
-  let items: UnserializedObject | unknown[] = {}
+  let items: UnserializedObject | UnserializedValue[] = {}
   cache([items])
 
   for (let i = 0; i < expectedItems; i++) {
@@ -351,7 +363,7 @@ function expectArrayItems(str: string, expectedItems = 0, cache: CacheFn): [Unse
 }
 
 // errorMode: 'throw', 'log', 'silent'
-export function unserialize(str: unknown, errorMode: ErrorMode = 'log'): unknown | false {
+export function unserialize(str: unknown, errorMode: ErrorMode = 'log'): UnserializedValue | false {
   //       discuss at: https://locutus.io/php/unserialize/
   //      original by: Arpad Ray (mailto:arpad@php.net)
   //      improved by: Pedro Tainha (https://www.pedrotainha.com)
