@@ -1,8 +1,9 @@
 import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 
-type KeyedUnknown = PhpAssoc<unknown>
+type PhpValue = {} | null | undefined
+type KeyedUnknown = PhpAssoc<PhpValue>
 
-export function is_array(mixedVar: unknown): boolean {
+export function is_array(mixedVar: PhpValue): boolean {
   //  discuss at: https://locutus.io/php/is_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Legaev Andrey
@@ -32,14 +33,14 @@ export function is_array(mixedVar: unknown): boolean {
   //   example 5: is_array(function tmp_a (){ this.name = 'Kevin' })
   //   returns 5: false
 
-  const _getFuncName = function (fn: unknown): string {
+  const _getFuncName = function (fn: PhpValue): string {
     const name = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
     if (!name) {
       return '(Anonymous)'
     }
     return name[1] ?? '(Anonymous)'
   }
-  const _isArray = function (mixedVar: unknown): boolean {
+  const _isArray = function (mixedVar: PhpValue): boolean {
     // return Array.isArray(mixedVar);
     // The above works, but let's do the even more stringent approach:
     // (since Object.prototype.toString could be overridden)
@@ -47,7 +48,7 @@ export function is_array(mixedVar: unknown): boolean {
     if (!mixedVar || typeof mixedVar !== 'object') {
       return false
     }
-    const candidate = mixedVar as { length?: number } & PhpAssoc<unknown>
+    const candidate = mixedVar as { length?: number } & PhpAssoc<PhpValue>
     if (typeof candidate.length !== 'number') {
       return false
     }
@@ -87,7 +88,7 @@ export function is_array(mixedVar: unknown): boolean {
 
   const $loc = (
     globalThis as {
-      $locutus?: { php?: { ini?: { [key: string]: { local_value?: unknown } | undefined } } }
+      $locutus?: { php?: { ini?: { [key: string]: { local_value?: PhpValue } | undefined } } }
     }
   ).$locutus
   const iniVal = String($loc?.php?.ini?.['locutus.objectsAsArrays']?.local_value ?? '') || 'on'

@@ -1,23 +1,26 @@
 import type { PhpAssoc } from './_phpTypes.ts'
 
+type UnknownValue = unknown
+type PhpValue = {} | null | undefined
+
 interface CallbackResolverOptions {
   invalidMessage: string
   missingScopeMessage?: (scopeName: string) => string
 }
 
-type GlobalCallableContext = typeof globalThis & PhpAssoc<unknown>
+type GlobalCallableContext = typeof globalThis & PhpAssoc<PhpValue>
 
-interface ResolvedCallback<TArgs extends unknown[] = unknown[], TResult = unknown> {
+interface ResolvedCallback<TArgs extends UnknownValue[] = UnknownValue[], TResult = PhpValue> {
   fn: (...args: TArgs) => TResult
-  scope: unknown
+  scope: PhpValue
 }
 
-const isCallable = <TArgs extends unknown[] = unknown[], TResult = unknown>(
-  value: unknown,
+const isCallable = <TArgs extends UnknownValue[] = UnknownValue[], TResult = PhpValue>(
+  value: UnknownValue,
 ): value is (...args: TArgs) => TResult => typeof value === 'function'
 
-export function resolvePhpCallable<TArgs extends unknown[] = unknown[], TResult = unknown>(
-  callback: unknown,
+export function resolvePhpCallable<TArgs extends UnknownValue[] = UnknownValue[], TResult = PhpValue>(
+  callback: UnknownValue,
   options: CallbackResolverOptions,
 ): ResolvedCallback<TArgs, TResult> {
   // discuss at: https://locutus.io/php/_helpers/resolvePhpCallable/
@@ -42,7 +45,7 @@ export function resolvePhpCallable<TArgs extends unknown[] = unknown[], TResult 
     const scopeDescriptor = callback[0]
     const callableDescriptor = callback[1]
 
-    let scope: unknown
+    let scope: PhpValue
     if (typeof scopeDescriptor === 'string') {
       scope = globalContext[scopeDescriptor]
       if (typeof scope === 'undefined' && options.missingScopeMessage) {
@@ -70,8 +73,8 @@ export function resolvePhpCallable<TArgs extends unknown[] = unknown[], TResult 
   throw new Error(options.invalidMessage)
 }
 
-export function resolveNumericComparator<TLeft = unknown, TRight = unknown>(
-  callback: unknown,
+export function resolveNumericComparator<TLeft = PhpValue, TRight = PhpValue>(
+  callback: UnknownValue,
   invalidMessage: string,
 ): (left: TLeft, right: TRight) => number {
   const resolved = resolvePhpCallable(callback, { invalidMessage })

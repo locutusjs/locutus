@@ -38,6 +38,7 @@ import { printf } from '../../src/php/strings/printf.ts'
 import { sprintf } from '../../src/php/strings/sprintf.ts'
 import { vprintf } from '../../src/php/strings/vprintf.ts'
 import { gettype } from '../../src/php/var/gettype.ts'
+import { is_array } from '../../src/php/var/is_array.ts'
 import { is_callable } from '../../src/php/var/is_callable.ts'
 import { isset } from '../../src/php/var/isset.ts'
 import { var_dump } from '../../src/php/var/var_dump.ts'
@@ -75,6 +76,7 @@ const sizeofTyped: number = sizeof({ one: [1, 2, 3] }, 'COUNT_RECURSIVE')
 const searchTyped: string | false = array_search('zonneveld', { firstname: 'kevin', surname: 'zonneveld' })
 const iniSetTyped: IniValue | undefined = ini_set('locutus.type-signatures', 'on')
 const gettypeTyped: string = gettype(1)
+const isArrayTyped: boolean = is_array({ 0: 'Kevin', 1: 'van' })
 const varDumpTyped: string = var_dump({ ok: true })
 const walked: number[] = []
 const walkTyped: boolean = array_walk([1, 2], (value: number) => walked.push(value))
@@ -127,6 +129,7 @@ describe('public type signatures', () => {
     expect(searchTyped).toBe('surname')
     expect(iniSetTyped).toBeUndefined()
     expect(gettypeTyped).toBe('integer')
+    expect(isArrayTyped).toBe(true)
     expect(varDumpTyped).toContain('array(1)')
     expect(walkTyped).toBe(true)
     expect(walked).toEqual([1, 2])

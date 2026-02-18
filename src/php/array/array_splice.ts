@@ -1,10 +1,11 @@
 import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 import { is_int as isInt } from '../var/is_int.ts'
 
-type AssocArray<T = unknown> = PhpAssoc<T | undefined>
-type ReplacementValue<T = unknown> = T[] | AssocArray<T> | T
+type PhpValue = {} | null | undefined
+type AssocArray<T = PhpValue> = PhpAssoc<T | undefined>
+type ReplacementValue<T = PhpValue> = T[] | AssocArray<T> | T
 
-const isAssocArray = <T>(value: unknown): value is AssocArray<T> =>
+const isAssocArray = <T>(value: PhpValue): value is AssocArray<T> =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 
 const toReplacementItems = <T>(replacement: ReplacementValue<T> | undefined): Array<T | undefined> | undefined => {
@@ -46,11 +47,11 @@ const checkToUpIndices = <T>(assoc: AssocArray<T>, cursor: number, key: string):
 }
 
 export function array_splice(
-  arr: unknown[] | AssocArray<unknown>,
+  arr: PhpValue[] | AssocArray<PhpValue>,
   offst: number,
   lgth?: number,
-  replacement?: ReplacementValue<unknown>,
-): unknown[] | AssocArray<unknown> {
+  replacement?: ReplacementValue<PhpValue>,
+): PhpValue[] | AssocArray<PhpValue> {
   //      discuss at: https://locutus.io/php/array_splice/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -100,8 +101,8 @@ export function array_splice(
   let returnsArray = true
   let removedNumericCursor = 0
 
-  const removedItems: unknown[] = []
-  const removedAssoc: AssocArray<unknown> = {}
+  const removedItems: PhpValue[] = []
+  const removedAssoc: AssocArray<PhpValue> = {}
   const assoc = arr
 
   for (const _key in assoc) {
