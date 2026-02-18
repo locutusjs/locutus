@@ -1,7 +1,32 @@
-// @ts-nocheck
 import { setlocale } from '../strings/setlocale.ts'
 
-export function money_format(format, number) {
+type MonetaryLocale = {
+  mon_thousands_sep: string
+  mon_grouping: number[]
+  mon_decimal_point: string
+  int_frac_digits: number | string
+  frac_digits: number | string
+  int_curr_symbol: string
+  currency_symbol: string
+  n_sign_posn: number
+  p_sign_posn: number
+  n_sep_by_space: number
+  p_sep_by_space: number
+  n_cs_precedes: number
+  p_cs_precedes: number
+  positive_sign: string
+  negative_sign: string
+}
+
+type MonetaryLocaleMap = { [key: string]: { LC_MONETARY: MonetaryLocale } }
+type LocaleCategoryMap = { LC_MONETARY: string }
+type LocutusPhpContext = {
+  locales?: MonetaryLocaleMap
+  localeCategories?: LocaleCategoryMap
+}
+type MoneyGlobal = typeof globalThis & { $locutus?: { php?: LocutusPhpContext } }
+
+export function money_format(format: string, number: unknown): string | null {
   //      discuss at: https://locutus.io/php/money_format/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -49,54 +74,75 @@ export function money_format(format, number) {
   if (typeof number !== 'number') {
     return null
   }
+  const numericValue = number
   // 1: flags, 3: width, 5: left, 7: right, 8: conversion
   const regex = /%((=.|[+^(!-])*?)(\d*?)(#(\d+))?(\.(\d+))?([in%])/g
 
   // Ensure the locale data we need is set up
   setlocale('LC_ALL', 0)
 
-  const $global = typeof window !== 'undefined' ? window : global
+  const $global = (typeof window !== 'undefined' ? window : global) as MoneyGlobal
   $global.$locutus = $global.$locutus || {}
   const $locutus = $global.$locutus
   $locutus.php = $locutus.php || {}
+  const phpContext = $locutus.php
+  const localeCategories = phpContext.localeCategories
+  const locales = phpContext.locales
+  if (!localeCategories || !locales) {
+    return null
+  }
 
-  const monetary = $locutus.php.locales[$locutus.php.localeCategories.LC_MONETARY].LC_MONETARY
+  const monetary = locales[localeCategories.LC_MONETARY]?.LC_MONETARY
+  if (!monetary) {
+    return null
+  }
 
-  const doReplace = function (n0, flags, n2, width, n4, left, n6, right, conversion) {
+  const doReplace = function (
+    _n0: string,
+    flags = '',
+    _n2: string,
+    width = '',
+    _n4: string,
+    left = '',
+    _n6: string,
+    right = '',
+    conversion: string,
+  ): string {
     let value = ''
     let repl = ''
     if (conversion === '%') {
       // Percent does not seem to be allowed with intervening content
       return '%'
     }
-    const fill = flags && /=./.test(flags) ? flags.match(/=(.)/)[1] : ' ' // flag: =f (numeric fill)
+    const fillMatch = flags && /=./.test(flags) ? flags.match(/=(.)/) : null
+    const fill = fillMatch?.[1] ?? ' ' // flag: =f (numeric fill)
     // flag: ! (suppress currency symbol)
     const showCurrSymbol = !flags || flags.indexOf('!') === -1
     // field width: w (minimum field width)
-    width = parseInt(width, 10) || 0
+    const widthNum = parseInt(width, 10) || 0
 
-    const neg = number < 0
+    const neg = numericValue < 0
     // Convert to string
-    number = number + ''
+    let numberString = String(numericValue)
     // We don't want negative symbol represented here yet
-    number = neg ? number.slice(1) : number
+    numberString = neg ? numberString.slice(1) : numberString
 
-    const decpos = number.indexOf('.')
+    const decpos = numberString.indexOf('.')
     // Get integer portion
-    let integer = decpos !== -1 ? number.slice(0, decpos) : number
+    let integer = decpos !== -1 ? numberString.slice(0, decpos) : numberString
     // Get decimal portion
-    let fraction = decpos !== -1 ? number.slice(decpos + 1) : ''
+    let fraction = decpos !== -1 ? numberString.slice(decpos + 1) : ''
 
-    const _strSplice = function (integerStr, idx, thouSep) {
+    const _strSplice = function (integerStr: string, idx: number, thouSep: string): string {
       const integerArr = integerStr.split('')
       integerArr.splice(idx, 0, thouSep)
       return integerArr.join('')
     }
 
     const intLen = integer.length
-    left = parseInt(left, 10)
-    const filler = intLen < left
-    const fillnum = filler ? left - intLen : 0
+    const leftNum = parseInt(left, 10) || 0
+    const filler = intLen < leftNum
+    const fillnum = filler ? leftNum - intLen : 0
     if (filler) {
       integer = new Array(fillnum + 1).join(fill) + integer
     }
@@ -110,10 +156,10 @@ export function money_format(format, number) {
 
       let i = 0
       let idx = integer.length
-      if (monGrouping[0] < integer.length) {
+      if ((monGrouping[0] ?? 0) < integer.length) {
         for (; i < monGrouping.length; i++) {
           // e.g., 3
-          idx -= monGrouping[i]
+          idx -= monGrouping[i] ?? 0
           if (idx <= 0) {
             break
           }
@@ -123,10 +169,10 @@ export function money_format(format, number) {
           integer = _strSplice(integer, idx, thouSep)
         }
       }
-      if (monGrouping[i - 1] > 0) {
+      if ((monGrouping[i - 1] ?? 0) > 0) {
         // Repeating last grouping (may only be one) until highest portion of integer reached
-        while (idx > monGrouping[i - 1]) {
-          idx -= monGrouping[i - 1]
+        while (idx > (monGrouping[i - 1] ?? 0)) {
+          idx -= monGrouping[i - 1] ?? 0
           if (filler && idx < fillnum) {
             thouSep = fill
           }
@@ -142,22 +188,26 @@ export function money_format(format, number) {
     } else {
       // '.'
       let decPt = monetary.mon_decimal_point
-      if (right === '' || right === undefined) {
-        right = conversion === 'i' ? monetary.int_frac_digits : monetary.frac_digits
+      let rightNum = parseInt(right, 10)
+      if (right === '') {
+        rightNum = Number(conversion === 'i' ? monetary.int_frac_digits : monetary.frac_digits)
       }
-      right = parseInt(right, 10)
+      rightNum = Number.isNaN(rightNum) ? 0 : rightNum
 
-      if (right === 0) {
+      if (rightNum === 0) {
         // Only remove fractional portion if explicitly set to zero digits
         fraction = ''
         decPt = ''
-      } else if (right < fraction.length) {
-        fraction = Math.round(parseFloat(fraction.slice(0, right) + '.' + fraction.substr(right, 1)))
-        if (right > fraction.length) {
-          fraction = new Array(right - fraction.length + 1).join('0') + fraction // prepend with 0's
+      } else if (rightNum < fraction.length) {
+        const rounded = Math.round(
+          parseFloat(fraction.slice(0, rightNum) + '.' + fraction.substring(rightNum, rightNum + 1)),
+        )
+        fraction = String(rounded)
+        if (rightNum > fraction.length) {
+          fraction = new Array(rightNum - fraction.length + 1).join('0') + fraction // prepend with 0's
         }
-      } else if (right > fraction.length) {
-        fraction += new Array(right - fraction.length + 1).join('0') // pad with 0's
+      } else if (rightNum > fraction.length) {
+        fraction += new Array(rightNum - fraction.length + 1).join('0') // pad with 0's
       }
       value = integer + decPt + fraction
     }
@@ -245,9 +295,9 @@ export function money_format(format, number) {
       }
     }
 
-    let padding = width - repl.length
-    if (padding > 0) {
-      padding = new Array(padding + 1).join(' ')
+    const paddingWidth = widthNum - repl.length
+    if (paddingWidth > 0) {
+      const padding = new Array(paddingWidth + 1).join(' ')
       // @todo: How does p_sep_by_space affect the count if there is a space?
       // Included in count presumably?
       if (flags.indexOf('-') !== -1) {
