@@ -1,7 +1,19 @@
-// @ts-nocheck
 import { echo } from '../strings/echo.ts'
 
-export function var_export(mixedExpression, boolReturn) {
+type IndexableUnknown = { [key: string]: unknown }
+type VarExportType =
+  | 'resource'
+  | 'function'
+  | 'null'
+  | 'array'
+  | 'object'
+  | 'string'
+  | 'number'
+  | 'boolean'
+  | 'undefined'
+type VarExportResult = string | number | boolean | null
+
+export function var_export(mixedExpression: unknown, boolReturn?: unknown, idtLevel = 2): VarExportResult | null {
   //  discuss at: https://locutus.io/php/var_export/
   // original by: Philip Peterson
   // improved by: johnrembo
@@ -27,40 +39,38 @@ export function var_export(mixedExpression, boolReturn) {
   //   example 6: var_export({ test: [ 'a', 'b' ] }, true)
   //   returns 6: "array (\n  'test' =>\n  array (\n    0 => 'a',\n    1 => 'b',\n  ),\n)"
 
-  let retstr = ''
+  let retstr: VarExportResult = ''
   let iret = ''
-  let value
+  let value = ''
   let cnt = 0
-  const x = []
-  let i = 0
-  let funcParts = []
+  const x: string[] = []
+  let funcParts: RegExpMatchArray | null = null
   // We use the last argument (not part of PHP) to pass in
   // our indentation level
-  const idtLevel = arguments[2] || 2
   let innerIndent = ''
   let outerIndent = ''
-  const getFuncName = function (fn) {
-    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn)
+  const getFuncName = function (fn: { toString: () => string }): string {
+    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn.toString())
     if (!name) {
       return '(Anonymous)'
     }
-    return name[1]
+    return name[1] ?? '(Anonymous)'
   }
 
-  const _isNormalInteger = function (string) {
-    const number = Math.floor(Number(string))
-    return number !== Infinity && String(number) === string && number >= 0
+  const _isNormalInteger = function (input: string): boolean {
+    const number = Math.floor(Number(input))
+    return number !== Infinity && String(number) === input && number >= 0
   }
 
-  const _makeIndent = function (idtLevel) {
-    return new Array(idtLevel + 1).join(' ')
+  const _makeIndent = function (indentLevel: number): string {
+    return new Array(indentLevel + 1).join(' ')
   }
-  const __getType = function (inp) {
+  const __getType = function (inp: unknown): VarExportType | null {
     let i = 0
-    let match
-    let types
-    let cons
-    let type = typeof inp
+    let match: RegExpMatchArray | null = null
+    let cons = ''
+    const types: Array<'boolean' | 'number' | 'string' | 'array'> = ['boolean', 'number', 'string', 'array']
+    let type: VarExportType | null = typeof inp as VarExportType
     if (type === 'object' && inp && inp.constructor && getFuncName(inp.constructor) === 'LOCUTUS_Resource') {
       return 'resource'
     }
@@ -72,18 +82,19 @@ export function var_export(mixedExpression, boolReturn) {
       return 'null'
     }
     if (type === 'object') {
-      if (!inp.constructor) {
+      const objectInput = inp as { constructor?: { toString: () => string } }
+      if (!objectInput.constructor) {
         return 'object'
       }
-      cons = inp.constructor.toString()
+      cons = objectInput.constructor.toString()
       match = cons.match(/(\w+)\(/)
       if (match) {
-        cons = match[1].toLowerCase()
+        cons = (match[1] ?? '').toLowerCase()
       }
-      types = ['boolean', 'number', 'string', 'array']
       for (i = 0; i < types.length; i++) {
-        if (cons === types[i]) {
-          type = types[i]
+        const knownType = types[i]
+        if (knownType && cons === knownType) {
+          type = knownType
           break
         }
       }
@@ -95,24 +106,31 @@ export function var_export(mixedExpression, boolReturn) {
   if (type === null) {
     retstr = 'NULL'
   } else if (type === 'array' || type === 'object') {
+    const source = mixedExpression as IndexableUnknown
     outerIndent = _makeIndent(idtLevel - 2)
     innerIndent = _makeIndent(idtLevel)
-    for (i in mixedExpression) {
+    for (const key in source) {
+      if (!Object.prototype.hasOwnProperty.call(source, key)) {
+        continue
+      }
       value = ' '
-      const subtype = __getType(mixedExpression[i])
+      const entry = source[key]
+      const subtype = __getType(entry)
       if (subtype === 'array' || subtype === 'object') {
         value = '\n'
       }
-      value += var_export(mixedExpression[i], 1, idtLevel + 2)
-      i = _isNormalInteger(i) ? i : `'${i}'`
-      x[cnt++] = innerIndent + i + ' =>' + value
+      value += String(var_export(entry, 1, idtLevel + 2))
+      const mappedKey = _isNormalInteger(key) ? key : `'${key}'`
+      x[cnt++] = innerIndent + mappedKey + ' =>' + value
     }
     if (x.length > 0) {
       iret = x.join(',\n') + ',\n'
     }
     retstr = outerIndent + 'array (\n' + iret + outerIndent + ')'
   } else if (type === 'function') {
-    funcParts = mixedExpression.toString().match(/function .*?\((.*?)\) \{([\s\S]*)\}/)
+    funcParts = String(mixedExpression).match(/function .*?\((.*?)\) \{([\s\S]*)\}/)
+    const funcArgs = funcParts?.[1] ?? ''
+    const funcBody = funcParts?.[2] ?? ''
 
     // For lambda functions, var_export() outputs such as the following:
     // '\000lambda_1'. Since it will probably not be a common use to
@@ -121,14 +139,14 @@ export function var_export(mixedExpression, boolReturn) {
     // variables in JavaScript); if using instead in JavaScript and you
     // are using the namespaced version, note that create_function() will
     // not be available as a global
-    retstr = "create_function ('" + funcParts[1] + "', '" + funcParts[2].replace(/'/g, "\\'") + "')"
+    retstr = "create_function ('" + funcArgs + "', '" + funcBody.replace(/'/g, "\\'") + "')"
   } else if (type === 'resource') {
     // Resources treated as null for var_export
     retstr = 'NULL'
   } else {
     retstr =
       typeof mixedExpression !== 'string'
-        ? mixedExpression
+        ? (mixedExpression as VarExportResult)
         : "'" + mixedExpression.replace(/([\\'])/g, '\\$1').replace(/\0/g, '\\0') + "'"
   }
 
