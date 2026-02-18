@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function addcslashes(str, charlist) {
+export function addcslashes(str: string, charlist: string): string {
   //      discuss at: https://locutus.io/php/addcslashes/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -20,7 +19,7 @@ export function addcslashes(str, charlist) {
   //   _returns 6: "\r\u0007\n"
 
   let target = ''
-  const chrs = []
+  const chrs: string[] = []
   let i = 0
   let j = 0
   let c = ''
@@ -33,15 +32,16 @@ export function addcslashes(str, charlist) {
   let octalLength = 0
   let postOctalPos = 0
   let cca = 0
-  let escHexGrp = []
+  let escHexGrp: RegExpExecArray | null = null
   let encoded = ''
   const percentHex = /%([\dA-Fa-f]+)/g
 
-  const _pad = function (n, c) {
-    if ((n = n + '').length < c) {
-      return new Array(++c - n.length).join('0') + n
+  const _pad = function (n: number | string, c: number): string {
+    const nString = String(n)
+    if (nString.length < c) {
+      return new Array(c - nString.length + 1).join('0') + nString
     }
-    return n
+    return nString
   }
 
   for (i = 0; i < charlist.length; i++) {
@@ -49,7 +49,11 @@ export function addcslashes(str, charlist) {
     next = charlist.charAt(i + 1)
     if (c === '\\' && next && /\d/.test(next)) {
       // Octal
-      rangeBegin = charlist.slice(i + 1).match(/^\d+/)[0]
+      const rangeBeginMatch = charlist.slice(i + 1).match(/^\d+/)
+      if (!rangeBeginMatch?.[0]) {
+        continue
+      }
+      rangeBegin = rangeBeginMatch[0]
       octalLength = rangeBegin.length
       postOctalPos = i + octalLength + 1
       if (charlist.charAt(postOctalPos) + charlist.charAt(postOctalPos + 1) === '..') {
@@ -57,7 +61,11 @@ export function addcslashes(str, charlist) {
         begin = rangeBegin.charCodeAt(0)
         if (/\\\d/.test(charlist.charAt(postOctalPos + 2) + charlist.charAt(postOctalPos + 3))) {
           // Range ends with octal
-          rangeEnd = charlist.slice(postOctalPos + 3).match(/^\d+/)[0]
+          const rangeEndMatch = charlist.slice(postOctalPos + 3).match(/^\d+/)
+          if (!rangeEndMatch?.[0]) {
+            throw new Error('Range with no end point')
+          }
+          rangeEnd = rangeEndMatch[0]
           // Skip range end backslash
           i += 1
         } else if (charlist.charAt(postOctalPos + 2)) {
@@ -91,7 +99,11 @@ export function addcslashes(str, charlist) {
       begin = rangeBegin.charCodeAt(0)
       if (/\\\d/.test(charlist.charAt(i + 3) + charlist.charAt(i + 4))) {
         // Range ends with octal
-        rangeEnd = charlist.slice(i + 4).match(/^\d+/)[0]
+        const rangeEndMatch = charlist.slice(i + 4).match(/^\d+/)
+        if (!rangeEndMatch?.[0]) {
+          throw new Error('Range with no end point')
+        }
+        rangeEnd = rangeEndMatch[0]
         // Skip range end backslash
         i += 1
       } else if (charlist.charAt(i + 3)) {
@@ -150,14 +162,21 @@ export function addcslashes(str, charlist) {
           default:
             // target += _pad(cca.toString(8), 3);break; // Sufficient for UTF-16
             encoded = encodeURIComponent(c)
+            percentHex.lastIndex = 0
 
             // 3-length-padded UTF-8 octets
             if ((escHexGrp = percentHex.exec(encoded)) !== null) {
               // already added a slash above:
-              target += _pad(parseInt(escHexGrp[1], 16).toString(8), 3)
+              const hexGroup = escHexGrp[1]
+              if (hexGroup) {
+                target += _pad(parseInt(hexGroup, 16).toString(8), 3)
+              }
             }
             while ((escHexGrp = percentHex.exec(encoded)) !== null) {
-              target += '\\' + _pad(parseInt(escHexGrp[1], 16).toString(8), 3)
+              const hexGroup = escHexGrp[1]
+              if (hexGroup) {
+                target += '\\' + _pad(parseInt(hexGroup, 16).toString(8), 3)
+              }
             }
             break
         }

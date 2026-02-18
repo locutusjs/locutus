@@ -1,5 +1,6 @@
-// @ts-nocheck
-export function convert_cyr_string(str, from, to) {
+type CyrillicTable = readonly number[]
+
+export function convert_cyr_string(str: string, from: string, to: string): string {
   //      discuss at: https://locutus.io/php/convert_cyr_string/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -109,9 +110,9 @@ export function convert_cyr_string(str, from, to) {
     138, 139, 140, 141, 142, 143, 159, 144, 145, 146, 147, 134, 130, 156, 155, 135, 152, 157, 153, 151, 154,
   ]
 
-  let fromTable = null
-  let toTable = null
-  let tmp
+  let fromTable: CyrillicTable | null = null
+  let toTable: CyrillicTable | null = null
+  let tmp = ''
   let i = 0
   let retStr = ''
 
@@ -133,7 +134,7 @@ export function convert_cyr_string(str, from, to) {
       break
     default:
       // Can we throw a warning instead? That would be more in line with PHP
-      throw new Error('Unknown source charset: ' + fromTable)
+      throw new Error('Unknown source charset: ' + from)
   }
 
   switch (to.toUpperCase()) {
@@ -154,7 +155,7 @@ export function convert_cyr_string(str, from, to) {
       break
     default:
       // Can we throw a warning instead? That would be more in line with PHP
-      throw new Error('Unknown destination charset: ' + toTable)
+      throw new Error('Unknown destination charset: ' + to)
   }
 
   if (!str) {
@@ -162,9 +163,13 @@ export function convert_cyr_string(str, from, to) {
   }
 
   for (i = 0; i < str.length; i++) {
-    tmp = fromTable === null ? str.charAt(i) : String.fromCharCode(fromTable[str.charAt(i).charCodeAt(0)])
+    const sourceCode = str.charCodeAt(i)
+    const sourceMapped = fromTable === null ? sourceCode : (fromTable[sourceCode] ?? sourceCode)
+    tmp = String.fromCharCode(sourceMapped)
 
-    retStr += toTable === null ? tmp : String.fromCharCode(toTable[tmp.charCodeAt(0) + 256])
+    const tmpCode = tmp.charCodeAt(0)
+    const targetMapped = toTable === null ? tmpCode : (toTable[tmpCode + 256] ?? tmpCode)
+    retStr += String.fromCharCode(targetMapped)
   }
 
   return retStr

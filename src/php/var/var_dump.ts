@@ -1,9 +1,39 @@
-// @ts-nocheck
-const visitedObjects = new Map() // Initialize a map to track visited objects
+const visitedObjects = new Map<object, true>() // Initialize a map to track visited objects
 
 import { echo } from '../strings/echo.ts'
 
-export function var_dump() {
+type DumpableObject = {
+  constructor?: { toString: () => string }
+  [key: string]: unknown
+}
+
+type DomLikeNode = {
+  nodeName: string
+  nodeType?: number
+  namespaceURI?: string
+  nodeValue?: unknown
+}
+
+const hasNodeName = (value: unknown): value is DomLikeNode => {
+  return typeof value === 'object' && value !== null && 'nodeName' in value
+}
+
+const isLocutusResource = (
+  value: unknown,
+  getFuncName: (fn: { toString: () => string }) => string,
+): value is { var_dump: () => string } => {
+  if (typeof value !== 'object' || value === null || !('var_dump' in value) || !('constructor' in value)) {
+    return false
+  }
+  const maybeResource = value as { constructor?: { toString: () => string }; var_dump?: unknown }
+  return (
+    typeof maybeResource.var_dump === 'function' &&
+    !!maybeResource.constructor &&
+    getFuncName(maybeResource.constructor) === 'LOCUTUS_Resource'
+  )
+}
+
+export function var_dump(...args: unknown[]): string {
   //  discuss at: https://locutus.io/php/var_dump/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Zahlii
@@ -19,25 +49,22 @@ export function var_dump() {
   let output = ''
   const padChar = ' '
   const padVal = 4
-  let lgth = 0
-  let i = 0
-
-  const _getFuncName = function (fn) {
-    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn)
+  const _getFuncName = function (fn: { toString: () => string }): string {
+    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn.toString())
     if (!name) {
       return '(Anonymous)'
     }
-    return name[1]
+    return name[1] ?? '(Anonymous)'
   }
 
-  const _repeatChar = function (len, padChar) {
+  const _repeatChar = function (len: number, padCharacter: string): string {
     let str = ''
     for (let i = 0; i < len; i++) {
-      str += padChar
+      str += padCharacter
     }
     return str
   }
-  const _getInnerVal = function (val, thickPad) {
+  const _getInnerVal = function (val: unknown, thickPad: string): string {
     let ret = ''
     if (val === null) {
       ret = 'NULL'
@@ -46,7 +73,7 @@ export function var_dump() {
     } else if (typeof val === 'string') {
       ret = 'string(' + val.length + ') "' + val + '"'
     } else if (typeof val === 'number') {
-      if (parseFloat(val) === parseInt(val, 10)) {
+      if (Number.isInteger(val)) {
         ret = 'int(' + val + ')'
       } else {
         ret = 'float(' + val + ')'
@@ -59,13 +86,14 @@ export function var_dump() {
       const funcLines = val.toString().split('\n')
       ret = ''
       for (let i = 0, fll = funcLines.length; i < fll; i++) {
-        ret += (i !== 0 ? '\n' + thickPad : '') + funcLines[i]
+        const line = funcLines[i] ?? ''
+        ret += (i !== 0 ? '\n' + thickPad : '') + line
       }
     } else if (val instanceof Date) {
       ret = 'Date(' + val + ')'
     } else if (val instanceof RegExp) {
       ret = 'RegExp(' + val + ')'
-    } else if (val.nodeName) {
+    } else if (hasNodeName(val)) {
       // Different than PHP's DOMElement
       switch (val.nodeType) {
         case 1:
@@ -114,7 +142,13 @@ export function var_dump() {
     return ret
   }
 
-  const _formatArray = function (obj, curDepth, padVal, padChar, visitedObjects) {
+  const _formatArray = function (
+    obj: unknown,
+    curDepth: number,
+    padVal: number,
+    padChar: string,
+    visitedObjectMap: Map<object, true>,
+  ): string {
     if (curDepth > 0) {
       curDepth++
     }
@@ -125,39 +159,43 @@ export function var_dump() {
     let val = ''
 
     if (typeof obj === 'object' && obj !== null) {
-      if (visitedObjects.has(obj)) {
+      if (visitedObjectMap.has(obj)) {
         // Circular reference detected, return a placeholder or a message
         return 'Circular Reference Detected\n'
       } else {
         // Mark this object as visited by adding it to the map
-        visitedObjects.set(obj, true)
+        visitedObjectMap.set(obj, true)
       }
 
-      if (obj.constructor && _getFuncName(obj.constructor) === 'LOCUTUS_Resource') {
+      if (isLocutusResource(obj, _getFuncName)) {
         return obj.var_dump()
       }
-      lgth = 0
-      for (const someProp in obj) {
-        if (obj.hasOwnProperty(someProp)) {
+      let lgth = 0
+      const objRecord = obj as DumpableObject
+      for (const someProp in objRecord) {
+        if (Object.prototype.hasOwnProperty.call(objRecord, someProp)) {
           lgth++
         }
       }
       str += 'array(' + lgth + ') {\n'
-      for (const key in obj) {
-        const objVal = obj[key]
+      for (const key in objRecord) {
+        if (!Object.prototype.hasOwnProperty.call(objRecord, key)) {
+          continue
+        }
+        const objVal = objRecord[key]
         if (
           typeof objVal === 'object' &&
           objVal !== null &&
           !(objVal instanceof Date) &&
           !(objVal instanceof RegExp) &&
-          !objVal.nodeName
+          !hasNodeName(objVal)
         ) {
           str += thickPad
           str += '['
           str += key
           str += '] =>\n'
           str += thickPad
-          str += _formatArray(objVal, curDepth + 1, padVal, padChar, visitedObjects)
+          str += _formatArray(objVal, curDepth + 1, padVal, padChar, visitedObjectMap)
         } else {
           val = _getInnerVal(objVal, thickPad)
           str += thickPad
@@ -176,9 +214,9 @@ export function var_dump() {
     return str
   }
 
-  output = _formatArray(arguments[0], 0, padVal, padChar, visitedObjects)
-  for (i = 1; i < arguments.length; i++) {
-    output += '\n' + _formatArray(arguments[i], 0, padVal, padChar, visitedObjects)
+  output = _formatArray(args[0], 0, padVal, padChar, visitedObjects)
+  for (let i = 1; i < args.length; i++) {
+    output += '\n' + _formatArray(args[i], 0, padVal, padChar, visitedObjects)
   }
 
   echo(output)
