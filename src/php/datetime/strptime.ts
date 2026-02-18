@@ -140,7 +140,11 @@ export function strptime(dateStr: string, format: string): StrptimeResult | fals
     })
   }
 
-  const _addNext = function (index: number, regex: RegExp | string, cb: (...matches: string[]) => PhpMixed): number {
+  const _addNext = function (
+    index: number,
+    regex: RegExp | string,
+    cb: (...matches: string[]) => PhpMixed | void,
+  ): number {
     const pattern = typeof regex === 'string' ? new RegExp('^' + regex, 'i') : regex
     const check = dateStr.slice(index)
     const match = pattern.exec(check)
