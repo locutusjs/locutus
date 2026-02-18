@@ -1,5 +1,11 @@
-// @ts-nocheck
-export function str_ireplace(search, replace, subject, countObj) {
+type CountObj = { value?: number }
+
+export function str_ireplace(
+  search: string | string[],
+  replace: string | string[],
+  subject: string | string[],
+  countObj?: CountObj,
+): string | string[] {
   //  discuss at: https://locutus.io/php/str_ireplace/
   // original by: Glen Arason (https://CanadianDomainRegistry.ca)
   // bugfixed by: Mahmoud Saeed
@@ -17,87 +23,46 @@ export function str_ireplace(search, replace, subject, countObj) {
   //   example 3: str_ireplace('', '.', 'aaa')
   //   returns 3: 'aaa'
 
-  let i = 0
-  let j = 0
-  let temp = ''
-  let repl = ''
-  let sl = 0
-  let fl = 0
-  let f = ''
-  let r = ''
-  let s = ''
-  let ra = ''
-  let otemp = ''
-  let oi = ''
-  let ofjl = ''
-  let os = subject
-  const osa = Array.isArray(os)
-  // var sa = ''
+  const loweredSearch = Array.isArray(search) ? search.map((item) => item.toLowerCase()) : search.toLowerCase()
+  const loweredSubject = Array.isArray(subject) ? subject.map((item) => item.toLowerCase()) : subject.toLowerCase()
+  const osa = Array.isArray(subject)
+  const f = ([] as string[]).concat(loweredSearch)
+  const s = ([] as string[]).concat(loweredSubject)
+  const os = ([] as string[]).concat(subject)
+  let r = ([] as string[]).concat(replace)
 
-  if (typeof search === 'object') {
-    temp = search
-    search = []
-    for (i = 0; i < temp.length; i += 1) {
-      search[i] = temp[i].toLowerCase()
-    }
-  } else {
-    search = search.toLowerCase()
+  if (Array.isArray(loweredSearch) && typeof replace === 'string') {
+    r = loweredSearch.map(() => replace)
   }
-
-  if (typeof subject === 'object') {
-    temp = subject
-    subject = []
-    for (i = 0; i < temp.length; i += 1) {
-      subject[i] = temp[i].toLowerCase()
-    }
-  } else {
-    subject = subject.toLowerCase()
-  }
-
-  if (typeof search === 'object' && typeof replace === 'string') {
-    temp = replace
-    replace = []
-    for (i = 0; i < search.length; i += 1) {
-      replace[i] = temp
-    }
-  }
-
-  temp = ''
-  f = [].concat(search)
-  r = [].concat(replace)
-  ra = Array.isArray(r)
-  s = subject
-  // sa = Array.isArray(s)
-  s = [].concat(s)
-  os = [].concat(os)
 
   if (countObj) {
     countObj.value = 0
   }
 
-  for (i = 0, sl = s.length; i < sl; i++) {
+  for (let i = 0, sl = s.length; i < sl; i++) {
     if (s[i] === '') {
       continue
     }
-    for (j = 0, fl = f.length; j < fl; j++) {
-      if (f[j] === '') {
+    for (let j = 0, fl = f.length; j < fl; j++) {
+      const searchTerm = f[j] ?? ''
+      if (searchTerm === '') {
         continue
       }
-      temp = s[i] + ''
-      repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0]
-      s[i] = temp.split(f[j]).join(repl)
-      otemp = os[i] + ''
-      oi = temp.indexOf(f[j])
-      ofjl = f[j].length
+      const temp = s[i] ?? ''
+      const repl = r[j] ?? ''
+      s[i] = temp.split(searchTerm).join(repl)
+      const otemp = os[i] ?? ''
+      const oi = temp.indexOf(searchTerm)
+      const ofjl = searchTerm.length
       if (oi >= 0) {
         os[i] = otemp.split(otemp.substr(oi, ofjl)).join(repl)
       }
 
       if (countObj) {
-        countObj.value += temp.split(f[j]).length - 1
+        countObj.value = (countObj.value ?? 0) + temp.split(searchTerm).length - 1
       }
     }
   }
 
-  return osa ? os : os[0]
+  return osa ? os : (os[0] ?? '')
 }

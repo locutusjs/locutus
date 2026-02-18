@@ -1,7 +1,10 @@
-// @ts-nocheck
 import { ctype_alpha as ctypeAlpha } from '../ctype/ctype_alpha.ts'
 
-export function str_word_count(str, format, charlist) {
+export function str_word_count(
+  str: string,
+  format?: 0 | 1 | 2,
+  charlist?: string,
+): number | string[] | { [key: number]: string } {
   //  discuss at: https://locutus.io/php/str_word_count/
   // original by: Ole Vrijenhoek
   // bugfixed by: Kevin van Zonneveld (https://kvz.io)
@@ -19,44 +22,43 @@ export function str_word_count(str, format, charlist) {
   //   returns 4: {0: 'hey'}
 
   const len = str.length
-  const cl = charlist && charlist.length
+  const cl = charlist?.length ?? 0
   let chr = ''
   let tmpStr = ''
-  let i = 0
   let c = ''
-  const wArr = []
+  const wArr: string[] = []
   let wC = 0
-  const assoc = {}
+  const assoc: { [key: number]: string } = {}
   let aC = 0
-  let reg = ''
+  let reg: RegExp | null = null
   let match = false
 
-  const _pregQuote = function (str) {
-    return (str + '').replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1')
+  const _pregQuote = function (value: string): string {
+    return (value + '').replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1')
   }
-  const _getWholeChar = function (str, i) {
+  const _getWholeChar = function (value: string, index: number): string | false {
     // Use for rare cases of non-BMP characters
-    const code = str.charCodeAt(i)
+    const code = value.charCodeAt(index)
     if (code < 0xd800 || code > 0xdfff) {
-      return str.charAt(i)
+      return value.charAt(index)
     }
     if (code >= 0xd800 && code <= 0xdbff) {
       // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single
       // characters)
-      if (str.length <= i + 1) {
+      if (value.length <= index + 1) {
         throw new Error('High surrogate without following low surrogate')
       }
-      const next = str.charCodeAt(i + 1)
+      const next = value.charCodeAt(index + 1)
       if (next < 0xdc00 || next > 0xdfff) {
         throw new Error('High surrogate without following low surrogate')
       }
-      return str.charAt(i) + str.charAt(i + 1)
+      return value.charAt(index) + value.charAt(index + 1)
     }
     // Low surrogate (0xDC00 <= code && code <= 0xDFFF)
-    if (i === 0) {
+    if (index === 0) {
       throw new Error('Low surrogate without preceding high surrogate')
     }
-    const prev = str.charCodeAt(i - 1)
+    const prev = value.charCodeAt(index - 1)
     if (prev < 0xd800 || prev > 0xdbff) {
       // (could change last hex to 0xDB7F to treat high private surrogates as single characters)
       throw new Error('Low surrogate without preceding high surrogate')
@@ -66,28 +68,33 @@ export function str_word_count(str, format, charlist) {
     return false
   }
 
-  if (cl) {
-    reg = '^(' + _pregQuote(_getWholeChar(charlist, 0))
-    for (i = 1; i < cl; i++) {
-      if ((chr = _getWholeChar(charlist, i)) === false) {
+  if (cl && typeof charlist === 'string') {
+    const firstChar = _getWholeChar(charlist, 0)
+    let pattern = '^(' + _pregQuote(firstChar === false ? '' : firstChar)
+    for (let i = 1; i < cl; i++) {
+      const wholeChar = _getWholeChar(charlist, i)
+      if (wholeChar === false) {
         continue
       }
-      reg += '|' + _pregQuote(chr)
+      chr = wholeChar
+      pattern += '|' + _pregQuote(chr)
     }
-    reg += ')$'
-    reg = new RegExp(reg)
+    pattern += ')$'
+    reg = new RegExp(pattern)
   }
 
-  for (i = 0; i < len; i++) {
-    if ((c = _getWholeChar(str, i)) === false) {
+  for (let i = 0; i < len; i++) {
+    const wholeChar = _getWholeChar(str, i)
+    if (wholeChar === false) {
       continue
     }
+    c = wholeChar
     // No hyphen at beginning or end unless allowed in charlist (or locale)
     // No apostrophe at beginning unless allowed in charlist (or locale)
     // @todo: Make this more readable
     match =
       ctypeAlpha(c) ||
-      (reg && c.search(reg) !== -1) ||
+      (reg !== null && c.search(reg) !== -1) ||
       (i !== 0 && i !== len - 1 && c === '-') ||
       (i !== 0 && c === "'")
     if (match) {

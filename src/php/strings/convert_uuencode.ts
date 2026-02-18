@@ -1,7 +1,6 @@
-// @ts-nocheck
 import { is_scalar as isScalar } from '../var/is_scalar.ts'
 
-export function convert_uuencode(str) {
+export function convert_uuencode(str: unknown): string | false {
   //       discuss at: https://locutus.io/php/convert_uuencode/
   //      original by: Ole Vrijenhoek
   //      bugfixed by: Kevin van Zonneveld (https://kvz.io)
@@ -10,7 +9,7 @@ export function convert_uuencode(str) {
   //        example 1: convert_uuencode("test\ntext text\r\n")
   //        returns 1: "0=&5S=`IT97AT('1E>'0-\"@\n`\n"
 
-  const chr = function (c) {
+  const chr = function (c: number): string {
     return String.fromCharCode(c)
   }
 
@@ -19,22 +18,22 @@ export function convert_uuencode(str) {
   } else if (!isScalar(str)) {
     return false
   }
+  const source = String(str)
 
   let c = 0
   let u = 0
-  let i = 0
   let a = 0
   let encoded = ''
   let tmp1 = ''
   let tmp2 = ''
-  let bytes = {}
+  let bytes: number[] = []
 
   // divide string into chunks of 45 characters
   const chunk = function () {
-    bytes = str.substr(u, 45).split('')
-    for (i in bytes) {
-      bytes[i] = bytes[i].charCodeAt(0)
-    }
+    bytes = source
+      .substr(u, 45)
+      .split('')
+      .map((char) => char.charCodeAt(0))
     return bytes.length || 0
   }
 
@@ -45,8 +44,8 @@ export function convert_uuencode(str) {
     encoded += chr(c + 32)
 
     // Convert each char in bytes[] to a byte
-    for (i in bytes) {
-      tmp1 = bytes[i].toString(2)
+    for (const byte of bytes) {
+      tmp1 = byte.toString(2)
       while (tmp1.length < 8) {
         tmp1 = '0' + tmp1
       }
@@ -57,7 +56,7 @@ export function convert_uuencode(str) {
       tmp2 = tmp2 + '0'
     }
 
-    for (i = 0; i <= tmp2.length / 6 - 1; i++) {
+    for (let i = 0; i <= tmp2.length / 6 - 1; i++) {
       tmp1 = tmp2.substr(a, 6)
       if (tmp1 === '000000') {
         encoded += chr(96)
