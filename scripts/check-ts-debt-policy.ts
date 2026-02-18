@@ -12,6 +12,7 @@ const MAX_SRC_PHP_EXPORTED_UNKNOWN_RETURN_TYPES = 0
 const MAX_SRC_PHP_UNKNOWN_KEYWORD = 0
 const MAX_SRC_PHP_ARRAY_UNKNOWN_KEYWORD = 0
 const MAX_SRC_PHP_VAR_UNKNOWN_KEYWORD = 0
+const MAX_SRC_PHP_ARRAY_AS_EXPRESSION = 48
 const MAX_SRC_PHP_VAR_AS_EXPRESSION = 5
 const MAX_SRC_PHP_LOCAL_PHPVALUE_ALIAS = 0
 const MAX_SRC_PHP_DIRECT_INI_GLOBAL_READS = 0
@@ -33,12 +34,14 @@ const argumentsIdentifierFindings: Finding[] = []
 const exportedUnknownReturnTypeFindings: Finding[] = []
 const localPhpValueAliasFindings: Finding[] = []
 const directIniGlobalReadFindings: Finding[] = []
+const arrayAsExpressionFindings: Finding[] = []
 const varAsExpressionFindings: Finding[] = []
 let srcPhpRawIndexSignatureUnknownCount = 0
 let srcPhpExportedUnknownReturnTypeCount = 0
 let srcPhpUnknownKeywordCount = 0
 let srcPhpArrayUnknownKeywordCount = 0
 let srcPhpVarUnknownKeywordCount = 0
+let srcPhpArrayAsExpressionCount = 0
 let srcPhpVarAsExpressionCount = 0
 let srcPhpLocalPhpValueAliasCount = 0
 let srcPhpDirectIniGlobalReadCount = 0
@@ -172,6 +175,14 @@ for (const filePath of sourceFiles) {
     srcPhpUnknownKeywordCount += srcPhpUnknownCount
     if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}array${path.sep}`)) {
       srcPhpArrayUnknownKeywordCount += srcPhpUnknownCount
+      const arrayAsExpressionCount = countAsExpressions(sourceFile)
+      srcPhpArrayAsExpressionCount += arrayAsExpressionCount
+      if (arrayAsExpressionCount > 0) {
+        arrayAsExpressionFindings.push({
+          file: path.relative(cwd, filePath),
+          count: arrayAsExpressionCount,
+        })
+      }
     }
     if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}var${path.sep}`)) {
       srcPhpVarUnknownKeywordCount += srcPhpUnknownCount
@@ -325,6 +336,16 @@ if (srcPhpArrayUnknownKeywordCount > MAX_SRC_PHP_ARRAY_UNKNOWN_KEYWORD) {
   )
 }
 
+if (srcPhpArrayAsExpressionCount > MAX_SRC_PHP_ARRAY_AS_EXPRESSION) {
+  hasFailure = true
+  console.error(
+    `src/php/array 'as' expression count increased: ${srcPhpArrayAsExpressionCount} > ${MAX_SRC_PHP_ARRAY_AS_EXPRESSION}`,
+  )
+  for (const finding of arrayAsExpressionFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
 if (srcPhpVarUnknownKeywordCount > MAX_SRC_PHP_VAR_UNKNOWN_KEYWORD) {
   hasFailure = true
   console.error(
@@ -367,5 +388,5 @@ if (hasFailure) {
 }
 
 console.log(
-  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php unknown keyword count not increased, src/php/array unknown keyword count not increased, src/php/var unknown keyword count not increased, src/php/var as-expression count not increased, src/php local PhpValue alias count not increased, src/php direct $locutus?.php?.ini reads not increased',
+  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php unknown keyword count not increased, src/php/array unknown keyword count not increased, src/php/array as-expression count not increased, src/php/var unknown keyword count not increased, src/php/var as-expression count not increased, src/php local PhpValue alias count not increased, src/php direct $locutus?.php?.ini reads not increased',
 )

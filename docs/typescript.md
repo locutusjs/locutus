@@ -227,3 +227,21 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - In dynamic ports, replacing casts with guard-driven reads (`Reflect.get`, helper conversion) preserves behavior while improving local type soundness.
   - Ratcheting cast usage by directory is a practical bridge between permissive legacy code and strict long-term type goals.
+
+## Iteration 6
+
+- Plans
+  - Continue cast burn-down in array sorting family while preserving runtime behavior.
+  - Remove remaining direct global ini reads in untouched array sort helpers.
+  - Add a debt ratchet for `as`-expression usage in `src/php/array/**`.
+- Progress
+  - Refactored `src/php/array/{natsort,natcasesort,shuffle}.ts`:
+    - replaced direct global ini reads with `ini_get('locutus.sortByReference')`.
+    - removed redundant `as` assertions in collection/repopulation flows.
+    - narrowed `natsort`/`natcasesort` value generic to `T extends string | number` to reflect natural string comparison semantics.
+  - Added debt-policy ratchet in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_ARRAY_AS_EXPRESSION = 48` (new floor, must not increase).
+  - Reduced `src/php/array/**` `as`-expression count from `58 -> 48`.
+- Key learnings
+  - Converting legacy global lookups to typed `ini_get` reads removes casts and improves standalone consistency simultaneously.
+  - Directory-level cast ratchets create momentum: each focused cleanup pass can lock in gains immediately.

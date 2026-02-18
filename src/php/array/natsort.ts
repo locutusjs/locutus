@@ -1,7 +1,7 @@
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import { ini_get } from '../info/ini_get.ts'
 import { strnatcmp } from '../strings/strnatcmp.ts'
 
-export function natsort<T>(inputArr: Record<string, T>): boolean | Record<string, T> {
+export function natsort<T extends string | number>(inputArr: Record<string, T>): boolean | Record<string, T> {
   //      discuss at: https://locutus.io/php/natsort/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -27,19 +27,18 @@ export function natsort<T>(inputArr: Record<string, T>): boolean | Record<string
   let sortByReference = false
   let populateArr: Record<string, T> = {}
 
-  const $loc = (
-    globalThis as typeof globalThis & {
-      $locutus?: { php?: { ini?: Record<string, { local_value?: PhpMixed }> } }
-    }
-  ).$locutus
-  const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
+  const iniVal = ini_get('locutus.sortByReference') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 
   // Get key and value arrays
   for (k in inputArr) {
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push([k, inputArr[k] as T])
+      const value = inputArr[k]
+      if (value === undefined) {
+        continue
+      }
+      valArr.push([k, value])
       if (sortByReference) {
         delete inputArr[k]
       }

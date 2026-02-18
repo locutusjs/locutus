@@ -1,4 +1,4 @@
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import { ini_get } from '../info/ini_get.ts'
 
 export function shuffle<T>(inputArr: Record<string, T>): boolean | Record<string, T> | T[] {
   //  discuss at: https://locutus.io/php/shuffle/
@@ -21,7 +21,11 @@ export function shuffle<T>(inputArr: Record<string, T>): boolean | Record<string
   for (k in inputArr) {
     // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push(inputArr[k] as T)
+      const value = inputArr[k]
+      if (value === undefined) {
+        continue
+      }
+      valArr.push(value)
       if (sortByReference) {
         delete inputArr[k]
       }
@@ -31,21 +35,24 @@ export function shuffle<T>(inputArr: Record<string, T>): boolean | Record<string
     return 0.5 - Math.random()
   })
 
-  const $loc = (
-    globalThis as typeof globalThis & {
-      $locutus?: { php?: { ini?: Record<string, { local_value?: PhpMixed }> } }
-    }
-  ).$locutus
-  const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
+  const iniVal = ini_get('locutus.sortByReference') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 
   for (i = 0; i < valArr.length; i++) {
     // Repopulate the old array
     if (Array.isArray(populateArr)) {
-      populateArr[i] = valArr[i] as T
+      const value = valArr[i]
+      if (value === undefined) {
+        continue
+      }
+      populateArr[i] = value
     } else {
-      populateArr[String(i)] = valArr[i] as T
+      const value = valArr[i]
+      if (value === undefined) {
+        continue
+      }
+      populateArr[String(i)] = value
     }
   }
 
