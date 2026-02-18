@@ -1,31 +1,34 @@
 const visitedObjects = new Map<object, true>() // Initialize a map to track visited objects
 
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
+
+type PhpValue = {} | null | undefined
 
 type DumpableObject = {
   constructor?: { toString: () => string }
-  [key: string]: unknown
+  [key: string]: PhpValue
 }
 
 type DomLikeNode = {
   nodeName: string
   nodeType?: number
   namespaceURI?: string
-  nodeValue?: unknown
+  nodeValue?: PhpValue
 }
 
-const hasNodeName = (value: unknown): value is DomLikeNode => {
+const hasNodeName = (value: PhpValue): value is DomLikeNode => {
   return typeof value === 'object' && value !== null && 'nodeName' in value
 }
 
 const isLocutusResource = (
-  value: unknown,
+  value: PhpValue,
   getFuncName: (fn: { toString: () => string }) => string,
 ): value is { var_dump: () => string } => {
   if (typeof value !== 'object' || value === null || !('var_dump' in value) || !('constructor' in value)) {
     return false
   }
-  const maybeResource = value as { constructor?: { toString: () => string }; var_dump?: unknown }
+  const maybeResource = value as { constructor?: { toString: () => string }; var_dump?: PhpValue }
   return (
     typeof maybeResource.var_dump === 'function' &&
     !!maybeResource.constructor &&
@@ -33,7 +36,7 @@ const isLocutusResource = (
   )
 }
 
-export function var_dump(...args: unknown[]): string {
+export function var_dump(...args: PhpValue[]): string {
   //  discuss at: https://locutus.io/php/var_dump/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Zahlii
@@ -64,7 +67,7 @@ export function var_dump(...args: unknown[]): string {
     }
     return str
   }
-  const _getInnerVal = function (val: unknown, thickPad: string): string {
+  const _getInnerVal = function (val: PhpValue, thickPad: string): string {
     let ret = ''
     if (val === null) {
       ret = 'NULL'
@@ -143,7 +146,7 @@ export function var_dump(...args: unknown[]): string {
   }
 
   const _formatArray = function (
-    obj: unknown,
+    obj: PhpValue,
     curDepth: number,
     padVal: number,
     padChar: string,
@@ -171,7 +174,7 @@ export function var_dump(...args: unknown[]): string {
         return obj.var_dump()
       }
       let lgth = 0
-      const objRecord = obj as DumpableObject
+      const objRecord = obj as DumpableObject & PhpAssoc<PhpValue>
       for (const someProp in objRecord) {
         if (Object.prototype.hasOwnProperty.call(objRecord, someProp)) {
           lgth++

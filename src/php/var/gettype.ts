@@ -1,6 +1,9 @@
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 import { is_float as isFloat } from '../var/is_float.ts'
 
-export function gettype(mixedVar: unknown): string {
+type PhpValue = {} | null | undefined
+
+export function gettype(mixedVar: PhpValue): string {
   //  discuss at: https://locutus.io/php/gettype/
   // original by: Paulo Freitas
   // improved by: Kevin van Zonneveld (https://kvz.io)
@@ -26,7 +29,7 @@ export function gettype(mixedVar: unknown): string {
 
   let s: string = typeof mixedVar
   let name = ''
-  const _getFuncName = function (fn: unknown): string {
+  const _getFuncName = function (fn: PhpValue): string {
     const funcNameMatch = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
     if (!funcNameMatch) {
       return '(Anonymous)'
@@ -37,12 +40,12 @@ export function gettype(mixedVar: unknown): string {
   if (s === 'object') {
     if (mixedVar !== null) {
       const objectLike = mixedVar as {
-        [key: string]: unknown
-        length?: unknown
-        splice?: unknown
+        [key: string]: PhpValue
+        length?: PhpValue
+        splice?: PhpValue
         propertyIsEnumerable: (property: string) => boolean
-        constructor?: unknown
-      }
+        constructor?: PhpValue
+      } & PhpAssoc<PhpValue>
       // From: https://javascript.crockford.com/remedial.html
       // @todo: Break up this lengthy if statement
       if (

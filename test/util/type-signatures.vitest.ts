@@ -10,6 +10,7 @@ import { array_fill_keys } from '../../src/php/array/array_fill_keys.ts'
 import { array_keys } from '../../src/php/array/array_keys.ts'
 import { array_map } from '../../src/php/array/array_map.ts'
 import { array_merge } from '../../src/php/array/array_merge.ts'
+import { array_multisort } from '../../src/php/array/array_multisort.ts'
 import { array_pad } from '../../src/php/array/array_pad.ts'
 import { array_push } from '../../src/php/array/array_push.ts'
 import { array_rand } from '../../src/php/array/array_rand.ts'
@@ -36,8 +37,10 @@ import { echo } from '../../src/php/strings/echo.ts'
 import { printf } from '../../src/php/strings/printf.ts'
 import { sprintf } from '../../src/php/strings/sprintf.ts'
 import { vprintf } from '../../src/php/strings/vprintf.ts'
+import { gettype } from '../../src/php/var/gettype.ts'
 import { is_callable } from '../../src/php/var/is_callable.ts'
 import { isset } from '../../src/php/var/isset.ts'
+import { var_dump } from '../../src/php/var/var_dump.ts'
 
 const atoiTyped: [number, Error | null] = Atoi('42')
 const parseBoolTyped: [boolean, Error | null] = ParseBool('true')
@@ -62,12 +65,17 @@ const pushTarget = [1, 2]
 const pushedTyped: number = array_push(pushTarget, 3)
 const randTyped: string | null = array_rand(['only']) as string | null
 const replacedTyped: { [key: string]: number | undefined } = array_replace({ 0: 1, 1: 2 }, { 1: 9, 2: 5 })
+const multisortNames = ['beta', 'alpha']
+const multisortRanks = [2, 1]
+const multisortTyped: boolean = array_multisort(multisortNames, 'SORT_ASC', multisortRanks, 'SORT_ASC')
 const spliceInput = ['red', 'green', 'blue']
 const splicedTyped: unknown[] | { [key: string]: unknown } = array_splice(spliceInput, 1, 1, ['purple'])
 const sumTyped: number | null = array_sum({ a: 1, b: '2.5', c: true })
 const sizeofTyped: number = sizeof({ one: [1, 2, 3] }, 'COUNT_RECURSIVE')
 const searchTyped: string | false = array_search('zonneveld', { firstname: 'kevin', surname: 'zonneveld' })
 const iniSetTyped: IniValue | undefined = ini_set('locutus.type-signatures', 'on')
+const gettypeTyped: string = gettype(1)
+const varDumpTyped: string = var_dump({ ok: true })
 const walked: number[] = []
 const walkTyped: boolean = array_walk([1, 2], (value: number) => walked.push(value))
 const walkedRecursive: number[] = []
@@ -109,12 +117,17 @@ describe('public type signatures', () => {
     expect(pushTarget).toEqual([1, 2, 3])
     expect(randTyped).toBe('0')
     expect(replacedTyped).toEqual({ 0: 1, 1: 9, 2: 5 })
+    expect(multisortTyped).toBe(true)
+    expect(multisortNames).toEqual(['alpha', 'beta'])
+    expect(multisortRanks).toEqual([1, 2])
     expect(splicedTyped).toEqual(['green'])
     expect(spliceInput).toEqual(['red', 'purple', 'blue'])
     expect(sumTyped).toBe(3.5)
     expect(sizeofTyped).toBe(4)
     expect(searchTyped).toBe('surname')
     expect(iniSetTyped).toBeUndefined()
+    expect(gettypeTyped).toBe('integer')
+    expect(varDumpTyped).toContain('array(1)')
     expect(walkTyped).toBe(true)
     expect(walked).toEqual([1, 2])
     expect(walkRecursiveTyped).toBe(true)

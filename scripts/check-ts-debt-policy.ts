@@ -9,7 +9,9 @@ interface Finding {
 
 const MAX_SRC_PHP_RAW_INDEX_SIGNATURE_UNKNOWN = 0
 const MAX_SRC_PHP_EXPORTED_UNKNOWN_RETURN_TYPES = 0
-const MAX_SRC_PHP_UNKNOWN_KEYWORD = 347
+const MAX_SRC_PHP_UNKNOWN_KEYWORD = 306
+const MAX_SRC_PHP_ARRAY_UNKNOWN_KEYWORD = 151
+const MAX_SRC_PHP_VAR_UNKNOWN_KEYWORD = 33
 
 const cwd = process.cwd()
 const srcDir = path.join(cwd, 'src')
@@ -29,6 +31,8 @@ const exportedUnknownReturnTypeFindings: Finding[] = []
 let srcPhpRawIndexSignatureUnknownCount = 0
 let srcPhpExportedUnknownReturnTypeCount = 0
 let srcPhpUnknownKeywordCount = 0
+let srcPhpArrayUnknownKeywordCount = 0
+let srcPhpVarUnknownKeywordCount = 0
 
 const countFunctionTypeReferences = (sourceFile: ts.SourceFile): number => {
   let count = 0
@@ -143,6 +147,12 @@ for (const filePath of sourceFiles) {
   if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}`)) {
     const srcPhpUnknownCount = (sourceText.match(/\bunknown\b/g) || []).length
     srcPhpUnknownKeywordCount += srcPhpUnknownCount
+    if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}array${path.sep}`)) {
+      srcPhpArrayUnknownKeywordCount += srcPhpUnknownCount
+    }
+    if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}var${path.sep}`)) {
+      srcPhpVarUnknownKeywordCount += srcPhpUnknownCount
+    }
 
     const rawIndexSignatureUnknownCount = (sourceText.match(/\{\s*\[\s*key\s*:\s*string\s*]\s*:\s*unknown\s*}/g) || [])
       .length
@@ -255,10 +265,24 @@ if (srcPhpUnknownKeywordCount > MAX_SRC_PHP_UNKNOWN_KEYWORD) {
   )
 }
 
+if (srcPhpArrayUnknownKeywordCount > MAX_SRC_PHP_ARRAY_UNKNOWN_KEYWORD) {
+  hasFailure = true
+  console.error(
+    `src/php/array 'unknown' keyword count increased: ${srcPhpArrayUnknownKeywordCount} > ${MAX_SRC_PHP_ARRAY_UNKNOWN_KEYWORD}`,
+  )
+}
+
+if (srcPhpVarUnknownKeywordCount > MAX_SRC_PHP_VAR_UNKNOWN_KEYWORD) {
+  hasFailure = true
+  console.error(
+    `src/php/var 'unknown' keyword count increased: ${srcPhpVarUnknownKeywordCount} > ${MAX_SRC_PHP_VAR_UNKNOWN_KEYWORD}`,
+  )
+}
+
 if (hasFailure) {
   process.exit(1)
 }
 
 console.log(
-  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php unknown keyword count not increased',
+  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php unknown keyword count not increased, src/php/array unknown keyword count not increased, src/php/var unknown keyword count not increased',
 )
