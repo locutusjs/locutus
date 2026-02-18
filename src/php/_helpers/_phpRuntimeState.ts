@@ -1,15 +1,17 @@
+type PhpValue = {} | null | undefined
+
 interface IniEntry {
-  local_value?: unknown
+  local_value?: PhpValue
 }
 
 interface LocaleEntry {
-  sorting: (left: unknown, right: unknown) => number
+  sorting: (left: PhpValue, right: PhpValue) => number
 }
 
 interface PhpRuntime {
   ini?: { [key: string]: IniEntry | undefined }
   locales?: { [key: string]: LocaleEntry | undefined }
-  pointers?: Array<unknown | number>
+  pointers?: PhpValue[]
   locale_default?: string
 }
 
@@ -22,7 +24,7 @@ type GlobalWithLocutus = typeof globalThis & {
 export interface PhpRuntimeState {
   ini: { [key: string]: IniEntry | undefined }
   locales: { [key: string]: LocaleEntry | undefined }
-  pointers: Array<unknown | number>
+  pointers: PhpValue[]
   locale_default: string | undefined
 }
 
