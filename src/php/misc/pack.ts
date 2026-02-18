@@ -1,5 +1,6 @@
-// @ts-nocheck
-export function pack(format) {
+type PackArgument = string | number | boolean | null | undefined
+
+export function pack(format: string, ...inputArgs: PackArgument[]): string {
   //  discuss at: https://locutus.io/php/pack/
   // original by: Tim de Koning (https://www.kingsquare.nl)
   //    parts by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
@@ -20,210 +21,212 @@ export function pack(format) {
   //   returns 4: "\u0000\u0000\u0000\u0000\u00008YÀ"
 
   let formatPointer = 0
-  let argumentPointer = 1
+  let argumentPointer = 0
   let result = ''
-  let argument = ''
+  let argument: string | number = ''
   let i = 0
-  let r = []
-  let instruction
-  let quantifier
-  let word
-  let precisionBits
-  let exponentBits
-  let extraNullCount
+  let r: string[] = []
+  let instruction = ''
+  let quantifier: number | '*' = 1
+  let word = ''
+  let precisionBits = 0
+  let exponentBits = 0
+  let extraNullCount = 0
 
   // vars used by float encoding
-  let bias
-  let minExp
-  let maxExp
-  let minUnnormExp
-  let status
-  let exp
-  let len
-  let bin
-  let signal
-  let n
-  let intPart
-  let floatPart
-  let lastBit
-  let rounded
-  let j
-  let k
-  let tmpResult
+  let bias = 0
+  let minExp = 0
+  let maxExp = 0
+  let minUnnormExp = 0
+  let status = 0
+  let exp = 0
+  let len = 0
+  let bin: number[] = []
+  let signal = 0
+  let n = 0
+  let intPart = 0
+  let floatPart = 0
+  let lastBit = 0
+  let rounded = 0
+  let j = 0
+  let k = 0
+  let tmpResult = ''
+
+  const getRemainingArgumentCount = (): number => inputArgs.length - argumentPointer
+  const getCurrentArgument = (): PackArgument => inputArgs[argumentPointer]
+  const getCurrentNumericArgument = (): number => Number(getCurrentArgument() ?? 0)
+  const getBin = (index: number): number => bin[index] ?? 0
 
   while (formatPointer < format.length) {
     instruction = format.charAt(formatPointer)
-    quantifier = ''
+    let quantifierText = ''
     formatPointer++
-    while (formatPointer < format.length && format.charAt(formatPointer).match(/[\d*]/) !== null) {
-      quantifier += format.charAt(formatPointer)
+    while (formatPointer < format.length && /[\d*]/.test(format.charAt(formatPointer))) {
+      quantifierText += format.charAt(formatPointer)
       formatPointer++
     }
-    if (quantifier === '') {
-      quantifier = '1'
+    if (quantifierText === '') {
+      quantifier = 1
+    } else if (quantifierText === '*') {
+      quantifier = '*'
+    } else {
+      quantifier = Number.parseInt(quantifierText, 10)
     }
 
     // Now pack variables: 'quantifier' times 'instruction'
     switch (instruction) {
       case 'a':
-      case 'A':
+      case 'A': {
         // NUL-padded string
         // SPACE-padded string
-        if (typeof arguments[argumentPointer] === 'undefined') {
+        if (typeof getCurrentArgument() === 'undefined') {
           throw new Error('Warning:  pack() Type ' + instruction + ': not enough arguments')
-        } else {
-          argument = String(arguments[argumentPointer])
         }
-        if (quantifier === '*') {
-          quantifier = argument.length
-        }
-        for (i = 0; i < quantifier; i++) {
-          if (typeof argument[i] === 'undefined') {
+        argument = String(getCurrentArgument())
+        const argString = String(argument)
+        const count = quantifier === '*' ? argString.length : quantifier
+        for (i = 0; i < count; i++) {
+          if (typeof argString[i] === 'undefined') {
             if (instruction === 'a') {
               result += String.fromCharCode(0)
             } else {
               result += ' '
             }
           } else {
-            result += argument[i]
+            result += argString[i]
           }
         }
         argumentPointer++
         break
+      }
       case 'h':
-      case 'H':
+      case 'H': {
         // Hex string, low nibble first
         // Hex string, high nibble first
-        if (typeof arguments[argumentPointer] === 'undefined') {
+        if (typeof getCurrentArgument() === 'undefined') {
           throw new Error('Warning: pack() Type ' + instruction + ': not enough arguments')
-        } else {
-          argument = arguments[argumentPointer]
         }
-        if (quantifier === '*') {
-          quantifier = argument.length
-        }
-        if (quantifier > argument.length) {
-          const msg = 'Warning: pack() Type ' + instruction + ': not enough characters in string'
-          throw new Error(msg)
+        argument = String(getCurrentArgument())
+        const argString = String(argument)
+        const count = quantifier === '*' ? argString.length : quantifier
+        if (count > argString.length) {
+          throw new Error('Warning: pack() Type ' + instruction + ': not enough characters in string')
         }
 
-        for (i = 0; i < quantifier; i += 2) {
+        for (i = 0; i < count; i += 2) {
           // Always get per 2 bytes...
-          word = argument[i]
-          if (i + 1 >= quantifier || typeof argument[i + 1] === 'undefined') {
-            word += '0'
-          } else {
-            word += argument[i + 1]
-          }
+          const first = argString[i] ?? ''
+          const second = i + 1 >= count || typeof argString[i + 1] === 'undefined' ? '0' : (argString[i + 1] ?? '0')
+          word = first + second
           // The fastest way to reverse?
           if (instruction === 'h') {
-            word = word[1] + word[0]
+            word = (word[1] ?? '0') + (word[0] ?? '0')
           }
-          result += String.fromCharCode(parseInt(word, 16))
+          result += String.fromCharCode(Number.parseInt(word, 16))
         }
         argumentPointer++
         break
+      }
 
       case 'c':
-      case 'C':
+      case 'C': {
         // signed char
         // unsigned char
         // c and C is the same in pack
-        if (quantifier === '*') {
-          quantifier = arguments.length - argumentPointer
-        }
-        if (quantifier > arguments.length - argumentPointer) {
+        const count = quantifier === '*' ? getRemainingArgumentCount() : quantifier
+        if (count > getRemainingArgumentCount()) {
           throw new Error('Warning:  pack() Type ' + instruction + ': too few arguments')
         }
 
-        for (i = 0; i < quantifier; i++) {
-          result += String.fromCharCode(arguments[argumentPointer])
+        for (i = 0; i < count; i++) {
+          result += String.fromCharCode(getCurrentNumericArgument())
           argumentPointer++
         }
         break
+      }
 
       case 's':
       case 'S':
-      case 'v':
+      case 'v': {
         // signed short (always 16 bit, machine byte order)
         // unsigned short (always 16 bit, machine byte order)
         // s and S is the same in pack
-        if (quantifier === '*') {
-          quantifier = arguments.length - argumentPointer
-        }
-        if (quantifier > arguments.length - argumentPointer) {
+        const count = quantifier === '*' ? getRemainingArgumentCount() : quantifier
+        if (count > getRemainingArgumentCount()) {
           throw new Error('Warning:  pack() Type ' + instruction + ': too few arguments')
         }
 
-        for (i = 0; i < quantifier; i++) {
-          result += String.fromCharCode(arguments[argumentPointer] & 0xff)
-          result += String.fromCharCode((arguments[argumentPointer] >> 8) & 0xff)
+        for (i = 0; i < count; i++) {
+          const value = getCurrentNumericArgument()
+          result += String.fromCharCode(value & 0xff)
+          result += String.fromCharCode((value >> 8) & 0xff)
           argumentPointer++
         }
         break
+      }
 
-      case 'n':
+      case 'n': {
         // unsigned short (always 16 bit, big endian byte order)
-        if (quantifier === '*') {
-          quantifier = arguments.length - argumentPointer
-        }
-        if (quantifier > arguments.length - argumentPointer) {
+        const count = quantifier === '*' ? getRemainingArgumentCount() : quantifier
+        if (count > getRemainingArgumentCount()) {
           throw new Error('Warning: pack() Type ' + instruction + ': too few arguments')
         }
 
-        for (i = 0; i < quantifier; i++) {
-          result += String.fromCharCode((arguments[argumentPointer] >> 8) & 0xff)
-          result += String.fromCharCode(arguments[argumentPointer] & 0xff)
+        for (i = 0; i < count; i++) {
+          const value = getCurrentNumericArgument()
+          result += String.fromCharCode((value >> 8) & 0xff)
+          result += String.fromCharCode(value & 0xff)
           argumentPointer++
         }
         break
+      }
 
       case 'i':
       case 'I':
       case 'l':
       case 'L':
-      case 'V':
+      case 'V': {
         // signed integer (machine dependent size and byte order)
         // unsigned integer (machine dependent size and byte order)
         // signed long (always 32 bit, machine byte order)
         // unsigned long (always 32 bit, machine byte order)
         // unsigned long (always 32 bit, little endian byte order)
-        if (quantifier === '*') {
-          quantifier = arguments.length - argumentPointer
-        }
-        if (quantifier > arguments.length - argumentPointer) {
+        const count = quantifier === '*' ? getRemainingArgumentCount() : quantifier
+        if (count > getRemainingArgumentCount()) {
           throw new Error('Warning:  pack() Type ' + instruction + ': too few arguments')
         }
 
-        for (i = 0; i < quantifier; i++) {
-          result += String.fromCharCode(arguments[argumentPointer] & 0xff)
-          result += String.fromCharCode((arguments[argumentPointer] >> 8) & 0xff)
-          result += String.fromCharCode((arguments[argumentPointer] >> 16) & 0xff)
-          result += String.fromCharCode((arguments[argumentPointer] >> 24) & 0xff)
+        for (i = 0; i < count; i++) {
+          const value = getCurrentNumericArgument()
+          result += String.fromCharCode(value & 0xff)
+          result += String.fromCharCode((value >> 8) & 0xff)
+          result += String.fromCharCode((value >> 16) & 0xff)
+          result += String.fromCharCode((value >> 24) & 0xff)
           argumentPointer++
         }
 
         break
-      case 'N':
+      }
+      case 'N': {
         // unsigned long (always 32 bit, big endian byte order)
-        if (quantifier === '*') {
-          quantifier = arguments.length - argumentPointer
-        }
-        if (quantifier > arguments.length - argumentPointer) {
-          throw new Error('Warning:  pack() Type ' + instruction + ': too few arguments')
+        const count = quantifier === '*' ? getRemainingArgumentCount() : quantifier
+        if (count > getRemainingArgumentCount()) {
+          throw new Error('Warning: pack() Type ' + instruction + ': too few arguments')
         }
 
-        for (i = 0; i < quantifier; i++) {
-          result += String.fromCharCode((arguments[argumentPointer] >> 24) & 0xff)
-          result += String.fromCharCode((arguments[argumentPointer] >> 16) & 0xff)
-          result += String.fromCharCode((arguments[argumentPointer] >> 8) & 0xff)
-          result += String.fromCharCode(arguments[argumentPointer] & 0xff)
+        for (i = 0; i < count; i++) {
+          const value = getCurrentNumericArgument()
+          result += String.fromCharCode((value >> 24) & 0xff)
+          result += String.fromCharCode((value >> 16) & 0xff)
+          result += String.fromCharCode((value >> 8) & 0xff)
+          result += String.fromCharCode(value & 0xff)
           argumentPointer++
         }
         break
+      }
 
       case 'f':
-      case 'd':
+      case 'd': {
         // float (machine dependent size and representation)
         // double (machine dependent size and representation)
         // version based on IEEE754
@@ -234,23 +237,22 @@ export function pack(format) {
           exponentBits = 11
         }
 
-        if (quantifier === '*') {
-          quantifier = arguments.length - argumentPointer
-        }
-        if (quantifier > arguments.length - argumentPointer) {
+        const count = quantifier === '*' ? getRemainingArgumentCount() : quantifier
+        if (count > getRemainingArgumentCount()) {
           throw new Error('Warning:  pack() Type ' + instruction + ': too few arguments')
         }
-        for (i = 0; i < quantifier; i++) {
-          argument = arguments[argumentPointer]
+        for (i = 0; i < count; i++) {
+          argument = String(getCurrentArgument() ?? '')
           bias = Math.pow(2, exponentBits - 1) - 1
           minExp = -bias + 1
           maxExp = bias
           minUnnormExp = minExp - precisionBits
-          status = isNaN((n = parseFloat(argument))) || n === -Infinity || n === +Infinity ? n : 0
+          n = Number.parseFloat(String(argument))
+          status = Number.isNaN(n) || n === -Infinity || n === Infinity ? n : 0
           exp = 0
           len = 2 * bias + 1 + precisionBits + 3
-          bin = new Array(len)
-          signal = (n = status !== 0 ? 0 : n) < 0
+          bin = new Array<number>(len)
+          signal = (n = status !== 0 ? 0 : n) < 0 ? 1 : 0
           n = Math.abs(n)
           intPart = Math.floor(n)
           floatPart = n - intPart
@@ -263,9 +265,9 @@ export function pack(format) {
             intPart = Math.floor(intPart / 2)
           }
           for (k = bias + 1; floatPart > 0 && k; --floatPart) {
-            bin[++k] = ((floatPart *= 2) >= 1) - 0
+            bin[++k] = Number((floatPart *= 2) >= 1)
           }
-          for (k = -1; ++k < len && !bin[k]; ) {
+          for (k = -1; ++k < len && !getBin(k); ) {
             /* skip leading zeros */
           }
 
@@ -276,30 +278,28 @@ export function pack(format) {
               1 +
               (k = (exp = bias + 1 - k) >= minExp && exp <= maxExp ? k + 1 : bias + 1 - (exp = minExp - 1))) + 1
 
-          if (bin[key]) {
-            if (!(rounded = bin[lastBit])) {
-              for (j = lastBit + 2; !rounded && j < len; rounded = bin[j++]) {
+          if (getBin(key)) {
+            if (!(rounded = getBin(lastBit))) {
+              for (j = lastBit + 2; !rounded && j < len; rounded = getBin(j++)) {
                 /* find if any trailing bit is set */
               }
             }
-            for (j = lastBit + 1; rounded && --j >= 0; (bin[j] = !bin[j] - 0) && (rounded = 0)) {
+            for (j = lastBit + 1; rounded && --j >= 0; (bin[j] = Number(!getBin(j))) && (rounded = 0)) {
               /* propagate rounding carry */
             }
           }
 
-          for (k = k - 2 < 0 ? -1 : k - 3; ++k < len && !bin[k]; ) {
+          for (k = k - 2 < 0 ? -1 : k - 3; ++k < len && !getBin(k); ) {
             /* skip leading zeros after rounding */
           }
 
           if ((exp = bias + 1 - k) >= minExp && exp <= maxExp) {
             ++k
-          } else {
-            if (exp < minExp) {
-              if (exp !== bias + 1 - len && exp < minUnnormExp) {
-                // "encodeFloat::float underflow"
-              }
-              k = bias + 1 - (exp = minExp - 1)
+          } else if (exp < minExp) {
+            if (exp !== bias + 1 - len && exp < minUnnormExp) {
+              // "encodeFloat::float underflow"
             }
+            k = bias + 1 - (exp = minExp - 1)
           }
 
           if (intPart || status !== 0) {
@@ -307,7 +307,7 @@ export function pack(format) {
             k = bias + 2
             if (status === -Infinity) {
               signal = 1
-            } else if (isNaN(status)) {
+            } else if (Number.isNaN(status)) {
               bin[k] = 1
             }
           }
@@ -317,7 +317,7 @@ export function pack(format) {
 
           for (j = exponentBits + 1; --j; ) {
             tmpResult = (n % 2) + tmpResult
-            n = n >>= 1
+            n >>= 1
           }
 
           n = 0
@@ -326,7 +326,7 @@ export function pack(format) {
           r = []
 
           for (; k; ) {
-            n += (1 << j) * tmpResult.charAt(--k)
+            n += (1 << j) * Number(tmpResult.charAt(--k))
             if (j === 7) {
               r[r.length] = String.fromCharCode(n)
               n = 0
@@ -339,8 +339,9 @@ export function pack(format) {
           argumentPointer++
         }
         break
+      }
 
-      case 'x':
+      case 'x': {
         // NUL byte
         if (quantifier === '*') {
           throw new Error("Warning: pack(): Type x: '*' ignored")
@@ -349,8 +350,9 @@ export function pack(format) {
           result += String.fromCharCode(0)
         }
         break
+      }
 
-      case 'X':
+      case 'X': {
         // Back up one byte
         if (quantifier === '*') {
           throw new Error("Warning: pack(): Type X: '*' ignored")
@@ -358,13 +360,13 @@ export function pack(format) {
         for (i = 0; i < quantifier; i++) {
           if (result.length === 0) {
             throw new Error('Warning: pack(): Type X:' + ' outside of string')
-          } else {
-            result = result.substring(0, result.length - 1)
           }
+          result = result.slice(0, -1)
         }
         break
+      }
 
-      case '@':
+      case '@': {
         // NUL-fill to absolute position
         if (quantifier === '*') {
           throw new Error("Warning: pack(): Type X: '*' ignored")
@@ -376,17 +378,17 @@ export function pack(format) {
           }
         }
         if (quantifier < result.length) {
-          result = result.substring(0, quantifier)
+          result = result.slice(0, quantifier)
         }
         break
+      }
 
       default:
         throw new Error('Warning: pack() Type ' + instruction + ': unknown format code')
     }
   }
-  if (argumentPointer < arguments.length) {
-    const msg2 = 'Warning: pack(): ' + (arguments.length - argumentPointer) + ' arguments unused'
-    throw new Error(msg2)
+  if (argumentPointer < inputArgs.length) {
+    throw new Error('Warning: pack(): ' + (inputArgs.length - argumentPointer) + ' arguments unused')
   }
 
   return result
