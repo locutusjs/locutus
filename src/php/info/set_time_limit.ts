@@ -5,17 +5,21 @@ export function set_time_limit(seconds: number): void {
   //   example 1: set_time_limit(4)
   //   returns 1: undefined
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus?: { php?: { timeoutStatus?: boolean } }
+  const locutusValue = Reflect.get(globalThis, '$locutus')
+  const locutus = typeof locutusValue === 'object' && locutusValue !== null ? locutusValue : {}
+  if (locutusValue !== locutus) {
+    Reflect.set(globalThis, '$locutus', locutus)
   }
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
-  const php = $locutus.php
+
+  const phpValue = Reflect.get(locutus, 'php')
+  const php = typeof phpValue === 'object' && phpValue !== null ? phpValue : {}
+  if (phpValue !== php) {
+    Reflect.set(locutus, 'php', php)
+  }
 
   setTimeout(function () {
-    if (!php.timeoutStatus) {
-      php.timeoutStatus = true
+    if (Reflect.get(php, 'timeoutStatus') !== true) {
+      Reflect.set(php, 'timeoutStatus', true)
     }
     throw new Error('Maximum execution time exceeded')
   }, seconds * 1000)

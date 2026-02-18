@@ -514,3 +514,21 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - A tiny shared runtime accessor can remove repeated cast-heavy dynamic lookups across an entire category.
   - New directory ratchets are easiest to land when paired with a helper-first refactor that collapses repeated patterns.
+
+## Iteration 21
+
+- Plans
+  - Remove remaining cast-based global/runtime access in `src/php/info/**`.
+  - Add a dedicated `info/**` cast ratchet to lock improvements.
+- Progress
+  - Refactored `src/php/info/set_time_limit.ts` to replace casted global runtime access with guarded `Reflect.get`/`Reflect.set` flow.
+  - Refactored `src/php/info/getenv.ts` to remove global/process cast and use reflective guarded reads.
+  - Refactored `src/php/info/ini_set.ts` to replace `entry.local_value` cast with explicit `IniValue` guards.
+  - Extended `scripts/check-ts-debt-policy.ts` with:
+    - `MAX_SRC_PHP_INFO_AS_EXPRESSION = 0`
+    - enforcement and findings output for `src/php/info/**` cast expressions.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Reflective guarded access removes cast pressure in runtime/global boundary code without tsconfig changes.
+  - Small type guards are enough to replace return-value casts even in coercion-heavy ini paths.

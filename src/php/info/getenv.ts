@@ -1,5 +1,3 @@
-type ProcessLike = { env?: { [key: string]: string | undefined } }
-
 export function getenv(varname: string): string | false {
   //      discuss at: https://locutus.io/php/getenv/
   // parity verified: PHP 8.3
@@ -7,15 +5,21 @@ export function getenv(varname: string): string | false {
   //       example 1: getenv('LC_ALL')
   //       returns 1: false
 
-  const globalContext = globalThis as typeof globalThis & { process?: ProcessLike }
-  const processLike = globalContext.process
-  const hasProcessLike = typeof globalContext.process !== 'undefined'
+  const hasProcessLike = typeof Reflect.get(globalThis, 'process') !== 'undefined'
   if (hasProcessLike) {
     return false
   }
-  if (!processLike?.env || !processLike.env[varname]) {
+
+  const processValue = Reflect.get(globalThis, 'process')
+  if (typeof processValue !== 'object' || processValue === null) {
     return false
   }
 
-  return processLike.env[varname] ?? false
+  const envValue = Reflect.get(processValue, 'env')
+  if (typeof envValue !== 'object' || envValue === null) {
+    return false
+  }
+
+  const envEntry = Reflect.get(envValue, varname)
+  return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
 }

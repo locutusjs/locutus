@@ -14,6 +14,7 @@ const MAX_SRC_PHP_ARRAY_UNKNOWN_KEYWORD = 0
 const MAX_SRC_PHP_VAR_UNKNOWN_KEYWORD = 0
 const MAX_SRC_PHP_STRINGS_AS_EXPRESSION = 0
 const MAX_SRC_PHP_CTYPE_AS_EXPRESSION = 0
+const MAX_SRC_PHP_INFO_AS_EXPRESSION = 0
 const MAX_SRC_PHP_ARRAY_AS_EXPRESSION = 3
 const MAX_SRC_PHP_VAR_AS_EXPRESSION = 0
 const MAX_SRC_PHP_LOCAL_PHPVALUE_ALIAS = 0
@@ -38,6 +39,7 @@ const localPhpValueAliasFindings: Finding[] = []
 const directIniGlobalReadFindings: Finding[] = []
 const stringsAsExpressionFindings: Finding[] = []
 const ctypeAsExpressionFindings: Finding[] = []
+const infoAsExpressionFindings: Finding[] = []
 const arrayAsExpressionFindings: Finding[] = []
 const varAsExpressionFindings: Finding[] = []
 let srcPhpRawIndexSignatureUnknownCount = 0
@@ -47,6 +49,7 @@ let srcPhpArrayUnknownKeywordCount = 0
 let srcPhpVarUnknownKeywordCount = 0
 let srcPhpStringsAsExpressionCount = 0
 let srcPhpCtypeAsExpressionCount = 0
+let srcPhpInfoAsExpressionCount = 0
 let srcPhpArrayAsExpressionCount = 0
 let srcPhpVarAsExpressionCount = 0
 let srcPhpLocalPhpValueAliasCount = 0
@@ -218,6 +221,16 @@ for (const filePath of sourceFiles) {
         ctypeAsExpressionFindings.push({
           file: path.relative(cwd, filePath),
           count: ctypeAsExpressionCount,
+        })
+      }
+    }
+    if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}info${path.sep}`)) {
+      const infoAsExpressionCount = countAsExpressions(sourceFile)
+      srcPhpInfoAsExpressionCount += infoAsExpressionCount
+      if (infoAsExpressionCount > 0) {
+        infoAsExpressionFindings.push({
+          file: path.relative(cwd, filePath),
+          count: infoAsExpressionCount,
         })
       }
     }
@@ -409,6 +422,16 @@ if (srcPhpCtypeAsExpressionCount > MAX_SRC_PHP_CTYPE_AS_EXPRESSION) {
   }
 }
 
+if (srcPhpInfoAsExpressionCount > MAX_SRC_PHP_INFO_AS_EXPRESSION) {
+  hasFailure = true
+  console.error(
+    `src/php/info 'as' expression count increased: ${srcPhpInfoAsExpressionCount} > ${MAX_SRC_PHP_INFO_AS_EXPRESSION}`,
+  )
+  for (const finding of infoAsExpressionFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
 if (srcPhpLocalPhpValueAliasCount > MAX_SRC_PHP_LOCAL_PHPVALUE_ALIAS) {
   hasFailure = true
   console.error(
@@ -434,5 +457,5 @@ if (hasFailure) {
 }
 
 console.log(
-  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php unknown keyword count not increased, src/php/array unknown keyword count not increased, src/php/array as-expression count not increased, src/php/var unknown keyword count not increased, src/php/var as-expression count not increased, src/php/strings as-expression count not increased, src/php/ctype as-expression count not increased, src/php local PhpValue alias count not increased, src/php direct $locutus?.php?.ini reads not increased',
+  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php unknown keyword count not increased, src/php/array unknown keyword count not increased, src/php/array as-expression count not increased, src/php/var unknown keyword count not increased, src/php/var as-expression count not increased, src/php/strings as-expression count not increased, src/php/ctype as-expression count not increased, src/php/info as-expression count not increased, src/php local PhpValue alias count not increased, src/php direct $locutus?.php?.ini reads not increased',
 )

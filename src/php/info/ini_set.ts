@@ -1,7 +1,22 @@
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
+import type { PhpValue } from '../_helpers/_phpTypes.ts'
 
 type IniScalar = string | number | boolean | null
 export type IniValue = IniScalar | {} | Array<IniScalar | {}> | undefined
+
+type IniCandidate = PhpValue | undefined
+
+const isIniScalar = (value: IniCandidate): value is IniScalar =>
+  typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean' || value === null
+
+const isIniObject = (value: IniCandidate): value is {} =>
+  typeof value === 'object' && value !== null && !Array.isArray(value)
+
+const isIniArray = (value: IniCandidate): value is Array<IniScalar | {}> =>
+  Array.isArray(value) && value.every((item: PhpValue) => isIniScalar(item) || isIniObject(item))
+
+const isIniValue = (value: IniCandidate): value is Exclude<IniValue, undefined> =>
+  isIniScalar(value) || isIniObject(value) || isIniArray(value)
 
 export function ini_set(varname: string, newvalue: IniValue): IniValue | undefined {
   //      discuss at: https://locutus.io/php/ini_set/
@@ -14,7 +29,9 @@ export function ini_set(varname: string, newvalue: IniValue): IniValue | undefin
 
   const runtime = ensurePhpRuntimeState()
   const entry = runtime.ini[varname] ?? (runtime.ini[varname] = {})
-  const oldval = entry.local_value as IniValue | undefined
+  const currentValue = entry.local_value
+  const oldval: IniValue | undefined =
+    typeof currentValue === 'undefined' ? undefined : isIniValue(currentValue) ? currentValue : undefined
 
   let normalizedValue = newvalue
   const lowerStr = String(newvalue).toLowerCase().trim()
