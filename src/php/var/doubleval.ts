@@ -1,6 +1,7 @@
 import { floatval } from '../var/floatval.ts'
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 
-export function doubleval(mixedVar: unknown): number {
+export function doubleval(mixedVar: PhpMixed): number {
   //      discuss at: https://locutus.io/php/doubleval/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

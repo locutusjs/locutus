@@ -1,4 +1,6 @@
-export function intval(mixedVar: unknown, base?: number): number {
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function intval(mixedVar: PhpMixed, base?: number): number {
   //      discuss at: https://locutus.io/php/intval/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -26,21 +28,17 @@ export function intval(mixedVar: unknown, base?: number): number {
 
   let tmp = 0
 
-  const type = typeof mixedVar
-
-  if (type === 'boolean') {
+  if (typeof mixedVar === 'boolean') {
     return Number(mixedVar)
-  } else if (type === 'string') {
-    const stringValue = mixedVar as string
+  } else if (typeof mixedVar === 'string') {
     if (base === 0) {
-      const match = stringValue.match(/^\s*0(x?)/i)
+      const match = mixedVar.match(/^\s*0(x?)/i)
       base = match ? (match[1] ? 16 : 8) : 10
     }
-    tmp = Number.parseInt(stringValue, base || 10)
+    tmp = Number.parseInt(mixedVar, base || 10)
     return Number.isNaN(tmp) || !Number.isFinite(tmp) ? 0 : tmp
-  } else if (type === 'number' && Number.isFinite(mixedVar)) {
-    const numberValue = mixedVar as number
-    return numberValue < 0 ? Math.ceil(numberValue) : Math.floor(numberValue)
+  } else if (typeof mixedVar === 'number' && Number.isFinite(mixedVar)) {
+    return mixedVar < 0 ? Math.ceil(mixedVar) : Math.floor(mixedVar)
   } else {
     return 0
   }

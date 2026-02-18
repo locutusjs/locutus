@@ -1,4 +1,6 @@
-export function is_unicode(vr: unknown): boolean {
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function is_unicode(vr: PhpMixed): vr is string {
   //  discuss at: https://locutus.io/php/is_unicode/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Almost all strings in JavaScript should be Unicode

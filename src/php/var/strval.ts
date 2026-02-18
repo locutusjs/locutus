@@ -1,6 +1,7 @@
 import { gettype } from '../var/gettype.ts'
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 
-export function strval(str: unknown): string {
+export function strval(str: PhpMixed): string {
   //  discuss at: https://locutus.io/php/strval/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Kevin van Zonneveld (https://kvz.io)

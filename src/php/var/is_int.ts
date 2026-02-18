@@ -1,4 +1,6 @@
-export function is_int(mixedVar: unknown): boolean {
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function is_int(mixedVar: PhpMixed): mixedVar is number {
   //      discuss at: https://locutus.io/php/is_int/
   // parity verified: PHP 8.3
   //     original by: Alex
@@ -19,5 +21,5 @@ export function is_int(mixedVar: unknown): boolean {
   //       returns 4: false
 
   const num = Number(mixedVar)
-  return mixedVar === num && isFinite(num) && !(num % 1)
+  return typeof mixedVar === 'number' && mixedVar === num && Number.isFinite(num) && Number.isInteger(num)
 }

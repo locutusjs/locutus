@@ -9,9 +9,9 @@ interface Finding {
 
 const MAX_SRC_PHP_RAW_INDEX_SIGNATURE_UNKNOWN = 0
 const MAX_SRC_PHP_EXPORTED_UNKNOWN_RETURN_TYPES = 0
-const MAX_SRC_PHP_UNKNOWN_KEYWORD = 91
+const MAX_SRC_PHP_UNKNOWN_KEYWORD = 81
 const MAX_SRC_PHP_ARRAY_UNKNOWN_KEYWORD = 22
-const MAX_SRC_PHP_VAR_UNKNOWN_KEYWORD = 13
+const MAX_SRC_PHP_VAR_UNKNOWN_KEYWORD = 3
 
 const cwd = process.cwd()
 const srcDir = path.join(cwd, 'src')

@@ -1,4 +1,6 @@
-export function is_object(mixedVar: unknown): boolean {
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function is_object(mixedVar: PhpMixed): mixedVar is object {
   //  discuss at: https://locutus.io/php/is_object/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Legaev Andrey

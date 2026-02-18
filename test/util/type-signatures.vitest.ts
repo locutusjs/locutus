@@ -47,9 +47,15 @@ import { echo } from '../../src/php/strings/echo.ts'
 import { printf } from '../../src/php/strings/printf.ts'
 import { sprintf } from '../../src/php/strings/sprintf.ts'
 import { vprintf } from '../../src/php/strings/vprintf.ts'
+import { boolval } from '../../src/php/var/boolval.ts'
 import { gettype } from '../../src/php/var/gettype.ts'
 import { is_array } from '../../src/php/var/is_array.ts'
 import { is_callable } from '../../src/php/var/is_callable.ts'
+import { is_int } from '../../src/php/var/is_int.ts'
+import { is_numeric } from '../../src/php/var/is_numeric.ts'
+import { is_object } from '../../src/php/var/is_object.ts'
+import { is_scalar } from '../../src/php/var/is_scalar.ts'
+import { is_unicode } from '../../src/php/var/is_unicode.ts'
 import { isset } from '../../src/php/var/isset.ts'
 import { var_dump } from '../../src/php/var/var_dump.ts'
 
@@ -115,6 +121,17 @@ const searchTyped: string | false = array_search('zonneveld', { firstname: 'kevi
 const iniSetTyped: IniValue | undefined = ini_set('locutus.type-signatures', 'on')
 const gettypeTyped: string = gettype(1)
 const isArrayTyped: boolean = is_array({ 0: 'Kevin', 1: 'van' })
+const boolvalTyped: boolean = boolval({ truthy: true })
+const intCandidate: PhpValue = 23
+const intNarrowed: number | null = is_int(intCandidate) ? intCandidate : null
+const numericCandidate: PhpValue = '186'
+const numericNarrowed: number | string | null = is_numeric(numericCandidate) ? numericCandidate : null
+const objectCandidate: PhpValue = { foo: 'bar' }
+const objectNarrowed: object | null = is_object(objectCandidate) ? objectCandidate : null
+const scalarCandidate: PhpValue = 'scalar'
+const scalarNarrowed: string | number | boolean | null = is_scalar(scalarCandidate) ? scalarCandidate : null
+const unicodeCandidate: PhpValue = 'abc'
+const unicodeNarrowed: string | null = is_unicode(unicodeCandidate) ? unicodeCandidate : null
 const varDumpTyped: string = var_dump({ ok: true })
 const walked: number[] = []
 const walkTyped: boolean = array_walk([1, 2], (value: number) => walked.push(value))
@@ -178,6 +195,12 @@ describe('public type signatures', () => {
     expect(iniSetTyped).toBeUndefined()
     expect(gettypeTyped).toBe('integer')
     expect(isArrayTyped).toBe(true)
+    expect(boolvalTyped).toBe(true)
+    expect(intNarrowed).toBe(23)
+    expect(numericNarrowed).toBe('186')
+    expect(objectNarrowed).toEqual({ foo: 'bar' })
+    expect(scalarNarrowed).toBe('scalar')
+    expect(unicodeNarrowed).toBe('abc')
     expect(varDumpTyped).toContain('array(1)')
     expect(walkTyped).toBe(true)
     expect(walked).toEqual([1, 2])
