@@ -1,7 +1,8 @@
 import { echo } from '../strings/echo.ts'
 import { sprintf } from '../strings/sprintf.ts'
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 
-export function vprintf(format: string, ...restArgs: unknown[]): number {
+export function vprintf(format: string, ...restArgs: PhpMixed[]): number {
   //       discuss at: https://locutus.io/php/vprintf/
   //      original by: Ash Searle (https://hexmen.com/blog/)
   //      improved by: Michael White (https://getsprink.com)
@@ -9,7 +10,7 @@ export function vprintf(format: string, ...restArgs: unknown[]): number {
   //        example 1: vprintf("%01.2f", 123.1)
   //        returns 1: 6
 
-  const values = Array.isArray(restArgs[0]) && restArgs.length === 1 ? (restArgs[0] as unknown[]) : restArgs
+  const values = Array.isArray(restArgs[0]) && restArgs.length === 1 ? restArgs[0] : restArgs
   const ret = sprintf(format, ...values)
   if (ret === false) {
     return 0

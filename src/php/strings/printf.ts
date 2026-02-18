@@ -1,7 +1,8 @@
 import { echo } from '../strings/echo.ts'
 import { sprintf } from '../strings/sprintf.ts'
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 
-export function printf(format: string, ...args: unknown[]): number {
+export function printf(format: string, ...args: PhpMixed[]): number {
   //  discuss at: https://locutus.io/php/printf/
   // original by: Ash Searle (https://hexmen.com/blog/)
   // improved by: Michael White (https://getsprink.com)

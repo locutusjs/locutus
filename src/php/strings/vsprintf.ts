@@ -1,6 +1,7 @@
 import { sprintf } from '../strings/sprintf.ts'
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 
-export function vsprintf(format: string, args: unknown[]): string | false {
+export function vsprintf(format: string, args: PhpMixed[]): string | false {
   //      discuss at: https://locutus.io/php/vsprintf/
   // parity verified: PHP 8.3
   //     original by: ejsanders

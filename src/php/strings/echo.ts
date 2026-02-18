@@ -1,4 +1,6 @@
-export function echo(...args: unknown[]) {
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function echo(...args: PhpMixed[]) {
   //      discuss at: https://locutus.io/php/echo/
   // parity verified: PHP 8.3
   //     original by: Philip Peterson
