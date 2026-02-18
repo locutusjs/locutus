@@ -1,5 +1,11 @@
-// @ts-nocheck
-export function mktime() {
+export function mktime(
+  hour?: number | string,
+  minute?: number | string,
+  second?: number | string,
+  month?: number | string,
+  day?: number | string,
+  year?: number | string,
+): number | false {
   //  discuss at: https://locutus.io/php/mktime/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: baris ozdil
@@ -40,36 +46,41 @@ export function mktime() {
   //   returns 8: -1
 
   const d = new Date()
-  const r = arguments
-  let i = 0
-  const e = ['Hours', 'Minutes', 'Seconds', 'Month', 'Date', 'FullYear']
+  const resolved: [number, number, number, number, number, number] = [
+    d.getHours(),
+    d.getMinutes(),
+    d.getSeconds(),
+    d.getMonth() + 1, // +1 to fix JS months.
+    d.getDate(),
+    d.getFullYear(),
+  ]
+  const input = [hour, minute, second, month, day, year] as const
 
-  for (i = 0; i < e.length; i++) {
-    if (typeof r[i] === 'undefined') {
-      r[i] = d['get' + e[i]]()
-      // +1 to fix JS months.
-      r[i] += i === 3
-    } else {
-      r[i] = parseInt(r[i], 10)
-      if (isNaN(r[i])) {
+  for (let i = 0; i < input.length; i++) {
+    const value = input[i]
+    if (typeof value !== 'undefined') {
+      const parsed = Number.parseInt(String(value), 10)
+      if (Number.isNaN(parsed)) {
         return false
       }
+      resolved[i] = parsed
     }
   }
 
   // Map years 0-69 to 2000-2069 and years 70-100 to 1970-2000.
-  r[5] += r[5] >= 0 ? (r[5] <= 69 ? 2e3 : r[5] <= 100 ? 1900 : 0) : 0
+  const normalizedYear =
+    resolved[5] + (resolved[5] >= 0 ? (resolved[5] <= 69 ? 2e3 : resolved[5] <= 100 ? 1900 : 0) : 0)
 
   // Set year, month (-1 to fix JS months), and date.
   // !This must come before the call to setHours!
-  d.setFullYear(r[5], r[3] - 1, r[4])
+  d.setFullYear(normalizedYear, resolved[3] - 1, resolved[4])
 
   // Set hours, minutes, and seconds.
-  d.setHours(r[0], r[1], r[2])
+  d.setHours(resolved[0], resolved[1], resolved[2])
 
   const time = d.getTime()
 
   // Divide milliseconds by 1000 to return seconds and drop decimal.
   // Add 1 second if negative or it'll be off from PHP by 1 second.
-  return ((time / 1e3) >> 0) - (time < 0)
+  return ((time / 1e3) >> 0) - Number(time < 0)
 }

@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function soundex(str) {
+export function soundex(str: unknown): string {
   //      discuss at: https://locutus.io/php/soundex/
   // parity verified: PHP 8.3
   //     original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
@@ -17,13 +16,13 @@ export function soundex(str) {
   //       example 3: soundex('Euler')
   //       returns 3: 'E460'
 
-  str = (str + '').toUpperCase()
-  if (!str) {
+  const input = String(str).toUpperCase()
+  if (!input) {
     return ''
   }
 
-  const sdx = [0, 0, 0, 0]
-  const m = {
+  const sdx: Array<number | string> = [0, 0, 0, 0]
+  const m: Record<string, number> = {
     B: 1,
     F: 1,
     P: 1,
@@ -44,23 +43,24 @@ export function soundex(str) {
     R: 6,
   }
   let i = 0
-  let j
   let s = 0
-  let c
-  let p
+  let p = 0
 
-  while ((c = str.charAt(i++)) && s < 4) {
-    if ((j = m[c])) {
+  let c = input.charAt(i++)
+  while (c && s < 4) {
+    const j = m[c]
+    if (j) {
       if (j !== p) {
         sdx[s++] = p = j
       }
     } else {
-      s += i === 1
+      s += Number(i === 1)
       p = 0
     }
+    c = input.charAt(i++)
   }
 
-  sdx[0] = str.charAt(0)
+  sdx[0] = input.charAt(0)
 
   return sdx.join('')
 }

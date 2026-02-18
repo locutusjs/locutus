@@ -1,5 +1,4 @@
-// @ts-nocheck
-export function idate(format, timestamp) {
+export function idate(format?: string, timestamp?: number | string | Date): number {
   //      discuss at: https://locutus.io/php/idate/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -23,9 +22,9 @@ export function idate(format, timestamp) {
     typeof timestamp === 'undefined'
       ? new Date()
       : timestamp instanceof Date
-        ? new Date(timestamp)
-        : new Date(timestamp * 1000)
-  let a
+        ? new Date(timestamp.getTime())
+        : new Date(Number(timestamp) * 1000)
+  let a: number
 
   switch (format) {
     case 'B':
@@ -47,7 +46,7 @@ export function idate(format, timestamp) {
       // Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.
       // If they are not equal, then DST is observed.
       a = _date.getFullYear()
-      return 0 + (new Date(a, 0) - Date.UTC(a, 0) !== new Date(a, 6) - Date.UTC(a, 6))
+      return Number(new Date(a, 0).getTime() - Date.UTC(a, 0) !== new Date(a, 6).getTime() - Date.UTC(a, 6))
     case 'L':
       a = _date.getFullYear()
       return !(a & 3) && (a % 1e2 || !(a % 4e2)) ? 1 : 0
@@ -61,15 +60,16 @@ export function idate(format, timestamp) {
       return Math.round(_date.getTime() / 1000)
     case 'w':
       return _date.getDay()
-    case 'W':
-      a = new Date(_date.getFullYear(), _date.getMonth(), _date.getDate() - (_date.getDay() || 7) + 3)
-      return 1 + Math.round((a - new Date(a.getFullYear(), 0, 4)) / 864e5 / 7)
+    case 'W': {
+      const weekDate = new Date(_date.getFullYear(), _date.getMonth(), _date.getDate() - (_date.getDay() || 7) + 3)
+      return 1 + Math.round((weekDate.getTime() - new Date(weekDate.getFullYear(), 0, 4).getTime()) / 864e5 / 7)
+    }
     case 'y':
       return parseInt((_date.getFullYear() + '').slice(2), 10) // This function returns an integer, unlike _date()
     case 'Y':
       return _date.getFullYear()
     case 'z':
-      return Math.floor((_date - new Date(_date.getFullYear(), 0, 1)) / 864e5)
+      return Math.floor((_date.getTime() - new Date(_date.getFullYear(), 0, 1).getTime()) / 864e5)
     case 'Z':
       return -_date.getTimezoneOffset() * 60
     default:

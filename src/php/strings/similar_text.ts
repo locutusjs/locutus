@@ -1,5 +1,8 @@
-// @ts-nocheck
-export function similar_text(first, second, percent) {
+export function similar_text(
+  first: string | number | boolean | null | undefined,
+  second: string | number | boolean | null | undefined,
+  percent?: unknown,
+): number {
   //      discuss at: https://locutus.io/php/similar_text/
   // parity verified: PHP 8.3
   //     original by: Rafał Kukawski (https://blog.kukawski.pl)
@@ -15,22 +18,24 @@ export function similar_text(first, second, percent) {
     return 0
   }
 
-  first += ''
-  second += ''
+  const firstValue = String(first)
+  const secondValue = String(second)
 
   let pos1 = 0
   let pos2 = 0
   let max = 0
-  const firstLength = first.length
-  const secondLength = second.length
-  let p
-  let q
-  let l
-  let sum
+  const firstLength = firstValue.length
+  const secondLength = secondValue.length
+  let sum = 0
 
-  for (p = 0; p < firstLength; p++) {
-    for (q = 0; q < secondLength; q++) {
-      for (l = 0; p + l < firstLength && q + l < secondLength && first.charAt(p + l) === second.charAt(q + l); l++) {
+  for (let p = 0; p < firstLength; p++) {
+    for (let q = 0; q < secondLength; q++) {
+      let l = 0
+      for (
+        l = 0;
+        p + l < firstLength && q + l < secondLength && firstValue.charAt(p + l) === secondValue.charAt(q + l);
+        l++
+      ) {
         // @todo: ^-- break up this crazy for loop and put the logic in its body
       }
       if (l > max) {
@@ -45,13 +50,13 @@ export function similar_text(first, second, percent) {
 
   if (sum) {
     if (pos1 && pos2) {
-      sum += similar_text(first.substr(0, pos1), second.substr(0, pos2))
+      sum += similar_text(firstValue.substr(0, pos1), secondValue.substr(0, pos2))
     }
 
     if (pos1 + max < firstLength && pos2 + max < secondLength) {
       sum += similar_text(
-        first.substr(pos1 + max, firstLength - pos1 - max),
-        second.substr(pos2 + max, secondLength - pos2 - max),
+        firstValue.substr(pos1 + max, firstLength - pos1 - max),
+        secondValue.substr(pos2 + max, secondLength - pos2 - max),
       )
     }
   }

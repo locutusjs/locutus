@@ -1,5 +1,6 @@
-// @ts-nocheck
-export function array_merge() {
+type AssociativeArray = { [key: string]: unknown }
+
+export function array_merge(...args: Array<unknown[] | AssociativeArray>): unknown[] | AssociativeArray {
   //  discuss at: https://locutus.io/php/array_merge/
   // original by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Nate
@@ -14,42 +15,34 @@ export function array_merge() {
   //   example 2: array_merge($arr1, $arr2)
   //   returns 2: {0: "data"}
 
-  const args = Array.prototype.slice.call(arguments)
   const argl = args.length
-  let arg
-  const retObj = {}
-  let k = ''
-  let argil = 0
-  let j = 0
-  let i = 0
-  let ct = 0
-  const toStr = Object.prototype.toString
+  const retObj: AssociativeArray = {}
   let retArr = true
 
-  for (i = 0; i < argl; i++) {
-    if (toStr.call(args[i]) !== '[object Array]') {
+  for (let i = 0; i < argl; i++) {
+    if (!Array.isArray(args[i])) {
       retArr = false
       break
     }
   }
 
   if (retArr) {
-    retArr = []
-    for (i = 0; i < argl; i++) {
-      retArr = retArr.concat(args[i])
+    let merged: unknown[] = []
+    for (let i = 0; i < argl; i++) {
+      merged = merged.concat(args[i] as unknown[])
     }
-    return retArr
+    return merged
   }
 
-  for (i = 0, ct = 0; i < argl; i++) {
-    arg = args[i]
-    if (toStr.call(arg) === '[object Array]') {
-      for (j = 0, argil = arg.length; j < argil; j++) {
+  for (let i = 0, ct = 0; i < argl; i++) {
+    const arg = args[i]
+    if (Array.isArray(arg)) {
+      for (let j = 0, argil = arg.length; j < argil; j++) {
         retObj[ct++] = arg[j]
       }
     } else {
-      for (k in arg) {
-        if (arg.hasOwnProperty(k)) {
+      for (const k in arg) {
+        if (Object.prototype.hasOwnProperty.call(arg, k)) {
           if (parseInt(k, 10) + '' === k) {
             retObj[ct++] = arg[k]
           } else {

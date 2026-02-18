@@ -1,7 +1,6 @@
-// @ts-nocheck
 import { _bc } from '../_helpers/_bc.ts'
 
-export function bcdiv(leftOperand, rightOperand, scale) {
+export function bcdiv(leftOperand: string | number, rightOperand: string | number, scale?: number): string {
   //  discuss at: https://locutus.io/php/bcdiv/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   //   example 1: bcdiv('1', '2')
@@ -15,27 +14,17 @@ export function bcdiv(leftOperand, rightOperand, scale) {
 
   const libbcmath = _bc()
 
-  let first
-  let second
-  let result
-
   if (typeof scale === 'undefined') {
     scale = libbcmath.scale
   }
   scale = scale < 0 ? 0 : scale
 
-  // create objects
-  first = libbcmath.bc_init_num()
-  second = libbcmath.bc_init_num()
-  result = libbcmath.bc_init_num()
+  const first = libbcmath.php_str2num(leftOperand.toString())
+  const second = libbcmath.php_str2num(rightOperand.toString())
 
-  first = libbcmath.php_str2num(leftOperand.toString())
-  second = libbcmath.php_str2num(rightOperand.toString())
-
-  result = libbcmath.bc_divide(first, second, scale)
+  const result = libbcmath.bc_divide(first, second, scale)
   if (result === -1) {
-    // error
-    throw new Error(11, '(BC) Division by zero')
+    throw new Error('(BC) Division by zero')
   }
   if (result.n_scale > scale) {
     result.n_scale = scale
