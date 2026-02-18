@@ -1,4 +1,3 @@
-// @ts-nocheck
 const reSpace = '[ \\t]+'
 const reSpaceOpt = '[ \\t]*'
 const reMeridian = '(?:([ap])\\.?m\\.?([\\t ]|$))'
@@ -40,10 +39,47 @@ const reWeekOfYear = '(0[1-9]|[1-4][0-9]|5[0-3])'
 
 const reDateNoYear = reMonthText + '[ .\\t-]*' + reDay + '[,.stndrh\\t ]*'
 
-function processMeridian(hour, meridian) {
-  meridian = meridian && meridian.toLowerCase()
+type ParseCallbackArg = string
 
-  switch (meridian) {
+interface ParseResult {
+  y: number
+  m: number
+  d: number
+  h: number
+  i: number
+  s: number
+  f: number
+  ry: number
+  rm: number
+  rd: number
+  rh: number
+  ri: number
+  rs: number
+  rf: number
+  weekday: number
+  weekdayBehavior: number
+  firstOrLastDayOfMonth: -1 | 0 | 1
+  z: number
+  dates: number
+  times: number
+  zones: number
+  ymd(y: number, m: number, d: number): boolean
+  time(h: number, i: number, s: number, f: number): boolean
+  resetTime(): boolean
+  zone(minutes: number): boolean
+  toDate(relativeTo: Date): Date
+}
+
+interface FormatRule {
+  regex: RegExp
+  name: string
+  callback?: (this: ParseResult, ...args: ParseCallbackArg[]) => boolean | void
+}
+
+function processMeridian(hour: number, meridian?: string): number {
+  const normalizedMeridian = meridian?.toLowerCase()
+
+  switch (normalizedMeridian) {
     case 'a':
       hour += hour === 12 ? -12 : 0
       break
@@ -55,7 +91,7 @@ function processMeridian(hour, meridian) {
   return hour
 }
 
-function processYear(yearStr) {
+function processYear(yearStr: string): number {
   let year = +yearStr
 
   if (yearStr.length < 4 && year < 100) {
@@ -65,8 +101,8 @@ function processYear(yearStr) {
   return year
 }
 
-function lookupMonth(monthStr) {
-  return {
+function lookupMonth(monthStr: string): number {
+  const monthLookup: Record<string, number> = {
     jan: 0,
     january: 0,
     i: 0,
@@ -103,11 +139,13 @@ function lookupMonth(monthStr) {
     dec: 11,
     december: 11,
     xii: 11,
-  }[monthStr.toLowerCase()]
+  }
+
+  return monthLookup[monthStr.toLowerCase()] ?? Number.NaN
 }
 
-function lookupWeekday(dayStr, desiredSundayNumber = 0) {
-  const dayNumbers = {
+function lookupWeekday(dayStr: string, desiredSundayNumber = 0): number {
+  const dayNumbers: Record<string, number> = {
     mon: 1,
     monday: 1,
     tue: 2,
@@ -127,8 +165,8 @@ function lookupWeekday(dayStr, desiredSundayNumber = 0) {
   return dayNumbers[dayStr.toLowerCase()] || desiredSundayNumber
 }
 
-function lookupRelative(relText) {
-  const relativeNumbers = {
+function lookupRelative(relText: string): { amount: number; behavior: number } {
+  const relativeNumbers: Record<string, number> = {
     last: -1,
     previous: -1,
     this: 0,
@@ -148,31 +186,31 @@ function lookupRelative(relText) {
     twelfth: 12,
   }
 
-  const relativeBehavior = {
+  const relativeBehavior: Record<string, number> = {
     this: 1,
   }
 
   const relTextLower = relText.toLowerCase()
 
   return {
-    amount: relativeNumbers[relTextLower],
+    amount: relativeNumbers[relTextLower] ?? 0,
     behavior: relativeBehavior[relTextLower] || 0,
   }
 }
 
-function processTzCorrection(tzOffset, oldValue) {
+function processTzCorrection(tzOffset?: string, oldValue = Number.NaN): number {
   const reTzCorrectionLoose = /(?:GMT)?([+-])(\d+)(:?)(\d{0,2})/i
-  tzOffset = tzOffset && tzOffset.match(reTzCorrectionLoose)
+  const tzMatch = tzOffset?.match(reTzCorrectionLoose)
 
-  if (!tzOffset) {
+  if (!tzMatch) {
     return oldValue
   }
 
-  const sign = tzOffset[1] === '-' ? -1 : 1
-  let hours = +tzOffset[2]
-  let minutes = +tzOffset[4]
+  const sign = tzMatch[1] === '-' ? -1 : 1
+  let hours = +(tzMatch[2] ?? 0)
+  let minutes = +(tzMatch[4] ?? 0)
 
-  if (!tzOffset[4] && !tzOffset[3]) {
+  if (!tzMatch[4] && !tzMatch[3]) {
     minutes = Math.floor(hours % 100)
     hours = Math.floor(hours / 100)
   }
@@ -182,7 +220,7 @@ function processTzCorrection(tzOffset, oldValue) {
 }
 
 // tz abbrevation : tz offset in seconds
-const tzAbbrOffsets = {
+const tzAbbrOffsets: Record<string, number> = {
   acdt: 37800,
   acst: 34200,
   addt: -7200,
@@ -448,7 +486,7 @@ const formats = {
     regex: /^(\d{2})-([A-Z]{3})-(\d{2})$/i,
     name: 'd-M-y',
     callback(match, day, monthText, year) {
-      const month = {
+      const monthByName: Record<string, number> = {
         JAN: 0,
         FEB: 1,
         MAR: 2,
@@ -461,7 +499,8 @@ const formats = {
         OCT: 9,
         NOV: 10,
         DEC: 11,
-      }[monthText.toUpperCase()]
+      }
+      const month = monthByName[monthText.toUpperCase()] ?? Number.NaN
       return this.ymd(2000 + parseInt(year, 10), month, parseInt(day, 10))
     },
   },
@@ -512,7 +551,7 @@ const formats = {
     name: 'soap',
     callback(match, year, month, day, hour, minute, second, frac, tzCorrection) {
       return (
-        this.ymd(+year, month - 1, +day) &&
+        this.ymd(+year, +month - 1, +day) &&
         this.time(+hour, +minute, +second, +frac.substr(0, 3)) &&
         this.zone(processTzCorrection(tzCorrection))
       )
@@ -523,7 +562,7 @@ const formats = {
     regex: new RegExp('^' + reYear4 + '-' + reMonth + '-' + reDay + 'T' + reHour24 + ':' + reMinute + ':' + reSecond),
     name: 'wddx',
     callback(match, year, month, day, hour, minute, second) {
-      return this.ymd(+year, month - 1, +day) && this.time(+hour, +minute, +second, 0)
+      return this.ymd(+year, +month - 1, +day) && this.time(+hour, +minute, +second, 0)
     },
   },
 
@@ -534,7 +573,7 @@ const formats = {
     ),
     name: 'exif',
     callback(match, year, month, day, hour, minute, second) {
-      return this.ymd(+year, month - 1, +day) && this.time(+hour, +minute, +second, 0)
+      return this.ymd(+year, +month - 1, +day) && this.time(+hour, +minute, +second, 0)
     },
   },
 
@@ -542,7 +581,7 @@ const formats = {
     regex: new RegExp('^' + reYear4 + reMonthlz + reDaylz + 'T' + reHour24 + ':' + reMinutelz + ':' + reSecondlz),
     name: 'xmlrpc',
     callback(match, year, month, day, hour, minute, second) {
-      return this.ymd(+year, month - 1, +day) && this.time(+hour, +minute, +second, 0)
+      return this.ymd(+year, +month - 1, +day) && this.time(+hour, +minute, +second, 0)
     },
   },
 
@@ -550,7 +589,7 @@ const formats = {
     regex: new RegExp('^' + reYear4 + reMonthlz + reDaylz + '[Tt]' + reHour24 + reMinutelz + reSecondlz),
     name: 'xmlrpcnocolon',
     callback(match, year, month, day, hour, minute, second) {
-      return this.ymd(+year, month - 1, +day) && this.time(+hour, +minute, +second, 0)
+      return this.ymd(+year, +month - 1, +day) && this.time(+hour, +minute, +second, 0)
     },
   },
 
@@ -602,7 +641,7 @@ const formats = {
     regex: new RegExp('^' + reDay + '[.\\t-]' + reMonth + '[.-]' + reYear4),
     name: 'pointeddate4',
     callback(match, day, month, year) {
-      return this.ymd(+year, month - 1, +day)
+      return this.ymd(+year, +month - 1, +day)
     },
   },
 
@@ -610,7 +649,7 @@ const formats = {
     regex: new RegExp('^' + reDay + '[.\\t]' + reMonth + '\\.' + reYear2),
     name: 'pointeddate2',
     callback(match, day, month, year) {
-      return this.ymd(processYear(year), month - 1, +day)
+      return this.ymd(processYear(year), +month - 1, +day)
     },
   },
 
@@ -626,7 +665,7 @@ const formats = {
     regex: new RegExp('^' + reYear4 + reMonthlz + reDaylz),
     name: 'datenocolon',
     callback(match, year, month, day) {
-      return this.ymd(+year, month - 1, +day)
+      return this.ymd(+year, +month - 1, +day)
     },
   },
 
@@ -661,7 +700,7 @@ const formats = {
     regex: new RegExp('^' + reYear4 + '/' + reMonthlz + '/' + reDaylz + '/'),
     name: 'iso8601dateslash',
     callback(match, year, month, day) {
-      return this.ymd(+year, month - 1, +day)
+      return this.ymd(+year, +month - 1, +day)
     },
   },
 
@@ -669,7 +708,7 @@ const formats = {
     regex: new RegExp('^' + reYear4 + '/' + reMonth + '/' + reDay),
     name: 'dateslash',
     callback(match, year, month, day) {
-      return this.ymd(+year, month - 1, +day)
+      return this.ymd(+year, +month - 1, +day)
     },
   },
 
@@ -677,7 +716,7 @@ const formats = {
     regex: new RegExp('^' + reMonth + '/' + reDay + '/' + reYear),
     name: 'american',
     callback(match, month, day, year) {
-      return this.ymd(processYear(year), month - 1, +day)
+      return this.ymd(processYear(year), +month - 1, +day)
     },
   },
 
@@ -685,7 +724,7 @@ const formats = {
     regex: new RegExp('^' + reMonth + '/' + reDay),
     name: 'americanshort',
     callback(match, month, day) {
-      return this.ymd(this.y, month - 1, +day)
+      return this.ymd(this.y, +month - 1, +day)
     },
   },
 
@@ -694,7 +733,7 @@ const formats = {
     regex: new RegExp('^' + reYear + '-' + reMonth + '-' + reDay),
     name: 'gnudateshort | iso8601date2',
     callback(match, year, month, day) {
-      return this.ymd(processYear(year), month - 1, +day)
+      return this.ymd(processYear(year), +month - 1, +day)
     },
   },
 
@@ -702,7 +741,7 @@ const formats = {
     regex: new RegExp('^' + reYear4withSign + '-' + reMonthlz + '-' + reDaylz),
     name: 'iso8601date4',
     callback(match, year, month, day) {
-      return this.ymd(+year, month - 1, +day)
+      return this.ymd(+year, +month - 1, +day)
     },
   },
 
@@ -716,7 +755,7 @@ const formats = {
         case 0:
           return this.time(+hour, +minute, 0, this.f)
         case 1:
-          this.y = hour * 100 + +minute
+          this.y = +hour * 100 + +minute
           this.times++
 
           return true
@@ -730,7 +769,7 @@ const formats = {
     regex: new RegExp('^' + reYear4 + '-' + reMonth),
     name: 'gnudateshorter',
     callback(match, year, month) {
-      return this.ymd(+year, month - 1, 1)
+      return this.ymd(+year, +month - 1, 1)
     },
   },
 
@@ -796,19 +835,20 @@ const formats = {
     regex: new RegExp('^' + reYear4 + '-?W' + reWeekOfYear + '(?:-?([0-7]))?'),
     name: 'isoweekday | isoweek',
     callback(match, year, week, day) {
-      day = day ? +day : 1
+      const dayOfWeek = day ? +day : 1
 
       if (!this.ymd(+year, 0, 1)) {
         return false
       }
 
       // get day of week for Jan 1st
-      let dayOfWeek = new Date(this.y, this.m, this.d).getDay()
+      let jan1DayOfWeek = new Date(this.y, this.m, this.d).getDay()
 
       // and use the day to figure out the offset for day 1 of week 1
-      dayOfWeek = 0 - (dayOfWeek > 4 ? dayOfWeek - 7 : dayOfWeek)
+      jan1DayOfWeek = 0 - (jan1DayOfWeek > 4 ? jan1DayOfWeek - 7 : jan1DayOfWeek)
 
-      this.rd += dayOfWeek + (week - 1) * 7 + day
+      this.rd += jan1DayOfWeek + (+week - 1) * 7 + dayOfWeek
+      return true
     },
   },
 
@@ -1019,8 +1059,7 @@ const formats = {
     name: 'tzabbr',
     callback(match, abbr) {
       const offset = tzAbbrOffsets[abbr.toLowerCase()]
-
-      if (isNaN(offset)) {
+      if (offset == null || Number.isNaN(offset)) {
         return false
       }
 
@@ -1093,9 +1132,9 @@ const formats = {
       return this.ymd(this.y, lookupMonth(month), +day) && this.time(processMeridian(+hour, meridian), +minute, 0, 0)
     },
   },
-}
+} satisfies Record<string, FormatRule>
 
-const resultProto = {
+const resultProto: ParseResult = {
   // date
   y: NaN,
   m: NaN,
@@ -1305,7 +1344,7 @@ const resultProto = {
   },
 }
 
-export function strtotime(str, now) {
+export function strtotime(str: string, now?: number): false | number {
   //       discuss at: https://locutus.io/php/strtotime/
   //      original by: Caio Ariede (https://caioariede.com)
   //      improved by: Kevin van Zonneveld (https://kvz.io)
@@ -1336,14 +1375,12 @@ export function strtotime(str, now) {
   //        example 7: strtotime('10-JUL-17')
   //        returns 7: 1499644800
 
-  if (now == null) {
-    now = Math.floor(Date.now() / 1000)
-  }
+  const nowSeconds = now == null ? Math.floor(Date.now() / 1000) : now
 
   // the rule order is important
   // if multiple rules match, the longest match wins
   // if multiple rules match the same string, the first match wins
-  const rules = [
+  const rules: FormatRule[] = [
     formats.yesterday,
     formats.now,
     formats.noon,
@@ -1405,15 +1442,13 @@ export function strtotime(str, now) {
     formats.whitespace,
   ]
 
-  const result = Object.create(resultProto)
+  const result = Object.create(resultProto) as ParseResult
 
   while (str.length) {
     let longestMatch = null
     let finalRule = null
 
-    for (let i = 0, l = rules.length; i < l; i++) {
-      const format = rules[i]
-
+    for (const format of rules) {
       const match = str.match(format.regex)
 
       if (match) {
@@ -1424,7 +1459,11 @@ export function strtotime(str, now) {
       }
     }
 
-    if (!finalRule || (finalRule.callback && finalRule.callback.apply(result, longestMatch) === false)) {
+    if (!finalRule || !longestMatch) {
+      return false
+    }
+
+    if (finalRule.callback && finalRule.callback.apply(result, longestMatch) === false) {
       return false
     }
 
@@ -1433,5 +1472,5 @@ export function strtotime(str, now) {
     longestMatch = null
   }
 
-  return Math.floor(result.toDate(new Date(now * 1000)) / 1000)
+  return Math.floor(result.toDate(new Date(nowSeconds * 1000)).getTime() / 1000)
 }
