@@ -1,9 +1,7 @@
 const visitedObjects = new Map<object, true>() // Initialize a map to track visited objects
 
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
-
-type PhpValue = {} | null | undefined
 
 type DumpableObject = {
   constructor?: { toString: () => string }

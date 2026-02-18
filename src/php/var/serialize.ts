@@ -1,6 +1,5 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 
-type PhpValue = {} | null | undefined
 type UnknownMap = PhpAssoc<PhpValue>
 type LocutusType = 'function' | 'boolean' | 'number' | 'string' | 'array' | 'object' | 'undefined' | 'null'
 

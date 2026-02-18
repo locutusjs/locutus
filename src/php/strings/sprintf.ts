@@ -1,4 +1,4 @@
-type PhpValue = {} | null | undefined
+import type { PhpValue } from '../_helpers/_phpTypes.ts'
 
 export function sprintf(format: string, ...args: PhpValue[]): string | false {
   //      discuss at: https://locutus.io/php/sprintf/

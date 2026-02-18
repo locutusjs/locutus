@@ -1,7 +1,5 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 import { is_float as isFloat } from '../var/is_float.ts'
-
-type PhpValue = {} | null | undefined
 
 export function gettype(mixedVar: PhpValue): string {
   //  discuss at: https://locutus.io/php/gettype/

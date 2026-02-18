@@ -1,6 +1,6 @@
 import { _bc as bc } from '../_helpers/_bc.ts'
+import type { PhpValue } from '../_helpers/_phpTypes.ts'
 
-type PhpValue = {} | null | undefined
 type BcNum = PhpValue
 
 export function bccomp(leftOperand: string | number, rightOperand: string | number, scale?: number): number {

@@ -1,6 +1,5 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 
-type PhpValue = {} | null | undefined
 type KeyedValues = PhpAssoc<PhpValue>
 
 export function implode(...args: Array<PhpValue[] | KeyedValues | string | undefined>): string {

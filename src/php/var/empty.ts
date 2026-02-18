@@ -1,6 +1,5 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 
-type PhpValue = {} | null | undefined
 type KeyedUnknown = PhpAssoc<PhpValue>
 
 export function empty(mixedVar: PhpValue): boolean {

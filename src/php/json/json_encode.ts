@@ -1,6 +1,5 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 
-type PhpValue = {} | null | undefined
 type JsonPrimitive = string | number | boolean | null
 type JsonObject = { [key: string]: JsonValue }
 type JsonValue = JsonPrimitive | JsonValue[] | JsonObject

@@ -1,6 +1,4 @@
-import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
-
-type PhpValue = {} | null | undefined
+import { type PhpAssoc, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 export function is_callable(mixedVar: PhpValue, syntaxOnly?: boolean, callableName?: string): boolean | false {
   //  discuss at: https://locutus.io/php/is_callable/

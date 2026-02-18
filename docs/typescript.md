@@ -195,3 +195,22 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Systematic alias removal works best as scoped directory passes (`array/**`, then next family), with ratchets tightened immediately after each pass.
   - Shared lattice imports (`PhpValue` from `_phpTypes.ts`) improve consistency and make follow-up narrowing safer.
+
+## Iteration 4
+
+- Plans
+  - Remove all remaining local `type PhpValue = {} | null | undefined` aliases in non-array directories.
+  - Migrate each file to shared `PhpValue` from `_phpTypes.ts`.
+  - Ratchet debt policy to disallow any local aliases.
+- Progress
+  - Removed final local aliases from:
+    - `src/php/var/{empty,var_export,var_dump,serialize,gettype,is_callable}.ts`
+    - `src/php/strings/{implode,strtr,sprintf}.ts`
+    - `src/php/json/json_encode.ts`
+    - `src/php/bc/bccomp.ts`
+  - Reduced repository-wide local alias count (excluding `_phpTypes.ts`) from `11 -> 0`.
+  - Lowered debt-policy ratchet in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_LOCAL_PHPVALUE_ALIAS`: `11 -> 0`
+- Key learnings
+  - Once shared base types are in place, repo-wide alias burn-down becomes mostly mechanical and low-risk.
+  - Keeping ratchets at the newly achieved floor prevents easy regression from opportunistic local aliases.

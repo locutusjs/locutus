@@ -1,9 +1,8 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 import { krsort } from '../array/krsort.ts'
 import type { IniValue } from '../info/ini_set.ts'
 import { ini_set as iniSet } from '../info/ini_set.ts'
 
-type PhpValue = {} | null | undefined
 type ReplacementMap = PhpAssoc<PhpValue>
 
 export function strtr(str: string, trFrom: string | ReplacementMap | string[], trTo?: string | PhpValue[]): string {
