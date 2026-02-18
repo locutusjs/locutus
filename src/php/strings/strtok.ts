@@ -9,17 +9,22 @@ export function strtok(str: string, tokens?: string): string | false {
   //   example 1: var $result = $b
   //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
 
-  const globalContext = globalThis as typeof globalThis & {
-    $locutus?: { php?: { strtokleftOver?: string } }
+  let locutus = Reflect.get(globalThis, '$locutus')
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    Reflect.set(globalThis, '$locutus', locutus)
   }
-  globalContext.$locutus = globalContext.$locutus ?? {}
-  const locutus = globalContext.$locutus
-  locutus.php = locutus.php ?? {}
-  const php = locutus.php
+
+  let php = Reflect.get(locutus, 'php')
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    Reflect.set(locutus, 'php', php)
+  }
 
   if (typeof tokens === 'undefined') {
     tokens = str
-    str = php.strtokleftOver ?? ''
+    const leftOver = Reflect.get(php, 'strtokleftOver')
+    str = typeof leftOver === 'string' ? leftOver : ''
   }
   if (str.length === 0) {
     return false
@@ -33,7 +38,7 @@ export function strtok(str: string, tokens?: string): string | false {
       break
     }
   }
-  php.strtokleftOver = str.substring(i + 1)
+  Reflect.set(php, 'strtokleftOver', str.substring(i + 1))
 
   return str.substring(0, i)
 }

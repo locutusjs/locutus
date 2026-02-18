@@ -422,3 +422,23 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Cast-removal momentum remains high when we separate mode-specific return paths instead of relying on mixed intermediate objects.
   - Adding new directory-level ratchets as soon as a first reduction lands keeps strictness gains from slipping back.
+
+## Iteration 16
+
+- Plans
+  - Keep reducing `strings/**` cast debt by removing remaining global-context boundary casts where runtime guards are sufficient.
+  - Tighten the new strings ratchet immediately after each successful drop.
+- Progress
+  - Refactored `src/php/strings/strcoll.ts` to replace global-context cast access with `Reflect.get` guarded lookups.
+  - Refactored `src/php/strings/strtok.ts` to use guarded global bag init (`Reflect.get`/`Reflect.set`) instead of typed global casts.
+  - Refactored `src/php/strings/localeconv.ts` to read locale groups via guarded reflective access without global/context assertions.
+  - Lowered strings debt ratchet in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_STRINGS_AS_EXPRESSION`: `8 -> 5`
+  - Reduced `src/php/strings/**` `as`-expression count:
+    - `8 -> 5`
+  - Validation passed:
+    - `corepack yarn check`
+    - `corepack yarn lint:ts:debt:policy`
+- Key learnings
+  - Reflective guarded access can remove global-context casting pressure while preserving runtime behavior in legacy ported functions.
+  - Short, targeted passes continue to produce meaningful debt reductions even after introducing a new directory ratchet.

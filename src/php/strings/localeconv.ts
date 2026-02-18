@@ -3,11 +3,6 @@ import { setlocale } from '../strings/setlocale.ts'
 
 type LocaleValues = PhpAssoc<PhpMixed>
 
-type LocaleConvPhpContext = {
-  locales?: Record<string, { LC_NUMERIC?: LocaleValues; LC_MONETARY?: LocaleValues }>
-  localeCategories?: { LC_NUMERIC: string; LC_MONETARY: string }
-}
-
 export function localeconv(): LocaleValues {
   //  discuss at: https://locutus.io/php/localeconv/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -19,21 +14,60 @@ export function localeconv(): LocaleValues {
   // ensure setup of localization variables takes place, if not already
   setlocale('LC_ALL', 0)
 
-  const globalContext = globalThis as typeof globalThis & { $locutus?: { php?: LocaleConvPhpContext } }
-  globalContext.$locutus = globalContext.$locutus ?? {}
-  const locutus = globalContext.$locutus
-  locutus.php = locutus.php ?? {}
-  const php = locutus.php
-  if (!php.locales || !php.localeCategories) {
+  const getLocaleGroup = (
+    php: object,
+    categoryKey: 'LC_NUMERIC' | 'LC_MONETARY',
+    groupKey: 'LC_NUMERIC' | 'LC_MONETARY',
+  ): LocaleValues => {
+    const locales = Reflect.get(php, 'locales')
+    const localeCategories = Reflect.get(php, 'localeCategories')
+    if (
+      typeof locales !== 'object' ||
+      locales === null ||
+      typeof localeCategories !== 'object' ||
+      localeCategories === null
+    ) {
+      return {}
+    }
+
+    const localeName = Reflect.get(localeCategories, categoryKey)
+    if (typeof localeName !== 'string') {
+      return {}
+    }
+
+    const localeEntry = Reflect.get(locales, localeName)
+    if (typeof localeEntry !== 'object' || localeEntry === null) {
+      return {}
+    }
+
+    const localeGroup = Reflect.get(localeEntry, groupKey)
+    if (typeof localeGroup !== 'object' || localeGroup === null) {
+      return {}
+    }
+
+    const values: LocaleValues = {}
+    for (const key in localeGroup) {
+      values[key] = Reflect.get(localeGroup, key)
+    }
+    return values
+  }
+
+  const locutus = Reflect.get(globalThis, '$locutus')
+  if (typeof locutus !== 'object' || locutus === null) {
+    return arr
+  }
+
+  const php = Reflect.get(locutus, 'php')
+  if (typeof php !== 'object' || php === null) {
     return arr
   }
 
   // Make copies
-  const numeric = php.locales[php.localeCategories.LC_NUMERIC]?.LC_NUMERIC ?? {}
+  const numeric = getLocaleGroup(php, 'LC_NUMERIC', 'LC_NUMERIC')
   for (const prop in numeric) {
     arr[prop] = numeric[prop]
   }
-  const monetary = php.locales[php.localeCategories.LC_MONETARY]?.LC_MONETARY ?? {}
+  const monetary = getLocaleGroup(php, 'LC_MONETARY', 'LC_MONETARY')
   for (const prop in monetary) {
     arr[prop] = monetary[prop]
   }
