@@ -1,6 +1,8 @@
 interface CountObj {
-  value: number
+  value?: number
 }
+
+const asArray = (value: string | string[]): string[] => (Array.isArray(value) ? [...value] : [value])
 
 export function str_replace(
   search: string | string[],
@@ -47,21 +49,19 @@ export function str_replace(
   let repl = ''
   let sl = 0
   let fl = 0
-  const f = ([] as string[]).concat(search as string[])
-  let r = ([] as string[]).concat(replace as string[])
-  const s = ([] as string[]).concat(subject as string[])
-  let ra = Array.isArray(r)
+  const f = asArray(search)
+  let r = asArray(replace)
+  const s = asArray(subject)
   const sa = Array.isArray(subject)
 
-  if (typeof search === 'object' && typeof replace === 'string') {
+  if (Array.isArray(search) && typeof replace === 'string') {
     temp = replace
     const replaceArr: string[] = []
     for (i = 0; i < search.length; i += 1) {
       replaceArr[i] = temp
     }
     temp = ''
-    r = ([] as string[]).concat(replaceArr)
-    ra = Array.isArray(r)
+    r = [...replaceArr]
   }
 
   if (typeof countObj !== 'undefined') {
@@ -78,15 +78,11 @@ export function str_replace(
         continue
       }
       temp = (s[i] ?? '') + ''
-      if (ra) {
-        const replacement = r[j]
-        repl = replacement ?? ''
-      } else {
-        repl = r[0] ?? ''
-      }
+      const replacement = r[j]
+      repl = replacement ?? ''
       s[i] = temp.split(findValue).join(repl)
       if (typeof countObj !== 'undefined') {
-        countObj.value += temp.split(findValue).length - 1
+        countObj.value = (countObj.value ?? 0) + temp.split(findValue).length - 1
       }
     }
   }

@@ -1,29 +1,35 @@
 type PhpArray = { [key: string]: unknown }
 type CompareCallback = (left: unknown, right: unknown) => number
 
-const toPhpArray = (value: unknown): PhpArray =>
-  typeof value === 'object' && value !== null ? (value as PhpArray) : {}
+const isPhpArray = (value: unknown): value is PhpArray => typeof value === 'object' && value !== null
+const isCallback = (value: unknown): value is (...args: unknown[]) => unknown => typeof value === 'function'
+
+const toPhpArray = (value: unknown): PhpArray => (isPhpArray(value) ? value : {})
+
+const asCompareCallback = (callback: (...args: unknown[]) => unknown): CompareCallback => {
+  return (left, right) => Number(callback(left, right))
+}
 
 const resolveCompareCallback = (callback: unknown): CompareCallback => {
   const globalContext = globalThis as typeof globalThis & { [key: string]: unknown }
 
-  if (typeof callback === 'function') {
-    return callback as CompareCallback
+  if (isCallback(callback)) {
+    return asCompareCallback(callback)
   }
 
   if (typeof callback === 'string') {
     const candidate = globalContext[callback]
-    if (typeof candidate === 'function') {
-      return candidate as CompareCallback
+    if (isCallback(candidate)) {
+      return asCompareCallback(candidate)
     }
   }
 
   if (Array.isArray(callback) && callback.length >= 2) {
     const target = typeof callback[0] === 'string' ? globalContext[callback[0]] : callback[0]
     if (target && (typeof target === 'object' || typeof target === 'function') && typeof callback[1] === 'string') {
-      const candidate = (target as { [key: string]: unknown })[callback[1]]
-      if (typeof candidate === 'function') {
-        return candidate as CompareCallback
+      const candidate = Reflect.get(target, callback[1])
+      if (isCallback(candidate)) {
+        return asCompareCallback(candidate)
       }
     }
   }

@@ -1,4 +1,5 @@
 type CountObj = { value?: number }
+const asArray = (value: string | string[]): string[] => (Array.isArray(value) ? [...value] : [value])
 
 export function str_ireplace(
   search: string | string[],
@@ -26,10 +27,10 @@ export function str_ireplace(
   const loweredSearch = Array.isArray(search) ? search.map((item) => item.toLowerCase()) : search.toLowerCase()
   const loweredSubject = Array.isArray(subject) ? subject.map((item) => item.toLowerCase()) : subject.toLowerCase()
   const osa = Array.isArray(subject)
-  const f = ([] as string[]).concat(loweredSearch)
-  const s = ([] as string[]).concat(loweredSubject)
-  const os = ([] as string[]).concat(subject)
-  let r = ([] as string[]).concat(replace)
+  const f = asArray(loweredSearch)
+  const s = asArray(loweredSubject)
+  const os = asArray(subject)
+  let r = asArray(replace)
 
   if (Array.isArray(loweredSearch) && typeof replace === 'string') {
     r = loweredSearch.map(() => replace)
