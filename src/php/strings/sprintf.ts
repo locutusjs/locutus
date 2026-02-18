@@ -1,4 +1,3 @@
-// @ts-nocheck
 export function sprintf(format: string, ...args: unknown[]): string | false {
   //      discuss at: https://locutus.io/php/sprintf/
   // parity verified: PHP 8.3
@@ -33,10 +32,10 @@ export function sprintf(format: string, ...args: unknown[]): string | false {
   //       returns 9: '% 2'
 
   const regex = /%%|%(?:(\d+)\$)?((?:[-+#0 ]|'[\s\S])*)(\d+)?(?:\.(\d*))?([\s\S])/g
-  const callArgs = [format, ...args]
+  const callArgs: unknown[] = [format, ...args]
   let i = 1
 
-  const _pad = function (str: string, len: number, chr: string, leftJustify: boolean) {
+  const _pad = function (str: string, len: number, chr: string, leftJustify: boolean): string {
     if (!chr) {
       chr = ' '
     }
@@ -44,7 +43,13 @@ export function sprintf(format: string, ...args: unknown[]): string | false {
     return leftJustify ? str + padding : padding + str
   }
 
-  const justify = function (value: string, prefix: string, leftJustify: boolean, minWidth: number, padChar: string) {
+  const justify = function (
+    value: string,
+    prefix: string,
+    leftJustify: boolean,
+    minWidth: number,
+    padChar: string,
+  ): string {
     const diff = minWidth - value.length
     if (diff > 0) {
       // when padding with zeros
@@ -66,11 +71,11 @@ export function sprintf(format: string, ...args: unknown[]): string | false {
     minWidth: number,
     precision: number | undefined,
     padChar: string,
-  ) {
+  ): string {
     // Note: casts negative numbers to positive ones
-    const number = value >>> 0
-    value = _pad(number.toString(base), precision || 0, '0', false)
-    return justify(value, '', leftJustify, minWidth, padChar)
+    const number = Number(value) >>> 0
+    const padded = _pad(number.toString(base), precision || 0, '0', false)
+    return justify(padded, '', leftJustify, minWidth, padChar)
   }
 
   // _formatString()
@@ -92,15 +97,13 @@ export function sprintf(format: string, ...args: unknown[]): string | false {
     substring: string,
     argIndex: string | undefined,
     modifiers: string,
-    minWidth: string | undefined,
-    precision: string | undefined,
+    minWidthRaw: string | undefined,
+    precisionRaw: string | undefined,
     specifier: string,
-  ) {
-    let number
-    let prefix
-    let method
-    let textTransform
-    let value
+  ): string {
+    let number = 0
+    let prefix = ''
+    let value: unknown
 
     if (substring === '%%') {
       return '%'
@@ -110,8 +113,8 @@ export function sprintf(format: string, ...args: unknown[]): string | false {
     let padChar = ' ' // pad with spaces by default
     let leftJustify = false
     let positiveNumberPrefix = ''
-    let j
-    let l
+    let j = 0
+    let l = 0
 
     for (j = 0, l = modifiers.length; j < l; j++) {
       switch (modifiers.charAt(j)) {
@@ -134,20 +137,22 @@ export function sprintf(format: string, ...args: unknown[]): string | false {
       }
     }
 
-    if (!minWidth) {
-      minWidth = 0
+    let minWidthNum = 0
+    if (!minWidthRaw) {
+      minWidthNum = 0
     } else {
-      minWidth = +minWidth
+      minWidthNum = +minWidthRaw
     }
 
-    if (!isFinite(minWidth)) {
+    if (!isFinite(minWidthNum)) {
       throw new Error('Width must be finite')
     }
 
-    if (!precision) {
-      precision = specifier === 'd' ? 0 : 'fFeE'.indexOf(specifier) > -1 ? 6 : undefined
+    let precisionNum: number | undefined
+    if (!precisionRaw) {
+      precisionNum = specifier === 'd' ? 0 : 'fFeE'.indexOf(specifier) > -1 ? 6 : undefined
     } else {
-      precision = +precision
+      precisionNum = +precisionRaw
     }
 
     if (argIndex && +argIndex === 0) {
@@ -164,44 +169,53 @@ export function sprintf(format: string, ...args: unknown[]): string | false {
       case '%':
         return '%'
       case 's':
-        return _formatString(value + '', leftJustify, minWidth, precision, padChar)
+        return _formatString(String(value), leftJustify, minWidthNum, precisionNum, padChar)
       case 'c':
-        return _formatString(String.fromCharCode(+value), leftJustify, minWidth, precision, padChar)
+        return _formatString(String.fromCharCode(+String(value)), leftJustify, minWidthNum, precisionNum, padChar)
       case 'b':
-        return _formatBaseX(value, 2, leftJustify, minWidth, precision, padChar)
+        return _formatBaseX(value, 2, leftJustify, minWidthNum, precisionNum, padChar)
       case 'o':
-        return _formatBaseX(value, 8, leftJustify, minWidth, precision, padChar)
+        return _formatBaseX(value, 8, leftJustify, minWidthNum, precisionNum, padChar)
       case 'x':
-        return _formatBaseX(value, 16, leftJustify, minWidth, precision, padChar)
+        return _formatBaseX(value, 16, leftJustify, minWidthNum, precisionNum, padChar)
       case 'X':
-        return _formatBaseX(value, 16, leftJustify, minWidth, precision, padChar).toUpperCase()
+        return _formatBaseX(value, 16, leftJustify, minWidthNum, precisionNum, padChar).toUpperCase()
       case 'u':
-        return _formatBaseX(value, 10, leftJustify, minWidth, precision, padChar)
+        return _formatBaseX(value, 10, leftJustify, minWidthNum, precisionNum, padChar)
       case 'i':
       case 'd':
-        number = +value || 0
+        number = +String(value) || 0
         // Plain Math.round doesn't just truncate
         number = Math.round(number - (number % 1))
         prefix = number < 0 ? '-' : positiveNumberPrefix
-        value = prefix + _pad(String(Math.abs(number)), precision, '0', false)
+        value = prefix + _pad(String(Math.abs(number)), precisionNum ?? 0, '0', false)
 
         if (leftJustify && padChar === '0') {
           // can't right-pad 0s on integers
           padChar = ' '
         }
-        return justify(value, prefix, leftJustify, minWidth, padChar)
+        return justify(String(value), prefix, leftJustify, minWidthNum, padChar)
       case 'e':
       case 'E':
       case 'f': // @todo: Should handle locales (as per setlocale)
       case 'F':
       case 'g':
-      case 'G':
-        number = +value
+      case 'G': {
+        number = +String(value)
         prefix = number < 0 ? '-' : positiveNumberPrefix
-        method = ['toExponential', 'toFixed', 'toPrecision']['efg'.indexOf(specifier.toLowerCase())]
-        textTransform = ['toString', 'toUpperCase']['eEfFgG'.indexOf(specifier) % 2]
-        value = prefix + Math.abs(number)[method](precision)
-        return justify(value, prefix, leftJustify, minWidth, padChar)[textTransform]()
+        const methodIndex = 'efg'.indexOf(specifier.toLowerCase())
+        const absNumber = Math.abs(number)
+        let floatResult = ''
+        if (methodIndex === 0) {
+          floatResult = absNumber.toExponential(precisionNum)
+        } else if (methodIndex === 1) {
+          floatResult = absNumber.toFixed(precisionNum)
+        } else {
+          floatResult = absNumber.toPrecision(precisionNum)
+        }
+        const justified = justify(prefix + floatResult, prefix, leftJustify, minWidthNum, padChar)
+        return 'eEfFgG'.indexOf(specifier) % 2 === 0 ? justified : justified.toUpperCase()
+      }
       default:
         // unknown specifier, consume that char and return empty
         return ''
