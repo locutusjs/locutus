@@ -1,4 +1,4 @@
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import { ini_get } from '../info/ini_get.ts'
 
 type ParseUrlQueryMap = Record<string, string>
 type ParseUrlValue = string | ParseUrlQueryMap
@@ -48,12 +48,7 @@ export function parse_url(str: string, component?: string): ParseUrlResult | str
 
   let query: string
 
-  const $loc = (
-    globalThis as {
-      $locutus?: { php?: { ini?: { [key: string]: { local_value?: PhpMixed } | undefined } } }
-    }
-  ).$locutus
-  const mode = String($loc?.php?.ini?.['locutus.parse_url.mode']?.local_value ?? '') || 'php'
+  const mode = ini_get('locutus.parse_url.mode') || 'php'
 
   const key = [
     'source',
@@ -120,7 +115,7 @@ export function parse_url(str: string, component?: string): ParseUrlResult | str
   }
 
   if (mode !== 'php') {
-    const name = String($loc?.php?.ini?.['locutus.parse_url.queryKey']?.local_value ?? '') || 'queryKey'
+    const name = ini_get('locutus.parse_url.queryKey') || 'queryKey'
     const queryParser = /(?:^|&)([^&=]*)=?([^&]*)/g
     const queryObj: ParseUrlQueryMap = {}
     uri[name] = queryObj

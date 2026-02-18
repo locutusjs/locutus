@@ -1,4 +1,5 @@
 import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import { ini_get } from './ini_get.ts'
 
 export function assert_options(what: string, _value?: PhpMixed): string | number | null {
   //  discuss at: https://locutus.io/php/assert_options/
@@ -37,12 +38,6 @@ export function assert_options(what: string, _value?: PhpMixed): string | number
   }
 
   // I presume this is to be the most recent value, instead of the default value
-  const $loc = (
-    globalThis as {
-      $locutus?: { php?: { ini?: { [key: string]: { local_value?: PhpMixed } | undefined } } }
-    }
-  ).$locutus
-  const iniVal = String($loc?.php?.ini?.[iniKey]?.local_value ?? '') || defaultVal
-
-  return iniVal
+  const iniVal = ini_get(iniKey)
+  return iniVal === '' ? defaultVal : iniVal
 }

@@ -1,4 +1,4 @@
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import { ini_get } from '../info/ini_get.ts'
 
 export function strlen(string: string): number {
   //  discuss at: https://locutus.io/php/strlen/
@@ -19,12 +19,7 @@ export function strlen(string: string): number {
 
   const str = string + ''
 
-  const $loc = (
-    globalThis as {
-      $locutus?: { php?: { ini?: { [key: string]: { local_value?: PhpMixed } | undefined } } }
-    }
-  ).$locutus
-  const iniVal = String($loc?.php?.ini?.['unicode.semantics']?.local_value ?? '') || 'off'
+  const iniVal = ini_get('unicode.semantics') || 'off'
   if (iniVal === 'off') {
     return str.length
   }

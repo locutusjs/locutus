@@ -1,4 +1,5 @@
 import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import { ini_get } from '../info/ini_get.ts'
 
 type PhpValue = {} | null | undefined
 type KeyedUnknown = PhpAssoc<PhpValue>
@@ -86,12 +87,7 @@ export function is_array(mixedVar: PhpValue): boolean {
     return true
   }
 
-  const $loc = (
-    globalThis as {
-      $locutus?: { php?: { ini?: { [key: string]: { local_value?: PhpValue } | undefined } } }
-    }
-  ).$locutus
-  const iniVal = String($loc?.php?.ini?.['locutus.objectsAsArrays']?.local_value ?? '') || 'on'
+  const iniVal = ini_get('locutus.objectsAsArrays') || 'on'
   if (iniVal === 'on') {
     const asString = Object.prototype.toString.call(mixedVar)
     const asFunc = _getFuncName((mixedVar as KeyedUnknown).constructor)

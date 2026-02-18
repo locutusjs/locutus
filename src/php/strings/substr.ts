@@ -1,5 +1,5 @@
 import { _phpCastString as _php_cast_string } from '../_helpers/_phpCastString.ts'
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import { ini_get } from '../info/ini_get.ts'
 
 export function substr(input: string | number, start: number, len?: number): string | false {
   //  discuss at: https://locutus.io/php/substr/
@@ -32,12 +32,7 @@ export function substr(input: string | number, start: number, len?: number): str
 
   const str = _php_cast_string(input)
 
-  const $loc = (
-    globalThis as {
-      $locutus?: { php?: { ini?: { [key: string]: { local_value?: PhpMixed } | undefined } } }
-    }
-  ).$locutus
-  const multibyte = String($loc?.php?.ini?.['unicode.semantics']?.local_value ?? '') === 'on'
+  const multibyte = ini_get('unicode.semantics') === 'on'
 
   const chars = multibyte ? str.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[\s\S]/g) || [] : null
 

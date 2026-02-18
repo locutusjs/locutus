@@ -95,11 +95,12 @@ Keep the comment block inside the function body. These comments are parsed by th
 
 ### ini values
 
-Functions should not import `ini_get`. Read ini values inline:
+Prefer `ini_get`/`ini_set` in source functions for consistency and typed runtime access.
+Direct global ini reads should only be used when there is a measured performance reason.
 
 ```typescript
-const $loc = (globalThis as any).$locutus
-const iniVal = String($loc?.php?.ini?.['some.key']?.local_value ?? '') || 'defaultValue'
+import { ini_get } from '../info/ini_get.ts'
+const iniVal = ini_get('some.key') || 'defaultValue'
 ```
 
 ### Verification
@@ -126,3 +127,19 @@ To fix a `@ts-nocheck` file:
 4. Replace `any` parameter types with specific types where possible
 5. Type `= {}` declarations as `Record<string, any>` for dynamic indexing
 6. Run `npm run check` to verify
+
+## Iteration 1
+
+- Plans
+  - Prefer `ini_get` usage at function callsites now that standalone dependency inlining is available.
+  - Remove duplicated direct `$locutus.php.ini` global access from source functions.
+  - Keep return/runtime behavior unchanged while narrowing local logic.
+- Progress
+  - Opened iteration and identified direct ini-read callsites in `src/php/**`.
+  - Refactored `assert_options`, `is_array`, `parse_url`, `substr`, and `strlen` to use `ini_get`.
+  - Removed duplicated `globalThis.$locutus.php.ini` access logic from these implementations.
+  - Validated no remaining direct ini-global access patterns in `src/php/**` (`rg` check).
+  - Ran checks: `corepack yarn lint:ts`, `corepack yarn test:util`, and targeted generated tests for all touched functions.
+- Key learnings
+  - Standalone mode de-risks helper dependencies, so code clarity can be prioritized over manual inlining.
+  - Centralizing ini reads through `ini_get` makes behavior easier to reason about while preserving runtime parity.
