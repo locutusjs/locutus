@@ -43,6 +43,8 @@ import { getenv } from '../../src/php/info/getenv.ts'
 import type { IniValue } from '../../src/php/info/ini_set.ts'
 import { ini_set } from '../../src/php/info/ini_set.ts'
 import { json_decode } from '../../src/php/json/json_decode.ts'
+import { max } from '../../src/php/math/max.ts'
+import { min } from '../../src/php/math/min.ts'
 import { echo } from '../../src/php/strings/echo.ts'
 import { printf } from '../../src/php/strings/printf.ts'
 import { sprintf } from '../../src/php/strings/sprintf.ts'
@@ -145,6 +147,8 @@ const arrayMergeTyped: number[] | { [key: string]: number } = array_merge([1, 2]
 const arrayUniqueTyped: { [key: string]: string } | false = array_unique(['a', 'a', 'b'])
 const jsonDecodeTyped: { foo: number } | null = json_decode<{ foo: number }>('{\"foo\":1}')
 const getenvTyped: string | false = getenv('LC_ALL')
+const maxTyped = max(1, 3, 2)
+const minTyped = min([2, 4, 1])
 const vprintfTyped: number = vprintf('%01.2f', [123.1])
 const issetTyped: boolean = isset('value', 1)
 echo('hello', 'world')
@@ -214,6 +218,8 @@ describe('public type signatures', () => {
     expect(arrayUniqueTyped).toEqual({ 0: 'a', 2: 'b' })
     expect(jsonDecodeTyped).toEqual({ foo: 1 })
     expect(getenvTyped).toBe(false)
+    expect(maxTyped).toBe(3)
+    expect(minTyped).toBe(1)
     expect(vprintfTyped).toBe(6)
     expect(issetTyped).toBe(true)
   })

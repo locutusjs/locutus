@@ -1,6 +1,6 @@
-import { isObjectLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { isObjectLike, type PhpAssoc, type PhpMixed, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-export function array_count_values(array: unknown): PhpAssoc<number> {
+export function array_count_values(array: PhpMixed): PhpAssoc<number> {
   //      discuss at: https://locutus.io/php/array_count_values/
   // parity verified: PHP 8.3
   //     original by: Ates Goral (https://magnetiq.com)
@@ -18,7 +18,7 @@ export function array_count_values(array: unknown): PhpAssoc<number> {
 
   const tmpArr: PhpAssoc<number> = {}
 
-  const _countValue = function (target: PhpAssoc<number>, value: unknown): void {
+  const _countValue = function (target: PhpAssoc<number>, value: PhpMixed): void {
     let normalized = ''
     if (typeof value === 'number') {
       if (Math.floor(value) !== value) {

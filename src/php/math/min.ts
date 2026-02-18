@@ -2,7 +2,7 @@ type PhpMinMaxScalar = string | number | boolean | null
 type PhpMinMaxObject = { [key: string]: PhpMinMaxValue }
 type PhpMinMaxValue = PhpMinMaxScalar | PhpMinMaxValue[] | PhpMinMaxObject
 
-const isCollection = (value: unknown): value is PhpMinMaxValue[] | PhpMinMaxObject =>
+const isCollection = (value: PhpMinMaxValue): value is PhpMinMaxValue[] | PhpMinMaxObject =>
   typeof value === 'object' && value !== null
 
 const objectToArray = (value: PhpMinMaxValue[] | PhpMinMaxObject): PhpMinMaxValue[] => {
@@ -13,7 +13,10 @@ const objectToArray = (value: PhpMinMaxValue[] | PhpMinMaxObject): PhpMinMaxValu
   const converted: PhpMinMaxValue[] = []
   for (const key in value) {
     if (Object.prototype.hasOwnProperty.call(value, key)) {
-      converted.push(value[key] as PhpMinMaxValue)
+      const item = value[key]
+      if (typeof item !== 'undefined') {
+        converted.push(item)
+      }
     }
   }
 
@@ -79,7 +82,11 @@ const compareValues = (current: PhpMinMaxValue, next: PhpMinMaxValue): number =>
   return nextNum > currentNum ? 1 : -1
 }
 
-export function min(...args: unknown[]): PhpMinMaxValue {
+export function min(value: PhpMinMaxValue[] | PhpMinMaxObject): PhpMinMaxValue
+export function min(...values: [PhpMinMaxValue, PhpMinMaxValue, ...PhpMinMaxValue[]]): PhpMinMaxValue
+export function min(
+  ...args: [PhpMinMaxValue[] | PhpMinMaxObject] | [PhpMinMaxValue, ...PhpMinMaxValue[]]
+): PhpMinMaxValue {
   //  discuss at: https://locutus.io/php/min/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //  revised by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -106,7 +113,6 @@ export function min(...args: unknown[]): PhpMinMaxValue {
 
   if (args.length === 1) {
     const only = args[0]
-
     if (!isCollection(only)) {
       throw new Error('Wrong parameter count for min()')
     }
@@ -117,13 +123,20 @@ export function min(...args: unknown[]): PhpMinMaxValue {
       throw new Error('Array must contain at least one element for min()')
     }
   } else {
-    values = args as PhpMinMaxValue[]
+    values = args
   }
 
-  let result = values[0] as PhpMinMaxValue
+  const first = values[0]
+  if (typeof first === 'undefined') {
+    throw new Error('Array must contain at least one element for min()')
+  }
+  let result = first
 
   for (let index = 1; index < values.length; index += 1) {
-    const candidate = values[index] as PhpMinMaxValue
+    const candidate = values[index]
+    if (typeof candidate === 'undefined') {
+      continue
+    }
     if (compareValues(result, candidate) === -1) {
       result = candidate
     }
