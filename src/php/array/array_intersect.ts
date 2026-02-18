@@ -1,9 +1,11 @@
 import { type PhpArrayLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-export function array_intersect(
-  arr1: PhpArrayLike<unknown>,
-  ...arrays: Array<PhpArrayLike<unknown>>
-): PhpAssoc<unknown> {
+type PhpValue = {} | null | undefined
+
+export function array_intersect<TValue = PhpValue>(
+  arr1: PhpArrayLike<TValue>,
+  ...arrays: Array<PhpArrayLike<TValue>>
+): PhpAssoc<TValue> {
   //  discuss at: https://locutus.io/php/array_intersect/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: These only output associative arrays (would need to be
@@ -14,16 +16,15 @@ export function array_intersect(
   //   example 1: var $result = array_intersect($array1, $array2, $array3)
   //   returns 1: {0: 'red', a: 'green'}
 
-  const retArr: PhpAssoc<unknown> = {}
+  const retArr: PhpAssoc<TValue> = {}
   if (arrays.length < 1) {
     return retArr
   }
 
-  const arr1Object = toPhpArrayObject(arr1)
-  arr1keys: for (const k1 in arr1Object) {
-    const arr1Value = arr1Object[k1]
+  const arr1Object = toPhpArrayObject<TValue>(arr1)
+  arr1keys: for (const [k1, arr1Value] of Object.entries(arr1Object) as Array<[string, TValue]>) {
     for (const nextArray of arrays) {
-      const arr = toPhpArrayObject(nextArray)
+      const arr = toPhpArrayObject<TValue>(nextArray)
       let found = false
       for (const k in arr) {
         if (arr[k] === arr1Value) {

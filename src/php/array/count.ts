@@ -1,7 +1,8 @@
 import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 
-type CountableObject = PhpAssoc<unknown>
-type Countable = unknown[] | CountableObject
+type PhpValue = {} | null | undefined
+type CountableObject = PhpAssoc<PhpValue>
+type Countable = PhpValue[] | CountableObject
 
 export function count(mixedVar: Countable | null | undefined, mode: string | number = 0): number {
   //  discuss at: https://locutus.io/php/count/
@@ -24,8 +25,8 @@ export function count(mixedVar: Countable | null | undefined, mode: string | num
   if (typeof mixedVar !== 'object') {
     return 1
   }
-  const ctor = (mixedVar as { constructor?: unknown }).constructor
-  if (ctor !== Array && ctor !== Object) {
+  const prototype = Object.getPrototypeOf(mixedVar)
+  if (prototype !== Array.prototype && prototype !== Object.prototype) {
     return 1
   }
 
@@ -39,8 +40,8 @@ export function count(mixedVar: Countable | null | undefined, mode: string | num
       if (!recursiveMode || !value || typeof value !== 'object') {
         continue
       }
-      const valueCtor = (value as { constructor?: unknown }).constructor
-      if (valueCtor === Array || valueCtor === Object) {
+      const valuePrototype = Object.getPrototypeOf(value)
+      if (valuePrototype === Array.prototype || valuePrototype === Object.prototype) {
         cnt += count(value as Countable, 1)
       }
     }

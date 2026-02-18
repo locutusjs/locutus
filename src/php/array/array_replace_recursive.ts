@@ -1,16 +1,19 @@
 import { isObjectLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type RecursiveReplaceTarget = unknown[] | PhpAssoc<unknown>
+type PhpValue = {} | null | undefined
+interface RecursiveReplaceObject extends PhpAssoc<RecursiveReplaceValue> {}
+type RecursiveReplaceValue = PhpValue | RecursiveReplaceValue[] | RecursiveReplaceObject
+type RecursiveReplaceTarget = RecursiveReplaceValue[] | RecursiveReplaceObject
 
-const cloneReplaceTarget = (value: unknown): RecursiveReplaceTarget => {
+const cloneReplaceTarget = (value: PhpValue): RecursiveReplaceTarget => {
   if (Array.isArray(value)) {
     return [...value]
   }
 
-  return isObjectLike(value) ? { ...toPhpArrayObject(value) } : {}
+  return isObjectLike(value) ? { ...toPhpArrayObject<RecursiveReplaceValue>(value) } : {}
 }
 
-export function array_replace_recursive(arr: unknown, ...replacements: unknown[]): RecursiveReplaceTarget {
+export function array_replace_recursive(arr: PhpValue, ...replacements: PhpValue[]): RecursiveReplaceTarget {
   //      discuss at: https://locutus.io/php/array_replace_recursive/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
