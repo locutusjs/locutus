@@ -1,4 +1,6 @@
-export function floatval(mixedVar: string): number {
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function floatval(mixedVar: PhpMixed): number {
   //      discuss at: https://locutus.io/php/floatval/
   // parity verified: PHP 8.3
   //     original by: Michael White (https://getsprink.com)
@@ -11,5 +13,5 @@ export function floatval(mixedVar: string): number {
   //       returns 2: 0
   //       returns 2: -50
 
-  return parseFloat(mixedVar) || 0
+  return parseFloat(String(mixedVar ?? '')) || 0
 }

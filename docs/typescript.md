@@ -6,7 +6,7 @@ All source files in `src/` are TypeScript. The migration from JavaScript was com
 
 - 488 function files (`.ts`) with typed function signatures
 - `noImplicitAny: true` — all parameters must have explicit types
-- 191 files still have `// @ts-nocheck` — these need manual type fixes (complex runtime coercions, dynamic indexing, etc.)
+- Some files still have `// @ts-nocheck` — these need manual type fixes (complex runtime coercions, dynamic indexing, etc.)
 - The long-term goal is to remove all `@ts-nocheck` directives
 
 ## Architecture decisions
@@ -50,7 +50,7 @@ php.strings.sprintf(...)
 Source is ESM TypeScript, but the published package ships CJS for backwards compatibility:
 
 - `tsconfig.build.json` compiles to CommonJS with `rewriteRelativeImportExtensions`
-- `scripts/fix-cjs-exports.mjs` post-processes the dist to add `module.exports = exports.funcName` for each function file, so `require('locutus/php/strings/sprintf')` returns the function directly
+- `scripts/fix-cjs-exports.ts` post-processes the dist to add `module.exports = exports.funcName` for each function file, so `require('locutus/php/strings/sprintf')` returns the function directly
 
 ### `@ts-nocheck` files
 
@@ -116,7 +116,7 @@ The biggest area for contribution is removing `@ts-nocheck` from files and fixin
 
 ```bash
 # Find files that need type work
-grep -rl '@ts-nocheck' src/ --include='*.ts' | grep -v _util | grep -v _helpers
+rg -l '@ts-nocheck' src --glob '*.ts' | rg -v '/_util/' | rg -v '/_helpers/'
 ```
 
 To fix a `@ts-nocheck` file:

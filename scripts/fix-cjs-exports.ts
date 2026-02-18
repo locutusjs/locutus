@@ -85,12 +85,12 @@ const walk = (dir: string): void => {
         }
       }
 
-      // Fix index.js files: require('./foo.ts').funcName -> require('./foo')
-      // In dist, .ts files are compiled to .js, so we strip the .ts extension
+      // Fix index.js files: require('./foo.js').funcName -> require('./foo')
+      // In dist, we strip emitted .js/.ts extensions
       // and the .funcName suffix (since the fix above makes module.exports = fn)
       if (entry.name === 'index.js') {
         const before = content
-        content = content.replace(/require\('([^']+)\.ts'\)\.\w+/g, "require('$1')")
+        content = content.replace(/require\((['"])([^'"]+)\.(?:js|ts)\1\)\.\w+/g, "require('$2')")
         if (content !== before) {
           modified = true
         }

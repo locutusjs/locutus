@@ -350,15 +350,49 @@ class Util {
     const basefile = path.basename(fullpath, ext)
     const indexTs = dir + '/index.ts'
 
-    // Use the actual function name from the source (may differ from filename, e.g. Index2.ts exports Index)
-    const funcName = params.func_name
-
     if (!this._reindexBuffer[indexTs]) {
       this._reindexBuffer[indexTs] = []
     }
 
-    const line = `export { ${funcName} } from './${basefile}.ts'`
-    this._reindexBuffer[indexTs].push(line)
+    const scriptKind = params.filepath.endsWith('.ts') ? ts.ScriptKind.TS : ts.ScriptKind.JS
+    const sourceFile = ts.createSourceFile(params.filepath, params.code, ts.ScriptTarget.ES2022, true, scriptKind)
+    const exportNames = new Set<string>()
+
+    ts.forEachChild(sourceFile, (node) => {
+      if (ts.isFunctionDeclaration(node) && node.name) {
+        const modifiers = ts.getModifiers(node)
+        const hasExport = modifiers?.some((m) => m.kind === ts.SyntaxKind.ExportKeyword)
+        if (hasExport) {
+          exportNames.add(node.name.text)
+        }
+        return
+      }
+
+      if (ts.isVariableStatement(node)) {
+        const modifiers = ts.getModifiers(node)
+        const hasExport = modifiers?.some((m) => m.kind === ts.SyntaxKind.ExportKeyword)
+        if (!hasExport) {
+          return
+        }
+
+        for (const declaration of node.declarationList.declarations) {
+          if (ts.isIdentifier(declaration.name)) {
+            exportNames.add(declaration.name.text)
+          }
+        }
+      }
+    })
+
+    if (exportNames.size === 0) {
+      exportNames.add(params.func_name)
+    }
+
+    for (const exportName of exportNames) {
+      const line = `export { ${exportName} } from './${basefile}.ts'`
+      if (!this._reindexBuffer[indexTs]?.includes(line)) {
+        this._reindexBuffer[indexTs]?.push(line)
+      }
+    }
     return Promise.resolve()
   }
 
@@ -768,6 +802,9 @@ class Util {
     const walk = (node: ts.Node): void => {
       // ESM: import foo from '../path/to/func.js'
       if (ts.isImportDeclaration(node) && node.moduleSpecifier && ts.isStringLiteral(node.moduleSpecifier)) {
+        if (node.importClause?.isTypeOnly) {
+          return
+        }
         addDep(node.moduleSpecifier.text)
       }
 

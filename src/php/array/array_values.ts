@@ -8,16 +8,5 @@ export function array_values<T>(input: T[] | PhpAssoc<T>): T[] {
   //       example 1: array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} )
   //       returns 1: [ 'Kevin', 'van Zonneveld' ]
 
-  if (Array.isArray(input)) {
-    return input.slice()
-  }
-
-  const values: T[] = []
-  for (const key in input) {
-    if (Object.prototype.hasOwnProperty.call(input, key)) {
-      values.push(input[key] as T)
-    }
-  }
-
-  return values
+  return Object.values(input)
 }

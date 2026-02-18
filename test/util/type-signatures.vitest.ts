@@ -50,6 +50,7 @@ import { printf } from '../../src/php/strings/printf.ts'
 import { sprintf } from '../../src/php/strings/sprintf.ts'
 import { vprintf } from '../../src/php/strings/vprintf.ts'
 import { boolval } from '../../src/php/var/boolval.ts'
+import { floatval } from '../../src/php/var/floatval.ts'
 import { gettype } from '../../src/php/var/gettype.ts'
 import { is_array } from '../../src/php/var/is_array.ts'
 import { is_callable } from '../../src/php/var/is_callable.ts'
@@ -124,6 +125,7 @@ const iniSetTyped: IniValue | undefined = ini_set('locutus.type-signatures', 'on
 const gettypeTyped: string = gettype(1)
 const isArrayTyped: boolean = is_array({ 0: 'Kevin', 1: 'van' })
 const boolvalTyped: boolean = boolval({ truthy: true })
+const floatvalTyped: number = floatval(186)
 const intCandidate: PhpValue = 23
 const intNarrowed: number | null = is_int(intCandidate) ? intCandidate : null
 const numericCandidate: PhpValue = '186'
@@ -200,6 +202,7 @@ describe('public type signatures', () => {
     expect(gettypeTyped).toBe('integer')
     expect(isArrayTyped).toBe(true)
     expect(boolvalTyped).toBe(true)
+    expect(floatvalTyped).toBe(186)
     expect(intNarrowed).toBe(23)
     expect(numericNarrowed).toBe('186')
     expect(objectNarrowed).toEqual({ foo: 'bar' })
