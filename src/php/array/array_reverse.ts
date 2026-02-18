@@ -12,7 +12,7 @@ type ArrayReverseResult<TInput, TPreserve extends boolean> = TInput extends (inf
 
 export function array_reverse<TInput extends PhpValue[] | PhpAssoc<PhpValue>, TPreserve extends boolean = false>(
   array: TInput,
-  preserveKeys = false as TPreserve,
+  preserveKeys?: TPreserve,
 ): ArrayReverseResult<TInput, TPreserve> {
   //  discuss at: https://locutus.io/php/array_reverse/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -20,32 +20,37 @@ export function array_reverse<TInput extends PhpValue[] | PhpAssoc<PhpValue>, TP
   //   example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
   //   returns 1: { 2: ['green', 'red'], 1: '4.0', 0: 'php'}
 
-  if (Array.isArray(array) && !preserveKeys) {
-    return array.slice(0).reverse() as ArrayReverseResult<TInput, TPreserve>
-  }
+  const preserve = preserveKeys === true
+  let result: PhpValue[] | PhpAssoc<PhpValue>
 
-  const source = toPhpArrayObject(array)
+  if (Array.isArray(array) && !preserve) {
+    result = array.slice(0).reverse()
+  } else {
+    const source = toPhpArrayObject(array)
 
-  if (preserveKeys) {
-    const keys = Object.keys(source)
-    const reversed: PhpAssoc<PhpValue> = {}
+    if (preserve) {
+      const keys = Object.keys(source)
+      const reversed: PhpAssoc<PhpValue> = {}
 
-    for (let index = keys.length - 1; index >= 0; index -= 1) {
-      const key = keys[index]
-      if (typeof key === 'string' && Object.prototype.hasOwnProperty.call(source, key)) {
-        reversed[key] = source[key]
+      for (let index = keys.length - 1; index >= 0; index -= 1) {
+        const key = keys[index]
+        if (typeof key === 'string' && Object.prototype.hasOwnProperty.call(source, key)) {
+          reversed[key] = source[key]
+        }
       }
-    }
 
-    return reversed as ArrayReverseResult<TInput, TPreserve>
+      result = reversed
+    } else {
+      const reversed: PhpValue[] = []
+      for (const key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          reversed.unshift(source[key])
+        }
+      }
+
+      result = reversed
+    }
   }
 
-  const reversed: PhpValue[] = []
-  for (const key in source) {
-    if (Object.prototype.hasOwnProperty.call(source, key)) {
-      reversed.unshift(source[key])
-    }
-  }
-
-  return reversed as ArrayReverseResult<TInput, TPreserve>
+  return result as ArrayReverseResult<TInput, TPreserve>
 }

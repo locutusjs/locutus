@@ -295,3 +295,27 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Generic helper branches (`ReplacementValue<T>`) often allow cast removal with better control-flow narrowing than expected.
   - Repeated ratchet-tighten loops keep the branch moving steadily toward narrower, assertion-light implementations.
+
+## Iteration 10
+
+- Plans
+  - Keep attacking `src/php/array/**` cast hotspots while preserving parser/test harness constraints.
+  - Replace casted callback resolution with shared callable guards.
+  - Tighten the array cast debt ratchet immediately after each successful pass.
+- Progress
+  - Refactored `src/php/array/array_slice.ts`:
+    - removed generic default cast (`false as TPreserve`) and local object-cast branching.
+    - collapsed multi-branch cast returns into a single final return cast.
+  - Refactored `src/php/array/array_reverse.ts`:
+    - removed generic default cast and reduced to single boundary cast.
+  - Refactored `src/php/array/{usort,uasort}.ts`:
+    - replaced method casts with `isPhpCallable<[T, T], number>` guard-based resolution.
+  - Refactored `src/php/array/{ksort,krsort}.ts`:
+    - removed remaining `as T` value casts in rebuild loops using guarded indexed reads.
+  - Lowered debt-policy ratchet in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_ARRAY_AS_EXPRESSION`: `37 -> 21`
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Shared guard primitives (`isPhpCallable`) remove cast pressure in callback-heavy code without widening signatures.
+  - Large cast-count reductions are possible without tsconfig changes by focusing on repetitive sort/rebuild patterns.

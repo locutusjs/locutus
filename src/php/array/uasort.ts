@@ -1,5 +1,5 @@
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
-import { isObjectLike, type PhpAssoc, type PhpMixed } from '../_helpers/_phpTypes.ts'
+import { isObjectLike, isPhpCallable, type PhpAssoc, type PhpMixed } from '../_helpers/_phpTypes.ts'
 
 export function uasort<T>(
   this: PhpAssoc<PhpMixed>,
@@ -34,10 +34,10 @@ export function uasort<T>(
   let sortFn: ((a: T, b: T) => number) | undefined
   if (typeof sorter === 'string') {
     const method = this[sorter]
-    if (typeof method !== 'function') {
+    if (!isPhpCallable<[T, T], number>(method)) {
       return false
     }
-    sortFn = method as (a: T, b: T) => number
+    sortFn = method
   } else if (Array.isArray(sorter)) {
     const [objectKey, methodKey] = sorter
     if (objectKey === undefined || methodKey === undefined) {
@@ -48,10 +48,10 @@ export function uasort<T>(
       return false
     }
     const method = Reflect.get(objectValue, methodKey)
-    if (typeof method !== 'function') {
+    if (!isPhpCallable<[T, T], number>(method)) {
       return false
     }
-    sortFn = method as (a: T, b: T) => number
+    sortFn = method
   } else {
     sortFn = sorter
   }

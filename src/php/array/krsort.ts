@@ -104,14 +104,22 @@ export function krsort<T>(inputArr: Record<string, T>, sortFlags?: string): bool
       continue
     }
     k = keyName
-    tmpArr[k] = inputArr[k] as T
+    const value = inputArr[k]
     if (sortByReference) {
       delete inputArr[k]
     }
+    if (typeof value === 'undefined') {
+      continue
+    }
+    tmpArr[k] = value
   }
   for (const i in tmpArr) {
     if (tmpArr.hasOwnProperty(i)) {
-      populateArr[i] = tmpArr[i] as T
+      const value = tmpArr[i]
+      if (typeof value === 'undefined') {
+        continue
+      }
+      populateArr[i] = value
     }
   }
 
