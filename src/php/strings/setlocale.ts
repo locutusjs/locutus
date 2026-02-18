@@ -1,7 +1,52 @@
-// @ts-nocheck
 import { getenv } from '../info/getenv.ts'
 
-export function setlocale(category, locale) {
+type LocaleDefinition = {
+  LC_COLLATE: (str1: string, str2: string) => number
+  LC_CTYPE: Record<string, RegExp | string>
+  LC_TIME: Record<string, string | string[]>
+  LC_MONETARY: Record<string, string | number | number[]>
+  LC_NUMERIC: Record<string, string | number[]>
+  LC_MESSAGES: Record<string, string>
+  nplurals: (n: number) => number
+}
+
+type PhpContext = {
+  locales?: Record<string, LocaleDefinition>
+  locale?: string
+  localeCategories?: Record<string, string>
+}
+
+type GlobalWithLocutus = typeof globalThis & { $locutus?: { php?: PhpContext } }
+type LocaleInput = string | string[] | number | null
+
+const hasOwn = Object.prototype.hasOwnProperty
+
+const copyValue = <T>(orig: T): T => {
+  if (orig instanceof RegExp) {
+    return new RegExp(orig) as T
+  }
+  if (orig instanceof Date) {
+    return new Date(orig) as T
+  }
+  if (Array.isArray(orig)) {
+    return orig.map((item) => copyValue(item)) as T
+  }
+  if (orig !== null && typeof orig === 'object') {
+    const source = orig as { [key: string]: unknown }
+    const newObj: { [key: string]: unknown } = {}
+    for (const key in source) {
+      if (!hasOwn.call(source, key)) {
+        continue
+      }
+      const value = source[key]
+      newObj[key] = value !== null && typeof value === 'object' ? copyValue(value) : value
+    }
+    return newObj as T
+  }
+  return orig
+}
+
+export function setlocale(category: string, locale: LocaleInput): string | false {
   //  discuss at: https://locutus.io/php/setlocale/
   // original by: Brett Zamir (https://brett-zamir.me)
   // original by: Blues (https://hacks.bluesmoon.info/strftime/strftime.js)
@@ -17,25 +62,8 @@ export function setlocale(category, locale) {
   //   returns 1: 'en_US'
 
   let categ = ''
-  const cats = []
+  const cats: string[] = []
   let i = 0
-
-  const _copy = function _copy(orig) {
-    if (orig instanceof RegExp) {
-      return new RegExp(orig)
-    } else if (orig instanceof Date) {
-      return new Date(orig)
-    }
-    const newObj = {}
-    for (const i in orig) {
-      if (typeof orig[i] === 'object') {
-        newObj[i] = _copy(orig[i])
-      } else {
-        newObj[i] = orig[i]
-      }
-    }
-    return newObj
-  }
 
   // Function usable by a ngettext implementation (apparently not an accessible part of setlocale(),
   // but locale-specific) See https://www.gnu.org/software/gettext/manual/gettext.html#Plural-forms
@@ -51,33 +79,29 @@ export function setlocale(category, locale) {
   //   // e.g., Japanese
   //   return 0
   // }
-  const _nplurals2a = function (n) {
+  const _nplurals2a = function (n: number) {
     // e.g., English
     return n !== 1 ? 1 : 0
   }
-  const _nplurals2b = function (n) {
+  const _nplurals2b = function (n: number) {
     // e.g., French
     return n > 1 ? 1 : 0
   }
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
+  const globalContext = globalThis as GlobalWithLocutus
+  globalContext.$locutus = globalContext.$locutus ?? {}
+  const locutus = globalContext.$locutus
+  locutus.php = locutus.php ?? {}
+  const php = locutus.php
 
   // Reconcile Windows vs. *nix locale names?
   // Allow different priority orders of languages, esp. if implement gettext as in
   // LANGUAGE env. var.? (e.g., show German if French is not available)
-  if (
-    !$locutus.php.locales ||
-    !$locutus.php.locales.fr_CA ||
-    !$locutus.php.locales.fr_CA.LC_TIME ||
-    !$locutus.php.locales.fr_CA.LC_TIME.x
-  ) {
+  if (!php.locales?.fr_CA?.LC_TIME?.x) {
     // Can add to the locales
-    $locutus.php.locales = {}
+    const locales: Record<string, LocaleDefinition> = (php.locales = {})
 
-    $locutus.php.locales.en = {
+    locales.en = {
       LC_COLLATE: function (str1, str2) {
         // @todo: This one taken from strcmp, but need for other locales; we don't use localeCompare
         // since its locale is not settable
@@ -194,26 +218,26 @@ export function setlocale(category, locale) {
       },
       nplurals: _nplurals2a,
     }
-    $locutus.php.locales.en_US = _copy($locutus.php.locales.en)
-    $locutus.php.locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z'
-    $locutus.php.locales.en_US.LC_TIME.x = '%D'
-    $locutus.php.locales.en_US.LC_TIME.X = '%r'
+    locales.en_US = copyValue(locales.en)
+    locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z'
+    locales.en_US.LC_TIME.x = '%D'
+    locales.en_US.LC_TIME.X = '%r'
     // The following are based on *nix settings
-    $locutus.php.locales.en_US.LC_MONETARY.int_curr_symbol = 'USD '
-    $locutus.php.locales.en_US.LC_MONETARY.p_sign_posn = 1
-    $locutus.php.locales.en_US.LC_MONETARY.n_sign_posn = 1
-    $locutus.php.locales.en_US.LC_MONETARY.mon_grouping = [3, 3]
-    $locutus.php.locales.en_US.LC_NUMERIC.thousands_sep = ''
-    $locutus.php.locales.en_US.LC_NUMERIC.grouping = []
+    locales.en_US.LC_MONETARY.int_curr_symbol = 'USD '
+    locales.en_US.LC_MONETARY.p_sign_posn = 1
+    locales.en_US.LC_MONETARY.n_sign_posn = 1
+    locales.en_US.LC_MONETARY.mon_grouping = [3, 3]
+    locales.en_US.LC_NUMERIC.thousands_sep = ''
+    locales.en_US.LC_NUMERIC.grouping = []
 
-    $locutus.php.locales.en_GB = _copy($locutus.php.locales.en)
-    $locutus.php.locales.en_GB.LC_TIME.r = '%l:%M:%S %P %Z'
+    locales.en_GB = copyValue(locales.en)
+    locales.en_GB.LC_TIME.r = '%l:%M:%S %P %Z'
 
-    $locutus.php.locales.en_AU = _copy($locutus.php.locales.en_GB)
+    locales.en_AU = copyValue(locales.en_GB)
     // Assume C locale is like English (?) (We need C locale for LC_CTYPE)
-    $locutus.php.locales.C = _copy($locutus.php.locales.en)
-    $locutus.php.locales.C.LC_CTYPE.CODESET = 'ANSI_X3.4-1968'
-    $locutus.php.locales.C.LC_MONETARY = {
+    locales.C = copyValue(locales.en)
+    locales.C.LC_CTYPE.CODESET = 'ANSI_X3.4-1968'
+    locales.C.LC_MONETARY = {
       int_curr_symbol: '',
       currency_symbol: '',
       mon_decimal_point: '',
@@ -230,25 +254,25 @@ export function setlocale(category, locale) {
       int_frac_digits: 127,
       frac_digits: 127,
     }
-    $locutus.php.locales.C.LC_NUMERIC = {
+    locales.C.LC_NUMERIC = {
       decimal_point: '.',
       thousands_sep: '',
       grouping: [],
     }
     // D_T_FMT
-    $locutus.php.locales.C.LC_TIME.c = '%a %b %e %H:%M:%S %Y'
+    locales.C.LC_TIME.c = '%a %b %e %H:%M:%S %Y'
     // D_FMT
-    $locutus.php.locales.C.LC_TIME.x = '%m/%d/%y'
+    locales.C.LC_TIME.x = '%m/%d/%y'
     // T_FMT
-    $locutus.php.locales.C.LC_TIME.X = '%H:%M:%S'
-    $locutus.php.locales.C.LC_MESSAGES.YESEXPR = '^[yY]'
-    $locutus.php.locales.C.LC_MESSAGES.NOEXPR = '^[nN]'
+    locales.C.LC_TIME.X = '%H:%M:%S'
+    locales.C.LC_MESSAGES.YESEXPR = '^[yY]'
+    locales.C.LC_MESSAGES.NOEXPR = '^[nN]'
 
-    $locutus.php.locales.fr = _copy($locutus.php.locales.en)
-    $locutus.php.locales.fr.nplurals = _nplurals2b
-    $locutus.php.locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam']
-    $locutus.php.locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']
-    $locutus.php.locales.fr.LC_TIME.b = [
+    locales.fr = copyValue(locales.en)
+    locales.fr.nplurals = _nplurals2b
+    locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam']
+    locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']
+    locales.fr.LC_TIME.b = [
       'jan',
       'f\u00E9v',
       'mar',
@@ -262,7 +286,7 @@ export function setlocale(category, locale) {
       'nov',
       'd\u00E9c',
     ]
-    $locutus.php.locales.fr.LC_TIME.B = [
+    locales.fr.LC_TIME.B = [
       'janvier',
       'f\u00E9vrier',
       'mars',
@@ -276,104 +300,124 @@ export function setlocale(category, locale) {
       'novembre',
       'd\u00E9cembre',
     ]
-    $locutus.php.locales.fr.LC_TIME.c = '%a %d %b %Y %T %Z'
-    $locutus.php.locales.fr.LC_TIME.p = ['', '']
-    $locutus.php.locales.fr.LC_TIME.P = ['', '']
-    $locutus.php.locales.fr.LC_TIME.x = '%d.%m.%Y'
-    $locutus.php.locales.fr.LC_TIME.X = '%T'
+    locales.fr.LC_TIME.c = '%a %d %b %Y %T %Z'
+    locales.fr.LC_TIME.p = ['', '']
+    locales.fr.LC_TIME.P = ['', '']
+    locales.fr.LC_TIME.x = '%d.%m.%Y'
+    locales.fr.LC_TIME.X = '%T'
 
-    $locutus.php.locales.fr_CA = _copy($locutus.php.locales.fr)
-    $locutus.php.locales.fr_CA.LC_TIME.x = '%Y-%m-%d'
+    locales.fr_CA = copyValue(locales.fr)
+    locales.fr_CA.LC_TIME.x = '%Y-%m-%d'
   }
-  if (!$locutus.php.locale) {
-    $locutus.php.locale = 'en_US'
+  const locales = php.locales ?? {}
+  if (!php.locale) {
+    php.locale = 'en_US'
     // Try to establish the locale via the `window` global
     if (typeof window !== 'undefined' && window.document) {
       const d = window.document
       const NS_XHTML = 'https://www.w3.org/1999/xhtml'
       const NS_XML = 'https://www.w3.org/XML/1998/namespace'
-      if (d.getElementsByTagNameNS && d.getElementsByTagNameNS(NS_XHTML, 'html')[0]) {
-        if (
-          d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS &&
-          d.getElementsByTagNameNS(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')
-        ) {
-          $locutus.php.locale = d.getElementsByTagName(NS_XHTML, 'html')[0].getAttributeNS(NS_XML, 'lang')
-        } else if (d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang) {
+      const htmlNsElement = (d.getElementsByTagNameNS ? d.getElementsByTagNameNS(NS_XHTML, 'html')[0] : undefined) as
+        | (Element & { lang?: string })
+        | undefined
+      if (htmlNsElement) {
+        if (typeof htmlNsElement.getAttributeNS === 'function' && htmlNsElement.getAttributeNS(NS_XML, 'lang')) {
+          php.locale = htmlNsElement.getAttributeNS(NS_XML, 'lang') || php.locale
+        } else if (htmlNsElement.lang) {
           // XHTML 1.0 only
-          $locutus.php.locale = d.getElementsByTagNameNS(NS_XHTML, 'html')[0].lang
+          php.locale = htmlNsElement.lang
         }
-      } else if (d.getElementsByTagName('html')[0] && d.getElementsByTagName('html')[0].lang) {
-        $locutus.php.locale = d.getElementsByTagName('html')[0].lang
+      } else {
+        const htmlElement = d.getElementsByTagName('html')[0] as (Element & { lang?: string }) | undefined
+        if (htmlElement?.lang) {
+          php.locale = htmlElement.lang
+        }
       }
     }
   }
   // PHP-style
-  $locutus.php.locale = $locutus.php.locale.replace('-', '_')
+  php.locale = php.locale.replace('-', '_')
   // @todo: locale if declared locale hasn't been defined
-  if (!($locutus.php.locale in $locutus.php.locales)) {
-    if ($locutus.php.locale.replace(/_[a-zA-Z]+$/, '') in $locutus.php.locales) {
-      $locutus.php.locale = $locutus.php.locale.replace(/_[a-zA-Z]+$/, '')
+  if (!(php.locale in locales)) {
+    const languageLocale = php.locale.replace(/_[a-zA-Z]+$/, '')
+    if (languageLocale in locales) {
+      php.locale = languageLocale
     }
   }
 
-  if (!$locutus.php.localeCategories) {
-    $locutus.php.localeCategories = {
-      LC_COLLATE: $locutus.php.locale,
+  if (!php.localeCategories) {
+    php.localeCategories = {
+      LC_COLLATE: php.locale,
       // for string comparison, see strcoll()
-      LC_CTYPE: $locutus.php.locale,
+      LC_CTYPE: php.locale,
       // for character classification and conversion, for example strtoupper()
-      LC_MONETARY: $locutus.php.locale,
+      LC_MONETARY: php.locale,
       // for localeconv()
-      LC_NUMERIC: $locutus.php.locale,
+      LC_NUMERIC: php.locale,
       // for decimal separator (See also localeconv())
-      LC_TIME: $locutus.php.locale,
+      LC_TIME: php.locale,
       // for date and time formatting with strftime()
       // for system responses (available if PHP was compiled with libintl):
-      LC_MESSAGES: $locutus.php.locale,
+      LC_MESSAGES: php.locale,
     }
   }
+  const localeCategories = php.localeCategories
+  let requestedLocale: LocaleInput | false = locale
 
-  if (locale === null || locale === '') {
-    locale = getenv(category) || getenv('LANG')
-  } else if (Array.isArray(locale)) {
-    for (i = 0; i < locale.length; i++) {
-      if (!(locale[i] in $locutus.php.locales)) {
-        if (i === locale.length - 1) {
+  if (requestedLocale === null || requestedLocale === '') {
+    requestedLocale = getenv(category) || getenv('LANG')
+  } else if (Array.isArray(requestedLocale)) {
+    for (i = 0; i < requestedLocale.length; i++) {
+      const candidate = requestedLocale[i]
+      if (typeof candidate !== 'string') {
+        if (i === requestedLocale.length - 1) {
+          return false
+        }
+        continue
+      }
+      if (!(candidate in locales)) {
+        if (i === requestedLocale.length - 1) {
           // none found
           return false
         }
         continue
       }
-      locale = locale[i]
+      requestedLocale = candidate
       break
     }
   }
 
   // Just get the locale
-  if (locale === '0' || locale === 0) {
+  if (requestedLocale === '0' || requestedLocale === 0) {
     if (category === 'LC_ALL') {
-      for (categ in $locutus.php.localeCategories) {
+      for (categ in localeCategories) {
+        if (!hasOwn.call(localeCategories, categ)) {
+          continue
+        }
         // Add ".UTF-8" or allow ".@latint", etc. to the end?
-        cats.push(categ + '=' + $locutus.php.localeCategories[categ])
+        cats.push(categ + '=' + localeCategories[categ])
       }
       return cats.join(';')
     }
-    return $locutus.php.localeCategories[category]
+    return localeCategories[category] ?? false
   }
 
-  if (!(locale in $locutus.php.locales)) {
+  if (typeof requestedLocale !== 'string' || !(requestedLocale in locales)) {
     // Locale not found
     return false
   }
 
   // Set and get locale
   if (category === 'LC_ALL') {
-    for (categ in $locutus.php.localeCategories) {
-      $locutus.php.localeCategories[categ] = locale
+    for (categ in localeCategories) {
+      if (!hasOwn.call(localeCategories, categ)) {
+        continue
+      }
+      localeCategories[categ] = requestedLocale
     }
   } else {
-    $locutus.php.localeCategories[category] = locale
+    localeCategories[category] = requestedLocale
   }
 
-  return locale
+  return requestedLocale
 }
