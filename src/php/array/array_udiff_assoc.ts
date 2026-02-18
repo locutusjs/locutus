@@ -23,8 +23,8 @@ export function array_udiff_assoc(arr1: PhpArray, ...arraysAndCallback: PhpValue
           continue arr1keys
         }
       }
-      retArr[k1] = arr1[k1]
     }
+    retArr[k1] = arr1[k1]
   }
 
   return retArr

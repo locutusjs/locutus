@@ -25,8 +25,8 @@ export function array_udiff(arr1: PhpArray, ...arraysAndCallback: PhpValue[]): P
           continue arr1keys
         }
       }
-      retArr[k1] = arr1[k1]
     }
+    retArr[k1] = arr1[k1]
   }
 
   return retArr
