@@ -82,11 +82,7 @@ const compareValues = (current: PhpMinMaxValue, next: PhpMinMaxValue): number =>
   return nextNum > currentNum ? 1 : -1
 }
 
-export function min(value: PhpMinMaxValue[] | PhpMinMaxObject): PhpMinMaxValue
-export function min(...values: [PhpMinMaxValue, PhpMinMaxValue, ...PhpMinMaxValue[]]): PhpMinMaxValue
-export function min(
-  ...args: [PhpMinMaxValue[] | PhpMinMaxObject] | [PhpMinMaxValue, ...PhpMinMaxValue[]]
-): PhpMinMaxValue {
+export function min(...args: PhpMinMaxValue[]): PhpMinMaxValue {
   //  discuss at: https://locutus.io/php/min/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //  revised by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -113,7 +109,7 @@ export function min(
 
   if (args.length === 1) {
     const only = args[0]
-    if (!isCollection(only)) {
+    if (typeof only === 'undefined' || !isCollection(only)) {
       throw new Error('Wrong parameter count for min()')
     }
 
