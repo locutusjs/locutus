@@ -1,3 +1,5 @@
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
 export function strlen(string: string): number {
   //  discuss at: https://locutus.io/php/strlen/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -19,7 +21,7 @@ export function strlen(string: string): number {
 
   const $loc = (
     globalThis as {
-      $locutus?: { php?: { ini?: { [key: string]: { local_value?: unknown } | undefined } } }
+      $locutus?: { php?: { ini?: { [key: string]: { local_value?: PhpMixed } | undefined } } }
     }
   ).$locutus
   const iniVal = String($loc?.php?.ini?.['unicode.semantics']?.local_value ?? '') || 'off'

@@ -1,4 +1,6 @@
-export function _php_cast_int(value: unknown): number {
+import type { PhpMixed } from './_phpTypes.ts'
+
+export function _php_cast_int(value: PhpMixed): number {
   // original by: Rafał Kukawski
   //   example 1: _php_cast_int(false)
   //   returns 1: 0

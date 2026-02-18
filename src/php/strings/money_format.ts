@@ -1,4 +1,5 @@
 import { setlocale } from '../strings/setlocale.ts'
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 
 type MonetaryLocale = {
   mon_thousands_sep: string
@@ -26,7 +27,7 @@ type LocutusPhpContext = {
 }
 type MoneyGlobal = typeof globalThis & { $locutus?: { php?: LocutusPhpContext } }
 
-export function money_format(format: string, number: unknown): string | null {
+export function money_format(format: string, number: PhpMixed): string | null {
   //      discuss at: https://locutus.io/php/money_format/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

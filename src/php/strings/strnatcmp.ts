@@ -1,6 +1,7 @@
 import { _phpCastString } from '../_helpers/_phpCastString.ts'
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 
-export function strnatcmp(...args: unknown[]): number | null {
+export function strnatcmp(...args: PhpMixed[]): number | null {
   //       discuss at: https://locutus.io/php/strnatcmp/
   //  parity verified: PHP 8.3
   //      original by: Martijn Wieringa

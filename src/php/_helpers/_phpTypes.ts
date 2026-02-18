@@ -1,6 +1,6 @@
 export type PhpAssoc<T> = { [key: string]: T }
 export type PhpArrayLike<T> = T[] | PhpAssoc<T>
-export type PhpMixed = unknown
+export type PhpMixed = {} | null | undefined
 
 export type PhpCallable = (...args: PhpMixed[]) => PhpMixed
 

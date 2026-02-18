@@ -1,3 +1,5 @@
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
 type ParseUrlQueryMap = Record<string, string>
 type ParseUrlValue = string | ParseUrlQueryMap
 
@@ -48,7 +50,7 @@ export function parse_url(str: string, component?: string): ParseUrlResult | str
 
   const $loc = (
     globalThis as {
-      $locutus?: { php?: { ini?: { [key: string]: { local_value?: unknown } | undefined } } }
+      $locutus?: { php?: { ini?: { [key: string]: { local_value?: PhpMixed } | undefined } } }
     }
   ).$locutus
   const mode = String($loc?.php?.ini?.['locutus.parse_url.mode']?.local_value ?? '') || 'php'

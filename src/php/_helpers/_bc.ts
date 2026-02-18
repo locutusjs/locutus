@@ -1242,7 +1242,7 @@ export function _bc() {
       return num
     },
 
-    cint: function (v: unknown) {
+    cint: function (v: {} | null | undefined) {
       if (typeof v === 'undefined') {
         v = 0
       }

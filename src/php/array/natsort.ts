@@ -1,4 +1,5 @@
 import { strnatcmp } from '../strings/strnatcmp.ts'
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 
 export function natsort<T>(inputArr: Record<string, T>): boolean | Record<string, T> {
   //      discuss at: https://locutus.io/php/natsort/
@@ -28,7 +29,7 @@ export function natsort<T>(inputArr: Record<string, T>): boolean | Record<string
 
   const $loc = (
     globalThis as typeof globalThis & {
-      $locutus?: { php?: { ini?: Record<string, { local_value?: unknown }> } }
+      $locutus?: { php?: { ini?: Record<string, { local_value?: PhpMixed }> } }
     }
   ).$locutus
   const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'

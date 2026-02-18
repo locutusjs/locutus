@@ -1,6 +1,6 @@
-import type { PhpAssoc } from './_phpTypes.ts'
+import type { PhpAssoc, PhpMixed } from './_phpTypes.ts'
 
-type UnknownValue = unknown
+type UnknownValue = PhpMixed
 type PhpValue = {} | null | undefined
 
 interface CallbackResolverOptions {

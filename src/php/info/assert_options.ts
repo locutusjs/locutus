@@ -1,4 +1,6 @@
-export function assert_options(what: string, _value?: unknown): string | number | null {
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function assert_options(what: string, _value?: PhpMixed): string | number | null {
   //  discuss at: https://locutus.io/php/assert_options/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: assert_options('ASSERT_CALLBACK')
@@ -37,7 +39,7 @@ export function assert_options(what: string, _value?: unknown): string | number 
   // I presume this is to be the most recent value, instead of the default value
   const $loc = (
     globalThis as {
-      $locutus?: { php?: { ini?: { [key: string]: { local_value?: unknown } | undefined } } }
+      $locutus?: { php?: { ini?: { [key: string]: { local_value?: PhpMixed } | undefined } } }
     }
   ).$locutus
   const iniVal = String($loc?.php?.ini?.[iniKey]?.local_value ?? '') || defaultVal

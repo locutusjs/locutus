@@ -1,7 +1,7 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpMixed } from '../_helpers/_phpTypes.ts'
 import { setlocale } from '../strings/setlocale.ts'
 
-type LocaleValues = PhpAssoc<unknown>
+type LocaleValues = PhpAssoc<PhpMixed>
 
 type LocaleConvPhpContext = {
   locales?: Record<string, { LC_NUMERIC?: LocaleValues; LC_MONETARY?: LocaleValues }>

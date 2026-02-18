@@ -1,4 +1,6 @@
-export function is_infinite(val: unknown): boolean {
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function is_infinite(val: PhpMixed): boolean {
   //  discuss at: https://locutus.io/php/is_infinite/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: is_infinite(Infinity)

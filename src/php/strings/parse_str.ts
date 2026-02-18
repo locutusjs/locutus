@@ -1,6 +1,6 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpMixed } from '../_helpers/_phpTypes.ts'
 
-type ParseObject = PhpAssoc<unknown>
+type ParseObject = PhpAssoc<PhpMixed>
 type LocutusGlobal = typeof globalThis & { $locutus?: { php?: ParseObject } }
 
 export function parse_str(str: string, array?: ParseObject): void {

@@ -1,4 +1,5 @@
 import { setlocale } from '../strings/setlocale.ts'
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 
 type StrptimeResult = {
   tm_sec: number
@@ -139,7 +140,7 @@ export function strptime(dateStr: string, format: string): StrptimeResult | fals
     })
   }
 
-  const _addNext = function (index: number, regex: RegExp | string, cb: (...matches: string[]) => unknown): number {
+  const _addNext = function (index: number, regex: RegExp | string, cb: (...matches: string[]) => PhpMixed): number {
     const pattern = typeof regex === 'string' ? new RegExp('^' + regex, 'i') : regex
     const check = dateStr.slice(index)
     const match = pattern.exec(check)
@@ -372,7 +373,7 @@ export function strptime(dateStr: string, format: string): StrptimeResult | fals
           default:
             throw new Error('Unrecognized formatting character in strptime()')
         }
-      } catch (error: unknown) {
+      } catch (error) {
         if (error instanceof Error && error.message === 'No match in string') {
           // Allow us to exit
           // There was supposed to be a matching format but there wasn't

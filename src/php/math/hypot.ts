@@ -1,4 +1,6 @@
-export function hypot(x: unknown, y: unknown): number | null {
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+
+export function hypot(x: PhpMixed, y: PhpMixed): number | null {
   //  discuss at: https://locutus.io/php/hypot/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Robert Eisele (https://www.xarg.org/)

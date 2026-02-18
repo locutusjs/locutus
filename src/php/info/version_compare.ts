@@ -48,7 +48,7 @@ export function version_compare(v1: string, v2: string, operator?: string): numb
   // even less than an unexisting value in vm (-7), hence [-8].
   // It's also important to not strip spaces because of this.
   //   version_compare('', ' ') === 1
-  const _prepVersion = function (v: unknown): string[] {
+  const _prepVersion = function (v: string): string[] {
     let normalized = String(v).replace(/[_\-+]/g, '.')
     normalized = normalized.replace(/([^.\d]+)/g, '.$1.').replace(/\.{2,}/g, '.')
     return !normalized.length ? ['-8'] : normalized.split('.')

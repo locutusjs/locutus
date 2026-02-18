@@ -1,8 +1,8 @@
-import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, type PhpMixed, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 type GlobalWithLocutus = typeof globalThis &
-  PhpAssoc<unknown> & {
-    $locutus?: { php?: PhpAssoc<unknown> }
+  PhpAssoc<PhpMixed> & {
+    $locutus?: { php?: PhpAssoc<PhpMixed> }
   }
 
 export function get_defined_functions(): string[] {

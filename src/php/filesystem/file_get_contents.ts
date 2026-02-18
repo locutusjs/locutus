@@ -1,9 +1,10 @@
 import fs from 'fs'
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 
 export function file_get_contents(
   url: string,
-  _flags?: unknown,
-  _context?: unknown,
+  _flags?: PhpMixed,
+  _context?: PhpMixed,
   _offset?: number,
   _maxLen?: number,
 ): string | false {

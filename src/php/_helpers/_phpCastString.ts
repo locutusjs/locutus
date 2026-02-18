@@ -1,4 +1,6 @@
-export function _phpCastString(value: unknown): string {
+import type { PhpMixed } from './_phpTypes.ts'
+
+export function _phpCastString(value: PhpMixed): string {
   // original by: Rafał Kukawski
   //   example 1: _phpCastString(true)
   //   returns 1: '1'

@@ -1,10 +1,11 @@
 import { get_html_translation_table as getHtmlTranslationTable } from '../strings/get_html_translation_table.ts'
+import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 
 export function htmlentities(
   string: string,
   quoteStyle?: string | number,
   charset?: string,
-  doubleEncode?: unknown,
+  doubleEncode?: PhpMixed,
 ): string {
   //      discuss at: https://locutus.io/php/htmlentities/
   // parity verified: PHP 8.3
