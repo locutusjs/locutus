@@ -319,3 +319,24 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Shared guard primitives (`isPhpCallable`) remove cast pressure in callback-heavy code without widening signatures.
   - Large cast-count reductions are possible without tsconfig changes by focusing on repetitive sort/rebuild patterns.
+
+## Iteration 11
+
+- Plans
+  - Continue lowering `src/php/array/**` cast debt with low-risk guard/control-flow rewrites.
+  - Prioritize helpers with repeated cast patterns (`array_filter`, `count`, key-transform paths).
+- Progress
+  - Refactored `src/php/array/array_filter.ts` to branch on array/object and use `Object.entries`-driven flows without local casts.
+  - Refactored `src/php/array/count.ts`:
+    - split array/object iteration paths to avoid casted indexing.
+    - introduced `isCountable` guard for recursive traversal.
+  - Refactored `src/php/array/array_change_key_case.ts`:
+    - replaced cast helper pattern with single boundary cast return.
+    - switched source normalization to `toPhpArrayObject`.
+  - Lowered debt-policy ratchet in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_ARRAY_AS_EXPRESSION`: `21 -> 16`
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - `Object.entries` plus explicit branch splits can remove assertion-heavy indexed access while preserving behavior.
+  - Small, repeatable cleanup slices continue to produce meaningful debt-ratchet gains even late in the migration.

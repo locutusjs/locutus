@@ -1,4 +1,4 @@
-import type { PhpArrayLike, PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
+import { type PhpArrayLike, type PhpAssoc, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 type ArrayChangeInput = number | PhpArrayLike<PhpValue> | null
 
@@ -7,9 +7,6 @@ type ArrayChangeKeyCaseResult<TInput> = TInput extends (infer TValue)[]
   : TInput extends PhpAssoc<infer TValue>
     ? PhpAssoc<TValue>
     : false
-
-const castArrayChangeResult = <TInput>(value: PhpArrayLike<PhpValue> | false): ArrayChangeKeyCaseResult<TInput> =>
-  value as ArrayChangeKeyCaseResult<TInput>
 
 export function array_change_key_case<TInput extends ArrayChangeInput>(
   array: TInput,
@@ -32,23 +29,24 @@ export function array_change_key_case<TInput extends ArrayChangeInput>(
   //   example 6: array_change_key_case({ FuBaR: 42 }, 2)
   //   returns 6: {"FUBAR": 42}
 
+  let result: PhpArrayLike<PhpValue> | false
+
   if (Array.isArray(array)) {
-    return castArrayChangeResult<TInput>(array)
-  }
+    result = array
+  } else if (!array || typeof array !== 'object') {
+    result = false
+  } else {
+    const caseFunction: 'toLowerCase' | 'toUpperCase' = !cs || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase'
+    const source = toPhpArrayObject<PhpValue>(array)
+    const transformed: PhpAssoc<PhpValue> = {}
 
-  if (!array || typeof array !== 'object') {
-    return castArrayChangeResult<TInput>(false)
-  }
-
-  const caseFunction: 'toLowerCase' | 'toUpperCase' = !cs || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase'
-  const source = array as PhpAssoc<PhpValue>
-  const transformed: PhpAssoc<PhpValue> = {}
-
-  for (const key in source) {
-    if (Object.prototype.hasOwnProperty.call(source, key)) {
-      transformed[key[caseFunction]()] = source[key]
+    for (const key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        transformed[key[caseFunction]()] = source[key]
+      }
     }
+    result = transformed
   }
 
-  return castArrayChangeResult<TInput>(transformed)
+  return result as ArrayChangeKeyCaseResult<TInput>
 }

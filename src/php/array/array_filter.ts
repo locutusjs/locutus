@@ -18,33 +18,29 @@ export function array_filter<T>(
   //   example 3: array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined})
   //   returns 3: {"a":1, "c":-1}
 
-  let retObj: { [key: string]: T } | T[] = {}
-  let k = ''
-
   const callback =
     func ||
     function (v: T) {
       return v
     }
 
-  // @todo: Issue #73
   if (Array.isArray(arr)) {
-    retObj = []
-  }
-
-  for (k in arr) {
-    if (!Object.prototype.hasOwnProperty.call(arr, k)) {
-      continue
-    }
-    const value = (arr as { [key: string]: T })[k] as T
-    if (callback(value)) {
-      if (Array.isArray(retObj)) {
-        retObj[Number(k)] = value
-      } else {
-        retObj[k] = value
+    // @todo: Issue #73
+    const filtered: T[] = []
+    for (const [key, value] of Object.entries(arr)) {
+      if (callback(value)) {
+        filtered[Number(key)] = value
       }
     }
+    return filtered
   }
 
-  return retObj
+  const filtered: { [key: string]: T } = {}
+  for (const [key, value] of Object.entries(arr)) {
+    if (callback(value)) {
+      filtered[key] = value
+    }
+  }
+
+  return filtered
 }
