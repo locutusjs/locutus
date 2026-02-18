@@ -1,7 +1,9 @@
 import { call_user_func_array as callUserFuncArray } from '../funchand/call_user_func_array.ts'
 
-export function call_user_func<TResult = unknown, TArgs extends unknown[] = unknown[]>(
-  cb: unknown,
+type PhpValue = {} | null | undefined
+
+export function call_user_func<TResult = PhpValue, TArgs extends PhpValue[] = PhpValue[]>(
+  cb: PhpValue,
   ...parameters: TArgs
 ): TResult {
   //  discuss at: https://locutus.io/php/call_user_func/

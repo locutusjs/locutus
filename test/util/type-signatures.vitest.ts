@@ -33,6 +33,8 @@ import { array_walk } from '../../src/php/array/array_walk.ts'
 import { array_walk_recursive } from '../../src/php/array/array_walk_recursive.ts'
 import { sizeof } from '../../src/php/array/sizeof.ts'
 import { call_user_func } from '../../src/php/funchand/call_user_func.ts'
+import { call_user_func_array } from '../../src/php/funchand/call_user_func_array.ts'
+import { function_exists } from '../../src/php/funchand/function_exists.ts'
 import { getenv } from '../../src/php/info/getenv.ts'
 import type { IniValue } from '../../src/php/info/ini_set.ts'
 import { ini_set } from '../../src/php/info/ini_set.ts'
@@ -72,6 +74,8 @@ const chunkTyped: Array<number[] | { [key: string]: number }> = array_chunk([1, 
 const columnTyped: { [key: string]: unknown } | undefined = array_column([{ id: 1, label: 'a' }], 'label', 'id')
 const replaceRecursiveTyped: unknown[] | { [key: string]: unknown } = array_replace_recursive({ a: [1] }, { a: [2] })
 const callUserFuncTyped: boolean = call_user_func<boolean>('isNaN', 'value')
+const callUserFuncArrayTyped: boolean = call_user_func_array<boolean, [string]>('isNaN', ['value'])
+const functionExistsTyped: boolean = function_exists('isNaN')
 const isCallableTyped: boolean | false = is_callable('is_callable')
 const arrayMapTyped: unknown[] = array_map((v: unknown) => Number(v) * 2, [1, 2])
 const shiftedTyped: number | null = array_shift([3, 4])
@@ -129,6 +133,8 @@ describe('public type signatures', () => {
     expect(columnTyped).toEqual({ 1: 'a' })
     expect(replaceRecursiveTyped).toEqual({ a: [2] })
     expect(callUserFuncTyped).toBe(true)
+    expect(callUserFuncArrayTyped).toBe(true)
+    expect(functionExistsTyped).toBe(true)
     expect(isCallableTyped).toBe(true)
     expect(arrayMapTyped).toEqual([2, 4])
     expect(shiftedTyped).toBe(3)

@@ -1,12 +1,13 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
 import { isObjectLike, type PhpAssoc, type PhpCallable } from '../_helpers/_phpTypes.ts'
 
-type GlobalCallableContext = typeof globalThis & PhpAssoc<unknown>
+type PhpValue = {} | null | undefined
+type GlobalCallableContext = typeof globalThis & PhpAssoc<PhpValue>
 
 const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
-export function call_user_func_array<TResult = unknown, TArgs extends unknown[] = unknown[]>(
-  cb: unknown,
+export function call_user_func_array<TResult = PhpValue, TArgs extends PhpValue[] = PhpValue[]>(
+  cb: PhpValue,
   parameters: [...TArgs],
 ): TResult {
   //  discuss at: https://locutus.io/php/call_user_func_array/
@@ -27,7 +28,7 @@ export function call_user_func_array<TResult = unknown, TArgs extends unknown[] 
 
   const globalContext = globalThis as GlobalCallableContext
   let func: PhpCallable | undefined
-  let scope: unknown = null
+  let scope: PhpValue = null
 
   try {
     const resolved = resolvePhpCallable(cb, { invalidMessage: 'invalid' })
