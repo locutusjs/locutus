@@ -1,5 +1,5 @@
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
-import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
+import { isPhpCallable, type PhpAssoc, type PhpValue } from '../_helpers/_phpTypes.ts'
 
 export function uksort<T>(
   this: PhpAssoc<PhpValue> & { window?: PhpAssoc<PhpValue> },
@@ -33,7 +33,10 @@ export function uksort<T>(
 
   let sortFn: ((a: string, b: string) => number) | undefined
   if (typeof sorter === 'string') {
-    sortFn = this.window?.[sorter] as ((a: string, b: string) => number) | undefined
+    const maybeSorter = this.window?.[sorter]
+    if (isPhpCallable<[string, string], number>(maybeSorter)) {
+      sortFn = maybeSorter
+    }
   } else {
     sortFn = sorter
   }
@@ -68,14 +71,22 @@ export function uksort<T>(
       continue
     }
     k = key
-    tmpArr[k] = inputArr[k] as T
+    const value = inputArr[k]
+    if (value === undefined) {
+      continue
+    }
+    tmpArr[k] = value
     if (sortByReference) {
       delete inputArr[k]
     }
   }
   for (const i in tmpArr) {
     if (tmpArr.hasOwnProperty(i)) {
-      populateArr[i] = tmpArr[i] as T
+      const value = tmpArr[i]
+      if (value === undefined) {
+        continue
+      }
+      populateArr[i] = value
     }
   }
 

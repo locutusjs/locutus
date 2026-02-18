@@ -261,3 +261,20 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Type strictness improvements must respect codegen/header-parser assumptions; overload-heavy signatures can violate tooling expectations even when TypeScript is valid.
   - Cast burn-down still progresses effectively with targeted function-level refactors (`array_pop`) plus immediate ratchet updates.
+
+## Iteration 8
+
+- Plans
+  - Continue array cast burn-down with small, behavior-preserving refactors in comparator/sort helpers.
+  - Reduce assertions by replacing raw casts with callable guards and undefined checks.
+- Progress
+  - Refactored `src/php/array/uksort.ts`:
+    - replaced string sorter cast with `isPhpCallable<[string, string], number>` guard.
+    - removed value casts in rebuild loops using guarded indexed reads.
+  - Lowered debt-policy ratchet in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_ARRAY_AS_EXPRESSION`: `43 -> 40`
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Callable guards are a low-friction way to remove dynamic function casts while preserving runtime flexibility.
+  - The best momentum pattern remains: small cast-removal pass, immediate ratchet tighten, then repeat.
