@@ -1,6 +1,8 @@
 import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-export function is_callable(mixedVar: unknown, syntaxOnly?: boolean, callableName?: string): boolean | false {
+type PhpValue = {} | null | undefined
+
+export function is_callable(mixedVar: PhpValue, syntaxOnly?: boolean, callableName?: string): boolean | false {
   //  discuss at: https://locutus.io/php/is_callable/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: François
@@ -32,16 +34,16 @@ export function is_callable(mixedVar: unknown, syntaxOnly?: boolean, callableNam
   //   example 5: is_callable(class MyClass {})
   //   returns 5: false
 
-  const globalContext = globalThis as typeof globalThis & PhpAssoc<unknown>
+  const globalContext = globalThis as typeof globalThis & PhpAssoc<PhpValue>
 
   const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
   let name = ''
-  let obj: PhpAssoc<unknown> | null = null
+  let obj: PhpAssoc<PhpValue> | null = null
   let method = ''
   let validFunctionName = false
 
-  const getFuncName = function (fn: unknown): string {
+  const getFuncName = function (fn: PhpValue): string {
     const funcNameMatch = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
     if (!funcNameMatch) {
       return '(Anonymous)'

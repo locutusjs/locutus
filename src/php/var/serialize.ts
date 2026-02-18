@@ -1,9 +1,10 @@
 import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 
-type UnknownMap = PhpAssoc<unknown>
+type PhpValue = {} | null | undefined
+type UnknownMap = PhpAssoc<PhpValue>
 type LocutusType = 'function' | 'boolean' | 'number' | 'string' | 'array' | 'object' | 'undefined' | 'null'
 
-export function serialize(mixedValue: unknown): string {
+export function serialize(mixedValue: PhpValue): string {
   //  discuss at: https://locutus.io/php/serialize/
   // original by: Arpad Ray (mailto:arpad@php.net)
   // improved by: Dino
@@ -39,7 +40,7 @@ export function serialize(mixedValue: unknown): string {
     return ~-encodeURI(str).split(/%..|./).length
   }
 
-  const _getType = function (inp: unknown): LocutusType {
+  const _getType = function (inp: PhpValue): LocutusType {
     let match: RegExpMatchArray | null
     let cons = ''
     const types: Array<'boolean' | 'number' | 'string' | 'array'> = ['boolean', 'number', 'string', 'array']

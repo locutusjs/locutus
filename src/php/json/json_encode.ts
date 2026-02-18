@@ -1,18 +1,19 @@
 import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 
+type PhpValue = {} | null | undefined
 type JsonPrimitive = string | number | boolean | null
 type JsonObject = { [key: string]: JsonValue }
 type JsonValue = JsonPrimitive | JsonValue[] | JsonObject
 type JsonGlobal = typeof globalThis & {
-  $locutus?: { php?: PhpAssoc<unknown> }
+  $locutus?: { php?: PhpAssoc<PhpValue> }
   JSON?: typeof JSON
 }
 
 const hasOwn = Object.prototype.hasOwnProperty
-const isJsonObject = (value: unknown): value is JsonObject =>
+const isJsonObject = (value: PhpValue): value is JsonObject =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 
-export function json_encode(mixedVal: unknown): string | null {
+export function json_encode(mixedVal: PhpValue): string | null {
   //       discuss at: https://phpjs.org/functions/json_encode/
   //  parity verified: PHP 8.3
   //      original by: Public Domain (https://www.json.org/json2.js)
@@ -88,7 +89,7 @@ export function json_encode(mixedVal: unknown): string | null {
         : '"' + string + '"'
     }
 
-    const _str = function (key: string | number, holder: PhpAssoc<unknown> | unknown[]): string | undefined {
+    const _str = function (key: string | number, holder: PhpAssoc<PhpValue> | PhpValue[]): string | undefined {
       let gap = ''
       const indent = '    '
       // The loop counter.

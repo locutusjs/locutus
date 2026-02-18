@@ -1,8 +1,9 @@
 import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 
-type KeyedUnknown = PhpAssoc<unknown>
+type PhpValue = {} | null | undefined
+type KeyedUnknown = PhpAssoc<PhpValue>
 
-export function empty(mixedVar: unknown): boolean {
+export function empty(mixedVar: PhpValue): boolean {
   //  discuss at: https://locutus.io/php/empty/
   // original by: Philippe Baumann
   //    input by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -24,7 +25,7 @@ export function empty(mixedVar: unknown): boolean {
   //   example 5: empty({'aFunc' : function () { alert('humpty'); } })
   //   returns 5: false
 
-  const emptyValues: unknown[] = [undefined, null, false, 0, '', '0']
+  const emptyValues: PhpValue[] = [undefined, null, false, 0, '', '0']
 
   for (const emptyValue of emptyValues) {
     if (mixedVar === emptyValue) {

@@ -1,7 +1,8 @@
 import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
 
-type IndexableUnknown = PhpAssoc<unknown>
+type PhpValue = {} | null | undefined
+type IndexableUnknown = PhpAssoc<PhpValue>
 type VarExportType =
   | 'resource'
   | 'function'
@@ -14,7 +15,7 @@ type VarExportType =
   | 'undefined'
 type VarExportResult = string | number | boolean | null
 
-export function var_export(mixedExpression: unknown, boolReturn?: unknown, idtLevel = 2): VarExportResult | null {
+export function var_export(mixedExpression: PhpValue, boolReturn?: PhpValue, idtLevel = 2): VarExportResult | null {
   //  discuss at: https://locutus.io/php/var_export/
   // original by: Philip Peterson
   // improved by: johnrembo
@@ -66,7 +67,7 @@ export function var_export(mixedExpression: unknown, boolReturn?: unknown, idtLe
   const _makeIndent = function (indentLevel: number): string {
     return new Array(indentLevel + 1).join(' ')
   }
-  const __getType = function (inp: unknown): VarExportType | null {
+  const __getType = function (inp: PhpValue): VarExportType | null {
     let i = 0
     let match: RegExpMatchArray | null = null
     let cons = ''

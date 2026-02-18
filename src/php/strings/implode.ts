@@ -1,8 +1,9 @@
 import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 
-type KeyedValues = PhpAssoc<unknown>
+type PhpValue = {} | null | undefined
+type KeyedValues = PhpAssoc<PhpValue>
 
-export function implode(...args: Array<unknown[] | KeyedValues | string | undefined>): string {
+export function implode(...args: Array<PhpValue[] | KeyedValues | string | undefined>): string {
   //      discuss at: https://locutus.io/php/implode/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -20,7 +21,7 @@ export function implode(...args: Array<unknown[] | KeyedValues | string | undefi
   let actualPieces = args[1]
 
   if (args.length === 1) {
-    actualPieces = args[0] as unknown[] | KeyedValues
+    actualPieces = args[0] as PhpValue[] | KeyedValues
     actualGlue = ''
   }
 

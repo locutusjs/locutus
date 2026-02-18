@@ -1,6 +1,8 @@
 import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 
-export function array_search(needle: unknown, haystack: PhpAssoc<unknown>, argStrict?: unknown): string | false {
+type PhpValue = {} | null | undefined
+
+export function array_search(needle: PhpValue, haystack: PhpAssoc<PhpValue>, argStrict?: PhpValue): string | false {
   //      discuss at: https://locutus.io/php/array_search/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

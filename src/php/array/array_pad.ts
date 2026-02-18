@@ -1,5 +1,7 @@
-export function array_pad<TInput = unknown, TPad = unknown>(
-  input: TInput[] | unknown,
+type PhpValue = {} | null | undefined
+
+export function array_pad<TInput = PhpValue, TPad = PhpValue>(
+  input: TInput[] | PhpValue,
   padSize: number,
   padValue: TPad,
 ): Array<TInput | TPad> {
@@ -16,7 +18,7 @@ export function array_pad<TInput = unknown, TPad = unknown>(
   //       returns 4: [ 'a', 'a', 7, 8, 9 ]
 
   let pad: Array<TInput | TPad> = []
-  const newArray: TPad[] = []
+  const newArray: Array<TInput | TPad> = []
   let newLength = 0
   let diff = 0
   let i = 0
@@ -29,7 +31,7 @@ export function array_pad<TInput = unknown, TPad = unknown>(
       for (i = 0; i < diff; i++) {
         newArray[i] = padValue
       }
-      pad = padSize < 0 ? newArray.concat(input) : input.concat(newArray)
+      pad = padSize < 0 ? [...newArray, ...input] : [...input, ...newArray]
     } else {
       pad = input
     }

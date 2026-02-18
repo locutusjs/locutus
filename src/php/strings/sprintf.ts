@@ -1,4 +1,6 @@
-export function sprintf(format: string, ...args: unknown[]): string | false {
+type PhpValue = {} | null | undefined
+
+export function sprintf(format: string, ...args: PhpValue[]): string | false {
   //      discuss at: https://locutus.io/php/sprintf/
   // parity verified: PHP 8.3
   //     original by: Ash Searle (https://hexmen.com/blog/)
@@ -32,7 +34,7 @@ export function sprintf(format: string, ...args: unknown[]): string | false {
   //       returns 9: '% 2'
 
   const regex = /%%|%(?:(\d+)\$)?((?:[-+#0 ]|'[\s\S])*)(\d+)?(?:\.(\d*))?([\s\S])/g
-  const callArgs: unknown[] = [format, ...args]
+  const callArgs: PhpValue[] = [format, ...args]
   let i = 1
 
   const _pad = function (str: string, len: number, chr: string, leftJustify: boolean): string {
@@ -65,7 +67,7 @@ export function sprintf(format: string, ...args: unknown[]): string | false {
   }
 
   const _formatBaseX = function (
-    value: unknown,
+    value: PhpValue,
     base: number,
     leftJustify: boolean,
     minWidth: number,
@@ -103,7 +105,7 @@ export function sprintf(format: string, ...args: unknown[]): string | false {
   ): string {
     let number = 0
     let prefix = ''
-    let value: unknown
+    let value: PhpValue
 
     if (substring === '%%') {
       return '%'
@@ -217,7 +219,7 @@ export function sprintf(format: string, ...args: unknown[]): string | false {
         return 'eEfFgG'.indexOf(specifier) % 2 === 0 ? justified : justified.toUpperCase()
       }
       default:
-        // unknown specifier, consume that char and return empty
+        // unsupported specifier, consume that char and return empty
         return ''
     }
   }

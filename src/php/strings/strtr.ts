@@ -3,9 +3,10 @@ import { krsort } from '../array/krsort.ts'
 import type { IniValue } from '../info/ini_set.ts'
 import { ini_set as iniSet } from '../info/ini_set.ts'
 
-type ReplacementMap = PhpAssoc<unknown>
+type PhpValue = {} | null | undefined
+type ReplacementMap = PhpAssoc<PhpValue>
 
-export function strtr(str: string, trFrom: string | ReplacementMap | string[], trTo?: string | unknown[]): string {
+export function strtr(str: string, trFrom: string | ReplacementMap | string[], trTo?: string | PhpValue[]): string {
   //  discuss at: https://locutus.io/php/strtr/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: uestla
@@ -38,7 +39,7 @@ export function strtr(str: string, trFrom: string | ReplacementMap | string[], t
   let sortByReference: IniValue | undefined = false
   let istr = ''
   const tmpFrom: string[] = []
-  const tmpTo: unknown[] = []
+  const tmpTo: PhpValue[] = []
   let ret = ''
   let match = false
 

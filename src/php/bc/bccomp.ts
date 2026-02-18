@@ -1,5 +1,8 @@
 import { _bc as bc } from '../_helpers/_bc.ts'
 
+type PhpValue = {} | null | undefined
+type BcNum = PhpValue
+
 export function bccomp(leftOperand: string | number, rightOperand: string | number, scale?: number): number {
   //  discuss at: https://locutus.io/php/bccomp/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
@@ -14,14 +17,14 @@ export function bccomp(leftOperand: string | number, rightOperand: string | numb
 
   const libbcmath = bc() as {
     scale: number
-    bc_init_num: () => unknown
-    bc_str2num: (value: string, scale: number) => unknown
-    bc_compare: (left: unknown, right: unknown, scale: number) => number
+    bc_init_num: () => BcNum
+    bc_str2num: (value: string, scale: number) => BcNum
+    bc_compare: (left: BcNum, right: BcNum, scale: number) => number
   }
 
   // bc_num
-  let first: unknown
-  let second: unknown
+  let first: BcNum
+  let second: BcNum
   if (typeof scale === 'undefined') {
     scale = libbcmath.scale
   }

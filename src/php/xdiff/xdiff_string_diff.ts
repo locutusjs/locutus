@@ -1,6 +1,7 @@
 type BasicType = 'number' | 'boolean' | 'string' | 'function' | 'object' | 'undefined'
 type TypeConstructor = abstract new (...args: never[]) => object
 type TypeDescriptor = BasicType | TypeConstructor
+type UnknownValue = unknown
 
 export function xdiff_string_diff(
   oldData: string,
@@ -55,7 +56,7 @@ export function xdiff_string_diff(
     return text.replace(/(^\s*)|(\s*$)/g, '')
   }
 
-  const _verifyType = function (type: TypeDescriptor, ...values: unknown[]): void {
+  const _verifyType = function (type: TypeDescriptor, ...values: UnknownValue[]): void {
     const argsLen = values.length
     const basicTypes: BasicType[] = ['number', 'boolean', 'string', 'function', 'object', 'undefined']
     let basicType: BasicType | undefined
@@ -102,7 +103,7 @@ export function xdiff_string_diff(
     }
   }
 
-  const _hasValue = function (array: unknown[], value: unknown): boolean {
+  const _hasValue = function (array: UnknownValue[], value: UnknownValue): boolean {
     let i = 0
     if (!Array.isArray(array)) {
       throw new Error('Array parameter required')
@@ -117,7 +118,7 @@ export function xdiff_string_diff(
     return false
   }
 
-  const _areTypeOf = function (type: TypeDescriptor, ...values: unknown[]): boolean {
+  const _areTypeOf = function (type: TypeDescriptor, ...values: UnknownValue[]): boolean {
     const argsLen = values.length
     const basicTypes: BasicType[] = ['number', 'boolean', 'string', 'function', 'object', 'undefined']
     let basicType: BasicType | undefined
@@ -188,7 +189,7 @@ export function xdiff_string_diff(
     return text.split('\n')
   }
 
-  const _isEmptyArray = function (obj: unknown): boolean {
+  const _isEmptyArray = function (obj: UnknownValue): boolean {
     return Array.isArray(obj) && obj.length === 0
   }
 
