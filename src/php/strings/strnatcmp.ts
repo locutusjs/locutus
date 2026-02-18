@@ -1,7 +1,6 @@
-// @ts-nocheck
 import { _phpCastString } from '../_helpers/_phpCastString.ts'
 
-export function strnatcmp(a, b) {
+export function strnatcmp(a: unknown, b: unknown): number | null {
   //       discuss at: https://locutus.io/php/strnatcmp/
   //  parity verified: PHP 8.3
   //      original by: Martijn Wieringa
@@ -32,30 +31,30 @@ export function strnatcmp(a, b) {
     return null
   }
 
-  a = _phpCastString(a)
-  b = _phpCastString(b)
+  let left = _phpCastString(a)
+  let right = _phpCastString(b)
 
-  if (!a.length || !b.length) {
-    return a.length - b.length
+  if (!left.length || !right.length) {
+    return left.length - right.length
   }
 
   let i = 0
   let j = 0
 
-  a = a.replace(leadingZeros, '')
-  b = b.replace(leadingZeros, '')
+  left = left.replace(leadingZeros, '')
+  right = right.replace(leadingZeros, '')
 
-  while (i < a.length && j < b.length) {
+  while (i < left.length && j < right.length) {
     // skip consecutive whitespace
-    while (whitespace.test(a.charAt(i))) {
+    while (whitespace.test(left.charAt(i))) {
       i++
     }
-    while (whitespace.test(b.charAt(j))) {
+    while (whitespace.test(right.charAt(j))) {
       j++
     }
 
-    let ac = a.charAt(i)
-    let bc = b.charAt(j)
+    let ac = left.charAt(i)
+    let bc = right.charAt(j)
     let aIsDigit = digit.test(ac)
     let bIsDigit = digit.test(bc)
 
@@ -86,8 +85,8 @@ export function strnatcmp(a, b) {
           }
         }
 
-        ac = a.charAt(++i)
-        bc = b.charAt(++j)
+        ac = left.charAt(++i)
+        bc = right.charAt(++j)
 
         aIsDigit = digit.test(ac)
         bIsDigit = digit.test(bc)
@@ -112,10 +111,16 @@ export function strnatcmp(a, b) {
     j++
   }
 
-  const iBeforeStrEnd = i < a.length
-  const jBeforeStrEnd = j < b.length
+  const iBeforeStrEnd = i < left.length
+  const jBeforeStrEnd = j < right.length
 
   // Check which string ended first
   // return -1 if a, 1 if b, 0 otherwise
-  return (iBeforeStrEnd > jBeforeStrEnd) - (iBeforeStrEnd < jBeforeStrEnd)
+  if (iBeforeStrEnd && !jBeforeStrEnd) {
+    return 1
+  }
+  if (!iBeforeStrEnd && jBeforeStrEnd) {
+    return -1
+  }
+  return 0
 }

@@ -1,4 +1,3 @@
-// @ts-nocheck
 export function levenshtein(s1: string, s2: string, costIns?: number, costRep?: number, costDel?: number): number {
   //       discuss at: https://locutus.io/php/levenshtein/
   //  parity verified: PHP 8.3
@@ -40,45 +39,37 @@ export function levenshtein(s1: string, s2: string, costIns?: number, costRep?: 
   //   return -1;
   // }
 
-  let split = false
-  try {
-    split = !'0'[0]
-  } catch (_e) {
-    // Earlier IE may not support access by string index
-    split = true
-  }
+  const chars1 = s1.split('')
+  const chars2 = s2.split('')
 
-  if (split) {
-    s1 = s1.split('')
-    s2 = s2.split('')
-  }
-
-  let p1 = new Array(l2 + 1)
-  let p2 = new Array(l2 + 1)
+  let p1: number[] = new Array(l2 + 1)
+  let p2: number[] = new Array(l2 + 1)
 
   let i1
   let i2
   let c0
   let c1
   let c2
-  let tmp
+  let tmp: number[]
+
+  const at = (arr: number[], idx: number): number => arr[idx] ?? 0
 
   for (i2 = 0; i2 <= l2; i2++) {
     p1[i2] = i2 * costIns
   }
 
   for (i1 = 0; i1 < l1; i1++) {
-    p2[0] = p1[0] + costDel
+    p2[0] = at(p1, 0) + costDel
 
     for (i2 = 0; i2 < l2; i2++) {
-      c0 = p1[i2] + (s1[i1] === s2[i2] ? 0 : costRep)
-      c1 = p1[i2 + 1] + costDel
+      c0 = at(p1, i2) + (chars1[i1] === chars2[i2] ? 0 : costRep)
+      c1 = at(p1, i2 + 1) + costDel
 
       if (c1 < c0) {
         c0 = c1
       }
 
-      c2 = p2[i2] + costIns
+      c2 = at(p2, i2) + costIns
 
       if (c2 < c0) {
         c0 = c2
@@ -92,7 +83,7 @@ export function levenshtein(s1: string, s2: string, costIns?: number, costRep?: 
     p2 = tmp
   }
 
-  c0 = p1[l2]
+  c0 = at(p1, l2)
 
   return c0
 }
