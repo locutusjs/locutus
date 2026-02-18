@@ -1,5 +1,7 @@
-// @ts-nocheck
-export function sscanf(str, format) {
+type SscanfValue = string | number | null
+type SscanfRef = { value: SscanfValue }
+
+export function sscanf(str: string, format: string, ...refs: SscanfRef[]): SscanfValue[] | number {
   //  discuss at: https://locutus.io/php/sscanf/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: sscanf('SN/2350001', 'SN/%d')
@@ -11,12 +13,12 @@ export function sscanf(str, format) {
   //   example 3: sscanf("10--20", "%2$d--%1$d") // Must escape '$' in PHP, but not JS
   //   returns 3: [20, 10]
 
-  const retArr = []
+  const retArr: SscanfValue[] = []
   const _NWS = /\S/
-  const args = arguments
-  let digit
+  let digit: number | undefined
+  let input = str
 
-  const _setExtraConversionSpecs = function (offset) {
+  const _setExtraConversionSpecs = function (offset: number): SscanfValue[] | number {
     // Since a mismatched character sets us off track from future
     // legitimate finds, we just scan
     // to the end for any other conversion specifications (besides a percent literal),
@@ -37,34 +39,38 @@ export function sscanf(str, format) {
     return _finish()
   }
 
-  const _finish = function () {
-    if (args.length === 2) {
+  const _finish = function (): SscanfValue[] | number {
+    if (refs.length === 0) {
       return retArr
     }
     let i = 0
     for (; i < retArr.length; ++i) {
-      args[i + 2].value = retArr[i]
+      const ref = refs[i]
+      if (!ref) {
+        break
+      }
+      ref.value = retArr[i] ?? null
     }
     return i
   }
 
-  const _addNext = function (j, regex, cb) {
+  const _addNext = function (j: number, regex: RegExp, cb?: (...groups: string[]) => SscanfValue): number {
     if (assign) {
-      const remaining = str.slice(j)
-      const check = width ? remaining.substr(0, width) : remaining
+      const remaining = input.slice(j)
+      const check = width ? remaining.slice(0, width) : remaining
       const match = regex.exec(check)
-      // @todo: Make this more readable
       const key = digit !== undefined ? digit : retArr.length
-      const testNull = (retArr[key] = match ? (cb ? cb.apply(null, match) : match[0]) : null)
-      if (testNull === null) {
+      const nextValue: SscanfValue = match ? (cb ? cb(...match) : (match[0] ?? null)) : null
+      retArr[key] = nextValue
+      if (nextValue === null) {
         throw new Error('No match in string')
       }
-      return j + match[0].length
+      return j + (match?.[0]?.length ?? 0)
     }
     return j
   }
 
-  if (arguments.length < 2) {
+  if (str === undefined || format === undefined) {
     throw new Error('Not enough arguments passed to sscanf')
   }
 
@@ -79,7 +85,7 @@ export function sscanf(str, format) {
 
     if (format.charAt(i) === '%') {
       if (format.charAt(i + 1) === '%') {
-        if (str.charAt(j) === '%') {
+        if (input.charAt(j) === '%') {
           // a matched percent literal
           // skip beyond duplicated percent
           ++i
@@ -96,6 +102,9 @@ export function sscanf(str, format) {
       const prePattern = /^(?:(\d+)\$)?(\*)?(\d*)([hlL]?)/g
 
       const preConvs = prePattern.exec(format.slice(i + 1))
+      if (!preConvs) {
+        throw new Error('Unexpected format in sscanf()')
+      }
 
       const tmpDigit = digit
       if (tmpDigit && preConvs[1] === undefined) {
@@ -106,7 +115,7 @@ export function sscanf(str, format) {
       digit = preConvs[1] ? parseInt(preConvs[1], 10) - 1 : undefined
 
       assign = !preConvs[2]
-      width = parseInt(preConvs[3], 10)
+      width = parseInt(preConvs[3] ?? '', 10)
       const sizeCode = preConvs[4]
       i += prePattern.lastIndex
 
@@ -154,7 +163,7 @@ export function sscanf(str, format) {
           case 'i': {
             // Integer with base detection (Equivalent of 'd', but base 0 instead of 10)
             const pattern = /([+-])?(?:(?:0x([\da-fA-F]+))|(?:0([0-7]+))|(\d+))/
-            j = _addNext(j, pattern, function (num, sign, hex, oct, dec) {
+            j = _addNext(j, pattern, function (num, _sign, hex, oct) {
               return hex ? parseInt(num, 16) : oct ? parseInt(num, 8) : parseInt(num, 10)
             })
             break
@@ -174,7 +183,7 @@ export function sscanf(str, format) {
           case 'd':
             // sscanf documented decimal number; equivalent of 'd';
             // Optionally signed decimal integer
-            j = _addNext(j, /([+-])?(?:0*)(\d+)/, function (num, sign, dec) {
+            j = _addNext(j, /([+-])?(?:0*)(\d+)/, function (_num, sign, dec) {
               // Ignores initial zeroes, unlike %i and parseInt()
               const decInt = parseInt((sign || '') + dec, 10)
               if (decInt < 0) {
@@ -193,7 +202,7 @@ export function sscanf(str, format) {
             // Although sscanf doesn't support locales,
             // this is used instead of '%F'; seems to be same as %e
             // These don't discriminate here as both allow exponential float of either case
-            j = _addNext(j, /([+-])?(?:0*)(\d*\.?\d*(?:[eE]?\d+)?)/, function (num, sign, dec) {
+            j = _addNext(j, /([+-])?(?:0*)(\d*\.?\d*(?:[eE]?\d+)?)/, function (_num, sign, dec) {
               if (dec === '.') {
                 return null
               }
@@ -204,7 +213,7 @@ export function sscanf(str, format) {
           case 'u':
             // unsigned decimal integer
             // We won't deal with integer overflows due to signs
-            j = _addNext(j, /([+-])?(?:0*)(\d+)/, function (num, sign, dec) {
+            j = _addNext(j, /([+-])?(?:0*)(\d+)/, function (_num, sign, dec) {
               // Ignores initial zeroes, unlike %i and parseInt()
               const decInt = parseInt(dec, 10)
               if (sign === '-') {
@@ -218,7 +227,7 @@ export function sscanf(str, format) {
             break
           case 'o':
             // Octal integer // @todo: add overflows as above?
-            j = _addNext(j, /([+-])?(?:0([0-7]+))/, function (num, sign, oct) {
+            j = _addNext(j, /([+-])?(?:0([0-7]+))/, function (num) {
               return parseInt(num, 8)
             })
             break
@@ -231,7 +240,7 @@ export function sscanf(str, format) {
             // Same as 'x'?
             // @todo: add overflows as above?
             // Initial 0x not necessary here
-            j = _addNext(j, /([+-])?(?:(?:0x)?([\da-fA-F]+))/, function (num, sign, hex) {
+            j = _addNext(j, /([+-])?(?:(?:0x)?([\da-fA-F]+))/, function (num) {
               return parseInt(num, 16)
             })
             break
@@ -249,17 +258,17 @@ export function sscanf(str, format) {
         // Calculate skipping beyond initial percent too
       }
       ++i
-    } else if (format.charAt(i) !== str.charAt(j)) {
+    } else if (format.charAt(i) !== input.charAt(j)) {
       // @todo: Double-check i whitespace ignored in string and/or formats
       _NWS.lastIndex = 0
-      if (_NWS.test(str.charAt(j)) || str.charAt(j) === '') {
+      if (_NWS.test(input.charAt(j)) || input.charAt(j) === '') {
         // Whitespace doesn't need to be an exact match)
         return _setExtraConversionSpecs(i + 1)
       } else {
         // Adjust strings when encounter non-matching whitespace,
         // so they align in future checks above
         // Ok to replace with j++;?
-        str = str.slice(0, j) + str.slice(j + 1)
+        input = input.slice(0, j) + input.slice(j + 1)
         i--
       }
     } else {
