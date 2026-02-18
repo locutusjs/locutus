@@ -1,5 +1,7 @@
-// @ts-nocheck
-export function serialize(mixedValue) {
+type UnknownMap = { [key: string]: unknown }
+type LocutusType = 'function' | 'boolean' | 'number' | 'string' | 'array' | 'object' | 'undefined' | 'null'
+
+export function serialize(mixedValue: unknown): string {
   //  discuss at: https://locutus.io/php/serialize/
   // original by: Arpad Ray (mailto:arpad@php.net)
   // improved by: Dino
@@ -25,41 +27,39 @@ export function serialize(mixedValue) {
   //   example 3: serialize( {'ü': 'ü', '四': '四', '𠜎': '𠜎'})
   //   returns 3: 'a:3:{s:2:"ü";s:2:"ü";s:3:"四";s:3:"四";s:4:"𠜎";s:4:"𠜎";}'
 
-  let val
-  let key
-  let okey
-  let ktype = ''
+  let val = ''
+  let okey: number | string
+  let ktype: LocutusType = 'undefined'
   let vals = ''
   let count = 0
 
-  const _utf8Size = function (str) {
+  const _utf8Size = function (str: string): number {
     return ~-encodeURI(str).split(/%..|./).length
   }
 
-  const _getType = function (inp) {
-    let match
-    let key
-    let cons
-    let types
-    let type = typeof inp
+  const _getType = function (inp: unknown): LocutusType {
+    let match: RegExpMatchArray | null
+    let cons = ''
+    const types: Array<'boolean' | 'number' | 'string' | 'array'> = ['boolean', 'number', 'string', 'array']
+    let type: LocutusType = typeof inp as LocutusType
 
     if (type === 'object' && !inp) {
       return 'null'
     }
 
     if (type === 'object') {
-      if (!inp.constructor) {
+      const objectInput = inp as { constructor?: { toString: () => string } }
+      if (!objectInput.constructor) {
         return 'object'
       }
-      cons = inp.constructor.toString()
+      cons = objectInput.constructor.toString()
       match = cons.match(/(\w+)\(/)
       if (match) {
-        cons = match[1].toLowerCase()
+        cons = (match[1] ?? '').toLowerCase()
       }
-      types = ['boolean', 'number', 'string', 'array']
-      for (key in types) {
-        if (cons === types[key]) {
-          type = types[key]
+      for (const itemType of types) {
+        if (cons === itemType) {
+          type = itemType
           break
         }
       }
@@ -77,13 +77,13 @@ export function serialize(mixedValue) {
       val = 'b:' + (mixedValue ? '1' : '0')
       break
     case 'number':
-      val = (Math.round(mixedValue) === mixedValue ? 'i' : 'd') + ':' + mixedValue
+      val = (Math.round(mixedValue as number) === mixedValue ? 'i' : 'd') + ':' + mixedValue
       break
     case 'string':
-      val = 's:' + _utf8Size(mixedValue) + ':"' + mixedValue + '"'
+      val = 's:' + _utf8Size(mixedValue as string) + ':"' + mixedValue + '"'
       break
     case 'array':
-    case 'object':
+    case 'object': {
       val = 'a'
       /*
       if (type === 'object') {
@@ -95,21 +95,23 @@ export function serialize(mixedValue) {
         val = 'O' + objname[1].substring(1, objname[1].length - 1);
       }
       */
-
-      for (key in mixedValue) {
-        if (mixedValue.hasOwnProperty(key)) {
-          ktype = _getType(mixedValue[key])
+      const source = mixedValue as UnknownMap
+      for (const key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          const entry = source[key]
+          ktype = _getType(entry)
           if (ktype === 'function') {
             continue
           }
 
           okey = key.match(/^[0-9]+$/) ? parseInt(key, 10) : key
-          vals += serialize(okey) + serialize(mixedValue[key])
+          vals += serialize(okey) + serialize(entry)
           count++
         }
       }
       val += ':' + count + ':{' + vals + '}'
       break
+    }
     case 'undefined':
     default:
       // Fall-through
