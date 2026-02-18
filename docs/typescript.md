@@ -532,3 +532,22 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Reflective guarded access removes cast pressure in runtime/global boundary code without tsconfig changes.
   - Small type guards are enough to replace return-value casts even in coercion-heavy ini paths.
+
+## Iteration 22
+
+- Plans
+  - Remove remaining cast hotspots in `src/php/_helpers/**` to tighten foundational runtime helpers.
+  - Add a dedicated `_helpers/**` cast ratchet to keep helper-level strictness locked.
+- Progress
+  - Refactored `src/php/_helpers/_arrayPointers.ts` to remove casted pointer target and casted cursor-entry returns.
+  - Refactored `src/php/_helpers/_callbackResolver.ts` to replace casted global callback/scope lookups with reflective guarded reads.
+  - Refactored `src/php/_helpers/_phpRuntimeState.ts` to replace casted global runtime setup with shared reflective initialization.
+  - Refactored `src/php/_helpers/_phpTypes.ts` to remove casted `Object.entries` helper return typing.
+  - Extended `scripts/check-ts-debt-policy.ts` with:
+    - `MAX_SRC_PHP_HELPERS_AS_EXPRESSION = 0`
+    - enforcement and findings output for `src/php/_helpers/**` cast expressions.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Tightening shared helper surfaces gives broad strictness gains with low regression risk when behavior is preserved.
+  - Reflective initialization and callback resolution patterns scale well across dynamic runtime boundaries without relying on assertions.

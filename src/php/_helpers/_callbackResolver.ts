@@ -1,7 +1,6 @@
 import {
   isObjectLike,
   isPhpCallable,
-  type PhpAssoc,
   type PhpCallable,
   type PhpCallableDescriptor,
   type PhpValue,
@@ -11,8 +10,6 @@ interface CallbackResolverOptions {
   invalidMessage: string
   missingScopeMessage?: (scopeName: string) => string
 }
-
-type GlobalCallableContext = typeof globalThis & PhpAssoc<PhpValue>
 
 interface ResolvedCallback<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue> {
   fn: PhpCallable<TArgs, TResult>
@@ -27,14 +24,12 @@ export function resolvePhpCallable<TArgs extends PhpValue[] = PhpValue[], TResul
   //     note 1: Resolves PHP-style callbacks: function, global name, or [scope, method].
   //  example 1: typeof resolvePhpCallable('isNaN', { invalidMessage: 'x' }).fn
   //  returns 1: 'function'
-  const globalContext = globalThis as GlobalCallableContext
-
   if (isPhpCallable<TArgs, TResult>(callback)) {
     return { fn: callback, scope: null }
   }
 
   if (typeof callback === 'string') {
-    const candidate = globalContext[callback]
+    const candidate = Reflect.get(globalThis, callback)
     if (isPhpCallable<TArgs, TResult>(candidate)) {
       return { fn: candidate, scope: null }
     }
@@ -42,12 +37,12 @@ export function resolvePhpCallable<TArgs extends PhpValue[] = PhpValue[], TResul
   }
 
   if (Array.isArray(callback) && callback.length >= 2) {
-    const scopeDescriptor = callback[0] as PhpValue
-    const callableDescriptor = callback[1] as PhpValue
+    const scopeDescriptor = callback[0]
+    const callableDescriptor = callback[1]
 
     let scope: PhpValue
     if (typeof scopeDescriptor === 'string') {
-      scope = globalContext[scopeDescriptor]
+      scope = Reflect.get(globalThis, scopeDescriptor)
       if (typeof scope === 'undefined' && options.missingScopeMessage) {
         throw new Error(options.missingScopeMessage(scopeDescriptor))
       }

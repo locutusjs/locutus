@@ -1,5 +1,5 @@
 import { ensurePhpRuntimeState } from './_phpRuntimeState.ts'
-import type { PhpArrayLike, PhpValue } from './_phpTypes.ts'
+import { entriesOfPhpAssoc, type PhpArrayLike, type PhpValue } from './_phpTypes.ts'
 
 interface PointerState {
   cursor: number
@@ -23,7 +23,7 @@ export function getPointerState<T>(target: PhpArrayLike<T>, initialize = true): 
   //  returns 1: 0
   const runtime = ensurePhpRuntimeState()
   const pointers = runtime.pointers
-  const pointerTarget = target as PhpValue
+  const pointerTarget: PhpValue = target
 
   let index = findPointerIndex(pointers, pointerTarget)
   if (index === -1) {
@@ -67,13 +67,17 @@ export function getEntryAtCursor<T>(target: PhpArrayLike<T>, cursor: number): [s
       return null
     }
 
-    return [cursor, target[cursor] as T]
+    const value = target[cursor]
+    if (typeof value === 'undefined') {
+      return null
+    }
+    return [cursor, value]
   }
 
   let index = 0
-  for (const key in target) {
+  for (const [key, value] of entriesOfPhpAssoc(target)) {
     if (index === cursor) {
-      return [key, target[key] as T]
+      return [key, value]
     }
     index += 1
   }
