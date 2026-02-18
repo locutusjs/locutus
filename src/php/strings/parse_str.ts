@@ -1,5 +1,7 @@
-// @ts-nocheck
-export function parse_str(str: string, array?: Record<string, unknown>): void {
+type ParseObject = { [key: string]: unknown }
+type LocutusGlobal = typeof globalThis & { $locutus?: { php?: ParseObject } }
+
+export function parse_str(str: string, array?: ParseObject): void {
   //       discuss at: https://locutus.io/php/parse_str/
   //      original by: Cagri Ekin
   //      improved by: Michael White (https://getsprink.com)
@@ -43,36 +45,34 @@ export function parse_str(str: string, array?: Record<string, unknown>): void {
 
   const strArr = String(str).replace(/^&/, '').replace(/&$/, '').split('&')
   const sal = strArr.length
-  let i
-  let j
-  let ct
-  let p
-  let lastObj
-  let obj
+  let i = 0
+  let j = 0
+  let ct = 0
+  let p = ''
+  let lastObj: ParseObject = {}
+  let obj: ParseObject = {}
   let chr
-  let tmp
-  let key
-  let value
-  let postLeftBracketPos
-  let keys
-  let keysLen
+  let tmp: string[] = []
+  let key = ''
+  let value = ''
+  let postLeftBracketPos = 0
+  let keys: string[] = []
+  let keysLen = 0
 
   const _fixStr = function (str: string): string {
     return decodeURIComponent(str.replace(/\+/g, '%20'))
   }
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & Record<string, unknown>
-  ;($global as Record<string, Record<string, unknown>>).$locutus =
-    ($global as Record<string, Record<string, unknown>>).$locutus || {}
-  const $locutus = ($global as Record<string, Record<string, unknown>>).$locutus
-  $locutus.php = $locutus.php || {}
+  const $global = (typeof window !== 'undefined' ? window : global) as LocutusGlobal
+  $global.$locutus = $global.$locutus || {}
+  $global.$locutus.php = $global.$locutus.php || {}
 
-  const target = array || $global
+  const target: ParseObject = array || ($global as ParseObject)
 
   for (i = 0; i < sal; i++) {
-    tmp = strArr[i].split('=')
-    key = _fixStr(tmp[0])
-    value = tmp.length < 2 ? '' : _fixStr(tmp[1])
+    tmp = (strArr[i] ?? '').split('=')
+    key = _fixStr(tmp[0] ?? '')
+    value = tmp.length < 2 ? '' : _fixStr(tmp[1] ?? '')
 
     if (/__proto__|constructor|prototype/.test(key)) {
       break
@@ -113,22 +113,24 @@ export function parse_str(str: string, array?: Record<string, unknown>): void {
         keys = [key]
       }
 
-      for (j = 0; j < keys[0].length; j++) {
-        chr = keys[0].charAt(j)
+      let primaryKey = keys[0] ?? ''
+      for (j = 0; j < primaryKey.length; j++) {
+        chr = primaryKey.charAt(j)
 
         if (chr === ' ' || chr === '.' || chr === '[') {
-          keys[0] = keys[0].substr(0, j) + '_' + keys[0].substr(j + 1)
+          primaryKey = primaryKey.substring(0, j) + '_' + primaryKey.substring(j + 1)
         }
 
         if (chr === '[') {
           break
         }
       }
+      keys[0] = primaryKey
 
       obj = target
 
       for (j = 0, keysLen = keys.length; j < keysLen; j++) {
-        key = keys[j].replace(/^['"]/, '').replace(/['"]$/, '')
+        key = (keys[j] ?? '').replace(/^['"]/, '').replace(/['"]$/, '')
         lastObj = obj
 
         if ((key === '' || key === ' ') && j !== 0) {
@@ -136,22 +138,22 @@ export function parse_str(str: string, array?: Record<string, unknown>): void {
           ct = -1
 
           for (p in obj) {
-            if (obj.hasOwnProperty(p)) {
+            if (Object.prototype.hasOwnProperty.call(obj, p)) {
               if (+p > ct && p.match(/^\d+$/g)) {
                 ct = +p
               }
             }
           }
 
-          key = ct + 1
+          key = String(ct + 1)
         }
 
         // if primitive value, replace with object
-        if (new Object(obj[key]) !== obj[key]) {
+        if (typeof obj[key] !== 'object' || obj[key] === null) {
           obj[key] = {}
         }
 
-        obj = obj[key]
+        obj = obj[key] as ParseObject
       }
 
       lastObj[key] = value
