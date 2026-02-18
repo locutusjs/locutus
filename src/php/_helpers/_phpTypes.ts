@@ -10,6 +10,9 @@ export type StringLike = string | number | boolean | bigint
 export type PhpAssoc<T> = { [key: string]: T }
 export type PhpArrayLike<T> = T[] | PhpAssoc<T>
 
+export const entriesOfPhpAssoc = <T>(value: PhpAssoc<T>): Array<[string, T]> =>
+  Object.entries(value) as Array<[string, T]>
+
 export type PhpCallable<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue> = (...args: TArgs) => TResult
 export type PhpCallableScope = PhpValue
 export type PhpCallableDescriptor<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue> =

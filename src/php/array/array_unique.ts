@@ -1,4 +1,4 @@
-import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { entriesOfPhpAssoc, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 export function array_unique<T>(inputArr: T[] | PhpAssoc<T>): PhpAssoc<T> | false {
   //  discuss at: https://locutus.io/php/array_unique/
@@ -32,12 +32,9 @@ export function array_unique<T>(inputArr: T[] | PhpAssoc<T>): PhpAssoc<T> | fals
     return false
   }
 
-  for (const key in inputObj) {
-    if (Object.prototype.hasOwnProperty.call(inputObj, key)) {
-      const val = inputObj[key] as T
-      if (_arraySearch(val, tmpArr2) === false) {
-        tmpArr2[key] = val
-      }
+  for (const [key, val] of entriesOfPhpAssoc(inputObj)) {
+    if (_arraySearch(val, tmpArr2) === false) {
+      tmpArr2[key] = val
     }
   }
 

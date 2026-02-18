@@ -30,6 +30,7 @@ export function array_walk_recursive<TValue = PhpValue, TUserdata = PhpValue>(
 
   const target = toPhpArrayObject<PhpValue>(array)
   const hasOwn = Object.prototype.hasOwnProperty
+  const hasUserdata = typeof userdata !== 'undefined'
   for (const key in target) {
     if (!hasOwn.call(target, key)) {
       continue
@@ -43,10 +44,10 @@ export function array_walk_recursive<TValue = PhpValue, TUserdata = PhpValue>(
       continue
     }
     try {
-      if (typeof userdata !== 'undefined') {
-        funcname(value as TValue, key, userdata)
+      if (hasUserdata) {
+        Reflect.apply(funcname, undefined, [value, key, userdata])
       } else {
-        funcname(value as TValue, key)
+        Reflect.apply(funcname, undefined, [value, key])
       }
     } catch (_e) {
       return false

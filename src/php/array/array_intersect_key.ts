@@ -1,4 +1,10 @@
-import { type PhpArrayLike, type PhpAssoc, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import {
+  entriesOfPhpAssoc,
+  type PhpArrayLike,
+  type PhpAssoc,
+  type PhpValue,
+  toPhpArrayObject,
+} from '../_helpers/_phpTypes.ts'
 
 export function array_intersect_key<TValue = PhpValue>(
   arr1: PhpArrayLike<TValue>,
@@ -20,8 +26,7 @@ export function array_intersect_key<TValue = PhpValue>(
 
   const arr1Object = toPhpArrayObject<TValue>(arr1)
   const hasOwn = Object.prototype.hasOwnProperty
-
-  arr1keys: for (const [k1, arr1Value] of Object.entries(arr1Object) as Array<[string, TValue]>) {
+  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
     for (const nextArray of arrays) {
       const arr = toPhpArrayObject<TValue>(nextArray)
       if (!hasOwn.call(arr, k1)) {

@@ -357,3 +357,21 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Branching on structural variants (`Array.isArray`) is a reliable way to eliminate boundary casts with minimal behavioral risk.
   - Type-signature tests are a useful guardrail against over-widening callback-heavy APIs during cleanup.
+
+## Iteration 13
+
+- Plans
+  - Continue removing remaining assertion-heavy loops in `src/php/array/**` with behavior-preserving refactors.
+  - Prefer shared typed helpers over repeated local tuple casts.
+- Progress
+  - Added `entriesOfPhpAssoc<T>()` in `src/php/_helpers/_phpTypes.ts` for typed associative iteration.
+  - Refactored `src/php/array/{array_diff,array_diff_assoc,array_diff_key,array_intersect,array_intersect_assoc,array_intersect_key,array_unique}.ts` to use typed-entry iteration and remove local tuple/index casts.
+  - Refactored `src/php/array/array_walk_recursive.ts` callback invocation to use `Reflect.apply(...)`, removing local value casts.
+  - Lowered debt-policy ratchet in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_ARRAY_AS_EXPRESSION`: `13 -> 4`
+  - Validation passed:
+    - `corepack yarn check`
+    - `corepack yarn lint:ts:debt:policy`
+- Key learnings
+  - Centralized typed-entry helpers remove repetitive cast patterns and avoid `T | undefined` indexed-access regressions.
+  - Deep ratchet drops become practical once helper primitives are in place and reused across similar algorithms.
