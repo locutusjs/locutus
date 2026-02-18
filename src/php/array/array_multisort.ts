@@ -1,5 +1,54 @@
-// @ts-nocheck
-export function array_multisort(arr) {
+type SortableObject = Record<string, unknown>
+type SortComparator = (a: unknown, b: unknown) => number
+
+const hasOwn = Object.prototype.hasOwnProperty
+
+const flags = {
+  SORT_REGULAR: 16,
+  SORT_NUMERIC: 17,
+  SORT_STRING: 18,
+  SORT_ASC: 32,
+  SORT_DESC: 40,
+} as const
+
+type SortFlag = keyof typeof flags
+
+const isSortableObject = (value: unknown): value is SortableObject =>
+  value !== null && typeof value === 'object' && !Array.isArray(value)
+
+const isSortFlag = (value: unknown): value is SortFlag => typeof value === 'string' && value in flags
+
+const copyBackToObject = (target: SortableObject, values: unknown[], keys: string[]): void => {
+  for (const key in target) {
+    if (hasOwn.call(target, key)) {
+      delete target[key]
+    }
+  }
+  for (let index = 0; index < values.length; index++) {
+    const key = keys[index]
+    if (key === undefined) {
+      continue
+    }
+    target[key] = values[index]
+  }
+}
+
+const compareRegular = (leftValue: unknown, rightValue: unknown): number => {
+  if (leftValue === rightValue) {
+    return 0
+  }
+  if (leftValue === null || leftValue === undefined) {
+    return -1
+  }
+  if (rightValue === null || rightValue === undefined) {
+    return 1
+  }
+  const left = leftValue as string | number | bigint | boolean | Date
+  const right = rightValue as string | number | bigint | boolean | Date
+  return left === right ? 0 : left > right ? 1 : -1
+}
+
+export function array_multisort(arr: unknown, ...rest: unknown[]): boolean {
   //  discuss at: https://locutus.io/php/array_multisort/
   // original by: Theriault (https://github.com/Theriault)
   // improved by: Oleg Andreyev (https://github.com/oleg-andreyev)
@@ -21,84 +70,86 @@ export function array_multisort(arr) {
   //      note 1: bits: HGFE DCBA
   //      note 1: args: Holds pointer to arguments for reassignment
 
-  let g
-  let i
-  let j
-  let k
-  let l
-  let sal
-  let vkey
-  let elIndex
-  let lastSorts
-  let tmpArray
-  let zlast
+  let i = 0
+  let j = 0
+  let l = 0
+  let sal = 0
+  let vkey = ''
+  let elIndex = 0
+  let zlast: unknown
 
-  const sortFlag = [0]
-  const thingsToSort = []
-  let nLastSort = []
-  let lastSort = []
-  // possibly redundant
-  const args = arguments
+  const sortFlag: number[] = [0]
+  const thingsToSort: boolean[] = []
+  let nLastSort: number[] = []
+  let lastSort: number[] = []
+  const args = [arr, ...rest]
 
-  const flags = {
-    SORT_REGULAR: 16,
-    SORT_NUMERIC: 17,
-    SORT_STRING: 18,
-    SORT_ASC: 32,
-    SORT_DESC: 40,
+  const sortDuplicator: SortComparator = function () {
+    return nLastSort.shift() ?? 0
   }
 
-  const sortDuplicator = function (a, b) {
-    return nLastSort.shift()
-  }
-
-  const sortFunctions = [
+  const sortFunctions: SortComparator[][] = [
     [
-      function (a, b) {
-        lastSort.push(a > b ? 1 : a < b ? -1 : 0)
-        return a > b ? 1 : a < b ? -1 : 0
+      function (a: unknown, b: unknown) {
+        const result = compareRegular(a, b)
+        lastSort.push(result)
+        return result
       },
-      function (a, b) {
-        lastSort.push(b > a ? 1 : b < a ? -1 : 0)
-        return b > a ? 1 : b < a ? -1 : 0
+      function (a: unknown, b: unknown) {
+        const result = compareRegular(b, a)
+        lastSort.push(result)
+        return result
       },
     ],
     [
-      function (a, b) {
-        lastSort.push(a - b)
-        return a - b
+      function (a: unknown, b: unknown) {
+        const result = Number(a) - Number(b)
+        lastSort.push(result)
+        return result
       },
-      function (a, b) {
-        lastSort.push(b - a)
-        return b - a
+      function (a: unknown, b: unknown) {
+        const result = Number(b) - Number(a)
+        lastSort.push(result)
+        return result
       },
     ],
     [
-      function (a, b) {
-        lastSort.push(a + '' > b + '' ? 1 : a + '' < b + '' ? -1 : 0)
-        return a + '' > b + '' ? 1 : a + '' < b + '' ? -1 : 0
+      function (a: unknown, b: unknown) {
+        const left = String(a)
+        const right = String(b)
+        const result = left > right ? 1 : left < right ? -1 : 0
+        lastSort.push(result)
+        return result
       },
-      function (a, b) {
-        lastSort.push(b + '' > a + '' ? 1 : b + '' < a + '' ? -1 : 0)
-        return b + '' > a + '' ? 1 : b + '' < a + '' ? -1 : 0
+      function (a: unknown, b: unknown) {
+        const left = String(b)
+        const right = String(a)
+        const result = left > right ? 1 : left < right ? -1 : 0
+        lastSort.push(result)
+        return result
       },
     ],
   ]
 
-  const sortArrs = [[]]
+  const sortArrs: unknown[][] = [[]]
 
-  const sortKeys = [[]]
+  const sortKeys: string[][] = [[]]
 
   // Store first argument into sortArrs and sortKeys if an Object.
   // First Argument should be either a Javascript Array or an Object,
   // otherwise function would return FALSE like in PHP
   if (Array.isArray(arr)) {
     sortArrs[0] = arr
-  } else if (arr && typeof arr === 'object') {
-    for (i in arr) {
-      if (arr.hasOwnProperty(i)) {
-        sortKeys[0].push(i)
-        sortArrs[0].push(arr[i])
+  } else if (isSortableObject(arr)) {
+    const firstSortKeys = sortKeys[0]
+    const firstSortValues = sortArrs[0]
+    if (!firstSortKeys || !firstSortValues) {
+      return false
+    }
+    for (const key in arr) {
+      if (hasOwn.call(arr, key)) {
+        firstSortKeys.push(key)
+        firstSortValues.push(arr[key])
       }
     }
   } else {
@@ -109,40 +160,48 @@ export function array_multisort(arr) {
   // All other arrays must be of equal length, otherwise function would return FALSE like in PHP
   // sortComponents: Holds 2 indexes per every section of the array
   // that can be sorted. As this is the start, the whole array can be sorted.
-  const arrMainLength = sortArrs[0].length
+  const primarySortArray = sortArrs[0]
+  if (!primarySortArray) {
+    return false
+  }
+  const arrMainLength = primarySortArray.length
   let sortComponents = [0, arrMainLength]
 
   // Loop through all other arguments, checking lengths and sort flags
   // of arrays and adding them to the above variables.
-  const argl = arguments.length
+  const argl = args.length
   for (j = 1; j < argl; j++) {
-    if (Array.isArray(arguments[j])) {
-      sortArrs[j] = arguments[j]
+    const arg = args[j]
+    if (Array.isArray(arg)) {
+      sortArrs[j] = arg
       sortFlag[j] = 0
-      if (arguments[j].length !== arrMainLength) {
+      if (arg.length !== arrMainLength) {
         return false
       }
-    } else if (arguments[j] && typeof arguments[j] === 'object') {
-      sortKeys[j] = []
-      sortArrs[j] = []
+    } else if (isSortableObject(arg)) {
+      const currentSortKeys: string[] = (sortKeys[j] = [])
+      const currentSortValues: unknown[] = (sortArrs[j] = [])
       sortFlag[j] = 0
-      for (i in arguments[j]) {
-        if (arguments[j].hasOwnProperty(i)) {
-          sortKeys[j].push(i)
-          sortArrs[j].push(arguments[j][i])
+      for (const key in arg) {
+        if (hasOwn.call(arg, key)) {
+          currentSortKeys.push(key)
+          currentSortValues.push(arg[key])
         }
       }
-      if (sortArrs[j].length !== arrMainLength) {
+      if (currentSortValues.length !== arrMainLength) {
         return false
       }
-    } else if (typeof arguments[j] === 'string') {
-      const lFlag = sortFlag.pop()
+    } else if (typeof arg === 'string') {
+      if (!isSortFlag(arg)) {
+        return false
+      }
+      const lFlag = sortFlag.pop() ?? 0
       // Keep extra parentheses around latter flags check
       // to avoid minimization leading to CDATA closer
-      if (typeof flags[arguments[j]] === 'undefined' || ((flags[arguments[j]] >>> 4) & (lFlag >>> 4)) > 0) {
+      if (((flags[arg] >>> 4) & (lFlag >>> 4)) > 0) {
         return false
       }
-      sortFlag.push(lFlag + flags[arguments[j]])
+      sortFlag.push(lFlag + flags[arg])
     } else {
       return false
     }
@@ -153,90 +212,115 @@ export function array_multisort(arr) {
   }
 
   // Sort all the arrays....
-  for (i in sortArrs) {
-    if (sortArrs.hasOwnProperty(i)) {
-      lastSorts = []
-      tmpArray = []
+  for (const iKey in sortArrs) {
+    if (hasOwn.call(sortArrs, iKey)) {
+      const iNum = Number(iKey)
+      const lastSorts: number[][] = []
+      let tmpArray: unknown[] = []
       elIndex = 0
       nLastSort = []
       lastSort = []
+      const currentSortArr = sortArrs[iNum]
+      if (!currentSortArr) {
+        continue
+      }
 
       // If there are no sortComponents, then no more sorting is neeeded.
       // Copy the array back to the argument.
       if (sortComponents.length === 0) {
-        if (Array.isArray(arguments[i])) {
-          args[i] = sortArrs[i]
-        } else {
-          for (k in arguments[i]) {
-            if (arguments[i].hasOwnProperty(k)) {
-              delete arguments[i][k]
+        const arg = args[iNum]
+        if (Array.isArray(arg)) {
+          args[iNum] = currentSortArr
+        } else if (isSortableObject(arg)) {
+          const currentSortKeySet = sortKeys[iNum] ?? []
+          sal = currentSortArr.length
+          for (j = 0, vkey = ''; j < sal; j++) {
+            vkey = currentSortKeySet[j] ?? ''
+            if (vkey !== '') {
+              arg[vkey] = currentSortArr[j]
             }
           }
-          sal = sortArrs[i].length
-          for (j = 0, vkey = 0; j < sal; j++) {
-            vkey = sortKeys[i][j]
-            args[i][vkey] = sortArrs[i][j]
-          }
         }
-        sortArrs.splice(i, 1)
-        sortKeys.splice(i, 1)
+        sortArrs.splice(iNum, 1)
+        sortKeys.splice(iNum, 1)
         continue
       }
 
       // Sort function for sorting. Either sorts asc or desc, regular/string or numeric.
-      let sFunction = sortFunctions[sortFlag[i] & 3][(sortFlag[i] & 8) > 0 ? 1 : 0]
+      const currentSortFlag = sortFlag[iNum] ?? 0
+      const functionGroup = sortFunctions[currentSortFlag & 3]
+      if (!functionGroup) {
+        return false
+      }
+      let sFunction = functionGroup[(currentSortFlag & 8) > 0 ? 1 : 0] ?? functionGroup[0]
 
       // Sort current array.
       for (l = 0; l !== sortComponents.length; l += 2) {
-        tmpArray = sortArrs[i].slice(sortComponents[l], sortComponents[l + 1] + 1)
+        const componentStart = sortComponents[l]
+        const componentEnd = sortComponents[l + 1]
+        if (componentStart === undefined || componentEnd === undefined) {
+          continue
+        }
+        tmpArray = currentSortArr.slice(componentStart, componentEnd + 1)
         tmpArray.sort(sFunction)
         // Is there a better way to copy an array in Javascript?
-        lastSorts[l] = [].concat(lastSort)
-        elIndex = sortComponents[l]
-        for (g in tmpArray) {
-          if (tmpArray.hasOwnProperty(g)) {
-            sortArrs[i][elIndex] = tmpArray[g]
-            elIndex++
-          }
+        lastSorts[l] = [...lastSort]
+        elIndex = componentStart
+        for (const value of tmpArray) {
+          currentSortArr[elIndex] = value
+          elIndex++
         }
       }
 
       // Duplicate the sorting of the current array on future arrays.
       sFunction = sortDuplicator
-      for (j in sortArrs) {
-        if (sortArrs.hasOwnProperty(j)) {
-          if (sortArrs[j] === sortArrs[i]) {
+      for (const jKey in sortArrs) {
+        if (hasOwn.call(sortArrs, jKey)) {
+          const jNum = Number(jKey)
+          const targetSortArr = sortArrs[jNum]
+          if (!targetSortArr || targetSortArr === currentSortArr) {
             continue
           }
           for (l = 0; l !== sortComponents.length; l += 2) {
-            tmpArray = sortArrs[j].slice(sortComponents[l], sortComponents[l + 1] + 1)
+            const componentStart = sortComponents[l]
+            const componentEnd = sortComponents[l + 1]
+            if (componentStart === undefined || componentEnd === undefined) {
+              continue
+            }
+            tmpArray = targetSortArr.slice(componentStart, componentEnd + 1)
             // alert(l + ':' + nLastSort);
-            nLastSort = [].concat(lastSorts[l])
+            nLastSort = [...(lastSorts[l] ?? [])]
             tmpArray.sort(sFunction)
-            elIndex = sortComponents[l]
-            for (g in tmpArray) {
-              if (tmpArray.hasOwnProperty(g)) {
-                sortArrs[j][elIndex] = tmpArray[g]
-                elIndex++
-              }
+            elIndex = componentStart
+            for (const value of tmpArray) {
+              targetSortArr[elIndex] = value
+              elIndex++
             }
           }
         }
       }
 
       // Duplicate the sorting of the current array on array keys
-      for (j in sortKeys) {
-        if (sortKeys.hasOwnProperty(j)) {
+      for (const jKey in sortKeys) {
+        if (hasOwn.call(sortKeys, jKey)) {
+          const jNum = Number(jKey)
+          const targetSortKeys = sortKeys[jNum]
+          if (!targetSortKeys) {
+            continue
+          }
           for (l = 0; l !== sortComponents.length; l += 2) {
-            tmpArray = sortKeys[j].slice(sortComponents[l], sortComponents[l + 1] + 1)
-            nLastSort = [].concat(lastSorts[l])
+            const componentStart = sortComponents[l]
+            const componentEnd = sortComponents[l + 1]
+            if (componentStart === undefined || componentEnd === undefined) {
+              continue
+            }
+            tmpArray = targetSortKeys.slice(componentStart, componentEnd + 1)
+            nLastSort = [...(lastSorts[l] ?? [])]
             tmpArray.sort(sFunction)
-            elIndex = sortComponents[l]
-            for (g in tmpArray) {
-              if (tmpArray.hasOwnProperty(g)) {
-                sortKeys[j][elIndex] = tmpArray[g]
-                elIndex++
-              }
+            elIndex = componentStart
+            for (const value of tmpArray) {
+              targetSortKeys[elIndex] = String(value)
+              elIndex++
             }
           }
         }
@@ -245,53 +329,42 @@ export function array_multisort(arr) {
       // Generate the next sortComponents
       zlast = null
       sortComponents = []
-      for (j in sortArrs[i]) {
-        if (sortArrs[i].hasOwnProperty(j)) {
-          if (!thingsToSort[j]) {
-            if (sortComponents.length & 1) {
-              sortComponents.push(j - 1)
-            }
-            zlast = null
-            continue
+      let lastIndex = 0
+      for (let idx = 0; idx < currentSortArr.length; idx++) {
+        lastIndex = idx
+        if (!thingsToSort[idx]) {
+          if (sortComponents.length & 1) {
+            sortComponents.push(idx - 1)
           }
-          if (!(sortComponents.length & 1)) {
-            if (zlast !== null) {
-              if (sortArrs[i][j] === zlast) {
-                sortComponents.push(j - 1)
-              } else {
-                thingsToSort[j] = false
-              }
-            }
-            zlast = sortArrs[i][j]
-          } else {
-            if (sortArrs[i][j] !== zlast) {
-              sortComponents.push(j - 1)
-              zlast = sortArrs[i][j]
+          zlast = null
+          continue
+        }
+        if (!(sortComponents.length & 1)) {
+          if (zlast !== null) {
+            if (currentSortArr[idx] === zlast) {
+              sortComponents.push(idx - 1)
+            } else {
+              thingsToSort[idx] = false
             }
           }
+          zlast = currentSortArr[idx]
+        } else if (currentSortArr[idx] !== zlast) {
+          sortComponents.push(idx - 1)
+          zlast = currentSortArr[idx]
         }
       }
 
       if (sortComponents.length & 1) {
-        sortComponents.push(j)
+        sortComponents.push(lastIndex)
       }
-      if (Array.isArray(arguments[i])) {
-        args[i] = sortArrs[i]
-      } else {
-        for (j in arguments[i]) {
-          if (arguments[i].hasOwnProperty(j)) {
-            delete arguments[i][j]
-          }
-        }
-
-        sal = sortArrs[i].length
-        for (j = 0, vkey = 0; j < sal; j++) {
-          vkey = sortKeys[i][j]
-          args[i][vkey] = sortArrs[i][j]
-        }
+      const arg = args[iNum]
+      if (Array.isArray(arg)) {
+        args[iNum] = currentSortArr
+      } else if (isSortableObject(arg)) {
+        copyBackToObject(arg, currentSortArr, sortKeys[iNum] ?? [])
       }
-      sortArrs.splice(i, 1)
-      sortKeys.splice(i, 1)
+      sortArrs.splice(iNum, 1)
+      sortKeys.splice(iNum, 1)
     }
   }
   return true
