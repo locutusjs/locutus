@@ -245,3 +245,19 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Converting legacy global lookups to typed `ini_get` reads removes casts and improves standalone consistency simultaneously.
   - Directory-level cast ratchets create momentum: each focused cleanup pass can lock in gains immediately.
+
+## Iteration 7
+
+- Plans
+  - Continue reducing high-cast array hotspots after Iteration 6.
+  - Keep parser/build constraints intact (function header comments must remain parseable by tooling).
+- Progress
+  - Refactored `src/php/array/array_pop.ts` to remove all local `as` assertions using direct `Array.isArray` narrowing and guarded object-key reads.
+  - Attempted overload-based tightening in `array_slice`, then reverted to parser-compatible single-signature shape after `test:languages` parse failure.
+  - Lowered debt-policy ratchet in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_ARRAY_AS_EXPRESSION`: `48 -> 43`
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Type strictness improvements must respect codegen/header-parser assumptions; overload-heavy signatures can violate tooling expectations even when TypeScript is valid.
+  - Cast burn-down still progresses effectively with targeted function-level refactors (`array_pop`) plus immediate ratchet updates.

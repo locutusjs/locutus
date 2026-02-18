@@ -22,13 +22,13 @@ export function array_pop<T>(inputArr: Record<string, T> | T[]): T | null {
   let key = ''
   let lastKey = ''
 
-  if (inputArr.hasOwnProperty('length')) {
+  if (Array.isArray(inputArr)) {
     // Indexed
-    if (!(inputArr as T[]).length) {
+    if (!inputArr.length) {
       // Done popping, are we?
       return null
     }
-    return (inputArr as T[]).pop() ?? null
+    return inputArr.pop() ?? null
   } else {
     // Associative
     for (key in inputArr) {
@@ -37,8 +37,11 @@ export function array_pop<T>(inputArr: Record<string, T> | T[]): T | null {
       }
     }
     if (lastKey) {
-      const tmp = (inputArr as Record<string, T>)[lastKey] as T
-      delete (inputArr as Record<string, T>)[lastKey]
+      const tmp = inputArr[lastKey]
+      if (tmp === undefined) {
+        return null
+      }
+      delete inputArr[lastKey]
       return tmp
     } else {
       return null
