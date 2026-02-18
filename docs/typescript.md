@@ -278,3 +278,20 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Callable guards are a low-friction way to remove dynamic function casts while preserving runtime flexibility.
   - The best momentum pattern remains: small cast-removal pass, immediate ratchet tighten, then repeat.
+
+## Iteration 9
+
+- Plans
+  - Continue reducing `as` assertions in high-frequency array mutation helpers without changing tsconfig.
+  - Prefer guard-driven indexed access and structural reads over casts.
+- Progress
+  - Refactored `src/php/array/array_splice.ts`:
+    - removed replacement-item casts in `toReplacementItems`.
+    - replaced casted length access with `Object.keys(arr).length` for associative input.
+  - Lowered debt-policy ratchet in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_ARRAY_AS_EXPRESSION`: `40 -> 37`
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Generic helper branches (`ReplacementValue<T>`) often allow cast removal with better control-flow narrowing than expected.
+  - Repeated ratchet-tighten loops keep the branch moving steadily toward narrower, assertion-light implementations.

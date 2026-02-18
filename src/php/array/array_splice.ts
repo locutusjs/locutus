@@ -19,12 +19,12 @@ const toReplacementItems = <T>(replacement: ReplacementValue<T> | undefined): Ar
   if (isAssocArray(replacement)) {
     const values: Array<T | undefined> = []
     for (const key in replacement) {
-      values.push(replacement[key] as T | undefined)
+      values.push(replacement[key])
     }
     return values
   }
 
-  return [replacement as T | undefined]
+  return [replacement]
 }
 
 const checkToUpIndices = <T>(assoc: AssocArray<T>, cursor: number, key: string): number => {
@@ -74,7 +74,7 @@ export function array_splice(
 
   const replacementItems = toReplacementItems(replacement)
 
-  const sourceLength = Array.isArray(arr) ? arr.length : ((arr as { length?: number }).length ?? 0)
+  const sourceLength = Array.isArray(arr) ? arr.length : Object.keys(arr).length
 
   const lengthToRemove =
     typeof lgth === 'undefined'
