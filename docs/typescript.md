@@ -963,3 +963,17 @@ To fix a `@ts-nocheck` file:
     - `corepack yarn test:module`
 - Key learnings
   - Root-level ESM ergonomics and warning removal can be adopted without disrupting CommonJS consumers by explicitly pinning dist package type to CommonJS.
+
+## Iteration 42
+
+- Plans
+  - Align package engine policy with the new major release direction and current tooling/runtime assumptions.
+- Progress
+  - Updated `package.json`:
+    - `engines.node` from `>= 14` to `>= 22`.
+  - Updated `.changeset/typescript-migration.md`:
+    - added explicit breaking-change note for minimum Node.js version `22`.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - If contributor and consumer runtime policy intentionally converge in a major, encoding it in both `engines` and the changeset prevents ambiguity downstream.

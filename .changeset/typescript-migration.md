@@ -11,3 +11,4 @@ Breaking changes:
 - The `ini_get` dependency is no longer required — functions read ini values inline via optional chaining on `globalThis.$locutus`
 - Repository tooling now runs as native ESM (`"type": "module"`), and Node script invocations no longer need typeless/strip-type flags.
   - Published `dist` output remains CommonJS-compatible for `require(...)` deep imports.
+- Minimum supported Node.js version is now `22` (`engines.node: >= 22`).
