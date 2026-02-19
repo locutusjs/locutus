@@ -154,8 +154,8 @@ src/php/filesystem/file_exists.ts :: export function file_exists(filename: strin
 src/php/filesystem/file_get_contents.ts :: export function file_get_contents( url: string, _flags?: PhpMixed, _context?: PhpMixed, _offset?: number, _maxLen?: number, ): string | false
 src/php/filesystem/pathinfo.ts :: export function pathinfo(path: string, options?: PathInfoOptions): PathInfoMap | string | false
 src/php/filesystem/realpath.ts :: export function realpath(path: string): string
-src/php/funchand/call_user_func.ts :: export function call_user_func<TResult = PhpValue, TArgs extends PhpValue[] = PhpValue[]>( cb: PhpValue, ...parameters: TArgs ): TResult
-src/php/funchand/call_user_func_array.ts :: export function call_user_func_array<TResult = PhpValue, TArgs extends PhpValue[] = PhpValue[]>( cb: PhpValue, parameters: [...TArgs], ): TResult
+src/php/funchand/call_user_func.ts :: export function call_user_func<TResult = PhpValue, TArgs extends PhpValue[] = PhpValue[]>( cb: PhpCallableDescriptor<TArgs, TResult>, ...parameters: TArgs ): TResult
+src/php/funchand/call_user_func_array.ts :: export function call_user_func_array<TResult = PhpValue, TArgs extends PhpValue[] = PhpValue[]>( cb: PhpCallableDescriptor<TArgs, TResult>, parameters: [...TArgs], ): TResult
 src/php/funchand/create_function.ts :: export function create_function(args: string, code: string): PhpCallable | false
 src/php/funchand/function_exists.ts :: export function function_exists(funcName: string): boolean
 src/php/funchand/get_defined_functions.ts :: export function get_defined_functions(): string[]

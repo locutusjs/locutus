@@ -1,10 +1,16 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
-import { isObjectLike, isPhpCallable, type PhpCallable, type PhpValue } from '../_helpers/_phpTypes.ts'
+import {
+  isObjectLike,
+  isPhpCallable,
+  type PhpCallable,
+  type PhpCallableDescriptor,
+  type PhpValue,
+} from '../_helpers/_phpTypes.ts'
 
 const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
 export function call_user_func_array<TResult = PhpValue, TArgs extends PhpValue[] = PhpValue[]>(
-  cb: PhpValue,
+  cb: PhpCallableDescriptor<TArgs, TResult>,
   parameters: [...TArgs],
 ): TResult {
   //  discuss at: https://locutus.io/php/call_user_func_array/

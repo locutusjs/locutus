@@ -712,3 +712,19 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Variadic tuple rest parameters deliver strong callback API narrowing without touching runtime code paths.
   - `entriesOfPhpAssoc(...)` is a reliable pattern to avoid strict-next `index signature -> T | undefined` friction in generic object loops.
+
+## Iteration 30
+
+- Plans
+  - Tighten callback entrypoints in `funchand` so callable APIs no longer accept unconstrained `PhpValue`.
+  - Keep runtime fallback behavior unchanged while narrowing the public TS surface.
+- Progress
+  - Narrowed callback parameter types:
+    - `src/php/funchand/call_user_func.ts`: `cb` now `PhpCallableDescriptor<TArgs, TResult>`.
+    - `src/php/funchand/call_user_func_array.ts`: `cb` now `PhpCallableDescriptor<TArgs, TResult>`.
+  - Updated imports in `call_user_func_array.ts` to include `PhpCallableDescriptor`.
+  - Updated `docs/php-api-signatures.snapshot` to track the narrowed exported signatures.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Callable boundary narrowing in entrypoint functions yields immediate API quality gains with minimal blast radius because runtime fallback machinery already enforces descriptor semantics.

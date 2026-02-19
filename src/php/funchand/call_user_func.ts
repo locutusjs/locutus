@@ -1,8 +1,8 @@
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpCallableDescriptor, PhpValue } from '../_helpers/_phpTypes.ts'
 import { call_user_func_array as callUserFuncArray } from '../funchand/call_user_func_array.ts'
 
 export function call_user_func<TResult = PhpValue, TArgs extends PhpValue[] = PhpValue[]>(
-  cb: PhpValue,
+  cb: PhpCallableDescriptor<TArgs, TResult>,
   ...parameters: TArgs
 ): TResult {
   //  discuss at: https://locutus.io/php/call_user_func/
