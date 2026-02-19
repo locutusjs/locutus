@@ -1099,3 +1099,29 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Ratcheting broad-type keywords by occurrence count (not line count) provides stable, enforcement-grade progress tracking.
   - Adding policy checks right after cleanup passes locks in gains and prevents backsliding during high-velocity refactors.
+
+## Iteration 48
+
+- Plans
+  - Remove the remaining `PhpMixed` usage from `src/php/array/**`.
+  - Immediately lower debt-policy ceilings to the newly achieved floor.
+- Progress
+  - Removed `PhpMixed` from all remaining array hotspots:
+    - `src/php/array/array_count_values.ts`
+    - `src/php/array/array_filter.ts`
+    - `src/php/array/array_key_exists.ts`
+    - `src/php/array/array_unshift.ts`
+    - `src/php/array/in_array.ts`
+  - Updated `docs/php-api-signatures.snapshot` for intentional signature narrowing.
+  - Lowered policy ratchets in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_PHPMIXED_KEYWORD`: `94 -> 79`
+    - `MAX_SRC_PHP_ARRAY_PHPMIXED_KEYWORD`: `15 -> 0`
+    - `MAX_SRC_PHP_VAR_PHPMIXED_KEYWORD`: unchanged at `9`
+  - Measured reduction:
+    - `src/php/**` `PhpMixed`: `94 -> 79` (occurrence count).
+    - `src/php/array/**` `PhpMixed`: `15 -> 0` (occurrence count).
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Finishing a whole directory (`array/**`) to zero broad aliases is realistic when done in focused, boundary-first passes.
+  - Ratcheting at each floor is essential to prevent regression while proceeding to the next directory family.

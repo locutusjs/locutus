@@ -1,6 +1,10 @@
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpArrayLike, PhpValue } from '../_helpers/_phpTypes.ts'
 
-export function in_array<T>(needle: PhpMixed, haystack: T[] | Record<string, T>, argStrict?: boolean): boolean {
+export function in_array<T extends PhpValue>(
+  needle: PhpValue,
+  haystack: PhpArrayLike<T>,
+  argStrict?: boolean,
+): boolean {
   //  discuss at: https://locutus.io/php/in_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: vlado houba
