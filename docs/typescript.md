@@ -728,3 +728,25 @@ To fix a `@ts-nocheck` file:
     - `corepack yarn check`
 - Key learnings
   - Callable boundary narrowing in entrypoint functions yields immediate API quality gains with minimal blast radius because runtime fallback machinery already enforces descriptor semantics.
+
+## Iteration 31
+
+- Plans
+  - Apply the same callback-tuple narrowing pattern to `array_diff_ukey`, `array_diff_uassoc`, `array_intersect_ukey`, and `array_intersect_uassoc`.
+  - Preserve value-type propagation from `arr1` while avoiding strict-next index-access widening.
+- Progress
+  - Tightened signatures in:
+    - `src/php/array/array_diff_uassoc.ts`
+    - `src/php/array/array_diff_ukey.ts`
+    - `src/php/array/array_intersect_uassoc.ts`
+    - `src/php/array/array_intersect_ukey.ts`
+  - Improvements made:
+    - required at least one compare-array argument before callback via variadic tuple rest params.
+    - typed key callback as `PhpCallableDescriptor<[string, string], PhpValue>`.
+    - propagated `arr1` value type to return type via generic `PhpAssoc<T>`.
+    - replaced `for..in` index access with `entriesOfPhpAssoc(...)` loops.
+  - Updated `docs/php-api-signatures.snapshot` for the narrowed API surface.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - The tuple-rest + typed-descriptor pattern scales across the remaining callback families with low risk and consistent inference improvements.

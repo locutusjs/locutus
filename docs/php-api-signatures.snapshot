@@ -42,8 +42,8 @@ src/php/array/array_count_values.ts :: export function array_count_values(array:
 src/php/array/array_diff.ts :: export function array_diff<TValue = PhpValue>( arr1: PhpArrayLike<TValue>, ...arrays: Array<PhpArrayLike<TValue>> ): PhpAssoc<TValue>
 src/php/array/array_diff_assoc.ts :: export function array_diff_assoc<TValue = PhpValue>( arr1: PhpArrayLike<TValue>, ...arrays: Array<PhpArrayLike<TValue>> ): PhpAssoc<TValue>
 src/php/array/array_diff_key.ts :: export function array_diff_key<TValue = PhpValue>( arr1: PhpArrayLike<TValue>, ...arrays: Array<PhpArrayLike<TValue>> ): PhpAssoc<TValue>
-src/php/array/array_diff_uassoc.ts :: export function array_diff_uassoc(arr1: PhpArray, ...arraysAndCallback: PhpMixed[]): PhpArray
-src/php/array/array_diff_ukey.ts :: export function array_diff_ukey(arr1: PhpArray, ...arraysAndCallback: PhpMixed[]): PhpArray
+src/php/array/array_diff_uassoc.ts :: export function array_diff_uassoc<T extends PhpValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: PhpValue, ...rest: PhpValue[], callback: KeyComparatorDescriptor] ): PhpArray<T>
+src/php/array/array_diff_ukey.ts :: export function array_diff_ukey<T extends PhpValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: PhpValue, ...rest: PhpValue[], callback: KeyComparatorDescriptor] ): PhpArray<T>
 src/php/array/array_fill.ts :: export function array_fill(startIndex: number, num: number, mixedVal: string): { [key: string]: string }
 src/php/array/array_fill_keys.ts :: export function array_fill_keys(keys: PhpAssoc<PhpMixed>, value: string): PhpAssoc<string>
 src/php/array/array_filter.ts :: export function array_filter<T>( arr: { [key: string]: T } | T[], func?: (value: T) => PhpMixed, ): { [key: string]: T } | T[]
@@ -51,8 +51,8 @@ src/php/array/array_flip.ts :: export function array_flip(trans: PhpAssoc<PhpMix
 src/php/array/array_intersect.ts :: export function array_intersect<TValue = PhpValue>( arr1: PhpArrayLike<TValue>, ...arrays: Array<PhpArrayLike<TValue>> ): PhpAssoc<TValue>
 src/php/array/array_intersect_assoc.ts :: export function array_intersect_assoc<TValue = PhpValue>( arr1: PhpArrayLike<TValue>, ...arrays: Array<PhpArrayLike<TValue>> ): PhpAssoc<TValue>
 src/php/array/array_intersect_key.ts :: export function array_intersect_key<TValue = PhpValue>( arr1: PhpArrayLike<TValue>, ...arrays: Array<PhpArrayLike<TValue>> ): PhpAssoc<TValue>
-src/php/array/array_intersect_uassoc.ts :: export function array_intersect_uassoc(arr1: PhpArray, ...arraysAndCallback: PhpMixed[]): PhpArray
-src/php/array/array_intersect_ukey.ts :: export function array_intersect_ukey(arr1: PhpArray, ...arraysAndCallback: PhpMixed[]): PhpArray
+src/php/array/array_intersect_uassoc.ts :: export function array_intersect_uassoc<T extends PhpValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: PhpValue, ...rest: PhpValue[], callback: KeyComparatorDescriptor] ): PhpArray<T>
+src/php/array/array_intersect_ukey.ts :: export function array_intersect_ukey<T extends PhpValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: PhpValue, ...rest: PhpValue[], callback: KeyComparatorDescriptor] ): PhpArray<T>
 src/php/array/array_key_exists.ts :: export function array_key_exists(key: string | number, search: PhpAssoc<PhpMixed> | PhpMixed[]): boolean | false
 src/php/array/array_keys.ts :: export function array_keys<T>(input: PhpAssoc<T>, searchValue?: T, argStrict?: boolean): string[]
 src/php/array/array_map.ts :: export function array_map<TResult = PhpMixed>( callback: PhpCallableDescriptor<PhpMixed[], TResult> | null | undefined, ...inputArrays: PhpMixed[][] ): TResult[] | PhpMixed[][]

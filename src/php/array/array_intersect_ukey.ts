@@ -1,9 +1,19 @@
 import { resolveNumericComparator } from '../_helpers/_callbackResolver.ts'
-import { type PhpAssoc, type PhpMixed, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import {
+  entriesOfPhpAssoc,
+  type PhpAssoc,
+  type PhpCallableDescriptor,
+  type PhpValue,
+  toPhpArrayObject,
+} from '../_helpers/_phpTypes.ts'
 
-type PhpArray = PhpAssoc<PhpMixed>
+type PhpArray<T extends PhpValue = PhpValue> = PhpAssoc<T>
+type KeyComparatorDescriptor = PhpCallableDescriptor<[string, string], PhpValue>
 
-export function array_intersect_ukey(arr1: PhpArray, ...arraysAndCallback: PhpMixed[]): PhpArray {
+export function array_intersect_ukey<T extends PhpValue>(
+  arr1: PhpArray<T>,
+  ...arraysAndCallback: [arr2: PhpValue, ...rest: PhpValue[], callback: KeyComparatorDescriptor]
+): PhpArray<T> {
   //  discuss at: https://locutus.io/php/array_intersect_ukey/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {blue: 1, red: 2, green: 3, purple: 4}
@@ -11,19 +21,18 @@ export function array_intersect_ukey(arr1: PhpArray, ...arraysAndCallback: PhpMi
   //   example 1: array_intersect_ukey ($array1, $array2, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })
   //   returns 1: {blue: 1, green: 3}
 
-  const retArr: PhpArray = {}
+  const retArr: PhpArray<T> = {}
   const callback = arraysAndCallback[arraysAndCallback.length - 1]
-  const arrays = arraysAndCallback.slice(0, -1)
+  const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject<PhpValue>(value))
   const lastArrayIndex = arrays.length - 1
   const keyComparator = resolveNumericComparator<string, string>(callback, 'array_intersect_ukey(): Invalid callback')
 
-  arr1keys: for (const k1 in arr1) {
-    arrs: for (const [i, nextArray] of arrays.entries()) {
-      const arr = toPhpArrayObject(nextArray)
-      for (const k in arr) {
+  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1)) {
+    arrs: for (const [i, arr] of arrays.entries()) {
+      for (const [k] of entriesOfPhpAssoc(arr)) {
         if (keyComparator(k, k1) === 0) {
           if (i === lastArrayIndex) {
-            retArr[k1] = arr1[k1]
+            retArr[k1] = arr1Value
           }
           // If the innermost loop always leads at least once to an equal value,
           // continue the loop until done
