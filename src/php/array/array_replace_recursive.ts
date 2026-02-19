@@ -12,7 +12,10 @@ const cloneReplaceTarget = (value: PhpValue): RecursiveReplaceTarget => {
   return isObjectLike(value) ? { ...toPhpArrayObject<RecursiveReplaceValue>(value) } : {}
 }
 
-export function array_replace_recursive(arr: PhpValue, ...replacements: PhpValue[]): RecursiveReplaceTarget {
+export function array_replace_recursive(
+  arr: RecursiveReplaceTarget,
+  ...replacements: [replacement: PhpValue, ...additionalReplacements: PhpValue[]]
+): RecursiveReplaceTarget {
   //      discuss at: https://locutus.io/php/array_replace_recursive/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

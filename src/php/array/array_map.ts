@@ -1,9 +1,18 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
 import type { PhpCallableDescriptor, PhpMixed } from '../_helpers/_phpTypes.ts'
 
+type ArrayMapInputs = [firstArray: PhpMixed[], ...restArrays: PhpMixed[][]]
+
+export function array_map<TResult = PhpMixed>(
+  callback: PhpCallableDescriptor<PhpMixed[], TResult>,
+  ...inputArrays: ArrayMapInputs
+): TResult[]
+
+export function array_map(callback: null | undefined, ...inputArrays: ArrayMapInputs): PhpMixed[][]
+
 export function array_map<TResult = PhpMixed>(
   callback: PhpCallableDescriptor<PhpMixed[], TResult> | null | undefined,
-  ...inputArrays: PhpMixed[][]
+  ...inputArrays: ArrayMapInputs
 ): TResult[] | PhpMixed[][] {
   //  discuss at: https://locutus.io/php/array_map/
   // original by: Andrea Giammarchi (https://webreflection.blogspot.com)

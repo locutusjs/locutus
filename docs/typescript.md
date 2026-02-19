@@ -779,3 +779,25 @@ To fix a `@ts-nocheck` file:
     - `corepack yarn check`
 - Key learnings
   - Finishing small redundant unions in public signatures compounds API clarity and lowers accidental widening noise for consumers.
+
+## Iteration 34
+
+- Plans
+  - Tighten callback/array-shape relations in `array_map`.
+  - Narrow `array_walk_recursive` and `array_replace_recursive` exported inputs to more meaningful shapes.
+- Progress
+  - `src/php/array/array_map.ts`
+    - added overloads separating callable and null-callback behavior.
+    - introduced `ArrayMapInputs` tuple type to require at least one input array.
+  - `src/php/array/array_walk_recursive.ts`
+    - narrowed `array` parameter from `PhpValue` to `PhpValue[] | PhpAssoc<PhpValue>`.
+  - `src/php/array/array_replace_recursive.ts`
+    - narrowed first parameter to `RecursiveReplaceTarget`.
+    - required at least one replacement via tuple rest:
+      - `[replacement: PhpValue, ...additionalReplacements: PhpValue[]]`.
+  - Updated `docs/php-api-signatures.snapshot` for these narrowed signatures.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Overloads plus tuple-rest input constraints provide strong API narrowing without runtime churn.
+  - Requiring minimum variadic arguments in signatures turns runtime error contracts into compile-time guarantees.
