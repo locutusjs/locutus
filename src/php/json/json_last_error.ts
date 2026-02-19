@@ -1,7 +1,3 @@
-type JsonPhpContext = {
-  last_error_json?: number
-}
-
 export function json_last_error(): number {
   //      discuss at: https://phpjs.org/functions/json_last_error/
   // parity verified: PHP 8.3
@@ -19,10 +15,18 @@ export function json_last_error(): number {
   // but JSON functions auto-escape these, so error not possible in JavaScript
   // JSON_ERROR_SYNTAX = 4
 
-  const globalContext = globalThis as typeof globalThis & { $locutus?: { php?: JsonPhpContext } }
-  globalContext.$locutus = globalContext.$locutus ?? {}
-  const locutus = globalContext.$locutus
-  locutus.php = locutus.php ?? {}
+  const locutusValue = Reflect.get(globalThis, '$locutus')
+  const locutus = typeof locutusValue === 'object' && locutusValue !== null ? locutusValue : {}
+  if (locutusValue !== locutus) {
+    Reflect.set(globalThis, '$locutus', locutus)
+  }
 
-  return locutus.php.last_error_json ?? 0
+  const phpValue = Reflect.get(locutus, 'php')
+  const php = typeof phpValue === 'object' && phpValue !== null ? phpValue : {}
+  if (phpValue !== php) {
+    Reflect.set(locutus, 'php', php)
+  }
+
+  const lastError = Reflect.get(php, 'last_error_json')
+  return typeof lastError === 'number' ? lastError : 0
 }

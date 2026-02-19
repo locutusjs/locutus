@@ -571,3 +571,24 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Reflective access plus explicit mode/shape branching removes most global/runtime casts without changing public API signatures.
   - Generated example tests should avoid state-dependent values to remain stable as runtime typing gets stricter.
+
+## Iteration 24
+
+- Plans
+  - Eliminate remaining cast sites in `src/php/funchand/**` and `src/php/json/**`.
+  - Add explicit debt ratchets for both folders once cast count reaches zero.
+- Progress
+  - Refactored `src/php/funchand/{call_user_func_array,create_function,function_exists,get_defined_functions}.ts` to remove casted global/callable handling and use reflective access or typed wrappers.
+  - Refactored `src/php/json/{json_decode,json_encode,json_last_error}.ts` to remove casted global runtime access and casted parse/eval results.
+  - Extended `scripts/check-ts-debt-policy.ts` with:
+    - `MAX_SRC_PHP_FUNCHAND_AS_EXPRESSION = 0`
+    - `MAX_SRC_PHP_JSON_AS_EXPRESSION = 0`
+    - enforcement + findings output for both folders.
+  - Reduced cast-expression counts:
+    - `src/php/funchand/**: 5 -> 0`
+    - `src/php/json/**: 5 -> 0`
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Reflective global access plus callable guards removes most dynamic-boundary casts without changing runtime semantics.
+  - Generic return casts in parser-style helpers can be avoided by letting JS runtime boundaries flow through as-is and relying on call-site typing.

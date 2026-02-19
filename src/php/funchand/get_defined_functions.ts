@@ -1,9 +1,4 @@
-import { type PhpAssoc, type PhpMixed, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
-
-type GlobalWithLocutus = typeof globalThis &
-  PhpAssoc<PhpMixed> & {
-    $locutus?: { php?: PhpAssoc<PhpMixed> }
-  }
+import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 export function get_defined_functions(): string[] {
   //      discuss at: https://locutus.io/php/get_defined_functions/
@@ -16,23 +11,29 @@ export function get_defined_functions(): string[] {
   //       example 1: var $result = Array.isArray($funcs) && $funcs.length > 0
   //       returns 1: true
 
-  const globalContext = globalThis as GlobalWithLocutus
-  globalContext.$locutus = globalContext.$locutus ?? {}
-  const locutus = globalContext.$locutus
-  locutus.php = locutus.php ?? {}
+  const locutusValue = Reflect.get(globalThis, '$locutus')
+  const locutus = typeof locutusValue === 'object' && locutusValue !== null ? locutusValue : {}
+  if (locutusValue !== locutus) {
+    Reflect.set(globalThis, '$locutus', locutus)
+  }
+  const phpValue = Reflect.get(locutus, 'php')
+  if (typeof phpValue !== 'object' || phpValue === null) {
+    Reflect.set(locutus, 'php', {})
+  }
 
   const arr: string[] = []
   const already: Record<string, 1> = {}
 
-  for (const i in globalContext) {
+  for (const i in globalThis) {
     try {
-      if (typeof globalContext[i] === 'function') {
+      const topLevelValue = Reflect.get(globalThis, i)
+      if (typeof topLevelValue === 'function') {
         if (!already[i]) {
           already[i] = 1
           arr.push(i)
         }
-      } else if (typeof globalContext[i] === 'object' && globalContext[i] !== null) {
-        const nestedObject = toPhpArrayObject(globalContext[i])
+      } else if (typeof topLevelValue === 'object' && topLevelValue !== null) {
+        const nestedObject = toPhpArrayObject(topLevelValue)
         for (const j in nestedObject) {
           if (typeof nestedObject[j] === 'function' && !already[j]) {
             already[j] = 1

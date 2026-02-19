@@ -22,26 +22,32 @@ export function json_decode<T = JsonValue>(strJson: string): T | null {
     See https://www.JSON.org/js.html
   */
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus?: { php?: { last_error_json?: number } }
-    JSON: typeof JSON
+  const locutusValue = Reflect.get(globalThis, '$locutus')
+  const locutus = typeof locutusValue === 'object' && locutusValue !== null ? locutusValue : {}
+  if (locutusValue !== locutus) {
+    Reflect.set(globalThis, '$locutus', locutus)
   }
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
+  const phpValue = Reflect.get(locutus, 'php')
+  const php = typeof phpValue === 'object' && phpValue !== null ? phpValue : {}
+  if (phpValue !== php) {
+    Reflect.set(locutus, 'php', php)
+  }
 
-  const json = $global.JSON
-  if (typeof json === 'object' && typeof json.parse === 'function') {
-    try {
-      return json.parse(strJson) as T
-    } catch (err) {
-      if (!(err instanceof SyntaxError)) {
-        throw new Error('Unexpected error type in json_decode()')
+  const json = Reflect.get(globalThis, 'JSON')
+  if (typeof json === 'object' && json !== null) {
+    const parse = Reflect.get(json, 'parse')
+    if (typeof parse === 'function') {
+      try {
+        return Reflect.apply(parse, json, [strJson])
+      } catch (err) {
+        if (!(err instanceof SyntaxError)) {
+          throw new Error('Unexpected error type in json_decode()')
+        }
+
+        // usable by json_last_error()
+        Reflect.set(php, 'last_error_json', 4)
+        return null
       }
-
-      // usable by json_last_error()
-      $locutus.php.last_error_json = 4
-      return null
     }
   }
 
@@ -59,7 +65,6 @@ export function json_decode<T = JsonValue>(strJson: string): T | null {
     '\ufff0-\uffff',
   ].join('')
   const cx = new RegExp('[' + chars + ']', 'g')
-  let j: T
   let text = strJson
 
   // Parsing happens in four stages. In the first stage, we replace certain
@@ -97,11 +102,11 @@ export function json_decode<T = JsonValue>(strJson: string): T | null {
     // in JavaScript: it can begin a block or an object literal. We wrap the text
     // in parens to eliminate the ambiguity.
     // biome-ignore lint/security/noGlobalEval: needed for PHP port
-    j = eval('(' + text + ')') as T
-    return j
+    const parsed = eval('(' + text + ')')
+    return parsed
   }
 
   // usable by json_last_error()
-  $locutus.php.last_error_json = 4
+  Reflect.set(php, 'last_error_json', 4)
   return null
 }

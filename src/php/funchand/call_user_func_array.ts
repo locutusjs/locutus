@@ -1,7 +1,5 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
-import { isObjectLike, isPhpCallable, type PhpAssoc, type PhpCallable, type PhpValue } from '../_helpers/_phpTypes.ts'
-
-type GlobalCallableContext = typeof globalThis & PhpAssoc<PhpValue>
+import { isObjectLike, isPhpCallable, type PhpCallable, type PhpValue } from '../_helpers/_phpTypes.ts'
 
 const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
@@ -25,7 +23,6 @@ export function call_user_func_array<TResult = PhpValue, TArgs extends PhpValue[
   //   example 2: call_user_func_array('isNaN', [1])
   //   returns 2: false
 
-  const globalContext = globalThis as GlobalCallableContext
   let func: PhpCallable<TArgs, TResult> | undefined
   let scope: PhpValue = null
 
@@ -38,8 +35,9 @@ export function call_user_func_array<TResult = PhpValue, TArgs extends PhpValue[
   }
 
   if (!func && typeof cb === 'string') {
-    if (isPhpCallable<TArgs, TResult>(globalContext[cb])) {
-      func = globalContext[cb]
+    const globalCandidate = Reflect.get(globalThis, cb)
+    if (isPhpCallable<TArgs, TResult>(globalCandidate)) {
+      func = globalCandidate
     } else if (cb.match(validJSFunctionNamePattern)) {
       const dynamicFn = new Function(`return ${cb}`)()
       if (isPhpCallable<TArgs, TResult>(dynamicFn)) {
@@ -63,8 +61,9 @@ export function call_user_func_array<TResult = PhpValue, TArgs extends PhpValue[
     }
 
     if (typeof cb[0] === 'string') {
-      if (typeof globalContext[cb[0]] === 'function') {
-        scope = globalContext[cb[0]]
+      const globalScope = Reflect.get(globalThis, cb[0])
+      if (typeof globalScope === 'function') {
+        scope = globalScope
       } else if (cb[0].match(validJSFunctionNamePattern)) {
         // biome-ignore lint/security/noGlobalEval: needed for PHP port
         scope = eval(cb[0])
@@ -80,5 +79,5 @@ export function call_user_func_array<TResult = PhpValue, TArgs extends PhpValue[
     throw new Error(String(cb) + ' is not a valid function')
   }
 
-  return func.apply(scope, parameters) as TResult
+  return func.apply(scope, parameters)
 }

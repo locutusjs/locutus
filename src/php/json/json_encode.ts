@@ -3,10 +3,6 @@ import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 type JsonPrimitive = string | number | boolean | null
 type JsonObject = { [key: string]: JsonValue }
 type JsonValue = JsonPrimitive | JsonValue[] | JsonObject
-type JsonGlobal = typeof globalThis & {
-  $locutus?: { php?: PhpAssoc<PhpValue> }
-  JSON?: typeof JSON
-}
 
 const hasOwn = Object.prototype.hasOwnProperty
 const isJsonObject = (value: PhpValue): value is JsonObject =>
@@ -31,21 +27,30 @@ export function json_encode(mixedVal: PhpValue): string | null {
     See https://www.JSON.org/js.html
   */
 
-  const $global = (typeof window !== 'undefined' ? window : global) as JsonGlobal
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
+  const locutusValue = Reflect.get(globalThis, '$locutus')
+  const locutus = typeof locutusValue === 'object' && locutusValue !== null ? locutusValue : {}
+  if (locutusValue !== locutus) {
+    Reflect.set(globalThis, '$locutus', locutus)
+  }
+  const phpValue = Reflect.get(locutus, 'php')
+  const php = typeof phpValue === 'object' && phpValue !== null ? phpValue : {}
+  if (phpValue !== php) {
+    Reflect.set(locutus, 'php', php)
+  }
 
-  const json = $global.JSON
+  const json = Reflect.get(globalThis, 'JSON')
   let retVal
   try {
-    if (typeof json === 'object' && typeof json.stringify === 'function') {
-      // Errors will not be caught here if our own equivalent to resource
-      retVal = json.stringify(mixedVal)
-      if (retVal === undefined) {
-        throw new SyntaxError('json_encode')
+    if (typeof json === 'object' && json !== null) {
+      const stringify = Reflect.get(json, 'stringify')
+      if (typeof stringify === 'function') {
+        // Errors will not be caught here if our own equivalent to resource
+        retVal = Reflect.apply(stringify, json, [mixedVal])
+        if (retVal === undefined) {
+          throw new SyntaxError('json_encode')
+        }
+        return retVal
       }
-      return retVal
     }
 
     const value = mixedVal
@@ -203,7 +208,7 @@ export function json_encode(mixedVal: PhpValue): string | null {
       throw new Error('Unexpected error type in json_encode()')
     }
     // usable by json_last_error()
-    $locutus.php.last_error_json = 4
+    Reflect.set(php, 'last_error_json', 4)
     return null
   }
 }

@@ -1,4 +1,4 @@
-import type { PhpCallable } from '../_helpers/_phpTypes.ts'
+import type { PhpCallable, PhpValue } from '../_helpers/_phpTypes.ts'
 
 export function create_function(args: string, code: string): PhpCallable | false {
   //       discuss at: https://locutus.io/php/create_function/
@@ -14,7 +14,8 @@ export function create_function(args: string, code: string): PhpCallable | false
       .map((param) => param.trim())
       .filter((param) => param.length > 0)
 
-    return new Function(...params, code) as PhpCallable
+    const created = new Function(...params, code)
+    return (...callArgs: PhpValue[]) => Reflect.apply(created, null, callArgs)
   } catch (_e) {
     return false
   }
