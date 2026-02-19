@@ -1,7 +1,7 @@
 import { getCtypePattern } from '../_helpers/_ctypePattern.ts'
 import { setlocale } from '../strings/setlocale.ts'
 
-export function ctype_digit(text: string): boolean | false {
+export function ctype_digit(text: string): boolean {
   //      discuss at: https://locutus.io/php/ctype_digit/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

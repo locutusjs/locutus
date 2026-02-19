@@ -874,3 +874,28 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - A shared descriptor guard in the type helper layer unlocks broad strictness wins across multiple callback-heavy families with minimal runtime churn.
   - Tightening sort callback signatures to descriptor tuples removes permissive legacy unions while remaining compatible with existing callable resolution patterns.
+
+## Iteration 38
+
+- Plans
+  - Remove redundant `boolean | false` return unions where parameter typing already guarantees boolean-only intent.
+  - Keep runtime guard branches intact for JS callers while narrowing TypeScript signatures.
+- Progress
+  - Narrowed return types from `boolean | false` to `boolean` in:
+    - `src/php/array/array_key_exists.ts`
+    - `src/php/ctype/ctype_alnum.ts`
+    - `src/php/ctype/ctype_alpha.ts`
+    - `src/php/ctype/ctype_cntrl.ts`
+    - `src/php/ctype/ctype_digit.ts`
+    - `src/php/ctype/ctype_graph.ts`
+    - `src/php/ctype/ctype_lower.ts`
+    - `src/php/ctype/ctype_print.ts`
+    - `src/php/ctype/ctype_punct.ts`
+    - `src/php/ctype/ctype_space.ts`
+    - `src/php/ctype/ctype_upper.ts`
+    - `src/php/ctype/ctype_xdigit.ts`
+  - Updated `docs/php-api-signatures.snapshot`.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Redundant false unions are a low-risk, high-volume cleanup pattern that improves API clarity and completion quality without runtime churn.

@@ -54,7 +54,7 @@ src/php/array/array_intersect_assoc.ts :: export function array_intersect_assoc<
 src/php/array/array_intersect_key.ts :: export function array_intersect_key<TValue = PhpValue>( arr1: PhpArrayLike<TValue>, ...arrays: Array<PhpArrayLike<TValue>> ): PhpAssoc<TValue>
 src/php/array/array_intersect_uassoc.ts :: export function array_intersect_uassoc<T extends PhpValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: PhpValue, ...rest: PhpValue[], callback: KeyComparatorDescriptor] ): PhpArray<T>
 src/php/array/array_intersect_ukey.ts :: export function array_intersect_ukey<T extends PhpValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: PhpValue, ...rest: PhpValue[], callback: KeyComparatorDescriptor] ): PhpArray<T>
-src/php/array/array_key_exists.ts :: export function array_key_exists(key: string | number, search: PhpAssoc<PhpMixed> | PhpMixed[]): boolean | false
+src/php/array/array_key_exists.ts :: export function array_key_exists(key: string | number, search: PhpAssoc<PhpMixed> | PhpMixed[]): boolean
 src/php/array/array_keys.ts :: export function array_keys<T>(input: PhpAssoc<T>, searchValue?: T, argStrict?: boolean): string[]
 src/php/array/array_map.ts :: export function array_map(callback: null | undefined, ...inputArrays: ArrayMapInputs): PhpMixed[][]
 src/php/array/array_map.ts :: export function array_map<TLeft extends PhpMixed, TRight extends PhpMixed, TResult>( callback: PhpCallableDescriptor<ArrayMapCallbackArgs2<TLeft, TRight>, TResult>, inputArrayLeft: TLeft[], inputArrayRight: TRight[], ): TResult[]
@@ -128,17 +128,17 @@ src/php/bc/bcmul.ts :: export function bcmul(leftOperand: string, rightOperand: 
 src/php/bc/bcround.ts :: export function bcround(val: number, precision: number): string
 src/php/bc/bcscale.ts :: export function bcscale(scale: number | string): boolean
 src/php/bc/bcsub.ts :: export function bcsub(leftOperand: string, rightOperand: string, scale?: number): string
-src/php/ctype/ctype_alnum.ts :: export function ctype_alnum(text: string): boolean | false
-src/php/ctype/ctype_alpha.ts :: export function ctype_alpha(text: string): boolean | false
-src/php/ctype/ctype_cntrl.ts :: export function ctype_cntrl(text: string): boolean | false
-src/php/ctype/ctype_digit.ts :: export function ctype_digit(text: string): boolean | false
-src/php/ctype/ctype_graph.ts :: export function ctype_graph(text: string): boolean | false
-src/php/ctype/ctype_lower.ts :: export function ctype_lower(text: string): boolean | false
-src/php/ctype/ctype_print.ts :: export function ctype_print(text: string): boolean | false
-src/php/ctype/ctype_punct.ts :: export function ctype_punct(text: string): boolean | false
-src/php/ctype/ctype_space.ts :: export function ctype_space(text: string): boolean | false
-src/php/ctype/ctype_upper.ts :: export function ctype_upper(text: string): boolean | false
-src/php/ctype/ctype_xdigit.ts :: export function ctype_xdigit(text: string): boolean | false
+src/php/ctype/ctype_alnum.ts :: export function ctype_alnum(text: string): boolean
+src/php/ctype/ctype_alpha.ts :: export function ctype_alpha(text: string): boolean
+src/php/ctype/ctype_cntrl.ts :: export function ctype_cntrl(text: string): boolean
+src/php/ctype/ctype_digit.ts :: export function ctype_digit(text: string): boolean
+src/php/ctype/ctype_graph.ts :: export function ctype_graph(text: string): boolean
+src/php/ctype/ctype_lower.ts :: export function ctype_lower(text: string): boolean
+src/php/ctype/ctype_print.ts :: export function ctype_print(text: string): boolean
+src/php/ctype/ctype_punct.ts :: export function ctype_punct(text: string): boolean
+src/php/ctype/ctype_space.ts :: export function ctype_space(text: string): boolean
+src/php/ctype/ctype_upper.ts :: export function ctype_upper(text: string): boolean
+src/php/ctype/ctype_xdigit.ts :: export function ctype_xdigit(text: string): boolean
 src/php/datetime/checkdate.ts :: export function checkdate(m: number, d: number, y: number): boolean
 src/php/datetime/date.ts :: export function date(format: string, timestamp?: number | Date | string): string
 src/php/datetime/date_parse.ts :: export function date_parse(date: string): DateParseResult | false
