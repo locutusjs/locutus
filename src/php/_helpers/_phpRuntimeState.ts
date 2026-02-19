@@ -19,6 +19,42 @@ interface LocutusRuntimeContainer {
   php?: PhpAssoc<PhpInput>
 }
 
+interface PhpRuntimeKnownEntryMap {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string
+  locale: string
+  uniqidSeed: number
+  timeoutStatus: boolean
+  last_error_json: number
+  strtokleftOver: string
+}
+
+type PhpRuntimeNumberKey = {
+  [K in keyof PhpRuntimeKnownEntryMap]: PhpRuntimeKnownEntryMap[K] extends number ? K : never
+}[keyof PhpRuntimeKnownEntryMap]
+type PhpRuntimeBooleanKey = {
+  [K in keyof PhpRuntimeKnownEntryMap]: PhpRuntimeKnownEntryMap[K] extends boolean ? K : never
+}[keyof PhpRuntimeKnownEntryMap]
+type PhpRuntimeStringKey = {
+  [K in keyof PhpRuntimeKnownEntryMap]: PhpRuntimeKnownEntryMap[K] extends string ? K : never
+}[keyof PhpRuntimeKnownEntryMap]
+
+interface PhpGlobalProcessLike {
+  env?: PhpAssoc<string | undefined>
+}
+
+interface PhpGlobalBufferLike {
+  from?: (...args: PhpInput[]) => PhpInput
+}
+
+interface PhpGlobalKnownEntryMap {
+  process: PhpGlobalProcessLike
+  Buffer: PhpGlobalBufferLike
+}
+
 type GlobalWithLocutus = typeof globalThis & {
   $locutus?: LocutusRuntimeContainer
   [key: string]: PhpInput
@@ -104,32 +140,51 @@ export function setPhpLocaleDefault(localeDefault: string): void {
   php.locale_default = localeDefault
 }
 
+export function getPhpRuntimeEntry<TKey extends keyof PhpRuntimeKnownEntryMap>(
+  key: TKey,
+): PhpRuntimeKnownEntryMap[TKey] | undefined
+export function getPhpRuntimeEntry(key: string): PhpInput | undefined
 export function getPhpRuntimeEntry(key: string): PhpInput | undefined {
   const php = ensurePhpRuntimeObject()
   const value = php[key]
   return typeof value === 'undefined' ? undefined : value
 }
 
+export function setPhpRuntimeEntry<TKey extends keyof PhpRuntimeKnownEntryMap>(
+  key: TKey,
+  value: PhpRuntimeKnownEntryMap[TKey],
+): void
+export function setPhpRuntimeEntry(key: string, value: PhpInput): void
 export function setPhpRuntimeEntry(key: string, value: PhpInput): void {
   const php = ensurePhpRuntimeObject()
   php[key] = value
 }
 
+export function getPhpRuntimeNumber(key: PhpRuntimeNumberKey, fallback: number): number
+export function getPhpRuntimeNumber(key: string, fallback: number): number
 export function getPhpRuntimeNumber(key: string, fallback: number): number {
   const value = getPhpRuntimeEntry(key)
   return typeof value === 'number' ? value : fallback
 }
 
+export function getPhpRuntimeBoolean(key: PhpRuntimeBooleanKey, fallback: boolean): boolean
+export function getPhpRuntimeBoolean(key: string, fallback: boolean): boolean
 export function getPhpRuntimeBoolean(key: string, fallback: boolean): boolean {
   const value = getPhpRuntimeEntry(key)
   return typeof value === 'boolean' ? value : fallback
 }
 
+export function getPhpRuntimeString(key: PhpRuntimeStringKey, fallback: string): string
+export function getPhpRuntimeString(key: string, fallback: string): string
 export function getPhpRuntimeString(key: string, fallback: string): string {
   const value = getPhpRuntimeEntry(key)
   return typeof value === 'string' ? value : fallback
 }
 
+export function getPhpGlobalEntry<TKey extends keyof PhpGlobalKnownEntryMap>(
+  key: TKey,
+): PhpGlobalKnownEntryMap[TKey] | undefined
+export function getPhpGlobalEntry(key: string): PhpInput | undefined
 export function getPhpGlobalEntry(key: string): PhpInput | undefined {
   const value = globalContext[key]
   return typeof value === 'undefined' ? undefined : value

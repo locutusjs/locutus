@@ -1521,3 +1521,32 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Once dynamic reads/writes are funneled through typed runtime helpers, broad-surface cleanup becomes mostly mechanical and safe to ratchet aggressively.
   - Locale/runtime-heavy ports benefit from explicit fallback contracts; strict typing and deterministic behavior reinforce each other instead of competing.
+
+## Iteration 61
+
+- Plans
+  - Keep the full fearless roadmap visible and ordered so we can execute without losing context under blast radius:
+    1. Replace broad `PhpInput`/`PhpMixed` surfaces with a typed lattice in `src/php/_helpers/_phpTypes.ts`.
+    2. Narrow exported signatures aggressively with overloads/generics so input-output relations are encoded.
+    3. Prefer guards/assertions over casts in implementations.
+    4. Gate public API type quality in CI (no accidental broad exported surfaces).
+    5. Add generated compile-time type contract tests (positive and negative).
+    6. Add `.d.ts` API snapshot diffing guardrails for widening regressions.
+    7. Codemod broad patterns (`as` casts, coercion-driven implicit unions) into explicit guarded flows.
+    8. Keep dynamic runtime/global context behind typed accessors so local inference stays narrow.
+  - Attack immediately with highest leverage from this set: typed runtime-key accessors + callback-surface tightening + CI ratchet for exported broad boundary leakage.
+- Progress
+  - Tightened runtime-key typing in `src/php/_helpers/_phpRuntimeState.ts`:
+    - added `PhpRuntimeKnownEntryMap` with key-specific value types (`last_error_json`, `timeoutStatus`, `uniqidSeed`, `locale`, `strtokleftOver`, etc.).
+    - added overloads for `getPhpRuntimeEntry()` / `setPhpRuntimeEntry()` so literal keys infer narrow types.
+    - added typed key overloads for `getPhpRuntimeNumber()` / `getPhpRuntimeBoolean()` / `getPhpRuntimeString()`.
+    - added known global entry overloads for `getPhpGlobalEntry()` (`process`, `Buffer`) while preserving string fallback.
+  - Narrowed callback API surface for `array_walk` in `src/php/array/array_walk.ts`:
+    - overloads now distinguish list callbacks `(value, key: number)` vs assoc callbacks `(value, key: string)`.
+    - implementation now preserves this behavior without casts.
+  - Added CI guardrail in `scripts/check-ts-debt-policy.ts`:
+    - new policy cap: `MAX_SRC_PHP_EXPORTED_PHPINPUT_OUTSIDE_HELPERS = 0`.
+    - tracks exported `PhpInput` identifier usage outside `src/php/_helpers/**` and fails on regression.
+- Key learnings
+  - Overload-based key maps on runtime helpers give strong inference gains without changing runtime behavior.
+  - Public API strictness ratchets are most effective when boundary exceptions are explicit and minimal (`_helpers` only).

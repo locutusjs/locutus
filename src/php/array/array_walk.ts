@@ -1,6 +1,6 @@
 import { type PhpAssoc, type PhpInput, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type ArrayWalkCallback<TValue, TUserdata> = (value: TValue, key: string, userdata?: TUserdata) => void
+type ArrayWalkCallback<TValue, TUserdata> = (value: TValue, key: number | string, userdata?: TUserdata) => void
 type ArrayWalkValue = PhpInput
 
 export function array_walk<
@@ -24,8 +24,19 @@ export function array_walk<
   }
 
   try {
-    const target = toPhpArrayObject<TValue>(array)
     const hasUserdata = typeof userdata !== 'undefined'
+    if (Array.isArray(array)) {
+      for (const [index, value] of array.entries()) {
+        if (hasUserdata) {
+          funcname(value, index, userdata)
+        } else {
+          funcname(value, index)
+        }
+      }
+      return true
+    }
+
+    const target = toPhpArrayObject<TValue>(array)
     for (const [key, value] of Object.entries(target)) {
       if (hasUserdata) {
         funcname(value, key, userdata)
