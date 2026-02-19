@@ -21,7 +21,7 @@ export type PhpCallableDescriptor<TArgs extends PhpValue[] = PhpValue[], TResult
   | PhpCallable<TArgs, TResult>
   | readonly [PhpCallableScope, string | PhpCallable<TArgs, TResult>]
 
-export function isObjectLike(value: PhpValue): value is object {
+export function isObjectLike(value: PhpValue): value is PhpArrayLike<PhpValue> {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
   //  example 1: isObjectLike({})
@@ -60,7 +60,10 @@ export function isPhpCallable<TArgs extends PhpValue[] = PhpValue[], TResult = P
   return typeof value === 'function'
 }
 
-export function assertIsObjectLike(value: PhpValue, message = 'Expected object-like value'): asserts value is object {
+export function assertIsObjectLike(
+  value: PhpValue,
+  message = 'Expected object-like value',
+): asserts value is PhpArrayLike<PhpValue> {
   if (!isObjectLike(value)) {
     throw new TypeError(message)
   }

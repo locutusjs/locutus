@@ -2,7 +2,9 @@
 // NOTE: This file is LGPL licensed, not MIT like the rest of locutus.
 // See LICENSE file for details.
 
-export function _bc() {
+import type { PhpValue } from './_phpTypes.ts'
+
+function createBcLibrary() {
   //  discuss at: https://locutus.io/php/_helpers/_bc
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -1242,7 +1244,7 @@ export function _bc() {
       return num
     },
 
-    cint: function (v: {} | null | undefined) {
+    cint: function (v: PhpValue) {
       if (typeof v === 'undefined') {
         v = 0
       }
@@ -1337,4 +1339,14 @@ export function _bc() {
     },
   }
   return Libbcmath
+}
+
+export function _bc(): ReturnType<typeof createBcLibrary> {
+  //  discuss at: https://locutus.io/php/_helpers/_bc
+  // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: var $bc = _bc()
+  //   example 1: var $result = $bc.PLUS
+  //   returns 1: '+'
+  return createBcLibrary()
 }

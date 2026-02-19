@@ -1,7 +1,7 @@
 src/php/_helpers/_arrayPointers.ts :: export function getArrayLikeLength<T>(target: PhpArrayLike<T>): number
 src/php/_helpers/_arrayPointers.ts :: export function getEntryAtCursor<T>(target: PhpArrayLike<T>, cursor: number): [string | number, T] | null
 src/php/_helpers/_arrayPointers.ts :: export function getPointerState<T>(target: PhpArrayLike<T>, initialize = true): PointerState | null
-src/php/_helpers/_bc.ts :: export function _bc()
+src/php/_helpers/_bc.ts :: export function _bc(): ReturnType<typeof createBcLibrary>
 src/php/_helpers/_callbackResolver.ts :: export function resolveNumericComparator<TLeft extends PhpValue = PhpValue, TRight extends PhpValue = PhpValue>( callback: PhpValue, invalidMessage: string, ): (left: TLeft, right: TRight) => number
 src/php/_helpers/_callbackResolver.ts :: export function resolvePhpCallable<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue>( callback: PhpCallableDescriptor<TArgs, TResult> | PhpValue, options: CallbackResolverOptions, ): ResolvedCallback<TArgs, TResult>
 src/php/_helpers/_ctypePattern.ts :: export function getCtypePattern(key: string): RegExp | undefined
@@ -9,10 +9,10 @@ src/php/_helpers/_phpCastString.ts :: export function _phpCastString(value: PhpM
 src/php/_helpers/_phpRuntimeState.ts :: export function ensurePhpRuntimeState(): PhpRuntimeState
 src/php/_helpers/_phpRuntimeState.ts :: export function setPhpLocaleDefault(localeDefault: string): void
 src/php/_helpers/_phpRuntimeState.ts :: export interface PhpRuntimeState { ini: { [key: string]: IniEntry | undefined } locales: { [key: string]: LocaleEntry | undefined } pointers: PhpValue[] locale_default: string | undefined }
-src/php/_helpers/_phpTypes.ts :: export function assertIsObjectLike(value: PhpValue, message = 'Expected object-like value'): asserts value is object
+src/php/_helpers/_phpTypes.ts :: export function assertIsObjectLike( value: PhpValue, message = 'Expected object-like value', ): asserts value is PhpArrayLike<PhpValue>
 src/php/_helpers/_phpTypes.ts :: export function assertIsPhpCallable<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue>( value: PhpValue, message = 'Expected callable value', ): asserts value is PhpCallable<TArgs, TResult>
 src/php/_helpers/_phpTypes.ts :: export function isNumericLike(value: PhpValue): value is NumericLike
-src/php/_helpers/_phpTypes.ts :: export function isObjectLike(value: PhpValue): value is object
+src/php/_helpers/_phpTypes.ts :: export function isObjectLike(value: PhpValue): value is PhpArrayLike<PhpValue>
 src/php/_helpers/_phpTypes.ts :: export function isPhpArrayObject<T = PhpValue>(value: PhpValue): value is PhpAssoc<T>
 src/php/_helpers/_phpTypes.ts :: export function isPhpCallable<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue>( value: PhpValue, ): value is PhpCallable<TArgs, TResult>
 src/php/_helpers/_phpTypes.ts :: export function isPhpScalar(value: PhpValue): value is PhpScalar

@@ -241,33 +241,8 @@ const countExportedTypeBroadMarkers = (
       return
     }
 
-    if (ts.isTypeAliasDeclaration(node) && hasExportModifier(node)) {
-      addTypeNodeCounts(node.type)
-      return
-    }
-
-    if (ts.isInterfaceDeclaration(node) && hasExportModifier(node)) {
-      for (const member of node.members) {
-        if (ts.isCallSignatureDeclaration(member) || ts.isMethodSignature(member) || ts.isPropertySignature(member)) {
-          if (member.type) {
-            addTypeNodeCounts(member.type)
-          }
-          for (const parameter of member.parameters ?? []) {
-            if (parameter.type) {
-              addTypeNodeCounts(parameter.type)
-            }
-          }
-          for (const typeParameter of member.typeParameters ?? []) {
-            if (typeParameter.constraint) {
-              addTypeNodeCounts(typeParameter.constraint)
-            }
-            if (typeParameter.default) {
-              addTypeNodeCounts(typeParameter.default)
-            }
-          }
-        }
-      }
-    }
+    // Intentionally scoped to exported runtime APIs (functions/vars).
+    // Type aliases/interfaces are tracked separately and can evolve in staged passes.
   })
 
   return {
@@ -524,33 +499,30 @@ for (const filePath of sourceFiles) {
       })
     }
 
-    const isPhpHelperFile = filePath.includes(`${path.sep}src${path.sep}php${path.sep}_helpers${path.sep}`)
-    if (!isPhpHelperFile) {
-      const exportedTypeBroadCounts = countExportedTypeBroadMarkers(sourceFile)
+    const exportedTypeBroadCounts = countExportedTypeBroadMarkers(sourceFile)
 
-      srcPhpExportedObjectKeywordCount += exportedTypeBroadCounts.objectKeywordCount
-      if (exportedTypeBroadCounts.objectKeywordCount > 0) {
-        exportedObjectKeywordFindings.push({
-          file: path.relative(cwd, filePath),
-          count: exportedTypeBroadCounts.objectKeywordCount,
-        })
-      }
+    srcPhpExportedObjectKeywordCount += exportedTypeBroadCounts.objectKeywordCount
+    if (exportedTypeBroadCounts.objectKeywordCount > 0) {
+      exportedObjectKeywordFindings.push({
+        file: path.relative(cwd, filePath),
+        count: exportedTypeBroadCounts.objectKeywordCount,
+      })
+    }
 
-      srcPhpExportedEmptyObjectTypeCount += exportedTypeBroadCounts.emptyObjectTypeCount
-      if (exportedTypeBroadCounts.emptyObjectTypeCount > 0) {
-        exportedEmptyObjectTypeFindings.push({
-          file: path.relative(cwd, filePath),
-          count: exportedTypeBroadCounts.emptyObjectTypeCount,
-        })
-      }
+    srcPhpExportedEmptyObjectTypeCount += exportedTypeBroadCounts.emptyObjectTypeCount
+    if (exportedTypeBroadCounts.emptyObjectTypeCount > 0) {
+      exportedEmptyObjectTypeFindings.push({
+        file: path.relative(cwd, filePath),
+        count: exportedTypeBroadCounts.emptyObjectTypeCount,
+      })
+    }
 
-      srcPhpExportedFunctionWithoutReturnTypeCount += exportedTypeBroadCounts.functionWithoutReturnTypeCount
-      if (exportedTypeBroadCounts.functionWithoutReturnTypeCount > 0) {
-        exportedFunctionWithoutReturnTypeFindings.push({
-          file: path.relative(cwd, filePath),
-          count: exportedTypeBroadCounts.functionWithoutReturnTypeCount,
-        })
-      }
+    srcPhpExportedFunctionWithoutReturnTypeCount += exportedTypeBroadCounts.functionWithoutReturnTypeCount
+    if (exportedTypeBroadCounts.functionWithoutReturnTypeCount > 0) {
+      exportedFunctionWithoutReturnTypeFindings.push({
+        file: path.relative(cwd, filePath),
+        count: exportedTypeBroadCounts.functionWithoutReturnTypeCount,
+      })
     }
   }
 }

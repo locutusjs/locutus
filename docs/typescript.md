@@ -664,3 +664,27 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Narrowing exported signatures is tractable when enforced by AST-level debt gates and cleaned in small batches.
   - Snapshot-gating declared signatures makes type evolution intentional and prevents accidental API drift under broad refactors.
+
+## Iteration 28
+
+- Plans
+  - Include `src/php/_helpers/**` in exported runtime signature quality gates.
+  - Keep the gate scope strict but pragmatic by checking exported runtime APIs (functions/vars) and leaving exported type declarations for a later dedicated pass.
+- Progress
+  - Updated `scripts/check-ts-debt-policy.ts`:
+    - removed `_helpers/**` exclusion from exported-signature gate counting.
+    - scoped broad-marker counting to exported runtime APIs only.
+  - Refactored helper signatures to satisfy zero-floor broad-type constraints:
+    - `src/php/_helpers/_bc.ts`:
+      - split implementation to `createBcLibrary()`.
+      - exported `_bc()` now has explicit return type `ReturnType<typeof createBcLibrary>`.
+      - narrowed internal `cint` arg type to `PhpValue`.
+    - `src/php/_helpers/_phpTypes.ts`:
+      - `isObjectLike()` now narrows to `PhpArrayLike<PhpValue>`.
+      - `assertIsObjectLike()` now asserts `PhpArrayLike<PhpValue>`.
+  - Updated `docs/php-api-signatures.snapshot` for new helper export signatures.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Pulling `_helpers` under the same exported-runtime gate is feasible when helper exports are made explicit instead of inferred.
+  - Keeping gate scope on runtime exports avoids blocking on legitimate type-alias lattice redesign work and preserves forward momentum.
