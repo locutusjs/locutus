@@ -801,3 +801,26 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Overloads plus tuple-rest input constraints provide strong API narrowing without runtime churn.
   - Requiring minimum variadic arguments in signatures turns runtime error contracts into compile-time guarantees.
+
+## Iteration 35
+
+- Plans
+  - Encode tighter callback-to-input relations for `array_map` without changing runtime behavior.
+  - Further narrow internal replace-target helper types in `array_replace_recursive`.
+- Progress
+  - `src/php/array/array_map.ts`
+    - added 1-array overloads:
+      - callback mode: `PhpCallableDescriptor<[TValue | undefined], TResult>`
+      - null-callback mode: `Array<[TValue | undefined]>`
+    - added 2-array overloads:
+      - callback mode: `PhpCallableDescriptor<[TLeft | undefined, TRight | undefined], TResult>`
+      - null-callback mode: `Array<[TLeft | undefined, TRight | undefined]>`
+    - kept existing variadic fallback overloads for broader compatibility.
+  - `src/php/array/array_replace_recursive.ts`
+    - narrowed `cloneReplaceTarget()` parameter from `PhpValue` to `RecursiveReplaceTarget`.
+    - simplified object clone path to direct spread now that input shape is explicit.
+  - Updated `docs/php-api-signatures.snapshot`.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Targeted overloads on high-traffic APIs can materially improve inference for common usage patterns while preserving legacy-compatible fallback signatures.

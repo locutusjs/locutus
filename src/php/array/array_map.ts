@@ -2,6 +2,30 @@ import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
 import type { PhpCallableDescriptor, PhpMixed } from '../_helpers/_phpTypes.ts'
 
 type ArrayMapInputs = [firstArray: PhpMixed[], ...restArrays: PhpMixed[][]]
+type ArrayMapCallbackArgs1<TValue extends PhpMixed> = [TValue | undefined]
+type ArrayMapCallbackArgs2<TLeft extends PhpMixed, TRight extends PhpMixed> = [TLeft | undefined, TRight | undefined]
+
+export function array_map<TValue extends PhpMixed, TResult>(
+  callback: PhpCallableDescriptor<ArrayMapCallbackArgs1<TValue>, TResult>,
+  inputArray: TValue[],
+): TResult[]
+
+export function array_map<TLeft extends PhpMixed, TRight extends PhpMixed, TResult>(
+  callback: PhpCallableDescriptor<ArrayMapCallbackArgs2<TLeft, TRight>, TResult>,
+  inputArrayLeft: TLeft[],
+  inputArrayRight: TRight[],
+): TResult[]
+
+export function array_map<TValue extends PhpMixed>(
+  callback: null | undefined,
+  inputArray: TValue[],
+): ArrayMapCallbackArgs1<TValue>[]
+
+export function array_map<TLeft extends PhpMixed, TRight extends PhpMixed>(
+  callback: null | undefined,
+  inputArrayLeft: TLeft[],
+  inputArrayRight: TRight[],
+): ArrayMapCallbackArgs2<TLeft, TRight>[]
 
 export function array_map<TResult = PhpMixed>(
   callback: PhpCallableDescriptor<PhpMixed[], TResult>,

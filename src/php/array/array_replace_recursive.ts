@@ -4,12 +4,12 @@ interface RecursiveReplaceObject extends PhpAssoc<RecursiveReplaceValue> {}
 type RecursiveReplaceValue = PhpValue | RecursiveReplaceValue[] | RecursiveReplaceObject
 type RecursiveReplaceTarget = RecursiveReplaceValue[] | RecursiveReplaceObject
 
-const cloneReplaceTarget = (value: PhpValue): RecursiveReplaceTarget => {
+const cloneReplaceTarget = (value: RecursiveReplaceTarget): RecursiveReplaceTarget => {
   if (Array.isArray(value)) {
     return [...value]
   }
 
-  return isObjectLike(value) ? { ...toPhpArrayObject<RecursiveReplaceValue>(value) } : {}
+  return { ...value }
 }
 
 export function array_replace_recursive(
