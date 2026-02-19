@@ -688,3 +688,27 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Pulling `_helpers` under the same exported-runtime gate is feasible when helper exports are made explicit instead of inferred.
   - Keeping gate scope on runtime exports avoids blocking on legitimate type-alias lattice redesign work and preserves forward momentum.
+
+## Iteration 29
+
+- Plans
+  - Narrow callback-heavy `array_u*` exported signatures with explicit tuple shapes and typed callback descriptors.
+  - Preserve runtime behavior while strengthening input/output type relations.
+- Progress
+  - Tightened signatures in:
+    - `src/php/array/array_udiff.ts`
+    - `src/php/array/array_udiff_assoc.ts`
+    - `src/php/array/array_udiff_uassoc.ts`
+    - `src/php/array/array_uintersect.ts`
+    - `src/php/array/array_uintersect_uassoc.ts`
+  - Improvements made:
+    - Required at least one compare-array argument in rest tuples before callback(s).
+    - Typed callback parameters using `PhpCallableDescriptor` tuple descriptors.
+    - Propagated `arr1` value type through return type via `PhpAssoc<T>`.
+    - Replaced `for..in` index access with `entriesOfPhpAssoc(...)` to keep strict-next inference narrow and avoid undefined index widening.
+  - Updated `docs/php-api-signatures.snapshot` to reflect narrowed public signatures.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Variadic tuple rest parameters deliver strong callback API narrowing without touching runtime code paths.
+  - `entriesOfPhpAssoc(...)` is a reliable pattern to avoid strict-next `index signature -> T | undefined` friction in generic object loops.

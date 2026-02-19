@@ -80,11 +80,11 @@ src/php/array/array_slice.ts :: export function array_slice<TValue>( arr: TValue
 src/php/array/array_slice.ts :: export function array_slice<TValue>( arr: TValue[], offst: number, lgth?: number, preserveKeys?: false | undefined, ): TValue[]
 src/php/array/array_splice.ts :: export function array_splice( arr: PhpValue[] | AssocArray<PhpValue>, offst: number, lgth?: number, replacement?: ReplacementValue<PhpValue>, ): PhpValue[] | AssocArray<PhpValue>
 src/php/array/array_sum.ts :: export function array_sum(array: PhpMixed[] | PhpAssoc<PhpMixed> | null): number | null
-src/php/array/array_udiff.ts :: export function array_udiff(arr1: PhpArray, ...arraysAndCallback: PhpValue[]): PhpArray
-src/php/array/array_udiff_assoc.ts :: export function array_udiff_assoc(arr1: PhpArray, ...arraysAndCallback: PhpValue[]): PhpArray
-src/php/array/array_udiff_uassoc.ts :: export function array_udiff_uassoc(arr1: PhpArray, ...arraysAndComparators: PhpValue[]): PhpArray
-src/php/array/array_uintersect.ts :: export function array_uintersect(arr1: PhpArray, ...arraysAndCallback: PhpValue[]): PhpArray
-src/php/array/array_uintersect_uassoc.ts :: export function array_uintersect_uassoc(arr1: PhpArray, ...arraysAndComparators: PhpValue[]): PhpArray
+src/php/array/array_udiff.ts :: export function array_udiff<T extends PhpValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: PhpValue, ...rest: PhpValue[], callback: NumericComparatorDescriptor] ): PhpArray<T>
+src/php/array/array_udiff_assoc.ts :: export function array_udiff_assoc<T extends PhpValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: PhpValue, ...rest: PhpValue[], callback: NumericComparatorDescriptor] ): PhpArray<T>
+src/php/array/array_udiff_uassoc.ts :: export function array_udiff_uassoc<T extends PhpValue>( arr1: PhpArray<T>, ...arraysAndComparators: [ arr2: PhpValue, ...rest: PhpValue[], valueCallback: NumericComparatorDescriptor, keyCallback: KeyComparatorDescriptor, ] ): PhpArray<T>
+src/php/array/array_uintersect.ts :: export function array_uintersect<T extends PhpValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: PhpValue, ...rest: PhpValue[], callback: NumericComparatorDescriptor] ): PhpArray<T>
+src/php/array/array_uintersect_uassoc.ts :: export function array_uintersect_uassoc<T extends PhpValue>( arr1: PhpArray<T>, ...arraysAndComparators: [ arr2: PhpValue, ...rest: PhpValue[], valueCallback: NumericComparatorDescriptor, keyCallback: KeyComparatorDescriptor, ] ): PhpArray<T>
 src/php/array/array_unique.ts :: export function array_unique<T>(inputArr: T[] | PhpAssoc<T>): PhpAssoc<T> | false
 src/php/array/array_unshift.ts :: export function array_unshift(array: PhpMixed[], ...values: PhpMixed[]): number
 src/php/array/array_values.ts :: export function array_values<T>(input: T[] | PhpAssoc<T>): T[]
