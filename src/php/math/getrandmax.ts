@@ -1,4 +1,4 @@
-export function getrandmax() {
+export function getrandmax(): number {
   //      discuss at: https://locutus.io/php/getrandmax/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)

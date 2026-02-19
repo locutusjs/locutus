@@ -51,6 +51,9 @@ jobs:
       - name: Type Debt Policy Check
         run: |
           corepack yarn lint:ts:debt:policy
+      - name: API Signature Snapshot Check
+        run: |
+          corepack yarn lint:api:snapshot
       - name: Header Format Check
         run: |
           corepack yarn lint:headers

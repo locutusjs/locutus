@@ -9,6 +9,9 @@ interface Finding {
 
 const MAX_SRC_PHP_RAW_INDEX_SIGNATURE_UNKNOWN = 0
 const MAX_SRC_PHP_EXPORTED_UNKNOWN_RETURN_TYPES = 0
+const MAX_SRC_PHP_EXPORTED_OBJECT_KEYWORD = 0
+const MAX_SRC_PHP_EXPORTED_EMPTY_OBJECT_TYPE = 0
+const MAX_SRC_PHP_EXPORTED_FUNCTION_WITHOUT_RETURN_TYPE = 0
 const MAX_SRC_PHP_UNKNOWN_KEYWORD = 0
 const MAX_SRC_PHP_ARRAY_UNKNOWN_KEYWORD = 0
 const MAX_SRC_PHP_VAR_UNKNOWN_KEYWORD = 0
@@ -45,6 +48,9 @@ const functionTypeFindings: Finding[] = []
 const asUnknownAsFindings: Finding[] = []
 const argumentsIdentifierFindings: Finding[] = []
 const exportedUnknownReturnTypeFindings: Finding[] = []
+const exportedObjectKeywordFindings: Finding[] = []
+const exportedEmptyObjectTypeFindings: Finding[] = []
+const exportedFunctionWithoutReturnTypeFindings: Finding[] = []
 const localPhpValueAliasFindings: Finding[] = []
 const directIniGlobalReadFindings: Finding[] = []
 const stringsAsExpressionFindings: Finding[] = []
@@ -64,6 +70,9 @@ const varAsExpressionFindings: Finding[] = []
 const xdiffAsExpressionFindings: Finding[] = []
 let srcPhpRawIndexSignatureUnknownCount = 0
 let srcPhpExportedUnknownReturnTypeCount = 0
+let srcPhpExportedObjectKeywordCount = 0
+let srcPhpExportedEmptyObjectTypeCount = 0
+let srcPhpExportedFunctionWithoutReturnTypeCount = 0
 let srcPhpUnknownKeywordCount = 0
 let srcPhpArrayUnknownKeywordCount = 0
 let srcPhpVarUnknownKeywordCount = 0
@@ -159,6 +168,113 @@ const countExportedUnknownReturnTypes = (sourceFile: ts.SourceFile): number => {
 
   visit(sourceFile)
   return count
+}
+
+const countObjectAndEmptyObjectTypeNodes = (
+  typeNode: ts.TypeNode,
+): { objectKeywordCount: number; emptyObjectTypeCount: number } => {
+  let objectKeywordCount = 0
+  let emptyObjectTypeCount = 0
+
+  const visit = (node: ts.Node): void => {
+    if (node.kind === ts.SyntaxKind.ObjectKeyword) {
+      objectKeywordCount += 1
+    }
+    if (ts.isTypeLiteralNode(node) && node.members.length === 0) {
+      emptyObjectTypeCount += 1
+    }
+    ts.forEachChild(node, visit)
+  }
+
+  visit(typeNode)
+  return { objectKeywordCount, emptyObjectTypeCount }
+}
+
+const countExportedTypeBroadMarkers = (
+  sourceFile: ts.SourceFile,
+): {
+  objectKeywordCount: number
+  emptyObjectTypeCount: number
+  functionWithoutReturnTypeCount: number
+} => {
+  let objectKeywordCount = 0
+  let emptyObjectTypeCount = 0
+  let functionWithoutReturnTypeCount = 0
+
+  const addTypeNodeCounts = (typeNode: ts.TypeNode): void => {
+    const counts = countObjectAndEmptyObjectTypeNodes(typeNode)
+    objectKeywordCount += counts.objectKeywordCount
+    emptyObjectTypeCount += counts.emptyObjectTypeCount
+  }
+
+  sourceFile.forEachChild((node) => {
+    if (ts.isFunctionDeclaration(node) && hasExportModifier(node)) {
+      if (node.type) {
+        addTypeNodeCounts(node.type)
+      } else if (node.body) {
+        functionWithoutReturnTypeCount += 1
+      }
+
+      for (const parameter of node.parameters) {
+        if (parameter.type) {
+          addTypeNodeCounts(parameter.type)
+        }
+      }
+
+      for (const typeParameter of node.typeParameters ?? []) {
+        if (typeParameter.constraint) {
+          addTypeNodeCounts(typeParameter.constraint)
+        }
+        if (typeParameter.default) {
+          addTypeNodeCounts(typeParameter.default)
+        }
+      }
+      return
+    }
+
+    if (ts.isVariableStatement(node) && hasExportModifier(node)) {
+      for (const declaration of node.declarationList.declarations) {
+        if (declaration.type) {
+          addTypeNodeCounts(declaration.type)
+        }
+      }
+      return
+    }
+
+    if (ts.isTypeAliasDeclaration(node) && hasExportModifier(node)) {
+      addTypeNodeCounts(node.type)
+      return
+    }
+
+    if (ts.isInterfaceDeclaration(node) && hasExportModifier(node)) {
+      for (const member of node.members) {
+        if (ts.isCallSignatureDeclaration(member) || ts.isMethodSignature(member) || ts.isPropertySignature(member)) {
+          if (member.type) {
+            addTypeNodeCounts(member.type)
+          }
+          for (const parameter of member.parameters ?? []) {
+            if (parameter.type) {
+              addTypeNodeCounts(parameter.type)
+            }
+          }
+          for (const typeParameter of member.typeParameters ?? []) {
+            if (typeParameter.constraint) {
+              addTypeNodeCounts(typeParameter.constraint)
+            }
+            if (typeParameter.default) {
+              addTypeNodeCounts(typeParameter.default)
+            }
+          }
+        }
+      }
+    }
+  })
+
+  return {
+    objectKeywordCount,
+    emptyObjectTypeCount,
+    functionWithoutReturnTypeCount,
+  }
 }
 
 for (const filePath of sourceFiles) {
@@ -407,6 +523,35 @@ for (const filePath of sourceFiles) {
         count: exportedUnknownReturnTypeCount,
       })
     }
+
+    const isPhpHelperFile = filePath.includes(`${path.sep}src${path.sep}php${path.sep}_helpers${path.sep}`)
+    if (!isPhpHelperFile) {
+      const exportedTypeBroadCounts = countExportedTypeBroadMarkers(sourceFile)
+
+      srcPhpExportedObjectKeywordCount += exportedTypeBroadCounts.objectKeywordCount
+      if (exportedTypeBroadCounts.objectKeywordCount > 0) {
+        exportedObjectKeywordFindings.push({
+          file: path.relative(cwd, filePath),
+          count: exportedTypeBroadCounts.objectKeywordCount,
+        })
+      }
+
+      srcPhpExportedEmptyObjectTypeCount += exportedTypeBroadCounts.emptyObjectTypeCount
+      if (exportedTypeBroadCounts.emptyObjectTypeCount > 0) {
+        exportedEmptyObjectTypeFindings.push({
+          file: path.relative(cwd, filePath),
+          count: exportedTypeBroadCounts.emptyObjectTypeCount,
+        })
+      }
+
+      srcPhpExportedFunctionWithoutReturnTypeCount += exportedTypeBroadCounts.functionWithoutReturnTypeCount
+      if (exportedTypeBroadCounts.functionWithoutReturnTypeCount > 0) {
+        exportedFunctionWithoutReturnTypeFindings.push({
+          file: path.relative(cwd, filePath),
+          count: exportedTypeBroadCounts.functionWithoutReturnTypeCount,
+        })
+      }
+    }
   }
 }
 
@@ -487,6 +632,36 @@ if (srcPhpExportedUnknownReturnTypeCount > MAX_SRC_PHP_EXPORTED_UNKNOWN_RETURN_T
     `src/php exported unknown return-type count increased: ${srcPhpExportedUnknownReturnTypeCount} > ${MAX_SRC_PHP_EXPORTED_UNKNOWN_RETURN_TYPES}`,
   )
   for (const finding of exportedUnknownReturnTypeFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
+if (srcPhpExportedObjectKeywordCount > MAX_SRC_PHP_EXPORTED_OBJECT_KEYWORD) {
+  hasFailure = true
+  console.error(
+    `src/php exported signature 'object' keyword count increased: ${srcPhpExportedObjectKeywordCount} > ${MAX_SRC_PHP_EXPORTED_OBJECT_KEYWORD}`,
+  )
+  for (const finding of exportedObjectKeywordFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
+if (srcPhpExportedEmptyObjectTypeCount > MAX_SRC_PHP_EXPORTED_EMPTY_OBJECT_TYPE) {
+  hasFailure = true
+  console.error(
+    `src/php exported signature empty-object '{}' count increased: ${srcPhpExportedEmptyObjectTypeCount} > ${MAX_SRC_PHP_EXPORTED_EMPTY_OBJECT_TYPE}`,
+  )
+  for (const finding of exportedEmptyObjectTypeFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
+if (srcPhpExportedFunctionWithoutReturnTypeCount > MAX_SRC_PHP_EXPORTED_FUNCTION_WITHOUT_RETURN_TYPE) {
+  hasFailure = true
+  console.error(
+    `src/php exported function-without-return-type count increased: ${srcPhpExportedFunctionWithoutReturnTypeCount} > ${MAX_SRC_PHP_EXPORTED_FUNCTION_WITHOUT_RETURN_TYPE}`,
+  )
+  for (const finding of exportedFunctionWithoutReturnTypeFindings) {
     console.error(`  - ${finding.file}: ${finding.count}`)
   }
 }
@@ -687,5 +862,5 @@ if (hasFailure) {
 }
 
 console.log(
-  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php unknown keyword count not increased, src/php/array unknown keyword count not increased, src/php/array as-expression count not increased, src/php/var unknown keyword count not increased, src/php/var as-expression count not increased, src/php/strings as-expression count not increased, src/php/ctype as-expression count not increased, src/php/info as-expression count not increased, src/php/_helpers as-expression count not increased, src/php/url as-expression count not increased, src/php/funchand as-expression count not increased, src/php/json as-expression count not increased, src/php/datetime as-expression count not increased, src/php/bc as-expression count not increased, src/php/filesystem as-expression count not increased, src/php/misc as-expression count not increased, src/php/pcre as-expression count not increased, src/php/xdiff as-expression count not increased, src/php local PhpValue alias count not increased, src/php direct $locutus?.php?.ini reads not increased',
+  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php exported object keyword count not increased, src/php exported empty-object count not increased, src/php exported missing return-type count not increased, src/php unknown keyword count not increased, src/php/array unknown keyword count not increased, src/php/array as-expression count not increased, src/php/var unknown keyword count not increased, src/php/var as-expression count not increased, src/php/strings as-expression count not increased, src/php/ctype as-expression count not increased, src/php/info as-expression count not increased, src/php/_helpers as-expression count not increased, src/php/url as-expression count not increased, src/php/funchand as-expression count not increased, src/php/json as-expression count not increased, src/php/datetime as-expression count not increased, src/php/bc as-expression count not increased, src/php/filesystem as-expression count not increased, src/php/misc as-expression count not increased, src/php/pcre as-expression count not increased, src/php/xdiff as-expression count not increased, src/php local PhpValue alias count not increased, src/php direct $locutus?.php?.ini reads not increased',
 )

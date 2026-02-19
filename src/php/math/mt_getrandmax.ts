@@ -1,4 +1,4 @@
-export function mt_getrandmax() {
+export function mt_getrandmax(): number {
   //      discuss at: https://locutus.io/php/mt_getrandmax/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)

@@ -635,3 +635,32 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Overload-friendly source parsing is necessary once stricter type modeling relies on declaration signatures.
   - Frontier cleanup is fastest when each directory gets both a cast removal pass and an immediate zero-floor ratchet.
+
+## Iteration 27
+
+- Plans
+  - Add a public API quality gate for broad exported signature types (`object`, `{}`, and missing return types).
+  - Add deterministic API snapshot checking in CI so exported signature changes are always explicit.
+- Progress
+  - Extended `scripts/check-ts-debt-policy.ts` with new exported-signature gates for `src/php/**` (excluding `_helpers/**`):
+    - `MAX_SRC_PHP_EXPORTED_OBJECT_KEYWORD = 0`
+    - `MAX_SRC_PHP_EXPORTED_EMPTY_OBJECT_TYPE = 0`
+    - `MAX_SRC_PHP_EXPORTED_FUNCTION_WITHOUT_RETURN_TYPE = 0`
+  - Refactored exported signatures to satisfy zero-floor gate:
+    - `src/php/info/ini_set.ts` replaced raw `{}` in `IniValue` with recursive named object/list types.
+    - `src/php/var/is_object.ts` removed `object` predicate in favor of associative-object predicate.
+    - added explicit return types in `src/php/{datetime/time,math/getrandmax,math/lcg_value,math/mt_getrandmax,math/pi,strings/echo}.ts`.
+  - Added API signature snapshot tool:
+    - `scripts/check-api-signature-snapshot.ts`
+    - snapshot file: `docs/php-api-signatures.snapshot`
+    - scripts:
+      - `lint:api:snapshot`
+      - `fix:api:snapshot`
+  - Wired snapshot check into local and CI pipelines:
+    - `package.json` `check` now includes `lint:api:snapshot`
+    - `.github/workflows/ci.yml` now runs `corepack yarn lint:api:snapshot`
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Narrowing exported signatures is tractable when enforced by AST-level debt gates and cleaned in small batches.
+  - Snapshot-gating declared signatures makes type evolution intentional and prevents accidental API drift under broad refactors.

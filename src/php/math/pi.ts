@@ -1,4 +1,4 @@
-export function pi() {
+export function pi(): number {
   //  discuss at: https://locutus.io/php/pi/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: dude

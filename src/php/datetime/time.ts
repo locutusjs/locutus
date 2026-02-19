@@ -1,4 +1,4 @@
-export function time() {
+export function time(): number {
   //      discuss at: https://locutus.io/php/time/
   // parity verified: PHP 8.3
   //     original by: GeekFG (https://geekfg.blogspot.com)

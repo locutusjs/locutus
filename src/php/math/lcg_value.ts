@@ -1,4 +1,4 @@
-export function lcg_value() {
+export function lcg_value(): number {
   //      discuss at: https://locutus.io/php/lcg_value/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)

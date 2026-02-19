@@ -2,21 +2,25 @@ import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
 import type { PhpValue } from '../_helpers/_phpTypes.ts'
 
 type IniScalar = string | number | boolean | null
-export type IniValue = IniScalar | {} | Array<IniScalar | {}> | undefined
+type IniEntryValue = IniScalar | IniObject | IniEntryValue[]
+type IniObject = { [key: string]: IniEntryValue }
+export type IniValue = IniEntryValue | undefined
 
 type IniCandidate = PhpValue | undefined
 
 const isIniScalar = (value: IniCandidate): value is IniScalar =>
   typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean' || value === null
 
-const isIniObject = (value: IniCandidate): value is {} =>
+const isIniObject = (value: IniCandidate): value is IniObject =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 
-const isIniArray = (value: IniCandidate): value is Array<IniScalar | {}> =>
-  Array.isArray(value) && value.every((item: PhpValue) => isIniScalar(item) || isIniObject(item))
+const isIniArray = (value: IniCandidate): value is IniEntryValue[] =>
+  Array.isArray(value) && value.every((item: PhpValue) => isIniEntryValue(item))
 
-const isIniValue = (value: IniCandidate): value is Exclude<IniValue, undefined> =>
+const isIniEntryValue = (value: IniCandidate): value is IniEntryValue =>
   isIniScalar(value) || isIniObject(value) || isIniArray(value)
+
+const isIniValue = (value: IniCandidate): value is Exclude<IniValue, undefined> => isIniEntryValue(value)
 
 export function ini_set(varname: string, newvalue: IniValue): IniValue | undefined {
   //      discuss at: https://locutus.io/php/ini_set/
