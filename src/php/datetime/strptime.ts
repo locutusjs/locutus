@@ -1,4 +1,3 @@
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 import { setlocale } from '../strings/setlocale.ts'
 
 type StrptimeResult = {
@@ -147,7 +146,7 @@ export function strptime(dateStr: string, format: string): StrptimeResult | fals
   const _addNext = function (
     index: number,
     regex: RegExp | string,
-    cb: (...matches: string[]) => PhpMixed | void,
+    cb: (...matches: string[]) => number | null | void,
   ): number {
     const pattern = typeof regex === 'string' ? new RegExp('^' + regex, 'i') : regex
     const check = dateStr.slice(index)

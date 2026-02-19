@@ -1,9 +1,9 @@
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpValue } from '../_helpers/_phpTypes.ts'
 
 type BasicType = 'number' | 'boolean' | 'string' | 'function' | 'object' | 'undefined'
 type TypeConstructor = abstract new (...args: never[]) => object
 type TypeDescriptor = BasicType | TypeConstructor
-type UnknownValue = PhpMixed
+type UnknownValue = PhpValue
 
 export function xdiff_string_diff(
   oldData: string,

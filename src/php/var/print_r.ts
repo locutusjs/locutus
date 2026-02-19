@@ -1,7 +1,7 @@
-import { type PhpMixed, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
 
-export function print_r(array: PhpMixed, returnVal?: boolean): string | true {
+export function print_r(array: PhpValue, returnVal?: boolean): string | true {
   //      discuss at: https://locutus.io/php/print_r/
   // parity verified: PHP 8.3
   //     original by: Michael White (https://getsprink.com)
@@ -23,7 +23,7 @@ export function print_r(array: PhpMixed, returnVal?: boolean): string | true {
     }
     return str
   }
-  const _formatArray = function (obj: PhpMixed, curDepth: number, padVal: number, padChar: string): string {
+  const _formatArray = function (obj: PhpValue, curDepth: number, padVal: number, padChar: string): string {
     if (curDepth > 0) {
       curDepth++
     }

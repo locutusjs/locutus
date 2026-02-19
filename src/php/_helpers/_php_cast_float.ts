@@ -1,7 +1,7 @@
 import { _php_cast_int as __php_cast_int } from './_php_cast_int.ts'
-import type { PhpMixed } from './_phpTypes.ts'
+import type { PhpValue } from './_phpTypes.ts'
 
-export function _php_cast_float(value: PhpMixed): number {
+export function _php_cast_float(value: PhpValue): number {
   // original by: Rafał Kukawski
   //   example 1: _php_cast_float(false)
   //   returns 1: 0

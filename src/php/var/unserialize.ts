@@ -1,4 +1,4 @@
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpValue } from '../_helpers/_phpTypes.ts'
 
 type UnserializedScalar = string | number | boolean | null
 type UnserializedObject = { [key: string]: UnserializedValue }
@@ -367,7 +367,7 @@ function expectArrayItems(
 }
 
 // errorMode: 'throw', 'log', 'silent'
-export function unserialize(str: PhpMixed, errorMode: ErrorMode = 'log'): UnserializedValue | false {
+export function unserialize(str: PhpValue, errorMode: ErrorMode = 'log'): UnserializedValue | false {
   //       discuss at: https://locutus.io/php/unserialize/
   //      original by: Arpad Ray (mailto:arpad@php.net)
   //      improved by: Pedro Tainha (https://www.pedrotainha.com)

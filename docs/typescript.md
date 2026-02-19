@@ -1182,3 +1182,27 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Parser/locale modules can still be narrowed safely when dynamic object flows are kept but broad aliases are replaced with shared lattice primitives.
   - Dedicated directory ratchets (`strings = 0`) prevent broad aliases from silently re-entering via future utility additions.
+
+## Iteration 51
+
+- Plans
+  - Remove the remaining `PhpMixed` callsites in `var`, `math`, helper casts, and leaf modules.
+  - Keep `PhpMixed` only as a compatibility alias in `_phpTypes.ts` and ratchet policy to the new floor.
+  - Re-run full checks and regenerate API signature snapshot if exported narrowing changes it.
+- Progress
+  - Replaced `PhpMixed` with `PhpValue` in:
+    - `src/php/var/{is_unicode,isset,print_r,unserialize}.ts`
+    - `src/php/math/{is_nan,is_infinite,is_finite,hypot}.ts`
+    - `src/php/_helpers/{_phpCastString,_php_cast_int,_php_cast_float}.ts`
+    - `src/php/{filesystem/file_get_contents.ts,info/assert_options.ts,i18n/i18n_loc_set_default.ts,xdiff/xdiff_string_diff.ts}`
+  - Tightened `strptime` callback boundary:
+    - `src/php/datetime/strptime.ts` now types `_addNext(..., cb)` as `number | null | void` instead of broad mixed.
+  - Measured reduction:
+    - `src/php/**` `PhpMixed`: `37 -> 1` (only alias in `_phpTypes.ts`).
+    - `src/php/var/**` `PhpMixed`: `9 -> 0`.
+  - Ratcheted `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_PHPMIXED_KEYWORD`: `37 -> 1`
+    - `MAX_SRC_PHP_VAR_PHPMIXED_KEYWORD`: `9 -> 0`
+- Key learnings
+  - A compatibility alias can remain exported while all implementation callsites are fully narrowed.
+  - Leaf-module sweeps are effective once family-level hotspots are zeroed and policy ratchets are updated immediately.

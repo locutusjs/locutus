@@ -5,7 +5,7 @@ src/php/_helpers/_bc.ts :: export function _bc(): ReturnType<typeof createBcLibr
 src/php/_helpers/_callbackResolver.ts :: export function resolveNumericComparator<TLeft extends PhpValue = PhpValue, TRight extends PhpValue = PhpValue>( callback: PhpCallableDescriptor<[TLeft, TRight], NumericLike>, invalidMessage: string, ): (left: TLeft, right: TRight) => number
 src/php/_helpers/_callbackResolver.ts :: export function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue>( callback: PhpCallableDescriptor<TArgs, TResult>, options: CallbackResolverOptions, ): ResolvedCallback<TArgs, TResult>
 src/php/_helpers/_ctypePattern.ts :: export function getCtypePattern(key: string): RegExp | undefined
-src/php/_helpers/_phpCastString.ts :: export function _phpCastString(value: PhpMixed): string
+src/php/_helpers/_phpCastString.ts :: export function _phpCastString(value: PhpValue): string
 src/php/_helpers/_phpRuntimeState.ts :: export function ensurePhpRuntimeState(): PhpRuntimeState
 src/php/_helpers/_phpRuntimeState.ts :: export function setPhpLocaleDefault(localeDefault: string): void
 src/php/_helpers/_phpRuntimeState.ts :: export interface PhpRuntimeState { ini: PhpAssoc<IniEntry | undefined> locales: PhpAssoc<LocaleEntry | undefined> pointers: PhpList<PhpValue> locale_default: string | undefined }
@@ -42,8 +42,8 @@ src/php/_helpers/_phpTypes.ts :: export type PhpReadonlyList<T = PhpValue> = rea
 src/php/_helpers/_phpTypes.ts :: export type PhpScalar = string | number | boolean
 src/php/_helpers/_phpTypes.ts :: export type PhpValue = {} | PhpNullish
 src/php/_helpers/_phpTypes.ts :: export type StringLike = string | number | boolean | bigint
-src/php/_helpers/_php_cast_float.ts :: export function _php_cast_float(value: PhpMixed): number
-src/php/_helpers/_php_cast_int.ts :: export function _php_cast_int(value: PhpMixed): number
+src/php/_helpers/_php_cast_float.ts :: export function _php_cast_float(value: PhpValue): number
+src/php/_helpers/_php_cast_int.ts :: export function _php_cast_int(value: PhpValue): number
 src/php/array/array_change_key_case.ts :: export function array_change_key_case(array: ArrayChangeInput, cs?: string | number): PhpArrayLike<PhpValue> | false
 src/php/array/array_change_key_case.ts :: export function array_change_key_case(array: number | null, cs?: string | number): false
 src/php/array/array_change_key_case.ts :: export function array_change_key_case<TValue>(array: PhpAssoc<TValue>, cs?: string | number): PhpAssoc<TValue>
@@ -178,7 +178,7 @@ src/php/exec/escapeshellarg.ts :: export function escapeshellarg(arg: string): s
 src/php/filesystem/basename.ts :: export function basename(path: string, suffix?: string): string
 src/php/filesystem/dirname.ts :: export function dirname(path: string): string
 src/php/filesystem/file_exists.ts :: export function file_exists(filename: string): boolean
-src/php/filesystem/file_get_contents.ts :: export function file_get_contents( url: string, _flags?: PhpMixed, _context?: PhpMixed, _offset?: number, _maxLen?: number, ): string | false
+src/php/filesystem/file_get_contents.ts :: export function file_get_contents( url: string, _flags?: PhpValue, _context?: PhpValue, _offset?: number, _maxLen?: number, ): string | false
 src/php/filesystem/pathinfo.ts :: export function pathinfo(path: string, options?: PathInfoOptions): PathInfoMap | string | false
 src/php/filesystem/realpath.ts :: export function realpath(path: string): string
 src/php/funchand/call_user_func.ts :: export function call_user_func<TResult = PhpValue, TArgs extends PhpValue[] = PhpValue[]>( cb: PhpCallableDescriptor<TArgs, TResult>, ...parameters: TArgs ): TResult
@@ -188,7 +188,7 @@ src/php/funchand/function_exists.ts :: export function function_exists(funcName:
 src/php/funchand/get_defined_functions.ts :: export function get_defined_functions(): string[]
 src/php/i18n/i18n_loc_get_default.ts :: export function i18n_loc_get_default(): string
 src/php/i18n/i18n_loc_set_default.ts :: export function i18n_loc_set_default(name: string): boolean
-src/php/info/assert_options.ts :: export function assert_options(what: string, _value?: PhpMixed): string | number | null
+src/php/info/assert_options.ts :: export function assert_options(what: string, _value?: PhpValue): string | number | null
 src/php/info/getenv.ts :: export function getenv(varname: string): string | false
 src/php/info/ini_get.ts :: export function ini_get(varname: string): string
 src/php/info/ini_set.ts :: export function ini_set(varname: string, newvalue: IniValue): IniValue | undefined
@@ -221,10 +221,10 @@ src/php/math/floor.ts :: export function floor(value: number): number
 src/php/math/fmod.ts :: export function fmod(x: number | string, y: number | string): number
 src/php/math/getrandmax.ts :: export function getrandmax(): number
 src/php/math/hexdec.ts :: export function hexdec(hexString: string): number
-src/php/math/hypot.ts :: export function hypot(x: PhpMixed, y: PhpMixed): number | null
-src/php/math/is_finite.ts :: export function is_finite(val: PhpMixed): boolean
-src/php/math/is_infinite.ts :: export function is_infinite(val: PhpMixed): boolean
-src/php/math/is_nan.ts :: export function is_nan(val: PhpMixed): boolean
+src/php/math/hypot.ts :: export function hypot(x: PhpValue, y: PhpValue): number | null
+src/php/math/is_finite.ts :: export function is_finite(val: PhpValue): boolean
+src/php/math/is_infinite.ts :: export function is_infinite(val: PhpValue): boolean
+src/php/math/is_nan.ts :: export function is_nan(val: PhpValue): boolean
 src/php/math/lcg_value.ts :: export function lcg_value(): number
 src/php/math/log.ts :: export function log(arg: number, base: number): number
 src/php/math/log10.ts :: export function log10(arg: number): number
@@ -381,12 +381,12 @@ src/php/var/is_object.ts :: export function is_object(mixedVar: PhpValue): mixed
 src/php/var/is_real.ts :: export function is_real(mixedVar: number): boolean
 src/php/var/is_scalar.ts :: export function is_scalar(mixedVar: PhpValue): mixedVar is PhpScalar
 src/php/var/is_string.ts :: export function is_string(mixedVar: string | number): boolean
-src/php/var/is_unicode.ts :: export function is_unicode(vr: PhpMixed): vr is string
-src/php/var/isset.ts :: export function isset(...values: PhpMixed[]): boolean
-src/php/var/print_r.ts :: export function print_r(array: PhpMixed, returnVal?: boolean): string | true
+src/php/var/is_unicode.ts :: export function is_unicode(vr: PhpValue): vr is string
+src/php/var/isset.ts :: export function isset(...values: PhpValue[]): boolean
+src/php/var/print_r.ts :: export function print_r(array: PhpValue, returnVal?: boolean): string | true
 src/php/var/serialize.ts :: export function serialize(mixedValue: PhpValue): string
 src/php/var/strval.ts :: export function strval(str: PhpValue): string
-src/php/var/unserialize.ts :: export function unserialize(str: PhpMixed, errorMode: ErrorMode = 'log'): UnserializedValue | false
+src/php/var/unserialize.ts :: export function unserialize(str: PhpValue, errorMode: ErrorMode = 'log'): UnserializedValue | false
 src/php/var/var_dump.ts :: export function var_dump(...args: PhpValue[]): string
 src/php/var/var_export.ts :: export function var_export(mixedExpression: PhpValue, boolReturn: true, idtLevel?: number): VarExportResult
 src/php/var/var_export.ts :: export function var_export(mixedExpression: PhpValue, boolReturn?: boolean, idtLevel = 2): VarExportResult | null

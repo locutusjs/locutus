@@ -1,5 +1,5 @@
 import { ensurePhpRuntimeState, setPhpLocaleDefault } from '../_helpers/_phpRuntimeState.ts'
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpValue } from '../_helpers/_phpTypes.ts'
 
 export function i18n_loc_set_default(name: string): boolean {
   //  discuss at: https://locutus.io/php/i18n_loc_set_default/
@@ -13,7 +13,7 @@ export function i18n_loc_set_default(name: string): boolean {
   const runtime = ensurePhpRuntimeState()
 
   runtime.locales.en_US_POSIX = {
-    sorting: function (left: PhpMixed, right: PhpMixed): number {
+    sorting: function (left: PhpValue, right: PhpValue): number {
       // @todo: This one taken from strcmp, but need for other locales;
       // we don't use localeCompare since its locale is not settable
       const str1 = String(left)
