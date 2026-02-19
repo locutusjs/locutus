@@ -5,10 +5,11 @@ import {
   type NumericLike,
   type PhpAssoc,
   type PhpCallableDescriptor,
+  type PhpInput,
   toPhpArrayObject,
 } from '../_helpers/_phpTypes.ts'
 
-type DiffValue = {} | null | undefined
+type DiffValue = PhpInput
 type PhpArray<T extends DiffValue = DiffValue> = PhpAssoc<T>
 type NumericComparatorDescriptor = PhpCallableDescriptor<[DiffValue, DiffValue], NumericLike>
 

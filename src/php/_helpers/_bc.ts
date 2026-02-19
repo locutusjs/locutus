@@ -1,8 +1,8 @@
+import type { PhpInput } from './_phpTypes.ts'
 // SPDX-License-Identifier: LGPL-2.1-or-later
 // NOTE: This file is LGPL licensed, not MIT like the rest of locutus.
 // See LICENSE file for details.
 
-import type { PhpValue } from './_phpTypes.ts'
 
 function createBcLibrary() {
   //  discuss at: https://locutus.io/php/_helpers/_bc
@@ -1244,7 +1244,7 @@ function createBcLibrary() {
       return num
     },
 
-    cint: function (v: PhpValue) {
+    cint: function (v: PhpInput) {
       if (typeof v === 'undefined') {
         v = 0
       }

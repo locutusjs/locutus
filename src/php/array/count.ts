@@ -1,9 +1,9 @@
-import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 
-type CountableObject = PhpAssoc<PhpValue>
-type Countable = PhpValue[] | CountableObject
+type CountableObject = PhpAssoc<PhpInput>
+type Countable = PhpInput[] | CountableObject
 
-const isCountable = (value: PhpValue): value is Countable => {
+const isCountable = (value: PhpInput): value is Countable => {
   if (!value || typeof value !== 'object') {
     return false
   }

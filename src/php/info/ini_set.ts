@@ -1,12 +1,12 @@
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
 
 type IniScalar = string | number | boolean | null
 type IniEntryValue = IniScalar | IniObject | IniEntryValue[]
 type IniObject = { [key: string]: IniEntryValue }
 export type IniValue = IniEntryValue | undefined
 
-type IniCandidate = PhpValue | undefined
+type IniCandidate = PhpInput | undefined
 
 const isIniScalar = (value: IniCandidate): value is IniScalar =>
   typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean' || value === null
@@ -15,7 +15,7 @@ const isIniObject = (value: IniCandidate): value is IniObject =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 
 const isIniArray = (value: IniCandidate): value is IniEntryValue[] =>
-  Array.isArray(value) && value.every((item: PhpValue) => isIniEntryValue(item))
+  Array.isArray(value) && value.every((item: PhpInput) => isIniEntryValue(item))
 
 const isIniEntryValue = (value: IniCandidate): value is IniEntryValue =>
   isIniScalar(value) || isIniObject(value) || isIniArray(value)

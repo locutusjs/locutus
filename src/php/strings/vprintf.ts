@@ -1,7 +1,8 @@
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
 import { sprintf } from '../strings/sprintf.ts'
 
-type PrintfValue = {} | null | undefined
+type PrintfValue = PhpInput
 
 export function vprintf(format: string, args: PrintfValue[]): number
 

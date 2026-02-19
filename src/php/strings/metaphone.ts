@@ -1,4 +1,6 @@
-type MetaphoneValue = {} | null | undefined
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
+
+type MetaphoneValue = PhpInput
 
 export function metaphone(
   word: MetaphoneValue,

@@ -1,7 +1,7 @@
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
 import { setlocale } from '../strings/setlocale.ts'
 
-const isRecord = (value: PhpValue): value is { [key: string]: PhpValue } =>
+const isRecord = (value: PhpInput): value is { [key: string]: PhpInput } =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 
 export function sql_regcase(str: string): string {

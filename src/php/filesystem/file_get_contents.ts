@@ -1,6 +1,7 @@
 import fs from 'fs'
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
 
-type FileGetContentsInput = {} | null | undefined
+type FileGetContentsInput = PhpInput
 
 export function file_get_contents(
   url: string,

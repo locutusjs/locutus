@@ -1,7 +1,7 @@
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
 import { is_float as isFloat } from '../var/is_float.ts'
 
-type TypeInput = {} | null | undefined
+type TypeInput = PhpInput
 
 export function gettype(mixedVar: TypeInput): string {
   //  discuss at: https://locutus.io/php/gettype/

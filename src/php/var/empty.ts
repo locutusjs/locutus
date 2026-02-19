@@ -1,4 +1,6 @@
-type EmptyValue = {} | null | undefined
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
+
+type EmptyValue = PhpInput
 
 export function empty(mixedVar: EmptyValue): boolean {
   //  discuss at: https://locutus.io/php/empty/

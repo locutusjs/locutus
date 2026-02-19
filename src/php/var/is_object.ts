@@ -1,6 +1,6 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 
-type ObjectValue = {} | null | undefined
+type ObjectValue = PhpInput
 
 export function is_object(mixedVar: ObjectValue): mixedVar is PhpAssoc<ObjectValue> {
   //  discuss at: https://locutus.io/php/is_object/

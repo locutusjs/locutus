@@ -5,10 +5,11 @@ import {
   type NumericLike,
   type PhpAssoc,
   type PhpCallableDescriptor,
+  type PhpInput,
   toPhpArrayObject,
 } from '../_helpers/_phpTypes.ts'
 
-type IntersectValue = {} | null | undefined
+type IntersectValue = PhpInput
 type PhpArray<T extends IntersectValue = IntersectValue> = PhpAssoc<T>
 type KeyComparatorDescriptor = PhpCallableDescriptor<[string, string], NumericLike>
 

@@ -1,6 +1,6 @@
-import { type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpInput, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type CallableValue = {} | null | undefined
+type CallableValue = PhpInput
 
 export function is_callable(mixedVar: CallableValue, syntaxOnly?: boolean, callableName?: string): boolean {
   //  discuss at: https://locutus.io/php/is_callable/
@@ -41,7 +41,7 @@ export function is_callable(mixedVar: CallableValue, syntaxOnly?: boolean, calla
   let method = ''
   let validFunctionName = false
 
-  const getFuncName = function (fn: PhpValue): string {
+  const getFuncName = function (fn: PhpInput): string {
     const funcNameMatch = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
     if (!funcNameMatch) {
       return '(Anonymous)'

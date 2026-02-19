@@ -1,6 +1,6 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 
-type SearchValue = {} | null | undefined
+type SearchValue = PhpInput
 
 export function array_search<TValue extends SearchValue>(
   needle: TValue | RegExp,

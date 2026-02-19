@@ -1,4 +1,4 @@
-import { type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpInput, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { get_html_translation_table as getHtmlTranslationTable } from '../strings/get_html_translation_table.ts'
 
 export function html_entity_decode(string: string, quoteStyle?: string | number): string | false {
@@ -22,7 +22,7 @@ export function html_entity_decode(string: string, quoteStyle?: string | number)
 
   let tmpStr = string.toString()
 
-  const hashMapUnknown: PhpValue = getHtmlTranslationTable('HTML_ENTITIES', quoteStyle)
+  const hashMapUnknown: PhpInput = getHtmlTranslationTable('HTML_ENTITIES', quoteStyle)
   if (hashMapUnknown === false || !hashMapUnknown || typeof hashMapUnknown !== 'object') {
     return false
   }

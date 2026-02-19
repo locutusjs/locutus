@@ -5,9 +5,10 @@ import {
   type PhpCallable,
   type PhpCallableArgs,
   type PhpCallableDescriptor,
+  type PhpInput,
 } from './_phpTypes.ts'
 
-type CallbackValue = {} | null | undefined
+type CallbackValue = PhpInput
 
 interface CallbackResolverOptions {
   invalidMessage: string

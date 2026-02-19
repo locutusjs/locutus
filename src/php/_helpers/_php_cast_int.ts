@@ -1,4 +1,6 @@
-type CastIntValue = {} | null | undefined
+import type { PhpInput } from './_phpTypes.ts'
+
+type CastIntValue = PhpInput
 
 export function _php_cast_int(value: CastIntValue): number {
   // original by: Rafał Kukawski

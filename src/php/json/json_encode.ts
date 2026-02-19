@@ -1,12 +1,12 @@
-import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 
 type JsonPrimitive = string | number | boolean | null
 type JsonObject = { [key: string]: JsonValue }
 type JsonValue = JsonPrimitive | JsonValue[] | JsonObject
-type JsonEncodeInput = {} | null | undefined
+type JsonEncodeInput = PhpInput
 
 const hasOwn = Object.prototype.hasOwnProperty
-const isJsonObject = (value: PhpValue): value is JsonObject =>
+const isJsonObject = (value: PhpInput): value is JsonObject =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 
 export function json_encode(mixedVal: JsonEncodeInput): string | null {
@@ -94,7 +94,7 @@ export function json_encode(mixedVal: JsonEncodeInput): string | null {
         : '"' + string + '"'
     }
 
-    const _str = function (key: string | number, holder: PhpAssoc<PhpValue> | PhpValue[]): string | undefined {
+    const _str = function (key: string | number, holder: PhpAssoc<PhpInput> | PhpInput[]): string | undefined {
       let gap = ''
       const indent = '    '
       // The loop counter.

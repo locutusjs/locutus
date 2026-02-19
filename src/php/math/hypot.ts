@@ -1,4 +1,6 @@
-type HypotInput = {} | null | undefined
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
+
+type HypotInput = PhpInput
 
 export function hypot(x: HypotInput, y: HypotInput): number | null {
   //  discuss at: https://locutus.io/php/hypot/

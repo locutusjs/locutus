@@ -1,4 +1,4 @@
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
 
 type UnserializedScalar = string | number | boolean | null
 type UnserializedObject = { [key: string]: UnserializedValue }
@@ -8,7 +8,7 @@ type ParsedResult = [value: UnserializedValue, offset: number]
 type CacheEntry = [value: UnserializedValue, offset?: number]
 type CacheFn = (<T extends CacheEntry>(value: T) => T) & { get: (index: number) => UnserializedValue }
 type ErrorMode = 'throw' | 'log' | 'silent'
-type UnserializeInput = {} | null | undefined
+type UnserializeInput = PhpInput
 
 function initCache(): CacheFn {
   const store: UnserializedValue[] = []

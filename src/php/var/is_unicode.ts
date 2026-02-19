@@ -1,4 +1,6 @@
-type UnicodeValue = {} | null | undefined
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
+
+type UnicodeValue = PhpInput
 
 export function is_unicode(vr: UnicodeValue): vr is string {
   //  discuss at: https://locutus.io/php/is_unicode/

@@ -8,7 +8,7 @@ src/php/_helpers/_ctypePattern.ts :: export function getCtypePattern(key: string
 src/php/_helpers/_phpCastString.ts :: export function _phpCastString(value: CastStringValue): string
 src/php/_helpers/_phpRuntimeState.ts :: export function ensurePhpRuntimeState(): PhpRuntimeState
 src/php/_helpers/_phpRuntimeState.ts :: export function setPhpLocaleDefault(localeDefault: string): void
-src/php/_helpers/_phpRuntimeState.ts :: export interface PhpRuntimeState { ini: PhpAssoc<IniEntry | undefined> locales: PhpAssoc<LocaleEntry | undefined> pointers: PhpList<PhpValue> locale_default: string | undefined }
+src/php/_helpers/_phpRuntimeState.ts :: export interface PhpRuntimeState { ini: PhpAssoc<IniEntry | undefined> locales: PhpAssoc<LocaleEntry | undefined> pointers: PhpList<PhpInput> locale_default: string | undefined }
 src/php/_helpers/_phpTypes.ts :: export function assertIsObjectLike( value: PhpInput, message = 'Expected object-like value', ): asserts value is PhpArrayLike<PhpInput>
 src/php/_helpers/_phpTypes.ts :: export function assertIsPhpAssocObject( value: PhpInput, message = 'Expected associative object value', ): asserts value is PhpAssoc<PhpInput>
 src/php/_helpers/_phpTypes.ts :: export function assertIsPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput>( value: PhpInput, message = 'Expected callable value', ): asserts value is PhpCallable<TArgs, TResult>

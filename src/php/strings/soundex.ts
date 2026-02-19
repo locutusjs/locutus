@@ -1,4 +1,6 @@
-type SoundexValue = {} | null | undefined
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
+
+type SoundexValue = PhpInput
 
 export function soundex(str: SoundexValue): string {
   //      discuss at: https://locutus.io/php/soundex/

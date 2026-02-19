@@ -1,7 +1,8 @@
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
 import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
 
-type SortValue = {} | null | undefined
+type SortValue = PhpInput
 
 const toSortablePrimitive = (value: SortValue): string | number | bigint | boolean => {
   if (

@@ -1,7 +1,7 @@
-import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 import { setlocale } from '../strings/setlocale.ts'
 
-type LocaleValues = PhpAssoc<PhpValue>
+type LocaleValues = PhpAssoc<PhpInput>
 
 export function localeconv(): LocaleValues {
   //  discuss at: https://locutus.io/php/localeconv/

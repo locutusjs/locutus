@@ -1,10 +1,10 @@
-import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 import { krsort } from '../array/krsort.ts'
 import type { IniValue } from '../info/ini_set.ts'
 import { ini_set as iniSet } from '../info/ini_set.ts'
 
-type StrtrValue = {} | null | undefined
-type ReplacementMap = PhpAssoc<PhpValue>
+type StrtrValue = PhpInput
+type ReplacementMap = PhpAssoc<PhpInput>
 
 export function strtr(str: string, trFrom: string | ReplacementMap | string[], trTo?: string | StrtrValue[]): string {
   //  discuss at: https://locutus.io/php/strtr/
@@ -39,7 +39,7 @@ export function strtr(str: string, trFrom: string | ReplacementMap | string[], t
   let sortByReference: IniValue | undefined = false
   let istr = ''
   const tmpFrom: string[] = []
-  const tmpTo: PhpValue[] = []
+  const tmpTo: PhpInput[] = []
   let ret = ''
   let match = false
 

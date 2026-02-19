@@ -1,4 +1,4 @@
-import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 import { getenv } from '../info/getenv.ts'
 
 type LocaleDefinition = {
@@ -23,7 +23,7 @@ type LocaleInput = string | string[] | number | null
 const hasOwn = Object.prototype.hasOwnProperty
 
 function copyValue<T>(orig: T): T
-function copyValue(orig: PhpValue): PhpValue {
+function copyValue(orig: PhpInput): PhpInput {
   if (orig instanceof RegExp) {
     return new RegExp(orig)
   }
@@ -34,7 +34,7 @@ function copyValue(orig: PhpValue): PhpValue {
     return orig.map((item) => copyValue(item))
   }
   if (orig !== null && typeof orig === 'object') {
-    const newObj: PhpAssoc<PhpValue> = {}
+    const newObj: PhpAssoc<PhpInput> = {}
     for (const [key, value] of Object.entries(orig)) {
       if (!hasOwn.call(orig, key)) {
         continue

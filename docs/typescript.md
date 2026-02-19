@@ -1379,3 +1379,31 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Finishing the last broad exported marker bucket required treating the helper type module as an explicit boundary, not as a dumping ground for broad aliases.
   - Keeping a compatibility alias (`PhpValue = PhpInput`) allows external continuity while letting internal/public runtime signatures move to the new lattice naming.
+
+## Iteration 57
+
+- Plans
+  - Replace inline broad aliases (`{} | null | undefined`) with `PhpInput` across `src/php/**`.
+  - Burn down internal `PhpValue` usage in implementations, not only exported signatures.
+  - Add debt ratchets to prevent reintroduction of inline broad aliases and total `PhpValue` identifier growth.
+  - Keep runtime behavior unchanged and verify with full repo checks.
+- Progress
+  - Established baseline before refactor:
+    - inline broad aliases in `src/php/**`: `76`
+    - `PhpValue` identifiers in `src/php/**`: `81`
+  - Performed mechanical type narrowing pass across `src/php/**`:
+    - replaced internal `PhpValue` usage with `PhpInput` in helpers, arrays, strings, var, json, funchand, and support modules.
+    - replaced all inline `type X = {} | null | undefined` aliases with `type X = PhpInput`.
+  - Added new debt ratchets in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_PHPVALUE_IDENTIFIER = 1` (single compatibility alias in `_phpTypes.ts`)
+    - `MAX_SRC_PHP_INLINE_NULLISH_ALIAS = 0`
+    - plus per-file diagnostics for both counters.
+  - Updated API signature snapshot (`docs/php-api-signatures.snapshot`) for intentional public type-surface updates.
+  - Measured post-pass floor:
+    - inline broad aliases in `src/php/**`: `76 -> 0`
+    - `PhpValue` identifiers in `src/php/**`: `81 -> 1` (`src/php/_helpers/_phpTypes.ts` alias only)
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Aggressive mechanical tightening works at repo scale when each broad marker gets a policy ratchet in the same pass.
+  - Codemods that touch imports need immediate compile/format feedback loops; multiline-import edge cases are the main reliability risk.

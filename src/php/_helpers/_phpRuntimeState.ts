@@ -1,24 +1,24 @@
-import { isPhpAssocObject, type PhpAssoc, type PhpList, type PhpValue } from './_phpTypes.ts'
+import { isPhpAssocObject, type PhpAssoc, type PhpInput, type PhpList } from './_phpTypes.ts'
 
 interface IniEntry {
-  local_value?: PhpValue
+  local_value?: PhpInput
 }
 
 interface LocaleEntry {
-  sorting: (left: PhpValue, right: PhpValue) => number
+  sorting: (left: PhpInput, right: PhpInput) => number
 }
 
 export interface PhpRuntimeState {
   ini: PhpAssoc<IniEntry | undefined>
   locales: PhpAssoc<LocaleEntry | undefined>
-  pointers: PhpList<PhpValue>
+  pointers: PhpList<PhpInput>
   locale_default: string | undefined
 }
 
-const isIniBag = (value: PhpValue): value is PhpAssoc<IniEntry | undefined> =>
+const isIniBag = (value: PhpInput): value is PhpAssoc<IniEntry | undefined> =>
   isPhpAssocObject<IniEntry | undefined>(value)
 
-const isLocaleBag = (value: PhpValue): value is PhpAssoc<LocaleEntry | undefined> =>
+const isLocaleBag = (value: PhpInput): value is PhpAssoc<LocaleEntry | undefined> =>
   isPhpAssocObject<LocaleEntry | undefined>(value)
 
 const ensurePhpRuntimeObject = (): object => {
@@ -49,7 +49,7 @@ export function ensurePhpRuntimeState(): PhpRuntimeState {
 
   const ini = isIniBag(iniValue) ? iniValue : {}
   const locales = isLocaleBag(localesValue) ? localesValue : {}
-  const pointers: PhpList<PhpValue> = Array.isArray(pointersValue) ? pointersValue : []
+  const pointers: PhpList<PhpInput> = Array.isArray(pointersValue) ? pointersValue : []
 
   if (iniValue !== ini) {
     Reflect.set(php, 'ini', ini)

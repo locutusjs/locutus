@@ -1,4 +1,6 @@
-type EchoValue = {} | null | undefined
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
+
+type EchoValue = PhpInput
 
 export function echo(...args: EchoValue[]): void {
   //      discuss at: https://locutus.io/php/echo/

@@ -1,6 +1,6 @@
-import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 
-type ParseObject = PhpAssoc<PhpValue>
+type ParseObject = PhpAssoc<PhpInput>
 
 export function parse_str(str: string, array?: ParseObject): void {
   //       discuss at: https://locutus.io/php/parse_str/

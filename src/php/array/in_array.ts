@@ -1,6 +1,6 @@
-import type { PhpArrayLike } from '../_helpers/_phpTypes.ts'
+import type { PhpArrayLike, PhpInput } from '../_helpers/_phpTypes.ts'
 
-type InArrayValue = {} | null | undefined
+type InArrayValue = PhpInput
 
 export function in_array<T extends InArrayValue>(
   needle: InArrayValue,

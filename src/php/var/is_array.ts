@@ -1,10 +1,10 @@
-import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 import { ini_get } from '../info/ini_get.ts'
 
-type IsArrayValue = {} | null | undefined
-type ArrayLikeAssoc = PhpAssoc<PhpValue> & { length: number }
+type IsArrayValue = PhpInput
+type ArrayLikeAssoc = PhpAssoc<PhpInput> & { length: number }
 
-const hasNumericLength = (value: PhpValue): value is ArrayLikeAssoc =>
+const hasNumericLength = (value: PhpInput): value is ArrayLikeAssoc =>
   value !== null && typeof value === 'object' && typeof Reflect.get(value, 'length') === 'number'
 
 export function is_array(mixedVar: IsArrayValue): boolean {
@@ -37,14 +37,14 @@ export function is_array(mixedVar: IsArrayValue): boolean {
   //   example 5: is_array(function tmp_a (){ this.name = 'Kevin' })
   //   returns 5: false
 
-  const _getFuncName = function (fn: PhpValue): string {
+  const _getFuncName = function (fn: PhpInput): string {
     const name = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
     if (!name) {
       return '(Anonymous)'
     }
     return name[1] ?? '(Anonymous)'
   }
-  const _isArray = function (mixedVar: PhpValue): boolean {
+  const _isArray = function (mixedVar: PhpInput): boolean {
     // return Array.isArray(mixedVar);
     // The above works, but let's do the even more stringent approach:
     // (since Object.prototype.toString could be overridden)

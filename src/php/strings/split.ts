@@ -1,8 +1,8 @@
-import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 import { explode } from '../strings/explode.ts'
 
-type SplitValue = {} | null | undefined
-type KeyedValues = PhpAssoc<PhpValue>
+type SplitValue = PhpInput
+type KeyedValues = PhpAssoc<PhpInput>
 
 export function split(
   delimiter: string | boolean | null | undefined,

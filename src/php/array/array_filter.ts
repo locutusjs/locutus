@@ -1,6 +1,6 @@
-import type { PhpAssoc, PhpList } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpInput, PhpList } from '../_helpers/_phpTypes.ts'
 
-type FilterPredicateResult = {} | null | undefined
+type FilterPredicateResult = PhpInput
 
 export function array_filter<T, S extends T>(arr: PhpList<T>, func: (value: T) => value is S): PhpList<S>
 

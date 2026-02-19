@@ -1,4 +1,6 @@
-type UnshiftValue = {} | null | undefined
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
+
+type UnshiftValue = PhpInput
 
 export function array_unshift<TValue extends UnshiftValue>(array: TValue[], ...values: TValue[]): number {
   //  discuss at: https://locutus.io/php/array_unshift/

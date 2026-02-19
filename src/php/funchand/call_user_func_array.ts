@@ -1,9 +1,15 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
-import { isObjectLike, isPhpCallable, type PhpCallable, type PhpCallableDescriptor } from '../_helpers/_phpTypes.ts'
+import {
+  isObjectLike,
+  isPhpCallable,
+  type PhpCallable,
+  type PhpCallableDescriptor,
+  type PhpInput,
+} from '../_helpers/_phpTypes.ts'
 
 const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
-type FunctionValue = {} | null | undefined
+type FunctionValue = PhpInput
 
 export function call_user_func_array<TResult = FunctionValue, TArgs extends FunctionValue[] = FunctionValue[]>(
   cb: PhpCallableDescriptor<TArgs, TResult>,

@@ -1,6 +1,7 @@
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
 import { ini_get } from './ini_get.ts'
 
-type AssertOptionValue = {} | null | undefined
+type AssertOptionValue = PhpInput
 
 export function assert_options(what: string, _value?: AssertOptionValue): string | number | null {
   //  discuss at: https://locutus.io/php/assert_options/

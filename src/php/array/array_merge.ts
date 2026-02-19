@@ -1,6 +1,6 @@
-import type { PhpArrayLike, PhpAssoc, PhpList, PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpArrayLike, PhpAssoc, PhpInput, PhpList } from '../_helpers/_phpTypes.ts'
 
-type AssociativeArray<T = PhpValue> = PhpAssoc<T>
+type AssociativeArray<T = PhpInput> = PhpAssoc<T>
 
 export function array_merge<T>(...args: [first: PhpList<T>, ...rest: Array<PhpList<T>>]): PhpList<T>
 

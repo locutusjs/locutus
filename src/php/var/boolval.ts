@@ -1,4 +1,6 @@
-type BoolValue = {} | null | undefined
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
+
+type BoolValue = PhpInput
 
 export function boolval(mixedVar: BoolValue): boolean {
   // parity verified: PHP 8.3

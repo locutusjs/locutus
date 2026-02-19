@@ -1,7 +1,7 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 import { is_int as isInt } from '../var/is_int.ts'
 
-type SliceValue = {} | null | undefined
+type SliceValue = PhpInput
 
 export function array_slice<TValue extends SliceValue>(
   arr: TValue[],

@@ -1,22 +1,22 @@
 const visitedObjects = new Map<object, true>() // Initialize a map to track visited objects
 
-import { type PhpAssoc, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, type PhpInput, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
 
-type DumpValue = {} | null | undefined
+type DumpValue = PhpInput
 type DomLikeNode = {
   nodeName: string
   nodeType?: number
   namespaceURI?: string
-  nodeValue?: PhpValue
+  nodeValue?: PhpInput
 }
 
-const hasNodeName = (value: PhpValue): value is DomLikeNode => {
+const hasNodeName = (value: PhpInput): value is DomLikeNode => {
   return typeof value === 'object' && value !== null && 'nodeName' in value
 }
 
 const isLocutusResource = (
-  value: PhpValue,
+  value: PhpInput,
   getFuncName: (fn: { toString: () => string }) => string,
 ): value is { var_dump: () => string } => {
   if (typeof value !== 'object' || value === null || !('var_dump' in value) || !('constructor' in value)) {
@@ -63,7 +63,7 @@ export function var_dump(...args: DumpValue[]): string {
     }
     return str
   }
-  const _getInnerVal = function (val: PhpValue, thickPad: string): string {
+  const _getInnerVal = function (val: PhpInput, thickPad: string): string {
     let ret = ''
     if (val === null) {
       ret = 'NULL'
@@ -142,7 +142,7 @@ export function var_dump(...args: DumpValue[]): string {
   }
 
   const _formatArray = function (
-    obj: PhpValue,
+    obj: PhpInput,
     curDepth: number,
     padVal: number,
     padChar: string,
@@ -170,7 +170,7 @@ export function var_dump(...args: DumpValue[]): string {
         return obj.var_dump()
       }
       let lgth = 0
-      const objRecord = toPhpArrayObject<PhpValue>(obj)
+      const objRecord = toPhpArrayObject<PhpInput>(obj)
       for (const someProp in objRecord) {
         if (Object.prototype.hasOwnProperty.call(objRecord, someProp)) {
           lgth++

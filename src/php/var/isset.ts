@@ -1,4 +1,6 @@
-type IssetValue = {} | null | undefined
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
+
+type IssetValue = PhpInput
 
 export function isset(...values: IssetValue[]): boolean {
   //  discuss at: https://locutus.io/php/isset/

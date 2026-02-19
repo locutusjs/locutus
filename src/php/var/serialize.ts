@@ -1,7 +1,7 @@
-import { type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpInput, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 type LocutusType = 'function' | 'boolean' | 'number' | 'string' | 'array' | 'object' | 'undefined' | 'null'
-type SerializeValue = {} | null | undefined
+type SerializeValue = PhpInput
 
 export function serialize(mixedValue: SerializeValue): string {
   //  discuss at: https://locutus.io/php/serialize/

@@ -1,6 +1,6 @@
-import type { PhpArrayLike } from '../_helpers/_phpTypes.ts'
+import type { PhpArrayLike, PhpInput } from '../_helpers/_phpTypes.ts'
 
-type RandomValue = {} | null | undefined
+type RandomValue = PhpInput
 
 export function array_rand<TValue extends RandomValue>(
   array: PhpArrayLike<TValue>,

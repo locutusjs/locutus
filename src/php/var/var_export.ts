@@ -1,7 +1,7 @@
-import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpInput, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
 
-type VarExportInput = {} | null | undefined
+type VarExportInput = PhpInput
 
 type VarExportType =
   | 'resource'

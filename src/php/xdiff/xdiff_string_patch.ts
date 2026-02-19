@@ -1,4 +1,4 @@
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
 
 type XRegExpMeta = {
   source: string
@@ -31,7 +31,7 @@ export function xdiff_string_patch(
   // MIT License
   // <https://xregexp.com>
 
-  const isRecord = (value: PhpValue): value is { [key: string]: PhpValue } =>
+  const isRecord = (value: PhpInput): value is { [key: string]: PhpInput } =>
     typeof value === 'object' && value !== null && !Array.isArray(value)
 
   const _getNativeFlags = function (regex: RegExp): string {
