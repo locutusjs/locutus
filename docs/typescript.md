@@ -1206,3 +1206,27 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - A compatibility alias can remain exported while all implementation callsites are fully narrowed.
   - Leaf-module sweeps are effective once family-level hotspots are zeroed and policy ratchets are updated immediately.
+
+## Iteration 52
+
+- Plans
+  - Remove `PhpMixed` entirely (no compatibility alias) since this major branch can absorb type-surface breaks.
+  - Add a debt gate for exported `PhpValue` identifiers (global + `array/**`) so broad signature debt is measurable and ratchetable.
+  - Narrow high-impact array API surfaces (`array_multisort`, `array_slice`, `array_splice`, `array_column`) to reduce `PhpValue` leakage.
+- Progress
+  - Removed `PhpMixed` alias from `src/php/_helpers/_phpTypes.ts`; `src/php/**` now has `0` `PhpMixed` occurrences.
+  - Extended `scripts/check-ts-debt-policy.ts` with new exported-signature counters:
+    - `MAX_SRC_PHP_EXPORTED_PHPVALUE_IDENTIFIER = 164`
+    - `MAX_SRC_PHP_ARRAY_EXPORTED_PHPVALUE_IDENTIFIER = 78`
+    - and ratcheted `MAX_SRC_PHP_PHPMIXED_KEYWORD = 0`
+  - Narrowed array family surfaces away from direct `PhpValue` signatures:
+    - `src/php/array/array_multisort.ts` now uses local `SortValue`/`SortArg` contracts.
+    - `src/php/array/array_slice.ts` now threads constrained generics through overloads and implementation.
+    - `src/php/array/array_splice.ts` now uses constrained generics with explicit associative/replacement shapes.
+    - `src/php/array/array_column.ts` now exposes typed row/input/output aliases and overloads.
+  - Updated `docs/php-api-signatures.snapshot` for intentional public type changes.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Replacing broad aliases with local domain aliases (`SortValue`, constrained generic shape aliases) tightens exported APIs without forcing immediate whole-repo lattice completion.
+  - Adding a dedicated exported-`PhpValue` ratchet creates a concrete burn-down path after `PhpMixed` reaches zero.

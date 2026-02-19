@@ -1,6 +1,5 @@
 export type PhpNullish = null | undefined
 export type PhpValue = {} | PhpNullish
-export type PhpMixed = PhpValue
 
 export type PhpScalar = string | number | boolean
 export type PhpPrimitive = PhpScalar | bigint

@@ -1,10 +1,20 @@
-import { isObjectLike, type PhpAssoc, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-export function array_column(
-  input: PhpValue,
+type ColumnRow<TValue> = PhpAssoc<TValue>
+type ColumnInput<TValue> = ColumnRow<TValue>[] | PhpAssoc<ColumnRow<TValue>>
+type ColumnOutput<TValue> = PhpAssoc<TValue | ColumnRow<TValue> | undefined>
+
+export function array_column<TValue>(
+  input: ColumnInput<TValue>,
   columnKey: string | number | null,
-  indexKey: string | number | null = null,
-): PhpAssoc<PhpValue> | undefined {
+  indexKey?: string | number | null,
+): ColumnOutput<TValue>
+export function array_column<TValue>(
+  input: ColumnInput<TValue> | null | undefined,
+  columnKey: string | number | null,
+  indexKey?: string | number | null,
+): ColumnOutput<TValue> | undefined {
   //  discuss at: https://locutus.io/php/array_column/
   // original by: Enzo Dañobeytía
   //   example 1: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], 'name')
@@ -20,12 +30,12 @@ export function array_column(
     return undefined
   }
 
-  const normalizedInput = Array.isArray(input) ? input : Object.values(toPhpArrayObject<PhpValue>(input))
-  const result: PhpAssoc<PhpValue> = {}
+  const normalizedInput = Array.isArray(input) ? input : Object.values(toPhpArrayObject<ColumnRow<TValue>>(input))
+  const result: ColumnOutput<TValue> = {}
   let fallbackIndex = 0
 
   for (const rowValue of normalizedInput) {
-    const row = isObjectLike(rowValue) ? toPhpArrayObject<PhpValue>(rowValue) : {}
+    const row = toPhpArrayObject<TValue>(rowValue)
     const indexCandidate = indexKey === null ? undefined : row[String(indexKey)]
 
     const value = columnKey === null ? rowValue : row[String(columnKey)]

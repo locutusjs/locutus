@@ -1,9 +1,10 @@
-import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 
-type SortableObject = PhpAssoc<PhpValue>
-type SortComparator = (a: PhpValue, b: PhpValue) => number
+type SortValue = {} | null | undefined
+type SortableObject = PhpAssoc<SortValue>
+type SortComparator = (a: SortValue, b: SortValue) => number
 type ComparablePrimitive = string | number | bigint | boolean | Date
-type SortArg = PhpValue[] | SortableObject | SortFlag
+type SortArg = SortValue[] | SortableObject | SortFlag
 
 const hasOwn = Object.prototype.hasOwnProperty
 
@@ -23,19 +24,19 @@ const flags: Readonly<{
 
 type SortFlag = keyof typeof flags
 
-const isSortableObject = (value: PhpValue): value is SortableObject =>
+const isSortableObject = (value: SortValue): value is SortableObject =>
   value !== null && typeof value === 'object' && !Array.isArray(value)
 
-const isSortFlag = (value: PhpValue): value is SortFlag => typeof value === 'string' && value in flags
+const isSortFlag = (value: SortValue): value is SortFlag => typeof value === 'string' && value in flags
 
-const isComparablePrimitive = (value: PhpValue): value is ComparablePrimitive =>
+const isComparablePrimitive = (value: SortValue): value is ComparablePrimitive =>
   typeof value === 'string' ||
   typeof value === 'number' ||
   typeof value === 'bigint' ||
   typeof value === 'boolean' ||
   value instanceof Date
 
-const copyBackToObject = (target: SortableObject, values: PhpValue[], keys: string[]): void => {
+const copyBackToObject = (target: SortableObject, values: SortValue[], keys: string[]): void => {
   for (const key in target) {
     if (hasOwn.call(target, key)) {
       delete target[key]
@@ -50,7 +51,7 @@ const copyBackToObject = (target: SortableObject, values: PhpValue[], keys: stri
   }
 }
 
-const compareRegular = (leftValue: PhpValue, rightValue: PhpValue): number => {
+const compareRegular = (leftValue: SortValue, rightValue: SortValue): number => {
   if (leftValue === rightValue) {
     return 0
   }
@@ -70,7 +71,7 @@ const compareRegular = (leftValue: PhpValue, rightValue: PhpValue): number => {
   return left > right ? 1 : left < right ? -1 : 0
 }
 
-export function array_multisort(arr: PhpValue[] | SortableObject, ...rest: SortArg[]): boolean {
+export function array_multisort(arr: SortValue[] | SortableObject, ...rest: SortArg[]): boolean {
   //  discuss at: https://locutus.io/php/array_multisort/
   // original by: Theriault (https://github.com/Theriault)
   // improved by: Oleg Andreyev (https://github.com/oleg-andreyev)
@@ -98,7 +99,7 @@ export function array_multisort(arr: PhpValue[] | SortableObject, ...rest: SortA
   let sal = 0
   let vkey = ''
   let elIndex = 0
-  let zlast: PhpValue
+  let zlast: SortValue
 
   const sortFlag: number[] = [0]
   const thingsToSort: boolean[] = []
@@ -112,38 +113,38 @@ export function array_multisort(arr: PhpValue[] | SortableObject, ...rest: SortA
 
   const sortFunctions: SortComparator[][] = [
     [
-      function (a: PhpValue, b: PhpValue) {
+      function (a: SortValue, b: SortValue) {
         const result = compareRegular(a, b)
         lastSort.push(result)
         return result
       },
-      function (a: PhpValue, b: PhpValue) {
+      function (a: SortValue, b: SortValue) {
         const result = compareRegular(b, a)
         lastSort.push(result)
         return result
       },
     ],
     [
-      function (a: PhpValue, b: PhpValue) {
+      function (a: SortValue, b: SortValue) {
         const result = Number(a) - Number(b)
         lastSort.push(result)
         return result
       },
-      function (a: PhpValue, b: PhpValue) {
+      function (a: SortValue, b: SortValue) {
         const result = Number(b) - Number(a)
         lastSort.push(result)
         return result
       },
     ],
     [
-      function (a: PhpValue, b: PhpValue) {
+      function (a: SortValue, b: SortValue) {
         const left = String(a)
         const right = String(b)
         const result = left > right ? 1 : left < right ? -1 : 0
         lastSort.push(result)
         return result
       },
-      function (a: PhpValue, b: PhpValue) {
+      function (a: SortValue, b: SortValue) {
         const left = String(b)
         const right = String(a)
         const result = left > right ? 1 : left < right ? -1 : 0
@@ -153,7 +154,7 @@ export function array_multisort(arr: PhpValue[] | SortableObject, ...rest: SortA
     ],
   ]
 
-  const sortArrs: PhpValue[][] = [[]]
+  const sortArrs: SortValue[][] = [[]]
 
   const sortKeys: string[][] = [[]]
 
@@ -202,7 +203,7 @@ export function array_multisort(arr: PhpValue[] | SortableObject, ...rest: SortA
       }
     } else if (isSortableObject(arg)) {
       const currentSortKeys: string[] = (sortKeys[j] = [])
-      const currentSortValues: PhpValue[] = (sortArrs[j] = [])
+      const currentSortValues: SortValue[] = (sortArrs[j] = [])
       sortFlag[j] = 0
       for (const key in arg) {
         if (hasOwn.call(arg, key)) {
@@ -238,7 +239,7 @@ export function array_multisort(arr: PhpValue[] | SortableObject, ...rest: SortA
     if (hasOwn.call(sortArrs, iKey)) {
       const iNum = Number(iKey)
       const lastSorts: number[][] = []
-      let tmpArray: PhpValue[] = []
+      let tmpArray: SortValue[] = []
       elIndex = 0
       nLastSort = []
       lastSort = []

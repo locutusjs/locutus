@@ -1,30 +1,32 @@
-import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 import { is_int as isInt } from '../var/is_int.ts'
 
-export function array_slice<TValue>(
+type SliceValue = {} | null | undefined
+
+export function array_slice<TValue extends SliceValue>(
   arr: TValue[],
   offst: number,
   lgth?: number,
   preserveKeys?: false | undefined,
 ): TValue[]
-export function array_slice<TValue>(
+export function array_slice<TValue extends SliceValue>(
   arr: TValue[],
   offst: number,
   lgth: number | undefined,
   preserveKeys: true,
-): TValue[] | PhpAssoc<TValue>
-export function array_slice<TValue>(
+): TValue[] | PhpAssoc<TValue | undefined>
+export function array_slice<TValue extends SliceValue>(
   arr: PhpAssoc<TValue>,
   offst: number,
   lgth?: number,
   preserveKeys?: boolean,
-): PhpAssoc<TValue>
-export function array_slice(
-  arr: PhpValue[] | PhpAssoc<PhpValue>,
+): PhpAssoc<TValue | undefined>
+export function array_slice<TValue extends SliceValue>(
+  arr: TValue[] | PhpAssoc<TValue>,
   offst: number,
   lgth?: number,
   preserveKeys?: boolean,
-): PhpValue[] | PhpAssoc<PhpValue> {
+): TValue[] | PhpAssoc<TValue | undefined> {
   //      discuss at: https://locutus.io/php/array_slice/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -37,7 +39,7 @@ export function array_slice(
   //       returns 2: {2: 'c', 3: 'd'}
 
   const preserve = preserveKeys === true
-  let result: PhpValue[] | PhpAssoc<PhpValue>
+  let result: TValue[] | PhpAssoc<TValue | undefined>
 
   if (Array.isArray(arr) && !(preserve && offst !== 0)) {
     if (lgth === undefined) {
@@ -48,7 +50,7 @@ export function array_slice(
       result = arr.slice(offst, lgth)
     }
   } else {
-    const sourceAssoc: PhpAssoc<PhpValue> = {}
+    const sourceAssoc: PhpAssoc<TValue | undefined> = {}
     let sourceLength = 0
 
     if (Array.isArray(arr)) {
@@ -66,7 +68,7 @@ export function array_slice(
     const normalizedOffset = offst < 0 ? sourceLength + offst : offst
     const resolvedLength = lgth === undefined ? sourceLength : lgth < 0 ? sourceLength + lgth - normalizedOffset : lgth
 
-    const sliced: PhpAssoc<PhpValue> = {}
+    const sliced: PhpAssoc<TValue | undefined> = {}
     let started = false
     let sourceIndex = -1
     let collected = 0
