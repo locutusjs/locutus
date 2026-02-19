@@ -1,6 +1,8 @@
-import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 
-export function is_object(mixedVar: PhpValue): mixedVar is PhpAssoc<PhpValue> {
+type ObjectValue = {} | null | undefined
+
+export function is_object(mixedVar: ObjectValue): mixedVar is PhpAssoc<ObjectValue> {
   //  discuss at: https://locutus.io/php/is_object/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Legaev Andrey

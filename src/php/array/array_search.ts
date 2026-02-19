@@ -1,6 +1,12 @@
-import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
 
-export function array_search(needle: PhpValue, haystack: PhpAssoc<PhpValue>, argStrict?: boolean): string | false {
+type SearchValue = {} | null | undefined
+
+export function array_search<TValue extends SearchValue>(
+  needle: TValue | RegExp,
+  haystack: PhpAssoc<TValue>,
+  argStrict?: boolean,
+): string | false {
   //      discuss at: https://locutus.io/php/array_search/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -16,7 +22,7 @@ export function array_search(needle: PhpValue, haystack: PhpAssoc<PhpValue>, arg
 
   if (needle instanceof RegExp) {
     // Duck-type for RegExp
-    let regex = needle
+    let regex: RegExp = needle
     if (!strict) {
       // Let's consider case sensitive searches as strict
       const flags =

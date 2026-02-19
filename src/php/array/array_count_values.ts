@@ -1,12 +1,8 @@
-import {
-  isObjectLike,
-  type PhpArrayLike,
-  type PhpAssoc,
-  type PhpValue,
-  toPhpArrayObject,
-} from '../_helpers/_phpTypes.ts'
+import { isObjectLike, type PhpArrayLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-export function array_count_values(array: PhpArrayLike<PhpValue>): PhpAssoc<number> {
+type CountValue = {} | null | undefined
+
+export function array_count_values(array: PhpArrayLike<CountValue>): PhpAssoc<number> {
   //      discuss at: https://locutus.io/php/array_count_values/
   // parity verified: PHP 8.3
   //     original by: Ates Goral (https://magnetiq.com)
@@ -24,7 +20,7 @@ export function array_count_values(array: PhpArrayLike<PhpValue>): PhpAssoc<numb
 
   const tmpArr: PhpAssoc<number> = {}
 
-  const _countValue = function (target: PhpAssoc<number>, value: PhpValue): void {
+  const _countValue = function (target: PhpAssoc<number>, value: CountValue): void {
     let normalized = ''
     if (typeof value === 'number') {
       if (Math.floor(value) !== value) {
@@ -48,7 +44,7 @@ export function array_count_values(array: PhpArrayLike<PhpValue>): PhpAssoc<numb
     return tmpArr
   }
 
-  const source = toPhpArrayObject(array)
+  const source = toPhpArrayObject<CountValue>(array)
   for (const key in source) {
     if (Object.prototype.hasOwnProperty.call(source, key)) {
       _countValue(tmpArr, source[key])

@@ -1267,3 +1267,33 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Comparator-heavy array families are high-leverage for exported-type burn-down because shared callback descriptor aliases let many signatures tighten with low runtime risk.
   - Overload design for recursive walkers must balance soundness with practical inference compatibility for existing typed call sites.
+
+## Iteration 54
+
+- Plans
+  - Finish the pending broad-signature burn-down by removing direct exported `PhpValue` usage from the remaining `array/**` hotspots and selected cross-module callback/var/math/filesystem helpers.
+  - Keep behavior stable and rely on constrained local aliases (`{} | null | undefined`) plus existing runtime guards/resolvers instead of widening casts.
+  - Ratchet exported-`PhpValue` policy ceilings to the new measured floor after validation.
+- Progress
+  - Removed direct exported `PhpValue` usage across the remaining `array/**` hotspot set, including:
+    - `array_diff*`, `array_intersect*`, `array_replace`, `array_key_exists`, `sizeof`, `array_rand`, `array_unshift`, `array_product`, `array_search`, `in_array`, `array_change_key_case`, `array_count_values`, `sort`/`rsort`/`asort`/`arsort`, `usort`/`uasort`/`uksort`.
+  - Narrowed additional non-array hotspots to local domain aliases:
+    - `_helpers/_callbackResolver.ts`
+    - `funchand/call_user_func.ts`
+    - `funchand/call_user_func_array.ts`
+    - `filesystem/file_get_contents.ts`
+    - `math/hypot.ts`, `math/is_nan.ts`, `math/is_infinite.ts`, `math/is_finite.ts`
+    - `strings/strnatcmp.ts`, `strings/vprintf.ts`
+    - `var/is_object.ts`, `var/var_export.ts`
+  - Updated API signature snapshot (`docs/php-api-signatures.snapshot`) for intentional public signature narrowing.
+  - Measured exported `PhpValue` identifier reduction (AST count over exported runtime signatures):
+    - `src/php/**`: `113 -> 56`
+    - `src/php/array/**`: `27 -> 0`
+  - Ratcheted policy ceilings in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_EXPORTED_PHPVALUE_IDENTIFIER`: `113 -> 56`
+    - `MAX_SRC_PHP_ARRAY_EXPORTED_PHPVALUE_IDENTIFIER`: `27 -> 0`
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Eliminating an entire namespace bucket (`src/php/array/**`) from broad exported markers is practical when signatures are moved to local constrained aliases and callback generics are normalized.
+  - Ratcheting immediately after each burn-down batch prevents rebound and turns large refactors into enforceable, incremental debt reduction.

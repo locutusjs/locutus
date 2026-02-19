@@ -1,8 +1,9 @@
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
 import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
 
-const toSortablePrimitive = (value: PhpValue): string | number | bigint | boolean => {
+type SortValue = {} | null | undefined
+
+const toSortablePrimitive = (value: SortValue): string | number | bigint | boolean => {
   if (
     typeof value === 'string' ||
     typeof value === 'number' ||
@@ -15,7 +16,10 @@ const toSortablePrimitive = (value: PhpValue): string | number | bigint | boolea
   return String(value ?? '')
 }
 
-export function sort<T extends PhpValue>(inputArr: Record<string, T>, sortFlags?: string): boolean | Record<string, T> {
+export function sort<T extends SortValue>(
+  inputArr: Record<string, T>,
+  sortFlags?: string,
+): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/sort/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //  revised by: Brett Zamir (https://brett-zamir.me)

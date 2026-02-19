@@ -1,9 +1,10 @@
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
 import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
 import { strnatcmp } from '../strings/strnatcmp.ts'
 
-const toSortablePrimitive = (value: PhpValue): string | number | bigint | boolean => {
+type SortValue = {} | null | undefined
+
+const toSortablePrimitive = (value: SortValue): string | number | bigint | boolean => {
   if (
     typeof value === 'string' ||
     typeof value === 'number' ||
@@ -16,7 +17,7 @@ const toSortablePrimitive = (value: PhpValue): string | number | bigint | boolea
   return String(value ?? '')
 }
 
-export function rsort<T extends PhpValue>(
+export function rsort<T extends SortValue>(
   inputArr: Record<string, T>,
   sortFlags?: string,
 ): boolean | Record<string, T> {

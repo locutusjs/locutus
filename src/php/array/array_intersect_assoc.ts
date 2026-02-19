@@ -1,12 +1,6 @@
-import {
-  entriesOfPhpAssoc,
-  type PhpArrayLike,
-  type PhpAssoc,
-  type PhpValue,
-  toPhpArrayObject,
-} from '../_helpers/_phpTypes.ts'
+import { entriesOfPhpAssoc, type PhpArrayLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-export function array_intersect_assoc<TValue = PhpValue>(
+export function array_intersect_assoc<TValue>(
   arr1: PhpArrayLike<TValue>,
   ...arrays: Array<PhpArrayLike<TValue>>
 ): PhpAssoc<TValue> {

@@ -1,6 +1,6 @@
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
+type NumberCheckValue = {} | null | undefined
 
-export function is_infinite(val: PhpValue): boolean {
+export function is_infinite(val: NumberCheckValue): boolean {
   //  discuss at: https://locutus.io/php/is_infinite/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: is_infinite(Infinity)

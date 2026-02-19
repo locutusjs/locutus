@@ -1,15 +1,11 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
-import {
-  isObjectLike,
-  isPhpCallable,
-  type PhpCallable,
-  type PhpCallableDescriptor,
-  type PhpValue,
-} from '../_helpers/_phpTypes.ts'
+import { isObjectLike, isPhpCallable, type PhpCallable, type PhpCallableDescriptor } from '../_helpers/_phpTypes.ts'
 
 const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
-export function call_user_func_array<TResult = PhpValue, TArgs extends PhpValue[] = PhpValue[]>(
+type FunctionValue = {} | null | undefined
+
+export function call_user_func_array<TResult = FunctionValue, TArgs extends FunctionValue[] = FunctionValue[]>(
   cb: PhpCallableDescriptor<TArgs, TResult>,
   parameters: [...TArgs],
 ): TResult {
@@ -30,7 +26,7 @@ export function call_user_func_array<TResult = PhpValue, TArgs extends PhpValue[
   //   returns 2: false
 
   let func: PhpCallable<TArgs, TResult> | undefined
-  let scope: PhpValue = null
+  let scope: FunctionValue = null
 
   try {
     const resolved = resolvePhpCallable<TArgs, TResult>(cb, { invalidMessage: 'invalid' })

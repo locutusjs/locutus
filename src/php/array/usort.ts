@@ -1,9 +1,11 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
-import { type PhpAssoc, type PhpCallableDescriptor, type PhpValue } from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, type PhpCallableDescriptor } from '../_helpers/_phpTypes.ts'
+
+type SortContextValue = {} | null | undefined
 
 export function usort<T>(
-  this: PhpAssoc<PhpValue>,
+  this: PhpAssoc<SortContextValue>,
   inputArr: Record<string, T>,
   sorter: PhpCallableDescriptor<[T, T], number>,
 ): boolean | Record<string, T> {

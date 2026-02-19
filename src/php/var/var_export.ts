@@ -1,5 +1,7 @@
-import { type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
+
+type VarExportInput = {} | null | undefined
 
 type VarExportType =
   | 'resource'
@@ -13,10 +15,18 @@ type VarExportType =
   | 'undefined'
 type VarExportResult = string | number | boolean | null
 
-export function var_export(mixedExpression: PhpValue, boolReturn: true, idtLevel?: number): VarExportResult
-export function var_export(mixedExpression: PhpValue, boolReturn?: false | undefined, idtLevel?: number): null
-export function var_export(mixedExpression: PhpValue, boolReturn?: boolean, idtLevel?: number): VarExportResult | null
-export function var_export(mixedExpression: PhpValue, boolReturn?: boolean, idtLevel = 2): VarExportResult | null {
+export function var_export(mixedExpression: VarExportInput, boolReturn: true, idtLevel?: number): VarExportResult
+export function var_export(mixedExpression: VarExportInput, boolReturn?: false | undefined, idtLevel?: number): null
+export function var_export(
+  mixedExpression: VarExportInput,
+  boolReturn?: boolean,
+  idtLevel?: number,
+): VarExportResult | null
+export function var_export(
+  mixedExpression: VarExportInput,
+  boolReturn?: boolean,
+  idtLevel = 2,
+): VarExportResult | null {
   //  discuss at: https://locutus.io/php/var_export/
   // original by: Philip Peterson
   // improved by: johnrembo
@@ -68,7 +78,7 @@ export function var_export(mixedExpression: PhpValue, boolReturn?: boolean, idtL
   const _makeIndent = function (indentLevel: number): string {
     return new Array(indentLevel + 1).join(' ')
   }
-  const __getType = function (inp: PhpValue): VarExportType | null {
+  const __getType = function (inp: VarExportInput): VarExportType | null {
     let i = 0
     let match: RegExpMatchArray | null = null
     let cons = ''
@@ -121,7 +131,7 @@ export function var_export(mixedExpression: PhpValue, boolReturn?: boolean, idtL
   if (type === null) {
     retstr = 'NULL'
   } else if (type === 'array' || type === 'object') {
-    const source = toPhpArrayObject<PhpValue>(mixedExpression)
+    const source = toPhpArrayObject<VarExportInput>(mixedExpression)
     outerIndent = _makeIndent(idtLevel - 2)
     innerIndent = _makeIndent(idtLevel)
     for (const key in source) {

@@ -1,7 +1,8 @@
 import { _phpCastString } from '../_helpers/_phpCastString.ts'
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
 
-export function strnatcmp(left: PhpValue, right: PhpValue): number {
+type NatCmpValue = {} | null | undefined
+
+export function strnatcmp(left: NatCmpValue, right: NatCmpValue): number {
   //       discuss at: https://locutus.io/php/strnatcmp/
   //  parity verified: PHP 8.3
   //      original by: Martijn Wieringa

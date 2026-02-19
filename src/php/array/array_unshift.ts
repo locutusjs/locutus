@@ -1,6 +1,6 @@
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
+type UnshiftValue = {} | null | undefined
 
-export function array_unshift<TValue extends PhpValue>(array: TValue[], ...values: TValue[]): number {
+export function array_unshift<TValue extends UnshiftValue>(array: TValue[], ...values: TValue[]): number {
   //  discuss at: https://locutus.io/php/array_unshift/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Martijn Wieringa

@@ -1,7 +1,7 @@
-import type { PhpArrayLike, PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpArrayLike } from '../_helpers/_phpTypes.ts'
 import { count } from '../array/count.ts'
 
-export function sizeof(mixedVar: PhpArrayLike<PhpValue>, mode?: string): number {
+export function sizeof<TValue>(mixedVar: PhpArrayLike<TValue>, mode?: string): number {
   //  discuss at: https://locutus.io/php/sizeof/
   // original by: Philip Peterson
   //   example 1: sizeof([[0,0],[0,-4]], 'COUNT_RECURSIVE')

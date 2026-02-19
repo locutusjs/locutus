@@ -1,10 +1,11 @@
 import fs from 'fs'
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
+
+type FileGetContentsInput = {} | null | undefined
 
 export function file_get_contents(
   url: string,
-  _flags?: PhpValue,
-  _context?: PhpValue,
+  _flags?: FileGetContentsInput,
+  _context?: FileGetContentsInput,
   _offset?: number,
   _maxLen?: number,
 ): string | false {

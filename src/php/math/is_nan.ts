@@ -1,6 +1,6 @@
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
+type NumberCheckValue = {} | null | undefined
 
-export function is_nan(val: PhpValue): boolean {
+export function is_nan(val: NumberCheckValue): boolean {
   //  discuss at: https://locutus.io/php/is_nan/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //    input by: Robin

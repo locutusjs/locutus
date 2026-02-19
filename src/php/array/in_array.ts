@@ -1,7 +1,9 @@
-import type { PhpArrayLike, PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpArrayLike } from '../_helpers/_phpTypes.ts'
 
-export function in_array<T extends PhpValue>(
-  needle: PhpValue,
+type InArrayValue = {} | null | undefined
+
+export function in_array<T extends InArrayValue>(
+  needle: InArrayValue,
   haystack: PhpArrayLike<T>,
   argStrict?: boolean,
 ): boolean {

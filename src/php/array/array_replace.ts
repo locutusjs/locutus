@@ -1,12 +1,6 @@
-import {
-  isObjectLike,
-  type PhpArrayLike,
-  type PhpAssoc,
-  type PhpValue,
-  toPhpArrayObject,
-} from '../_helpers/_phpTypes.ts'
+import { isObjectLike, type PhpArrayLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-export function array_replace<TValue = PhpValue>(
+export function array_replace<TValue>(
   arr: PhpArrayLike<TValue>,
   firstReplacement: PhpArrayLike<TValue> | null | undefined,
   ...additionalReplacements: Array<PhpArrayLike<TValue> | null | undefined>

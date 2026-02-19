@@ -5,20 +5,21 @@ import {
   type PhpCallable,
   type PhpCallableArgs,
   type PhpCallableDescriptor,
-  type PhpValue,
 } from './_phpTypes.ts'
+
+type CallbackValue = {} | null | undefined
 
 interface CallbackResolverOptions {
   invalidMessage: string
   missingScopeMessage?: (scopeName: string) => string
 }
 
-interface ResolvedCallback<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue> {
+interface ResolvedCallback<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = CallbackValue> {
   fn: PhpCallable<TArgs, TResult>
-  scope: PhpValue
+  scope: CallbackValue
 }
 
-export function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue>(
+export function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = CallbackValue>(
   callback: PhpCallableDescriptor<TArgs, TResult>,
   options: CallbackResolverOptions,
 ): ResolvedCallback<TArgs, TResult> {
@@ -42,7 +43,7 @@ export function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableAr
     const scopeDescriptor = callback[0]
     const callableDescriptor = callback[1]
 
-    let scope: PhpValue
+    let scope: CallbackValue
     if (typeof scopeDescriptor === 'string') {
       scope = Reflect.get(globalThis, scopeDescriptor)
       if (typeof scope === 'undefined' && options.missingScopeMessage) {
@@ -67,7 +68,10 @@ export function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableAr
   throw new Error(options.invalidMessage)
 }
 
-export function resolveNumericComparator<TLeft extends PhpValue = PhpValue, TRight extends PhpValue = PhpValue>(
+export function resolveNumericComparator<
+  TLeft extends CallbackValue = CallbackValue,
+  TRight extends CallbackValue = CallbackValue,
+>(
   callback: PhpCallableDescriptor<[TLeft, TRight], NumericLike>,
   invalidMessage: string,
 ): (left: TLeft, right: TRight) => number {

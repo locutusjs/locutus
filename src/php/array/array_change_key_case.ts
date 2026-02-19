@@ -1,11 +1,18 @@
-import { type PhpArrayLike, type PhpAssoc, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpArrayLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type ArrayChangeInput = number | PhpArrayLike<PhpValue> | null
+type ChangeValue = {} | null | undefined
+type ArrayChangeInput<TValue extends ChangeValue> = number | PhpArrayLike<TValue> | null
 
 export function array_change_key_case(array: number | null, cs?: string | number): false
-export function array_change_key_case<TValue>(array: TValue[], cs?: string | number): TValue[]
-export function array_change_key_case<TValue>(array: PhpAssoc<TValue>, cs?: string | number): PhpAssoc<TValue>
-export function array_change_key_case(array: ArrayChangeInput, cs?: string | number): PhpArrayLike<PhpValue> | false {
+export function array_change_key_case<TValue extends ChangeValue>(array: TValue[], cs?: string | number): TValue[]
+export function array_change_key_case<TValue extends ChangeValue>(
+  array: PhpAssoc<TValue>,
+  cs?: string | number,
+): PhpAssoc<TValue>
+export function array_change_key_case<TValue extends ChangeValue>(
+  array: ArrayChangeInput<TValue>,
+  cs?: string | number,
+): PhpArrayLike<TValue> | false {
   //  discuss at: https://locutus.io/php/array_change_key_case/
   // original by: Ates Goral (https://magnetiq.com)
   // improved by: marrtins
@@ -23,7 +30,7 @@ export function array_change_key_case(array: ArrayChangeInput, cs?: string | num
   //   example 6: array_change_key_case({ FuBaR: 42 }, 2)
   //   returns 6: {"FUBAR": 42}
 
-  let result: PhpArrayLike<PhpValue> | false
+  let result: PhpArrayLike<TValue> | false
 
   if (Array.isArray(array)) {
     result = array
@@ -31,13 +38,11 @@ export function array_change_key_case(array: ArrayChangeInput, cs?: string | num
     result = false
   } else {
     const caseFunction: 'toLowerCase' | 'toUpperCase' = !cs || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase'
-    const source = toPhpArrayObject<PhpValue>(array)
-    const transformed: PhpAssoc<PhpValue> = {}
+    const source = toPhpArrayObject<TValue>(array)
+    const transformed: PhpAssoc<TValue> = {}
 
-    for (const key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        transformed[key[caseFunction]()] = source[key]
-      }
+    for (const [key, value] of Object.entries(source)) {
+      transformed[key[caseFunction]()] = value
     }
     result = transformed
   }

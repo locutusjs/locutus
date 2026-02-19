@@ -1,9 +1,11 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
-import { type PhpAssoc, type PhpCallableDescriptor, type PhpValue } from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, type PhpCallableDescriptor } from '../_helpers/_phpTypes.ts'
+
+type SortContextValue = {} | null | undefined
 
 export function uksort<T>(
-  this: PhpAssoc<PhpValue> & { window?: PhpAssoc<PhpValue> },
+  this: PhpAssoc<SortContextValue> & { window?: PhpAssoc<SortContextValue> },
   inputArr: Record<string, T>,
   sorter: PhpCallableDescriptor<[string, string], number>,
 ): boolean | Record<string, T> {
@@ -45,7 +47,7 @@ export function uksort<T>(
       if (typeof callableDescriptor === 'undefined') {
         return false
       }
-      const scopeValue: PhpValue =
+      const scopeValue: SortContextValue =
         typeof scopeDescriptor === 'string'
           ? (this.window?.[scopeDescriptor] ?? this[scopeDescriptor])
           : scopeDescriptor
