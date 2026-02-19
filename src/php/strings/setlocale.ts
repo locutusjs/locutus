@@ -1,5 +1,5 @@
 import { getPhpRuntimeEntry, getPhpRuntimeString, setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
-import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
+import { isPhpAssocObject, type PhpAssoc, type PhpInput } from '../_helpers/_phpTypes.ts'
 import { getenv } from '../info/getenv.ts'
 
 type LocaleDefinition = {
@@ -18,10 +18,13 @@ const hasOwn = Object.prototype.hasOwnProperty
 const isLocaleDefinitionMap = (value: PhpInput): value is Record<string, LocaleDefinition> =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 const isLocaleCategoryMap = (value: PhpInput): value is Record<string, string> =>
-  typeof value === 'object' &&
-  value !== null &&
-  !Array.isArray(value) &&
-  Object.values(value).every((entry) => typeof entry === 'string')
+  isPhpAssocObject<PhpInput>(value) &&
+  typeof value.LC_COLLATE === 'string' &&
+  typeof value.LC_CTYPE === 'string' &&
+  typeof value.LC_MONETARY === 'string' &&
+  typeof value.LC_NUMERIC === 'string' &&
+  typeof value.LC_TIME === 'string' &&
+  typeof value.LC_MESSAGES === 'string'
 
 function copyValue<T>(orig: T): T
 function copyValue(orig: PhpInput): PhpInput {
