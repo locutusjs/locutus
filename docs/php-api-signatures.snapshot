@@ -138,9 +138,9 @@ src/php/array/rsort.ts :: export function rsort<T extends PhpValue>( inputArr: R
 src/php/array/shuffle.ts :: export function shuffle<T>(inputArr: Record<string, T>): boolean | Record<string, T> | T[]
 src/php/array/sizeof.ts :: export function sizeof(mixedVar: PhpArrayLike<PhpValue>, mode?: string): number
 src/php/array/sort.ts :: export function sort<T extends PhpValue>(inputArr: Record<string, T>, sortFlags?: string): boolean | Record<string, T>
-src/php/array/uasort.ts :: export function uasort<T>( this: PhpAssoc<PhpMixed>, inputArr: Record<string, T>, sorter: PhpCallableDescriptor<[T, T], number>, ): boolean | Record<string, T>
+src/php/array/uasort.ts :: export function uasort<T>( this: PhpAssoc<PhpValue>, inputArr: Record<string, T>, sorter: PhpCallableDescriptor<[T, T], number>, ): boolean | Record<string, T>
 src/php/array/uksort.ts :: export function uksort<T>( this: PhpAssoc<PhpValue> & { window?: PhpAssoc<PhpValue> }, inputArr: Record<string, T>, sorter: PhpCallableDescriptor<[string, string], number>, ): boolean | Record<string, T>
-src/php/array/usort.ts :: export function usort<T>( this: PhpAssoc<PhpMixed>, inputArr: Record<string, T>, sorter: PhpCallableDescriptor<[T, T], number>, ): boolean | Record<string, T>
+src/php/array/usort.ts :: export function usort<T>( this: PhpAssoc<PhpValue>, inputArr: Record<string, T>, sorter: PhpCallableDescriptor<[T, T], number>, ): boolean | Record<string, T>
 src/php/bc/bcadd.ts :: export function bcadd(leftOperand: string, rightOperand: string, scale?: number): string
 src/php/bc/bccomp.ts :: export function bccomp(leftOperand: string | number, rightOperand: string | number, scale?: number): number
 src/php/bc/bcdiv.ts :: export function bcdiv(leftOperand: string | number, rightOperand: string | number, scale?: number): string

@@ -1,11 +1,6 @@
+import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
-import {
-  isObjectLike,
-  isPhpCallable,
-  type PhpAssoc,
-  type PhpCallableDescriptor,
-  type PhpValue,
-} from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, type PhpCallableDescriptor, type PhpValue } from '../_helpers/_phpTypes.ts'
 
 export function uksort<T>(
   this: PhpAssoc<PhpValue> & { window?: PhpAssoc<PhpValue> },
@@ -36,37 +31,38 @@ export function uksort<T>(
   let k = ''
   let sortByReference = false
   let populateArr: Record<string, T> = {}
+  let comparator: ((a: string, b: string) => number) | undefined
 
-  let sortFn: ((a: string, b: string) => number) | undefined
-  if (typeof sorter === 'string') {
-    const maybeSorter = this.window?.[sorter]
-    if (isPhpCallable<[string, string], number>(maybeSorter)) {
-      sortFn = maybeSorter
+  if (sorter) {
+    let normalizedSorter: PhpCallableDescriptor<[string, string], number>
+    if (typeof sorter === 'string') {
+      if (!this.window) {
+        return false
+      }
+      normalizedSorter = [this.window, sorter]
+    } else if (Array.isArray(sorter)) {
+      const [scopeDescriptor, callableDescriptor] = sorter
+      if (typeof callableDescriptor === 'undefined') {
+        return false
+      }
+      const scopeValue: PhpValue =
+        typeof scopeDescriptor === 'string'
+          ? (this.window?.[scopeDescriptor] ?? this[scopeDescriptor])
+          : scopeDescriptor
+      normalizedSorter = [scopeValue, callableDescriptor]
+    } else {
+      normalizedSorter = sorter
     }
-  } else if (Array.isArray(sorter)) {
-    const [scopeDescriptor, callableDescriptor] = sorter
-    if (typeof callableDescriptor === 'undefined') {
+
+    try {
+      const resolved = resolvePhpCallable<[string, string], number>(normalizedSorter, {
+        invalidMessage: 'uksort(): Invalid callback',
+        missingScopeMessage: (scopeName: string) => 'Object not found: ' + scopeName,
+      })
+      comparator = (a: string, b: string): number => Number(resolved.fn.apply(resolved.scope, [a, b]))
+    } catch (_error) {
       return false
     }
-
-    const scopeValue: PhpValue =
-      typeof scopeDescriptor === 'string' ? (this.window?.[scopeDescriptor] ?? this[scopeDescriptor]) : scopeDescriptor
-    if (isPhpCallable<[string, string], number>(callableDescriptor)) {
-      sortFn = callableDescriptor
-    } else {
-      if (!isObjectLike(scopeValue) && typeof scopeValue !== 'function') {
-        return false
-      }
-      const method = Reflect.get(scopeValue, callableDescriptor)
-      if (!isPhpCallable<[string, string], number>(method)) {
-        return false
-      }
-      sortFn = method
-    }
-  } else if (isPhpCallable<[string, string], number>(sorter)) {
-    sortFn = sorter
-  } else {
-    return false
   }
 
   // Make a list of key names
@@ -78,8 +74,8 @@ export function uksort<T>(
 
   // Sort key names
   try {
-    if (sorter) {
-      keys.sort(sortFn)
+    if (typeof comparator === 'function') {
+      keys.sort(comparator)
     } else {
       keys.sort()
     }

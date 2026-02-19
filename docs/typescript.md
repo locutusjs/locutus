@@ -1055,3 +1055,25 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Overloads at boundary-heavy array APIs let us keep permissive runtime behavior for JS callers while giving TS consumers materially stricter inference.
   - Replacing `PhpMixed` with specific `PhpArrayLike`/`PhpList` contracts yields large strictness gains with low implementation churn.
+
+## Iteration 46
+
+- Plans
+  - Unify callback resolution in sort-family functions via shared resolver helpers to remove duplicated permissive logic.
+  - Further reduce `PhpMixed` leakage in `src/php/array/*` callback/context surfaces.
+- Progress
+  - Refactored callback resolution in:
+    - `src/php/array/usort.ts`
+    - `src/php/array/uasort.ts`
+    - `src/php/array/uksort.ts`
+  - Replaced local `isPhpCallable`/`isObjectLike` callback branching with centralized `resolvePhpCallable(...)` flow and scoped error handling.
+  - Narrowed `this` context typing in `usort`/`uasort` from `PhpAssoc<PhpMixed>` to `PhpAssoc<PhpValue>`.
+  - Updated `docs/php-api-signatures.snapshot` for intentional exported signature changes.
+  - Reduced `PhpMixed` usage:
+    - `src/php/**`: `92 -> 88` (`rg` line count).
+    - `src/php/array/**`: `17 -> 13` (`rg` line count).
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Centralizing callback resolution through one helper tightens type safety and behavior consistency at the same time.
+  - Sort-family cleanup is high-yield because it removes repetitive dynamic callback branches across multiple APIs in one pass.

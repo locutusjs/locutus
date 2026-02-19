@@ -1,15 +1,9 @@
+import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
-import {
-  isObjectLike,
-  isPhpCallable,
-  type PhpAssoc,
-  type PhpCallableDescriptor,
-  type PhpMixed,
-  type PhpValue,
-} from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, type PhpCallableDescriptor, type PhpValue } from '../_helpers/_phpTypes.ts'
 
 export function uasort<T>(
-  this: PhpAssoc<PhpMixed>,
+  this: PhpAssoc<PhpValue>,
   inputArr: Record<string, T>,
   sorter: PhpCallableDescriptor<[T, T], number>,
 ): boolean | Record<string, T> {
@@ -38,38 +32,15 @@ export function uasort<T>(
   let sortByReference = false
   let populateArr: Record<string, T> = {}
 
-  let sortFn: ((a: T, b: T) => number) | undefined
-  if (typeof sorter === 'string') {
-    const method = this[sorter]
-    if (!isPhpCallable<[T, T], number>(method)) {
-      return false
-    }
-    sortFn = method
-  } else if (Array.isArray(sorter)) {
-    const [scopeDescriptor, callableDescriptor] = sorter
-    if (typeof callableDescriptor === 'undefined') {
-      return false
-    }
-
-    const scopeValue: PhpValue = typeof scopeDescriptor === 'string' ? this[scopeDescriptor] : scopeDescriptor
-    if (isPhpCallable<[T, T], number>(callableDescriptor)) {
-      sortFn = callableDescriptor
-    } else {
-      if (!isObjectLike(scopeValue) && typeof scopeValue !== 'function') {
-        return false
-      }
-      const method = Reflect.get(scopeValue, callableDescriptor)
-      if (!isPhpCallable<[T, T], number>(method)) {
-        return false
-      }
-      sortFn = method
-    }
-  } else if (isPhpCallable<[T, T], number>(sorter)) {
-    sortFn = sorter
-  } else {
-    return false
-  }
-  if (typeof sortFn !== 'function') {
+  const normalizedSorter: PhpCallableDescriptor<[T, T], number> = typeof sorter === 'string' ? [this, sorter] : sorter
+  let comparator: ((a: T, b: T) => number) | undefined
+  try {
+    const resolved = resolvePhpCallable<[T, T], number>(normalizedSorter, {
+      invalidMessage: 'uasort(): Invalid callback',
+      missingScopeMessage: (scopeName: string) => 'Object not found: ' + scopeName,
+    })
+    comparator = (a: T, b: T): number => Number(resolved.fn.apply(resolved.scope, [a, b]))
+  } catch (_error) {
     return false
   }
 
@@ -90,8 +61,11 @@ export function uasort<T>(
       }
     }
   }
+  if (typeof comparator !== 'function') {
+    return false
+  }
   valArr.sort(function (a, b) {
-    return sortFn(a[1], b[1])
+    return comparator(a[1], b[1])
   })
 
   for (i = 0; i < valArr.length; i++) {
