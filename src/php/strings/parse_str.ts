@@ -1,6 +1,6 @@
-import type { PhpAssoc, PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 
-type ParseObject = PhpAssoc<PhpMixed>
+type ParseObject = PhpAssoc<PhpValue>
 
 export function parse_str(str: string, array?: ParseObject): void {
   //       discuss at: https://locutus.io/php/parse_str/

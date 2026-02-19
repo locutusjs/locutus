@@ -1155,3 +1155,30 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Utility-style string functions often tolerate aggressive type narrowing because runtime behavior is already explicit (string coercion, numeric guards, variadic forwarding).
   - Iterating from low-risk to parser-heavy modules preserves momentum while steadily shrinking broad type debt.
+
+## Iteration 50
+
+- Plans
+  - Finish `PhpMixed` removal in remaining parser/locale-oriented `src/php/strings/**` modules.
+  - Add a dedicated `strings` `PhpMixed` debt gate at zero.
+- Progress
+  - Removed remaining `PhpMixed` usage from:
+    - `src/php/strings/setlocale.ts`
+    - `src/php/strings/explode.ts`
+    - `src/php/strings/split.ts`
+    - `src/php/strings/parse_str.ts`
+    - `src/php/strings/html_entity_decode.ts`
+    - `src/php/strings/htmlentities.ts`
+    - `src/php/strings/localeconv.ts`
+  - Updated `docs/php-api-signatures.snapshot` for intentional signature changes.
+  - Strengthened policy ratchets in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_PHPMIXED_KEYWORD`: `56 -> 37`
+    - added `MAX_SRC_PHP_STRINGS_PHPMIXED_KEYWORD = 0`
+  - Measured reduction:
+    - `src/php/**` `PhpMixed`: `56 -> 37` (occurrence count).
+    - `src/php/strings/**` `PhpMixed`: `19 -> 0` (occurrence count).
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Parser/locale modules can still be narrowed safely when dynamic object flows are kept but broad aliases are replaced with shared lattice primitives.
+  - Dedicated directory ratchets (`strings = 0`) prevent broad aliases from silently re-entering via future utility additions.

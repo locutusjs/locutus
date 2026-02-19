@@ -268,11 +268,11 @@ src/php/strings/convert_uuencode.ts :: export function convert_uuencode(str: Php
 src/php/strings/count_chars.ts :: export function count_chars( str: string | number | boolean | null | undefined, mode = 0, ): { [key: string]: number } | string
 src/php/strings/crc32.ts :: export function crc32(str: string): number
 src/php/strings/echo.ts :: export function echo(...args: PhpValue[]): void
-src/php/strings/explode.ts :: export function explode( ...args: [string | boolean | null | undefined, string | KeyedValues | (() => PhpMixed) | undefined, number?] ): string[] | false | { 0: string } | null
+src/php/strings/explode.ts :: export function explode( ...args: [string | boolean | null | undefined, string | KeyedValues | (() => PhpValue) | undefined, number?] ): string[] | false | { 0: string } | null
 src/php/strings/get_html_translation_table.ts :: export function get_html_translation_table( table: string | number = 'HTML_SPECIALCHARS', quoteStyle: string | number = 'ENT_COMPAT', ): Record<string, string>
 src/php/strings/hex2bin.ts :: export function hex2bin(s: string | number): string | false
-src/php/strings/html_entity_decode.ts :: export function html_entity_decode(string: string, quoteStyle?: PhpMixed): string | false
-src/php/strings/htmlentities.ts :: export function htmlentities( string: string, quoteStyle?: string | number, charset?: string, doubleEncode?: PhpMixed, ): string
+src/php/strings/html_entity_decode.ts :: export function html_entity_decode(string: string, quoteStyle?: string | number): string | false
+src/php/strings/htmlentities.ts :: export function htmlentities( string: string, quoteStyle?: string | number, charset?: string, doubleEncode?: boolean | null, ): string
 src/php/strings/htmlspecialchars.ts :: export function htmlspecialchars( string: string, quoteStyle?: HtmlSpecialCharsQuoteStyle, charset?: null, doubleEncode?: boolean, ): string
 src/php/strings/htmlspecialchars_decode.ts :: export function htmlspecialchars_decode(string: string, quoteStyle?: HtmlSpecialCharsQuoteStyle): string
 src/php/strings/implode.ts :: export function implode(...args: Array<PhpValue[] | KeyedValues | string | undefined>): string
@@ -300,7 +300,7 @@ src/php/strings/sha1.ts :: export function sha1(str: string): string
 src/php/strings/sha1_file.ts :: export function sha1_file(str_filename: string): string | false
 src/php/strings/similar_text.ts :: export function similar_text( first: string | number | boolean | null | undefined, second: string | number | boolean | null | undefined, percent?: boolean | number | null | undefined, ): number
 src/php/strings/soundex.ts :: export function soundex(str: PhpValue): string
-src/php/strings/split.ts :: export function split( delimiter: string | boolean | null | undefined, string: string | KeyedValues | (() => PhpMixed) | undefined, ): string[] | false | { 0: string } | null
+src/php/strings/split.ts :: export function split( delimiter: string | boolean | null | undefined, string: string | KeyedValues | (() => PhpValue) | undefined, ): string[] | false | { 0: string } | null
 src/php/strings/sprintf.ts :: export function sprintf(format: string, ...args: PhpValue[]): string | false
 src/php/strings/sscanf.ts :: export function sscanf(str: string, format: string, ...refs: SscanfRef[]): SscanfValue[] | number
 src/php/strings/str_getcsv.ts :: export function str_getcsv( input: string, delimiter?: string | null, enclosure?: string | null, escapeCharacter?: string | null, ): string[]

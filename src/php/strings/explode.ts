@@ -1,9 +1,9 @@
-import type { PhpAssoc, PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 
-type KeyedValues = PhpAssoc<PhpMixed>
+type KeyedValues = PhpAssoc<PhpValue>
 
 export function explode(
-  ...args: [string | boolean | null | undefined, string | KeyedValues | (() => PhpMixed) | undefined, number?]
+  ...args: [string | boolean | null | undefined, string | KeyedValues | (() => PhpValue) | undefined, number?]
 ): string[] | false | { 0: string } | null {
   //      discuss at: https://locutus.io/php/explode/
   // parity verified: PHP 8.3

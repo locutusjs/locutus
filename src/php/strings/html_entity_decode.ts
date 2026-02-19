@@ -1,7 +1,7 @@
-import { type PhpMixed, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { get_html_translation_table as getHtmlTranslationTable } from '../strings/get_html_translation_table.ts'
 
-export function html_entity_decode(string: string, quoteStyle?: PhpMixed): string | false {
+export function html_entity_decode(string: string, quoteStyle?: string | number): string | false {
   //      discuss at: https://locutus.io/php/html_entity_decode/
   // parity verified: PHP 8.3
   //     original by: john (https://www.jd-tech.net)
@@ -22,8 +22,7 @@ export function html_entity_decode(string: string, quoteStyle?: PhpMixed): strin
 
   let tmpStr = string.toString()
 
-  const normalizedQuoteStyle = typeof quoteStyle === 'string' || typeof quoteStyle === 'number' ? quoteStyle : undefined
-  const hashMapUnknown: PhpMixed = getHtmlTranslationTable('HTML_ENTITIES', normalizedQuoteStyle)
+  const hashMapUnknown: PhpValue = getHtmlTranslationTable('HTML_ENTITIES', quoteStyle)
   if (hashMapUnknown === false || !hashMapUnknown || typeof hashMapUnknown !== 'object') {
     return false
   }
