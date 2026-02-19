@@ -4,6 +4,7 @@ import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts
 import { strnatcmp } from '../strings/strnatcmp.ts'
 
 type SortValue = PhpInput
+type SortFlag = 'SORT_REGULAR' | 'SORT_NUMERIC' | 'SORT_STRING' | 'SORT_LOCALE_STRING'
 
 const toSortablePrimitive = (value: SortValue): string | number | bigint | boolean => {
   if (
@@ -20,7 +21,7 @@ const toSortablePrimitive = (value: SortValue): string | number | bigint | boole
 
 export function rsort<T extends SortValue>(
   inputArr: Record<string, T>,
-  sortFlags?: string,
+  sortFlags?: SortFlag,
 ): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/rsort/
   // original by: Kevin van Zonneveld (https://kvz.io)

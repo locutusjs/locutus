@@ -2,7 +2,9 @@ import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
 import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
 import { strnatcmp } from '../strings/strnatcmp.ts'
 
-export function ksort<T>(inputArr: Record<string, T>, sortFlags?: string): boolean | Record<string, T> {
+type SortFlag = 'SORT_REGULAR' | 'SORT_NUMERIC' | 'SORT_STRING' | 'SORT_LOCALE_STRING'
+
+export function ksort<T>(inputArr: Record<string, T>, sortFlags?: SortFlag): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/ksort/
   // original by: GeekFG (https://geekfg.blogspot.com)
   // improved by: Kevin van Zonneveld (https://kvz.io)

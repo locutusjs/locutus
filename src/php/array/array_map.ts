@@ -3,44 +3,22 @@ import type { PhpCallableDescriptor, PhpInput, PhpList } from '../_helpers/_phpT
 
 type ArrayMapValue = PhpInput
 type ArrayMapInputs = [firstArray: PhpList<ArrayMapValue>, ...restArrays: Array<PhpList<ArrayMapValue>>]
-type ArrayMapCallbackArgs1<TValue extends ArrayMapValue> = [TValue | undefined]
-type ArrayMapCallbackArgs2<TLeft extends ArrayMapValue, TRight extends ArrayMapValue> = [
-  TLeft | undefined,
-  TRight | undefined,
+type ArrayMapTupleArgs<TInputs extends readonly PhpList<ArrayMapValue>[]> = [
+  ...{
+    [K in keyof TInputs]: TInputs[K] extends PhpList<infer TValue> ? TValue | undefined : ArrayMapValue | undefined
+  },
 ]
 type ArrayMapCallbackArgsVariadic = Array<ArrayMapValue | undefined>
 
-export function array_map<TValue extends ArrayMapValue, TResult>(
-  callback: PhpCallableDescriptor<ArrayMapCallbackArgs1<TValue>, TResult>,
-  inputArray: PhpList<TValue>,
+export function array_map<TInputs extends ArrayMapInputs, TResult>(
+  callback: PhpCallableDescriptor<ArrayMapTupleArgs<TInputs>, TResult>,
+  ...inputArrays: TInputs
 ): PhpList<TResult>
 
-export function array_map<TLeft extends ArrayMapValue, TRight extends ArrayMapValue, TResult>(
-  callback: PhpCallableDescriptor<ArrayMapCallbackArgs2<TLeft, TRight>, TResult>,
-  inputArrayLeft: PhpList<TLeft>,
-  inputArrayRight: PhpList<TRight>,
-): PhpList<TResult>
-
-export function array_map<TValue extends ArrayMapValue>(
+export function array_map<TInputs extends ArrayMapInputs>(
   callback: null | undefined,
-  inputArray: PhpList<TValue>,
-): PhpList<ArrayMapCallbackArgs1<TValue>>
-
-export function array_map<TLeft extends ArrayMapValue, TRight extends ArrayMapValue>(
-  callback: null | undefined,
-  inputArrayLeft: PhpList<TLeft>,
-  inputArrayRight: PhpList<TRight>,
-): PhpList<ArrayMapCallbackArgs2<TLeft, TRight>>
-
-export function array_map<TResult = ArrayMapValue>(
-  callback: PhpCallableDescriptor<ArrayMapCallbackArgsVariadic, TResult>,
-  ...inputArrays: ArrayMapInputs
-): PhpList<TResult>
-
-export function array_map(
-  callback: null | undefined,
-  ...inputArrays: ArrayMapInputs
-): PhpList<ArrayMapCallbackArgsVariadic>
+  ...inputArrays: TInputs
+): PhpList<ArrayMapTupleArgs<TInputs>>
 
 export function array_map<TResult = ArrayMapValue>(
   callback: PhpCallableDescriptor<ArrayMapCallbackArgsVariadic, TResult> | null | undefined,

@@ -1550,3 +1550,39 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Overload-based key maps on runtime helpers give strong inference gains without changing runtime behavior.
   - Public API strictness ratchets are most effective when boundary exceptions are explicit and minimal (`_helpers` only).
+
+## Iteration 62
+
+- Plans
+  - Execute the next strictness sequence in order:
+    1. Narrow callback-heavy array/funchand signatures where input-output relations are still broad.
+    2. Remove broad `sortFlags?: string` surfaces from the array sort family in favor of explicit sort-flag unions.
+    3. Ratchet CI so broad stringly sort-flag parameters cannot regress.
+- Progress
+  - Narrowed array callback API surface:
+    - `src/php/array/array_map.ts`
+      - introduced tuple-preserving variadic callback args via `ArrayMapTupleArgs<TInputs>`.
+      - collapsed overload set to generic tuple-driven overloads for callback and `null` callback modes.
+    - `src/php/array/array_filter.ts`
+      - callback now explicitly receives key context `(value, key: number | string)`.
+      - preserved runtime behavior while keeping the implementation cast-free and policy-compliant.
+  - Narrowed sort-flag surfaces across array sort family:
+    - `src/php/array/sort.ts`
+    - `src/php/array/asort.ts`
+    - `src/php/array/rsort.ts`
+    - `src/php/array/arsort.ts`
+    - `src/php/array/ksort.ts`
+    - `src/php/array/krsort.ts`
+    - each now uses `type SortFlag = 'SORT_REGULAR' | 'SORT_NUMERIC' | 'SORT_STRING' | 'SORT_LOCALE_STRING'` instead of `sortFlags?: string`.
+  - Added a new debt-policy ratchet in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_ARRAY_EXPORTED_SORTFLAG_STRING_PARAM = 0`
+    - counts exported array function parameters named `sortFlags`/`sortFlag` that are typed as raw `string`.
+  - Updated API snapshot:
+    - `docs/php-api-signatures.snapshot`
+  - Measured reduction:
+    - `sortFlags?: string` occurrences in `src/php/array/**`: `6 -> 0`
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Union-typed string flags are a low-risk, high-leverage narrowing: they improve editor/runtime alignment without changing behavior.
+  - For overload-heavy ports, tuple-driven generics can improve inference significantly while still preserving cast-free implementation code.

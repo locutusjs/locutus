@@ -2,17 +2,9 @@ import type { PhpAssoc, PhpInput, PhpList } from '../_helpers/_phpTypes.ts'
 
 type FilterPredicateResult = PhpInput
 
-export function array_filter<T, S extends T>(arr: PhpList<T>, func: (value: T) => value is S): PhpList<S>
-
-export function array_filter<T, S extends T>(arr: PhpAssoc<T>, func: (value: T) => value is S): PhpAssoc<S>
-
-export function array_filter<T>(arr: PhpList<T>, func?: (value: T) => FilterPredicateResult): PhpList<T>
-
-export function array_filter<T>(arr: PhpAssoc<T>, func?: (value: T) => FilterPredicateResult): PhpAssoc<T>
-
 export function array_filter<T>(
   arr: PhpAssoc<T> | PhpList<T>,
-  func?: (value: T) => FilterPredicateResult,
+  func?: (value: T, key: number | string) => FilterPredicateResult,
 ): PhpAssoc<T> | PhpList<T> {
   //  discuss at: https://locutus.io/php/array_filter/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -38,8 +30,9 @@ export function array_filter<T>(
     // @todo: Issue #73
     const filtered: PhpList<T> = []
     for (const [key, value] of Object.entries(arr)) {
-      if (callback(value)) {
-        filtered[Number(key)] = value
+      const numericKey = Number(key)
+      if (callback(value, numericKey)) {
+        filtered[numericKey] = value
       }
     }
     return filtered
@@ -47,7 +40,7 @@ export function array_filter<T>(
 
   const filtered: PhpAssoc<T> = {}
   for (const [key, value] of Object.entries(arr)) {
-    if (callback(value)) {
+    if (callback(value, key)) {
       filtered[key] = value
     }
   }
