@@ -5,19 +5,19 @@ import {
   type NumericLike,
   type PhpAssoc,
   type PhpCallableDescriptor,
-  type PhpValue,
   toPhpArrayObject,
 } from '../_helpers/_phpTypes.ts'
 
-type PhpArray<T extends PhpValue = PhpValue> = PhpAssoc<T>
-type NumericComparatorDescriptor = PhpCallableDescriptor<[PhpValue, PhpValue], NumericLike>
+type IntersectValue = {} | null | undefined
+type PhpArray<T extends IntersectValue = IntersectValue> = PhpAssoc<T>
+type NumericComparatorDescriptor = PhpCallableDescriptor<[IntersectValue, IntersectValue], NumericLike>
 type KeyComparatorDescriptor = PhpCallableDescriptor<[string, string], NumericLike>
 
-export function array_uintersect_uassoc<T extends PhpValue>(
+export function array_uintersect_uassoc<T extends IntersectValue>(
   arr1: PhpArray<T>,
   ...arraysAndComparators: [
-    arr2: PhpValue,
-    ...rest: PhpValue[],
+    arr2: IntersectValue,
+    ...rest: IntersectValue[],
     valueCallback: NumericComparatorDescriptor,
     keyCallback: KeyComparatorDescriptor,
   ]
@@ -36,17 +36,17 @@ export function array_uintersect_uassoc<T extends PhpValue>(
     typeof keyCallback === 'undefined' ||
     typeof valueCallback === 'undefined' ||
     !isPhpCallableDescriptor<[string, string], NumericLike>(keyCallback) ||
-    !isPhpCallableDescriptor<[PhpValue, T], NumericLike>(valueCallback)
+    !isPhpCallableDescriptor<[IntersectValue, T], NumericLike>(valueCallback)
   ) {
     throw new Error('array_uintersect_uassoc(): Invalid callback')
   }
-  const arrays = arraysAndComparators.slice(0, -2).map((value) => toPhpArrayObject<PhpValue>(value))
+  const arrays = arraysAndComparators.slice(0, -2).map((value) => toPhpArrayObject<IntersectValue>(value))
   const lastArrayIndex = arrays.length - 1
   const keyComparator = resolveNumericComparator<string, string>(
     keyCallback,
     'array_uintersect_uassoc(): Invalid key callback',
   )
-  const valueComparator = resolveNumericComparator<PhpValue, T>(
+  const valueComparator = resolveNumericComparator<IntersectValue, T>(
     valueCallback,
     'array_uintersect_uassoc(): Invalid value callback',
   )

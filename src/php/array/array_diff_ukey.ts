@@ -5,16 +5,16 @@ import {
   type NumericLike,
   type PhpAssoc,
   type PhpCallableDescriptor,
-  type PhpValue,
   toPhpArrayObject,
 } from '../_helpers/_phpTypes.ts'
 
-type PhpArray<T extends PhpValue = PhpValue> = PhpAssoc<T>
+type DiffValue = {} | null | undefined
+type PhpArray<T extends DiffValue = DiffValue> = PhpAssoc<T>
 type KeyComparatorDescriptor = PhpCallableDescriptor<[string, string], NumericLike>
 
-export function array_diff_ukey<T extends PhpValue>(
+export function array_diff_ukey<T extends DiffValue>(
   arr1: PhpArray<T>,
-  ...arraysAndCallback: [arr2: PhpValue, ...rest: PhpValue[], callback: KeyComparatorDescriptor]
+  ...arraysAndCallback: [arr2: DiffValue, ...rest: DiffValue[], callback: KeyComparatorDescriptor]
 ): PhpArray<T> {
   //  discuss at: https://locutus.io/php/array_diff_ukey/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -28,7 +28,7 @@ export function array_diff_ukey<T extends PhpValue>(
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[string, string], NumericLike>(callback)) {
     throw new Error('array_diff_ukey(): Invalid callback')
   }
-  const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject<PhpValue>(value))
+  const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject<DiffValue>(value))
   const keyComparator = resolveNumericComparator<string, string>(callback, 'array_diff_ukey(): Invalid callback')
 
   arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1)) {

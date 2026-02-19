@@ -1230,3 +1230,40 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Replacing broad aliases with local domain aliases (`SortValue`, constrained generic shape aliases) tightens exported APIs without forcing immediate whole-repo lattice completion.
   - Adding a dedicated exported-`PhpValue` ratchet creates a concrete burn-down path after `PhpMixed` reaches zero.
+
+## Iteration 53
+
+- Plans
+  - Burn down exported `PhpValue` identifiers in `src/php/array/**` hotspot files (callback-heavy and comparator-heavy families).
+  - Preserve runtime behavior while moving signatures to local domain aliases and constrained generics.
+  - Ratchet exported-`PhpValue` policy ceilings to the new measured floor.
+- Progress
+  - Narrowed/decoupled exported array signatures away from direct `PhpValue` in:
+    - `src/php/array/array_map.ts`
+    - `src/php/array/array_walk.ts`
+    - `src/php/array/array_walk_recursive.ts`
+    - `src/php/array/array_reverse.ts`
+    - `src/php/array/array_filter.ts`
+    - `src/php/array/array_pad.ts`
+    - `src/php/array/array_diff_uassoc.ts`
+    - `src/php/array/array_diff_ukey.ts`
+    - `src/php/array/array_intersect_uassoc.ts`
+    - `src/php/array/array_intersect_ukey.ts`
+    - `src/php/array/array_udiff.ts`
+    - `src/php/array/array_udiff_assoc.ts`
+    - `src/php/array/array_udiff_uassoc.ts`
+    - `src/php/array/array_uintersect.ts`
+    - `src/php/array/array_uintersect_uassoc.ts`
+  - Kept behavior intact via local value aliases (`{} | null | undefined`) and existing callback resolver/guard flow.
+  - Updated `docs/php-api-signatures.snapshot` for intentional signature changes.
+  - Measured exported `PhpValue` identifier reduction (AST count over exported runtime signatures):
+    - `src/php/**`: `164 -> 113`
+    - `src/php/array/**`: `78 -> 27`
+  - Ratcheted policy ceilings in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_EXPORTED_PHPVALUE_IDENTIFIER`: `164 -> 113`
+    - `MAX_SRC_PHP_ARRAY_EXPORTED_PHPVALUE_IDENTIFIER`: `78 -> 27`
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Comparator-heavy array families are high-leverage for exported-type burn-down because shared callback descriptor aliases let many signatures tighten with low runtime risk.
+  - Overload design for recursive walkers must balance soundness with practical inference compatibility for existing typed call sites.

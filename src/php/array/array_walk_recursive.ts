@@ -1,10 +1,21 @@
-import { isObjectLike, type PhpAssoc, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { isObjectLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type ArrayWalkRecursiveCallback<TValue, TUserdata> = (value: TValue, key: string | number, userdata?: TUserdata) => void
+type RecursiveWalkValue = {} | null | undefined
+type ArrayWalkRecursiveCallback<TUserdata> = (
+  value: RecursiveWalkValue,
+  key: string | number,
+  userdata?: TUserdata,
+) => void
 
-export function array_walk_recursive<TValue = PhpValue, TUserdata = PhpValue>(
-  array: PhpValue[] | PhpAssoc<PhpValue>,
-  funcname: ArrayWalkRecursiveCallback<TValue, TUserdata>,
+export function array_walk_recursive<TValue = RecursiveWalkValue, TUserdata = RecursiveWalkValue>(
+  array: RecursiveWalkValue[] | PhpAssoc<RecursiveWalkValue>,
+  funcname: (value: TValue, key: string | number, userdata?: TUserdata) => void,
+  userdata?: TUserdata,
+): boolean
+
+export function array_walk_recursive<TUserdata = RecursiveWalkValue>(
+  array: RecursiveWalkValue[] | PhpAssoc<RecursiveWalkValue>,
+  funcname: ArrayWalkRecursiveCallback<TUserdata>,
   userdata?: TUserdata,
 ): boolean {
   // original by: Hugues Peccatte
@@ -24,7 +35,7 @@ export function array_walk_recursive<TValue = PhpValue, TUserdata = PhpValue>(
     return false
   }
 
-  const target = toPhpArrayObject<PhpValue>(array)
+  const target = toPhpArrayObject<RecursiveWalkValue>(array)
   const hasOwn = Object.prototype.hasOwnProperty
   const hasUserdata = typeof userdata !== 'undefined'
   for (const key in target) {

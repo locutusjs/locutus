@@ -1,7 +1,7 @@
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
+type PadValue = {} | null | undefined
 
-export function array_pad<TInput = PhpValue, TPad = PhpValue>(
-  input: TInput[] | PhpValue,
+export function array_pad<TInput extends PadValue = PadValue, TPad extends PadValue = PadValue>(
+  input: TInput[] | PadValue,
   padSize: number,
   padValue: TPad,
 ): Array<TInput | TPad> {

@@ -1,12 +1,12 @@
-import { type PhpAssoc, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 type ArrayWalkCallback<TValue, TUserdata> = (value: TValue, key: string, userdata?: TUserdata) => void
+type ArrayWalkValue = {} | null | undefined
 
-export function array_walk<TValue = PhpValue, TUserdata = PhpValue>(
-  array: TValue[] | PhpAssoc<TValue>,
-  funcname: ArrayWalkCallback<TValue, TUserdata>,
-  userdata?: TUserdata,
-): boolean {
+export function array_walk<
+  TValue extends ArrayWalkValue = ArrayWalkValue,
+  TUserdata extends ArrayWalkValue = ArrayWalkValue,
+>(array: TValue[] | PhpAssoc<TValue>, funcname: ArrayWalkCallback<TValue, TUserdata>, userdata?: TUserdata): boolean {
   //  discuss at: https://locutus.io/php/array_walk/
   // original by: Johnny Mast (https://www.phpvrouwen.nl)
   // bugfixed by: David

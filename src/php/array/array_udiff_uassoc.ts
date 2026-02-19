@@ -5,19 +5,19 @@ import {
   type NumericLike,
   type PhpAssoc,
   type PhpCallableDescriptor,
-  type PhpValue,
   toPhpArrayObject,
 } from '../_helpers/_phpTypes.ts'
 
-type PhpArray<T extends PhpValue = PhpValue> = PhpAssoc<T>
-type NumericComparatorDescriptor = PhpCallableDescriptor<[PhpValue, PhpValue], NumericLike>
+type DiffValue = {} | null | undefined
+type PhpArray<T extends DiffValue = DiffValue> = PhpAssoc<T>
+type NumericComparatorDescriptor = PhpCallableDescriptor<[DiffValue, DiffValue], NumericLike>
 type KeyComparatorDescriptor = PhpCallableDescriptor<[string, string], NumericLike>
 
-export function array_udiff_uassoc<T extends PhpValue>(
+export function array_udiff_uassoc<T extends DiffValue>(
   arr1: PhpArray<T>,
   ...arraysAndComparators: [
-    arr2: PhpValue,
-    ...rest: PhpValue[],
+    arr2: DiffValue,
+    ...rest: DiffValue[],
     valueCallback: NumericComparatorDescriptor,
     keyCallback: KeyComparatorDescriptor,
   ]
@@ -36,16 +36,16 @@ export function array_udiff_uassoc<T extends PhpValue>(
     typeof keyCallback === 'undefined' ||
     typeof valueCallback === 'undefined' ||
     !isPhpCallableDescriptor<[string, string], NumericLike>(keyCallback) ||
-    !isPhpCallableDescriptor<[PhpValue, T], NumericLike>(valueCallback)
+    !isPhpCallableDescriptor<[DiffValue, T], NumericLike>(valueCallback)
   ) {
     throw new Error('array_udiff_uassoc(): Invalid callback')
   }
-  const arrays = arraysAndComparators.slice(0, -2).map((value) => toPhpArrayObject<PhpValue>(value))
+  const arrays = arraysAndComparators.slice(0, -2).map((value) => toPhpArrayObject<DiffValue>(value))
   const keyComparator = resolveNumericComparator<string, string>(
     keyCallback,
     'array_udiff_uassoc(): Invalid key callback',
   )
-  const valueComparator = resolveNumericComparator<PhpValue, T>(
+  const valueComparator = resolveNumericComparator<DiffValue, T>(
     valueCallback,
     'array_udiff_uassoc(): Invalid value callback',
   )

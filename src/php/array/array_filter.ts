@@ -1,16 +1,18 @@
-import type { PhpAssoc, PhpList, PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpList } from '../_helpers/_phpTypes.ts'
+
+type FilterPredicateResult = {} | null | undefined
 
 export function array_filter<T, S extends T>(arr: PhpList<T>, func: (value: T) => value is S): PhpList<S>
 
 export function array_filter<T, S extends T>(arr: PhpAssoc<T>, func: (value: T) => value is S): PhpAssoc<S>
 
-export function array_filter<T>(arr: PhpList<T>, func?: (value: T) => PhpValue): PhpList<T>
+export function array_filter<T>(arr: PhpList<T>, func?: (value: T) => FilterPredicateResult): PhpList<T>
 
-export function array_filter<T>(arr: PhpAssoc<T>, func?: (value: T) => PhpValue): PhpAssoc<T>
+export function array_filter<T>(arr: PhpAssoc<T>, func?: (value: T) => FilterPredicateResult): PhpAssoc<T>
 
 export function array_filter<T>(
   arr: PhpAssoc<T> | PhpList<T>,
-  func?: (value: T) => PhpValue,
+  func?: (value: T) => FilterPredicateResult,
 ): PhpAssoc<T> | PhpList<T> {
   //  discuss at: https://locutus.io/php/array_filter/
   // original by: Brett Zamir (https://brett-zamir.me)

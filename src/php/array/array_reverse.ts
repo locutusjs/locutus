@@ -1,16 +1,21 @@
-import { type PhpAssoc, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-export function array_reverse<TValue>(array: TValue[], preserveKeys?: false | undefined): TValue[]
-export function array_reverse<TValue>(array: TValue[], preserveKeys: true): PhpAssoc<TValue>
-export function array_reverse<TValue>(
+type ReverseValue = {} | null | undefined
+
+export function array_reverse<TValue extends ReverseValue>(array: TValue[], preserveKeys?: false | undefined): TValue[]
+export function array_reverse<TValue extends ReverseValue>(array: TValue[], preserveKeys: true): PhpAssoc<TValue>
+export function array_reverse<TValue extends ReverseValue>(
   array: PhpAssoc<TValue>,
   preserveKeys?: false | undefined,
 ): PhpAssoc<TValue> | TValue[]
-export function array_reverse<TValue>(array: PhpAssoc<TValue>, preserveKeys: true): PhpAssoc<TValue>
+export function array_reverse<TValue extends ReverseValue>(
+  array: PhpAssoc<TValue>,
+  preserveKeys: true,
+): PhpAssoc<TValue>
 export function array_reverse(
-  array: PhpValue[] | PhpAssoc<PhpValue>,
+  array: ReverseValue[] | PhpAssoc<ReverseValue>,
   preserveKeys?: boolean,
-): PhpValue[] | PhpAssoc<PhpValue> {
+): ReverseValue[] | PhpAssoc<ReverseValue> {
   //  discuss at: https://locutus.io/php/array_reverse/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Karol Kowalski
@@ -18,7 +23,7 @@ export function array_reverse(
   //   returns 1: { 2: ['green', 'red'], 1: '4.0', 0: 'php'}
 
   const preserve = preserveKeys === true
-  let result: PhpValue[] | PhpAssoc<PhpValue>
+  let result: ReverseValue[] | PhpAssoc<ReverseValue>
 
   if (Array.isArray(array) && !preserve) {
     result = array.slice(0).reverse()
@@ -27,7 +32,7 @@ export function array_reverse(
 
     if (preserve) {
       const keys = Object.keys(source)
-      const reversed: PhpAssoc<PhpValue> = {}
+      const reversed: PhpAssoc<ReverseValue> = {}
 
       for (let index = keys.length - 1; index >= 0; index -= 1) {
         const key = keys[index]
@@ -38,7 +43,7 @@ export function array_reverse(
 
       result = reversed
     } else {
-      const reversed: PhpValue[] = []
+      const reversed: ReverseValue[] = []
       for (const key in source) {
         if (Object.prototype.hasOwnProperty.call(source, key)) {
           reversed.unshift(source[key])

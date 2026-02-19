@@ -5,16 +5,16 @@ import {
   type NumericLike,
   type PhpAssoc,
   type PhpCallableDescriptor,
-  type PhpValue,
   toPhpArrayObject,
 } from '../_helpers/_phpTypes.ts'
 
-type PhpArray<T extends PhpValue = PhpValue> = PhpAssoc<T>
-type NumericComparatorDescriptor = PhpCallableDescriptor<[PhpValue, PhpValue], NumericLike>
+type IntersectValue = {} | null | undefined
+type PhpArray<T extends IntersectValue = IntersectValue> = PhpAssoc<T>
+type NumericComparatorDescriptor = PhpCallableDescriptor<[IntersectValue, IntersectValue], NumericLike>
 
-export function array_uintersect<T extends PhpValue>(
+export function array_uintersect<T extends IntersectValue>(
   arr1: PhpArray<T>,
-  ...arraysAndCallback: [arr2: PhpValue, ...rest: PhpValue[], callback: NumericComparatorDescriptor]
+  ...arraysAndCallback: [arr2: IntersectValue, ...rest: IntersectValue[], callback: NumericComparatorDescriptor]
 ): PhpArray<T> {
   //  discuss at: https://locutus.io/php/array_uintersect/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -26,11 +26,11 @@ export function array_uintersect<T extends PhpValue>(
 
   const retArr: PhpArray<T> = {}
   const callback = arraysAndCallback[arraysAndCallback.length - 1]
-  if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[PhpValue, T], NumericLike>(callback)) {
+  if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[IntersectValue, T], NumericLike>(callback)) {
     throw new Error('array_uintersect(): Invalid callback')
   }
-  const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject<PhpValue>(value))
-  const valueComparator = resolveNumericComparator<PhpValue, T>(callback, 'array_uintersect(): Invalid callback')
+  const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject<IntersectValue>(value))
+  const valueComparator = resolveNumericComparator<IntersectValue, T>(callback, 'array_uintersect(): Invalid callback')
   const lastArrayIndex = arrays.length - 1
 
   arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1)) {
