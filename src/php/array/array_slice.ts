@@ -1,20 +1,30 @@
 import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 import { is_int as isInt } from '../var/is_int.ts'
 
-type ArraySliceResult<TInput, TPreserve extends boolean> = TInput extends (infer TValue)[]
-  ? TPreserve extends true
-    ? TValue[] | PhpAssoc<TValue>
-    : TValue[]
-  : TInput extends PhpAssoc<infer TValue>
-    ? PhpAssoc<TValue>
-    : never
-
-export function array_slice<TInput extends PhpValue[] | PhpAssoc<PhpValue>, TPreserve extends boolean = false>(
-  arr: TInput,
+export function array_slice<TValue>(
+  arr: TValue[],
   offst: number,
   lgth?: number,
-  preserveKeys?: TPreserve,
-): ArraySliceResult<TInput, TPreserve> {
+  preserveKeys?: false | undefined,
+): TValue[]
+export function array_slice<TValue>(
+  arr: TValue[],
+  offst: number,
+  lgth: number | undefined,
+  preserveKeys: true,
+): TValue[] | PhpAssoc<TValue>
+export function array_slice<TValue>(
+  arr: PhpAssoc<TValue>,
+  offst: number,
+  lgth?: number,
+  preserveKeys?: boolean,
+): PhpAssoc<TValue>
+export function array_slice(
+  arr: PhpValue[] | PhpAssoc<PhpValue>,
+  offst: number,
+  lgth?: number,
+  preserveKeys?: boolean,
+): PhpValue[] | PhpAssoc<PhpValue> {
   //      discuss at: https://locutus.io/php/array_slice/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -90,5 +100,5 @@ export function array_slice<TInput extends PhpValue[] | PhpAssoc<PhpValue>, TPre
     result = sliced
   }
 
-  return result as ArraySliceResult<TInput, TPreserve>
+  return result
 }

@@ -20,8 +20,13 @@ const MAX_SRC_PHP_URL_AS_EXPRESSION = 0
 const MAX_SRC_PHP_FUNCHAND_AS_EXPRESSION = 0
 const MAX_SRC_PHP_JSON_AS_EXPRESSION = 0
 const MAX_SRC_PHP_DATETIME_AS_EXPRESSION = 0
-const MAX_SRC_PHP_ARRAY_AS_EXPRESSION = 3
+const MAX_SRC_PHP_ARRAY_AS_EXPRESSION = 0
+const MAX_SRC_PHP_BC_AS_EXPRESSION = 0
+const MAX_SRC_PHP_FILESYSTEM_AS_EXPRESSION = 0
+const MAX_SRC_PHP_MISC_AS_EXPRESSION = 0
+const MAX_SRC_PHP_PCRE_AS_EXPRESSION = 0
 const MAX_SRC_PHP_VAR_AS_EXPRESSION = 0
+const MAX_SRC_PHP_XDIFF_AS_EXPRESSION = 0
 const MAX_SRC_PHP_LOCAL_PHPVALUE_ALIAS = 0
 const MAX_SRC_PHP_DIRECT_INI_GLOBAL_READS = 0
 
@@ -51,7 +56,12 @@ const funchandAsExpressionFindings: Finding[] = []
 const jsonAsExpressionFindings: Finding[] = []
 const datetimeAsExpressionFindings: Finding[] = []
 const arrayAsExpressionFindings: Finding[] = []
+const bcAsExpressionFindings: Finding[] = []
+const filesystemAsExpressionFindings: Finding[] = []
+const miscAsExpressionFindings: Finding[] = []
+const pcreAsExpressionFindings: Finding[] = []
 const varAsExpressionFindings: Finding[] = []
+const xdiffAsExpressionFindings: Finding[] = []
 let srcPhpRawIndexSignatureUnknownCount = 0
 let srcPhpExportedUnknownReturnTypeCount = 0
 let srcPhpUnknownKeywordCount = 0
@@ -66,7 +76,12 @@ let srcPhpFunchandAsExpressionCount = 0
 let srcPhpJsonAsExpressionCount = 0
 let srcPhpDatetimeAsExpressionCount = 0
 let srcPhpArrayAsExpressionCount = 0
+let srcPhpBcAsExpressionCount = 0
+let srcPhpFilesystemAsExpressionCount = 0
+let srcPhpMiscAsExpressionCount = 0
+let srcPhpPcreAsExpressionCount = 0
 let srcPhpVarAsExpressionCount = 0
+let srcPhpXdiffAsExpressionCount = 0
 let srcPhpLocalPhpValueAliasCount = 0
 let srcPhpDirectIniGlobalReadCount = 0
 
@@ -296,6 +311,56 @@ for (const filePath of sourceFiles) {
         datetimeAsExpressionFindings.push({
           file: path.relative(cwd, filePath),
           count: datetimeAsExpressionCount,
+        })
+      }
+    }
+    if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}bc${path.sep}`)) {
+      const bcAsExpressionCount = countAsExpressions(sourceFile)
+      srcPhpBcAsExpressionCount += bcAsExpressionCount
+      if (bcAsExpressionCount > 0) {
+        bcAsExpressionFindings.push({
+          file: path.relative(cwd, filePath),
+          count: bcAsExpressionCount,
+        })
+      }
+    }
+    if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}filesystem${path.sep}`)) {
+      const filesystemAsExpressionCount = countAsExpressions(sourceFile)
+      srcPhpFilesystemAsExpressionCount += filesystemAsExpressionCount
+      if (filesystemAsExpressionCount > 0) {
+        filesystemAsExpressionFindings.push({
+          file: path.relative(cwd, filePath),
+          count: filesystemAsExpressionCount,
+        })
+      }
+    }
+    if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}misc${path.sep}`)) {
+      const miscAsExpressionCount = countAsExpressions(sourceFile)
+      srcPhpMiscAsExpressionCount += miscAsExpressionCount
+      if (miscAsExpressionCount > 0) {
+        miscAsExpressionFindings.push({
+          file: path.relative(cwd, filePath),
+          count: miscAsExpressionCount,
+        })
+      }
+    }
+    if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}pcre${path.sep}`)) {
+      const pcreAsExpressionCount = countAsExpressions(sourceFile)
+      srcPhpPcreAsExpressionCount += pcreAsExpressionCount
+      if (pcreAsExpressionCount > 0) {
+        pcreAsExpressionFindings.push({
+          file: path.relative(cwd, filePath),
+          count: pcreAsExpressionCount,
+        })
+      }
+    }
+    if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}xdiff${path.sep}`)) {
+      const xdiffAsExpressionCount = countAsExpressions(sourceFile)
+      srcPhpXdiffAsExpressionCount += xdiffAsExpressionCount
+      if (xdiffAsExpressionCount > 0) {
+        xdiffAsExpressionFindings.push({
+          file: path.relative(cwd, filePath),
+          count: xdiffAsExpressionCount,
         })
       }
     }
@@ -547,6 +612,56 @@ if (srcPhpDatetimeAsExpressionCount > MAX_SRC_PHP_DATETIME_AS_EXPRESSION) {
   }
 }
 
+if (srcPhpBcAsExpressionCount > MAX_SRC_PHP_BC_AS_EXPRESSION) {
+  hasFailure = true
+  console.error(
+    `src/php/bc 'as' expression count increased: ${srcPhpBcAsExpressionCount} > ${MAX_SRC_PHP_BC_AS_EXPRESSION}`,
+  )
+  for (const finding of bcAsExpressionFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
+if (srcPhpFilesystemAsExpressionCount > MAX_SRC_PHP_FILESYSTEM_AS_EXPRESSION) {
+  hasFailure = true
+  console.error(
+    `src/php/filesystem 'as' expression count increased: ${srcPhpFilesystemAsExpressionCount} > ${MAX_SRC_PHP_FILESYSTEM_AS_EXPRESSION}`,
+  )
+  for (const finding of filesystemAsExpressionFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
+if (srcPhpMiscAsExpressionCount > MAX_SRC_PHP_MISC_AS_EXPRESSION) {
+  hasFailure = true
+  console.error(
+    `src/php/misc 'as' expression count increased: ${srcPhpMiscAsExpressionCount} > ${MAX_SRC_PHP_MISC_AS_EXPRESSION}`,
+  )
+  for (const finding of miscAsExpressionFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
+if (srcPhpPcreAsExpressionCount > MAX_SRC_PHP_PCRE_AS_EXPRESSION) {
+  hasFailure = true
+  console.error(
+    `src/php/pcre 'as' expression count increased: ${srcPhpPcreAsExpressionCount} > ${MAX_SRC_PHP_PCRE_AS_EXPRESSION}`,
+  )
+  for (const finding of pcreAsExpressionFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
+if (srcPhpXdiffAsExpressionCount > MAX_SRC_PHP_XDIFF_AS_EXPRESSION) {
+  hasFailure = true
+  console.error(
+    `src/php/xdiff 'as' expression count increased: ${srcPhpXdiffAsExpressionCount} > ${MAX_SRC_PHP_XDIFF_AS_EXPRESSION}`,
+  )
+  for (const finding of xdiffAsExpressionFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
 if (srcPhpLocalPhpValueAliasCount > MAX_SRC_PHP_LOCAL_PHPVALUE_ALIAS) {
   hasFailure = true
   console.error(
@@ -572,5 +687,5 @@ if (hasFailure) {
 }
 
 console.log(
-  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php unknown keyword count not increased, src/php/array unknown keyword count not increased, src/php/array as-expression count not increased, src/php/var unknown keyword count not increased, src/php/var as-expression count not increased, src/php/strings as-expression count not increased, src/php/ctype as-expression count not increased, src/php/info as-expression count not increased, src/php/_helpers as-expression count not increased, src/php/url as-expression count not increased, src/php/funchand as-expression count not increased, src/php/json as-expression count not increased, src/php/datetime as-expression count not increased, src/php local PhpValue alias count not increased, src/php direct $locutus?.php?.ini reads not increased',
+  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php unknown keyword count not increased, src/php/array unknown keyword count not increased, src/php/array as-expression count not increased, src/php/var unknown keyword count not increased, src/php/var as-expression count not increased, src/php/strings as-expression count not increased, src/php/ctype as-expression count not increased, src/php/info as-expression count not increased, src/php/_helpers as-expression count not increased, src/php/url as-expression count not increased, src/php/funchand as-expression count not increased, src/php/json as-expression count not increased, src/php/datetime as-expression count not increased, src/php/bc as-expression count not increased, src/php/filesystem as-expression count not increased, src/php/misc as-expression count not increased, src/php/pcre as-expression count not increased, src/php/xdiff as-expression count not increased, src/php local PhpValue alias count not increased, src/php direct $locutus?.php?.ini reads not increased',
 )

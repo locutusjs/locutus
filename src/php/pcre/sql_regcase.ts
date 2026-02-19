@@ -1,9 +1,8 @@
+import type { PhpValue } from '../_helpers/_phpTypes.ts'
 import { setlocale } from '../strings/setlocale.ts'
 
-type SqlRegcasePhpContext = {
-  locales?: Record<string, { LC_CTYPE?: { upper?: string; lower?: string } }>
-  localeCategories?: { LC_CTYPE: string }
-}
+const isRecord = (value: PhpValue): value is { [key: string]: PhpValue } =>
+  typeof value === 'object' && value !== null && !Array.isArray(value)
 
 export function sql_regcase(str: string): string {
   //  discuss at: https://locutus.io/php/sql_regcase/
@@ -18,14 +17,41 @@ export function sql_regcase(str: string): string {
 
   setlocale('LC_ALL', 0)
 
-  const globalContext = globalThis as typeof globalThis & { $locutus?: { php?: SqlRegcasePhpContext } }
-  const php = globalContext.$locutus?.php
-  if (!php?.locales || !php.localeCategories) {
+  const locutusValue = Reflect.get(globalThis, '$locutus')
+  if (!isRecord(locutusValue)) {
     return str
   }
 
-  upper = php.locales[php.localeCategories.LC_CTYPE]?.LC_CTYPE?.upper ?? ''
-  lower = php.locales[php.localeCategories.LC_CTYPE]?.LC_CTYPE?.lower ?? ''
+  const phpValue = Reflect.get(locutusValue, 'php')
+  if (!isRecord(phpValue)) {
+    return str
+  }
+
+  const localesValue = Reflect.get(phpValue, 'locales')
+  const localeCategoriesValue = Reflect.get(phpValue, 'localeCategories')
+  if (!isRecord(localesValue) || !isRecord(localeCategoriesValue)) {
+    return str
+  }
+
+  const localeTypeValue = Reflect.get(localeCategoriesValue, 'LC_CTYPE')
+  if (typeof localeTypeValue !== 'string') {
+    return str
+  }
+
+  const localeValue = Reflect.get(localesValue, localeTypeValue)
+  if (!isRecord(localeValue)) {
+    return str
+  }
+
+  const lcCtypeValue = Reflect.get(localeValue, 'LC_CTYPE')
+  if (!isRecord(lcCtypeValue)) {
+    return str
+  }
+
+  const upperValue = Reflect.get(lcCtypeValue, 'upper')
+  const lowerValue = Reflect.get(lcCtypeValue, 'lower')
+  upper = typeof upperValue === 'string' ? upperValue : ''
+  lower = typeof lowerValue === 'string' ? lowerValue : ''
   if (!upper || !lower) {
     return str
   }

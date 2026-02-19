@@ -592,3 +592,46 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Reflective global access plus callable guards removes most dynamic-boundary casts without changing runtime semantics.
   - Generic return casts in parser-style helpers can be avoided by letting JS runtime boundaries flow through as-is and relying on call-site typing.
+
+## Iteration 25
+
+- Plans
+  - Remove remaining cast sites in `src/php/datetime/**`.
+  - Add a dedicated `datetime/**` cast ratchet at zero.
+- Progress
+  - Refactored `src/php/datetime/{date,gmmktime,mktime,strftime,strptime,strtotime}.ts` to remove casted formatter/global/result handling and replace with explicit tuple typing, reflective runtime guards, and typed object construction.
+  - Extended `scripts/check-ts-debt-policy.ts` with:
+    - `MAX_SRC_PHP_DATETIME_AS_EXPRESSION = 0`
+    - enforcement + findings output for `src/php/datetime/**`.
+  - Stabilized type-signature test order dependence by setting `ini_set('locutus.objectsAsArrays', 'on')` in `test/util/type-signatures.vitest.ts`.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Date/time ports with dynamic globals can be moved to guarded reflective access without changing runtime parity.
+  - Ratcheting by folder keeps incremental strictness work measurable and regression-resistant.
+
+## Iteration 26
+
+- Plans
+  - Eliminate remaining cast hotspots in `src/php/{xdiff,array,bc,filesystem,misc,pcre}/**`.
+  - Ratchet these folders to zero cast expressions in debt policy.
+- Progress
+  - Refactored:
+    - `src/php/xdiff/xdiff_string_patch.ts` to replace regex metadata/flag casts with guarded reflective access.
+    - `src/php/array/{array_slice,array_change_key_case,array_reverse}.ts` to remove return casts and preserve typed call-site relations.
+    - `src/php/bc/bccomp.ts` to remove casted `bc()` facade typing.
+    - `src/php/filesystem/pathinfo.ts` to remove option-key return cast.
+    - `src/php/misc/uniqid.ts` and `src/php/pcre/sql_regcase.ts` to replace global-context casts with guarded reflective runtime access.
+  - Extended `scripts/check-ts-debt-policy.ts` with zero-floor ratchets for:
+    - `src/php/bc/**`
+    - `src/php/filesystem/**`
+    - `src/php/misc/**`
+    - `src/php/pcre/**`
+    - `src/php/xdiff/**`
+  - Lowered `MAX_SRC_PHP_ARRAY_AS_EXPRESSION` from `3 -> 0`.
+  - Updated parser support in `src/_util/util.ts` to ignore export overload signatures without bodies, so type-rich overloads remain compatible with generation scripts.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Overload-friendly source parsing is necessary once stricter type modeling relies on declaration signatures.
+  - Frontier cleanup is fastest when each directory gets both a cast removal pass and an immediate zero-floor ratchet.

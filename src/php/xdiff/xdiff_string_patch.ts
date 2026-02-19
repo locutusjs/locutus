@@ -1,12 +1,8 @@
+import type { PhpValue } from '../_helpers/_phpTypes.ts'
+
 type XRegExpMeta = {
   source: string
   captureNames?: string[] | null
-}
-
-type RegExpWithExtras = RegExp & {
-  extended?: boolean
-  sticky?: boolean
-  _xregexp?: XRegExpMeta
 }
 
 type PatchErrorObject = { value?: string }
@@ -35,15 +31,52 @@ export function xdiff_string_patch(
   // MIT License
   // <https://xregexp.com>
 
-  const _getNativeFlags = function (regex: RegExpWithExtras): string {
+  const isRecord = (value: PhpValue): value is { [key: string]: PhpValue } =>
+    typeof value === 'object' && value !== null && !Array.isArray(value)
+
+  const _getNativeFlags = function (regex: RegExp): string {
+    const extended = Reflect.get(regex, 'extended') === true
+    const sticky = Reflect.get(regex, 'sticky') === true
     // Proposed for ES4; included in AS3
     return [
       regex.global ? 'g' : '',
       regex.ignoreCase ? 'i' : '',
       regex.multiline ? 'm' : '',
-      regex.extended ? 'x' : '',
-      regex.sticky ? 'y' : '',
+      extended ? 'x' : '',
+      sticky ? 'y' : '',
     ].join('')
+  }
+
+  const getXRegExpMeta = (regex: RegExp): XRegExpMeta | undefined => {
+    const xregexpValue = Reflect.get(regex, '_xregexp')
+    if (!isRecord(xregexpValue)) {
+      return undefined
+    }
+
+    const sourceValue = Reflect.get(xregexpValue, 'source')
+    if (typeof sourceValue !== 'string') {
+      return undefined
+    }
+
+    const captureNamesValue = Reflect.get(xregexpValue, 'captureNames')
+    let captureNames: string[] | null | undefined
+    if (captureNamesValue === null) {
+      captureNames = null
+    } else if (
+      Array.isArray(captureNamesValue) &&
+      captureNamesValue.every((captureName) => typeof captureName === 'string')
+    ) {
+      captureNames = captureNamesValue
+    }
+
+    if (captureNames === undefined) {
+      return { source: sourceValue }
+    }
+
+    return {
+      source: sourceValue,
+      captureNames,
+    }
   }
 
   const _cbSplit = function (input: string, sep: RegExp | string): string[] {
@@ -57,16 +90,16 @@ export function xdiff_string_patch(
     let match: RegExpExecArray | null = null
     let lastLength = 0
     const limit = Infinity
-    const x = (sep as RegExpWithExtras)._xregexp
+    const x = getXRegExpMeta(sep)
     // This is required if not `s.global`, and it avoids needing to set `s.lastIndex` to zero
     // and restore it to its original value when we're done using the regex
     // Brett paring down
-    const s = new RegExp(sep.source, _getNativeFlags(sep as RegExpWithExtras) + 'g') as RegExpWithExtras
+    const s = new RegExp(sep.source, _getNativeFlags(sep) + 'g')
     if (x) {
-      s._xregexp = {
+      Reflect.set(s, '_xregexp', {
         source: x.source,
         captureNames: x.captureNames ? x.captureNames.slice(0) : null,
-      }
+      })
     }
 
     while ((match = s.exec(str))) {
@@ -134,15 +167,16 @@ export function xdiff_string_patch(
 
   if (typeof flags !== 'number') {
     // Allow for a single string or an array of string flags
-    const flagList = ([] as string[]).concat(flags)
+    const flagList = Array.isArray(flags) ? flags : [flags]
+    const isPatchOption = (value: string): value is keyof typeof OPTS => value in OPTS
     for (i = 0; i < flagList.length; i++) {
       const currentFlag = flagList[i]
       if (!currentFlag) {
         continue
       }
       // Resolve string input to bitwise e.g. 'XDIFF_PATCH_NORMAL' becomes 1
-      if (currentFlag in OPTS) {
-        optTemp = optTemp | OPTS[currentFlag as keyof typeof OPTS]
+      if (isPatchOption(currentFlag)) {
+        optTemp = optTemp | OPTS[currentFlag]
       }
     }
     flags = optTemp

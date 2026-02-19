@@ -2,16 +2,10 @@ import { type PhpArrayLike, type PhpAssoc, type PhpValue, toPhpArrayObject } fro
 
 type ArrayChangeInput = number | PhpArrayLike<PhpValue> | null
 
-type ArrayChangeKeyCaseResult<TInput> = TInput extends (infer TValue)[]
-  ? TValue[]
-  : TInput extends PhpAssoc<infer TValue>
-    ? PhpAssoc<TValue>
-    : false
-
-export function array_change_key_case<TInput extends ArrayChangeInput>(
-  array: TInput,
-  cs?: string | number,
-): ArrayChangeKeyCaseResult<TInput> {
+export function array_change_key_case(array: number | null, cs?: string | number): false
+export function array_change_key_case<TValue>(array: TValue[], cs?: string | number): TValue[]
+export function array_change_key_case<TValue>(array: PhpAssoc<TValue>, cs?: string | number): PhpAssoc<TValue>
+export function array_change_key_case(array: ArrayChangeInput, cs?: string | number): PhpArrayLike<PhpValue> | false {
   //  discuss at: https://locutus.io/php/array_change_key_case/
   // original by: Ates Goral (https://magnetiq.com)
   // improved by: marrtins
@@ -48,5 +42,5 @@ export function array_change_key_case<TInput extends ArrayChangeInput>(
     result = transformed
   }
 
-  return result as ArrayChangeKeyCaseResult<TInput>
+  return result
 }

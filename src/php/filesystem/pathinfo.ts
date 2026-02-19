@@ -49,7 +49,6 @@ export function pathinfo(path: string, options?: PathInfoOptions): PathInfoMap |
   //   example 7: pathinfo('/www/htdocs/index.html')
   //   returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
 
-  let realOpt: keyof PathInfoMap | '' = ''
   const tmpArr: PathInfoMap = {}
   let basenameValue: string | null = null
   let extensionValue: string | false | null = null
@@ -134,15 +133,9 @@ export function pathinfo(path: string, options?: PathInfoOptions): PathInfoMap |
   }
 
   // If array contains only 1 element: return string
-  let count = 0
-  for (const option in tmpArr) {
-    if (Object.prototype.hasOwnProperty.call(tmpArr, option)) {
-      count++
-      realOpt = option as keyof PathInfoMap
-    }
-  }
-  if (count === 1 && realOpt !== '') {
-    return tmpArr[realOpt] ?? ''
+  const values = Object.values(tmpArr).filter((value): value is string => typeof value === 'string')
+  if (values.length === 1) {
+    return values[0] ?? ''
   }
 
   // Return full-blown array

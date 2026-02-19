@@ -999,7 +999,7 @@ class Util {
       }
 
       // ESM: export function name(...) { ... } or export default function name(...) { ... }
-      if (ts.isFunctionDeclaration(node) && node.name) {
+      if (ts.isFunctionDeclaration(node) && node.name && node.body) {
         const modifiers = ts.getModifiers(node)
         const hasExport = modifiers?.some((m) => m.kind === ts.SyntaxKind.ExportKeyword)
         if (hasExport) {

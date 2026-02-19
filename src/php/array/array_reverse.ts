@@ -1,19 +1,16 @@
 import { type PhpAssoc, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type ArrayReverseResult<TInput, TPreserve extends boolean> = TInput extends (infer TValue)[]
-  ? TPreserve extends true
-    ? PhpAssoc<TValue>
-    : TValue[]
-  : TInput extends PhpAssoc<infer TValue>
-    ? TPreserve extends true
-      ? PhpAssoc<TValue>
-      : PhpAssoc<TValue> | TValue[]
-    : never
-
-export function array_reverse<TInput extends PhpValue[] | PhpAssoc<PhpValue>, TPreserve extends boolean = false>(
-  array: TInput,
-  preserveKeys?: TPreserve,
-): ArrayReverseResult<TInput, TPreserve> {
+export function array_reverse<TValue>(array: TValue[], preserveKeys?: false | undefined): TValue[]
+export function array_reverse<TValue>(array: TValue[], preserveKeys: true): PhpAssoc<TValue>
+export function array_reverse<TValue>(
+  array: PhpAssoc<TValue>,
+  preserveKeys?: false | undefined,
+): PhpAssoc<TValue> | TValue[]
+export function array_reverse<TValue>(array: PhpAssoc<TValue>, preserveKeys: true): PhpAssoc<TValue>
+export function array_reverse(
+  array: PhpValue[] | PhpAssoc<PhpValue>,
+  preserveKeys?: boolean,
+): PhpValue[] | PhpAssoc<PhpValue> {
   //  discuss at: https://locutus.io/php/array_reverse/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Karol Kowalski
@@ -52,5 +49,5 @@ export function array_reverse<TInput extends PhpValue[] | PhpAssoc<PhpValue>, TP
     }
   }
 
-  return result as ArrayReverseResult<TInput, TPreserve>
+  return result
 }

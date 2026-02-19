@@ -1,7 +1,3 @@
-type UniqidLocutusContext = {
-  php?: { uniqidSeed?: number }
-}
-
 export function uniqid(prefix?: string, moreEntropy?: boolean): string {
   //  discuss at: https://locutus.io/php/uniqid/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -33,23 +29,27 @@ export function uniqid(prefix?: string, moreEntropy?: boolean): string {
     return hexSeed
   }
 
-  const globalContext = globalThis as typeof globalThis & { $locutus?: UniqidLocutusContext }
-  globalContext.$locutus = globalContext.$locutus ?? {}
-  const locutus = globalContext.$locutus
-  locutus.php = locutus.php ?? {}
-  const php = locutus.php
-
-  if (!php.uniqidSeed) {
-    // init seed with big random int
-    php.uniqidSeed = Math.floor(Math.random() * 0x75bcd15)
+  const locutusValue = Reflect.get(globalThis, '$locutus')
+  const locutus = typeof locutusValue === 'object' && locutusValue !== null ? locutusValue : {}
+  if (locutus !== locutusValue) {
+    Reflect.set(globalThis, '$locutus', locutus)
   }
-  php.uniqidSeed++
+  const phpValue = Reflect.get(locutus, 'php')
+  const php = typeof phpValue === 'object' && phpValue !== null ? phpValue : {}
+  if (php !== phpValue) {
+    Reflect.set(locutus, 'php', php)
+  }
+
+  const uniqidSeedValue = Reflect.get(php, 'uniqidSeed')
+  let uniqidSeed = typeof uniqidSeedValue === 'number' ? uniqidSeedValue : Math.floor(Math.random() * 0x75bcd15) // init seed with big random int
+  uniqidSeed++
+  Reflect.set(php, 'uniqidSeed', uniqidSeed)
 
   // start with prefix, add current milliseconds hex string
   retId = normalizedPrefix
   retId += formatSeed(Number.parseInt(String(new Date().getTime() / 1000), 10), 8)
   // add seed hex string
-  retId += formatSeed(php.uniqidSeed, 5)
+  retId += formatSeed(uniqidSeed, 5)
   if (moreEntropy) {
     // for more entropy we add a float lower to 10
     retId += (Math.random() * 10).toFixed(8).toString()
