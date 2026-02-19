@@ -24,16 +24,7 @@ describe('fix-cjs-exports script', function () {
         'utf-8',
       )
 
-      execFileSync(
-        process.execPath,
-        [
-          '--experimental-strip-types',
-          '--disable-warning=MODULE_TYPELESS_PACKAGE_JSON',
-          path.resolve('scripts/fix-cjs-exports.ts'),
-          tmpDir,
-        ],
-        { stdio: 'pipe' },
-      )
+      execFileSync(process.execPath, [path.resolve('scripts/fix-cjs-exports.ts'), tmpDir], { stdio: 'pipe' })
 
       const updated = fs.readFileSync(indexJsPath, 'utf-8')
       expect(updated).toContain("const a = require('./foo')")

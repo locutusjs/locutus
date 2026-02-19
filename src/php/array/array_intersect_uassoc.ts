@@ -23,7 +23,7 @@ export function array_intersect_uassoc<T extends PhpValue>(
   //   returns 1: {b: 'brown'}
 
   const retArr: PhpArray<T> = {}
-  const callback = arraysAndCallback.at(-1)
+  const callback = arraysAndCallback[arraysAndCallback.length - 1]
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[string, string], PhpValue>(callback)) {
     throw new Error('array_intersect_uassoc(): Invalid callback')
   }

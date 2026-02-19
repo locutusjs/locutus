@@ -29,8 +29,8 @@ export function array_uintersect_uassoc<T extends PhpValue>(
   //   returns 1: {a: 'green', b: 'brown'}
 
   const retArr: PhpArray<T> = {}
-  const keyCallback = arraysAndComparators.at(-1)
-  const valueCallback = arraysAndComparators.at(-2)
+  const keyCallback = arraysAndComparators[arraysAndComparators.length - 1]
+  const valueCallback = arraysAndComparators[arraysAndComparators.length - 2]
   if (
     typeof keyCallback === 'undefined' ||
     typeof valueCallback === 'undefined' ||

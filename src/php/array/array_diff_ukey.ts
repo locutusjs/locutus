@@ -23,7 +23,7 @@ export function array_diff_ukey<T extends PhpValue>(
   //   returns 1: {red: 2, purple: 4}
 
   const retArr: PhpArray<T> = {}
-  const callback = arraysAndCallback.at(-1)
+  const callback = arraysAndCallback[arraysAndCallback.length - 1]
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[string, string], PhpValue>(callback)) {
     throw new Error('array_diff_ukey(): Invalid callback')
   }

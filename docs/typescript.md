@@ -931,3 +931,35 @@ To fix a `@ts-nocheck` file:
     - `corepack yarn check`
 - Key learnings
   - Type-predicate overloads deliver stronger consumer-side narrowing at near-zero runtime risk when implementation behavior already preserves container shape.
+
+## Iteration 41
+
+- Plans
+  - Remove legacy Node runtime flags from CI/tooling (`--experimental-strip-types`, `--disable-warning=MODULE_TYPELESS_PACKAGE_JSON`).
+  - Switch project runtime metadata to explicit ESM while preserving published CommonJS compatibility.
+  - Clean temporary root artifacts.
+- Progress
+  - Updated `package.json`:
+    - added `"type": "module"`.
+    - removed strip-type/typeless-warning flags from script invocations.
+    - reordered `build:dist` to copy package metadata before post-processing.
+  - Updated CI:
+    - `.github/workflows/ci.yml` engine guard now runs `node scripts/check-engine-bump.ts` without flags.
+  - Updated dist post-processing:
+    - `scripts/fix-cjs-exports.ts` now sets `dist/package.json` to `"type": "commonjs"` (and ensures `main`) to keep `require(...)` behavior stable after root ESM switch.
+  - Updated tests:
+    - `test/util/fix-cjs-exports.vitest.ts` now invokes Node script directly without legacy flags.
+  - Compatibility follow-up:
+    - replaced `Array.prototype.at(...)` usage in callback-heavy `array_u*` files with index-based access (`length - 1/-2`) so `tsconfig.build` target (`ES2020`) still compiles.
+  - Updated release notes:
+    - `.changeset/typescript-migration.md` now states root tooling ESM + dist CommonJS compatibility.
+  - Cleaned root artifacts:
+    - removed `strlen-page-current.png`
+    - removed `strlen-tabs-js.png`
+    - removed `strlen-tabs-ts.png`
+    - removed `strlen-tabs-view.png`
+  - Validation passed:
+    - `corepack yarn check`
+    - `corepack yarn test:module`
+- Key learnings
+  - Root-level ESM ergonomics and warning removal can be adopted without disrupting CommonJS consumers by explicitly pinning dist package type to CommonJS.

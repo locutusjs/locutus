@@ -24,7 +24,7 @@ export function array_uintersect<T extends PhpValue>(
   //   returns 1: {a: 'green', b: 'brown', 0: 'red'}
 
   const retArr: PhpArray<T> = {}
-  const callback = arraysAndCallback.at(-1)
+  const callback = arraysAndCallback[arraysAndCallback.length - 1]
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[PhpValue, T], PhpValue>(callback)) {
     throw new Error('array_uintersect(): Invalid callback')
   }

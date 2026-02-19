@@ -126,5 +126,24 @@ const writeGolangIndexCompatShim = (rootDir: string): void => {
   }
 }
 
+const patchDistPackageJson = (rootDir: string): void => {
+  const packageJsonPath = path.join(rootDir, 'package.json')
+  if (!fs.existsSync(packageJsonPath)) {
+    return
+  }
+
+  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8')) as {
+    type?: string
+    main?: string
+  }
+  packageJson.type = 'commonjs'
+  if (!packageJson.main) {
+    packageJson.main = 'index.js'
+  }
+
+  fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`, 'utf-8')
+}
+
 walk(distDir)
 writeGolangIndexCompatShim(distDir)
+patchDistPackageJson(distDir)
