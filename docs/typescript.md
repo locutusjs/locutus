@@ -766,3 +766,16 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Boundary helpers can be narrowed safely when guarded conversion remains inside the implementation.
   - Tight callback typing in exported APIs improves call-site inference and removes accidental permissiveness with low runtime risk.
+
+## Iteration 33
+
+- Plans
+  - Remove small remaining permissive signature artifacts with zero runtime impact.
+- Progress
+  - Narrowed `ArrayWalkRecursiveCallback` return type in `src/php/array/array_walk_recursive.ts` from `PhpValue` to `void` (return value is ignored in runtime flow).
+  - Simplified `src/php/var/is_callable.ts` return type from `boolean | false` to `boolean`.
+  - Updated `docs/php-api-signatures.snapshot`.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Finishing small redundant unions in public signatures compounds API clarity and lowers accidental widening noise for consumers.

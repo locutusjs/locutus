@@ -339,7 +339,7 @@ src/php/var/is_array.ts :: export function is_array(mixedVar: PhpValue): boolean
 src/php/var/is_binary.ts :: export function is_binary(vr: string): boolean
 src/php/var/is_bool.ts :: export function is_bool(mixedVar: boolean | number): boolean
 src/php/var/is_buffer.ts :: export function is_buffer(vr: string): boolean
-src/php/var/is_callable.ts :: export function is_callable(mixedVar: PhpValue, syntaxOnly?: boolean, callableName?: string): boolean | false
+src/php/var/is_callable.ts :: export function is_callable(mixedVar: PhpValue, syntaxOnly?: boolean, callableName?: string): boolean
 src/php/var/is_double.ts :: export function is_double(mixedVar: number): boolean
 src/php/var/is_float.ts :: export function is_float(mixedVar: number): boolean
 src/php/var/is_int.ts :: export function is_int(mixedVar: PhpMixed): mixedVar is number
