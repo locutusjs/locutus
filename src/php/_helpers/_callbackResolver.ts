@@ -16,8 +16,22 @@ interface ResolvedCallback<TArgs extends PhpValue[] = PhpValue[], TResult = PhpV
   scope: PhpValue
 }
 
+const isPhpCallableDescriptorValue = <TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue>(
+  value: PhpValue,
+): value is PhpCallableDescriptor<TArgs, TResult> => {
+  if (typeof value === 'string') {
+    return true
+  }
+
+  if (isPhpCallable<TArgs, TResult>(value)) {
+    return true
+  }
+
+  return Array.isArray(value) && value.length >= 2
+}
+
 export function resolvePhpCallable<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue>(
-  callback: PhpCallableDescriptor<TArgs, TResult> | PhpValue,
+  callback: PhpCallableDescriptor<TArgs, TResult>,
   options: CallbackResolverOptions,
 ): ResolvedCallback<TArgs, TResult> {
   // discuss at: https://locutus.io/php/_helpers/resolvePhpCallable/
@@ -69,6 +83,10 @@ export function resolveNumericComparator<TLeft extends PhpValue = PhpValue, TRig
   callback: PhpValue,
   invalidMessage: string,
 ): (left: TLeft, right: TRight) => number {
+  if (!isPhpCallableDescriptorValue<[TLeft, TRight], PhpValue>(callback)) {
+    throw new Error(invalidMessage)
+  }
+
   const resolved = resolvePhpCallable<[TLeft, TRight], PhpValue>(callback, { invalidMessage })
 
   return (left: TLeft, right: TRight): number => Number(resolved.fn.apply(resolved.scope, [left, right]))

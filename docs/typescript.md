@@ -750,3 +750,19 @@ To fix a `@ts-nocheck` file:
     - `corepack yarn check`
 - Key learnings
   - The tuple-rest + typed-descriptor pattern scales across the remaining callback families with low risk and consistent inference improvements.
+
+## Iteration 32
+
+- Plans
+  - Tighten callback helper boundaries in `_helpers/_callbackResolver.ts`.
+  - Remove broad callback union from `array_walk` exported signature.
+- Progress
+  - Narrowed `resolvePhpCallable` input from `PhpCallableDescriptor | PhpValue` to `PhpCallableDescriptor` in `src/php/_helpers/_callbackResolver.ts`.
+  - Added `isPhpCallableDescriptorValue(...)` guard and used it in `resolveNumericComparator` so invalid scalar callbacks fail early while preserving runtime behavior.
+  - Narrowed `array_walk` callback parameter in `src/php/array/array_walk.ts` from `ArrayWalkCallback | PhpValue` to `ArrayWalkCallback`.
+  - Updated `docs/php-api-signatures.snapshot` for the narrowed helper and array callback signatures.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Boundary helpers can be narrowed safely when guarded conversion remains inside the implementation.
+  - Tight callback typing in exported APIs improves call-site inference and removes accidental permissiveness with low runtime risk.

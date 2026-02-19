@@ -3,7 +3,7 @@ src/php/_helpers/_arrayPointers.ts :: export function getEntryAtCursor<T>(target
 src/php/_helpers/_arrayPointers.ts :: export function getPointerState<T>(target: PhpArrayLike<T>, initialize = true): PointerState | null
 src/php/_helpers/_bc.ts :: export function _bc(): ReturnType<typeof createBcLibrary>
 src/php/_helpers/_callbackResolver.ts :: export function resolveNumericComparator<TLeft extends PhpValue = PhpValue, TRight extends PhpValue = PhpValue>( callback: PhpValue, invalidMessage: string, ): (left: TLeft, right: TRight) => number
-src/php/_helpers/_callbackResolver.ts :: export function resolvePhpCallable<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue>( callback: PhpCallableDescriptor<TArgs, TResult> | PhpValue, options: CallbackResolverOptions, ): ResolvedCallback<TArgs, TResult>
+src/php/_helpers/_callbackResolver.ts :: export function resolvePhpCallable<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue>( callback: PhpCallableDescriptor<TArgs, TResult>, options: CallbackResolverOptions, ): ResolvedCallback<TArgs, TResult>
 src/php/_helpers/_ctypePattern.ts :: export function getCtypePattern(key: string): RegExp | undefined
 src/php/_helpers/_phpCastString.ts :: export function _phpCastString(value: PhpMixed): string
 src/php/_helpers/_phpRuntimeState.ts :: export function ensurePhpRuntimeState(): PhpRuntimeState
@@ -88,7 +88,7 @@ src/php/array/array_uintersect_uassoc.ts :: export function array_uintersect_uas
 src/php/array/array_unique.ts :: export function array_unique<T>(inputArr: T[] | PhpAssoc<T>): PhpAssoc<T> | false
 src/php/array/array_unshift.ts :: export function array_unshift(array: PhpMixed[], ...values: PhpMixed[]): number
 src/php/array/array_values.ts :: export function array_values<T>(input: T[] | PhpAssoc<T>): T[]
-src/php/array/array_walk.ts :: export function array_walk<TValue = PhpValue, TUserdata = PhpValue>( array: TValue[] | PhpAssoc<TValue>, funcname: ArrayWalkCallback<TValue, TUserdata> | PhpValue, userdata?: TUserdata, ): boolean
+src/php/array/array_walk.ts :: export function array_walk<TValue = PhpValue, TUserdata = PhpValue>( array: TValue[] | PhpAssoc<TValue>, funcname: ArrayWalkCallback<TValue, TUserdata>, userdata?: TUserdata, ): boolean
 src/php/array/array_walk_recursive.ts :: export function array_walk_recursive<TValue = PhpValue, TUserdata = PhpValue>( array: PhpValue, funcname: ArrayWalkRecursiveCallback<TValue, TUserdata>, userdata?: TUserdata, ): boolean
 src/php/array/arsort.ts :: export function arsort<T extends PhpValue>( inputArr: Record<string, T>, sortFlags?: string, ): boolean | Record<string, T>
 src/php/array/asort.ts :: export function asort<T extends PhpValue>( inputArr: Record<string, T>, sortFlags?: string, ): boolean | Record<string, T>

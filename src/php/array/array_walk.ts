@@ -4,7 +4,7 @@ type ArrayWalkCallback<TValue, TUserdata> = (value: TValue, key: string, userdat
 
 export function array_walk<TValue = PhpValue, TUserdata = PhpValue>(
   array: TValue[] | PhpAssoc<TValue>,
-  funcname: ArrayWalkCallback<TValue, TUserdata> | PhpValue,
+  funcname: ArrayWalkCallback<TValue, TUserdata>,
   userdata?: TUserdata,
 ): boolean {
   //  discuss at: https://locutus.io/php/array_walk/
@@ -24,10 +24,6 @@ export function array_walk<TValue = PhpValue, TUserdata = PhpValue>(
   }
 
   try {
-    if (typeof funcname !== 'function') {
-      return false
-    }
-
     const target = toPhpArrayObject<TValue>(array)
     const hasUserdata = typeof userdata !== 'undefined'
     for (const [key, value] of Object.entries(target)) {
