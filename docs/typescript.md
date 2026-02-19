@@ -899,3 +899,18 @@ To fix a `@ts-nocheck` file:
     - `corepack yarn check`
 - Key learnings
   - Redundant false unions are a low-risk, high-volume cleanup pattern that improves API clarity and completion quality without runtime churn.
+
+## Iteration 39
+
+- Plans
+  - Tighten variadic callback typing in `array_map` so declared callback args reflect runtime `undefined` padding.
+- Progress
+  - `src/php/array/array_map.ts`
+    - added `ArrayMapCallbackArgsVariadic = Array<PhpMixed | undefined>`.
+    - narrowed variadic callback overloads and implementation callback type from `PhpMixed[]` to `ArrayMapCallbackArgsVariadic`.
+    - aligned `resolvePhpCallable` generic argument and internal `args` arrays with the new variadic callback arg type.
+  - Updated `docs/php-api-signatures.snapshot`.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Encoding optionality in variadic callback argument tuples prevents silent unsoundness and materially improves callback-site inference for uneven input arrays.

@@ -59,8 +59,8 @@ src/php/array/array_keys.ts :: export function array_keys<T>(input: PhpAssoc<T>,
 src/php/array/array_map.ts :: export function array_map(callback: null | undefined, ...inputArrays: ArrayMapInputs): PhpMixed[][]
 src/php/array/array_map.ts :: export function array_map<TLeft extends PhpMixed, TRight extends PhpMixed, TResult>( callback: PhpCallableDescriptor<ArrayMapCallbackArgs2<TLeft, TRight>, TResult>, inputArrayLeft: TLeft[], inputArrayRight: TRight[], ): TResult[]
 src/php/array/array_map.ts :: export function array_map<TLeft extends PhpMixed, TRight extends PhpMixed>( callback: null | undefined, inputArrayLeft: TLeft[], inputArrayRight: TRight[], ): ArrayMapCallbackArgs2<TLeft, TRight>[]
-src/php/array/array_map.ts :: export function array_map<TResult = PhpMixed>( callback: PhpCallableDescriptor<PhpMixed[], TResult> | null | undefined, ...inputArrays: ArrayMapInputs ): TResult[] | PhpMixed[][]
-src/php/array/array_map.ts :: export function array_map<TResult = PhpMixed>( callback: PhpCallableDescriptor<PhpMixed[], TResult>, ...inputArrays: ArrayMapInputs ): TResult[]
+src/php/array/array_map.ts :: export function array_map<TResult = PhpMixed>( callback: PhpCallableDescriptor<ArrayMapCallbackArgsVariadic, TResult> | null | undefined, ...inputArrays: ArrayMapInputs ): TResult[] | PhpMixed[][]
+src/php/array/array_map.ts :: export function array_map<TResult = PhpMixed>( callback: PhpCallableDescriptor<ArrayMapCallbackArgsVariadic, TResult>, ...inputArrays: ArrayMapInputs ): TResult[]
 src/php/array/array_map.ts :: export function array_map<TValue extends PhpMixed, TResult>( callback: PhpCallableDescriptor<ArrayMapCallbackArgs1<TValue>, TResult>, inputArray: TValue[], ): TResult[]
 src/php/array/array_map.ts :: export function array_map<TValue extends PhpMixed>( callback: null | undefined, inputArray: TValue[], ): ArrayMapCallbackArgs1<TValue>[]
 src/php/array/array_merge.ts :: export function array_merge<T>(...args: Array<T[] | AssociativeArray<T>>): T[] | AssociativeArray<T>

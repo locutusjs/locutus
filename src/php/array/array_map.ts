@@ -4,6 +4,7 @@ import type { PhpCallableDescriptor, PhpMixed } from '../_helpers/_phpTypes.ts'
 type ArrayMapInputs = [firstArray: PhpMixed[], ...restArrays: PhpMixed[][]]
 type ArrayMapCallbackArgs1<TValue extends PhpMixed> = [TValue | undefined]
 type ArrayMapCallbackArgs2<TLeft extends PhpMixed, TRight extends PhpMixed> = [TLeft | undefined, TRight | undefined]
+type ArrayMapCallbackArgsVariadic = Array<PhpMixed | undefined>
 
 export function array_map<TValue extends PhpMixed, TResult>(
   callback: PhpCallableDescriptor<ArrayMapCallbackArgs1<TValue>, TResult>,
@@ -28,14 +29,14 @@ export function array_map<TLeft extends PhpMixed, TRight extends PhpMixed>(
 ): ArrayMapCallbackArgs2<TLeft, TRight>[]
 
 export function array_map<TResult = PhpMixed>(
-  callback: PhpCallableDescriptor<PhpMixed[], TResult>,
+  callback: PhpCallableDescriptor<ArrayMapCallbackArgsVariadic, TResult>,
   ...inputArrays: ArrayMapInputs
 ): TResult[]
 
 export function array_map(callback: null | undefined, ...inputArrays: ArrayMapInputs): PhpMixed[][]
 
 export function array_map<TResult = PhpMixed>(
-  callback: PhpCallableDescriptor<PhpMixed[], TResult> | null | undefined,
+  callback: PhpCallableDescriptor<ArrayMapCallbackArgsVariadic, TResult> | null | undefined,
   ...inputArrays: ArrayMapInputs
 ): TResult[] | PhpMixed[][] {
   //  discuss at: https://locutus.io/php/array_map/
@@ -54,7 +55,7 @@ export function array_map<TResult = PhpMixed>(
   const resolved =
     callback === null || typeof callback === 'undefined'
       ? null
-      : resolvePhpCallable<PhpMixed[], TResult>(callback, {
+      : resolvePhpCallable<ArrayMapCallbackArgsVariadic, TResult>(callback, {
           invalidMessage: 'array_map(): Invalid callback',
           missingScopeMessage: (scopeName: string) => 'Object not found: ' + scopeName,
         })
@@ -62,7 +63,7 @@ export function array_map<TResult = PhpMixed>(
   if (resolved) {
     const mapped: TResult[] = []
     for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
-      const args: PhpMixed[] = []
+      const args: ArrayMapCallbackArgsVariadic = []
       for (let arrayIndex = 0; arrayIndex < argc - 1; arrayIndex++) {
         args.push(inputArrays[arrayIndex]?.[itemIndex])
       }
@@ -73,7 +74,7 @@ export function array_map<TResult = PhpMixed>(
 
   const mapped: PhpMixed[][] = []
   for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
-    const args: PhpMixed[] = []
+    const args: ArrayMapCallbackArgsVariadic = []
     for (let arrayIndex = 0; arrayIndex < argc - 1; arrayIndex++) {
       args.push(inputArrays[arrayIndex]?.[itemIndex])
     }
