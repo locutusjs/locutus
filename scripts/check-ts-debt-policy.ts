@@ -32,6 +32,9 @@ const MAX_SRC_PHP_VAR_AS_EXPRESSION = 0
 const MAX_SRC_PHP_XDIFF_AS_EXPRESSION = 0
 const MAX_SRC_PHP_LOCAL_PHPVALUE_ALIAS = 0
 const MAX_SRC_PHP_DIRECT_INI_GLOBAL_READS = 0
+const MAX_SRC_PHP_PHPMIXED_KEYWORD = 94
+const MAX_SRC_PHP_ARRAY_PHPMIXED_KEYWORD = 15
+const MAX_SRC_PHP_VAR_PHPMIXED_KEYWORD = 9
 
 const cwd = process.cwd()
 const srcDir = path.join(cwd, 'src')
@@ -68,6 +71,9 @@ const miscAsExpressionFindings: Finding[] = []
 const pcreAsExpressionFindings: Finding[] = []
 const varAsExpressionFindings: Finding[] = []
 const xdiffAsExpressionFindings: Finding[] = []
+const phpMixedFindings: Finding[] = []
+const arrayPhpMixedFindings: Finding[] = []
+const varPhpMixedFindings: Finding[] = []
 let srcPhpRawIndexSignatureUnknownCount = 0
 let srcPhpExportedUnknownReturnTypeCount = 0
 let srcPhpExportedObjectKeywordCount = 0
@@ -93,6 +99,9 @@ let srcPhpVarAsExpressionCount = 0
 let srcPhpXdiffAsExpressionCount = 0
 let srcPhpLocalPhpValueAliasCount = 0
 let srcPhpDirectIniGlobalReadCount = 0
+let srcPhpPhpMixedKeywordCount = 0
+let srcPhpArrayPhpMixedKeywordCount = 0
+let srcPhpVarPhpMixedKeywordCount = 0
 
 const countFunctionTypeReferences = (sourceFile: ts.SourceFile): number => {
   let count = 0
@@ -303,8 +312,23 @@ for (const filePath of sourceFiles) {
   if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}`)) {
     const srcPhpUnknownCount = (sourceText.match(/\bunknown\b/g) || []).length
     srcPhpUnknownKeywordCount += srcPhpUnknownCount
+    const srcPhpMixedCount = (sourceText.match(/\bPhpMixed\b/g) || []).length
+    srcPhpPhpMixedKeywordCount += srcPhpMixedCount
+    if (srcPhpMixedCount > 0) {
+      phpMixedFindings.push({
+        file: path.relative(cwd, filePath),
+        count: srcPhpMixedCount,
+      })
+    }
     if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}array${path.sep}`)) {
       srcPhpArrayUnknownKeywordCount += srcPhpUnknownCount
+      srcPhpArrayPhpMixedKeywordCount += srcPhpMixedCount
+      if (srcPhpMixedCount > 0) {
+        arrayPhpMixedFindings.push({
+          file: path.relative(cwd, filePath),
+          count: srcPhpMixedCount,
+        })
+      }
       const arrayAsExpressionCount = countAsExpressions(sourceFile)
       srcPhpArrayAsExpressionCount += arrayAsExpressionCount
       if (arrayAsExpressionCount > 0) {
@@ -316,6 +340,13 @@ for (const filePath of sourceFiles) {
     }
     if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}var${path.sep}`)) {
       srcPhpVarUnknownKeywordCount += srcPhpUnknownCount
+      srcPhpVarPhpMixedKeywordCount += srcPhpMixedCount
+      if (srcPhpMixedCount > 0) {
+        varPhpMixedFindings.push({
+          file: path.relative(cwd, filePath),
+          count: srcPhpMixedCount,
+        })
+      }
       const varAsExpressionCount = countAsExpressions(sourceFile)
       srcPhpVarAsExpressionCount += varAsExpressionCount
       if (varAsExpressionCount > 0) {
@@ -645,11 +676,31 @@ if (srcPhpUnknownKeywordCount > MAX_SRC_PHP_UNKNOWN_KEYWORD) {
   )
 }
 
+if (srcPhpPhpMixedKeywordCount > MAX_SRC_PHP_PHPMIXED_KEYWORD) {
+  hasFailure = true
+  console.error(
+    `src/php 'PhpMixed' keyword count increased: ${srcPhpPhpMixedKeywordCount} > ${MAX_SRC_PHP_PHPMIXED_KEYWORD}`,
+  )
+  for (const finding of phpMixedFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
 if (srcPhpArrayUnknownKeywordCount > MAX_SRC_PHP_ARRAY_UNKNOWN_KEYWORD) {
   hasFailure = true
   console.error(
     `src/php/array 'unknown' keyword count increased: ${srcPhpArrayUnknownKeywordCount} > ${MAX_SRC_PHP_ARRAY_UNKNOWN_KEYWORD}`,
   )
+}
+
+if (srcPhpArrayPhpMixedKeywordCount > MAX_SRC_PHP_ARRAY_PHPMIXED_KEYWORD) {
+  hasFailure = true
+  console.error(
+    `src/php/array 'PhpMixed' keyword count increased: ${srcPhpArrayPhpMixedKeywordCount} > ${MAX_SRC_PHP_ARRAY_PHPMIXED_KEYWORD}`,
+  )
+  for (const finding of arrayPhpMixedFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
 }
 
 if (srcPhpArrayAsExpressionCount > MAX_SRC_PHP_ARRAY_AS_EXPRESSION) {
@@ -667,6 +718,16 @@ if (srcPhpVarUnknownKeywordCount > MAX_SRC_PHP_VAR_UNKNOWN_KEYWORD) {
   console.error(
     `src/php/var 'unknown' keyword count increased: ${srcPhpVarUnknownKeywordCount} > ${MAX_SRC_PHP_VAR_UNKNOWN_KEYWORD}`,
   )
+}
+
+if (srcPhpVarPhpMixedKeywordCount > MAX_SRC_PHP_VAR_PHPMIXED_KEYWORD) {
+  hasFailure = true
+  console.error(
+    `src/php/var 'PhpMixed' keyword count increased: ${srcPhpVarPhpMixedKeywordCount} > ${MAX_SRC_PHP_VAR_PHPMIXED_KEYWORD}`,
+  )
+  for (const finding of varPhpMixedFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
 }
 
 if (srcPhpVarAsExpressionCount > MAX_SRC_PHP_VAR_AS_EXPRESSION) {
@@ -834,5 +895,5 @@ if (hasFailure) {
 }
 
 console.log(
-  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php exported object keyword count not increased, src/php exported empty-object count not increased, src/php exported missing return-type count not increased, src/php unknown keyword count not increased, src/php/array unknown keyword count not increased, src/php/array as-expression count not increased, src/php/var unknown keyword count not increased, src/php/var as-expression count not increased, src/php/strings as-expression count not increased, src/php/ctype as-expression count not increased, src/php/info as-expression count not increased, src/php/_helpers as-expression count not increased, src/php/url as-expression count not increased, src/php/funchand as-expression count not increased, src/php/json as-expression count not increased, src/php/datetime as-expression count not increased, src/php/bc as-expression count not increased, src/php/filesystem as-expression count not increased, src/php/misc as-expression count not increased, src/php/pcre as-expression count not increased, src/php/xdiff as-expression count not increased, src/php local PhpValue alias count not increased, src/php direct $locutus?.php?.ini reads not increased',
+  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php exported object keyword count not increased, src/php exported empty-object count not increased, src/php exported missing return-type count not increased, src/php unknown keyword count not increased, src/php PhpMixed keyword count not increased, src/php/array unknown keyword count not increased, src/php/array PhpMixed keyword count not increased, src/php/array as-expression count not increased, src/php/var unknown keyword count not increased, src/php/var PhpMixed keyword count not increased, src/php/var as-expression count not increased, src/php/strings as-expression count not increased, src/php/ctype as-expression count not increased, src/php/info as-expression count not increased, src/php/_helpers as-expression count not increased, src/php/url as-expression count not increased, src/php/funchand as-expression count not increased, src/php/json as-expression count not increased, src/php/datetime as-expression count not increased, src/php/bc as-expression count not increased, src/php/filesystem as-expression count not increased, src/php/misc as-expression count not increased, src/php/pcre as-expression count not increased, src/php/xdiff as-expression count not increased, src/php local PhpValue alias count not increased, src/php direct $locutus?.php?.ini reads not increased',
 )

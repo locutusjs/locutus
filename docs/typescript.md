@@ -1077,3 +1077,25 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Centralizing callback resolution through one helper tightens type safety and behavior consistency at the same time.
   - Sort-family cleanup is high-yield because it removes repetitive dynamic callback branches across multiple APIs in one pass.
+
+## Iteration 47
+
+- Plans
+  - Add a CI debt-policy ratchet for `PhpMixed` usage so newly achieved narrowing cannot regress.
+  - Keep ratchets scoped and measurable (global `src/php` + focused `array`/`var` subsets).
+- Progress
+  - Updated `scripts/check-ts-debt-policy.ts` to track and gate:
+    - total `src/php` `PhpMixed` keyword occurrences.
+    - `src/php/array` `PhpMixed` keyword occurrences.
+    - `src/php/var` `PhpMixed` keyword occurrences.
+  - Established new ceilings at current baseline (occurrence-count based):
+    - `MAX_SRC_PHP_PHPMIXED_KEYWORD = 94`
+    - `MAX_SRC_PHP_ARRAY_PHPMIXED_KEYWORD = 15`
+    - `MAX_SRC_PHP_VAR_PHPMIXED_KEYWORD = 9`
+  - Extended success/failure reporting to include the new `PhpMixed` ratchets.
+  - Validation passed:
+    - `corepack yarn lint:ts:debt:policy`
+    - `corepack yarn check`
+- Key learnings
+  - Ratcheting broad-type keywords by occurrence count (not line count) provides stable, enforcement-grade progress tracking.
+  - Adding policy checks right after cleanup passes locks in gains and prevents backsliding during high-velocity refactors.
