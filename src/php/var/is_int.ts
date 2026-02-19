@@ -1,6 +1,6 @@
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpValue } from '../_helpers/_phpTypes.ts'
 
-export function is_int(mixedVar: PhpMixed): mixedVar is number {
+export function is_int(mixedVar: PhpValue): mixedVar is number {
   //      discuss at: https://locutus.io/php/is_int/
   // parity verified: PHP 8.3
   //     original by: Alex

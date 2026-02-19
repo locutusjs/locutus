@@ -1,6 +1,8 @@
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { NumericLike, PhpNullish } from '../_helpers/_phpTypes.ts'
 
-export function intval(mixedVar: PhpMixed, base?: number): number {
+type IntvalInput = NumericLike | boolean | PhpNullish
+
+export function intval(mixedVar: IntvalInput, base?: number): number {
   //      discuss at: https://locutus.io/php/intval/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -37,6 +39,8 @@ export function intval(mixedVar: PhpMixed, base?: number): number {
     }
     tmp = Number.parseInt(mixedVar, base || 10)
     return Number.isNaN(tmp) || !Number.isFinite(tmp) ? 0 : tmp
+  } else if (typeof mixedVar === 'bigint') {
+    return Number(mixedVar)
   } else if (typeof mixedVar === 'number' && Number.isFinite(mixedVar)) {
     return mixedVar < 0 ? Math.ceil(mixedVar) : Math.floor(mixedVar)
   } else {

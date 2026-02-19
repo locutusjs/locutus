@@ -1,6 +1,8 @@
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { NumericLike, PhpNullish } from '../_helpers/_phpTypes.ts'
 
-export function floatval(mixedVar: PhpMixed): number {
+export type FloatvalInput = NumericLike | boolean | PhpNullish
+
+export function floatval(mixedVar: FloatvalInput): number {
   //      discuss at: https://locutus.io/php/floatval/
   // parity verified: PHP 8.3
   //     original by: Michael White (https://getsprink.com)

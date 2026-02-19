@@ -1,6 +1,6 @@
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpValue } from '../_helpers/_phpTypes.ts'
 
-export function is_numeric(mixedVar: PhpMixed): mixedVar is number | string {
+export function is_numeric(mixedVar: PhpValue): mixedVar is number | string {
   //  discuss at: https://locutus.io/php/is_numeric/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: David

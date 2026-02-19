@@ -1,6 +1,6 @@
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpValue } from '../_helpers/_phpTypes.ts'
 
-export function boolval(mixedVar: PhpMixed): boolean {
+export function boolval(mixedVar: PhpValue): boolean {
   // parity verified: PHP 8.3
   //     original by: Will Rowe
   //       example 1: boolval(true)

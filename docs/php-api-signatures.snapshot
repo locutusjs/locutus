@@ -352,12 +352,13 @@ src/php/url/rawurldecode.ts :: export function rawurldecode(str: string): string
 src/php/url/rawurlencode.ts :: export function rawurlencode(str: string): string
 src/php/url/urldecode.ts :: export function urldecode(str: string): string
 src/php/url/urlencode.ts :: export function urlencode(str: string): string
-src/php/var/boolval.ts :: export function boolval(mixedVar: PhpMixed): boolean
-src/php/var/doubleval.ts :: export function doubleval(mixedVar: PhpMixed): number
+src/php/var/boolval.ts :: export function boolval(mixedVar: PhpValue): boolean
+src/php/var/doubleval.ts :: export function doubleval(mixedVar: FloatvalInput): number
 src/php/var/empty.ts :: export function empty(mixedVar: PhpValue): boolean
-src/php/var/floatval.ts :: export function floatval(mixedVar: PhpMixed): number
+src/php/var/floatval.ts :: export function floatval(mixedVar: FloatvalInput): number
+src/php/var/floatval.ts :: export type FloatvalInput = NumericLike | boolean | PhpNullish
 src/php/var/gettype.ts :: export function gettype(mixedVar: PhpValue): string
-src/php/var/intval.ts :: export function intval(mixedVar: PhpMixed, base?: number): number
+src/php/var/intval.ts :: export function intval(mixedVar: IntvalInput, base?: number): number
 src/php/var/is_array.ts :: export function is_array(mixedVar: PhpValue): boolean
 src/php/var/is_binary.ts :: export function is_binary(vr: string): boolean
 src/php/var/is_bool.ts :: export function is_bool(mixedVar: boolean | number): boolean
@@ -365,20 +366,20 @@ src/php/var/is_buffer.ts :: export function is_buffer(vr: string): boolean
 src/php/var/is_callable.ts :: export function is_callable(mixedVar: PhpValue, syntaxOnly?: boolean, callableName?: string): boolean
 src/php/var/is_double.ts :: export function is_double(mixedVar: number): boolean
 src/php/var/is_float.ts :: export function is_float(mixedVar: number): boolean
-src/php/var/is_int.ts :: export function is_int(mixedVar: PhpMixed): mixedVar is number
+src/php/var/is_int.ts :: export function is_int(mixedVar: PhpValue): mixedVar is number
 src/php/var/is_integer.ts :: export function is_integer(mixedVar: number): boolean
 src/php/var/is_long.ts :: export function is_long(mixedVar: number): boolean
 src/php/var/is_null.ts :: export function is_null(mixedVar: string | null): boolean
-src/php/var/is_numeric.ts :: export function is_numeric(mixedVar: PhpMixed): mixedVar is number | string
-src/php/var/is_object.ts :: export function is_object(mixedVar: PhpMixed): mixedVar is PhpAssoc<PhpMixed>
+src/php/var/is_numeric.ts :: export function is_numeric(mixedVar: PhpValue): mixedVar is number | string
+src/php/var/is_object.ts :: export function is_object(mixedVar: PhpValue): mixedVar is PhpAssoc<PhpValue>
 src/php/var/is_real.ts :: export function is_real(mixedVar: number): boolean
-src/php/var/is_scalar.ts :: export function is_scalar(mixedVar: PhpMixed): mixedVar is PhpScalar
+src/php/var/is_scalar.ts :: export function is_scalar(mixedVar: PhpValue): mixedVar is PhpScalar
 src/php/var/is_string.ts :: export function is_string(mixedVar: string | number): boolean
 src/php/var/is_unicode.ts :: export function is_unicode(vr: PhpMixed): vr is string
 src/php/var/isset.ts :: export function isset(...values: PhpMixed[]): boolean
 src/php/var/print_r.ts :: export function print_r(array: PhpMixed, returnVal?: boolean): string | true
 src/php/var/serialize.ts :: export function serialize(mixedValue: PhpValue): string
-src/php/var/strval.ts :: export function strval(str: PhpMixed): string
+src/php/var/strval.ts :: export function strval(str: PhpValue): string
 src/php/var/unserialize.ts :: export function unserialize(str: PhpMixed, errorMode: ErrorMode = 'log'): UnserializedValue | false
 src/php/var/var_dump.ts :: export function var_dump(...args: PhpValue[]): string
 src/php/var/var_export.ts :: export function var_export(mixedExpression: PhpValue, boolReturn: true, idtLevel?: number): VarExportResult

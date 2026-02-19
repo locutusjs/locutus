@@ -1004,3 +1004,25 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Lattice-first helper expansion enables broad signature tightening with minimal runtime churn when comparator/callback semantics are centralized.
   - Numeric comparator return narrowing (`NumericLike`) is a high-leverage strictness win across multiple array families with low implementation risk.
+
+## Iteration 44
+
+- Plans
+  - Burn down `PhpMixed` usage in coercion-heavy `src/php/var/*` APIs.
+  - Replace broad parameter aliases with narrower `PhpValue`/scalar-oriented types while preserving runtime behavior.
+  - Keep the pass scoped to `intval`, `floatval`, `doubleval`, `boolval`, `strval`, `is_numeric`, `is_int`, `is_scalar`, and `is_object`.
+- Progress
+  - Narrowed `src/php/var/{boolval,strval,is_numeric,is_int,is_scalar,is_object}.ts` from `PhpMixed` inputs to `PhpValue`/`PhpScalar`-oriented signatures.
+  - Narrowed numeric coercion surfaces:
+    - `src/php/var/intval.ts` now uses `IntvalInput = NumericLike | boolean | PhpNullish`.
+    - `src/php/var/floatval.ts` now exports `FloatvalInput = NumericLike | boolean | PhpNullish`.
+    - `src/php/var/doubleval.ts` now consumes `FloatvalInput` directly.
+  - Updated `docs/php-api-signatures.snapshot` for intentional public signature changes.
+  - Reduced `PhpMixed` usage:
+    - `src/php/**`: `126 -> 108` (`rg` line count).
+    - `src/php/var/**`: `27 -> 9` (`rg` line count).
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Introducing shared input aliases (`FloatvalInput`, `IntvalInput`) gives better API clarity and reuse while preserving behavior.
+  - Concentrated family passes can materially reduce broad-type footprint without touching tsconfig or runtime architecture.
