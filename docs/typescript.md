@@ -1439,3 +1439,51 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Even when runtime state remains dynamic, routing access through typed helper boundaries gives immediate narrowing gains with limited behavioral risk.
   - Ratcheting runtime-dynamism counters (`Reflect`/`globalThis`) turns a large, fuzzy cleanup into enforceable incremental burn-down.
+
+## Iteration 59
+
+- Plans
+  - Attack the remaining runtime-dynamism hotspot cluster by replacing direct `Reflect.get/set` and `globalThis` access with typed runtime/global helpers.
+  - Extend `_phpRuntimeState` into a reusable typed boundary for locale groups, global entry lookup, callable lookup, and object-entry lookup.
+  - Ratchet runtime-dynamism policy caps to the new measured floor after full verification.
+- Progress
+  - Expanded `src/php/_helpers/_phpRuntimeState.ts` with typed helper surface:
+    - runtime getters: `getPhpRuntimeString()`
+    - global accessors: `getPhpGlobalEntry()`, `getPhpGlobalScope()`, `getPhpGlobalCallable()`
+    - object access helper: `getPhpObjectEntry()`
+    - locale helpers: `getPhpLocaleGroup()`
+    - runtime state now carries `localeCategories`.
+  - Migrated hotspot files to helper-driven typed flows (removed direct `Reflect/globalThis` usage):
+    - `src/php/_helpers/_callbackResolver.ts`
+    - `src/php/_helpers/_ctypePattern.ts`
+    - `src/php/datetime/strftime.ts`
+    - `src/php/funchand/call_user_func_array.ts`
+    - `src/php/funchand/function_exists.ts`
+    - `src/php/funchand/get_defined_functions.ts`
+    - `src/php/info/getenv.ts`
+    - `src/php/pcre/sql_regcase.ts`
+    - `src/php/strings/localeconv.ts`
+    - `src/php/strings/money_format.ts`
+    - `src/php/strings/nl_langinfo.ts`
+    - `src/php/strings/parse_str.ts`
+    - `src/php/strings/strcoll.ts`
+    - `src/php/strings/strtok.ts`
+    - `src/php/url/base64_decode.ts`
+    - `src/php/url/base64_encode.ts`
+  - Added resilient locale fallbacks for CTYPE-dependent helpers to prevent global-state/order flakes:
+    - fallback regex map in `_ctypePattern.ts`
+    - uppercase/lowercase fallback in `sql_regcase.ts`
+  - Preserved compatibility behavior in `_phpRuntimeState` runtime-bag initialization (do not over-constrain `$locutus` object shape).
+  - Updated API snapshot (`docs/php-api-signatures.snapshot`) for intentional helper export changes.
+  - Ratcheted policy ceilings in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_REFLECT_GET_SET`: `132 -> 24`
+    - `MAX_SRC_PHP_GLOBALTHIS_IDENTIFIER`: `40 -> 9`
+  - Measured reduction:
+    - `Reflect.get/set` in `src/php/**`: `132 -> 24`
+    - `globalThis` identifiers in `src/php/**`: `40 -> 9`
+    - original 13-file hotspot cluster: `82/25 -> 0/0` (`Reflect/globalThis`)
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Centralizing dynamic runtime access into a typed boundary gives large strictness gains quickly, but compatibility with legacy runtime shape assumptions must be preserved to avoid order-dependent flakes.
+  - Locale-heavy helpers are safer when they have deterministic fallbacks for critical pattern data (`LC_CTYPE`) instead of assuming global runtime state is always pristine.

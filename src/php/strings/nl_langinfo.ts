@@ -1,3 +1,5 @@
+import { getPhpLocaleGroup } from '../_helpers/_phpRuntimeState.ts'
+import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 import { setlocale } from '../strings/setlocale.ts'
 
 type LocaleTime = {
@@ -13,56 +15,23 @@ type LocaleTime = {
   [key: string]: string | string[] | undefined
 }
 
-type LocaleMonetary = { [key: string]: string | string[] | undefined }
-type LocaleNumeric = { [key: string]: string | string[] | undefined }
-type LocaleMessages = { [key: string]: string | undefined }
-type LocaleCType = { [key: string]: string | undefined }
-type LocaleData = {
-  LC_TIME: LocaleTime
-  LC_MONETARY: LocaleMonetary
-  LC_NUMERIC: LocaleNumeric
-  LC_MESSAGES: LocaleMessages
-  LC_CTYPE: LocaleCType
-}
 type LocaleCategoryName = 'LC_TIME' | 'LC_MONETARY' | 'LC_NUMERIC' | 'LC_MESSAGES' | 'LC_CTYPE'
 
-const isStringArray = (value: object, key: string): boolean => {
-  const candidate = Reflect.get(value, key)
+const isStringArray = (value: PhpAssoc<PhpInput>, key: string): boolean => {
+  const candidate = value[key]
   return Array.isArray(candidate) && candidate.every((item) => typeof item === 'string')
 }
 
-const isLocaleTime = (value: object): value is LocaleTime =>
+const isLocaleTime = (value: PhpAssoc<PhpInput>): value is LocaleTime =>
   isStringArray(value, 'a') &&
   isStringArray(value, 'A') &&
   isStringArray(value, 'b') &&
   isStringArray(value, 'B') &&
   isStringArray(value, 'p') &&
-  typeof Reflect.get(value, 'c') === 'string' &&
-  typeof Reflect.get(value, 'x') === 'string' &&
-  typeof Reflect.get(value, 'X') === 'string' &&
-  typeof Reflect.get(value, 'r') === 'string'
-
-const isLocaleData = (value: object): value is LocaleData => {
-  const lcTime = Reflect.get(value, 'LC_TIME')
-  const lcMonetary = Reflect.get(value, 'LC_MONETARY')
-  const lcNumeric = Reflect.get(value, 'LC_NUMERIC')
-  const lcMessages = Reflect.get(value, 'LC_MESSAGES')
-  const lcCType = Reflect.get(value, 'LC_CTYPE')
-
-  return (
-    typeof lcTime === 'object' &&
-    lcTime !== null &&
-    isLocaleTime(lcTime) &&
-    typeof lcMonetary === 'object' &&
-    lcMonetary !== null &&
-    typeof lcNumeric === 'object' &&
-    lcNumeric !== null &&
-    typeof lcMessages === 'object' &&
-    lcMessages !== null &&
-    typeof lcCType === 'object' &&
-    lcCType !== null
-  )
-}
+  typeof value.c === 'string' &&
+  typeof value.x === 'string' &&
+  typeof value.X === 'string' &&
+  typeof value.r === 'string'
 
 export function nl_langinfo(item: string): string | string[] | false {
   //  discuss at: https://locutus.io/php/nl_langinfo/
@@ -72,80 +41,55 @@ export function nl_langinfo(item: string): string | string[] | false {
 
   setlocale('LC_ALL', 0) // Ensure locale data is available
 
-  const locutus = Reflect.get(globalThis, '$locutus')
-  if (typeof locutus !== 'object' || locutus === null) {
-    return false
-  }
-  const php = Reflect.get(locutus, 'php')
-  if (typeof php !== 'object' || php === null) {
-    return false
-  }
-  const toValue = (value: string | string[] | undefined): string | string[] | false =>
+  const toValue = (value: PhpInput): string | string[] | false =>
     typeof value === 'string' || Array.isArray(value) ? value : false
-  const localeFor = (category: LocaleCategoryName): LocaleData | false => {
-    const localeCategories = Reflect.get(php, 'localeCategories')
-    const locales = Reflect.get(php, 'locales')
-    if (
-      typeof localeCategories !== 'object' ||
-      localeCategories === null ||
-      typeof locales !== 'object' ||
-      locales === null
-    ) {
-      return false
-    }
-    const localeName = Reflect.get(localeCategories, category)
-    if (typeof localeName !== 'string') {
-      return false
-    }
-    const localeValue = Reflect.get(locales, localeName)
-    if (typeof localeValue !== 'object' || localeValue === null || !isLocaleData(localeValue)) {
-      return false
-    }
-    return localeValue
+  const localeFor = (category: LocaleCategoryName): PhpAssoc<PhpInput> | false => {
+    const localeGroup = getPhpLocaleGroup(category, category)
+    return localeGroup || false
   }
 
-  let loc = localeFor('LC_TIME')
-  if (!loc) {
+  const lcTime = localeFor('LC_TIME')
+  if (!lcTime || !isLocaleTime(lcTime)) {
     return false
   }
 
   if (item.indexOf('ABDAY_') === 0) {
     const index = Number.parseInt(item.replace(/^ABDAY_/, ''), 10) - 1
-    return loc.LC_TIME.a[index] ?? false
+    return lcTime.a[index] ?? false
   } else if (item.indexOf('DAY_') === 0) {
     const index = Number.parseInt(item.replace(/^DAY_/, ''), 10) - 1
-    return loc.LC_TIME.A[index] ?? false
+    return lcTime.A[index] ?? false
   } else if (item.indexOf('ABMON_') === 0) {
     const index = Number.parseInt(item.replace(/^ABMON_/, ''), 10) - 1
-    return loc.LC_TIME.b[index] ?? false
+    return lcTime.b[index] ?? false
   } else if (item.indexOf('MON_') === 0) {
     const index = Number.parseInt(item.replace(/^MON_/, ''), 10) - 1
-    return loc.LC_TIME.B[index] ?? false
+    return lcTime.B[index] ?? false
   } else {
     switch (item) {
       // More LC_TIME
       case 'AM_STR':
-        return loc.LC_TIME.p[0] ?? false
+        return lcTime.p[0] ?? false
       case 'PM_STR':
-        return loc.LC_TIME.p[1] ?? false
+        return lcTime.p[1] ?? false
       case 'D_T_FMT':
-        return loc.LC_TIME.c
+        return lcTime.c
       case 'D_FMT':
-        return loc.LC_TIME.x
+        return lcTime.x
       case 'T_FMT':
-        return loc.LC_TIME.X
+        return lcTime.X
       case 'T_FMT_AMPM':
-        return loc.LC_TIME.r
+        return lcTime.r
       case 'ERA':
       case 'ERA_YEAR':
       case 'ERA_D_T_FMT':
       case 'ERA_D_FMT':
       case 'ERA_T_FMT':
         // all fall-throughs
-        return toValue(loc.LC_TIME[item])
+        return toValue(lcTime[item])
     }
-    loc = localeFor('LC_MONETARY')
-    if (!loc) {
+    const lcMonetary = localeFor('LC_MONETARY')
+    if (!lcMonetary) {
       return false
     }
     let normalizedItem = item
@@ -169,30 +113,30 @@ export function nl_langinfo(item: string): string | string[] | false {
       case 'P_SIGN_POSN':
       case 'N_SIGN_POSN':
         // all fall-throughs
-        return toValue(loc.LC_MONETARY[normalizedItem.toLowerCase()])
+        return toValue(lcMonetary[normalizedItem.toLowerCase()])
       case 'MON_GROUPING':
         // Same as above, or return something different since this returns an array?
-        return toValue(loc.LC_MONETARY[normalizedItem.toLowerCase()])
+        return toValue(lcMonetary[normalizedItem.toLowerCase()])
     }
-    loc = localeFor('LC_NUMERIC')
-    if (!loc) {
+    const lcNumeric = localeFor('LC_NUMERIC')
+    if (!lcNumeric) {
       return false
     }
     switch (item) {
       case 'RADIXCHAR':
       case 'DECIMAL_POINT':
         // Fall-through
-        return toValue(loc.LC_NUMERIC[item.toLowerCase()])
+        return toValue(lcNumeric[item.toLowerCase()])
       case 'THOUSEP':
       case 'THOUSANDS_SEP':
         // Fall-through
-        return toValue(loc.LC_NUMERIC[item.toLowerCase()])
+        return toValue(lcNumeric[item.toLowerCase()])
       case 'GROUPING':
         // Same as above, or return something different since this returns an array?
-        return toValue(loc.LC_NUMERIC[item.toLowerCase()])
+        return toValue(lcNumeric[item.toLowerCase()])
     }
-    loc = localeFor('LC_MESSAGES')
-    if (!loc) {
+    const lcMessages = localeFor('LC_MESSAGES')
+    if (!lcMessages) {
       return false
     }
     switch (item) {
@@ -201,14 +145,14 @@ export function nl_langinfo(item: string): string | string[] | false {
       case 'YESSTR':
       case 'NOSTR':
         // all fall-throughs
-        return toValue(loc.LC_MESSAGES[item])
+        return toValue(lcMessages[item])
     }
-    loc = localeFor('LC_CTYPE')
-    if (!loc) {
+    const lcCtype = localeFor('LC_CTYPE')
+    if (!lcCtype) {
       return false
     }
     if (item === 'CODESET') {
-      return toValue(loc.LC_CTYPE[item])
+      return toValue(lcCtype[item])
     }
 
     return false

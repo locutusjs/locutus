@@ -1,3 +1,4 @@
+import { ensurePhpRuntimeState, getPhpGlobalScope } from '../_helpers/_phpRuntimeState.ts'
 import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 export function get_defined_functions(): string[] {
@@ -11,22 +12,15 @@ export function get_defined_functions(): string[] {
   //       example 1: var $result = Array.isArray($funcs) && $funcs.length > 0
   //       returns 1: true
 
-  const locutusValue = Reflect.get(globalThis, '$locutus')
-  const locutus = typeof locutusValue === 'object' && locutusValue !== null ? locutusValue : {}
-  if (locutusValue !== locutus) {
-    Reflect.set(globalThis, '$locutus', locutus)
-  }
-  const phpValue = Reflect.get(locutus, 'php')
-  if (typeof phpValue !== 'object' || phpValue === null) {
-    Reflect.set(locutus, 'php', {})
-  }
+  ensurePhpRuntimeState()
 
   const arr: string[] = []
   const already: Record<string, 1> = {}
+  const globalScope = getPhpGlobalScope()
 
-  for (const i in globalThis) {
+  for (const i in globalScope) {
     try {
-      const topLevelValue = Reflect.get(globalThis, i)
+      const topLevelValue = globalScope[i]
       if (typeof topLevelValue === 'function') {
         if (!already[i]) {
           already[i] = 1

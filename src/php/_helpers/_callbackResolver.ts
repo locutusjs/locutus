@@ -1,3 +1,4 @@
+import { getPhpGlobalEntry, getPhpObjectEntry } from './_phpRuntimeState.ts'
 import {
   isObjectLike,
   isPhpCallable,
@@ -33,7 +34,7 @@ export function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableAr
   }
 
   if (typeof callback === 'string') {
-    const candidate = Reflect.get(globalThis, callback)
+    const candidate = getPhpGlobalEntry(callback)
     if (isPhpCallable<TArgs, TResult>(candidate)) {
       return { fn: candidate, scope: null }
     }
@@ -46,7 +47,7 @@ export function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableAr
 
     let scope: CallbackValue
     if (typeof scopeDescriptor === 'string') {
-      scope = Reflect.get(globalThis, scopeDescriptor)
+      scope = getPhpGlobalEntry(scopeDescriptor)
       if (typeof scope === 'undefined' && options.missingScopeMessage) {
         throw new Error(options.missingScopeMessage(scopeDescriptor))
       }
@@ -59,7 +60,7 @@ export function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableAr
     }
 
     if (typeof callableDescriptor === 'string' && (isObjectLike(scope) || typeof scope === 'function')) {
-      const candidate = Reflect.get(scope, callableDescriptor)
+      const candidate = getPhpObjectEntry(scope, callableDescriptor)
       if (isPhpCallable<TArgs, TResult>(candidate)) {
         return { fn: candidate, scope }
       }

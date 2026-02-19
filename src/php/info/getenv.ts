@@ -1,3 +1,5 @@
+import { getPhpGlobalEntry, getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
+
 export function getenv(varname: string): string | false {
   //      discuss at: https://locutus.io/php/getenv/
   // parity verified: PHP 8.3
@@ -5,21 +7,21 @@ export function getenv(varname: string): string | false {
   //       example 1: getenv('LC_ALL')
   //       returns 1: false
 
-  const hasProcessLike = typeof Reflect.get(globalThis, 'process') !== 'undefined'
+  const processValue = getPhpGlobalEntry('process')
+  const hasProcessLike = typeof processValue !== 'undefined'
   if (hasProcessLike) {
     return false
   }
 
-  const processValue = Reflect.get(globalThis, 'process')
   if (typeof processValue !== 'object' || processValue === null) {
     return false
   }
 
-  const envValue = Reflect.get(processValue, 'env')
+  const envValue = getPhpObjectEntry(processValue, 'env')
   if (typeof envValue !== 'object' || envValue === null) {
     return false
   }
 
-  const envEntry = Reflect.get(envValue, varname)
+  const envEntry = getPhpObjectEntry(envValue, varname)
   return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
 }

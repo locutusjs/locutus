@@ -1,3 +1,5 @@
+import { getPhpRuntimeString, setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
+
 export function strtok(str: string, tokens?: string): string | false {
   //  discuss at: https://locutus.io/php/strtok/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -9,22 +11,9 @@ export function strtok(str: string, tokens?: string): string | false {
   //   example 1: var $result = $b
   //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
 
-  let locutus = Reflect.get(globalThis, '$locutus')
-  if (typeof locutus !== 'object' || locutus === null) {
-    locutus = {}
-    Reflect.set(globalThis, '$locutus', locutus)
-  }
-
-  let php = Reflect.get(locutus, 'php')
-  if (typeof php !== 'object' || php === null) {
-    php = {}
-    Reflect.set(locutus, 'php', php)
-  }
-
   if (typeof tokens === 'undefined') {
     tokens = str
-    const leftOver = Reflect.get(php, 'strtokleftOver')
-    str = typeof leftOver === 'string' ? leftOver : ''
+    str = getPhpRuntimeString('strtokleftOver', '')
   }
   if (str.length === 0) {
     return false
@@ -38,7 +27,7 @@ export function strtok(str: string, tokens?: string): string | false {
       break
     }
   }
-  Reflect.set(php, 'strtokleftOver', str.substring(i + 1))
+  setPhpRuntimeEntry('strtokleftOver', str.substring(i + 1))
 
   return str.substring(0, i)
 }

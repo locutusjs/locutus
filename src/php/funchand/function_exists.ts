@@ -1,3 +1,5 @@
+import { getPhpGlobalCallable } from '../_helpers/_phpRuntimeState.ts'
+
 export function function_exists(funcName: string): boolean {
   //  discuss at: https://locutus.io/php/function_exists/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -7,6 +9,5 @@ export function function_exists(funcName: string): boolean {
   //   example 1: function_exists('isFinite')
   //   returns 1: true
 
-  const candidate = Reflect.get(globalThis, funcName)
-  return typeof candidate === 'function'
+  return typeof getPhpGlobalCallable(funcName) === 'function'
 }

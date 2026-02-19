@@ -1,4 +1,49 @@
+import { getPhpLocaleGroup } from '../_helpers/_phpRuntimeState.ts'
+import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 import { setlocale } from '../strings/setlocale.ts'
+
+type MonetaryLocale = {
+  mon_thousands_sep: string
+  mon_grouping: number[]
+  mon_decimal_point: string
+  int_frac_digits: number
+  frac_digits: number
+  int_curr_symbol: string
+  currency_symbol: string
+  n_sign_posn: number
+  p_sign_posn: number
+  n_sep_by_space: number
+  p_sep_by_space: number
+  n_cs_precedes: number
+  p_cs_precedes: number
+  positive_sign: string
+  negative_sign: string
+}
+
+const toStringField = (value: PhpInput): string => (typeof value === 'string' ? value : '')
+const toNumberField = (value: PhpInput): number => (typeof value === 'number' ? value : 0)
+const toNumberArray = (value: PhpInput): number[] =>
+  Array.isArray(value) ? value.filter((item): item is number => typeof item === 'number') : []
+
+const toMonetaryLocale = (value: PhpAssoc<PhpInput>): MonetaryLocale => {
+  return {
+    mon_thousands_sep: toStringField(value.mon_thousands_sep),
+    mon_grouping: toNumberArray(value.mon_grouping),
+    mon_decimal_point: toStringField(value.mon_decimal_point),
+    int_frac_digits: toNumberField(value.int_frac_digits),
+    frac_digits: toNumberField(value.frac_digits),
+    int_curr_symbol: toStringField(value.int_curr_symbol),
+    currency_symbol: toStringField(value.currency_symbol),
+    n_sign_posn: toNumberField(value.n_sign_posn),
+    p_sign_posn: toNumberField(value.p_sign_posn),
+    n_sep_by_space: toNumberField(value.n_sep_by_space),
+    p_sep_by_space: toNumberField(value.p_sep_by_space),
+    n_cs_precedes: toNumberField(value.n_cs_precedes),
+    p_cs_precedes: toNumberField(value.p_cs_precedes),
+    positive_sign: toStringField(value.positive_sign),
+    negative_sign: toStringField(value.negative_sign),
+  }
+}
 
 export function money_format(format: string, number: number): string | null {
   //      discuss at: https://locutus.io/php/money_format/
@@ -55,41 +100,11 @@ export function money_format(format: string, number: number): string | null {
   // Ensure the locale data we need is set up
   setlocale('LC_ALL', 0)
 
-  const locutus = Reflect.get(globalThis, '$locutus')
-  if (typeof locutus !== 'object' || locutus === null) {
+  const monetaryGroup = getPhpLocaleGroup('LC_MONETARY', 'LC_MONETARY')
+  if (!monetaryGroup) {
     return null
   }
-
-  const phpContext = Reflect.get(locutus, 'php')
-  if (typeof phpContext !== 'object' || phpContext === null) {
-    return null
-  }
-
-  const localeCategories = Reflect.get(phpContext, 'localeCategories')
-  const locales = Reflect.get(phpContext, 'locales')
-  if (
-    typeof localeCategories !== 'object' ||
-    localeCategories === null ||
-    typeof locales !== 'object' ||
-    locales === null
-  ) {
-    return null
-  }
-
-  const localeCategory = Reflect.get(localeCategories, 'LC_MONETARY')
-  if (typeof localeCategory !== 'string') {
-    return null
-  }
-
-  const localeEntry = Reflect.get(locales, localeCategory)
-  if (typeof localeEntry !== 'object' || localeEntry === null) {
-    return null
-  }
-
-  const monetary = Reflect.get(localeEntry, 'LC_MONETARY')
-  if (typeof monetary !== 'object' || monetary === null) {
-    return null
-  }
+  const monetary = toMonetaryLocale(monetaryGroup)
 
   const doReplace = function (
     _n0: string,

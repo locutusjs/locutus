@@ -1,3 +1,5 @@
+import { getPhpLocaleGroup } from '../_helpers/_phpRuntimeState.ts'
+import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 import { setlocale } from '../strings/setlocale.ts'
 
 type LcTime = {
@@ -14,13 +16,25 @@ type LcTime = {
   [key: string]: string | string[] | undefined
 }
 
-type PhpContext = {
-  locales?: Record<string, { LC_TIME?: LcTime }>
-  localeCategories?: { LC_TIME?: string }
-}
-
 type DateGetterMethod = 'getDate' | 'getHours' | 'getMinutes' | 'getSeconds' | 'getDay' | 'getFullYear'
 type FormatEntry = DateGetterMethod | ((d: Date) => string | number) | [DateGetterMethod, string | number]
+
+const isStringArray = (value: PhpAssoc<PhpInput>, key: string): boolean => {
+  const candidate = value[key]
+  return Array.isArray(candidate) && candidate.every((item) => typeof item === 'string')
+}
+
+const isLcTime = (value: PhpAssoc<PhpInput>): value is LcTime =>
+  isStringArray(value, 'a') &&
+  isStringArray(value, 'A') &&
+  isStringArray(value, 'b') &&
+  isStringArray(value, 'B') &&
+  isStringArray(value, 'p') &&
+  isStringArray(value, 'P') &&
+  typeof value.c === 'string' &&
+  typeof value.r === 'string' &&
+  typeof value.x === 'string' &&
+  typeof value.X === 'string'
 
 export function strftime(fmt: string, timestamp?: Date | number | string): string {
   //       discuss at: https://locutus.io/php/strftime/
@@ -38,19 +52,13 @@ export function strftime(fmt: string, timestamp?: Date | number | string): strin
   //        example 3: (() => {let e = process.env, tz = e.TZ; e.TZ = 'Europe/Vienna'; let r = strftime('%j', 1680307200); e.TZ = tz; return r;})();
   //        returns 3: '091'
 
-  const locutusValue = Reflect.get(globalThis, '$locutus')
-  const locutus: { php?: PhpContext } = typeof locutusValue === 'object' && locutusValue !== null ? locutusValue : {}
-  if (locutusValue !== locutus) {
-    Reflect.set(globalThis, '$locutus', locutus)
-  }
-
-  const php: PhpContext = typeof locutus.php === 'object' && locutus.php !== null ? locutus.php : {}
-  if (locutus.php !== php) {
-    locutus.php = php
-  }
-
   // ensure setup of localization variables takes place
   setlocale('LC_ALL', 0)
+
+  const lcTimeBag = getPhpLocaleGroup('LC_TIME', 'LC_TIME')
+  if (!lcTimeBag || !isLcTime(lcTimeBag)) {
+    return ''
+  }
 
   const _xPad = function (x: number | string, pad: number | string, r = 10): string {
     for (; Number.parseInt(String(x), 10) < r && r > 1; r /= 10) {
@@ -59,11 +67,7 @@ export function strftime(fmt: string, timestamp?: Date | number | string): strin
     return String(x)
   }
 
-  const locale = php.localeCategories?.LC_TIME
-  const lcTime = locale ? php.locales?.[locale]?.LC_TIME : undefined
-  if (!lcTime) {
-    return ''
-  }
+  const lcTime = lcTimeBag
 
   const formats: Record<string, FormatEntry> = {
     a: function (d: Date) {

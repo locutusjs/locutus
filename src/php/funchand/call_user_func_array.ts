@@ -1,4 +1,5 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
+import { getPhpGlobalEntry, getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
 import {
   isObjectLike,
   isPhpCallable,
@@ -43,7 +44,7 @@ export function call_user_func_array<TResult = FunctionValue, TArgs extends Func
   }
 
   if (!func && typeof cb === 'string') {
-    const globalCandidate = Reflect.get(globalThis, cb)
+    const globalCandidate = getPhpGlobalEntry(cb)
     if (isPhpCallable<TArgs, TResult>(globalCandidate)) {
       func = globalCandidate
     } else if (cb.match(validJSFunctionNamePattern)) {
@@ -62,14 +63,14 @@ export function call_user_func_array<TResult = FunctionValue, TArgs extends Func
         }
       }
     } else if (isObjectLike(cb[0]) || typeof cb[0] === 'function') {
-      const method = Reflect.get(cb[0], String(cb[1]))
+      const method = getPhpObjectEntry(cb[0], String(cb[1]))
       if (isPhpCallable<TArgs, TResult>(method)) {
         func = method
       }
     }
 
     if (typeof cb[0] === 'string') {
-      const globalScope = Reflect.get(globalThis, cb[0])
+      const globalScope = getPhpGlobalEntry(cb[0])
       if (typeof globalScope === 'function') {
         scope = globalScope
       } else if (cb[0].match(validJSFunctionNamePattern)) {

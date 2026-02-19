@@ -1,3 +1,6 @@
+import { getPhpGlobalCallable, getPhpGlobalEntry, getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
+import { isObjectLike, isPhpCallable } from '../_helpers/_phpTypes.ts'
+
 export function base64_decode(encodedData: string | null | undefined): string | null | undefined {
   //  discuss at: https://locutus.io/php/base64_decode/
   // original by: Tyler Akins (https://rumkin.com)
@@ -32,15 +35,15 @@ export function base64_decode(encodedData: string | null | undefined): string | 
     )
   }
 
-  const bufferValue = Reflect.get(globalThis, 'Buffer')
-  if (typeof bufferValue === 'object' && bufferValue !== null) {
-    const bufferFrom = Reflect.get(bufferValue, 'from')
-    if (typeof bufferFrom === 'function') {
-      const decoded = Reflect.apply(bufferFrom, bufferValue, [String(encodedData), 'base64'])
+  const bufferValue = getPhpGlobalEntry('Buffer')
+  if (isObjectLike(bufferValue)) {
+    const bufferFrom = getPhpObjectEntry(bufferValue, 'from')
+    if (isPhpCallable<[string, string], object>(bufferFrom)) {
+      const decoded = bufferFrom.call(bufferValue, String(encodedData), 'base64')
       if (typeof decoded === 'object' && decoded !== null) {
-        const decodedToString = Reflect.get(decoded, 'toString')
-        if (typeof decodedToString === 'function') {
-          const utf8Value = Reflect.apply(decodedToString, decoded, ['utf-8'])
+        const decodedToString = getPhpObjectEntry(decoded, 'toString')
+        if (isPhpCallable<[string], string>(decodedToString)) {
+          const utf8Value = decodedToString.call(decoded, 'utf-8')
           if (typeof utf8Value === 'string') {
             return utf8Value
           }
@@ -49,9 +52,9 @@ export function base64_decode(encodedData: string | null | undefined): string | 
     }
   }
 
-  const atobValue = Reflect.get(globalThis, 'atob')
-  if (typeof atobValue === 'function') {
-    const decoded = Reflect.apply(atobValue, globalThis, [String(encodedData)])
+  const atobValue = getPhpGlobalCallable<[string], string>('atob')
+  if (atobValue) {
+    const decoded = atobValue(String(encodedData))
     if (typeof decoded === 'string') {
       return decodeUTF8string(decoded)
     }

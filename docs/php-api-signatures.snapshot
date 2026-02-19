@@ -7,12 +7,19 @@ src/php/_helpers/_callbackResolver.ts :: export function resolvePhpCallable<TArg
 src/php/_helpers/_ctypePattern.ts :: export function getCtypePattern(key: string): RegExp | undefined
 src/php/_helpers/_phpCastString.ts :: export function _phpCastString(value: CastStringValue): string
 src/php/_helpers/_phpRuntimeState.ts :: export function ensurePhpRuntimeState(): PhpRuntimeState
+src/php/_helpers/_phpRuntimeState.ts :: export function getPhpGlobalCallable<TArgs extends PhpInput[] = PhpInput[], TResult = PhpInput>( key: string, ): PhpCallable<TArgs, TResult> | undefined
+src/php/_helpers/_phpRuntimeState.ts :: export function getPhpGlobalEntry(key: string): PhpInput | undefined
+src/php/_helpers/_phpRuntimeState.ts :: export function getPhpGlobalScope(): PhpAssoc<PhpInput>
+src/php/_helpers/_phpRuntimeState.ts :: export function getPhpLocaleGroup(category: string, groupKey: string): PhpAssoc<PhpInput> | undefined
+src/php/_helpers/_phpRuntimeState.ts :: export function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined
 src/php/_helpers/_phpRuntimeState.ts :: export function getPhpRuntimeBoolean(key: string, fallback: boolean): boolean
 src/php/_helpers/_phpRuntimeState.ts :: export function getPhpRuntimeEntry(key: string): PhpInput | undefined
 src/php/_helpers/_phpRuntimeState.ts :: export function getPhpRuntimeNumber(key: string, fallback: number): number
+src/php/_helpers/_phpRuntimeState.ts :: export function getPhpRuntimeString(key: string, fallback: string): string
+src/php/_helpers/_phpRuntimeState.ts :: export function setPhpGlobalEntry(key: string, value: PhpInput): void
 src/php/_helpers/_phpRuntimeState.ts :: export function setPhpLocaleDefault(localeDefault: string): void
 src/php/_helpers/_phpRuntimeState.ts :: export function setPhpRuntimeEntry(key: string, value: PhpInput): void
-src/php/_helpers/_phpRuntimeState.ts :: export interface PhpRuntimeState { ini: PhpAssoc<IniEntry | undefined> locales: PhpAssoc<LocaleEntry | undefined> pointers: PhpList<PhpInput> locale_default: string | undefined }
+src/php/_helpers/_phpRuntimeState.ts :: export interface PhpRuntimeState { ini: PhpAssoc<IniEntry | undefined> locales: PhpAssoc<LocaleEntry | undefined> localeCategories: LocaleCategoryMap pointers: PhpList<PhpInput> locale_default: string | undefined }
 src/php/_helpers/_phpTypes.ts :: export function assertIsObjectLike( value: PhpInput, message = 'Expected object-like value', ): asserts value is PhpArrayLike<PhpInput>
 src/php/_helpers/_phpTypes.ts :: export function assertIsPhpAssocObject( value: PhpInput, message = 'Expected associative object value', ): asserts value is PhpAssoc<PhpInput>
 src/php/_helpers/_phpTypes.ts :: export function assertIsPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput>( value: PhpInput, message = 'Expected callable value', ): asserts value is PhpCallable<TArgs, TResult>

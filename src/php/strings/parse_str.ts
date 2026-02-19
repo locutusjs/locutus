@@ -1,4 +1,5 @@
-import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
+import { getPhpGlobalScope } from '../_helpers/_phpRuntimeState.ts'
+import { isPhpAssocObject, type PhpAssoc, type PhpInput } from '../_helpers/_phpTypes.ts'
 
 type ParseObject = PhpAssoc<PhpInput>
 
@@ -50,8 +51,8 @@ export function parse_str(str: string, array?: ParseObject): void {
   let j = 0
   let ct = 0
   let p = ''
-  let lastObj: object = {}
-  let obj: object = {}
+  let lastObj: ParseObject = {}
+  let obj: ParseObject = {}
   let chr
   let tmp: string[] = []
   let key = ''
@@ -64,19 +65,7 @@ export function parse_str(str: string, array?: ParseObject): void {
     return decodeURIComponent(str.replace(/\+/g, '%20'))
   }
 
-  let locutus = Reflect.get(globalThis, '$locutus')
-  if (typeof locutus !== 'object' || locutus === null) {
-    locutus = {}
-    Reflect.set(globalThis, '$locutus', locutus)
-  }
-
-  let php = Reflect.get(locutus, 'php')
-  if (typeof php !== 'object' || php === null) {
-    php = {}
-    Reflect.set(locutus, 'php', php)
-  }
-
-  const target: object = array || globalThis
+  const target: ParseObject = array || getPhpGlobalScope()
 
   for (i = 0; i < sal; i++) {
     tmp = (strArr[i] ?? '').split('=')
@@ -158,19 +147,19 @@ export function parse_str(str: string, array?: ParseObject): void {
         }
 
         // if primitive value, replace with object
-        const current = Reflect.get(obj, key)
-        if (typeof current !== 'object' || current === null) {
-          Reflect.set(obj, key, {})
+        const current = obj[key]
+        if (!isPhpAssocObject(current)) {
+          obj[key] = {}
         }
 
-        const next = Reflect.get(obj, key)
-        if (typeof next !== 'object' || next === null) {
+        const next = obj[key]
+        if (!isPhpAssocObject(next)) {
           break
         }
         obj = next
       }
 
-      Reflect.set(lastObj, key, value)
+      lastObj[key] = value
     }
   }
 }

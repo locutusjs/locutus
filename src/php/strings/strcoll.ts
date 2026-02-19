@@ -1,3 +1,4 @@
+import { getPhpLocaleGroup } from '../_helpers/_phpRuntimeState.ts'
 import { setlocale } from '../strings/setlocale.ts'
 
 export function strcoll(str1: string, str2: string): number {
@@ -10,38 +11,12 @@ export function strcoll(str1: string, str2: string): number {
 
   setlocale('LC_ALL', 0) // ensure setup of localization variables takes place
 
-  const locutusValue = Reflect.get(globalThis, '$locutus')
-  if (typeof locutusValue !== 'object' || locutusValue === null) {
+  const localeCollation = getPhpLocaleGroup('LC_COLLATE', 'LC_COLLATE')
+  if (!localeCollation) {
     return str1.localeCompare(str2)
   }
 
-  const php = Reflect.get(locutusValue, 'php')
-  if (typeof php !== 'object' || php === null) {
-    return str1.localeCompare(str2)
-  }
-
-  const locales = Reflect.get(php, 'locales')
-  const localeCategories = Reflect.get(php, 'localeCategories')
-  if (
-    typeof locales !== 'object' ||
-    locales === null ||
-    typeof localeCategories !== 'object' ||
-    localeCategories === null
-  ) {
-    return str1.localeCompare(str2)
-  }
-
-  const collateKey = Reflect.get(localeCategories, 'LC_COLLATE')
-  if (typeof collateKey !== 'string') {
-    return str1.localeCompare(str2)
-  }
-
-  const localeEntry = Reflect.get(locales, collateKey)
-  if (typeof localeEntry !== 'object' || localeEntry === null) {
-    return str1.localeCompare(str2)
-  }
-
-  const cmp = Reflect.get(localeEntry, 'LC_COLLATE')
+  const cmp = localeCollation.LC_COLLATE
   if (typeof cmp !== 'function') {
     return str1.localeCompare(str2)
   }
