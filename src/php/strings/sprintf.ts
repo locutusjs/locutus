@@ -1,6 +1,8 @@
 import type { PhpValue } from '../_helpers/_phpTypes.ts'
 
-export function sprintf(format: string, ...args: PhpValue[]): string | false {
+type SprintfValue = {} | null | undefined
+
+export function sprintf(format: string, ...args: SprintfValue[]): string | false {
   //      discuss at: https://locutus.io/php/sprintf/
   // parity verified: PHP 8.3
   //     original by: Ash Searle (https://hexmen.com/blog/)

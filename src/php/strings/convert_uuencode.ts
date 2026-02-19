@@ -1,7 +1,8 @@
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
 import { is_scalar as isScalar } from '../var/is_scalar.ts'
 
-export function convert_uuencode(str: PhpValue): string | false {
+type UUEncodeInput = {} | null | undefined
+
+export function convert_uuencode(str: UUEncodeInput): string | false {
   //       discuss at: https://locutus.io/php/convert_uuencode/
   //      original by: Ole Vrijenhoek
   //      bugfixed by: Kevin van Zonneveld (https://kvz.io)

@@ -1,9 +1,10 @@
 import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 
+type ExplodeValue = {} | null | undefined
 type KeyedValues = PhpAssoc<PhpValue>
 
 export function explode(
-  ...args: [string | boolean | null | undefined, string | KeyedValues | (() => PhpValue) | undefined, number?]
+  ...args: [string | boolean | null | undefined, string | KeyedValues | (() => ExplodeValue) | undefined, number?]
 ): string[] | false | { 0: string } | null {
   //      discuss at: https://locutus.io/php/explode/
   // parity verified: PHP 8.3

@@ -5,7 +5,7 @@ src/php/_helpers/_bc.ts :: export function _bc(): ReturnType<typeof createBcLibr
 src/php/_helpers/_callbackResolver.ts :: export function resolveNumericComparator< TLeft extends CallbackValue = CallbackValue, TRight extends CallbackValue = CallbackValue, >( callback: PhpCallableDescriptor<[TLeft, TRight], NumericLike>, invalidMessage: string, ): (left: TLeft, right: TRight) => number
 src/php/_helpers/_callbackResolver.ts :: export function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = CallbackValue>( callback: PhpCallableDescriptor<TArgs, TResult>, options: CallbackResolverOptions, ): ResolvedCallback<TArgs, TResult>
 src/php/_helpers/_ctypePattern.ts :: export function getCtypePattern(key: string): RegExp | undefined
-src/php/_helpers/_phpCastString.ts :: export function _phpCastString(value: PhpValue): string
+src/php/_helpers/_phpCastString.ts :: export function _phpCastString(value: CastStringValue): string
 src/php/_helpers/_phpRuntimeState.ts :: export function ensurePhpRuntimeState(): PhpRuntimeState
 src/php/_helpers/_phpRuntimeState.ts :: export function setPhpLocaleDefault(localeDefault: string): void
 src/php/_helpers/_phpRuntimeState.ts :: export interface PhpRuntimeState { ini: PhpAssoc<IniEntry | undefined> locales: PhpAssoc<LocaleEntry | undefined> pointers: PhpList<PhpValue> locale_default: string | undefined }
@@ -41,8 +41,8 @@ src/php/_helpers/_phpTypes.ts :: export type PhpReadonlyList<T = PhpValue> = rea
 src/php/_helpers/_phpTypes.ts :: export type PhpScalar = string | number | boolean
 src/php/_helpers/_phpTypes.ts :: export type PhpValue = {} | PhpNullish
 src/php/_helpers/_phpTypes.ts :: export type StringLike = string | number | boolean | bigint
-src/php/_helpers/_php_cast_float.ts :: export function _php_cast_float(value: PhpValue): number
-src/php/_helpers/_php_cast_int.ts :: export function _php_cast_int(value: PhpValue): number
+src/php/_helpers/_php_cast_float.ts :: export function _php_cast_float(value: CastFloatValue): number
+src/php/_helpers/_php_cast_int.ts :: export function _php_cast_int(value: CastIntValue): number
 src/php/array/array_change_key_case.ts :: export function array_change_key_case(array: number | null, cs?: string | number): false
 src/php/array/array_change_key_case.ts :: export function array_change_key_case<TValue extends ChangeValue>( array: ArrayChangeInput<TValue>, cs?: string | number, ): PhpArrayLike<TValue> | false
 src/php/array/array_change_key_case.ts :: export function array_change_key_case<TValue extends ChangeValue>( array: PhpAssoc<TValue>, cs?: string | number, ): PhpAssoc<TValue>
@@ -189,7 +189,7 @@ src/php/funchand/function_exists.ts :: export function function_exists(funcName:
 src/php/funchand/get_defined_functions.ts :: export function get_defined_functions(): string[]
 src/php/i18n/i18n_loc_get_default.ts :: export function i18n_loc_get_default(): string
 src/php/i18n/i18n_loc_set_default.ts :: export function i18n_loc_set_default(name: string): boolean
-src/php/info/assert_options.ts :: export function assert_options(what: string, _value?: PhpValue): string | number | null
+src/php/info/assert_options.ts :: export function assert_options(what: string, _value?: AssertOptionValue): string | number | null
 src/php/info/getenv.ts :: export function getenv(varname: string): string | false
 src/php/info/ini_get.ts :: export function ini_get(varname: string): string
 src/php/info/ini_set.ts :: export function ini_set(varname: string, newvalue: IniValue): IniValue | undefined
@@ -197,7 +197,7 @@ src/php/info/ini_set.ts :: export type IniValue = IniEntryValue | undefined
 src/php/info/set_time_limit.ts :: export function set_time_limit(seconds: number): void
 src/php/info/version_compare.ts :: export function version_compare(v1: string, v2: string, operator?: string): number | boolean | null
 src/php/json/json_decode.ts :: export function json_decode<T = JsonValue>(strJson: string): T | null
-src/php/json/json_encode.ts :: export function json_encode(mixedVal: PhpValue): string | null
+src/php/json/json_encode.ts :: export function json_encode(mixedVal: JsonEncodeInput): string | null
 src/php/json/json_last_error.ts :: export function json_last_error(): number
 src/php/math/abs.ts :: export function abs(mixedNumber: string | number): number
 src/php/math/acos.ts :: export function acos(arg: number): number
@@ -265,33 +265,33 @@ src/php/strings/chop.ts :: export function chop(str: string, charlist: string): 
 src/php/strings/chr.ts :: export function chr(codePt: number): string
 src/php/strings/chunk_split.ts :: export function chunk_split(body: string, chunklen?: number | string, end?: string): string | false
 src/php/strings/convert_cyr_string.ts :: export function convert_cyr_string(str: string, from: string, to: string): string
-src/php/strings/convert_uuencode.ts :: export function convert_uuencode(str: PhpValue): string | false
+src/php/strings/convert_uuencode.ts :: export function convert_uuencode(str: UUEncodeInput): string | false
 src/php/strings/count_chars.ts :: export function count_chars( str: string | number | boolean | null | undefined, mode = 0, ): { [key: string]: number } | string
 src/php/strings/crc32.ts :: export function crc32(str: string): number
-src/php/strings/echo.ts :: export function echo(...args: PhpValue[]): void
-src/php/strings/explode.ts :: export function explode( ...args: [string | boolean | null | undefined, string | KeyedValues | (() => PhpValue) | undefined, number?] ): string[] | false | { 0: string } | null
+src/php/strings/echo.ts :: export function echo(...args: EchoValue[]): void
+src/php/strings/explode.ts :: export function explode( ...args: [string | boolean | null | undefined, string | KeyedValues | (() => ExplodeValue) | undefined, number?] ): string[] | false | { 0: string } | null
 src/php/strings/get_html_translation_table.ts :: export function get_html_translation_table( table: string | number = 'HTML_SPECIALCHARS', quoteStyle: string | number = 'ENT_COMPAT', ): Record<string, string>
 src/php/strings/hex2bin.ts :: export function hex2bin(s: string | number): string | false
 src/php/strings/html_entity_decode.ts :: export function html_entity_decode(string: string, quoteStyle?: string | number): string | false
 src/php/strings/htmlentities.ts :: export function htmlentities( string: string, quoteStyle?: string | number, charset?: string, doubleEncode?: boolean | null, ): string
 src/php/strings/htmlspecialchars.ts :: export function htmlspecialchars( string: string, quoteStyle?: HtmlSpecialCharsQuoteStyle, charset?: null, doubleEncode?: boolean, ): string
 src/php/strings/htmlspecialchars_decode.ts :: export function htmlspecialchars_decode(string: string, quoteStyle?: HtmlSpecialCharsQuoteStyle): string
-src/php/strings/implode.ts :: export function implode(...args: Array<PhpValue[] | KeyedValues | string | undefined>): string
-src/php/strings/join.ts :: export function join(glue: string, pieces: PhpValue[]): string
+src/php/strings/implode.ts :: export function implode(...args: Array<ImplodeValue[] | KeyedValues | string | undefined>): string
+src/php/strings/join.ts :: export function join(glue: string, pieces: JoinValue[]): string
 src/php/strings/lcfirst.ts :: export function lcfirst(str: string): string
 src/php/strings/levenshtein.ts :: export function levenshtein(s1: string, s2: string, costIns?: number, costRep?: number, costDel?: number): number
 src/php/strings/localeconv.ts :: export function localeconv(): LocaleValues
 src/php/strings/ltrim.ts :: export function ltrim(str: string, charlist: string): string
 src/php/strings/md5.ts :: export function md5(str: string): string
 src/php/strings/md5_file.ts :: export function md5_file(str_filename: string): string | false
-src/php/strings/metaphone.ts :: export function metaphone( word: PhpValue, maxPhonemes?: string | number | boolean | null | undefined, ): string | false | null
+src/php/strings/metaphone.ts :: export function metaphone( word: MetaphoneValue, maxPhonemes?: string | number | boolean | null | undefined, ): string | false | null
 src/php/strings/money_format.ts :: export function money_format(format: string, number: number): string | null
 src/php/strings/nl2br.ts :: export function nl2br(str: string | null, isXhtml?: boolean): string
 src/php/strings/nl_langinfo.ts :: export function nl_langinfo(item: string): string | string[] | false
 src/php/strings/number_format.ts :: export function number_format( number: string | number, decimals: number | undefined, decPoint: string | undefined, thousandsSep: string | undefined, ): string
 src/php/strings/ord.ts :: export function ord(string: string): number
 src/php/strings/parse_str.ts :: export function parse_str(str: string, array?: ParseObject): void
-src/php/strings/printf.ts :: export function printf(format: string, ...args: PhpValue[]): number
+src/php/strings/printf.ts :: export function printf(format: string, ...args: PrintfValue[]): number
 src/php/strings/quoted_printable_decode.ts :: export function quoted_printable_decode(str: string): string
 src/php/strings/quoted_printable_encode.ts :: export function quoted_printable_encode(str: string): string
 src/php/strings/quotemeta.ts :: export function quotemeta(str: string): string
@@ -300,9 +300,9 @@ src/php/strings/setlocale.ts :: export function setlocale(category: string, loca
 src/php/strings/sha1.ts :: export function sha1(str: string): string
 src/php/strings/sha1_file.ts :: export function sha1_file(str_filename: string): string | false
 src/php/strings/similar_text.ts :: export function similar_text( first: string | number | boolean | null | undefined, second: string | number | boolean | null | undefined, percent?: boolean | number | null | undefined, ): number
-src/php/strings/soundex.ts :: export function soundex(str: PhpValue): string
-src/php/strings/split.ts :: export function split( delimiter: string | boolean | null | undefined, string: string | KeyedValues | (() => PhpValue) | undefined, ): string[] | false | { 0: string } | null
-src/php/strings/sprintf.ts :: export function sprintf(format: string, ...args: PhpValue[]): string | false
+src/php/strings/soundex.ts :: export function soundex(str: SoundexValue): string
+src/php/strings/split.ts :: export function split( delimiter: string | boolean | null | undefined, string: string | KeyedValues | (() => SplitValue) | undefined, ): string[] | false | { 0: string } | null
+src/php/strings/sprintf.ts :: export function sprintf(format: string, ...args: SprintfValue[]): string | false
 src/php/strings/sscanf.ts :: export function sscanf(str: string, format: string, ...refs: SscanfRef[]): SscanfValue[] | number
 src/php/strings/str_getcsv.ts :: export function str_getcsv( input: string, delimiter?: string | null, enclosure?: string | null, escapeCharacter?: string | null, ): string[]
 src/php/strings/str_ireplace.ts :: export function str_ireplace( search: string | string[], replace: string | string[], subject: string | string[], countObj?: CountObj, ): string | string[]
@@ -338,7 +338,7 @@ src/php/strings/strstr.ts :: export function strstr(haystack: string, needle: st
 src/php/strings/strtok.ts :: export function strtok(str: string, tokens?: string): string | false
 src/php/strings/strtolower.ts :: export function strtolower(str: string): string
 src/php/strings/strtoupper.ts :: export function strtoupper(str: string): string
-src/php/strings/strtr.ts :: export function strtr(str: string, trFrom: string | ReplacementMap | string[], trTo?: string | PhpValue[]): string
+src/php/strings/strtr.ts :: export function strtr(str: string, trFrom: string | ReplacementMap | string[], trTo?: string | StrtrValue[]): string
 src/php/strings/substr.ts :: export function substr(input: string | number, start: number, len?: number): string | false
 src/php/strings/substr_compare.ts :: export function substr_compare( mainStr: string, str: string, offset: number, length: number, caseInsensitivity?: boolean, ): number | false
 src/php/strings/substr_count.ts :: export function substr_count(haystack: string, needle: string, offset?: number, length?: number): number | false
@@ -349,7 +349,7 @@ src/php/strings/ucwords.ts :: export function ucwords(str: string): string
 src/php/strings/vprintf.ts :: export function vprintf(format: string, ...args: PrintfValue[]): number
 src/php/strings/vprintf.ts :: export function vprintf(format: string, ...restArgs: [PrintfValue[]] | PrintfValue[]): number
 src/php/strings/vprintf.ts :: export function vprintf(format: string, args: PrintfValue[]): number
-src/php/strings/vsprintf.ts :: export function vsprintf(format: string, args: PhpValue[]): string | false
+src/php/strings/vsprintf.ts :: export function vsprintf(format: string, args: VsprintfValue[]): string | false
 src/php/strings/wordwrap.ts :: export function wordwrap(...rawArgs: [str: string, intWidth?: number, strBreak?: string, cut?: boolean]): string
 src/php/url/base64_decode.ts :: export function base64_decode(encodedData: string | null | undefined): string | null | undefined
 src/php/url/base64_encode.ts :: export function base64_encode(stringToEncode: string | null | undefined): string | null | undefined
@@ -359,36 +359,36 @@ src/php/url/rawurldecode.ts :: export function rawurldecode(str: string): string
 src/php/url/rawurlencode.ts :: export function rawurlencode(str: string): string
 src/php/url/urldecode.ts :: export function urldecode(str: string): string
 src/php/url/urlencode.ts :: export function urlencode(str: string): string
-src/php/var/boolval.ts :: export function boolval(mixedVar: PhpValue): boolean
+src/php/var/boolval.ts :: export function boolval(mixedVar: BoolValue): boolean
 src/php/var/doubleval.ts :: export function doubleval(mixedVar: FloatvalInput): number
-src/php/var/empty.ts :: export function empty(mixedVar: PhpValue): boolean
+src/php/var/empty.ts :: export function empty(mixedVar: EmptyValue): boolean
 src/php/var/floatval.ts :: export function floatval(mixedVar: FloatvalInput): number
 src/php/var/floatval.ts :: export type FloatvalInput = NumericLike | boolean | PhpNullish
-src/php/var/gettype.ts :: export function gettype(mixedVar: PhpValue): string
+src/php/var/gettype.ts :: export function gettype(mixedVar: TypeInput): string
 src/php/var/intval.ts :: export function intval(mixedVar: IntvalInput, base?: number): number
-src/php/var/is_array.ts :: export function is_array(mixedVar: PhpValue): boolean
+src/php/var/is_array.ts :: export function is_array(mixedVar: IsArrayValue): boolean
 src/php/var/is_binary.ts :: export function is_binary(vr: string): boolean
 src/php/var/is_bool.ts :: export function is_bool(mixedVar: boolean | number): boolean
 src/php/var/is_buffer.ts :: export function is_buffer(vr: string): boolean
-src/php/var/is_callable.ts :: export function is_callable(mixedVar: PhpValue, syntaxOnly?: boolean, callableName?: string): boolean
+src/php/var/is_callable.ts :: export function is_callable(mixedVar: CallableValue, syntaxOnly?: boolean, callableName?: string): boolean
 src/php/var/is_double.ts :: export function is_double(mixedVar: number): boolean
 src/php/var/is_float.ts :: export function is_float(mixedVar: number): boolean
-src/php/var/is_int.ts :: export function is_int(mixedVar: PhpValue): mixedVar is number
+src/php/var/is_int.ts :: export function is_int(mixedVar: IntValue): mixedVar is number
 src/php/var/is_integer.ts :: export function is_integer(mixedVar: number): boolean
 src/php/var/is_long.ts :: export function is_long(mixedVar: number): boolean
 src/php/var/is_null.ts :: export function is_null(mixedVar: string | null): boolean
-src/php/var/is_numeric.ts :: export function is_numeric(mixedVar: PhpValue): mixedVar is number | string
+src/php/var/is_numeric.ts :: export function is_numeric(mixedVar: NumericValue): mixedVar is number | string
 src/php/var/is_object.ts :: export function is_object(mixedVar: ObjectValue): mixedVar is PhpAssoc<ObjectValue>
 src/php/var/is_real.ts :: export function is_real(mixedVar: number): boolean
-src/php/var/is_scalar.ts :: export function is_scalar(mixedVar: PhpValue): mixedVar is PhpScalar
+src/php/var/is_scalar.ts :: export function is_scalar(mixedVar: ScalarCheckValue): mixedVar is PhpScalar
 src/php/var/is_string.ts :: export function is_string(mixedVar: string | number): boolean
-src/php/var/is_unicode.ts :: export function is_unicode(vr: PhpValue): vr is string
-src/php/var/isset.ts :: export function isset(...values: PhpValue[]): boolean
-src/php/var/print_r.ts :: export function print_r(array: PhpValue, returnVal?: boolean): string | true
-src/php/var/serialize.ts :: export function serialize(mixedValue: PhpValue): string
-src/php/var/strval.ts :: export function strval(str: PhpValue): string
-src/php/var/unserialize.ts :: export function unserialize(str: PhpValue, errorMode: ErrorMode = 'log'): UnserializedValue | false
-src/php/var/var_dump.ts :: export function var_dump(...args: PhpValue[]): string
+src/php/var/is_unicode.ts :: export function is_unicode(vr: UnicodeValue): vr is string
+src/php/var/isset.ts :: export function isset(...values: IssetValue[]): boolean
+src/php/var/print_r.ts :: export function print_r(array: PrintValue, returnVal?: boolean): string | true
+src/php/var/serialize.ts :: export function serialize(mixedValue: SerializeValue): string
+src/php/var/strval.ts :: export function strval(str: StringValue): string
+src/php/var/unserialize.ts :: export function unserialize(str: UnserializeInput, errorMode: ErrorMode = 'log'): UnserializedValue | false
+src/php/var/var_dump.ts :: export function var_dump(...args: DumpValue[]): string
 src/php/var/var_export.ts :: export function var_export( mixedExpression: VarExportInput, boolReturn?: boolean, idtLevel = 2, ): VarExportResult | null
 src/php/var/var_export.ts :: export function var_export( mixedExpression: VarExportInput, boolReturn?: boolean, idtLevel?: number, ): VarExportResult | null
 src/php/var/var_export.ts :: export function var_export(mixedExpression: VarExportInput, boolReturn: true, idtLevel?: number): VarExportResult

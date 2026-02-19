@@ -1,6 +1,6 @@
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
+type SoundexValue = {} | null | undefined
 
-export function soundex(str: PhpValue): string {
+export function soundex(str: SoundexValue): string {
   //      discuss at: https://locutus.io/php/soundex/
   // parity verified: PHP 8.3
   //     original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)

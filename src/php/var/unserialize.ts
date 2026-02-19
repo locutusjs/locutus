@@ -8,6 +8,7 @@ type ParsedResult = [value: UnserializedValue, offset: number]
 type CacheEntry = [value: UnserializedValue, offset?: number]
 type CacheFn = (<T extends CacheEntry>(value: T) => T) & { get: (index: number) => UnserializedValue }
 type ErrorMode = 'throw' | 'log' | 'silent'
+type UnserializeInput = {} | null | undefined
 
 function initCache(): CacheFn {
   const store: UnserializedValue[] = []
@@ -367,7 +368,7 @@ function expectArrayItems(
 }
 
 // errorMode: 'throw', 'log', 'silent'
-export function unserialize(str: PhpValue, errorMode: ErrorMode = 'log'): UnserializedValue | false {
+export function unserialize(str: UnserializeInput, errorMode: ErrorMode = 'log'): UnserializedValue | false {
   //       discuss at: https://locutus.io/php/unserialize/
   //      original by: Arpad Ray (mailto:arpad@php.net)
   //      improved by: Pedro Tainha (https://www.pedrotainha.com)

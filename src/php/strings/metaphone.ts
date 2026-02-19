@@ -1,7 +1,7 @@
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
+type MetaphoneValue = {} | null | undefined
 
 export function metaphone(
-  word: PhpValue,
+  word: MetaphoneValue,
   maxPhonemes?: string | number | boolean | null | undefined,
 ): string | false | null {
   //      discuss at: https://locutus.io/php/metaphone/

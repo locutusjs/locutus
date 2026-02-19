@@ -1,6 +1,8 @@
-import type { PhpScalar, PhpValue } from '../_helpers/_phpTypes.ts'
+import type { PhpScalar } from '../_helpers/_phpTypes.ts'
 
-export function is_scalar(mixedVar: PhpValue): mixedVar is PhpScalar {
+type ScalarCheckValue = {} | null | undefined
+
+export function is_scalar(mixedVar: ScalarCheckValue): mixedVar is PhpScalar {
   //  discuss at: https://locutus.io/php/is_scalar/
   // original by: Paulo Freitas
   //   example 1: is_scalar(186.31)

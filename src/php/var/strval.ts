@@ -1,7 +1,8 @@
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
 import { gettype } from '../var/gettype.ts'
 
-export function strval(str: PhpValue): string {
+type StringValue = {} | null | undefined
+
+export function strval(str: StringValue): string {
   //  discuss at: https://locutus.io/php/strval/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Kevin van Zonneveld (https://kvz.io)

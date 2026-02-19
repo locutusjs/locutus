@@ -1,6 +1,6 @@
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
+type EchoValue = {} | null | undefined
 
-export function echo(...args: PhpValue[]): void {
+export function echo(...args: EchoValue[]): void {
   //      discuss at: https://locutus.io/php/echo/
   // parity verified: PHP 8.3
   //     original by: Philip Peterson

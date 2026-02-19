@@ -3,9 +3,10 @@ import { krsort } from '../array/krsort.ts'
 import type { IniValue } from '../info/ini_set.ts'
 import { ini_set as iniSet } from '../info/ini_set.ts'
 
+type StrtrValue = {} | null | undefined
 type ReplacementMap = PhpAssoc<PhpValue>
 
-export function strtr(str: string, trFrom: string | ReplacementMap | string[], trTo?: string | PhpValue[]): string {
+export function strtr(str: string, trFrom: string | ReplacementMap | string[], trTo?: string | StrtrValue[]): string {
   //  discuss at: https://locutus.io/php/strtr/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: uestla

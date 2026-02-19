@@ -1,12 +1,13 @@
 import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 import { ini_get } from '../info/ini_get.ts'
 
+type IsArrayValue = {} | null | undefined
 type ArrayLikeAssoc = PhpAssoc<PhpValue> & { length: number }
 
 const hasNumericLength = (value: PhpValue): value is ArrayLikeAssoc =>
   value !== null && typeof value === 'object' && typeof Reflect.get(value, 'length') === 'number'
 
-export function is_array(mixedVar: PhpValue): boolean {
+export function is_array(mixedVar: IsArrayValue): boolean {
   //  discuss at: https://locutus.io/php/is_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Legaev Andrey

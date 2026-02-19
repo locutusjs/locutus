@@ -3,12 +3,13 @@ import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 type JsonPrimitive = string | number | boolean | null
 type JsonObject = { [key: string]: JsonValue }
 type JsonValue = JsonPrimitive | JsonValue[] | JsonObject
+type JsonEncodeInput = {} | null | undefined
 
 const hasOwn = Object.prototype.hasOwnProperty
 const isJsonObject = (value: PhpValue): value is JsonObject =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 
-export function json_encode(mixedVal: PhpValue): string | null {
+export function json_encode(mixedVal: JsonEncodeInput): string | null {
   //       discuss at: https://phpjs.org/functions/json_encode/
   //  parity verified: PHP 8.3
   //      original by: Public Domain (https://www.json.org/json2.js)

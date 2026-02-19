@@ -1,6 +1,6 @@
-import type { PhpValue } from './_phpTypes.ts'
+type CastStringValue = {} | null | undefined
 
-export function _phpCastString(value: PhpValue): string {
+export function _phpCastString(value: CastStringValue): string {
   // original by: Rafał Kukawski
   //   example 1: _phpCastString(true)
   //   returns 1: '1'

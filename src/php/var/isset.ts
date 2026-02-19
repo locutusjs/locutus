@@ -1,6 +1,6 @@
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
+type IssetValue = {} | null | undefined
 
-export function isset(...values: PhpValue[]): boolean {
+export function isset(...values: IssetValue[]): boolean {
   //  discuss at: https://locutus.io/php/isset/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: FremyCompany

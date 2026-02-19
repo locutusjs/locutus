@@ -1,6 +1,8 @@
 import { type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-export function is_callable(mixedVar: PhpValue, syntaxOnly?: boolean, callableName?: string): boolean {
+type CallableValue = {} | null | undefined
+
+export function is_callable(mixedVar: CallableValue, syntaxOnly?: boolean, callableName?: string): boolean {
   //  discuss at: https://locutus.io/php/is_callable/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: François

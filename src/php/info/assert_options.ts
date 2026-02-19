@@ -1,7 +1,8 @@
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
 import { ini_get } from './ini_get.ts'
 
-export function assert_options(what: string, _value?: PhpValue): string | number | null {
+type AssertOptionValue = {} | null | undefined
+
+export function assert_options(what: string, _value?: AssertOptionValue): string | number | null {
   //  discuss at: https://locutus.io/php/assert_options/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: assert_options('ASSERT_CALLBACK')

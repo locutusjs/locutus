@@ -1,7 +1,8 @@
-import type { PhpValue } from '../_helpers/_phpTypes.ts'
 import { implode } from '../strings/implode.ts'
 
-export function join(glue: string, pieces: PhpValue[]): string {
+type JoinValue = {} | null | undefined
+
+export function join(glue: string, pieces: JoinValue[]): string {
   //      discuss at: https://locutus.io/php/join/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

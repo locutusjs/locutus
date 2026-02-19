@@ -3,6 +3,7 @@ const visitedObjects = new Map<object, true>() // Initialize a map to track visi
 import { type PhpAssoc, type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
 
+type DumpValue = {} | null | undefined
 type DomLikeNode = {
   nodeName: string
   nodeType?: number
@@ -31,7 +32,7 @@ const isLocutusResource = (
   )
 }
 
-export function var_dump(...args: PhpValue[]): string {
+export function var_dump(...args: DumpValue[]): string {
   //  discuss at: https://locutus.io/php/var_dump/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Zahlii

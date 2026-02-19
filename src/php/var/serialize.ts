@@ -1,8 +1,9 @@
 import { type PhpValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 type LocutusType = 'function' | 'boolean' | 'number' | 'string' | 'array' | 'object' | 'undefined' | 'null'
+type SerializeValue = {} | null | undefined
 
-export function serialize(mixedValue: PhpValue): string {
+export function serialize(mixedValue: SerializeValue): string {
   //  discuss at: https://locutus.io/php/serialize/
   // original by: Arpad Ray (mailto:arpad@php.net)
   // improved by: Dino
@@ -38,7 +39,7 @@ export function serialize(mixedValue: PhpValue): string {
     return ~-encodeURI(str).split(/%..|./).length
   }
 
-  const _getType = function (inp: PhpValue): LocutusType {
+  const _getType = function (inp: SerializeValue): LocutusType {
     let match: RegExpMatchArray | null
     let cons = ''
     const types: Array<'boolean' | 'number' | 'string' | 'array'> = ['boolean', 'number', 'string', 'array']
@@ -109,7 +110,7 @@ export function serialize(mixedValue: PhpValue): string {
         val = 'O' + objname[1].substring(1, objname[1].length - 1);
       }
       */
-      const source = toPhpArrayObject<PhpValue>(mixedValue)
+      const source = toPhpArrayObject<SerializeValue>(mixedValue)
       for (const key in source) {
         if (Object.prototype.hasOwnProperty.call(source, key)) {
           const entry = source[key]

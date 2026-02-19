@@ -1297,3 +1297,58 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Eliminating an entire namespace bucket (`src/php/array/**`) from broad exported markers is practical when signatures are moved to local constrained aliases and callback generics are normalized.
   - Ratcheting immediately after each burn-down batch prevents rebound and turns large refactors into enforceable, incremental debt reduction.
+
+## Iteration 55
+
+- Plans
+  - Continue aggressive exported-signature burn-down outside `_phpTypes.ts` to isolate remaining broad `PhpValue` debt in one intentional boundary file.
+  - Prioritize low-risk string/var/helper surfaces first, then finish remaining singleton hotspots in `json` and `strings`.
+  - Ratchet policy to the newly measured floor immediately after verification.
+- Progress
+  - Replaced exported `PhpValue` signatures with local constrained aliases across helper/string/var surfaces:
+    - `_helpers/_phpCastString.ts`
+    - `_helpers/_php_cast_float.ts`
+    - `_helpers/_php_cast_int.ts`
+    - `info/assert_options.ts`
+    - `strings/convert_uuencode.ts`
+    - `strings/echo.ts`
+    - `strings/join.ts`
+    - `strings/metaphone.ts`
+    - `strings/printf.ts`
+    - `strings/soundex.ts`
+    - `strings/vsprintf.ts`
+    - `var/boolval.ts`
+    - `var/empty.ts`
+    - `var/gettype.ts`
+    - `var/is_array.ts`
+    - `var/is_callable.ts`
+    - `var/is_int.ts`
+    - `var/is_numeric.ts`
+    - `var/is_scalar.ts`
+    - `var/is_unicode.ts`
+    - `var/isset.ts`
+    - `var/print_r.ts`
+    - `var/serialize.ts`
+    - `var/strval.ts`
+    - `var/unserialize.ts`
+    - `var/var_dump.ts`
+  - Finished remaining non-helper singleton hotspots:
+    - `json/json_encode.ts`
+    - `strings/explode.ts`
+    - `strings/implode.ts`
+    - `strings/split.ts`
+    - `strings/sprintf.ts`
+    - `strings/strtr.ts`
+  - Updated API signature snapshot (`docs/php-api-signatures.snapshot`) for intentional surface changes.
+  - Measured exported `PhpValue` identifier reduction (AST count over exported runtime signatures):
+    - `src/php/**`: `56 -> 24`
+    - `src/php/array/**`: `0 -> 0`
+    - Remaining `24` identifiers are now isolated to `src/php/_helpers/_phpTypes.ts`.
+  - Ratcheted policy ceilings in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_EXPORTED_PHPVALUE_IDENTIFIER`: `56 -> 24`
+    - `MAX_SRC_PHP_ARRAY_EXPORTED_PHPVALUE_IDENTIFIER`: unchanged at `0`
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Concentrating broad-type debt into one explicit boundary module (`_phpTypes.ts`) dramatically improves visibility and sets up a cleaner next pass for a real type lattice migration.
+  - Mechanical local-alias narrowing can safely unlock large debt drops when immediately backed by API snapshot + debt-policy ratchets + full test runs.

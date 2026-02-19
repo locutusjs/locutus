@@ -1,8 +1,9 @@
 import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 
+type ImplodeValue = {} | null | undefined
 type KeyedValues = PhpAssoc<PhpValue>
 
-export function implode(...args: Array<PhpValue[] | KeyedValues | string | undefined>): string {
+export function implode(...args: Array<ImplodeValue[] | KeyedValues | string | undefined>): string {
   //      discuss at: https://locutus.io/php/implode/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
