@@ -2,7 +2,7 @@ src/php/_helpers/_arrayPointers.ts :: export function getArrayLikeLength<T>(targ
 src/php/_helpers/_arrayPointers.ts :: export function getEntryAtCursor<T>(target: PhpArrayLike<T>, cursor: number): [string | number, T] | null
 src/php/_helpers/_arrayPointers.ts :: export function getPointerState<T>(target: PhpArrayLike<T>, initialize = true): PointerState | null
 src/php/_helpers/_bc.ts :: export function _bc(): ReturnType<typeof createBcLibrary>
-src/php/_helpers/_callbackResolver.ts :: export function resolveNumericComparator<TLeft extends PhpValue = PhpValue, TRight extends PhpValue = PhpValue>( callback: PhpValue, invalidMessage: string, ): (left: TLeft, right: TRight) => number
+src/php/_helpers/_callbackResolver.ts :: export function resolveNumericComparator<TLeft extends PhpValue = PhpValue, TRight extends PhpValue = PhpValue>( callback: PhpCallableDescriptor<[TLeft, TRight], PhpValue>, invalidMessage: string, ): (left: TLeft, right: TRight) => number
 src/php/_helpers/_callbackResolver.ts :: export function resolvePhpCallable<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue>( callback: PhpCallableDescriptor<TArgs, TResult>, options: CallbackResolverOptions, ): ResolvedCallback<TArgs, TResult>
 src/php/_helpers/_ctypePattern.ts :: export function getCtypePattern(key: string): RegExp | undefined
 src/php/_helpers/_phpCastString.ts :: export function _phpCastString(value: PhpMixed): string
@@ -15,6 +15,7 @@ src/php/_helpers/_phpTypes.ts :: export function isNumericLike(value: PhpValue):
 src/php/_helpers/_phpTypes.ts :: export function isObjectLike(value: PhpValue): value is PhpArrayLike<PhpValue>
 src/php/_helpers/_phpTypes.ts :: export function isPhpArrayObject<T = PhpValue>(value: PhpValue): value is PhpAssoc<T>
 src/php/_helpers/_phpTypes.ts :: export function isPhpCallable<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue>( value: PhpValue, ): value is PhpCallable<TArgs, TResult>
+src/php/_helpers/_phpTypes.ts :: export function isPhpCallableDescriptor<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue>( value: PhpValue, ): value is PhpCallableDescriptor<TArgs, TResult>
 src/php/_helpers/_phpTypes.ts :: export function isPhpScalar(value: PhpValue): value is PhpScalar
 src/php/_helpers/_phpTypes.ts :: export function toPhpArrayObject<T = PhpValue>(value: PhpValue): PhpAssoc<T>
 src/php/_helpers/_phpTypes.ts :: export type NumericLike = number | bigint | string
@@ -117,9 +118,9 @@ src/php/array/rsort.ts :: export function rsort<T extends PhpValue>( inputArr: R
 src/php/array/shuffle.ts :: export function shuffle<T>(inputArr: Record<string, T>): boolean | Record<string, T> | T[]
 src/php/array/sizeof.ts :: export function sizeof(mixedVar: PhpMixed[] | PhpAssoc<PhpMixed>, mode?: string): number
 src/php/array/sort.ts :: export function sort<T extends PhpValue>(inputArr: Record<string, T>, sortFlags?: string): boolean | Record<string, T>
-src/php/array/uasort.ts :: export function uasort<T>( this: PhpAssoc<PhpMixed>, inputArr: Record<string, T>, sorter: ((a: T, b: T) => number) | string | string[], ): boolean | Record<string, T>
-src/php/array/uksort.ts :: export function uksort<T>( this: PhpAssoc<PhpValue> & { window?: PhpAssoc<PhpValue> }, inputArr: Record<string, T>, sorter: ((a: string, b: string) => number) | string, ): boolean | Record<string, T>
-src/php/array/usort.ts :: export function usort<T>( this: PhpAssoc<PhpMixed>, inputArr: Record<string, T>, sorter: ((a: T, b: T) => number) | string | string[], ): boolean | Record<string, T>
+src/php/array/uasort.ts :: export function uasort<T>( this: PhpAssoc<PhpMixed>, inputArr: Record<string, T>, sorter: PhpCallableDescriptor<[T, T], number>, ): boolean | Record<string, T>
+src/php/array/uksort.ts :: export function uksort<T>( this: PhpAssoc<PhpValue> & { window?: PhpAssoc<PhpValue> }, inputArr: Record<string, T>, sorter: PhpCallableDescriptor<[string, string], number>, ): boolean | Record<string, T>
+src/php/array/usort.ts :: export function usort<T>( this: PhpAssoc<PhpMixed>, inputArr: Record<string, T>, sorter: PhpCallableDescriptor<[T, T], number>, ): boolean | Record<string, T>
 src/php/bc/bcadd.ts :: export function bcadd(leftOperand: string, rightOperand: string, scale?: number): string
 src/php/bc/bccomp.ts :: export function bccomp(leftOperand: string | number, rightOperand: string | number, scale?: number): number
 src/php/bc/bcdiv.ts :: export function bcdiv(leftOperand: string | number, rightOperand: string | number, scale?: number): string
@@ -364,7 +365,10 @@ src/php/var/serialize.ts :: export function serialize(mixedValue: PhpValue): str
 src/php/var/strval.ts :: export function strval(str: PhpMixed): string
 src/php/var/unserialize.ts :: export function unserialize(str: PhpMixed, errorMode: ErrorMode = 'log'): UnserializedValue | false
 src/php/var/var_dump.ts :: export function var_dump(...args: PhpValue[]): string
-src/php/var/var_export.ts :: export function var_export(mixedExpression: PhpValue, boolReturn?: PhpValue, idtLevel = 2): VarExportResult | null
+src/php/var/var_export.ts :: export function var_export(mixedExpression: PhpValue, boolReturn: true, idtLevel?: number): VarExportResult
+src/php/var/var_export.ts :: export function var_export(mixedExpression: PhpValue, boolReturn?: boolean, idtLevel = 2): VarExportResult | null
+src/php/var/var_export.ts :: export function var_export(mixedExpression: PhpValue, boolReturn?: boolean, idtLevel?: number): VarExportResult | null
+src/php/var/var_export.ts :: export function var_export(mixedExpression: PhpValue, boolReturn?: false | undefined, idtLevel?: number): null
 src/php/xdiff/xdiff_string_diff.ts :: export function xdiff_string_diff( oldData: string, newData: string, contextLines?: number, _minimal?: boolean, ): string | false
 src/php/xdiff/xdiff_string_patch.ts :: export function xdiff_string_patch( originalStr: string, patch: string, flags?: number | string | string[], errorObj?: PatchErrorObject, ): string | false
 src/php/xml/utf8_decode.ts :: export function utf8_decode(strData: string | number | boolean | null | undefined): string

@@ -1,6 +1,7 @@
 import { resolveNumericComparator } from '../_helpers/_callbackResolver.ts'
 import {
   entriesOfPhpAssoc,
+  isPhpCallableDescriptor,
   type PhpAssoc,
   type PhpCallableDescriptor,
   type PhpValue,
@@ -28,8 +29,16 @@ export function array_uintersect_uassoc<T extends PhpValue>(
   //   returns 1: {a: 'green', b: 'brown'}
 
   const retArr: PhpArray<T> = {}
-  const keyCallback = arraysAndComparators[arraysAndComparators.length - 1]
-  const valueCallback = arraysAndComparators[arraysAndComparators.length - 2]
+  const keyCallback = arraysAndComparators.at(-1)
+  const valueCallback = arraysAndComparators.at(-2)
+  if (
+    typeof keyCallback === 'undefined' ||
+    typeof valueCallback === 'undefined' ||
+    !isPhpCallableDescriptor<[string, string], PhpValue>(keyCallback) ||
+    !isPhpCallableDescriptor<[PhpValue, T], PhpValue>(valueCallback)
+  ) {
+    throw new Error('array_uintersect_uassoc(): Invalid callback')
+  }
   const arrays = arraysAndComparators.slice(0, -2).map((value) => toPhpArrayObject<PhpValue>(value))
   const lastArrayIndex = arrays.length - 1
   const keyComparator = resolveNumericComparator<string, string>(

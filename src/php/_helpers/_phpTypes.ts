@@ -60,6 +60,20 @@ export function isPhpCallable<TArgs extends PhpValue[] = PhpValue[], TResult = P
   return typeof value === 'function'
 }
 
+export function isPhpCallableDescriptor<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue>(
+  value: PhpValue,
+): value is PhpCallableDescriptor<TArgs, TResult> {
+  if (typeof value === 'string') {
+    return true
+  }
+
+  if (isPhpCallable<TArgs, TResult>(value)) {
+    return true
+  }
+
+  return Array.isArray(value) && value.length >= 2
+}
+
 export function assertIsObjectLike(
   value: PhpValue,
   message = 'Expected object-like value',

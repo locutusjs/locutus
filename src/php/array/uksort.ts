@@ -1,10 +1,16 @@
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
-import { isPhpCallable, type PhpAssoc, type PhpValue } from '../_helpers/_phpTypes.ts'
+import {
+  isObjectLike,
+  isPhpCallable,
+  type PhpAssoc,
+  type PhpCallableDescriptor,
+  type PhpValue,
+} from '../_helpers/_phpTypes.ts'
 
 export function uksort<T>(
   this: PhpAssoc<PhpValue> & { window?: PhpAssoc<PhpValue> },
   inputArr: Record<string, T>,
-  sorter: ((a: string, b: string) => number) | string,
+  sorter: PhpCallableDescriptor<[string, string], number>,
 ): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/uksort/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -37,8 +43,30 @@ export function uksort<T>(
     if (isPhpCallable<[string, string], number>(maybeSorter)) {
       sortFn = maybeSorter
     }
-  } else {
+  } else if (Array.isArray(sorter)) {
+    const [scopeDescriptor, callableDescriptor] = sorter
+    if (typeof callableDescriptor === 'undefined') {
+      return false
+    }
+
+    const scopeValue: PhpValue =
+      typeof scopeDescriptor === 'string' ? (this.window?.[scopeDescriptor] ?? this[scopeDescriptor]) : scopeDescriptor
+    if (isPhpCallable<[string, string], number>(callableDescriptor)) {
+      sortFn = callableDescriptor
+    } else {
+      if (!isObjectLike(scopeValue) && typeof scopeValue !== 'function') {
+        return false
+      }
+      const method = Reflect.get(scopeValue, callableDescriptor)
+      if (!isPhpCallable<[string, string], number>(method)) {
+        return false
+      }
+      sortFn = method
+    }
+  } else if (isPhpCallable<[string, string], number>(sorter)) {
     sortFn = sorter
+  } else {
+    return false
   }
 
   // Make a list of key names

@@ -1,10 +1,17 @@
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
-import { isObjectLike, isPhpCallable, type PhpAssoc, type PhpMixed } from '../_helpers/_phpTypes.ts'
+import {
+  isObjectLike,
+  isPhpCallable,
+  type PhpAssoc,
+  type PhpCallableDescriptor,
+  type PhpMixed,
+  type PhpValue,
+} from '../_helpers/_phpTypes.ts'
 
 export function usort<T>(
   this: PhpAssoc<PhpMixed>,
   inputArr: Record<string, T>,
-  sorter: ((a: T, b: T) => number) | string | string[],
+  sorter: PhpCallableDescriptor<[T, T], number>,
 ): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/usort/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -37,21 +44,28 @@ export function usort<T>(
     }
     sortFn = method
   } else if (Array.isArray(sorter)) {
-    const [objectKey, methodKey] = sorter
-    if (objectKey === undefined || methodKey === undefined) {
+    const [scopeDescriptor, callableDescriptor] = sorter
+    if (typeof callableDescriptor === 'undefined') {
       return false
     }
-    const objectValue = this[objectKey]
-    if (!isObjectLike(objectValue) && typeof objectValue !== 'function') {
-      return false
+
+    const scopeValue: PhpValue = typeof scopeDescriptor === 'string' ? this[scopeDescriptor] : scopeDescriptor
+    if (isPhpCallable<[T, T], number>(callableDescriptor)) {
+      sortFn = callableDescriptor
+    } else {
+      if (!isObjectLike(scopeValue) && typeof scopeValue !== 'function') {
+        return false
+      }
+      const method = Reflect.get(scopeValue, callableDescriptor)
+      if (!isPhpCallable<[T, T], number>(method)) {
+        return false
+      }
+      sortFn = method
     }
-    const method = Reflect.get(objectValue, methodKey)
-    if (!isPhpCallable<[T, T], number>(method)) {
-      return false
-    }
-    sortFn = method
-  } else {
+  } else if (isPhpCallable<[T, T], number>(sorter)) {
     sortFn = sorter
+  } else {
+    return false
   }
   if (typeof sortFn !== 'function') {
     return false

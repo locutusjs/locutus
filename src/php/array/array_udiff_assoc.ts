@@ -1,6 +1,7 @@
 import { resolveNumericComparator } from '../_helpers/_callbackResolver.ts'
 import {
   entriesOfPhpAssoc,
+  isPhpCallableDescriptor,
   type PhpAssoc,
   type PhpCallableDescriptor,
   type PhpValue,
@@ -20,7 +21,10 @@ export function array_udiff_assoc<T extends PhpValue>(
   //   returns 1: {1: 'van', 2: 'Zonneveld'}
 
   const retArr: PhpArray<T> = {}
-  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  const callback = arraysAndCallback.at(-1)
+  if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[PhpValue, T], PhpValue>(callback)) {
+    throw new Error('array_udiff_assoc(): Invalid callback')
+  }
   const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject<PhpValue>(value))
   const cb = resolveNumericComparator<PhpValue, T>(callback, 'array_udiff_assoc(): Invalid callback')
 

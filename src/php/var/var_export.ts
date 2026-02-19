@@ -13,7 +13,10 @@ type VarExportType =
   | 'undefined'
 type VarExportResult = string | number | boolean | null
 
-export function var_export(mixedExpression: PhpValue, boolReturn?: PhpValue, idtLevel = 2): VarExportResult | null {
+export function var_export(mixedExpression: PhpValue, boolReturn: true, idtLevel?: number): VarExportResult
+export function var_export(mixedExpression: PhpValue, boolReturn?: false | undefined, idtLevel?: number): null
+export function var_export(mixedExpression: PhpValue, boolReturn?: boolean, idtLevel?: number): VarExportResult | null
+export function var_export(mixedExpression: PhpValue, boolReturn?: boolean, idtLevel = 2): VarExportResult | null {
   //  discuss at: https://locutus.io/php/var_export/
   // original by: Philip Peterson
   // improved by: johnrembo
@@ -131,7 +134,7 @@ export function var_export(mixedExpression: PhpValue, boolReturn?: PhpValue, idt
       if (subtype === 'array' || subtype === 'object') {
         value = '\n'
       }
-      value += String(var_export(entry, 1, idtLevel + 2))
+      value += String(var_export(entry, true, idtLevel + 2))
       const mappedKey = _isNormalInteger(key) ? key : `'${key}'`
       x[cnt++] = innerIndent + mappedKey + ' =>' + value
     }

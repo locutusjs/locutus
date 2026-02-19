@@ -844,3 +844,33 @@ To fix a `@ts-nocheck` file:
     - `corepack yarn check`
 - Key learnings
   - Type narrowing can surface and codify intended recursive semantics (object-like + object-like recursion) while keeping behavior stable for supported input shapes.
+
+## Iteration 37
+
+- Plans
+  - Tighten remaining callback descriptor boundaries in helper and sort APIs.
+  - Remove tuple-index widening friction in `array_u*` implementations without casts.
+  - Narrow boolean control-flag semantics in `var_export`.
+- Progress
+  - `src/php/_helpers/_callbackResolver.ts`
+    - narrowed `resolveNumericComparator()` callback parameter to:
+      - `PhpCallableDescriptor<[TLeft, TRight], PhpValue>`
+    - removed now-redundant local descriptor guard helper.
+  - `src/php/_helpers/_phpTypes.ts`
+    - added shared guard:
+      - `isPhpCallableDescriptor<TArgs, TResult>(value): value is PhpCallableDescriptor<TArgs, TResult>`
+  - `src/php/array/{array_udiff,array_udiff_assoc,array_udiff_uassoc,array_uintersect,array_uintersect_uassoc,array_diff_uassoc,array_diff_ukey,array_intersect_uassoc,array_intersect_ukey}.ts`
+    - replaced brittle callback extraction with strict guards using `at(-1)/at(-2)` + `isPhpCallableDescriptor(...)`.
+    - preserved runtime behavior while removing strict-next union leakage (`undefined`/`null`) into comparator resolver calls.
+  - `src/php/array/{uasort,usort,uksort}.ts`
+    - narrowed `sorter` parameter to `PhpCallableDescriptor` tuple model.
+    - removed permissive `string[]` sorter surface and aligned tuple resolution with callable descriptor semantics.
+  - `src/php/var/var_export.ts`
+    - narrowed `boolReturn` to boolean overloads (`true` => returns value, omitted/false => returns `null`).
+    - updated recursive internal call to pass `true` explicitly.
+  - Updated `docs/php-api-signatures.snapshot` for intentional exported API changes.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - A shared descriptor guard in the type helper layer unlocks broad strictness wins across multiple callback-heavy families with minimal runtime churn.
+  - Tightening sort callback signatures to descriptor tuples removes permissive legacy unions while remaining compatible with existing callable resolution patterns.
