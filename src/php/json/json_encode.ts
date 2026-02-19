@@ -1,3 +1,4 @@
+import { setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
 import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 
 type JsonPrimitive = string | number | boolean | null
@@ -28,25 +29,14 @@ export function json_encode(mixedVal: JsonEncodeInput): string | null {
     See https://www.JSON.org/js.html
   */
 
-  const locutusValue = Reflect.get(globalThis, '$locutus')
-  const locutus = typeof locutusValue === 'object' && locutusValue !== null ? locutusValue : {}
-  if (locutusValue !== locutus) {
-    Reflect.set(globalThis, '$locutus', locutus)
-  }
-  const phpValue = Reflect.get(locutus, 'php')
-  const php = typeof phpValue === 'object' && phpValue !== null ? phpValue : {}
-  if (phpValue !== php) {
-    Reflect.set(locutus, 'php', php)
-  }
-
-  const json = Reflect.get(globalThis, 'JSON')
+  const json = typeof JSON === 'object' && JSON !== null ? JSON : null
   let retVal
   try {
     if (typeof json === 'object' && json !== null) {
-      const stringify = Reflect.get(json, 'stringify')
+      const stringify = json.stringify
       if (typeof stringify === 'function') {
         // Errors will not be caught here if our own equivalent to resource
-        retVal = Reflect.apply(stringify, json, [mixedVal])
+        retVal = stringify.call(json, mixedVal)
         if (retVal === undefined) {
           throw new SyntaxError('json_encode')
         }
@@ -110,9 +100,8 @@ export function json_encode(mixedVal: JsonEncodeInput): string | null {
 
       // If the value has a toJSON method, call it to obtain a replacement value.
       if (typeof value === 'object' && value !== null) {
-        const toJSON = Reflect.get(value, 'toJSON')
-        if (typeof toJSON === 'function') {
-          value = toJSON.call(value, key)
+        if ('toJSON' in value && typeof value.toJSON === 'function') {
+          value = value.toJSON.call(value, key)
         }
       }
 
@@ -209,7 +198,7 @@ export function json_encode(mixedVal: JsonEncodeInput): string | null {
       throw new Error('Unexpected error type in json_encode()')
     }
     // usable by json_last_error()
-    Reflect.set(php, 'last_error_json', 4)
+    setPhpRuntimeEntry('last_error_json', 4)
     return null
   }
 }

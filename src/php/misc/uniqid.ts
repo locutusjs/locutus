@@ -1,3 +1,5 @@
+import { getPhpRuntimeNumber, setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
+
 export function uniqid(prefix?: string, moreEntropy?: boolean): string {
   //  discuss at: https://locutus.io/php/uniqid/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -29,21 +31,9 @@ export function uniqid(prefix?: string, moreEntropy?: boolean): string {
     return hexSeed
   }
 
-  const locutusValue = Reflect.get(globalThis, '$locutus')
-  const locutus = typeof locutusValue === 'object' && locutusValue !== null ? locutusValue : {}
-  if (locutus !== locutusValue) {
-    Reflect.set(globalThis, '$locutus', locutus)
-  }
-  const phpValue = Reflect.get(locutus, 'php')
-  const php = typeof phpValue === 'object' && phpValue !== null ? phpValue : {}
-  if (php !== phpValue) {
-    Reflect.set(locutus, 'php', php)
-  }
-
-  const uniqidSeedValue = Reflect.get(php, 'uniqidSeed')
-  let uniqidSeed = typeof uniqidSeedValue === 'number' ? uniqidSeedValue : Math.floor(Math.random() * 0x75bcd15) // init seed with big random int
+  let uniqidSeed = getPhpRuntimeNumber('uniqidSeed', Math.floor(Math.random() * 0x75bcd15)) // init seed with big random int
   uniqidSeed++
-  Reflect.set(php, 'uniqidSeed', uniqidSeed)
+  setPhpRuntimeEntry('uniqidSeed', uniqidSeed)
 
   // start with prefix, add current milliseconds hex string
   retId = normalizedPrefix

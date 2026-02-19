@@ -1407,3 +1407,35 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Aggressive mechanical tightening works at repo scale when each broad marker gets a policy ratchet in the same pass.
   - Codemods that touch imports need immediate compile/format feedback loops; multiline-import edge cases are the main reliability risk.
+
+## Iteration 58
+
+- Plans
+  - Reduce runtime dynamism in `src/php/**` by replacing ad-hoc `Reflect.get/set` and `globalThis` reads with typed runtime helpers.
+  - Centralize php runtime-bag reads/writes in `_phpRuntimeState.ts` so local implementation code stays narrow.
+  - Ratchet policy with explicit caps for `Reflect.get/set` and `globalThis` usage in `src/php/**`.
+- Progress
+  - Added typed runtime accessors in `src/php/_helpers/_phpRuntimeState.ts`:
+    - `getPhpRuntimeEntry()`
+    - `setPhpRuntimeEntry()`
+    - `getPhpRuntimeNumber()`
+    - `getPhpRuntimeBoolean()`
+  - Migrated runtime-heavy call sites to typed helpers:
+    - `src/php/json/json_decode.ts`
+    - `src/php/json/json_encode.ts`
+    - `src/php/json/json_last_error.ts`
+    - `src/php/info/set_time_limit.ts`
+    - `src/php/misc/uniqid.ts`
+  - Removed local `$locutus/php` bag bootstrapping duplication in JSON functions and used shared runtime helper writes.
+  - Replaced `Reflect`-based JSON global probing with direct `JSON` capability checks.
+  - Added debt-policy gates in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_REFLECT_GET_SET = 132`
+    - `MAX_SRC_PHP_GLOBALTHIS_IDENTIFIER = 40`
+  - Measured reduction:
+    - `Reflect.get/set` in `src/php/**`: `163 -> 132`
+    - `globalThis` identifiers in `src/php/**`: `52 -> 40`
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Even when runtime state remains dynamic, routing access through typed helper boundaries gives immediate narrowing gains with limited behavioral risk.
+  - Ratcheting runtime-dynamism counters (`Reflect`/`globalThis`) turns a large, fuzzy cleanup into enforceable incremental burn-down.

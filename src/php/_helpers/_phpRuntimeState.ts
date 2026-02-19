@@ -76,3 +76,24 @@ export function setPhpLocaleDefault(localeDefault: string): void {
   const php = ensurePhpRuntimeObject()
   Reflect.set(php, 'locale_default', localeDefault)
 }
+
+export function getPhpRuntimeEntry(key: string): PhpInput | undefined {
+  const php = ensurePhpRuntimeObject()
+  const value = Reflect.get(php, key)
+  return typeof value === 'undefined' ? undefined : value
+}
+
+export function setPhpRuntimeEntry(key: string, value: PhpInput): void {
+  const php = ensurePhpRuntimeObject()
+  Reflect.set(php, key, value)
+}
+
+export function getPhpRuntimeNumber(key: string, fallback: number): number {
+  const value = getPhpRuntimeEntry(key)
+  return typeof value === 'number' ? value : fallback
+}
+
+export function getPhpRuntimeBoolean(key: string, fallback: boolean): boolean {
+  const value = getPhpRuntimeEntry(key)
+  return typeof value === 'boolean' ? value : fallback
+}

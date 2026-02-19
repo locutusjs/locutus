@@ -1,3 +1,5 @@
+import { setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
+
 type JsonPrimitive = string | number | boolean | null
 type JsonValue = JsonPrimitive | JsonValue[] | { [key: string]: JsonValue }
 
@@ -22,30 +24,19 @@ export function json_decode<T = JsonValue>(strJson: string): T | null {
     See https://www.JSON.org/js.html
   */
 
-  const locutusValue = Reflect.get(globalThis, '$locutus')
-  const locutus = typeof locutusValue === 'object' && locutusValue !== null ? locutusValue : {}
-  if (locutusValue !== locutus) {
-    Reflect.set(globalThis, '$locutus', locutus)
-  }
-  const phpValue = Reflect.get(locutus, 'php')
-  const php = typeof phpValue === 'object' && phpValue !== null ? phpValue : {}
-  if (phpValue !== php) {
-    Reflect.set(locutus, 'php', php)
-  }
-
-  const json = Reflect.get(globalThis, 'JSON')
+  const json = typeof JSON === 'object' && JSON !== null ? JSON : null
   if (typeof json === 'object' && json !== null) {
-    const parse = Reflect.get(json, 'parse')
+    const parse = json.parse
     if (typeof parse === 'function') {
       try {
-        return Reflect.apply(parse, json, [strJson])
+        return parse.call(json, strJson)
       } catch (err) {
         if (!(err instanceof SyntaxError)) {
           throw new Error('Unexpected error type in json_decode()')
         }
 
         // usable by json_last_error()
-        Reflect.set(php, 'last_error_json', 4)
+        setPhpRuntimeEntry('last_error_json', 4)
         return null
       }
     }
@@ -107,6 +98,6 @@ export function json_decode<T = JsonValue>(strJson: string): T | null {
   }
 
   // usable by json_last_error()
-  Reflect.set(php, 'last_error_json', 4)
+  setPhpRuntimeEntry('last_error_json', 4)
   return null
 }
