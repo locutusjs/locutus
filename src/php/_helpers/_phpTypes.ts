@@ -1,5 +1,6 @@
 export type PhpNullish = null | undefined
-export type PhpValue = {} | PhpNullish
+export type PhpInput = {} | PhpNullish
+export type PhpValue = PhpInput
 
 export type PhpScalar = string | number | boolean
 export type PhpPrimitive = PhpScalar | bigint
@@ -7,32 +8,32 @@ export type PhpKey = string | number
 export type NumericLike = number | bigint | string
 export type StringLike = string | number | boolean | bigint
 
-export type PhpList<T = PhpValue> = T[]
-export type PhpAssoc<T = PhpValue> = { [key: string]: T }
-export type PhpArrayLike<T = PhpValue> = PhpList<T> | PhpAssoc<T>
-export type PhpReadonlyList<T = PhpValue> = readonly T[]
-export type PhpReadonlyAssoc<T = PhpValue> = Readonly<PhpAssoc<T>>
-export type PhpReadonlyArrayLike<T = PhpValue> = PhpReadonlyList<T> | PhpReadonlyAssoc<T>
+export type PhpList<T = PhpInput> = T[]
+export type PhpAssoc<T = PhpInput> = { [key: string]: T }
+export type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+export type PhpReadonlyList<T = PhpInput> = readonly T[]
+export type PhpReadonlyAssoc<T = PhpInput> = Readonly<PhpAssoc<T>>
+export type PhpReadonlyArrayLike<T = PhpInput> = PhpReadonlyList<T> | PhpReadonlyAssoc<T>
 
 export const entriesOfPhpAssoc = <T>(value: PhpAssoc<T>): Array<[string, T]> => {
   return Object.entries(value)
 }
 
-export type PhpCallableArgs = PhpValue[]
-export type PhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue> = (
+export type PhpCallableArgs = PhpInput[]
+export type PhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> = (
   ...args: TArgs
 ) => TResult
-export type PhpCallableScope = PhpValue
-export type PhpCallableTuple<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue> = readonly [
+export type PhpCallableScope = PhpInput
+export type PhpCallableTuple<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> = readonly [
   PhpCallableScope,
   string | PhpCallable<TArgs, TResult>,
 ]
-export type PhpCallableDescriptor<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue> =
+export type PhpCallableDescriptor<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> =
   | string
   | PhpCallable<TArgs, TResult>
   | PhpCallableTuple<TArgs, TResult>
 
-export function isPhpNullish(value: PhpValue): value is PhpNullish {
+export function isPhpNullish(value: PhpInput): value is PhpNullish {
   // discuss at: https://locutus.io/php/_helpers/isPhpNullish/
   //     note 1: Shared helper guard to narrow null/undefined unions.
   //  example 1: isPhpNullish(null)
@@ -40,7 +41,7 @@ export function isPhpNullish(value: PhpValue): value is PhpNullish {
   return typeof value === 'undefined' || value === null
 }
 
-export function isPhpList<T = PhpValue>(value: PhpValue): value is PhpList<T> {
+export function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T> {
   // discuss at: https://locutus.io/php/_helpers/isPhpList/
   //     note 1: Shared helper guard for PHP list-like array values.
   //  example 1: isPhpList([1, 2, 3])
@@ -48,7 +49,7 @@ export function isPhpList<T = PhpValue>(value: PhpValue): value is PhpList<T> {
   return Array.isArray(value)
 }
 
-export function isObjectLike(value: PhpValue): value is PhpArrayLike<PhpValue> {
+export function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
   //  example 1: isObjectLike({})
@@ -56,19 +57,19 @@ export function isObjectLike(value: PhpValue): value is PhpArrayLike<PhpValue> {
   return typeof value === 'object' && value !== null
 }
 
-export function isPhpAssocObject<T = PhpValue>(value: PhpValue): value is PhpAssoc<T> {
+export function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
   return isObjectLike(value) && !isPhpList(value)
 }
 
-export function isPhpScalar(value: PhpValue): value is PhpScalar {
+export function isPhpScalar(value: PhpInput): value is PhpScalar {
   return typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean'
 }
 
-export function isPhpKey(value: PhpValue): value is PhpKey {
+export function isPhpKey(value: PhpInput): value is PhpKey {
   return typeof value === 'string' || typeof value === 'number'
 }
 
-export function isNumericLike(value: PhpValue): value is NumericLike {
+export function isNumericLike(value: PhpInput): value is NumericLike {
   if (typeof value === 'number') {
     return Number.isFinite(value)
   }
@@ -89,14 +90,14 @@ export function isNumericLike(value: PhpValue): value is NumericLike {
   return Number.isFinite(Number(trimmed))
 }
 
-export function isPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue>(
-  value: PhpValue,
+export function isPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput>(
+  value: PhpInput,
 ): value is PhpCallable<TArgs, TResult> {
   return typeof value === 'function'
 }
 
-export function isPhpCallableDescriptor<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue>(
-  value: PhpValue,
+export function isPhpCallableDescriptor<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput>(
+  value: PhpInput,
 ): value is PhpCallableDescriptor<TArgs, TResult> {
   if (typeof value === 'string') {
     return true
@@ -115,25 +116,25 @@ export function isPhpCallableDescriptor<TArgs extends PhpCallableArgs = PhpCalla
 }
 
 export function assertIsObjectLike(
-  value: PhpValue,
+  value: PhpInput,
   message = 'Expected object-like value',
-): asserts value is PhpArrayLike<PhpValue> {
+): asserts value is PhpArrayLike<PhpInput> {
   if (!isObjectLike(value)) {
     throw new TypeError(message)
   }
 }
 
 export function assertIsPhpAssocObject(
-  value: PhpValue,
+  value: PhpInput,
   message = 'Expected associative object value',
-): asserts value is PhpAssoc<PhpValue> {
+): asserts value is PhpAssoc<PhpInput> {
   if (!isPhpAssocObject(value)) {
     throw new TypeError(message)
   }
 }
 
-export function assertIsPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue>(
-  value: PhpValue,
+export function assertIsPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput>(
+  value: PhpInput,
   message = 'Expected callable value',
 ): asserts value is PhpCallable<TArgs, TResult> {
   if (!isPhpCallable<TArgs, TResult>(value)) {
@@ -141,11 +142,11 @@ export function assertIsPhpCallable<TArgs extends PhpCallableArgs = PhpCallableA
   }
 }
 
-export function isPhpArrayObject<T = PhpValue>(value: PhpValue): value is PhpAssoc<T> {
+export function isPhpArrayObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
   return isObjectLike(value)
 }
 
-export function toPhpArrayObject<T = PhpValue>(value: PhpValue): PhpAssoc<T> {
+export function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
   if (isPhpArrayObject<T>(value)) {
     return value
   }

@@ -9,37 +9,38 @@ src/php/_helpers/_phpCastString.ts :: export function _phpCastString(value: Cast
 src/php/_helpers/_phpRuntimeState.ts :: export function ensurePhpRuntimeState(): PhpRuntimeState
 src/php/_helpers/_phpRuntimeState.ts :: export function setPhpLocaleDefault(localeDefault: string): void
 src/php/_helpers/_phpRuntimeState.ts :: export interface PhpRuntimeState { ini: PhpAssoc<IniEntry | undefined> locales: PhpAssoc<LocaleEntry | undefined> pointers: PhpList<PhpValue> locale_default: string | undefined }
-src/php/_helpers/_phpTypes.ts :: export function assertIsObjectLike( value: PhpValue, message = 'Expected object-like value', ): asserts value is PhpArrayLike<PhpValue>
-src/php/_helpers/_phpTypes.ts :: export function assertIsPhpAssocObject( value: PhpValue, message = 'Expected associative object value', ): asserts value is PhpAssoc<PhpValue>
-src/php/_helpers/_phpTypes.ts :: export function assertIsPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue>( value: PhpValue, message = 'Expected callable value', ): asserts value is PhpCallable<TArgs, TResult>
-src/php/_helpers/_phpTypes.ts :: export function isNumericLike(value: PhpValue): value is NumericLike
-src/php/_helpers/_phpTypes.ts :: export function isObjectLike(value: PhpValue): value is PhpArrayLike<PhpValue>
-src/php/_helpers/_phpTypes.ts :: export function isPhpArrayObject<T = PhpValue>(value: PhpValue): value is PhpAssoc<T>
-src/php/_helpers/_phpTypes.ts :: export function isPhpAssocObject<T = PhpValue>(value: PhpValue): value is PhpAssoc<T>
-src/php/_helpers/_phpTypes.ts :: export function isPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue>( value: PhpValue, ): value is PhpCallable<TArgs, TResult>
-src/php/_helpers/_phpTypes.ts :: export function isPhpCallableDescriptor<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue>( value: PhpValue, ): value is PhpCallableDescriptor<TArgs, TResult>
-src/php/_helpers/_phpTypes.ts :: export function isPhpKey(value: PhpValue): value is PhpKey
-src/php/_helpers/_phpTypes.ts :: export function isPhpList<T = PhpValue>(value: PhpValue): value is PhpList<T>
-src/php/_helpers/_phpTypes.ts :: export function isPhpNullish(value: PhpValue): value is PhpNullish
-src/php/_helpers/_phpTypes.ts :: export function isPhpScalar(value: PhpValue): value is PhpScalar
-src/php/_helpers/_phpTypes.ts :: export function toPhpArrayObject<T = PhpValue>(value: PhpValue): PhpAssoc<T>
+src/php/_helpers/_phpTypes.ts :: export function assertIsObjectLike( value: PhpInput, message = 'Expected object-like value', ): asserts value is PhpArrayLike<PhpInput>
+src/php/_helpers/_phpTypes.ts :: export function assertIsPhpAssocObject( value: PhpInput, message = 'Expected associative object value', ): asserts value is PhpAssoc<PhpInput>
+src/php/_helpers/_phpTypes.ts :: export function assertIsPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput>( value: PhpInput, message = 'Expected callable value', ): asserts value is PhpCallable<TArgs, TResult>
+src/php/_helpers/_phpTypes.ts :: export function isNumericLike(value: PhpInput): value is NumericLike
+src/php/_helpers/_phpTypes.ts :: export function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput>
+src/php/_helpers/_phpTypes.ts :: export function isPhpArrayObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T>
+src/php/_helpers/_phpTypes.ts :: export function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T>
+src/php/_helpers/_phpTypes.ts :: export function isPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput>( value: PhpInput, ): value is PhpCallable<TArgs, TResult>
+src/php/_helpers/_phpTypes.ts :: export function isPhpCallableDescriptor<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput>( value: PhpInput, ): value is PhpCallableDescriptor<TArgs, TResult>
+src/php/_helpers/_phpTypes.ts :: export function isPhpKey(value: PhpInput): value is PhpKey
+src/php/_helpers/_phpTypes.ts :: export function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T>
+src/php/_helpers/_phpTypes.ts :: export function isPhpNullish(value: PhpInput): value is PhpNullish
+src/php/_helpers/_phpTypes.ts :: export function isPhpScalar(value: PhpInput): value is PhpScalar
+src/php/_helpers/_phpTypes.ts :: export function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T>
 src/php/_helpers/_phpTypes.ts :: export type NumericLike = number | bigint | string
-src/php/_helpers/_phpTypes.ts :: export type PhpArrayLike<T = PhpValue> = PhpList<T> | PhpAssoc<T>
-src/php/_helpers/_phpTypes.ts :: export type PhpAssoc<T = PhpValue> = { [key: string]: T }
-src/php/_helpers/_phpTypes.ts :: export type PhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue> = ( ...args: TArgs ) => TResult
-src/php/_helpers/_phpTypes.ts :: export type PhpCallableArgs = PhpValue[]
-src/php/_helpers/_phpTypes.ts :: export type PhpCallableDescriptor<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue> = | string | PhpCallable<TArgs, TResult> | PhpCallableTuple<TArgs, TResult>
-src/php/_helpers/_phpTypes.ts :: export type PhpCallableScope = PhpValue
-src/php/_helpers/_phpTypes.ts :: export type PhpCallableTuple<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue> = readonly [ PhpCallableScope, string | PhpCallable<TArgs, TResult>, ]
+src/php/_helpers/_phpTypes.ts :: export type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+src/php/_helpers/_phpTypes.ts :: export type PhpAssoc<T = PhpInput> = { [key: string]: T }
+src/php/_helpers/_phpTypes.ts :: export type PhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> = ( ...args: TArgs ) => TResult
+src/php/_helpers/_phpTypes.ts :: export type PhpCallableArgs = PhpInput[]
+src/php/_helpers/_phpTypes.ts :: export type PhpCallableDescriptor<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> = | string | PhpCallable<TArgs, TResult> | PhpCallableTuple<TArgs, TResult>
+src/php/_helpers/_phpTypes.ts :: export type PhpCallableScope = PhpInput
+src/php/_helpers/_phpTypes.ts :: export type PhpCallableTuple<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> = readonly [ PhpCallableScope, string | PhpCallable<TArgs, TResult>, ]
+src/php/_helpers/_phpTypes.ts :: export type PhpInput = {} | PhpNullish
 src/php/_helpers/_phpTypes.ts :: export type PhpKey = string | number
-src/php/_helpers/_phpTypes.ts :: export type PhpList<T = PhpValue> = T[]
+src/php/_helpers/_phpTypes.ts :: export type PhpList<T = PhpInput> = T[]
 src/php/_helpers/_phpTypes.ts :: export type PhpNullish = null | undefined
 src/php/_helpers/_phpTypes.ts :: export type PhpPrimitive = PhpScalar | bigint
-src/php/_helpers/_phpTypes.ts :: export type PhpReadonlyArrayLike<T = PhpValue> = PhpReadonlyList<T> | PhpReadonlyAssoc<T>
-src/php/_helpers/_phpTypes.ts :: export type PhpReadonlyAssoc<T = PhpValue> = Readonly<PhpAssoc<T>>
-src/php/_helpers/_phpTypes.ts :: export type PhpReadonlyList<T = PhpValue> = readonly T[]
+src/php/_helpers/_phpTypes.ts :: export type PhpReadonlyArrayLike<T = PhpInput> = PhpReadonlyList<T> | PhpReadonlyAssoc<T>
+src/php/_helpers/_phpTypes.ts :: export type PhpReadonlyAssoc<T = PhpInput> = Readonly<PhpAssoc<T>>
+src/php/_helpers/_phpTypes.ts :: export type PhpReadonlyList<T = PhpInput> = readonly T[]
 src/php/_helpers/_phpTypes.ts :: export type PhpScalar = string | number | boolean
-src/php/_helpers/_phpTypes.ts :: export type PhpValue = {} | PhpNullish
+src/php/_helpers/_phpTypes.ts :: export type PhpValue = PhpInput
 src/php/_helpers/_phpTypes.ts :: export type StringLike = string | number | boolean | bigint
 src/php/_helpers/_php_cast_float.ts :: export function _php_cast_float(value: CastFloatValue): number
 src/php/_helpers/_php_cast_int.ts :: export function _php_cast_int(value: CastIntValue): number

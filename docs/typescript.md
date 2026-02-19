@@ -1352,3 +1352,30 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Concentrating broad-type debt into one explicit boundary module (`_phpTypes.ts`) dramatically improves visibility and sets up a cleaner next pass for a real type lattice migration.
   - Mechanical local-alias narrowing can safely unlock large debt drops when immediately backed by API snapshot + debt-policy ratchets + full test runs.
+
+## Iteration 56
+
+- Plans
+  - Attack the remaining exported `PhpValue` debt concentrated in `_helpers/_phpTypes.ts`.
+  - Keep runtime behavior unchanged while introducing a clearer boundary lattice (`PhpInput` as the broad ingress type) and using it across exported helper guards/assertions/callable helpers.
+  - Ratchet policy from `24` to `0` after verification.
+- Progress
+  - Refactored `src/php/_helpers/_phpTypes.ts` to introduce `PhpInput` and keep `PhpValue` as compatibility alias:
+    - `export type PhpInput = {} | PhpNullish`
+    - `export type PhpValue = PhpInput`
+  - Migrated exported runtime signatures in `_phpTypes.ts` from `PhpValue` defaults/usages to `PhpInput`:
+    - list/assoc/array-like defaults
+    - callable args/result/scope defaults
+    - runtime guards and assertions (`isPhp*`, `assertIs*`, `toPhpArrayObject`, etc.)
+  - Updated API signature snapshot (`docs/php-api-signatures.snapshot`) for intentional public type-surface rename.
+  - Measured exported `PhpValue` identifier reduction (AST count over exported runtime signatures):
+    - `src/php/**`: `24 -> 0`
+    - `src/php/array/**`: `0 -> 0`
+  - Ratcheted policy ceilings in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_EXPORTED_PHPVALUE_IDENTIFIER`: `24 -> 0`
+    - `MAX_SRC_PHP_ARRAY_EXPORTED_PHPVALUE_IDENTIFIER`: unchanged at `0`
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Finishing the last broad exported marker bucket required treating the helper type module as an explicit boundary, not as a dumping ground for broad aliases.
+  - Keeping a compatibility alias (`PhpValue = PhpInput`) allows external continuity while letting internal/public runtime signatures move to the new lattice naming.
