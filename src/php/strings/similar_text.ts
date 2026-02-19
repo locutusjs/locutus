@@ -1,9 +1,7 @@
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
-
 export function similar_text(
   first: string | number | boolean | null | undefined,
   second: string | number | boolean | null | undefined,
-  percent?: PhpMixed,
+  percent?: boolean | number | null | undefined,
 ): number {
   //      discuss at: https://locutus.io/php/similar_text/
   // parity verified: PHP 8.3

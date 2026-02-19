@@ -1,7 +1,7 @@
 import { _phpCastString } from '../_helpers/_phpCastString.ts'
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpValue } from '../_helpers/_phpTypes.ts'
 
-export function strnatcmp(...args: PhpMixed[]): number | null {
+export function strnatcmp(left: PhpValue, right: PhpValue): number {
   //       discuss at: https://locutus.io/php/strnatcmp/
   //  parity verified: PHP 8.3
   //      original by: Martijn Wieringa
@@ -28,35 +28,30 @@ export function strnatcmp(...args: PhpMixed[]): number | null {
   const whitespace = /^\s/
   const digit = /^\d/
 
-  if (args.length !== 2) {
-    return null
-  }
+  let leftValue = _phpCastString(left)
+  let rightValue = _phpCastString(right)
 
-  const [a, b] = args
-  let left = _phpCastString(a)
-  let right = _phpCastString(b)
-
-  if (!left.length || !right.length) {
-    return left.length - right.length
+  if (!leftValue.length || !rightValue.length) {
+    return leftValue.length - rightValue.length
   }
 
   let i = 0
   let j = 0
 
-  left = left.replace(leadingZeros, '')
-  right = right.replace(leadingZeros, '')
+  leftValue = leftValue.replace(leadingZeros, '')
+  rightValue = rightValue.replace(leadingZeros, '')
 
-  while (i < left.length && j < right.length) {
+  while (i < leftValue.length && j < rightValue.length) {
     // skip consecutive whitespace
-    while (whitespace.test(left.charAt(i))) {
+    while (whitespace.test(leftValue.charAt(i))) {
       i++
     }
-    while (whitespace.test(right.charAt(j))) {
+    while (whitespace.test(rightValue.charAt(j))) {
       j++
     }
 
-    let ac = left.charAt(i)
-    let bc = right.charAt(j)
+    let ac = leftValue.charAt(i)
+    let bc = rightValue.charAt(j)
     let aIsDigit = digit.test(ac)
     let bIsDigit = digit.test(bc)
 
@@ -87,8 +82,8 @@ export function strnatcmp(...args: PhpMixed[]): number | null {
           }
         }
 
-        ac = left.charAt(++i)
-        bc = right.charAt(++j)
+        ac = leftValue.charAt(++i)
+        bc = rightValue.charAt(++j)
 
         aIsDigit = digit.test(ac)
         bIsDigit = digit.test(bc)
@@ -113,8 +108,8 @@ export function strnatcmp(...args: PhpMixed[]): number | null {
     j++
   }
 
-  const iBeforeStrEnd = i < left.length
-  const jBeforeStrEnd = j < right.length
+  const iBeforeStrEnd = i < leftValue.length
+  const jBeforeStrEnd = j < rightValue.length
 
   // Check which string ended first
   // return -1 if a, 1 if b, 0 otherwise

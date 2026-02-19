@@ -264,10 +264,10 @@ src/php/strings/chop.ts :: export function chop(str: string, charlist: string): 
 src/php/strings/chr.ts :: export function chr(codePt: number): string
 src/php/strings/chunk_split.ts :: export function chunk_split(body: string, chunklen?: number | string, end?: string): string | false
 src/php/strings/convert_cyr_string.ts :: export function convert_cyr_string(str: string, from: string, to: string): string
-src/php/strings/convert_uuencode.ts :: export function convert_uuencode(str: PhpMixed): string | false
+src/php/strings/convert_uuencode.ts :: export function convert_uuencode(str: PhpValue): string | false
 src/php/strings/count_chars.ts :: export function count_chars( str: string | number | boolean | null | undefined, mode = 0, ): { [key: string]: number } | string
 src/php/strings/crc32.ts :: export function crc32(str: string): number
-src/php/strings/echo.ts :: export function echo(...args: PhpMixed[]): void
+src/php/strings/echo.ts :: export function echo(...args: PhpValue[]): void
 src/php/strings/explode.ts :: export function explode( ...args: [string | boolean | null | undefined, string | KeyedValues | (() => PhpMixed) | undefined, number?] ): string[] | false | { 0: string } | null
 src/php/strings/get_html_translation_table.ts :: export function get_html_translation_table( table: string | number = 'HTML_SPECIALCHARS', quoteStyle: string | number = 'ENT_COMPAT', ): Record<string, string>
 src/php/strings/hex2bin.ts :: export function hex2bin(s: string | number): string | false
@@ -276,21 +276,21 @@ src/php/strings/htmlentities.ts :: export function htmlentities( string: string,
 src/php/strings/htmlspecialchars.ts :: export function htmlspecialchars( string: string, quoteStyle?: HtmlSpecialCharsQuoteStyle, charset?: null, doubleEncode?: boolean, ): string
 src/php/strings/htmlspecialchars_decode.ts :: export function htmlspecialchars_decode(string: string, quoteStyle?: HtmlSpecialCharsQuoteStyle): string
 src/php/strings/implode.ts :: export function implode(...args: Array<PhpValue[] | KeyedValues | string | undefined>): string
-src/php/strings/join.ts :: export function join(glue: string, pieces: PhpMixed[]): string
+src/php/strings/join.ts :: export function join(glue: string, pieces: PhpValue[]): string
 src/php/strings/lcfirst.ts :: export function lcfirst(str: string): string
 src/php/strings/levenshtein.ts :: export function levenshtein(s1: string, s2: string, costIns?: number, costRep?: number, costDel?: number): number
 src/php/strings/localeconv.ts :: export function localeconv(): LocaleValues
 src/php/strings/ltrim.ts :: export function ltrim(str: string, charlist: string): string
 src/php/strings/md5.ts :: export function md5(str: string): string
 src/php/strings/md5_file.ts :: export function md5_file(str_filename: string): string | false
-src/php/strings/metaphone.ts :: export function metaphone(word: PhpMixed, maxPhonemes: PhpMixed): string | false | null
-src/php/strings/money_format.ts :: export function money_format(format: string, number: PhpMixed): string | null
+src/php/strings/metaphone.ts :: export function metaphone( word: PhpValue, maxPhonemes?: string | number | boolean | null | undefined, ): string | false | null
+src/php/strings/money_format.ts :: export function money_format(format: string, number: number): string | null
 src/php/strings/nl2br.ts :: export function nl2br(str: string | null, isXhtml?: boolean): string
 src/php/strings/nl_langinfo.ts :: export function nl_langinfo(item: string): string | string[] | false
 src/php/strings/number_format.ts :: export function number_format( number: string | number, decimals: number | undefined, decPoint: string | undefined, thousandsSep: string | undefined, ): string
 src/php/strings/ord.ts :: export function ord(string: string): number
 src/php/strings/parse_str.ts :: export function parse_str(str: string, array?: ParseObject): void
-src/php/strings/printf.ts :: export function printf(format: string, ...args: PhpMixed[]): number
+src/php/strings/printf.ts :: export function printf(format: string, ...args: PhpValue[]): number
 src/php/strings/quoted_printable_decode.ts :: export function quoted_printable_decode(str: string): string
 src/php/strings/quoted_printable_encode.ts :: export function quoted_printable_encode(str: string): string
 src/php/strings/quotemeta.ts :: export function quotemeta(str: string): string
@@ -298,8 +298,8 @@ src/php/strings/rtrim.ts :: export function rtrim(str: string, charlist: string)
 src/php/strings/setlocale.ts :: export function setlocale(category: string, locale: LocaleInput): string | false
 src/php/strings/sha1.ts :: export function sha1(str: string): string
 src/php/strings/sha1_file.ts :: export function sha1_file(str_filename: string): string | false
-src/php/strings/similar_text.ts :: export function similar_text( first: string | number | boolean | null | undefined, second: string | number | boolean | null | undefined, percent?: PhpMixed, ): number
-src/php/strings/soundex.ts :: export function soundex(str: PhpMixed): string
+src/php/strings/similar_text.ts :: export function similar_text( first: string | number | boolean | null | undefined, second: string | number | boolean | null | undefined, percent?: boolean | number | null | undefined, ): number
+src/php/strings/soundex.ts :: export function soundex(str: PhpValue): string
 src/php/strings/split.ts :: export function split( delimiter: string | boolean | null | undefined, string: string | KeyedValues | (() => PhpMixed) | undefined, ): string[] | false | { 0: string } | null
 src/php/strings/sprintf.ts :: export function sprintf(format: string, ...args: PhpValue[]): string | false
 src/php/strings/sscanf.ts :: export function sscanf(str: string, format: string, ...refs: SscanfRef[]): SscanfValue[] | number
@@ -323,7 +323,7 @@ src/php/strings/stripslashes.ts :: export function stripslashes(str: string): st
 src/php/strings/stristr.ts :: export function stristr(haystack: string, needle: string, bool?: boolean): string | false
 src/php/strings/strlen.ts :: export function strlen(string: string): number
 src/php/strings/strnatcasecmp.ts :: export function strnatcasecmp(...args: Array<string | number>): number | null
-src/php/strings/strnatcmp.ts :: export function strnatcmp(...args: PhpMixed[]): number | null
+src/php/strings/strnatcmp.ts :: export function strnatcmp(left: PhpValue, right: PhpValue): number
 src/php/strings/strncasecmp.ts :: export function strncasecmp(argStr1: string, argStr2: string, len: number): number
 src/php/strings/strncmp.ts :: export function strncmp(str1: string, str2: string, lgth: number): number
 src/php/strings/strpbrk.ts :: export function strpbrk(haystack: string, charList: string): string | false
@@ -345,8 +345,10 @@ src/php/strings/substr_replace.ts :: export function substr_replace(str: string,
 src/php/strings/trim.ts :: export function trim(str: string | number, charlist?: string | number): string
 src/php/strings/ucfirst.ts :: export function ucfirst(str: string): string
 src/php/strings/ucwords.ts :: export function ucwords(str: string): string
-src/php/strings/vprintf.ts :: export function vprintf(format: string, ...restArgs: PhpMixed[]): number
-src/php/strings/vsprintf.ts :: export function vsprintf(format: string, args: PhpMixed[]): string | false
+src/php/strings/vprintf.ts :: export function vprintf(format: string, ...args: PhpValue[]): number
+src/php/strings/vprintf.ts :: export function vprintf(format: string, ...restArgs: [PhpValue[]] | PhpValue[]): number
+src/php/strings/vprintf.ts :: export function vprintf(format: string, args: PhpValue[]): number
+src/php/strings/vsprintf.ts :: export function vsprintf(format: string, args: PhpValue[]): string | false
 src/php/strings/wordwrap.ts :: export function wordwrap(...rawArgs: [str: string, intWidth?: number, strBreak?: string, cut?: boolean]): string
 src/php/url/base64_decode.ts :: export function base64_decode(encodedData: string | null | undefined): string | null | undefined
 src/php/url/base64_encode.ts :: export function base64_encode(stringToEncode: string | null | undefined): string | null | undefined

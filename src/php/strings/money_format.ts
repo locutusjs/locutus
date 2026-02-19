@@ -1,7 +1,6 @@
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
 import { setlocale } from '../strings/setlocale.ts'
 
-export function money_format(format: string, number: PhpMixed): string | null {
+export function money_format(format: string, number: number): string | null {
   //      discuss at: https://locutus.io/php/money_format/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)

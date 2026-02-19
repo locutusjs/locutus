@@ -1,6 +1,9 @@
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpValue } from '../_helpers/_phpTypes.ts'
 
-export function metaphone(word: PhpMixed, maxPhonemes: PhpMixed): string | false | null {
+export function metaphone(
+  word: PhpValue,
+  maxPhonemes?: string | number | boolean | null | undefined,
+): string | false | null {
   //      discuss at: https://locutus.io/php/metaphone/
   // parity verified: PHP 8.3
   //     original by: Greg Frazier

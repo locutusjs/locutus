@@ -1125,3 +1125,33 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Finishing a whole directory (`array/**`) to zero broad aliases is realistic when done in focused, boundary-first passes.
   - Ratcheting at each floor is essential to prevent regression while proceeding to the next directory family.
+
+## Iteration 49
+
+- Plans
+  - Continue `PhpMixed` burn-down in `src/php/strings/**` with low-risk formatter/caster-style APIs first.
+  - Ratchet global `src/php` `PhpMixed` ceiling down to the new measured floor.
+- Progress
+  - Narrowed `PhpMixed` signatures in:
+    - `src/php/strings/echo.ts`
+    - `src/php/strings/join.ts`
+    - `src/php/strings/printf.ts`
+    - `src/php/strings/vprintf.ts`
+    - `src/php/strings/vsprintf.ts`
+    - `src/php/strings/strnatcmp.ts`
+    - `src/php/strings/soundex.ts`
+    - `src/php/strings/metaphone.ts`
+    - `src/php/strings/convert_uuencode.ts`
+    - `src/php/strings/money_format.ts`
+    - `src/php/strings/similar_text.ts`
+  - Updated `docs/php-api-signatures.snapshot` for intentional API narrowing.
+  - Lowered policy ratchet in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_PHPMIXED_KEYWORD`: `79 -> 56`
+  - Measured reduction:
+    - `src/php/**` `PhpMixed`: `79 -> 56` (occurrence count).
+    - `src/php/strings/**` `PhpMixed`: `40 -> 19` (occurrence count).
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Utility-style string functions often tolerate aggressive type narrowing because runtime behavior is already explicit (string coercion, numeric guards, variadic forwarding).
+  - Iterating from low-risk to parser-heavy modules preserves momentum while steadily shrinking broad type debt.

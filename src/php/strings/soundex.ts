@@ -1,6 +1,6 @@
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpValue } from '../_helpers/_phpTypes.ts'
 
-export function soundex(str: PhpMixed): string {
+export function soundex(str: PhpValue): string {
   //      discuss at: https://locutus.io/php/soundex/
   // parity verified: PHP 8.3
   //     original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
