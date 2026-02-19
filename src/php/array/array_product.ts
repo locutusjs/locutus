@@ -1,6 +1,12 @@
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { NumericLike, PhpList, PhpNullish, PhpValue } from '../_helpers/_phpTypes.ts'
 
-export function array_product(input: PhpMixed): number | null {
+type ProductValue = NumericLike | boolean | PhpNullish
+
+export function array_product(input: PhpList<ProductValue>): number
+
+export function array_product(input: PhpValue): number | null
+
+export function array_product(input: PhpList<ProductValue> | PhpValue): number | null {
   //      discuss at: https://locutus.io/php/array_product/
   // parity verified: PHP 8.3
   //     original by: Waldo Malqui Silva (https://waldo.malqui.info)

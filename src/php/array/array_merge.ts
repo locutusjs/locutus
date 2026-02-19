@@ -1,8 +1,14 @@
-import type { PhpAssoc, PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpArrayLike, PhpAssoc, PhpList, PhpValue } from '../_helpers/_phpTypes.ts'
 
-type AssociativeArray<T = PhpMixed> = PhpAssoc<T>
+type AssociativeArray<T = PhpValue> = PhpAssoc<T>
 
-export function array_merge<T>(...args: Array<T[] | AssociativeArray<T>>): T[] | AssociativeArray<T> {
+export function array_merge<T>(...args: [first: PhpList<T>, ...rest: Array<PhpList<T>>]): PhpList<T>
+
+export function array_merge<T>(...args: [first: PhpArrayLike<T>, ...rest: Array<PhpArrayLike<T>>]): AssociativeArray<T>
+
+export function array_merge<T>(
+  ...args: [first: PhpArrayLike<T>, ...rest: Array<PhpArrayLike<T>>]
+): PhpList<T> | AssociativeArray<T> {
   //  discuss at: https://locutus.io/php/array_merge/
   // original by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Nate
@@ -28,7 +34,7 @@ export function array_merge<T>(...args: Array<T[] | AssociativeArray<T>>): T[] |
   }
 
   if (retArr) {
-    let merged: T[] = []
+    let merged: PhpList<T> = []
     for (const arg of args) {
       if (Array.isArray(arg)) {
         merged = merged.concat(arg)

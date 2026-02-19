@@ -1,6 +1,9 @@
-import type { PhpArrayLike, PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpArrayLike, PhpValue } from '../_helpers/_phpTypes.ts'
 
-export function array_rand(array: PhpArrayLike<PhpMixed>, num?: number | null): string | string[] | null {
+export function array_rand<TValue extends PhpValue>(
+  array: PhpArrayLike<TValue>,
+  num?: number | null,
+): string | string[] | null {
   //       discuss at: https://locutus.io/php/array_rand/
   //      original by: Waldo Malqui Silva (https://waldo.malqui.info)
   // reimplemented by: Rafał Kukawski

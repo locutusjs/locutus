@@ -1026,3 +1026,32 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Introducing shared input aliases (`FloatvalInput`, `IntvalInput`) gives better API clarity and reuse while preserving behavior.
   - Concentrated family passes can materially reduce broad-type footprint without touching tsconfig or runtime architecture.
+
+## Iteration 45
+
+- Plans
+  - Narrow high-traffic `src/php/array/*` value/collection signatures that still used `PhpMixed`.
+  - Encode argument-shape contracts where runtime already enforces them (tuple-rest requirements, list/object distinctions).
+- Progress
+  - Narrowed collection/value surfaces in:
+    - `src/php/array/array_sum.ts`
+    - `src/php/array/array_product.ts`
+    - `src/php/array/array_rand.ts`
+    - `src/php/array/sizeof.ts`
+    - `src/php/array/array_merge.ts`
+    - `src/php/array/array_replace.ts`
+    - `src/php/array/array_fill_keys.ts`
+    - `src/php/array/array_flip.ts`
+  - Added stronger contracts:
+    - `array_product` now has overloads (`typed list` => `number`, broad runtime boundary => `number | null`).
+    - `array_merge` now uses tuple-rest overloads that preserve all-list merging vs general array-like merging.
+    - `array_replace` now requires at least one replacement at the type boundary.
+  - Updated `docs/php-api-signatures.snapshot` for intentional public API narrowing.
+  - Reduced `PhpMixed` usage:
+    - `src/php/**`: `108 -> 92` (`rg` line count).
+    - `src/php/array/**`: `33 -> 17` (`rg` line count).
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Overloads at boundary-heavy array APIs let us keep permissive runtime behavior for JS callers while giving TS consumers materially stricter inference.
+  - Replacing `PhpMixed` with specific `PhpArrayLike`/`PhpList` contracts yields large strictness gains with low implementation churn.

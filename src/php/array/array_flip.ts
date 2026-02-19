@@ -1,6 +1,12 @@
-import type { PhpAssoc, PhpMixed } from '../_helpers/_phpTypes.ts'
+import {
+  type PhpArrayLike,
+  type PhpAssoc,
+  type PhpKey,
+  type StringLike,
+  toPhpArrayObject,
+} from '../_helpers/_phpTypes.ts'
 
-export function array_flip(trans: PhpAssoc<PhpMixed>): PhpAssoc<string> {
+export function array_flip<TValue extends PhpKey | StringLike>(trans: PhpArrayLike<TValue>): PhpAssoc<string> {
   //      discuss at: https://locutus.io/php/array_flip/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -10,12 +16,13 @@ export function array_flip(trans: PhpAssoc<PhpMixed>): PhpAssoc<string> {
   //       returns 1: {1: 'b', 2: 'c'}
 
   const tmpArr: PhpAssoc<string> = {}
+  const values = toPhpArrayObject<TValue>(trans)
   const hasOwn = Object.prototype.hasOwnProperty
-  for (const key in trans) {
-    if (!hasOwn.call(trans, key)) {
+  for (const key in values) {
+    if (!hasOwn.call(values, key)) {
       continue
     }
-    tmpArr[String(trans[key])] = key
+    tmpArr[String(values[key])] = key
   }
 
   return tmpArr

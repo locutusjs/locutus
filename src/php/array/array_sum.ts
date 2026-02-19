@@ -1,6 +1,8 @@
-import { type PhpAssoc, type PhpMixed, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpArrayLike, type PhpNullish, type StringLike, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-export function array_sum(array: PhpMixed[] | PhpAssoc<PhpMixed> | null): number | null {
+type SummableValue = StringLike | PhpNullish
+
+export function array_sum(array: PhpArrayLike<SummableValue> | null): number | null {
   //  discuss at: https://locutus.io/php/array_sum/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Nate

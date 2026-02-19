@@ -2,13 +2,14 @@ import {
   isObjectLike,
   type PhpArrayLike,
   type PhpAssoc,
-  type PhpMixed,
+  type PhpValue,
   toPhpArrayObject,
 } from '../_helpers/_phpTypes.ts'
 
-export function array_replace<TValue = PhpMixed>(
+export function array_replace<TValue = PhpValue>(
   arr: PhpArrayLike<TValue>,
-  ...replacements: Array<PhpArrayLike<TValue> | null | undefined>
+  firstReplacement: PhpArrayLike<TValue> | null | undefined,
+  ...additionalReplacements: Array<PhpArrayLike<TValue> | null | undefined>
 ): PhpAssoc<TValue | undefined> {
   //  discuss at: https://locutus.io/php/array_replace/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -16,10 +17,6 @@ export function array_replace<TValue = PhpMixed>(
   //   returns 1: {0: 'grape', 1: 'banana', 2: 'apple', 3: 'raspberry', 4: 'cherry'}
 
   const retObj: PhpAssoc<TValue | undefined> = {}
-
-  if (replacements.length < 1) {
-    throw new Error('There should be at least 2 arguments passed to array_replace()')
-  }
 
   // Although docs state that the arguments are passed in by reference,
   // it seems they are not altered, but rather the copy that is returned
@@ -29,7 +26,7 @@ export function array_replace<TValue = PhpMixed>(
     retObj[p] = arrObject[p]
   }
 
-  for (const replacement of replacements) {
+  for (const replacement of [firstReplacement, ...additionalReplacements]) {
     if (!isObjectLike(replacement)) {
       continue
     }
