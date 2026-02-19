@@ -2,6 +2,7 @@ import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 
 type CountableObject = PhpAssoc<PhpInput>
 type Countable = PhpInput[] | CountableObject
+export type CountMode = 0 | 1 | 'COUNT_NORMAL' | 'COUNT_RECURSIVE'
 
 const isCountable = (value: PhpInput): value is Countable => {
   if (!value || typeof value !== 'object') {
@@ -11,7 +12,7 @@ const isCountable = (value: PhpInput): value is Countable => {
   return valuePrototype === Array.prototype || valuePrototype === Object.prototype
 }
 
-export function count(mixedVar: Countable | null | undefined, mode: string | number = 0): number {
+export function count(mixedVar: Countable | null | undefined, mode: CountMode = 0): number {
   //  discuss at: https://locutus.io/php/count/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //    input by: Waldo Malqui Silva (https://waldo.malqui.info)

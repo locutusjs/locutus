@@ -2,16 +2,17 @@ import { type PhpArrayLike, type PhpAssoc, type PhpInput, toPhpArrayObject } fro
 
 type ChangeValue = PhpInput
 type ArrayChangeInput<TValue extends ChangeValue> = number | PhpArrayLike<TValue> | null
+type ChangeKeyCaseMode = 0 | 1 | 2 | 'CASE_LOWER' | 'CASE_UPPER'
 
-export function array_change_key_case(array: number | null, cs?: string | number): false
-export function array_change_key_case<TValue extends ChangeValue>(array: TValue[], cs?: string | number): TValue[]
+export function array_change_key_case(array: number | null, cs?: ChangeKeyCaseMode): false
+export function array_change_key_case<TValue extends ChangeValue>(array: TValue[], cs?: ChangeKeyCaseMode): TValue[]
 export function array_change_key_case<TValue extends ChangeValue>(
   array: PhpAssoc<TValue>,
-  cs?: string | number,
+  cs?: ChangeKeyCaseMode,
 ): PhpAssoc<TValue>
 export function array_change_key_case<TValue extends ChangeValue>(
   array: ArrayChangeInput<TValue>,
-  cs?: string | number,
+  cs?: ChangeKeyCaseMode,
 ): PhpArrayLike<TValue> | false {
   //  discuss at: https://locutus.io/php/array_change_key_case/
   // original by: Ates Goral (https://magnetiq.com)
@@ -37,7 +38,8 @@ export function array_change_key_case<TValue extends ChangeValue>(
   } else if (!array || typeof array !== 'object') {
     result = false
   } else {
-    const caseFunction: 'toLowerCase' | 'toUpperCase' = !cs || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase'
+    const caseFunction: 'toLowerCase' | 'toUpperCase' =
+      cs === undefined || cs === 0 || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase'
     const source = toPhpArrayObject<TValue>(array)
     const transformed: PhpAssoc<TValue> = {}
 

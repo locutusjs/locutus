@@ -1,4 +1,6 @@
-export function array_fill(startIndex: number, num: number, mixedVal: string): { [key: string]: string } {
+import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+
+export function array_fill<TValue>(startIndex: number, num: number, mixedVal: TValue): PhpAssoc<TValue> {
   //      discuss at: https://locutus.io/php/array_fill/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -6,11 +8,10 @@ export function array_fill(startIndex: number, num: number, mixedVal: string): {
   //       example 1: array_fill(5, 6, 'banana')
   //       returns 1: { 5: 'banana', 6: 'banana', 7: 'banana', 8: 'banana', 9: 'banana', 10: 'banana' }
 
-  let key
-  const tmpArr: { [key: string]: string } = {}
+  const tmpArr: PhpAssoc<TValue> = {}
   if (!isNaN(startIndex) && !isNaN(num)) {
-    for (key = 0; key < num; key++) {
-      tmpArr[key + startIndex] = mixedVal
+    for (let key = 0; key < num; key++) {
+      tmpArr[String(key + startIndex)] = mixedVal
     }
   }
 

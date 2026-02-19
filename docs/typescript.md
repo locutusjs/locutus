@@ -1586,3 +1586,39 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Union-typed string flags are a low-risk, high-leverage narrowing: they improve editor/runtime alignment without changing behavior.
   - For overload-heavy ports, tuple-driven generics can improve inference significantly while still preserving cast-free implementation code.
+
+## Iteration 63
+
+- Plans
+  - Remove remaining broad stringly mode/case parameters in `src/php/array/**` where semantics are already flag-like and finite.
+  - Narrow fill helpers so value flow is generic and no longer hardcoded to string payloads.
+  - Ratchet CI to block regression of raw `string` mode/case parameter typing in exported array APIs.
+- Progress
+  - Narrowed count-mode surfaces:
+    - `src/php/array/count.ts`
+      - introduced `CountMode = 0 | 1 | 'COUNT_NORMAL' | 'COUNT_RECURSIVE'`.
+      - narrowed `count(..., mode)` from `string | number` to `CountMode`.
+    - `src/php/array/sizeof.ts`
+      - narrowed `mode` parameter from `string` to `CountMode`.
+  - Narrowed key-case mode surface:
+    - `src/php/array/array_change_key_case.ts`
+      - introduced `ChangeKeyCaseMode = 0 | 1 | 2 | 'CASE_LOWER' | 'CASE_UPPER'`.
+      - replaced all `cs?: string | number` signatures with `cs?: ChangeKeyCaseMode`.
+  - Narrowed `array_fill` value flow:
+    - `src/php/array/array_fill.ts`
+      - changed from fixed `string` input/return map to generic `TValue`.
+      - return type now `PhpAssoc<TValue>` for precise payload propagation.
+  - Added new debt-policy ratchet:
+    - `scripts/check-ts-debt-policy.ts`
+      - `MAX_SRC_PHP_ARRAY_EXPORTED_MODE_CASE_STRING_PARAM = 0`.
+      - counts exported `src/php/array/**` function params named `mode`/`cs` typed as raw `string`.
+  - Updated API snapshot:
+    - `docs/php-api-signatures.snapshot`
+- Measured reduction
+  - `mode: string | number` + `mode?: string` in `src/php/array/**`: `2 -> 0`.
+  - `cs?: string | number` in `src/php/array/**`: `4 -> 0`.
+- Validation
+  - `corepack yarn check`
+- Key learnings
+  - Flag-like parameters are strong narrowing opportunities: explicit unions preserve behavior while improving autocomplete and preventing accidental widening.
+  - Generic value propagation in builders like `array_fill` removes avoidable broadness with almost zero runtime risk.

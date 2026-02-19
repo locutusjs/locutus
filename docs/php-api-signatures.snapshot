@@ -62,10 +62,10 @@ src/php/_helpers/_phpTypes.ts :: export type PhpValue = PhpInput
 src/php/_helpers/_phpTypes.ts :: export type StringLike = string | number | boolean | bigint
 src/php/_helpers/_php_cast_float.ts :: export function _php_cast_float(value: CastFloatValue): number
 src/php/_helpers/_php_cast_int.ts :: export function _php_cast_int(value: CastIntValue): number
-src/php/array/array_change_key_case.ts :: export function array_change_key_case(array: number | null, cs?: string | number): false
-src/php/array/array_change_key_case.ts :: export function array_change_key_case<TValue extends ChangeValue>( array: ArrayChangeInput<TValue>, cs?: string | number, ): PhpArrayLike<TValue> | false
-src/php/array/array_change_key_case.ts :: export function array_change_key_case<TValue extends ChangeValue>( array: PhpAssoc<TValue>, cs?: string | number, ): PhpAssoc<TValue>
-src/php/array/array_change_key_case.ts :: export function array_change_key_case<TValue extends ChangeValue>(array: TValue[], cs?: string | number): TValue[]
+src/php/array/array_change_key_case.ts :: export function array_change_key_case(array: number | null, cs?: ChangeKeyCaseMode): false
+src/php/array/array_change_key_case.ts :: export function array_change_key_case<TValue extends ChangeValue>( array: ArrayChangeInput<TValue>, cs?: ChangeKeyCaseMode, ): PhpArrayLike<TValue> | false
+src/php/array/array_change_key_case.ts :: export function array_change_key_case<TValue extends ChangeValue>( array: PhpAssoc<TValue>, cs?: ChangeKeyCaseMode, ): PhpAssoc<TValue>
+src/php/array/array_change_key_case.ts :: export function array_change_key_case<TValue extends ChangeValue>(array: TValue[], cs?: ChangeKeyCaseMode): TValue[]
 src/php/array/array_chunk.ts :: export function array_chunk<T>( input: ArrayChunkInput<T>, size: number, preserveKeys?: boolean, ): ArrayChunkOutput<T>[] | null
 src/php/array/array_column.ts :: export function array_column<TValue>( input: ColumnInput<TValue> | null | undefined, columnKey: string | number | null, indexKey?: string | number | null, ): ColumnOutput<TValue> | undefined
 src/php/array/array_column.ts :: export function array_column<TValue>( input: ColumnInput<TValue>, columnKey: string | number | null, indexKey?: string | number | null, ): ColumnOutput<TValue>
@@ -76,7 +76,7 @@ src/php/array/array_diff_assoc.ts :: export function array_diff_assoc<TValue>( a
 src/php/array/array_diff_key.ts :: export function array_diff_key<TValue>( arr1: PhpArrayLike<TValue>, ...arrays: Array<PhpArrayLike<TValue>> ): PhpAssoc<TValue>
 src/php/array/array_diff_uassoc.ts :: export function array_diff_uassoc<T extends DiffValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: DiffValue, ...rest: DiffValue[], callback: KeyComparatorDescriptor] ): PhpArray<T>
 src/php/array/array_diff_ukey.ts :: export function array_diff_ukey<T extends DiffValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: DiffValue, ...rest: DiffValue[], callback: KeyComparatorDescriptor] ): PhpArray<T>
-src/php/array/array_fill.ts :: export function array_fill(startIndex: number, num: number, mixedVal: string): { [key: string]: string }
+src/php/array/array_fill.ts :: export function array_fill<TValue>(startIndex: number, num: number, mixedVal: TValue): PhpAssoc<TValue>
 src/php/array/array_fill_keys.ts :: export function array_fill_keys<TKey extends PhpKey | StringLike, TValue>( keys: PhpArrayLike<TKey>, value: TValue, ): PhpAssoc<TValue>
 src/php/array/array_filter.ts :: export function array_filter<T>( arr: PhpAssoc<T> | PhpList<T>, func?: (value: T, key: number | string) => FilterPredicateResult, ): PhpAssoc<T> | PhpList<T>
 src/php/array/array_flip.ts :: export function array_flip<TValue extends PhpKey | StringLike>(trans: PhpArrayLike<TValue>): PhpAssoc<string>
@@ -131,7 +131,8 @@ src/php/array/array_walk_recursive.ts :: export function array_walk_recursive<TU
 src/php/array/array_walk_recursive.ts :: export function array_walk_recursive<TValue = RecursiveWalkValue, TUserdata = RecursiveWalkValue>( array: RecursiveWalkValue[] | PhpAssoc<RecursiveWalkValue>, funcname: (value: TValue, key: string | number, userdata?: TUserdata) => void, userdata?: TUserdata, ): boolean
 src/php/array/arsort.ts :: export function arsort<T extends SortValue>( inputArr: Record<string, T>, sortFlags?: SortFlag, ): boolean | Record<string, T>
 src/php/array/asort.ts :: export function asort<T extends SortValue>( inputArr: Record<string, T>, sortFlags?: SortFlag, ): boolean | Record<string, T>
-src/php/array/count.ts :: export function count(mixedVar: Countable | null | undefined, mode: string | number = 0): number
+src/php/array/count.ts :: export function count(mixedVar: Countable | null | undefined, mode: CountMode = 0): number
+src/php/array/count.ts :: export type CountMode = 0 | 1 | 'COUNT_NORMAL' | 'COUNT_RECURSIVE'
 src/php/array/current.ts :: export function current<T>(arr: PhpArrayLike<T>): T | false
 src/php/array/each.ts :: export function each<T>(arr: PhpArrayLike<T>): EachResult<T>
 src/php/array/end.ts :: export function end<T>(arr: PhpArrayLike<T>): T | false
@@ -148,7 +149,7 @@ src/php/array/range.ts :: export function range(low: string | number, high: stri
 src/php/array/reset.ts :: export function reset<T>(arr: PhpArrayLike<T>): T | false
 src/php/array/rsort.ts :: export function rsort<T extends SortValue>( inputArr: Record<string, T>, sortFlags?: SortFlag, ): boolean | Record<string, T>
 src/php/array/shuffle.ts :: export function shuffle<T>(inputArr: Record<string, T>): boolean | Record<string, T> | T[]
-src/php/array/sizeof.ts :: export function sizeof<TValue>(mixedVar: PhpArrayLike<TValue>, mode?: string): number
+src/php/array/sizeof.ts :: export function sizeof<TValue>(mixedVar: PhpArrayLike<TValue>, mode?: CountMode): number
 src/php/array/sort.ts :: export function sort<T extends SortValue>( inputArr: Record<string, T>, sortFlags?: SortFlag, ): boolean | Record<string, T>
 src/php/array/uasort.ts :: export function uasort<T>( this: PhpAssoc<SortContextValue>, inputArr: Record<string, T>, sorter: PhpCallableDescriptor<[T, T], number>, ): boolean | Record<string, T>
 src/php/array/uksort.ts :: export function uksort<T>( this: PhpAssoc<SortContextValue> & { window?: PhpAssoc<SortContextValue> }, inputArr: Record<string, T>, sorter: PhpCallableDescriptor<[string, string], number>, ): boolean | Record<string, T>
