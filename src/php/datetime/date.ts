@@ -101,7 +101,7 @@ export function date(format: string, timestamp?: number | Date | string): string
   //   returns 9: '52 2011-01-02'
 
   let jsdate = new Date()
-  let f = {} as DateFormatterMap
+  let f!: DateFormatterMap
   // Keep this here (works, but for code commented-out below for file size reasons)
   // var tal= [];
   const txtWords = [
@@ -130,8 +130,8 @@ export function date(format: string, timestamp?: number | Date | string): string
   // empty string -> empty string
   const formatChr = /\\?(.?)/gi
   const formatChrCb = function (t: string, s: string): string {
-    const formatter = (f as Partial<Record<string, () => string | number>>)[t]
-    return formatter ? String(formatter()) : s
+    const formatter = Reflect.get(f, t)
+    return typeof formatter === 'function' ? String(formatter()) : s
   }
   const _pad = function (n: string | number, c: number): string {
     let str = String(n)

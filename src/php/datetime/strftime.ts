@@ -19,8 +19,6 @@ type PhpContext = {
   localeCategories?: { LC_TIME?: string }
 }
 
-type GlobalWithLocutus = typeof globalThis & { $locutus?: { php?: PhpContext } }
-
 type DateGetterMethod = 'getDate' | 'getHours' | 'getMinutes' | 'getSeconds' | 'getDay' | 'getFullYear'
 type FormatEntry = DateGetterMethod | ((d: Date) => string | number) | [DateGetterMethod, string | number]
 
@@ -40,11 +38,16 @@ export function strftime(fmt: string, timestamp?: Date | number | string): strin
   //        example 3: (() => {let e = process.env, tz = e.TZ; e.TZ = 'Europe/Vienna'; let r = strftime('%j', 1680307200); e.TZ = tz; return r;})();
   //        returns 3: '091'
 
-  const globalContext = globalThis as GlobalWithLocutus
-  globalContext.$locutus = globalContext.$locutus ?? {}
-  const locutus = globalContext.$locutus
-  locutus.php = locutus.php ?? {}
-  const php = locutus.php
+  const locutusValue = Reflect.get(globalThis, '$locutus')
+  const locutus: { php?: PhpContext } = typeof locutusValue === 'object' && locutusValue !== null ? locutusValue : {}
+  if (locutusValue !== locutus) {
+    Reflect.set(globalThis, '$locutus', locutus)
+  }
+
+  const php: PhpContext = typeof locutus.php === 'object' && locutus.php !== null ? locutus.php : {}
+  if (locutus.php !== php) {
+    locutus.php = php
+  }
 
   // ensure setup of localization variables takes place
   setlocale('LC_ALL', 0)

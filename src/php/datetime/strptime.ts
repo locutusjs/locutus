@@ -30,7 +30,6 @@ type PhpContext = {
   localeCategories?: { LC_TIME?: string }
 }
 
-type GlobalWithLocutus = typeof globalThis & { $locutus?: { php?: PhpContext } }
 type NumericResultKey = Exclude<keyof StrptimeResult, 'unparsed'>
 
 export function strptime(dateStr: string, format: string): StrptimeResult | false {
@@ -118,11 +117,16 @@ export function strptime(dateStr: string, format: string): StrptimeResult | fals
   // ensure setup of localization variables takes place
   setlocale('LC_ALL', 0)
 
-  const globalContext = globalThis as GlobalWithLocutus
-  globalContext.$locutus = globalContext.$locutus ?? {}
-  const locutus = globalContext.$locutus
-  locutus.php = locutus.php ?? {}
-  const php = locutus.php
+  const locutusValue = Reflect.get(globalThis, '$locutus')
+  const locutus: { php?: PhpContext } = typeof locutusValue === 'object' && locutusValue !== null ? locutusValue : {}
+  if (locutusValue !== locutus) {
+    Reflect.set(globalThis, '$locutus', locutus)
+  }
+
+  const php: PhpContext = typeof locutus.php === 'object' && locutus.php !== null ? locutus.php : {}
+  if (locutus.php !== php) {
+    locutus.php = php
+  }
   const locale = php.localeCategories?.LC_TIME
   const lcTime = locale ? php.locales?.[locale]?.LC_TIME : undefined
   if (!lcTime) {

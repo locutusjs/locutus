@@ -24,7 +24,14 @@ export function gmmktime(
     d.getUTCDate(),
     d.getUTCFullYear(),
   ]
-  const input = [hour, minute, second, month, day, year] as const
+  const input: [
+    number | string | undefined,
+    number | string | undefined,
+    number | string | undefined,
+    number | string | undefined,
+    number | string | undefined,
+    number | string | undefined,
+  ] = [hour, minute, second, month, day, year]
 
   for (let i = 0; i < input.length; i++) {
     const value = input[i]

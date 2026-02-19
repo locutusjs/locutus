@@ -1442,7 +1442,7 @@ export function strtotime(str: string, now?: number): false | number {
     formats.whitespace,
   ]
 
-  const result = Object.create(resultProto) as ParseResult
+  const result: ParseResult = { ...resultProto }
 
   while (str.length) {
     let longestMatch = null

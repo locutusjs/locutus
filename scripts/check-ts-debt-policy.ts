@@ -19,6 +19,7 @@ const MAX_SRC_PHP_HELPERS_AS_EXPRESSION = 0
 const MAX_SRC_PHP_URL_AS_EXPRESSION = 0
 const MAX_SRC_PHP_FUNCHAND_AS_EXPRESSION = 0
 const MAX_SRC_PHP_JSON_AS_EXPRESSION = 0
+const MAX_SRC_PHP_DATETIME_AS_EXPRESSION = 0
 const MAX_SRC_PHP_ARRAY_AS_EXPRESSION = 3
 const MAX_SRC_PHP_VAR_AS_EXPRESSION = 0
 const MAX_SRC_PHP_LOCAL_PHPVALUE_ALIAS = 0
@@ -48,6 +49,7 @@ const helpersAsExpressionFindings: Finding[] = []
 const urlAsExpressionFindings: Finding[] = []
 const funchandAsExpressionFindings: Finding[] = []
 const jsonAsExpressionFindings: Finding[] = []
+const datetimeAsExpressionFindings: Finding[] = []
 const arrayAsExpressionFindings: Finding[] = []
 const varAsExpressionFindings: Finding[] = []
 let srcPhpRawIndexSignatureUnknownCount = 0
@@ -62,6 +64,7 @@ let srcPhpHelpersAsExpressionCount = 0
 let srcPhpUrlAsExpressionCount = 0
 let srcPhpFunchandAsExpressionCount = 0
 let srcPhpJsonAsExpressionCount = 0
+let srcPhpDatetimeAsExpressionCount = 0
 let srcPhpArrayAsExpressionCount = 0
 let srcPhpVarAsExpressionCount = 0
 let srcPhpLocalPhpValueAliasCount = 0
@@ -283,6 +286,16 @@ for (const filePath of sourceFiles) {
         jsonAsExpressionFindings.push({
           file: path.relative(cwd, filePath),
           count: jsonAsExpressionCount,
+        })
+      }
+    }
+    if (filePath.includes(`${path.sep}src${path.sep}php${path.sep}datetime${path.sep}`)) {
+      const datetimeAsExpressionCount = countAsExpressions(sourceFile)
+      srcPhpDatetimeAsExpressionCount += datetimeAsExpressionCount
+      if (datetimeAsExpressionCount > 0) {
+        datetimeAsExpressionFindings.push({
+          file: path.relative(cwd, filePath),
+          count: datetimeAsExpressionCount,
         })
       }
     }
@@ -524,6 +537,16 @@ if (srcPhpJsonAsExpressionCount > MAX_SRC_PHP_JSON_AS_EXPRESSION) {
   }
 }
 
+if (srcPhpDatetimeAsExpressionCount > MAX_SRC_PHP_DATETIME_AS_EXPRESSION) {
+  hasFailure = true
+  console.error(
+    `src/php/datetime 'as' expression count increased: ${srcPhpDatetimeAsExpressionCount} > ${MAX_SRC_PHP_DATETIME_AS_EXPRESSION}`,
+  )
+  for (const finding of datetimeAsExpressionFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
 if (srcPhpLocalPhpValueAliasCount > MAX_SRC_PHP_LOCAL_PHPVALUE_ALIAS) {
   hasFailure = true
   console.error(
@@ -549,5 +572,5 @@ if (hasFailure) {
 }
 
 console.log(
-  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php unknown keyword count not increased, src/php/array unknown keyword count not increased, src/php/array as-expression count not increased, src/php/var unknown keyword count not increased, src/php/var as-expression count not increased, src/php/strings as-expression count not increased, src/php/ctype as-expression count not increased, src/php/info as-expression count not increased, src/php/_helpers as-expression count not increased, src/php/url as-expression count not increased, src/php/funchand as-expression count not increased, src/php/json as-expression count not increased, src/php local PhpValue alias count not increased, src/php direct $locutus?.php?.ini reads not increased',
+  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php unknown keyword count not increased, src/php/array unknown keyword count not increased, src/php/array as-expression count not increased, src/php/var unknown keyword count not increased, src/php/var as-expression count not increased, src/php/strings as-expression count not increased, src/php/ctype as-expression count not increased, src/php/info as-expression count not increased, src/php/_helpers as-expression count not increased, src/php/url as-expression count not increased, src/php/funchand as-expression count not increased, src/php/json as-expression count not increased, src/php/datetime as-expression count not increased, src/php local PhpValue alias count not increased, src/php direct $locutus?.php?.ini reads not increased',
 )
