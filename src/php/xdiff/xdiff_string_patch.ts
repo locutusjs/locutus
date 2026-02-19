@@ -1,3 +1,4 @@
+import { getPhpObjectEntry, setPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
 import type { PhpInput } from '../_helpers/_phpTypes.ts'
 
 type XRegExpMeta = {
@@ -35,8 +36,8 @@ export function xdiff_string_patch(
     typeof value === 'object' && value !== null && !Array.isArray(value)
 
   const _getNativeFlags = function (regex: RegExp): string {
-    const extended = Reflect.get(regex, 'extended') === true
-    const sticky = Reflect.get(regex, 'sticky') === true
+    const extended = getPhpObjectEntry(regex, 'extended') === true
+    const sticky = getPhpObjectEntry(regex, 'sticky') === true
     // Proposed for ES4; included in AS3
     return [
       regex.global ? 'g' : '',
@@ -48,17 +49,17 @@ export function xdiff_string_patch(
   }
 
   const getXRegExpMeta = (regex: RegExp): XRegExpMeta | undefined => {
-    const xregexpValue = Reflect.get(regex, '_xregexp')
+    const xregexpValue = getPhpObjectEntry(regex, '_xregexp')
     if (!isRecord(xregexpValue)) {
       return undefined
     }
 
-    const sourceValue = Reflect.get(xregexpValue, 'source')
+    const sourceValue = getPhpObjectEntry(xregexpValue, 'source')
     if (typeof sourceValue !== 'string') {
       return undefined
     }
 
-    const captureNamesValue = Reflect.get(xregexpValue, 'captureNames')
+    const captureNamesValue = getPhpObjectEntry(xregexpValue, 'captureNames')
     let captureNames: string[] | null | undefined
     if (captureNamesValue === null) {
       captureNames = null
@@ -96,7 +97,7 @@ export function xdiff_string_patch(
     // Brett paring down
     const s = new RegExp(sep.source, _getNativeFlags(sep) + 'g')
     if (x) {
-      Reflect.set(s, '_xregexp', {
+      setPhpObjectEntry(s, '_xregexp', {
         source: x.source,
         captureNames: x.captureNames ? x.captureNames.slice(0) : null,
       })

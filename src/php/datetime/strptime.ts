@@ -1,3 +1,5 @@
+import { getPhpLocaleGroup } from '../_helpers/_phpRuntimeState.ts'
+import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 import { setlocale } from '../strings/setlocale.ts'
 
 type StrptimeResult = {
@@ -24,12 +26,22 @@ type LcTime = {
   [key: string]: string | string[] | undefined
 }
 
-type PhpContext = {
-  locales?: Record<string, { LC_TIME?: LcTime }>
-  localeCategories?: { LC_TIME?: string }
+type NumericResultKey = Exclude<keyof StrptimeResult, 'unparsed'>
+
+const isStringArray = (value: PhpAssoc<PhpInput>, key: string): boolean => {
+  const candidate = value[key]
+  return Array.isArray(candidate) && candidate.every((item) => typeof item === 'string')
 }
 
-type NumericResultKey = Exclude<keyof StrptimeResult, 'unparsed'>
+const isLcTime = (value: PhpAssoc<PhpInput>): value is LcTime =>
+  isStringArray(value, 'a') &&
+  isStringArray(value, 'A') &&
+  isStringArray(value, 'b') &&
+  isStringArray(value, 'B') &&
+  typeof value.c === 'string' &&
+  typeof value.r === 'string' &&
+  typeof value.x === 'string' &&
+  typeof value.X === 'string'
 
 export function strptime(dateStr: string, format: string): StrptimeResult | false {
   //      discuss at: https://locutus.io/php/strptime/
@@ -115,22 +127,11 @@ export function strptime(dateStr: string, format: string): StrptimeResult | fals
 
   // ensure setup of localization variables takes place
   setlocale('LC_ALL', 0)
-
-  const locutusValue = Reflect.get(globalThis, '$locutus')
-  const locutus: { php?: PhpContext } = typeof locutusValue === 'object' && locutusValue !== null ? locutusValue : {}
-  if (locutusValue !== locutus) {
-    Reflect.set(globalThis, '$locutus', locutus)
-  }
-
-  const php: PhpContext = typeof locutus.php === 'object' && locutus.php !== null ? locutus.php : {}
-  if (locutus.php !== php) {
-    locutus.php = php
-  }
-  const locale = php.localeCategories?.LC_TIME
-  const lcTime = locale ? php.locales?.[locale]?.LC_TIME : undefined
-  if (!lcTime) {
+  const lcTimeGroup = getPhpLocaleGroup('LC_TIME', 'LC_TIME')
+  if (!lcTimeGroup || !isLcTime(lcTimeGroup)) {
     return false
   }
+  const lcTime = lcTimeGroup
 
   // First replace aggregates (run in a loop because an agg may be made up of other aggs)
   while (/%[cDFhnrRtTxX]/.test(format)) {

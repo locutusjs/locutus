@@ -1,3 +1,4 @@
+import { getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
 import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 import { ini_get } from '../info/ini_get.ts'
 
@@ -5,7 +6,7 @@ type IsArrayValue = PhpInput
 type ArrayLikeAssoc = PhpAssoc<PhpInput> & { length: number }
 
 const hasNumericLength = (value: PhpInput): value is ArrayLikeAssoc =>
-  value !== null && typeof value === 'object' && typeof Reflect.get(value, 'length') === 'number'
+  value !== null && typeof value === 'object' && typeof getPhpObjectEntry(value, 'length') === 'number'
 
 export function is_array(mixedVar: IsArrayValue): boolean {
   //  discuss at: https://locutus.io/php/is_array/
@@ -90,7 +91,7 @@ export function is_array(mixedVar: IsArrayValue): boolean {
   const iniVal = ini_get('locutus.objectsAsArrays') || 'on'
   if (iniVal === 'on') {
     const asString = Object.prototype.toString.call(mixedVar)
-    const asFunc = _getFuncName(Reflect.get(mixedVar, 'constructor'))
+    const asFunc = _getFuncName(getPhpObjectEntry(mixedVar, 'constructor'))
 
     if (asString === '[object Object]' && asFunc === 'Object') {
       // Most likely a literal and intended as assoc. array

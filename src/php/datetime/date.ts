@@ -129,9 +129,9 @@ export function date(format: string, timestamp?: number | Date | string): string
   // a backslash followed by any character (including backslash) -> the character
   // empty string -> empty string
   const formatChr = /\\?(.?)/gi
+  const hasFormatterToken = (token: string): token is DateFormatToken => Object.prototype.hasOwnProperty.call(f, token)
   const formatChrCb = function (t: string, s: string): string {
-    const formatter = Reflect.get(f, t)
-    return typeof formatter === 'function' ? String(formatter()) : s
+    return hasFormatterToken(t) ? String(f[t]()) : s
   }
   const _pad = function (n: string | number, c: number): string {
     let str = String(n)

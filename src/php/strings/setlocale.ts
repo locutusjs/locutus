@@ -1,3 +1,4 @@
+import { getPhpRuntimeEntry, getPhpRuntimeString, setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
 import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 import { getenv } from '../info/getenv.ts'
 
@@ -11,16 +12,16 @@ type LocaleDefinition = {
   nplurals: (n: number) => number
 }
 
-type PhpContext = {
-  locales?: Record<string, LocaleDefinition>
-  locale?: string
-  localeCategories?: Record<string, string>
-}
-
-type GlobalWithLocutus = typeof globalThis & { $locutus?: { php?: PhpContext } }
 type LocaleInput = string | string[] | number | null
 
 const hasOwn = Object.prototype.hasOwnProperty
+const isLocaleDefinitionMap = (value: PhpInput): value is Record<string, LocaleDefinition> =>
+  typeof value === 'object' && value !== null && !Array.isArray(value)
+const isLocaleCategoryMap = (value: PhpInput): value is Record<string, string> =>
+  typeof value === 'object' &&
+  value !== null &&
+  !Array.isArray(value) &&
+  Object.values(value).every((entry) => typeof entry === 'string')
 
 function copyValue<T>(orig: T): T
 function copyValue(orig: PhpInput): PhpInput {
@@ -88,18 +89,19 @@ export function setlocale(category: string, locale: LocaleInput): string | false
     return n > 1 ? 1 : 0
   }
 
-  const globalContext: GlobalWithLocutus = globalThis
-  globalContext.$locutus = globalContext.$locutus ?? {}
-  const locutus = globalContext.$locutus
-  locutus.php = locutus.php ?? {}
-  const php = locutus.php
+  const localesValue = getPhpRuntimeEntry('locales')
+  let locales: Record<string, LocaleDefinition> = isLocaleDefinitionMap(localesValue) ? localesValue : {}
+  if (localesValue !== locales) {
+    setPhpRuntimeEntry('locales', locales)
+  }
 
   // Reconcile Windows vs. *nix locale names?
   // Allow different priority orders of languages, esp. if implement gettext as in
   // LANGUAGE env. var.? (e.g., show German if French is not available)
-  if (!php.locales?.fr_CA?.LC_TIME?.x) {
+  if (!locales.fr_CA?.LC_TIME?.x) {
     // Can add to the locales
-    const locales: Record<string, LocaleDefinition> = (php.locales = {})
+    locales = {}
+    setPhpRuntimeEntry('locales', locales)
 
     locales.en = {
       LC_COLLATE: function (str1, str2) {
@@ -309,9 +311,9 @@ export function setlocale(category: string, locale: LocaleInput): string | false
     locales.fr_CA = copyValue(locales.fr)
     locales.fr_CA.LC_TIME.x = '%Y-%m-%d'
   }
-  const locales = php.locales ?? {}
-  if (!php.locale) {
-    php.locale = 'en_US'
+  let currentLocale = getPhpRuntimeString('locale', '')
+  if (!currentLocale) {
+    currentLocale = 'en_US'
     // Try to establish the locale via the `window` global
     if (typeof window !== 'undefined' && window.document) {
       const d = window.document
@@ -321,49 +323,54 @@ export function setlocale(category: string, locale: LocaleInput): string | false
       if (htmlNsElement) {
         const xmlLang = htmlNsElement.getAttributeNS(NS_XML, 'lang')
         if (xmlLang) {
-          php.locale = xmlLang
+          currentLocale = xmlLang
         } else {
           const htmlLang = htmlNsElement.getAttribute('lang')
           if (htmlLang) {
-            php.locale = htmlLang
+            currentLocale = htmlLang
           }
         }
       } else {
         const htmlElement = d.getElementsByTagName('html')[0]
         const htmlLang = htmlElement?.getAttribute('lang')
         if (htmlLang) {
-          php.locale = htmlLang
+          currentLocale = htmlLang
         }
       }
     }
   }
   // PHP-style
-  php.locale = php.locale.replace('-', '_')
+  currentLocale = currentLocale.replace('-', '_')
   // @todo: locale if declared locale hasn't been defined
-  if (!(php.locale in locales)) {
-    const languageLocale = php.locale.replace(/_[a-zA-Z]+$/, '')
+  if (!(currentLocale in locales)) {
+    const languageLocale = currentLocale.replace(/_[a-zA-Z]+$/, '')
     if (languageLocale in locales) {
-      php.locale = languageLocale
+      currentLocale = languageLocale
     }
+  }
+  setPhpRuntimeEntry('locale', currentLocale)
+
+  const localeCategoriesValue = getPhpRuntimeEntry('localeCategories')
+  const localeCategories: Record<string, string> = isLocaleCategoryMap(localeCategoriesValue)
+    ? localeCategoriesValue
+    : {
+        LC_COLLATE: currentLocale,
+        // for string comparison, see strcoll()
+        LC_CTYPE: currentLocale,
+        // for character classification and conversion, for example strtoupper()
+        LC_MONETARY: currentLocale,
+        // for localeconv()
+        LC_NUMERIC: currentLocale,
+        // for decimal separator (See also localeconv())
+        LC_TIME: currentLocale,
+        // for date and time formatting with strftime()
+        // for system responses (available if PHP was compiled with libintl):
+        LC_MESSAGES: currentLocale,
+      }
+  if (localeCategoriesValue !== localeCategories) {
+    setPhpRuntimeEntry('localeCategories', localeCategories)
   }
 
-  if (!php.localeCategories) {
-    php.localeCategories = {
-      LC_COLLATE: php.locale,
-      // for string comparison, see strcoll()
-      LC_CTYPE: php.locale,
-      // for character classification and conversion, for example strtoupper()
-      LC_MONETARY: php.locale,
-      // for localeconv()
-      LC_NUMERIC: php.locale,
-      // for decimal separator (See also localeconv())
-      LC_TIME: php.locale,
-      // for date and time formatting with strftime()
-      // for system responses (available if PHP was compiled with libintl):
-      LC_MESSAGES: php.locale,
-    }
-  }
-  const localeCategories = php.localeCategories
   let requestedLocale: LocaleInput | false = locale
 
   if (requestedLocale === null || requestedLocale === '') {

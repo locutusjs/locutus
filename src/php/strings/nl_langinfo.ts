@@ -17,6 +17,31 @@ type LocaleTime = {
 
 type LocaleCategoryName = 'LC_TIME' | 'LC_MONETARY' | 'LC_NUMERIC' | 'LC_MESSAGES' | 'LC_CTYPE'
 
+const defaultLocaleTime: LocaleTime = {
+  a: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  A: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+  b: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  B: [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ],
+  p: ['AM', 'PM'],
+  c: '%a %d %b %Y %r %Z',
+  x: '%m/%d/%Y',
+  X: '%r',
+  r: '%I:%M:%S %p',
+}
+
 const isStringArray = (value: PhpAssoc<PhpInput>, key: string): boolean => {
   const candidate = value[key]
   return Array.isArray(candidate) && candidate.every((item) => typeof item === 'string')
@@ -48,10 +73,8 @@ export function nl_langinfo(item: string): string | string[] | false {
     return localeGroup || false
   }
 
-  const lcTime = localeFor('LC_TIME')
-  if (!lcTime || !isLocaleTime(lcTime)) {
-    return false
-  }
+  const lcTimeCandidate = localeFor('LC_TIME')
+  const lcTime = lcTimeCandidate && isLocaleTime(lcTimeCandidate) ? lcTimeCandidate : defaultLocaleTime
 
   if (item.indexOf('ABDAY_') === 0) {
     const index = Number.parseInt(item.replace(/^ABDAY_/, ''), 10) - 1

@@ -1,3 +1,4 @@
+import { getPhpGlobalScope, getPhpObjectEntry, setPhpGlobalEntry } from '../_helpers/_phpRuntimeState.ts'
 import { type PhpInput, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 type CallableValue = PhpInput
@@ -58,7 +59,7 @@ export function is_callable(mixedVar: CallableValue, syntaxOnly?: boolean, calla
   }
 
   if (typeof mixedVar === 'string') {
-    obj = globalThis
+    obj = getPhpGlobalScope()
     method = mixedVar
     name = mixedVar
     validFunctionName = !!name.match(validJSFunctionNamePattern)
@@ -78,9 +79,10 @@ export function is_callable(mixedVar: CallableValue, syntaxOnly?: boolean, calla
       (typeof receiver.constructor === 'function' ? getFuncName(receiver.constructor) : '(Anonymous)') + '::' + method
   }
 
-  if (syntaxOnly || (obj && typeof Reflect.get(obj, method) === 'function')) {
+  const callableCandidate = obj ? getPhpObjectEntry(obj, method) : undefined
+  if (syntaxOnly || typeof callableCandidate === 'function') {
     if (callableName) {
-      Reflect.set(globalThis, callableName, name)
+      setPhpGlobalEntry(callableName, name)
     }
     return true
   }
@@ -89,7 +91,7 @@ export function is_callable(mixedVar: CallableValue, syntaxOnly?: boolean, calla
   // biome-ignore lint/security/noGlobalEval: needed for PHP port
   if (validFunctionName && typeof eval(method) === 'function') {
     if (callableName) {
-      Reflect.set(globalThis, callableName, name)
+      setPhpGlobalEntry(callableName, name)
     }
     return true
   }

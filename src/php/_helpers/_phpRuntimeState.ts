@@ -158,6 +158,14 @@ export function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | unde
   return typeof candidate === 'undefined' ? undefined : candidate
 }
 
+export function setPhpObjectEntry(value: PhpInput, key: string, entry: PhpInput): boolean {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return false
+  }
+  Reflect.set(value, key, entry)
+  return true
+}
+
 function getPhpLocaleEntry(category: string): LocaleEntry | undefined {
   const runtime = ensurePhpRuntimeState()
   const localeName = runtime.localeCategories[category]

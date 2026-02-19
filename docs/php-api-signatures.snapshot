@@ -18,6 +18,7 @@ src/php/_helpers/_phpRuntimeState.ts :: export function getPhpRuntimeNumber(key:
 src/php/_helpers/_phpRuntimeState.ts :: export function getPhpRuntimeString(key: string, fallback: string): string
 src/php/_helpers/_phpRuntimeState.ts :: export function setPhpGlobalEntry(key: string, value: PhpInput): void
 src/php/_helpers/_phpRuntimeState.ts :: export function setPhpLocaleDefault(localeDefault: string): void
+src/php/_helpers/_phpRuntimeState.ts :: export function setPhpObjectEntry(value: PhpInput, key: string, entry: PhpInput): boolean
 src/php/_helpers/_phpRuntimeState.ts :: export function setPhpRuntimeEntry(key: string, value: PhpInput): void
 src/php/_helpers/_phpRuntimeState.ts :: export interface PhpRuntimeState { ini: PhpAssoc<IniEntry | undefined> locales: PhpAssoc<LocaleEntry | undefined> localeCategories: LocaleCategoryMap pointers: PhpList<PhpInput> locale_default: string | undefined }
 src/php/_helpers/_phpTypes.ts :: export function assertIsObjectLike( value: PhpInput, message = 'Expected object-like value', ): asserts value is PhpArrayLike<PhpInput>

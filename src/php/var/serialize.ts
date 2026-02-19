@@ -1,3 +1,4 @@
+import { getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
 import { type PhpInput, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 type LocutusType = 'function' | 'boolean' | 'number' | 'string' | 'array' | 'object' | 'undefined' | 'null'
@@ -59,7 +60,7 @@ export function serialize(mixedValue: SerializeValue): string {
     }
 
     if (type === 'object' && typeof inp === 'object' && inp !== null) {
-      const constructorValue = Reflect.get(inp, 'constructor')
+      const constructorValue = getPhpObjectEntry(inp, 'constructor')
       if (typeof constructorValue !== 'function') {
         return 'object'
       }

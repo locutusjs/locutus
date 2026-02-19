@@ -1,3 +1,4 @@
+import { getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
 import type { PhpInput } from '../_helpers/_phpTypes.ts'
 import { is_float as isFloat } from '../var/is_float.ts'
 
@@ -40,8 +41,8 @@ export function gettype(mixedVar: TypeInput): string {
   if (s === 'object') {
     if (typeof mixedVar === 'object' && mixedVar !== null) {
       const objectLike = mixedVar
-      const objectLength = Reflect.get(objectLike, 'length')
-      const objectSplice = Reflect.get(objectLike, 'splice')
+      const objectLength = getPhpObjectEntry(objectLike, 'length')
+      const objectSplice = getPhpObjectEntry(objectLike, 'splice')
       // From: https://javascript.crockford.com/remedial.html
       // @todo: Break up this lengthy if statement
       if (
@@ -51,7 +52,7 @@ export function gettype(mixedVar: TypeInput): string {
       ) {
         s = 'array'
       } else {
-        const constructorValue = Reflect.get(objectLike, 'constructor')
+        const constructorValue = getPhpObjectEntry(objectLike, 'constructor')
         if (!constructorValue) {
           return s
         }

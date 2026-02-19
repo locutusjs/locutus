@@ -1,4 +1,5 @@
 import { getEntryAtCursor, getPointerState } from '../_helpers/_arrayPointers.ts'
+import { getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
 import type { PhpArrayLike } from '../_helpers/_phpTypes.ts'
 
 interface EachResultObject<T> {
@@ -32,7 +33,7 @@ export function each<T>(arr: PhpArrayLike<T>): EachResult<T> {
 
   const key = entry[0]
   const value = entry[1]
-  const returnArrayOnly = Reflect.get(each, 'returnArrayOnly') === true
+  const returnArrayOnly = getPhpObjectEntry(each, 'returnArrayOnly') === true
 
   if (returnArrayOnly) {
     return [key, value]

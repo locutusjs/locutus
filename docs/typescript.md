@@ -1487,3 +1487,37 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Centralizing dynamic runtime access into a typed boundary gives large strictness gains quickly, but compatibility with legacy runtime shape assumptions must be preserved to avoid order-dependent flakes.
   - Locale-heavy helpers are safer when they have deterministic fallbacks for critical pattern data (`LC_CTYPE`) instead of assuming global runtime state is always pristine.
+
+## Iteration 60
+
+- Plans
+  - Finish collapsing direct runtime dynamism in `src/php/**` by removing remaining non-helper `Reflect/globalThis` usage.
+  - Move remaining dynamic object writes to typed helper boundaries and ratchet policy caps to the new floor.
+  - Keep behavior stable while fixing locale test brittleness uncovered in CI (`nl_langinfo` fallback path).
+- Progress
+  - Added `setPhpObjectEntry()` to `src/php/_helpers/_phpRuntimeState.ts` and reused helper boundaries for dynamic object/global/runtime reads/writes.
+  - Refactored remaining direct-dynamism hotspots to helper-driven flows:
+    - `src/php/xdiff/xdiff_string_patch.ts`
+    - `src/php/var/var_export.ts`
+    - `src/php/var/var_dump.ts`
+    - `src/php/var/serialize.ts`
+    - `src/php/var/gettype.ts`
+    - `src/php/var/is_array.ts`
+    - `src/php/var/is_callable.ts`
+    - `src/php/datetime/strptime.ts`
+    - `src/php/datetime/date.ts`
+    - `src/php/array/each.ts`
+    - `src/php/strings/setlocale.ts`
+  - Hardened locale fallback behavior in `src/php/strings/nl_langinfo.ts` so `LC_TIME` lookups remain deterministic even when runtime locale bag is missing.
+  - Ratcheted policy ceilings in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_REFLECT_GET_SET`: `24 -> 2`
+    - `MAX_SRC_PHP_GLOBALTHIS_IDENTIFIER`: `9 -> 2`
+  - Measured reduction:
+    - `Reflect.get/set` in `src/php/**`: `24 -> 2`
+    - `globalThis` identifiers in `src/php/**`: `9 -> 2`
+    - non-helper direct usage in `src/php/**`: `24/9 -> 0/0` (`Reflect/globalThis`)
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Once dynamic reads/writes are funneled through typed runtime helpers, broad-surface cleanup becomes mostly mechanical and safe to ratchet aggressively.
+  - Locale/runtime-heavy ports benefit from explicit fallback contracts; strict typing and deterministic behavior reinforce each other instead of competing.

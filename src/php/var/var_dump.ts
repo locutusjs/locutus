@@ -1,5 +1,6 @@
 const visitedObjects = new Map<object, true>() // Initialize a map to track visited objects
 
+import { getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
 import { type PhpAssoc, type PhpInput, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
 
@@ -23,8 +24,8 @@ const isLocutusResource = (
     return false
   }
   const maybeResource = value
-  const varDump = Reflect.get(maybeResource, 'var_dump')
-  const constructorValue = Reflect.get(maybeResource, 'constructor')
+  const varDump = getPhpObjectEntry(maybeResource, 'var_dump')
+  const constructorValue = getPhpObjectEntry(maybeResource, 'constructor')
   return (
     typeof varDump === 'function' &&
     typeof constructorValue === 'function' &&
