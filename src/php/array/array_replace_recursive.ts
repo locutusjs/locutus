@@ -14,7 +14,7 @@ const cloneReplaceTarget = (value: RecursiveReplaceTarget): RecursiveReplaceTarg
 
 export function array_replace_recursive(
   arr: RecursiveReplaceTarget,
-  ...replacements: [replacement: PhpValue, ...additionalReplacements: PhpValue[]]
+  ...replacements: [replacement: RecursiveReplaceTarget, ...additionalReplacements: RecursiveReplaceTarget[]]
 ): RecursiveReplaceTarget {
   //      discuss at: https://locutus.io/php/array_replace_recursive/
   // parity verified: PHP 8.3
@@ -30,15 +30,15 @@ export function array_replace_recursive(
   // it seems they are not altered, but rather the copy that is returned
   // So we make a copy here, instead of acting on arr itself
   const retObj = cloneReplaceTarget(arr)
-  const retObjLike = toPhpArrayObject(retObj)
+  const retObjLike = toPhpArrayObject<RecursiveReplaceValue>(retObj)
   for (const replacement of replacements) {
-    if (!isObjectLike(replacement)) {
-      continue
-    }
-    const replacementObj = toPhpArrayObject(replacement)
+    const replacementObj = toPhpArrayObject<RecursiveReplaceValue>(replacement)
     for (const p in replacementObj) {
-      if (isObjectLike(retObjLike[p])) {
-        retObjLike[p] = array_replace_recursive(retObjLike[p], replacementObj[p])
+      if (isObjectLike(retObjLike[p]) && isObjectLike(replacementObj[p])) {
+        retObjLike[p] = array_replace_recursive(
+          toPhpArrayObject<RecursiveReplaceValue>(retObjLike[p]),
+          toPhpArrayObject<RecursiveReplaceValue>(replacementObj[p]),
+        )
       } else {
         retObjLike[p] = replacementObj[p]
       }

@@ -1,6 +1,6 @@
 import type { PhpAssoc, PhpValue } from '../_helpers/_phpTypes.ts'
 
-export function array_search(needle: PhpValue, haystack: PhpAssoc<PhpValue>, argStrict?: PhpValue): string | false {
+export function array_search(needle: PhpValue, haystack: PhpAssoc<PhpValue>, argStrict?: boolean): string | false {
   //      discuss at: https://locutus.io/php/array_search/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -12,7 +12,7 @@ export function array_search(needle: PhpValue, haystack: PhpAssoc<PhpValue>, arg
   //       example 2: array_search('3', {a: 3, b: 5, c: 7})
   //       returns 2: 'a'
 
-  const strict = !!argStrict
+  const strict = Boolean(argStrict)
 
   if (needle instanceof RegExp) {
     // Duck-type for RegExp

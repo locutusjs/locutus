@@ -824,3 +824,23 @@ To fix a `@ts-nocheck` file:
     - `corepack yarn check`
 - Key learnings
   - Targeted overloads on high-traffic APIs can materially improve inference for common usage patterns while preserving legacy-compatible fallback signatures.
+
+## Iteration 36
+
+- Plans
+  - Tighten remaining broad parameters in array helpers where runtime behavior is already deterministic.
+  - Keep all changes compatible with strict-next and existing runtime tests.
+- Progress
+  - `src/php/array/array_replace_recursive.ts`
+    - narrowed replacements to recursive object/array targets:
+      - `...replacements: [replacement: RecursiveReplaceTarget, ...additionalReplacements: RecursiveReplaceTarget[]]`
+    - refined recursive merge branch to recurse only when both current and incoming values are object-like.
+    - propagated `RecursiveReplaceValue` through `toPhpArrayObject<...>` calls for stronger local inference.
+  - `src/php/array/array_search.ts`
+    - narrowed strictness flag type:
+      - `argStrict?: boolean`
+  - Updated `docs/php-api-signatures.snapshot`.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Type narrowing can surface and codify intended recursive semantics (object-like + object-like recursion) while keeping behavior stable for supported input shapes.
