@@ -914,3 +914,20 @@ To fix a `@ts-nocheck` file:
     - `corepack yarn check`
 - Key learnings
   - Encoding optionality in variadic callback argument tuples prevents silent unsoundness and materially improves callback-site inference for uneven input arrays.
+
+## Iteration 40
+
+- Plans
+  - Improve `array_filter` API precision with overloads that preserve container shape and support type-predicate callbacks.
+- Progress
+  - `src/php/array/array_filter.ts`
+    - added overloads for:
+      - array input + predicate callback => narrowed array output.
+      - associative-object input + predicate callback => narrowed associative output.
+      - array/object input with regular callback => same-shape output.
+    - normalized object side to `PhpAssoc<T>` instead of inline object literal types.
+  - Updated `docs/php-api-signatures.snapshot`.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Type-predicate overloads deliver stronger consumer-side narrowing at near-zero runtime risk when implementation behavior already preserves container shape.
