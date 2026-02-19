@@ -2,6 +2,7 @@ import { resolveNumericComparator } from '../_helpers/_callbackResolver.ts'
 import {
   entriesOfPhpAssoc,
   isPhpCallableDescriptor,
+  type NumericLike,
   type PhpAssoc,
   type PhpCallableDescriptor,
   type PhpValue,
@@ -9,8 +10,8 @@ import {
 } from '../_helpers/_phpTypes.ts'
 
 type PhpArray<T extends PhpValue = PhpValue> = PhpAssoc<T>
-type NumericComparatorDescriptor = PhpCallableDescriptor<[PhpValue, PhpValue], PhpValue>
-type KeyComparatorDescriptor = PhpCallableDescriptor<[string, string], PhpValue>
+type NumericComparatorDescriptor = PhpCallableDescriptor<[PhpValue, PhpValue], NumericLike>
+type KeyComparatorDescriptor = PhpCallableDescriptor<[string, string], NumericLike>
 
 export function array_udiff_uassoc<T extends PhpValue>(
   arr1: PhpArray<T>,
@@ -34,8 +35,8 @@ export function array_udiff_uassoc<T extends PhpValue>(
   if (
     typeof keyCallback === 'undefined' ||
     typeof valueCallback === 'undefined' ||
-    !isPhpCallableDescriptor<[string, string], PhpValue>(keyCallback) ||
-    !isPhpCallableDescriptor<[PhpValue, T], PhpValue>(valueCallback)
+    !isPhpCallableDescriptor<[string, string], NumericLike>(keyCallback) ||
+    !isPhpCallableDescriptor<[PhpValue, T], NumericLike>(valueCallback)
   ) {
     throw new Error('array_udiff_uassoc(): Invalid callback')
   }

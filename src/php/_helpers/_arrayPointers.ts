@@ -1,12 +1,12 @@
 import { ensurePhpRuntimeState } from './_phpRuntimeState.ts'
-import { entriesOfPhpAssoc, type PhpArrayLike, type PhpValue } from './_phpTypes.ts'
+import { entriesOfPhpAssoc, type PhpArrayLike, type PhpList, type PhpValue } from './_phpTypes.ts'
 
 interface PointerState {
   cursor: number
   setCursor: (nextCursor: number) => void
 }
 
-const findPointerIndex = (pointers: PhpValue[], target: PhpValue): number => {
+const findPointerIndex = (pointers: PhpList<PhpValue>, target: PhpValue): number => {
   for (let index = 0; index < pointers.length; index += 1) {
     if (pointers[index] === target) {
       return index

@@ -2,6 +2,7 @@ import { resolveNumericComparator } from '../_helpers/_callbackResolver.ts'
 import {
   entriesOfPhpAssoc,
   isPhpCallableDescriptor,
+  type NumericLike,
   type PhpAssoc,
   type PhpCallableDescriptor,
   type PhpValue,
@@ -9,7 +10,7 @@ import {
 } from '../_helpers/_phpTypes.ts'
 
 type PhpArray<T extends PhpValue = PhpValue> = PhpAssoc<T>
-type NumericComparatorDescriptor = PhpCallableDescriptor<[PhpValue, PhpValue], PhpValue>
+type NumericComparatorDescriptor = PhpCallableDescriptor<[PhpValue, PhpValue], NumericLike>
 
 export function array_uintersect<T extends PhpValue>(
   arr1: PhpArray<T>,
@@ -25,7 +26,7 @@ export function array_uintersect<T extends PhpValue>(
 
   const retArr: PhpArray<T> = {}
   const callback = arraysAndCallback[arraysAndCallback.length - 1]
-  if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[PhpValue, T], PhpValue>(callback)) {
+  if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[PhpValue, T], NumericLike>(callback)) {
     throw new Error('array_uintersect(): Invalid callback')
   }
   const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject<PhpValue>(value))

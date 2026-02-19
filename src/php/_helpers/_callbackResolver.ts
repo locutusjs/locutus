@@ -1,7 +1,9 @@
 import {
   isObjectLike,
   isPhpCallable,
+  type NumericLike,
   type PhpCallable,
+  type PhpCallableArgs,
   type PhpCallableDescriptor,
   type PhpValue,
 } from './_phpTypes.ts'
@@ -11,12 +13,12 @@ interface CallbackResolverOptions {
   missingScopeMessage?: (scopeName: string) => string
 }
 
-interface ResolvedCallback<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue> {
+interface ResolvedCallback<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue> {
   fn: PhpCallable<TArgs, TResult>
   scope: PhpValue
 }
 
-export function resolvePhpCallable<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue>(
+export function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue>(
   callback: PhpCallableDescriptor<TArgs, TResult>,
   options: CallbackResolverOptions,
 ): ResolvedCallback<TArgs, TResult> {
@@ -66,10 +68,10 @@ export function resolvePhpCallable<TArgs extends PhpValue[] = PhpValue[], TResul
 }
 
 export function resolveNumericComparator<TLeft extends PhpValue = PhpValue, TRight extends PhpValue = PhpValue>(
-  callback: PhpCallableDescriptor<[TLeft, TRight], PhpValue>,
+  callback: PhpCallableDescriptor<[TLeft, TRight], NumericLike>,
   invalidMessage: string,
 ): (left: TLeft, right: TRight) => number {
-  const resolved = resolvePhpCallable<[TLeft, TRight], PhpValue>(callback, { invalidMessage })
+  const resolved = resolvePhpCallable<[TLeft, TRight], NumericLike>(callback, { invalidMessage })
 
   return (left: TLeft, right: TRight): number => Number(resolved.fn.apply(resolved.scope, [left, right]))
 }

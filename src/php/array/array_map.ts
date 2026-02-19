@@ -1,44 +1,47 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
-import type { PhpCallableDescriptor, PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpCallableDescriptor, PhpList, PhpValue } from '../_helpers/_phpTypes.ts'
 
-type ArrayMapInputs = [firstArray: PhpMixed[], ...restArrays: PhpMixed[][]]
-type ArrayMapCallbackArgs1<TValue extends PhpMixed> = [TValue | undefined]
-type ArrayMapCallbackArgs2<TLeft extends PhpMixed, TRight extends PhpMixed> = [TLeft | undefined, TRight | undefined]
-type ArrayMapCallbackArgsVariadic = Array<PhpMixed | undefined>
+type ArrayMapInputs = [firstArray: PhpList<PhpValue>, ...restArrays: Array<PhpList<PhpValue>>]
+type ArrayMapCallbackArgs1<TValue extends PhpValue> = [TValue | undefined]
+type ArrayMapCallbackArgs2<TLeft extends PhpValue, TRight extends PhpValue> = [TLeft | undefined, TRight | undefined]
+type ArrayMapCallbackArgsVariadic = Array<PhpValue | undefined>
 
-export function array_map<TValue extends PhpMixed, TResult>(
+export function array_map<TValue extends PhpValue, TResult>(
   callback: PhpCallableDescriptor<ArrayMapCallbackArgs1<TValue>, TResult>,
-  inputArray: TValue[],
-): TResult[]
+  inputArray: PhpList<TValue>,
+): PhpList<TResult>
 
-export function array_map<TLeft extends PhpMixed, TRight extends PhpMixed, TResult>(
+export function array_map<TLeft extends PhpValue, TRight extends PhpValue, TResult>(
   callback: PhpCallableDescriptor<ArrayMapCallbackArgs2<TLeft, TRight>, TResult>,
-  inputArrayLeft: TLeft[],
-  inputArrayRight: TRight[],
-): TResult[]
+  inputArrayLeft: PhpList<TLeft>,
+  inputArrayRight: PhpList<TRight>,
+): PhpList<TResult>
 
-export function array_map<TValue extends PhpMixed>(
+export function array_map<TValue extends PhpValue>(
   callback: null | undefined,
-  inputArray: TValue[],
-): ArrayMapCallbackArgs1<TValue>[]
+  inputArray: PhpList<TValue>,
+): PhpList<ArrayMapCallbackArgs1<TValue>>
 
-export function array_map<TLeft extends PhpMixed, TRight extends PhpMixed>(
+export function array_map<TLeft extends PhpValue, TRight extends PhpValue>(
   callback: null | undefined,
-  inputArrayLeft: TLeft[],
-  inputArrayRight: TRight[],
-): ArrayMapCallbackArgs2<TLeft, TRight>[]
+  inputArrayLeft: PhpList<TLeft>,
+  inputArrayRight: PhpList<TRight>,
+): PhpList<ArrayMapCallbackArgs2<TLeft, TRight>>
 
-export function array_map<TResult = PhpMixed>(
+export function array_map<TResult = PhpValue>(
   callback: PhpCallableDescriptor<ArrayMapCallbackArgsVariadic, TResult>,
   ...inputArrays: ArrayMapInputs
-): TResult[]
+): PhpList<TResult>
 
-export function array_map(callback: null | undefined, ...inputArrays: ArrayMapInputs): PhpMixed[][]
+export function array_map(
+  callback: null | undefined,
+  ...inputArrays: ArrayMapInputs
+): PhpList<ArrayMapCallbackArgsVariadic>
 
-export function array_map<TResult = PhpMixed>(
+export function array_map<TResult = PhpValue>(
   callback: PhpCallableDescriptor<ArrayMapCallbackArgsVariadic, TResult> | null | undefined,
   ...inputArrays: ArrayMapInputs
-): TResult[] | PhpMixed[][] {
+): PhpList<TResult> | PhpList<ArrayMapCallbackArgsVariadic> {
   //  discuss at: https://locutus.io/php/array_map/
   // original by: Andrea Giammarchi (https://webreflection.blogspot.com)
   // improved by: Kevin van Zonneveld (https://kvz.io)
@@ -61,7 +64,7 @@ export function array_map<TResult = PhpMixed>(
         })
 
   if (resolved) {
-    const mapped: TResult[] = []
+    const mapped: PhpList<TResult> = []
     for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
       const args: ArrayMapCallbackArgsVariadic = []
       for (let arrayIndex = 0; arrayIndex < argc - 1; arrayIndex++) {
@@ -72,7 +75,7 @@ export function array_map<TResult = PhpMixed>(
     return mapped
   }
 
-  const mapped: PhpMixed[][] = []
+  const mapped: PhpList<ArrayMapCallbackArgsVariadic> = []
   for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
     const args: ArrayMapCallbackArgsVariadic = []
     for (let arrayIndex = 0; arrayIndex < argc - 1; arrayIndex++) {

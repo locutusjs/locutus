@@ -2,33 +2,45 @@ src/php/_helpers/_arrayPointers.ts :: export function getArrayLikeLength<T>(targ
 src/php/_helpers/_arrayPointers.ts :: export function getEntryAtCursor<T>(target: PhpArrayLike<T>, cursor: number): [string | number, T] | null
 src/php/_helpers/_arrayPointers.ts :: export function getPointerState<T>(target: PhpArrayLike<T>, initialize = true): PointerState | null
 src/php/_helpers/_bc.ts :: export function _bc(): ReturnType<typeof createBcLibrary>
-src/php/_helpers/_callbackResolver.ts :: export function resolveNumericComparator<TLeft extends PhpValue = PhpValue, TRight extends PhpValue = PhpValue>( callback: PhpCallableDescriptor<[TLeft, TRight], PhpValue>, invalidMessage: string, ): (left: TLeft, right: TRight) => number
-src/php/_helpers/_callbackResolver.ts :: export function resolvePhpCallable<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue>( callback: PhpCallableDescriptor<TArgs, TResult>, options: CallbackResolverOptions, ): ResolvedCallback<TArgs, TResult>
+src/php/_helpers/_callbackResolver.ts :: export function resolveNumericComparator<TLeft extends PhpValue = PhpValue, TRight extends PhpValue = PhpValue>( callback: PhpCallableDescriptor<[TLeft, TRight], NumericLike>, invalidMessage: string, ): (left: TLeft, right: TRight) => number
+src/php/_helpers/_callbackResolver.ts :: export function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue>( callback: PhpCallableDescriptor<TArgs, TResult>, options: CallbackResolverOptions, ): ResolvedCallback<TArgs, TResult>
 src/php/_helpers/_ctypePattern.ts :: export function getCtypePattern(key: string): RegExp | undefined
 src/php/_helpers/_phpCastString.ts :: export function _phpCastString(value: PhpMixed): string
 src/php/_helpers/_phpRuntimeState.ts :: export function ensurePhpRuntimeState(): PhpRuntimeState
 src/php/_helpers/_phpRuntimeState.ts :: export function setPhpLocaleDefault(localeDefault: string): void
-src/php/_helpers/_phpRuntimeState.ts :: export interface PhpRuntimeState { ini: { [key: string]: IniEntry | undefined } locales: { [key: string]: LocaleEntry | undefined } pointers: PhpValue[] locale_default: string | undefined }
+src/php/_helpers/_phpRuntimeState.ts :: export interface PhpRuntimeState { ini: PhpAssoc<IniEntry | undefined> locales: PhpAssoc<LocaleEntry | undefined> pointers: PhpList<PhpValue> locale_default: string | undefined }
 src/php/_helpers/_phpTypes.ts :: export function assertIsObjectLike( value: PhpValue, message = 'Expected object-like value', ): asserts value is PhpArrayLike<PhpValue>
-src/php/_helpers/_phpTypes.ts :: export function assertIsPhpCallable<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue>( value: PhpValue, message = 'Expected callable value', ): asserts value is PhpCallable<TArgs, TResult>
+src/php/_helpers/_phpTypes.ts :: export function assertIsPhpAssocObject( value: PhpValue, message = 'Expected associative object value', ): asserts value is PhpAssoc<PhpValue>
+src/php/_helpers/_phpTypes.ts :: export function assertIsPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue>( value: PhpValue, message = 'Expected callable value', ): asserts value is PhpCallable<TArgs, TResult>
 src/php/_helpers/_phpTypes.ts :: export function isNumericLike(value: PhpValue): value is NumericLike
 src/php/_helpers/_phpTypes.ts :: export function isObjectLike(value: PhpValue): value is PhpArrayLike<PhpValue>
 src/php/_helpers/_phpTypes.ts :: export function isPhpArrayObject<T = PhpValue>(value: PhpValue): value is PhpAssoc<T>
-src/php/_helpers/_phpTypes.ts :: export function isPhpCallable<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue>( value: PhpValue, ): value is PhpCallable<TArgs, TResult>
-src/php/_helpers/_phpTypes.ts :: export function isPhpCallableDescriptor<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue>( value: PhpValue, ): value is PhpCallableDescriptor<TArgs, TResult>
+src/php/_helpers/_phpTypes.ts :: export function isPhpAssocObject<T = PhpValue>(value: PhpValue): value is PhpAssoc<T>
+src/php/_helpers/_phpTypes.ts :: export function isPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue>( value: PhpValue, ): value is PhpCallable<TArgs, TResult>
+src/php/_helpers/_phpTypes.ts :: export function isPhpCallableDescriptor<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue>( value: PhpValue, ): value is PhpCallableDescriptor<TArgs, TResult>
+src/php/_helpers/_phpTypes.ts :: export function isPhpKey(value: PhpValue): value is PhpKey
+src/php/_helpers/_phpTypes.ts :: export function isPhpList<T = PhpValue>(value: PhpValue): value is PhpList<T>
+src/php/_helpers/_phpTypes.ts :: export function isPhpNullish(value: PhpValue): value is PhpNullish
 src/php/_helpers/_phpTypes.ts :: export function isPhpScalar(value: PhpValue): value is PhpScalar
 src/php/_helpers/_phpTypes.ts :: export function toPhpArrayObject<T = PhpValue>(value: PhpValue): PhpAssoc<T>
 src/php/_helpers/_phpTypes.ts :: export type NumericLike = number | bigint | string
-src/php/_helpers/_phpTypes.ts :: export type PhpArrayLike<T> = T[] | PhpAssoc<T>
-src/php/_helpers/_phpTypes.ts :: export type PhpAssoc<T> = { [key: string]: T }
-src/php/_helpers/_phpTypes.ts :: export type PhpCallable<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue> = (...args: TArgs) => TResult
-src/php/_helpers/_phpTypes.ts :: export type PhpCallableDescriptor<TArgs extends PhpValue[] = PhpValue[], TResult = PhpValue> = | string | PhpCallable<TArgs, TResult> | readonly [PhpCallableScope, string | PhpCallable<TArgs, TResult>]
+src/php/_helpers/_phpTypes.ts :: export type PhpArrayLike<T = PhpValue> = PhpList<T> | PhpAssoc<T>
+src/php/_helpers/_phpTypes.ts :: export type PhpAssoc<T = PhpValue> = { [key: string]: T }
+src/php/_helpers/_phpTypes.ts :: export type PhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue> = ( ...args: TArgs ) => TResult
+src/php/_helpers/_phpTypes.ts :: export type PhpCallableArgs = PhpValue[]
+src/php/_helpers/_phpTypes.ts :: export type PhpCallableDescriptor<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue> = | string | PhpCallable<TArgs, TResult> | PhpCallableTuple<TArgs, TResult>
 src/php/_helpers/_phpTypes.ts :: export type PhpCallableScope = PhpValue
+src/php/_helpers/_phpTypes.ts :: export type PhpCallableTuple<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpValue> = readonly [ PhpCallableScope, string | PhpCallable<TArgs, TResult>, ]
 src/php/_helpers/_phpTypes.ts :: export type PhpKey = string | number
+src/php/_helpers/_phpTypes.ts :: export type PhpList<T = PhpValue> = T[]
 src/php/_helpers/_phpTypes.ts :: export type PhpMixed = PhpValue
 src/php/_helpers/_phpTypes.ts :: export type PhpNullish = null | undefined
+src/php/_helpers/_phpTypes.ts :: export type PhpPrimitive = PhpScalar | bigint
+src/php/_helpers/_phpTypes.ts :: export type PhpReadonlyArrayLike<T = PhpValue> = PhpReadonlyList<T> | PhpReadonlyAssoc<T>
+src/php/_helpers/_phpTypes.ts :: export type PhpReadonlyAssoc<T = PhpValue> = Readonly<PhpAssoc<T>>
+src/php/_helpers/_phpTypes.ts :: export type PhpReadonlyList<T = PhpValue> = readonly T[]
 src/php/_helpers/_phpTypes.ts :: export type PhpScalar = string | number | boolean
-src/php/_helpers/_phpTypes.ts :: export type PhpValue = {} | null | undefined
+src/php/_helpers/_phpTypes.ts :: export type PhpValue = {} | PhpNullish
 src/php/_helpers/_phpTypes.ts :: export type StringLike = string | number | boolean | bigint
 src/php/_helpers/_php_cast_float.ts :: export function _php_cast_float(value: PhpMixed): number
 src/php/_helpers/_php_cast_int.ts :: export function _php_cast_int(value: PhpMixed): number
@@ -48,10 +60,10 @@ src/php/array/array_diff_ukey.ts :: export function array_diff_ukey<T extends Ph
 src/php/array/array_fill.ts :: export function array_fill(startIndex: number, num: number, mixedVal: string): { [key: string]: string }
 src/php/array/array_fill_keys.ts :: export function array_fill_keys(keys: PhpAssoc<PhpMixed>, value: string): PhpAssoc<string>
 src/php/array/array_filter.ts :: export function array_filter<T, S extends T>(arr: PhpAssoc<T>, func: (value: T) => value is S): PhpAssoc<S>
-src/php/array/array_filter.ts :: export function array_filter<T, S extends T>(arr: T[], func: (value: T) => value is S): S[]
-src/php/array/array_filter.ts :: export function array_filter<T>(arr: PhpAssoc<T> | T[], func?: (value: T) => PhpMixed): PhpAssoc<T> | T[]
+src/php/array/array_filter.ts :: export function array_filter<T, S extends T>(arr: PhpList<T>, func: (value: T) => value is S): PhpList<S>
+src/php/array/array_filter.ts :: export function array_filter<T>( arr: PhpAssoc<T> | PhpList<T>, func?: (value: T) => PhpMixed, ): PhpAssoc<T> | PhpList<T>
 src/php/array/array_filter.ts :: export function array_filter<T>(arr: PhpAssoc<T>, func?: (value: T) => PhpMixed): PhpAssoc<T>
-src/php/array/array_filter.ts :: export function array_filter<T>(arr: T[], func?: (value: T) => PhpMixed): T[]
+src/php/array/array_filter.ts :: export function array_filter<T>(arr: PhpList<T>, func?: (value: T) => PhpMixed): PhpList<T>
 src/php/array/array_flip.ts :: export function array_flip(trans: PhpAssoc<PhpMixed>): PhpAssoc<string>
 src/php/array/array_intersect.ts :: export function array_intersect<TValue = PhpValue>( arr1: PhpArrayLike<TValue>, ...arrays: Array<PhpArrayLike<TValue>> ): PhpAssoc<TValue>
 src/php/array/array_intersect_assoc.ts :: export function array_intersect_assoc<TValue = PhpValue>( arr1: PhpArrayLike<TValue>, ...arrays: Array<PhpArrayLike<TValue>> ): PhpAssoc<TValue>
@@ -60,13 +72,13 @@ src/php/array/array_intersect_uassoc.ts :: export function array_intersect_uasso
 src/php/array/array_intersect_ukey.ts :: export function array_intersect_ukey<T extends PhpValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: PhpValue, ...rest: PhpValue[], callback: KeyComparatorDescriptor] ): PhpArray<T>
 src/php/array/array_key_exists.ts :: export function array_key_exists(key: string | number, search: PhpAssoc<PhpMixed> | PhpMixed[]): boolean
 src/php/array/array_keys.ts :: export function array_keys<T>(input: PhpAssoc<T>, searchValue?: T, argStrict?: boolean): string[]
-src/php/array/array_map.ts :: export function array_map(callback: null | undefined, ...inputArrays: ArrayMapInputs): PhpMixed[][]
-src/php/array/array_map.ts :: export function array_map<TLeft extends PhpMixed, TRight extends PhpMixed, TResult>( callback: PhpCallableDescriptor<ArrayMapCallbackArgs2<TLeft, TRight>, TResult>, inputArrayLeft: TLeft[], inputArrayRight: TRight[], ): TResult[]
-src/php/array/array_map.ts :: export function array_map<TLeft extends PhpMixed, TRight extends PhpMixed>( callback: null | undefined, inputArrayLeft: TLeft[], inputArrayRight: TRight[], ): ArrayMapCallbackArgs2<TLeft, TRight>[]
-src/php/array/array_map.ts :: export function array_map<TResult = PhpMixed>( callback: PhpCallableDescriptor<ArrayMapCallbackArgsVariadic, TResult> | null | undefined, ...inputArrays: ArrayMapInputs ): TResult[] | PhpMixed[][]
-src/php/array/array_map.ts :: export function array_map<TResult = PhpMixed>( callback: PhpCallableDescriptor<ArrayMapCallbackArgsVariadic, TResult>, ...inputArrays: ArrayMapInputs ): TResult[]
-src/php/array/array_map.ts :: export function array_map<TValue extends PhpMixed, TResult>( callback: PhpCallableDescriptor<ArrayMapCallbackArgs1<TValue>, TResult>, inputArray: TValue[], ): TResult[]
-src/php/array/array_map.ts :: export function array_map<TValue extends PhpMixed>( callback: null | undefined, inputArray: TValue[], ): ArrayMapCallbackArgs1<TValue>[]
+src/php/array/array_map.ts :: export function array_map( callback: null | undefined, ...inputArrays: ArrayMapInputs ): PhpList<ArrayMapCallbackArgsVariadic>
+src/php/array/array_map.ts :: export function array_map<TLeft extends PhpValue, TRight extends PhpValue, TResult>( callback: PhpCallableDescriptor<ArrayMapCallbackArgs2<TLeft, TRight>, TResult>, inputArrayLeft: PhpList<TLeft>, inputArrayRight: PhpList<TRight>, ): PhpList<TResult>
+src/php/array/array_map.ts :: export function array_map<TLeft extends PhpValue, TRight extends PhpValue>( callback: null | undefined, inputArrayLeft: PhpList<TLeft>, inputArrayRight: PhpList<TRight>, ): PhpList<ArrayMapCallbackArgs2<TLeft, TRight>>
+src/php/array/array_map.ts :: export function array_map<TResult = PhpValue>( callback: PhpCallableDescriptor<ArrayMapCallbackArgsVariadic, TResult> | null | undefined, ...inputArrays: ArrayMapInputs ): PhpList<TResult> | PhpList<ArrayMapCallbackArgsVariadic>
+src/php/array/array_map.ts :: export function array_map<TResult = PhpValue>( callback: PhpCallableDescriptor<ArrayMapCallbackArgsVariadic, TResult>, ...inputArrays: ArrayMapInputs ): PhpList<TResult>
+src/php/array/array_map.ts :: export function array_map<TValue extends PhpValue, TResult>( callback: PhpCallableDescriptor<ArrayMapCallbackArgs1<TValue>, TResult>, inputArray: PhpList<TValue>, ): PhpList<TResult>
+src/php/array/array_map.ts :: export function array_map<TValue extends PhpValue>( callback: null | undefined, inputArray: PhpList<TValue>, ): PhpList<ArrayMapCallbackArgs1<TValue>>
 src/php/array/array_merge.ts :: export function array_merge<T>(...args: Array<T[] | AssociativeArray<T>>): T[] | AssociativeArray<T>
 src/php/array/array_merge_recursive.ts :: export function array_merge_recursive(arr1: MergeObject, arr2: MergeObject): MergeObject
 src/php/array/array_multisort.ts :: export function array_multisort(arr: PhpValue[] | SortableObject, ...rest: SortArg[]): boolean

@@ -6,12 +6,12 @@ import { describe, it, expect } from 'vitest'
 process.env.TZ = 'UTC'
 const ini_set = require('../../../../src/php/info/ini_set.ts').ini_set
 const ini_get = require('../../../../src/php/info/ini_get.ts').ini_get
-const isObjectLike = require('../../../../src/php/_helpers/_phpTypes.ts').isObjectLike
+const isPhpNullish = require('../../../../src/php/_helpers/_phpTypes.ts').isPhpNullish
 
 describe('src/php/_helpers/_phpTypes.ts (tested in test/generated/php/_helpers/_phpTypes.vitest.ts)', function () {
   it('should pass example 1', function () {
     const expected = true
-    const result = isObjectLike({})
+    const result = isPhpNullish(null)
     expect(result).toEqual(expected)
   })
 })

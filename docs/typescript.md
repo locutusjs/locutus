@@ -977,3 +977,30 @@ To fix a `@ts-nocheck` file:
     - `corepack yarn check`
 - Key learnings
   - If contributor and consumer runtime policy intentionally converge in a major, encoding it in both `engines` and the changeset prevents ambiguity downstream.
+
+## Iteration 43
+
+- Plans
+  - Expand `src/php/_helpers/_phpTypes.ts` into a clearer PHP-oriented lattice (array/list/object/callable/context primitives) while preserving runtime behavior.
+  - Start migrating first consumers from broad aliases (`PhpMixed`, `PhpValue`) to narrower helper types where semantics are already deterministic.
+  - Keep this pass incremental and push-sized: helper foundation first, then targeted high-traffic callsites.
+- Progress
+  - Expanded `src/php/_helpers/_phpTypes.ts` with lattice primitives and guards:
+    - added list/object/read-only array aliases (`PhpList`, `PhpReadonlyList`, `PhpReadonlyAssoc`, `PhpReadonlyArrayLike`).
+    - added callable aliases (`PhpCallableArgs`, `PhpCallableTuple`) and tightened `isPhpCallableDescriptor(...)` to validate tuple callable slots.
+    - added guards/assertions for nullish/list/assoc/key semantics (`isPhpNullish`, `isPhpList`, `isPhpAssocObject`, `isPhpKey`, `assertIsPhpAssocObject`).
+  - Migrated helper/runtime consumers to narrower lattice aliases:
+    - `src/php/_helpers/_phpRuntimeState.ts` now uses `PhpAssoc<...>` and `PhpList<PhpValue>` for runtime state bags/pointers.
+    - `src/php/_helpers/_arrayPointers.ts` now threads `PhpList<PhpValue>` through pointer index resolution.
+  - Narrowed numeric comparator callback contracts in callback-heavy array families:
+    - `src/php/_helpers/_callbackResolver.ts` now requires comparator callbacks returning `NumericLike`.
+    - updated `array_udiff*`, `array_uintersect*`, `array_diff_ukey`, `array_diff_uassoc`, `array_intersect_ukey`, `array_intersect_uassoc` to type comparator descriptors/guards as `NumericLike` return.
+  - Migrated first high-traffic array APIs to list-centric aliases:
+    - `src/php/array/array_map.ts` now uses `PhpList`/`PhpValue` across overloads and variadic callback args.
+    - `src/php/array/array_filter.ts` now uses `PhpList` in overload and implementation surfaces.
+  - Updated `docs/php-api-signatures.snapshot` for intentional public type changes.
+  - Validation passed:
+    - `corepack yarn check`
+- Key learnings
+  - Lattice-first helper expansion enables broad signature tightening with minimal runtime churn when comparator/callback semantics are centralized.
+  - Numeric comparator return narrowing (`NumericLike`) is a high-leverage strictness win across multiple array families with low implementation risk.

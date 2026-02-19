@@ -1,14 +1,17 @@
-import type { PhpAssoc, PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpList, PhpMixed } from '../_helpers/_phpTypes.ts'
 
-export function array_filter<T, S extends T>(arr: T[], func: (value: T) => value is S): S[]
+export function array_filter<T, S extends T>(arr: PhpList<T>, func: (value: T) => value is S): PhpList<S>
 
 export function array_filter<T, S extends T>(arr: PhpAssoc<T>, func: (value: T) => value is S): PhpAssoc<S>
 
-export function array_filter<T>(arr: T[], func?: (value: T) => PhpMixed): T[]
+export function array_filter<T>(arr: PhpList<T>, func?: (value: T) => PhpMixed): PhpList<T>
 
 export function array_filter<T>(arr: PhpAssoc<T>, func?: (value: T) => PhpMixed): PhpAssoc<T>
 
-export function array_filter<T>(arr: PhpAssoc<T> | T[], func?: (value: T) => PhpMixed): PhpAssoc<T> | T[] {
+export function array_filter<T>(
+  arr: PhpAssoc<T> | PhpList<T>,
+  func?: (value: T) => PhpMixed,
+): PhpAssoc<T> | PhpList<T> {
   //  discuss at: https://locutus.io/php/array_filter/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: max4ever
@@ -31,7 +34,7 @@ export function array_filter<T>(arr: PhpAssoc<T> | T[], func?: (value: T) => Php
 
   if (Array.isArray(arr)) {
     // @todo: Issue #73
-    const filtered: T[] = []
+    const filtered: PhpList<T> = []
     for (const [key, value] of Object.entries(arr)) {
       if (callback(value)) {
         filtered[Number(key)] = value
