@@ -11,7 +11,7 @@ alias:
 
 > All your standard libraries will be assimilated into our ~~JavaScript~~ TypeScript collective. Resistance is futile.
 
-Locutus is 497 TypeScript implementations of standard library functions from 12 programming languages: PHP, Go, Python, Ruby, C, Perl, Lua, R, Julia, Elixir, Clojure, and AWK. The project has been running since 2008 and has had [137 contributors](https://github.com/locutusjs/locutus/graphs/contributors).
+Locutus is {% locutus_func_count %} TypeScript implementations of standard library functions from {% locutus_lang_count %} programming languages: {% locutus_lang_list %}. The project has been running since 2008 and has had [137 contributors](https://github.com/locutusjs/locutus/graphs/contributors).
 
 Most of these started as rainy Sunday afternoon puzzles. Some are genuinely useful. Some are just fun to write. All of them are a way to learn how different languages solve the same problems, by reimplementing their standard library functions in TypeScript.
 
