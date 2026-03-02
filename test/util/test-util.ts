@@ -97,5 +97,19 @@ describe('util', function () {
       expect(standaloneCode).toContain('function is_long(')
       expect(standaloneCode).not.toContain("from '../var/is_float.ts'")
     })
+
+    it('should collapse trivial forwarding wrappers to aliases in standalone JS snippets', async function () {
+      const util = new Util()
+      const params = await util._load('php/array/array_flip.ts', {})
+      expect(params).not.toBeNull()
+      if (!params) {
+        return
+      }
+
+      const standaloneCode = await util._buildStandaloneJs(params)
+
+      expect(standaloneCode).toContain('const isPhpArrayObject = isObjectLike;')
+      expect(standaloneCode).not.toContain('function isPhpArrayObject(')
+    })
   })
 })

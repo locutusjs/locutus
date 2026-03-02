@@ -2065,3 +2065,31 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Reusing existing docs examples as the parity source gives immediate multi-surface confidence without inventing a second test DSL.
   - Eval/transpile context details (interop flags + where example code is emitted) materially affect behavior and need to be treated as first-class test harness concerns.
+
+## Iteration 76
+
+- Plans
+  - Remove redundant forwarding wrappers from standalone snippets in a robust way.
+  - Avoid regex/source-text hacks and avoid adding new dependencies for this pass.
+  - Preserve correctness and strict-type guarantees for TS snippets.
+- Progress
+  - Implemented AST-based wrapper collapse in `src/_util/util.ts`:
+    - Added `_collapseStandaloneForwardingWrappers(...)` and `_getStandaloneForwardingWrapperAlias(...)`.
+    - Detects trivial forwarding wrappers (`function f(a){ return g(a) }`) from parsed TypeScript AST metadata.
+    - Replaces matched wrappers with emitted aliases (`const f = g;`) and drops wrapper declarations from standalone output.
+    - Applies only to `standalone-js` mode for safety; `standalone-ts` keeps original typed wrappers.
+    - Keeps root exported function declaration intact for readability/copy-paste ergonomics.
+  - Added regression coverage in `test/util/test-util.ts`:
+    - new assertion verifies `array_flip` standalone JS uses alias form and no longer emits the redundant wrapper function body.
+  - Regenerated generated tests after generator changes:
+    - `yarn build:tests`
+- Validation
+  - `yarn test:util`
+  - `yarn test:languages`
+  - `yarn lint:ts`
+  - `yarn lint:ts:strict-next`
+  - `yarn lint:ts:debt:policy`
+  - `yarn lint`
+- Key learnings
+  - The existing TypeScript compiler API is enough for robust structural rewrites; no `ts-morph` dependency is needed for this class of transformation.
+  - Limiting wrapper collapse to JS standalone gives immediate snippet simplification while avoiding TS predicate/signature drift risk.

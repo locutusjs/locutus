@@ -1102,6 +1102,8 @@ class Util {
       }
     }
 
+    this._collapseStandaloneForwardingWrappers(info, includedStatementIndexes, runtimeAliases, mode)
+
     return {
       includedStatementIndexes,
       depRuntimeNames,
@@ -1109,6 +1111,107 @@ class Util {
       runtimeAliases,
       typeAliases,
     }
+  }
+
+  _collapseStandaloneForwardingWrappers(
+    info: StandaloneModuleInfo,
+    includedStatementIndexes: Set<number>,
+    runtimeAliases: Set<string>,
+    mode: StandaloneMode,
+  ): void {
+    if (mode !== 'js') {
+      return
+    }
+
+    const sortedIndexes = [...includedStatementIndexes].sort((a, b) => b - a)
+    for (const statementIndex of sortedIndexes) {
+      const aliasSpec = this._getStandaloneForwardingWrapperAlias(info, statementIndex, includedStatementIndexes)
+      if (!aliasSpec) {
+        continue
+      }
+
+      includedStatementIndexes.delete(statementIndex)
+      runtimeAliases.add(`const ${aliasSpec.wrapperName} = ${aliasSpec.targetName};`)
+    }
+  }
+
+  _getStandaloneForwardingWrapperAlias(
+    info: StandaloneModuleInfo,
+    statementIndex: number,
+    includedStatementIndexes: Set<number>,
+  ): { wrapperName: string; targetName: string } | null {
+    const statement = info.statements[statementIndex]
+    if (!statement || !ts.isFunctionDeclaration(statement) || !statement.name || !statement.body) {
+      return null
+    }
+
+    const wrapperName = statement.name.text
+    if (wrapperName === info.params.func_name) {
+      // Keep the root function declaration visible in standalone output.
+      return null
+    }
+
+    if (statement.body.statements.length !== 1) {
+      return null
+    }
+
+    const onlyBodyStatement = statement.body.statements[0]
+    if (!onlyBodyStatement || !ts.isReturnStatement(onlyBodyStatement) || !onlyBodyStatement.expression) {
+      return null
+    }
+
+    const returnExpression = onlyBodyStatement.expression
+    if (!ts.isCallExpression(returnExpression) || !ts.isIdentifier(returnExpression.expression)) {
+      return null
+    }
+
+    const targetName = returnExpression.expression.text
+    if (targetName === wrapperName) {
+      return null
+    }
+
+    if (statement.parameters.length !== returnExpression.arguments.length) {
+      return null
+    }
+
+    for (let index = 0; index < statement.parameters.length; index++) {
+      const parameter = statement.parameters[index]
+      const argument = returnExpression.arguments[index]
+      if (
+        !parameter ||
+        !argument ||
+        !ts.isIdentifier(parameter.name) ||
+        !ts.isIdentifier(argument) ||
+        parameter.dotDotDotToken ||
+        parameter.initializer ||
+        parameter.questionToken ||
+        parameter.name.text !== argument.text
+      ) {
+        return null
+      }
+    }
+
+    const targetDeclarationIndexes = info.declarationsByName.get(targetName)
+    if (!targetDeclarationIndexes) {
+      return null
+    }
+
+    for (const targetDeclarationIndex of targetDeclarationIndexes) {
+      if (!includedStatementIndexes.has(targetDeclarationIndex)) {
+        continue
+      }
+      const targetStatement = info.statements[targetDeclarationIndex]
+      if (
+        targetStatement &&
+        ts.isFunctionDeclaration(targetStatement) &&
+        targetStatement.name &&
+        targetStatement.name.text === targetName
+      ) {
+        return { wrapperName, targetName }
+      }
+    }
+
+    return null
   }
 
   _renderStandaloneModule(info: StandaloneModuleInfo, includedStatementIndexes: Set<number>): string {
