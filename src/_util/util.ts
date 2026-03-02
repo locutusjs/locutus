@@ -948,6 +948,9 @@ class Util {
     const statementInfo: StandaloneStatementInfo[] = []
     for (let index = 0; index < statements.length; index++) {
       const statement = statements[index]
+      if (!statement) {
+        continue
+      }
       const declaredNames = statementDeclaredNames[index] || new Set<string>()
 
       const runtimeRefs = this._collectReferencedIdentifiers(statement, false)
