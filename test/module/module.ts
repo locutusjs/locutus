@@ -49,28 +49,31 @@ strings.echo(php.datetime.strtotime('2 januari 2012, 11:12:13 GMT'))
 const distLocutus = require('../../dist/index.js')
 const distPhpStrings = require('../../dist/php/strings/index.js')
 const distGolangStrings = require('../../dist/golang/strings/index.js')
-const distSprintf = require('../../dist/php/strings/sprintf.js')
-const distCompare = require('../../dist/golang/strings/Compare.js')
-const distIndex = require('../../dist/golang/strings/Index2.js')
-const distLegacyIndex = require('../../dist/golang/strings/Index.js')
+const distSprintf = require('../../dist/php/strings/sprintf.js') as { sprintf?: (...args: unknown[]) => unknown }
+const distCompare = require('../../dist/golang/strings/Compare.js') as { Compare?: (...args: unknown[]) => unknown }
+const distIndex = require('../../dist/golang/strings/Index2.js') as { Index?: (...args: unknown[]) => unknown }
+const distLegacyIndex = require('../../dist/golang/strings/Index.js') as { Index?: (...args: unknown[]) => unknown }
 
-if (typeof distSprintf !== 'function') {
-  throw new Error('dist/php/strings/sprintf.js should export a function')
+if (typeof distSprintf?.sprintf !== 'function') {
+  throw new Error('dist/php/strings/sprintf.js should export named function property "sprintf"')
 }
-if (distSprintf('Resistance is %s', effectiveness) !== 'Resistance is futile') {
-  throw new Error('dist/php/strings/sprintf.js deep require should be callable')
+if (distSprintf.sprintf('Resistance is %s', effectiveness) !== 'Resistance is futile') {
+  throw new Error('dist/php/strings/sprintf.js named export should be callable')
+}
+if (typeof distSprintf === 'function') {
+  throw new Error('dist/php/strings/sprintf.js should not default-export a callable function')
 }
 if (typeof distPhpStrings.sprintf !== 'function') {
   throw new Error('dist/php/strings/index.js should expose strings.sprintf')
 }
-if (typeof distCompare !== 'function') {
-  throw new Error('dist/golang/strings/Compare.js should export a function')
+if (typeof distCompare?.Compare !== 'function') {
+  throw new Error('dist/golang/strings/Compare.js should export named function property "Compare"')
 }
-if (typeof distIndex !== 'function') {
-  throw new Error('dist/golang/strings/Index2.js should export a function')
+if (typeof distIndex?.Index !== 'function') {
+  throw new Error('dist/golang/strings/Index2.js should export named function property "Index"')
 }
-if (typeof distLegacyIndex !== 'function') {
-  throw new Error('dist/golang/strings/Index.js should export a function')
+if (typeof distLegacyIndex?.Index !== 'function') {
+  throw new Error('dist/golang/strings/Index.js should export named function property "Index"')
 }
 if (typeof distGolangStrings.Compare !== 'function') {
   throw new Error('dist/golang/strings/index.js should expose strings.Compare')

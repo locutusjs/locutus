@@ -47,10 +47,16 @@ php.strings.sprintf(...)
 
 ### CJS distribution
 
-Source is ESM TypeScript, but the published package ships CJS for backwards compatibility:
+Source is ESM TypeScript, and the published package also ships CJS for runtime compatibility:
 
 - `tsconfig.build.json` compiles to CommonJS with `rewriteRelativeImportExtensions`
-- `scripts/fix-cjs-exports.ts` post-processes the dist to add `module.exports = exports.funcName` for each function file, so `require('locutus/php/strings/sprintf')` returns the function directly
+- `scripts/fix-cjs-exports.ts` post-processes dist metadata/shims while preserving named exports in CJS modules
+
+Use named CJS access:
+
+```javascript
+const { sprintf } = require('locutus/php/strings/sprintf')
+```
 
 ### `@ts-nocheck` files
 

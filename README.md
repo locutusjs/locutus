@@ -42,8 +42,8 @@ $ vim php.js
 ```
 
 ```javascript
-const sprintf = require('locutus/php/strings/sprintf')
-const echo = require('locutus/php/strings/echo')
+const { sprintf } = require('locutus/php/strings/sprintf')
+const { echo } = require('locutus/php/strings/echo')
 const effectiveness = 'futile'
 echo(sprintf('Resistance is %s', effectiveness))
 ```
