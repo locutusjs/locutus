@@ -16,10 +16,6 @@ const defaultCtypePatterns: { [key: string]: RegExp } = {
 }
 
 export function getCtypePattern(key: string): RegExp | undefined {
-  // discuss at: https://locutus.io/php/_helpers/getCtypePattern/
-  //     note 1: Reads the active LC_CTYPE regex bag from the locutus runtime state.
-  //  example 1: typeof getCtypePattern('missing')
-  //  returns 1: 'undefined'
   const ctypeGroup = getPhpLocaleGroup('LC_CTYPE', 'LC_CTYPE')
   if (!ctypeGroup) {
     const fallbackPattern = defaultCtypePatterns[key]

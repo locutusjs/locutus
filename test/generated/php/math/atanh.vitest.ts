@@ -12,8 +12,8 @@ const __locutus_source_module_url = new URL("../../../../src/php/math/atanh.ts",
 const __locutus_source_require = createRequire(__locutus_source_module_url)
 const __locutus_func_name = "atanh"
 const __locutus_module_js_code = "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.atanh = atanh;\nfunction atanh(arg) {\n    //  discuss at: https://locutus.io/php/atanh/\n    // original by: Onno Marsman (https://twitter.com/onnomarsman)\n    //   example 1: atanh(0.3)\n    //   returns 1: 0.3095196042031118\n    return 0.5 * Math.log((1 + arg) / (1 - arg));\n}"
-const __locutus_standalone_ts_code = "// php/math/atanh\nfunction atanh(arg) {\n    //  discuss at: https://locutus.io/php/atanh/\n    // original by: Onno Marsman (https://twitter.com/onnomarsman)\n    //   example 1: atanh(0.3)\n    //   returns 1: 0.3095196042031118\n    return 0.5 * Math.log((1 + arg) / (1 - arg));\n}"
-const __locutus_standalone_js_code = "// php/math/atanh\nfunction atanh(arg) {\n    //  discuss at: https://locutus.io/php/atanh/\n    // original by: Onno Marsman (https://twitter.com/onnomarsman)\n    //   example 1: atanh(0.3)\n    //   returns 1: 0.3095196042031118\n    return 0.5 * Math.log((1 + arg) / (1 - arg));\n}"
+const __locutus_standalone_ts_code = "// php/math/atanh (target function module)\nfunction atanh(arg) {\n    //  discuss at: https://locutus.io/php/atanh/\n    // original by: Onno Marsman (https://twitter.com/onnomarsman)\n    //   example 1: atanh(0.3)\n    //   returns 1: 0.3095196042031118\n    return 0.5 * Math.log((1 + arg) / (1 - arg));\n}"
+const __locutus_standalone_js_code = "// php/math/atanh (target function module)\nfunction atanh(arg) {\n    //  discuss at: https://locutus.io/php/atanh/\n    // original by: Onno Marsman (https://twitter.com/onnomarsman)\n    //   example 1: atanh(0.3)\n    //   returns 1: 0.3095196042031118\n    return 0.5 * Math.log((1 + arg) / (1 - arg));\n}"
 
 const __locutus_eval_function = (compiledCode: string): ((...args: unknown[]) => unknown) => {
   const evaluator = new Function('require', compiledCode + '\nreturn ' + __locutus_func_name + ';')

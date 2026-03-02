@@ -316,18 +316,10 @@ interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
 type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
 
 function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T> {
-  // discuss at: https://locutus.io/php/_helpers/isPhpList/
-  //     note 1: Shared helper guard for PHP list-like array values.
-  //  example 1: isPhpList([1, 2, 3])
-  //  returns 1: true
   return Array.isArray(value)
 }
 
 function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
-  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
-  //     note 1: Shared runtime guard for locutus helper typing.
-  //  example 1: isObjectLike({})
-  //  returns 1: true
   return typeof value === 'object' && value !== null
 }
 
@@ -391,10 +383,6 @@ const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
 }
 
 function ensurePhpRuntimeState(): PhpRuntimeState {
-  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
-  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
-  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
-  //  returns 1: true
   const php = ensurePhpRuntimeObject()
   const iniValue = php.ini
   const localesValue = php.locales
@@ -454,32 +442,6 @@ type CastStringValue = PhpInput
 
 function _phpCastString(value: CastStringValue): string {
   // original by: Rafał Kukawski
-  //   example 1: _phpCastString(true)
-  //   returns 1: '1'
-  //   example 2: _phpCastString(false)
-  //   returns 2: ''
-  //   example 3: _phpCastString('foo')
-  //   returns 3: 'foo'
-  //   example 4: _phpCastString(0/0)
-  //   returns 4: 'NAN'
-  //   example 5: _phpCastString(1/0)
-  //   returns 5: 'INF'
-  //   example 6: _phpCastString(-1/0)
-  //   returns 6: '-INF'
-  //   example 7: _phpCastString(null)
-  //   returns 7: ''
-  //   example 8: _phpCastString(undefined)
-  //   returns 8: ''
-  //   example 9: _phpCastString([])
-  //   returns 9: 'Array'
-  //  example 10: _phpCastString({})
-  //  returns 10: 'Object'
-  //  example 11: _phpCastString(0)
-  //  returns 11: '0'
-  //  example 12: _phpCastString(1)
-  //  returns 12: '1'
-  //  example 13: _phpCastString(3.14)
-  //  returns 13: '3.14'
 
   if (typeof value === 'boolean') {
     return value ? '1' : ''
@@ -750,18 +712,10 @@ function rsort<T extends SortValue>(
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpList(value) {
-  // discuss at: https://locutus.io/php/_helpers/isPhpList/
-  //     note 1: Shared helper guard for PHP list-like array values.
-  //  example 1: isPhpList([1, 2, 3])
-  //  returns 1: true
   return Array.isArray(value)
 }
 
 function isObjectLike(value) {
-  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
-  //     note 1: Shared runtime guard for locutus helper typing.
-  //  example 1: isObjectLike({})
-  //  returns 1: true
   return typeof value === 'object' && value !== null
 }
 
@@ -796,10 +750,6 @@ const ensurePhpRuntimeObject = () => {
 }
 
 function ensurePhpRuntimeState() {
-  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
-  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
-  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
-  //  returns 1: true
   const php = ensurePhpRuntimeObject()
   const iniValue = php.ini
   const localesValue = php.locales
@@ -857,32 +807,6 @@ function i18n_loc_get_default() {
 // php/_helpers/_phpCastString (Locutus helper dependency)
 function _phpCastString(value) {
   // original by: Rafał Kukawski
-  //   example 1: _phpCastString(true)
-  //   returns 1: '1'
-  //   example 2: _phpCastString(false)
-  //   returns 2: ''
-  //   example 3: _phpCastString('foo')
-  //   returns 3: 'foo'
-  //   example 4: _phpCastString(0/0)
-  //   returns 4: 'NAN'
-  //   example 5: _phpCastString(1/0)
-  //   returns 5: 'INF'
-  //   example 6: _phpCastString(-1/0)
-  //   returns 6: '-INF'
-  //   example 7: _phpCastString(null)
-  //   returns 7: ''
-  //   example 8: _phpCastString(undefined)
-  //   returns 8: ''
-  //   example 9: _phpCastString([])
-  //   returns 9: 'Array'
-  //  example 10: _phpCastString({})
-  //  returns 10: 'Object'
-  //  example 11: _phpCastString(0)
-  //  returns 11: '0'
-  //  example 12: _phpCastString(1)
-  //  returns 12: '1'
-  //  example 13: _phpCastString(3.14)
-  //  returns 13: '3.14'
 
   if (typeof value === 'boolean') {
     return value ? '1' : ''

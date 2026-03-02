@@ -17,10 +17,6 @@ const findPointerIndex = (pointers: PhpList<PhpInput>, target: PhpInput): number
 }
 
 export function getPointerState<T>(target: PhpArrayLike<T>, initialize = true): PointerState | null {
-  // discuss at: https://locutus.io/php/_helpers/getPointerState/
-  //     note 1: Resolves or initializes locutus pointer state for a given array-like target.
-  //  example 1: getPointerState(['a'])?.cursor
-  //  returns 1: 0
   const runtime = ensurePhpRuntimeState()
   const pointers = runtime.pointers
   const pointerTarget: PhpInput = target

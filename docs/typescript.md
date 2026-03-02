@@ -2250,3 +2250,22 @@ To fix a `@ts-nocheck` file:
   - Spot-check: `website/source/php/array/array_diff.html` now shows module JS with preserved spacing around key blocks (matching TS readability pattern).
 - Key learnings
   - Marker-based preservation is stable and formatter-agnostic, and avoids brittle regex heuristics tied to function-specific code shapes.
+
+## Iteration 83
+
+- Plans
+  - Remove website-style header metadata comments from helper implementations (`discuss at`, `note`, `example`, `returns`).
+  - Keep comments for user-facing language functions intact.
+- Progress
+  - Removed legacy header metadata lines from PHP helper sources in `src/php/_helpers/*.ts`.
+  - Updated parser/test generation behavior in `src/_util/util.ts`:
+    - `_parse(...)` now allows commentless helper modules (`/_helpers/` paths) while preserving strict behavior for non-helper functions.
+    - `_writetestOne(...)` now skips generated language tests for helper modules without examples.
+  - Regenerated website snapshots (`yarn injectweb`) so helper code shown in standalone/module output no longer includes helper-only metadata headers.
+- Validation
+  - `yarn lint:headers`
+  - `yarn lint:ts`
+  - `yarn injectweb`
+  - Spot-check: `website/source/php/array/array_diff.html` helper sections no longer show `discuss at`, `note`, `example`, or `returns`.
+- Key learnings
+  - Helper utilities should remain implementation-focused; header metadata belongs in user-facing function docs, not internal helper snippets.

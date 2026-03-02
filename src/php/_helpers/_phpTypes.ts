@@ -49,26 +49,14 @@ export type PhpComparatorDescriptor<T> = PhpCallableDescriptor<[T, T], NumericLi
 export type PhpKeyComparatorDescriptor = PhpCallableDescriptor<[string, string], NumericLike>
 
 export function isPhpNullish(value: PhpInput): value is PhpNullish {
-  // discuss at: https://locutus.io/php/_helpers/isPhpNullish/
-  //     note 1: Shared helper guard to narrow null/undefined unions.
-  //  example 1: isPhpNullish(null)
-  //  returns 1: true
   return typeof value === 'undefined' || value === null
 }
 
 export function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T> {
-  // discuss at: https://locutus.io/php/_helpers/isPhpList/
-  //     note 1: Shared helper guard for PHP list-like array values.
-  //  example 1: isPhpList([1, 2, 3])
-  //  returns 1: true
   return Array.isArray(value)
 }
 
 export function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
-  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
-  //     note 1: Shared runtime guard for locutus helper typing.
-  //  example 1: isObjectLike({})
-  //  returns 1: true
   return typeof value === 'object' && value !== null
 }
 

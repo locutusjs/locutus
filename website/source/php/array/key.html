@@ -101,18 +101,10 @@ const entriesOfPhpAssoc = <T>(value: PhpAssoc<T>): Array<[string, T]> => {
 }
 
 function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T> {
-  // discuss at: https://locutus.io/php/_helpers/isPhpList/
-  //     note 1: Shared helper guard for PHP list-like array values.
-  //  example 1: isPhpList([1, 2, 3])
-  //  returns 1: true
   return Array.isArray(value)
 }
 
 function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
-  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
-  //     note 1: Shared runtime guard for locutus helper typing.
-  //  example 1: isObjectLike({})
-  //  returns 1: true
   return typeof value === 'object' && value !== null
 }
 
@@ -176,10 +168,6 @@ const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
 }
 
 function ensurePhpRuntimeState(): PhpRuntimeState {
-  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
-  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
-  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
-  //  returns 1: true
   const php = ensurePhpRuntimeObject()
   const iniValue = php.ini
   const localesValue = php.locales
@@ -233,10 +221,6 @@ const findPointerIndex = (pointers: PhpList<PhpInput>, target: PhpInput): number
 }
 
 function getPointerState<T>(target: PhpArrayLike<T>, initialize = true): PointerState | null {
-  // discuss at: https://locutus.io/php/_helpers/getPointerState/
-  //     note 1: Resolves or initializes locutus pointer state for a given array-like target.
-  //  example 1: getPointerState(['a'])?.cursor
-  //  returns 1: 0
   const runtime = ensurePhpRuntimeState()
   const pointers = runtime.pointers
   const pointerTarget: PhpInput = target
@@ -317,18 +301,10 @@ const entriesOfPhpAssoc = (value) => {
 }
 
 function isPhpList(value) {
-  // discuss at: https://locutus.io/php/_helpers/isPhpList/
-  //     note 1: Shared helper guard for PHP list-like array values.
-  //  example 1: isPhpList([1, 2, 3])
-  //  returns 1: true
   return Array.isArray(value)
 }
 
 function isObjectLike(value) {
-  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
-  //     note 1: Shared runtime guard for locutus helper typing.
-  //  example 1: isObjectLike({})
-  //  returns 1: true
   return typeof value === 'object' && value !== null
 }
 
@@ -363,10 +339,6 @@ const ensurePhpRuntimeObject = () => {
 }
 
 function ensurePhpRuntimeState() {
-  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
-  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
-  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
-  //  returns 1: true
   const php = ensurePhpRuntimeObject()
   const iniValue = php.ini
   const localesValue = php.locales
@@ -415,10 +387,6 @@ const findPointerIndex = (pointers, target) => {
 }
 
 function getPointerState(target, initialize = true) {
-  // discuss at: https://locutus.io/php/_helpers/getPointerState/
-  //     note 1: Resolves or initializes locutus pointer state for a given array-like target.
-  //  example 1: getPointerState(['a'])?.cursor
-  //  returns 1: 0
   const runtime = ensurePhpRuntimeState()
   const pointers = runtime.pointers
   const pointerTarget = target

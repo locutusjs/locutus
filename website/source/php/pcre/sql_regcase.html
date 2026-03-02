@@ -140,18 +140,10 @@ type PhpAssoc<T = PhpInput> = { [key: string]: T }
 type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
 
 function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T> {
-  // discuss at: https://locutus.io/php/_helpers/isPhpList/
-  //     note 1: Shared helper guard for PHP list-like array values.
-  //  example 1: isPhpList([1, 2, 3])
-  //  returns 1: true
   return Array.isArray(value)
 }
 
 function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
-  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
-  //     note 1: Shared runtime guard for locutus helper typing.
-  //  example 1: isObjectLike({})
-  //  returns 1: true
   return typeof value === 'object' && value !== null
 }
 
@@ -245,10 +237,6 @@ const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
 }
 
 function ensurePhpRuntimeState(): PhpRuntimeState {
-  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
-  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
-  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
-  //  returns 1: true
   const php = ensurePhpRuntimeObject()
   const iniValue = php.ini
   const localesValue = php.locales
@@ -883,18 +871,10 @@ function sql_regcase(str: string): string {
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpList(value) {
-  // discuss at: https://locutus.io/php/_helpers/isPhpList/
-  //     note 1: Shared helper guard for PHP list-like array values.
-  //  example 1: isPhpList([1, 2, 3])
-  //  returns 1: true
   return Array.isArray(value)
 }
 
 function isObjectLike(value) {
-  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
-  //     note 1: Shared runtime guard for locutus helper typing.
-  //  example 1: isObjectLike({})
-  //  returns 1: true
   return typeof value === 'object' && value !== null
 }
 
@@ -929,10 +909,6 @@ const ensurePhpRuntimeObject = () => {
 }
 
 function ensurePhpRuntimeState() {
-  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
-  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
-  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
-  //  returns 1: true
   const php = ensurePhpRuntimeObject()
   const iniValue = php.ini
   const localesValue = php.locales

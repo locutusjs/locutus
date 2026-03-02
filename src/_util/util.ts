@@ -1567,7 +1567,11 @@ class Util {
     if (!params.headKeys) {
       throw new Error('No headKeys in ' + params.func_name)
     }
+    const isHelperModule = /(?:^|\/)_helpers\//.test(params.filepath)
     if (!params.headKeys.example) {
+      if (isHelperModule) {
+        return
+      }
       throw new Error('No example in ' + params.func_name)
     }
 
@@ -2056,6 +2060,7 @@ class Util {
 
     const lines = code.split('\n')
     const headComments: string[] = []
+    const isHelperModule = /(?:^|\/)_helpers\//.test(filepath)
     for (let lineIdx = funcStartLine; lineIdx < firstStmtLine; lineIdx++) {
       const line = lines[lineIdx]
       if (!line) {
@@ -2067,7 +2072,7 @@ class Util {
       }
     }
 
-    if (headComments.length === 0) {
+    if (headComments.length === 0 && !isHelperModule) {
       const msg = `Unable to parse ${filepath}. Did not find any comments in function definition`
       throw new Error(msg)
     }

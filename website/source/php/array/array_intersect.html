@@ -137,10 +137,6 @@ const entriesOfPhpAssoc = <T>(value: PhpAssoc<T>): Array<[string, T]> => {
 }
 
 function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
-  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
-  //     note 1: Shared runtime guard for locutus helper typing.
-  //  example 1: isObjectLike({})
-  //  returns 1: true
   return typeof value === 'object' && value !== null
 }
 
@@ -204,10 +200,6 @@ const entriesOfPhpAssoc = (value) => {
 }
 
 function isPhpArrayObject(value) {
-  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
-  //     note 1: Shared runtime guard for locutus helper typing.
-  //  example 1: isObjectLike({})
-  //  returns 1: true
   return typeof value === 'object' && value !== null
 }
 

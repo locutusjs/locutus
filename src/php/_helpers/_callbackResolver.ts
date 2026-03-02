@@ -25,10 +25,6 @@ export function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableAr
   callback: PhpCallableDescriptor<TArgs, TResult>,
   options: CallbackResolverOptions,
 ): ResolvedCallback<TArgs, TResult> {
-  // discuss at: https://locutus.io/php/_helpers/resolvePhpCallable/
-  //     note 1: Resolves PHP-style callbacks: function, global name, or [scope, method].
-  //  example 1: typeof resolvePhpCallable('isNaN', { invalidMessage: 'x' }).fn
-  //  returns 1: 'function'
   if (isPhpCallable<TArgs, TResult>(callback)) {
     return { fn: callback, scope: null }
   }

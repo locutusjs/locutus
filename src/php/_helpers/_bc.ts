@@ -5,12 +5,8 @@ import type { PhpInput } from './_phpTypes.ts'
 
 
 function createBcLibrary() {
-  //  discuss at: https://locutus.io/php/_helpers/_bc
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   // improved by: Brett Zamir (https://brett-zamir.me)
-  //   example 1: var $bc = _bc()
-  //   example 1: var $result = $bc.PLUS
-  //   returns 1: '+'
 
   /**
    * BC Math Library for Javascript (LGPL-2.1)
@@ -1342,11 +1338,7 @@ function createBcLibrary() {
 }
 
 export function _bc(): ReturnType<typeof createBcLibrary> {
-  //  discuss at: https://locutus.io/php/_helpers/_bc
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   // improved by: Brett Zamir (https://brett-zamir.me)
-  //   example 1: var $bc = _bc()
-  //   example 1: var $result = $bc.PLUS
-  //   returns 1: '+'
   return createBcLibrary()
 }

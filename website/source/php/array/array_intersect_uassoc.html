@@ -175,10 +175,6 @@ type PhpCallableDescriptor<TArgs extends PhpCallableArgs = PhpCallableArgs, TRes
 type PhpKeyComparatorDescriptor = PhpCallableDescriptor<[string, string], NumericLike>
 
 function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
-  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
-  //     note 1: Shared runtime guard for locutus helper typing.
-  //  example 1: isObjectLike({})
-  //  returns 1: true
   return typeof value === 'object' && value !== null
 }
 
@@ -295,10 +291,6 @@ function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TRe
   callback: PhpCallableDescriptor<TArgs, TResult>,
   options: CallbackResolverOptions,
 ): ResolvedCallback<TArgs, TResult> {
-  // discuss at: https://locutus.io/php/_helpers/resolvePhpCallable/
-  //     note 1: Resolves PHP-style callbacks: function, global name, or [scope, method].
-  //  example 1: typeof resolvePhpCallable('isNaN', { invalidMessage: 'x' }).fn
-  //  returns 1: 'function'
   if (isPhpCallable<TArgs, TResult>(callback)) {
     return { fn: callback, scope: null }
   }
@@ -406,10 +398,6 @@ const entriesOfPhpAssoc = (value) => {
 }
 
 function isPhpArrayObject(value) {
-  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
-  //     note 1: Shared runtime guard for locutus helper typing.
-  //  example 1: isObjectLike({})
-  //  returns 1: true
   return typeof value === 'object' && value !== null
 }
 
@@ -475,10 +463,6 @@ function getPhpObjectEntry(value, key) {
 
 // php/_helpers/_callbackResolver (Locutus helper dependency)
 function resolvePhpCallable(callback, options) {
-  // discuss at: https://locutus.io/php/_helpers/resolvePhpCallable/
-  //     note 1: Resolves PHP-style callbacks: function, global name, or [scope, method].
-  //  example 1: typeof resolvePhpCallable('isNaN', { invalidMessage: 'x' }).fn
-  //  returns 1: 'function'
   if (isPhpCallable(callback)) {
     return { fn: callback, scope: null }
   }

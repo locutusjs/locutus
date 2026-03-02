@@ -98,10 +98,6 @@ const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
 }
 
 export function ensurePhpRuntimeState(): PhpRuntimeState {
-  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
-  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
-  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
-  //  returns 1: true
   const php = ensurePhpRuntimeObject()
   const iniValue = php.ini
   const localesValue = php.locales
