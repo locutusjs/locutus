@@ -1383,7 +1383,7 @@ class Util {
     codez.push(
       'const __locutus_eval_module_export = (compiledCode: string, exportName: string): ((...args: unknown[]) => unknown) => {',
     )
-    codez.push('  const module = { exports: {} as Record<string, unknown> }')
+    codez.push('  const module = { exports: {} as { [key: string]: unknown } }')
     codez.push('  const exports = module.exports')
     codez.push("  const evaluator = new Function('exports', 'module', 'require', compiledCode)")
     codez.push('  evaluator(exports, module, __locutus_source_require)')
