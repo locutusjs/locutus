@@ -1687,3 +1687,42 @@ To fix a `@ts-nocheck` file:
   - `corepack yarn check`
 - Key learnings
   - Non-PHP modules are already comparatively clean; targeted “missing annotation” sweeps plus ratchets are high signal and low blast radius.
+
+## Iteration 66
+
+- Plans
+  - Add non-PHP API signature snapshot gating so type-surface widening outside `src/php/**` becomes explicit and reviewable.
+  - Add non-PHP broad-alias ratchets (`type X = object|unknown|{}|null|undefined`) to keep cross-language type debt at zero.
+  - Tighten obvious constant-return language helpers to literal return types where semantics are fixed.
+- Progress
+  - Extended API snapshot tooling in `scripts/check-api-signature-snapshot.ts` with scoped execution:
+    - `--scope=php` (existing behavior)
+    - `--scope=non-php` (all `src/**` except `src/php/**`)
+  - Updated `package.json` scripts:
+    - `lint:api:snapshot` now runs both php + non-php snapshot checks.
+    - `fix:api:snapshot` now updates both snapshots.
+  - Added new snapshot file:
+    - `docs/non-php-api-signatures.snapshot`
+  - Added non-PHP broad-alias debt ratchets in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_NON_PHP_LOCAL_NULLISH_ALIAS = 0`
+    - `MAX_SRC_NON_PHP_LOCAL_OBJECT_ALIAS = 0`
+    - `MAX_SRC_NON_PHP_LOCAL_UNKNOWN_ALIAS = 0`
+  - Tightened Python string constants to literal return surfaces in:
+    - `src/python/string/ascii_lowercase.ts`
+    - `src/python/string/ascii_letters.ts`
+    - `src/python/string/ascii_uppercase.ts`
+    - `src/python/string/digits.ts`
+    - `src/python/string/hexdigits.ts`
+    - `src/python/string/octdigits.ts`
+    - `src/python/string/printable.ts`
+    - `src/python/string/punctuation.ts`
+    - `src/python/string/whitespace.ts`
+- Measured reduction
+  - Non-PHP exported functions without explicit return type: `9 -> 0` (held).
+  - Non-PHP broad aliases (`object` / `unknown` / `{ } | null | undefined`): `0 -> 0` (now CI-enforced).
+- Validation
+  - `corepack yarn fix:api:snapshot`
+  - `corepack yarn check`
+- Key learnings
+  - A separate non-PHP API snapshot gate gives us the same intentional-evolution discipline as PHP without coupling unrelated surfaces.
+  - Literal-return tightening on constant helpers is a cheap strictness win that improves downstream inference with zero runtime risk.

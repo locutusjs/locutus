@@ -13,6 +13,9 @@ const MAX_SRC_PHP_EXPORTED_OBJECT_KEYWORD = 0
 const MAX_SRC_PHP_EXPORTED_EMPTY_OBJECT_TYPE = 0
 const MAX_SRC_PHP_EXPORTED_FUNCTION_WITHOUT_RETURN_TYPE = 0
 const MAX_SRC_NON_PHP_EXPORTED_FUNCTION_WITHOUT_RETURN_TYPE = 0
+const MAX_SRC_NON_PHP_LOCAL_NULLISH_ALIAS = 0
+const MAX_SRC_NON_PHP_LOCAL_OBJECT_ALIAS = 0
+const MAX_SRC_NON_PHP_LOCAL_UNKNOWN_ALIAS = 0
 const MAX_SRC_PHP_EXPORTED_PHPVALUE_IDENTIFIER = 0
 const MAX_SRC_PHP_EXPORTED_PHPINPUT_OUTSIDE_HELPERS = 0
 const MAX_SRC_PHP_ARRAY_EXPORTED_PHPVALUE_IDENTIFIER = 0
@@ -67,6 +70,9 @@ const exportedObjectKeywordFindings: Finding[] = []
 const exportedEmptyObjectTypeFindings: Finding[] = []
 const exportedFunctionWithoutReturnTypeFindings: Finding[] = []
 const nonPhpExportedFunctionWithoutReturnTypeFindings: Finding[] = []
+const nonPhpLocalNullishAliasFindings: Finding[] = []
+const nonPhpLocalObjectAliasFindings: Finding[] = []
+const nonPhpLocalUnknownAliasFindings: Finding[] = []
 const exportedPhpValueIdentifierFindings: Finding[] = []
 const exportedPhpInputOutsideHelpersFindings: Finding[] = []
 const arrayExportedPhpValueIdentifierFindings: Finding[] = []
@@ -104,6 +110,9 @@ let srcPhpExportedObjectKeywordCount = 0
 let srcPhpExportedEmptyObjectTypeCount = 0
 let srcPhpExportedFunctionWithoutReturnTypeCount = 0
 let srcNonPhpExportedFunctionWithoutReturnTypeCount = 0
+let srcNonPhpLocalNullishAliasCount = 0
+let srcNonPhpLocalObjectAliasCount = 0
+let srcNonPhpLocalUnknownAliasCount = 0
 let srcPhpExportedPhpValueIdentifierCount = 0
 let srcPhpExportedPhpInputOutsideHelpersCount = 0
 let srcPhpArrayExportedPhpValueIdentifierCount = 0
@@ -419,6 +428,35 @@ for (const filePath of sourceFiles) {
       nonPhpExportedFunctionWithoutReturnTypeFindings.push({
         file: path.relative(cwd, filePath),
         count: nonPhpExportedTypeBroadCounts.functionWithoutReturnTypeCount,
+      })
+    }
+
+    const nonPhpLocalNullishAliasCount = (
+      sourceText.match(/\btype\s+[A-Za-z0-9_]+\s*=\s*\{\}\s*\|\s*null\s*\|\s*undefined\b/g) || []
+    ).length
+    srcNonPhpLocalNullishAliasCount += nonPhpLocalNullishAliasCount
+    if (nonPhpLocalNullishAliasCount > 0) {
+      nonPhpLocalNullishAliasFindings.push({
+        file: path.relative(cwd, filePath),
+        count: nonPhpLocalNullishAliasCount,
+      })
+    }
+
+    const nonPhpLocalObjectAliasCount = (sourceText.match(/^type\s+[A-Za-z0-9_]+\s*=\s*object\s*$/gm) || []).length
+    srcNonPhpLocalObjectAliasCount += nonPhpLocalObjectAliasCount
+    if (nonPhpLocalObjectAliasCount > 0) {
+      nonPhpLocalObjectAliasFindings.push({
+        file: path.relative(cwd, filePath),
+        count: nonPhpLocalObjectAliasCount,
+      })
+    }
+
+    const nonPhpLocalUnknownAliasCount = (sourceText.match(/^type\s+[A-Za-z0-9_]+\s*=\s*unknown\s*$/gm) || []).length
+    srcNonPhpLocalUnknownAliasCount += nonPhpLocalUnknownAliasCount
+    if (nonPhpLocalUnknownAliasCount > 0) {
+      nonPhpLocalUnknownAliasFindings.push({
+        file: path.relative(cwd, filePath),
+        count: nonPhpLocalUnknownAliasCount,
       })
     }
   }
@@ -895,6 +933,36 @@ if (srcNonPhpExportedFunctionWithoutReturnTypeCount > MAX_SRC_NON_PHP_EXPORTED_F
   }
 }
 
+if (srcNonPhpLocalNullishAliasCount > MAX_SRC_NON_PHP_LOCAL_NULLISH_ALIAS) {
+  hasFailure = true
+  console.error(
+    `src non-php local 'type X = {} | null | undefined' alias count increased: ${srcNonPhpLocalNullishAliasCount} > ${MAX_SRC_NON_PHP_LOCAL_NULLISH_ALIAS}`,
+  )
+  for (const finding of nonPhpLocalNullishAliasFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
+if (srcNonPhpLocalObjectAliasCount > MAX_SRC_NON_PHP_LOCAL_OBJECT_ALIAS) {
+  hasFailure = true
+  console.error(
+    `src non-php local 'type X = object' alias count increased: ${srcNonPhpLocalObjectAliasCount} > ${MAX_SRC_NON_PHP_LOCAL_OBJECT_ALIAS}`,
+  )
+  for (const finding of nonPhpLocalObjectAliasFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
+if (srcNonPhpLocalUnknownAliasCount > MAX_SRC_NON_PHP_LOCAL_UNKNOWN_ALIAS) {
+  hasFailure = true
+  console.error(
+    `src non-php local 'type X = unknown' alias count increased: ${srcNonPhpLocalUnknownAliasCount} > ${MAX_SRC_NON_PHP_LOCAL_UNKNOWN_ALIAS}`,
+  )
+  for (const finding of nonPhpLocalUnknownAliasFindings) {
+    console.error(`  - ${finding.file}: ${finding.count}`)
+  }
+}
+
 if (srcPhpExportedPhpValueIdentifierCount > MAX_SRC_PHP_EXPORTED_PHPVALUE_IDENTIFIER) {
   hasFailure = true
   console.error(
@@ -1229,5 +1297,5 @@ if (hasFailure) {
 }
 
 console.log(
-  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php exported object keyword count not increased, src/php exported empty-object count not increased, src/php exported missing return-type count not increased, src non-php exported missing return-type count not increased, src/php exported PhpValue identifier count not increased, src/php exported PhpInput identifier count outside _helpers not increased, src/php/array exported PhpValue identifier count not increased, src/php/array exported sort-flag string parameter count not increased, src/php/array exported mode/case string parameter count not increased, src/php unknown keyword count not increased, src/php PhpMixed keyword count not increased, src/php/array unknown keyword count not increased, src/php/array PhpMixed keyword count not increased, src/php/array as-expression count not increased, src/php/var unknown keyword count not increased, src/php/var PhpMixed keyword count not increased, src/php/var as-expression count not increased, src/php/strings as-expression count not increased, src/php/strings PhpMixed keyword count not increased, src/php/ctype as-expression count not increased, src/php/info as-expression count not increased, src/php/_helpers as-expression count not increased, src/php/url as-expression count not increased, src/php/funchand as-expression count not increased, src/php/json as-expression count not increased, src/php/datetime as-expression count not increased, src/php/bc as-expression count not increased, src/php/filesystem as-expression count not increased, src/php/misc as-expression count not increased, src/php/pcre as-expression count not increased, src/php/xdiff as-expression count not increased, src/php local PhpValue alias count not increased, src/php local PhpInput alias count outside _helpers not increased, src/php direct $locutus?.php?.ini reads not increased, src/php PhpValue identifier count not increased, src/php inline nullish alias count not increased, src/php Reflect.get/set count not increased, src/php globalThis identifier count not increased',
+  'ts debt policy ok: @ts-nocheck 0, @ts-ignore 0, @ts-expect-error 0, Function type 0, Record<string, unknown> 0, as unknown as 0, src/php arguments 0, src/php raw index-signature unknown not increased, src/php exported unknown return-types not increased, src/php exported object keyword count not increased, src/php exported empty-object count not increased, src/php exported missing return-type count not increased, src non-php exported missing return-type count not increased, src non-php local nullish/object alias count not increased, src non-php local object alias count not increased, src non-php local unknown alias count not increased, src/php exported PhpValue identifier count not increased, src/php exported PhpInput identifier count outside _helpers not increased, src/php/array exported PhpValue identifier count not increased, src/php/array exported sort-flag string parameter count not increased, src/php/array exported mode/case string parameter count not increased, src/php unknown keyword count not increased, src/php PhpMixed keyword count not increased, src/php/array unknown keyword count not increased, src/php/array PhpMixed keyword count not increased, src/php/array as-expression count not increased, src/php/var unknown keyword count not increased, src/php/var PhpMixed keyword count not increased, src/php/var as-expression count not increased, src/php/strings as-expression count not increased, src/php/strings PhpMixed keyword count not increased, src/php/ctype as-expression count not increased, src/php/info as-expression count not increased, src/php/_helpers as-expression count not increased, src/php/url as-expression count not increased, src/php/funchand as-expression count not increased, src/php/json as-expression count not increased, src/php/datetime as-expression count not increased, src/php/bc as-expression count not increased, src/php/filesystem as-expression count not increased, src/php/misc as-expression count not increased, src/php/pcre as-expression count not increased, src/php/xdiff as-expression count not increased, src/php local PhpValue alias count not increased, src/php local PhpInput alias count outside _helpers not increased, src/php direct $locutus?.php?.ini reads not increased, src/php PhpValue identifier count not increased, src/php inline nullish alias count not increased, src/php Reflect.get/set count not increased, src/php globalThis identifier count not increased',
 )

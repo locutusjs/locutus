@@ -1,4 +1,4 @@
-export function hexdigits(): string {
+export function hexdigits(): '0123456789abcdefABCDEF' {
   //      discuss at: https://locutus.io/python/hexdigits/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

@@ -1,4 +1,4 @@
-export function digits(): string {
+export function digits(): '0123456789' {
   //      discuss at: https://locutus.io/python/digits/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

@@ -1,4 +1,4 @@
-export function punctuation(): string {
+export function punctuation(): '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~' {
   // parity verified: Python 3.12
   // Original by: Clari (https://github.com/Clari-7744)
   //       example 1: punctuation()

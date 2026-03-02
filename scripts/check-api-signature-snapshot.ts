@@ -3,9 +3,25 @@ import path from 'node:path'
 import ts from 'typescript'
 
 const cwd = process.cwd()
-const snapshotPath = path.join(cwd, 'docs', 'php-api-signatures.snapshot')
-const srcPhpDir = path.join(cwd, 'src', 'php')
 const shouldUpdate = process.argv.includes('--update')
+const scopeArg = process.argv.find((arg) => arg.startsWith('--scope='))
+const scope = scopeArg?.slice('--scope='.length) ?? 'php'
+
+if (scope !== 'php' && scope !== 'non-php') {
+  console.error(`Invalid --scope value: ${scope}`)
+  console.error("Allowed values: 'php', 'non-php'")
+  process.exit(1)
+}
+
+const isPhpScope = scope === 'php'
+const snapshotPath = path.join(
+  cwd,
+  'docs',
+  isPhpScope ? 'php-api-signatures.snapshot' : 'non-php-api-signatures.snapshot',
+)
+const srcRootDir = path.join(cwd, 'src')
+const srcPhpDir = path.join(srcRootDir, 'php')
+const label = isPhpScope ? 'PHP' : 'Non-PHP'
 
 const hasExportModifier = (node: ts.Node): boolean =>
   !!node.modifiers?.some((modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword)
@@ -20,8 +36,9 @@ const getFunctionSignatureText = (sourceFile: ts.SourceFile, declaration: ts.Fun
 }
 
 const sourceFiles = ts.sys
-  .readDirectory(srcPhpDir, ['.ts'], undefined, undefined)
+  .readDirectory(isPhpScope ? srcPhpDir : srcRootDir, ['.ts'], undefined, undefined)
   .filter((filePath) => !filePath.endsWith('.d.ts'))
+  .filter((filePath) => (isPhpScope ? true : !filePath.includes(`${path.sep}src${path.sep}php${path.sep}`)))
 
 const lines = new Set<string>()
 
@@ -75,11 +92,11 @@ if (expected !== snapshotContent) {
     firstDiffIndex += 1
   }
 
-  console.error(`PHP API signature snapshot mismatch at line ${firstDiffIndex + 1}`)
+  console.error(`${label} API signature snapshot mismatch at line ${firstDiffIndex + 1}`)
   console.error(`Expected: ${expectedLines[firstDiffIndex] ?? '<EOF>'}`)
   console.error(`Current:  ${currentLines[firstDiffIndex] ?? '<EOF>'}`)
   console.error('If this change is intentional, run: corepack yarn fix:api:snapshot')
   process.exit(1)
 }
 
-console.log(`PHP API signature snapshot is up to date (${path.relative(cwd, snapshotPath)})`)
+console.log(`${label} API signature snapshot is up to date (${path.relative(cwd, snapshotPath)})`)
