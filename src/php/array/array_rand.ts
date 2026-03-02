@@ -2,6 +2,16 @@ import type { PhpArrayLike, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
 type RandomValue = PhpRuntimeValue
 
+export function array_rand<TValue extends RandomValue>(array: PhpArrayLike<TValue>): string | null
+export function array_rand<TValue extends RandomValue>(
+  array: PhpArrayLike<TValue>,
+  num: null | undefined,
+): string | null
+export function array_rand<TValue extends RandomValue>(array: PhpArrayLike<TValue>, num: 1): string | null
+export function array_rand<TValue extends RandomValue>(
+  array: PhpArrayLike<TValue>,
+  num: number,
+): string | string[] | null
 export function array_rand<TValue extends RandomValue>(
   array: PhpArrayLike<TValue>,
   num?: number | null,

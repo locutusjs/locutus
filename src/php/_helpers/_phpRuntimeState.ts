@@ -55,10 +55,12 @@ interface PhpGlobalKnownEntryMap {
   Buffer: PhpGlobalBufferLike
 }
 
-type GlobalWithLocutus = typeof globalThis & {
+type GlobalWithLocutus = {
   $locutus?: LocutusRuntimeContainer
   [key: string]: PhpInput
 }
+
+type PhpObjectEntryContainer = object | PhpCallable
 
 export interface PhpRuntimeState {
   ini: PhpAssoc<IniEntry | undefined>
@@ -209,15 +211,58 @@ export function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | unde
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
   }
-  const candidate = Reflect.get(value, key)
-  return typeof candidate === 'undefined' ? undefined : candidate
+
+  let current: object | null = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
 }
 
 export function setPhpObjectEntry(value: PhpInput, key: string, entry: PhpInput): boolean {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return false
   }
-  Reflect.set(value, key, entry)
+
+  const container: PhpObjectEntryContainer = value
+  let current: object | null = container
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.set === 'function') {
+        descriptor.set.call(container, entry)
+        return true
+      }
+      if (descriptor.writable) {
+        Object.defineProperty(container, key, {
+          configurable: descriptor.configurable ?? true,
+          enumerable: descriptor.enumerable ?? true,
+          value: entry,
+          writable: true,
+        })
+        return true
+      }
+      return false
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  Object.defineProperty(container, key, {
+    configurable: true,
+    enumerable: true,
+    value: entry,
+    writable: true,
+  })
   return true
 }
 

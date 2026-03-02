@@ -62,7 +62,7 @@ import { is_unicode } from '../../src/php/var/is_unicode.ts'
 import { isset } from '../../src/php/var/isset.ts'
 import { var_dump } from '../../src/php/var/var_dump.ts'
 
-type PhpValue = {} | null | undefined
+type PhpInput = {} | null | undefined
 
 const atoiTyped: [number, Error | null] = Atoi('42')
 const parseBoolTyped: [boolean, Error | null] = ParseBool('true')
@@ -99,24 +99,24 @@ const mergeRecursiveTyped = array_merge_recursive(
 )
 const arrayValuesTyped: number[] = array_values({ one: 1, two: 2 })
 const chunkTyped: Array<number[] | { [key: string]: number }> = array_chunk([1, 2, 3], 2) || []
-const columnTyped: { [key: string]: PhpValue } | undefined = array_column([{ id: 1, label: 'a' }], 'label', 'id')
-const replaceRecursiveTyped: PhpValue[] | { [key: string]: PhpValue } = array_replace_recursive({ a: [1] }, { a: [2] })
+const columnTyped: { [key: string]: PhpInput } | undefined = array_column([{ id: 1, label: 'a' }], 'label', 'id')
+const replaceRecursiveTyped: PhpInput[] | { [key: string]: PhpInput } = array_replace_recursive({ a: [1] }, { a: [2] })
 const callUserFuncTyped: boolean = call_user_func<boolean>('isNaN', 'value')
 const callUserFuncArrayTyped: boolean = call_user_func_array<boolean, [string]>('isNaN', ['value'])
 const functionExistsTyped: boolean = function_exists('isNaN')
 const isCallableTyped: boolean | false = is_callable('is_callable')
-const arrayMapTyped: PhpValue[] = array_map((v: PhpValue) => Number(v) * 2, [1, 2])
+const arrayMapTyped: PhpInput[] = array_map((v: PhpInput) => Number(v) * 2, [1, 2])
 const shiftedTyped: number | null = array_shift([3, 4])
 const paddedTyped: Array<number | string> = array_pad([7, 8], 4, 'x')
 const pushTarget = [1, 2]
 const pushedTyped: number = array_push(pushTarget, 3)
-const randTyped: string | null = array_rand(['only']) as string | null
+const randTyped: string | null = array_rand(['only'])
 const replacedTyped: { [key: string]: number | undefined } = array_replace({ 0: 1, 1: 2 }, { 1: 9, 2: 5 })
 const multisortNames = ['beta', 'alpha']
 const multisortRanks = [2, 1]
 const multisortTyped: boolean = array_multisort(multisortNames, 'SORT_ASC', multisortRanks, 'SORT_ASC')
 const spliceInput = ['red', 'green', 'blue']
-const splicedTyped: PhpValue[] | { [key: string]: PhpValue } = array_splice(spliceInput, 1, 1, ['purple'])
+const splicedTyped: PhpInput[] | { [key: string]: PhpInput } = array_splice(spliceInput, 1, 1, ['purple'])
 const sumTyped: number | null = array_sum({ a: 1, b: '2.5', c: true })
 const countTyped: number = count({ one: [1, 2, 3] }, 'COUNT_RECURSIVE')
 const sizeofTyped: number = sizeof({ one: [1, 2, 3] }, 'COUNT_RECURSIVE')
@@ -127,15 +127,15 @@ const gettypeTyped: string = gettype(1)
 const isArrayTyped: boolean = is_array({ 0: 'Kevin', 1: 'van' })
 const boolvalTyped: boolean = boolval({ truthy: true })
 const floatvalTyped: number = floatval(186)
-const intCandidate: PhpValue = 23
+const intCandidate: PhpInput = 23
 const intNarrowed: number | null = is_int(intCandidate) ? intCandidate : null
-const numericCandidate: PhpValue = '186'
+const numericCandidate: PhpInput = '186'
 const numericNarrowed: number | string | null = is_numeric(numericCandidate) ? numericCandidate : null
-const objectCandidate: PhpValue = { foo: 'bar' }
+const objectCandidate: PhpInput = { foo: 'bar' }
 const objectNarrowed: object | null = is_object(objectCandidate) ? objectCandidate : null
-const scalarCandidate: PhpValue = 'scalar'
+const scalarCandidate: PhpInput = 'scalar'
 const scalarNarrowed: string | number | boolean | null = is_scalar(scalarCandidate) ? scalarCandidate : null
-const unicodeCandidate: PhpValue = 'abc'
+const unicodeCandidate: PhpInput = 'abc'
 const unicodeNarrowed: string | null = is_unicode(unicodeCandidate) ? unicodeCandidate : null
 const varDumpTyped: string = var_dump({ ok: true })
 const walked: number[] = []

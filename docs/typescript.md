@@ -1859,3 +1859,35 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Replacing legacy `PhpInput` local aliases with `PhpRuntimeValue` is viable repo-wide when paired with quick signature-focused follow-up fixes on generic-heavy helpers.
   - Debt-ratchet-to-zero is sustainable once compile-time contract checks and API snapshots are already in place; the guardrail stack caught all accidental widening during the pass.
+
+## Iteration 70
+
+- Plans
+  - Remove the remaining `PhpValue` compatibility alias from source entirely and ratchet the repo-wide `PhpValue` identifier budget to zero.
+  - Tighten dynamic runtime helpers in `src/php/_helpers/_phpRuntimeState.ts` by replacing `Reflect.get/set` with typed descriptor-based property access.
+  - Narrow high-traffic API relations further (`array_rand` overloads) and remove downstream assertion casts in type contract tests.
+- Progress
+  - Removed `PhpValue` compatibility alias from `src/php/_helpers/_phpTypes.ts`.
+  - Added relation-aware overloads in `src/php/array/array_rand.ts`:
+    - omitted/`null`/`1` now infer `string | null`.
+    - numeric `num` retains `string | string[] | null`.
+  - Reworked dynamic object property access in `src/php/_helpers/_phpRuntimeState.ts`:
+    - `getPhpObjectEntry` now walks prototype descriptors and supports getter semantics without `Reflect.get`.
+    - `setPhpObjectEntry` now resolves setter/data descriptors and writes with `Object.defineProperty` fallback instead of `Reflect.set`.
+    - reduced direct `globalThis` type-surface usage by replacing `typeof globalThis & ...` shape with a dedicated runtime-global map type.
+  - Tightened debt policy ceilings in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_PHPVALUE_IDENTIFIER: 1 -> 0`
+    - `MAX_SRC_PHP_REFLECT_GET_SET: 2 -> 0`
+    - `MAX_SRC_PHP_GLOBALTHIS_IDENTIFIER: 2 -> 1`
+  - Updated compile-time type contract sample in `test/util/type-signatures.vitest.ts`:
+    - removed `PhpValue` local alias usage in favor of `PhpInput`.
+    - removed `array_rand(...) as string | null` cast now that overloads encode this relation.
+- Validation
+  - `corepack yarn lint:ts`
+  - `corepack yarn lint:ts:strict-next`
+  - `corepack yarn lint:ts:debt:policy`
+  - `corepack yarn fix:api:snapshot:php`
+  - `corepack yarn check`
+- Key learnings
+  - We can keep copy-paste/runtime compatibility while still hardening dynamic access by centralizing descriptor-based reads/writes.
+  - Relation overloads (like `array_rand`) immediately remove downstream `as` pressure and improve public API ergonomics.

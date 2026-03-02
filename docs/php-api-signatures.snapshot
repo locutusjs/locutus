@@ -73,7 +73,6 @@ src/php/_helpers/_phpTypes.ts :: export type PhpRecursiveValue = PhpPrimitive | 
 src/php/_helpers/_phpTypes.ts :: export type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
 src/php/_helpers/_phpTypes.ts :: export type PhpScalar = string | number | boolean
 src/php/_helpers/_phpTypes.ts :: export type PhpStringish = StringLike | PhpNullish
-src/php/_helpers/_phpTypes.ts :: export type PhpValue = PhpInput
 src/php/_helpers/_phpTypes.ts :: export type StringLike = string | number | boolean | bigint
 src/php/_helpers/_php_cast_float.ts :: export function _php_cast_float(value: CastFloatValue): number
 src/php/_helpers/_php_cast_int.ts :: export function _php_cast_int(value: CastIntValue): number
@@ -120,7 +119,11 @@ src/php/array/array_product.ts :: export function array_product(input: PhpList<P
 src/php/array/array_product.ts :: export function array_product(input: PhpList<ProductValue>): number
 src/php/array/array_product.ts :: export function array_product(input: ProductInput): number | null
 src/php/array/array_push.ts :: export function array_push<TValue>(inputArr: PhpArrayLike<TValue>, ...values: TValue[]): number
+src/php/array/array_rand.ts :: export function array_rand<TValue extends RandomValue>( array: PhpArrayLike<TValue>, num: null | undefined, ): string | null
+src/php/array/array_rand.ts :: export function array_rand<TValue extends RandomValue>( array: PhpArrayLike<TValue>, num: number, ): string | string[] | null
 src/php/array/array_rand.ts :: export function array_rand<TValue extends RandomValue>( array: PhpArrayLike<TValue>, num?: number | null, ): string | string[] | null
+src/php/array/array_rand.ts :: export function array_rand<TValue extends RandomValue>(array: PhpArrayLike<TValue>): string | null
+src/php/array/array_rand.ts :: export function array_rand<TValue extends RandomValue>(array: PhpArrayLike<TValue>, num: 1): string | null
 src/php/array/array_reduce.ts :: export function array_reduce<T>(aInput: T[], callback: (left: T | 0, right: T | 0) => number): number
 src/php/array/array_replace.ts :: export function array_replace<TValue>( arr: PhpArrayLike<TValue>, firstReplacement: PhpArrayLike<TValue> | null | undefined, ...additionalReplacements: Array<PhpArrayLike<TValue> | null | undefined> ): PhpAssoc<TValue | undefined>
 src/php/array/array_replace_recursive.ts :: export function array_replace_recursive( arr: RecursiveReplaceTarget, ...replacements: [replacement: RecursiveReplaceTarget, ...additionalReplacements: RecursiveReplaceTarget[]] ): RecursiveReplaceTarget
