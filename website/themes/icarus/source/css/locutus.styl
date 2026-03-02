@@ -18,36 +18,44 @@
   margin: 0
   padding: 15px 0
 
+.on-the-githubs
+  list-style: none
+  margin: 0
+  padding: 0
+
 .on-the-githubs li
   list-style-type: none
-  margin: 0
-  padding: 0px
-  height: 26px
-  clear: both
+  margin: 0 !important
+  padding: 1px 0 !important
+  border-bottom: none !important
+  display: flex
+  align-items: center
+  gap: 4px
+  overflow: hidden
 
-  p
+  a:before
+    content: none !important
+
+  .otg-text
+    flex: 1
+    min-width: 0
     line-height: 16px
     font-size: 12px
-    margin: 0 2px
-    padding: 0
-    display: inline-block
-    float: left
-    max-width: 90%
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
 
-  abbr
-    position: absolute
-    right: 0
-    float: left
-    text-align: right
-
-    display: none
+  time
+    font-size: 11px
+    color: #999
+    flex-shrink: 0
+    white-space: nowrap
 
   a
     font-weight: normal
 
   img
-    float: left
-    margin: 0 2px 0 0
+    flex-shrink: 0
     border-radius: 10px
     width: 16px
     height: 16px
