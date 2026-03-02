@@ -9,28 +9,28 @@ alias:
 - /about/
 ---
 
-> All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.
+> All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.
 
 Welcome to Locutus, where the boundaries of coding languages blur. We're a dedicated collective developers on a mission
 to explore the possibilities of porting standard libraries from various programming language (Go, Ruby, PHP, C) to
-JavaScript. Our journey is one of discovery, innovation, and sometimes, delightful chaos.
+TypeScript. Our journey is one of discovery, innovation, and sometimes, delightful chaos.
 
 From the complex to the quirky, we assimilate libraries with a spirit of curiosity and a penchant for experimentation.
 Our creations typically start as rainy Sunday afternoon puzzles, and end up ranging from groundbreaking functions that
-enhance the JavaScript ecosystem, to unique oddities that challenge the norms of coding.
+enhance the TypeScript ecosystem, to unique oddities that challenge the norms of coding.
 
 As we navigate through this uncharted territory, we invite you to join us. Whether to contribute, learn, or simply
 marvel at the wonders of cross-language integration and portability, your presence on GitHub is valued.
 
 Embark on this journey with us at [locutus.io](https://locutus.io/).
 
-Use our creations at your own risk, and may they inspire you to push the boundaries of what's possible with JavaScript.
+Use our creations at your own risk, and may they inspire you to push the boundaries of what's possible with TypeScript.
 
 ## What we are not
 
-Even though Locutus is porting standard libraries from other languages, this is for reference only. We are **not a drop-in standard library for JavaScript**. 
+Even though Locutus is porting standard libraries from other languages, this is for reference only. We are **not a drop-in standard library for TypeScript or JavaScript**.
 
-If that is something you are interested in, we recommend you to take a look at [lodash](https://lodash.com/), which is more lightweight, focused and mature. It does a great job of complementing JavaScript's bare bones nature. 
+If that is something you are interested in, we recommend you to take a look at [lodash](https://lodash.com/), which is more lightweight, focused and mature. It does a great job of complementing TypeScript and JavaScript's bare bones nature.
 
 That being said, there is still a fair amount of useful things to be found in this repository, and Locutus makes it easy to require and bundle just a single function that you deem worthy of your project. Our Notes should be helpful in evaluating the issues and maturity of a particular function.
 

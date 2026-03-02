@@ -165,11 +165,11 @@
       <% } %>
 
       <% if (page.language === 'php' && page.category === 'array') { %>
-        <h2>PHP arrays and JavaScript</h2>
+        <h2>PHP arrays and TypeScript/JavaScript</h2>
         <p>
-          Please note that Locutus uses JavaScript objects as substitutes for PHP arrays,
+          Please note that Locutus uses TypeScript/JavaScript objects as substitutes for PHP arrays,
           they are the closest we can get to this hashtable-like data structure without
-          rolling our own. While many JavaScript implementations preserve the order of object properties, the
+          rolling our own. While many TypeScript/JavaScript implementations preserve the order of object properties, the
           <a href="https://www.ecma-international.org/ecma-262/5.1/#sec-8.6">ECMAScript Language Specification</a>
           explicitly states that:
         </p>
@@ -186,32 +186,32 @@
       <% } %>
 
       <% if (page.language === 'ruby') { %>
-        <h2>Ruby nil and JavaScript undefined</h2>
+        <h2>Ruby nil and TypeScript/JavaScript undefined</h2>
         <p>
-          Ruby's <code>nil</code> and JavaScript's <code>undefined</code> are semantically equivalent—both
+          Ruby's <code>nil</code> and TypeScript/JavaScript <code>undefined</code> are semantically equivalent—both
           represent "no value" or "nothing here". However, they serialize differently:
           <code>nil</code> becomes <code>null</code> in JSON, while <code>undefined</code> is typically
           omitted or becomes <code>undefined</code>.
         </p>
         <p>
-          Locutus Ruby functions return <code>undefined</code> (idiomatic JavaScript) where Ruby would
+          Locutus Ruby functions return <code>undefined</code> (idiomatic TypeScript/JavaScript) where Ruby would
           return <code>nil</code>. Our parity tests treat these as equivalent when verifying against
           native Ruby.
         </p>
       <% } %>
 
       <% if (page.language === 'c') { %>
-        <h2>C types and JavaScript</h2>
+        <h2>C types and TypeScript/JavaScript</h2>
         <p>
-          C is statically typed while JavaScript is dynamically typed. Locutus C functions
-          accept JavaScript's flexible types but are only parity-verified for inputs that would
+          C is statically typed while TypeScript/JavaScript is dynamically typed. Locutus C functions
+          accept TypeScript/JavaScript's flexible types but are only parity-verified for inputs that would
           be valid in C.
         </p>
         <p>
-          For example, <code>abs()</code> in JavaScript accepts floats (like C's <code>fabs()</code>)
+          For example, <code>abs()</code> in TypeScript/JavaScript accepts floats (like C's <code>fabs()</code>)
           and handles strings gracefully, but only integer inputs are verified against native C.
           This pragmatic approach gives you the expected C behavior for valid inputs while
-          leveraging JavaScript's flexibility for edge cases.
+          leveraging TypeScript/JavaScript's flexibility for edge cases.
         </p>
       <% } %>
 

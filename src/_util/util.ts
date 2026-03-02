@@ -144,18 +144,18 @@ class Util {
     this.langDefaults = {
       c: {
         order: 1,
-        function_title_template: "[language]'s [category].[function] in JavaScript",
+        function_title_template: "[language]'s [category].[function] in TypeScript",
         human: 'C',
         packageType: 'header file',
         inspiration_urls: [
           '<a href="https://en.cppreference.com/w/c/numeric/math">the C math.h documentation</a>',
           '<a href="https://sourceware.org/git/?p=glibc.git;a=tree;f=math;hb=HEAD">the C math.h source</a>',
         ],
-        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://en.cppreference.com/w/c/numeric/[category]/[function]">[language]'s [function] found in the [category].h header file</a> looks like.`,
+        function_description_template: `Here's what our current TypeScript equivalent to <a href="https://en.cppreference.com/w/c/numeric/[category]/[function]">[language]'s [function] found in the [category].h header file</a> looks like.`,
       },
       golang: {
         order: 2,
-        function_title_template: "[language]'s [category].[function] in JavaScript",
+        function_title_template: "[language]'s [category].[function] in TypeScript",
         human: 'Go',
         packageType: 'package',
         inspiration_urls: [
@@ -164,29 +164,29 @@ class Util {
           '<a href="https://golang.org/src/strings/example_test.go">Go strings examples source</a>',
           '<a href="https://gophersjs.com">GopherJS</a>',
         ],
-        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://golang.org/pkg/[category]/#[function]">[language]'s [category].[function]</a> looks like.`,
+        function_description_template: `Here's what our current TypeScript equivalent to <a href="https://golang.org/pkg/[category]/#[function]">[language]'s [category].[function]</a> looks like.`,
       },
       python: {
         order: 3,
-        function_title_template: "[language]'s [category].[function] in JavaScript",
+        function_title_template: "[language]'s [category].[function] in TypeScript",
         human: 'Python',
         packageType: 'module',
         inspiration_urls: [
           '<a href="https://docs.python.org/3/library/string.html">the Python 3 standard library string page</a>',
         ],
-        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://docs.python.org/3/library/[category].html#[category].[function]">[language]'s [category].[function]</a> looks like.`,
+        function_description_template: `Here's what our current TypeScript equivalent to <a href="https://docs.python.org/3/library/[category].html#[category].[function]">[language]'s [category].[function]</a> looks like.`,
       },
       ruby: {
         order: 4,
-        function_title_template: "[language]'s [category].[function] in JavaScript",
+        function_title_template: "[language]'s [category].[function] in TypeScript",
         human: 'Ruby',
         packageType: 'module',
         inspiration_urls: ['<a href="https://ruby-doc.org/core-2.2.2/Math.html">the Ruby core documentation</a>'],
-        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://ruby-doc.org/core-2.2.2/[category].html#method-c-[function]">[language]'s [category].[function]</a> looks like.`,
+        function_description_template: `Here's what our current TypeScript equivalent to <a href="https://ruby-doc.org/core-2.2.2/[category].html#method-c-[function]">[language]'s [category].[function]</a> looks like.`,
       },
       php: {
         order: 5,
-        function_title_template: "[language]'s [function] in JavaScript",
+        function_title_template: "[language]'s [function] in TypeScript",
         human: 'PHP',
         packageType: 'extension',
         inspiration_urls: [
@@ -194,7 +194,7 @@ class Util {
           '<a href="https://github.com/php/php-src/blob/master/ext/standard/string.c#L5338">the PHP string source</a>',
           '<a href="https://github.com/php/php-src/blob/master/ext/standard/tests/strings/str_pad_variation1.phpt">a PHP str_pad test</a>',
         ],
-        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://php.net/manual/en/function.[functiondashed].php">[language]'s [function]</a> looks like.`,
+        function_description_template: `Here's what our current TypeScript equivalent to <a href="https://php.net/manual/en/function.[functiondashed].php">[language]'s [function]</a> looks like.`,
         alias: [
           '/categories/',
           '/categories/array/',
@@ -226,61 +226,61 @@ class Util {
       },
       perl: {
         order: 6,
-        function_title_template: "[language]'s [category]::[function] in JavaScript",
+        function_title_template: "[language]'s [category]::[function] in TypeScript",
         human: 'Perl',
         packageType: 'module',
         inspiration_urls: ['<a href="https://perldoc.perl.org/">the Perl documentation</a>'],
-        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://perldoc.perl.org/[category]">[language]'s [category]::[function]</a> looks like.`,
+        function_description_template: `Here's what our current TypeScript equivalent to <a href="https://perldoc.perl.org/[category]">[language]'s [category]::[function]</a> looks like.`,
       },
       lua: {
         order: 7,
-        function_title_template: "[language]'s [category].[function] in JavaScript",
+        function_title_template: "[language]'s [category].[function] in TypeScript",
         human: 'Lua',
         packageType: 'library',
         inspiration_urls: ['<a href="https://www.lua.org/manual/5.4/">the Lua 5.4 manual</a>'],
-        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://www.lua.org/manual/5.4/manual.html#pdf-[category].[function]">[language]'s [category].[function]</a> looks like.`,
+        function_description_template: `Here's what our current TypeScript equivalent to <a href="https://www.lua.org/manual/5.4/manual.html#pdf-[category].[function]">[language]'s [category].[function]</a> looks like.`,
       },
       r: {
         order: 8,
-        function_title_template: "[language]'s [function] in JavaScript",
+        function_title_template: "[language]'s [function] in TypeScript",
         human: 'R',
         packageType: 'function',
         inspiration_urls: [
           '<a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html">the R base documentation</a>',
         ],
-        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://stat.ethz.ch/R-manual/R-devel/library/[category]/html/[function].html">[language]'s [function]</a> looks like.`,
+        function_description_template: `Here's what our current TypeScript equivalent to <a href="https://stat.ethz.ch/R-manual/R-devel/library/[category]/html/[function].html">[language]'s [function]</a> looks like.`,
       },
       julia: {
         order: 9,
-        function_title_template: "[language]'s [function] in JavaScript",
+        function_title_template: "[language]'s [function] in TypeScript",
         human: 'Julia',
         packageType: 'function',
         inspiration_urls: ['<a href="https://docs.julialang.org/en/v1/">the Julia documentation</a>'],
-        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://docs.julialang.org/en/v1/base/math/#Base.[function]">[language]'s [function]</a> looks like.`,
+        function_description_template: `Here's what our current TypeScript equivalent to <a href="https://docs.julialang.org/en/v1/base/math/#Base.[function]">[language]'s [function]</a> looks like.`,
       },
       elixir: {
         order: 10,
-        function_title_template: "[language]'s [category].[function] in JavaScript",
+        function_title_template: "[language]'s [category].[function] in TypeScript",
         human: 'Elixir',
         packageType: 'module',
         inspiration_urls: ['<a href="https://hexdocs.pm/elixir/">the Elixir documentation</a>'],
-        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://hexdocs.pm/elixir/[category].html#[function]/1">[language]'s [category].[function]</a> looks like.`,
+        function_description_template: `Here's what our current TypeScript equivalent to <a href="https://hexdocs.pm/elixir/[category].html#[function]/1">[language]'s [category].[function]</a> looks like.`,
       },
       clojure: {
         order: 11,
-        function_title_template: "[language]'s [category]/[function] in JavaScript",
+        function_title_template: "[language]'s [category]/[function] in TypeScript",
         human: 'Clojure',
         packageType: 'function',
         inspiration_urls: ['<a href="https://clojuredocs.org/">ClojureDocs</a>'],
-        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://clojuredocs.org/clojure.core/[function]">[language]'s [category]/[function]</a> looks like.`,
+        function_description_template: `Here's what our current TypeScript equivalent to <a href="https://clojuredocs.org/clojure.core/[function]">[language]'s [category]/[function]</a> looks like.`,
       },
       awk: {
         order: 12,
-        function_title_template: "[language]'s [function] in JavaScript",
+        function_title_template: "[language]'s [function] in TypeScript",
         human: 'AWK',
         packageType: 'function',
         inspiration_urls: ['<a href="https://www.gnu.org/software/gawk/manual/gawk.html">the GNU AWK manual</a>'],
-        function_description_template: `Here's what our current JavaScript equivalent to <a href="https://www.gnu.org/software/gawk/manual/gawk.html#String-Functions">[language]'s [function]</a> looks like.`,
+        function_description_template: `Here's what our current TypeScript equivalent to <a href="https://www.gnu.org/software/gawk/manual/gawk.html#String-Functions">[language]'s [function]</a> looks like.`,
       },
     }
 
@@ -470,11 +470,13 @@ class Util {
       throw new Error(`Unknown language defaults for: ${params.language}`)
     }
 
+    const targetLangLabel = params.filepath.endsWith('.ts') ? 'TypeScript' : 'JavaScript'
+
     if (!this._injectwebBuffer[langIndexPath]) {
       let langTitle = ''
       langTitle += langDefaults.human + ' '
       langTitle += langDefaults.packageType + 's '
-      langTitle += ' in JavaScript'
+      langTitle += ` in ${targetLangLabel}`
 
       const langData = Object.assign({}, langDefaults, {
         warning: 'This file is auto generated by `yarn web:inject`, do not edit by hand',
@@ -491,7 +493,7 @@ class Util {
       catTitle += langDefaults.human + "'s "
       catTitle += params.category + ' '
       catTitle += langDefaults.packageType + ' '
-      catTitle += ' in JavaScript'
+      catTitle += ` in ${targetLangLabel}`
 
       const catData = {
         warning: 'This file is auto generated by `yarn web:inject`, do not edit by hand',
