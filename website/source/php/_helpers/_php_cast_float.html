@@ -107,6 +107,7 @@ export function _php_cast_float(value: CastFloatValue): number {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { _php_cast_int as __php_cast_int } from './_php_cast_int.ts'
+
 export function _php_cast_float(value) {
   // original by: Rafał Kukawski
   //   example 1: _php_cast_float(false)
@@ -137,12 +138,14 @@ export function _php_cast_float(value) {
   //  returns 13: 8589934593
   //  example 14: _php_cast_float('3.14abc')
   //  returns 14: 3.14
+
   if (typeof value === 'number') {
     return value
   }
   if (typeof value === 'string') {
     return parseFloat(value) || 0
   }
+
   // PHP docs state, that for types other than string
   // conversion is {input type}->int->float
   return __php_cast_int(value)
@@ -284,16 +287,19 @@ function _php_cast_int(value) {
   //  returns 12: 123
   //  example 13: _php_cast_int(0x200000001)
   //  returns 13: 8589934593
+
   if (typeof value === 'number') {
     if (isNaN(value) || !isFinite(value)) {
       // from PHP 7, NaN and Infinity are casted to 0
       return 0
     }
+
     return value < 0 ? Math.ceil(value) : Math.floor(value)
   }
   if (typeof value === 'string') {
     return parseInt(value, 10) || 0
   }
+
   // Behaviour for types other than float, string, boolean
   // is undefined and can change any time.
   // To not invent complex logic
@@ -335,12 +341,14 @@ function _php_cast_float(value) {
   //  returns 13: 8589934593
   //  example 14: _php_cast_float('3.14abc')
   //  returns 14: 3.14
+
   if (typeof value === 'number') {
     return value
   }
   if (typeof value === 'string') {
     return parseFloat(value) || 0
   }
+
   // PHP docs state, that for types other than string
   // conversion is {input type}->int->float
   return __php_cast_int(value)

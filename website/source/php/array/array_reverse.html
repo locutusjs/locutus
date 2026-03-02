@@ -100,21 +100,26 @@ export function array_reverse(array, preserveKeys) {
   // improved by: Karol Kowalski
   //   example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
   //   returns 1: { 2: ['green', 'red'], 1: '4.0', 0: 'php'}
+
   const preserve = preserveKeys === true
   let result
+
   if (Array.isArray(array) && !preserve) {
     result = array.slice(0).reverse()
   } else {
     const source = toPhpArrayObject(array)
+
     if (preserve) {
       const keys = Object.keys(source)
       const reversed = {}
+
       for (let index = keys.length - 1; index >= 0; index -= 1) {
         const key = keys[index]
         if (typeof key === 'string' && Object.prototype.hasOwnProperty.call(source, key)) {
           reversed[key] = source[key]
         }
       }
+
       result = reversed
     } else {
       const reversed = []
@@ -123,9 +128,11 @@ export function array_reverse(array, preserveKeys) {
           reversed.unshift(source[key])
         }
       }
+
       result = reversed
     }
   }
+
   return result
 }{% endcodeblock %}
 </div>
@@ -246,35 +253,43 @@ function isPhpArrayObject(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
     return value
   }
+
   return {}
 }
 
 // php/array/array_reverse (target function module)
+
 function array_reverse(array, preserveKeys) {
   //  discuss at: https://locutus.io/php/array_reverse/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Karol Kowalski
   //   example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
   //   returns 1: { 2: ['green', 'red'], 1: '4.0', 0: 'php'}
+
   const preserve = preserveKeys === true
   let result
+
   if (Array.isArray(array) && !preserve) {
     result = array.slice(0).reverse()
   } else {
     const source = toPhpArrayObject(array)
+
     if (preserve) {
       const keys = Object.keys(source)
       const reversed = {}
+
       for (let index = keys.length - 1; index >= 0; index -= 1) {
         const key = keys[index]
         if (typeof key === 'string' && Object.prototype.hasOwnProperty.call(source, key)) {
           reversed[key] = source[key]
         }
       }
+
       result = reversed
     } else {
       const reversed = []
@@ -283,9 +298,11 @@ function array_reverse(array, preserveKeys) {
           reversed.unshift(source[key])
         }
       }
+
       result = reversed
     }
   }
+
   return result
 }{% endcodeblock %}
 </div>

@@ -50,6 +50,7 @@ export function strchr(haystack: string, needle: string, bool?: boolean): string
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { strstr } from '../strings/strstr.ts'
+
 export function strchr(haystack, needle, bool) {
   //      discuss at: https://locutus.io/php/strchr/
   // parity verified: PHP 8.3
@@ -58,6 +59,7 @@ export function strchr(haystack, needle, bool) {
   //       returns 1: 'van Zonneveld'
   //       example 2: strchr('Kevin van Zonneveld', 'van', true)
   //       returns 2: 'Kevin '
+
   return strstr(haystack, needle, bool)
 }{% endcodeblock %}
 </div>
@@ -122,7 +124,9 @@ function strstr(haystack, needle, bool) {
   //       returns 3: '@example.com'
   //       example 4: strstr('name@example.com', '@', true)
   //       returns 4: 'name'
+
   let pos = 0
+
   haystack += ''
   pos = haystack.indexOf(needle)
   if (pos === -1) {
@@ -145,6 +149,7 @@ function strchr(haystack, needle, bool) {
   //       returns 1: 'van Zonneveld'
   //       example 2: strchr('Kevin van Zonneveld', 'van', true)
   //       returns 2: 'Kevin '
+
   return strstr(haystack, needle, bool)
 }{% endcodeblock %}
 </div>

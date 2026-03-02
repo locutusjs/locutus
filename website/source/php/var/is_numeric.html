@@ -112,7 +112,8 @@ export function is_numeric(mixedVar: NumericValue): mixedVar is number | string 
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function is_numeric(mixedVar) {
+{% codeblock lang:javascript %}
+export function is_numeric(mixedVar) {
   //  discuss at: https://locutus.io/php/is_numeric/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: David
@@ -133,6 +134,7 @@ export function is_numeric(mixedVar: NumericValue): mixedVar is number | string 
   //   returns 5: false
   //   example 6: is_numeric('1 ')
   //   returns 6: false
+
   const whitespace = [
     ' ',
     '\n',
@@ -157,13 +159,16 @@ export function is_numeric(mixedVar: NumericValue): mixedVar is number | string 
     '\u2029',
     '\u3000',
   ].join('')
+
   // @todo: Break this up using many single conditions with early returns
   if (typeof mixedVar === 'number') {
     return !Number.isNaN(mixedVar)
   }
+
   if (typeof mixedVar !== 'string') {
     return false
   }
+
   return mixedVar !== '' && whitespace.indexOf(mixedVar.slice(-1)) === -1 && !Number.isNaN(Number(mixedVar))
 }{% endcodeblock %}
 </div>

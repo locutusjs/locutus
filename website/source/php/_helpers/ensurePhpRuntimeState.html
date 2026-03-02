@@ -322,24 +322,32 @@ export function getPhpLocaleGroup(category: string, groupKey: string): PhpAssoc<
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { isPhpAssocObject, isPhpCallable } from './_phpTypes.ts'
+
 const isIniBag = (value) => isPhpAssocObject(value)
+
 const isLocaleBag = (value) => isPhpAssocObject(value)
+
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 const ensurePhpRuntimeObject = () => {
   let locutus = globalContext.$locutus
   if (typeof locutus !== 'object' || locutus === null) {
     locutus = {}
     globalContext.$locutus = locutus
   }
+
   let php = locutus.php
   if (typeof php !== 'object' || php === null) {
     php = {}
     locutus.php = php
   }
+
   return php
 }
+
 export function ensurePhpRuntimeState() {
   // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
   //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
@@ -350,10 +358,12 @@ export function ensurePhpRuntimeState() {
   const localesValue = php.locales
   const localeCategoriesValue = php.localeCategories
   const pointersValue = php.pointers
+
   const ini = isIniBag(iniValue) ? iniValue : {}
   const locales = isLocaleBag(localesValue) ? localesValue : {}
   const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
   const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
   if (iniValue !== ini) {
     php.ini = ini
   }
@@ -366,8 +376,10 @@ export function ensurePhpRuntimeState() {
   if (pointersValue !== pointers) {
     php.pointers = pointers
   }
+
   const localeDefaultValue = php.locale_default
   const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
   return {
     ini,
     locales,
@@ -376,6 +388,7 @@ export function ensurePhpRuntimeState() {
     locale_default: localeDefault,
   }
 }
+
 export function setPhpLocaleDefault(localeDefault) {
   const php = ensurePhpRuntimeObject()
   php.locale_default = localeDefault
@@ -405,20 +418,25 @@ export function getPhpGlobalEntry(key) {
   const value = globalContext[key]
   return typeof value === 'undefined' ? undefined : value
 }
+
 export function setPhpGlobalEntry(key, value) {
   globalContext[key] = value
 }
+
 export function getPhpGlobalScope() {
   return globalContext
 }
+
 export function getPhpGlobalCallable(key) {
   const value = getPhpGlobalEntry(key)
   return isPhpCallable(value) ? value : undefined
 }
+
 export function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
   }
+
   let current = value
   while (current) {
     const descriptor = Object.getOwnPropertyDescriptor(current, key)
@@ -432,12 +450,15 @@ export function getPhpObjectEntry(value, key) {
     }
     current = Object.getPrototypeOf(current)
   }
+
   return undefined
 }
+
 export function setPhpObjectEntry(value, key, entry) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return false
   }
+
   const container = value
   let current = container
   while (current) {
@@ -460,6 +481,7 @@ export function setPhpObjectEntry(value, key, entry) {
     }
     current = Object.getPrototypeOf(current)
   }
+
   Object.defineProperty(container, key, {
     configurable: true,
     enumerable: true,
@@ -468,6 +490,7 @@ export function setPhpObjectEntry(value, key, entry) {
   })
   return true
 }
+
 function getPhpLocaleEntry(category) {
   const runtime = ensurePhpRuntimeState()
   const localeName = runtime.localeCategories[category]
@@ -477,6 +500,7 @@ function getPhpLocaleEntry(category) {
   const localeEntry = runtime.locales[localeName]
   return isPhpAssocObject(localeEntry) ? localeEntry : undefined
 }
+
 export function getPhpLocaleGroup(category, groupKey) {
   const localeEntry = getPhpLocaleEntry(category)
   if (!localeEntry) {
@@ -623,6 +647,7 @@ function isPhpList(value) {
   //  returns 1: true
   return Array.isArray(value)
 }
+
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -630,29 +655,37 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
 
 // php/_helpers/_phpRuntimeState (target function module)
 const isIniBag = (value) => isPhpAssocObject(value)
+
 const isLocaleBag = (value) => isPhpAssocObject(value)
+
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 const ensurePhpRuntimeObject = () => {
   let locutus = globalContext.$locutus
   if (typeof locutus !== 'object' || locutus === null) {
     locutus = {}
     globalContext.$locutus = locutus
   }
+
   let php = locutus.php
   if (typeof php !== 'object' || php === null) {
     php = {}
     locutus.php = php
   }
+
   return php
 }
+
 function ensurePhpRuntimeState() {
   // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
   //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
@@ -663,10 +696,12 @@ function ensurePhpRuntimeState() {
   const localesValue = php.locales
   const localeCategoriesValue = php.localeCategories
   const pointersValue = php.pointers
+
   const ini = isIniBag(iniValue) ? iniValue : {}
   const locales = isLocaleBag(localesValue) ? localesValue : {}
   const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
   const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
   if (iniValue !== ini) {
     php.ini = ini
   }
@@ -679,8 +714,10 @@ function ensurePhpRuntimeState() {
   if (pointersValue !== pointers) {
     php.pointers = pointers
   }
+
   const localeDefaultValue = php.locale_default
   const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
   return {
     ini,
     locales,

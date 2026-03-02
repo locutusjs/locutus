@@ -61,6 +61,7 @@ export function setcookie(
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { setrawcookie } from '../network/setrawcookie.ts'
+
 export function setcookie(name, value, expires, path, domain, secure) {
   //      discuss at: https://locutus.io/php/setcookie/
   // parity verified: PHP 8.3
@@ -70,6 +71,7 @@ export function setcookie(name, value, expires, path, domain, secure) {
   //     improved by: Kevin van Zonneveld (https://kvz.io)
   //       example 1: setcookie('author_name', 'Kevin van Zonneveld')
   //       returns 1: true
+
   return setrawcookie(name, encodeURIComponent(value), expires, path, domain, secure)
 }{% endcodeblock %}
 </div>
@@ -164,18 +166,23 @@ function setrawcookie(name, value, expires, path, domain, secure) {
   // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //   example 1: setrawcookie('author_name', 'Kevin van Zonneveld')
   //   returns 1: true
+
   if (typeof window === 'undefined') {
     return true
   }
+
   let normalizedExpires = expires
+
   if (typeof normalizedExpires === 'string' && /^\d+$/.test(normalizedExpires)) {
     normalizedExpires = parseInt(normalizedExpires, 10)
   }
+
   if (normalizedExpires instanceof Date) {
     normalizedExpires = normalizedExpires.toUTCString()
   } else if (typeof normalizedExpires === 'number') {
     normalizedExpires = new Date(normalizedExpires * 1e3).toUTCString()
   }
+
   const parts = [name + '=' + value]
   if (normalizedExpires) {
     parts.push('expires=' + normalizedExpires)
@@ -186,10 +193,13 @@ function setrawcookie(name, value, expires, path, domain, secure) {
   if (domain) {
     parts.push('domain=' + domain)
   }
+
   if (secure) {
     parts.push('secure')
   }
+
   window.document.cookie = parts.join(';')
+
   return true
 }
 
@@ -203,6 +213,7 @@ function setcookie(name, value, expires, path, domain, secure) {
   //     improved by: Kevin van Zonneveld (https://kvz.io)
   //       example 1: setcookie('author_name', 'Kevin van Zonneveld')
   //       returns 1: true
+
   return setrawcookie(name, encodeURIComponent(value), expires, path, domain, secure)
 }{% endcodeblock %}
 </div>

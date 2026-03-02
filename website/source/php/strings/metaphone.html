@@ -272,7 +272,8 @@ export function metaphone(
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function metaphone(word, maxPhonemes) {
+{% codeblock lang:javascript %}
+export function metaphone(word, maxPhonemes) {
   //      discuss at: https://locutus.io/php/metaphone/
   // parity verified: PHP 8.3
   //     original by: Greg Frazier
@@ -286,11 +287,14 @@ export function metaphone(
   //       returns 3: 'AKKRS'
   //       example 4: metaphone('batch batcher')
   //       returns 4: 'BXBXR'
+
   const type = typeof word
+
   if (type === 'undefined' || (type === 'object' && word !== null)) {
     // weird!
     return null
   }
+
   // infinity and NaN values are treated as strings
   let normalizedWord = typeof word === 'string' ? word : ''
   if (type === 'number') {
@@ -302,10 +306,12 @@ export function metaphone(
       normalizedWord = ''
     }
   }
+
   const maxPhonemeLimit = Math.floor(Number(maxPhonemes)) || 0
   if (maxPhonemeLimit < 0) {
     return false
   }
+
   // alpha depends on locale, so this var might need an update
   // or should be turned into a regex
   // for now assuming pure a-z
@@ -313,13 +319,17 @@ export function metaphone(
   const vowel = 'AEIOU'
   const soft = 'EIY'
   const leadingNonAlpha = new RegExp('^[^' + alpha + ']+')
+
   normalizedWord = normalizedWord.toUpperCase().replace(leadingNonAlpha, '')
+
   if (!normalizedWord) {
     return ''
   }
+
   const is = function (p, c) {
     return c !== '' && p.indexOf(c) !== -1
   }
+
   let i = 0
   let cc = normalizedWord.charAt(0) // current char. Short name because it's used all over the function
   let nc = normalizedWord.charAt(1) // next char
@@ -329,6 +339,7 @@ export function metaphone(
   let meta = ''
   // traditional is an internal param that could be exposed for now let it be a local var
   const traditional = true
+
   switch (cc) {
     case 'A':
       meta += nc === 'E' ? nc : cc
@@ -363,14 +374,17 @@ export function metaphone(
       i++
       break
   }
+
   for (; i < l && (maxPhonemeLimit === 0 || meta.length < maxPhonemeLimit); i += 1) {
     cc = normalizedWord.charAt(i)
     nc = normalizedWord.charAt(i + 1)
     pc = normalizedWord.charAt(i - 1)
     nnc = normalizedWord.charAt(i + 2)
+
     if (cc === pc && cc !== 'C') {
       continue
     }
+
     switch (cc) {
       case 'B':
         if (pc !== 'M') {
@@ -479,6 +493,7 @@ export function metaphone(
         break
     }
   }
+
   return meta
 }{% endcodeblock %}
 </div>

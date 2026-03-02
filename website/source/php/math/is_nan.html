@@ -68,7 +68,8 @@ export function is_nan(val: NumberCheckValue): boolean {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function is_nan(val) {
+{% codeblock lang:javascript %}
+export function is_nan(val) {
   //  discuss at: https://locutus.io/php/is_nan/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //    input by: Robin
@@ -76,10 +77,13 @@ export function is_nan(val: NumberCheckValue): boolean {
   //   returns 1: true
   //   example 2: is_nan(0)
   //   returns 2: false
+
   let warningType = ''
+
   if (typeof val === 'number' && isNaN(val)) {
     return true
   }
+
   // Some errors for maximum PHP compatibility
   if (typeof val === 'object') {
     warningType = Array.isArray(val) ? 'array' : 'object'
@@ -90,6 +94,7 @@ export function is_nan(val: NumberCheckValue): boolean {
   if (warningType) {
     throw new Error('Warning: is_nan() expects parameter 1 to be double, ' + warningType + ' given')
   }
+
   return false
 }{% endcodeblock %}
 </div>

@@ -120,6 +120,7 @@ export function str_ireplace(
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}const asArray = (value) => (Array.isArray(value) ? [...value] : [value])
+
 export function str_ireplace(search, replace, subject, countObj) {
   //  discuss at: https://locutus.io/php/str_ireplace/
   // original by: Glen Arason (https://CanadianDomainRegistry.ca)
@@ -137,6 +138,7 @@ export function str_ireplace(search, replace, subject, countObj) {
   //   returns 2: 1
   //   example 3: str_ireplace('', '.', 'aaa')
   //   returns 3: 'aaa'
+
   const loweredSearch = Array.isArray(search) ? search.map((item) => item.toLowerCase()) : search.toLowerCase()
   const loweredSubject = Array.isArray(subject) ? subject.map((item) => item.toLowerCase()) : subject.toLowerCase()
   const osa = Array.isArray(subject)
@@ -144,12 +146,15 @@ export function str_ireplace(search, replace, subject, countObj) {
   const s = asArray(loweredSubject)
   const os = asArray(subject)
   let r = asArray(replace)
+
   if (Array.isArray(loweredSearch) && typeof replace === 'string') {
     r = loweredSearch.map(() => replace)
   }
+
   if (countObj) {
     countObj.value = 0
   }
+
   for (let i = 0, sl = s.length; i < sl; i++) {
     if (s[i] === '') {
       continue
@@ -168,11 +173,13 @@ export function str_ireplace(search, replace, subject, countObj) {
       if (oi >= 0) {
         os[i] = otemp.split(otemp.substr(oi, ofjl)).join(repl)
       }
+
       if (countObj) {
         countObj.value = (countObj.value ?? 0) + temp.split(searchTerm).length - 1
       }
     }
   }
+
   return osa ? os : (os[0] ?? '')
 }{% endcodeblock %}
 </div>

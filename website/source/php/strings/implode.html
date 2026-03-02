@@ -82,7 +82,8 @@ export function implode(...args: Array<ImplodeValue[] | KeyedValues | string | u
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function implode(...args) {
+{% codeblock lang:javascript %}
+export function implode(...args) {
   //      discuss at: https://locutus.io/php/implode/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -93,16 +94,19 @@ export function implode(...args: Array<ImplodeValue[] | KeyedValues | string | u
   //       returns 1: 'Kevin van Zonneveld'
   //       example 2: implode(' ', {first:'Kevin', last: 'van Zonneveld'})
   //       returns 2: 'Kevin van Zonneveld'
+
   let retVal = ''
   let tGlue = ''
   let actualGlue = ''
   let actualPieces
+
   if (args.length === 1) {
     actualPieces = args[0]
   } else {
     actualGlue = String(args[0] ?? '')
     actualPieces = args[1]
   }
+
   if (typeof actualPieces === 'object' && actualPieces !== null) {
     if (Array.isArray(actualPieces)) {
       return actualPieces.join(actualGlue)
@@ -113,6 +117,7 @@ export function implode(...args: Array<ImplodeValue[] | KeyedValues | string | u
     }
     return retVal
   }
+
   return String(actualPieces)
 }{% endcodeblock %}
 </div>

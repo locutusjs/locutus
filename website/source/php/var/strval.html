@@ -75,6 +75,7 @@ export function strval(str: StringValue): string {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { gettype } from '../var/gettype.ts'
+
 export function strval(str) {
   //  discuss at: https://locutus.io/php/strval/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -82,11 +83,15 @@ export function strval(str) {
   // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //   example 1: strval({red: 1, green: 2, blue: 3, white: 4})
   //   returns 1: 'Object'
+
   let type = ''
+
   if (str === null) {
     return ''
   }
+
   type = gettype(str)
+
   // Comment out the entire switch if you want JS-like
   // behavior instead of PHP behavior
   switch (type) {
@@ -100,6 +105,7 @@ export function strval(str) {
     case 'object':
       return 'Object'
   }
+
   return String(str)
 }{% endcodeblock %}
 </div>
@@ -283,6 +289,7 @@ function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
   }
+
   let current = value
   while (current) {
     const descriptor = Object.getOwnPropertyDescriptor(current, key)
@@ -296,6 +303,7 @@ function getPhpObjectEntry(value, key) {
     }
     current = Object.getPrototypeOf(current)
   }
+
   return undefined
 }
 
@@ -311,6 +319,7 @@ function is_float(mixedVar) {
   //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
   //       example 1: is_float(186.31)
   //       returns 1: true
+
   return +mixedVar === mixedVar && (!isFinite(mixedVar) || !!(mixedVar % 1))
 }
 
@@ -340,6 +349,7 @@ function gettype(mixedVar) {
   //   returns 6: 'object'
   //   example 7: gettype(['test'])
   //   returns 7: 'array'
+
   let s = typeof mixedVar
   let name = ''
   const _getFuncName = function (fn) {
@@ -349,6 +359,7 @@ function gettype(mixedVar) {
     }
     return funcNameMatch[1] ?? '(Anonymous)'
   }
+
   if (s === 'object') {
     if (typeof mixedVar === 'object' && mixedVar !== null) {
       const objectLike = mixedVar
@@ -385,6 +396,7 @@ function gettype(mixedVar) {
   } else if (typeof mixedVar === 'number') {
     s = isFloat(mixedVar) ? 'double' : 'integer'
   }
+
   return s
 }
 
@@ -396,11 +408,15 @@ function strval(str) {
   // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //   example 1: strval({red: 1, green: 2, blue: 3, white: 4})
   //   returns 1: 'Object'
+
   let type = ''
+
   if (str === null) {
     return ''
   }
+
   type = gettype(str)
+
   // Comment out the entire switch if you want JS-like
   // behavior instead of PHP behavior
   switch (type) {
@@ -414,6 +430,7 @@ function strval(str) {
     case 'object':
       return 'Object'
   }
+
   return String(str)
 }{% endcodeblock %}
 </div>

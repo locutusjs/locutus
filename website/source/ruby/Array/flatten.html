@@ -70,12 +70,15 @@ alias:
   //       returns 2: [1, 2, [3, [4]]]
   //       example 3: flatten([[1, 2], [3, 4]])
   //       returns 3: [1, 2, 3, 4]
+
   if (!Array.isArray(arr)) {
     return []
   }
+
   if (depth === undefined) {
     depth = Infinity
   }
+
   return arr.flat(depth)
 }{% endcodeblock %}
 </div>

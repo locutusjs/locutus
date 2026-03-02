@@ -116,7 +116,8 @@ export function in_array(needle: InArrayValue, haystack: PhpArrayLike<InArrayVal
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function in_array(needle, haystack, argStrict) {
+{% codeblock lang:javascript %}
+export function in_array(needle, haystack, argStrict) {
   //  discuss at: https://locutus.io/php/in_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: vlado houba
@@ -133,7 +134,9 @@ export function in_array(needle: InArrayValue, haystack: PhpArrayLike<InArrayVal
   //   returns 3: true
   //   example 4: in_array(1, ['1', '2', '3'], true)
   //   returns 4: false
+
   const strict = !!argStrict
+
   // we prevent the double check (strict && arr[key] === ndl) || (!strict && arr[key] === ndl)
   // in just one for, in order to improve the performance
   // deciding wich type of comparation will do before walk array
@@ -166,6 +169,7 @@ export function in_array(needle: InArrayValue, haystack: PhpArrayLike<InArrayVal
       }
     }
   }
+
   return false
 }{% endcodeblock %}
 </div>

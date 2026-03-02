@@ -273,12 +273,15 @@ export function var_dump(...args: DumpValue[]): string {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}const visitedObjects = new Map() // Initialize a map to track visited objects
+
 import { getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
 import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
+
 const hasNodeName = (value) => {
   return typeof value === 'object' && value !== null && 'nodeName' in value
 }
+
 const isLocutusResource = (value, getFuncName) => {
   if (typeof value !== 'object' || value === null || !('var_dump' in value) || !('constructor' in value)) {
     return false
@@ -292,6 +295,7 @@ const isLocutusResource = (value, getFuncName) => {
     getFuncName(constructorValue) === 'LOCUTUS_Resource'
   )
 }
+
 export function var_dump(...args) {
   //  discuss at: https://locutus.io/php/var_dump/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -304,6 +308,7 @@ export function var_dump(...args) {
   //   example 2: simpleCircular.self = simpleCircular
   //   example 2: var_dump(simpleCircular)
   //   returns 2: 'array(1) {\n    [self] =>\n    Circular Reference Detected\n}\n'
+
   let output = ''
   const padChar = ' '
   const padVal = 4
@@ -314,6 +319,7 @@ export function var_dump(...args) {
     }
     return name[1] ?? '(Anonymous)'
   }
+
   const _repeatChar = function (len, padCharacter) {
     let str = ''
     for (let i = 0; i < len; i++) {
@@ -398,14 +404,17 @@ export function var_dump(...args) {
     }
     return ret
   }
+
   const _formatArray = function (obj, curDepth, padVal, padChar, visitedObjectMap) {
     if (curDepth > 0) {
       curDepth++
     }
+
     const basePad = _repeatChar(padVal * (curDepth - 1), padChar)
     const thickPad = _repeatChar(padVal * (curDepth + 1), padChar)
     let str = ''
     let val = ''
+
     if (typeof obj === 'object' && obj !== null) {
       if (visitedObjectMap.has(obj)) {
         // Circular reference detected, return a placeholder or a message
@@ -414,6 +423,7 @@ export function var_dump(...args) {
         // Mark this object as visited by adding it to the map
         visitedObjectMap.set(obj, true)
       }
+
       if (isLocutusResource(obj, _getFuncName)) {
         return obj.var_dump()
       }
@@ -460,11 +470,14 @@ export function var_dump(...args) {
     }
     return str
   }
+
   output = _formatArray(args[0], 0, padVal, padChar, visitedObjects)
   for (let i = 1; i < args.length; i++) {
     output += '\n' + _formatArray(args[i], 0, padVal, padChar, visitedObjects)
   }
+
   echo(output)
+
   // Not how PHP does it, but helps us test:
   return output
 }{% endcodeblock %}
@@ -805,10 +818,12 @@ function isPhpArrayObject(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
     return value
   }
+
   return {}
 }
 
@@ -817,6 +832,7 @@ function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
   }
+
   let current = value
   while (current) {
     const descriptor = Object.getOwnPropertyDescriptor(current, key)
@@ -830,6 +846,7 @@ function getPhpObjectEntry(value, key) {
     }
     current = Object.getPrototypeOf(current)
   }
+
   return undefined
 }
 
@@ -860,14 +877,17 @@ function echo(...args) {
   //        input by: JB
   //       example 1: echo('Hello world')
   //       returns 1: undefined
+
   return console.log(args.join(' '))
 }
 
 // php/var/var_dump (target function module)
 const visitedObjects = new Map()
+
 const hasNodeName = (value) => {
   return typeof value === 'object' && value !== null && 'nodeName' in value
 }
+
 const isLocutusResource = (value, getFuncName) => {
   if (typeof value !== 'object' || value === null || !('var_dump' in value) || !('constructor' in value)) {
     return false
@@ -881,6 +901,7 @@ const isLocutusResource = (value, getFuncName) => {
     getFuncName(constructorValue) === 'LOCUTUS_Resource'
   )
 }
+
 function var_dump(...args) {
   //  discuss at: https://locutus.io/php/var_dump/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -893,6 +914,7 @@ function var_dump(...args) {
   //   example 2: simpleCircular.self = simpleCircular
   //   example 2: var_dump(simpleCircular)
   //   returns 2: 'array(1) {\n    [self] =>\n    Circular Reference Detected\n}\n'
+
   let output = ''
   const padChar = ' '
   const padVal = 4
@@ -903,6 +925,7 @@ function var_dump(...args) {
     }
     return name[1] ?? '(Anonymous)'
   }
+
   const _repeatChar = function (len, padCharacter) {
     let str = ''
     for (let i = 0; i < len; i++) {
@@ -987,14 +1010,17 @@ function var_dump(...args) {
     }
     return ret
   }
+
   const _formatArray = function (obj, curDepth, padVal, padChar, visitedObjectMap) {
     if (curDepth > 0) {
       curDepth++
     }
+
     const basePad = _repeatChar(padVal * (curDepth - 1), padChar)
     const thickPad = _repeatChar(padVal * (curDepth + 1), padChar)
     let str = ''
     let val = ''
+
     if (typeof obj === 'object' && obj !== null) {
       if (visitedObjectMap.has(obj)) {
         // Circular reference detected, return a placeholder or a message
@@ -1003,6 +1029,7 @@ function var_dump(...args) {
         // Mark this object as visited by adding it to the map
         visitedObjectMap.set(obj, true)
       }
+
       if (isLocutusResource(obj, _getFuncName)) {
         return obj.var_dump()
       }
@@ -1049,11 +1076,14 @@ function var_dump(...args) {
     }
     return str
   }
+
   output = _formatArray(args[0], 0, padVal, padChar, visitedObjects)
   for (let i = 1; i < args.length; i++) {
     output += '\n' + _formatArray(args[i], 0, padVal, padChar, visitedObjects)
   }
+
   echo(output)
+
   // Not how PHP does it, but helps us test:
   return output
 }{% endcodeblock %}

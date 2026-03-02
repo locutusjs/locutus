@@ -106,6 +106,7 @@ export function html_entity_decode(string: string, quoteStyle?: string | number)
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { get_html_translation_table as getHtmlTranslationTable } from '../strings/get_html_translation_table.ts'
+
 export function html_entity_decode(string, quoteStyle) {
   //      discuss at: https://locutus.io/php/html_entity_decode/
   // parity verified: PHP 8.3
@@ -124,7 +125,9 @@ export function html_entity_decode(string, quoteStyle) {
   //       returns 1: 'Kevin & van Zonneveld'
   //       example 2: html_entity_decode('&amp;lt;')
   //       returns 2: '&lt;'
+
   let tmpStr = string.toString()
+
   const hashMapUnknown = getHtmlTranslationTable('HTML_ENTITIES', quoteStyle)
   if (hashMapUnknown === false || !hashMapUnknown || typeof hashMapUnknown !== 'object') {
     return false
@@ -137,10 +140,12 @@ export function html_entity_decode(string, quoteStyle) {
       normalizedHashMap[symbol] = entity
     }
   }
+
   // @todo: &amp; problem
   // https://locutus.io/php/get_html_translation_table:416#comment_97660
   delete normalizedHashMap['&']
   normalizedHashMap['&'] = '&amp;'
+
   for (const symbol in normalizedHashMap) {
     const entity = normalizedHashMap[symbol]
     if (typeof entity !== 'string') {
@@ -149,6 +154,7 @@ export function html_entity_decode(string, quoteStyle) {
     tmpStr = tmpStr.split(entity).join(symbol)
   }
   tmpStr = tmpStr.split('&#039;').join("'")
+
   return tmpStr
 }{% endcodeblock %}
 </div>
@@ -421,10 +427,12 @@ function isPhpArrayObject(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
     return value
   }
+
   return {}
 }
 
@@ -449,6 +457,7 @@ function get_html_translation_table(table = 'HTML_SPECIALCHARS', quoteStyle = 'E
   //      note 1: chooses to create the constants themselves.
   //   example 1: get_html_translation_table('HTML_SPECIALCHARS')
   //   returns 1: {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
+
   const entities = {}
   const hashMap = {}
   let decimal = ''
@@ -462,19 +471,23 @@ function get_html_translation_table(table = 'HTML_SPECIALCHARS', quoteStyle = 'E
   constMappingQuoteStyle[0] = 'ENT_NOQUOTES'
   constMappingQuoteStyle[2] = 'ENT_COMPAT'
   constMappingQuoteStyle[3] = 'ENT_QUOTES'
+
   useTable = !isNaN(Number(table))
     ? (constMappingTable[Number(table)] ?? 'HTML_SPECIALCHARS')
     : table
       ? String(table).toUpperCase()
       : 'HTML_SPECIALCHARS'
+
   useQuoteStyle = !isNaN(Number(quoteStyle))
     ? (constMappingQuoteStyle[Number(quoteStyle)] ?? 'ENT_COMPAT')
     : quoteStyle
       ? String(quoteStyle).toUpperCase()
       : 'ENT_COMPAT'
+
   if (useTable !== 'HTML_SPECIALCHARS' && useTable !== 'HTML_ENTITIES') {
     throw new Error('Table: ' + useTable + ' not supported')
   }
+
   entities['38'] = '&amp;'
   if (useTable === 'HTML_ENTITIES') {
     entities['160'] = '&nbsp;'
@@ -574,6 +587,7 @@ function get_html_translation_table(table = 'HTML_SPECIALCHARS', quoteStyle = 'E
     entities['254'] = '&thorn;'
     entities['255'] = '&yuml;'
   }
+
   if (useQuoteStyle !== 'ENT_NOQUOTES') {
     entities['34'] = '&quot;'
   }
@@ -582,12 +596,14 @@ function get_html_translation_table(table = 'HTML_SPECIALCHARS', quoteStyle = 'E
   }
   entities['60'] = '&lt;'
   entities['62'] = '&gt;'
+
   // ascii decimals to real symbols
   for (decimal in entities) {
     if (Object.prototype.hasOwnProperty.call(entities, decimal)) {
       hashMap[String.fromCharCode(Number(decimal))] = entities[decimal] ?? ''
     }
   }
+
   return hashMap
 }
 
@@ -612,7 +628,9 @@ function html_entity_decode(string, quoteStyle) {
   //       returns 1: 'Kevin & van Zonneveld'
   //       example 2: html_entity_decode('&amp;lt;')
   //       returns 2: '&lt;'
+
   let tmpStr = string.toString()
+
   const hashMapUnknown = getHtmlTranslationTable('HTML_ENTITIES', quoteStyle)
   if (hashMapUnknown === false || !hashMapUnknown || typeof hashMapUnknown !== 'object') {
     return false
@@ -625,10 +643,12 @@ function html_entity_decode(string, quoteStyle) {
       normalizedHashMap[symbol] = entity
     }
   }
+
   // @todo: &amp; problem
   // https://locutus.io/php/get_html_translation_table:416#comment_97660
   delete normalizedHashMap['&']
   normalizedHashMap['&'] = '&amp;'
+
   for (const symbol in normalizedHashMap) {
     const entity = normalizedHashMap[symbol]
     if (typeof entity !== 'string') {
@@ -637,6 +657,7 @@ function html_entity_decode(string, quoteStyle) {
     tmpStr = tmpStr.split(entity).join(symbol)
   }
   tmpStr = tmpStr.split('&#039;').join("'")
+
   return tmpStr
 }{% endcodeblock %}
 </div>

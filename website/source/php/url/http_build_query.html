@@ -186,6 +186,7 @@ export function http_build_query(
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { rawurlencode as _rawurlencode } from '../url/rawurlencode.ts'
 import { urlencode as _urlencode } from '../url/urlencode.ts'
+
 export function http_build_query(formdata, numericPrefix, argSeparator, encType) {
   //  discuss at: https://locutus.io/php/http_build_query/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -206,17 +207,22 @@ export function http_build_query(formdata, numericPrefix, argSeparator, encType)
   //   returns 2: 'myvar_0=foo&myvar_1=bar&myvar_2=baz&myvar_3=boom&php=hypertext+processor&cow=milk'
   //   example 3: http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;', 'PHP_QUERY_RFC3986')
   //   returns 3: 'foo=bar&amp;php=hypertext%20processor&amp;baz=boom&amp;cow=milk'
+
   let encodeFunc
+
   switch (encType) {
     case 'PHP_QUERY_RFC3986':
       encodeFunc = _rawurlencode
       break
+
     case 'PHP_QUERY_RFC1738':
     default:
       encodeFunc = _urlencode
       break
   }
+
   const tmp = []
+
   const _httpBuildQueryHelper = function (key, val, separator) {
     const nested = []
     if (val === true) {
@@ -251,7 +257,9 @@ export function http_build_query(formdata, numericPrefix, argSeparator, encType)
       return ''
     }
   }
+
   const separator = argSeparator || '&'
+
   if (Array.isArray(formdata)) {
     for (let index = 0; index < formdata.length; index += 1) {
       const value = formdata[index]
@@ -286,6 +294,7 @@ export function http_build_query(formdata, numericPrefix, argSeparator, encType)
       }
     }
   }
+
   return tmp.join(separator)
 }{% endcodeblock %}
 </div>
@@ -523,7 +532,9 @@ function rawurlencode(str) {
   //        returns 2: 'https%3A%2F%2Fkvz.io%2F'
   //        example 3: rawurlencode('https://www.google.nl/search?q=Locutus&ie=utf-8')
   //        returns 3: 'https%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3Dutf-8'
+
   str = str + ''
+
   // Tilde should be allowed unescaped in future versions of PHP (as reflected below),
   // but if you want to reflect current
   // PHP behavior, you would need to add ".replace(/~/g, '%7E');" to the following.
@@ -564,7 +575,9 @@ function urlencode(str) {
   //        returns 2: 'https%3A%2F%2Fkvz.io%2F'
   //        example 3: urlencode('https://www.google.nl/search?q=Locutus&ie=utf-8')
   //        returns 3: 'https%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3Dutf-8'
+
   str = str + ''
+
   return encodeURIComponent(str)
     .replace(/!/g, '%21')
     .replace(/'/g, '%27')
@@ -599,17 +612,22 @@ function http_build_query(formdata, numericPrefix, argSeparator, encType) {
   //   returns 2: 'myvar_0=foo&myvar_1=bar&myvar_2=baz&myvar_3=boom&php=hypertext+processor&cow=milk'
   //   example 3: http_build_query({foo: 'bar', php: 'hypertext processor', baz: 'boom', cow: 'milk'}, '', '&amp;', 'PHP_QUERY_RFC3986')
   //   returns 3: 'foo=bar&amp;php=hypertext%20processor&amp;baz=boom&amp;cow=milk'
+
   let encodeFunc
+
   switch (encType) {
     case 'PHP_QUERY_RFC3986':
       encodeFunc = _rawurlencode
       break
+
     case 'PHP_QUERY_RFC1738':
     default:
       encodeFunc = _urlencode
       break
   }
+
   const tmp = []
+
   const _httpBuildQueryHelper = function (key, val, separator) {
     const nested = []
     if (val === true) {
@@ -644,7 +662,9 @@ function http_build_query(formdata, numericPrefix, argSeparator, encType) {
       return ''
     }
   }
+
   const separator = argSeparator || '&'
+
   if (Array.isArray(formdata)) {
     for (let index = 0; index < formdata.length; index += 1) {
       const value = formdata[index]
@@ -679,6 +699,7 @@ function http_build_query(formdata, numericPrefix, argSeparator, encType) {
       }
     }
   }
+
   return tmp.join(separator)
 }{% endcodeblock %}
 </div>

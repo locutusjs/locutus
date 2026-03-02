@@ -96,6 +96,7 @@ export function array_intersect_ukey<T>(
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { resolveNumericComparator } from '../_helpers/_callbackResolver.ts'
 import { entriesOfPhpAssoc, isPhpCallableDescriptor, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
 export function array_intersect_ukey(arr1, ...arraysAndCallback) {
   //  discuss at: https://locutus.io/php/array_intersect_ukey/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -103,6 +104,7 @@ export function array_intersect_ukey(arr1, ...arraysAndCallback) {
   //   example 1: var $array2 = {green: 5, blue: 6, yellow: 7, cyan: 8}
   //   example 1: array_intersect_ukey ($array1, $array2, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })
   //   returns 1: {blue: 1, green: 3}
+
   const retArr = {}
   const callback = arraysAndCallback[arraysAndCallback.length - 1]
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor(callback)) {
@@ -111,6 +113,7 @@ export function array_intersect_ukey(arr1, ...arraysAndCallback) {
   const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject(value))
   const lastArrayIndex = arrays.length - 1
   const keyComparator = resolveNumericComparator(callback, 'array_intersect_ukey(): Invalid callback')
+
   arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1)) {
     arrs: for (const [i, arr] of arrays.entries()) {
       for (const [k] of entriesOfPhpAssoc(arr)) {
@@ -127,6 +130,7 @@ export function array_intersect_ukey(arr1, ...arraysAndCallback) {
       continue arr1keys
     }
   }
+
   return retArr
 }{% endcodeblock %}
 </div>
@@ -398,6 +402,7 @@ function array_intersect_ukey<T>(
 const entriesOfPhpAssoc = (value) => {
   return Object.entries(value)
 }
+
 function isPhpArrayObject(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -405,40 +410,50 @@ function isPhpArrayObject(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpCallable(value) {
   return typeof value === 'function'
 }
+
 function isPhpCallableDescriptor(value) {
   if (typeof value === 'string') {
     return true
   }
+
   if (isPhpCallable(value)) {
     return true
   }
+
   if (!Array.isArray(value) || value.length < 2) {
     return false
   }
+
   const callableDescriptor = value[1]
   return typeof callableDescriptor === 'string' || isPhpCallable(callableDescriptor)
 }
+
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
     return value
   }
+
   return {}
 }
 
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 function getPhpGlobalEntry(key) {
   const value = globalContext[key]
   return typeof value === 'undefined' ? undefined : value
 }
+
 function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
   }
+
   let current = value
   while (current) {
     const descriptor = Object.getOwnPropertyDescriptor(current, key)
@@ -452,6 +467,7 @@ function getPhpObjectEntry(value, key) {
     }
     current = Object.getPrototypeOf(current)
   }
+
   return undefined
 }
 
@@ -464,6 +480,7 @@ function resolvePhpCallable(callback, options) {
   if (isPhpCallable(callback)) {
     return { fn: callback, scope: null }
   }
+
   if (typeof callback === 'string') {
     const candidate = getPhpGlobalEntry(callback)
     if (isPhpCallable(candidate)) {
@@ -471,9 +488,11 @@ function resolvePhpCallable(callback, options) {
     }
     throw new Error(options.invalidMessage)
   }
+
   if (Array.isArray(callback) && callback.length >= 2) {
     const scopeDescriptor = callback[0]
     const callableDescriptor = callback[1]
+
     let scope
     if (typeof scopeDescriptor === 'string') {
       scope = getPhpGlobalEntry(scopeDescriptor)
@@ -483,9 +502,11 @@ function resolvePhpCallable(callback, options) {
     } else {
       scope = scopeDescriptor
     }
+
     if (isPhpCallable(callableDescriptor)) {
       return { fn: callableDescriptor, scope }
     }
+
     if (typeof callableDescriptor === 'string' && (isObjectLike(scope) || typeof scope === 'function')) {
       const candidate = getPhpObjectEntry(scope, callableDescriptor)
       if (isPhpCallable(candidate)) {
@@ -493,10 +514,13 @@ function resolvePhpCallable(callback, options) {
       }
     }
   }
+
   throw new Error(options.invalidMessage)
 }
+
 function resolveNumericComparator(callback, invalidMessage) {
   const resolved = resolvePhpCallable(callback, { invalidMessage })
+
   return (left, right) => Number(resolved.fn.apply(resolved.scope, [left, right]))
 }
 
@@ -508,6 +532,7 @@ function array_intersect_ukey(arr1, ...arraysAndCallback) {
   //   example 1: var $array2 = {green: 5, blue: 6, yellow: 7, cyan: 8}
   //   example 1: array_intersect_ukey ($array1, $array2, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })
   //   returns 1: {blue: 1, green: 3}
+
   const retArr = {}
   const callback = arraysAndCallback[arraysAndCallback.length - 1]
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor(callback)) {
@@ -516,6 +541,7 @@ function array_intersect_ukey(arr1, ...arraysAndCallback) {
   const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject(value))
   const lastArrayIndex = arrays.length - 1
   const keyComparator = resolveNumericComparator(callback, 'array_intersect_ukey(): Invalid callback')
+
   arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1)) {
     arrs: for (const [i, arr] of arrays.entries()) {
       for (const [k] of entriesOfPhpAssoc(arr)) {
@@ -532,6 +558,7 @@ function array_intersect_ukey(arr1, ...arraysAndCallback) {
       continue arr1keys
     }
   }
+
   return retArr
 }{% endcodeblock %}
 </div>

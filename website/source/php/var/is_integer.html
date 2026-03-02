@@ -55,6 +55,7 @@ export function is_integer(mixedVar: number): boolean {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { is_int as _isInt } from '../var/is_int.ts'
+
 export function is_integer(mixedVar) {
   //      discuss at: https://locutus.io/php/is_integer/
   // parity verified: PHP 8.3
@@ -65,6 +66,7 @@ export function is_integer(mixedVar) {
   //       returns 1: false
   //       example 2: is_integer(12)
   //       returns 2: true
+
   return _isInt(mixedVar)
 }{% endcodeblock %}
 </div>
@@ -153,6 +155,7 @@ function is_int(mixedVar) {
   //       returns 3: false
   //       example 4: is_int(true)
   //       returns 4: false
+
   const num = Number(mixedVar)
   return typeof mixedVar === 'number' && mixedVar === num && Number.isFinite(num) && Number.isInteger(num)
 }
@@ -170,6 +173,7 @@ function is_integer(mixedVar) {
   //       returns 1: false
   //       example 2: is_integer(12)
   //       returns 2: true
+
   return _isInt(mixedVar)
 }{% endcodeblock %}
 </div>

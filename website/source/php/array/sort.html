@@ -187,6 +187,7 @@ export function sort<T extends SortValue>(
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
 import { i18n_loc_get_default as i18nlgd } from '../i18n/i18n_loc_get_default.ts'
+
 const toSortablePrimitive = (value) => {
   if (
     typeof value === 'string' ||
@@ -196,8 +197,10 @@ const toSortablePrimitive = (value) => {
   ) {
     return value
   }
+
   return String(value ?? '')
 }
+
 export function sort(inputArr, sortFlags) {
   //  discuss at: https://locutus.io/php/sort/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -228,13 +231,17 @@ export function sort(inputArr, sortFlags) {
   //   example 2: sort($fruits)
   //   example 2: var $result = $fruits
   //   returns 2: {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
+
   const runtime = ensurePhpRuntimeState()
+
   const regularSortAsc = (leftValue, rightValue) => {
     const left = toSortablePrimitive(leftValue)
     const right = toSortablePrimitive(rightValue)
     return left > right ? 1 : left < right ? -1 : 0
   }
+
   let sorter
+
   switch (sortFlags) {
     case 'SORT_STRING':
       // compare items as strings via built-in fallback
@@ -256,9 +263,11 @@ export function sort(inputArr, sortFlags) {
       sorter = regularSortAsc
       break
   }
+
   const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on'
   const sortByReference = iniVal === 'on'
   const populateArr = sortByReference ? inputArr : {}
+
   const values = []
   for (const [key, value] of Object.entries(inputArr)) {
     values.push(value)
@@ -266,10 +275,13 @@ export function sort(inputArr, sortFlags) {
       delete inputArr[key]
     }
   }
+
   values.sort(sorter)
+
   for (const [index, value] of values.entries()) {
     populateArr[index] = value
   }
+
   return sortByReference || populateArr
 }{% endcodeblock %}
 </div>
@@ -549,6 +561,7 @@ function isPhpList(value) {
   //  returns 1: true
   return Array.isArray(value)
 }
+
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -556,29 +569,37 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
 
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
+
 const isLocaleBag = (value) => isPhpAssocObject(value)
+
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 const ensurePhpRuntimeObject = () => {
   let locutus = globalContext.$locutus
   if (typeof locutus !== 'object' || locutus === null) {
     locutus = {}
     globalContext.$locutus = locutus
   }
+
   let php = locutus.php
   if (typeof php !== 'object' || php === null) {
     php = {}
     locutus.php = php
   }
+
   return php
 }
+
 function ensurePhpRuntimeState() {
   // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
   //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
@@ -589,10 +610,12 @@ function ensurePhpRuntimeState() {
   const localesValue = php.locales
   const localeCategoriesValue = php.localeCategories
   const pointersValue = php.pointers
+
   const ini = isIniBag(iniValue) ? iniValue : {}
   const locales = isLocaleBag(localesValue) ? localesValue : {}
   const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
   const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
   if (iniValue !== ini) {
     php.ini = ini
   }
@@ -605,8 +628,10 @@ function ensurePhpRuntimeState() {
   if (pointersValue !== pointers) {
     php.pointers = pointers
   }
+
   const localeDefaultValue = php.locale_default
   const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
   return {
     ini,
     locales,
@@ -629,6 +654,7 @@ function i18n_loc_get_default() {
   //   example 2: i18n_loc_set_default('pt_PT')
   //   example 2: i18n_loc_get_default()
   //   returns 2: 'pt_PT'
+
   const runtime = ensurePhpRuntimeState()
   return runtime.locale_default ?? 'en_US_POSIX'
 }
@@ -645,8 +671,10 @@ const toSortablePrimitive = (value) => {
   ) {
     return value
   }
+
   return String(value ?? '')
 }
+
 function sort(inputArr, sortFlags) {
   //  discuss at: https://locutus.io/php/sort/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -677,13 +705,17 @@ function sort(inputArr, sortFlags) {
   //   example 2: sort($fruits)
   //   example 2: var $result = $fruits
   //   returns 2: {0: 'apple', 1: 'banana', 2: 'lemon', 3: 'orange'}
+
   const runtime = ensurePhpRuntimeState()
+
   const regularSortAsc = (leftValue, rightValue) => {
     const left = toSortablePrimitive(leftValue)
     const right = toSortablePrimitive(rightValue)
     return left > right ? 1 : left < right ? -1 : 0
   }
+
   let sorter
+
   switch (sortFlags) {
     case 'SORT_STRING':
       // compare items as strings via built-in fallback
@@ -705,9 +737,11 @@ function sort(inputArr, sortFlags) {
       sorter = regularSortAsc
       break
   }
+
   const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on'
   const sortByReference = iniVal === 'on'
   const populateArr = sortByReference ? inputArr : {}
+
   const values = []
   for (const [key, value] of Object.entries(inputArr)) {
     values.push(value)
@@ -715,10 +749,13 @@ function sort(inputArr, sortFlags) {
       delete inputArr[key]
     }
   }
+
   values.sort(sorter)
+
   for (const [index, value] of values.entries()) {
     populateArr[index] = value
   }
+
   return sortByReference || populateArr
 }{% endcodeblock %}
 </div>

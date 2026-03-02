@@ -199,6 +199,7 @@ export function arsort<T extends SortValue>(
 {% codeblock lang:javascript %}import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
 import { i18n_loc_get_default as i18lgd } from '../i18n/i18n_loc_get_default.ts'
 import { strnatcmp } from '../strings/strnatcmp.ts'
+
 const toSortablePrimitive = (value) => {
   if (
     typeof value === 'string' ||
@@ -208,8 +209,10 @@ const toSortablePrimitive = (value) => {
   ) {
     return value
   }
+
   return String(value ?? '')
 }
+
 export function arsort(inputArr, sortFlags) {
   //  discuss at: https://locutus.io/php/arsort/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -242,14 +245,18 @@ export function arsort(inputArr, sortFlags) {
   //   example 2: arsort($data)
   //   example 2: var $result = $data
   //   returns 2: {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
+
   const runtime = ensurePhpRuntimeState()
   const valArr = []
+
   const regularSortDesc = (leftValue, rightValue) => {
     const left = toSortablePrimitive(leftValue)
     const right = toSortablePrimitive(rightValue)
     return left < right ? 1 : left > right ? -1 : 0
   }
+
   let sorter = regularSortDesc
+
   switch (sortFlags) {
     case 'SORT_STRING':
       sorter = (a, b) => Number(strnatcmp(b, a) ?? 0)
@@ -271,22 +278,27 @@ export function arsort(inputArr, sortFlags) {
       sorter = regularSortDesc
       break
   }
+
   const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on'
   const sortByReference = iniVal === 'on'
   const populateArr = {}
+
   for (const [key, value] of Object.entries(inputArr)) {
     valArr.push([key, value])
     if (sortByReference) {
       delete inputArr[key]
     }
   }
+
   valArr.sort((a, b) => sorter(a[1], b[1]))
+
   for (const [key, value] of valArr) {
     populateArr[key] = value
     if (sortByReference) {
       inputArr[key] = value
     }
   }
+
   return sortByReference || populateArr
 }{% endcodeblock %}
 </div>
@@ -762,6 +774,7 @@ function isPhpList(value) {
   //  returns 1: true
   return Array.isArray(value)
 }
+
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -769,29 +782,37 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
 
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
+
 const isLocaleBag = (value) => isPhpAssocObject(value)
+
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 const ensurePhpRuntimeObject = () => {
   let locutus = globalContext.$locutus
   if (typeof locutus !== 'object' || locutus === null) {
     locutus = {}
     globalContext.$locutus = locutus
   }
+
   let php = locutus.php
   if (typeof php !== 'object' || php === null) {
     php = {}
     locutus.php = php
   }
+
   return php
 }
+
 function ensurePhpRuntimeState() {
   // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
   //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
@@ -802,10 +823,12 @@ function ensurePhpRuntimeState() {
   const localesValue = php.locales
   const localeCategoriesValue = php.localeCategories
   const pointersValue = php.pointers
+
   const ini = isIniBag(iniValue) ? iniValue : {}
   const locales = isLocaleBag(localesValue) ? localesValue : {}
   const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
   const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
   if (iniValue !== ini) {
     php.ini = ini
   }
@@ -818,8 +841,10 @@ function ensurePhpRuntimeState() {
   if (pointersValue !== pointers) {
     php.pointers = pointers
   }
+
   const localeDefaultValue = php.locale_default
   const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
   return {
     ini,
     locales,
@@ -842,6 +867,7 @@ function i18n_loc_get_default() {
   //   example 2: i18n_loc_set_default('pt_PT')
   //   example 2: i18n_loc_get_default()
   //   returns 2: 'pt_PT'
+
   const runtime = ensurePhpRuntimeState()
   return runtime.locale_default ?? 'en_US_POSIX'
 }
@@ -875,6 +901,7 @@ function _phpCastString(value) {
   //  returns 12: '1'
   //  example 13: _phpCastString(3.14)
   //  returns 13: '3.14'
+
   if (typeof value === 'boolean') {
     return value ? '1' : ''
   }
@@ -885,9 +912,11 @@ function _phpCastString(value) {
     if (isNaN(value)) {
       return 'NAN'
     }
+
     if (!isFinite(value)) {
       return (value < 0 ? '-' : '') + 'INF'
     }
+
     return value + ''
   }
   if (typeof value === 'undefined') {
@@ -897,11 +926,14 @@ function _phpCastString(value) {
     if (Array.isArray(value)) {
       return 'Array'
     }
+
     if (value !== null) {
       return 'Object'
     }
+
     return ''
   }
+
   throw new Error('Unsupported value type')
 }
 
@@ -928,18 +960,24 @@ function strnatcmp(left, right) {
   //        returns 6: 1
   //        example 7: strnatcmp('0A', '5N')
   //        returns 7: -1
+
   const leadingZeros = /^0+(?=\d)/
   const whitespace = /^\s/
   const digit = /^\d/
+
   let leftValue = _phpCastString(left)
   let rightValue = _phpCastString(right)
+
   if (!leftValue.length || !rightValue.length) {
     return leftValue.length - rightValue.length
   }
+
   let i = 0
   let j = 0
+
   leftValue = leftValue.replace(leadingZeros, '')
   rightValue = rightValue.replace(leadingZeros, '')
+
   while (i < leftValue.length && j < rightValue.length) {
     // skip consecutive whitespace
     while (whitespace.test(leftValue.charAt(i))) {
@@ -948,13 +986,16 @@ function strnatcmp(left, right) {
     while (whitespace.test(rightValue.charAt(j))) {
       j++
     }
+
     let ac = leftValue.charAt(i)
     let bc = rightValue.charAt(j)
     let aIsDigit = digit.test(ac)
     let bIsDigit = digit.test(bc)
+
     if (aIsDigit && bIsDigit) {
       let bias = 0
       const fractional = ac === '0' || bc === '0'
+
       do {
         if (!aIsDigit) {
           return -1
@@ -964,6 +1005,7 @@ function strnatcmp(left, right) {
           if (!bias) {
             bias = -1
           }
+
           if (fractional) {
             return -1
           }
@@ -971,20 +1013,26 @@ function strnatcmp(left, right) {
           if (!bias) {
             bias = 1
           }
+
           if (fractional) {
             return 1
           }
         }
+
         ac = leftValue.charAt(++i)
         bc = rightValue.charAt(++j)
+
         aIsDigit = digit.test(ac)
         bIsDigit = digit.test(bc)
       } while (aIsDigit || bIsDigit)
+
       if (!fractional && bias) {
         return bias
       }
+
       continue
     }
+
     if (!ac || !bc) {
       continue
     } else if (ac < bc) {
@@ -992,11 +1040,14 @@ function strnatcmp(left, right) {
     } else if (ac > bc) {
       return 1
     }
+
     i++
     j++
   }
+
   const iBeforeStrEnd = i < leftValue.length
   const jBeforeStrEnd = j < rightValue.length
+
   // Check which string ended first
   // return -1 if a, 1 if b, 0 otherwise
   if (iBeforeStrEnd && !jBeforeStrEnd) {
@@ -1020,8 +1071,10 @@ const toSortablePrimitive = (value) => {
   ) {
     return value
   }
+
   return String(value ?? '')
 }
+
 function arsort(inputArr, sortFlags) {
   //  discuss at: https://locutus.io/php/arsort/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -1054,14 +1107,18 @@ function arsort(inputArr, sortFlags) {
   //   example 2: arsort($data)
   //   example 2: var $result = $data
   //   returns 2: {a: 'orange', d: 'lemon', b: 'banana', c: 'apple'}
+
   const runtime = ensurePhpRuntimeState()
   const valArr = []
+
   const regularSortDesc = (leftValue, rightValue) => {
     const left = toSortablePrimitive(leftValue)
     const right = toSortablePrimitive(rightValue)
     return left < right ? 1 : left > right ? -1 : 0
   }
+
   let sorter = regularSortDesc
+
   switch (sortFlags) {
     case 'SORT_STRING':
       sorter = (a, b) => Number(strnatcmp(b, a) ?? 0)
@@ -1083,22 +1140,27 @@ function arsort(inputArr, sortFlags) {
       sorter = regularSortDesc
       break
   }
+
   const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on'
   const sortByReference = iniVal === 'on'
   const populateArr = {}
+
   for (const [key, value] of Object.entries(inputArr)) {
     valArr.push([key, value])
     if (sortByReference) {
       delete inputArr[key]
     }
   }
+
   valArr.sort((a, b) => sorter(a[1], b[1]))
+
   for (const [key, value] of valArr) {
     populateArr[key] = value
     if (sortByReference) {
       inputArr[key] = value
     }
   }
+
   return sortByReference || populateArr
 }{% endcodeblock %}
 </div>

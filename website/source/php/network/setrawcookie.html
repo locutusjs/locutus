@@ -95,7 +95,8 @@ export function setrawcookie(
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function setrawcookie(name, value, expires, path, domain, secure) {
+{% codeblock lang:javascript %}
+export function setrawcookie(name, value, expires, path, domain, secure) {
   //  discuss at: https://locutus.io/php/setrawcookie/
   // original by: Brett Zamir (https://brett-zamir.me)
   // original by: setcookie
@@ -105,18 +106,23 @@ export function setrawcookie(
   // bugfixed by: Brett Zamir (https://brett-zamir.me)
   //   example 1: setrawcookie('author_name', 'Kevin van Zonneveld')
   //   returns 1: true
+
   if (typeof window === 'undefined') {
     return true
   }
+
   let normalizedExpires = expires
+
   if (typeof normalizedExpires === 'string' && /^\d+$/.test(normalizedExpires)) {
     normalizedExpires = parseInt(normalizedExpires, 10)
   }
+
   if (normalizedExpires instanceof Date) {
     normalizedExpires = normalizedExpires.toUTCString()
   } else if (typeof normalizedExpires === 'number') {
     normalizedExpires = new Date(normalizedExpires * 1e3).toUTCString()
   }
+
   const parts = [name + '=' + value]
   if (normalizedExpires) {
     parts.push('expires=' + normalizedExpires)
@@ -127,10 +133,13 @@ export function setrawcookie(
   if (domain) {
     parts.push('domain=' + domain)
   }
+
   if (secure) {
     parts.push('secure')
   }
+
   window.document.cookie = parts.join(';')
+
   return true
 }{% endcodeblock %}
 </div>

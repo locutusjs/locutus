@@ -118,6 +118,7 @@ export function print_r(array: PrintValue, returnVal?: boolean): string | true {
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
+
 export function print_r(array, returnVal) {
   //      discuss at: https://locutus.io/php/print_r/
   // parity verified: PHP 8.3
@@ -128,9 +129,11 @@ export function print_r(array, returnVal) {
   //        input by: Brett Zamir (https://brett-zamir.me)
   //       example 1: print_r(1, true)
   //       returns 1: '1'
+
   let output = ''
   const padChar = ' '
   const padVal = 4
+
   const _repeatChar = function (len, padChar) {
     let str = ''
     for (let i = 0; i < len; i++) {
@@ -142,9 +145,11 @@ export function print_r(array, returnVal) {
     if (curDepth > 0) {
       curDepth++
     }
+
     const basePad = _repeatChar(padVal * curDepth, padChar)
     const thickPad = _repeatChar(padVal * (curDepth + 1), padChar)
     let str = ''
+
     if (typeof obj === 'object' && obj !== null && obj.constructor) {
       const objectValue = toPhpArrayObject(obj)
       str += 'Array\n' + basePad + '(\n'
@@ -172,9 +177,12 @@ export function print_r(array, returnVal) {
       // for our "resource" class
       str = String(obj)
     }
+
     return str
   }
+
   output = _formatArray(array, 0, padVal, padChar)
+
   if (returnVal !== true) {
     echo(output)
     return true
@@ -344,10 +352,12 @@ function isPhpArrayObject(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
     return value
   }
+
   return {}
 }
 
@@ -378,6 +388,7 @@ function echo(...args) {
   //        input by: JB
   //       example 1: echo('Hello world')
   //       returns 1: undefined
+
   return console.log(args.join(' '))
 }
 
@@ -392,9 +403,11 @@ function print_r(array, returnVal) {
   //        input by: Brett Zamir (https://brett-zamir.me)
   //       example 1: print_r(1, true)
   //       returns 1: '1'
+
   let output = ''
   const padChar = ' '
   const padVal = 4
+
   const _repeatChar = function (len, padChar) {
     let str = ''
     for (let i = 0; i < len; i++) {
@@ -406,9 +419,11 @@ function print_r(array, returnVal) {
     if (curDepth > 0) {
       curDepth++
     }
+
     const basePad = _repeatChar(padVal * curDepth, padChar)
     const thickPad = _repeatChar(padVal * (curDepth + 1), padChar)
     let str = ''
+
     if (typeof obj === 'object' && obj !== null && obj.constructor) {
       const objectValue = toPhpArrayObject(obj)
       str += 'Array\n' + basePad + '(\n'
@@ -436,9 +451,12 @@ function print_r(array, returnVal) {
       // for our "resource" class
       str = String(obj)
     }
+
     return str
   }
+
   output = _formatArray(array, 0, padVal, padChar)
+
   if (returnVal !== true) {
     echo(output)
     return true

@@ -76,6 +76,7 @@ export function array_diff_key<TValue>(
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { entriesOfPhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
 export function array_diff_key(arr1, ...arrays) {
   //  discuss at: https://locutus.io/php/array_diff_key/
   // original by: Ates Goral (https://magnetiq.com)
@@ -85,10 +86,13 @@ export function array_diff_key(arr1, ...arrays) {
   //   returns 1: {"green":2, "blue":3, "white":4}
   //   example 2: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {red: 5})
   //   returns 2: {"green":2, "blue":3, "white":4}
+
   const retArr = {}
+
   if (arrays.length < 1) {
     return retArr
   }
+
   const arr1Object = toPhpArrayObject(arr1)
   arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
     for (const nextArray of arrays) {
@@ -101,6 +105,7 @@ export function array_diff_key(arr1, ...arrays) {
     }
     retArr[k1] = arr1Value
   }
+
   return retArr
 }{% endcodeblock %}
 </div>
@@ -181,6 +186,7 @@ function array_diff_key<TValue>(
 const entriesOfPhpAssoc = (value) => {
   return Object.entries(value)
 }
+
 function isPhpArrayObject(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -188,10 +194,12 @@ function isPhpArrayObject(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
     return value
   }
+
   return {}
 }
 
@@ -205,10 +213,13 @@ function array_diff_key(arr1, ...arrays) {
   //   returns 1: {"green":2, "blue":3, "white":4}
   //   example 2: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {red: 5})
   //   returns 2: {"green":2, "blue":3, "white":4}
+
   const retArr = {}
+
   if (arrays.length < 1) {
     return retArr
   }
+
   const arr1Object = toPhpArrayObject(arr1)
   arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
     for (const nextArray of arrays) {
@@ -221,6 +232,7 @@ function array_diff_key(arr1, ...arrays) {
     }
     retArr[k1] = arr1Value
   }
+
   return retArr
 }{% endcodeblock %}
 </div>

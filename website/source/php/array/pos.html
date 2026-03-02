@@ -50,6 +50,7 @@ export function pos<T>(arr: T[] | Record<string, T>): T | false {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { current } from '../array/current.ts'
+
 export function pos(arr) {
   //      discuss at: https://locutus.io/php/pos/
   // parity verified: PHP 8.3
@@ -58,6 +59,7 @@ export function pos(arr) {
   //       example 1: var $transport = ['foot', 'bike', 'car', 'plane']
   //       example 1: pos($transport)
   //       returns 1: 'foot'
+
   return current(arr)
 }{% endcodeblock %}
 </div>
@@ -303,6 +305,7 @@ function pos<T>(arr: T[] | Record<string, T>): T | false {
 const entriesOfPhpAssoc = (value) => {
   return Object.entries(value)
 }
+
 function isPhpList(value) {
   // discuss at: https://locutus.io/php/_helpers/isPhpList/
   //     note 1: Shared helper guard for PHP list-like array values.
@@ -310,6 +313,7 @@ function isPhpList(value) {
   //  returns 1: true
   return Array.isArray(value)
 }
+
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -317,29 +321,37 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
 
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
+
 const isLocaleBag = (value) => isPhpAssocObject(value)
+
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 const ensurePhpRuntimeObject = () => {
   let locutus = globalContext.$locutus
   if (typeof locutus !== 'object' || locutus === null) {
     locutus = {}
     globalContext.$locutus = locutus
   }
+
   let php = locutus.php
   if (typeof php !== 'object' || php === null) {
     php = {}
     locutus.php = php
   }
+
   return php
 }
+
 function ensurePhpRuntimeState() {
   // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
   //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
@@ -350,10 +362,12 @@ function ensurePhpRuntimeState() {
   const localesValue = php.locales
   const localeCategoriesValue = php.localeCategories
   const pointersValue = php.pointers
+
   const ini = isIniBag(iniValue) ? iniValue : {}
   const locales = isLocaleBag(localesValue) ? localesValue : {}
   const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
   const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
   if (iniValue !== ini) {
     php.ini = ini
   }
@@ -366,8 +380,10 @@ function ensurePhpRuntimeState() {
   if (pointersValue !== pointers) {
     php.pointers = pointers
   }
+
   const localeDefaultValue = php.locale_default
   const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
   return {
     ini,
     locales,
@@ -384,8 +400,10 @@ const findPointerIndex = (pointers, target) => {
       return index
     }
   }
+
   return -1
 }
+
 function getPointerState(target, initialize = true) {
   // discuss at: https://locutus.io/php/_helpers/getPointerState/
   //     note 1: Resolves or initializes locutus pointer state for a given array-like target.
@@ -394,6 +412,7 @@ function getPointerState(target, initialize = true) {
   const runtime = ensurePhpRuntimeState()
   const pointers = runtime.pointers
   const pointerTarget = target
+
   let index = findPointerIndex(pointers, pointerTarget)
   if (index === -1) {
     if (!initialize) {
@@ -402,8 +421,10 @@ function getPointerState(target, initialize = true) {
     pointers.push(pointerTarget, 0)
     index = pointers.length - 2
   }
+
   const cursorValue = pointers[index + 1]
   const cursor = typeof cursorValue === 'number' ? cursorValue : 0
+
   return {
     cursor,
     setCursor: (nextCursor) => {
@@ -411,20 +432,24 @@ function getPointerState(target, initialize = true) {
     },
   }
 }
+
 function getEntryAtCursor(target, cursor) {
   if (cursor < 0) {
     return null
   }
+
   if (Array.isArray(target)) {
     if (cursor >= target.length) {
       return null
     }
+
     const value = target[cursor]
     if (typeof value === 'undefined') {
       return null
     }
     return [cursor, value]
   }
+
   let index = 0
   for (const [key, value] of entriesOfPhpAssoc(target)) {
     if (index === cursor) {
@@ -432,6 +457,7 @@ function getEntryAtCursor(target, cursor) {
     }
     index += 1
   }
+
   return null
 }
 
@@ -444,10 +470,12 @@ function current(arr) {
   //       example 1: var $transport = ['foot', 'bike', 'car', 'plane']
   //       example 1: current($transport)
   //       returns 1: 'foot'
+
   const state = getPointerState(arr, true)
   if (!state) {
     return false
   }
+
   const entry = getEntryAtCursor(arr, state.cursor)
   return entry ? entry[1] : false
 }
@@ -461,6 +489,7 @@ function pos(arr) {
   //       example 1: var $transport = ['foot', 'bike', 'car', 'plane']
   //       example 1: pos($transport)
   //       returns 1: 'foot'
+
   return current(arr)
 }{% endcodeblock %}
 </div>

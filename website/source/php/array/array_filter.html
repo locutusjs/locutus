@@ -96,7 +96,8 @@ export function array_filter<T>(arr: PhpAssoc<T> | PhpList<T>, func?: FilterCall
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function array_filter(arr, func) {
+{% codeblock lang:javascript %}
+export function array_filter(arr, func) {
   //  discuss at: https://locutus.io/php/array_filter/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: max4ever
@@ -110,7 +111,9 @@ export function array_filter<T>(arr: PhpAssoc<T> | PhpList<T>, func?: FilterCall
   //   returns 2: [ 6, , 8, , 10, , 12 ]
   //   example 3: array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined})
   //   returns 3: {"a":1, "c":-1}
+
   const callback = func || ((v) => v)
+
   if (Array.isArray(arr)) {
     // @todo: Issue #73
     const filtered = []
@@ -122,12 +125,14 @@ export function array_filter<T>(arr: PhpAssoc<T> | PhpList<T>, func?: FilterCall
     }
     return filtered
   }
+
   const filtered = {}
   for (const [key, value] of Object.entries(arr)) {
     if (Reflect.apply(callback, undefined, [value, key])) {
       filtered[key] = value
     }
   }
+
   return filtered
 }{% endcodeblock %}
 </div>

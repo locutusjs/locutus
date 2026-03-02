@@ -154,6 +154,7 @@ export function array_walk_recursive<
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { isObjectLike, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
 export function array_walk_recursive(array, funcname, userdata) {
   // original by: Hugues Peccatte
   //      note 1: Only works with user-defined functions, not built-in functions like void()
@@ -163,13 +164,17 @@ export function array_walk_recursive(array, funcname, userdata) {
   //   returns 2: true
   //   example 3: array_walk_recursive([3, []], function () {}, 'userdata')
   //   returns 3: true
+
   if (!isObjectLike(array)) {
     return false
   }
+
   if (typeof funcname !== 'function') {
     return false
   }
+
   const hasUserdata = typeof userdata !== 'undefined'
+
   const callCallback = (value, key) => {
     try {
       if (hasUserdata) {
@@ -182,6 +187,7 @@ export function array_walk_recursive(array, funcname, userdata) {
       return false
     }
   }
+
   const walkList = (list) => {
     for (const [index, value] of list.entries()) {
       if (Array.isArray(value)) {
@@ -196,6 +202,7 @@ export function array_walk_recursive(array, funcname, userdata) {
     }
     return true
   }
+
   const walkAssoc = (assoc) => {
     for (const [key, value] of Object.entries(assoc)) {
       if (Array.isArray(value)) {
@@ -210,9 +217,11 @@ export function array_walk_recursive(array, funcname, userdata) {
     }
     return true
   }
+
   if (Array.isArray(array)) {
     return walkList(array)
   }
+
   return walkAssoc(toPhpArrayObject(array))
 }{% endcodeblock %}
 </div>
@@ -385,14 +394,17 @@ function isPhpArrayObject(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
     return value
   }
+
   return {}
 }
 
 // php/array/array_walk_recursive (target function module)
+
 function array_walk_recursive(array, funcname, userdata) {
   // original by: Hugues Peccatte
   //      note 1: Only works with user-defined functions, not built-in functions like void()
@@ -402,13 +414,17 @@ function array_walk_recursive(array, funcname, userdata) {
   //   returns 2: true
   //   example 3: array_walk_recursive([3, []], function () {}, 'userdata')
   //   returns 3: true
+
   if (!isObjectLike(array)) {
     return false
   }
+
   if (typeof funcname !== 'function') {
     return false
   }
+
   const hasUserdata = typeof userdata !== 'undefined'
+
   const callCallback = (value, key) => {
     try {
       if (hasUserdata) {
@@ -421,6 +437,7 @@ function array_walk_recursive(array, funcname, userdata) {
       return false
     }
   }
+
   const walkList = (list) => {
     for (const [index, value] of list.entries()) {
       if (Array.isArray(value)) {
@@ -435,6 +452,7 @@ function array_walk_recursive(array, funcname, userdata) {
     }
     return true
   }
+
   const walkAssoc = (assoc) => {
     for (const [key, value] of Object.entries(assoc)) {
       if (Array.isArray(value)) {
@@ -449,9 +467,11 @@ function array_walk_recursive(array, funcname, userdata) {
     }
     return true
   }
+
   if (Array.isArray(array)) {
     return walkList(array)
   }
+
   return walkAssoc(toPhpArrayObject(array))
 }{% endcodeblock %}
 </div>

@@ -68,6 +68,7 @@ alias:
   //       returns 2: -123
   //       example 3: atoi('abc')
   //       returns 3: 0
+
   str = (str + '').replace(/^\s+/, '')
   const result = parseInt(str, 10)
   return isNaN(result) ? 0 : result

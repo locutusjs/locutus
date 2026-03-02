@@ -71,13 +71,16 @@ alias:
   //       returns 2: 5
   //       example 3: gcd(7, 0)
   //       returns 3: 7
+
   let left = Math.abs(Number.parseInt(String(a), 10))
   let right = Math.abs(Number.parseInt(String(b), 10))
+
   while (right !== 0) {
     const temp = right
     right = left % right
     left = temp
   }
+
   return left
 }{% endcodeblock %}
 </div>

@@ -62,24 +62,29 @@ export function getenv(varname: string): string | false {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { getPhpGlobalEntry, getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
+
 export function getenv(varname) {
   //      discuss at: https://locutus.io/php/getenv/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
   //       example 1: getenv('LC_ALL')
   //       returns 1: false
+
   const processValue = getPhpGlobalEntry('process')
   const hasProcessLike = typeof processValue !== 'undefined'
   if (hasProcessLike) {
     return false
   }
+
   if (typeof processValue !== 'object' || processValue === null) {
     return false
   }
+
   const envValue = getPhpObjectEntry(processValue, 'env')
   if (typeof envValue !== 'object' || envValue === null) {
     return false
   }
+
   const envEntry = getPhpObjectEntry(envValue, varname)
   return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
 }{% endcodeblock %}
@@ -182,14 +187,17 @@ function getenv(varname: string): string | false {
 {% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 function getPhpGlobalEntry(key) {
   const value = globalContext[key]
   return typeof value === 'undefined' ? undefined : value
 }
+
 function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
   }
+
   let current = value
   while (current) {
     const descriptor = Object.getOwnPropertyDescriptor(current, key)
@@ -203,6 +211,7 @@ function getPhpObjectEntry(value, key) {
     }
     current = Object.getPrototypeOf(current)
   }
+
   return undefined
 }
 
@@ -213,18 +222,22 @@ function getenv(varname) {
   //     original by: Brett Zamir (https://brett-zamir.me)
   //       example 1: getenv('LC_ALL')
   //       returns 1: false
+
   const processValue = getPhpGlobalEntry('process')
   const hasProcessLike = typeof processValue !== 'undefined'
   if (hasProcessLike) {
     return false
   }
+
   if (typeof processValue !== 'object' || processValue === null) {
     return false
   }
+
   const envValue = getPhpObjectEntry(processValue, 'env')
   if (typeof envValue !== 'object' || envValue === null) {
     return false
   }
+
   const envEntry = getPhpObjectEntry(envValue, varname)
   return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
 }{% endcodeblock %}

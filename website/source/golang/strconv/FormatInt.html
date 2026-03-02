@@ -69,11 +69,14 @@ alias:
   //       returns 2: 'ff'
   //       example 3: FormatInt(10, 2)
   //       returns 3: '1010'
+
   i = Number.parseInt(String(i), 10)
   base = Number.parseInt(String(base), 10) || 10
+
   if (base < 2 || base > 36) {
     throw new Error('strconv: illegal base ' + base)
   }
+
   return i.toString(base)
 }{% endcodeblock %}
 </div>

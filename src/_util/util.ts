@@ -45,6 +45,14 @@ interface StandaloneDependencyOptions {
   includeTypeOnlyImports?: boolean
 }
 
+interface WebsiteJsOptions {
+  preserveBlankLines?: boolean
+}
+
+interface WebsiteJsFormatOptions {
+  restorePreservedBlankLines?: boolean
+}
+
 type StandaloneMode = 'js' | 'ts'
 
 interface StandaloneImportSpec {
@@ -88,6 +96,8 @@ interface StandaloneModuleSelection {
 type UnknownMap = { [key: string]: unknown }
 
 type Callback<T = void> = (err: Error | null, result?: T) => void
+
+const WEBSITE_BLANK_LINE_MARKER_COMMENT = '/*__LOCUTUS_PRESERVE_BLANK_LINE__*/'
 
 class Util {
   __src: string
@@ -543,7 +553,11 @@ class Util {
 
     if (isTS) {
       const hasStandaloneDependencies = (params.codeDependencies || []).length > 0
-      const jsCode = this._formatWebsiteJavascript(this._toWebsiteJs(params.code), params.filepath.replace(/\.ts$/, '.js'))
+      const jsCode = this._formatWebsiteJavascript(
+        this._toWebsiteJs(params.code, { preserveBlankLines: true }),
+        params.filepath.replace(/\.ts$/, '.js'),
+        { restorePreservedBlankLines: true },
+      )
       const standaloneCode = hasStandaloneDependencies ? await this._buildStandaloneJs(params) : ''
       const standaloneTsCode = hasStandaloneDependencies ? await this._buildStandaloneTs(params) : null
 
@@ -584,9 +598,26 @@ class Util {
     return subpath + '.js'
   }
 
-  _toWebsiteJs(code: string): string {
+  _markWebsiteBlankLines(code: string): string {
+    return code
+      .split('\n')
+      .map((line) => {
+        if (line.trim().length === 0) {
+          return WEBSITE_BLANK_LINE_MARKER_COMMENT
+        }
+        return line
+      })
+      .join('\n')
+  }
+
+  _restoreWebsiteBlankLines(code: string): string {
+    return code.replace(/^\s*\/\*__LOCUTUS_PRESERVE_BLANK_LINE__\*\/;?\s*$/gm, '')
+  }
+
+  _toWebsiteJs(code: string, options: WebsiteJsOptions = {}): string {
     // website/source snippets are generated snapshots; refresh with `yarn injectweb` after signature changes.
-    const jsResult = ts.transpileModule(code, {
+    const sourceCode = options.preserveBlankLines ? this._markWebsiteBlankLines(code) : code
+    const jsResult = ts.transpileModule(sourceCode, {
       compilerOptions: {
         target: ts.ScriptTarget.ES2022,
         module: ts.ModuleKind.ESNext,
@@ -623,7 +654,12 @@ class Util {
     return null
   }
 
-  _formatWebsiteJavascript(code: string, sourcePath: string): string {
+  _formatWebsiteJavascript(code: string, sourcePath: string, options: WebsiteJsFormatOptions = {}): string {
+    const finalize = (text: string): string => {
+      const formatted = options.restorePreservedBlankLines ? this._restoreWebsiteBlankLines(text) : text
+      return formatted.trimEnd()
+    }
+
     const input = code.trimEnd()
     if (!input) {
       return ''
@@ -631,7 +667,7 @@ class Util {
 
     const biomeBin = this._resolveBiomeBinPath()
     if (!biomeBin) {
-      return input
+      return finalize(input)
     }
 
     const result = spawnSync(biomeBin, ['format', '--stdin-file-path', sourcePath], {
@@ -645,11 +681,11 @@ class Util {
       if (stderr) {
         debug(`biome format failed for ${sourcePath}: ${stderr}`)
       }
-      return input
+      return finalize(input)
     }
 
     const output = result.stdout.trimEnd()
-    return output || input
+    return finalize(output || input)
   }
 
   _toCommonJsRuntimeCode(code: string, options: { sourcePath: string }): string {
@@ -879,7 +915,9 @@ class Util {
 
       let renderedModuleCode = selectedModuleCode
       if (mode === 'js') {
-        renderedModuleCode = this._stripLocutusModuleSyntax(this._toWebsiteJs(renderedModuleCode))
+        renderedModuleCode = this._stripLocutusModuleSyntax(
+          this._toWebsiteJs(renderedModuleCode, { preserveBlankLines: true }),
+        )
       } else {
         renderedModuleCode = this._stripLocutusModuleSyntax(renderedModuleCode)
       }
@@ -901,7 +939,9 @@ class Util {
 
     const output = chunks.join('\n\n').trimEnd()
     if (mode === 'js') {
-      return this._formatWebsiteJavascript(output, `${params.filepath}.standalone.js`)
+      return this._formatWebsiteJavascript(output, `${params.filepath}.standalone.js`, {
+        restorePreservedBlankLines: true,
+      })
     }
     return output
   }

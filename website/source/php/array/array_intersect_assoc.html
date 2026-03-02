@@ -73,6 +73,7 @@ export function array_intersect_assoc<TValue>(
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { entriesOfPhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
 export function array_intersect_assoc(arr1, ...arrays) {
   //  discuss at: https://locutus.io/php/array_intersect_assoc/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -82,10 +83,12 @@ export function array_intersect_assoc(arr1, ...arrays) {
   //   example 1: var $array2 = {a: 'green', 0: 'yellow', 1: 'red'}
   //   example 1: array_intersect_assoc($array1, $array2)
   //   returns 1: {a: 'green'}
+
   const retArr = {}
   if (arrays.length < 1) {
     return retArr
   }
+
   const arr1Object = toPhpArrayObject(arr1)
   arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
     for (const nextArray of arrays) {
@@ -96,6 +99,7 @@ export function array_intersect_assoc(arr1, ...arrays) {
     }
     retArr[k1] = arr1Value
   }
+
   return retArr
 }{% endcodeblock %}
 </div>
@@ -173,6 +177,7 @@ function array_intersect_assoc<TValue>(
 const entriesOfPhpAssoc = (value) => {
   return Object.entries(value)
 }
+
 function isPhpArrayObject(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -180,10 +185,12 @@ function isPhpArrayObject(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
     return value
   }
+
   return {}
 }
 
@@ -197,10 +204,12 @@ function array_intersect_assoc(arr1, ...arrays) {
   //   example 1: var $array2 = {a: 'green', 0: 'yellow', 1: 'red'}
   //   example 1: array_intersect_assoc($array1, $array2)
   //   returns 1: {a: 'green'}
+
   const retArr = {}
   if (arrays.length < 1) {
     return retArr
   }
+
   const arr1Object = toPhpArrayObject(arr1)
   arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
     for (const nextArray of arrays) {
@@ -211,6 +220,7 @@ function array_intersect_assoc(arr1, ...arrays) {
     }
     retArr[k1] = arr1Value
   }
+
   return retArr
 }{% endcodeblock %}
 </div>

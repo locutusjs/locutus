@@ -133,14 +133,17 @@ alias:
   //       returns 1: " !HWdelor"
   //       example 2: count_chars("Hello World!", 1)
   //       returns 2: {32:1,33:1,72:1,87:1,100:1,101:1,108:3,111:2,114:1}
+
   const result = {}
   let i = 0
+
   const groupedChars =
     ('' + str)
       .split('')
       .sort()
       .join('')
       .match(/(.)\1*/g) || []
+
   if (mode === 3) {
     let presentChars = ''
     for (i = 0; i !== groupedChars.length; i += 1) {
@@ -152,11 +155,13 @@ alias:
     }
     return presentChars
   }
+
   if ((mode & 1) === 0) {
     for (i = 0; i !== 256; i++) {
       result[i] = 0
     }
   }
+
   if (mode === 2 || mode === 4) {
     for (i = 0; i !== groupedChars.length; i += 1) {
       const grouped = groupedChars[i]
@@ -172,6 +177,7 @@ alias:
       }
       return absentChars
     }
+
     for (const key in result) {
       result[key] = 0
     }
@@ -184,6 +190,7 @@ alias:
       result[grouped.charCodeAt(0)] = grouped.length
     }
   }
+
   return result
 }{% endcodeblock %}
 </div>

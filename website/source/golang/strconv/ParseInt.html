@@ -78,15 +78,19 @@ alias:
   //       returns 2: 255
   //       example 3: ParseInt('1010', 2, 64)[0]
   //       returns 3: 10
+
   s = (s + '').trim()
   base = Number.parseInt(String(base), 10) || 10
+
   if (base < 2 || base > 36) {
     return [0, new Error('strconv.ParseInt: invalid base ' + base)]
   }
+
   const result = parseInt(s, base)
   if (isNaN(result)) {
     return [0, new Error('strconv.ParseInt: parsing "' + s + '": invalid syntax')]
   }
+
   return [result, null]
 }{% endcodeblock %}
 </div>

@@ -60,9 +60,11 @@ alias:
   //       returns 1: ['a', 'b', 'c']
   //       example 2: compact([1, 2, 3])
   //       returns 2: [1, 2, 3]
+
   if (!Array.isArray(arr)) {
     return []
   }
+
   return arr.filter((item) => item != null)
 }{% endcodeblock %}
 </div>

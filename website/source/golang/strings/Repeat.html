@@ -63,11 +63,14 @@ alias:
   //       returns 1: 'nana'
   //       example 2: Repeat('ba', 3)
   //       returns 2: 'bababa'
+
   s = s + ''
   count = Number.parseInt(String(count), 10)
+
   if (count < 0 || !isFinite(count)) {
     throw new Error('strings: negative Repeat count')
   }
+
   return s.repeat(count)
 }{% endcodeblock %}
 </div>

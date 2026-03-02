@@ -63,12 +63,14 @@ export function array_reduce(
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function array_reduce(aInput, callback, initial) {
+{% codeblock lang:javascript %}
+export function array_reduce(aInput, callback, initial) {
   //  discuss at: https://locutus.io/php/array_reduce/
   // original by: Alfonso Jimenez (https://www.alfonsojimenez.com)
   //      note 1: Takes a function as an argument, not a function's name
   //   example 1: array_reduce([1, 2, 3, 4, 5], function (v, w){v += w;return v;})
   //   returns 1: 15
+
   let carry = typeof initial === 'undefined' ? null : initial
   for (const value of aInput) {
     carry = callback(carry, value)

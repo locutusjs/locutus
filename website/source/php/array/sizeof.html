@@ -48,6 +48,7 @@ export function sizeof(mixedVar: Countable, mode?: CountMode): number {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { count } from '../array/count.ts'
+
 export function sizeof(mixedVar, mode) {
   //  discuss at: https://locutus.io/php/sizeof/
   // original by: Philip Peterson
@@ -55,6 +56,7 @@ export function sizeof(mixedVar, mode) {
   //   returns 1: 6
   //   example 2: sizeof({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE')
   //   returns 2: 6
+
   return count(mixedVar, mode ?? 0)
 }{% endcodeblock %}
 </div>
@@ -176,6 +178,7 @@ const isCountable = (value) => {
   const valuePrototype = Object.getPrototypeOf(value)
   return valuePrototype === Array.prototype || valuePrototype === Object.prototype
 }
+
 function count(mixedVar, mode = 0) {
   //  discuss at: https://locutus.io/php/count/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -188,7 +191,9 @@ function count(mixedVar, mode = 0) {
   //   returns 1: 6
   //   example 2: count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE')
   //   returns 2: 6
+
   let cnt = 0
+
   if (mixedVar === null || typeof mixedVar === 'undefined') {
     return 0
   }
@@ -199,7 +204,9 @@ function count(mixedVar, mode = 0) {
   if (prototype !== Array.prototype && prototype !== Object.prototype) {
     return 1
   }
+
   const recursiveMode = mode === 'COUNT_RECURSIVE' || mode === 1
+
   if (Array.isArray(mixedVar)) {
     for (const key of Object.keys(mixedVar)) {
       cnt++
@@ -210,6 +217,7 @@ function count(mixedVar, mode = 0) {
     }
     return cnt
   }
+
   for (const key in mixedVar) {
     if (Object.prototype.hasOwnProperty.call(mixedVar, key)) {
       cnt++
@@ -219,6 +227,7 @@ function count(mixedVar, mode = 0) {
       }
     }
   }
+
   return cnt
 }
 
@@ -230,6 +239,7 @@ function sizeof(mixedVar, mode) {
   //   returns 1: 6
   //   example 2: sizeof({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE')
   //   returns 2: 6
+
   return count(mixedVar, mode ?? 0)
 }{% endcodeblock %}
 </div>

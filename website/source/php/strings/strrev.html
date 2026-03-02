@@ -263,7 +263,9 @@ alias:
   //        returns 2: 'Baha\u0301' // combining
   //        example 3: strrev('A\uD87E\uDC04Z')
   //        returns 3: 'Z\uD87E\uDC04A' // surrogates
+
   string = string + ''
+
   // Performance will be enhanced with the next two lines of code commented
   // out if you don't care about combining characters
   // Keep Unicode combining characters together with the character preceding
@@ -271,6 +273,7 @@ alias:
   // See https://unicode.org/reports/tr44/#Property_Table (Me+Mn)
   // We also add the low surrogate range at the beginning here so it will be
   // maintained with its preceding high surrogate
+
   const chars = [
     '\uDC00-\uDFFF',
     '\u0300-\u036F',
@@ -454,7 +457,9 @@ alias:
     '\uFE00-\uFE0F',
     '\uFE20-\uFE26',
   ]
+
   const graphemeExtend = new RegExp('(.)([' + chars.join('') + ']+)', 'g')
+
   // Temporarily reverse
   string = string.replace(graphemeExtend, '$2$1')
   return string.split('').reverse().join('')

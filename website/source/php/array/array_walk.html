@@ -114,6 +114,7 @@ export function array_walk<
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
 export function array_walk(array, funcname, userdata) {
   //  discuss at: https://locutus.io/php/array_walk/
   // original by: Johnny Mast (https://www.phpvrouwen.nl)
@@ -126,9 +127,11 @@ export function array_walk(array, funcname, userdata) {
   //   returns 2: false
   //   example 3: array_walk ({"title":"my title"}, function () {})
   //   returns 3: true
+
   if (!array || typeof array !== 'object') {
     return false
   }
+
   try {
     const hasUserdata = typeof userdata !== 'undefined'
     const callback = funcname
@@ -142,6 +145,7 @@ export function array_walk(array, funcname, userdata) {
       }
       return true
     }
+
     const target = toPhpArrayObject(array)
     for (const [key, value] of Object.entries(target)) {
       if (hasUserdata) {
@@ -153,6 +157,7 @@ export function array_walk(array, funcname, userdata) {
   } catch (_e) {
     return false
   }
+
   return true
 }{% endcodeblock %}
 </div>
@@ -283,14 +288,17 @@ function isPhpArrayObject(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
     return value
   }
+
   return {}
 }
 
 // php/array/array_walk (target function module)
+
 function array_walk(array, funcname, userdata) {
   //  discuss at: https://locutus.io/php/array_walk/
   // original by: Johnny Mast (https://www.phpvrouwen.nl)
@@ -303,9 +311,11 @@ function array_walk(array, funcname, userdata) {
   //   returns 2: false
   //   example 3: array_walk ({"title":"my title"}, function () {})
   //   returns 3: true
+
   if (!array || typeof array !== 'object') {
     return false
   }
+
   try {
     const hasUserdata = typeof userdata !== 'undefined'
     const callback = funcname
@@ -319,6 +329,7 @@ function array_walk(array, funcname, userdata) {
       }
       return true
     }
+
     const target = toPhpArrayObject(array)
     for (const [key, value] of Object.entries(target)) {
       if (hasUserdata) {
@@ -330,6 +341,7 @@ function array_walk(array, funcname, userdata) {
   } catch (_e) {
     return false
   }
+
   return true
 }{% endcodeblock %}
 </div>

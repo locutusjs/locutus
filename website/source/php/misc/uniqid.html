@@ -96,6 +96,7 @@ export function uniqid(prefix?: string, moreEntropy?: boolean): string {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { getPhpRuntimeNumber, setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
+
 export function uniqid(prefix, moreEntropy) {
   //  discuss at: https://locutus.io/php/uniqid/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -110,7 +111,9 @@ export function uniqid(prefix, moreEntropy) {
   //   example 3: var $id = uniqid('bar', true)
   //   example 3: var $result = $id.length === (23 + 'bar'.length)
   //   returns 3: true
+
   const normalizedPrefix = prefix ?? ''
+
   let retId = ''
   const formatSeed = (seed, reqWidth) => {
     const hexSeed = Number.parseInt(String(seed), 10).toString(16) // to hex str
@@ -124,9 +127,11 @@ export function uniqid(prefix, moreEntropy) {
     }
     return hexSeed
   }
+
   let uniqidSeed = getPhpRuntimeNumber('uniqidSeed', Math.floor(Math.random() * 0x75bcd15)) // init seed with big random int
   uniqidSeed++
   setPhpRuntimeEntry('uniqidSeed', uniqidSeed)
+
   // start with prefix, add current milliseconds hex string
   retId = normalizedPrefix
   retId += formatSeed(Number.parseInt(String(new Date().getTime() / 1000), 10), 8)
@@ -136,6 +141,7 @@ export function uniqid(prefix, moreEntropy) {
     // for more entropy we add a float lower to 10
     retId += (Math.random() * 10).toFixed(8).toString()
   }
+
   return retId
 }{% endcodeblock %}
 </div>
@@ -291,28 +297,34 @@ function uniqid(prefix?: string, moreEntropy?: boolean): string {
 {% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 const ensurePhpRuntimeObject = () => {
   let locutus = globalContext.$locutus
   if (typeof locutus !== 'object' || locutus === null) {
     locutus = {}
     globalContext.$locutus = locutus
   }
+
   let php = locutus.php
   if (typeof php !== 'object' || php === null) {
     php = {}
     locutus.php = php
   }
+
   return php
 }
+
 function getPhpRuntimeEntry(key) {
   const php = ensurePhpRuntimeObject()
   const value = php[key]
   return typeof value === 'undefined' ? undefined : value
 }
+
 function setPhpRuntimeEntry(key, value) {
   const php = ensurePhpRuntimeObject()
   php[key] = value
 }
+
 function getPhpRuntimeNumber(key, fallback) {
   const value = getPhpRuntimeEntry(key)
   return typeof value === 'number' ? value : fallback
@@ -333,7 +345,9 @@ function uniqid(prefix, moreEntropy) {
   //   example 3: var $id = uniqid('bar', true)
   //   example 3: var $result = $id.length === (23 + 'bar'.length)
   //   returns 3: true
+
   const normalizedPrefix = prefix ?? ''
+
   let retId = ''
   const formatSeed = (seed, reqWidth) => {
     const hexSeed = Number.parseInt(String(seed), 10).toString(16) // to hex str
@@ -347,9 +361,11 @@ function uniqid(prefix, moreEntropy) {
     }
     return hexSeed
   }
+
   let uniqidSeed = getPhpRuntimeNumber('uniqidSeed', Math.floor(Math.random() * 0x75bcd15)) // init seed with big random int
   uniqidSeed++
   setPhpRuntimeEntry('uniqidSeed', uniqidSeed)
+
   // start with prefix, add current milliseconds hex string
   retId = normalizedPrefix
   retId += formatSeed(Number.parseInt(String(new Date().getTime() / 1000), 10), 8)
@@ -359,6 +375,7 @@ function uniqid(prefix, moreEntropy) {
     // for more entropy we add a float lower to 10
     retId += (Math.random() * 10).toFixed(8).toString()
   }
+
   return retId
 }{% endcodeblock %}
 </div>

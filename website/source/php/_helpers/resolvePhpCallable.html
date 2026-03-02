@@ -118,6 +118,7 @@ export function resolveNumericComparator<
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { getPhpGlobalEntry, getPhpObjectEntry } from './_phpRuntimeState.ts'
 import { isObjectLike, isPhpCallable } from './_phpTypes.ts'
+
 export function resolvePhpCallable(callback, options) {
   // discuss at: https://locutus.io/php/_helpers/resolvePhpCallable/
   //     note 1: Resolves PHP-style callbacks: function, global name, or [scope, method].
@@ -126,6 +127,7 @@ export function resolvePhpCallable(callback, options) {
   if (isPhpCallable(callback)) {
     return { fn: callback, scope: null }
   }
+
   if (typeof callback === 'string') {
     const candidate = getPhpGlobalEntry(callback)
     if (isPhpCallable(candidate)) {
@@ -133,9 +135,11 @@ export function resolvePhpCallable(callback, options) {
     }
     throw new Error(options.invalidMessage)
   }
+
   if (Array.isArray(callback) && callback.length >= 2) {
     const scopeDescriptor = callback[0]
     const callableDescriptor = callback[1]
+
     let scope
     if (typeof scopeDescriptor === 'string') {
       scope = getPhpGlobalEntry(scopeDescriptor)
@@ -145,9 +149,11 @@ export function resolvePhpCallable(callback, options) {
     } else {
       scope = scopeDescriptor
     }
+
     if (isPhpCallable(callableDescriptor)) {
       return { fn: callableDescriptor, scope }
     }
+
     if (typeof callableDescriptor === 'string' && (isObjectLike(scope) || typeof scope === 'function')) {
       const candidate = getPhpObjectEntry(scope, callableDescriptor)
       if (isPhpCallable(candidate)) {
@@ -155,10 +161,13 @@ export function resolvePhpCallable(callback, options) {
       }
     }
   }
+
   throw new Error(options.invalidMessage)
 }
+
 export function resolveNumericComparator(callback, invalidMessage) {
   const resolved = resolvePhpCallable(callback, { invalidMessage })
+
   return (left, right) => Number(resolved.fn.apply(resolved.scope, [left, right]))
 }{% endcodeblock %}
 </div>
@@ -336,6 +345,7 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpCallable(value) {
   return typeof value === 'function'
 }
@@ -343,14 +353,17 @@ function isPhpCallable(value) {
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 function getPhpGlobalEntry(key) {
   const value = globalContext[key]
   return typeof value === 'undefined' ? undefined : value
 }
+
 function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
   }
+
   let current = value
   while (current) {
     const descriptor = Object.getOwnPropertyDescriptor(current, key)
@@ -364,6 +377,7 @@ function getPhpObjectEntry(value, key) {
     }
     current = Object.getPrototypeOf(current)
   }
+
   return undefined
 }
 
@@ -376,6 +390,7 @@ function resolvePhpCallable(callback, options) {
   if (isPhpCallable(callback)) {
     return { fn: callback, scope: null }
   }
+
   if (typeof callback === 'string') {
     const candidate = getPhpGlobalEntry(callback)
     if (isPhpCallable(candidate)) {
@@ -383,9 +398,11 @@ function resolvePhpCallable(callback, options) {
     }
     throw new Error(options.invalidMessage)
   }
+
   if (Array.isArray(callback) && callback.length >= 2) {
     const scopeDescriptor = callback[0]
     const callableDescriptor = callback[1]
+
     let scope
     if (typeof scopeDescriptor === 'string') {
       scope = getPhpGlobalEntry(scopeDescriptor)
@@ -395,9 +412,11 @@ function resolvePhpCallable(callback, options) {
     } else {
       scope = scopeDescriptor
     }
+
     if (isPhpCallable(callableDescriptor)) {
       return { fn: callableDescriptor, scope }
     }
+
     if (typeof callableDescriptor === 'string' && (isObjectLike(scope) || typeof scope === 'function')) {
       const candidate = getPhpObjectEntry(scope, callableDescriptor)
       if (isPhpCallable(candidate)) {
@@ -405,6 +424,7 @@ function resolvePhpCallable(callback, options) {
       }
     }
   }
+
   throw new Error(options.invalidMessage)
 }{% endcodeblock %}
 </div>

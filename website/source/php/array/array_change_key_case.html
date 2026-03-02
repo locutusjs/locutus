@@ -117,7 +117,9 @@ export function array_change_key_case(array, cs) {
   //   returns 5: {"FUBAR": 42}
   //   example 6: array_change_key_case({ FuBaR: 42 }, 2)
   //   returns 6: {"FUBAR": 42}
+
   let result
+
   if (Array.isArray(array)) {
     result = array
   } else if (!array || typeof array !== 'object') {
@@ -126,11 +128,13 @@ export function array_change_key_case(array, cs) {
     const caseFunction = cs === undefined || cs === 0 || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase'
     const source = toPhpArrayObject(array)
     const transformed = {}
+
     for (const [key, value] of Object.entries(source)) {
       transformed[key[caseFunction]()] = value
     }
     result = transformed
   }
+
   return result
 }{% endcodeblock %}
 </div>
@@ -247,14 +251,17 @@ function isPhpArrayObject(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
     return value
   }
+
   return {}
 }
 
 // php/array/array_change_key_case (target function module)
+
 function array_change_key_case(array, cs) {
   //  discuss at: https://locutus.io/php/array_change_key_case/
   // original by: Ates Goral (https://magnetiq.com)
@@ -272,7 +279,9 @@ function array_change_key_case(array, cs) {
   //   returns 5: {"FUBAR": 42}
   //   example 6: array_change_key_case({ FuBaR: 42 }, 2)
   //   returns 6: {"FUBAR": 42}
+
   let result
+
   if (Array.isArray(array)) {
     result = array
   } else if (!array || typeof array !== 'object') {
@@ -281,11 +290,13 @@ function array_change_key_case(array, cs) {
     const caseFunction = cs === undefined || cs === 0 || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase'
     const source = toPhpArrayObject(array)
     const transformed = {}
+
     for (const [key, value] of Object.entries(source)) {
       transformed[key[caseFunction]()] = value
     }
     result = transformed
   }
+
   return result
 }{% endcodeblock %}
 </div>

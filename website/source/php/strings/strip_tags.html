@@ -141,6 +141,7 @@ export function strip_tags(input: string | number, allowed?: string): string {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { _phpCastString } from '../_helpers/_phpCastString.ts'
+
 export function strip_tags(input, allowed) {
   //      discuss at: https://locutus.io/php/strip_tags/
   // parity verified: PHP 8.3
@@ -181,19 +182,24 @@ export function strip_tags(input, allowed) {
   //       returns 8: 'hello world'
   //       example 9: strip_tags(4)
   //       returns 9: '4'
+
   // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
   allowed = (((allowed || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('')
+
   const tags = /<\/?([a-z0-9]*)\b[^>]*>?/gi
   const commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi
+
   let after = _phpCastString(input)
   // removes tha '<' char at the end of the string to replicate PHP's behaviour
   after = after.substring(after.length - 1) === '<' ? after.substring(0, after.length - 1) : after
+
   // recursively remove tags to ensure that the returned string doesn't contain forbidden tags after previous passes (e.g. '<<bait/>switch/>')
   while (true) {
     const before = after
     after = before.replace(commentsAndPhpTags, '').replace(tags, function ($0, $1) {
       return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : ''
     })
+
     // return once no more tags are removed
     if (before === after) {
       return after
@@ -370,6 +376,7 @@ function _phpCastString(value) {
   //  returns 12: '1'
   //  example 13: _phpCastString(3.14)
   //  returns 13: '3.14'
+
   if (typeof value === 'boolean') {
     return value ? '1' : ''
   }
@@ -380,9 +387,11 @@ function _phpCastString(value) {
     if (isNaN(value)) {
       return 'NAN'
     }
+
     if (!isFinite(value)) {
       return (value < 0 ? '-' : '') + 'INF'
     }
+
     return value + ''
   }
   if (typeof value === 'undefined') {
@@ -392,11 +401,14 @@ function _phpCastString(value) {
     if (Array.isArray(value)) {
       return 'Array'
     }
+
     if (value !== null) {
       return 'Object'
     }
+
     return ''
   }
+
   throw new Error('Unsupported value type')
 }
 
@@ -441,19 +453,24 @@ function strip_tags(input, allowed) {
   //       returns 8: 'hello world'
   //       example 9: strip_tags(4)
   //       returns 9: '4'
+
   // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
   allowed = (((allowed || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('')
+
   const tags = /<\/?([a-z0-9]*)\b[^>]*>?/gi
   const commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi
+
   let after = _phpCastString(input)
   // removes tha '<' char at the end of the string to replicate PHP's behaviour
   after = after.substring(after.length - 1) === '<' ? after.substring(0, after.length - 1) : after
+
   // recursively remove tags to ensure that the returned string doesn't contain forbidden tags after previous passes (e.g. '<<bait/>switch/>')
   while (true) {
     const before = after
     after = before.replace(commentsAndPhpTags, '').replace(tags, function ($0, $1) {
       return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : ''
     })
+
     // return once no more tags are removed
     if (before === after) {
       return after

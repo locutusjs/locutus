@@ -137,7 +137,8 @@ export function htmlspecialchars_decode(string: string, quoteStyle?: HtmlSpecial
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function htmlspecialchars_decode(string, quoteStyle) {
+{% codeblock lang:javascript %}
+export function htmlspecialchars_decode(string, quoteStyle) {
   //       discuss at: https://locutus.io/php/htmlspecialchars_decode/
   //  parity verified: PHP 8.3
   //      original by: Mirek Slugen
@@ -158,12 +159,15 @@ export function htmlspecialchars_decode(string: string, quoteStyle?: HtmlSpecial
   //        returns 1: '<p>this -> &quot;</p>'
   //        example 2: htmlspecialchars_decode("&amp;quot;")
   //        returns 2: '&quot;'
+
   let optTemp = 0
   let noquotes = false
+
   let quoteStyleValue = quoteStyle
   if (typeof quoteStyleValue === 'undefined') {
     quoteStyleValue = 2
   }
+
   let decoded = string.toString().replace(/&lt;/g, '<').replace(/&gt;/g, '>')
   const OPTS = {
     ENT_NOQUOTES: 0,
@@ -173,7 +177,9 @@ export function htmlspecialchars_decode(string: string, quoteStyle?: HtmlSpecial
     ENT_QUOTES: 3,
     ENT_IGNORE: 4,
   }
+
   const isOptKey = (value) => Object.prototype.hasOwnProperty.call(OPTS, value)
+
   if (quoteStyleValue === 0) {
     noquotes = true
   }
@@ -204,6 +210,7 @@ export function htmlspecialchars_decode(string: string, quoteStyle?: HtmlSpecial
   }
   // Put this in last place to avoid escape being double-decoded
   decoded = decoded.replace(/&amp;/g, '&')
+
   return decoded
 }{% endcodeblock %}
 </div>

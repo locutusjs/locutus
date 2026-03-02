@@ -72,10 +72,12 @@ alias:
   //   returns 1: '127.0.0.1'
   //   _example 2: inet_ntop('\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\1')
   //   _returns 2: '::1'
+
   let i = 0
   let m = ''
   const c = []
   const address = String(a)
+
   if (address.length === 4) {
     // IPv4
     return [address.charCodeAt(0), address.charCodeAt(1), address.charCodeAt(2), address.charCodeAt(3)].join('.')

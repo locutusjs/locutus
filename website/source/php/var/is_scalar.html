@@ -50,6 +50,7 @@ export function is_scalar(mixedVar: ScalarCheckValue): mixedVar is PhpScalar {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { isPhpScalar } from '../_helpers/_phpTypes.ts'
+
 export function is_scalar(mixedVar) {
   //  discuss at: https://locutus.io/php/is_scalar/
   // original by: Paulo Freitas
@@ -57,6 +58,7 @@ export function is_scalar(mixedVar) {
   //   returns 1: true
   //   example 2: is_scalar({0: 'Kevin van Zonneveld'})
   //   returns 2: false
+
   return isPhpScalar(mixedVar)
 }{% endcodeblock %}
 </div>
@@ -112,6 +114,7 @@ function is_scalar(mixedVar) {
   //   returns 1: true
   //   example 2: is_scalar({0: 'Kevin van Zonneveld'})
   //   returns 2: false
+
   return isPhpScalar(mixedVar)
 }{% endcodeblock %}
 </div>

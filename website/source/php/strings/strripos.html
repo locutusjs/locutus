@@ -72,8 +72,10 @@ alias:
   //        input by: saulius
   //       example 1: strripos('Kevin van Zonneveld', 'E')
   //       returns 1: 16
+
   haystack = (haystack + '').toLowerCase()
   needle = (needle + '').toLowerCase()
+
   let i = -1
   if (typeof offset === 'number') {
     i = (haystack + '').slice(offset).lastIndexOf(needle) // strrpos' offset indicates starting point of range till end,

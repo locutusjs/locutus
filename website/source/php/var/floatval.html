@@ -61,7 +61,8 @@ export function floatval(mixedVar: FloatvalInput): number {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function floatval(mixedVar) {
+{% codeblock lang:javascript %}
+export function floatval(mixedVar) {
   //      discuss at: https://locutus.io/php/floatval/
   // parity verified: PHP 8.3
   //     original by: Michael White (https://getsprink.com)
@@ -73,6 +74,7 @@ export function floatval(mixedVar: FloatvalInput): number {
   //       example 2: floatval('-50 + 8')
   //       returns 2: 0
   //       returns 2: -50
+
   return parseFloat(String(mixedVar ?? '')) || 0
 }{% endcodeblock %}
 </div>

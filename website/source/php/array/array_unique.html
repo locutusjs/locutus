@@ -91,6 +91,7 @@ export function array_unique<T>(inputArr: T[] | PhpAssoc<T>): PhpAssoc<T> | fals
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { entriesOfPhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
 export function array_unique(inputArr) {
   //  discuss at: https://locutus.io/php/array_unique/
   // original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)
@@ -107,8 +108,10 @@ export function array_unique(inputArr) {
   //   returns 1: {0: 'Kevin', 2: 'van', 3: 'Zonneveld'}
   //   example 2: array_unique({'a': 'green', 0: 'red', 'b': 'green', 1: 'blue', 2: 'red'})
   //   returns 2: {a: 'green', 0: 'red', 1: 'blue'}
+
   const tmpArr2 = {}
   const inputObj = toPhpArrayObject(inputArr)
+
   const _arraySearch = function (needle, haystack) {
     let fkey = ''
     for (fkey in haystack) {
@@ -120,11 +123,13 @@ export function array_unique(inputArr) {
     }
     return false
   }
+
   for (const [key, val] of entriesOfPhpAssoc(inputObj)) {
     if (_arraySearch(val, tmpArr2) === false) {
       tmpArr2[key] = val
     }
   }
+
   return tmpArr2
 }{% endcodeblock %}
 </div>
@@ -211,6 +216,7 @@ function array_unique<T>(inputArr: T[] | PhpAssoc<T>): PhpAssoc<T> | false {
 const entriesOfPhpAssoc = (value) => {
   return Object.entries(value)
 }
+
 function isPhpArrayObject(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -218,10 +224,12 @@ function isPhpArrayObject(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
     return value
   }
+
   return {}
 }
 
@@ -242,8 +250,10 @@ function array_unique(inputArr) {
   //   returns 1: {0: 'Kevin', 2: 'van', 3: 'Zonneveld'}
   //   example 2: array_unique({'a': 'green', 0: 'red', 'b': 'green', 1: 'blue', 2: 'red'})
   //   returns 2: {a: 'green', 0: 'red', 1: 'blue'}
+
   const tmpArr2 = {}
   const inputObj = toPhpArrayObject(inputArr)
+
   const _arraySearch = function (needle, haystack) {
     let fkey = ''
     for (fkey in haystack) {
@@ -255,11 +265,13 @@ function array_unique(inputArr) {
     }
     return false
   }
+
   for (const [key, val] of entriesOfPhpAssoc(inputObj)) {
     if (_arraySearch(val, tmpArr2) === false) {
       tmpArr2[key] = val
     }
   }
+
   return tmpArr2
 }{% endcodeblock %}
 </div>

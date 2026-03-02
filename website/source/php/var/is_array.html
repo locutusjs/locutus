@@ -167,8 +167,10 @@ export function is_array(mixedVar: IsArrayValue): boolean {
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
 import { ini_get } from '../info/ini_get.ts'
+
 const hasNumericLength = (value) =>
   value !== null && typeof value === 'object' && typeof getPhpObjectEntry(value, 'length') === 'number'
+
 export function is_array(mixedVar) {
   //  discuss at: https://locutus.io/php/is_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -198,6 +200,7 @@ export function is_array(mixedVar) {
   //   returns 4: false
   //   example 5: is_array(function tmp_a (){ this.name = 'Kevin' })
   //   returns 5: false
+
   const _getFuncName = function (fn) {
     const name = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
     if (!name) {
@@ -237,22 +240,28 @@ export function is_array(mixedVar) {
     delete candidate[candidate.length]
     return false
   }
+
   if (!mixedVar || typeof mixedVar !== 'object') {
     return false
   }
+
   const isArray = _isArray(mixedVar)
+
   if (isArray) {
     return true
   }
+
   const iniVal = ini_get('locutus.objectsAsArrays') || 'on'
   if (iniVal === 'on') {
     const asString = Object.prototype.toString.call(mixedVar)
     const asFunc = _getFuncName(getPhpObjectEntry(mixedVar, 'constructor'))
+
     if (asString === '[object Object]' && asFunc === 'Object') {
       // Most likely a literal and intended as assoc. array
       return true
     }
   }
+
   return false
 }{% endcodeblock %}
 </div>
@@ -553,6 +562,7 @@ function isPhpList(value) {
   //  returns 1: true
   return Array.isArray(value)
 }
+
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -560,29 +570,37 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
 
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
+
 const isLocaleBag = (value) => isPhpAssocObject(value)
+
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 const ensurePhpRuntimeObject = () => {
   let locutus = globalContext.$locutus
   if (typeof locutus !== 'object' || locutus === null) {
     locutus = {}
     globalContext.$locutus = locutus
   }
+
   let php = locutus.php
   if (typeof php !== 'object' || php === null) {
     php = {}
     locutus.php = php
   }
+
   return php
 }
+
 function ensurePhpRuntimeState() {
   // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
   //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
@@ -593,10 +611,12 @@ function ensurePhpRuntimeState() {
   const localesValue = php.locales
   const localeCategoriesValue = php.localeCategories
   const pointersValue = php.pointers
+
   const ini = isIniBag(iniValue) ? iniValue : {}
   const locales = isLocaleBag(localesValue) ? localesValue : {}
   const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
   const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
   if (iniValue !== ini) {
     php.ini = ini
   }
@@ -609,8 +629,10 @@ function ensurePhpRuntimeState() {
   if (pointersValue !== pointers) {
     php.pointers = pointers
   }
+
   const localeDefaultValue = php.locale_default
   const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
   return {
     ini,
     locales,
@@ -619,10 +641,12 @@ function ensurePhpRuntimeState() {
     locale_default: localeDefault,
   }
 }
+
 function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
   }
+
   let current = value
   while (current) {
     const descriptor = Object.getOwnPropertyDescriptor(current, key)
@@ -636,6 +660,7 @@ function getPhpObjectEntry(value, key) {
     }
     current = Object.getPrototypeOf(current)
   }
+
   return undefined
 }
 
@@ -647,20 +672,24 @@ function ini_get(varname) {
   //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
   //   example 1: ini_get('date.timezone')
   //   returns 1: 'Asia/Hong_Kong'
+
   const runtime = ensurePhpRuntimeState()
   const entry = runtime.ini[varname]
+
   if (entry && entry.local_value !== undefined) {
     if (entry.local_value === null) {
       return ''
     }
     return String(entry.local_value)
   }
+
   return ''
 }
 
 // php/var/is_array (target function module)
 const hasNumericLength = (value) =>
   value !== null && typeof value === 'object' && typeof getPhpObjectEntry(value, 'length') === 'number'
+
 function is_array(mixedVar) {
   //  discuss at: https://locutus.io/php/is_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -690,6 +719,7 @@ function is_array(mixedVar) {
   //   returns 4: false
   //   example 5: is_array(function tmp_a (){ this.name = 'Kevin' })
   //   returns 5: false
+
   const _getFuncName = function (fn) {
     const name = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
     if (!name) {
@@ -729,22 +759,28 @@ function is_array(mixedVar) {
     delete candidate[candidate.length]
     return false
   }
+
   if (!mixedVar || typeof mixedVar !== 'object') {
     return false
   }
+
   const isArray = _isArray(mixedVar)
+
   if (isArray) {
     return true
   }
+
   const iniVal = ini_get('locutus.objectsAsArrays') || 'on'
   if (iniVal === 'on') {
     const asString = Object.prototype.toString.call(mixedVar)
     const asFunc = _getFuncName(getPhpObjectEntry(mixedVar, 'constructor'))
+
     if (asString === '[object Object]' && asFunc === 'Object') {
       // Most likely a literal and intended as assoc. array
       return true
     }
   }
+
   return false
 }{% endcodeblock %}
 </div>

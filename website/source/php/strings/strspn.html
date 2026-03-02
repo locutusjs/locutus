@@ -83,14 +83,17 @@ alias:
   //       returns 1: 2
   //       example 2: strspn('foo', 'o', 1, 2)
   //       returns 2: 2
+
   let found
   let stri
   let strj
   let j = 0
   let i = 0
+
   start = start ? (start < 0 ? str1.length + start : start) : 0
   lgth = lgth ? (lgth < 0 ? str1.length + lgth - start : lgth) : str1.length - start
   str1 = str1.substr(start, lgth)
+
   for (i = 0; i < str1.length; i++) {
     found = 0
     stri = str1.substring(i, i + 1)
@@ -105,6 +108,7 @@ alias:
       return i
     }
   }
+
   return i
 }{% endcodeblock %}
 </div>

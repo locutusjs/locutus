@@ -118,7 +118,8 @@ export function array_merge<T>(
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function array_merge(...args) {
+{% codeblock lang:javascript %}
+export function array_merge(...args) {
   //  discuss at: https://locutus.io/php/array_merge/
   // original by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Nate
@@ -132,14 +133,17 @@ export function array_merge<T>(
   //   example 2: var $arr2 = {1: "data"}
   //   example 2: array_merge($arr1, $arr2)
   //   returns 2: {0: "data"}
+
   const retObj = {}
   let retArr = true
+
   for (const arg of args) {
     if (!Array.isArray(arg)) {
       retArr = false
       break
     }
   }
+
   if (retArr) {
     let merged = []
     for (const arg of args) {
@@ -149,6 +153,7 @@ export function array_merge<T>(
     }
     return merged
   }
+
   for (let i = 0, ct = 0; i < args.length; i++) {
     const arg = args[i]
     if (Array.isArray(arg)) {
@@ -174,6 +179,7 @@ export function array_merge<T>(
       }
     }
   }
+
   return retObj
 }{% endcodeblock %}
 </div>

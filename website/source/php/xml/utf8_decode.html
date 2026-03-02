@@ -118,14 +118,17 @@ alias:
   //     bugfixed by: w35l3y (https://www.wesley.eti.br)
   //       example 1: utf8_decode('Kevin van Zonneveld')
   //       returns 1: 'Kevin van Zonneveld'
+
   const tmpArr = []
   let i = 0
   let c1 = 0
   let seqlen = 0
   const source = String(strData)
+
   while (i < source.length) {
     c1 = source.charCodeAt(i) & 0xff
     seqlen = 0
+
     // https://en.wikipedia.org/wiki/UTF-8#Codepage_layout
     if (c1 <= 0xbf) {
       c1 = c1 & 0x7f
@@ -140,9 +143,11 @@ alias:
       c1 = c1 & 0x07
       seqlen = 4
     }
+
     for (let ai = 1; ai < seqlen; ++ai) {
       c1 = (c1 << 0x06) | (source.charCodeAt(ai + i) & 0x3f)
     }
+
     if (seqlen === 4) {
       c1 -= 0x10000
       tmpArr.push(String.fromCharCode(0xd800 | ((c1 >> 10) & 0x3ff)))
@@ -150,8 +155,10 @@ alias:
     } else {
       tmpArr.push(String.fromCharCode(c1))
     }
+
     i += seqlen
   }
+
   return tmpArr.join('')
 }{% endcodeblock %}
 </div>

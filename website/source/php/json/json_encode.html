@@ -250,8 +250,10 @@ export function json_encode(mixedVal: JsonEncodeInput): string | null {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
+
 const hasOwn = Object.prototype.hasOwnProperty
 const isJsonObject = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
+
 export function json_encode(mixedVal) {
   //       discuss at: https://phpjs.org/functions/json_encode/
   //  parity verified: PHP 8.3
@@ -262,6 +264,7 @@ export function json_encode(mixedVal) {
   //      bugfixed by: Brett Zamir (https://brett-zamir.me)
   //        example 1: json_encode('Kevin')
   //        returns 1: '"Kevin"'
+
   /*
    https://www.JSON.org/json2.js
    2008-11-19
@@ -269,6 +272,7 @@ export function json_encode(mixedVal) {
    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
    See https://www.JSON.org/js.html
   */
+
   const json = typeof JSON === 'object' && JSON !== null ? JSON : null
   let retVal
   try {
@@ -283,7 +287,9 @@ export function json_encode(mixedVal) {
         return retVal
       }
     }
+
     const value = mixedVal
+
     const quote = function (string) {
       const escapeChars = [
         '\u0000-\u001f',
@@ -310,6 +316,7 @@ export function json_encode(mixedVal) {
         '"': '\\"',
         '\\': '\\\\',
       }
+
       escapable.lastIndex = 0
       return escapable.test(string)
         ? '"' +
@@ -320,6 +327,7 @@ export function json_encode(mixedVal) {
             '"'
         : '"' + string + '"'
     }
+
     const _str = function (key, holder) {
       let gap = ''
       const indent = '    '
@@ -333,22 +341,27 @@ export function json_encode(mixedVal) {
       const mind = gap
       let partial = []
       let value = Array.isArray(holder) ? holder[Number(key)] : holder[String(key)]
+
       // If the value has a toJSON method, call it to obtain a replacement value.
       if (typeof value === 'object' && value !== null) {
         if ('toJSON' in value && typeof value.toJSON === 'function') {
           value = value.toJSON.call(value, key)
         }
       }
+
       // What happens next depends on the value's type.
       switch (typeof value) {
         case 'string':
           return quote(value)
+
         case 'number':
           // JSON numbers must be finite. Encode non-finite numbers as null.
           return isFinite(value) ? String(value) : 'null'
+
         case 'boolean':
           // If the value is a boolean or null, convert it to a string.
           return String(value)
+
         case 'object':
           // If the type is 'object', we might be dealing with an object or an array or
           // null.
@@ -357,9 +370,11 @@ export function json_encode(mixedVal) {
           if (!value) {
             return 'null'
           }
+
           // Make an array to hold the partial results of stringifying this object value.
           gap += indent
           partial = []
+
           // Is the value an array?
           if (Array.isArray(value)) {
             // The value is an array. Stringify every element. Use null as a placeholder
@@ -368,6 +383,7 @@ export function json_encode(mixedVal) {
             for (i = 0; i < length; i += 1) {
               partial[i] = _str(i, value) || 'null'
             }
+
             // Join all of the elements together, separated with commas, and wrap them in
             // brackets.
             v =
@@ -379,6 +395,7 @@ export function json_encode(mixedVal) {
             // gap = mind // not used
             return v
           }
+
           // Iterate through all of the keys in the object.
           if (!isJsonObject(value)) {
             throw new SyntaxError('json_encode')
@@ -391,6 +408,7 @@ export function json_encode(mixedVal) {
               }
             }
           }
+
           // Join all of the member texts together, separated with commas,
           // and wrap them in braces.
           v =
@@ -407,6 +425,7 @@ export function json_encode(mixedVal) {
           throw new SyntaxError('json_encode')
       }
     }
+
     // Make a fake root object containing our value under the key of ''.
     // Return the result of stringifying the value.
     const encoded = _str('', {
@@ -730,19 +749,23 @@ function json_encode(mixedVal: JsonEncodeInput): string | null {
 {% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 const ensurePhpRuntimeObject = () => {
   let locutus = globalContext.$locutus
   if (typeof locutus !== 'object' || locutus === null) {
     locutus = {}
     globalContext.$locutus = locutus
   }
+
   let php = locutus.php
   if (typeof php !== 'object' || php === null) {
     php = {}
     locutus.php = php
   }
+
   return php
 }
+
 function setPhpRuntimeEntry(key, value) {
   const php = ensurePhpRuntimeObject()
   php[key] = value
@@ -750,7 +773,9 @@ function setPhpRuntimeEntry(key, value) {
 
 // php/json/json_encode (target function module)
 const hasOwn = Object.prototype.hasOwnProperty
+
 const isJsonObject = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
+
 function json_encode(mixedVal) {
   //       discuss at: https://phpjs.org/functions/json_encode/
   //  parity verified: PHP 8.3
@@ -761,6 +786,7 @@ function json_encode(mixedVal) {
   //      bugfixed by: Brett Zamir (https://brett-zamir.me)
   //        example 1: json_encode('Kevin')
   //        returns 1: '"Kevin"'
+
   /*
    https://www.JSON.org/json2.js
    2008-11-19
@@ -768,6 +794,7 @@ function json_encode(mixedVal) {
    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
    See https://www.JSON.org/js.html
   */
+
   const json = typeof JSON === 'object' && JSON !== null ? JSON : null
   let retVal
   try {
@@ -782,7 +809,9 @@ function json_encode(mixedVal) {
         return retVal
       }
     }
+
     const value = mixedVal
+
     const quote = function (string) {
       const escapeChars = [
         '\u0000-\u001f',
@@ -809,6 +838,7 @@ function json_encode(mixedVal) {
         '"': '\\"',
         '\\': '\\\\',
       }
+
       escapable.lastIndex = 0
       return escapable.test(string)
         ? '"' +
@@ -819,6 +849,7 @@ function json_encode(mixedVal) {
             '"'
         : '"' + string + '"'
     }
+
     const _str = function (key, holder) {
       let gap = ''
       const indent = '    '
@@ -832,22 +863,27 @@ function json_encode(mixedVal) {
       const mind = gap
       let partial = []
       let value = Array.isArray(holder) ? holder[Number(key)] : holder[String(key)]
+
       // If the value has a toJSON method, call it to obtain a replacement value.
       if (typeof value === 'object' && value !== null) {
         if ('toJSON' in value && typeof value.toJSON === 'function') {
           value = value.toJSON.call(value, key)
         }
       }
+
       // What happens next depends on the value's type.
       switch (typeof value) {
         case 'string':
           return quote(value)
+
         case 'number':
           // JSON numbers must be finite. Encode non-finite numbers as null.
           return isFinite(value) ? String(value) : 'null'
+
         case 'boolean':
           // If the value is a boolean or null, convert it to a string.
           return String(value)
+
         case 'object':
           // If the type is 'object', we might be dealing with an object or an array or
           // null.
@@ -856,9 +892,11 @@ function json_encode(mixedVal) {
           if (!value) {
             return 'null'
           }
+
           // Make an array to hold the partial results of stringifying this object value.
           gap += indent
           partial = []
+
           // Is the value an array?
           if (Array.isArray(value)) {
             // The value is an array. Stringify every element. Use null as a placeholder
@@ -867,6 +905,7 @@ function json_encode(mixedVal) {
             for (i = 0; i < length; i += 1) {
               partial[i] = _str(i, value) || 'null'
             }
+
             // Join all of the elements together, separated with commas, and wrap them in
             // brackets.
             v =
@@ -878,6 +917,7 @@ function json_encode(mixedVal) {
             // gap = mind // not used
             return v
           }
+
           // Iterate through all of the keys in the object.
           if (!isJsonObject(value)) {
             throw new SyntaxError('json_encode')
@@ -890,6 +930,7 @@ function json_encode(mixedVal) {
               }
             }
           }
+
           // Join all of the member texts together, separated with commas,
           // and wrap them in braces.
           v =
@@ -906,6 +947,7 @@ function json_encode(mixedVal) {
           throw new SyntaxError('json_encode')
       }
     }
+
     // Make a fake root object containing our value under the key of ''.
     // Return the result of stringifying the value.
     const encoded = _str('', {

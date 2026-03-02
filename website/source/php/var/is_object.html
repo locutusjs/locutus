@@ -59,6 +59,7 @@ export function is_object(mixedVar: ObjectValue): mixedVar is PhpAssoc<ObjectVal
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { isPhpAssocObject } from '../_helpers/_phpTypes.ts'
+
 export function is_object(mixedVar) {
   //  discuss at: https://locutus.io/php/is_object/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -70,6 +71,7 @@ export function is_object(mixedVar) {
   //   returns 2: true
   //   example 3: is_object(null)
   //   returns 3: false
+
   return isPhpAssocObject(mixedVar)
 }{% endcodeblock %}
 </div>
@@ -146,6 +148,7 @@ function isPhpList(value) {
   //  returns 1: true
   return Array.isArray(value)
 }
+
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -153,6 +156,7 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
@@ -169,6 +173,7 @@ function is_object(mixedVar) {
   //   returns 2: true
   //   example 3: is_object(null)
   //   returns 3: false
+
   return isPhpAssocObject(mixedVar)
 }{% endcodeblock %}
 </div>

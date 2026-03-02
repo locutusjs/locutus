@@ -222,12 +222,14 @@ alias:
   //  returns 13: '100 050.00'
   //  example 14: number_format(1e-8, 8, '.', '')
   //  returns 14: '0.00000001'
+
   const numStr = (number + '').replace(/[^0-9+\-Ee.]/g, '')
   const n = !isFinite(+numStr) ? 0 : +numStr
   const prec = !isFinite(+(decimals || 0)) ? 0 : Math.abs(decimals || 0)
   const sep = typeof thousandsSep === 'undefined' ? ',' : thousandsSep
   const dec = typeof decPoint === 'undefined' ? '.' : decPoint
   let s
+
   const toFixedFix = function (n, prec) {
     if (('' + n).indexOf('e') === -1) {
       return +(Math.round(+(n + 'e+' + prec)) + 'e-' + prec)
@@ -242,6 +244,7 @@ alias:
       return (+(Math.round(+(+mantissa + 'e' + sig + (exponent + prec))) + 'e-' + prec)).toFixed(prec)
     }
   }
+
   // @todo: for IE parseFloat(0.55).toFixed(0) = 0;
   s = (prec ? toFixedFix(n, prec).toString() : '' + Math.round(n)).split('.')
   const whole = s[0] ?? ''
@@ -252,6 +255,7 @@ alias:
     s[1] = s[1] || ''
     s[1] += new Array(prec - s[1].length + 1).join('0')
   }
+
   return s.join(dec)
 }{% endcodeblock %}
 </div>

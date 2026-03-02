@@ -158,7 +158,9 @@ export function str_replace(
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}const asArray = (value) => (Array.isArray(value) ? [...value] : [value])
+{% codeblock lang:javascript %}
+const asArray = (value) => (Array.isArray(value) ? [...value] : [value])
+
 export function str_replace(search, replace, subject, countObj) {
   //  discuss at: https://locutus.io/php/str_replace/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -192,6 +194,7 @@ export function str_replace(search, replace, subject, countObj) {
   //   returns 4: 4
   //   example 5: str_replace('', '.', 'aaa')
   //   returns 5: 'aaa'
+
   let i = 0
   let j = 0
   let temp = ''
@@ -202,6 +205,7 @@ export function str_replace(search, replace, subject, countObj) {
   let r = asArray(replace)
   const s = asArray(subject)
   const sa = Array.isArray(subject)
+
   if (Array.isArray(search) && typeof replace === 'string') {
     temp = replace
     const replaceArr = []
@@ -211,9 +215,11 @@ export function str_replace(search, replace, subject, countObj) {
     temp = ''
     r = [...replaceArr]
   }
+
   if (typeof countObj !== 'undefined') {
     countObj.value = 0
   }
+
   for (i = 0, sl = s.length; i < sl; i++) {
     if (s[i] === undefined || s[i] === '') {
       continue

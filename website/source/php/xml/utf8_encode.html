@@ -128,20 +128,24 @@ alias:
   //     bugfixed by: kirilloid
   //       example 1: utf8_encode('Kevin van Zonneveld')
   //       returns 1: 'Kevin van Zonneveld'
+
   if (argString === null || typeof argString === 'undefined') {
     return ''
   }
+
   // .replace(/\r\n/g, "\n").replace(/\r/g, "\n");
   const string = argString + ''
   let utftext = ''
   let start
   let end
   let stringl = 0
+
   start = end = 0
   stringl = string.length
   for (let n = 0; n < stringl; n++) {
     let c1 = string.charCodeAt(n)
     let enc = null
+
     if (c1 < 128) {
       end++
     } else if (c1 > 127 && c1 < 2048) {
@@ -168,9 +172,11 @@ alias:
       start = end = n + 1
     }
   }
+
   if (end > start) {
     utftext += string.slice(start, stringl)
   }
+
   return utftext
 }{% endcodeblock %}
 </div>

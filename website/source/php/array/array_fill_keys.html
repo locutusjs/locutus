@@ -66,6 +66,7 @@ export function array_fill_keys<TKey extends PhpKey | StringLike, TValue>(
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
 export function array_fill_keys(keys, value) {
   //  discuss at: https://locutus.io/php/array_fill_keys/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -73,11 +74,14 @@ export function array_fill_keys(keys, value) {
   //   example 1: var $keys = {'a': 'foo', 2: 5, 3: 10, 4: 'bar'}
   //   example 1: array_fill_keys($keys, 'banana')
   //   returns 1: {"foo": "banana", 5: "banana", 10: "banana", "bar": "banana"}
+
   const retObj = {}
   const keyedValues = toPhpArrayObject(keys)
+
   for (const key in keyedValues) {
     retObj[String(keyedValues[key])] = value
   }
+
   return retObj
 }{% endcodeblock %}
 </div>
@@ -148,10 +152,12 @@ function isPhpArrayObject(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
     return value
   }
+
   return {}
 }
 
@@ -163,11 +169,14 @@ function array_fill_keys(keys, value) {
   //   example 1: var $keys = {'a': 'foo', 2: 5, 3: 10, 4: 'bar'}
   //   example 1: array_fill_keys($keys, 'banana')
   //   returns 1: {"foo": "banana", 5: "banana", 10: "banana", "bar": "banana"}
+
   const retObj = {}
   const keyedValues = toPhpArrayObject(keys)
+
   for (const key in keyedValues) {
     retObj[String(keyedValues[key])] = value
   }
+
   return retObj
 }{% endcodeblock %}
 </div>

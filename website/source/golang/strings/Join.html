@@ -59,9 +59,11 @@ alias:
   //       returns 1: 'foo, bar, baz'
   //       example 2: Join(['a', 'b', 'c'], '')
   //       returns 2: 'abc'
+
   if (!Array.isArray(elems)) {
     return ''
   }
+
   return elems.join(sep + '')
 }{% endcodeblock %}
 </div>

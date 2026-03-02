@@ -73,8 +73,11 @@ alias:
   //       returns 2: '\x00'
   //       example 3: hex2bin('2f1q')
   //       returns 3: false
+
   const ret = []
+
   const input = String(s)
+
   for (let i = 0; i < input.length; i += 2) {
     const c = Number.parseInt(input.substring(i, i + 1), 16)
     const k = Number.parseInt(input.substring(i + 1, i + 2), 16)
@@ -83,6 +86,7 @@ alias:
     }
     ret.push((c << 4) | k)
   }
+
   return String.fromCharCode.apply(String, ret)
 }{% endcodeblock %}
 </div>

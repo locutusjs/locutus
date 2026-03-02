@@ -214,6 +214,7 @@ export function pathinfo(path: string, options?: PathInfoOptions): PathInfoMap |
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { basename } from '../filesystem/basename.ts'
+
 export function pathinfo(path, options) {
   //  discuss at: https://locutus.io/php/pathinfo/
   // original by: Nate
@@ -248,15 +249,18 @@ export function pathinfo(path, options) {
   //   returns 6: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
   //   example 7: pathinfo('/www/htdocs/index.html')
   //   returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
+
   const tmpArr = {}
   let basenameValue = null
   let extensionValue = null
   let filenameValue = null
+
   // Input defaulting & sanitation
   if (!path) {
     return false
   }
   const optionsInput = options ?? 'PATHINFO_ALL'
+
   // Initialize binary arguments. Both the string & integer (constant) input is
   // allowed
   const OPTS = {
@@ -266,6 +270,7 @@ export function pathinfo(path, options) {
     PATHINFO_FILENAME: 8,
     PATHINFO_ALL: 15,
   }
+
   let resolvedOptions = 0
   if (typeof optionsInput === 'number') {
     resolvedOptions = optionsInput
@@ -278,23 +283,27 @@ export function pathinfo(path, options) {
       }
     }
   }
+
   // Internal Functions
   const _getExt = function (pathValue) {
     const str = pathValue + ''
     const dotP = str.lastIndexOf('.') + 1
     return !dotP ? false : dotP !== str.length ? str.substr(dotP) : ''
   }
+
   // Gather path infos
   if (resolvedOptions & OPTS.PATHINFO_DIRNAME) {
     const dirName = path.replace(/\\/g, '/').replace(/\/[^/]*\/?$/, '') // dirname
     tmpArr.dirname = dirName === path ? '.' : dirName
   }
+
   if (resolvedOptions & OPTS.PATHINFO_BASENAME) {
     if (basenameValue === null) {
       basenameValue = basename(path)
     }
     tmpArr.basename = basenameValue
   }
+
   if (resolvedOptions & OPTS.PATHINFO_EXTENSION) {
     if (basenameValue === null) {
       basenameValue = basename(path)
@@ -306,6 +315,7 @@ export function pathinfo(path, options) {
       tmpArr.extension = extensionValue
     }
   }
+
   if (resolvedOptions & OPTS.PATHINFO_FILENAME) {
     if (basenameValue === null) {
       basenameValue = basename(path)
@@ -319,13 +329,16 @@ export function pathinfo(path, options) {
         basenameValue.length - (extensionValue ? extensionValue.length + 1 : extensionValue === false ? 0 : 1),
       )
     }
+
     tmpArr.filename = filenameValue
   }
+
   // If array contains only 1 element: return string
   const values = Object.values(tmpArr).filter((value) => typeof value === 'string')
   if (values.length === 1) {
     return values[0] ?? ''
   }
+
   // Return full-blown array
   return tmpArr
 }{% endcodeblock %}
@@ -528,15 +541,20 @@ function basename(path, suffix) {
   //       returns 3: 'path'
   //       example 4: basename('/some/path_ext.ext/','.ext')
   //       returns 4: 'path_ext'
+
   let b = path
   const lastChar = b.charAt(b.length - 1)
+
   if (lastChar === '/' || lastChar === '\\') {
     b = b.slice(0, -1)
   }
+
   b = b.replace(/^.*[/\\]/g, '')
+
   if (typeof suffix === 'string' && b.substr(b.length - suffix.length) === suffix) {
     b = b.substr(0, b.length - suffix.length)
   }
+
   return b
 }
 
@@ -575,15 +593,18 @@ function pathinfo(path, options) {
   //   returns 6: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
   //   example 7: pathinfo('/www/htdocs/index.html')
   //   returns 7: {dirname: '/www/htdocs', basename: 'index.html', extension: 'html', filename: 'index'}
+
   const tmpArr = {}
   let basenameValue = null
   let extensionValue = null
   let filenameValue = null
+
   // Input defaulting & sanitation
   if (!path) {
     return false
   }
   const optionsInput = options ?? 'PATHINFO_ALL'
+
   // Initialize binary arguments. Both the string & integer (constant) input is
   // allowed
   const OPTS = {
@@ -593,6 +614,7 @@ function pathinfo(path, options) {
     PATHINFO_FILENAME: 8,
     PATHINFO_ALL: 15,
   }
+
   let resolvedOptions = 0
   if (typeof optionsInput === 'number') {
     resolvedOptions = optionsInput
@@ -605,23 +627,27 @@ function pathinfo(path, options) {
       }
     }
   }
+
   // Internal Functions
   const _getExt = function (pathValue) {
     const str = pathValue + ''
     const dotP = str.lastIndexOf('.') + 1
     return !dotP ? false : dotP !== str.length ? str.substr(dotP) : ''
   }
+
   // Gather path infos
   if (resolvedOptions & OPTS.PATHINFO_DIRNAME) {
     const dirName = path.replace(/\\/g, '/').replace(/\/[^/]*\/?$/, '') // dirname
     tmpArr.dirname = dirName === path ? '.' : dirName
   }
+
   if (resolvedOptions & OPTS.PATHINFO_BASENAME) {
     if (basenameValue === null) {
       basenameValue = basename(path)
     }
     tmpArr.basename = basenameValue
   }
+
   if (resolvedOptions & OPTS.PATHINFO_EXTENSION) {
     if (basenameValue === null) {
       basenameValue = basename(path)
@@ -633,6 +659,7 @@ function pathinfo(path, options) {
       tmpArr.extension = extensionValue
     }
   }
+
   if (resolvedOptions & OPTS.PATHINFO_FILENAME) {
     if (basenameValue === null) {
       basenameValue = basename(path)
@@ -646,13 +673,16 @@ function pathinfo(path, options) {
         basenameValue.length - (extensionValue ? extensionValue.length + 1 : extensionValue === false ? 0 : 1),
       )
     }
+
     tmpArr.filename = filenameValue
   }
+
   // If array contains only 1 element: return string
   const values = Object.values(tmpArr).filter((value) => typeof value === 'string')
   if (values.length === 1) {
     return values[0] ?? ''
   }
+
   // Return full-blown array
   return tmpArr
 }{% endcodeblock %}

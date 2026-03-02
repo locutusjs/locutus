@@ -71,6 +71,7 @@ export function call_user_func<TResult = FunctionArg, TArgs extends PhpCallableA
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { call_user_func_array as callUserFuncArray } from '../funchand/call_user_func_array.ts'
+
 export function call_user_func(cb, ...parameters) {
   //  discuss at: https://locutus.io/php/call_user_func/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -83,6 +84,7 @@ export function call_user_func(cb, ...parameters) {
   //      note 1: already pass any function to be executed here.
   //   example 1: call_user_func('isNaN', 'a')
   //   returns 1: true
+
   return callUserFuncArray(cb, parameters)
 }{% endcodeblock %}
 </div>
@@ -384,6 +386,7 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpCallable(value) {
   return typeof value === 'function'
 }
@@ -391,14 +394,17 @@ function isPhpCallable(value) {
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 function getPhpGlobalEntry(key) {
   const value = globalContext[key]
   return typeof value === 'undefined' ? undefined : value
 }
+
 function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
   }
+
   let current = value
   while (current) {
     const descriptor = Object.getOwnPropertyDescriptor(current, key)
@@ -412,6 +418,7 @@ function getPhpObjectEntry(value, key) {
     }
     current = Object.getPrototypeOf(current)
   }
+
   return undefined
 }
 
@@ -424,6 +431,7 @@ function resolvePhpCallable(callback, options) {
   if (isPhpCallable(callback)) {
     return { fn: callback, scope: null }
   }
+
   if (typeof callback === 'string') {
     const candidate = getPhpGlobalEntry(callback)
     if (isPhpCallable(candidate)) {
@@ -431,9 +439,11 @@ function resolvePhpCallable(callback, options) {
     }
     throw new Error(options.invalidMessage)
   }
+
   if (Array.isArray(callback) && callback.length >= 2) {
     const scopeDescriptor = callback[0]
     const callableDescriptor = callback[1]
+
     let scope
     if (typeof scopeDescriptor === 'string') {
       scope = getPhpGlobalEntry(scopeDescriptor)
@@ -443,9 +453,11 @@ function resolvePhpCallable(callback, options) {
     } else {
       scope = scopeDescriptor
     }
+
     if (isPhpCallable(callableDescriptor)) {
       return { fn: callableDescriptor, scope }
     }
+
     if (typeof callableDescriptor === 'string' && (isObjectLike(scope) || typeof scope === 'function')) {
       const candidate = getPhpObjectEntry(scope, callableDescriptor)
       if (isPhpCallable(candidate)) {
@@ -453,11 +465,13 @@ function resolvePhpCallable(callback, options) {
       }
     }
   }
+
   throw new Error(options.invalidMessage)
 }
 
 // php/funchand/call_user_func_array (Locutus dependency module)
 const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
+
 function call_user_func_array(cb, parameters) {
   //  discuss at: https://locutus.io/php/call_user_func_array/
   // original by: Thiago Mata (https://thiagomata.blog.com)
@@ -474,8 +488,10 @@ function call_user_func_array(cb, parameters) {
   //   returns 1: true
   //   example 2: call_user_func_array('isNaN', [1])
   //   returns 2: false
+
   let func
   let scope = null
+
   try {
     const resolved = resolvePhpCallable(cb, { invalidMessage: 'invalid' })
     func = resolved.fn
@@ -483,6 +499,7 @@ function call_user_func_array(cb, parameters) {
   } catch {
     // Fall back to PHP-compatible eval/new Function paths below.
   }
+
   if (!func && typeof cb === 'string') {
     const globalCandidate = getPhpGlobalEntry(cb)
     if (isPhpCallable(globalCandidate)) {
@@ -508,6 +525,7 @@ function call_user_func_array(cb, parameters) {
         func = method
       }
     }
+
     if (typeof cb[0] === 'string') {
       const globalScope = getPhpGlobalEntry(cb[0])
       if (typeof globalScope === 'function') {
@@ -522,9 +540,11 @@ function call_user_func_array(cb, parameters) {
   } else if (!func && isPhpCallable(cb)) {
     func = cb
   }
+
   if (!func) {
     throw new Error(String(cb) + ' is not a valid function')
   }
+
   return func.apply(scope, parameters)
 }
 
@@ -543,6 +563,7 @@ function call_user_func(cb, ...parameters) {
   //      note 1: already pass any function to be executed here.
   //   example 1: call_user_func('isNaN', 'a')
   //   returns 1: true
+
   return callUserFuncArray(cb, parameters)
 }{% endcodeblock %}
 </div>

@@ -89,6 +89,7 @@ export function get_defined_functions(): string[] {
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { ensurePhpRuntimeState, getPhpGlobalScope } from '../_helpers/_phpRuntimeState.ts'
 import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
 export function get_defined_functions() {
   //      discuss at: https://locutus.io/php/get_defined_functions/
   // parity verified: PHP 8.3
@@ -99,10 +100,13 @@ export function get_defined_functions() {
   //       example 1: var $funcs = get_defined_functions()
   //       example 1: var $result = Array.isArray($funcs) && $funcs.length > 0
   //       returns 1: true
+
   ensurePhpRuntimeState()
+
   const arr = []
   const already = {}
   const globalScope = getPhpGlobalScope()
+
   for (const i in globalScope) {
     try {
       const topLevelValue = globalScope[i]
@@ -125,6 +129,7 @@ export function get_defined_functions() {
       // properties are accessed (e.g., sessionStorage)
     }
   }
+
   return arr
 }{% endcodeblock %}
 </div>
@@ -325,6 +330,7 @@ function isPhpList(value) {
   //  returns 1: true
   return Array.isArray(value)
 }
+
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -332,13 +338,16 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
+
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
     return value
   }
+
   return {}
 }
 
@@ -346,23 +355,30 @@ const isPhpArrayObject = isObjectLike
 
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
+
 const isLocaleBag = (value) => isPhpAssocObject(value)
+
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 const ensurePhpRuntimeObject = () => {
   let locutus = globalContext.$locutus
   if (typeof locutus !== 'object' || locutus === null) {
     locutus = {}
     globalContext.$locutus = locutus
   }
+
   let php = locutus.php
   if (typeof php !== 'object' || php === null) {
     php = {}
     locutus.php = php
   }
+
   return php
 }
+
 function ensurePhpRuntimeState() {
   // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
   //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
@@ -373,10 +389,12 @@ function ensurePhpRuntimeState() {
   const localesValue = php.locales
   const localeCategoriesValue = php.localeCategories
   const pointersValue = php.pointers
+
   const ini = isIniBag(iniValue) ? iniValue : {}
   const locales = isLocaleBag(localesValue) ? localesValue : {}
   const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
   const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
   if (iniValue !== ini) {
     php.ini = ini
   }
@@ -389,8 +407,10 @@ function ensurePhpRuntimeState() {
   if (pointersValue !== pointers) {
     php.pointers = pointers
   }
+
   const localeDefaultValue = php.locale_default
   const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
   return {
     ini,
     locales,
@@ -399,6 +419,7 @@ function ensurePhpRuntimeState() {
     locale_default: localeDefault,
   }
 }
+
 function getPhpGlobalScope() {
   return globalContext
 }
@@ -414,10 +435,13 @@ function get_defined_functions() {
   //       example 1: var $funcs = get_defined_functions()
   //       example 1: var $result = Array.isArray($funcs) && $funcs.length > 0
   //       returns 1: true
+
   ensurePhpRuntimeState()
+
   const arr = []
   const already = {}
   const globalScope = getPhpGlobalScope()
+
   for (const i in globalScope) {
     try {
       const topLevelValue = globalScope[i]
@@ -440,6 +464,7 @@ function get_defined_functions() {
       // properties are accessed (e.g., sessionStorage)
     }
   }
+
   return arr
 }{% endcodeblock %}
 </div>

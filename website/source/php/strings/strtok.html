@@ -73,6 +73,7 @@ export function strtok(str: string, tokens?: string): string | false {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { getPhpRuntimeString, setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
+
 export function strtok(str, tokens) {
   //  discuss at: https://locutus.io/php/strtok/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -83,6 +84,7 @@ export function strtok(str, tokens) {
   //   example 1: while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
   //   example 1: var $result = $b
   //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
+
   if (typeof tokens === 'undefined') {
     tokens = str
     str = getPhpRuntimeString('strtokleftOver', '')
@@ -100,6 +102,7 @@ export function strtok(str, tokens) {
     }
   }
   setPhpRuntimeEntry('strtokleftOver', str.substring(i + 1))
+
   return str.substring(0, i)
 }{% endcodeblock %}
 </div>
@@ -239,28 +242,34 @@ function strtok(str: string, tokens?: string): string | false {
 {% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 const ensurePhpRuntimeObject = () => {
   let locutus = globalContext.$locutus
   if (typeof locutus !== 'object' || locutus === null) {
     locutus = {}
     globalContext.$locutus = locutus
   }
+
   let php = locutus.php
   if (typeof php !== 'object' || php === null) {
     php = {}
     locutus.php = php
   }
+
   return php
 }
+
 function getPhpRuntimeEntry(key) {
   const php = ensurePhpRuntimeObject()
   const value = php[key]
   return typeof value === 'undefined' ? undefined : value
 }
+
 function setPhpRuntimeEntry(key, value) {
   const php = ensurePhpRuntimeObject()
   php[key] = value
 }
+
 function getPhpRuntimeString(key, fallback) {
   const value = getPhpRuntimeEntry(key)
   return typeof value === 'string' ? value : fallback
@@ -277,6 +286,7 @@ function strtok(str, tokens) {
   //   example 1: while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
   //   example 1: var $result = $b
   //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
+
   if (typeof tokens === 'undefined') {
     tokens = str
     str = getPhpRuntimeString('strtokleftOver', '')
@@ -294,6 +304,7 @@ function strtok(str, tokens) {
     }
   }
   setPhpRuntimeEntry('strtokleftOver', str.substring(i + 1))
+
   return str.substring(0, i)
 }{% endcodeblock %}
 </div>

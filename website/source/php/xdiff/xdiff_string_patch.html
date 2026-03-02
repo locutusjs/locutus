@@ -314,6 +314,7 @@ export function xdiff_string_patch(
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { getPhpObjectEntry, setPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
+
 export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
   //      discuss at: https://locutus.io/php/xdiff_string_patch/
   // parity verified: PHP 8.3
@@ -326,12 +327,15 @@ export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
   //          note 3: object. The errors will then be written by reference into it's `value` property
   //       example 1: xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!')
   //       returns 1: 'Hello world!'
+
   // First two functions were adapted from Steven Levithan, also under an MIT license
   // Adapted from XRegExp 1.5.0
   // (c) 2007-2010 Steven Levithan
   // MIT License
   // <https://xregexp.com>
+
   const isRecord = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
+
   const _getNativeFlags = function (regex) {
     const extended = getPhpObjectEntry(regex, 'extended') === true
     const sticky = getPhpObjectEntry(regex, 'sticky') === true
@@ -344,15 +348,18 @@ export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
       sticky ? 'y' : '',
     ].join('')
   }
+
   const getXRegExpMeta = (regex) => {
     const xregexpValue = getPhpObjectEntry(regex, '_xregexp')
     if (!isRecord(xregexpValue)) {
       return undefined
     }
+
     const sourceValue = getPhpObjectEntry(xregexpValue, 'source')
     if (typeof sourceValue !== 'string') {
       return undefined
     }
+
     const captureNamesValue = getPhpObjectEntry(xregexpValue, 'captureNames')
     let captureNames
     if (captureNamesValue === null) {
@@ -363,14 +370,17 @@ export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
     ) {
       captureNames = captureNamesValue
     }
+
     if (captureNames === undefined) {
       return { source: sourceValue }
     }
+
     return {
       source: sourceValue,
       captureNames,
     }
   }
+
   const _cbSplit = function (input, sep) {
     // If separator `s` is not a regex, use the native `split`
     if (!(sep instanceof RegExp)) {
@@ -393,24 +403,30 @@ export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
         captureNames: x.captureNames ? x.captureNames.slice(0) : null,
       })
     }
+
     while ((match = s.exec(str))) {
       // Run the altered `exec` (required for `lastIndex` fix, etc.)
       if (s.lastIndex > lastLastIndex) {
         output.push(str.slice(lastLastIndex, match.index))
+
         if (match.length > 1 && match.index < str.length) {
           const captures = match.slice(1).filter((capture) => capture !== undefined)
           Array.prototype.push.apply(output, captures)
         }
+
         lastLength = match[0].length
         lastLastIndex = s.lastIndex
+
         if (output.length >= limit) {
           break
         }
       }
+
       if (s.lastIndex === match.index) {
         s.lastIndex++
       }
     }
+
     if (lastLastIndex === str.length) {
       if (!s.test('') || lastLength) {
         output.push('')
@@ -418,12 +434,15 @@ export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
     } else {
       output.push(str.slice(lastLastIndex))
     }
+
     return output.length > limit ? output.slice(0, limit) : output
   }
+
   // Input defaulting & sanitation
   if (!patch) {
     return false
   }
+
   let i = 0
   let ll = 0
   let ranges = null
@@ -443,9 +462,11 @@ export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
     XDIFF_PATCH_REVERSE: 2,
     XDIFF_PATCH_IGNORESPACE: 4,
   }
+
   if (!flags) {
     flags = 'XDIFF_PATCH_NORMAL'
   }
+
   if (typeof flags !== 'number') {
     // Allow for a single string or an array of string flags
     const flagList = Array.isArray(flags) ? flags : [flags]
@@ -462,6 +483,7 @@ export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
     }
     flags = optTemp
   }
+
   if (flags & OPTS.XDIFF_PATCH_NORMAL) {
     for (i = 0, ll = lines.length; i < ll; i++) {
       const line = lines[i] ?? ''
@@ -538,9 +560,11 @@ export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
       newStrArr.push(origLines[linePos++] ?? '')
     }
   }
+
   if (errorObj) {
     errorObj.value = errors
   }
+
   return newStrArr.join('\n')
 }{% endcodeblock %}
 </div>
@@ -891,6 +915,7 @@ function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
   }
+
   let current = value
   while (current) {
     const descriptor = Object.getOwnPropertyDescriptor(current, key)
@@ -904,12 +929,15 @@ function getPhpObjectEntry(value, key) {
     }
     current = Object.getPrototypeOf(current)
   }
+
   return undefined
 }
+
 function setPhpObjectEntry(value, key, entry) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return false
   }
+
   const container = value
   let current = container
   while (current) {
@@ -932,6 +960,7 @@ function setPhpObjectEntry(value, key, entry) {
     }
     current = Object.getPrototypeOf(current)
   }
+
   Object.defineProperty(container, key, {
     configurable: true,
     enumerable: true,
@@ -954,12 +983,15 @@ function xdiff_string_patch(originalStr, patch, flags, errorObj) {
   //          note 3: object. The errors will then be written by reference into it's `value` property
   //       example 1: xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!')
   //       returns 1: 'Hello world!'
+
   // First two functions were adapted from Steven Levithan, also under an MIT license
   // Adapted from XRegExp 1.5.0
   // (c) 2007-2010 Steven Levithan
   // MIT License
   // <https://xregexp.com>
+
   const isRecord = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
+
   const _getNativeFlags = function (regex) {
     const extended = getPhpObjectEntry(regex, 'extended') === true
     const sticky = getPhpObjectEntry(regex, 'sticky') === true
@@ -972,15 +1004,18 @@ function xdiff_string_patch(originalStr, patch, flags, errorObj) {
       sticky ? 'y' : '',
     ].join('')
   }
+
   const getXRegExpMeta = (regex) => {
     const xregexpValue = getPhpObjectEntry(regex, '_xregexp')
     if (!isRecord(xregexpValue)) {
       return undefined
     }
+
     const sourceValue = getPhpObjectEntry(xregexpValue, 'source')
     if (typeof sourceValue !== 'string') {
       return undefined
     }
+
     const captureNamesValue = getPhpObjectEntry(xregexpValue, 'captureNames')
     let captureNames
     if (captureNamesValue === null) {
@@ -991,14 +1026,17 @@ function xdiff_string_patch(originalStr, patch, flags, errorObj) {
     ) {
       captureNames = captureNamesValue
     }
+
     if (captureNames === undefined) {
       return { source: sourceValue }
     }
+
     return {
       source: sourceValue,
       captureNames,
     }
   }
+
   const _cbSplit = function (input, sep) {
     // If separator `s` is not a regex, use the native `split`
     if (!(sep instanceof RegExp)) {
@@ -1021,24 +1059,30 @@ function xdiff_string_patch(originalStr, patch, flags, errorObj) {
         captureNames: x.captureNames ? x.captureNames.slice(0) : null,
       })
     }
+
     while ((match = s.exec(str))) {
       // Run the altered `exec` (required for `lastIndex` fix, etc.)
       if (s.lastIndex > lastLastIndex) {
         output.push(str.slice(lastLastIndex, match.index))
+
         if (match.length > 1 && match.index < str.length) {
           const captures = match.slice(1).filter((capture) => capture !== undefined)
           Array.prototype.push.apply(output, captures)
         }
+
         lastLength = match[0].length
         lastLastIndex = s.lastIndex
+
         if (output.length >= limit) {
           break
         }
       }
+
       if (s.lastIndex === match.index) {
         s.lastIndex++
       }
     }
+
     if (lastLastIndex === str.length) {
       if (!s.test('') || lastLength) {
         output.push('')
@@ -1046,12 +1090,15 @@ function xdiff_string_patch(originalStr, patch, flags, errorObj) {
     } else {
       output.push(str.slice(lastLastIndex))
     }
+
     return output.length > limit ? output.slice(0, limit) : output
   }
+
   // Input defaulting & sanitation
   if (!patch) {
     return false
   }
+
   let i = 0
   let ll = 0
   let ranges = null
@@ -1071,9 +1118,11 @@ function xdiff_string_patch(originalStr, patch, flags, errorObj) {
     XDIFF_PATCH_REVERSE: 2,
     XDIFF_PATCH_IGNORESPACE: 4,
   }
+
   if (!flags) {
     flags = 'XDIFF_PATCH_NORMAL'
   }
+
   if (typeof flags !== 'number') {
     // Allow for a single string or an array of string flags
     const flagList = Array.isArray(flags) ? flags : [flags]
@@ -1090,6 +1139,7 @@ function xdiff_string_patch(originalStr, patch, flags, errorObj) {
     }
     flags = optTemp
   }
+
   if (flags & OPTS.XDIFF_PATCH_NORMAL) {
     for (i = 0, ll = lines.length; i < ll; i++) {
       const line = lines[i] ?? ''
@@ -1166,9 +1216,11 @@ function xdiff_string_patch(originalStr, patch, flags, errorObj) {
       newStrArr.push(origLines[linePos++] ?? '')
     }
   }
+
   if (errorObj) {
     errorObj.value = errors
   }
+
   return newStrArr.join('\n')
 }{% endcodeblock %}
 </div>

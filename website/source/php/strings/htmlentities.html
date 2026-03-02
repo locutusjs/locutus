@@ -105,6 +105,7 @@ export function htmlentities(
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { get_html_translation_table as getHtmlTranslationTable } from '../strings/get_html_translation_table.ts'
+
 export function htmlentities(string, quoteStyle, charset, doubleEncode) {
   //      discuss at: https://locutus.io/php/htmlentities/
   // parity verified: PHP 8.3
@@ -123,12 +124,17 @@ export function htmlentities(string, quoteStyle, charset, doubleEncode) {
   //       returns 1: 'Kevin &amp; van Zonneveld'
   //       example 2: htmlentities("foo'bar","ENT_QUOTES")
   //       returns 2: 'foo&#039;bar'
+
   const hashMap = getHtmlTranslationTable('HTML_ENTITIES', quoteStyle)
+
   const source = string === null ? '' : string + ''
+
   if (quoteStyle && quoteStyle === 'ENT_QUOTES') {
     hashMap["'"] = '&#039;'
   }
+
   const shouldDoubleEncode = doubleEncode === null || !!doubleEncode
+
   const regex = new RegExp(
     '&(?:#\\d+|#x[\\da-f]+|[a-zA-Z][\\da-z]*);|[' +
       Object.keys(hashMap)
@@ -138,10 +144,12 @@ export function htmlentities(string, quoteStyle, charset, doubleEncode) {
       ']',
     'g',
   )
+
   return source.replace(regex, function (ent) {
     if (ent.length > 1) {
       return shouldDoubleEncode ? hashMap['&'] + ent.substring(1) : ent
     }
+
     return hashMap[ent] ?? ent
   })
 }{% endcodeblock %}
@@ -399,6 +407,7 @@ function get_html_translation_table(table = 'HTML_SPECIALCHARS', quoteStyle = 'E
   //      note 1: chooses to create the constants themselves.
   //   example 1: get_html_translation_table('HTML_SPECIALCHARS')
   //   returns 1: {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
+
   const entities = {}
   const hashMap = {}
   let decimal = ''
@@ -412,19 +421,23 @@ function get_html_translation_table(table = 'HTML_SPECIALCHARS', quoteStyle = 'E
   constMappingQuoteStyle[0] = 'ENT_NOQUOTES'
   constMappingQuoteStyle[2] = 'ENT_COMPAT'
   constMappingQuoteStyle[3] = 'ENT_QUOTES'
+
   useTable = !isNaN(Number(table))
     ? (constMappingTable[Number(table)] ?? 'HTML_SPECIALCHARS')
     : table
       ? String(table).toUpperCase()
       : 'HTML_SPECIALCHARS'
+
   useQuoteStyle = !isNaN(Number(quoteStyle))
     ? (constMappingQuoteStyle[Number(quoteStyle)] ?? 'ENT_COMPAT')
     : quoteStyle
       ? String(quoteStyle).toUpperCase()
       : 'ENT_COMPAT'
+
   if (useTable !== 'HTML_SPECIALCHARS' && useTable !== 'HTML_ENTITIES') {
     throw new Error('Table: ' + useTable + ' not supported')
   }
+
   entities['38'] = '&amp;'
   if (useTable === 'HTML_ENTITIES') {
     entities['160'] = '&nbsp;'
@@ -524,6 +537,7 @@ function get_html_translation_table(table = 'HTML_SPECIALCHARS', quoteStyle = 'E
     entities['254'] = '&thorn;'
     entities['255'] = '&yuml;'
   }
+
   if (useQuoteStyle !== 'ENT_NOQUOTES') {
     entities['34'] = '&quot;'
   }
@@ -532,12 +546,14 @@ function get_html_translation_table(table = 'HTML_SPECIALCHARS', quoteStyle = 'E
   }
   entities['60'] = '&lt;'
   entities['62'] = '&gt;'
+
   // ascii decimals to real symbols
   for (decimal in entities) {
     if (Object.prototype.hasOwnProperty.call(entities, decimal)) {
       hashMap[String.fromCharCode(Number(decimal))] = entities[decimal] ?? ''
     }
   }
+
   return hashMap
 }
 
@@ -562,12 +578,17 @@ function htmlentities(string, quoteStyle, charset, doubleEncode) {
   //       returns 1: 'Kevin &amp; van Zonneveld'
   //       example 2: htmlentities("foo'bar","ENT_QUOTES")
   //       returns 2: 'foo&#039;bar'
+
   const hashMap = getHtmlTranslationTable('HTML_ENTITIES', quoteStyle)
+
   const source = string === null ? '' : string + ''
+
   if (quoteStyle && quoteStyle === 'ENT_QUOTES') {
     hashMap["'"] = '&#039;'
   }
+
   const shouldDoubleEncode = doubleEncode === null || !!doubleEncode
+
   const regex = new RegExp(
     '&(?:#\\d+|#x[\\da-f]+|[a-zA-Z][\\da-z]*);|[' +
       Object.keys(hashMap)
@@ -577,10 +598,12 @@ function htmlentities(string, quoteStyle, charset, doubleEncode) {
       ']',
     'g',
   )
+
   return source.replace(regex, function (ent) {
     if (ent.length > 1) {
       return shouldDoubleEncode ? hashMap['&'] + ent.substring(1) : ent
     }
+
     return hashMap[ent] ?? ent
   })
 }{% endcodeblock %}

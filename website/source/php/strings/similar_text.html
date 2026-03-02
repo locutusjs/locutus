@@ -124,17 +124,21 @@ alias:
   //       returns 1: 8
   //       example 2: similar_text('Hello World!', null)
   //       returns 2: 0
+
   if (first === null || second === null || typeof first === 'undefined' || typeof second === 'undefined') {
     return 0
   }
+
   const firstValue = String(first)
   const secondValue = String(second)
+
   let pos1 = 0
   let pos2 = 0
   let max = 0
   const firstLength = firstValue.length
   const secondLength = secondValue.length
   let sum = 0
+
   for (let p = 0; p < firstLength; p++) {
     for (let q = 0; q < secondLength; q++) {
       let l = 0
@@ -152,11 +156,14 @@ alias:
       }
     }
   }
+
   sum = max
+
   if (sum) {
     if (pos1 && pos2) {
       sum += similar_text(firstValue.substr(0, pos1), secondValue.substr(0, pos2))
     }
+
     if (pos1 + max < firstLength && pos2 + max < secondLength) {
       sum += similar_text(
         firstValue.substr(pos1 + max, firstLength - pos1 - max),
@@ -164,9 +171,11 @@ alias:
       )
     }
   }
+
   if (!percent) {
     return sum
   }
+
   return (sum * 200) / (firstLength + secondLength)
 }{% endcodeblock %}
 </div>

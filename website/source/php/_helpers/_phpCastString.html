@@ -123,7 +123,8 @@ export function _phpCastString(value: CastStringValue): string {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function _phpCastString(value) {
+{% codeblock lang:javascript %}
+export function _phpCastString(value) {
   // original by: Rafał Kukawski
   //   example 1: _phpCastString(true)
   //   returns 1: '1'
@@ -151,6 +152,7 @@ export function _phpCastString(value: CastStringValue): string {
   //  returns 12: '1'
   //  example 13: _phpCastString(3.14)
   //  returns 13: '3.14'
+
   if (typeof value === 'boolean') {
     return value ? '1' : ''
   }
@@ -161,9 +163,11 @@ export function _phpCastString(value: CastStringValue): string {
     if (isNaN(value)) {
       return 'NAN'
     }
+
     if (!isFinite(value)) {
       return (value < 0 ? '-' : '') + 'INF'
     }
+
     return value + ''
   }
   if (typeof value === 'undefined') {
@@ -173,11 +177,14 @@ export function _phpCastString(value: CastStringValue): string {
     if (Array.isArray(value)) {
       return 'Array'
     }
+
     if (value !== null) {
       return 'Object'
     }
+
     return ''
   }
+
   throw new Error('Unsupported value type')
 }{% endcodeblock %}
 </div>

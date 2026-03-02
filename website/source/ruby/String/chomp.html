@@ -78,15 +78,19 @@ alias:
   //       returns 2: 'hello'
   //       example 3: chomp('hello', 'llo')
   //       returns 3: 'he'
+
   str = str + ''
+
   if (separator === undefined) {
     // Default: remove trailing \r\n, \n, or \r
     return str.replace(/(\r\n|\r|\n)$/, '')
   }
+
   separator = separator + ''
   if (str.slice(-separator.length) === separator) {
     return str.slice(0, -separator.length)
   }
+
   return str
 }{% endcodeblock %}
 </div>

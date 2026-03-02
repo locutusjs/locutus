@@ -51,6 +51,7 @@ export function function_exists(funcName: string): boolean {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { getPhpGlobalCallable } from '../_helpers/_phpRuntimeState.ts'
+
 export function function_exists(funcName) {
   //  discuss at: https://locutus.io/php/function_exists/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -59,6 +60,7 @@ export function function_exists(funcName) {
   // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: function_exists('isFinite')
   //   returns 1: true
+
   return typeof getPhpGlobalCallable(funcName) === 'function'
 }{% endcodeblock %}
 </div>
@@ -148,10 +150,12 @@ function isPhpCallable(value) {
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 function getPhpGlobalEntry(key) {
   const value = globalContext[key]
   return typeof value === 'undefined' ? undefined : value
 }
+
 function getPhpGlobalCallable(key) {
   const value = getPhpGlobalEntry(key)
   return isPhpCallable(value) ? value : undefined
@@ -166,6 +170,7 @@ function function_exists(funcName) {
   // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: function_exists('isFinite')
   //   returns 1: true
+
   return typeof getPhpGlobalCallable(funcName) === 'function'
 }{% endcodeblock %}
 </div>

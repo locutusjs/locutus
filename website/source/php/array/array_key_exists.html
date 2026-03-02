@@ -45,12 +45,14 @@ export function array_key_exists<TValue>(key: string | number, search: PhpArrayL
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function array_key_exists(key, search) {
+{% codeblock lang:javascript %}
+export function array_key_exists(key, search) {
   //  discuss at: https://locutus.io/php/array_key_exists/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Felix Geisendoerfer (https://www.debuggable.com/felix)
   //   example 1: array_key_exists('kevin', {'kevin': 'van Zonneveld'})
   //   returns 1: true
+
   return String(key) in search
 }{% endcodeblock %}
 </div>

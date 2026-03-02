@@ -320,7 +320,8 @@ export function sscanf(str: string, format: string, ...refs: SscanfRef[]): Sscan
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function sscanf(str, format, ...refs) {
+{% codeblock lang:javascript %}
+export function sscanf(str, format, ...refs) {
   //  discuss at: https://locutus.io/php/sscanf/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: sscanf('SN/2350001', 'SN/%d')
@@ -331,10 +332,12 @@ export function sscanf(str: string, format: string, ...refs: SscanfRef[]): Sscan
   //   returns 2: 2350001
   //   example 3: sscanf("10--20", "%2$d--%1$d") // Must escape '$' in PHP, but not JS
   //   returns 3: [20, 10]
+
   const retArr = []
   const _NWS = /\S/
   let digit
   let input = str
+
   const _setExtraConversionSpecs = function (offset) {
     // Since a mismatched character sets us off track from future
     // legitimate finds, we just scan
@@ -355,6 +358,7 @@ export function sscanf(str: string, format: string, ...refs: SscanfRef[]): Sscan
     }
     return _finish()
   }
+
   const _finish = function () {
     if (refs.length === 0) {
       return retArr
@@ -369,6 +373,7 @@ export function sscanf(str: string, format: string, ...refs: SscanfRef[]): Sscan
     }
     return i
   }
+
   const _addNext = function (j, regex, cb) {
     if (assign) {
       const remaining = input.slice(j)
@@ -384,16 +389,20 @@ export function sscanf(str: string, format: string, ...refs: SscanfRef[]): Sscan
     }
     return j
   }
+
   if (str === undefined || format === undefined) {
     throw new Error('Not enough arguments passed to sscanf')
   }
+
   // These need to be in outer scope for _addNext closure
   let width = 0
   let assign = true
+
   // PROCESS
   for (let i = 0, j = 0; i < format.length; i++) {
     width = 0
     assign = true
+
     if (format.charAt(i) === '%') {
       if (format.charAt(i + 1) === '%') {
         if (input.charAt(j) === '%') {
@@ -406,13 +415,17 @@ export function sscanf(str: string, format: string, ...refs: SscanfRef[]): Sscan
         // Format indicated a percent literal, but not actually present
         return _setExtraConversionSpecs(i + 2)
       }
+
       // CHARACTER FOLLOWING PERCENT IS NOT A PERCENT
+
       // We need 'g' set to get lastIndex
       const prePattern = /^(?:(\d+)\$)?(\*)?(\d*)([hlL]?)/g
+
       const preConvs = prePattern.exec(format.slice(i + 1))
       if (!preConvs) {
         throw new Error('Unexpected format in sscanf()')
       }
+
       const tmpDigit = digit
       if (tmpDigit && preConvs[1] === undefined) {
         let msg = 'All groups in sscanf() must be expressed as numeric if '
@@ -420,10 +433,12 @@ export function sscanf(str: string, format: string, ...refs: SscanfRef[]): Sscan
         throw new Error(msg)
       }
       digit = preConvs[1] ? parseInt(preConvs[1], 10) - 1 : undefined
+
       assign = !preConvs[2]
       width = parseInt(preConvs[3] ?? '', 10)
       const sizeCode = preConvs[4]
       i += prePattern.lastIndex
+
       // @todo: Does PHP do anything with these? Seems not to matter
       if (sizeCode) {
         // This would need to be processed later
@@ -580,6 +595,7 @@ export function sscanf(str: string, format: string, ...refs: SscanfRef[]): Sscan
       j++
     }
   }
+
   // POST-PROCESSING
   return _finish()
 }{% endcodeblock %}

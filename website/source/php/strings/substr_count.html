@@ -86,7 +86,9 @@ alias:
   //   returns 2: 0
   //   example 3: substr_count('Kevin van Zonneveld', 'Z', 0, 10)
   //   returns 3: false
+
   let cnt = 0
+
   const normalizedHaystack = String(haystack)
   const normalizedNeedle = String(needle)
   const normalizedOffset = Number.isNaN(Number(offset)) ? 0 : Number(offset)
@@ -95,12 +97,14 @@ alias:
     return false
   }
   let position = normalizedOffset - 1
+
   while ((position = normalizedHaystack.indexOf(normalizedNeedle, position + 1)) !== -1) {
     if (normalizedLength > 0 && position + normalizedNeedle.length > normalizedLength) {
       return false
     }
     cnt++
   }
+
   return cnt
 }{% endcodeblock %}
 </div>

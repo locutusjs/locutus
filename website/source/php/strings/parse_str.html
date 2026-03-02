@@ -247,6 +247,7 @@ export function parse_str(str: string, array?: ParseObject): void {
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { getPhpGlobalScope } from '../_helpers/_phpRuntimeState.ts'
 import { isPhpAssocObject } from '../_helpers/_phpTypes.ts'
+
 export function parse_str(str, array) {
   //       discuss at: https://locutus.io/php/parse_str/
   //      original by: Cagri Ekin
@@ -288,6 +289,7 @@ export function parse_str(str, array) {
   //        example 5: parse_str('a=1&a[]=2', $arr)
   //        example 5: var $result = $arr
   //        returns 5: {"a":{"0":"2"}}
+
   const strArr = String(str).replace(/^&/, '').replace(/&$/, '').split('&')
   const sal = strArr.length
   let i = 0
@@ -303,26 +305,34 @@ export function parse_str(str, array) {
   let postLeftBracketPos = 0
   let keys = []
   let keysLen = 0
+
   const _fixStr = function (str) {
     return decodeURIComponent(str.replace(/\+/g, '%20'))
   }
+
   const target = array || getPhpGlobalScope()
+
   for (i = 0; i < sal; i++) {
     tmp = (strArr[i] ?? '').split('=')
     key = _fixStr(tmp[0] ?? '')
     value = tmp.length < 2 ? '' : _fixStr(tmp[1] ?? '')
+
     if (/__proto__|constructor|prototype/.test(key)) {
       break
     }
+
     while (key.charAt(0) === ' ') {
       key = key.slice(1)
     }
+
     if (key.indexOf('\x00') > -1) {
       key = key.slice(0, key.indexOf('\x00'))
     }
+
     if (key && key.charAt(0) !== '[') {
       keys = []
       postLeftBracketPos = 0
+
       for (j = 0; j < key.length; j++) {
         if (key.charAt(j) === '[' && !postLeftBracketPos) {
           postLeftBracketPos = j + 1
@@ -331,35 +341,45 @@ export function parse_str(str, array) {
             if (!keys.length) {
               keys.push(key.slice(0, postLeftBracketPos - 1))
             }
+
             keys.push(key.substr(postLeftBracketPos, j - postLeftBracketPos))
             postLeftBracketPos = 0
+
             if (key.charAt(j + 1) !== '[') {
               break
             }
           }
         }
       }
+
       if (!keys.length) {
         keys = [key]
       }
+
       let primaryKey = keys[0] ?? ''
       for (j = 0; j < primaryKey.length; j++) {
         chr = primaryKey.charAt(j)
+
         if (chr === ' ' || chr === '.' || chr === '[') {
           primaryKey = primaryKey.substring(0, j) + '_' + primaryKey.substring(j + 1)
         }
+
         if (chr === '[') {
           break
         }
       }
       keys[0] = primaryKey
+
       obj = target
+
       for (j = 0, keysLen = keys.length; j < keysLen; j++) {
         key = (keys[j] ?? '').replace(/^['"]/, '').replace(/['"]$/, '')
         lastObj = obj
+
         if ((key === '' || key === ' ') && j !== 0) {
           // Insert new dimension
           ct = -1
+
           for (p in obj) {
             if (Object.prototype.hasOwnProperty.call(obj, p)) {
               if (+p > ct && p.match(/^\d+$/g)) {
@@ -367,19 +387,23 @@ export function parse_str(str, array) {
               }
             }
           }
+
           key = String(ct + 1)
         }
+
         // if primitive value, replace with object
         const current = obj[key]
         if (!isPhpAssocObject(current)) {
           obj[key] = {}
         }
+
         const next = obj[key]
         if (!isPhpAssocObject(next)) {
           break
         }
         obj = next
       }
+
       lastObj[key] = value
     }
   }
@@ -607,6 +631,7 @@ function isPhpList(value) {
   //  returns 1: true
   return Array.isArray(value)
 }
+
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -614,6 +639,7 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
@@ -621,6 +647,7 @@ function isPhpAssocObject(value) {
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 function getPhpGlobalScope() {
   return globalContext
 }
@@ -667,6 +694,7 @@ function parse_str(str, array) {
   //        example 5: parse_str('a=1&a[]=2', $arr)
   //        example 5: var $result = $arr
   //        returns 5: {"a":{"0":"2"}}
+
   const strArr = String(str).replace(/^&/, '').replace(/&$/, '').split('&')
   const sal = strArr.length
   let i = 0
@@ -682,26 +710,34 @@ function parse_str(str, array) {
   let postLeftBracketPos = 0
   let keys = []
   let keysLen = 0
+
   const _fixStr = function (str) {
     return decodeURIComponent(str.replace(/\+/g, '%20'))
   }
+
   const target = array || getPhpGlobalScope()
+
   for (i = 0; i < sal; i++) {
     tmp = (strArr[i] ?? '').split('=')
     key = _fixStr(tmp[0] ?? '')
     value = tmp.length < 2 ? '' : _fixStr(tmp[1] ?? '')
+
     if (/__proto__|constructor|prototype/.test(key)) {
       break
     }
+
     while (key.charAt(0) === ' ') {
       key = key.slice(1)
     }
+
     if (key.indexOf('\x00') > -1) {
       key = key.slice(0, key.indexOf('\x00'))
     }
+
     if (key && key.charAt(0) !== '[') {
       keys = []
       postLeftBracketPos = 0
+
       for (j = 0; j < key.length; j++) {
         if (key.charAt(j) === '[' && !postLeftBracketPos) {
           postLeftBracketPos = j + 1
@@ -710,35 +746,45 @@ function parse_str(str, array) {
             if (!keys.length) {
               keys.push(key.slice(0, postLeftBracketPos - 1))
             }
+
             keys.push(key.substr(postLeftBracketPos, j - postLeftBracketPos))
             postLeftBracketPos = 0
+
             if (key.charAt(j + 1) !== '[') {
               break
             }
           }
         }
       }
+
       if (!keys.length) {
         keys = [key]
       }
+
       let primaryKey = keys[0] ?? ''
       for (j = 0; j < primaryKey.length; j++) {
         chr = primaryKey.charAt(j)
+
         if (chr === ' ' || chr === '.' || chr === '[') {
           primaryKey = primaryKey.substring(0, j) + '_' + primaryKey.substring(j + 1)
         }
+
         if (chr === '[') {
           break
         }
       }
       keys[0] = primaryKey
+
       obj = target
+
       for (j = 0, keysLen = keys.length; j < keysLen; j++) {
         key = (keys[j] ?? '').replace(/^['"]/, '').replace(/['"]$/, '')
         lastObj = obj
+
         if ((key === '' || key === ' ') && j !== 0) {
           // Insert new dimension
           ct = -1
+
           for (p in obj) {
             if (Object.prototype.hasOwnProperty.call(obj, p)) {
               if (+p > ct && p.match(/^\d+$/g)) {
@@ -746,19 +792,23 @@ function parse_str(str, array) {
               }
             }
           }
+
           key = String(ct + 1)
         }
+
         // if primitive value, replace with object
         const current = obj[key]
         if (!isPhpAssocObject(current)) {
           obj[key] = {}
         }
+
         const next = obj[key]
         if (!isPhpAssocObject(next)) {
           break
         }
         obj = next
       }
+
       lastObj[key] = value
     }
   }

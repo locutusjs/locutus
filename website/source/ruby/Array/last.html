@@ -70,12 +70,15 @@ alias:
   //       returns 2: ['b', 'c']
   //       example 3: last([])
   //       returns 3: undefined
+
   if (!Array.isArray(arr)) {
     return undefined
   }
+
   if (n === undefined) {
     return arr[arr.length - 1]
   }
+
   return arr.slice(-n)
 }{% endcodeblock %}
 </div>

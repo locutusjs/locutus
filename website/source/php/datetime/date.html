@@ -479,7 +479,8 @@ export function date(format: string, timestamp?: number | Date | string): string
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function date(format, timestamp) {
+{% codeblock lang:javascript %}
+export function date(format, timestamp) {
   //  discuss at: https://locutus.io/php/date/
   // original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)
   // original by: gettimeofday
@@ -539,6 +540,7 @@ export function date(format: string, timestamp?: number | Date | string): string
   //   returns 8: '52'
   //   example 9: date('W Y-m-d', 1293974054); // 2011-01-02
   //   returns 9: '52 2011-01-02'
+
   let jsdate = new Date()
   let f
   // Keep this here (works, but for code commented-out below for file size reasons)
@@ -620,6 +622,7 @@ export function date(format: string, timestamp?: number | Date | string): string
       const b = new Date(Number(f.Y()), 0, 1)
       return Math.round((a.getTime() - b.getTime()) / 864e5)
     },
+
     // Week
     W: function () {
       // ISO-8601 week number
@@ -627,6 +630,7 @@ export function date(format: string, timestamp?: number | Date | string): string
       const b = new Date(a.getFullYear(), 0, 4)
       return _pad(1 + Math.round((a.getTime() - b.getTime()) / 864e5 / 7), 2)
     },
+
     // Month
     F: function () {
       // Full month name; January...December
@@ -648,6 +652,7 @@ export function date(format: string, timestamp?: number | Date | string): string
       // Days in month; 28...31
       return new Date(Number(f.Y()), Number(f.n()), 0).getDate()
     },
+
     // Year
     L: function () {
       // Is leap year?; 0 or 1
@@ -669,6 +674,7 @@ export function date(format: string, timestamp?: number | Date | string): string
       // Last two digits of year; 00...99
       return String(f.Y()).slice(-2)
     },
+
     // Time
     a: function () {
       // am or pm
@@ -716,6 +722,7 @@ export function date(format: string, timestamp?: number | Date | string): string
       // Microseconds; 000000-999000
       return _pad(jsdate.getMilliseconds() * 1000, 6)
     },
+
     // Timezone
     e: function () {
       // Timezone identifier; e.g. Atlantic/Azores, ...
@@ -783,6 +790,7 @@ export function date(format: string, timestamp?: number | Date | string): string
       // Timezone offset in seconds (-43200...50400)
       return -jsdate.getTimezoneOffset() * 60
     },
+
     // Full Date/Time
     c: function () {
       // ISO-8601 date.
@@ -797,6 +805,7 @@ export function date(format: string, timestamp?: number | Date | string): string
       return (jsdate.getTime() / 1000) | 0
     },
   }
+
   const _date = function (formatStr, timestampValue) {
     jsdate =
       timestampValue === undefined
@@ -806,6 +815,7 @@ export function date(format: string, timestamp?: number | Date | string): string
           : new Date(Number(timestampValue) * 1000) // UNIX timestamp (auto-convert to int)
     return formatStr.replace(formatChr, formatChrCb)
   }
+
   return _date(format, timestamp)
 }{% endcodeblock %}
 </div>

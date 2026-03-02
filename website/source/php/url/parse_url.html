@@ -199,6 +199,7 @@ export function parse_url(str: string, component?: string): ParseUrlResult | str
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { ini_get } from '../info/ini_get.ts'
+
 export function parse_url(str, component) {
   //       discuss at: https://locutus.io/php/parse_url/
   //      original by: Steven Levithan (https://blog.stevenlevithan.com)
@@ -223,8 +224,11 @@ export function parse_url(str, component) {
   //        returns 3: {scheme: 'https', host: 'host.domain.tld', path: '/a@b.c/folder'}
   //        example 4: parse_url('https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar')
   //        returns 4: { scheme: 'https', host: 'www.example.com', path: '/a@b.c/folder', query: 'foo=bar', user: 'gooduser', pass: 'secretpassword' }
+
   let query
+
   const mode = ini_get('locutus.parse_url.mode') || 'php'
+
   const key = [
     'source',
     'scheme',
@@ -241,6 +245,7 @@ export function parse_url(str, component) {
     'query',
     'fragment',
   ]
+
   // For loose we added one optional slash to post-scheme to catch file:/// (should restrict this)
   const parser = {
     php: new RegExp(
@@ -268,6 +273,7 @@ export function parse_url(str, component) {
       ].join(''),
     ),
   }
+
   const parserMode = mode === 'php' || mode === 'strict' || mode === 'loose' ? mode : 'php'
   const selectedParser = parser[parserMode]
   const m = selectedParser.exec(str)
@@ -276,15 +282,18 @@ export function parse_url(str, component) {
     return uri
   }
   let i = 14
+
   while (i--) {
     const keyName = key[i]
     if (keyName && m[i]) {
       uri[keyName] = m[i]
     }
   }
+
   if (component) {
     return String(uri[component.replace('PHP_URL_', '').toLowerCase()] ?? '')
   }
+
   if (mode !== 'php') {
     const name = ini_get('locutus.parse_url.queryKey') || 'queryKey'
     const queryParser = /(?:^|&)([^&=]*)=?([^&]*)/g
@@ -299,6 +308,7 @@ export function parse_url(str, component) {
       return $0
     })
   }
+
   delete uri.source
   return uri
 }{% endcodeblock %}
@@ -598,6 +608,7 @@ function isPhpList(value) {
   //  returns 1: true
   return Array.isArray(value)
 }
+
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -605,29 +616,37 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
 
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
+
 const isLocaleBag = (value) => isPhpAssocObject(value)
+
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 const ensurePhpRuntimeObject = () => {
   let locutus = globalContext.$locutus
   if (typeof locutus !== 'object' || locutus === null) {
     locutus = {}
     globalContext.$locutus = locutus
   }
+
   let php = locutus.php
   if (typeof php !== 'object' || php === null) {
     php = {}
     locutus.php = php
   }
+
   return php
 }
+
 function ensurePhpRuntimeState() {
   // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
   //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
@@ -638,10 +657,12 @@ function ensurePhpRuntimeState() {
   const localesValue = php.locales
   const localeCategoriesValue = php.localeCategories
   const pointersValue = php.pointers
+
   const ini = isIniBag(iniValue) ? iniValue : {}
   const locales = isLocaleBag(localesValue) ? localesValue : {}
   const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
   const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
   if (iniValue !== ini) {
     php.ini = ini
   }
@@ -654,8 +675,10 @@ function ensurePhpRuntimeState() {
   if (pointersValue !== pointers) {
     php.pointers = pointers
   }
+
   const localeDefaultValue = php.locale_default
   const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
   return {
     ini,
     locales,
@@ -673,14 +696,17 @@ function ini_get(varname) {
   //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
   //   example 1: ini_get('date.timezone')
   //   returns 1: 'Asia/Hong_Kong'
+
   const runtime = ensurePhpRuntimeState()
   const entry = runtime.ini[varname]
+
   if (entry && entry.local_value !== undefined) {
     if (entry.local_value === null) {
       return ''
     }
     return String(entry.local_value)
   }
+
   return ''
 }
 
@@ -709,8 +735,11 @@ function parse_url(str, component) {
   //        returns 3: {scheme: 'https', host: 'host.domain.tld', path: '/a@b.c/folder'}
   //        example 4: parse_url('https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar')
   //        returns 4: { scheme: 'https', host: 'www.example.com', path: '/a@b.c/folder', query: 'foo=bar', user: 'gooduser', pass: 'secretpassword' }
+
   let query
+
   const mode = ini_get('locutus.parse_url.mode') || 'php'
+
   const key = [
     'source',
     'scheme',
@@ -727,6 +756,7 @@ function parse_url(str, component) {
     'query',
     'fragment',
   ]
+
   // For loose we added one optional slash to post-scheme to catch file:/// (should restrict this)
   const parser = {
     php: new RegExp(
@@ -754,6 +784,7 @@ function parse_url(str, component) {
       ].join(''),
     ),
   }
+
   const parserMode = mode === 'php' || mode === 'strict' || mode === 'loose' ? mode : 'php'
   const selectedParser = parser[parserMode]
   const m = selectedParser.exec(str)
@@ -762,15 +793,18 @@ function parse_url(str, component) {
     return uri
   }
   let i = 14
+
   while (i--) {
     const keyName = key[i]
     if (keyName && m[i]) {
       uri[keyName] = m[i]
     }
   }
+
   if (component) {
     return String(uri[component.replace('PHP_URL_', '').toLowerCase()] ?? '')
   }
+
   if (mode !== 'php') {
     const name = ini_get('locutus.parse_url.queryKey') || 'queryKey'
     const queryParser = /(?:^|&)([^&=]*)=?([^&]*)/g
@@ -785,6 +819,7 @@ function parse_url(str, component) {
       return $0
     })
   }
+
   delete uri.source
   return uri
 }{% endcodeblock %}

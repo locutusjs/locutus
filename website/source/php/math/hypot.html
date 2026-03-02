@@ -58,7 +58,8 @@ export function hypot(x: HypotInput, y: HypotInput): number | null {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function hypot(x, y) {
+{% codeblock lang:javascript %}
+export function hypot(x, y) {
   //  discuss at: https://locutus.io/php/hypot/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Robert Eisele (https://www.xarg.org/)
@@ -66,11 +67,14 @@ export function hypot(x: HypotInput, y: HypotInput): number | null {
   //   returns 1: 5
   //   example 2: hypot([], 'a')
   //   returns 2: null
+
   const left = Math.abs(Number(x))
   const right = Math.abs(Number(y))
+
   let t = Math.min(left, right)
   const max = Math.max(left, right)
   t = t / max
+
   return max * Math.sqrt(1 + t * t) || null
 }{% endcodeblock %}
 </div>

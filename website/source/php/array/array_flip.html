@@ -67,6 +67,7 @@ export function array_flip<TValue extends PhpKey | StringLike>(trans: PhpArrayLi
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
 export function array_flip(trans) {
   //      discuss at: https://locutus.io/php/array_flip/
   // parity verified: PHP 8.3
@@ -75,6 +76,7 @@ export function array_flip(trans) {
   //     improved by: Brett Zamir (https://brett-zamir.me)
   //       example 1: array_flip( {a: 1, b: 1, c: 2} )
   //       returns 1: {1: 'b', 2: 'c'}
+
   const tmpArr = {}
   const values = toPhpArrayObject(trans)
   const hasOwn = Object.prototype.hasOwnProperty
@@ -84,6 +86,7 @@ export function array_flip(trans) {
     }
     tmpArr[String(values[key])] = key
   }
+
   return tmpArr
 }{% endcodeblock %}
 </div>
@@ -155,10 +158,12 @@ function isPhpArrayObject(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
     return value
   }
+
   return {}
 }
 
@@ -171,6 +176,7 @@ function array_flip(trans) {
   //     improved by: Brett Zamir (https://brett-zamir.me)
   //       example 1: array_flip( {a: 1, b: 1, c: 2} )
   //       returns 1: {1: 'b', 2: 'c'}
+
   const tmpArr = {}
   const values = toPhpArrayObject(trans)
   const hasOwn = Object.prototype.hasOwnProperty
@@ -180,6 +186,7 @@ function array_flip(trans) {
     }
     tmpArr[String(values[key])] = key
   }
+
   return tmpArr
 }{% endcodeblock %}
 </div>

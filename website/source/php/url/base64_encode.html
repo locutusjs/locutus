@@ -151,6 +151,7 @@ export function base64_encode(stringToEncode: string | null | undefined): string
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { getPhpGlobalCallable, getPhpGlobalEntry, getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
 import { isObjectLike, isPhpCallable } from '../_helpers/_phpTypes.ts'
+
 export function base64_encode(stringToEncode) {
   //      discuss at: https://locutus.io/php/base64_encode/
   // parity verified: PHP 8.3
@@ -168,6 +169,7 @@ export function base64_encode(stringToEncode) {
   //       returns 2: 'YQ=='
   //       example 3: base64_encode('✓ à la mode')
   //       returns 3: '4pyTIMOgIGxhIG1vZGU='
+
   // encodeUTF8string()
   // Internal function to encode properly UTF8 string
   // Adapted from Solution #1 at https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
@@ -179,6 +181,7 @@ export function base64_encode(stringToEncode) {
       return String.fromCharCode(Number.parseInt(p1, 16))
     })
   }
+
   const bufferValue = getPhpGlobalEntry('Buffer')
   if (isObjectLike(bufferValue)) {
     const bufferFrom = getPhpObjectEntry(bufferValue, 'from')
@@ -195,6 +198,7 @@ export function base64_encode(stringToEncode) {
       }
     }
   }
+
   const btoaValue = getPhpGlobalCallable('btoa')
   if (btoaValue) {
     const encoded = btoaValue(encodeUTF8string(String(stringToEncode)))
@@ -202,6 +206,7 @@ export function base64_encode(stringToEncode) {
       return encoded
     }
   }
+
   const b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
   let o1
   let o2
@@ -215,25 +220,34 @@ export function base64_encode(stringToEncode) {
   let ac = 0
   let enc = ''
   const tmpArr = []
+
   if (!stringToEncode) {
     return stringToEncode
   }
+
   stringToEncode = encodeUTF8string(stringToEncode)
+
   do {
     // pack three octets into four hexets
     o1 = stringToEncode.charCodeAt(i++)
     o2 = stringToEncode.charCodeAt(i++)
     o3 = stringToEncode.charCodeAt(i++)
+
     bits = (o1 << 16) | (o2 << 8) | o3
+
     h1 = (bits >> 18) & 0x3f
     h2 = (bits >> 12) & 0x3f
     h3 = (bits >> 6) & 0x3f
     h4 = bits & 0x3f
+
     // use hexets to index into b64, and append result to encoded string
     tmpArr[ac++] = b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4)
   } while (i < stringToEncode.length)
+
   enc = tmpArr.join('')
+
   const r = stringToEncode.length % 3
+
   return (r ? enc.slice(0, r - 3) : enc) + '==='.slice(r || 3)
 }{% endcodeblock %}
 </div>
@@ -444,6 +458,7 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpCallable(value) {
   return typeof value === 'function'
 }
@@ -451,18 +466,22 @@ function isPhpCallable(value) {
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 function getPhpGlobalEntry(key) {
   const value = globalContext[key]
   return typeof value === 'undefined' ? undefined : value
 }
+
 function getPhpGlobalCallable(key) {
   const value = getPhpGlobalEntry(key)
   return isPhpCallable(value) ? value : undefined
 }
+
 function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
   }
+
   let current = value
   while (current) {
     const descriptor = Object.getOwnPropertyDescriptor(current, key)
@@ -476,6 +495,7 @@ function getPhpObjectEntry(value, key) {
     }
     current = Object.getPrototypeOf(current)
   }
+
   return undefined
 }
 
@@ -497,6 +517,7 @@ function base64_encode(stringToEncode) {
   //       returns 2: 'YQ=='
   //       example 3: base64_encode('✓ à la mode')
   //       returns 3: '4pyTIMOgIGxhIG1vZGU='
+
   // encodeUTF8string()
   // Internal function to encode properly UTF8 string
   // Adapted from Solution #1 at https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
@@ -508,6 +529,7 @@ function base64_encode(stringToEncode) {
       return String.fromCharCode(Number.parseInt(p1, 16))
     })
   }
+
   const bufferValue = getPhpGlobalEntry('Buffer')
   if (isObjectLike(bufferValue)) {
     const bufferFrom = getPhpObjectEntry(bufferValue, 'from')
@@ -524,6 +546,7 @@ function base64_encode(stringToEncode) {
       }
     }
   }
+
   const btoaValue = getPhpGlobalCallable('btoa')
   if (btoaValue) {
     const encoded = btoaValue(encodeUTF8string(String(stringToEncode)))
@@ -531,6 +554,7 @@ function base64_encode(stringToEncode) {
       return encoded
     }
   }
+
   const b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
   let o1
   let o2
@@ -544,25 +568,34 @@ function base64_encode(stringToEncode) {
   let ac = 0
   let enc = ''
   const tmpArr = []
+
   if (!stringToEncode) {
     return stringToEncode
   }
+
   stringToEncode = encodeUTF8string(stringToEncode)
+
   do {
     // pack three octets into four hexets
     o1 = stringToEncode.charCodeAt(i++)
     o2 = stringToEncode.charCodeAt(i++)
     o3 = stringToEncode.charCodeAt(i++)
+
     bits = (o1 << 16) | (o2 << 8) | o3
+
     h1 = (bits >> 18) & 0x3f
     h2 = (bits >> 12) & 0x3f
     h3 = (bits >> 6) & 0x3f
     h4 = bits & 0x3f
+
     // use hexets to index into b64, and append result to encoded string
     tmpArr[ac++] = b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4)
   } while (i < stringToEncode.length)
+
   enc = tmpArr.join('')
+
   const r = stringToEncode.length % 3
+
   return (r ? enc.slice(0, r - 3) : enc) + '==='.slice(r || 3)
 }{% endcodeblock %}
 </div>

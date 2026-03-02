@@ -83,16 +83,20 @@ alias:
   //     original by: strcasecmp, strcmp
   //       example 1: substr_compare("abcde", "bc", 1, 2)
   //       returns 1: 0
+
   if (!offset && offset !== 0) {
     throw new Error('Missing offset for substr_compare()')
   }
+
   if (offset < 0) {
     offset = mainStr.length + offset
   }
+
   if (length && length > mainStr.length - offset) {
     return false
   }
   length = length || mainStr.length - offset
+
   mainStr = mainStr.substr(offset, length)
   // Should only compare up to the desired length
   str = str.substr(0, length)

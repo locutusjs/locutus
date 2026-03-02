@@ -112,15 +112,19 @@ export function array_column(input, columnKey, indexKey) {
   //   returns 3: {1: "Alex", 2: "Elvis", 3: "Michael"}
   //   example 4: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], null, 'value')
   //   returns 4: {1: {name: 'Alex', value: 1}, 2: {name: 'Elvis', value: 2}, 3: {name: 'Michael', value: 3}}
+
   if (input === null || typeof input !== 'object') {
     return undefined
   }
+
   const normalizedInput = Array.isArray(input) ? input : Object.values(toPhpArrayObject(input))
   const result = {}
   let fallbackIndex = 0
+
   for (const rowValue of normalizedInput) {
     const row = toPhpArrayObject(rowValue)
     const indexCandidate = indexKey === null ? undefined : row[String(indexKey)]
+
     const value = columnKey === null ? rowValue : row[String(columnKey)]
     if (indexCandidate !== undefined && indexCandidate !== null) {
       result[String(indexCandidate)] = value
@@ -129,6 +133,7 @@ export function array_column(input, columnKey, indexKey) {
       fallbackIndex += 1
     }
   }
+
   return result
 }{% endcodeblock %}
 </div>
@@ -226,14 +231,17 @@ function isPhpArrayObject(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
     return value
   }
+
   return {}
 }
 
 // php/array/array_column (target function module)
+
 function array_column(input, columnKey, indexKey) {
   //  discuss at: https://locutus.io/php/array_column/
   // original by: Enzo Dañobeytía
@@ -245,15 +253,19 @@ function array_column(input, columnKey, indexKey) {
   //   returns 3: {1: "Alex", 2: "Elvis", 3: "Michael"}
   //   example 4: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], null, 'value')
   //   returns 4: {1: {name: 'Alex', value: 1}, 2: {name: 'Elvis', value: 2}, 3: {name: 'Michael', value: 3}}
+
   if (input === null || typeof input !== 'object') {
     return undefined
   }
+
   const normalizedInput = Array.isArray(input) ? input : Object.values(toPhpArrayObject(input))
   const result = {}
   let fallbackIndex = 0
+
   for (const rowValue of normalizedInput) {
     const row = toPhpArrayObject(rowValue)
     const indexCandidate = indexKey === null ? undefined : row[String(indexKey)]
+
     const value = columnKey === null ? rowValue : row[String(columnKey)]
     if (indexCandidate !== undefined && indexCandidate !== null) {
       result[String(indexCandidate)] = value
@@ -262,6 +274,7 @@ function array_column(input, columnKey, indexKey) {
       fallbackIndex += 1
     }
   }
+
   return result
 }{% endcodeblock %}
 </div>

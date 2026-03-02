@@ -76,13 +76,17 @@ alias:
   //       returns 2: 'string'
   //       example 3: chop('')
   //       returns 3: ''
+
   str = str + ''
+
   if (str.length === 0) {
     return str
   }
+
   if (str.slice(-2) === '\r\n') {
     return str.slice(0, -2)
   }
+
   return str.slice(0, -1)
 }{% endcodeblock %}
 </div>

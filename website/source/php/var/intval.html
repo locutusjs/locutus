@@ -104,7 +104,8 @@ export function intval(mixedVar: IntvalInput, base?: number): number {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function intval(mixedVar, base) {
+{% codeblock lang:javascript %}
+export function intval(mixedVar, base) {
   //      discuss at: https://locutus.io/php/intval/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -129,7 +130,9 @@ export function intval(mixedVar: IntvalInput, base?: number): number {
   //       returns 7: 255
   //       example 8: intval('010', 0)
   //       returns 8: 8
+
   let tmp = 0
+
   if (typeof mixedVar === 'boolean') {
     return Number(mixedVar)
   } else if (typeof mixedVar === 'string') {

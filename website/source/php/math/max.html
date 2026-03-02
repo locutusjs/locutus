@@ -188,11 +188,14 @@ export function max(...args: PhpMinMaxValue[]): PhpMinMaxValue {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}const isCollection = (value) => typeof value === 'object' && value !== null
+{% codeblock lang:javascript %}
+const isCollection = (value) => typeof value === 'object' && value !== null
+
 const objectToArray = (value) => {
   if (Array.isArray(value)) {
     return value
   }
+
   const converted = []
   for (const key in value) {
     if (Object.prototype.hasOwnProperty.call(value, key)) {
@@ -202,24 +205,30 @@ const objectToArray = (value) => {
       }
     }
   }
+
   return converted
 }
+
 const compareValues = (current, next) => {
   const currentNum = Number(current)
   const nextNum = Number(next)
+
   if (current === next) {
     return 0
   }
+
   if (isCollection(current)) {
     if (isCollection(next)) {
       const currentArray = objectToArray(current)
       const nextArray = objectToArray(next)
+
       if (nextArray.length > currentArray.length) {
         return 1
       }
       if (nextArray.length < currentArray.length) {
         return -1
       }
+
       for (let index = 0; index < currentArray.length; index += 1) {
         const currentItem = currentArray[index]
         const nextItem = nextArray[index]
@@ -231,27 +240,34 @@ const compareValues = (current, next) => {
           return comparison
         }
       }
+
       return 0
     }
+
     return -1
   }
+
   if (isCollection(next)) {
     return 1
   }
+
   if (Number.isNaN(nextNum) && !Number.isNaN(currentNum)) {
     if (current === 0) {
       return 0
     }
     return currentNum < 0 ? 1 : -1
   }
+
   if (Number.isNaN(currentNum) && !Number.isNaN(nextNum)) {
     if (next === 0) {
       return 0
     }
     return nextNum > 0 ? 1 : -1
   }
+
   return nextNum > currentNum ? 1 : -1
 }
+
 export function max(...args) {
   //  discuss at: https://locutus.io/php/max/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -270,27 +286,34 @@ export function max(...args) {
   //   returns 5: 'hello'
   //   example 6: max([2, 4, 8], [2, 5, 7])
   //   returns 6: [2, 5, 7]
+
   if (args.length === 0) {
     throw new Error('At least one value should be passed to max()')
   }
+
   let values
+
   if (args.length === 1) {
     const only = args[0]
     if (typeof only === 'undefined' || !isCollection(only)) {
       throw new Error('Wrong parameter count for max()')
     }
+
     values = objectToArray(only)
+
     if (values.length === 0) {
       throw new Error('Array must contain at least one element for max()')
     }
   } else {
     values = args
   }
+
   const first = values[0]
   if (typeof first === 'undefined') {
     throw new Error('Array must contain at least one element for max()')
   }
   let result = first
+
   for (let index = 1; index < values.length; index += 1) {
     const candidate = values[index]
     if (typeof candidate === 'undefined') {
@@ -300,6 +323,7 @@ export function max(...args) {
       result = candidate
     }
   }
+
   return result
 }{% endcodeblock %}
 </div>

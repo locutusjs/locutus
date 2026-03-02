@@ -113,7 +113,9 @@ alias:
   //        returns 2: 'https%3A%2F%2Fkvz.io%2F'
   //        example 3: rawurlencode('https://www.google.nl/search?q=Locutus&ie=utf-8')
   //        returns 3: 'https%3A%2F%2Fwww.google.nl%2Fsearch%3Fq%3DLocutus%26ie%3Dutf-8'
+
   str = str + ''
+
   // Tilde should be allowed unescaped in future versions of PHP (as reflected below),
   // but if you want to reflect current
   // PHP behavior, you would need to add ".replace(/~/g, '%7E');" to the following.

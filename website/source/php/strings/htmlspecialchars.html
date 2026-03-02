@@ -143,7 +143,8 @@ export function htmlspecialchars(
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function htmlspecialchars(string, quoteStyle, charset, doubleEncode) {
+{% codeblock lang:javascript %}
+export function htmlspecialchars(string, quoteStyle, charset, doubleEncode) {
   //       discuss at: https://locutus.io/php/htmlspecialchars/
   //      original by: Mirek Slugen
   //      improved by: Kevin van Zonneveld (https://kvz.io)
@@ -163,19 +164,24 @@ export function htmlspecialchars(
   //        returns 2: 'ab"c&#039;d'
   //        example 3: htmlspecialchars('my "&entity;" is still here', null, null, false)
   //        returns 3: 'my &quot;&entity;&quot; is still here'
+
   let optTemp = 0
   let noquotes = false
   let quoteStyleValue = quoteStyle
+
   if (typeof quoteStyleValue === 'undefined' || quoteStyleValue === null) {
     quoteStyleValue = 2
   }
   let encoded = string || ''
   encoded = encoded.toString()
+
   if (doubleEncode !== false) {
     // Put this first to avoid double-encoding
     encoded = encoded.replace(/&/g, '&amp;')
   }
+
   encoded = encoded.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
   const OPTS = {
     ENT_NOQUOTES: 0,
     ENT_HTML_QUOTE_SINGLE: 1,
@@ -184,7 +190,9 @@ export function htmlspecialchars(
     ENT_QUOTES: 3,
     ENT_IGNORE: 4,
   }
+
   const isOptKey = (value) => Object.prototype.hasOwnProperty.call(OPTS, value)
+
   if (quoteStyleValue === 0) {
     noquotes = true
   }
@@ -210,6 +218,7 @@ export function htmlspecialchars(
   if (!noquotes) {
     encoded = encoded.replace(/"/g, '&quot;')
   }
+
   return encoded
 }{% endcodeblock %}
 </div>

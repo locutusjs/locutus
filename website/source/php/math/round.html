@@ -136,6 +136,7 @@ export function round(value: number, precision = 0, mode = 'PHP_ROUND_HALF_UP'):
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}function roundToInt(value, mode) {
   let tmp = Math.floor(Math.abs(value) + 0.5)
+
   if (
     (mode === 'PHP_ROUND_HALF_DOWN' && value === tmp - 0.5) ||
     (mode === 'PHP_ROUND_HALF_EVEN' && value === 0.5 + 2 * Math.floor(tmp / 2)) ||
@@ -143,10 +144,13 @@ export function round(value: number, precision = 0, mode = 'PHP_ROUND_HALF_UP'):
   ) {
     tmp -= 1
   }
+
   return value < 0 ? -tmp : tmp
 }
+
 import { _php_cast_float as floatCast } from '../_helpers/_php_cast_float.ts'
 import { _php_cast_int as intCast } from '../_helpers/_php_cast_int.ts'
+
 export function round(value, precision = 0, mode = 'PHP_ROUND_HALF_UP') {
   //      discuss at: https://locutus.io/php/round/
   // parity verified: PHP 8.3
@@ -172,30 +176,39 @@ export function round(value, precision = 0, mode = 'PHP_ROUND_HALF_UP') {
   //       returns 5: 58551.8
   //       example 6: round(4096.485, 2)
   //       returns 6: 4096.49
+
   let p
+
   // the code is heavily based on the native PHP implementation
   // https://github.com/php/php-src/blob/PHP-7.4/ext/standard/math.c#L355
+
   value = floatCast(value)
   precision = intCast(precision)
   p = Math.pow(10, precision)
+
   if (isNaN(value) || !isFinite(value)) {
     return value
   }
+
   // if value already integer and positive precision
   // then nothing to do, return early
   if (Math.trunc(value) === value && precision >= 0) {
     return value
   }
+
   // PHP does a pre-rounding before rounding to desired precision
   // https://wiki.php.net/rfc/rounding#pre-rounding_to_the_value_s_precision_if_possible
   const preRoundPrecision = 14 - Math.floor(Math.log10(Math.abs(value)))
+
   if (preRoundPrecision > precision && preRoundPrecision - 15 < precision) {
     value = roundToInt(value * Math.pow(10, preRoundPrecision), mode)
     value /= Math.pow(10, Math.abs(precision - preRoundPrecision))
   } else {
     value *= p
   }
+
   value = roundToInt(value, mode)
+
   return value / p
 }{% endcodeblock %}
 </div>
@@ -414,16 +427,19 @@ function _php_cast_int(value) {
   //  returns 12: 123
   //  example 13: _php_cast_int(0x200000001)
   //  returns 13: 8589934593
+
   if (typeof value === 'number') {
     if (isNaN(value) || !isFinite(value)) {
       // from PHP 7, NaN and Infinity are casted to 0
       return 0
     }
+
     return value < 0 ? Math.ceil(value) : Math.floor(value)
   }
   if (typeof value === 'string') {
     return parseInt(value, 10) || 0
   }
+
   // Behaviour for types other than float, string, boolean
   // is undefined and can change any time.
   // To not invent complex logic
@@ -465,12 +481,14 @@ function _php_cast_float(value) {
   //  returns 13: 8589934593
   //  example 14: _php_cast_float('3.14abc')
   //  returns 14: 3.14
+
   if (typeof value === 'number') {
     return value
   }
   if (typeof value === 'string') {
     return parseFloat(value) || 0
   }
+
   // PHP docs state, that for types other than string
   // conversion is {input type}->int->float
   return __php_cast_int(value)
@@ -482,6 +500,7 @@ const intCast = _php_cast_int
 
 function roundToInt(value, mode) {
   let tmp = Math.floor(Math.abs(value) + 0.5)
+
   if (
     (mode === 'PHP_ROUND_HALF_DOWN' && value === tmp - 0.5) ||
     (mode === 'PHP_ROUND_HALF_EVEN' && value === 0.5 + 2 * Math.floor(tmp / 2)) ||
@@ -489,8 +508,10 @@ function roundToInt(value, mode) {
   ) {
     tmp -= 1
   }
+
   return value < 0 ? -tmp : tmp
 }
+
 function round(value, precision = 0, mode = 'PHP_ROUND_HALF_UP') {
   //      discuss at: https://locutus.io/php/round/
   // parity verified: PHP 8.3
@@ -516,30 +537,39 @@ function round(value, precision = 0, mode = 'PHP_ROUND_HALF_UP') {
   //       returns 5: 58551.8
   //       example 6: round(4096.485, 2)
   //       returns 6: 4096.49
+
   let p
+
   // the code is heavily based on the native PHP implementation
   // https://github.com/php/php-src/blob/PHP-7.4/ext/standard/math.c#L355
+
   value = floatCast(value)
   precision = intCast(precision)
   p = Math.pow(10, precision)
+
   if (isNaN(value) || !isFinite(value)) {
     return value
   }
+
   // if value already integer and positive precision
   // then nothing to do, return early
   if (Math.trunc(value) === value && precision >= 0) {
     return value
   }
+
   // PHP does a pre-rounding before rounding to desired precision
   // https://wiki.php.net/rfc/rounding#pre-rounding_to_the_value_s_precision_if_possible
   const preRoundPrecision = 14 - Math.floor(Math.log10(Math.abs(value)))
+
   if (preRoundPrecision > precision && preRoundPrecision - 15 < precision) {
     value = roundToInt(value * Math.pow(10, preRoundPrecision), mode)
     value /= Math.pow(10, Math.abs(precision - preRoundPrecision))
   } else {
     value *= p
   }
+
   value = roundToInt(value, mode)
+
   return value / p
 }{% endcodeblock %}
 </div>

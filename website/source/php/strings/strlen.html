@@ -129,6 +129,7 @@ export function strlen(string: string): number {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { ini_get } from '../info/ini_get.ts'
+
 export function strlen(string) {
   //  discuss at: https://locutus.io/php/strlen/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -145,13 +146,17 @@ export function strlen(string) {
   //   example 2: ini_set('unicode.semantics', 'on')
   //   example 2: strlen('A\ud87e\udc04Z')
   //   returns 2: 3
+
   const str = string + ''
+
   const iniVal = ini_get('unicode.semantics') || 'off'
   if (iniVal === 'off') {
     return str.length
   }
+
   let i = 0
   let lgth = 0
+
   const getWholeChar = function (str, i) {
     const code = str.charCodeAt(i)
     if (code >= 0xd800 && code <= 0xdbff) {
@@ -182,6 +187,7 @@ export function strlen(string) {
     }
     return str.charAt(i)
   }
+
   for (i = 0, lgth = 0; i < str.length; i++) {
     if (getWholeChar(str, i) === false) {
       continue
@@ -192,6 +198,7 @@ export function strlen(string) {
     // ignore the second part
     lgth++
   }
+
   return lgth
 }{% endcodeblock %}
 </div>
@@ -427,6 +434,7 @@ function isPhpList(value) {
   //  returns 1: true
   return Array.isArray(value)
 }
+
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -434,29 +442,37 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
 
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
+
 const isLocaleBag = (value) => isPhpAssocObject(value)
+
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 const ensurePhpRuntimeObject = () => {
   let locutus = globalContext.$locutus
   if (typeof locutus !== 'object' || locutus === null) {
     locutus = {}
     globalContext.$locutus = locutus
   }
+
   let php = locutus.php
   if (typeof php !== 'object' || php === null) {
     php = {}
     locutus.php = php
   }
+
   return php
 }
+
 function ensurePhpRuntimeState() {
   // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
   //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
@@ -467,10 +483,12 @@ function ensurePhpRuntimeState() {
   const localesValue = php.locales
   const localeCategoriesValue = php.localeCategories
   const pointersValue = php.pointers
+
   const ini = isIniBag(iniValue) ? iniValue : {}
   const locales = isLocaleBag(localesValue) ? localesValue : {}
   const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
   const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
   if (iniValue !== ini) {
     php.ini = ini
   }
@@ -483,8 +501,10 @@ function ensurePhpRuntimeState() {
   if (pointersValue !== pointers) {
     php.pointers = pointers
   }
+
   const localeDefaultValue = php.locale_default
   const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
   return {
     ini,
     locales,
@@ -502,14 +522,17 @@ function ini_get(varname) {
   //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
   //   example 1: ini_get('date.timezone')
   //   returns 1: 'Asia/Hong_Kong'
+
   const runtime = ensurePhpRuntimeState()
   const entry = runtime.ini[varname]
+
   if (entry && entry.local_value !== undefined) {
     if (entry.local_value === null) {
       return ''
     }
     return String(entry.local_value)
   }
+
   return ''
 }
 
@@ -530,13 +553,17 @@ function strlen(string) {
   //   example 2: ini_set('unicode.semantics', 'on')
   //   example 2: strlen('A\ud87e\udc04Z')
   //   returns 2: 3
+
   const str = string + ''
+
   const iniVal = ini_get('unicode.semantics') || 'off'
   if (iniVal === 'off') {
     return str.length
   }
+
   let i = 0
   let lgth = 0
+
   const getWholeChar = function (str, i) {
     const code = str.charCodeAt(i)
     if (code >= 0xd800 && code <= 0xdbff) {
@@ -567,6 +594,7 @@ function strlen(string) {
     }
     return str.charAt(i)
   }
+
   for (i = 0, lgth = 0; i < str.length; i++) {
     if (getWholeChar(str, i) === false) {
       continue
@@ -577,6 +605,7 @@ function strlen(string) {
     // ignore the second part
     lgth++
   }
+
   return lgth
 }{% endcodeblock %}
 </div>

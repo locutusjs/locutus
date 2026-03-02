@@ -2224,3 +2224,29 @@ To fix a `@ts-nocheck` file:
     - no standalone tabs rendered.
 - Key learnings
   - Dependency-aware panel generation keeps advanced options where needed and removes UI noise where they add no value.
+
+## Iteration 82
+
+- Plans
+  - Preserve intentional TS blank-line structure in generated module/standalone JS snippets.
+  - Keep this robust against transpile + Biome formatting without affecting runtime test compilation.
+- Progress
+  - Updated `src/_util/util.ts`:
+    - added marker-based blank-line preservation for website JS generation:
+      - `_markWebsiteBlankLines(...)`
+      - `_restoreWebsiteBlankLines(...)`
+    - added opt-in options:
+      - `_toWebsiteJs(..., { preserveBlankLines: true })`
+      - `_formatWebsiteJavascript(..., { restorePreservedBlankLines: true })`
+    - applied preservation to website-facing paths only:
+      - module JS panel generation in `injectweb`
+      - standalone JS panel generation in `_buildStandaloneFromGraph`
+    - kept runtime/test transpile path unchanged (no marker preservation in `_writetestOne`).
+  - Regenerated website snapshots with `yarn injectweb`.
+- Validation
+  - `yarn lint:ts`
+  - `yarn test:util`
+  - `yarn injectweb`
+  - Spot-check: `website/source/php/array/array_diff.html` now shows module JS with preserved spacing around key blocks (matching TS readability pattern).
+- Key learnings
+  - Marker-based preservation is stable and formatter-agnostic, and avoids brittle regex heuristics tied to function-specific code shapes.

@@ -69,6 +69,7 @@ export function sha1_file(str_filename: string): string | false {
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { file_get_contents as fileGetContents } from '../filesystem/file_get_contents.ts'
 import { sha1 } from '../strings/sha1.ts'
+
 export function sha1_file(str_filename) {
   //      discuss at: https://locutus.io/php/sha1_file/
   // parity verified: PHP 8.3
@@ -79,10 +80,13 @@ export function sha1_file(str_filename) {
   //          note 2: efficient hashing
   //       example 1: sha1_file('test/never-change.txt')
   //       returns 1: '0ea65a1f4b4d69712affc58240932f3eb8a2af66'
+
   const buf = fileGetContents(str_filename)
+
   if (buf === false) {
     return false
   }
+
   return sha1(buf)
 }{% endcodeblock %}
 </div>
@@ -105,6 +109,7 @@ function file_get_contents(url, _flags, _context, _offset, _maxLen) {
   //        example 1: var $buf = file_get_contents('test/never-change.txt')
   //        example 1: var $result = $buf.indexOf('hash') !== -1
   //        returns 1: true
+
   return fs.readFileSync(url, 'utf-8')
 }
 
@@ -121,6 +126,7 @@ function sha1(str) {
   //          note 1: in a steaming fashion for faster and more efficient hashing
   //       example 1: sha1('Kevin van Zonneveld')
   //       returns 1: '54916d2e62f65b3afa6e192e6a601cdbe5cb5897'
+
   let hash
   try {
     const sha1sum = crypto.createHash('sha1')
@@ -129,22 +135,27 @@ function sha1(str) {
   } catch (_e) {
     hash = undefined
   }
+
   if (hash !== undefined) {
     return hash
   }
+
   const _rotLeft = function (n, s) {
     const t4 = (n << s) | (n >>> (32 - s))
     return t4
   }
+
   const _cvtHex = function (val) {
     let str = ''
     let v = 0
+
     for (let i = 7; i >= 0; i--) {
       v = (val >>> (i * 4)) & 0x0f
       str += v.toString(16)
     }
     return str
   }
+
   let blockstart = 0
   let j = 0
   const W = new Array(80).fill(0)
@@ -159,14 +170,17 @@ function sha1(str) {
   let D = 0
   let E = 0
   let temp = 0
+
   // utf8_encode
   str = unescape(encodeURIComponent(str))
   const strLen = str.length
+
   const wordArray = []
   for (let i = 0; i < strLen - 3; i += 4) {
     j = (str.charCodeAt(i) << 24) | (str.charCodeAt(i + 1) << 16) | (str.charCodeAt(i + 2) << 8) | str.charCodeAt(i + 3)
     wordArray.push(j)
   }
+
   let i = 0
   switch (strLen % 4) {
     case 0:
@@ -186,12 +200,16 @@ function sha1(str) {
         0x80
       break
   }
+
   wordArray.push(i)
+
   while (wordArray.length % 16 !== 14) {
     wordArray.push(0)
   }
+
   wordArray.push(strLen >>> 29)
   wordArray.push((strLen << 3) & 0x0ffffffff)
+
   for (blockstart = 0; blockstart < wordArray.length; blockstart += 16) {
     for (i = 0; i < 16; i++) {
       W[i] = wordArray[blockstart + i] ?? 0
@@ -199,11 +217,13 @@ function sha1(str) {
     for (i = 16; i <= 79; i++) {
       W[i] = _rotLeft((W[i - 3] ?? 0) ^ (W[i - 8] ?? 0) ^ (W[i - 14] ?? 0) ^ (W[i - 16] ?? 0), 1)
     }
+
     A = H0
     B = H1
     C = H2
     D = H3
     E = H4
+
     for (i = 0; i <= 19; i++) {
       temp = (_rotLeft(A, 5) + ((B & C) | (~B & D)) + E + (W[i] ?? 0) + 0x5a827999) & 0x0ffffffff
       E = D
@@ -212,6 +232,7 @@ function sha1(str) {
       B = A
       A = temp
     }
+
     for (i = 20; i <= 39; i++) {
       temp = (_rotLeft(A, 5) + (B ^ C ^ D) + E + (W[i] ?? 0) + 0x6ed9eba1) & 0x0ffffffff
       E = D
@@ -220,6 +241,7 @@ function sha1(str) {
       B = A
       A = temp
     }
+
     for (i = 40; i <= 59; i++) {
       temp = (_rotLeft(A, 5) + ((B & C) | (B & D) | (C & D)) + E + (W[i] ?? 0) + 0x8f1bbcdc) & 0x0ffffffff
       E = D
@@ -228,6 +250,7 @@ function sha1(str) {
       B = A
       A = temp
     }
+
     for (i = 60; i <= 79; i++) {
       temp = (_rotLeft(A, 5) + (B ^ C ^ D) + E + (W[i] ?? 0) + 0xca62c1d6) & 0x0ffffffff
       E = D
@@ -236,12 +259,14 @@ function sha1(str) {
       B = A
       A = temp
     }
+
     H0 = (H0 + A) & 0x0ffffffff
     H1 = (H1 + B) & 0x0ffffffff
     H2 = (H2 + C) & 0x0ffffffff
     H3 = (H3 + D) & 0x0ffffffff
     H4 = (H4 + E) & 0x0ffffffff
   }
+
   const hashHex = _cvtHex(H0) + _cvtHex(H1) + _cvtHex(H2) + _cvtHex(H3) + _cvtHex(H4)
   return hashHex.toLowerCase()
 }
@@ -259,10 +284,13 @@ function sha1_file(str_filename) {
   //          note 2: efficient hashing
   //       example 1: sha1_file('test/never-change.txt')
   //       returns 1: '0ea65a1f4b4d69712affc58240932f3eb8a2af66'
+
   const buf = fileGetContents(str_filename)
+
   if (buf === false) {
     return false
   }
+
   return sha1(buf)
 }{% endcodeblock %}
 </div>

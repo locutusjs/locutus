@@ -51,6 +51,7 @@ export function doubleval(mixedVar: FloatvalInput): number {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { floatval } from '../var/floatval.ts'
+
 export function doubleval(mixedVar) {
   //      discuss at: https://locutus.io/php/doubleval/
   // parity verified: PHP 8.3
@@ -59,6 +60,7 @@ export function doubleval(mixedVar) {
   //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
   //       example 1: doubleval(186)
   //       returns 1: 186.00
+
   return floatval(mixedVar)
 }{% endcodeblock %}
 </div>
@@ -114,6 +116,7 @@ function floatval(mixedVar) {
   //       example 2: floatval('-50 + 8')
   //       returns 2: 0
   //       returns 2: -50
+
   return parseFloat(String(mixedVar ?? '')) || 0
 }
 
@@ -126,6 +129,7 @@ function doubleval(mixedVar) {
   //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
   //       example 1: doubleval(186)
   //       returns 1: 186.00
+
   return floatval(mixedVar)
 }{% endcodeblock %}
 </div>

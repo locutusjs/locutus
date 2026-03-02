@@ -104,12 +104,15 @@ alias:
   //       returns 3: "<br />\nOne<br />\nTwo<br />\n<br />\nThree<br />\n"
   //       example 4: nl2br(null)
   //       returns 4: ''
+
   // Some latest browsers when str is null return and unexpected null value
   if (typeof str === 'undefined' || str === null) {
     return ''
   }
+
   // Adjust comment to avoid issue on locutus.io display
   const breakTag = isXhtml || typeof isXhtml === 'undefined' ? '<br ' + '/>' : '<br>'
+
   return (str + '').replace(/(\r\n|\n\r|\r|\n)/g, breakTag + '$1')
 }{% endcodeblock %}
 </div>

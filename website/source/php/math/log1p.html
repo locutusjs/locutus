@@ -70,9 +70,11 @@ alias:
   //          note 1: Precision 'n' can be adjusted as desired
   //       example 1: log1p(1e-15)
   //       returns 1: 9.999999999999995e-16
+
   let ret = 0
   // degree of precision
   const n = 50
+
   if (x <= -1) {
     // JavaScript style would be to return Number.NEGATIVE_INFINITY
     return '-INF'
@@ -83,6 +85,7 @@ alias:
   for (let i = 1; i < n; i++) {
     ret += Math.pow(-x, i) / i
   }
+
   return -ret
 }{% endcodeblock %}
 </div>

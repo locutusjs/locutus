@@ -50,12 +50,14 @@ export function set_time_limit(seconds: number): void {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { getPhpRuntimeBoolean, setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
+
 export function set_time_limit(seconds) {
   //  discuss at: https://locutus.io/php/set_time_limit/
   // original by: Brett Zamir (https://brett-zamir.me)
   //        test: skip-all
   //   example 1: set_time_limit(4)
   //   returns 1: undefined
+
   setTimeout(function () {
     if (!getPhpRuntimeBoolean('timeoutStatus', false)) {
       setPhpRuntimeEntry('timeoutStatus', true)
@@ -183,28 +185,34 @@ function set_time_limit(seconds: number): void {
 {% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 const ensurePhpRuntimeObject = () => {
   let locutus = globalContext.$locutus
   if (typeof locutus !== 'object' || locutus === null) {
     locutus = {}
     globalContext.$locutus = locutus
   }
+
   let php = locutus.php
   if (typeof php !== 'object' || php === null) {
     php = {}
     locutus.php = php
   }
+
   return php
 }
+
 function getPhpRuntimeEntry(key) {
   const php = ensurePhpRuntimeObject()
   const value = php[key]
   return typeof value === 'undefined' ? undefined : value
 }
+
 function setPhpRuntimeEntry(key, value) {
   const php = ensurePhpRuntimeObject()
   php[key] = value
 }
+
 function getPhpRuntimeBoolean(key, fallback) {
   const value = getPhpRuntimeEntry(key)
   return typeof value === 'boolean' ? value : fallback
@@ -217,6 +225,7 @@ function set_time_limit(seconds) {
   //        test: skip-all
   //   example 1: set_time_limit(4)
   //   returns 1: undefined
+
   setTimeout(function () {
     if (!getPhpRuntimeBoolean('timeoutStatus', false)) {
       setPhpRuntimeEntry('timeoutStatus', true)

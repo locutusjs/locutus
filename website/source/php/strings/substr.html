@@ -132,6 +132,7 @@ export function substr(input: string | number, start: number, len?: number): str
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { _phpCastString as _php_cast_string } from '../_helpers/_phpCastString.ts'
 import { ini_get } from '../info/ini_get.ts'
+
 export function substr(input, start, len) {
   //  discuss at: https://locutus.io/php/substr/
   // original by: Martijn Wieringa
@@ -160,14 +161,20 @@ export function substr(input, start, len) {
   //   example 7: ini_set('unicode.semantics', 'on')
   //   example 7: substr('a\uD801\uDC00z\uD801\uDC00', -3, -1)
   //   returns 7: '\uD801\uDC00z'
+
   const str = _php_cast_string(input)
+
   const multibyte = ini_get('unicode.semantics') === 'on'
+
   const chars = multibyte ? str.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[\s\S]/g) || [] : null
+
   const inputLength = chars ? chars.length : str.length
   let end = inputLength
+
   if (start < 0) {
     start += end
   }
+
   if (typeof len !== 'undefined') {
     if (len < 0) {
       end = len + end
@@ -175,12 +182,15 @@ export function substr(input, start, len) {
       end = len + start
     }
   }
+
   if (start > inputLength || start < 0 || start > end) {
     return false
   }
+
   if (chars) {
     return chars.slice(start, end).join('')
   }
+
   return str.slice(start, end)
 }{% endcodeblock %}
 </div>
@@ -495,6 +505,7 @@ function _phpCastString(value) {
   //  returns 12: '1'
   //  example 13: _phpCastString(3.14)
   //  returns 13: '3.14'
+
   if (typeof value === 'boolean') {
     return value ? '1' : ''
   }
@@ -505,9 +516,11 @@ function _phpCastString(value) {
     if (isNaN(value)) {
       return 'NAN'
     }
+
     if (!isFinite(value)) {
       return (value < 0 ? '-' : '') + 'INF'
     }
+
     return value + ''
   }
   if (typeof value === 'undefined') {
@@ -517,11 +530,14 @@ function _phpCastString(value) {
     if (Array.isArray(value)) {
       return 'Array'
     }
+
     if (value !== null) {
       return 'Object'
     }
+
     return ''
   }
+
   throw new Error('Unsupported value type')
 }
 
@@ -533,6 +549,7 @@ function isPhpList(value) {
   //  returns 1: true
   return Array.isArray(value)
 }
+
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -540,29 +557,37 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
 
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
+
 const isLocaleBag = (value) => isPhpAssocObject(value)
+
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 const ensurePhpRuntimeObject = () => {
   let locutus = globalContext.$locutus
   if (typeof locutus !== 'object' || locutus === null) {
     locutus = {}
     globalContext.$locutus = locutus
   }
+
   let php = locutus.php
   if (typeof php !== 'object' || php === null) {
     php = {}
     locutus.php = php
   }
+
   return php
 }
+
 function ensurePhpRuntimeState() {
   // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
   //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
@@ -573,10 +598,12 @@ function ensurePhpRuntimeState() {
   const localesValue = php.locales
   const localeCategoriesValue = php.localeCategories
   const pointersValue = php.pointers
+
   const ini = isIniBag(iniValue) ? iniValue : {}
   const locales = isLocaleBag(localesValue) ? localesValue : {}
   const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
   const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
   if (iniValue !== ini) {
     php.ini = ini
   }
@@ -589,8 +616,10 @@ function ensurePhpRuntimeState() {
   if (pointersValue !== pointers) {
     php.pointers = pointers
   }
+
   const localeDefaultValue = php.locale_default
   const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
   return {
     ini,
     locales,
@@ -608,14 +637,17 @@ function ini_get(varname) {
   //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
   //   example 1: ini_get('date.timezone')
   //   returns 1: 'Asia/Hong_Kong'
+
   const runtime = ensurePhpRuntimeState()
   const entry = runtime.ini[varname]
+
   if (entry && entry.local_value !== undefined) {
     if (entry.local_value === null) {
       return ''
     }
     return String(entry.local_value)
   }
+
   return ''
 }
 
@@ -650,14 +682,20 @@ function substr(input, start, len) {
   //   example 7: ini_set('unicode.semantics', 'on')
   //   example 7: substr('a\uD801\uDC00z\uD801\uDC00', -3, -1)
   //   returns 7: '\uD801\uDC00z'
+
   const str = _php_cast_string(input)
+
   const multibyte = ini_get('unicode.semantics') === 'on'
+
   const chars = multibyte ? str.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[\s\S]/g) || [] : null
+
   const inputLength = chars ? chars.length : str.length
   let end = inputLength
+
   if (start < 0) {
     start += end
   }
+
   if (typeof len !== 'undefined') {
     if (len < 0) {
       end = len + end
@@ -665,12 +703,15 @@ function substr(input, start, len) {
       end = len + start
     }
   }
+
   if (start > inputLength || start < 0 || start > end) {
     return false
   }
+
   if (chars) {
     return chars.slice(start, end).join('')
   }
+
   return str.slice(start, end)
 }{% endcodeblock %}
 </div>

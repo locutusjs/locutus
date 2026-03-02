@@ -88,6 +88,7 @@ alias:
   //   returns 5: 'ABCDEFGH:/bob/'
   //   example 6: substr_replace('ABCDEFGH:/MNRPQR/', '', 10, -1)
   //   returns 6: 'ABCDEFGH://'
+
   if (start < 0) {
     // start position in str
     start = start + str.length
@@ -96,6 +97,7 @@ alias:
   if (length < 0) {
     length = length + str.length - start
   }
+
   return [str.slice(0, start), replace.substr(0, length), replace.slice(length), str.slice(start + length)].join('')
 }{% endcodeblock %}
 </div>

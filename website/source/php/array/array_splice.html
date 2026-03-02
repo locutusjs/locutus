@@ -216,14 +216,18 @@ export function array_splice<T extends SpliceValue>(
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { is_int as isInt } from '../var/is_int.ts'
+
 const isAssocArray = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
+
 const toReplacementItems = (replacement) => {
   if (typeof replacement === 'undefined') {
     return undefined
   }
+
   if (Array.isArray(replacement)) {
     return replacement.slice()
   }
+
   if (isAssocArray(replacement)) {
     const values = []
     for (const key in replacement) {
@@ -231,8 +235,10 @@ const toReplacementItems = (replacement) => {
     }
     return values
   }
+
   return [replacement]
 }
+
 const checkToUpIndices = (assoc, cursor, key) => {
   // Deal with situation, e.g., if encounter index 4 and try
   // to set it to 0, but 0 exists later in loop (need to
@@ -250,6 +256,7 @@ const checkToUpIndices = (assoc, cursor, key) => {
   }
   return cursor
 }
+
 export function array_splice(arr, offst, lgth, replacement) {
   //      discuss at: https://locutus.io/php/array_splice/
   // parity verified: PHP 8.3
@@ -271,8 +278,11 @@ export function array_splice(arr, offst, lgth, replacement) {
   //       example 3: var $input = ["red", "green", "blue", "yellow"]
   //       example 3: array_splice($input, -1, 1, ["black", "maroon"])
   //       returns 3: ["yellow"]
+
   const replacementItems = toReplacementItems(replacement)
+
   const sourceLength = Array.isArray(arr) ? arr.length : Object.keys(arr).length
+
   const lengthToRemove =
     typeof lgth === 'undefined'
       ? offst >= 0
@@ -281,6 +291,7 @@ export function array_splice(arr, offst, lgth, replacement) {
       : lgth < 0
         ? (offst >= 0 ? sourceLength - offst : -offst) + lgth
         : lgth
+
   if (Array.isArray(arr)) {
     const arrayInput = arr
     if (replacementItems) {
@@ -288,21 +299,27 @@ export function array_splice(arr, offst, lgth, replacement) {
     }
     return arrayInput.splice(offst, lengthToRemove)
   }
+
   let totalLength = 0
   let indexCursor = -1
   let replacementCursor = 0
   let numericCursor = -1
   let returnsArray = true
   let removedNumericCursor = 0
+
   const removedItems = []
   const removedAssoc = {}
   const assoc = arr
+
   for (const _key in assoc) {
     totalLength += 1
   }
+
   const normalizedOffset = offst >= 0 ? offst : totalLength + offst
+
   for (const key in assoc) {
     indexCursor += 1
+
     if (indexCursor < normalizedOffset) {
       if (isInt(key)) {
         numericCursor += 1
@@ -314,6 +331,7 @@ export function array_splice(arr, offst, lgth, replacement) {
       }
       continue
     }
+
     if (returnsArray && isInt(key)) {
       removedItems.push(assoc[key])
       removedAssoc[String(removedNumericCursor)] = assoc[key]
@@ -322,6 +340,7 @@ export function array_splice(arr, offst, lgth, replacement) {
       removedAssoc[key] = assoc[key]
       returnsArray = false
     }
+
     if (replacementItems && replacementCursor < replacementItems.length) {
       assoc[key] = replacementItems[replacementCursor]
       replacementCursor += 1
@@ -329,6 +348,7 @@ export function array_splice(arr, offst, lgth, replacement) {
       delete assoc[key]
     }
   }
+
   return returnsArray ? removedItems : removedAssoc
 }{% endcodeblock %}
 </div>
@@ -566,6 +586,7 @@ function is_int(mixedVar) {
   //       returns 3: false
   //       example 4: is_int(true)
   //       returns 4: false
+
   const num = Number(mixedVar)
   return typeof mixedVar === 'number' && mixedVar === num && Number.isFinite(num) && Number.isInteger(num)
 }
@@ -574,13 +595,16 @@ function is_int(mixedVar) {
 const isInt = is_int
 
 const isAssocArray = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
+
 const toReplacementItems = (replacement) => {
   if (typeof replacement === 'undefined') {
     return undefined
   }
+
   if (Array.isArray(replacement)) {
     return replacement.slice()
   }
+
   if (isAssocArray(replacement)) {
     const values = []
     for (const key in replacement) {
@@ -588,8 +612,10 @@ const toReplacementItems = (replacement) => {
     }
     return values
   }
+
   return [replacement]
 }
+
 const checkToUpIndices = (assoc, cursor, key) => {
   // Deal with situation, e.g., if encounter index 4 and try
   // to set it to 0, but 0 exists later in loop (need to
@@ -607,6 +633,7 @@ const checkToUpIndices = (assoc, cursor, key) => {
   }
   return cursor
 }
+
 function array_splice(arr, offst, lgth, replacement) {
   //      discuss at: https://locutus.io/php/array_splice/
   // parity verified: PHP 8.3
@@ -628,8 +655,11 @@ function array_splice(arr, offst, lgth, replacement) {
   //       example 3: var $input = ["red", "green", "blue", "yellow"]
   //       example 3: array_splice($input, -1, 1, ["black", "maroon"])
   //       returns 3: ["yellow"]
+
   const replacementItems = toReplacementItems(replacement)
+
   const sourceLength = Array.isArray(arr) ? arr.length : Object.keys(arr).length
+
   const lengthToRemove =
     typeof lgth === 'undefined'
       ? offst >= 0
@@ -638,6 +668,7 @@ function array_splice(arr, offst, lgth, replacement) {
       : lgth < 0
         ? (offst >= 0 ? sourceLength - offst : -offst) + lgth
         : lgth
+
   if (Array.isArray(arr)) {
     const arrayInput = arr
     if (replacementItems) {
@@ -645,21 +676,27 @@ function array_splice(arr, offst, lgth, replacement) {
     }
     return arrayInput.splice(offst, lengthToRemove)
   }
+
   let totalLength = 0
   let indexCursor = -1
   let replacementCursor = 0
   let numericCursor = -1
   let returnsArray = true
   let removedNumericCursor = 0
+
   const removedItems = []
   const removedAssoc = {}
   const assoc = arr
+
   for (const _key in assoc) {
     totalLength += 1
   }
+
   const normalizedOffset = offst >= 0 ? offst : totalLength + offst
+
   for (const key in assoc) {
     indexCursor += 1
+
     if (indexCursor < normalizedOffset) {
       if (isInt(key)) {
         numericCursor += 1
@@ -671,6 +708,7 @@ function array_splice(arr, offst, lgth, replacement) {
       }
       continue
     }
+
     if (returnsArray && isInt(key)) {
       removedItems.push(assoc[key])
       removedAssoc[String(removedNumericCursor)] = assoc[key]
@@ -679,6 +717,7 @@ function array_splice(arr, offst, lgth, replacement) {
       removedAssoc[key] = assoc[key]
       returnsArray = false
     }
+
     if (replacementItems && replacementCursor < replacementItems.length) {
       assoc[key] = replacementItems[replacementCursor]
       replacementCursor += 1
@@ -686,6 +725,7 @@ function array_splice(arr, offst, lgth, replacement) {
       delete assoc[key]
     }
   }
+
   return returnsArray ? removedItems : removedAssoc
 }{% endcodeblock %}
 </div>

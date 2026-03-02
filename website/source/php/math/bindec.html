@@ -62,7 +62,9 @@ alias:
   //       returns 2: 51
   //       example 3: bindec('111')
   //       returns 3: 7
+
   binaryString = (binaryString + '').replace(/[^01]/gi, '')
+
   return parseInt(binaryString, 2)
 }{% endcodeblock %}
 </div>

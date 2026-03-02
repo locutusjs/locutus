@@ -159,8 +159,10 @@ export function array_slice(arr, offst, lgth, preserveKeys) {
   //       returns 1: [ 'c', 'd' ]
   //       example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true)
   //       returns 2: {2: 'c', 3: 'd'}
+
   const preserve = preserveKeys === true
   let result
+
   if (Array.isArray(arr) && !(preserve && offst !== 0)) {
     if (lgth === undefined) {
       result = arr.slice(offst)
@@ -172,6 +174,7 @@ export function array_slice(arr, offst, lgth, preserveKeys) {
   } else {
     const sourceAssoc = {}
     let sourceLength = 0
+
     if (Array.isArray(arr)) {
       for (let index = 0; index < arr.length; index += 1) {
         sourceLength += 1
@@ -183,25 +186,33 @@ export function array_slice(arr, offst, lgth, preserveKeys) {
         sourceAssoc[key] = arr[key]
       }
     }
+
     const normalizedOffset = offst < 0 ? sourceLength + offst : offst
     const resolvedLength = lgth === undefined ? sourceLength : lgth < 0 ? sourceLength + lgth - normalizedOffset : lgth
+
     const sliced = {}
     let started = false
     let sourceIndex = -1
     let collected = 0
     let sequentialKey = 0
+
     for (const key in sourceAssoc) {
       sourceIndex += 1
+
       if (collected >= resolvedLength) {
         break
       }
+
       if (sourceIndex === normalizedOffset) {
         started = true
       }
+
       if (!started) {
         continue
       }
+
       collected += 1
+
       if (isInt(key) && !preserve) {
         sliced[String(sequentialKey)] = sourceAssoc[key]
         sequentialKey += 1
@@ -209,8 +220,10 @@ export function array_slice(arr, offst, lgth, preserveKeys) {
         sliced[key] = sourceAssoc[key]
       }
     }
+
     result = sliced
   }
+
   return result
 }{% endcodeblock %}
 </div>
@@ -394,6 +407,7 @@ function is_int(mixedVar) {
   //       returns 3: false
   //       example 4: is_int(true)
   //       returns 4: false
+
   const num = Number(mixedVar)
   return typeof mixedVar === 'number' && mixedVar === num && Number.isFinite(num) && Number.isInteger(num)
 }
@@ -412,8 +426,10 @@ function array_slice(arr, offst, lgth, preserveKeys) {
   //       returns 1: [ 'c', 'd' ]
   //       example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true)
   //       returns 2: {2: 'c', 3: 'd'}
+
   const preserve = preserveKeys === true
   let result
+
   if (Array.isArray(arr) && !(preserve && offst !== 0)) {
     if (lgth === undefined) {
       result = arr.slice(offst)
@@ -425,6 +441,7 @@ function array_slice(arr, offst, lgth, preserveKeys) {
   } else {
     const sourceAssoc = {}
     let sourceLength = 0
+
     if (Array.isArray(arr)) {
       for (let index = 0; index < arr.length; index += 1) {
         sourceLength += 1
@@ -436,25 +453,33 @@ function array_slice(arr, offst, lgth, preserveKeys) {
         sourceAssoc[key] = arr[key]
       }
     }
+
     const normalizedOffset = offst < 0 ? sourceLength + offst : offst
     const resolvedLength = lgth === undefined ? sourceLength : lgth < 0 ? sourceLength + lgth - normalizedOffset : lgth
+
     const sliced = {}
     let started = false
     let sourceIndex = -1
     let collected = 0
     let sequentialKey = 0
+
     for (const key in sourceAssoc) {
       sourceIndex += 1
+
       if (collected >= resolvedLength) {
         break
       }
+
       if (sourceIndex === normalizedOffset) {
         started = true
       }
+
       if (!started) {
         continue
       }
+
       collected += 1
+
       if (isInt(key) && !preserve) {
         sliced[String(sequentialKey)] = sourceAssoc[key]
         sequentialKey += 1
@@ -462,8 +487,10 @@ function array_slice(arr, offst, lgth, preserveKeys) {
         sliced[key] = sourceAssoc[key]
       }
     }
+
     result = sliced
   }
+
   return result
 }{% endcodeblock %}
 </div>

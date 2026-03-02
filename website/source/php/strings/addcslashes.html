@@ -256,6 +256,7 @@ alias:
   //   _returns 5: "\\r\\a\\n"
   //   _example 6: addcslashes("\r\u0007\n", '\0'); // Do not recognize C escape sequences if not specified
   //   _returns 6: "\r\u0007\n"
+
   let target = ''
   const chrs = []
   let i = 0
@@ -273,6 +274,7 @@ alias:
   let escHexGrp = null
   let encoded = ''
   const percentHex = /%([\dA-Fa-f]+)/g
+
   const _pad = function (n, c) {
     const nString = String(n)
     if (nString.length < c) {
@@ -280,6 +282,7 @@ alias:
     }
     return nString
   }
+
   for (i = 0; i < charlist.length; i++) {
     c = charlist.charAt(i)
     next = charlist.charAt(i + 1)
@@ -365,6 +368,7 @@ alias:
       chrs.push(c)
     }
   }
+
   for (i = 0; i < str.length; i++) {
     c = str.charAt(i)
     if (chrs.indexOf(c) !== -1) {
@@ -398,6 +402,7 @@ alias:
             // target += _pad(cca.toString(8), 3);break; // Sufficient for UTF-16
             encoded = encodeURIComponent(c)
             percentHex.lastIndex = 0
+
             // 3-length-padded UTF-8 octets
             if ((escHexGrp = percentHex.exec(encoded)) !== null) {
               // already added a slash above:
@@ -423,6 +428,7 @@ alias:
       target += c
     }
   }
+
   return target
 }{% endcodeblock %}
 </div>

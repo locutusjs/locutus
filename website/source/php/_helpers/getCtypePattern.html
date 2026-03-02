@@ -69,6 +69,7 @@ export function getCtypePattern(key: string): RegExp | undefined {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { getPhpLocaleGroup } from './_phpRuntimeState.ts'
+
 const defaultCtypePatterns = {
   an: /^[A-Za-z\d]+$/g,
   al: /^[A-Za-z]+$/g,
@@ -83,6 +84,7 @@ const defaultCtypePatterns = {
   up: /^[A-Z]+$/g,
   xd: /^[A-Fa-f\d]+$/g,
 }
+
 export function getCtypePattern(key) {
   // discuss at: https://locutus.io/php/_helpers/getCtypePattern/
   //     note 1: Reads the active LC_CTYPE regex bag from the locutus runtime state.
@@ -93,10 +95,12 @@ export function getCtypePattern(key) {
     const fallbackPattern = defaultCtypePatterns[key]
     return fallbackPattern ? new RegExp(fallbackPattern) : undefined
   }
+
   const pattern = ctypeGroup[key]
   if (pattern instanceof RegExp) {
     return new RegExp(pattern)
   }
+
   const fallbackPattern = defaultCtypePatterns[key]
   return fallbackPattern ? new RegExp(fallbackPattern) : undefined
 }{% endcodeblock %}
@@ -293,6 +297,7 @@ function isPhpList(value) {
   //  returns 1: true
   return Array.isArray(value)
 }
+
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -300,29 +305,37 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
 
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
+
 const isLocaleBag = (value) => isPhpAssocObject(value)
+
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 const ensurePhpRuntimeObject = () => {
   let locutus = globalContext.$locutus
   if (typeof locutus !== 'object' || locutus === null) {
     locutus = {}
     globalContext.$locutus = locutus
   }
+
   let php = locutus.php
   if (typeof php !== 'object' || php === null) {
     php = {}
     locutus.php = php
   }
+
   return php
 }
+
 function ensurePhpRuntimeState() {
   // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
   //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
@@ -333,10 +346,12 @@ function ensurePhpRuntimeState() {
   const localesValue = php.locales
   const localeCategoriesValue = php.localeCategories
   const pointersValue = php.pointers
+
   const ini = isIniBag(iniValue) ? iniValue : {}
   const locales = isLocaleBag(localesValue) ? localesValue : {}
   const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
   const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
   if (iniValue !== ini) {
     php.ini = ini
   }
@@ -349,8 +364,10 @@ function ensurePhpRuntimeState() {
   if (pointersValue !== pointers) {
     php.pointers = pointers
   }
+
   const localeDefaultValue = php.locale_default
   const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
   return {
     ini,
     locales,
@@ -359,6 +376,7 @@ function ensurePhpRuntimeState() {
     locale_default: localeDefault,
   }
 }
+
 function getPhpLocaleEntry(category) {
   const runtime = ensurePhpRuntimeState()
   const localeName = runtime.localeCategories[category]
@@ -368,6 +386,7 @@ function getPhpLocaleEntry(category) {
   const localeEntry = runtime.locales[localeName]
   return isPhpAssocObject(localeEntry) ? localeEntry : undefined
 }
+
 function getPhpLocaleGroup(category, groupKey) {
   const localeEntry = getPhpLocaleEntry(category)
   if (!localeEntry) {
@@ -392,6 +411,7 @@ const defaultCtypePatterns = {
   up: /^[A-Z]+$/g,
   xd: /^[A-Fa-f\d]+$/g,
 }
+
 function getCtypePattern(key) {
   // discuss at: https://locutus.io/php/_helpers/getCtypePattern/
   //     note 1: Reads the active LC_CTYPE regex bag from the locutus runtime state.
@@ -402,10 +422,12 @@ function getCtypePattern(key) {
     const fallbackPattern = defaultCtypePatterns[key]
     return fallbackPattern ? new RegExp(fallbackPattern) : undefined
   }
+
   const pattern = ctypeGroup[key]
   if (pattern instanceof RegExp) {
     return new RegExp(pattern)
   }
+
   const fallbackPattern = defaultCtypePatterns[key]
   return fallbackPattern ? new RegExp(fallbackPattern) : undefined
 }{% endcodeblock %}

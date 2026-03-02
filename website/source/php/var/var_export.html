@@ -279,6 +279,7 @@ export function var_export(mixedExpression, boolReturn, idtLevel = 2) {
   //   returns 5: "array (\n)"
   //   example 6: var_export({ test: [ 'a', 'b' ] }, true)
   //   returns 6: "array (\n  'test' =>\n  array (\n    0 => 'a',\n    1 => 'b',\n  ),\n)"
+
   let retstr = ''
   let iret = ''
   let value = ''
@@ -296,10 +297,12 @@ export function var_export(mixedExpression, boolReturn, idtLevel = 2) {
     }
     return name[1] ?? '(Anonymous)'
   }
+
   const _isNormalInteger = function (input) {
     const number = Math.floor(Number(input))
     return number !== Infinity && String(number) === input && number >= 0
   }
+
   const _makeIndent = function (indentLevel) {
     return new Array(indentLevel + 1).join(' ')
   }
@@ -352,6 +355,7 @@ export function var_export(mixedExpression, boolReturn, idtLevel = 2) {
     return type
   }
   const type = __getType(mixedExpression)
+
   if (type === null) {
     retstr = 'NULL'
   } else if (type === 'array' || type === 'object') {
@@ -380,6 +384,7 @@ export function var_export(mixedExpression, boolReturn, idtLevel = 2) {
     funcParts = String(mixedExpression).match(/function .*?\((.*?)\) \{([\s\S]*)\}/)
     const funcArgs = funcParts?.[1] ?? ''
     const funcBody = funcParts?.[2] ?? ''
+
     // For lambda functions, var_export() outputs such as the following:
     // '\000lambda_1'. Since it will probably not be a common use to
     // expect this (unhelpful) form, we'll use another PHP-exportable
@@ -404,10 +409,12 @@ export function var_export(mixedExpression, boolReturn, idtLevel = 2) {
       retstr = String(mixedExpression)
     }
   }
+
   if (!boolReturn) {
     echo(retstr)
     return null
   }
+
   return retstr
 }{% endcodeblock %}
 </div>
@@ -716,10 +723,12 @@ function isPhpArrayObject(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
     return value
   }
+
   return {}
 }
 
@@ -728,6 +737,7 @@ function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
   }
+
   let current = value
   while (current) {
     const descriptor = Object.getOwnPropertyDescriptor(current, key)
@@ -741,6 +751,7 @@ function getPhpObjectEntry(value, key) {
     }
     current = Object.getPrototypeOf(current)
   }
+
   return undefined
 }
 
@@ -771,10 +782,12 @@ function echo(...args) {
   //        input by: JB
   //       example 1: echo('Hello world')
   //       returns 1: undefined
+
   return console.log(args.join(' '))
 }
 
 // php/var/var_export (target function module)
+
 function var_export(mixedExpression, boolReturn, idtLevel = 2) {
   //  discuss at: https://locutus.io/php/var_export/
   // original by: Philip Peterson
@@ -800,6 +813,7 @@ function var_export(mixedExpression, boolReturn, idtLevel = 2) {
   //   returns 5: "array (\n)"
   //   example 6: var_export({ test: [ 'a', 'b' ] }, true)
   //   returns 6: "array (\n  'test' =>\n  array (\n    0 => 'a',\n    1 => 'b',\n  ),\n)"
+
   let retstr = ''
   let iret = ''
   let value = ''
@@ -817,10 +831,12 @@ function var_export(mixedExpression, boolReturn, idtLevel = 2) {
     }
     return name[1] ?? '(Anonymous)'
   }
+
   const _isNormalInteger = function (input) {
     const number = Math.floor(Number(input))
     return number !== Infinity && String(number) === input && number >= 0
   }
+
   const _makeIndent = function (indentLevel) {
     return new Array(indentLevel + 1).join(' ')
   }
@@ -873,6 +889,7 @@ function var_export(mixedExpression, boolReturn, idtLevel = 2) {
     return type
   }
   const type = __getType(mixedExpression)
+
   if (type === null) {
     retstr = 'NULL'
   } else if (type === 'array' || type === 'object') {
@@ -901,6 +918,7 @@ function var_export(mixedExpression, boolReturn, idtLevel = 2) {
     funcParts = String(mixedExpression).match(/function .*?\((.*?)\) \{([\s\S]*)\}/)
     const funcArgs = funcParts?.[1] ?? ''
     const funcBody = funcParts?.[2] ?? ''
+
     // For lambda functions, var_export() outputs such as the following:
     // '\000lambda_1'. Since it will probably not be a common use to
     // expect this (unhelpful) form, we'll use another PHP-exportable
@@ -925,10 +943,12 @@ function var_export(mixedExpression, boolReturn, idtLevel = 2) {
       retstr = String(mixedExpression)
     }
   }
+
   if (!boolReturn) {
     echo(retstr)
     return null
   }
+
   return retstr
 }{% endcodeblock %}
 </div>

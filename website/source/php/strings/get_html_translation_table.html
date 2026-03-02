@@ -244,6 +244,7 @@ alias:
   //      note 1: chooses to create the constants themselves.
   //   example 1: get_html_translation_table('HTML_SPECIALCHARS')
   //   returns 1: {'"': '&quot;', '&': '&amp;', '<': '&lt;', '>': '&gt;'}
+
   const entities = {}
   const hashMap = {}
   let decimal = ''
@@ -257,19 +258,23 @@ alias:
   constMappingQuoteStyle[0] = 'ENT_NOQUOTES'
   constMappingQuoteStyle[2] = 'ENT_COMPAT'
   constMappingQuoteStyle[3] = 'ENT_QUOTES'
+
   useTable = !isNaN(Number(table))
     ? (constMappingTable[Number(table)] ?? 'HTML_SPECIALCHARS')
     : table
       ? String(table).toUpperCase()
       : 'HTML_SPECIALCHARS'
+
   useQuoteStyle = !isNaN(Number(quoteStyle))
     ? (constMappingQuoteStyle[Number(quoteStyle)] ?? 'ENT_COMPAT')
     : quoteStyle
       ? String(quoteStyle).toUpperCase()
       : 'ENT_COMPAT'
+
   if (useTable !== 'HTML_SPECIALCHARS' && useTable !== 'HTML_ENTITIES') {
     throw new Error('Table: ' + useTable + ' not supported')
   }
+
   entities['38'] = '&amp;'
   if (useTable === 'HTML_ENTITIES') {
     entities['160'] = '&nbsp;'
@@ -369,6 +374,7 @@ alias:
     entities['254'] = '&thorn;'
     entities['255'] = '&yuml;'
   }
+
   if (useQuoteStyle !== 'ENT_NOQUOTES') {
     entities['34'] = '&quot;'
   }
@@ -377,12 +383,14 @@ alias:
   }
   entities['60'] = '&lt;'
   entities['62'] = '&gt;'
+
   // ascii decimals to real symbols
   for (decimal in entities) {
     if (Object.prototype.hasOwnProperty.call(entities, decimal)) {
       hashMap[String.fromCharCode(Number(decimal))] = entities[decimal] ?? ''
     }
   }
+
   return hashMap
 }{% endcodeblock %}
 </div>

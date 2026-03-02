@@ -63,6 +63,7 @@ export function gmdate(format: string, timestamp?: string | number | Date): stri
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { date } from '../datetime/date.ts'
+
 export function gmdate(format, timestamp) {
   //      discuss at: https://locutus.io/php/gmdate/
   // parity verified: PHP 8.3
@@ -71,13 +72,16 @@ export function gmdate(format, timestamp) {
   //     bugfixed by: Brett Zamir (https://brett-zamir.me)
   //       example 1: gmdate('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400); // Return will depend on your timezone
   //       returns 1: '07:09:40 m is month'
+
   const dt =
     typeof timestamp === 'undefined'
       ? new Date() // Not provided
       : timestamp instanceof Date
         ? new Date(timestamp) // Javascript Date()
         : new Date(Number(timestamp) * 1000) // UNIX timestamp (auto-convert to int)
+
   const ts = Date.parse(dt.toUTCString().slice(0, -4)) / 1000
+
   return date(format, ts)
 }{% endcodeblock %}
 </div>
@@ -547,6 +551,7 @@ function date(format, timestamp) {
   //   returns 8: '52'
   //   example 9: date('W Y-m-d', 1293974054); // 2011-01-02
   //   returns 9: '52 2011-01-02'
+
   let jsdate = new Date()
   let f
   // Keep this here (works, but for code commented-out below for file size reasons)
@@ -628,6 +633,7 @@ function date(format, timestamp) {
       const b = new Date(Number(f.Y()), 0, 1)
       return Math.round((a.getTime() - b.getTime()) / 864e5)
     },
+
     // Week
     W: function () {
       // ISO-8601 week number
@@ -635,6 +641,7 @@ function date(format, timestamp) {
       const b = new Date(a.getFullYear(), 0, 4)
       return _pad(1 + Math.round((a.getTime() - b.getTime()) / 864e5 / 7), 2)
     },
+
     // Month
     F: function () {
       // Full month name; January...December
@@ -656,6 +663,7 @@ function date(format, timestamp) {
       // Days in month; 28...31
       return new Date(Number(f.Y()), Number(f.n()), 0).getDate()
     },
+
     // Year
     L: function () {
       // Is leap year?; 0 or 1
@@ -677,6 +685,7 @@ function date(format, timestamp) {
       // Last two digits of year; 00...99
       return String(f.Y()).slice(-2)
     },
+
     // Time
     a: function () {
       // am or pm
@@ -724,6 +733,7 @@ function date(format, timestamp) {
       // Microseconds; 000000-999000
       return _pad(jsdate.getMilliseconds() * 1000, 6)
     },
+
     // Timezone
     e: function () {
       // Timezone identifier; e.g. Atlantic/Azores, ...
@@ -791,6 +801,7 @@ function date(format, timestamp) {
       // Timezone offset in seconds (-43200...50400)
       return -jsdate.getTimezoneOffset() * 60
     },
+
     // Full Date/Time
     c: function () {
       // ISO-8601 date.
@@ -805,6 +816,7 @@ function date(format, timestamp) {
       return (jsdate.getTime() / 1000) | 0
     },
   }
+
   const _date = function (formatStr, timestampValue) {
     jsdate =
       timestampValue === undefined
@@ -814,6 +826,7 @@ function date(format, timestamp) {
           : new Date(Number(timestampValue) * 1000) // UNIX timestamp (auto-convert to int)
     return formatStr.replace(formatChr, formatChrCb)
   }
+
   return _date(format, timestamp)
 }
 
@@ -826,13 +839,16 @@ function gmdate(format, timestamp) {
   //     bugfixed by: Brett Zamir (https://brett-zamir.me)
   //       example 1: gmdate('H:m:s \\m \\i\\s \\m\\o\\n\\t\\h', 1062402400); // Return will depend on your timezone
   //       returns 1: '07:09:40 m is month'
+
   const dt =
     typeof timestamp === 'undefined'
       ? new Date() // Not provided
       : timestamp instanceof Date
         ? new Date(timestamp) // Javascript Date()
         : new Date(Number(timestamp) * 1000) // UNIX timestamp (auto-convert to int)
+
   const ts = Date.parse(dt.toUTCString().slice(0, -4)) / 1000
+
   return date(format, ts)
 }{% endcodeblock %}
 </div>

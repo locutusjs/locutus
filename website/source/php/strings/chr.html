@@ -66,6 +66,7 @@ alias:
   //          note 1: supports Unicode code points beyond 255 using surrogates
   //       example 1: chr(75) === 'K'
   //       returns 1: true
+
   if (codePt > 0xffff) {
     // Create a four-byte string (length 2) since this code point is high
     //   enough for the UTF-16 encoding (JavaScript internal use), to

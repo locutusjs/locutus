@@ -190,6 +190,7 @@ export function uksort<T>(
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
+
 export function uksort(inputArr, sorter) {
   //  discuss at: https://locutus.io/php/uksort/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -208,6 +209,7 @@ export function uksort(inputArr, sorter) {
   //   example 1: uksort($data, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })
   //   example 1: var $result = $data
   //   returns 1: {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
+
   const tmpArr = {}
   const keys = []
   let i = 0
@@ -215,6 +217,7 @@ export function uksort(inputArr, sorter) {
   let sortByReference = false
   let populateArr = {}
   let comparator
+
   if (sorter) {
     let normalizedSorter
     if (typeof sorter === 'string') {
@@ -235,6 +238,7 @@ export function uksort(inputArr, sorter) {
     } else {
       normalizedSorter = sorter
     }
+
     try {
       const resolved = resolvePhpCallable(normalizedSorter, {
         invalidMessage: 'uksort(): Invalid callback',
@@ -245,12 +249,14 @@ export function uksort(inputArr, sorter) {
       return false
     }
   }
+
   // Make a list of key names
   for (k in inputArr) {
     if (inputArr.hasOwnProperty(k)) {
       keys.push(k)
     }
   }
+
   // Sort key names
   try {
     if (typeof comparator === 'function') {
@@ -261,10 +267,12 @@ export function uksort(inputArr, sorter) {
   } catch (_e) {
     return false
   }
+
   const runtime = ensurePhpRuntimeState()
   const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
+
   // Rebuild array with sorted key names
   for (i = 0; i < keys.length; i++) {
     const key = keys[i]
@@ -290,6 +298,7 @@ export function uksort(inputArr, sorter) {
       populateArr[i] = value
     }
   }
+
   return sortByReference || populateArr
 }{% endcodeblock %}
 </div>
@@ -698,6 +707,7 @@ function isPhpList(value) {
   //  returns 1: true
   return Array.isArray(value)
 }
+
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -705,32 +715,41 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
+
 function isPhpCallable(value) {
   return typeof value === 'function'
 }
 
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
+
 const isLocaleBag = (value) => isPhpAssocObject(value)
+
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 const ensurePhpRuntimeObject = () => {
   let locutus = globalContext.$locutus
   if (typeof locutus !== 'object' || locutus === null) {
     locutus = {}
     globalContext.$locutus = locutus
   }
+
   let php = locutus.php
   if (typeof php !== 'object' || php === null) {
     php = {}
     locutus.php = php
   }
+
   return php
 }
+
 function ensurePhpRuntimeState() {
   // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
   //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
@@ -741,10 +760,12 @@ function ensurePhpRuntimeState() {
   const localesValue = php.locales
   const localeCategoriesValue = php.localeCategories
   const pointersValue = php.pointers
+
   const ini = isIniBag(iniValue) ? iniValue : {}
   const locales = isLocaleBag(localesValue) ? localesValue : {}
   const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
   const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
   if (iniValue !== ini) {
     php.ini = ini
   }
@@ -757,8 +778,10 @@ function ensurePhpRuntimeState() {
   if (pointersValue !== pointers) {
     php.pointers = pointers
   }
+
   const localeDefaultValue = php.locale_default
   const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
   return {
     ini,
     locales,
@@ -767,14 +790,17 @@ function ensurePhpRuntimeState() {
     locale_default: localeDefault,
   }
 }
+
 function getPhpGlobalEntry(key) {
   const value = globalContext[key]
   return typeof value === 'undefined' ? undefined : value
 }
+
 function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
   }
+
   let current = value
   while (current) {
     const descriptor = Object.getOwnPropertyDescriptor(current, key)
@@ -788,6 +814,7 @@ function getPhpObjectEntry(value, key) {
     }
     current = Object.getPrototypeOf(current)
   }
+
   return undefined
 }
 
@@ -800,6 +827,7 @@ function resolvePhpCallable(callback, options) {
   if (isPhpCallable(callback)) {
     return { fn: callback, scope: null }
   }
+
   if (typeof callback === 'string') {
     const candidate = getPhpGlobalEntry(callback)
     if (isPhpCallable(candidate)) {
@@ -807,9 +835,11 @@ function resolvePhpCallable(callback, options) {
     }
     throw new Error(options.invalidMessage)
   }
+
   if (Array.isArray(callback) && callback.length >= 2) {
     const scopeDescriptor = callback[0]
     const callableDescriptor = callback[1]
+
     let scope
     if (typeof scopeDescriptor === 'string') {
       scope = getPhpGlobalEntry(scopeDescriptor)
@@ -819,9 +849,11 @@ function resolvePhpCallable(callback, options) {
     } else {
       scope = scopeDescriptor
     }
+
     if (isPhpCallable(callableDescriptor)) {
       return { fn: callableDescriptor, scope }
     }
+
     if (typeof callableDescriptor === 'string' && (isObjectLike(scope) || typeof scope === 'function')) {
       const candidate = getPhpObjectEntry(scope, callableDescriptor)
       if (isPhpCallable(candidate)) {
@@ -829,6 +861,7 @@ function resolvePhpCallable(callback, options) {
       }
     }
   }
+
   throw new Error(options.invalidMessage)
 }
 
@@ -851,6 +884,7 @@ function uksort(inputArr, sorter) {
   //   example 1: uksort($data, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })
   //   example 1: var $result = $data
   //   returns 1: {a: 'orange', b: 'banana', c: 'apple', d: 'lemon'}
+
   const tmpArr = {}
   const keys = []
   let i = 0
@@ -858,6 +892,7 @@ function uksort(inputArr, sorter) {
   let sortByReference = false
   let populateArr = {}
   let comparator
+
   if (sorter) {
     let normalizedSorter
     if (typeof sorter === 'string') {
@@ -878,6 +913,7 @@ function uksort(inputArr, sorter) {
     } else {
       normalizedSorter = sorter
     }
+
     try {
       const resolved = resolvePhpCallable(normalizedSorter, {
         invalidMessage: 'uksort(): Invalid callback',
@@ -888,12 +924,14 @@ function uksort(inputArr, sorter) {
       return false
     }
   }
+
   // Make a list of key names
   for (k in inputArr) {
     if (inputArr.hasOwnProperty(k)) {
       keys.push(k)
     }
   }
+
   // Sort key names
   try {
     if (typeof comparator === 'function') {
@@ -904,10 +942,12 @@ function uksort(inputArr, sorter) {
   } catch (_e) {
     return false
   }
+
   const runtime = ensurePhpRuntimeState()
   const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
+
   // Rebuild array with sorted key names
   for (i = 0; i < keys.length; i++) {
     const key = keys[i]
@@ -933,6 +973,7 @@ function uksort(inputArr, sorter) {
       populateArr[i] = value
     }
   }
+
   return sortByReference || populateArr
 }{% endcodeblock %}
 </div>

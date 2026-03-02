@@ -222,9 +222,11 @@ export function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export const entriesOfPhpAssoc = (value) => {
+{% codeblock lang:javascript %}
+export const entriesOfPhpAssoc = (value) => {
   return Object.entries(value)
 }
+
 export function isPhpNullish(value) {
   // discuss at: https://locutus.io/php/_helpers/isPhpNullish/
   //     note 1: Shared helper guard to narrow null/undefined unions.
@@ -232,6 +234,7 @@ export function isPhpNullish(value) {
   //  returns 1: true
   return typeof value === 'undefined' || value === null
 }
+
 export function isPhpList(value) {
   // discuss at: https://locutus.io/php/_helpers/isPhpList/
   //     note 1: Shared helper guard for PHP list-like array values.
@@ -239,6 +242,7 @@ export function isPhpList(value) {
   //  returns 1: true
   return Array.isArray(value)
 }
+
 export function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -246,84 +250,106 @@ export function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 export function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
+
 export function isPhpScalar(value) {
   return typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean'
 }
+
 export function isPhpKey(value) {
   return typeof value === 'string' || typeof value === 'number'
 }
+
 export function isNumericLike(value) {
   if (typeof value === 'number') {
     return Number.isFinite(value)
   }
+
   if (typeof value === 'bigint') {
     return true
   }
+
   if (typeof value !== 'string') {
     return false
   }
+
   const trimmed = value.trim()
   if (trimmed === '') {
     return false
   }
+
   return Number.isFinite(Number(trimmed))
 }
+
 export function isPhpCallable(value) {
   return typeof value === 'function'
 }
+
 export function isPhpCallableDescriptor(value) {
   if (typeof value === 'string') {
     return true
   }
+
   if (isPhpCallable(value)) {
     return true
   }
+
   if (!Array.isArray(value) || value.length < 2) {
     return false
   }
+
   const callableDescriptor = value[1]
   return typeof callableDescriptor === 'string' || isPhpCallable(callableDescriptor)
 }
+
 export function assertIsObjectLike(value, message = 'Expected object-like value') {
   if (!isObjectLike(value)) {
     throw new TypeError(message)
   }
 }
+
 export function assertIsPhpAssocObject(value, message = 'Expected associative object value') {
   if (!isPhpAssocObject(value)) {
     throw new TypeError(message)
   }
 }
+
 export function assertIsPhpList(value, message = 'Expected list value') {
   if (!isPhpList(value)) {
     throw new TypeError(message)
   }
 }
+
 export function assertIsPhpKey(value, message = 'Expected key value') {
   if (!isPhpKey(value)) {
     throw new TypeError(message)
   }
 }
+
 export function assertIsNumericLike(value, message = 'Expected numeric-like value') {
   if (!isNumericLike(value)) {
     throw new TypeError(message)
   }
 }
+
 export function assertIsPhpCallable(value, message = 'Expected callable value') {
   if (!isPhpCallable(value)) {
     throw new TypeError(message)
   }
 }
+
 export function isPhpArrayObject(value) {
   return isObjectLike(value)
 }
+
 export function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
     return value
   }
+
   return {}
 }{% endcodeblock %}
 </div>

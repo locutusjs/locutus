@@ -77,17 +77,22 @@ alias:
   //       returns 2: 1
   //       example 3: factorial(1)
   //       returns 3: 1
+
   const normalized = Number.parseInt(String(n), 10)
+
   if (normalized < 0) {
     throw new Error('factorial() not defined for negative values')
   }
+
   if (normalized === 0 || normalized === 1) {
     return 1
   }
+
   let result = 1
   for (let i = 2; i <= normalized; i++) {
     result *= i
   }
+
   return result
 }{% endcodeblock %}
 </div>

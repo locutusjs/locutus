@@ -85,7 +85,8 @@ export function gettimeofday(returnFloat?: boolean): number | GetTimeOfDayObject
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function gettimeofday(returnFloat) {
+{% codeblock lang:javascript %}
+export function gettimeofday(returnFloat) {
   //  discuss at: https://locutus.io/php/gettimeofday/
   // original by: Brett Zamir (https://brett-zamir.me)
   // original by: Josh Fraser (https://onlineaspect.com/2007/06/08/auto-detect-a-time-zone-with-javascript/)
@@ -97,10 +98,13 @@ export function gettimeofday(returnFloat?: boolean): number | GetTimeOfDayObject
   //   example 2: var $timeStamp = gettimeofday(true)
   //   example 2: var $result = $timeStamp > 1000000000 && $timeStamp < 2000000000
   //   returns 2: true
+
   const t = new Date()
+
   if (returnFloat) {
     return t.getTime() / 1000
   }
+
   // Store current year.
   const y = t.getFullYear()
   return {

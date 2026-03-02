@@ -84,17 +84,21 @@ alias:
   //        input by: Bjorn Roesbeke (https://www.bjornroesbeke.be/)
   //       example 1: str_split('Hello Friend', 3)
   //       returns 1: ['Hel', 'lo ', 'Fri', 'end']
+
   const normalizedSplitLength = splitLength === null || typeof splitLength === 'undefined' ? 1 : Number(splitLength)
   if (string === null || normalizedSplitLength < 1 || Number.isNaN(normalizedSplitLength)) {
     return false
   }
+
   const input = String(string)
   const chunks = []
   let pos = 0
   const len = input.length
+
   while (pos < len) {
     chunks.push(input.slice(pos, (pos += normalizedSplitLength)))
   }
+
   return chunks
 }{% endcodeblock %}
 </div>

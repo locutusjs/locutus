@@ -81,6 +81,7 @@ alias:
   const _pattern = pattern.substr(1, lastDelimiterIndex - 1)
   const regex = new RegExp(_pattern, _flag)
   const result = string.replace(regex, replacement)
+
   return result
 }{% endcodeblock %}
 </div>

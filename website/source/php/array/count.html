@@ -113,7 +113,8 @@ export function count(mixedVar: Countable | null | undefined, mode: CountMode = 
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}const isCountable = (value) => {
+{% codeblock lang:javascript %}
+const isCountable = (value) => {
   if (!value || typeof value !== 'object') {
     return false
   }
@@ -132,7 +133,9 @@ export function count(mixedVar, mode = 0) {
   //   returns 1: 6
   //   example 2: count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE')
   //   returns 2: 6
+
   let cnt = 0
+
   if (mixedVar === null || typeof mixedVar === 'undefined') {
     return 0
   }
@@ -143,7 +146,9 @@ export function count(mixedVar, mode = 0) {
   if (prototype !== Array.prototype && prototype !== Object.prototype) {
     return 1
   }
+
   const recursiveMode = mode === 'COUNT_RECURSIVE' || mode === 1
+
   if (Array.isArray(mixedVar)) {
     for (const key of Object.keys(mixedVar)) {
       cnt++
@@ -154,6 +159,7 @@ export function count(mixedVar, mode = 0) {
     }
     return cnt
   }
+
   for (const key in mixedVar) {
     if (Object.prototype.hasOwnProperty.call(mixedVar, key)) {
       cnt++
@@ -163,6 +169,7 @@ export function count(mixedVar, mode = 0) {
       }
     }
   }
+
   return cnt
 }{% endcodeblock %}
 </div>

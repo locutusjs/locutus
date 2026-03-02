@@ -83,19 +83,24 @@ export function sql_regcase(str: string): string {
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { getPhpLocaleGroup } from '../_helpers/_phpRuntimeState.ts'
 import { setlocale } from '../strings/setlocale.ts'
+
 const isRecord = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
 const defaultUpper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const defaultLower = 'abcdefghijklmnopqrstuvwxyz'
+
 export function sql_regcase(str) {
   //  discuss at: https://locutus.io/php/sql_regcase/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: sql_regcase('Foo - bar.')
   //   returns 1: '[Ff][Oo][Oo] - [Bb][Aa][Rr].'
+
   let upper = ''
   let lower = ''
   let pos = -1
   let retStr = ''
+
   setlocale('LC_ALL', 0)
+
   const lcCtypeValue = getPhpLocaleGroup('LC_CTYPE', 'LC_CTYPE')
   if (lcCtypeValue && isRecord(lcCtypeValue)) {
     const upperValue = lcCtypeValue.upper
@@ -109,6 +114,7 @@ export function sql_regcase(str) {
   if (!upper || !lower) {
     return str
   }
+
   // @todo: Make this more readable
   for (let i = 0; i < str.length; i++) {
     if ((pos = upper.indexOf(str.charAt(i))) !== -1 || (pos = lower.indexOf(str.charAt(i))) !== -1) {
@@ -117,6 +123,7 @@ export function sql_regcase(str) {
       retStr += str.charAt(i)
     }
   }
+
   return retStr
 }{% endcodeblock %}
 </div>
@@ -882,6 +889,7 @@ function isPhpList(value) {
   //  returns 1: true
   return Array.isArray(value)
 }
+
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -889,29 +897,37 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
 
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
+
 const isLocaleBag = (value) => isPhpAssocObject(value)
+
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 const ensurePhpRuntimeObject = () => {
   let locutus = globalContext.$locutus
   if (typeof locutus !== 'object' || locutus === null) {
     locutus = {}
     globalContext.$locutus = locutus
   }
+
   let php = locutus.php
   if (typeof php !== 'object' || php === null) {
     php = {}
     locutus.php = php
   }
+
   return php
 }
+
 function ensurePhpRuntimeState() {
   // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
   //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
@@ -922,10 +938,12 @@ function ensurePhpRuntimeState() {
   const localesValue = php.locales
   const localeCategoriesValue = php.localeCategories
   const pointersValue = php.pointers
+
   const ini = isIniBag(iniValue) ? iniValue : {}
   const locales = isLocaleBag(localesValue) ? localesValue : {}
   const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
   const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
   if (iniValue !== ini) {
     php.ini = ini
   }
@@ -938,8 +956,10 @@ function ensurePhpRuntimeState() {
   if (pointersValue !== pointers) {
     php.pointers = pointers
   }
+
   const localeDefaultValue = php.locale_default
   const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
   return {
     ini,
     locales,
@@ -948,27 +968,33 @@ function ensurePhpRuntimeState() {
     locale_default: localeDefault,
   }
 }
+
 function getPhpRuntimeEntry(key) {
   const php = ensurePhpRuntimeObject()
   const value = php[key]
   return typeof value === 'undefined' ? undefined : value
 }
+
 function setPhpRuntimeEntry(key, value) {
   const php = ensurePhpRuntimeObject()
   php[key] = value
 }
+
 function getPhpRuntimeString(key, fallback) {
   const value = getPhpRuntimeEntry(key)
   return typeof value === 'string' ? value : fallback
 }
+
 function getPhpGlobalEntry(key) {
   const value = globalContext[key]
   return typeof value === 'undefined' ? undefined : value
 }
+
 function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
   }
+
   let current = value
   while (current) {
     const descriptor = Object.getOwnPropertyDescriptor(current, key)
@@ -982,8 +1008,10 @@ function getPhpObjectEntry(value, key) {
     }
     current = Object.getPrototypeOf(current)
   }
+
   return undefined
 }
+
 function getPhpLocaleEntry(category) {
   const runtime = ensurePhpRuntimeState()
   const localeName = runtime.localeCategories[category]
@@ -993,6 +1021,7 @@ function getPhpLocaleEntry(category) {
   const localeEntry = runtime.locales[localeName]
   return isPhpAssocObject(localeEntry) ? localeEntry : undefined
 }
+
 function getPhpLocaleGroup(category, groupKey) {
   const localeEntry = getPhpLocaleEntry(category)
   if (!localeEntry) {
@@ -1009,25 +1038,31 @@ function getenv(varname) {
   //     original by: Brett Zamir (https://brett-zamir.me)
   //       example 1: getenv('LC_ALL')
   //       returns 1: false
+
   const processValue = getPhpGlobalEntry('process')
   const hasProcessLike = typeof processValue !== 'undefined'
   if (hasProcessLike) {
     return false
   }
+
   if (typeof processValue !== 'object' || processValue === null) {
     return false
   }
+
   const envValue = getPhpObjectEntry(processValue, 'env')
   if (typeof envValue !== 'object' || envValue === null) {
     return false
   }
+
   const envEntry = getPhpObjectEntry(envValue, varname)
   return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
 }
 
 // php/strings/setlocale (Locutus dependency module)
 const hasOwn = Object.prototype.hasOwnProperty
+
 const isLocaleDefinitionMap = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
+
 const isLocaleCategoryMap = (value) =>
   isPhpAssocObject(value) &&
   typeof value.LC_COLLATE === 'string' &&
@@ -1036,6 +1071,7 @@ const isLocaleCategoryMap = (value) =>
   typeof value.LC_NUMERIC === 'string' &&
   typeof value.LC_TIME === 'string' &&
   typeof value.LC_MESSAGES === 'string'
+
 function copyValue(orig) {
   if (orig instanceof RegExp) {
     return new RegExp(orig)
@@ -1058,6 +1094,7 @@ function copyValue(orig) {
   }
   return orig
 }
+
 function setlocale(category, locale) {
   //  discuss at: https://locutus.io/php/setlocale/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -1072,9 +1109,11 @@ function setlocale(category, locale) {
   //      note 2: This feature will not work in Node and hence is Browser-only
   //   example 1: setlocale('LC_ALL', 'en_US')
   //   returns 1: 'en_US'
+
   let categ = ''
   const cats = []
   let i = 0
+
   // Function usable by a ngettext implementation (apparently not an accessible part of setlocale(),
   // but locale-specific) See https://www.gnu.org/software/gettext/manual/gettext.html#Plural-forms
   // though amended with others from https://developer.mozilla.org/En/Localization_and_Plurals (new
@@ -1084,6 +1123,7 @@ function setlocale(category, locale) {
   // Dojo has some functions (under new BSD), including JSON conversions of LDML XML from CLDR:
   // https://bugs.dojotoolkit.org/browser/dojo/trunk/cldr and docs at
   // https://api.dojotoolkit.org/jsdoc/HEAD/dojo.cldr
+
   // var _nplurals1 = function (n) {
   //   // e.g., Japanese
   //   return 0
@@ -1096,11 +1136,13 @@ function setlocale(category, locale) {
     // e.g., French
     return n > 1 ? 1 : 0
   }
+
   const localesValue = getPhpRuntimeEntry('locales')
   let locales = isLocaleDefinitionMap(localesValue) ? localesValue : {}
   if (localesValue !== locales) {
     setPhpRuntimeEntry('locales', locales)
   }
+
   // Reconcile Windows vs. *nix locale names?
   // Allow different priority orders of languages, esp. if implement gettext as in
   // LANGUAGE env. var.? (e.g., show German if French is not available)
@@ -1108,6 +1150,7 @@ function setlocale(category, locale) {
     // Can add to the locales
     locales = {}
     setPhpRuntimeEntry('locales', locales)
+
     locales.en = {
       LC_COLLATE: function (str1, str2) {
         // @todo: This one taken from strcmp, but need for other locales; we don't use localeCompare
@@ -1236,8 +1279,10 @@ function setlocale(category, locale) {
     locales.en_US.LC_MONETARY.mon_grouping = [3, 3]
     locales.en_US.LC_NUMERIC.thousands_sep = ''
     locales.en_US.LC_NUMERIC.grouping = []
+
     locales.en_GB = copyValue(locales.en)
     locales.en_GB.LC_TIME.r = '%l:%M:%S %P %Z'
+
     locales.en_AU = copyValue(locales.en_GB)
     // Assume C locale is like English (?) (We need C locale for LC_CTYPE)
     locales.C = copyValue(locales.en)
@@ -1272,6 +1317,7 @@ function setlocale(category, locale) {
     locales.C.LC_TIME.X = '%H:%M:%S'
     locales.C.LC_MESSAGES.YESEXPR = '^[yY]'
     locales.C.LC_MESSAGES.NOEXPR = '^[nN]'
+
     locales.fr = copyValue(locales.en)
     locales.fr.nplurals = _nplurals2b
     locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam']
@@ -1309,6 +1355,7 @@ function setlocale(category, locale) {
     locales.fr.LC_TIME.P = ['', '']
     locales.fr.LC_TIME.x = '%d.%m.%Y'
     locales.fr.LC_TIME.X = '%T'
+
     locales.fr_CA = copyValue(locales.fr)
     locales.fr_CA.LC_TIME.x = '%Y-%m-%d'
   }
@@ -1350,6 +1397,7 @@ function setlocale(category, locale) {
     }
   }
   setPhpRuntimeEntry('locale', currentLocale)
+
   const localeCategoriesValue = getPhpRuntimeEntry('localeCategories')
   const localeCategories = isLocaleCategoryMap(localeCategoriesValue)
     ? localeCategoriesValue
@@ -1370,7 +1418,9 @@ function setlocale(category, locale) {
   if (localeCategoriesValue !== localeCategories) {
     setPhpRuntimeEntry('localeCategories', localeCategories)
   }
+
   let requestedLocale = locale
+
   if (requestedLocale === null || requestedLocale === '') {
     requestedLocale = getenv(category) || getenv('LANG')
   } else if (Array.isArray(requestedLocale)) {
@@ -1393,6 +1443,7 @@ function setlocale(category, locale) {
       break
     }
   }
+
   // Just get the locale
   if (requestedLocale === '0' || requestedLocale === 0) {
     if (category === 'LC_ALL') {
@@ -1407,10 +1458,12 @@ function setlocale(category, locale) {
     }
     return localeCategories[category] ?? false
   }
+
   if (typeof requestedLocale !== 'string' || !(requestedLocale in locales)) {
     // Locale not found
     return false
   }
+
   // Set and get locale
   if (category === 'LC_ALL') {
     for (categ in localeCategories) {
@@ -1422,23 +1475,30 @@ function setlocale(category, locale) {
   } else {
     localeCategories[category] = requestedLocale
   }
+
   return requestedLocale
 }
 
 // php/pcre/sql_regcase (target function module)
 const isRecord = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
+
 const defaultUpper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
 const defaultLower = 'abcdefghijklmnopqrstuvwxyz'
+
 function sql_regcase(str) {
   //  discuss at: https://locutus.io/php/sql_regcase/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: sql_regcase('Foo - bar.')
   //   returns 1: '[Ff][Oo][Oo] - [Bb][Aa][Rr].'
+
   let upper = ''
   let lower = ''
   let pos = -1
   let retStr = ''
+
   setlocale('LC_ALL', 0)
+
   const lcCtypeValue = getPhpLocaleGroup('LC_CTYPE', 'LC_CTYPE')
   if (lcCtypeValue && isRecord(lcCtypeValue)) {
     const upperValue = lcCtypeValue.upper
@@ -1452,6 +1512,7 @@ function sql_regcase(str) {
   if (!upper || !lower) {
     return str
   }
+
   // @todo: Make this more readable
   for (let i = 0; i < str.length; i++) {
     if ((pos = upper.indexOf(str.charAt(i))) !== -1 || (pos = lower.indexOf(str.charAt(i))) !== -1) {
@@ -1460,6 +1521,7 @@ function sql_regcase(str) {
       retStr += str.charAt(i)
     }
   }
+
   return retStr
 }{% endcodeblock %}
 </div>

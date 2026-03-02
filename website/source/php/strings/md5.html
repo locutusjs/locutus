@@ -294,6 +294,7 @@ export function md5(str: string): string {
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import crypto from 'crypto'
 import { utf8_encode as utf8Encode } from '../xml/utf8_encode.ts'
+
 export function md5(str) {
   //      discuss at: https://locutus.io/php/md5/
   // parity verified: PHP 8.3
@@ -308,6 +309,7 @@ export function md5(str) {
   //          note 1: in a steaming fashion for faster and more efficient hashing
   //       example 1: md5('Kevin van Zonneveld')
   //       returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'
+
   let hash
   try {
     const md5sum = crypto.createHash('md5')
@@ -316,13 +318,17 @@ export function md5(str) {
   } catch (_e) {
     hash = undefined
   }
+
   if (hash !== undefined) {
     return hash
   }
+
   let xl = 0
+
   const _rotateLeft = function (lValue, iShiftBits) {
     return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits))
   }
+
   const _addUnsigned = function (lX, lY) {
     const lX8 = lX & 0x80000000
     const lY8 = lY & 0x80000000
@@ -342,6 +348,7 @@ export function md5(str) {
       return lResult ^ lX8 ^ lY8
     }
   }
+
   const _F = function (x, y, z) {
     return (x & y) | (~x & z)
   }
@@ -354,22 +361,27 @@ export function md5(str) {
   const _I = function (x, y, z) {
     return y ^ (x | ~z)
   }
+
   const _FF = function (a, b, c, d, x, s, ac) {
     a = _addUnsigned(a, _addUnsigned(_addUnsigned(_F(b, c, d), x), ac))
     return _addUnsigned(_rotateLeft(a, s), b)
   }
+
   const _GG = function (a, b, c, d, x, s, ac) {
     a = _addUnsigned(a, _addUnsigned(_addUnsigned(_G(b, c, d), x), ac))
     return _addUnsigned(_rotateLeft(a, s), b)
   }
+
   const _HH = function (a, b, c, d, x, s, ac) {
     a = _addUnsigned(a, _addUnsigned(_addUnsigned(_H(b, c, d), x), ac))
     return _addUnsigned(_rotateLeft(a, s), b)
   }
+
   const _II = function (a, b, c, d, x, s, ac) {
     a = _addUnsigned(a, _addUnsigned(_addUnsigned(_I(b, c, d), x), ac))
     return _addUnsigned(_rotateLeft(a, s), b)
   }
+
   const _convertToWordArray = function (value) {
     let lWordCount = 0
     const lMessageLength = value.length
@@ -392,10 +404,12 @@ export function md5(str) {
     lWordArray[lNumberOfWords - 1] = lMessageLength >>> 29
     return lWordArray
   }
+
   const _wordToHex = function (lValue) {
     let wordToHexValue = ''
     let wordToHexValueTemp = ''
     let lByte = 0
+
     for (let lCount = 0; lCount <= 3; lCount++) {
       lByte = (lValue >>> (lCount * 8)) & 255
       wordToHexValueTemp = '0' + lByte.toString(16)
@@ -403,6 +417,7 @@ export function md5(str) {
     }
     return wordToHexValue
   }
+
   let x = []
   let k = 0
   let AA = 0
@@ -429,6 +444,7 @@ export function md5(str) {
   const S42 = 10
   const S43 = 15
   const S44 = 21
+
   str = utf8Encode(str)
   x = _convertToWordArray(str)
   const _X = function (index) {
@@ -438,6 +454,7 @@ export function md5(str) {
   b = 0xefcdab89
   c = 0x98badcfe
   d = 0x10325476
+
   xl = x.length
   for (k = 0; k < xl; k += 16) {
     AA = a
@@ -513,7 +530,9 @@ export function md5(str) {
     c = _addUnsigned(c, CC)
     d = _addUnsigned(d, DD)
   }
+
   const temp = _wordToHex(a) + _wordToHex(b) + _wordToHex(c) + _wordToHex(d)
+
   return temp.toLowerCase()
 }{% endcodeblock %}
 </div>
@@ -535,20 +554,24 @@ function utf8_encode(argString) {
   //     bugfixed by: kirilloid
   //       example 1: utf8_encode('Kevin van Zonneveld')
   //       returns 1: 'Kevin van Zonneveld'
+
   if (argString === null || typeof argString === 'undefined') {
     return ''
   }
+
   // .replace(/\r\n/g, "\n").replace(/\r/g, "\n");
   const string = argString + ''
   let utftext = ''
   let start
   let end
   let stringl = 0
+
   start = end = 0
   stringl = string.length
   for (let n = 0; n < stringl; n++) {
     let c1 = string.charCodeAt(n)
     let enc = null
+
     if (c1 < 128) {
       end++
     } else if (c1 > 127 && c1 < 2048) {
@@ -575,9 +598,11 @@ function utf8_encode(argString) {
       start = end = n + 1
     }
   }
+
   if (end > start) {
     utftext += string.slice(start, stringl)
   }
+
   return utftext
 }
 
@@ -598,6 +623,7 @@ function md5(str) {
   //          note 1: in a steaming fashion for faster and more efficient hashing
   //       example 1: md5('Kevin van Zonneveld')
   //       returns 1: '6e658d4bfcb59cc13f96c14450ac40b9'
+
   let hash
   try {
     const md5sum = crypto.createHash('md5')
@@ -606,13 +632,17 @@ function md5(str) {
   } catch (_e) {
     hash = undefined
   }
+
   if (hash !== undefined) {
     return hash
   }
+
   let xl = 0
+
   const _rotateLeft = function (lValue, iShiftBits) {
     return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits))
   }
+
   const _addUnsigned = function (lX, lY) {
     const lX8 = lX & 0x80000000
     const lY8 = lY & 0x80000000
@@ -632,6 +662,7 @@ function md5(str) {
       return lResult ^ lX8 ^ lY8
     }
   }
+
   const _F = function (x, y, z) {
     return (x & y) | (~x & z)
   }
@@ -644,22 +675,27 @@ function md5(str) {
   const _I = function (x, y, z) {
     return y ^ (x | ~z)
   }
+
   const _FF = function (a, b, c, d, x, s, ac) {
     a = _addUnsigned(a, _addUnsigned(_addUnsigned(_F(b, c, d), x), ac))
     return _addUnsigned(_rotateLeft(a, s), b)
   }
+
   const _GG = function (a, b, c, d, x, s, ac) {
     a = _addUnsigned(a, _addUnsigned(_addUnsigned(_G(b, c, d), x), ac))
     return _addUnsigned(_rotateLeft(a, s), b)
   }
+
   const _HH = function (a, b, c, d, x, s, ac) {
     a = _addUnsigned(a, _addUnsigned(_addUnsigned(_H(b, c, d), x), ac))
     return _addUnsigned(_rotateLeft(a, s), b)
   }
+
   const _II = function (a, b, c, d, x, s, ac) {
     a = _addUnsigned(a, _addUnsigned(_addUnsigned(_I(b, c, d), x), ac))
     return _addUnsigned(_rotateLeft(a, s), b)
   }
+
   const _convertToWordArray = function (value) {
     let lWordCount = 0
     const lMessageLength = value.length
@@ -682,10 +718,12 @@ function md5(str) {
     lWordArray[lNumberOfWords - 1] = lMessageLength >>> 29
     return lWordArray
   }
+
   const _wordToHex = function (lValue) {
     let wordToHexValue = ''
     let wordToHexValueTemp = ''
     let lByte = 0
+
     for (let lCount = 0; lCount <= 3; lCount++) {
       lByte = (lValue >>> (lCount * 8)) & 255
       wordToHexValueTemp = '0' + lByte.toString(16)
@@ -693,6 +731,7 @@ function md5(str) {
     }
     return wordToHexValue
   }
+
   let x = []
   let k = 0
   let AA = 0
@@ -719,6 +758,7 @@ function md5(str) {
   const S42 = 10
   const S43 = 15
   const S44 = 21
+
   str = utf8Encode(str)
   x = _convertToWordArray(str)
   const _X = function (index) {
@@ -728,6 +768,7 @@ function md5(str) {
   b = 0xefcdab89
   c = 0x98badcfe
   d = 0x10325476
+
   xl = x.length
   for (k = 0; k < xl; k += 16) {
     AA = a
@@ -803,7 +844,9 @@ function md5(str) {
     c = _addUnsigned(c, CC)
     d = _addUnsigned(d, DD)
   }
+
   const temp = _wordToHex(a) + _wordToHex(b) + _wordToHex(c) + _wordToHex(d)
+
   return temp.toLowerCase()
 }{% endcodeblock %}
 </div>

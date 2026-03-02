@@ -491,6 +491,7 @@ export function setlocale(category: string, locale: LocaleInput): string | false
 {% codeblock lang:javascript %}import { getPhpRuntimeEntry, getPhpRuntimeString, setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
 import { isPhpAssocObject } from '../_helpers/_phpTypes.ts'
 import { getenv } from '../info/getenv.ts'
+
 const hasOwn = Object.prototype.hasOwnProperty
 const isLocaleDefinitionMap = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
 const isLocaleCategoryMap = (value) =>
@@ -523,6 +524,7 @@ function copyValue(orig) {
   }
   return orig
 }
+
 export function setlocale(category, locale) {
   //  discuss at: https://locutus.io/php/setlocale/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -537,9 +539,11 @@ export function setlocale(category, locale) {
   //      note 2: This feature will not work in Node and hence is Browser-only
   //   example 1: setlocale('LC_ALL', 'en_US')
   //   returns 1: 'en_US'
+
   let categ = ''
   const cats = []
   let i = 0
+
   // Function usable by a ngettext implementation (apparently not an accessible part of setlocale(),
   // but locale-specific) See https://www.gnu.org/software/gettext/manual/gettext.html#Plural-forms
   // though amended with others from https://developer.mozilla.org/En/Localization_and_Plurals (new
@@ -549,6 +553,7 @@ export function setlocale(category, locale) {
   // Dojo has some functions (under new BSD), including JSON conversions of LDML XML from CLDR:
   // https://bugs.dojotoolkit.org/browser/dojo/trunk/cldr and docs at
   // https://api.dojotoolkit.org/jsdoc/HEAD/dojo.cldr
+
   // var _nplurals1 = function (n) {
   //   // e.g., Japanese
   //   return 0
@@ -561,11 +566,13 @@ export function setlocale(category, locale) {
     // e.g., French
     return n > 1 ? 1 : 0
   }
+
   const localesValue = getPhpRuntimeEntry('locales')
   let locales = isLocaleDefinitionMap(localesValue) ? localesValue : {}
   if (localesValue !== locales) {
     setPhpRuntimeEntry('locales', locales)
   }
+
   // Reconcile Windows vs. *nix locale names?
   // Allow different priority orders of languages, esp. if implement gettext as in
   // LANGUAGE env. var.? (e.g., show German if French is not available)
@@ -573,6 +580,7 @@ export function setlocale(category, locale) {
     // Can add to the locales
     locales = {}
     setPhpRuntimeEntry('locales', locales)
+
     locales.en = {
       LC_COLLATE: function (str1, str2) {
         // @todo: This one taken from strcmp, but need for other locales; we don't use localeCompare
@@ -701,8 +709,10 @@ export function setlocale(category, locale) {
     locales.en_US.LC_MONETARY.mon_grouping = [3, 3]
     locales.en_US.LC_NUMERIC.thousands_sep = ''
     locales.en_US.LC_NUMERIC.grouping = []
+
     locales.en_GB = copyValue(locales.en)
     locales.en_GB.LC_TIME.r = '%l:%M:%S %P %Z'
+
     locales.en_AU = copyValue(locales.en_GB)
     // Assume C locale is like English (?) (We need C locale for LC_CTYPE)
     locales.C = copyValue(locales.en)
@@ -737,6 +747,7 @@ export function setlocale(category, locale) {
     locales.C.LC_TIME.X = '%H:%M:%S'
     locales.C.LC_MESSAGES.YESEXPR = '^[yY]'
     locales.C.LC_MESSAGES.NOEXPR = '^[nN]'
+
     locales.fr = copyValue(locales.en)
     locales.fr.nplurals = _nplurals2b
     locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam']
@@ -774,6 +785,7 @@ export function setlocale(category, locale) {
     locales.fr.LC_TIME.P = ['', '']
     locales.fr.LC_TIME.x = '%d.%m.%Y'
     locales.fr.LC_TIME.X = '%T'
+
     locales.fr_CA = copyValue(locales.fr)
     locales.fr_CA.LC_TIME.x = '%Y-%m-%d'
   }
@@ -815,6 +827,7 @@ export function setlocale(category, locale) {
     }
   }
   setPhpRuntimeEntry('locale', currentLocale)
+
   const localeCategoriesValue = getPhpRuntimeEntry('localeCategories')
   const localeCategories = isLocaleCategoryMap(localeCategoriesValue)
     ? localeCategoriesValue
@@ -835,7 +848,9 @@ export function setlocale(category, locale) {
   if (localeCategoriesValue !== localeCategories) {
     setPhpRuntimeEntry('localeCategories', localeCategories)
   }
+
   let requestedLocale = locale
+
   if (requestedLocale === null || requestedLocale === '') {
     requestedLocale = getenv(category) || getenv('LANG')
   } else if (Array.isArray(requestedLocale)) {
@@ -858,6 +873,7 @@ export function setlocale(category, locale) {
       break
     }
   }
+
   // Just get the locale
   if (requestedLocale === '0' || requestedLocale === 0) {
     if (category === 'LC_ALL') {
@@ -872,10 +888,12 @@ export function setlocale(category, locale) {
     }
     return localeCategories[category] ?? false
   }
+
   if (typeof requestedLocale !== 'string' || !(requestedLocale in locales)) {
     // Locale not found
     return false
   }
+
   // Set and get locale
   if (category === 'LC_ALL') {
     for (categ in localeCategories) {
@@ -887,6 +905,7 @@ export function setlocale(category, locale) {
   } else {
     localeCategories[category] = requestedLocale
   }
+
   return requestedLocale
 }{% endcodeblock %}
 </div>
@@ -1529,6 +1548,7 @@ function isPhpList(value) {
   //  returns 1: true
   return Array.isArray(value)
 }
+
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -1536,6 +1556,7 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
@@ -1543,40 +1564,49 @@ function isPhpAssocObject(value) {
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 const ensurePhpRuntimeObject = () => {
   let locutus = globalContext.$locutus
   if (typeof locutus !== 'object' || locutus === null) {
     locutus = {}
     globalContext.$locutus = locutus
   }
+
   let php = locutus.php
   if (typeof php !== 'object' || php === null) {
     php = {}
     locutus.php = php
   }
+
   return php
 }
+
 function getPhpRuntimeEntry(key) {
   const php = ensurePhpRuntimeObject()
   const value = php[key]
   return typeof value === 'undefined' ? undefined : value
 }
+
 function setPhpRuntimeEntry(key, value) {
   const php = ensurePhpRuntimeObject()
   php[key] = value
 }
+
 function getPhpRuntimeString(key, fallback) {
   const value = getPhpRuntimeEntry(key)
   return typeof value === 'string' ? value : fallback
 }
+
 function getPhpGlobalEntry(key) {
   const value = globalContext[key]
   return typeof value === 'undefined' ? undefined : value
 }
+
 function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
   }
+
   let current = value
   while (current) {
     const descriptor = Object.getOwnPropertyDescriptor(current, key)
@@ -1590,6 +1620,7 @@ function getPhpObjectEntry(value, key) {
     }
     current = Object.getPrototypeOf(current)
   }
+
   return undefined
 }
 
@@ -1600,25 +1631,31 @@ function getenv(varname) {
   //     original by: Brett Zamir (https://brett-zamir.me)
   //       example 1: getenv('LC_ALL')
   //       returns 1: false
+
   const processValue = getPhpGlobalEntry('process')
   const hasProcessLike = typeof processValue !== 'undefined'
   if (hasProcessLike) {
     return false
   }
+
   if (typeof processValue !== 'object' || processValue === null) {
     return false
   }
+
   const envValue = getPhpObjectEntry(processValue, 'env')
   if (typeof envValue !== 'object' || envValue === null) {
     return false
   }
+
   const envEntry = getPhpObjectEntry(envValue, varname)
   return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
 }
 
 // php/strings/setlocale (target function module)
 const hasOwn = Object.prototype.hasOwnProperty
+
 const isLocaleDefinitionMap = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
+
 const isLocaleCategoryMap = (value) =>
   isPhpAssocObject(value) &&
   typeof value.LC_COLLATE === 'string' &&
@@ -1627,6 +1664,7 @@ const isLocaleCategoryMap = (value) =>
   typeof value.LC_NUMERIC === 'string' &&
   typeof value.LC_TIME === 'string' &&
   typeof value.LC_MESSAGES === 'string'
+
 function copyValue(orig) {
   if (orig instanceof RegExp) {
     return new RegExp(orig)
@@ -1649,6 +1687,7 @@ function copyValue(orig) {
   }
   return orig
 }
+
 function setlocale(category, locale) {
   //  discuss at: https://locutus.io/php/setlocale/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -1663,9 +1702,11 @@ function setlocale(category, locale) {
   //      note 2: This feature will not work in Node and hence is Browser-only
   //   example 1: setlocale('LC_ALL', 'en_US')
   //   returns 1: 'en_US'
+
   let categ = ''
   const cats = []
   let i = 0
+
   // Function usable by a ngettext implementation (apparently not an accessible part of setlocale(),
   // but locale-specific) See https://www.gnu.org/software/gettext/manual/gettext.html#Plural-forms
   // though amended with others from https://developer.mozilla.org/En/Localization_and_Plurals (new
@@ -1675,6 +1716,7 @@ function setlocale(category, locale) {
   // Dojo has some functions (under new BSD), including JSON conversions of LDML XML from CLDR:
   // https://bugs.dojotoolkit.org/browser/dojo/trunk/cldr and docs at
   // https://api.dojotoolkit.org/jsdoc/HEAD/dojo.cldr
+
   // var _nplurals1 = function (n) {
   //   // e.g., Japanese
   //   return 0
@@ -1687,11 +1729,13 @@ function setlocale(category, locale) {
     // e.g., French
     return n > 1 ? 1 : 0
   }
+
   const localesValue = getPhpRuntimeEntry('locales')
   let locales = isLocaleDefinitionMap(localesValue) ? localesValue : {}
   if (localesValue !== locales) {
     setPhpRuntimeEntry('locales', locales)
   }
+
   // Reconcile Windows vs. *nix locale names?
   // Allow different priority orders of languages, esp. if implement gettext as in
   // LANGUAGE env. var.? (e.g., show German if French is not available)
@@ -1699,6 +1743,7 @@ function setlocale(category, locale) {
     // Can add to the locales
     locales = {}
     setPhpRuntimeEntry('locales', locales)
+
     locales.en = {
       LC_COLLATE: function (str1, str2) {
         // @todo: This one taken from strcmp, but need for other locales; we don't use localeCompare
@@ -1827,8 +1872,10 @@ function setlocale(category, locale) {
     locales.en_US.LC_MONETARY.mon_grouping = [3, 3]
     locales.en_US.LC_NUMERIC.thousands_sep = ''
     locales.en_US.LC_NUMERIC.grouping = []
+
     locales.en_GB = copyValue(locales.en)
     locales.en_GB.LC_TIME.r = '%l:%M:%S %P %Z'
+
     locales.en_AU = copyValue(locales.en_GB)
     // Assume C locale is like English (?) (We need C locale for LC_CTYPE)
     locales.C = copyValue(locales.en)
@@ -1863,6 +1910,7 @@ function setlocale(category, locale) {
     locales.C.LC_TIME.X = '%H:%M:%S'
     locales.C.LC_MESSAGES.YESEXPR = '^[yY]'
     locales.C.LC_MESSAGES.NOEXPR = '^[nN]'
+
     locales.fr = copyValue(locales.en)
     locales.fr.nplurals = _nplurals2b
     locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam']
@@ -1900,6 +1948,7 @@ function setlocale(category, locale) {
     locales.fr.LC_TIME.P = ['', '']
     locales.fr.LC_TIME.x = '%d.%m.%Y'
     locales.fr.LC_TIME.X = '%T'
+
     locales.fr_CA = copyValue(locales.fr)
     locales.fr_CA.LC_TIME.x = '%Y-%m-%d'
   }
@@ -1941,6 +1990,7 @@ function setlocale(category, locale) {
     }
   }
   setPhpRuntimeEntry('locale', currentLocale)
+
   const localeCategoriesValue = getPhpRuntimeEntry('localeCategories')
   const localeCategories = isLocaleCategoryMap(localeCategoriesValue)
     ? localeCategoriesValue
@@ -1961,7 +2011,9 @@ function setlocale(category, locale) {
   if (localeCategoriesValue !== localeCategories) {
     setPhpRuntimeEntry('localeCategories', localeCategories)
   }
+
   let requestedLocale = locale
+
   if (requestedLocale === null || requestedLocale === '') {
     requestedLocale = getenv(category) || getenv('LANG')
   } else if (Array.isArray(requestedLocale)) {
@@ -1984,6 +2036,7 @@ function setlocale(category, locale) {
       break
     }
   }
+
   // Just get the locale
   if (requestedLocale === '0' || requestedLocale === 0) {
     if (category === 'LC_ALL') {
@@ -1998,10 +2051,12 @@ function setlocale(category, locale) {
     }
     return localeCategories[category] ?? false
   }
+
   if (typeof requestedLocale !== 'string' || !(requestedLocale in locales)) {
     // Locale not found
     return false
   }
+
   // Set and get locale
   if (category === 'LC_ALL') {
     for (categ in localeCategories) {
@@ -2013,6 +2068,7 @@ function setlocale(category, locale) {
   } else {
     localeCategories[category] = requestedLocale
   }
+
   return requestedLocale
 }{% endcodeblock %}
 </div>

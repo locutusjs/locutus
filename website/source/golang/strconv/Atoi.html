@@ -76,14 +76,18 @@ alias:
   //       returns 2: -123
   //       example 3: Atoi('abc')[0]
   //       returns 3: 0
+
   const normalized = String(s).trim()
+
   if (!/^-?\d+$/.test(normalized)) {
     return [0, new Error('strconv.Atoi: parsing "' + normalized + '": invalid syntax')]
   }
+
   const result = parseInt(normalized, 10)
   if (isNaN(result)) {
     return [0, new Error('strconv.Atoi: parsing "' + normalized + '": invalid syntax')]
   }
+
   return [result, null]
 }{% endcodeblock %}
 </div>

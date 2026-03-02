@@ -101,7 +101,8 @@ export function echo(...args: EchoValue[]): void {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function echo(...args) {
+{% codeblock lang:javascript %}
+export function echo(...args) {
   //      discuss at: https://locutus.io/php/echo/
   // parity verified: PHP 8.3
   //     original by: Philip Peterson
@@ -127,6 +128,7 @@ export function echo(...args: EchoValue[]): void {
   //        input by: JB
   //       example 1: echo('Hello world')
   //       returns 1: undefined
+
   return console.log(args.join(' '))
 }{% endcodeblock %}
 </div>

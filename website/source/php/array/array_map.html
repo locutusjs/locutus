@@ -112,6 +112,7 @@ export function array_map<TResult = ArrayMapValue>(
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
+
 export function array_map(callback, ...inputArrays) {
   //  discuss at: https://locutus.io/php/array_map/
   // original by: Andrea Giammarchi (https://webreflection.blogspot.com)
@@ -122,8 +123,10 @@ export function array_map(callback, ...inputArrays) {
   //      note 1: it can only work if the function name is in the global context
   //   example 1: array_map( function (a){return (a * a * a)}, [1, 2, 3, 4, 5] )
   //   returns 1: [ 1, 8, 27, 64, 125 ]
+
   const argc = inputArrays.length + 1
   const itemCount = inputArrays[0]?.length ?? 0
+
   const resolved =
     callback === null || typeof callback === 'undefined'
       ? null
@@ -131,6 +134,7 @@ export function array_map(callback, ...inputArrays) {
           invalidMessage: 'array_map(): Invalid callback',
           missingScopeMessage: (scopeName) => 'Object not found: ' + scopeName,
         })
+
   if (resolved) {
     const mapped = []
     for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
@@ -142,6 +146,7 @@ export function array_map(callback, ...inputArrays) {
     }
     return mapped
   }
+
   const mapped = []
   for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
     const args = []
@@ -150,6 +155,7 @@ export function array_map(callback, ...inputArrays) {
     }
     mapped[itemIndex] = args
   }
+
   return mapped
 }{% endcodeblock %}
 </div>
@@ -413,6 +419,7 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpCallable(value) {
   return typeof value === 'function'
 }
@@ -420,14 +427,17 @@ function isPhpCallable(value) {
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 function getPhpGlobalEntry(key) {
   const value = globalContext[key]
   return typeof value === 'undefined' ? undefined : value
 }
+
 function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
   }
+
   let current = value
   while (current) {
     const descriptor = Object.getOwnPropertyDescriptor(current, key)
@@ -441,6 +451,7 @@ function getPhpObjectEntry(value, key) {
     }
     current = Object.getPrototypeOf(current)
   }
+
   return undefined
 }
 
@@ -453,6 +464,7 @@ function resolvePhpCallable(callback, options) {
   if (isPhpCallable(callback)) {
     return { fn: callback, scope: null }
   }
+
   if (typeof callback === 'string') {
     const candidate = getPhpGlobalEntry(callback)
     if (isPhpCallable(candidate)) {
@@ -460,9 +472,11 @@ function resolvePhpCallable(callback, options) {
     }
     throw new Error(options.invalidMessage)
   }
+
   if (Array.isArray(callback) && callback.length >= 2) {
     const scopeDescriptor = callback[0]
     const callableDescriptor = callback[1]
+
     let scope
     if (typeof scopeDescriptor === 'string') {
       scope = getPhpGlobalEntry(scopeDescriptor)
@@ -472,9 +486,11 @@ function resolvePhpCallable(callback, options) {
     } else {
       scope = scopeDescriptor
     }
+
     if (isPhpCallable(callableDescriptor)) {
       return { fn: callableDescriptor, scope }
     }
+
     if (typeof callableDescriptor === 'string' && (isObjectLike(scope) || typeof scope === 'function')) {
       const candidate = getPhpObjectEntry(scope, callableDescriptor)
       if (isPhpCallable(candidate)) {
@@ -482,10 +498,12 @@ function resolvePhpCallable(callback, options) {
       }
     }
   }
+
   throw new Error(options.invalidMessage)
 }
 
 // php/array/array_map (target function module)
+
 function array_map(callback, ...inputArrays) {
   //  discuss at: https://locutus.io/php/array_map/
   // original by: Andrea Giammarchi (https://webreflection.blogspot.com)
@@ -496,8 +514,10 @@ function array_map(callback, ...inputArrays) {
   //      note 1: it can only work if the function name is in the global context
   //   example 1: array_map( function (a){return (a * a * a)}, [1, 2, 3, 4, 5] )
   //   returns 1: [ 1, 8, 27, 64, 125 ]
+
   const argc = inputArrays.length + 1
   const itemCount = inputArrays[0]?.length ?? 0
+
   const resolved =
     callback === null || typeof callback === 'undefined'
       ? null
@@ -505,6 +525,7 @@ function array_map(callback, ...inputArrays) {
           invalidMessage: 'array_map(): Invalid callback',
           missingScopeMessage: (scopeName) => 'Object not found: ' + scopeName,
         })
+
   if (resolved) {
     const mapped = []
     for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
@@ -516,6 +537,7 @@ function array_map(callback, ...inputArrays) {
     }
     return mapped
   }
+
   const mapped = []
   for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
     const args = []
@@ -524,6 +546,7 @@ function array_map(callback, ...inputArrays) {
     }
     mapped[itemIndex] = args
   }
+
   return mapped
 }{% endcodeblock %}
 </div>

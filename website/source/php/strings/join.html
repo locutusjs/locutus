@@ -48,12 +48,14 @@ export function join(glue: string, pieces: JoinValue[]): string {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { implode } from '../strings/implode.ts'
+
 export function join(glue, pieces) {
   //      discuss at: https://locutus.io/php/join/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
   //       example 1: join(' ', ['Kevin', 'van', 'Zonneveld'])
   //       returns 1: 'Kevin van Zonneveld'
+
   return implode(glue, pieces)
 }{% endcodeblock %}
 </div>
@@ -148,16 +150,19 @@ function implode(...args) {
   //       returns 1: 'Kevin van Zonneveld'
   //       example 2: implode(' ', {first:'Kevin', last: 'van Zonneveld'})
   //       returns 2: 'Kevin van Zonneveld'
+
   let retVal = ''
   let tGlue = ''
   let actualGlue = ''
   let actualPieces
+
   if (args.length === 1) {
     actualPieces = args[0]
   } else {
     actualGlue = String(args[0] ?? '')
     actualPieces = args[1]
   }
+
   if (typeof actualPieces === 'object' && actualPieces !== null) {
     if (Array.isArray(actualPieces)) {
       return actualPieces.join(actualGlue)
@@ -168,6 +173,7 @@ function implode(...args) {
     }
     return retVal
   }
+
   return String(actualPieces)
 }
 
@@ -178,6 +184,7 @@ function join(glue, pieces) {
   //     original by: Kevin van Zonneveld (https://kvz.io)
   //       example 1: join(' ', ['Kevin', 'van', 'Zonneveld'])
   //       returns 1: 'Kevin van Zonneveld'
+
   return implode(glue, pieces)
 }{% endcodeblock %}
 </div>

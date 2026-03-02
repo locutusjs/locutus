@@ -49,6 +49,7 @@ export function is_long(mixedVar: number): boolean {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { is_float as _isFloat } from '../var/is_float.ts'
+
 export function is_long(mixedVar) {
   //  discuss at: https://locutus.io/php/is_long/
   // original by: Paulo Freitas
@@ -56,6 +57,7 @@ export function is_long(mixedVar) {
   //      note 1: it different from the PHP implementation. We can't fix this unfortunately.
   //   example 1: is_long(186.31)
   //   returns 1: true
+
   return _isFloat(mixedVar)
 }{% endcodeblock %}
 </div>
@@ -103,6 +105,7 @@ function is_float(mixedVar) {
   //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
   //       example 1: is_float(186.31)
   //       returns 1: true
+
   return +mixedVar === mixedVar && (!isFinite(mixedVar) || !!(mixedVar % 1))
 }
 
@@ -116,6 +119,7 @@ function is_long(mixedVar) {
   //      note 1: it different from the PHP implementation. We can't fix this unfortunately.
   //   example 1: is_long(186.31)
   //   returns 1: true
+
   return _isFloat(mixedVar)
 }{% endcodeblock %}
 </div>

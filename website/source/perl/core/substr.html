@@ -91,10 +91,13 @@ alias:
   //       returns 2: 'ello'
   //       example 3: substr('hello', -2)
   //       returns 3: 'lo'
+
   str = String(str)
   const len = str.length
+
   // Handle negative offset (count from end)
   let start = offset < 0 ? len + offset : offset
+
   // Clamp start to valid range
   if (start < 0) {
     start = 0
@@ -102,10 +105,12 @@ alias:
   if (start > len) {
     return ''
   }
+
   // If length is undefined, return rest of string
   if (length === undefined) {
     return str.substring(start)
   }
+
   // Handle negative length (leave that many chars at end)
   let end
   if (length < 0) {
@@ -116,6 +121,7 @@ alias:
   } else {
     end = start + length
   }
+
   return str.substring(start, end)
 }{% endcodeblock %}
 </div>

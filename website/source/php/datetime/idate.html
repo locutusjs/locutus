@@ -130,12 +130,14 @@ alias:
   //     improved by: Theriault (https://github.com/Theriault)
   //       example 1: idate('y', 1255633200)
   //       returns 1: 9
+
   if (format === undefined) {
     throw new Error('idate() expects at least 1 parameter, 0 given')
   }
   if (!format.length || format.length > 1) {
     throw new Error('idate format is one char')
   }
+
   // @todo: Need to allow date_default_timezone_set() (check for $locutus.default_timezone and use)
   const _date =
     typeof timestamp === 'undefined'
@@ -144,6 +146,7 @@ alias:
         ? new Date(timestamp.getTime())
         : new Date(Number(timestamp) * 1000)
   let a
+
   switch (format) {
     case 'B':
       return (

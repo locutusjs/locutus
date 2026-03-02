@@ -105,7 +105,8 @@ export function boolval(mixedVar: BoolValue): boolean {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function boolval(mixedVar) {
+{% codeblock lang:javascript %}
+export function boolval(mixedVar) {
   // parity verified: PHP 8.3
   //     original by: Will Rowe
   //       example 1: boolval(true)
@@ -130,21 +131,27 @@ export function boolval(mixedVar: BoolValue): boolean {
   //      returns 10: false
   //      example 11: boolval('true')
   //      returns 11: true
+
   if (mixedVar === false) {
     return false
   }
+
   if (mixedVar === 0 || mixedVar === 0.0) {
     return false
   }
+
   if (mixedVar === '' || mixedVar === '0') {
     return false
   }
+
   if (Array.isArray(mixedVar) && mixedVar.length === 0) {
     return false
   }
+
   if (mixedVar === null || mixedVar === undefined) {
     return false
   }
+
   return true
 }{% endcodeblock %}
 </div>

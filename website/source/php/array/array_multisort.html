@@ -458,7 +458,9 @@ export function array_multisort(arr: SortValue[] | SortableObject, ...rest: Sort
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}const hasOwn = Object.prototype.hasOwnProperty
+{% codeblock lang:javascript %}
+const hasOwn = Object.prototype.hasOwnProperty
+
 const flags = {
   SORT_REGULAR: 16,
   SORT_NUMERIC: 17,
@@ -466,14 +468,18 @@ const flags = {
   SORT_ASC: 32,
   SORT_DESC: 40,
 }
+
 const isSortableObject = (value) => value !== null && typeof value === 'object' && !Array.isArray(value)
+
 const isSortFlag = (value) => typeof value === 'string' && value in flags
+
 const isComparablePrimitive = (value) =>
   typeof value === 'string' ||
   typeof value === 'number' ||
   typeof value === 'bigint' ||
   typeof value === 'boolean' ||
   value instanceof Date
+
 const copyBackToObject = (target, values, keys) => {
   for (const key in target) {
     if (hasOwn.call(target, key)) {
@@ -488,6 +494,7 @@ const copyBackToObject = (target, values, keys) => {
     target[key] = values[index]
   }
 }
+
 const compareRegular = (leftValue, rightValue) => {
   if (leftValue === rightValue) {
     return 0
@@ -498,13 +505,16 @@ const compareRegular = (leftValue, rightValue) => {
   if (rightValue === null || rightValue === undefined) {
     return 1
   }
+
   if (isComparablePrimitive(leftValue) && isComparablePrimitive(rightValue)) {
     return leftValue > rightValue ? 1 : -1
   }
+
   const left = String(leftValue)
   const right = String(rightValue)
   return left > right ? 1 : left < right ? -1 : 0
 }
+
 export function array_multisort(arr, ...rest) {
   //  discuss at: https://locutus.io/php/array_multisort/
   // original by: Theriault (https://github.com/Theriault)
@@ -526,6 +536,7 @@ export function array_multisort(arr, ...rest) {
   //      note 1: Each argument turns on certain bits in the flag byte through addition.
   //      note 1: bits: HGFE DCBA
   //      note 1: args: Holds pointer to arguments for reassignment
+
   let i = 0
   let j = 0
   let l = 0
@@ -533,14 +544,17 @@ export function array_multisort(arr, ...rest) {
   let vkey = ''
   let elIndex = 0
   let zlast
+
   const sortFlag = [0]
   const thingsToSort = []
   let nLastSort = []
   let lastSort = []
   const args = [arr, ...rest]
+
   const sortDuplicator = function () {
     return nLastSort.shift() ?? 0
   }
+
   const sortFunctions = [
     [
       function (a, b) {
@@ -583,8 +597,11 @@ export function array_multisort(arr, ...rest) {
       },
     ],
   ]
+
   const sortArrs = [[]]
+
   const sortKeys = [[]]
+
   // Store first argument into sortArrs and sortKeys if an Object.
   // First Argument should be either a Javascript Array or an Object,
   // otherwise function would return FALSE like in PHP
@@ -605,6 +622,7 @@ export function array_multisort(arr, ...rest) {
   } else {
     return false
   }
+
   // arrMainLength: Holds the length of the first array.
   // All other arrays must be of equal length, otherwise function would return FALSE like in PHP
   // sortComponents: Holds 2 indexes per every section of the array
@@ -615,6 +633,7 @@ export function array_multisort(arr, ...rest) {
   }
   const arrMainLength = primarySortArray.length
   let sortComponents = [0, arrMainLength]
+
   // Loop through all other arguments, checking lengths and sort flags
   // of arrays and adding them to the above variables.
   const argl = args.length
@@ -654,9 +673,11 @@ export function array_multisort(arr, ...rest) {
       return false
     }
   }
+
   for (i = 0; i !== arrMainLength; i++) {
     thingsToSort.push(true)
   }
+
   // Sort all the arrays....
   for (const iKey in sortArrs) {
     if (hasOwn.call(sortArrs, iKey)) {
@@ -670,6 +691,7 @@ export function array_multisort(arr, ...rest) {
       if (!currentSortArr) {
         continue
       }
+
       // If there are no sortComponents, then no more sorting is neeeded.
       // Copy the array back to the argument.
       if (sortComponents.length === 0) {
@@ -690,6 +712,7 @@ export function array_multisort(arr, ...rest) {
         sortKeys.splice(iNum, 1)
         continue
       }
+
       // Sort function for sorting. Either sorts asc or desc, regular/string or numeric.
       const currentSortFlag = sortFlag[iNum] ?? 0
       const functionGroup = sortFunctions[currentSortFlag & 3]
@@ -697,6 +720,7 @@ export function array_multisort(arr, ...rest) {
         return false
       }
       let sFunction = functionGroup[(currentSortFlag & 8) > 0 ? 1 : 0] ?? functionGroup[0]
+
       // Sort current array.
       for (l = 0; l !== sortComponents.length; l += 2) {
         const componentStart = sortComponents[l]
@@ -714,6 +738,7 @@ export function array_multisort(arr, ...rest) {
           elIndex++
         }
       }
+
       // Duplicate the sorting of the current array on future arrays.
       sFunction = sortDuplicator
       for (const jKey in sortArrs) {
@@ -741,6 +766,7 @@ export function array_multisort(arr, ...rest) {
           }
         }
       }
+
       // Duplicate the sorting of the current array on array keys
       for (const jKey in sortKeys) {
         if (hasOwn.call(sortKeys, jKey)) {
@@ -766,6 +792,7 @@ export function array_multisort(arr, ...rest) {
           }
         }
       }
+
       // Generate the next sortComponents
       zlast = null
       sortComponents = []
@@ -793,6 +820,7 @@ export function array_multisort(arr, ...rest) {
           zlast = currentSortArr[idx]
         }
       }
+
       if (sortComponents.length & 1) {
         sortComponents.push(lastIndex)
       }

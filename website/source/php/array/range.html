@@ -99,6 +99,7 @@ alias:
   //       returns 3: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
   //       example 4: range( 'c', 'a' )
   //       returns 4: ['c', 'b', 'a']
+
   const matrix = []
   let iVal
   let endval
@@ -106,6 +107,7 @@ alias:
   let chars = false
   const lowIsNumeric = !Number.isNaN(Number(low))
   const highIsNumeric = !Number.isNaN(Number(high))
+
   if (lowIsNumeric && highIsNumeric) {
     iVal = Number(low)
     endval = Number(high)
@@ -117,6 +119,7 @@ alias:
     iVal = lowIsNumeric ? Number(low) : 0
     endval = highIsNumeric ? Number(high) : 0
   }
+
   const plus = !(iVal > endval)
   if (plus) {
     while (iVal <= endval) {
@@ -129,6 +132,7 @@ alias:
       iVal -= walker
     }
   }
+
   return matrix
 }{% endcodeblock %}
 </div>

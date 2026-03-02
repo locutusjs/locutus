@@ -146,7 +146,9 @@ export function call_user_func_array<TResult = FunctionValue, TArgs extends PhpC
 {% codeblock lang:javascript %}import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
 import { getPhpGlobalEntry, getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
 import { isObjectLike, isPhpCallable } from '../_helpers/_phpTypes.ts'
+
 const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
+
 export function call_user_func_array(cb, parameters) {
   //  discuss at: https://locutus.io/php/call_user_func_array/
   // original by: Thiago Mata (https://thiagomata.blog.com)
@@ -163,8 +165,10 @@ export function call_user_func_array(cb, parameters) {
   //   returns 1: true
   //   example 2: call_user_func_array('isNaN', [1])
   //   returns 2: false
+
   let func
   let scope = null
+
   try {
     const resolved = resolvePhpCallable(cb, { invalidMessage: 'invalid' })
     func = resolved.fn
@@ -172,6 +176,7 @@ export function call_user_func_array(cb, parameters) {
   } catch {
     // Fall back to PHP-compatible eval/new Function paths below.
   }
+
   if (!func && typeof cb === 'string') {
     const globalCandidate = getPhpGlobalEntry(cb)
     if (isPhpCallable(globalCandidate)) {
@@ -197,6 +202,7 @@ export function call_user_func_array(cb, parameters) {
         func = method
       }
     }
+
     if (typeof cb[0] === 'string') {
       const globalScope = getPhpGlobalEntry(cb[0])
       if (typeof globalScope === 'function') {
@@ -211,9 +217,11 @@ export function call_user_func_array(cb, parameters) {
   } else if (!func && isPhpCallable(cb)) {
     func = cb
   }
+
   if (!func) {
     throw new Error(String(cb) + ' is not a valid function')
   }
+
   return func.apply(scope, parameters)
 }{% endcodeblock %}
 </div>
@@ -491,6 +499,7 @@ function isObjectLike(value) {
   //  returns 1: true
   return typeof value === 'object' && value !== null
 }
+
 function isPhpCallable(value) {
   return typeof value === 'function'
 }
@@ -498,14 +507,17 @@ function isPhpCallable(value) {
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
 function getPhpGlobalEntry(key) {
   const value = globalContext[key]
   return typeof value === 'undefined' ? undefined : value
 }
+
 function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
   }
+
   let current = value
   while (current) {
     const descriptor = Object.getOwnPropertyDescriptor(current, key)
@@ -519,6 +531,7 @@ function getPhpObjectEntry(value, key) {
     }
     current = Object.getPrototypeOf(current)
   }
+
   return undefined
 }
 
@@ -531,6 +544,7 @@ function resolvePhpCallable(callback, options) {
   if (isPhpCallable(callback)) {
     return { fn: callback, scope: null }
   }
+
   if (typeof callback === 'string') {
     const candidate = getPhpGlobalEntry(callback)
     if (isPhpCallable(candidate)) {
@@ -538,9 +552,11 @@ function resolvePhpCallable(callback, options) {
     }
     throw new Error(options.invalidMessage)
   }
+
   if (Array.isArray(callback) && callback.length >= 2) {
     const scopeDescriptor = callback[0]
     const callableDescriptor = callback[1]
+
     let scope
     if (typeof scopeDescriptor === 'string') {
       scope = getPhpGlobalEntry(scopeDescriptor)
@@ -550,9 +566,11 @@ function resolvePhpCallable(callback, options) {
     } else {
       scope = scopeDescriptor
     }
+
     if (isPhpCallable(callableDescriptor)) {
       return { fn: callableDescriptor, scope }
     }
+
     if (typeof callableDescriptor === 'string' && (isObjectLike(scope) || typeof scope === 'function')) {
       const candidate = getPhpObjectEntry(scope, callableDescriptor)
       if (isPhpCallable(candidate)) {
@@ -560,11 +578,13 @@ function resolvePhpCallable(callback, options) {
       }
     }
   }
+
   throw new Error(options.invalidMessage)
 }
 
 // php/funchand/call_user_func_array (target function module)
 const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
+
 function call_user_func_array(cb, parameters) {
   //  discuss at: https://locutus.io/php/call_user_func_array/
   // original by: Thiago Mata (https://thiagomata.blog.com)
@@ -581,8 +601,10 @@ function call_user_func_array(cb, parameters) {
   //   returns 1: true
   //   example 2: call_user_func_array('isNaN', [1])
   //   returns 2: false
+
   let func
   let scope = null
+
   try {
     const resolved = resolvePhpCallable(cb, { invalidMessage: 'invalid' })
     func = resolved.fn
@@ -590,6 +612,7 @@ function call_user_func_array(cb, parameters) {
   } catch {
     // Fall back to PHP-compatible eval/new Function paths below.
   }
+
   if (!func && typeof cb === 'string') {
     const globalCandidate = getPhpGlobalEntry(cb)
     if (isPhpCallable(globalCandidate)) {
@@ -615,6 +638,7 @@ function call_user_func_array(cb, parameters) {
         func = method
       }
     }
+
     if (typeof cb[0] === 'string') {
       const globalScope = getPhpGlobalEntry(cb[0])
       if (typeof globalScope === 'function') {
@@ -629,9 +653,11 @@ function call_user_func_array(cb, parameters) {
   } else if (!func && isPhpCallable(cb)) {
     func = cb
   }
+
   if (!func) {
     throw new Error(String(cb) + ' is not a valid function')
   }
+
   return func.apply(scope, parameters)
 }{% endcodeblock %}
 </div>

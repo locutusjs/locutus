@@ -322,6 +322,7 @@ export function crc32(str: string): number {
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { utf8_encode as utf8Encode } from '../xml/utf8_encode.ts'
+
 export function crc32(str) {
   //      discuss at: https://locutus.io/php/crc32/
   // parity verified: PHP 8.3
@@ -329,6 +330,7 @@ export function crc32(str) {
   //     improved by: T0bsn
   //       example 1: crc32('Kevin van Zonneveld')
   //       returns 1: 1249991249
+
   str = utf8Encode(str)
   const table = [
     '00000000',
@@ -590,15 +592,18 @@ export function crc32(str) {
   ].join(' ')
   // @todo: ^-- Now that `table` is an array, maybe we can use that directly using slices,
   // instead of converting it to a string and substringing
+
   let crc = 0
   let x = 0
   let y = 0
+
   crc = crc ^ -1
   for (let i = 0, iTop = str.length; i < iTop; i++) {
     y = (crc ^ str.charCodeAt(i)) & 0xff
     x = Number.parseInt('0x' + table.substr(y * 9, 8), 16)
     crc = (crc >>> 8) ^ x
   }
+
   return crc ^ -1
 }{% endcodeblock %}
 </div>
@@ -977,20 +982,24 @@ function utf8_encode(argString) {
   //     bugfixed by: kirilloid
   //       example 1: utf8_encode('Kevin van Zonneveld')
   //       returns 1: 'Kevin van Zonneveld'
+
   if (argString === null || typeof argString === 'undefined') {
     return ''
   }
+
   // .replace(/\r\n/g, "\n").replace(/\r/g, "\n");
   const string = argString + ''
   let utftext = ''
   let start
   let end
   let stringl = 0
+
   start = end = 0
   stringl = string.length
   for (let n = 0; n < stringl; n++) {
     let c1 = string.charCodeAt(n)
     let enc = null
+
     if (c1 < 128) {
       end++
     } else if (c1 > 127 && c1 < 2048) {
@@ -1017,9 +1026,11 @@ function utf8_encode(argString) {
       start = end = n + 1
     }
   }
+
   if (end > start) {
     utftext += string.slice(start, stringl)
   }
+
   return utftext
 }
 
@@ -1033,6 +1044,7 @@ function crc32(str) {
   //     improved by: T0bsn
   //       example 1: crc32('Kevin van Zonneveld')
   //       returns 1: 1249991249
+
   str = utf8Encode(str)
   const table = [
     '00000000',
@@ -1294,15 +1306,18 @@ function crc32(str) {
   ].join(' ')
   // @todo: ^-- Now that `table` is an array, maybe we can use that directly using slices,
   // instead of converting it to a string and substringing
+
   let crc = 0
   let x = 0
   let y = 0
+
   crc = crc ^ -1
   for (let i = 0, iTop = str.length; i < iTop; i++) {
     y = (crc ^ str.charCodeAt(i)) & 0xff
     x = Number.parseInt('0x' + table.substr(y * 9, 8), 16)
     crc = (crc >>> 8) ^ x
   }
+
   return crc ^ -1
 }{% endcodeblock %}
 </div>

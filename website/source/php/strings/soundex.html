@@ -118,7 +118,8 @@ export function soundex(str: SoundexValue): string {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function soundex(str) {
+{% codeblock lang:javascript %}
+export function soundex(str) {
   //      discuss at: https://locutus.io/php/soundex/
   // parity verified: PHP 8.3
   //     original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
@@ -135,10 +136,12 @@ export function soundex(str: SoundexValue): string {
   //       returns 2: 'E460'
   //       example 3: soundex('Euler')
   //       returns 3: 'E460'
+
   const input = String(str).toUpperCase()
   if (!input) {
     return ''
   }
+
   const sdx = [0, 0, 0, 0]
   const m = {
     B: 1,
@@ -163,6 +166,7 @@ export function soundex(str: SoundexValue): string {
   let i = 0
   let s = 0
   let p = 0
+
   let c = input.charAt(i++)
   while (c && s < 4) {
     const j = m[c]
@@ -176,7 +180,9 @@ export function soundex(str: SoundexValue): string {
     }
     c = input.charAt(i++)
   }
+
   sdx[0] = input.charAt(0)
+
   return sdx.join('')
 }{% endcodeblock %}
 </div>

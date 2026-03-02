@@ -70,6 +70,7 @@ alias:
   //        input by: Kongo
   //       example 1: mt_rand(1, 1)
   //       returns 1: 1
+
   let minValue
   let maxValue
   const argc = args.length
@@ -83,6 +84,7 @@ alias:
     minValue = Number.parseInt(String(min), 10)
     maxValue = Number.parseInt(String(max), 10)
   }
+
   return Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue
 }{% endcodeblock %}
 </div>

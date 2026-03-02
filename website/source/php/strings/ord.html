@@ -92,8 +92,10 @@ alias:
   //          note 1: supports Unicode code points via surrogate pairs
   //       example 1: ord('K')
   //       returns 1: 75
+
   const str = string + ''
   const code = str.charCodeAt(0)
+
   if (code >= 0xd800 && code <= 0xdbff) {
     // High surrogate (could change last hex to 0xDB7F to treat
     // high private surrogates as single characters)
@@ -116,6 +118,7 @@ alias:
     // we could also throw an error as it is not a complete character,
     // but someone may want to know
   }
+
   return code
 }{% endcodeblock %}
 </div>
