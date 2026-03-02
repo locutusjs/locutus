@@ -40,9 +40,6 @@
                 <% for (var i in theme.menu) { %>
                     <td><a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a></td>
                 <% } %>
-                <td>
-                    <%- partial('search/index-mobile') %>
-                </td>
             </tr>
         </table>
     </div>

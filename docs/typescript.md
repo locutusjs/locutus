@@ -2310,3 +2310,23 @@ To fix a `@ts-nocheck` file:
     - mobile viewport (`390x844`): top-row search icon and mobile nav/search row still present.
 - Key learnings
   - Splitting identity/search and navigation into separate rows keeps navigation scalable as language count grows while preserving familiar header interactions.
+
+## Iteration 86
+
+- Plans
+  - Move mobile search to the top logo row to match desktop placement and free mobile nav-row space.
+- Progress
+  - Updated `website/themes/icarus/layout/common/header.ejs`:
+    - removed mobile nav-row search cell (`search/index-mobile`) from `#main-nav-mobile`.
+  - Updated `website/themes/icarus/source/css/_partial/header.styl`:
+    - enabled `#search-form-wrap` on `mq-mini` (mobile) instead of hiding it.
+    - tuned mobile top-row search sizing (`120px` input width, tighter submit positioning).
+    - removed legacy mobile-nav embedded search input styles from `#main-nav-mobile`.
+- Validation
+  - `yarn website:build`
+  - MCP browser checks on `http://sunchaser:4000/php/array/array_diff/`:
+    - mobile (`390x844`): search input/button now appears in the top row next to logo.
+    - mobile nav row no longer includes a trailing search field cell.
+    - desktop layout remains logo/search row + full-width nav row.
+- Key learnings
+  - Keeping search in a single consistent header zone reduces duplicated controls and preserves navigation width across breakpoints.

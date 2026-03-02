@@ -135,8 +135,6 @@ $nav-link
             line-height: logo-height
 
 #search-form-wrap
-    @media mq-mini
-        display: none
     @extend $header-block
     @extend $header-block-right
     .search-form
@@ -164,6 +162,13 @@ $nav-link
                 content: '\f002'
             &:hover, &:focus
                 color: #777
+    @media mq-mini
+        .search-form
+            .search-form-input
+                width: 120px
+                padding: 0 24px 0 10px
+            .search-form-submit
+                right: 10px
 
 .search-form-input,
 .search-form-input.ins-search-input,
@@ -196,15 +201,3 @@ $nav-link
         clearfix()
         margin: 0
         height: header-sub-height
-        .search-form-input
-            display: none
-            @media mq-mini
-                display: block
-            padding: 0 10px
-            margin-right: 15px
-            height: header-sub-height - 16
-            line-height: header-sub-height - 16
-            border-radius: ((header-sub-height - 16)/2)
-            &::-webkit-search-results-decoration
-            &::-webkit-search-cancel-button
-                -webkit-appearance: none
