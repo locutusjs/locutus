@@ -5,38 +5,52 @@ import path from 'node:path'
 import { describe, expect, it } from 'vitest'
 
 describe('fix-cjs-exports script', function () {
-  it('writes named-export golang Index shim and keeps dist package commonjs', function () {
+  it('writes cjs/esm index shims and dual export package metadata', function () {
     const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'locutus-fix-cjs-'))
 
     try {
-      const targetDir = path.join(tmpDir, 'golang', 'strings')
-      fs.mkdirSync(targetDir, { recursive: true })
-      const indexJsPath = path.join(targetDir, 'Index2.js')
-      const indexDtsPath = path.join(targetDir, 'Index2.d.ts')
+      const cjsTargetDir = path.join(tmpDir, 'golang', 'strings')
+      const esmTargetDir = path.join(tmpDir, 'esm', 'golang', 'strings')
+      fs.mkdirSync(cjsTargetDir, { recursive: true })
+      fs.mkdirSync(esmTargetDir, { recursive: true })
+      const cjsIndex2JsPath = path.join(cjsTargetDir, 'Index2.js')
+      const cjsIndex2DtsPath = path.join(cjsTargetDir, 'Index2.d.ts')
+      const esmIndex2JsPath = path.join(esmTargetDir, 'Index2.js')
       const packageJsonPath = path.join(tmpDir, 'package.json')
 
       fs.writeFileSync(
-        indexJsPath,
+        cjsIndex2JsPath,
         "Object.defineProperty(exports, '__esModule', { value: true });\nexports.Index = void 0;\nconst Index = () => 1;\nexports.Index = Index;\n",
         'utf-8',
       )
-      fs.writeFileSync(indexDtsPath, 'export declare function Index(): number\n', 'utf-8')
+      fs.writeFileSync(cjsIndex2DtsPath, 'export declare function Index(): number\n', 'utf-8')
+      fs.writeFileSync(esmIndex2JsPath, 'export function Index() { return 1 }\n', 'utf-8')
       fs.writeFileSync(packageJsonPath, JSON.stringify({ name: 'locutus-dist-test', type: 'module' }, null, 2), 'utf-8')
 
       execFileSync(process.execPath, [path.resolve('scripts/fix-cjs-exports.ts'), tmpDir], { stdio: 'pipe' })
 
-      const compatShimPath = path.join(targetDir, 'Index.js')
-      const compatDtsPath = path.join(targetDir, 'Index.d.ts')
+      const cjsCompatShimPath = path.join(cjsTargetDir, 'Index.js')
+      const esmCompatShimPath = path.join(esmTargetDir, 'Index.js')
+      const compatDtsPath = path.join(cjsTargetDir, 'Index.d.ts')
+      const esmPackageJsonPath = path.join(tmpDir, 'esm', 'package.json')
       const updatedPackage = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8')) as { type?: string; main?: string }
-      const shim = fs.readFileSync(compatShimPath, 'utf-8')
+      const cjsShim = fs.readFileSync(cjsCompatShimPath, 'utf-8')
+      const esmShim = fs.readFileSync(esmCompatShimPath, 'utf-8')
       const shimDts = fs.readFileSync(compatDtsPath, 'utf-8')
+      const esmPackage = JSON.parse(fs.readFileSync(esmPackageJsonPath, 'utf-8')) as { type?: string }
 
-      expect(shim).toContain("const mod = require('./Index2.js')")
-      expect(shim).toContain('exports.Index = mod.Index')
-      expect(shim).not.toContain('module.exports =')
+      expect(cjsShim).toContain("const mod = require('./Index2.js')")
+      expect(cjsShim).toContain('exports.Index = mod.Index')
+      expect(cjsShim).not.toContain('module.exports =')
+      expect(esmShim).toContain("export { Index } from './Index2.js'")
       expect(shimDts).toContain("export { Index } from './Index2'")
       expect(updatedPackage.type).toBe('commonjs')
-      expect(updatedPackage.main).toBe('index.js')
+      expect(updatedPackage.main).toBe('./index.js')
+      expect(updatedPackage).toMatchObject({
+        module: './esm/index.js',
+        types: './index.d.ts',
+      })
+      expect(esmPackage.type).toBe('module')
     } finally {
       fs.rmSync(tmpDir, { recursive: true, force: true })
     }

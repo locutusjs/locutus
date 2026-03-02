@@ -45,17 +45,24 @@ import { php } from 'locutus'
 php.strings.sprintf(...)
 ```
 
-### CJS distribution
+### Dual distribution
 
-Source is ESM TypeScript, and the published package also ships CJS for runtime compatibility:
+Source is ESM TypeScript, and the published package ships both ESM and CJS runtime entrypoints:
 
 - `tsconfig.build.json` compiles to CommonJS with `rewriteRelativeImportExtensions`
+- `tsconfig.build.esm.json` compiles ESM output for import consumers
 - `scripts/fix-cjs-exports.ts` post-processes dist metadata/shims while preserving named exports in CJS modules
 
 Use named CJS access:
 
 ```javascript
 const { sprintf } = require('locutus/php/strings/sprintf')
+```
+
+Use named ESM access:
+
+```javascript
+import { sprintf } from 'locutus/php/strings/sprintf'
 ```
 
 ### `@ts-nocheck` files

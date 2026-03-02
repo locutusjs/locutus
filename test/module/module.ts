@@ -3,7 +3,11 @@
 // This file tests that the library works when imported via ESM
 export {}
 
+import fs from 'node:fs'
 import { createRequire } from 'node:module'
+import os from 'node:os'
+import path from 'node:path'
+import { pathToFileURL } from 'node:url'
 
 const effectiveness = 'futile'
 const require = createRequire(import.meta.url)
@@ -53,6 +57,12 @@ const distSprintf = require('../../dist/php/strings/sprintf.js') as { sprintf?: 
 const distCompare = require('../../dist/golang/strings/Compare.js') as { Compare?: (...args: unknown[]) => unknown }
 const distIndex = require('../../dist/golang/strings/Index2.js') as { Index?: (...args: unknown[]) => unknown }
 const distLegacyIndex = require('../../dist/golang/strings/Index.js') as { Index?: (...args: unknown[]) => unknown }
+const distEsmLocutus = (await import(pathToFileURL(path.resolve('dist/esm/index.js')).href)) as {
+  php?: { strings?: { sprintf?: (...args: unknown[]) => unknown } }
+}
+const distEsmSprintf = (await import(pathToFileURL(path.resolve('dist/esm/php/strings/sprintf.js')).href)) as {
+  sprintf?: (...args: unknown[]) => unknown
+}
 
 if (typeof distSprintf?.sprintf !== 'function') {
   throw new Error('dist/php/strings/sprintf.js should export named function property "sprintf"')
@@ -84,3 +94,45 @@ if (typeof distGolangStrings.Index !== 'function') {
 if (typeof distLocutus.php?.strings?.sprintf !== 'function') {
   throw new Error('dist/index.js should expose php.strings.sprintf')
 }
+if (typeof distEsmLocutus.php?.strings?.sprintf !== 'function') {
+  throw new Error('dist/esm/index.js should expose php.strings.sprintf')
+}
+if (typeof distEsmSprintf.sprintf !== 'function') {
+  throw new Error('dist/esm/php/strings/sprintf.js should export named function property "sprintf"')
+}
+
+// Smoke-test installed package behavior via exports map (import + require)
+const sandboxDir = fs.mkdtempSync(path.join(os.tmpdir(), 'locutus-dist-sandbox-'))
+const sandboxNodeModulesDir = path.join(sandboxDir, 'node_modules')
+const sandboxPkgDir = path.join(sandboxNodeModulesDir, 'locutus')
+
+fs.mkdirSync(sandboxNodeModulesDir, { recursive: true })
+fs.symlinkSync(path.resolve('dist'), sandboxPkgDir, process.platform === 'win32' ? 'junction' : 'dir')
+
+const sandboxRequire = createRequire(path.join(sandboxDir, 'entry.cjs'))
+const sandboxCjsSprintf = sandboxRequire('locutus/php/strings/sprintf') as { sprintf?: (...args: unknown[]) => unknown }
+
+if (typeof sandboxCjsSprintf?.sprintf !== 'function') {
+  throw new Error('package require() should expose named export property "sprintf"')
+}
+if (typeof sandboxCjsSprintf === 'function') {
+  throw new Error('package require() should not return callable default function export')
+}
+
+const sandboxEsmEntryPath = path.join(sandboxDir, 'entry.mjs')
+fs.writeFileSync(
+  sandboxEsmEntryPath,
+  [
+    "import { sprintf } from 'locutus/php/strings/sprintf'",
+    "export const result = sprintf('Resistance is %s', 'futile')",
+    '',
+  ].join('\n'),
+  'utf-8',
+)
+
+const sandboxEsmResult = (await import(pathToFileURL(sandboxEsmEntryPath).href)) as { result?: string }
+if (sandboxEsmResult.result !== 'Resistance is futile') {
+  throw new Error('package import() should resolve ESM export path and execute named export correctly')
+}
+
+fs.rmSync(sandboxDir, { recursive: true, force: true })
