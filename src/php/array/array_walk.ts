@@ -1,12 +1,30 @@
 import { type PhpAssoc, type PhpInput, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type ArrayWalkCallback<TValue, TUserdata> = (value: TValue, key: number | string, userdata?: TUserdata) => void
-type ArrayWalkValue = PhpInput
+type ArrayWalkCallback<TKey extends number | string, TValue, TUserdata> = (
+  value: TValue,
+  key: TKey,
+  userdata?: TUserdata,
+) => void
+type ArrayWalkInput = PhpInput | never
 
 export function array_walk<
-  TValue extends ArrayWalkValue = ArrayWalkValue,
-  TUserdata extends ArrayWalkValue = ArrayWalkValue,
->(array: TValue[] | PhpAssoc<TValue>, funcname: ArrayWalkCallback<TValue, TUserdata>, userdata?: TUserdata): boolean {
+  TValue extends ArrayWalkInput = ArrayWalkInput,
+  TUserdata extends ArrayWalkInput = ArrayWalkInput,
+>(array: TValue[], funcname: ArrayWalkCallback<number, TValue, TUserdata>, userdata?: TUserdata): boolean
+
+export function array_walk<
+  TValue extends ArrayWalkInput = ArrayWalkInput,
+  TUserdata extends ArrayWalkInput = ArrayWalkInput,
+>(array: PhpAssoc<TValue>, funcname: ArrayWalkCallback<string, TValue, TUserdata>, userdata?: TUserdata): boolean
+
+export function array_walk<
+  TValue extends ArrayWalkInput = ArrayWalkInput,
+  TUserdata extends ArrayWalkInput = ArrayWalkInput,
+>(
+  array: TValue[] | PhpAssoc<TValue>,
+  funcname: ArrayWalkCallback<number, TValue, TUserdata> | ArrayWalkCallback<string, TValue, TUserdata>,
+  userdata?: TUserdata,
+): boolean {
   //  discuss at: https://locutus.io/php/array_walk/
   // original by: Johnny Mast (https://www.phpvrouwen.nl)
   // bugfixed by: David
@@ -25,12 +43,13 @@ export function array_walk<
 
   try {
     const hasUserdata = typeof userdata !== 'undefined'
+    const callback = funcname
     if (Array.isArray(array)) {
       for (const [index, value] of array.entries()) {
         if (hasUserdata) {
-          funcname(value, index, userdata)
+          Reflect.apply(callback, undefined, [value, index, userdata])
         } else {
-          funcname(value, index)
+          Reflect.apply(callback, undefined, [value, index])
         }
       }
       return true
@@ -39,9 +58,9 @@ export function array_walk<
     const target = toPhpArrayObject<TValue>(array)
     for (const [key, value] of Object.entries(target)) {
       if (hasUserdata) {
-        funcname(value, key, userdata)
+        Reflect.apply(callback, undefined, [value, key, userdata])
       } else {
-        funcname(value, key)
+        Reflect.apply(callback, undefined, [value, key])
       }
     }
   } catch (_e) {

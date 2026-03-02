@@ -1726,3 +1726,31 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - A separate non-PHP API snapshot gate gives us the same intentional-evolution discipline as PHP without coupling unrelated surfaces.
   - Literal-return tightening on constant helpers is a cheap strictness win that improves downstream inference with zero runtime risk.
+
+## Iteration 67
+
+- Plans
+  - Tighten callback-heavy walk APIs (`array_walk`, `array_walk_recursive`) with key-aware overloads and recursive generic value flow.
+  - Continue burn-down of local `type X = PhpInput` alias debt in `src/php/**`.
+  - Ratchet alias ceiling down to the new floor after validation.
+- Progress
+  - Narrowed `array_walk` callback API in `src/php/array/array_walk.ts`:
+    - added list overload `(value, key: number, userdata?)`.
+    - added assoc overload `(value, key: string, userdata?)`.
+    - implementation now accepts unioned callback shapes while preserving runtime behavior.
+  - Narrowed `array_walk_recursive` in `src/php/array/array_walk_recursive.ts`:
+    - introduced recursive generic types (`RecursiveWalkNode`, `RecursiveWalkList`, `RecursiveWalkAssoc`).
+    - added list/assoc overloads with key-typed callbacks (`number` vs `string`).
+    - implementation split into typed `walkList` / `walkAssoc` flows.
+  - Ratcheted policy in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_LOCAL_PHPINPUT_ALIAS_OUTSIDE_HELPERS: 64 -> 62`.
+  - Updated API snapshot:
+    - `docs/php-api-signatures.snapshot`.
+- Measured reduction
+  - exact `type X = PhpInput` outside `_helpers`: `64 -> 62`.
+- Validation
+  - `corepack yarn fix:api:snapshot`
+  - `corepack yarn check`
+- Key learnings
+  - Key-sensitive overloads in callback APIs improve downstream inference meaningfully with low behavioral risk.
+  - Alias-ratchet burn-down works well when paired with focused refactors on high-traffic APIs.
