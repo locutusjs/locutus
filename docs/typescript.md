@@ -2290,3 +2290,23 @@ To fix a `@ts-nocheck` file:
   - Spot-check: `website/source/php/array/array_diff.html` standalone JS no longer declares `entriesOfPhpAssoc`; loops use `Object.entries(...)`.
 - Key learnings
   - AST-guided textual rewrites preserve existing snippet comments/structure while still allowing robust wrapper elimination.
+
+## Iteration 85
+
+- Plans
+  - Free horizontal space for language navigation by moving desktop search to the top logo row.
+  - Keep mobile header behavior unchanged.
+- Progress
+  - Updated `website/themes/icarus/layout/common/header.ejs`:
+    - moved desktop `search/index` rendering into the `#header-main` logo row.
+    - moved desktop language/menu links into a dedicated second row `#main-nav-desktop`.
+  - Updated `website/themes/icarus/source/css/_partial/header.styl`:
+    - adapted `#main-nav` for second-row horizontal navigation with overflow support.
+    - added desktop-only visibility rules for `#main-nav-desktop`.
+- Validation
+  - `yarn website:build`
+  - MCP browser checks:
+    - desktop `http://sunchaser:4000/php/array/array_diff/`: search appears in top row with logo, nav occupies full second row.
+    - mobile viewport (`390x844`): top-row search icon and mobile nav/search row still present.
+- Key learnings
+  - Splitting identity/search and navigation into separate rows keeps navigation scalable as language count grows while preserving familiar header interactions.
