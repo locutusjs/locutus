@@ -4,6 +4,7 @@ export default defineConfig({
   test: {
     // Include all vitest tests
     include: ['**/*.vitest.ts', 'test/util/**/*.ts'],
+    exclude: ['test/util/type-contracts.generated.d.ts'],
     // Set timezone for consistency with existing tests
     env: {
       TZ: 'UTC',

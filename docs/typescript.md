@@ -1754,3 +1754,57 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Key-sensitive overloads in callback APIs improve downstream inference meaningfully with low behavioral risk.
   - Alias-ratchet burn-down works well when paired with focused refactors on high-traffic APIs.
+
+## Iteration 68
+
+- Plans
+  - Execute fearless sequence `5 -> 1 -> 2 -> 3`:
+    - 5: add generated compile-time type contract checks and gate them in CI.
+    - 1: strengthen shared PHP type lattice helpers.
+    - 2: narrow selected exported signatures with overloads/generics.
+    - 3: migrate targeted implementations to shared runtime guards.
+- Progress
+  - Added generated type contract snapshot tooling:
+    - new script: `scripts/check-type-contracts-snapshot.ts`
+    - new generated artifact: `test/util/type-contracts.generated.d.ts`
+    - package scripts: `lint:type:contracts`, `fix:type:contracts`
+    - `check` now runs `lint:type:contracts`.
+  - Stabilized generated-contract workflow against formatter/import reordering:
+    - moved artifact to `.d.ts` so it remains compile-time-only.
+    - excluded generated contract file from Biome and Vitest discovery:
+      - `biome.json`
+      - `vitest.config.ts`
+  - Extended shared PHP lattice/guards in `src/php/_helpers/_phpTypes.ts`:
+    - added `PhpLiteral`, `PhpContainer`, recursive `PhpRecursiveValue` shapes.
+    - added assertions: `assertIsPhpList`, `assertIsPhpKey`, `assertIsNumericLike`.
+  - Narrowed selected exported signatures:
+    - `src/php/array/array_filter.ts`
+      - list/assoc overloads; callback key typing retained per shape; truthiness evaluation explicit.
+    - `src/php/array/in_array.ts`
+      - strict-mode overload now ties `needle` and `haystack` element type.
+    - `src/php/array/array_search.ts`
+      - strict-mode overload now ties `needle` and haystack value type.
+    - `src/php/funchand/call_user_func.ts`
+    - `src/php/funchand/call_user_func_array.ts`
+      - generics now aligned with `PhpCallableArgs` helper.
+  - Guard-driven implementation cleanup:
+    - `src/php/var/is_scalar.ts` now delegates to `isPhpScalar(...)`.
+    - `src/php/var/is_object.ts` now delegates to `isPhpAssocObject(...)`.
+  - Ratcheted alias debt ceiling:
+    - `scripts/check-ts-debt-policy.ts`
+    - `MAX_SRC_PHP_LOCAL_PHPINPUT_ALIAS_OUTSIDE_HELPERS: 62 -> 55`.
+  - Updated API snapshot:
+    - `docs/php-api-signatures.snapshot`.
+- Measured reduction
+  - exact `type X = PhpInput` outside `_helpers`: `62 -> 55`.
+- Validation
+  - `corepack yarn fix:type:contracts`
+  - `corepack yarn fix:api:snapshot:php`
+  - `corepack yarn lint:ts`
+  - `corepack yarn lint:ts:strict-next`
+  - `corepack yarn lint:ts:debt:policy`
+  - `corepack yarn lint:type:contracts`
+  - `corepack yarn check`
+- Key learnings
+  - Compile-time contract generation is viable at repo scale if kept out of runtime test discovery (`.d.ts` artifact + explicit Vitest/Biome exclusions).
+  - Narrow overloads are easiest to land safely when they preserve existing runtime behavior and only strengthen input-output relations.

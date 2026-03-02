@@ -1,10 +1,22 @@
 import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
 
-type SearchValue = PhpInput
+type SearchValue = PhpInput | never
 
 export function array_search<TValue extends SearchValue>(
   needle: TValue | RegExp,
   haystack: PhpAssoc<TValue>,
+  argStrict: true,
+): string | false
+
+export function array_search(
+  needle: SearchValue | RegExp,
+  haystack: PhpAssoc<SearchValue>,
+  argStrict?: boolean,
+): string | false
+
+export function array_search(
+  needle: SearchValue | RegExp,
+  haystack: PhpAssoc<SearchValue>,
   argStrict?: boolean,
 ): string | false {
   //      discuss at: https://locutus.io/php/array_search/

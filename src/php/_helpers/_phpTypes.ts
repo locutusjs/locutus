@@ -3,6 +3,7 @@ export type PhpInput = {} | PhpNullish
 export type PhpValue = PhpInput
 
 export type PhpScalar = string | number | boolean
+export type PhpLiteral = PhpScalar | null
 export type PhpPrimitive = PhpScalar | bigint
 export type PhpKey = string | number
 export type NumericLike = number | bigint | string
@@ -10,7 +11,13 @@ export type StringLike = string | number | boolean | bigint
 
 export type PhpList<T = PhpInput> = T[]
 export type PhpAssoc<T = PhpInput> = { [key: string]: T }
+export type PhpContainer<T = PhpInput> = PhpList<T> | PhpAssoc<T>
 export type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+export interface PhpRecursiveAssoc {
+  [key: string]: PhpRecursiveValue
+}
+export interface PhpRecursiveList extends Array<PhpRecursiveValue> {}
+export type PhpRecursiveValue = PhpPrimitive | PhpNullish | PhpRecursiveList | PhpRecursiveAssoc
 export type PhpReadonlyList<T = PhpInput> = readonly T[]
 export type PhpReadonlyAssoc<T = PhpInput> = Readonly<PhpAssoc<T>>
 export type PhpReadonlyArrayLike<T = PhpInput> = PhpReadonlyList<T> | PhpReadonlyAssoc<T>
@@ -131,6 +138,27 @@ export function assertIsPhpAssocObject(
   message = 'Expected associative object value',
 ): asserts value is PhpAssoc<PhpInput> {
   if (!isPhpAssocObject(value)) {
+    throw new TypeError(message)
+  }
+}
+
+export function assertIsPhpList(value: PhpInput, message = 'Expected list value'): asserts value is PhpList<PhpInput> {
+  if (!isPhpList(value)) {
+    throw new TypeError(message)
+  }
+}
+
+export function assertIsPhpKey(value: PhpInput, message = 'Expected key value'): asserts value is PhpKey {
+  if (!isPhpKey(value)) {
+    throw new TypeError(message)
+  }
+}
+
+export function assertIsNumericLike(
+  value: PhpInput,
+  message = 'Expected numeric-like value',
+): asserts value is NumericLike {
+  if (!isNumericLike(value)) {
     throw new TypeError(message)
   }
 }

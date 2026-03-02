@@ -9,6 +9,7 @@
       "!**/*.html",
       "!index.d.ts",
       "!test/generated",
+      "!test/util/type-contracts.generated.d.ts",
       "!website",
       "!dist",
       "!node_modules",

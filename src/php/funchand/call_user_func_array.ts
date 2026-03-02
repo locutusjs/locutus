@@ -4,15 +4,16 @@ import {
   isObjectLike,
   isPhpCallable,
   type PhpCallable,
+  type PhpCallableArgs,
   type PhpCallableDescriptor,
   type PhpInput,
 } from '../_helpers/_phpTypes.ts'
 
 const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
-type FunctionValue = PhpInput
+type FunctionValue = PhpInput | never
 
-export function call_user_func_array<TResult = FunctionValue, TArgs extends FunctionValue[] = FunctionValue[]>(
+export function call_user_func_array<TResult = FunctionValue, TArgs extends PhpCallableArgs = PhpCallableArgs>(
   cb: PhpCallableDescriptor<TArgs, TResult>,
   parameters: [...TArgs],
 ): TResult {

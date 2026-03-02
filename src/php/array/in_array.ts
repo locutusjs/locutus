@@ -1,12 +1,16 @@
 import type { PhpArrayLike, PhpInput } from '../_helpers/_phpTypes.ts'
 
-type InArrayValue = PhpInput
+type InArrayValue = PhpInput | never
 
-export function in_array<T extends InArrayValue>(
-  needle: InArrayValue,
-  haystack: PhpArrayLike<T>,
-  argStrict?: boolean,
-): boolean {
+export function in_array<TNeedle extends InArrayValue>(
+  needle: TNeedle,
+  haystack: PhpArrayLike<TNeedle>,
+  argStrict: true,
+): boolean
+
+export function in_array(needle: InArrayValue, haystack: PhpArrayLike<InArrayValue>, argStrict?: boolean): boolean
+
+export function in_array(needle: InArrayValue, haystack: PhpArrayLike<InArrayValue>, argStrict?: boolean): boolean {
   //  discuss at: https://locutus.io/php/in_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: vlado houba

@@ -1,11 +1,15 @@
-import type { PhpAssoc, PhpInput, PhpList } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpList } from '../_helpers/_phpTypes.ts'
 
-type FilterPredicateResult = PhpInput
+type FilterPredicateResult<T> = T | null | undefined
+type ListFilterCallback<T> = (value: T, key: number) => FilterPredicateResult<T>
+type AssocFilterCallback<T> = (value: T, key: string) => FilterPredicateResult<T>
+type FilterCallback<T> = ListFilterCallback<T> | AssocFilterCallback<T>
 
-export function array_filter<T>(
-  arr: PhpAssoc<T> | PhpList<T>,
-  func?: (value: T, key: number | string) => FilterPredicateResult,
-): PhpAssoc<T> | PhpList<T> {
+export function array_filter<T>(arr: PhpList<T>, func?: ListFilterCallback<T>): PhpList<T>
+export function array_filter<T>(arr: PhpAssoc<T>, func?: AssocFilterCallback<T>): PhpAssoc<T>
+export function array_filter<T>(arr: PhpAssoc<T> | PhpList<T>, func?: FilterCallback<T>): PhpAssoc<T> | PhpList<T>
+
+export function array_filter<T>(arr: PhpAssoc<T> | PhpList<T>, func?: FilterCallback<T>): PhpAssoc<T> | PhpList<T> {
   //  discuss at: https://locutus.io/php/array_filter/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: max4ever
@@ -20,18 +24,14 @@ export function array_filter<T>(
   //   example 3: array_filter({"a": 1, "b": false, "c": -1, "d": 0, "e": null, "f":'', "g":undefined})
   //   returns 3: {"a":1, "c":-1}
 
-  const callback =
-    func ||
-    function (v: T) {
-      return v
-    }
+  const callback = func || ((v: T): FilterPredicateResult<T> => v)
 
   if (Array.isArray(arr)) {
     // @todo: Issue #73
     const filtered: PhpList<T> = []
     for (const [key, value] of Object.entries(arr)) {
       const numericKey = Number(key)
-      if (callback(value, numericKey)) {
+      if (Reflect.apply(callback, undefined, [value, numericKey])) {
         filtered[numericKey] = value
       }
     }
@@ -40,7 +40,7 @@ export function array_filter<T>(
 
   const filtered: PhpAssoc<T> = {}
   for (const [key, value] of Object.entries(arr)) {
-    if (callback(value, key)) {
+    if (Reflect.apply(callback, undefined, [value, key])) {
       filtered[key] = value
     }
   }
