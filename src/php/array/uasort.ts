@@ -1,13 +1,13 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
-import { type PhpAssoc, type PhpCallableDescriptor, type PhpInput } from '../_helpers/_phpTypes.ts'
+import { type NumericLike, type PhpAssoc, type PhpComparatorDescriptor, type PhpInput } from '../_helpers/_phpTypes.ts'
 
 type SortContextValue = PhpInput
 
 export function uasort<T>(
   this: PhpAssoc<SortContextValue>,
   inputArr: Record<string, T>,
-  sorter: PhpCallableDescriptor<[T, T], number>,
+  sorter: PhpComparatorDescriptor<T>,
 ): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/uasort/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -34,10 +34,10 @@ export function uasort<T>(
   let sortByReference = false
   let populateArr: Record<string, T> = {}
 
-  const normalizedSorter: PhpCallableDescriptor<[T, T], number> = typeof sorter === 'string' ? [this, sorter] : sorter
+  const normalizedSorter: PhpComparatorDescriptor<T> = typeof sorter === 'string' ? [this, sorter] : sorter
   let comparator: ((a: T, b: T) => number) | undefined
   try {
-    const resolved = resolvePhpCallable<[T, T], number>(normalizedSorter, {
+    const resolved = resolvePhpCallable<[T, T], NumericLike>(normalizedSorter, {
       invalidMessage: 'uasort(): Invalid callback',
       missingScopeMessage: (scopeName: string) => 'Object not found: ' + scopeName,
     })

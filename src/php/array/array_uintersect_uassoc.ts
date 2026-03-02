@@ -2,27 +2,23 @@ import { resolveNumericComparator } from '../_helpers/_callbackResolver.ts'
 import {
   entriesOfPhpAssoc,
   isPhpCallableDescriptor,
-  type NumericLike,
   type PhpAssoc,
-  type PhpCallableDescriptor,
-  type PhpInput,
+  type PhpComparatorDescriptor,
+  type PhpKeyComparatorDescriptor,
   toPhpArrayObject,
 } from '../_helpers/_phpTypes.ts'
 
-type IntersectValue = PhpInput
-type PhpArray<T extends IntersectValue = IntersectValue> = PhpAssoc<T>
-type NumericComparatorDescriptor = PhpCallableDescriptor<[IntersectValue, IntersectValue], NumericLike>
-type KeyComparatorDescriptor = PhpCallableDescriptor<[string, string], NumericLike>
+type IntersectArray<T> = PhpAssoc<T> | T[]
 
-export function array_uintersect_uassoc<T extends IntersectValue>(
-  arr1: PhpArray<T>,
+export function array_uintersect_uassoc<T>(
+  arr1: PhpAssoc<T>,
   ...arraysAndComparators: [
-    arr2: IntersectValue,
-    ...rest: IntersectValue[],
-    valueCallback: NumericComparatorDescriptor,
-    keyCallback: KeyComparatorDescriptor,
+    arr2: IntersectArray<T>,
+    ...rest: Array<IntersectArray<T>>,
+    valueCallback: PhpComparatorDescriptor<T>,
+    keyCallback: PhpKeyComparatorDescriptor,
   ]
-): PhpArray<T> {
+): PhpAssoc<T> {
   //  discuss at: https://locutus.io/php/array_uintersect_uassoc/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
@@ -30,24 +26,24 @@ export function array_uintersect_uassoc<T extends IntersectValue>(
   //   example 1: array_uintersect_uassoc($array1, $array2, function (f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 === string2) return 0; return -1;}, function (f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 === string2) return 0; return -1;})
   //   returns 1: {a: 'green', b: 'brown'}
 
-  const retArr: PhpArray<T> = {}
+  const retArr: PhpAssoc<T> = {}
   const keyCallback = arraysAndComparators[arraysAndComparators.length - 1]
   const valueCallback = arraysAndComparators[arraysAndComparators.length - 2]
   if (
     typeof keyCallback === 'undefined' ||
     typeof valueCallback === 'undefined' ||
-    !isPhpCallableDescriptor<[string, string], NumericLike>(keyCallback) ||
-    !isPhpCallableDescriptor<[IntersectValue, T], NumericLike>(valueCallback)
+    !isPhpCallableDescriptor<[string, string]>(keyCallback) ||
+    !isPhpCallableDescriptor<[T, T]>(valueCallback)
   ) {
     throw new Error('array_uintersect_uassoc(): Invalid callback')
   }
-  const arrays = arraysAndComparators.slice(0, -2).map((value) => toPhpArrayObject<IntersectValue>(value))
+  const arrays = arraysAndComparators.slice(0, -2).map((value) => toPhpArrayObject<T>(value))
   const lastArrayIndex = arrays.length - 1
   const keyComparator = resolveNumericComparator<string, string>(
     keyCallback,
     'array_uintersect_uassoc(): Invalid key callback',
   )
-  const valueComparator = resolveNumericComparator<IntersectValue, T>(
+  const valueComparator = resolveNumericComparator<T, T>(
     valueCallback,
     'array_uintersect_uassoc(): Invalid value callback',
   )

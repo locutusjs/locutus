@@ -1622,3 +1622,42 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Flag-like parameters are strong narrowing opportunities: explicit unions preserve behavior while improving autocomplete and preventing accidental widening.
   - Generic value propagation in builders like `array_fill` removes avoidable broadness with almost zero runtime risk.
+
+## Iteration 64
+
+- Plans
+  - Narrow callback-heavy `array_u*` signatures so comparator/value contracts are generic and array-like (not broad scalar `PhpInput` varargs).
+  - Normalize comparator descriptor types across `usort`/`uasort`/`uksort` and `array_u*` families.
+  - Add a dedicated debt ratchet for local `type X = PhpInput` aliases outside `_helpers`.
+- Progress
+  - Added shared comparator aliases in `src/php/_helpers/_phpTypes.ts`:
+    - `PhpComparatorDescriptor<T>`
+    - `PhpKeyComparatorDescriptor`
+  - Tightened `array_u*` comparator surfaces to generic array-like varargs and removed broad local `= PhpInput` aliases in:
+    - `src/php/array/array_udiff.ts`
+    - `src/php/array/array_udiff_assoc.ts`
+    - `src/php/array/array_udiff_uassoc.ts`
+    - `src/php/array/array_uintersect.ts`
+    - `src/php/array/array_uintersect_uassoc.ts`
+    - `src/php/array/array_diff_uassoc.ts`
+    - `src/php/array/array_diff_ukey.ts`
+    - `src/php/array/array_intersect_uassoc.ts`
+    - `src/php/array/array_intersect_ukey.ts`
+  - Normalized comparator descriptor use in:
+    - `src/php/array/usort.ts`
+    - `src/php/array/uasort.ts`
+    - `src/php/array/uksort.ts`
+  - Added new debt-policy guard in `scripts/check-ts-debt-policy.ts`:
+    - `MAX_SRC_PHP_LOCAL_PHPINPUT_ALIAS_OUTSIDE_HELPERS = 64`
+    - fails if local `type X = PhpInput` aliases outside `_helpers` increase.
+  - Updated API snapshot:
+    - `docs/php-api-signatures.snapshot`
+- Measured reduction
+  - `type X = PhpInput*` in `src/php/**`: `81 -> 72`.
+  - exact `type X = PhpInput` in `src/php/**`: `77 -> 68`.
+  - exact `type X = PhpInput` outside `_helpers`: `73 -> 64`.
+- Validation
+  - `corepack yarn check`
+- Key learnings
+  - For callback-heavy ports, narrowing varargs to explicit array-like generics gives better inference with limited behavioral risk.
+  - A direct alias-ratchet (`type X = PhpInput`) creates a clear, incremental burn-down path for broad local type debt.

@@ -2,21 +2,17 @@ import { resolveNumericComparator } from '../_helpers/_callbackResolver.ts'
 import {
   entriesOfPhpAssoc,
   isPhpCallableDescriptor,
-  type NumericLike,
   type PhpAssoc,
-  type PhpCallableDescriptor,
-  type PhpInput,
+  type PhpKeyComparatorDescriptor,
   toPhpArrayObject,
 } from '../_helpers/_phpTypes.ts'
 
-type DiffValue = PhpInput
-type PhpArray<T extends DiffValue = DiffValue> = PhpAssoc<T>
-type KeyComparatorDescriptor = PhpCallableDescriptor<[string, string], NumericLike>
+type DiffArray<T> = PhpAssoc<T> | T[]
 
-export function array_diff_uassoc<T extends DiffValue>(
-  arr1: PhpArray<T>,
-  ...arraysAndCallback: [arr2: DiffValue, ...rest: DiffValue[], callback: KeyComparatorDescriptor]
-): PhpArray<T> {
+export function array_diff_uassoc<T>(
+  arr1: PhpAssoc<T>,
+  ...arraysAndCallback: [arr2: DiffArray<T>, ...rest: Array<DiffArray<T>>, callback: PhpKeyComparatorDescriptor]
+): PhpAssoc<T> {
   //  discuss at: https://locutus.io/php/array_diff_uassoc/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
@@ -24,12 +20,12 @@ export function array_diff_uassoc<T extends DiffValue>(
   //   example 1: array_diff_uassoc($array1, $array2, function (key1, key2) { return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)) })
   //   returns 1: {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
 
-  const retArr: PhpArray<T> = {}
+  const retArr: PhpAssoc<T> = {}
   const callback = arraysAndCallback[arraysAndCallback.length - 1]
-  if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[string, string], NumericLike>(callback)) {
+  if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[string, string]>(callback)) {
     throw new Error('array_diff_uassoc(): Invalid callback')
   }
-  const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject<DiffValue>(value))
+  const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject<T>(value))
   const keyComparator = resolveNumericComparator<string, string>(callback, 'array_diff_uassoc(): Invalid callback')
 
   arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1)) {

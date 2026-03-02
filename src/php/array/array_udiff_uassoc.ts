@@ -2,27 +2,23 @@ import { resolveNumericComparator } from '../_helpers/_callbackResolver.ts'
 import {
   entriesOfPhpAssoc,
   isPhpCallableDescriptor,
-  type NumericLike,
   type PhpAssoc,
-  type PhpCallableDescriptor,
-  type PhpInput,
+  type PhpComparatorDescriptor,
+  type PhpKeyComparatorDescriptor,
   toPhpArrayObject,
 } from '../_helpers/_phpTypes.ts'
 
-type DiffValue = PhpInput
-type PhpArray<T extends DiffValue = DiffValue> = PhpAssoc<T>
-type NumericComparatorDescriptor = PhpCallableDescriptor<[DiffValue, DiffValue], NumericLike>
-type KeyComparatorDescriptor = PhpCallableDescriptor<[string, string], NumericLike>
+type DiffArray<T> = PhpAssoc<T> | T[]
 
-export function array_udiff_uassoc<T extends DiffValue>(
-  arr1: PhpArray<T>,
+export function array_udiff_uassoc<T>(
+  arr1: PhpAssoc<T>,
   ...arraysAndComparators: [
-    arr2: DiffValue,
-    ...rest: DiffValue[],
-    valueCallback: NumericComparatorDescriptor,
-    keyCallback: KeyComparatorDescriptor,
+    arr2: DiffArray<T>,
+    ...rest: Array<DiffArray<T>>,
+    valueCallback: PhpComparatorDescriptor<T>,
+    keyCallback: PhpKeyComparatorDescriptor,
   ]
-): PhpArray<T> {
+): PhpAssoc<T> {
   //  discuss at: https://locutus.io/php/array_udiff_uassoc/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
@@ -30,26 +26,23 @@ export function array_udiff_uassoc<T extends DiffValue>(
   //   example 1: array_udiff_uassoc($array1, $array2, function (f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 === string2) return 0; return -1;}, function (f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 === string2) return 0; return -1;})
   //   returns 1: {0: 'red', c: 'blue'}
 
-  const retArr: PhpArray<T> = {}
+  const retArr: PhpAssoc<T> = {}
   const keyCallback = arraysAndComparators[arraysAndComparators.length - 1]
   const valueCallback = arraysAndComparators[arraysAndComparators.length - 2]
   if (
     typeof keyCallback === 'undefined' ||
     typeof valueCallback === 'undefined' ||
-    !isPhpCallableDescriptor<[string, string], NumericLike>(keyCallback) ||
-    !isPhpCallableDescriptor<[DiffValue, T], NumericLike>(valueCallback)
+    !isPhpCallableDescriptor<[string, string]>(keyCallback) ||
+    !isPhpCallableDescriptor<[T, T]>(valueCallback)
   ) {
     throw new Error('array_udiff_uassoc(): Invalid callback')
   }
-  const arrays = arraysAndComparators.slice(0, -2).map((value) => toPhpArrayObject<DiffValue>(value))
+  const arrays = arraysAndComparators.slice(0, -2).map((value) => toPhpArrayObject<T>(value))
   const keyComparator = resolveNumericComparator<string, string>(
     keyCallback,
     'array_udiff_uassoc(): Invalid key callback',
   )
-  const valueComparator = resolveNumericComparator<DiffValue, T>(
-    valueCallback,
-    'array_udiff_uassoc(): Invalid value callback',
-  )
+  const valueComparator = resolveNumericComparator<T, T>(valueCallback, 'array_udiff_uassoc(): Invalid value callback')
 
   arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1)) {
     for (const arr of arrays) {

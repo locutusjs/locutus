@@ -1,13 +1,18 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
-import { type PhpAssoc, type PhpCallableDescriptor, type PhpInput } from '../_helpers/_phpTypes.ts'
+import {
+  type NumericLike,
+  type PhpAssoc,
+  type PhpInput,
+  type PhpKeyComparatorDescriptor,
+} from '../_helpers/_phpTypes.ts'
 
 type SortContextValue = PhpInput
 
 export function uksort<T>(
   this: PhpAssoc<SortContextValue> & { window?: PhpAssoc<SortContextValue> },
   inputArr: Record<string, T>,
-  sorter: PhpCallableDescriptor<[string, string], number>,
+  sorter: PhpKeyComparatorDescriptor,
 ): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/uksort/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -36,7 +41,7 @@ export function uksort<T>(
   let comparator: ((a: string, b: string) => number) | undefined
 
   if (sorter) {
-    let normalizedSorter: PhpCallableDescriptor<[string, string], number>
+    let normalizedSorter: PhpKeyComparatorDescriptor
     if (typeof sorter === 'string') {
       if (!this.window) {
         return false
@@ -57,7 +62,7 @@ export function uksort<T>(
     }
 
     try {
-      const resolved = resolvePhpCallable<[string, string], number>(normalizedSorter, {
+      const resolved = resolvePhpCallable<[string, string], NumericLike>(normalizedSorter, {
         invalidMessage: 'uksort(): Invalid callback',
         missingScopeMessage: (scopeName: string) => 'Object not found: ' + scopeName,
       })

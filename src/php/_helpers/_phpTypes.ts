@@ -32,6 +32,8 @@ export type PhpCallableDescriptor<TArgs extends PhpCallableArgs = PhpCallableArg
   | string
   | PhpCallable<TArgs, TResult>
   | PhpCallableTuple<TArgs, TResult>
+export type PhpComparatorDescriptor<T> = PhpCallableDescriptor<[T, T], NumericLike>
+export type PhpKeyComparatorDescriptor = PhpCallableDescriptor<[string, string], NumericLike>
 
 export function isPhpNullish(value: PhpInput): value is PhpNullish {
   // discuss at: https://locutus.io/php/_helpers/isPhpNullish/

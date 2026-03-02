@@ -2,21 +2,21 @@ import { resolveNumericComparator } from '../_helpers/_callbackResolver.ts'
 import {
   entriesOfPhpAssoc,
   isPhpCallableDescriptor,
-  type NumericLike,
   type PhpAssoc,
-  type PhpCallableDescriptor,
-  type PhpInput,
+  type PhpComparatorDescriptor,
   toPhpArrayObject,
 } from '../_helpers/_phpTypes.ts'
 
-type IntersectValue = PhpInput
-type PhpArray<T extends IntersectValue = IntersectValue> = PhpAssoc<T>
-type NumericComparatorDescriptor = PhpCallableDescriptor<[IntersectValue, IntersectValue], NumericLike>
+type IntersectArray<T> = PhpAssoc<T> | T[]
 
-export function array_uintersect<T extends IntersectValue>(
-  arr1: PhpArray<T>,
-  ...arraysAndCallback: [arr2: IntersectValue, ...rest: IntersectValue[], callback: NumericComparatorDescriptor]
-): PhpArray<T> {
+export function array_uintersect<T>(
+  arr1: PhpAssoc<T>,
+  ...arraysAndCallback: [
+    arr2: IntersectArray<T>,
+    ...rest: Array<IntersectArray<T>>,
+    callback: PhpComparatorDescriptor<T>,
+  ]
+): PhpAssoc<T> {
   //  discuss at: https://locutus.io/php/array_uintersect/
   // original by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Demosthenes Koptsis
@@ -25,13 +25,13 @@ export function array_uintersect<T extends IntersectValue>(
   //   example 1: array_uintersect($array1, $array2, function( f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 === string2) return 0; return -1;})
   //   returns 1: {a: 'green', b: 'brown', 0: 'red'}
 
-  const retArr: PhpArray<T> = {}
+  const retArr: PhpAssoc<T> = {}
   const callback = arraysAndCallback[arraysAndCallback.length - 1]
-  if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[IntersectValue, T], NumericLike>(callback)) {
+  if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[T, T]>(callback)) {
     throw new Error('array_uintersect(): Invalid callback')
   }
-  const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject<IntersectValue>(value))
-  const valueComparator = resolveNumericComparator<IntersectValue, T>(callback, 'array_uintersect(): Invalid callback')
+  const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject<T>(value))
+  const valueComparator = resolveNumericComparator<T, T>(callback, 'array_uintersect(): Invalid callback')
   const lastArrayIndex = arrays.length - 1
 
   arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1)) {

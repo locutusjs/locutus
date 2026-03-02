@@ -2,21 +2,17 @@ import { resolveNumericComparator } from '../_helpers/_callbackResolver.ts'
 import {
   entriesOfPhpAssoc,
   isPhpCallableDescriptor,
-  type NumericLike,
   type PhpAssoc,
-  type PhpCallableDescriptor,
-  type PhpInput,
+  type PhpComparatorDescriptor,
   toPhpArrayObject,
 } from '../_helpers/_phpTypes.ts'
 
-type DiffValue = PhpInput
-type PhpArray<T extends DiffValue = DiffValue> = PhpAssoc<T>
-type NumericComparatorDescriptor = PhpCallableDescriptor<[DiffValue, DiffValue], NumericLike>
+type DiffArray<T> = PhpAssoc<T> | T[]
 
-export function array_udiff<T extends DiffValue>(
-  arr1: PhpArray<T>,
-  ...arraysAndCallback: [arr2: DiffValue, ...rest: DiffValue[], callback: NumericComparatorDescriptor]
-): PhpArray<T> {
+export function array_udiff<T>(
+  arr1: PhpAssoc<T>,
+  ...arraysAndCallback: [arr2: DiffArray<T>, ...rest: Array<DiffArray<T>>, callback: PhpComparatorDescriptor<T>]
+): PhpAssoc<T> {
   //  discuss at: https://locutus.io/php/array_udiff/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
@@ -24,13 +20,13 @@ export function array_udiff<T extends DiffValue>(
   //   example 1: array_udiff($array1, $array2, function (f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 === string2) return 0; return -1;})
   //   returns 1: {c: 'blue'}
 
-  const retArr: PhpArray<T> = {}
+  const retArr: PhpAssoc<T> = {}
   const callback = arraysAndCallback[arraysAndCallback.length - 1]
-  if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[DiffValue, T], NumericLike>(callback)) {
+  if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[T, T]>(callback)) {
     throw new Error('array_udiff(): Invalid callback')
   }
-  const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject<DiffValue>(value))
-  const cb = resolveNumericComparator<DiffValue, T>(callback, 'array_udiff(): Invalid callback')
+  const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject<T>(value))
+  const cb = resolveNumericComparator<T, T>(callback, 'array_udiff(): Invalid callback')
 
   arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1)) {
     for (const arr of arrays) {

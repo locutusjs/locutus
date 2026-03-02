@@ -49,8 +49,10 @@ src/php/_helpers/_phpTypes.ts :: export type PhpCallableArgs = PhpInput[]
 src/php/_helpers/_phpTypes.ts :: export type PhpCallableDescriptor<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> = | string | PhpCallable<TArgs, TResult> | PhpCallableTuple<TArgs, TResult>
 src/php/_helpers/_phpTypes.ts :: export type PhpCallableScope = PhpInput
 src/php/_helpers/_phpTypes.ts :: export type PhpCallableTuple<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> = readonly [ PhpCallableScope, string | PhpCallable<TArgs, TResult>, ]
+src/php/_helpers/_phpTypes.ts :: export type PhpComparatorDescriptor<T> = PhpCallableDescriptor<[T, T], NumericLike>
 src/php/_helpers/_phpTypes.ts :: export type PhpInput = {} | PhpNullish
 src/php/_helpers/_phpTypes.ts :: export type PhpKey = string | number
+src/php/_helpers/_phpTypes.ts :: export type PhpKeyComparatorDescriptor = PhpCallableDescriptor<[string, string], NumericLike>
 src/php/_helpers/_phpTypes.ts :: export type PhpList<T = PhpInput> = T[]
 src/php/_helpers/_phpTypes.ts :: export type PhpNullish = null | undefined
 src/php/_helpers/_phpTypes.ts :: export type PhpPrimitive = PhpScalar | bigint
@@ -74,8 +76,8 @@ src/php/array/array_count_values.ts :: export function array_count_values(array:
 src/php/array/array_diff.ts :: export function array_diff<TValue>( arr1: PhpArrayLike<TValue>, ...arrays: Array<PhpArrayLike<TValue>> ): PhpAssoc<TValue>
 src/php/array/array_diff_assoc.ts :: export function array_diff_assoc<TValue>( arr1: PhpArrayLike<TValue>, ...arrays: Array<PhpArrayLike<TValue>> ): PhpAssoc<TValue>
 src/php/array/array_diff_key.ts :: export function array_diff_key<TValue>( arr1: PhpArrayLike<TValue>, ...arrays: Array<PhpArrayLike<TValue>> ): PhpAssoc<TValue>
-src/php/array/array_diff_uassoc.ts :: export function array_diff_uassoc<T extends DiffValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: DiffValue, ...rest: DiffValue[], callback: KeyComparatorDescriptor] ): PhpArray<T>
-src/php/array/array_diff_ukey.ts :: export function array_diff_ukey<T extends DiffValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: DiffValue, ...rest: DiffValue[], callback: KeyComparatorDescriptor] ): PhpArray<T>
+src/php/array/array_diff_uassoc.ts :: export function array_diff_uassoc<T>( arr1: PhpAssoc<T>, ...arraysAndCallback: [arr2: DiffArray<T>, ...rest: Array<DiffArray<T>>, callback: PhpKeyComparatorDescriptor] ): PhpAssoc<T>
+src/php/array/array_diff_ukey.ts :: export function array_diff_ukey<T>( arr1: PhpAssoc<T>, ...arraysAndCallback: [arr2: DiffArray<T>, ...rest: Array<DiffArray<T>>, callback: PhpKeyComparatorDescriptor] ): PhpAssoc<T>
 src/php/array/array_fill.ts :: export function array_fill<TValue>(startIndex: number, num: number, mixedVal: TValue): PhpAssoc<TValue>
 src/php/array/array_fill_keys.ts :: export function array_fill_keys<TKey extends PhpKey | StringLike, TValue>( keys: PhpArrayLike<TKey>, value: TValue, ): PhpAssoc<TValue>
 src/php/array/array_filter.ts :: export function array_filter<T>( arr: PhpAssoc<T> | PhpList<T>, func?: (value: T, key: number | string) => FilterPredicateResult, ): PhpAssoc<T> | PhpList<T>
@@ -83,8 +85,8 @@ src/php/array/array_flip.ts :: export function array_flip<TValue extends PhpKey 
 src/php/array/array_intersect.ts :: export function array_intersect<TValue>( arr1: PhpArrayLike<TValue>, ...arrays: Array<PhpArrayLike<TValue>> ): PhpAssoc<TValue>
 src/php/array/array_intersect_assoc.ts :: export function array_intersect_assoc<TValue>( arr1: PhpArrayLike<TValue>, ...arrays: Array<PhpArrayLike<TValue>> ): PhpAssoc<TValue>
 src/php/array/array_intersect_key.ts :: export function array_intersect_key<TValue>( arr1: PhpArrayLike<TValue>, ...arrays: Array<PhpArrayLike<TValue>> ): PhpAssoc<TValue>
-src/php/array/array_intersect_uassoc.ts :: export function array_intersect_uassoc<T extends IntersectValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: IntersectValue, ...rest: IntersectValue[], callback: KeyComparatorDescriptor] ): PhpArray<T>
-src/php/array/array_intersect_ukey.ts :: export function array_intersect_ukey<T extends IntersectValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: IntersectValue, ...rest: IntersectValue[], callback: KeyComparatorDescriptor] ): PhpArray<T>
+src/php/array/array_intersect_uassoc.ts :: export function array_intersect_uassoc<T>( arr1: PhpAssoc<T>, ...arraysAndCallback: [ arr2: IntersectArray<T>, ...rest: Array<IntersectArray<T>>, callback: PhpKeyComparatorDescriptor, ] ): PhpAssoc<T>
+src/php/array/array_intersect_ukey.ts :: export function array_intersect_ukey<T>( arr1: PhpAssoc<T>, ...arraysAndCallback: [ arr2: IntersectArray<T>, ...rest: Array<IntersectArray<T>>, callback: PhpKeyComparatorDescriptor, ] ): PhpAssoc<T>
 src/php/array/array_key_exists.ts :: export function array_key_exists<TValue>(key: string | number, search: PhpArrayLike<TValue>): boolean
 src/php/array/array_keys.ts :: export function array_keys<T>(input: PhpAssoc<T>, searchValue?: T, argStrict?: boolean): string[]
 src/php/array/array_map.ts :: export function array_map<TInputs extends ArrayMapInputs, TResult>( callback: PhpCallableDescriptor<ArrayMapTupleArgs<TInputs>, TResult>, ...inputArrays: TInputs ): PhpList<TResult>
@@ -118,11 +120,11 @@ src/php/array/array_slice.ts :: export function array_slice<TValue extends Slice
 src/php/array/array_slice.ts :: export function array_slice<TValue extends SliceValue>( arr: TValue[], offst: number, lgth?: number, preserveKeys?: false | undefined, ): TValue[]
 src/php/array/array_splice.ts :: export function array_splice<T extends SpliceValue>( arr: Array<T | undefined> | AssocArray<T>, offst: number, lgth?: number, replacement?: ReplacementValue<T>, ): Array<T | undefined> | AssocArray<T>
 src/php/array/array_sum.ts :: export function array_sum(array: PhpArrayLike<SummableValue> | null): number | null
-src/php/array/array_udiff.ts :: export function array_udiff<T extends DiffValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: DiffValue, ...rest: DiffValue[], callback: NumericComparatorDescriptor] ): PhpArray<T>
-src/php/array/array_udiff_assoc.ts :: export function array_udiff_assoc<T extends DiffValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: DiffValue, ...rest: DiffValue[], callback: NumericComparatorDescriptor] ): PhpArray<T>
-src/php/array/array_udiff_uassoc.ts :: export function array_udiff_uassoc<T extends DiffValue>( arr1: PhpArray<T>, ...arraysAndComparators: [ arr2: DiffValue, ...rest: DiffValue[], valueCallback: NumericComparatorDescriptor, keyCallback: KeyComparatorDescriptor, ] ): PhpArray<T>
-src/php/array/array_uintersect.ts :: export function array_uintersect<T extends IntersectValue>( arr1: PhpArray<T>, ...arraysAndCallback: [arr2: IntersectValue, ...rest: IntersectValue[], callback: NumericComparatorDescriptor] ): PhpArray<T>
-src/php/array/array_uintersect_uassoc.ts :: export function array_uintersect_uassoc<T extends IntersectValue>( arr1: PhpArray<T>, ...arraysAndComparators: [ arr2: IntersectValue, ...rest: IntersectValue[], valueCallback: NumericComparatorDescriptor, keyCallback: KeyComparatorDescriptor, ] ): PhpArray<T>
+src/php/array/array_udiff.ts :: export function array_udiff<T>( arr1: PhpAssoc<T>, ...arraysAndCallback: [arr2: DiffArray<T>, ...rest: Array<DiffArray<T>>, callback: PhpComparatorDescriptor<T>] ): PhpAssoc<T>
+src/php/array/array_udiff_assoc.ts :: export function array_udiff_assoc<T>( arr1: PhpAssoc<T>, ...arraysAndCallback: [arr2: DiffArray<T>, ...rest: Array<DiffArray<T>>, callback: PhpComparatorDescriptor<T>] ): PhpAssoc<T>
+src/php/array/array_udiff_uassoc.ts :: export function array_udiff_uassoc<T>( arr1: PhpAssoc<T>, ...arraysAndComparators: [ arr2: DiffArray<T>, ...rest: Array<DiffArray<T>>, valueCallback: PhpComparatorDescriptor<T>, keyCallback: PhpKeyComparatorDescriptor, ] ): PhpAssoc<T>
+src/php/array/array_uintersect.ts :: export function array_uintersect<T>( arr1: PhpAssoc<T>, ...arraysAndCallback: [ arr2: IntersectArray<T>, ...rest: Array<IntersectArray<T>>, callback: PhpComparatorDescriptor<T>, ] ): PhpAssoc<T>
+src/php/array/array_uintersect_uassoc.ts :: export function array_uintersect_uassoc<T>( arr1: PhpAssoc<T>, ...arraysAndComparators: [ arr2: IntersectArray<T>, ...rest: Array<IntersectArray<T>>, valueCallback: PhpComparatorDescriptor<T>, keyCallback: PhpKeyComparatorDescriptor, ] ): PhpAssoc<T>
 src/php/array/array_unique.ts :: export function array_unique<T>(inputArr: T[] | PhpAssoc<T>): PhpAssoc<T> | false
 src/php/array/array_unshift.ts :: export function array_unshift<TValue extends UnshiftValue>(array: TValue[], ...values: TValue[]): number
 src/php/array/array_values.ts :: export function array_values<T>(input: T[] | PhpAssoc<T>): T[]
@@ -151,9 +153,9 @@ src/php/array/rsort.ts :: export function rsort<T extends SortValue>( inputArr: 
 src/php/array/shuffle.ts :: export function shuffle<T>(inputArr: Record<string, T>): boolean | Record<string, T> | T[]
 src/php/array/sizeof.ts :: export function sizeof<TValue>(mixedVar: PhpArrayLike<TValue>, mode?: CountMode): number
 src/php/array/sort.ts :: export function sort<T extends SortValue>( inputArr: Record<string, T>, sortFlags?: SortFlag, ): boolean | Record<string, T>
-src/php/array/uasort.ts :: export function uasort<T>( this: PhpAssoc<SortContextValue>, inputArr: Record<string, T>, sorter: PhpCallableDescriptor<[T, T], number>, ): boolean | Record<string, T>
-src/php/array/uksort.ts :: export function uksort<T>( this: PhpAssoc<SortContextValue> & { window?: PhpAssoc<SortContextValue> }, inputArr: Record<string, T>, sorter: PhpCallableDescriptor<[string, string], number>, ): boolean | Record<string, T>
-src/php/array/usort.ts :: export function usort<T>( this: PhpAssoc<SortContextValue>, inputArr: Record<string, T>, sorter: PhpCallableDescriptor<[T, T], number>, ): boolean | Record<string, T>
+src/php/array/uasort.ts :: export function uasort<T>( this: PhpAssoc<SortContextValue>, inputArr: Record<string, T>, sorter: PhpComparatorDescriptor<T>, ): boolean | Record<string, T>
+src/php/array/uksort.ts :: export function uksort<T>( this: PhpAssoc<SortContextValue> & { window?: PhpAssoc<SortContextValue> }, inputArr: Record<string, T>, sorter: PhpKeyComparatorDescriptor, ): boolean | Record<string, T>
+src/php/array/usort.ts :: export function usort<T>( this: PhpAssoc<SortContextValue>, inputArr: Record<string, T>, sorter: PhpComparatorDescriptor<T>, ): boolean | Record<string, T>
 src/php/bc/bcadd.ts :: export function bcadd(leftOperand: string, rightOperand: string, scale?: number): string
 src/php/bc/bccomp.ts :: export function bccomp(leftOperand: string | number, rightOperand: string | number, scale?: number): number
 src/php/bc/bcdiv.ts :: export function bcdiv(leftOperand: string | number, rightOperand: string | number, scale?: number): string
