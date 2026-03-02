@@ -1,19 +1,19 @@
 <% if (curLang.language !== 'php') { %>
   <%
   var cnt = site.pages.find({ language: curLang.language, type: 'function' }).length
-  var header = 'Ehm.. only ' + cnt + ' ' + curLang.human + ' function'
-  if (cnt !== 1) {
-    header += 's'
-  }
-  header += '?'
-  if (cnt > 50) {
-    header = 'Welcoming your addition'
+  var header = 'Help us add more'
+  if (cnt <= 50) {
+    header = 'We have ' + cnt + ' ' + curLang.human + ' function'
+    if (cnt !== 1) {
+      header += 's'
+    }
+    header += ' so far — help us add more'
   }
   %>
 
   <h2><%= header %></h2>
   <p>
-    We can use your help porting more. Have a rainy Sunday afternoon to spare and a taste for a porting puzzle?
+    Got a rainy Sunday afternoon and a taste for a porting puzzle?
   </p>
   <ul>
     <li>
